@@ -1,8 +1,4 @@
-//
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//그
 
 import UIKit
 
@@ -13,6 +9,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    var juiceMaker: JuiceMaker = JuiceMaker()
+    
 }
 
