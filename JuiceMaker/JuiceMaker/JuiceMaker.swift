@@ -8,177 +8,164 @@
 
 import Foundation
 
-/// 과일 재고
-struct FruitsStock {
-    var strawberry: Int = 10
-    var banana: Int = 10
-    var pineapple: Int = 10
-    var kiwi: Int = 10
-    var mango: Int = 10
+// 과일 종류
+enum FruitName: String {
+    case strawberry = "딸기"
+    case banana = "바나나"
+    case pineapple = "파인애플"
+    case kiwi = "키위"
+    case mango = "망고"
+    case none = ""
+}
+
+// 쥬스 종류
+enum JuiceName: String {
+    case kiwiJuice = "키위"
+    case strawberryBananaJuice = "딸기바나나"
+    case pineappleJuice = "파인애플"
+    case mangoJuice = "망고"
+    case mangoKiwiJuice = "망고키위"
+    case none = ""
+}
+
+/// 과일
+struct Fruit {
+    var fruitName: FruitName
+    private var fruitStock: Int = 10
     
-    // MARK : 읽기 전용 재고
-    var strawberryStock: Int {
+    var currentStock: Int {
         get {
-            return strawberry
+            return fruitStock
         }
     }
     
-    var bananaStock: Int {
-        get {
-            return banana
-        }
+    init(fruitName: FruitName) {
+        self.fruitName = fruitName
     }
     
-    var pineappleyStock: Int {
-        get {
-            return pineapple
-        }
+    mutating func addStock(amount: Int) {
+        self.fruitStock = fruitStock + amount
     }
     
-    var kiwiStock: Int {
-        get {
-            return kiwi
-        }
+    mutating func useStock(amount: Int) {
+        self.fruitStock = fruitStock - amount
     }
     
-    var mangoStock: Int {
-        get {
-            return mango
+    mutating func checkStock(needAmount: Int) -> Bool {
+        if fruitStock >= needAmount {
+            return true
         }
-    }
-    
-    // MAKR : 재고 올리기
-    mutating func addFruitStock(strawberry: Int = 0, banana: Int = 0, pineapple: Int = 0, kiwi: Int = 0, mango: Int = 0){
-        self.strawberry += strawberry
-        self.banana += banana
-        self.pineapple += pineapple
-        self.kiwi += kiwi
-        self.mango += mango
+        debugPrint("\(fruitName.rawValue) 재고부족")
+        return false
     }
 }
 
 /// 쥬스 메이커
 class JuiceMaker {
-    var fruitsStock = FruitsStock()
-    var selectedRecipe = [(name: "kiwi", number: 0)]
-    var selectMenu = ""
+    var selectedRecipe = [(name: FruitName.none, number: 0)]
+    var selectedMenu = JuiceName.none
     
-    // 과일 종류
-    enum Fruit: String {
-        case strawberry = "딸기"
-        case banana = "바나나"
-        case pineapple = "파인애플"
-        case kiwi = "키위"
-        case mango = "망고"
-    }
-    
-    // 쥬스 종류
-    enum Juice: String {
-        case kiwiJuice = "키위"
-        case strawberryBananaJuice = "딸기바나나"
-        case pineappleJuice = "파인애플"
-        case mangoJuice = "망고"
-        case mangoKiwiJuice = "망고키위"
-    }
+    var strawberry = Fruit(fruitName: .strawberry)
+    var banana = Fruit(fruitName: .banana)
+    var pineapple = Fruit(fruitName: .pineapple)
+    var kiwi = Fruit(fruitName: .kiwi)
+    var mango = Fruit(fruitName: .mango)
     
     // 쥬스 레시피
-    let kiwiJuice = [(name: "kiwi", number: 3)]
-    let strawberryBananaJuice = [(name: "strawberry", number: 10), (name: "banana", number: 1)]
-    let pineappleJuice = [(name: "pineapple", number: 2)]
-    let mangoKiwiJuice = [(name: "mango", number: 2), (name: "kiwi", number: 1)]
-    let mangoJuice = [(name: "mango", number: 3)]
+    let kiwiJuice = [(name: FruitName.kiwi, number: 3)]
+    let strawberryBananaJuice = [(name: FruitName.strawberry, number: 10), (name: FruitName.banana, number: 1)]
+    let pineappleJuice = [(name: FruitName.pineapple, number: 2)]
+    let mangoKiwiJuice = [(name: FruitName.mango, number: 2), (name: FruitName.kiwi, number: 1)]
+    let mangoJuice = [(name: FruitName.mango, number: 3)]
+    
     
     /// 메뉴 접수
-    func checkRecipe(menu: Juice) {
+    func checkRecipe(menu: JuiceName) {
         switch menu {
         case .kiwiJuice:
             selectedRecipe = kiwiJuice
-            selectMenu = Juice.kiwiJuice.rawValue
+            selectedMenu = JuiceName.kiwiJuice
+            
         case .strawberryBananaJuice:
             selectedRecipe = strawberryBananaJuice
-            selectMenu = Juice.strawberryBananaJuice.rawValue
+            selectedMenu = JuiceName.strawberryBananaJuice
+            
         case .pineappleJuice:
             selectedRecipe = pineappleJuice
-            selectMenu = Juice.pineappleJuice.rawValue
+            selectedMenu = JuiceName.pineappleJuice
+            
         case .mangoJuice:
             selectedRecipe = mangoJuice
-            selectMenu = Juice.mangoJuice.rawValue
+            selectedMenu = JuiceName.mangoJuice
+            
         case .mangoKiwiJuice:
             selectedRecipe = mangoKiwiJuice
-            selectMenu = Juice.mangoKiwiJuice.rawValue
+            selectedMenu = JuiceName.mangoKiwiJuice
+            
+        case .none:
+            return
         }
     }
     
+    
     /// 재고 확인
-    func checkFruitStock(fruit: String, number: Int) -> Bool {
+    func checkFruitStock(fruit: FruitName, amount: Int) -> Bool {
         switch fruit {
-        case "banana":
-            if fruitsStock.banana >= number {
-                return true
-            }
-        case "kiwi":
-            if fruitsStock.kiwi >= number {
-                return true
-            }
-        case "mango":
-            if fruitsStock.mango >= number {
-                return true
-            }
-        case "strawberry":
-            if fruitsStock.strawberry >= number {
-                return true
-            }
-        case "pineapple":
-            if fruitsStock.pineapple >= number {
-                return true
-            }
+        case .banana:
+            return banana.checkStock(needAmount: amount)
+        case .kiwi:
+            return kiwi.checkStock(needAmount: amount)
+        case .mango:
+            return mango.checkStock(needAmount: amount)
+        case .strawberry:
+            return strawberry.checkStock(needAmount: amount)
+        case .pineapple:
+            return pineapple.checkStock(needAmount: amount)
         default:
             return false
         }
-        return false
     }
     
+    
     /// 쥬스 만들기
-    func makeJuice(menu: Juice) -> Bool{
+    func makeJuice(menu: JuiceName) {
         // 레시피 확인
         checkRecipe(menu: menu)
         
         // 재고 확인
-        var possible: Bool = false
+        var possible: Bool = true
         
         for recipeIndex in 0..<selectedRecipe.count {
-            if checkFruitStock(fruit: selectedRecipe[recipeIndex].name, number: selectedRecipe[recipeIndex].number) {
-                possible = true
-            } else {
+            if !checkFruitStock(fruit: selectedRecipe[recipeIndex].name, amount: selectedRecipe[recipeIndex].number) {
                 possible = false
                 break
             }
         }
         
-        // 재고가 있다면 만들고 true 리턴
+        // 재고가 있다면 만들기
         if possible {
-            switch selectMenu {
-            case "키위":
-                fruitsStock.kiwi -= selectedRecipe[0].number
-            case "딸기바나나":
-                fruitsStock.strawberry -= selectedRecipe[0].number
-                fruitsStock.banana -= selectedRecipe[1].number
-            case "파인애플":
-                fruitsStock.pineapple -= selectedRecipe[0].number
-            case "망고":
-                fruitsStock.mango -= selectedRecipe[0].number
-            case "망고키위":
-                fruitsStock.mango -= selectedRecipe[0].number
-                fruitsStock.kiwi -= selectedRecipe[1].number
+            switch selectedMenu {
+            case .kiwiJuice:
+                kiwi.useStock(amount: selectedRecipe[0].number)
+                
+            case .strawberryBananaJuice:
+                strawberry.useStock(amount: selectedRecipe[0].number)
+                banana.useStock(amount: selectedRecipe[1].number)
+                
+            case .pineappleJuice:
+                pineapple.useStock(amount: selectedRecipe[0].number)
+                
+            case .mangoJuice:
+                mango.useStock(amount: selectedRecipe[0].number)
+                
+            case .mangoKiwiJuice:
+                mango.useStock(amount: selectedRecipe[0].number)
+                kiwi.useStock(amount: selectedRecipe[1].number)
+                
             default:
-                return false
+                return
             }
-            print("\(selectMenu) 쥬스 나왔습니다! 맛있게 드세요!")
-            return true
+            debugPrint("\(selectedMenu.rawValue) 쥬스 완성")
         }
-        
-        // 재고가 없으면 false 리턴
-        print("재고가 모자라요. 재고를 수정할까요?")
-        return false
     }
 }
