@@ -45,5 +45,17 @@ struct JuiceMaker {
 
         return initialMenuList
     }
+    
+    func checkAllStock() {
+        for fruitType in fruitStockList {
+            print("\(fruitType.fruitName) 재고가 \(fruitType.currentStock) 개 남아있습니다.")
+        }
+    }
+    
+    func checkStock(of fruitType: Fruit) -> Int {
+        return fruitType.currentStock
+    }
+    
+    
 }
 
