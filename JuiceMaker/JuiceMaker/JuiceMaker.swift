@@ -31,4 +31,22 @@ class JuiceMaker {
     var kiwi = 10
     var mango = 10
     
+    // 과일쥬스 제조
+    func makeKiwiJuice() {
+        kiwi -= 3
+    }
+    func makePineappleJuice() {
+        pineapple -= 2
+    }
+    func makeStrawberryAndBananaJuice() {
+        strawberry -= 10
+        banana -= 1
+    }
+    func makeMangoJuice() {
+        mango -= 3
+    }
+    func makeMangoAndKiwiJuice() {
+        mango -= 2
+        kiwi -= 1
+    }
 }
