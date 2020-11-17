@@ -64,5 +64,60 @@ struct JuiceMaker {
         
         fruitType.currentStock += addingAmount
     }
+    
+    func makeJuice(of order: JuiceMenu) {
+        switch order {
+        case .딸바쥬스:
+            guard checkStock(of: strawberry) >= 10,
+                  checkStock(of: banana) >= 1 else {
+                print("딸바쥬스를 만들 재고가 충분하지 않습니다.")
+                return
+            }
+            
+            updateStock(of: strawberry, used: 10)
+            updateStock(of: banana, used: 1)
+            
+        case .망고쥬스:
+            guard checkStock(of: mango) >= 3 else {
+                print("망고쥬스를 만들 재고가 충분하지 않습니다.")
+                return
+            }
+            
+            updateStock(of: mango, used: 3)
+            
+        case .망고키위쥬스:
+            guard checkStock(of: mango) >= 2,
+                  checkStock(of: kiwi) >= 1 else {
+                print("망고키위쥬스를 만들 재고가 충분하지 않습니다.")
+                return
+            }
+            
+            updateStock(of: mango, used: 2)
+            updateStock(of: kiwi, used: 1)
+            
+        case .키위쥬스:
+            guard checkStock(of: kiwi) >= 3 else {
+                print("키위쥬스를 만들 재고가 충분하지 않습니다.")
+                return
+            }
+            
+            updateStock(of: kiwi, used: 3)
+            
+        case .파인애플쥬스:
+            guard checkStock(of: kiwi) >= 2 else {
+                print("파인애플쥬스를 만들 재고가 충분하지 않습니다.")
+                return
+            }
+            
+            updateStock(of: pineapple, used: 2)
+            
+        }
+    }
+    
+    private func updateStock(of fruitType: Fruit, used amount: Int) {
+        fruitType.currentStock -= amount
+    }
+    
+
 }
 
