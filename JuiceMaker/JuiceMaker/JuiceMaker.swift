@@ -36,10 +36,7 @@ class Fruit {
     }
     
     func canMakeJuice(need: Int) -> Bool {
-        if stock >= need {
-            return true
-        }
-        return false
+        return stock >= need
     }
 }
 
