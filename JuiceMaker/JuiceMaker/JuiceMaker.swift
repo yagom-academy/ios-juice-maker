@@ -19,6 +19,10 @@ struct JuiceMaker {
         return fruitType.showCurrentStock()
     }
     
+    func addCurrentStock(of fruitType: inout Fruit, amount: Int) {
+        fruitType.addStockAmount(adding: amount)
+    }
+    
     mutating func makeJuice(of order: JuiceMenu) {
         switch order {
         case .ddalbaJuice:
@@ -75,4 +79,5 @@ struct JuiceMaker {
         }
     }
 }
+
 
