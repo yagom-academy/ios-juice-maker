@@ -9,12 +9,16 @@ import Foundation
 
 struct Fruit {
     var name: String
-    private var currentStock: Int
+    var tempCurrentStock: Int
+    var currentStock: Int {
+        get {
+            return tempCurrentStock
+        }
+    }
     
     init(name: String) {
         self.name = name
-        self.currentStock = 10
-        
+        self.tempCurrentStock = 10
     }
     
     func showCurrentStock() -> Int {
@@ -22,7 +26,7 @@ struct Fruit {
     }
     
     mutating func changeStockAmount(reducing amount: Int) {
-        self.currentStock -= amount
+        self.tempCurrentStock -= amount
     }
 
     mutating func addStockAmount(adding amount: Int) {
@@ -31,6 +35,6 @@ struct Fruit {
             return
         }
         
-        self.currentStock += amount
+        self.tempCurrentStock += amount
     }
 }
