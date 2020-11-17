@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A37621825629A8B00B5567E /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A37621725629A8B00B5567E /* CreditViewController.swift */; };
+		9A7390AF2562717B0000E9B4 /* pineapple.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7390AB2562717B0000E9B4 /* pineapple.png */; };
+		9A7390B02562717B0000E9B4 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7390AC2562717B0000E9B4 /* banana.png */; };
+		9A7390B12562717B0000E9B4 /* kiwi.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7390AD2562717B0000E9B4 /* kiwi.png */; };
+		9A7390B22562717B0000E9B4 /* mango.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7390AE2562717B0000E9B4 /* mango.png */; };
+		9A7390B5256271840000E9B4 /* strawberry.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7390B4256271840000E9B4 /* strawberry.png */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
 		C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* ViewController.swift */; };
@@ -17,6 +23,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A37621725629A8B00B5567E /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
+		9A7390AB2562717B0000E9B4 /* pineapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pineapple.png; path = ../../../../pineapple.png; sourceTree = "<group>"; };
+		9A7390AC2562717B0000E9B4 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana.png; path = ../../../../banana.png; sourceTree = "<group>"; };
+		9A7390AD2562717B0000E9B4 /* kiwi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kiwi.png; path = ../../../../kiwi.png; sourceTree = "<group>"; };
+		9A7390AE2562717B0000E9B4 /* mango.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mango.png; path = ../../../../mango.png; sourceTree = "<group>"; };
+		9A7390B4256271840000E9B4 /* strawberry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = strawberry.png; path = ../../../../strawberry.png; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +51,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A7390A8256270A60000E9B4 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				9A7390AC2562717B0000E9B4 /* banana.png */,
+				9A7390AD2562717B0000E9B4 /* kiwi.png */,
+				9A7390AE2562717B0000E9B4 /* mango.png */,
+				9A7390AB2562717B0000E9B4 /* pineapple.png */,
+				9A7390B4256271840000E9B4 /* strawberry.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		C73DAF2A255D0CDC00020D38 = {
 			isa = PBXGroup;
 			children = (
@@ -61,8 +85,10 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				9A37621725629A8B00B5567E /* CreditViewController.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
+				9A7390A8256270A60000E9B4 /* image */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
@@ -127,9 +153,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A7390B22562717B0000E9B4 /* mango.png in Resources */,
 				C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */,
 				C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */,
+				9A7390AF2562717B0000E9B4 /* pineapple.png in Resources */,
 				C73DAF3E255D0CDD00020D38 /* Main.storyboard in Resources */,
+				9A7390B02562717B0000E9B4 /* banana.png in Resources */,
+				9A7390B5256271840000E9B4 /* strawberry.png in Resources */,
+				9A7390B12562717B0000E9B4 /* kiwi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +173,7 @@
 			files = (
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				9A37621825629A8B00B5567E /* CreditViewController.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
