@@ -36,13 +36,13 @@ struct JuiceMaker {
     
     private func initializeMenuList() -> [JuiceMenu] {
         var initialMenuList = [JuiceMenu]()
-
+        
         initialMenuList.append(.딸바쥬스)
         initialMenuList.append(.망고쥬스)
         initialMenuList.append(.망고키위쥬스)
         initialMenuList.append(.키위쥬스)
         initialMenuList.append(.파인애플쥬스)
-
+        
         return initialMenuList
     }
     
@@ -117,7 +117,5 @@ struct JuiceMaker {
     private func updateStock(of fruitType: Fruit, used amount: Int) {
         fruitType.currentStock -= amount
     }
-    
-
 }
 
