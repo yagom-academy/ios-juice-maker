@@ -118,7 +118,7 @@ class JuiceMaker {
         kiwi = kiwi + 1
     }
     
-    func addMangoyStock() {
+    func addMangoStock() {
         mango = mango + 1
     }
 }
