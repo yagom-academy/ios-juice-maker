@@ -14,7 +14,6 @@ enum FruitsType {
     case mango
 }
 
-
 class Fruit {
     let fruitType: FruitsType
     private var stock: Int
@@ -60,7 +59,6 @@ protocol JuiceRecipe {
     func makeMangoJuice() throws -> Bool
     func makeMangoKiwiJuice() throws -> Bool
 }
-
 
 class JuiceMaker: JuiceRecipe {
     
