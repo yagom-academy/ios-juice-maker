@@ -1,4 +1,3 @@
-
 //
 //  JuiceMaker.swift
 //  JuiceMaker
@@ -9,16 +8,14 @@
 
 import Foundation
 
-/// 쥬스 메이커 타입
-class JuiceMaker {
-    private var strawberry: Int = 10
-    private var banana: Int = 10
-    private var pineapple: Int = 10
-    private var kiwi: Int = 10
-    private var mango: Int = 10
+/// 과일 재고
+struct FruitsStock {
+    var strawberry: Int = 10
+    var banana: Int = 10
+    var pineapple: Int = 10
+    var kiwi: Int = 10
+    var mango: Int = 10
     
-    
-    // MARK : 읽기 전용 과일 재고
     var strawberryStock: Int {
         get {
             return strawberry
@@ -48,77 +45,73 @@ class JuiceMaker {
             return mango
         }
     }
-    
-    // MARK : alert 구현 전, 확인용 메세지
-    func showOutOfStock() {
-        print("재료가 모자라요. 재고를 수정할까요?")
-    }
-    
-    func showSuccess() {
-        print("쥬스 나왔습니다! 맛있게 드세요!")
-    }
+}
+
+/// 쥬스 메이커
+class JuiceMaker {
+    var fruitsStock = FruitsStock()
     
     // MAKR : juice maker
-    func makeKiwiJuice() {
-        if kiwi >= 3 {
-            kiwi = kiwi - 3
-            return showSuccess()
+    func makeKiwiJuice() -> Bool {
+        if fruitsStock.kiwi >= 3 {
+            fruitsStock.kiwi -= 3
+            return true
         }
-        showOutOfStock()
+        return false
     }
     
-    func makePineappleJuice() {
-        if pineapple >= 2 {
-            pineapple = pineapple - 2
-            return showSuccess()
+    func makePineappleJuice() -> Bool {
+        if fruitsStock.pineapple >= 2 {
+            fruitsStock.pineapple -= 2
+            return true
         }
-        showOutOfStock()
+        return false
     }
     
-    func makeStrawberryBananaJuice() {
-        if strawberry >= 10 && banana >= 1 {
-            strawberry = strawberry - 10
-            banana = banana - 1
-            return showSuccess()
+    func makeStrawberryBananaJuice() -> Bool {
+        if fruitsStock.strawberry >= 10 && fruitsStock.banana >= 1 {
+            fruitsStock.strawberry -= 10
+            fruitsStock.banana -= 1
+            return true
         }
-        showOutOfStock()
+        return false
     }
     
-    func makeMangoJuice() {
-        if mango >= 3 {
-            mango = mango - 3
-            return showSuccess()
+    func makeMangoJuice() -> Bool {
+        if fruitsStock.mango >= 3 {
+            fruitsStock.mango -= 3
+            return true
         }
-        showOutOfStock()
+        return false
     }
     
-    func makeMangoKiwiJuice() {
-        if mango >= 2 && kiwi >= 1 {
-            mango = mango - 2
-            kiwi = kiwi - 1
-            return showSuccess()
+    func makeMangoKiwiJuice() -> Bool {
+        if fruitsStock.mango >= 2 && fruitsStock.kiwi >= 1 {
+            fruitsStock.mango -= 2
+            fruitsStock.kiwi -= 1
+            return true
         }
-        showOutOfStock()
+        return false
     }
     
     // MAKR : 재고 1개 올리기
     func addStrawberryStock() {
-        strawberry = strawberry + 1
+        fruitsStock.strawberry += 1
     }
     
     func addBananaStock() {
-        banana = banana + 1
+        fruitsStock.banana += 1
     }
     
     func addPineappleStock() {
-        pineapple = pineapple + 1
+        fruitsStock.pineapple += 1
     }
     
     func addKiwiStock() {
-        kiwi = kiwi + 1
+        fruitsStock.kiwi += 1
     }
     
     func addMangoStock() {
-        mango = mango + 1
+        fruitsStock.mango += 1
     }
 }
