@@ -102,23 +102,23 @@ class JuiceMaker {
     }
     
     // MAKR : 재고 1개 올리기
-    func AddStrawberryStock() {
+    func addStrawberryStock() {
         strawberry = strawberry + 1
     }
     
-    func AddBananaStock() {
+    func addBananaStock() {
         banana = banana + 1
     }
     
-    func AddPineappleStock() {
+    func addPineappleStock() {
         pineapple = pineapple + 1
     }
     
-    func AddKiwiStock() {
+    func addKiwiStock() {
         kiwi = kiwi + 1
     }
     
-    func AddMangoyStock() {
+    func addMangoyStock() {
         mango = mango + 1
     }
 }
