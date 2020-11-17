@@ -49,4 +49,12 @@ class JuiceMaker {
         mango -= 2
         kiwi -= 1
     }
+    
+    // 과일 재고 추가/제거
+    func addOneFruit(_ fruit: inout Int) {
+        fruit += 1
+    }
+    func minusOneFruit(_ fruit: inout Int){
+        fruit -= 1
+    }
 }
