@@ -10,14 +10,15 @@
 import Foundation
 
 /// 쥬스 메이커 타입
-class JucieMaker {
-    // 읽기전용으로 재고 확인하기
-    var strawberry: Int = 10
-    var banana: Int = 10
-    var pineapple: Int = 10
-    var kiwi: Int = 10
-    var mango: Int = 10
+class JuiceMaker {
+    private var strawberry: Int = 10
+    private var banana: Int = 10
+    private var pineapple: Int = 10
+    private var kiwi: Int = 10
+    private var mango: Int = 10
     
+    
+    // MARK : 읽기 전용 과일 재고
     var strawberryStock: Int {
         get {
             return strawberry
@@ -48,6 +49,7 @@ class JucieMaker {
         }
     }
     
+    // MARK : alert 구현 전, 확인용 메세지
     func showOutOfStock() {
         print("재료가 모자라요. 재고를 수정할까요?")
     }
@@ -56,6 +58,7 @@ class JucieMaker {
         print("쥬스 나왔습니다! 맛있게 드세요!")
     }
     
+    // MAKR : juice maker
     func makeKiwiJuice() {
         if kiwi >= 3 {
             kiwi = kiwi - 3
@@ -98,6 +101,7 @@ class JucieMaker {
         showOutOfStock()
     }
     
+    // MAKR : 재고 1개 올리기
     func AddStrawberryStock() {
         strawberry = strawberry + 1
     }
