@@ -16,15 +16,11 @@ enum FruitsType {
 
 class Fruit {
     let fruitType: FruitsType
-    private var stock: Int
+    private(set) var stock: Int
     
     init(fruitType: FruitsType) {
         self.fruitType = fruitType
         self.stock = 10
-    }
-    
-    func getStock() -> Int {
-        return stock
     }
     
     func addStock(add: Int) {
