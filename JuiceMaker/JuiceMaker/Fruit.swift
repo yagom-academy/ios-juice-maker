@@ -7,12 +7,20 @@
 
 import Foundation
 
-class Fruit {
+struct Fruit {
     var fruitName: String
-    var currentStock: Int
+    var previousStock: Int
+    var addedStock: Int
+    var currentStock: Int {
+        get {
+            return previousStock + addedStock
+        }
+    }
     
     init(fruitName: String, currentStock: Int) {
         self.fruitName = fruitName
-        self.currentStock = currentStock
+        self.previousStock = currentStock
+        self.addedStock = 0
+        
     }
 }
