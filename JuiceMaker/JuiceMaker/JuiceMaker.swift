@@ -56,6 +56,13 @@ struct JuiceMaker {
         return fruitType.currentStock
     }
     
-    
+    func addStock(of fruitType: Fruit, addingAmount: Int) {
+        guard addingAmount > 0 else {
+            print("재고를 하나 이상 추가해주세요.")
+            return
+        }
+        
+        fruitType.currentStock += addingAmount
+    }
 }
 
