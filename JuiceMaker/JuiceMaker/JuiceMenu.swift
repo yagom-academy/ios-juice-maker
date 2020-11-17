@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum JuiceMenu {
-    case 딸바쥬스
-    case 망고쥬스
-    case 망고키위쥬스
-    case 키위쥬스
-    case 파인애플쥬스
+enum JuiceMenu: String {
+    case ddalbaJuice = "딸바쥬스"
+    case mangoJuice = "망고쥬스"
+    case mangoKiwiJuice = "망고키위쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
 }
 

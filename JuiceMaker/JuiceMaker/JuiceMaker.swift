@@ -8,85 +8,71 @@ import Foundation
 
 /// 쥬스 메이커 타입 
 struct JuiceMaker {
-    private var fruitStockList: [Fruit] = []
     
-    private var strawberry = Fruit(fruitName: "strawberry", currentStock: 10)
-    private var banana = Fruit(fruitName: "banana", currentStock: 10)
-    private var pineapple = Fruit(fruitName: "pineapple", currentStock: 10)
-    private var kiwi = Fruit(fruitName: "kiwi", currentStock: 10)
-    private var mango = Fruit(fruitName: "mango", currentStock: 10)
+    private var strawberry = Fruit(name: "strawberry")
+    private var banana = Fruit(name: "banana")
+    private var pineapple = Fruit(name: "pineapple")
+    private var kiwi = Fruit(name: "kiwi")
+    private var mango = Fruit(name: "mango")
     
-    
-    init() {
-        self.fruitStockList = initiallizeFruitStockList()
-    }
-    
-    private mutating func initiallizeFruitStockList() -> [Fruit] {
-        fruitStockList.append(strawberry)
-        fruitStockList.append(banana)
-        fruitStockList.append(pineapple)
-        fruitStockList.append(kiwi)
-        fruitStockList.append(mango)
-        
-        return fruitStockList
-    }
-    
-    func checkStock(of fruitType: Fruit) -> Int {
-        return fruitType.currentStock
+    func checkCurrentStock(of fruitType: Fruit) -> Int {
+        return fruitType.showCurrentStock()
     }
     
     mutating func makeJuice(of order: JuiceMenu) {
         switch order {
-        case .딸바쥬스:
-            guard strawberry.currentStock >= 10,
-                  banana.currentStock >= 1 else {
+        case .ddalbaJuice:
+            guard strawberry.showCurrentStock() >= 10,
+                  banana.showCurrentStock() >= 1 else {
                 print("딸바쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            updateStock(of: &strawberry, adding: -10)
-            updateStock(of: &banana, adding: -1)
-
-        case .망고쥬스:
-            guard mango.currentStock >= 3 else {
+            strawberry.changeStockAmount(reducing: 10)
+            banana.changeStockAmount(reducing: 1)
+            
+            print("딸바완성!")
+            
+        case .mangoJuice:
+            guard mango.showCurrentStock() >= 3 else {
                 print("망고쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            updateStock(of: &mango, adding: -3)
+            mango.changeStockAmount(reducing: 3)
             
-        case .망고키위쥬스:
-            guard mango.currentStock >= 2,
-                  kiwi.currentStock >= 1 else {
+            print("망고완성!")
+            
+        case .mangoKiwiJuice:
+            guard mango.showCurrentStock() >= 2,
+                  kiwi.showCurrentStock() >= 1 else {
                 print("망고키위쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            updateStock(of: &mango, adding: -2)
-            updateStock(of: &kiwi, adding: -1)
+            mango.changeStockAmount(reducing: 2)
+            kiwi.changeStockAmount(reducing: 1)
             
-        case .키위쥬스:
-            guard kiwi.currentStock >= 3 else {
+            print("망고키위완성!")
+            
+        case .kiwiJuice:
+            guard kiwi.showCurrentStock() >= 3 else {
                 print("키위쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            updateStock(of: &kiwi, adding: -3)
+            kiwi.changeStockAmount(reducing: 3)
+            print("키위완성!")
             
-        case .파인애플쥬스:
-            guard pineapple.currentStock >= 2 else {
+        case .pineappleJuice:
+            guard pineapple.showCurrentStock() >= 2 else {
                 print("파인애플쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            updateStock(of: &pineapple, adding: -2)
-            
+            pineapple.changeStockAmount(reducing: 2)
+            print("파인애플완성!")
         }
-    }
-    
-    func updateStock(of fruitType: inout Fruit, adding amount: Int) {
-        fruitType.previousStock = fruitType.currentStock
-        fruitType.addedStock = amount
     }
 }
 
