@@ -26,7 +26,7 @@ enum JuiceName: String {
     case kiwiJuice = "키위"
     case pineappleJuice = "파인애플"
     case strawberryBananaJuice = "딸기바나나"
-    case mangoKiwiJuice = "망고키위 
+    case mangoKiwiJuice = "망고키위"
     case none = ""
 }
 
