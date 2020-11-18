@@ -19,7 +19,7 @@ enum FruitName: String {
 }
 
 // 쥬스 종류
-enum JuiceName: String 
+enum JuiceName: String {
     case strawberryJuice = "딸기"
     case bananaJuice = "바나나"
     case mangoJuice = "망고"
