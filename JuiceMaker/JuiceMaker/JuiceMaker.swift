@@ -38,7 +38,7 @@ struct Fruit {
     
     var currentStock: Int {
         get {
-            return fruitStock
+            return stock
         }
     }
     
