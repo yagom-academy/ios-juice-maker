@@ -31,7 +31,8 @@ enum JuiceName: String {
 /// 과일
 struct Fruit {
     var fruitName: FruitName
-    private var fruitStock: Int = 10
+    var fruitStock: Int
+    let initialAmount: Int = 10
     
     var currentStock: Int {
         get {
@@ -41,6 +42,7 @@ struct Fruit {
     
     init(fruitName: FruitName) {
         self.fruitName = fruitName
+        self.fruitStock = initialAmount
     }
     
     mutating func addStock(amount: Int) {
