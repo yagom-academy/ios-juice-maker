@@ -24,15 +24,51 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzs-yH-vMo">
+                                <rect key="frame" x="64" y="64" width="768" height="309"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXa-aX-Hnj">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="154.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HHP-vf-W4n">
+                                                <rect key="frame" x="0.0" y="0.0" width="373" height="154.5"/>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="HHP-vf-W4n" firstAttribute="centerY" secondItem="hXa-aX-Hnj" secondAttribute="centerY" id="FfJ-8s-E2j"/>
+                                            <constraint firstItem="HHP-vf-W4n" firstAttribute="centerY" secondItem="hXa-aX-Hnj" secondAttribute="centerY" id="OH2-L3-rny"/>
+                                            <constraint firstAttribute="bottom" secondItem="HHP-vf-W4n" secondAttribute="bottom" id="Uhf-hM-erm"/>
+                                            <constraint firstItem="HHP-vf-W4n" firstAttribute="leading" secondItem="hXa-aX-Hnj" secondAttribute="leading" id="a8v-dP-9CE"/>
+                                            <constraint firstItem="HHP-vf-W4n" firstAttribute="top" secondItem="hXa-aX-Hnj" secondAttribute="top" id="dPt-xH-4tO"/>
+                                            <constraint firstAttribute="trailing" secondItem="HHP-vf-W4n" secondAttribute="trailing" id="nmu-7c-hTS"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="hXa-aX-Hnj" firstAttribute="top" secondItem="jzs-yH-vMo" secondAttribute="top" id="Aqi-mq-xOy"/>
+                                    <constraint firstItem="hXa-aX-Hnj" firstAttribute="leading" secondItem="jzs-yH-vMo" secondAttribute="leading" id="JtE-Ct-J99"/>
+                                    <constraint firstAttribute="centerY" secondItem="hXa-aX-Hnj" secondAttribute="bottom" id="QNO-9S-l1f"/>
+                                    <constraint firstAttribute="trailing" secondItem="hXa-aX-Hnj" secondAttribute="trailing" id="fHG-Jy-q9T"/>
+                                    <constraint firstItem="hXa-aX-Hnj" firstAttribute="width" secondItem="jzs-yH-vMo" secondAttribute="width" id="wjL-JJ-qEb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jzs-yH-vMo" firstAttribute="top" secondItem="TIw-OH-NyG" secondAttribute="bottom" constant="20" id="4iN-jb-vht"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jzs-yH-vMo" secondAttribute="trailing" constant="20" id="Fyq-0Q-zYT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jzs-yH-vMo" secondAttribute="bottom" constant="20" id="SNa-YG-Ii7"/>
                             <constraint firstItem="TIw-OH-NyG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dne-8D-WgC"/>
                             <constraint firstAttribute="trailing" secondItem="TIw-OH-NyG" secondAttribute="trailing" id="gk9-ar-9qc"/>
+                            <constraint firstItem="jzs-yH-vMo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="xjP-rh-RIL"/>
                             <constraint firstItem="TIw-OH-NyG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zue-vD-Ovd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="fruitStack" destination="HHP-vf-W4n" id="ks7-25-ibY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

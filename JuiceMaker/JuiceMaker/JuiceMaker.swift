@@ -75,6 +75,7 @@ struct JuiceRecipe {
     }
 }
 
+// TODO: add Error Handle
 class JuiceMaker {
     
     static let shared = JuiceMaker()
@@ -82,68 +83,51 @@ class JuiceMaker {
     
     private let recipe = JuiceRecipe()
     
-    private var strawberry = Fruit(fruitType: .strawberry)
-    private var banana = Fruit(fruitType: .banana)
-    private var pineapple = Fruit(fruitType: .pineapple)
-    private var kiwi = Fruit(fruitType: .kiwi)
-    private var mango = Fruit(fruitType: .mango)
+    private var fruits: [FruitsType : Fruit] = [
+        .strawberry : Fruit(fruitType: .strawberry),
+        .banana : Fruit(fruitType: .banana),
+        .pineapple : Fruit(fruitType: .pineapple),
+        .kiwi : Fruit(fruitType: .kiwi),
+        .mango : Fruit(fruitType: .mango)
+    ]
     
-    func addStock(fruitType: FruitsType, stock: Int) {
-        switch fruitType {
-        case .strawberry:
-            strawberry.addStock(stock)
-        case .banana:
-            banana.addStock(stock)
-        case .pineapple:
-            pineapple.addStock(stock)
-        case .kiwi:
-            kiwi.addStock(stock)
-        case .mango:
-            mango.addStock(stock)
+    func getFruit() -> [FruitsType : Fruit] {
+        return fruits
+    }
+    
+    func addStock(fruitType: FruitsType, stock: Int) throws {
+        guard let fruit = fruits[fruitType] else {
+            throw JuiceMakerError.notFound
         }
+        
+        fruit.addStock(stock)
     }
     
     func choiceJuice(juice: JuicesType) throws {
         let juiceRecipe: [FruitsType : Int] = recipe.getJuiceRecipe(juice)
         
         for (key, value) in juiceRecipe {
-            guard checkStock(fruitType: key, needStock: value) else {
+            
+            guard let fruit = fruits[key] else {
+                throw JuiceMakerError.notFound
+            }
+            
+            guard fruit.canMakeJuice(need: value) else {
                 throw JuiceMakerError.outOfStock
             }
         }
         
         for (key, value) in juiceRecipe {
-            makeJuice(fruitType: key, use: value)
+            try makeJuice(fruitType: key, use: value)
         }
     }
     
-    func checkStock(fruitType: FruitsType, needStock: Int) -> Bool {
-        switch fruitType {
-        case .strawberry:
-            return strawberry.canMakeJuice(need: needStock)
-        case .banana:
-            return banana.canMakeJuice(need: needStock)
-        case .pineapple:
-            return pineapple.canMakeJuice(need: needStock)
-        case .kiwi:
-            return kiwi.canMakeJuice(need: needStock)
-        case .mango:
-            return mango.canMakeJuice(need: needStock)
+    func makeJuice(fruitType: FruitsType, use: Int) throws {
+        
+        guard let fruit = fruits[fruitType] else {
+            throw JuiceMakerError.notFound
         }
-    }
-    
-    func makeJuice(fruitType: FruitsType, use: Int) {
-        switch fruitType {
-        case .strawberry:
-            strawberry.useStock(use)
-        case .banana:
-            banana.useStock(use)
-        case .pineapple:
-            pineapple.useStock(use)
-        case .kiwi:
-            kiwi.useStock(use)
-        case .mango:
-            mango.useStock(use)
-        }
+        
+        fruit.useStock(use)
     }
 }
