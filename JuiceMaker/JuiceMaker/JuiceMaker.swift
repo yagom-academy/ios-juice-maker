@@ -42,7 +42,7 @@ struct Fruit {
         }
     }
     
-    init(name: name) {
+    init(name: FruitName) {
         self.name = name
         self.stock = initialAmount
     }
@@ -88,7 +88,7 @@ class JuiceMaker {
     /// 메뉴 접수
     func checkRecipe(menu: JuiceName) {
         switch menu {
-        case .strawberrJuice:
+        case .strawberryJuice:
             selectedRecipe = strawberryJuice
             selectedMenu = JuiceName.strawberryJuice
             
@@ -159,7 +159,7 @@ class JuiceMaker {
         // 재고가 있다면 만들기
         if possible {
             switch selectedMenu {
-            case .strawberrJuice:
+            case .strawberryJuice:
                 strawberry.useStock(amount: selectedRecipe[0].amount)
                
             case .bananaJuice:
