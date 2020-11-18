@@ -43,6 +43,11 @@ class StockManager {
             return mango
         }
     }
+    
+    func outOfStock() {
+        print("재료가 부족합니다. 재고를 수정할까요?")
+    }
+    
     func addStrawberryStock() {
         strawberry += 1
     }
@@ -96,7 +101,7 @@ class JuiceMaker {
             stockManager.strawberry -= 3
             print("딸기 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            print("딸기가 모자라요. 재고를 수정할까요?")
+            stockManager.outOfStock()
         }
     }
     
@@ -105,12 +110,8 @@ class JuiceMaker {
             stockManager.strawberry -= 10
             stockManager.banana -= 1
             print("딸기바나나 쥬스 나왔습니다. 맛있게 드세요")
-        } else if stockManager.strawberry < 10 && stockManager.banana < 1 {
-            print("딸기랑 바나나가 모자라요. 재고를 수정할까요?")
-        } else if stockManager.banana < 1 {
-            print("바나나가 모자라요. 재고를 수정할까요?")
         } else {
-            print("딸기가 모자라요. 재고를 수정할까요?")
+            stockManager.outOfStock()
         }
     }
     
@@ -119,7 +120,7 @@ class JuiceMaker {
             stockManager.pineapple -= 2
             print("파인애플 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            print("파인애플이 모자라요. 재고를 수정할까요?")
+            stockManager.outOfStock()
         }
     }
     
@@ -128,7 +129,7 @@ class JuiceMaker {
             stockManager.mango -= 3
             print("망고 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            print("망고가 모자라요. 재고를 수정할까요?")
+            stockManager.outOfStock()
         }
     }
     
@@ -137,12 +138,8 @@ class JuiceMaker {
             stockManager.mango -= 2
             stockManager.kiwi -= 1
             print("망고키위 쥬스 나왔습니다. 맛있게 드세요")
-        } else if stockManager.mango < 2 && stockManager.kiwi < 1 {
-            print("망고랑 키위가 모자라요. 재고를 수정할까요?")
-        } else if stockManager.mango < 2 {
-            print("망고가 모자라요. 재고를 수정할까요?")
         } else {
-            print("키위가 모자라요. 재고를 수정할까요?")
+            stockManager.outOfStock()
         }
     }
 }
