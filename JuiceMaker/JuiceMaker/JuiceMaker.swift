@@ -48,6 +48,36 @@ class StockManager {
         print("재료가 부족합니다. 재고를 수정할까요?")
     }
     
+    func giveStrawberryJuiceIngredients() {
+        strawberry -= 3
+    }
+    
+    func giveStrawberryBananaJuiceIngredients() {
+        strawberry -= 10
+        banana -= 1
+    }
+    
+    func giveBananaJuiceIngredients() {
+        banana -= 2
+    }
+    
+    func giveKiwiJuiceIngredients() {
+        kiwi -= 3
+    }
+    
+    func givePineappleJuiceIngredients() {
+        pineapple -= 2
+    }
+    
+    func giveMangoJuiceIngredients() {
+        mango -= 3
+    }
+    
+    func giveMangoKiwiJuiceIngredients() {
+        mango -= 2
+        kiwi -= 1
+    }
+    
     func addStrawberryStock() {
         strawberry += 1
     }
@@ -89,7 +119,7 @@ class StockManager {
     }
     
     func showFruitStock() {
-        print("딸기:\(strawberry) 바나나:\(banana) 파인애플:\(pineapple) 망고:\(mango) 키위:\(kiwi)")
+        print("딸기:\(strawberryStock) 바나나:\(bananaStock) 파인애플:\(pineappleStock) 망고:\(mangoStock) 키위:\(kiwiStock)")
     }
 }
 
@@ -97,8 +127,8 @@ class JuiceMaker {
     var stockManager = StockManager()
     
     func makeStrawberryJuice() {
-        if stockManager.strawberry >= 3 {
-            stockManager.strawberry -= 3
+        if stockManager.strawberryStock >= 16 {
+            stockManager.giveStrawberryJuiceIngredients()
             print("딸기 쥬스 나왔습니다. 맛있게 드세요")
         } else {
             stockManager.outOfStock()
@@ -106,18 +136,35 @@ class JuiceMaker {
     }
     
     func makeStrawberryBananaJuice() {
-        if stockManager.strawberry >= 10 && stockManager.banana >= 1 {
-            stockManager.strawberry -= 10
-            stockManager.banana -= 1
+        if stockManager.strawberryStock >= 10 && stockManager.bananaStock >= 1 {
+            stockManager.giveStrawberryBananaJuiceIngredients()
             print("딸기바나나 쥬스 나왔습니다. 맛있게 드세요")
         } else {
             stockManager.outOfStock()
         }
     }
     
+    func makeBananaJuice() {
+        if stockManager.bananaStock >= 2 {
+            stockManager.giveBananaJuiceIngredients()
+            print("바나나 쥬스 나왔습니다. 맛있게 드세요")
+        } else {
+            stockManager.outOfStock()
+        }
+    }
+    
+    func makeKiwiJuice() {
+        if stockManager.kiwiStock >= 3 {
+            stockManager.giveKiwiJuiceIngredients()
+            print("키위 쥬스 나왔습니다. 맛있게 드세요")
+        } else {
+            stockManager.outOfStock()
+        }
+    }
+    
     func makePineappleJuice() {
-        if stockManager.pineapple >= 2 {
-            stockManager.pineapple -= 2
+        if stockManager.pineappleStock >= 2 {
+            stockManager.givePineappleJuiceIngredients()
             print("파인애플 쥬스 나왔습니다. 맛있게 드세요")
         } else {
             stockManager.outOfStock()
@@ -125,8 +172,8 @@ class JuiceMaker {
     }
     
     func makeMangoJuice() {
-        if stockManager.mango >= 3 {
-            stockManager.mango -= 3
+        if stockManager.mangoStock >= 3 {
+            stockManager.giveMangoJuiceIngredients()
             print("망고 쥬스 나왔습니다. 맛있게 드세요")
         } else {
             stockManager.outOfStock()
@@ -134,9 +181,8 @@ class JuiceMaker {
     }
     
     func makeMangoKiwiJuice() {
-        if stockManager.mango >= 2 && stockManager.kiwi >= 1 {
-            stockManager.mango -= 2
-            stockManager.kiwi -= 1
+        if stockManager.mangoStock >= 2 && stockManager.kiwiStock >= 1 {
+            stockManager.giveMangoKiwiJuiceIngredients()
             print("망고키위 쥬스 나왔습니다. 맛있게 드세요")
         } else {
             stockManager.outOfStock()
