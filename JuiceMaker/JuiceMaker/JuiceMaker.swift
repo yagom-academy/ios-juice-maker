@@ -12,19 +12,21 @@ import Foundation
 enum FruitName: String {
     case strawberry = "딸기"
     case banana = "바나나"
-    case pineapple = "파인애플"
-    case kiwi = "키위"
     case mango = "망고"
+    case kiwi = "키위"
+    case pineapple = "파인애플"
     case none = ""
 }
 
 // 쥬스 종류
-enum JuiceName: String {
-    case kiwiJuice = "키위"
-    case strawberryBananaJuice = "딸기바나나"
-    case pineappleJuice = "파인애플"
+enum JuiceName: String 
+    case strawberryJuice = "딸기"
+    case bananaJuice = "바나나"
     case mangoJuice = "망고"
-    case mangoKiwiJuice = "망고키위"
+    case kiwiJuice = "키위"
+    case pineappleJuice = "파인애플"
+    case strawberryBananaJuice = "딸기바나나"
+    case mangoKiwiJuice = "망고키위 
     case none = ""
 }
 
@@ -64,7 +66,7 @@ struct Fruit {
 
 /// 쥬스 메이커
 class JuiceMaker {
-    var selectedRecipe = [(name: FruitName.none, number: 0)]
+    var selectedRecipe = [(name: FruitName.none, amount: 0)]
     var selectedMenu = JuiceName.none
     
     var strawberry = Fruit(name: .strawberry)
@@ -74,19 +76,33 @@ class JuiceMaker {
     var mango = Fruit(name: .mango)
     
     // 쥬스 레시피
-    let kiwiJuice = [(name: FruitName.kiwi, number: 3)]
-    let strawberryBananaJuice = [(name: FruitName.strawberry, number: 10), (name: FruitName.banana, number: 1)]
-    let pineappleJuice = [(name: FruitName.pineapple, number: 2)]
-    let mangoKiwiJuice = [(name: FruitName.mango, number: 2), (name: FruitName.kiwi, number: 1)]
-    let mangoJuice = [(name: FruitName.mango, number: 3)]
+    let strawberryJuice = [(name: FruitName.strawberry, amount: 16)]
+    let bananaJuice = [(name: FruitName.banana, amount: 2)]
+    let kiwiJuice = [(name: FruitName.kiwi, amount: 3)]
+    let mangoJuice = [(name: FruitName.mango, amount: 3)]
+    let pineappleJuice = [(name: FruitName.pineapple, amount: 2)]
+    let strawberryBananaJuice = [(name: FruitName.strawberry, amount: 10), (name: FruitName.banana, amount: 1)]
+    let mangoKiwiJuice = [(name: FruitName.mango, amount: 2), (name: FruitName.kiwi, amount: 1)]
     
     
     /// 메뉴 접수
     func checkRecipe(menu: JuiceName) {
         switch menu {
+        case .strawberrJuice:
+            selectedRecipe = strawberryJuice
+            selectedMenu = JuiceName.strawberryJuice
+            
+        case .bananaJuice:
+            selectedRecipe = bananaJuice
+            selectedMenu = JuiceName.bananaJuice
+            
         case .kiwiJuice:
             selectedRecipe = kiwiJuice
             selectedMenu = JuiceName.kiwiJuice
+            
+        case .mangoJuice:
+            selectedRecipe = mangoJuice
+            selectedMenu = JuiceName.mangoJuice
             
         case .strawberryBananaJuice:
             selectedRecipe = strawberryBananaJuice
@@ -95,10 +111,6 @@ class JuiceMaker {
         case .pineappleJuice:
             selectedRecipe = pineappleJuice
             selectedMenu = JuiceName.pineappleJuice
-            
-        case .mangoJuice:
-            selectedRecipe = mangoJuice
-            selectedMenu = JuiceName.mangoJuice
             
         case .mangoKiwiJuice:
             selectedRecipe = mangoKiwiJuice
@@ -138,7 +150,7 @@ class JuiceMaker {
         var possible: Bool = true
         
         for recipeIndex in 0..<selectedRecipe.count {
-            if !checkFruitStock(fruit: selectedRecipe[recipeIndex].name, amount: selectedRecipe[recipeIndex].number) {
+            if !checkFruitStock(fruit: selectedRecipe[recipeIndex].name, amount: selectedRecipe[recipeIndex].amount) {
                 possible = false
                 break
             }
@@ -147,22 +159,28 @@ class JuiceMaker {
         // 재고가 있다면 만들기
         if possible {
             switch selectedMenu {
+            case .strawberrJuice:
+                strawberry.useStock(amount: selectedRecipe[0].amount)
+               
+            case .bananaJuice:
+                banana.useStock(amount: selectedRecipe[0].amount)
+                
             case .kiwiJuice:
-                kiwi.useStock(amount: selectedRecipe[0].number)
+                kiwi.useStock(amount: selectedRecipe[0].amount)
                 
             case .strawberryBananaJuice:
-                strawberry.useStock(amount: selectedRecipe[0].number)
-                banana.useStock(amount: selectedRecipe[1].number)
+                strawberry.useStock(amount: selectedRecipe[0].amount)
+                banana.useStock(amount: selectedRecipe[1].amount)
                 
             case .pineappleJuice:
-                pineapple.useStock(amount: selectedRecipe[0].number)
+                pineapple.useStock(amount: selectedRecipe[0].amount)
                 
             case .mangoJuice:
-                mango.useStock(amount: selectedRecipe[0].number)
+                mango.useStock(amount: selectedRecipe[0].amount)
                 
             case .mangoKiwiJuice:
-                mango.useStock(amount: selectedRecipe[0].number)
-                kiwi.useStock(amount: selectedRecipe[1].number)
+                mango.useStock(amount: selectedRecipe[0].amount)
+                kiwi.useStock(amount: selectedRecipe[1].amount)
                 
             default:
                 return
