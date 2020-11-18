@@ -6,12 +6,12 @@
 
 import Foundation
 
-enum FruitsType {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+enum FruitsType : String {
+    case strawberry = "🍓"
+    case banana = "🍌"
+    case pineapple = "🍍"
+    case kiwi = "🥝"
+    case mango = "🥭"
 }
 
 class Fruit {
@@ -77,13 +77,16 @@ struct JuiceRecipe {
 
 class JuiceMaker {
     
+    static let shared = JuiceMaker()
+    private init() {}
+    
     private let recipe = JuiceRecipe()
     
-    var strawberry = Fruit(fruitType: .strawberry)
-    var banana = Fruit(fruitType: .banana)
-    var pineapple = Fruit(fruitType: .pineapple)
-    var kiwi = Fruit(fruitType: .kiwi)
-    var mango = Fruit(fruitType: .mango)
+    private var strawberry = Fruit(fruitType: .strawberry)
+    private var banana = Fruit(fruitType: .banana)
+    private var pineapple = Fruit(fruitType: .pineapple)
+    private var kiwi = Fruit(fruitType: .kiwi)
+    private var mango = Fruit(fruitType: .mango)
     
     func addStock(fruitType: FruitsType, stock: Int) {
         switch fruitType {
