@@ -10,4 +10,5 @@ import Foundation
 enum JuiceMakerError : Error {
     case outOfStock
     case notFound
+    case system
 }

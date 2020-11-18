@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 class JuiceButton : UIButton {
+    
+    var juiceName: JuicesName?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -17,8 +20,9 @@ class JuiceButton : UIButton {
         super.init(coder: coder)
     }
     
-    init(title: String) {
+    init(title: String, name: JuicesName) {
         super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
+        self.juiceName = name
         setup(title)
     }
     

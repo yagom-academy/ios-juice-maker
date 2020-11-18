@@ -64,14 +64,14 @@ class Juice {
 
 struct JuiceRecipe {
     
-    private let juices: [JuicesName : Juice] = [
-        .strawberry : Juice(name: .strawberry, type: .single),
-        .banana : Juice(name: .banana, type: .single),
-        .kiwi : Juice(name: .kiwi, type: .single),
-        .pineapple : Juice(name: .pineapple, type: .single),
-        .mango : Juice(name: .mango, type: .single),
-        .strawberryBanana : Juice(name: .strawberryBanana, type: .multi),
-        .mangoKiwi : Juice(name: .mangoKiwi, type: .multi)
+    private let juices: [Juice] = [
+        Juice(name: .strawberry, type: .single),
+        Juice(name: .banana, type: .single),
+        Juice(name: .kiwi, type: .single),
+        Juice(name: .pineapple, type: .single),
+        Juice(name: .mango, type: .single),
+        Juice(name: .strawberryBanana, type: .multi),
+        Juice(name: .mangoKiwi, type: .multi)
     ]
     
     private let strawberry: [FruitsType : Int] = [.strawberry : 16]
@@ -82,7 +82,7 @@ struct JuiceRecipe {
     private let strawberryBanana: [FruitsType : Int] = [.strawberry : 10, .banana : 1]
     private let mangoKiwi: [FruitsType : Int] = [.mango : 2, .kiwi : 1]
     
-    func getJuiceRecipe(_ juiceType: JuicesName) throws -> [FruitsType : Int] {
+    func getJuiceRecipe(_ juiceType: JuicesName) -> [FruitsType : Int] {
         switch juiceType {
         case .strawberry:
             return strawberry
@@ -99,16 +99,13 @@ struct JuiceRecipe {
         case .mangoKiwi:
             return mangoKiwi
         }
-        
-        throw JuiceMakerError.notFound
     }
     
-    func getAllJuices() -> [JuicesName : Juice] {
+    func getAllJuices() -> [Juice] {
         return juices
     }
 }
 
-// TODO: add Error Handle
 class JuiceMaker {
     
     static let shared = JuiceMaker()
@@ -128,7 +125,7 @@ class JuiceMaker {
         return fruits
     }
     
-    func getJuices() -> [JuicesName : Juice] {
+    func getJuices() -> [Juice] {
         return recipe.getAllJuices()
     }
     
@@ -141,10 +138,9 @@ class JuiceMaker {
     }
     
     func choiceJuice(juice: JuicesName) throws {
-        let juiceRecipe = try recipe.getJuiceRecipe(juice)
+        let juiceRecipe = recipe.getJuiceRecipe(juice)
         
         for (key: fruit, value: stock) in juiceRecipe {
-            
             guard let fruit = fruits[fruit] else {
                 throw JuiceMakerError.notFound
             }
