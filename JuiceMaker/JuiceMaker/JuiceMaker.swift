@@ -31,7 +31,7 @@ class JuiceMaker {
 // 과일쥬스 제조
 extension JuiceMaker {
     func makeKiwiJuice() {
-        fruitStock.kiwi -= 3
+        
     }
     func makePineappleJuice() {
         fruitStock.pineapple -= 2
@@ -78,7 +78,65 @@ struct FruitStock {
     func addOneFruit(_ fruit: inout Int) {
         fruit += 1
     }
-    func minusOneFruit(_ fruit: inout Int){
+    func minusOneFruit(_ fruit: inout Int) {
         fruit -= 1
     }
+    
+    // 과일 재고 확인하기
+    func checkIsFruitEnough(order: Juice) -> Bool {
+        switch order {
+        case .strawberryaJuice:
+            if strawberry - 16 < 0 {
+                return false
+            }else {
+                return true
+            }
+        case .bananaJuice:
+            if banana - 2 < 0 {
+                return false
+            }else {
+                return true
+            }
+        case .kiwiJuice:
+            if kiwi - 3 < 0 {
+                return false
+            }else {
+                return true
+            }
+        case .pineappleJuice:
+            if pineapple - 2 < 0 {
+                return false
+            }else {
+                return true
+            }
+        case .strawberryAndBananaJuice:
+            if strawberry - 10 < 0 || banana - 1 < 0 {
+                return false
+            }else {
+                return true
+            }
+        case .mangoJuice:
+            if mango - 3 < 0 {
+                return false
+            }else {
+                return true
+            }
+        case .mangoAndKiwiJuice:
+            if mango - 2 < 0 || kiwi - 1 < 0 {
+                return false
+            }else {
+                return true
+            }
+        }
+    }
+}
+
+enum Juice: String {
+    case strawberryaJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case strawberryAndBananaJuice = "딸바쥬스"
+    case mangoJuice = "망고쥬스"
+    case mangoAndKiwiJuice = "망키쥬스"
 }
