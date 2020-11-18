@@ -23,11 +23,11 @@ class Fruit {
         self.stock = 10
     }
     
-    func addStock(add: Int) {
+    func addStock(_ add: Int) {
         self.stock = self.stock + add
     }
     
-    func useStock(use: Int) {
+    func useStock(_ use: Int) {
         self.stock = self.stock - use
     }
     
@@ -37,6 +37,8 @@ class Fruit {
 }
 
 enum JuicesType {
+    case strawberry
+    case banana
     case kiwi
     case pineapple
     case strawberryBanana
@@ -44,16 +46,38 @@ enum JuicesType {
     case mangoKiwi
 }
 
-protocol JuiceRecipe {
-    func choiceJuice(juice: JuicesType) -> Bool?
-    func makeKiwiJuice() throws -> Bool
-    func makePineappleJuice() throws -> Bool
-    func makeStrawberryBananaJuice() throws -> Bool
-    func makeMangoJuice() throws -> Bool
-    func makeMangoKiwiJuice() throws -> Bool
+struct JuiceRecipe {
+    let strawberry: [FruitsType : Int] = [.strawberry : 16]
+    let banana: [FruitsType : Int] = [.banana : 2]
+    let kiwi: [FruitsType : Int] = [.kiwi: 3]
+    let pineapple: [FruitsType : Int] = [.pineapple : 2]
+    let strawberryBanana: [FruitsType : Int] = [.strawberry : 10, .banana : 1]
+    let mango: [FruitsType : Int] = [.mango : 3]
+    let mangoKiwi: [FruitsType : Int] = [.mango : 2, .kiwi : 1]
+    
+    func getJuiceRecipe(_ juiceType: JuicesType) -> [FruitsType : Int] {
+        switch juiceType {
+        case .strawberry:
+            return strawberry
+        case .banana:
+            return banana
+        case .kiwi:
+            return kiwi
+        case .pineapple:
+            return pineapple
+        case .strawberryBanana:
+            return strawberryBanana
+        case .mango:
+            return mango
+        case .mangoKiwi:
+            return mangoKiwi
+        }
+    }
 }
 
-class JuiceMaker: JuiceRecipe {
+class JuiceMaker {
+    
+    private let recipe = JuiceRecipe()
     
     var strawberry = Fruit(fruitType: .strawberry)
     var banana = Fruit(fruitType: .banana)
@@ -64,95 +88,59 @@ class JuiceMaker: JuiceRecipe {
     func addStock(fruitType: FruitsType, stock: Int) {
         switch fruitType {
         case .strawberry:
-            strawberry.addStock(add: stock)
+            strawberry.addStock(stock)
         case .banana:
-            banana.addStock(add: stock)
+            banana.addStock(stock)
         case .pineapple:
-            pineapple.addStock(add: stock)
+            pineapple.addStock(stock)
         case .kiwi:
-            kiwi.addStock(add: stock)
+            kiwi.addStock(stock)
         case .mango:
-            mango.addStock(add: stock)
+            mango.addStock(stock)
         }
     }
     
-    func choiceJuice(juice: JuicesType) -> Bool? {
-        let result: Bool?
-        switch juice {
-        case .kiwi:
-            result = try? makeKiwiJuice()
+    func choiceJuice(juice: JuicesType) throws {
+        let juiceRecipe: [FruitsType : Int] = recipe.getJuiceRecipe(juice)
+        
+        for (key, value) in juiceRecipe {
+            guard checkStock(fruitType: key, needStock: value) else {
+                throw JuiceMakerError.outOfStock
+            }
+        }
+        
+        for (key, value) in juiceRecipe {
+            makeJuice(fruitType: key, use: value)
+        }
+    }
+    
+    func checkStock(fruitType: FruitsType, needStock: Int) -> Bool {
+        switch fruitType {
+        case .strawberry:
+            return strawberry.canMakeJuice(need: needStock)
+        case .banana:
+            return banana.canMakeJuice(need: needStock)
         case .pineapple:
-            result = try? makePineappleJuice()
-        case .strawberryBanana:
-            result = try? makeStrawberryBananaJuice()
+            return pineapple.canMakeJuice(need: needStock)
+        case .kiwi:
+            return kiwi.canMakeJuice(need: needStock)
         case .mango:
-            result = try? makeMangoJuice()
-        case .mangoKiwi:
-            result = try? makeMangoKiwiJuice()
+            return mango.canMakeJuice(need: needStock)
         }
-        
-        // TOCO: 이후에 choiceJuice 쓰는 곳에서 에러 체크 추가하기
-        return result
     }
     
-    func makeKiwiJuice() throws -> Bool {
-        let needKiwi = 3
-        
-        guard kiwi.canMakeJuice(need: needKiwi) else {
-            throw JuiceMakerError.outOfStock
+    func makeJuice(fruitType: FruitsType, use: Int) {
+        switch fruitType {
+        case .strawberry:
+            strawberry.useStock(use)
+        case .banana:
+            banana.useStock(use)
+        case .pineapple:
+            pineapple.useStock(use)
+        case .kiwi:
+            kiwi.useStock(use)
+        case .mango:
+            mango.useStock(use)
         }
-        
-        kiwi.useStock(use: needKiwi)
-        return true
-    }
-    
-    func makePineappleJuice() throws -> Bool {
-        let needPineapple = 2
-        
-        guard pineapple.canMakeJuice(need: needPineapple) else {
-            throw JuiceMakerError.outOfStock
-        }
-        
-        pineapple.useStock(use: needPineapple)
-        return true
-    }
-    
-    func makeStrawberryBananaJuice() throws -> Bool {
-        let needStrawberry = 10
-        let needBanana = 1
-        
-        guard strawberry.canMakeJuice(need: needStrawberry),
-              banana.canMakeJuice(need: needBanana) else {
-            throw JuiceMakerError.outOfStock
-        }
-        
-        strawberry.useStock(use: needStrawberry)
-        banana.useStock(use: needBanana)
-        return true
-    }
-    
-    func makeMangoJuice() throws -> Bool {
-        let needMango = 3
-        
-        guard mango.canMakeJuice(need: needMango) else {
-            throw JuiceMakerError.outOfStock
-        }
-        
-        mango.useStock(use: needMango)
-        return true
-    }
-    
-    func makeMangoKiwiJuice() throws -> Bool {
-        let needMango = 2
-        let needKiwi = 1
-        
-        guard mango.canMakeJuice(need: needMango),
-              kiwi.canMakeJuice(need: needKiwi) else {
-            throw JuiceMakerError.outOfStock
-        }
-        
-        mango.useStock(use: needMango)
-        kiwi.useStock(use: needKiwi)
-        return true
     }
 }
