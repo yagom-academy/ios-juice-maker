@@ -30,8 +30,8 @@ enum JuiceName: String {
 
 /// 과일
 struct Fruit {
-    var fruitName: FruitName
-    var fruitStock: Int
+    var name: FruitName
+    var stock: Int
     let initialAmount: Int = 10
     
     var currentStock: Int {
@@ -40,24 +40,24 @@ struct Fruit {
         }
     }
     
-    init(fruitName: FruitName) {
-        self.fruitName = fruitName
-        self.fruitStock = initialAmount
+    init(name: name) {
+        self.name = name
+        self.stock = initialAmount
     }
     
     mutating func addStock(amount: Int) {
-        self.fruitStock = fruitStock + amount
+        self.stock = stock + amount
     }
     
     mutating func useStock(amount: Int) {
-        self.fruitStock = fruitStock - amount
+        self.stock = stock - amount
     }
     
     mutating func checkStock(needAmount: Int) -> Bool {
-        if fruitStock >= needAmount {
+        if stock >= needAmount {
             return true
         }
-        debugPrint("\(fruitName.rawValue) 재고부족")
+        debugPrint("\(name.rawValue) 재고부족")
         return false
     }
 }
@@ -67,11 +67,11 @@ class JuiceMaker {
     var selectedRecipe = [(name: FruitName.none, number: 0)]
     var selectedMenu = JuiceName.none
     
-    var strawberry = Fruit(fruitName: .strawberry)
-    var banana = Fruit(fruitName: .banana)
-    var pineapple = Fruit(fruitName: .pineapple)
-    var kiwi = Fruit(fruitName: .kiwi)
-    var mango = Fruit(fruitName: .mango)
+    var strawberry = Fruit(name: .strawberry)
+    var banana = Fruit(name: .banana)
+    var pineapple = Fruit(name: .pineapple)
+    var kiwi = Fruit(name: .kiwi)
+    var mango = Fruit(name: .mango)
     
     // 쥬스 레시피
     let kiwiJuice = [(name: FruitName.kiwi, number: 3)]
