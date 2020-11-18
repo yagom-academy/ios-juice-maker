@@ -29,7 +29,7 @@ class JuiceMaker {
     var fruitStock = FruitStock()
 
     func makeJuice(_ order: Juice) {
-        switch fruitStock.checkIsFruitEnough(order: order) {
+        switch fruitStock.isFruitEnough(order: order) {
         case true:
             fruitStock.useFruit(order: order)
             print("\(order) 나왔습니다! 맛있게 드세요 :)")
@@ -71,6 +71,7 @@ struct FruitStock {
             mango += 1
         }
     }
+    
     mutating fileprivate func minusOneFruit(_ fruit: Fruit) {
         switch fruit {
         case .strawberry:
@@ -87,7 +88,7 @@ struct FruitStock {
     }
     
     // 과일 재고 확인하기
-    fileprivate func checkIsFruitEnough(order: Juice) -> Bool {
+    fileprivate func isFruitEnough(order: Juice) -> Bool {
         switch order {
         case .strawberryJuice:
             if strawberry - 16 < 0 {
