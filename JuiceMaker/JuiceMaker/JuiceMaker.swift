@@ -91,7 +91,7 @@ class JuiceMaker {
         .mango : Fruit(fruitType: .mango)
     ]
     
-    func getFruit() -> [FruitsType : Fruit] {
+    func getFruits() -> [FruitsType : Fruit] {
         return fruits
     }
     
@@ -106,19 +106,19 @@ class JuiceMaker {
     func choiceJuice(juice: JuicesType) throws {
         let juiceRecipe: [FruitsType : Int] = recipe.getJuiceRecipe(juice)
         
-        for (key, value) in juiceRecipe {
+        for (key: fruit, value: stock) in juiceRecipe {
             
-            guard let fruit = fruits[key] else {
+            guard let fruit = fruits[fruit] else {
                 throw JuiceMakerError.notFound
             }
             
-            guard fruit.canMakeJuice(need: value) else {
+            guard fruit.canMakeJuice(need: stock) else {
                 throw JuiceMakerError.outOfStock
             }
         }
         
-        for (key, value) in juiceRecipe {
-            try makeJuice(fruitType: key, use: value)
+        for (key: fruit, value: stock) in juiceRecipe {
+            try makeJuice(fruitType: fruit, use: stock)
         }
     }
     
