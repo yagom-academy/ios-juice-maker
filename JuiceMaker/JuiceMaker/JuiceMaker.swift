@@ -6,6 +6,16 @@
 
 import Foundation
 
+enum Juice: String {
+    case strawberryJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case strawberryAndBananaJuice = "딸바쥬스"
+    case mangoJuice = "망고쥬스"
+    case mangoAndKiwiJuice = "망키쥬스"
+}
+
 /// 쥬스 메이커 타입 
 class JuiceMaker {
     var fruitStock = FruitStock()
@@ -26,45 +36,35 @@ class JuiceMaker {
     var mangoStock: Int {
         return fruitStock.mango
     }
+
+    func makeJuice(_ order: Juice) {
+        switch fruitStock.checkIsFruitEnough(order: order) {
+        case true:
+            switch order {
+            case .strawberryJuice:
+                fruitStock.strawberry -= 16
+            case .bananaJuice:
+                fruitStock.banana -= 2
+            case .kiwiJuice:
+                fruitStock.kiwi -= 3
+            case .pineappleJuice:
+                fruitStock.pineapple -= 2
+            case .strawberryAndBananaJuice:
+                fruitStock.strawberry -= 10
+                fruitStock.banana -= 1
+            case .mangoJuice:
+                fruitStock.mango -= 3
+            case .mangoAndKiwiJuice:
+                fruitStock.mango -= 2
+                fruitStock.kiwi -= 1
+            }
+            print("\(order) 나왔습니다! 맛있게 드세요 :)")
+            
+        case false:
+            print("재료가 모자라요. 재고를 수정할까요?")
+        }
+    }
 }
-
-// 과일쥬스 제조
-extension JuiceMaker {
-    func makeKiwiJuice() {
-        
-    }
-    func makePineappleJuice() {
-        fruitStock.pineapple -= 2
-    }
-    func makeStrawberryAndBananaJuice() {
-        fruitStock.strawberry -= 10
-        fruitStock.banana -= 1
-    }
-    func makeMangoJuice() {
-        fruitStock.mango -= 3
-    }
-    func makeMangoAndKiwiJuice() {
-        fruitStock.mango -= 2
-        fruitStock.kiwi -= 1
-    }
-}
-
-
-//enum FruitStock {
-//    case strawberry
-//    case banana
-//    case pineapple
-//    case kiwi
-//    case mango
-//}
-//
-//enum MakeJuice {
-//    case kiwiJuice
-//    case strawberryJuice
-//    case mangoJuice
-//    case strawberryAndBananaJuice
-//    case mangoAndKiwiJuice
-//}
 
 struct FruitStock {
     // 과일 재고
@@ -85,7 +85,7 @@ struct FruitStock {
     // 과일 재고 확인하기
     func checkIsFruitEnough(order: Juice) -> Bool {
         switch order {
-        case .strawberryaJuice:
+        case .strawberryJuice:
             if strawberry - 16 < 0 {
                 return false
             }else {
@@ -131,12 +131,4 @@ struct FruitStock {
     }
 }
 
-enum Juice: String {
-    case strawberryaJuice = "딸기쥬스"
-    case bananaJuice = "바나나쥬스"
-    case kiwiJuice = "키위쥬스"
-    case pineappleJuice = "파인애플쥬스"
-    case strawberryAndBananaJuice = "딸바쥬스"
-    case mangoJuice = "망고쥬스"
-    case mangoAndKiwiJuice = "망키쥬스"
-}
+
