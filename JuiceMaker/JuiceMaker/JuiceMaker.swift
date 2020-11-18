@@ -8,184 +8,144 @@
 
 import Foundation
 
-// 과일 종류
 enum FruitName: String {
     case strawberry = "딸기"
     case banana = "바나나"
-    case mango = "망고"
     case kiwi = "키위"
+    case mango = "망고"
     case pineapple = "파인애플"
-    case none = ""
-}
-
-// 쥬스 종류
-enum JuiceName: String {
-    case strawberryJuice = "딸기"
-    case bananaJuice = "바나나"
-    case mangoJuice = "망고"
-    case kiwiJuice = "키위"
-    case pineappleJuice = "파인애플"
-    case strawberryBananaJuice = "딸기바나나"
-    case mangoKiwiJuice = "망고키위"
-    case none = ""
-}
-
-/// 과일
-struct Fruit {
-    var name: FruitName
-    var stock: Int
-    let initialAmount: Int = 10
     
-    var currentStock: Int {
-        get {
-            return stock
-        }
-    }
-    
-    init(name: FruitName) {
-        self.name = name
-        self.stock = initialAmount
-    }
-    
-    mutating func addStock(amount: Int) {
-        self.stock = stock + amount
-    }
-    
-    mutating func useStock(amount: Int) {
-        self.stock = stock - amount
-    }
-    
-    mutating func checkStock(needAmount: Int) -> Bool {
-        if stock >= needAmount {
-            return true
-        }
-        debugPrint("\(name.rawValue) 재고부족")
-        return false
-    }
-}
-
-/// 쥬스 메이커
-class JuiceMaker {
-    var selectedRecipe = [(name: FruitName.none, amount: 0)]
-    var selectedMenu = JuiceName.none
-    
-    var strawberry = Fruit(name: .strawberry)
-    var banana = Fruit(name: .banana)
-    var pineapple = Fruit(name: .pineapple)
-    var kiwi = Fruit(name: .kiwi)
-    var mango = Fruit(name: .mango)
-    
-    // 쥬스 레시피
-    let strawberryJuice = [(name: FruitName.strawberry, amount: 16)]
-    let bananaJuice = [(name: FruitName.banana, amount: 2)]
-    let kiwiJuice = [(name: FruitName.kiwi, amount: 3)]
-    let mangoJuice = [(name: FruitName.mango, amount: 3)]
-    let pineappleJuice = [(name: FruitName.pineapple, amount: 2)]
-    let strawberryBananaJuice = [(name: FruitName.strawberry, amount: 10), (name: FruitName.banana, amount: 1)]
-    let mangoKiwiJuice = [(name: FruitName.mango, amount: 2), (name: FruitName.kiwi, amount: 1)]
-    
-    
-    /// 메뉴 접수
-    func checkRecipe(menu: JuiceName) {
-        switch menu {
-        case .strawberryJuice:
-            selectedRecipe = strawberryJuice
-            selectedMenu = JuiceName.strawberryJuice
-            
-        case .bananaJuice:
-            selectedRecipe = bananaJuice
-            selectedMenu = JuiceName.bananaJuice
-            
-        case .kiwiJuice:
-            selectedRecipe = kiwiJuice
-            selectedMenu = JuiceName.kiwiJuice
-            
-        case .mangoJuice:
-            selectedRecipe = mangoJuice
-            selectedMenu = JuiceName.mangoJuice
-            
-        case .strawberryBananaJuice:
-            selectedRecipe = strawberryBananaJuice
-            selectedMenu = JuiceName.strawberryBananaJuice
-            
-        case .pineappleJuice:
-            selectedRecipe = pineappleJuice
-            selectedMenu = JuiceName.pineappleJuice
-            
-        case .mangoKiwiJuice:
-            selectedRecipe = mangoKiwiJuice
-            selectedMenu = JuiceName.mangoKiwiJuice
-            
-        case .none:
-            return
-        }
-    }
-    
-    
-    /// 재고 확인
-    func checkFruitStock(fruit: FruitName, amount: Int) -> Bool {
-        switch fruit {
-        case .banana:
-            return banana.checkStock(needAmount: amount)
-        case .kiwi:
-            return kiwi.checkStock(needAmount: amount)
-        case .mango:
-            return mango.checkStock(needAmount: amount)
+    func number() -> Int {
+        switch self {
         case .strawberry:
-            return strawberry.checkStock(needAmount: amount)
+            return 0
+        case .banana:
+            return 1
+        case .kiwi:
+            return 2
+        case .mango:
+            return 3
         case .pineapple:
-            return pineapple.checkStock(needAmount: amount)
-        default:
-            return false
+            return 4
         }
     }
+}
+
+enum RecipeName: String {
+    case strawberryJuice = "딸기 쥬스"
+    case bananaJuice = "바나나 쥬스"
+    case kiwiJuice = "키위 쥬스"
+    case mangoJuice = "망고 쥬스"
+    case pineappleJuice = "파인애플 쥬스"
+    case strawberryBananaJuice = "딸기바나나 쥬스"
+    case kiwiMangoJuice = "키위망고 쥬스"
     
-    
-    /// 쥬스 만들기
-    func makeJuice(menu: JuiceName) {
-        // 레시피 확인
-        checkRecipe(menu: menu)
-        
-        // 재고 확인
-        var possible: Bool = true
-        
-        for recipeIndex in 0..<selectedRecipe.count {
-            if !checkFruitStock(fruit: selectedRecipe[recipeIndex].name, amount: selectedRecipe[recipeIndex].amount) {
-                possible = false
-                break
-            }
+    func number() -> Int {
+        switch self {
+        case .strawberryJuice:
+            return 0
+        case .bananaJuice:
+            return 1
+        case .kiwiJuice:
+            return 2
+        case .mangoJuice:
+            return 3
+        case .pineappleJuice:
+            return 4
+        case .strawberryBananaJuice:
+            return 5
+        case .kiwiMangoJuice:
+            return 6
         }
+    }
+}
+
+struct Fruit {
+    let name: FruitName
+    private(set) var amount: Int
+    
+    init(name: FruitName, amount: Int = 10) {
+        self.name = name
+        self.amount = amount
+    }
+    
+    mutating func supply(amount: Int) {
+        self.amount += amount
+    }
+    
+    mutating func use(amount: Int) {
+        self.amount -= amount
+    }
+    
+    mutating func compareStock(with need: Int) -> Bool {
+        return self.amount >= need
+    }
+}
+
+struct Recipe {
+    let name: RecipeName
+    let neededFruits: [NeededFruit]
+    
+    init(recipeName: RecipeName, neededFruits : [NeededFruit]) {
+        self.name = recipeName
+        self.neededFruits = neededFruits
+    }
+}
+
+struct NeededFruit {
+    let name: FruitName
+    let amount: Int
+    
+    init(fruitName: FruitName, amount: Int) {
+        self.name = fruitName
+        self.amount = amount
+    }
+}
+
+
+class JuiceMaker {
+    var fruitList: [Fruit] = []
+    var recipeList: [Recipe] = []
+    
+    init() {
+        fruitList.append(Fruit(name: .strawberry))
+        fruitList.append(Fruit(name: .banana))
+        fruitList.append(Fruit(name: .kiwi))
+        fruitList.append(Fruit(name: .mango))
+        fruitList.append(Fruit(name: .pineapple))
         
-        // 재고가 있다면 만들기
-        if possible {
-            switch selectedMenu {
-            case .strawberryJuice:
-                strawberry.useStock(amount: selectedRecipe[0].amount)
-               
-            case .bananaJuice:
-                banana.useStock(amount: selectedRecipe[0].amount)
-                
-            case .kiwiJuice:
-                kiwi.useStock(amount: selectedRecipe[0].amount)
-                
-            case .strawberryBananaJuice:
-                strawberry.useStock(amount: selectedRecipe[0].amount)
-                banana.useStock(amount: selectedRecipe[1].amount)
-                
-            case .pineappleJuice:
-                pineapple.useStock(amount: selectedRecipe[0].amount)
-                
-            case .mangoJuice:
-                mango.useStock(amount: selectedRecipe[0].amount)
-                
-            case .mangoKiwiJuice:
-                mango.useStock(amount: selectedRecipe[0].amount)
-                kiwi.useStock(amount: selectedRecipe[1].amount)
-                
-            default:
+        recipeList.append(Recipe(recipeName: .strawberryJuice,
+                                 neededFruits: [NeededFruit(fruitName: .strawberry, amount: 16)]))
+        recipeList.append(Recipe(recipeName: .bananaJuice,
+                                 neededFruits: [NeededFruit(fruitName: .banana, amount: 2)]))
+        recipeList.append(Recipe(recipeName: .kiwiJuice,
+                                 neededFruits: [NeededFruit(fruitName: .kiwi, amount: 3)]))
+        recipeList.append(Recipe(recipeName: .pineappleJuice,
+                                 neededFruits: [NeededFruit(fruitName: .pineapple, amount: 2)]))
+        recipeList.append(Recipe(recipeName: .mangoJuice,
+                                 neededFruits: [NeededFruit(fruitName: .mango, amount: 3)]))
+        recipeList.append(Recipe(recipeName: .strawberryBananaJuice,
+                                 neededFruits: [NeededFruit(fruitName: .strawberry, amount: 10),
+                                                NeededFruit(fruitName: .banana, amount: 1)]))
+        recipeList.append(Recipe(recipeName: .kiwiMangoJuice,
+                                 neededFruits: [NeededFruit(fruitName: .kiwi, amount: 1),
+                                                NeededFruit(fruitName: .mango, amount: 2)]))
+    }
+    
+    func makeJuice(recipe: RecipeName) {
+        // 재고 확인
+        for neededFruit in recipeList[recipe.number()].neededFruits {
+            guard fruitList[neededFruit.name.number()].compareStock(with: neededFruit.amount) else {
+                debugPrint("\(neededFruit.name.rawValue) 재고 부족")
                 return
             }
-            debugPrint("\(selectedMenu.rawValue) 쥬스 완성")
         }
+        // 제조
+        for neededFruit in recipeList[recipe.number()].neededFruits {
+            fruitList[neededFruit.name.number()].use(amount: neededFruit.amount)
+        }
+        debugPrint("\(recipe.rawValue) 완성")
     }
 }
+
+
