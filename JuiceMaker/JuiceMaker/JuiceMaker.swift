@@ -67,7 +67,7 @@ class StockManager {
         pineapple -= 1
     }
     
-    func plusMangoStock() {
+    func addMangoStock() {
         mango += 1
     }
     
@@ -79,7 +79,7 @@ class StockManager {
         kiwi += 1
     }
     
-    func substractkiwiStock() {
+    func substractKiwiStock() {
         kiwi -= 1
     }
     
