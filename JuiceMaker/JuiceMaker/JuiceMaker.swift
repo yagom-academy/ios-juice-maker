@@ -91,47 +91,19 @@ struct FruitStock {
     fileprivate func isFruitEnough(order: Juice) -> Bool {
         switch order {
         case .strawberryJuice:
-            if strawberry - 16 < 0 {
-                return false
-            }else {
-                return true
-            }
+            return strawberry - 16 < 0 ? false : true
         case .bananaJuice:
-            if banana - 2 < 0 {
-                return false
-            }else {
-                return true
-            }
+            return banana - 2 < 0 ? false : true
         case .kiwiJuice:
-            if kiwi - 3 < 0 {
-                return false
-            }else {
-                return true
-            }
+            return kiwi - 3 < 0 ? false : true
         case .pineappleJuice:
-            if pineapple - 2 < 0 {
-                return false
-            }else {
-                return true
-            }
+            return pineapple - 2 < 0 ? false : true
         case .strawberryAndBananaJuice:
-            if strawberry - 10 < 0 || banana - 1 < 0 {
-                return false
-            }else {
-                return true
-            }
+            return strawberry - 10 < 0 || banana - 1 < 0 ? false : true
         case .mangoJuice:
-            if mango - 3 < 0 {
-                return false
-            }else {
-                return true
-            }
+            return mango - 3 < 0 ? false : true
         case .mangoAndKiwiJuice:
-            if mango - 2 < 0 || kiwi - 1 < 0 {
-                return false
-            }else {
-                return true
-            }
+            return mango - 2 < 0 || kiwi - 1 < 0 ? false : true
         }
     }
     
