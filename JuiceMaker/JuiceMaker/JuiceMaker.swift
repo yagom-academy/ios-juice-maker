@@ -36,26 +36,53 @@ class Fruit {
     }
 }
 
+
+enum JuicesName : String {
+    case strawberry = "딸기주스"
+    case banana = "바나나주스"
+    case kiwi = "키위주스"
+    case pineapple = "파인애플주스"
+    case mango = "망고주스"
+    case strawberryBanana = "딸바주스"
+    case mangoKiwi = "망키주스"
+}
+
 enum JuicesType {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
+    case single
+    case multi
+}
+
+class Juice {
+    let name: JuicesName
+    let type: JuicesType
+    
+    init(name: JuicesName, type: JuicesType) {
+        self.name = name
+        self.type = type
+    }
 }
 
 struct JuiceRecipe {
-    let strawberry: [FruitsType : Int] = [.strawberry : 16]
-    let banana: [FruitsType : Int] = [.banana : 2]
-    let kiwi: [FruitsType : Int] = [.kiwi: 3]
-    let pineapple: [FruitsType : Int] = [.pineapple : 2]
-    let strawberryBanana: [FruitsType : Int] = [.strawberry : 10, .banana : 1]
-    let mango: [FruitsType : Int] = [.mango : 3]
-    let mangoKiwi: [FruitsType : Int] = [.mango : 2, .kiwi : 1]
     
-    func getJuiceRecipe(_ juiceType: JuicesType) -> [FruitsType : Int] {
+    private let juices: [JuicesName : Juice] = [
+        .strawberry : Juice(name: .strawberry, type: .single),
+        .banana : Juice(name: .banana, type: .single),
+        .kiwi : Juice(name: .kiwi, type: .single),
+        .pineapple : Juice(name: .pineapple, type: .single),
+        .mango : Juice(name: .mango, type: .single),
+        .strawberryBanana : Juice(name: .strawberryBanana, type: .multi),
+        .mangoKiwi : Juice(name: .mangoKiwi, type: .multi)
+    ]
+    
+    private let strawberry: [FruitsType : Int] = [.strawberry : 16]
+    private let banana: [FruitsType : Int] = [.banana : 2]
+    private let kiwi: [FruitsType : Int] = [.kiwi : 3]
+    private let pineapple: [FruitsType : Int] = [.pineapple : 2]
+    private let mango: [FruitsType : Int] = [.mango : 3]
+    private let strawberryBanana: [FruitsType : Int] = [.strawberry : 10, .banana : 1]
+    private let mangoKiwi: [FruitsType : Int] = [.mango : 2, .kiwi : 1]
+    
+    func getJuiceRecipe(_ juiceType: JuicesName) throws -> [FruitsType : Int] {
         switch juiceType {
         case .strawberry:
             return strawberry
@@ -65,13 +92,19 @@ struct JuiceRecipe {
             return kiwi
         case .pineapple:
             return pineapple
-        case .strawberryBanana:
-            return strawberryBanana
         case .mango:
             return mango
+        case .strawberryBanana:
+            return strawberryBanana
         case .mangoKiwi:
             return mangoKiwi
         }
+        
+        throw JuiceMakerError.notFound
+    }
+    
+    func getAllJuices() -> [JuicesName : Juice] {
+        return juices
     }
 }
 
@@ -95,6 +128,10 @@ class JuiceMaker {
         return fruits
     }
     
+    func getJuices() -> [JuicesName : Juice] {
+        return recipe.getAllJuices()
+    }
+    
     func addStock(fruitType: FruitsType, stock: Int) throws {
         guard let fruit = fruits[fruitType] else {
             throw JuiceMakerError.notFound
@@ -103,8 +140,8 @@ class JuiceMaker {
         fruit.addStock(stock)
     }
     
-    func choiceJuice(juice: JuicesType) throws {
-        let juiceRecipe: [FruitsType : Int] = recipe.getJuiceRecipe(juice)
+    func choiceJuice(juice: JuicesName) throws {
+        let juiceRecipe = try recipe.getJuiceRecipe(juice)
         
         for (key: fruit, value: stock) in juiceRecipe {
             

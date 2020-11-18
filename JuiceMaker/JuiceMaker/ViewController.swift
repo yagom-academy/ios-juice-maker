@@ -9,12 +9,15 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var fruitStack: UIStackView!
+    @IBOutlet weak var multiJuiceStack: UIStackView!
+    @IBOutlet weak var singleJuiceStack: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         setFruitStack()
+        setJuiceStack()
     }
 
     private func setFruitStack() {
@@ -31,5 +34,20 @@ class ViewController: UIViewController {
         }
     }
 
+    private func setJuiceStack() {
+        let recipes: [JuicesName : Juice] = JuiceMaker.shared.getJuices()
+        
+        for (key: juiceName, value: juice) in recipes {
+            let juiceButton = JuiceButton(title: juice.name.rawValue)
+            juiceButton.translatesAutoresizingMaskIntoConstraints = false
+            
+            if juice.type == .multi {
+                multiJuiceStack.addArrangedSubview(juiceButton)
+            }
+            else {
+                singleJuiceStack.addArrangedSubview(juiceButton)
+            }
+        }
+    }
 }
 

@@ -43,18 +43,28 @@
                                             <constraint firstAttribute="trailing" secondItem="HHP-vf-W4n" secondAttribute="trailing" id="nmu-7c-hTS"/>
                                         </constraints>
                                     </scrollView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n33-Ru-wm3" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                        <rect key="frame" x="314" y="238" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1od-aw-Uif" userLabel="Juice Stack View">
+                                        <rect key="frame" x="0.0" y="174.5" width="768" height="134.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="83N-do-hxI">
+                                                <rect key="frame" x="0.0" y="0.0" width="768" height="57.5"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NaP-c1-VCU">
+                                                <rect key="frame" x="0.0" y="77.5" width="768" height="57"/>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="hXa-aX-Hnj" firstAttribute="top" secondItem="jzs-yH-vMo" secondAttribute="top" id="Aqi-mq-xOy"/>
+                                    <constraint firstItem="1od-aw-Uif" firstAttribute="top" secondItem="hXa-aX-Hnj" secondAttribute="bottom" constant="20" id="IC9-Ah-pqO"/>
                                     <constraint firstItem="hXa-aX-Hnj" firstAttribute="leading" secondItem="jzs-yH-vMo" secondAttribute="leading" id="JtE-Ct-J99"/>
                                     <constraint firstAttribute="centerY" secondItem="hXa-aX-Hnj" secondAttribute="bottom" id="QNO-9S-l1f"/>
+                                    <constraint firstAttribute="trailing" secondItem="1od-aw-Uif" secondAttribute="trailing" id="Ugr-2t-Qfx"/>
+                                    <constraint firstAttribute="bottom" secondItem="1od-aw-Uif" secondAttribute="bottom" id="edv-8y-ZVO"/>
                                     <constraint firstAttribute="trailing" secondItem="hXa-aX-Hnj" secondAttribute="trailing" id="fHG-Jy-q9T"/>
+                                    <constraint firstItem="1od-aw-Uif" firstAttribute="leading" secondItem="jzs-yH-vMo" secondAttribute="leading" id="khB-vy-BgN"/>
                                     <constraint firstItem="hXa-aX-Hnj" firstAttribute="width" secondItem="jzs-yH-vMo" secondAttribute="width" id="wjL-JJ-qEb"/>
                                 </constraints>
                             </view>
@@ -73,6 +83,8 @@
                     </view>
                     <connections>
                         <outlet property="fruitStack" destination="HHP-vf-W4n" id="ks7-25-ibY"/>
+                        <outlet property="multiJuiceStack" destination="83N-do-hxI" id="pCN-oA-HC1"/>
+                        <outlet property="singleJuiceStack" destination="NaP-c1-VCU" id="JYv-cP-312"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
