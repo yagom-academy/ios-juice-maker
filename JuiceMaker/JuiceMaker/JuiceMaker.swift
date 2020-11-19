@@ -75,7 +75,7 @@ enum Juices {
 struct JuiceRecipe {
     typealias Recipe = [FruitsType : Int]
     
-    private let juices: [Juices] = [
+    let juices: [Juices] = [
         .strawberry(type: .single, name: "딸기주스"),
         .banana(type: .single, name: "바나나주스"),
         .kiwi(type: .single, name: "키위주스"),
@@ -111,10 +111,6 @@ struct JuiceRecipe {
             return mangoKiwi
         }
     }
-    
-    func getAllJuices() -> [Juices] {
-        return juices
-    }
 }
 
 class JuiceMaker {
@@ -137,7 +133,7 @@ class JuiceMaker {
     }
     
     func getJuices() -> [Juices] {
-        return recipe.getAllJuices()
+        return recipe.juices
     }
     
     func addStock(fruitType: FruitsType, stock: Int) throws {
