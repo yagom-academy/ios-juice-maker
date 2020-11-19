@@ -7,8 +7,13 @@
 import Foundation
 
 struct JuiceMaker {
+    let initialStock: Int
+    var fruitDictionary: [Fruit: Int]
     
-    var fruitDictionary: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    init(initialStock: Int) {
+        self.initialStock = initialStock
+        self.fruitDictionary = [.strawberry: initialStock, .banana: initialStock, .pineapple: initialStock, .kiwi: initialStock, .mango: initialStock]
+    }
     
     func checkFruitStock() {
         for fruit in fruitDictionary {
@@ -23,52 +28,52 @@ struct JuiceMaker {
     }
     
     mutating func makeStrawberryJuice() {
-        guard let currentStock = fruitDictionary[.strawberry], currentStock >= 16 else {
+        guard let stock = fruitDictionary[.strawberry], stock >= 16 else {
             print("재고가 부족합니다. 현재 재고는 \(fruitDictionary[.strawberry]!)개 입니다.")
             //재고 부족시 경고창뜨는거 구현해야함
             return
         }
-        let stockAfterMakingJuice = currentStock - 16
+        let stockAfterMakingJuice = stock - 16
         fruitDictionary.updateValue(stockAfterMakingJuice, forKey: .strawberry)
     }
     
     mutating func makeBananaJuice() {
-        guard let currentStock = fruitDictionary[.banana], currentStock >= 2 else {
+        guard let stock = fruitDictionary[.banana], stock >= 2 else {
             print("재고가 부족합니다. 현재 재고는 \(fruitDictionary[.banana]!)개 입니다.")
             //재고 부족시 경고창뜨는거 구현해야함
             return
         }
-        let stockAfterMakingJuice = currentStock - 2
+        let stockAfterMakingJuice = stock - 2
         fruitDictionary.updateValue(stockAfterMakingJuice, forKey: .banana)
     }
     
     mutating func makePineappleJuice() {
-        guard let currentStock = fruitDictionary[.pineapple], currentStock >= 2 else {
+        guard let stock = fruitDictionary[.pineapple], stock >= 2 else {
             print("재고가 부족합니다. 현재 재고는 \(fruitDictionary[.pineapple]!)개 입니다.")
             //재고 부족시 경고창뜨는거 구현해야함
             return
         }
-        let stockAfterMakingJuice = currentStock - 2
+        let stockAfterMakingJuice = stock - 2
         fruitDictionary.updateValue(stockAfterMakingJuice, forKey: .pineapple)
     }
     
     mutating func makeKiwiJuice() {
-        guard let currentStock = fruitDictionary[.kiwi], currentStock >= 3 else {
+        guard let stock = fruitDictionary[.kiwi], stock >= 3 else {
             print("재고가 부족합니다. 현재 재고는 \(fruitDictionary[.kiwi]!)개 입니다.")
             //재고 부족시 경고창뜨는거 구현해야함
             return
         }
-        let stockAfterMakingJuice = currentStock - 3
+        let stockAfterMakingJuice = stock - 3
         fruitDictionary.updateValue(stockAfterMakingJuice, forKey: .kiwi)
     }
     
     mutating func makeMangoJuice() {
-        guard let currentStock = fruitDictionary[.mango], currentStock >= 3 else {
+        guard let stock = fruitDictionary[.mango], stock >= 3 else {
             print("재고가 부족합니다. 현재 재고는 \(fruitDictionary[.mango]!)개 입니다.")
             //재고 부족시 경고창뜨는거 구현해야함
             return
         }
-        let stockAfterMakingJuice = currentStock - 3
+        let stockAfterMakingJuice = stock - 3
         fruitDictionary.updateValue(stockAfterMakingJuice, forKey: .mango)
     }
     
@@ -96,4 +101,10 @@ struct JuiceMaker {
         fruitDictionary.updateValue(kiwiStockAfterMakingJuice, forKey: .kiwi)
     }
     
+    mutating func addFruitStock(fruit: Fruit) {
+        guard let fruitStock = fruitDictionary[fruit] else {
+            return
+        }
+        fruitDictionary.updateValue(fruitStock + 1, forKey: fruit)
+    }
 }
