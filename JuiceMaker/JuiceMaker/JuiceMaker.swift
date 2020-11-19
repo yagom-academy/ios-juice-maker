@@ -75,7 +75,7 @@ class JuiceMaker {
         fruit += number
     }
     
-    func demandFruit(StockName fruit: inout Int, numberOfSupply number: Int) {
+    func demandFruit(StockName fruit: inout Int, numberOfDemand number: Int) {
         fruit -= number
     }
 }
