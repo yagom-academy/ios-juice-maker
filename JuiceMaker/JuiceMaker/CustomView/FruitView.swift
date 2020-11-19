@@ -22,7 +22,7 @@ class FruitView : UIView {
         setup()
     }
     
-    func setup() {
+    private func setup() {
         let view = Bundle.main.loadNibNamed("FruitView", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
