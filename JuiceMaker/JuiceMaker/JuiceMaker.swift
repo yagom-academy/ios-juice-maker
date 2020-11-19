@@ -107,19 +107,19 @@ class FruitStock {
     func isFruitEnough(order: Juice) -> Bool {
         switch order {
         case .strawberryJuice:
-            return strawberry - 16 < 0 ? false : true
+            return strawberry >= 16
         case .bananaJuice:
-            return banana - 2 < 0 ? false : true
+            return banana >= 2
         case .kiwiJuice:
-            return kiwi - 3 < 0 ? false : true
+            return kiwi >= 3
         case .pineappleJuice:
-            return pineapple - 2 < 0 ? false : true
+            return pineapple >= 2
         case .strawberryAndBananaJuice:
-            return strawberry - 10 < 0 || banana - 1 < 0 ? false : true
+            return strawberry >= 10 && banana >= 1
         case .mangoJuice:
-            return mango - 3 < 0 ? false : true
+            return mango >= 3
         case .mangoAndKiwiJuice:
-            return mango - 2 < 0 || kiwi - 1 < 0 ? false : true
+            return mango >= 2 && kiwi >= 1
         }
     }
     
