@@ -51,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		285EE21A2566B257004D2863 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				28A95AA92563B54F00B24414 /* JuiceMakerError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		28F3ADFF2565509700B93F0F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +88,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				285EE21A2566B257004D2863 /* Error */,
 				28F3ADFF2565509700B93F0F /* CustomView */,
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
@@ -89,7 +98,6 @@
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
-				28A95AA92563B54F00B24414 /* JuiceMakerError.swift */,
 				285EE2142566B181004D2863 /* Fruit.swift */,
 				285EE2172566B19B004D2863 /* JuiceRecipe.swift */,
 			);
