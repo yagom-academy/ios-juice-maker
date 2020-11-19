@@ -47,17 +47,33 @@ class JuiceMaker {
     }
 }
 
-// 재고 관리 구조체
-struct FruitStock {
+// 재고 관리 구조체 -> 클래스
+class FruitStock {
     // 과일 재고
-    private(set) var strawberry = 10
-    private(set) var banana = 10
-    private(set) var pineapple = 10
-    private(set) var kiwi = 10
-    private(set) var mango = 10
+    private(set) var strawberry: Int
+    private(set) var banana: Int
+    private(set) var pineapple: Int
+    private(set) var kiwi: Int
+    private(set) var mango: Int
+    
+    init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
+        self.strawberry = strawberry
+        self.banana = banana
+        self.pineapple = pineapple
+        self.kiwi = kiwi
+        self.mango = mango
+    }
+    
+    init(initialFruitNumber: Int) {
+        self.strawberry = initialFruitNumber
+        self.banana = initialFruitNumber
+        self.pineapple = initialFruitNumber
+        self.kiwi = initialFruitNumber
+        self.mango = initialFruitNumber
+    }
     
     // 과일 재고 추가/제거
-    mutating fileprivate func addOneFruit(_ fruit: Fruit) {
+    fileprivate func addOneFruit(_ fruit: Fruit) {
         switch fruit {
         case .strawberry:
             strawberry += 1
@@ -72,7 +88,7 @@ struct FruitStock {
         }
     }
     
-    mutating fileprivate func minusOneFruit(_ fruit: Fruit) {
+    fileprivate func minusOneFruit(_ fruit: Fruit) {
         switch fruit {
         case .strawberry:
             strawberry -= 1
@@ -88,7 +104,7 @@ struct FruitStock {
     }
     
     // 과일 재고 확인하기
-    fileprivate func isFruitEnough(order: Juice) -> Bool {
+    func isFruitEnough(order: Juice) -> Bool {
         switch order {
         case .strawberryJuice:
             return strawberry - 16 < 0 ? false : true
@@ -107,7 +123,7 @@ struct FruitStock {
         }
     }
     
-    mutating fileprivate func useFruit(order: Juice) {
+    fileprivate func useFruit(order: Juice) {
         switch order {
         case .strawberryJuice:
             strawberry -= 16
