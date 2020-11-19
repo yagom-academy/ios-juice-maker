@@ -20,10 +20,10 @@ class JuiceButton : UIButton {
         super.init(coder: coder)
     }
     
-    init(title: String, name: JuicesName) {
+    init(name: JuicesName) {
         super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
         self.juiceName = name
-        setup(title)
+        setup(name.rawValue)
     }
     
     func setup(_ title: String) {

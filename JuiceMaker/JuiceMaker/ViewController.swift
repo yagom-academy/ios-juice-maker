@@ -34,13 +34,15 @@ class ViewController: UIViewController {
     }
 
     private func setJuiceStack() {
-        let juices: [Juice] = JuiceMaker.shared.getJuices()
+        let juices: [JuicesName : JuicesType] = JuiceMaker.shared.getJuices()
         
-        for juice in juices {
-            let juiceButton = JuiceButton(title: juice.name.rawValue, name: juice.name)
+        for (key: name, value: type) in juices {
+            
+            let juiceButton = JuiceButton(name: name)
+            
             juiceButton.translatesAutoresizingMaskIntoConstraints = false
             
-            if juice.type == .multi {
+            if type == .multi {
                 multiJuiceStack.addArrangedSubview(juiceButton)
             }
             else {
@@ -59,7 +61,6 @@ class ViewController: UIViewController {
         do {
             try JuiceMaker.shared.choiceJuice(juice: juice)
             successJuiceAlert(juiceName: juice)
-            
         } catch JuiceMakerError.outOfStock {
             outOfStockError()
         } catch JuiceMakerError.notFound {
