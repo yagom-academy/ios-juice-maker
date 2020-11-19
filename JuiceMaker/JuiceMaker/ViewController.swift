@@ -61,9 +61,9 @@ class ViewController: UIViewController {
             try JuiceMaker.shared.choiceJuice(juice: juice)
             successJuiceAlert(juice: juice)
         } catch JuiceMakerError.outOfStock {
-            outOfStockError()
+            outOfStockError(.outOfStock)
         } catch JuiceMakerError.notFound {
-            notFoundError()
+            notFoundError(.notFound)
         }
     }
     
@@ -75,8 +75,8 @@ class ViewController: UIViewController {
         present(alert, animated: false, completion: nil)
     }
     
-    func outOfStockError() {
-        let alert = UIAlertController(title: nil, message: "재로가 모자라요.\n재고를 수정할까요?", preferredStyle: .alert)
+    func outOfStockError(_ error: JuiceMakerError) {
+        let alert = UIAlertController(title: nil, message: error.getMessage(), preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
         let cancleAction = UIAlertAction(title: "아니요", style: .cancel, handler: nil)
         alert.addAction(okAction)
@@ -85,8 +85,8 @@ class ViewController: UIViewController {
         present(alert, animated: false, completion: nil)
     }
     
-    func notFoundError() {
-        let alert = UIAlertController(title: "오류", message: "시스템 상 오류가 있습니다.\n잠시 후 다시 시도해 주세요.", preferredStyle: .alert)
+    func notFoundError(_ error: JuiceMakerError) {
+        let alert = UIAlertController(title: "오류", message: error.getMessage(), preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(okAction)
         
