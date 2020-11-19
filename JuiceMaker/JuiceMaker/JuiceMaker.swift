@@ -41,8 +41,6 @@ enum JuicesType {
     case multi
 }
 
-typealias JuiceInfo = (type: JuicesType, name: String)
-
 enum Juices {
     case strawberry(type: JuicesType, name: String)
     case banana(type: JuicesType, name: String)
@@ -52,6 +50,7 @@ enum Juices {
     case strawberryBanana(type: JuicesType, name: String)
     case mangoKiwi(type: JuicesType, name: String)
     
+    typealias JuiceInfo = (type: JuicesType, name: String)
     func getJuiceInfo() -> JuiceInfo {
         switch self {
         case let .strawberry(type, name):
