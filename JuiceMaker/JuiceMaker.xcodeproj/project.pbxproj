@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		285EE2152566B181004D2863 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EE2142566B181004D2863 /* Fruit.swift */; };
+		285EE2182566B19B004D2863 /* JuiceRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285EE2172566B19B004D2863 /* JuiceRecipe.swift */; };
 		28A95AAA2563B54F00B24414 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A95AA92563B54F00B24414 /* JuiceMakerError.swift */; };
 		28F3AE01256550AA00B93F0F /* FruitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F3AE00256550AA00B93F0F /* FruitView.xib */; };
 		28F3AE04256550C900B93F0F /* FruitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F3AE03256550C900B93F0F /* FruitView.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		285EE2142566B181004D2863 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		285EE2172566B19B004D2863 /* JuiceRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRecipe.swift; sourceTree = "<group>"; };
 		28A95AA92563B54F00B24414 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		28F3AE00256550AA00B93F0F /* FruitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FruitView.xib; sourceTree = "<group>"; };
 		28F3AE03256550C900B93F0F /* FruitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitView.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 				28A95AA92563B54F00B24414 /* JuiceMakerError.swift */,
+				285EE2142566B181004D2863 /* Fruit.swift */,
+				285EE2172566B19B004D2863 /* JuiceRecipe.swift */,
 			);
 			path = JuiceMaker;
 			sourceTree = "<group>";
@@ -161,6 +167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285EE2182566B19B004D2863 /* JuiceRecipe.swift in Sources */,
+				285EE2152566B181004D2863 /* Fruit.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
