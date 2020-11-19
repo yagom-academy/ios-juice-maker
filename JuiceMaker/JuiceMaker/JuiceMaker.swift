@@ -6,12 +6,12 @@
 
 import Foundation
 
-enum FruitsType {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+enum FruitsType : String {
+    case strawberry = "🍓"
+    case banana = "🍌"
+    case pineapple = "🍍"
+    case kiwi = "🥝"
+    case mango = "🥭"
 }
 
 class Fruit {
@@ -37,25 +37,62 @@ class Fruit {
 }
 
 enum JuicesType {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
+    case single
+    case multi
+}
+
+enum Juices {
+    case strawberry(type: JuicesType, name: String)
+    case banana(type: JuicesType, name: String)
+    case kiwi(type: JuicesType, name: String)
+    case pineapple(type: JuicesType, name: String)
+    case mango(type: JuicesType, name: String)
+    case strawberryBanana(type: JuicesType, name: String)
+    case mangoKiwi(type: JuicesType, name: String)
+    
+    typealias JuiceInfo = (type: JuicesType, name: String)
+    func getJuiceInfo() -> JuiceInfo {
+        switch self {
+        case let .strawberry(type, name):
+            return (type, name)
+        case let .banana(type, name):
+            return (type, name)
+        case let .kiwi(type, name):
+            return (type, name)
+        case let .pineapple(type, name):
+            return (type, name)
+        case let .mango(type, name):
+            return (type, name)
+        case let .strawberryBanana(type, name):
+            return (type, name)
+        case let .mangoKiwi(type, name):
+            return (type, name)
+        }
+    }
 }
 
 struct JuiceRecipe {
-    let strawberry: [FruitsType : Int] = [.strawberry : 16]
-    let banana: [FruitsType : Int] = [.banana : 2]
-    let kiwi: [FruitsType : Int] = [.kiwi: 3]
-    let pineapple: [FruitsType : Int] = [.pineapple : 2]
-    let strawberryBanana: [FruitsType : Int] = [.strawberry : 10, .banana : 1]
-    let mango: [FruitsType : Int] = [.mango : 3]
-    let mangoKiwi: [FruitsType : Int] = [.mango : 2, .kiwi : 1]
+    typealias Recipe = [FruitsType : Int]
     
-    func getJuiceRecipe(_ juiceType: JuicesType) -> [FruitsType : Int] {
+    let juices: [Juices] = [
+        .strawberry(type: .single, name: "딸기주스"),
+        .banana(type: .single, name: "바나나주스"),
+        .kiwi(type: .single, name: "키위주스"),
+        .pineapple(type: .single, name: "파인애플주스"),
+        .mango(type: .single, name: "망고주스"),
+        .strawberryBanana(type: .multi, name: "딸바주스"),
+        .mangoKiwi(type: .multi, name: "망키주스")
+    ]
+    
+    private let strawberry: [FruitsType : Int] = [.strawberry : 16]
+    private let banana: [FruitsType : Int] = [.banana : 2]
+    private let kiwi: [FruitsType : Int] = [.kiwi : 3]
+    private let pineapple: [FruitsType : Int] = [.pineapple : 2]
+    private let mango: [FruitsType : Int] = [.mango : 3]
+    private let strawberryBanana: [FruitsType : Int] = [.strawberry : 10, .banana : 1]
+    private let mangoKiwi: [FruitsType : Int] = [.mango : 2, .kiwi : 1]
+    
+    func getJuiceRecipe(_ juiceType: Juices) -> Recipe {
         switch juiceType {
         case .strawberry:
             return strawberry
@@ -65,10 +102,10 @@ struct JuiceRecipe {
             return kiwi
         case .pineapple:
             return pineapple
-        case .strawberryBanana:
-            return strawberryBanana
         case .mango:
             return mango
+        case .strawberryBanana:
+            return strawberryBanana
         case .mangoKiwi:
             return mangoKiwi
         }
@@ -77,70 +114,59 @@ struct JuiceRecipe {
 
 class JuiceMaker {
     
+    static let shared = JuiceMaker()
+    private init() {}
+    
     private let recipe = JuiceRecipe()
     
-    var strawberry = Fruit(fruitType: .strawberry)
-    var banana = Fruit(fruitType: .banana)
-    var pineapple = Fruit(fruitType: .pineapple)
-    var kiwi = Fruit(fruitType: .kiwi)
-    var mango = Fruit(fruitType: .mango)
+    private var fruits: [FruitsType : Fruit] = [
+        .strawberry : Fruit(fruitType: .strawberry),
+        .banana : Fruit(fruitType: .banana),
+        .pineapple : Fruit(fruitType: .pineapple),
+        .kiwi : Fruit(fruitType: .kiwi),
+        .mango : Fruit(fruitType: .mango)
+    ]
     
-    func addStock(fruitType: FruitsType, stock: Int) {
-        switch fruitType {
-        case .strawberry:
-            strawberry.addStock(stock)
-        case .banana:
-            banana.addStock(stock)
-        case .pineapple:
-            pineapple.addStock(stock)
-        case .kiwi:
-            kiwi.addStock(stock)
-        case .mango:
-            mango.addStock(stock)
-        }
+    func getFruits() -> [FruitsType : Fruit] {
+        return fruits
     }
     
-    func choiceJuice(juice: JuicesType) throws {
-        let juiceRecipe: [FruitsType : Int] = recipe.getJuiceRecipe(juice)
+    func getJuices() -> [Juices] {
+        return recipe.juices
+    }
+    
+    func addStock(fruitType: FruitsType, stock: Int) throws {
+        guard let fruit = fruits[fruitType] else {
+            throw JuiceMakerError.notFound
+        }
         
-        for (key, value) in juiceRecipe {
-            guard checkStock(fruitType: key, needStock: value) else {
+        fruit.addStock(stock)
+    }
+    
+    func choiceJuice(juice: Juices) throws {
+        let juiceRecipe = recipe.getJuiceRecipe(juice)
+        
+        for (key: fruit, value: stock) in juiceRecipe {
+            guard let fruit = fruits[fruit] else {
+                throw JuiceMakerError.notFound
+            }
+            
+            guard fruit.canMakeJuice(need: stock) else {
                 throw JuiceMakerError.outOfStock
             }
         }
         
-        for (key, value) in juiceRecipe {
-            makeJuice(fruitType: key, use: value)
+        for (key: fruit, value: stock) in juiceRecipe {
+            try makeJuice(fruitType: fruit, use: stock)
         }
     }
     
-    func checkStock(fruitType: FruitsType, needStock: Int) -> Bool {
-        switch fruitType {
-        case .strawberry:
-            return strawberry.canMakeJuice(need: needStock)
-        case .banana:
-            return banana.canMakeJuice(need: needStock)
-        case .pineapple:
-            return pineapple.canMakeJuice(need: needStock)
-        case .kiwi:
-            return kiwi.canMakeJuice(need: needStock)
-        case .mango:
-            return mango.canMakeJuice(need: needStock)
+    func makeJuice(fruitType: FruitsType, use: Int) throws {
+        
+        guard let fruit = fruits[fruitType] else {
+            throw JuiceMakerError.notFound
         }
-    }
-    
-    func makeJuice(fruitType: FruitsType, use: Int) {
-        switch fruitType {
-        case .strawberry:
-            strawberry.useStock(use)
-        case .banana:
-            banana.useStock(use)
-        case .pineapple:
-            pineapple.useStock(use)
-        case .kiwi:
-            kiwi.useStock(use)
-        case .mango:
-            mango.useStock(use)
-        }
+        
+        fruit.useStock(use)
     }
 }
