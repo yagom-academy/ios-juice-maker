@@ -26,7 +26,7 @@ enum Juice: String {
 
 /// 쥬스 메이커 타입 
 class JuiceMaker {
-    var fruitStock = FruitStock(initialEachFruitNumber: 10)
+    var fruitStock = FruitStock(initialFruitNumber: 10)
 
     func makeJuice(_ order: Juice) {
         switch fruitStock.isFruitEnough(order: order) {
@@ -64,12 +64,12 @@ class FruitStock {
         self.mango = mango
     }
     
-    init(initialEachFruitNumber: Int) {
-        self.strawberry = initialEachFruitNumber
-        self.banana = initialEachFruitNumber
-        self.pineapple = initialEachFruitNumber
-        self.kiwi = initialEachFruitNumber
-        self.mango = initialEachFruitNumber
+    init(initialFruitNumber: Int) {
+        self.strawberry = initialFruitNumber
+        self.banana = initialFruitNumber
+        self.pineapple = initialFruitNumber
+        self.kiwi = initialFruitNumber
+        self.mango = initialFruitNumber
     }
     
     // 과일 재고 추가/제거
