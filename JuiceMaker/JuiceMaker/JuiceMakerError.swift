@@ -5,4 +5,6 @@
 //  Created by Yeon on 2020/11/18.
 //
 
-import Foundation
+enum JuiceMakerError: Error {
+    case outOfStock
+}
