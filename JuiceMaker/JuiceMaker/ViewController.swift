@@ -34,33 +34,32 @@ class ViewController: UIViewController {
     }
 
     private func setJuiceStack() {
-        let juices: [JuicesName : JuicesType] = JuiceMaker.shared.getJuices()
+        let juices: [Juices] = JuiceMaker.shared.getJuices()
         
-        for (key: name, value: type) in juices {
+        for juice in juices {
             
-            let juiceButton = JuiceButton(name: name)
+            let info = juice.getJuiceInfo()
             
+            let juiceButton = JuiceButton(juice: juice, name: info.name)
             juiceButton.translatesAutoresizingMaskIntoConstraints = false
-            
-            if type == .multi {
+            if info.type == .multi {
                 multiJuiceStack.addArrangedSubview(juiceButton)
             }
             else {
                 singleJuiceStack.addArrangedSubview(juiceButton)
             }
-            
             juiceButton.addTarget(self, action: #selector(makeJuice(sender:)), for: .touchUpInside)
         }
     }
     
     @objc func makeJuice(sender: JuiceButton) throws {
-        guard let juice = sender.juiceName else {
+        guard let juice = sender.juice else {
             throw JuiceMakerError.system
         }
         
         do {
             try JuiceMaker.shared.choiceJuice(juice: juice)
-            successJuiceAlert(juiceName: juice)
+            successJuiceAlert(juice: juice)
         } catch JuiceMakerError.outOfStock {
             outOfStockError()
         } catch JuiceMakerError.notFound {
@@ -68,8 +67,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func successJuiceAlert(juiceName: JuicesName) {
-        let alert = UIAlertController(title: nil, message: "\(juiceName.rawValue) 나왔습니다!\n맛있게 드세요!", preferredStyle: .alert)
+    func successJuiceAlert(juice: Juices) {
+        let alert = UIAlertController(title: nil, message: "\(juice.getJuiceInfo().name) 나왔습니다!\n맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(okAction)
         

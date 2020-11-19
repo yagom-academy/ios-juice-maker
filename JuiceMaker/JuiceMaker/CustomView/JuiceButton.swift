@@ -10,7 +10,7 @@ import UIKit
 
 class JuiceButton : UIButton {
     
-    var juiceName: JuicesName?
+    var juice: Juices?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,10 +20,10 @@ class JuiceButton : UIButton {
         super.init(coder: coder)
     }
     
-    init(name: JuicesName) {
+    init(juice: Juices, name: String) {
         super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
-        self.juiceName = name
-        setup(name.rawValue)
+        self.juice = juice
+        setup(name)
     }
     
     func setup(_ title: String) {
