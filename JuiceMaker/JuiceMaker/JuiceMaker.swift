@@ -2,7 +2,7 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//  STEP2
 
 import Foundation
 
