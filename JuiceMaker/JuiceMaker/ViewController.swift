@@ -7,12 +7,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var jucieMaker: JuiceMaker = JuiceMaker()
+    var juiceMaker: JuiceMaker = JuiceMaker(initialStock: 20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //test
-        jucieMaker.checkFruitStock()
+        juiceMaker.checkFruitStock()
+        juiceMaker.makeJuiceUseOneFruit(fruit: .strawberry, requiredNumber: 16)
+        juiceMaker.checkFruitStock()
     }
 
 
