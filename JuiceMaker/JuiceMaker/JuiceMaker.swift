@@ -13,35 +13,25 @@ enum Fruit {
 //과일 수량
 //FruitStock을 구조체로 선언한 이유는 값타입으로만 사용될 것 이라 생각하여 구조체를 사용했습니다.
 struct FruitStock {
-    //구조체의 프로퍼티들을 class에서 사용하기 위해 fileprivate를 사용해 주었습니다.
-    fileprivate(set) var strawberry: Int
-    fileprivate(set) var banana: Int
-    fileprivate(set) var pineapple: Int
-    fileprivate(set) var kiwii: Int
-    fileprivate(set) var mango: Int
-    
-    init() {
-        strawberry = 10
-        banana = 10
-        pineapple = 10
-        kiwii = 10
-        mango = 10
-    }
+    private(set) var strawberry: Int
+    private(set) var banana: Int
+    private(set) var pineapple: Int
+    private(set) var kiwii: Int
+    private(set) var mango: Int
     
     //과일 재고 추가
-    //물량을 수정하는 것은 유저가 직접 -, + 를 사용하여 물량을 조절하는 것이라 생각하여 외부에서 재고를 수정할 수 있게 두었습니다.
     mutating func stockChanged(fruit: Fruit, stock: Int) {
         switch fruit {
         case .strawberry:
-            self.strawberry = stock
+            strawberry = stock
         case .banana:
-            self.banana = stock
+            banana = stock
         case .kiwii:
-            self.kiwii = stock
+            kiwii = stock
         case .mango:
-            self.mango = stock
+            mango = stock
         case .pineapple:
-            self.pineapple = stock
+            pineapple = stock
         }
     }
 }
@@ -52,24 +42,34 @@ struct FruitStock {
 class JuiceMaker {
     var fruitStock: FruitStock
     
-    init() {
-        fruitStock = FruitStock()
+    //JuiceMaker 인스턴스 생성 시 초기 과일 재고 입력.
+    init(stock: FruitStock) {
+        fruitStock = FruitStock(strawberry: stock.strawberry,
+                                banana: stock.banana,
+                                pineapple: stock.pineapple,
+                                kiwii: stock.kiwii,
+                                mango: stock.mango)
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
     func makeJuice(with fruits: [Fruit: Int]) {
-        for (fruitName, fruitUsed) in fruits {
-            switch fruitName {
+        for (fruit, fruitUsed) in fruits {
+            switch fruit {
             case .banana:
-                self.fruitStock.banana -= fruitUsed
+                fruitStock.stockChanged(fruit: .banana,
+                                        stock: fruitStock.banana - fruitUsed)
             case .kiwii:
-                self.fruitStock.kiwii -= fruitUsed
+                fruitStock.stockChanged(fruit: .kiwii,
+                                        stock: fruitStock.kiwii - fruitUsed)
             case .mango:
-                self.fruitStock.mango -= fruitUsed
+                fruitStock.stockChanged(fruit: .mango, stock:
+                                            fruitStock.mango - fruitUsed)
             case .pineapple:
-                self.fruitStock.pineapple -= fruitUsed
+                fruitStock.stockChanged(fruit: .pineapple,
+                                        stock: fruitStock.pineapple - fruitUsed)
             case .strawberry:
-                self.fruitStock.strawberry -= fruitUsed
+                fruitStock.stockChanged(fruit: .strawberry,
+                                        stock: fruitStock.strawberry - fruitUsed)
             }
         }
     }
