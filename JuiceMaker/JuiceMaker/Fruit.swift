@@ -7,34 +7,35 @@
 
 import Foundation
 
-struct Fruit {
-    var name: String
-    var tempCurrentStock: Int
-    var currentStock: Int {
-        get {
-            return tempCurrentStock
+class Fruit {
+    let name: String
+    private var variationOfStockAmount: Int {
+        willSet(newValue) {
+            self.currentStock += newValue
         }
     }
+    private var currentStock: Int
     
     init(name: String) {
         self.name = name
-        self.tempCurrentStock = 10
+        self.variationOfStockAmount = 0
+        currentStock = 0
     }
     
-    func showCurrentStock() -> Int {
+    func showCurrentStock(to: JuiceMaker) -> Int {
         return self.currentStock
     }
     
-    mutating func changeStockAmount(reducing amount: Int) {
-        self.tempCurrentStock -= amount
+    func updateStockAmount(reducing value: Int) {
+        self.variationOfStockAmount = -value
     }
-
-    mutating func addStockAmount(adding amount: Int) {
-        guard amount > 0 else {
+    
+    func updateStockAmount(adding value: Int) {
+        guard value > 0 else {
             print("재고추가는 1개 이상 가능합니다.")
             return
         }
         
-        self.tempCurrentStock += amount
+        self.variationOfStockAmount = value
     }
 }
