@@ -30,7 +30,7 @@ class JuiceMaker {
     
     func setStock(fruitType: FruitsType, stock: Int) throws {
         guard let fruit = fruits[fruitType] else {
-            throw JuiceMakerError.notFound
+            throw JuiceMakerError.setStock
         }
         
         fruit.setStock(stock)

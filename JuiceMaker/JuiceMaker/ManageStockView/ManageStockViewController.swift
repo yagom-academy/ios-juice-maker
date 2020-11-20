@@ -44,18 +44,21 @@ class ManageStockViewController: UIViewController {
         present(alert, animated: false, completion: nil)
     }
     
-    // TODO: add Error Handler
     private func setStock() throws {
         for fruitStockView in fruitStockViews {
             guard let newStock = fruitStockView.fruitStock,
                   let fruit = fruitStockView.fruitView.fruit else {
-                throw JuiceMakerError.system
+                throw JuiceMakerError.setStock
             }
             
             try JuiceMaker.shared.setStock(fruitType: fruit, stock: newStock)
         }
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "setStock"), object: nil)
+        dismissManageStock()
+    }
+    
+    private func dismissManageStock() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -78,6 +81,10 @@ class ManageStockViewController: UIViewController {
     }
     
     private func errorAlert(_ error: JuiceMakerError) {
-        
+        let alert = UIAlertController(title: "오류", message: error.getMessage(), preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+            self.dismissManageStock()
+        }
+        present(alert, animated: false, completion: nil)
     }
 }
