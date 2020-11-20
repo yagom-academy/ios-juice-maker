@@ -45,6 +45,7 @@ class StockManager {
         }
     }
     
+    //MARK: - giveIngredients
     func giveStrawberryJuiceIngredients() {
         strawberry -= 3
     }
@@ -75,54 +76,69 @@ class StockManager {
         kiwi -= 1
     }
     
+    // MARK: - addStock
     func addStrawberryStock() {
         strawberry += 1
-    }
-    
-    func substractStrawberryStock() {
-        strawberry -= 1
     }
     
     func addBananaStock() {
         banana += 1
     }
     
-    func substractBananaStock() {
-        banana -= 1
-    }
-    
     func addPineappleStock() {
         pineapple += 1
-    }
-    
-    func substractPineappleStock() {
-        pineapple -= 1
     }
     
     func addMangoStock() {
         mango += 1
     }
     
-    func substractMangoStock() {
-        if mango > 0 {
-            mango -= 1
-        } else {
-            showalert.printWrongRequest()
-        }
-    }
-    
     func addKiwiStock() {
         kiwi += 1
     }
     
-    func substractKiwiStock() {
-        if kiwi > 0 {
-            kiwi -= 1
-        } else {
+    // MARK: - substractStock
+    func substractStrawberryStock() {
+        guard strawberry > 0 else {
             showalert.printWrongRequest()
+            return
         }
+        strawberry -= 1
     }
     
+    func substractBananaStock() {
+        guard banana > 0 else {
+            showalert.printWrongRequest()
+            return
+        }
+        banana -= 1
+    }
+    
+    func substractPineappleStock() {
+        guard pineapple > 0 else {
+            showalert.printWrongRequest()
+            return
+        }
+        pineapple -= 1
+    }
+    
+    func substractMangoStock() {
+        guard mango > 0 else {
+            showalert.printWrongRequest()
+            return
+        }
+            mango -= 1
+        }
+    
+    func substractKiwiStock() {
+        guard kiwi > 0 else {
+            showalert.printWrongRequest()
+            return
+        }
+            kiwi -= 1
+        }
+    
+    // MARK: - showAllStock
     func showFruitStock() {
         print("딸기:\(strawberryStock) 바나나:\(bananaStock) 파인애플:\(pineappleStock) 망고:\(mangoStock) 키위:\(kiwiStock)")
     }
