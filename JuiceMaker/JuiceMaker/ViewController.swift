@@ -100,7 +100,9 @@ class ViewController: UIViewController {
     
     func outOfStockError(_ error: JuiceMakerError) {
         let alert = UIAlertController(title: nil, message: error.getMessage(), preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "예", style: .default) { _ in
+            self.moveManageStock()
+        }
         let cancleAction = UIAlertAction(title: "아니요", style: .cancel, handler: nil)
         alert.addAction(okAction)
         alert.addAction(cancleAction)
