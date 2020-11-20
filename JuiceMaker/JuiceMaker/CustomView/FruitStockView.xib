@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FruitStockView" customModule="JuiceMaker" customModuleProvider="target">
             <connections>
-                <outlet property="FruitView" destination="Lg4-hi-jJH" id="PoY-3U-Nkv"/>
+                <outlet property="fruitView" destination="Lg4-hi-jJH" id="NDj-QX-wok"/>
                 <outlet property="stockStepper" destination="SGM-ty-AfZ" id="YAf-ei-rhP"/>
             </connections>
         </placeholder>
@@ -34,6 +34,9 @@
                             <subviews>
                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SGM-ty-AfZ">
                                     <rect key="frame" x="53" y="9" width="94" height="32"/>
+                                    <connections>
+                                        <action selector="stepperChangedWithSender:" destination="-1" eventType="valueChanged" id="cnb-qL-IXl"/>
+                                    </connections>
                                 </stepper>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

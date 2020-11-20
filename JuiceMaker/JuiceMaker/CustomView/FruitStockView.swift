@@ -28,4 +28,8 @@ class FruitStockView : UIView {
         view.frame = self.bounds
         self.addSubview(view)
     }
+    
+    @IBAction func stepperChanged(sender: UIStepper) {
+        fruitView.fruitStock.text = Int(sender.value).description
+    }
 }
