@@ -38,6 +38,9 @@ class ManageStockViewController: UIViewController {
             fruitStockStackView.addArrangedSubview(fruitStockView)
             fruitStockView.widthAnchor.constraint(equalTo: fruitStockView.heightAnchor, multiplier: 0.74).isActive = true
             fruitStockView.fruitView.fruitName.text = fruitName.rawValue
+            fruitStockView.fruitView.fruitStock.text = String(fruit.stock)
+            fruitStockView.stockStepper.value = Double(fruit.stock)
+            fruitStockView.stockStepper.minimumValue = Double(fruit.stock)
         }
     }
 
