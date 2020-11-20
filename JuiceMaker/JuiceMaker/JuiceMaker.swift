@@ -9,41 +9,11 @@ import Foundation
 class StockManager {
     var showalert = ShowAlert()
     
-    private var strawberry: UInt = 10
-    private var banana: UInt = 10
-    private var pineapple: UInt = 10
-    private var kiwi: UInt = 10
-    private var mango: UInt = 10
-    
-    var strawberryStock: UInt {
-        get {
-            return strawberry
-        }
-    }
-    
-    var bananaStock: UInt {
-        get {
-            return banana
-        }
-    }
-    
-    var pineappleStock: UInt {
-        get {
-            return pineapple
-        }
-    }
-    
-    var kiwiStock: UInt {
-        get {
-            return kiwi
-        }
-    }
-    
-    var mangoStock: UInt {
-        get {
-            return mango
-        }
-    }
+    private(set) var strawberry: UInt = 10
+    private(set) var banana: UInt = 10
+    private(set) var pineapple: UInt = 10
+    private(set) var kiwi: UInt = 10
+    private(set) var mango: UInt = 10
     
     //MARK: - giveIngredients
     func giveStrawberryJuiceIngredients() {
@@ -140,7 +110,7 @@ class StockManager {
     
     // MARK: - showAllStock
     func showFruitStock() {
-        print("딸기:\(strawberryStock) 바나나:\(bananaStock) 파인애플:\(pineappleStock) 망고:\(mangoStock) 키위:\(kiwiStock)")
+        print("딸기:\(strawberry) 바나나:\(banana) 파인애플:\(pineapple) 망고:\(mango) 키위:\(kiwi)")
     }
 }
 
@@ -149,7 +119,7 @@ class JuiceMaker {
     var showAlert = ShowAlert()
     
     func makeStrawberryJuice() {
-        guard stockManager.strawberryStock >= 16 else {
+        guard stockManager.strawberry >= 16 else {
             showAlert.printOutOfStock()
             return
         }
@@ -158,7 +128,7 @@ class JuiceMaker {
     }
     
     func makeStrawberryBananaJuice() {
-        guard stockManager.strawberryStock >= 10 && stockManager.bananaStock >= 1 else {
+        guard stockManager.strawberry >= 10 && stockManager.banana >= 1 else {
             showAlert.printOutOfStock()
             return
         }
@@ -168,7 +138,7 @@ class JuiceMaker {
     }
     
     func makeBananaJuice() {
-        guard stockManager.bananaStock >= 2 else {
+        guard stockManager.banana >= 2 else {
             showAlert.printOutOfStock()
             return
         }
@@ -177,7 +147,7 @@ class JuiceMaker {
     }
     
     func makeKiwiJuice() {
-        guard stockManager.kiwiStock >= 3 else {
+        guard stockManager.kiwi >= 3 else {
             showAlert.printOutOfStock()
             return
         }
@@ -186,7 +156,7 @@ class JuiceMaker {
     }
     
     func makePineappleJuice() {
-        guard stockManager.pineappleStock >= 2 else {
+        guard stockManager.pineapple >= 2 else {
             showAlert.printOutOfStock()
             return
         }
@@ -195,7 +165,7 @@ class JuiceMaker {
     }
     
     func makeMangoJuice() {
-        guard stockManager.mangoStock >= 3 else {
+        guard stockManager.mango >= 3 else {
             showAlert.printOutOfStock()
             return
         }
@@ -204,7 +174,7 @@ class JuiceMaker {
     }
     
     func makeMangoKiwiJuice() {
-        guard stockManager.mangoStock >= 2 && stockManager.kiwiStock >= 1 else {
+        guard stockManager.mango >= 2 && stockManager.kiwi >= 1 else {
             showAlert.printOutOfStock()
             return
         }
