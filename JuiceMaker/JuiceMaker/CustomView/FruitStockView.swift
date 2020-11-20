@@ -13,13 +13,28 @@ class FruitStockView : UIView {
     @IBOutlet weak var fruitView : FruitView!
     @IBOutlet weak var stockStepper: UIStepper!
     
+    var fruit: FruitsType?
+    // TODO: add error
+    var fruitStock: Int? = nil {
+        willSet {
+            guard let stock = newValue else {
+                return
+            }
+            fruitView.fruitStock.text = String(stock)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    init(fruit: FruitsType) {
+        super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
+        self.fruit = fruit
         setup()
     }
     
@@ -30,6 +45,6 @@ class FruitStockView : UIView {
     }
     
     @IBAction func stepperChanged(sender: UIStepper) {
-        fruitView.fruitStock.text = Int(sender.value).description
+        fruitStock = Int(sender.value)
     }
 }
