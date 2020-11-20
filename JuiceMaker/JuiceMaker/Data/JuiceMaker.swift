@@ -28,12 +28,12 @@ class JuiceMaker {
         return recipe.juices
     }
     
-    func addStock(fruitType: FruitsType, stock: Int) throws {
+    func setStock(fruitType: FruitsType, stock: Int) throws {
         guard let fruit = fruits[fruitType] else {
             throw JuiceMakerError.notFound
         }
         
-        fruit.addStock(stock)
+        fruit.setStock(stock)
     }
     
     func choiceJuice(juice: Juices) throws {
