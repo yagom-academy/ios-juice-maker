@@ -77,13 +77,13 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		2868481A256796A5003D716B /* View */ = {
+		2868481A256796A5003D716B /* ManageStockView */ = {
 			isa = PBXGroup;
 			children = (
 				286848272567A27D003D716B /* ManageStockViewController.swift */,
 				286848282567A27D003D716B /* ManageStockViewController.xib */,
 			);
-			path = View;
+			path = ManageStockView;
 			sourceTree = "<group>";
 		};
 		28F3ADFF2565509700B93F0F /* CustomView */ = {
@@ -117,7 +117,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				2868481A256796A5003D716B /* View */,
+				2868481A256796A5003D716B /* ManageStockView */,
 				286848192567968F003D716B /* Data */,
 				285EE21A2566B257004D2863 /* Error */,
 				28F3ADFF2565509700B93F0F /* CustomView */,

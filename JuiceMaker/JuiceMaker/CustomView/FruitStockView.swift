@@ -10,7 +10,7 @@ import UIKit
 
 class FruitStockView : UIView {
     
-    @IBOutlet weak var FruitView : UIView!
+    @IBOutlet weak var fruitView : FruitView!
     @IBOutlet weak var stockStepper: UIStepper!
     
     override init(frame: CGRect) {

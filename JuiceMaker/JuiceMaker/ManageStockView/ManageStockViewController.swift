@@ -15,6 +15,7 @@ class ManageStockViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigation()
+        setFruitStockStack()
     }
     
     private func setupNavigation() {
@@ -26,6 +27,19 @@ class ManageStockViewController: UIViewController {
     
     @objc func onClickDismiss() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setFruitStockStack() {
+        let fruits: [FruitsType : Fruit] = JuiceMaker.shared.getFruits()
+        
+        for (key: fruitName, value: fruit) in fruits {
+            let fruitStockView = FruitStockView()
+            fruitStockView.translatesAutoresizingMaskIntoConstraints = false
+            fruitStockStackView.addArrangedSubview(fruitStockView)
+            fruitStockView.widthAnchor.constraint(equalTo: fruitStockView.heightAnchor, multiplier: 0.74).isActive = true
+            fruitStockView.fruitView.fruitName.text = fruitName.rawValue
+            fruitStockView.fruitView.fruitStock.text = String(fruit.stock)
+        }
     }
 
 }
