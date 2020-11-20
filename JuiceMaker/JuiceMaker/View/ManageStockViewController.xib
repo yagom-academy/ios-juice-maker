@@ -17,8 +17,44 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XG0-yb-vRg">
+                    <rect key="frame" x="64" y="20" width="768" height="353"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UnJ-fm-3Et">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="176.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fdm-TL-TOL">
+                                    <rect key="frame" x="0.0" y="0.0" width="176.5" height="176.5"/>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Fdm-TL-TOL" firstAttribute="top" secondItem="UnJ-fm-3Et" secondAttribute="top" id="Qya-rh-V7e"/>
+                                <constraint firstItem="Fdm-TL-TOL" firstAttribute="leading" secondItem="UnJ-fm-3Et" secondAttribute="leading" id="Zx4-kE-7ty"/>
+                                <constraint firstAttribute="trailing" secondItem="Fdm-TL-TOL" secondAttribute="trailing" id="fVs-ao-7TE"/>
+                                <constraint firstItem="Fdm-TL-TOL" firstAttribute="centerY" secondItem="UnJ-fm-3Et" secondAttribute="centerY" id="gTh-K5-UTt"/>
+                                <constraint firstAttribute="bottom" secondItem="Fdm-TL-TOL" secondAttribute="bottom" id="ojh-WX-UqM"/>
+                            </constraints>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="UnJ-fm-3Et" firstAttribute="leading" secondItem="XG0-yb-vRg" secondAttribute="leading" id="3pv-I1-1Jr"/>
+                        <constraint firstItem="UnJ-fm-3Et" firstAttribute="width" secondItem="XG0-yb-vRg" secondAttribute="width" id="Hqc-sq-xD9"/>
+                        <constraint firstAttribute="trailing" secondItem="UnJ-fm-3Et" secondAttribute="trailing" id="KML-ss-nwW"/>
+                        <constraint firstAttribute="centerY" secondItem="UnJ-fm-3Et" secondAttribute="bottom" id="UBa-B1-kjW"/>
+                        <constraint firstItem="UnJ-fm-3Et" firstAttribute="top" secondItem="XG0-yb-vRg" secondAttribute="top" id="goc-i3-DOf"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XG0-yb-vRg" secondAttribute="bottom" constant="20" id="5vT-Mk-zIA"/>
+                <constraint firstItem="XG0-yb-vRg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="edv-lP-skM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XG0-yb-vRg" secondAttribute="trailing" constant="20" id="hLu-mS-DQL"/>
+                <constraint firstItem="XG0-yb-vRg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="iKS-Kw-5bx"/>
+            </constraints>
             <point key="canvasLocation" x="-164" y="134"/>
         </view>
     </objects>
