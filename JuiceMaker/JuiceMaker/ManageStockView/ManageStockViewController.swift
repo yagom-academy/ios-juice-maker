@@ -48,13 +48,14 @@ class ManageStockViewController: UIViewController {
     private func setStock() throws {
         for fruitStockView in fruitStockViews {
             guard let newStock = fruitStockView.fruitStock,
-                  let fruit = fruitStockView.fruit else {
+                  let fruit = fruitStockView.fruitView.fruit else {
                 throw JuiceMakerError.system
             }
             
             try JuiceMaker.shared.setStock(fruitType: fruit, stock: newStock)
         }
         
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "setStock"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -62,7 +63,7 @@ class ManageStockViewController: UIViewController {
         let fruits: [FruitsType : Fruit] = JuiceMaker.shared.getFruits()
         
         for (key: fruitName, value: fruit) in fruits {
-            let fruitStockView = FruitStockView(fruit: fruit.fruitType)
+            let fruitStockView = FruitStockView()
             fruitStockView.translatesAutoresizingMaskIntoConstraints = false
             fruitStockStackView.addArrangedSubview(fruitStockView)
             fruitStockView.widthAnchor.constraint(equalTo: fruitStockView.heightAnchor, multiplier: 0.74).isActive = true
@@ -70,6 +71,7 @@ class ManageStockViewController: UIViewController {
             fruitStockView.fruitStock = fruit.stock
             fruitStockView.stockStepper.value = Double(fruit.stock)
             fruitStockView.stockStepper.minimumValue = Double(fruit.stock)
+            fruitStockView.fruitView.fruit = fruit.fruitType
             
             fruitStockViews.append(fruitStockView)
         }

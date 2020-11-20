@@ -25,7 +25,7 @@ class Fruit {
     }
     
     func setStock(_ stock: Int) {
-        self.stock = self.stock + stock
+        self.stock = stock
     }
     
     func useStock(_ use: Int) {

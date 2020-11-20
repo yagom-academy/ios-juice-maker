@@ -13,7 +13,6 @@ class FruitStockView : UIView {
     @IBOutlet weak var fruitView : FruitView!
     @IBOutlet weak var stockStepper: UIStepper!
     
-    var fruit: FruitsType?
     // TODO: add error
     var fruitStock: Int? = nil {
         willSet {
@@ -26,15 +25,11 @@ class FruitStockView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    init(fruit: FruitsType) {
-        super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
-        self.fruit = fruit
         setup()
     }
     

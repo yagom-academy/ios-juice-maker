@@ -12,6 +12,8 @@ class FruitView : UIView {
     @IBOutlet weak var fruitName: UILabel!
     @IBOutlet weak var fruitStock: UILabel!
     
+    var fruit: FruitsType? = nil
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -19,6 +21,12 @@ class FruitView : UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setup()
+    }
+    
+    init(fruit: FruitsType) {
+        super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.zero))
+        self.fruit = fruit
         setup()
     }
     

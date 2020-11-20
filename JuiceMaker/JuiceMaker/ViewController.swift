@@ -11,25 +11,44 @@ class ViewController: UIViewController {
     @IBOutlet weak var fruitStack: UIStackView!
     @IBOutlet weak var multiJuiceStack: UIStackView!
     @IBOutlet weak var singleJuiceStack: UIStackView!
+    
+    private var fruitViews: [FruitView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStock), name: Notification.Name(rawValue: "setStock"), object: nil)
+        
         setFruitStack()
         setJuiceStack()
+    }
+    
+    @objc func updateFruitStock() throws {
+        let fruits = JuiceMaker.shared.getFruits()
+        
+        for fruitView in fruitViews {
+            guard let fruitType = fruitView.fruit,
+                  let fruitStock = fruits[fruitType]?.stock else {
+                // TODO: add error
+                return
+            }
+            
+            fruitView.fruitStock.text = String(fruitStock)
+        }
     }
 
     private func setFruitStack() {
         let fruits: [FruitsType : Fruit] = JuiceMaker.shared.getFruits()
         
         for (key: fruitName, value: fruit) in fruits {
-            let fruitView = FruitView()
+            let fruitView = FruitView(fruit: fruit.fruitType)
             fruitView.translatesAutoresizingMaskIntoConstraints = false
             fruitStack.addArrangedSubview(fruitView)
             fruitView.widthAnchor.constraint(equalTo: fruitView.heightAnchor, multiplier: 1.0).isActive = true
-            
             fruitView.fruitName.text = fruitName.rawValue
             fruitView.fruitStock.text = String(fruit.stock)
+            
+            fruitViews.append(fruitView)
         }
     }
 
