@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum Fruit {
+enum Fruit: Int, CaseIterable {
     case strawberry
     case banana
     case pineapple
@@ -24,78 +24,100 @@ enum Juice {
     case mangoKiwiJuice
 }
 
+// 과일 재고 관리 역할만
+// - 수량 확인
+// - 수량 설정
+// - 수량 더하기
+// - 수량 빼기
+class FruitStorage {
+    private var fruitStocks: [UInt] = Array(repeating: 0, count: Fruit.allCases.count)
+   
+    func countStock(of fruit: Fruit) -> UInt {
+        return fruitStocks[fruit.rawValue]
+    }
+    
+    func setStock(of fruit: Fruit, count: UInt) {
+        fruitStocks[fruit.rawValue] = count
+    }
+    
+    func addStock(of fruit: Fruit, count: UInt) {
+        fruitStocks[fruit.rawValue] += count
+    }
+    
+    func subtractStock(of fruit: Fruit, count: UInt) {
+        fruitStocks[fruit.rawValue] -= count
+    }
+}
+
+struct JuiceRecipe {
+    let list: [Fruit: UInt]
+}
+
+// 쥬스 레시피의 프로퍼티는 인스턴스내에서 변경되지 않으므로 struct로 선언
+struct JuiceRecipes {
+    let list: [Juice:JuiceRecipe]
+    
+    func getRecipe(of juice: Juice) -> JuiceRecipe? {
+        return list[juice]
+    }
+}
+
+// 야곰의 쥬스 레시피 상수
+let yagomsJuiceRecipes: JuiceRecipes = JuiceRecipes(list: [
+    .strawberryJuice:JuiceRecipe(list: [.strawberry:16]),
+    .bananaJuice:JuiceRecipe(list: [.banana:2]),
+    .kiwiJuice:JuiceRecipe(list: [.kiwi:3]),
+    .pineappleJuice:JuiceRecipe(list: [.pineapple:2]),
+    .strawberryBananaJuice:JuiceRecipe(list: [.strawberry:10, .banana:1]),
+    .mangoJuice:JuiceRecipe(list: [.mango:3]),
+    .mangoKiwiJuice:JuiceRecipe(list: [.mango:2, .kiwi:1])
+])
+                                            
 enum JuiceMakerError: Error {
     case lowStock
     case noRecipe
     case noStockList
 }
 
-struct JuiceMaker {
-        
-    private var fruitStocks: [Fruit: Int] = [
-        .strawberry:0,
-        .banana:0,
-        .pineapple:0,
-        .kiwi:0,
-        .mango:0
-    ]
+// 쥬스 제작 역할만
+// - 쥬스종류에 따라 제작
+class JuiceMaker {
+    // 과일창고와 레시피는 변경할 수 있도록 var로 선언
+    var fruitStorage: FruitStorage
+    var juiceRecipes: JuiceRecipes
     
-    private var juiceRecipes: [Juice:[Fruit: Int]] = [
-        .strawberryJuice:[.strawberry:16],
-        .bananaJuice:[.banana:2],
-        .kiwiJuice:[.kiwi:3],
-        .pineappleJuice:[.pineapple:2],
-        .strawberryBananaJuice:[.strawberry:10, .banana:1],
-        .mangoJuice:[.mango:3],
-        .mangoKiwiJuice:[.mango:2, .kiwi:1]
-    ]
-    
-    func countStock(of fruit: Fruit) -> Int? {
-        return fruitStocks[fruit]
+    init(fruitStorage: FruitStorage, juiceRecipes: JuiceRecipes) {
+        self.fruitStorage = fruitStorage
+        self.juiceRecipes = juiceRecipes
     }
     
-    mutating func setStock(of fruit: Fruit, count: Int) {
-        fruitStocks[fruit] = count
-    }
-    
-    mutating func addStock(of fruit: Fruit, count: Int) {
-        guard let currentCount = countStock(of: fruit) else {
-            print("\(fruit)가 재고 목록에 없음")
-            return
+    private func isEnoughStock(of juiceRecipe: JuiceRecipe) -> Bool {
+        for (fruit, count) in juiceRecipe.list {
+            let currentCount = fruitStorage.countStock(of: fruit)
+
+            guard currentCount >= count else {
+                return false
+            }
         }
         
-        fruitStocks[fruit] = currentCount + count
+        return true
     }
     
-    mutating func subtractStock(of fruit: Fruit, count: Int) {
-        guard let currentCount = countStock(of: fruit) else {
-            print("\(fruit)가 재고 목록에 없음")
-            return
+    private func consumeStock(of juiceRecipe: JuiceRecipe) {
+        for (fruit, count) in juiceRecipe.list {
+            fruitStorage.subtractStock(of: fruit, count: count)
         }
-   
-        fruitStocks[fruit] = currentCount - count
     }
-    
-    mutating func make(juice: Juice) throws {
-        // 레시피 가져오기
-        guard let recipe = juiceRecipes[juice] else {
+        
+    func make(juice: Juice) throws {
+        guard let recipe = juiceRecipes.getRecipe(of: juice) else {
             throw JuiceMakerError.noRecipe
         }
         
-        // 레시피에 필요한 과일의 재고 있는지 확인
-        for (fruit, count) in recipe {
-            guard let currentCount = countStock(of: fruit) else {
-                throw JuiceMakerError.noStockList
-            }
-            
-            guard currentCount >= count else {
-                throw JuiceMakerError.lowStock
-            }
+        guard isEnoughStock(of: recipe) else {
+            throw JuiceMakerError.lowStock
         }
-        
-        // 필요한 과일의 재고가 있으면 재고 소모
-        for (fruit, count) in recipe {
-            subtractStock(of: fruit, count: count)
-        }
+
+        consumeStock(of: recipe)
     }
 }
