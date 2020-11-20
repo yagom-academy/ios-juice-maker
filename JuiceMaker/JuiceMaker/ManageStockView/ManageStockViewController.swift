@@ -34,13 +34,18 @@ class ManageStockViewController: UIViewController {
             do {
                 try self.setStock()
             } catch {
-                if let juiceError = error as? JuiceMakerError {
-                    self.errorAlert(juiceError)
-                }
+                self.showErorr(error)
             }
         }
         alert.addAction(cancleAction)
         alert.addAction(okAction)
+        present(alert, animated: false, completion: nil)
+    }
+    
+    private func showErorr(_ error: Error) {
+        let alert = self.errorAlert(error) { _ in
+            self.dismissManageStock()
+        }
         present(alert, animated: false, completion: nil)
     }
     
@@ -78,13 +83,5 @@ class ManageStockViewController: UIViewController {
             
             fruitStockViews.append(fruitStockView)
         }
-    }
-    
-    private func errorAlert(_ error: JuiceMakerError) {
-        let alert = UIAlertController(title: "오류", message: error.getMessage(), preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
-            self.dismissManageStock()
-        }
-        present(alert, animated: false, completion: nil)
     }
 }

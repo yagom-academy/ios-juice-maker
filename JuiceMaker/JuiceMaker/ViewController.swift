@@ -29,8 +29,7 @@ class ViewController: UIViewController {
         for fruitView in fruitViews {
             guard let fruitType = fruitView.fruit,
                   let fruitStock = fruits[fruitType]?.stock else {
-                // TODO: add error
-                return
+                throw JuiceMakerError.getStock
             }
             
             fruitView.fruitStock.text = String(fruitStock)
@@ -81,8 +80,8 @@ class ViewController: UIViewController {
             successJuiceAlert(juice: juice)
         } catch JuiceMakerError.outOfStock {
             outOfStockError(.outOfStock)
-        } catch JuiceMakerError.notFound {
-            notFoundError(.notFound)
+        } catch {
+            present(self.errorAlert(error, handler: nil), animated: false, completion: nil)
         }
     }
     
@@ -105,14 +104,6 @@ class ViewController: UIViewController {
         let cancleAction = UIAlertAction(title: "아니요", style: .cancel, handler: nil)
         alert.addAction(okAction)
         alert.addAction(cancleAction)
-        
-        present(alert, animated: false, completion: nil)
-    }
-    
-    func notFoundError(_ error: JuiceMakerError) {
-        let alert = UIAlertController(title: "오류", message: error.getMessage(), preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-        alert.addAction(okAction)
         
         present(alert, animated: false, completion: nil)
     }

@@ -13,13 +13,13 @@ class FruitStockView : UIView {
     @IBOutlet weak var fruitView : FruitView!
     @IBOutlet weak var stockStepper: UIStepper!
     
-    // TODO: add error
     var fruitStock: Int? = nil {
         willSet {
-            guard let stock = newValue else {
-                return
+            do {
+                try updateStockLabel(newValue)
+            } catch {
+                debugPrint("Error: System in FruitStockView")
             }
-            fruitView.fruitStock.text = String(stock)
         }
     }
     
@@ -37,6 +37,13 @@ class FruitStockView : UIView {
         let view = Bundle.main.loadNibNamed("FruitStockView", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
+    }
+    
+    private func updateStockLabel(_ stock: Int?) throws {
+        guard let newStock = stock else {
+            throw JuiceMakerError.system
+        }
+        fruitView.fruitStock.text = String(newStock)
     }
     
     @IBAction func stepperChanged(sender: UIStepper) {
