@@ -8,6 +8,8 @@
 import UIKit
 
 class ManageStockViewController: UIViewController {
+    
+    @IBOutlet weak var fruitStockStackView: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

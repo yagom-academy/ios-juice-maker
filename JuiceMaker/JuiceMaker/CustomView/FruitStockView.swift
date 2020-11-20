@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 class FruitStockView : UIView {
+    
+    @IBOutlet weak var FruitView : UIView!
+    @IBOutlet weak var stockStepper: UIStepper!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
