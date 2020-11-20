@@ -14,8 +14,10 @@ enum JuiceMakerError : Error {
     case setStock
     case getStock
     case unknown
-    
-    func getMessage() -> String {
+}
+
+extension JuiceMakerError : LocalizedError {
+    var errorDescription: String? {
         switch self {
         case .outOfStock:
             return "재고가 모자라요.\n재고를 수정할까요?"

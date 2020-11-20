@@ -10,12 +10,12 @@ import UIKit
 
 extension UIViewController {
     func errorAlert(_ error: Error, handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
-        var errorMessgae: String
+        var errorMessgae: String?
         if let juiceError = error as? JuiceMakerError {
-            errorMessgae = juiceError.getMessage()
+            errorMessgae = juiceError.errorDescription
         }
         else {
-            errorMessgae = JuiceMakerError.unknown.getMessage()
+            errorMessgae = JuiceMakerError.unknown.errorDescription
         }
         
         let alert = UIAlertController(title: "오류", message: errorMessgae, preferredStyle: .alert)
