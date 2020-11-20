@@ -15,68 +15,83 @@ struct JuiceMaker {
     private var kiwi = Fruit(name: "kiwi")
     private var mango = Fruit(name: "mango")
     
-    func checkCurrentStock(of fruitType: Fruit) -> Int {
-        return fruitType.showCurrentStock()
+    init() {
+        
+        let initialStock = 10
+        
+        addingStock(amount: initialStock, of: strawberry)
+        addingStock(amount: initialStock, of: banana)
+        addingStock(amount: initialStock, of: pineapple)
+        addingStock(amount: initialStock, of: kiwi)
+        addingStock(amount: initialStock, of: mango)
+        
     }
     
-    func addCurrentStock(of fruitType: inout Fruit, amount: Int) {
-        fruitType.addStockAmount(adding: amount)
+    mutating func addingStock(amount: Int, of fruitType: Fruit) {
+        fruitType.updateStockAmount(adding: amount)
+    }
+    
+    mutating func reducingStock(amount: Int, of fruitType: Fruit) {
+        fruitType.updateStockAmount(reducing: amount)
+    }
+    
+    func checkCurrentStockAmount(of fruitType: Fruit) -> Int {
+        return fruitType.showCurrentStock(to: self)
     }
     
     mutating func makeJuice(of order: JuiceMenu) {
         switch order {
         case .ddalbaJuice:
-            guard strawberry.showCurrentStock() >= 10,
-                  banana.showCurrentStock() >= 1 else {
+            guard strawberry.showCurrentStock(to: self) >= 10,
+                  banana.showCurrentStock(to: self) >= 1 else {
                 print("딸바쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            strawberry.changeStockAmount(reducing: 10)
-            banana.changeStockAmount(reducing: 1)
-            
-            print("딸바완성!")
+            reducingStock(amount: 10, of: strawberry)
+            reducingStock(amount: 1, of: banana)
             
         case .mangoJuice:
-            guard mango.showCurrentStock() >= 3 else {
+            guard mango.showCurrentStock(to: self) >= 3 else {
                 print("망고쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            mango.changeStockAmount(reducing: 3)
-            
-            print("망고완성!")
+            reducingStock(amount: 3, of: banana)
             
         case .mangoKiwiJuice:
-            guard mango.showCurrentStock() >= 2,
-                  kiwi.showCurrentStock() >= 1 else {
+            guard mango.showCurrentStock(to: self) >= 2,
+                  kiwi.showCurrentStock(to: self) >= 1 else {
                 print("망고키위쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            mango.changeStockAmount(reducing: 2)
-            kiwi.changeStockAmount(reducing: 1)
-            
-            print("망고키위완성!")
+            reducingStock(amount: 2, of: mango)
+            reducingStock(amount: 1, of: kiwi)
             
         case .kiwiJuice:
-            guard kiwi.showCurrentStock() >= 3 else {
+            guard kiwi.showCurrentStock(to: self) >= 3 else {
                 print("키위쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            kiwi.changeStockAmount(reducing: 3)
-            print("키위완성!")
+            reducingStock(amount: 3, of: kiwi)
             
         case .pineappleJuice:
-            guard pineapple.showCurrentStock() >= 2 else {
+            guard pineapple.showCurrentStock(to: self) >= 2 else {
                 print("파인애플쥬스를 만들 재고가 충분하지 않습니다.")
                 return
             }
             
-            pineapple.changeStockAmount(reducing: 2)
-            print("파인애플완성!")
+            reducingStock(amount: 2, of: pineapple)
+            
         }
+        
+        doneMakingJuice(of: order)
+    }
+    
+    func doneMakingJuice(of menu: JuiceMenu) {
+        print("\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)")
     }
 }
 
