@@ -8,12 +8,20 @@ import Foundation
 
 class StockManager {
     var showalert = ShowAlert()
+    private(set) var strawberry: UInt
+    private(set) var banana: UInt
+    private(set) var pineapple: UInt
+    private(set) var kiwi: UInt
+    private(set) var mango: UInt
     
-    private(set) var strawberry: UInt = 10
-    private(set) var banana: UInt = 10
-    private(set) var pineapple: UInt = 10
-    private(set) var kiwi: UInt = 10
-    private(set) var mango: UInt = 10
+    init() {
+        let initialStock: UInt = 10
+        strawberry = initialStock
+        banana = initialStock
+        pineapple = initialStock
+        kiwi = initialStock
+        mango = initialStock
+    }
     
     //MARK: - giveIngredients
     func giveStrawberryJuiceIngredients() {
