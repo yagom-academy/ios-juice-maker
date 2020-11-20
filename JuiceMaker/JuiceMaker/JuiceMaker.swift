@@ -2,7 +2,7 @@
 // 쥬스 메이커 타입
 
 import Foundation
-    
+
 enum Juice {
     case strawberryJuice
     case bananaJuice
@@ -14,68 +14,52 @@ enum Juice {
 }
        
 class JuiceMaker {
-    fileprivate var strawberryStock: Int = 10
-    fileprivate var bananaStock: Int = 10
-    fileprivate var pineappleStock: Int = 10
-    fileprivate var kiwiStock: Int = 10
-    fileprivate var mangoStock: Int = 10
+    fileprivate(set) var strawberryStock: UInt
+    fileprivate(set) var bananaStock: UInt
+    fileprivate(set) var pineappleStock: UInt
+    fileprivate(set) var kiwiStock: UInt
+    fileprivate(set) var mangoStock: UInt
     
-    var currentStrawberryStock: Int {
-        get {
-            return strawberryStock
-        }
+    private let strawberryForStrawberryJuice: UInt = 16
+    private let bananaForBananaJuice: UInt = 2
+    private let pineappleForPineappleJuice: UInt = 2
+    private let kiwiForKiwiJuice: UInt = 3
+    private let mangoForMangoJuice: UInt = 3
+    private let strawberryForStrawberryBananaJuice: UInt = 10
+    private let bananaForStrawberryBananaJuice: UInt = 1
+    private let mangoForMangoKiwiJuice: UInt = 2
+    private let kiwiForMangoKiwiJuice: UInt = 1
+
+    init(strawberryStock: UInt, bananaStock: UInt, pineappleStock: UInt, kiwiStock: UInt, mangoStock: UInt) {
+        self.strawberryStock = strawberryStock
+        self.bananaStock = bananaStock
+        self.pineappleStock = pineappleStock
+        self.kiwiStock = kiwiStock
+        self.mangoStock = mangoStock
     }
     
-    var currentBananaStock: Int {
-        get {
-            return bananaStock
-        }
-    }
-    
-    var currentPineappleStock: Int {
-        get {
-            return pineappleStock
-        }
-    }
-    
-    var currentKiwiStock: Int {
-        get {
-            return kiwiStock
-        }
-    }
-    
-    var currentMangoStock: Int {
-        get {
-            return mangoStock
-        }
-    }
-    
-    func makeJuice(juiceName: Juice) {
-        switch juiceName {
+    func makeJuice(name: Juice) {
+        switch name {
         case .strawberryJuice:
-            strawberryStock -= 16
+            strawberryStock -= strawberryForStrawberryJuice
         case .bananaJuice:
-            bananaStock -= 2
+            bananaStock -= bananaForBananaJuice
         case .pineappleJuice:
-            pineappleStock -= 2
+            pineappleStock -= pineappleForPineappleJuice
         case .kiwiJuice:
-            kiwiStock -= 3
+            kiwiStock -= kiwiForKiwiJuice
         case .mangoJuice:
-            mangoStock -= 3
+            mangoStock -= mangoForMangoJuice
         case .strawberryBananaJuice:
-            strawberryStock -= 10
-            bananaStock -= 1
+            strawberryStock -= strawberryForStrawberryBananaJuice
+            bananaStock -= bananaForStrawberryBananaJuice
         case .mangoKiwiJuice:
-            mangoStock -= 2
-            kiwiStock -= 1
+            mangoStock -= mangoForMangoKiwiJuice
+            kiwiStock -= kiwiForMangoKiwiJuice
         }
     }
 
-    func supplyFruit(StockName fruit: inout Int, numberOfSupply number: Int) {
-        fruit += number
-    }
-    
-    func demandFruit(StockName fruit: inout Int, numberOfDemand number: Int) {
-        fruit -= number
+    func changeNumberOfFruit(stockName: inout Int, number: Int) {
+        stockName += number
     }
 }
