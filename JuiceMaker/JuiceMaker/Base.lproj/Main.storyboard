@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="154.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HHP-vf-W4n">
-                                                <rect key="frame" x="0.0" y="0.0" width="154.5" height="154.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="154.5"/>
                                             </stackView>
                                         </subviews>
                                         <constraints>
