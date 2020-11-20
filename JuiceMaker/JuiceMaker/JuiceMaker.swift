@@ -8,12 +8,15 @@ import Foundation
 
 class StockManager {
     var showalert = ShowAlert()
+    var recipe = Recipe()
+    
     private(set) var strawberry: UInt
     private(set) var banana: UInt
     private(set) var pineapple: UInt
     private(set) var kiwi: UInt
     private(set) var mango: UInt
     
+    //MARK: - initialStock
     init() {
         let initialStock: UInt = 10
         strawberry = initialStock
@@ -24,34 +27,34 @@ class StockManager {
     }
     
     //MARK: - giveIngredients
-    func giveStrawberryJuiceIngredients() {
-        strawberry -= 3
+    func useStrawberryJuiceIngredients() {
+        strawberry -= recipe.strawberryJuice🍓
     }
     
-    func giveStrawberryBananaJuiceIngredients() {
-        strawberry -= 10
-        banana -= 1
+    func useStrawberryBananaJuiceIngredients() {
+        strawberry -= recipe.strawberryBananaJuice🍓
+        banana -= recipe.strawberryBananaJuice🍌
     }
     
-    func giveBananaJuiceIngredients() {
-        banana -= 2
+    func useeBananaJuiceIngredients() {
+        banana -= recipe.bananaJuice🍌
     }
     
-    func giveKiwiJuiceIngredients() {
-        kiwi -= 3
+    func useKiwiJuiceIngredients() {
+        kiwi -= recipe.kiwiJuice🥝
     }
     
-    func givePineappleJuiceIngredients() {
-        pineapple -= 2
+    func usePineappleJuiceIngredients() {
+        pineapple -= recipe.pineappleJuice🍍
     }
     
-    func giveMangoJuiceIngredients() {
-        mango -= 3
+    func useMangoJuiceIngredients() {
+        mango -= recipe.mangoJuice🥭
     }
     
-    func giveMangoKiwiJuiceIngredients() {
-        mango -= 2
-        kiwi -= 1
+    func useMangoKiwiJuiceIngredients() {
+        mango -= recipe.mangoKiwiJuice🥭
+        kiwi -= recipe.mangoKiwiJuice🥝
     }
     
     // MARK: - addStock
@@ -105,16 +108,16 @@ class StockManager {
             showalert.printWrongRequest()
             return
         }
-            mango -= 1
-        }
+        mango -= 1
+    }
     
     func substractKiwiStock() {
         guard kiwi > 0 else {
             showalert.printWrongRequest()
             return
         }
-            kiwi -= 1
-        }
+        kiwi -= 1
+    }
     
     // MARK: - showAllStock
     func showFruitStock() {
@@ -131,7 +134,7 @@ class JuiceMaker {
             showAlert.printOutOfStock()
             return
         }
-        stockManager.giveStrawberryJuiceIngredients()
+        stockManager.useStrawberryJuiceIngredients()
         print("딸기 쥬스 나왔습니다. 맛있게 드세요")
     }
     
@@ -140,7 +143,7 @@ class JuiceMaker {
             showAlert.printOutOfStock()
             return
         }
-        stockManager.giveStrawberryBananaJuiceIngredients()
+        stockManager.useStrawberryBananaJuiceIngredients()
         print("딸기바나나 쥬스 나왔습니다. 맛있게 드세요")
         
     }
@@ -150,7 +153,7 @@ class JuiceMaker {
             showAlert.printOutOfStock()
             return
         }
-        stockManager.giveBananaJuiceIngredients()
+        stockManager.useeBananaJuiceIngredients()
         print("바나나 쥬스 나왔습니다. 맛있게 드세요")
     }
     
@@ -159,7 +162,7 @@ class JuiceMaker {
             showAlert.printOutOfStock()
             return
         }
-        stockManager.giveKiwiJuiceIngredients()
+        stockManager.useKiwiJuiceIngredients()
         print("키위 쥬스 나왔습니다. 맛있게 드세요")
     }
     
@@ -168,7 +171,7 @@ class JuiceMaker {
             showAlert.printOutOfStock()
             return
         }
-        stockManager.givePineappleJuiceIngredients()
+        stockManager.usePineappleJuiceIngredients()
         print("파인애플 쥬스 나왔습니다. 맛있게 드세요")
     }
     
@@ -177,7 +180,7 @@ class JuiceMaker {
             showAlert.printOutOfStock()
             return
         }
-        stockManager.giveMangoJuiceIngredients()
+        stockManager.useMangoJuiceIngredients()
         print("망고 쥬스 나왔습니다. 맛있게 드세요")
     }
     
@@ -186,7 +189,7 @@ class JuiceMaker {
             showAlert.printOutOfStock()
             return
         }
-        stockManager.giveMangoKiwiJuiceIngredients()
+        stockManager.useMangoKiwiJuiceIngredients()
         print("망고키위 쥬스 나왔습니다. 맛있게 드세요")
     }
     
@@ -199,4 +202,16 @@ class ShowAlert {
     func printWrongRequest() {
         print("잘못된 요청입니다. 재고 수량은 0미만으로 지정할수 없습니다.")
     }
+}
+
+class Recipe {
+    let strawberryJuice🍓:UInt = 16
+    let strawberryBananaJuice🍓:UInt = 10
+    let strawberryBananaJuice🍌:UInt = 1
+    let bananaJuice🍌:UInt = 2
+    let kiwiJuice🥝:UInt = 3
+    let pineappleJuice🍍:UInt = 2
+    let mangoJuice🥭:UInt = 3
+    let mangoKiwiJuice🥝:UInt = 1
+    let mangoKiwiJuice🥭:UInt = 2
 }
