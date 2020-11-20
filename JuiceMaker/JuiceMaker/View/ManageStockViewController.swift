@@ -11,8 +11,19 @@ class ManageStockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setupNavigation()
     }
     
+    private func setupNavigation() {
+        self.navigationItem.title = "재고 추가"
+        
+        let dissmissButton = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(onClickDismiss))
+        self.navigationItem.rightBarButtonItem = dissmissButton
+    }
+    
+    @objc func onClickDismiss() {
+        self.dismiss(animated: true, completion: nil)
+    }
+
 }

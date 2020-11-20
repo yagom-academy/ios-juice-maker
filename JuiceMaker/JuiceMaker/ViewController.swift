@@ -67,6 +67,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func moveManageStock() {
+        let manageStockViewController = UINavigationController(rootViewController: ManageStockViewController())
+        self.present(manageStockViewController, animated: true, completion: nil)
+    }
+    
     func successJuiceAlert(juice: Juices) {
         let alert = UIAlertController(title: nil, message: "\(juice.getJuiceInfo().name) 나왔습니다!\n맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
