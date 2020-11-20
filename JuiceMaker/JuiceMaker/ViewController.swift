@@ -24,11 +24,11 @@ class ViewController: UIViewController {
     }
     
     func showFruitsStock() {
-        let strawberryStock: Int = juiceMaker.strawberry.getStock
-        let bananaStock: Int = juiceMaker.banana.getStock
-        let pineappleStock: Int = juiceMaker.pineapple.getStock
-        let kiwiStock: Int = juiceMaker.kiwi.getStock
-        let mangoStock: Int = juiceMaker.mango.getStock
+        let strawberryStock: Int = juiceMaker.strawberry.stock
+        let bananaStock: Int = juiceMaker.banana.stock
+        let pineappleStock: Int = juiceMaker.pineapple.stock
+        let kiwiStock: Int = juiceMaker.kiwi.stock
+        let mangoStock: Int = juiceMaker.mango.stock
         
         strawberryStockLabel.text = String(strawberryStock)
         bananaStockLabel.text = String(bananaStock)
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         let strawberryBananaJuice: String = "딸기바나나쥬스"
         guard let menu = FruitsJuice(rawValue: strawberryBananaJuice) else { return }
         do {
-            try juiceMaker.makeJuice(menuName: menu)
+            try juiceMaker.makeJuice(orderedJuice: menu)
             showAlert(type: complete, juiceName: strawberryBananaJuice)
             showFruitsStock()
         }
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         let mangoKiwiJuice: String = "망고키위쥬스"
         guard let menu = FruitsJuice(rawValue: mangoKiwiJuice) else { return }
         do {
-            try juiceMaker.makeJuice(menuName: menu)
+            try juiceMaker.makeJuice(orderedJuice: menu)
             showAlert(type: complete, juiceName: mangoKiwiJuice)
             showFruitsStock()
         }
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         let strawberryJuice: String = "딸기쥬스"
         guard let menu = FruitsJuice(rawValue: strawberryJuice) else { return }
         do {
-            try juiceMaker.makeJuice(menuName: menu)
+            try juiceMaker.makeJuice(orderedJuice: menu)
             showAlert(type: complete, juiceName: strawberryJuice)
             showFruitsStock()
         }
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         let bananaJuice: String = "바나나쥬스"
         guard let menu = FruitsJuice(rawValue: bananaJuice) else { return }
         do {
-            try juiceMaker.makeJuice(menuName: menu)
+            try juiceMaker.makeJuice(orderedJuice: menu)
             showAlert(type: complete, juiceName: bananaJuice)
             showFruitsStock()
         }
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         let pineappleJuice: String = "파인애플쥬스"
         guard let menu = FruitsJuice(rawValue: pineappleJuice) else { return }
         do {
-            try juiceMaker.makeJuice(menuName: menu)
+            try juiceMaker.makeJuice(orderedJuice: menu)
             showAlert(type: complete, juiceName: pineappleJuice)
             showFruitsStock()
         }
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         let kiwiJuice: String = "키위쥬스"
         guard let menu = FruitsJuice(rawValue: kiwiJuice) else { return }
         do {
-            try juiceMaker.makeJuice(menuName: menu)
+            try juiceMaker.makeJuice(orderedJuice: menu)
             showAlert(type: complete, juiceName: kiwiJuice)
             showFruitsStock()
         }
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
         let mangoJuice: String = "망고쥬스"
         guard let menu = FruitsJuice(rawValue: mangoJuice) else { return }
         do {
-            try juiceMaker.makeJuice(menuName: menu)
+            try juiceMaker.makeJuice(orderedJuice: menu)
             showAlert(type: complete, juiceName: mangoJuice)
             showFruitsStock()
         }
