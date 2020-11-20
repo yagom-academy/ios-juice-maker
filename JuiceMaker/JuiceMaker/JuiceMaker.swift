@@ -1,8 +1,8 @@
 import Foundation
 
-class fruit {
-    var name : String = "unknown"
-    var stock : Int = 0
+class Fruit {
+    let name : String
+    var stock : Int
     
     init(name : String, stock : Int) {
         self.name = name
@@ -10,12 +10,15 @@ class fruit {
     }
 }
 
-var strawberry : fruit = fruit(name : "strawberry", stock: 10)
-var banana : fruit = fruit(name : "banana", stock: 10)
-var pineapple : fruit = fruit(name : "pineapple", stock: 10)
-var kiwi : fruit = fruit(name : "kiwi", stock: 10)
-var mango : fruit = fruit(name : "mango", stock: 10)
+let initialValue : Int = 10
 
+var strawberry : Fruit = Fruit(name : "strawberry", stock: initialValue)
+var banana : Fruit = Fruit(name : "banana", stock: initialValue)
+var pineapple : Fruit = Fruit(name : "pineapple", stock: initialValue)
+var kiwi : Fruit = Fruit(name : "kiwi", stock: initialValue)
+var mango : Fruit = Fruit(name : "mango", stock: initialValue)
+
+//보기전용 값으로 사용자에게 보여줄 때만 사용되는 변수
 var strawberryStock : Int {
     get {
         return strawberry.stock
@@ -46,85 +49,75 @@ var mangoStock : Int {
     }
 }
 
-enum fruitJuice : Int {
-    case strawberryJuice = 1
-    case bananaJuice = 2
-    case strawberryBananaJuice = 3
-    case pineappleJuice = 4
-    case kiwiJuice = 5
-    case mangoJuice = 6
-    case mangoKiwiJuice = 7
-}
-
-var strawberryJuice = fruitJuice.strawberryJuice.rawValue
-var bananaJuice = fruitJuice.bananaJuice.rawValue
-var strawberryBananaJuice = fruitJuice.strawberryBananaJuice.rawValue
-var pineappleJuice = fruitJuice.pineappleJuice.rawValue
-var kiwiJuice = fruitJuice.kiwiJuice.rawValue
-var mangoJuice = fruitJuice.mangoJuice.rawValue
-var mangoKiwiJuice = fruitJuice.mangoKiwiJuice.rawValue
-
-class juiceMaker {
-    func vetifyStock(whichFruitJuice: Int) {
+class JuiceMaker {
+    func vetifyStock(whichFruitJuice: String) -> Bool{
         switch whichFruitJuice {
-        case strawberryJuice:
+        case "strawberryJuice":
             if strawberry.stock < 16 {
                 //alert으로 수정예정
                 print("재료가 모자라요. 재고를 수정할까요?")
+                return false
             }
             else {
-                makeStrawberryJuice()
+                return true
             }
-        case bananaJuice:
+        case "bananaJuice":
             if banana.stock < 2 {
                 //alert으로 수정예정
                 print("재료가 모자라요. 재고를 수정할까요?")
+                return false
             }
             else {
-                makeBananaJuice()
+                return true
             }
-        case strawberryBananaJuice:
+        case "strawberryBananaJuice":
             if strawberry.stock < 10 || banana.stock < 1 {
                 //alert으로 수정예정
                 print("재료가 모자라요. 재고를 수정할까요?")
+                return false
             }
             else {
-                makeStrawberryBananaJuice()
+                return true
             }
-        case pineappleJuice:
+        case "pineappleJuice":
             if pineapple.stock < 2 {
                 //alert으로 수정예정
                 print("재료가 모자라요. 재고를 수정할까요?")
+                return false
             }
             else {
-                makePineappleJuice()
+                return true
             }
-        case kiwiJuice:
+        case "kiwiJuice":
             if kiwi.stock < 2 {
                 //alert으로 수정예정
                 print("재료가 모자라요. 재고를 수정할까요?")
+                return false
             }
             else {
-                makeKiwiJuice()
+                return true
             }
-        case mangoJuice:
+        case "mangoJuice":
             if mango.stock < 3 {
                 //alert으로 수정예정
                 print("재료가 모자라요. 재고를 수정할까요?")
+                return false
             }
             else {
-                makeMangoJuice()
+                return true
             }
-        case mangoKiwiJuice:
+        case "mangoKiwiJuice":
             if mango.stock < 2 || kiwi.stock < 1 {
                 //alert으로 수정예정
                 print("재료가 모자라요. 재고를 수정할까요?")
+                return false
             }
             else {
-                makeMangoKiwiJuice()
+                return true
             }
         default:
             print("에러입니다.")
+            return false
         }
     }
 
@@ -138,7 +131,6 @@ class juiceMaker {
         //alert으로 수정예정
         print("바나나 쥬스 나왔습니다! 맛있게 드세요!")
         banana.stock -= 2
-        
     }
 
     func makeStrawberryBananaJuice() {
