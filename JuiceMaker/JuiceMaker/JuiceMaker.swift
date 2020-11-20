@@ -7,45 +7,42 @@
 import Foundation
 
 class StockManager {
+    var showalert = ShowAlert()
     
-    var strawberry:Int = 10
-    var banana: Int = 10
-    var pineapple: Int = 10
-    var kiwi: Int = 10
-    var mango: Int = 10
+    private var strawberry: UInt = 10
+    private var banana: UInt = 10
+    private var pineapple: UInt = 10
+    private var kiwi: UInt = 10
+    private var mango: UInt = 10
     
-    var strawberryStock: Int {
+    var strawberryStock: UInt {
         get {
             return strawberry
         }
     }
     
-    var bananaStock: Int {
+    var bananaStock: UInt {
         get {
             return banana
         }
     }
     
-    var pineappleStock: Int {
+    var pineappleStock: UInt {
         get {
             return pineapple
         }
     }
     
-    var kiwiStock: Int {
+    var kiwiStock: UInt {
         get {
             return kiwi
         }
     }
     
-    var mangoStock: Int {
+    var mangoStock: UInt {
         get {
             return mango
         }
-    }
-    
-    func outOfStock() {
-        print("재료가 부족합니다. 재고를 수정할까요?")
     }
     
     func giveStrawberryJuiceIngredients() {
@@ -115,7 +112,11 @@ class StockManager {
     }
     
     func substractKiwiStock() {
-        kiwi -= 1
+        if kiwi > 0 {
+            kiwi -= 1
+        } else {
+            
+        }
     }
     
     func showFruitStock() {
@@ -125,13 +126,14 @@ class StockManager {
 
 class JuiceMaker {
     var stockManager = StockManager()
+    var showAlert = ShowAlert()
     
     func makeStrawberryJuice() {
         if stockManager.strawberryStock >= 16 {
             stockManager.giveStrawberryJuiceIngredients()
             print("딸기 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            stockManager.outOfStock()
+            showAlert.printOutOfStock()
         }
     }
     
@@ -140,7 +142,7 @@ class JuiceMaker {
             stockManager.giveStrawberryBananaJuiceIngredients()
             print("딸기바나나 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            stockManager.outOfStock()
+            showAlert.printOutOfStock()
         }
     }
     
@@ -149,7 +151,7 @@ class JuiceMaker {
             stockManager.giveBananaJuiceIngredients()
             print("바나나 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            stockManager.outOfStock()
+            showAlert.printOutOfStock()
         }
     }
     
@@ -158,7 +160,7 @@ class JuiceMaker {
             stockManager.giveKiwiJuiceIngredients()
             print("키위 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            stockManager.outOfStock()
+            showAlert.printOutOfStock()
         }
     }
     
@@ -167,7 +169,7 @@ class JuiceMaker {
             stockManager.givePineappleJuiceIngredients()
             print("파인애플 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            stockManager.outOfStock()
+            showAlert.printOutOfStock()
         }
     }
     
@@ -176,7 +178,7 @@ class JuiceMaker {
             stockManager.giveMangoJuiceIngredients()
             print("망고 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            stockManager.outOfStock()
+            showAlert.printOutOfStock()
         }
     }
     
@@ -185,7 +187,13 @@ class JuiceMaker {
             stockManager.giveMangoKiwiJuiceIngredients()
             print("망고키위 쥬스 나왔습니다. 맛있게 드세요")
         } else {
-            stockManager.outOfStock()
+            showAlert.printOutOfStock()
         }
+    }
+}
+
+class ShowAlert {
+    func printOutOfStock() {
+        print("재고가 부족합니다. 재고를 수정할까요?")
     }
 }
