@@ -90,7 +90,7 @@ struct JuiceMaker {
         doneMakingJuice(of: order)
     }
     
-    func doneMakingJuice(of menu: JuiceMenu) {
+    private func doneMakingJuice(of menu: JuiceMenu) {
         print("\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)")
     }
 }
