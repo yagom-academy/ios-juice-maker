@@ -40,54 +40,55 @@ struct JuiceMaker {
     }
     
     mutating func makeJuice(of order: JuiceMenu) {
+        guard isAvailableMaking(menu: order) else {
+            print("\(order.rawValue)를 만들 재고가 충분하지 않습니다.")
+            return
+        }
+        
         switch order {
         case .ddalbaJuice:
-            guard strawberry.showCurrentStock(to: self) >= 10,
-                  banana.showCurrentStock(to: self) >= 1 else {
-                print("딸바쥬스를 만들 재고가 충분하지 않습니다.")
-                return
-            }
-            
             reducingStock(amount: 10, of: strawberry)
             reducingStock(amount: 1, of: banana)
-            
         case .mangoJuice:
-            guard mango.showCurrentStock(to: self) >= 3 else {
-                print("망고쥬스를 만들 재고가 충분하지 않습니다.")
-                return
-            }
-            
             reducingStock(amount: 3, of: banana)
-            
         case .mangoKiwiJuice:
-            guard mango.showCurrentStock(to: self) >= 2,
-                  kiwi.showCurrentStock(to: self) >= 1 else {
-                print("망고키위쥬스를 만들 재고가 충분하지 않습니다.")
-                return
-            }
-            
             reducingStock(amount: 2, of: mango)
             reducingStock(amount: 1, of: kiwi)
-            
         case .kiwiJuice:
-            guard kiwi.showCurrentStock(to: self) >= 3 else {
-                print("키위쥬스를 만들 재고가 충분하지 않습니다.")
-                return
-            }
-            
             reducingStock(amount: 3, of: kiwi)
-            
         case .pineappleJuice:
-            guard pineapple.showCurrentStock(to: self) >= 2 else {
-                print("파인애플쥬스를 만들 재고가 충분하지 않습니다.")
-                return
-            }
-            
             reducingStock(amount: 2, of: pineapple)
-            
         }
         
         doneMakingJuice(of: order)
+    }
+    
+    private func isAvailableMaking(menu: JuiceMenu) -> Bool {
+        switch menu {
+        case .ddalbaJuice:
+            guard strawberry.showCurrentStock(to: self) >= 10,
+                  banana.showCurrentStock(to: self) >= 1 else {
+                return false
+            }
+        case .kiwiJuice:
+            guard kiwi.showCurrentStock(to: self) >= 3 else {
+                return false
+            }
+        case .mangoJuice:
+            guard mango.showCurrentStock(to: self) >= 3 else {
+                return false
+            }
+        case .mangoKiwiJuice:
+            guard mango.showCurrentStock(to: self) >= 2,
+                  kiwi.showCurrentStock(to: self) >= 1 else {
+                return false
+            }
+        case .pineappleJuice:
+            guard pineapple.showCurrentStock(to: self) >= 2 else {
+                return false
+            }
+        }
+        return true
     }
     
     private func doneMakingJuice(of menu: JuiceMenu) {
