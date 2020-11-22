@@ -11,26 +11,38 @@ enum Fruit: CaseIterable {
 }
 
 enum Juice: String {
-    case strawbana = "딸바"
-    case mangki = "망키"
-    case strawberry = "딸기"
-    case banana = "바나나"
-    case pineapple = "파인애플"
-    case kiwi = "키위"
-    case mango = "망고"
+    case strawbana, mangki, strawberry, banana, pineapple, kiwi, mango
+    
+    var description: String {
+        switch self {
+        case .strawbana: return "딸바쥬스"
+        case .mangki: return "망키쥬스"
+        case .strawberry: return "딸기쥬스"
+        case .banana: return "바나나쥬스"
+        case .pineapple: return "파인애플쥬스"
+        case .kiwi: return "키위쥬스"
+        case .mango: return "망고쥬스"
+        default: fatalError("Unexpected juice: \(self)")
+        }
+    }
+    
+    var ingredients: [Fruit: Int] {
+        switch self {
+        case .strawbana: return [.strawberry: 10, .banana: 1]
+        case .mangki: return [.mango: 2, .kiwi: 1]
+        case .strawberry: return [.strawberry: 16]
+        case .banana: return [.banana: 2]
+        case .pineapple: return [.pineapple: 2]
+        case .kiwi: return [.kiwi: 3]
+        case .mango: return [.mango: 3]
+        default: fatalError("Unexpected juice: \(self)")
+        }
+    }
 }
 
 class JuiceMaker {
+    let OUT_OF_STOCK: Int = 0
     private var stock: [Fruit: Int] = [:]
-    private let recipes: [Juice: [Fruit: Int]] = [
-        .strawbana: [.strawberry: 10, .banana: 1],
-        .mangki: [.mango: 2, .kiwi: 1],
-        .strawberry: [.strawberry: 16],
-        .banana: [.banana: 2],
-        .pineapple: [.pineapple: 2],
-        .kiwi: [.kiwi: 3],
-        .mango: [.mango: 3],
-    ]
     
     init(stockCount: Int) {
         for fruit in Fruit.allCases {
@@ -39,17 +51,12 @@ class JuiceMaker {
     }
     
     func make(juice: Juice) {
-        guard let ingredients = recipes[juice] else {
-            print("만들 수 없는 쥬스입니다.")
-            return
-        }
-        
-        if isEnough(ingredients: ingredients) {
-            for (fruit, count) in ingredients {
+        if isEnough(ingredients: juice.ingredients) {
+            for (fruit, count) in juice.ingredients {
                 guard let stockCount = stock[fruit] else { return }
                 stock[fruit] = stockCount - count
             }
-            print("\(juice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
+            print("\(juice.description) 나왔습니다! 맛있게 드세요!")
         } else {
             print("재료가 모자랍니다.")
         }
@@ -63,13 +70,13 @@ class JuiceMaker {
         stock[fruit] = stockCount + count
     }
     
-    func checkStock(of fruit: Fruit) -> Int {
-        return stock[fruit] ?? 0
+    func stock(of fruit: Fruit) -> Int {
+        return stock[fruit] ?? OUT_OF_STOCK
     }
     
     private func isEnough(ingredients: [Fruit: Int]) -> Bool {
         for (fruit, count) in ingredients {
-            if checkStock(of: fruit) < count { return false }
+            if stock(of: fruit) < count { return false }
         }
         
         return true
