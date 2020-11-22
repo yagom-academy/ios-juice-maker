@@ -1,8 +1,8 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 enum FruitType: String {
     case strawberry = "딸기"
@@ -24,47 +24,87 @@ enum FruitsJuice: String {
     case none
 }
 
-class JuiceMaker {
+
+class Fruits {
+    let fruitType: FruitType
+    private(set) var stock: Int
+    
+    init(fruitType: FruitType, stock: Int = 10){
+        self.fruitType = fruitType
+        self.stock = stock
+    }
+
+    func add(stock amount: Int) {
+        self.stock += amount
+    }
+    
+    func use(stock amount: Int) {
+        self.stock -= amount
+    }
+    
+    func isStockUsable(needAmount: Int) -> Bool {
+        guard needAmount <= stock else {
+           return false
+        }
+        return true
+    }
+}
+
+struct JuiceReceipt {
+    let name: FruitsJuice
+    let fruits: [FruitsNeedToMakeRecipe]
+    init(name: FruitsJuice, fruits: [FruitsNeedToMakeRecipe]) {
+        self.name = name
+        self.fruits = fruits
+    }
+}
+
+struct FruitsNeedToMakeRecipe {
+    let name: FruitType
+    let need: Int
+    init(name: FruitType, need: Int){
+        self.name = name
+        self.need = need
+    }
+}
+
+class StockManager {
     private(set) var strawberry = Fruits(fruitType: .strawberry)
     private(set) var banana = Fruits(fruitType: .banana)
     private(set) var pineapple = Fruits(fruitType: .pineapple)
     private(set) var kiwi = Fruits(fruitType: .kiwi)
     private(set) var mango = Fruits(fruitType: .mango)
     
-    private let strawberryJuice = [(name: FruitType.strawberry, need: 16)]
-    private let bananaJuice = [(name: FruitType.banana, need: 2)]
-    private let kiwiJuice = [(name: FruitType.kiwi, need: 3)]
-    private let pineappleJuice = [(name: FruitType.pineapple, need: 2)]
-    private let mangoJuice = [(name: FruitType.mango, need: 3)]
-    private let strawberryBananaJuice = [(name: FruitType.strawberry, need: 10), (name: FruitType.banana, need: 1)]
-    private let mangoKiwiJuice = [(name: FruitType.mango, need: 2), (name: FruitType.kiwi, need: 1)]
+    private let strawberryJuice = JuiceReceipt(name: .strawberryJuice, fruits: [.init(name: .strawberry, need: 10)])
+    private let bananaJuice = JuiceReceipt(name: .bananaJuice, fruits: [.init(name: .banana, need: 2)])
+    private let kiwiJuice = JuiceReceipt(name: .kiwiJuice, fruits: [.init(name: .kiwi, need: 3)])
+    private let pineappleJuice = JuiceReceipt(name: .pineappleJuice, fruits: [.init(name: .pineapple, need: 2)])
+    private let mangoJuice = JuiceReceipt(name: .mangoKiwiJuice, fruits: [.init(name: .mango, need: 3)])
+    private let strawberryBananaJuice = JuiceReceipt(name: .strawberryBananaJuice,
+                                                    fruits: [.init(name: .strawberry, need: 10),
+                                                             .init(name: .banana, need: 1)])
+    private let mangoKiwiJuice = JuiceReceipt(name: .mangoKiwiJuice,
+                                             fruits: [.init(name: .mango, need: 2),
+                                                      .init(name: .kiwi, need: 1)])
     
-    private var juiceReceipt = [(name: FruitType.none, need: 0)]
-    private var juice = FruitsJuice.none
+    private var juiceReceipt = JuiceReceipt(name: .none, fruits: [.init(name: .none, need: 0)])
     
     func orderCheck(menu: FruitsJuice) {
         switch menu {
         case .strawberryJuice:
             juiceReceipt = strawberryJuice
-            juice = FruitsJuice.strawberryJuice
         case .bananaJuice:
             juiceReceipt = bananaJuice
-            juice = FruitsJuice.bananaJuice
         case .kiwiJuice:
             juiceReceipt = kiwiJuice
-            juice = FruitsJuice.kiwiJuice
         case .pineappleJuice:
             juiceReceipt = pineappleJuice
-            juice = FruitsJuice.pineappleJuice
         case .mangoJuice:
             juiceReceipt = mangoJuice
-            juice = FruitsJuice.mangoJuice
         case .strawberryBananaJuice:
             juiceReceipt = strawberryBananaJuice
-            juice = FruitsJuice.strawberryBananaJuice
         case .mangoKiwiJuice:
             juiceReceipt = mangoKiwiJuice
-            juice = FruitsJuice.mangoKiwiJuice
         default:
             return
         }
@@ -87,32 +127,32 @@ class JuiceMaker {
         }
     }
     
-    func makeJuice(menuName: FruitsJuice) throws {
-        orderCheck(menu: menuName)
-        
-        for index in 0..<juiceReceipt.count {
-            guard canMakeJuice(fruit: juiceReceipt[index].name, amount: juiceReceipt[index].need) else {
+    func checkCanMakeJuice() throws {
+        for item in 0..<juiceReceipt.fruits.count {
+            guard canMakeJuice(fruit: juiceReceipt.fruits[item].name, amount: juiceReceipt.fruits[item].need) else {
                 throw JuiceMakerError.outOfStock
             }
         }
-        
+    }
+    
+    func makingJuice(_ menuName: FruitsJuice) {
         switch menuName {
         case .strawberryJuice:
-            strawberry.useStock(amount: juiceReceipt[0].need)
+            strawberry.use(stock: juiceReceipt.fruits[0].need)
         case .bananaJuice:
-            banana.useStock(amount: juiceReceipt[0].need)
+            banana.use(stock: juiceReceipt.fruits[0].need)
         case .kiwiJuice:
-            kiwi.useStock(amount: juiceReceipt[0].need)
+            kiwi.use(stock: juiceReceipt.fruits[0].need)
         case .mangoJuice:
-            mango.useStock(amount: juiceReceipt[0].need)
+            mango.use(stock: juiceReceipt.fruits[0].need)
         case .pineappleJuice:
-            pineapple.useStock(amount: juiceReceipt[0].need)
+            pineapple.use(stock: juiceReceipt.fruits[0].need)
         case .strawberryBananaJuice:
-            strawberry.useStock(amount: juiceReceipt[0].need)
-            banana.useStock(amount: juiceReceipt[1].need)
+            strawberry.use(stock: juiceReceipt.fruits[0].need)
+            banana.use(stock: juiceReceipt.fruits[1].need)
         case .mangoKiwiJuice:
-            mango.useStock(amount: juiceReceipt[0].need)
-            kiwi.useStock(amount: juiceReceipt[1].need)
+            mango.use(stock: juiceReceipt.fruits[0].need)
+            kiwi.use(stock: juiceReceipt.fruits[1].need)
         default:
             return
         }
@@ -121,49 +161,29 @@ class JuiceMaker {
     func manageStock(fruit: FruitType, amount: Int) {
         switch fruit{
         case .strawberry:
-            strawberry.addStock(amount: amount)
+            strawberry.add(stock: amount)
         case .banana:
-            banana.addStock(amount: amount)
+            banana.add(stock: amount)
         case .pineapple:
-            pineapple.addStock(amount: amount)
+            pineapple.add(stock: amount)
         case .kiwi:
-            kiwi.addStock(amount: amount)
+            kiwi.add(stock: amount)
         case .mango:
-            mango.addStock(amount: amount)
+            mango.add(stock: amount)
         default:
             return
         }
     }
 }
 
-class Fruits {
-    let fruitType: FruitType
-    private(set) var fruitStock: Int
+class JuiceMaker {
+    let stockManager = StockManager()
     
-    init(fruitType: FruitType, fruitStock: Int = 10){
-        self.fruitType = fruitType
-        self.fruitStock = fruitStock
-    }
-    
-    var getStock: Int {
-        get {
-            return fruitStock
-        }
-    }
-    
-    func addStock(amount: Int) {
-        self.fruitStock += amount
-    }
-    
-    func useStock(amount: Int) {
-        self.fruitStock -= amount
-    }
-    
-    func isStockUsable(needAmount: Int) -> Bool {
-        guard needAmount <= fruitStock else {
-           return false
-        }
-        return true
+    func makeJuice(orderedJuice: FruitsJuice) throws {
+        stockManager.orderCheck(menu: orderedJuice)
+        try stockManager.checkCanMakeJuice()
+        stockManager.makingJuice(orderedJuice)
     }
 }
+
 
