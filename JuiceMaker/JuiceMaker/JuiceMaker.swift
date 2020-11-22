@@ -10,7 +10,8 @@ enum KindOfFruit {
 }
  */
 
-enum KindOfMenu {
+/*
+enum JuiceMenu {
     case strawberry
     case banana
     case kiwi
@@ -19,6 +20,7 @@ enum KindOfMenu {
     case strawberryAndBanana
     case mangoAndKiwi
 }
+ */
 
 enum makeJuiceResult {
     case success
@@ -96,6 +98,16 @@ private struct FruitManager {
 }
 
 class JuiceMaker {
+    enum JuiceMenu {
+        case strawberry
+        case banana
+        case kiwi
+        case pineapple
+        case mango
+        case strawberryAndBanana
+        case mangoAndKiwi
+    }
+    
     private var fruitManager = FruitManager()
     
     init(stock: Int = 10) {
@@ -106,7 +118,7 @@ class JuiceMaker {
         fruitManager.appendFruit(name: .mango, stock: stock)
     }
     
-    func makeJuice(memu: KindOfMenu) -> makeJuiceResult {
+    func makeJuice(memu: JuiceMenu) -> makeJuiceResult {
         switch memu {
         case .strawberry:
             return makeStrawberryJuice()
