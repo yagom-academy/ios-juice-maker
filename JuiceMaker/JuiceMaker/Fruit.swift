@@ -27,6 +27,9 @@ class Fruit {
     }
     
     func updateStockAmount(reducing value: Int) {
+        guard currentStock - value >= 0 else {
+            return
+        }
         self.variationOfStockAmount = -value
     }
     
