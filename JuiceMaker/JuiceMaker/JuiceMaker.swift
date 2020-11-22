@@ -67,7 +67,7 @@ struct FruitsNeedToMakeRecipe {
     }
 }
 
-class JuiceMaker {
+class StockManager {
     private(set) var strawberry = Fruits(fruitType: .strawberry)
     private(set) var banana = Fruits(fruitType: .banana)
     private(set) var pineapple = Fruits(fruitType: .pineapple)
@@ -157,12 +157,6 @@ class JuiceMaker {
         }
     }
     
-    func makeJuice(orderedJuice: FruitsJuice) throws {
-        orderCheck(menu: orderedJuice)
-        try checkCanMakeJuice()
-        makingJuice(orderedJuice)
-    }
-    
     func manageStock(fruit: FruitType, amount: Int) {
         switch fruit{
         case .strawberry:
@@ -178,6 +172,16 @@ class JuiceMaker {
         default:
             return
         }
+    }
+}
+
+class JuiceMaker {
+    let stockManager = StockManager()
+    
+    func makeJuice(orderedJuice: FruitsJuice) throws {
+        stockManager.orderCheck(menu: orderedJuice)
+        try stockManager.checkCanMakeJuice()
+        stockManager.makingJuice(orderedJuice)
     }
 }
 
