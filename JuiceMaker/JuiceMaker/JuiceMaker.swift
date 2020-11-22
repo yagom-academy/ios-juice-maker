@@ -1,5 +1,6 @@
 import Foundation
 
+/*
 enum KindOfFruit {
     case strawberry
     case banana
@@ -7,6 +8,7 @@ enum KindOfFruit {
     case pineapple
     case mango
 }
+ */
 
 enum KindOfMenu {
     case strawberry
@@ -24,10 +26,18 @@ enum makeJuiceResult {
 }
 
 private struct Fruit {
-    private let name: KindOfFruit
+    fileprivate enum Name {
+        case strawberry
+        case banana
+        case kiwi
+        case pineapple
+        case mango
+    }
+    
+    private let name: Name
     private(set) var stock: Int
     
-    init(name: KindOfFruit, count: Int) {
+    init(name: Name, count: Int) {
         self.name = name
         self.stock = count
     }
@@ -42,13 +52,13 @@ private struct Fruit {
 }
 
 private struct FruitManager {
-    private var fruits = [KindOfFruit: Fruit]()
+    private var fruits = [Fruit.Name: Fruit]()
     
-    mutating func appendFruit(name: KindOfFruit, stock amount: Int) {
+    mutating func appendFruit(name: Fruit.Name, stock amount: Int) {
         fruits[name] = Fruit(name: name, count: amount)
     }
     
-    mutating func supplyFruit(name: KindOfFruit, amount: Int) {
+    mutating func supplyFruit(name: Fruit.Name, amount: Int) {
         if var fruit = fruits[name] {
             fruit.add(count: amount)
         } else {
@@ -56,7 +66,7 @@ private struct FruitManager {
         }
     }
     
-    mutating func consumeFruit(name: KindOfFruit, amount: Int) {
+    mutating func consumeFruit(name: Fruit.Name, amount: Int) {
         if var fruit = fruits[name] {
             fruit.subtract(count: amount)
         } else {
@@ -64,7 +74,7 @@ private struct FruitManager {
         }
     }
     
-    func isEnough(name: KindOfFruit, amount: Int) -> Bool {
+    func isEnough(name: Fruit.Name, amount: Int) -> Bool {
         if let fruit = fruits[name] {
             if fruit.stock >= amount {
                 return true
@@ -76,7 +86,7 @@ private struct FruitManager {
         }
     }
     
-    func stockOfFruit(name: KindOfFruit) -> Int {
+    func stockOfFruit(name: Fruit.Name) -> Int {
         if let fruit = fruits[name] {
             return fruit.stock
         } else {
