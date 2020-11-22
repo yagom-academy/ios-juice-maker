@@ -154,6 +154,7 @@
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				261DBA8A25666B9500E618B8 /* StockManageViewController.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				261DBA8F2566935000E618B8 /* JuiceMakerError.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				261DBA7F25623A6600E618B8 /* UIView+Bordered.swift in Sources */,
 			);
