@@ -9,11 +9,11 @@ import Foundation
 /// 쥬스 메이커 타입 
 struct JuiceMaker {
     
-    private var strawberry = Fruit(name: "strawberry")
-    private var banana = Fruit(name: "banana")
-    private var pineapple = Fruit(name: "pineapple")
-    private var kiwi = Fruit(name: "kiwi")
-    private var mango = Fruit(name: "mango")
+    var strawberry = Fruit(name: "strawberry")
+    var banana = Fruit(name: "banana")
+    var pineapple = Fruit(name: "pineapple")
+    var kiwi = Fruit(name: "kiwi")
+    var mango = Fruit(name: "mango")
     
     init() {
         
@@ -40,11 +40,6 @@ struct JuiceMaker {
     }
     
     mutating func makeJuice(of order: JuiceMenu) {
-        guard isAvailableMaking(menu: order) else {
-            print("\(order.rawValue)를 만들 재고가 충분하지 않습니다.")
-            return
-        }
-        
         switch order {
         case .strawberryJuice:
             reducingStock(amount: 16, of: strawberry)
@@ -54,7 +49,7 @@ struct JuiceMaker {
             reducingStock(amount: 10, of: strawberry)
             reducingStock(amount: 1, of: banana)
         case .mangoJuice:
-            reducingStock(amount: 3, of: banana)
+            reducingStock(amount: 3, of: mango)
         case .mangoKiwiJuice:
             reducingStock(amount: 2, of: mango)
             reducingStock(amount: 1, of: kiwi)
@@ -63,12 +58,10 @@ struct JuiceMaker {
         case .pineappleJuice:
             reducingStock(amount: 2, of: pineapple)
         }
-        
-        doneMakingJuice(of: order)
     }
     
-    private func isAvailableMaking(menu: JuiceMenu) -> Bool {
-        switch menu {
+    func isAvailableMaking(juice: JuiceMenu) -> Bool {
+        switch juice {
         case .strawberryJuice:
             guard strawberry.showCurrentStock(to: self) >= 16 else {
                 return false
@@ -103,8 +96,8 @@ struct JuiceMaker {
         return true
     }
     
-    private func doneMakingJuice(of menu: JuiceMenu) {
-        print("\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)")
+   func successMakingJuice(of menu: JuiceMenu) -> String {
+        return "\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)"
     }
 }
 
