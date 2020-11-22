@@ -91,11 +91,12 @@ fileprivate struct FruitManager {
     }
     
     func stockOfFruit(name: Fruit.Name) -> Int {
-        if let fruit = fruits[name] {
-            return fruit.stock
-        } else {
-            return 0
+        guard let fruit = fruits[name] else {
+            let none = 0
+            return none
         }
+        
+        return fruit.stock
     }
 }
 
