@@ -29,7 +29,7 @@ enum makeJuiceResult {
 }
  */
 
-private struct Fruit {
+fileprivate struct Fruit {
     fileprivate enum Name {
         case strawberry
         case banana
@@ -55,7 +55,7 @@ private struct Fruit {
     }
 }
 
-private struct FruitManager {
+fileprivate struct FruitManager {
     private var fruits = [Fruit.Name: Fruit]()
     
     mutating func appendFruit(name: Fruit.Name, stock amount: Int) {
