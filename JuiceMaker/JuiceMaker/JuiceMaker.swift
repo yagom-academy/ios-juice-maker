@@ -63,31 +63,31 @@ fileprivate struct FruitManager {
     }
     
     mutating func supplyFruit(name: Fruit.Name, amount: Int) {
-        if var fruit = fruits[name] {
-            fruit.add(count: amount)
-        } else {
+        guard var fruit = fruits[name] else {
             return
         }
+        
+        fruit.add(count: amount)
     }
     
     mutating func consumeFruit(name: Fruit.Name, amount: Int) {
-        if var fruit = fruits[name] {
-            fruit.subtract(count: amount)
-        } else {
+        guard var fruit = fruits[name] else {
             return
         }
+        
+        fruit.subtract(count: amount)
     }
     
     func isEnough(name: Fruit.Name, amount: Int) -> Bool {
-        if let fruit = fruits[name] {
-            if fruit.stock >= amount {
-                return true
-            } else {
-                return false
-            }
-        } else {
+        guard let fruit = fruits[name] else {
             return false
         }
+        
+        if fruit.stock >= amount {
+            return true
+        }
+        
+        return false
     }
     
     func stockOfFruit(name: Fruit.Name) -> Int {
