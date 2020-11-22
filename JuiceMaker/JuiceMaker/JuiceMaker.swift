@@ -46,6 +46,10 @@ struct JuiceMaker {
         }
         
         switch order {
+        case .strawberryJuice:
+            reducingStock(amount: 16, of: strawberry)
+        case .bananaJuice:
+            reducingStock(amount: 2, of: banana)
         case .ddalbaJuice:
             reducingStock(amount: 10, of: strawberry)
             reducingStock(amount: 1, of: banana)
@@ -65,6 +69,14 @@ struct JuiceMaker {
     
     private func isAvailableMaking(menu: JuiceMenu) -> Bool {
         switch menu {
+        case .strawberryJuice:
+            guard strawberry.showCurrentStock(to: self) >= 16 else {
+                return false
+            }
+        case .bananaJuice:
+            guard banana.showCurrentStock(to: self) >= 2 else {
+                return false
+            }
         case .ddalbaJuice:
             guard strawberry.showCurrentStock(to: self) >= 10,
                   banana.showCurrentStock(to: self) >= 1 else {
