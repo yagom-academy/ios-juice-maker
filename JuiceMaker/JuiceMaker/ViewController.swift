@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         let initializeStockValue = 10
         juiceMaker = JuiceMaker(stock: initializeStockValue)
         initializeLabel(stock: initializeStockValue)
+        
+        
     }
     
     func initializeLabel(stock: Int) {
@@ -29,5 +31,26 @@ class ViewController: UIViewController {
         pineappleStockLabel.text = String(stock)
         kiwiStockLabel.text = String(stock)
         mangoStockLabel.text = String(stock)
+    }
+    
+    @IBAction func pressedStrawberryAndBananaJuiceButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func pressedMangoAndKiwiJuiceButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func pressedStrawberryJuiceButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func pressedBananaJuiceButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func pressedPineappleJuiceButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func pressedKiwiJuiceButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func pressedMangoJuiceButton(_ sender: UIButton) {
     }
 }
