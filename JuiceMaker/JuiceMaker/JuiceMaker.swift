@@ -6,8 +6,24 @@
 
 import Foundation
 
+enum AlertMessage: String {
+    case outOfStock = "재고가 부족합니다. 재고를 수정할까요?"
+    case wrongRequest = "잘못된 요청입니다. 재고 수량은 0미만으로 지정할 수 없습니다."
+    case successMade = " 나왔습니다. 맛있게 드세요."
+}
+
+enum Menu: String {
+    case strawberryJuice = "딸기 쥬스"
+    case bananaJuice = "바나나 쥬스"
+    case strawberryBananaJuice = "딸바 쥬스"
+    case pineappleJuice = "파인애플 쥬스"
+    case kiwiJuice = "키위 쥬스"
+    case mangoJuice = "망고 쥬스"
+    case mangoKiwiJuice = "망고키위 쥬스"
+}
+
 class StockManager {
-    var showalert = ShowAlert()
+    var messenger = Messenger()
     var recipe = Recipe()
     
     private(set) var strawberry: UInt
@@ -81,7 +97,7 @@ class StockManager {
     // MARK: - substractStock
     func substractStrawberryStock() {
         guard strawberry > 0 else {
-            showalert.printWrongRequest()
+            messenger.printWrongRequest()
             return
         }
         strawberry -= 1
@@ -89,7 +105,7 @@ class StockManager {
     
     func substractBananaStock() {
         guard banana > 0 else {
-            showalert.printWrongRequest()
+            messenger.printWrongRequest()
             return
         }
         banana -= 1
@@ -97,7 +113,7 @@ class StockManager {
     
     func substractPineappleStock() {
         guard pineapple > 0 else {
-            showalert.printWrongRequest()
+            messenger.printWrongRequest()
             return
         }
         pineapple -= 1
@@ -105,7 +121,7 @@ class StockManager {
     
     func substractMangoStock() {
         guard mango > 0 else {
-            showalert.printWrongRequest()
+            messenger.printWrongRequest()
             return
         }
         mango -= 1
@@ -113,7 +129,7 @@ class StockManager {
     
     func substractKiwiStock() {
         guard kiwi > 0 else {
-            showalert.printWrongRequest()
+            messenger.printWrongRequest()
             return
         }
         kiwi -= 1
@@ -127,80 +143,85 @@ class StockManager {
 
 class JuiceMaker {
     var stockManager = StockManager()
-    var showAlert = ShowAlert()
+    var messenger = Messenger()
     
     func makeStrawberryJuice() {
         guard stockManager.strawberry >= 16 else {
-            showAlert.printOutOfStock()
+            messenger.printOutOfStock()
             return
         }
         stockManager.useStrawberryJuiceIngredients()
-        print("딸기 쥬스 나왔습니다. 맛있게 드세요")
+        messenger.printSuccessMade(juice: Menu.strawberryJuice.rawValue)
     }
     
     func makeStrawberryBananaJuice() {
         guard stockManager.strawberry >= 10 && stockManager.banana >= 1 else {
-            showAlert.printOutOfStock()
+            messenger.printOutOfStock()
             return
         }
         stockManager.useStrawberryBananaJuiceIngredients()
-        print("딸기바나나 쥬스 나왔습니다. 맛있게 드세요")
+        messenger.printSuccessMade(juice: "딸기바나나 쥬스")
         
     }
     
     func makeBananaJuice() {
         guard stockManager.banana >= 2 else {
-            showAlert.printOutOfStock()
+            messenger.printOutOfStock()
             return
         }
         stockManager.useeBananaJuiceIngredients()
-        print("바나나 쥬스 나왔습니다. 맛있게 드세요")
+        messenger.printSuccessMade(juice: "바나나 쥬스")
     }
     
     func makeKiwiJuice() {
         guard stockManager.kiwi >= 3 else {
-            showAlert.printOutOfStock()
+            messenger.printOutOfStock()
             return
         }
         stockManager.useKiwiJuiceIngredients()
-        print("키위 쥬스 나왔습니다. 맛있게 드세요")
+        messenger.printSuccessMade(juice: "키위 쥬스")
     }
     
     func makePineappleJuice() {
         guard stockManager.pineapple >= 2 else {
-            showAlert.printOutOfStock()
+            messenger.printOutOfStock()
             return
         }
         stockManager.usePineappleJuiceIngredients()
-        print("파인애플 쥬스 나왔습니다. 맛있게 드세요")
+        messenger.printSuccessMade(juice: "파인애플 쥬스")
     }
     
     func makeMangoJuice() {
         guard stockManager.mango >= 3 else {
-            showAlert.printOutOfStock()
+            messenger.printOutOfStock()
             return
         }
         stockManager.useMangoJuiceIngredients()
-        print("망고 쥬스 나왔습니다. 맛있게 드세요")
+        messenger.printSuccessMade(juice: "망고 쥬스")
     }
     
     func makeMangoKiwiJuice() {
         guard stockManager.mango >= 2 && stockManager.kiwi >= 1 else {
-            showAlert.printOutOfStock()
+            messenger.printOutOfStock()
             return
         }
         stockManager.useMangoKiwiJuiceIngredients()
-        print("망고키위 쥬스 나왔습니다. 맛있게 드세요")
+        messenger.printSuccessMade(juice: "망고키위 쥬스")
     }
     
 }
 
-class ShowAlert {
+class Messenger {
     func printOutOfStock() {
-        print("재고가 부족합니다. 재고를 수정할까요?")
+        print(AlertMessage.outOfStock.rawValue)
     }
+    
     func printWrongRequest() {
-        print("잘못된 요청입니다. 재고 수량은 0미만으로 지정할수 없습니다.")
+        print(AlertMessage.wrongRequest.rawValue)
+    }
+    
+    func printSuccessMade(juice: String) {
+        print("\(juice)" + AlertMessage.successMade.rawValue)
     }
 }
 
