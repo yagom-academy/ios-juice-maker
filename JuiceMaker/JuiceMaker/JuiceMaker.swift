@@ -44,33 +44,33 @@ class StockManager {
     
     //MARK: - giveIngredients
     func useStrawberryJuiceIngredients() {
-        strawberry -= recipe.strawberryJuice🍓
+        strawberry -= recipe.strawberryOfStrawberryJuice
     }
     
     func useStrawberryBananaJuiceIngredients() {
-        strawberry -= recipe.strawberryBananaJuice🍓
-        banana -= recipe.strawberryBananaJuice🍌
+        strawberry -= recipe.strawberryOfStrawberryBananaJuice
+        banana -= recipe.bananaOfStrawberryBananaJuice
     }
     
     func useeBananaJuiceIngredients() {
-        banana -= recipe.bananaJuice🍌
+        banana -= recipe.bananaOfBananaJuice
     }
     
     func useKiwiJuiceIngredients() {
-        kiwi -= recipe.kiwiJuice🥝
+        kiwi -= recipe.kiwiOfKiwiJuice
     }
     
     func usePineappleJuiceIngredients() {
-        pineapple -= recipe.pineappleJuice🍍
+        pineapple -= recipe.pineappleOfPineappleJuice
     }
     
     func useMangoJuiceIngredients() {
-        mango -= recipe.mangoJuice🥭
+        mango -= recipe.mangoOfMangoJuice
     }
     
     func useMangoKiwiJuiceIngredients() {
-        mango -= recipe.mangoKiwiJuice🥭
-        kiwi -= recipe.mangoKiwiJuice🥝
+        mango -= recipe.mangoOfMangoKiwiJuice
+        kiwi -= recipe.kiwiOfMangoKiwiJuice
     }
     
     // MARK: - addStock
@@ -226,13 +226,13 @@ class Messenger {
 }
 
 class Recipe {
-    let strawberryJuice🍓:UInt = 16
-    let strawberryBananaJuice🍓:UInt = 10
-    let strawberryBananaJuice🍌:UInt = 1
-    let bananaJuice🍌:UInt = 2
-    let kiwiJuice🥝:UInt = 3
-    let pineappleJuice🍍:UInt = 2
-    let mangoJuice🥭:UInt = 3
-    let mangoKiwiJuice🥝:UInt = 1
-    let mangoKiwiJuice🥭:UInt = 2
+    let strawberryOfStrawberryJuice:UInt = 16
+    let strawberryOfStrawberryBananaJuice:UInt = 10
+    let bananaOfStrawberryBananaJuice:UInt = 1
+    let bananaOfBananaJuice:UInt = 2
+    let kiwiOfKiwiJuice:UInt = 3
+    let pineappleOfPineappleJuice:UInt = 2
+    let mangoOfMangoJuice:UInt = 3
+    let kiwiOfMangoKiwiJuice:UInt = 1
+    let mangoOfMangoKiwiJuice:UInt = 2
 }
