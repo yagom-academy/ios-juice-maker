@@ -21,8 +21,6 @@ class ViewController: UIViewController {
         let initializeStockValue = 10
         juiceMaker = JuiceMaker(stock: initializeStockValue)
         initializeLabel(stock: initializeStockValue)
-        
-        
     }
     
     func initializeLabel(stock: Int) {
@@ -34,6 +32,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedStrawberryAndBananaJuiceButton(_ sender: UIButton) {
+        if juiceMaker.makeJuice(memu: .strawberryAndBanana) == .success {
+            let alert = UIAlertController(title: "딸바쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            present(alert, animated: true)
+        }
     }
     
     @IBAction func pressedMangoAndKiwiJuiceButton(_ sender: UIButton) {
