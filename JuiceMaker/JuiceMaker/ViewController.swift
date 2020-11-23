@@ -11,6 +11,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let juiceMaker = JuiceMaker(stock: 15)
+        print(juiceMaker.makeJuice(memu: .banana))
     }
 
 
