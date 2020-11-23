@@ -10,13 +10,13 @@ class Fruit {
     }
 }
 
-let initialValue : Int = 10
+let fruitStockinitialValue : Int = 10
 
-var strawberry : Fruit = Fruit(name : "strawberry", stock: initialValue)
-var banana : Fruit = Fruit(name : "banana", stock: initialValue)
-var pineapple : Fruit = Fruit(name : "pineapple", stock: initialValue)
-var kiwi : Fruit = Fruit(name : "kiwi", stock: initialValue)
-var mango : Fruit = Fruit(name : "mango", stock: initialValue)
+let strawberry : Fruit = Fruit(name : "strawberry", stock: fruitStockinitialValue)
+let banana : Fruit = Fruit(name : "banana", stock: fruitStockinitialValue)
+let pineapple : Fruit = Fruit(name : "pineapple", stock: fruitStockinitialValue)
+let kiwi : Fruit = Fruit(name : "kiwi", stock: fruitStockinitialValue)
+let mango : Fruit = Fruit(name : "mango", stock: fruitStockinitialValue)
 
 //보기전용 값으로 사용자에게 보여줄 때만 사용되는 변수
 var strawberryStock : Int {
