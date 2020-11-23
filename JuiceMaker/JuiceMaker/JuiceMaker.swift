@@ -60,38 +60,38 @@ struct JuiceMaker {
             reduceStock(amount: 2, of: pineapple)
         }
         
-        doneMakingJuice(of: order)
+        successMakingJuice(of: order)
     }
     
     private func isAvailableMaking(menu: JuiceMenu) -> Bool {
         switch menu {
         case .ddalbaJuice:
-            guard strawberry.showCurrentStock(to: self) >= 10,
-                  banana.showCurrentStock(to: self) >= 1 else {
+            guard checkCurrentStockAmount(of: strawberry) >= 10,
+                  checkCurrentStockAmount(of: banana) >= 1 else {
                 return false
             }
         case .kiwiJuice:
-            guard kiwi.showCurrentStock(to: self) >= 3 else {
+            guard checkCurrentStockAmount(of: kiwi) >= 3 else {
                 return false
             }
         case .mangoJuice:
-            guard mango.showCurrentStock(to: self) >= 3 else {
+            guard checkCurrentStockAmount(of: mango) >= 3 else {
                 return false
             }
         case .mangoKiwiJuice:
-            guard mango.showCurrentStock(to: self) >= 2,
-                  kiwi.showCurrentStock(to: self) >= 1 else {
+            guard checkCurrentStockAmount(of: mango) >= 2,
+                  checkCurrentStockAmount(of: kiwi) >= 1 else {
                 return false
             }
         case .pineappleJuice:
-            guard pineapple.showCurrentStock(to: self) >= 2 else {
+            guard checkCurrentStockAmount(of: pineapple) >= 2 else {
                 return false
             }
         }
         return true
     }
     
-    private func doneMakingJuice(of menu: JuiceMenu) {
+    private func successMakingJuice(of menu: JuiceMenu) {
         print("\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)")
     }
 }
