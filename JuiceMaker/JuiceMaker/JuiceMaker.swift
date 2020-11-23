@@ -58,7 +58,7 @@ struct JuiceMaker {
         case .pineappleJuice:
             reduceStock(amount: 2, of: pineapple)
         }
-        successMakingJuice(of: order)
+
     }
     
     func isAvailableMaking(juice: JuiceMenu) -> Bool {
@@ -97,8 +97,8 @@ struct JuiceMaker {
         return true
     }
     
-    private func successMakingJuice(of menu: JuiceMenu) {
-        print("\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)")
+    func makeSuccessMessage(of menu: JuiceMenu) -> String {
+        return "\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)"
     }
 }
 

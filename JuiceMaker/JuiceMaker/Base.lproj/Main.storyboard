@@ -17,61 +17,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUQ-Pl-tHR">
-                                <rect key="frame" x="253.5" y="87" width="23" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="240" y="87" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJ2-18-TC8">
-                                <rect key="frame" x="244.5" y="127.5" width="41.5" height="20.5"/>
+                                <rect key="frame" x="244.5" y="161" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVE-9e-59w">
-                                <rect key="frame" x="345" y="87" width="23" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="331.5" y="87" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpa-Rg-Jvi">
-                                <rect key="frame" x="336" y="127.5" width="41.5" height="20.5"/>
+                                <rect key="frame" x="336" y="161" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qa-DA-hCy">
-                                <rect key="frame" x="436.5" y="87" width="23" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="423" y="87" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjZ-H5-JkW">
-                                <rect key="frame" x="427.5" y="127.5" width="41.5" height="20.5"/>
+                                <rect key="frame" x="427.5" y="161" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZu-mj-QT4">
-                                <rect key="frame" x="528" y="87" width="23" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="514.5" y="87" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkh-YE-0AD">
-                                <rect key="frame" x="519" y="127.5" width="41.5" height="20.5"/>
+                                <rect key="frame" x="519" y="161" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqn-xe-0Vt">
-                                <rect key="frame" x="619.5" y="87" width="23" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="606" y="87" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4u-aN-3fD">
-                                <rect key="frame" x="610.5" y="127.5" width="41.5" height="20.5"/>
+                                <rect key="frame" x="610.5" y="161" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -92,6 +92,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8PN-Ug-8Km">
                                 <rect key="frame" x="227" y="293" width="82" height="30"/>
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.72156862749999995" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="딸바쥬스 주문"/>
                                 <connections>
                                     <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ek4-ys-FZl"/>
@@ -99,6 +101,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKl-7F-Ijj">
                                 <rect key="frame" x="574" y="293" width="82" height="30"/>
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.72156862749999995" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="망키쥬스 주문"/>
                                 <connections>
                                     <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b6F-t0-GvJ"/>
@@ -106,6 +110,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsj-wx-BPi">
                                 <rect key="frame" x="394" y="343" width="108" height="30"/>
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.72156862749999995" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="파인애플쥬스 주문"/>
                                 <connections>
                                     <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mg4-uk-dSc"/>
@@ -113,6 +119,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlW-sU-Nde">
                                 <rect key="frame" x="522" y="343" width="82" height="30"/>
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.72156862749999995" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="키위쥬스 주문"/>
                                 <connections>
                                     <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KnN-3y-pA4"/>
@@ -120,6 +128,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6b-XW-bfQ">
                                 <rect key="frame" x="177" y="343" width="82" height="30"/>
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.72156862749999995" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="딸기쥬스 주문"/>
                                 <connections>
                                     <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Knj-n0-Yec"/>
@@ -127,6 +137,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-W8-PYq">
                                 <rect key="frame" x="279" y="343" width="95" height="30"/>
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.72156862749999995" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="바나나쥬스 주문"/>
                                 <connections>
                                     <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGx-Od-ofz"/>
@@ -134,6 +146,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJq-qY-pGi">
                                 <rect key="frame" x="624" y="343" width="82" height="30"/>
+                                <color key="backgroundColor" red="0.49803921569999998" green="0.72156862749999995" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="망고쥬스 주문"/>
                                 <connections>
                                     <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KTr-EW-t64"/>
@@ -223,14 +237,98 @@
                                     <action selector="tappedCloseButton:" destination="sak-DG-hij" eventType="touchUpInside" id="95c-GC-xx9"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0P-wL-gdV">
+                                <rect key="frame" x="240" y="81" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-sa-eZx">
+                                <rect key="frame" x="244.5" y="155" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-WF-1Bm">
+                                <rect key="frame" x="331.5" y="81" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whk-Xk-7p6">
+                                <rect key="frame" x="336" y="155" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9A-bZ-7RD">
+                                <rect key="frame" x="423" y="81" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20d-CJ-BkP">
+                                <rect key="frame" x="427.5" y="155" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKs-kp-OER">
+                                <rect key="frame" x="514.5" y="81" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6W-t9-9FM">
+                                <rect key="frame" x="519" y="155" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDv-PO-by0">
+                                <rect key="frame" x="606" y="81" width="50" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLV-IU-n0a">
+                                <rect key="frame" x="610.5" y="155" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AEk-yy-ale"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tMy-tP-BcV" firstAttribute="centerY" secondItem="2jm-Lz-tsU" secondAttribute="centerY" id="3VN-Pd-VQK"/>
+                            <constraint firstItem="d3H-WF-1Bm" firstAttribute="centerY" secondItem="i9A-bZ-7RD" secondAttribute="centerY" id="82O-LK-ZuA"/>
+                            <constraint firstItem="L0P-wL-gdV" firstAttribute="centerY" secondItem="i9A-bZ-7RD" secondAttribute="centerY" id="8cL-eE-AAk"/>
+                            <constraint firstItem="i9A-bZ-7RD" firstAttribute="top" secondItem="2jm-Lz-tsU" secondAttribute="bottom" constant="40" id="BHb-CE-CKh"/>
+                            <constraint firstItem="gLV-IU-n0a" firstAttribute="centerX" secondItem="iDv-PO-by0" secondAttribute="centerX" id="DH7-H9-KlM"/>
+                            <constraint firstItem="20d-CJ-BkP" firstAttribute="centerX" secondItem="i9A-bZ-7RD" secondAttribute="centerX" id="IoT-qO-7ej"/>
+                            <constraint firstItem="pnK-sa-eZx" firstAttribute="top" secondItem="L0P-wL-gdV" secondAttribute="bottom" constant="20" id="KCH-Q8-4Dq"/>
+                            <constraint firstItem="whk-Xk-7p6" firstAttribute="top" secondItem="d3H-WF-1Bm" secondAttribute="bottom" constant="20" id="Kx5-UW-z4t"/>
+                            <constraint firstItem="pnK-sa-eZx" firstAttribute="centerY" secondItem="20d-CJ-BkP" secondAttribute="centerY" id="L8z-N5-VE7"/>
+                            <constraint firstItem="gLV-IU-n0a" firstAttribute="centerY" secondItem="20d-CJ-BkP" secondAttribute="centerY" id="LIX-Uf-ikO"/>
                             <constraint firstItem="2jm-Lz-tsU" firstAttribute="centerX" secondItem="8Gu-pl-nWH" secondAttribute="centerX" id="Qs7-zG-s4g"/>
+                            <constraint firstItem="iDv-PO-by0" firstAttribute="centerY" secondItem="i9A-bZ-7RD" secondAttribute="centerY" id="Tne-HW-Z9U"/>
+                            <constraint firstItem="gLV-IU-n0a" firstAttribute="leading" secondItem="h6W-t9-9FM" secondAttribute="trailing" constant="50" id="Tv5-2Z-dx2"/>
+                            <constraint firstItem="whk-Xk-7p6" firstAttribute="centerY" secondItem="20d-CJ-BkP" secondAttribute="centerY" id="YHX-YW-RTe"/>
+                            <constraint firstItem="20d-CJ-BkP" firstAttribute="leading" secondItem="whk-Xk-7p6" secondAttribute="trailing" constant="50" id="aJc-PH-xIV"/>
+                            <constraint firstItem="whk-Xk-7p6" firstAttribute="centerX" secondItem="d3H-WF-1Bm" secondAttribute="centerX" id="cO6-zv-Z57"/>
                             <constraint firstItem="AEk-yy-ale" firstAttribute="trailing" secondItem="tMy-tP-BcV" secondAttribute="trailing" constant="20" id="duo-AA-Rme"/>
+                            <constraint firstItem="20d-CJ-BkP" firstAttribute="top" secondItem="i9A-bZ-7RD" secondAttribute="bottom" constant="20" id="gee-Ha-vk9"/>
+                            <constraint firstItem="h6W-t9-9FM" firstAttribute="top" secondItem="BKs-kp-OER" secondAttribute="bottom" constant="20" id="grg-7J-gfW"/>
+                            <constraint firstItem="i9A-bZ-7RD" firstAttribute="centerX" secondItem="8Gu-pl-nWH" secondAttribute="centerX" id="l02-z7-3id"/>
+                            <constraint firstItem="pnK-sa-eZx" firstAttribute="centerX" secondItem="L0P-wL-gdV" secondAttribute="centerX" id="l5w-se-MjF"/>
+                            <constraint firstItem="whk-Xk-7p6" firstAttribute="leading" secondItem="pnK-sa-eZx" secondAttribute="trailing" constant="50" id="mLE-1Z-Tfm"/>
+                            <constraint firstItem="h6W-t9-9FM" firstAttribute="centerY" secondItem="20d-CJ-BkP" secondAttribute="centerY" id="oeW-N2-xax"/>
                             <constraint firstItem="2jm-Lz-tsU" firstAttribute="top" secondItem="AEk-yy-ale" secondAttribute="top" constant="20" id="rCV-GU-CaQ"/>
+                            <constraint firstItem="h6W-t9-9FM" firstAttribute="centerX" secondItem="BKs-kp-OER" secondAttribute="centerX" id="uFk-FO-4Cs"/>
+                            <constraint firstItem="BKs-kp-OER" firstAttribute="centerY" secondItem="i9A-bZ-7RD" secondAttribute="centerY" id="ur9-R8-Agf"/>
+                            <constraint firstItem="h6W-t9-9FM" firstAttribute="leading" secondItem="20d-CJ-BkP" secondAttribute="trailing" constant="50" id="xMD-Av-rbl"/>
+                            <constraint firstItem="gLV-IU-n0a" firstAttribute="top" secondItem="iDv-PO-by0" secondAttribute="bottom" constant="20" id="xv4-g2-slT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IHn-be-Etp"/>
