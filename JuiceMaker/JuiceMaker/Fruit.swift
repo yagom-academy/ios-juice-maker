@@ -22,7 +22,7 @@ class Fruit {
         currentStock = 0
     }
     
-    func showCurrentStock(to: JuiceMaker) -> Int {
+    func currentStockAmount() -> Int {
         return self.currentStock
     }
     

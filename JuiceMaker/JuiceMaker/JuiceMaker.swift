@@ -36,7 +36,7 @@ struct JuiceMaker {
     }
     
     func checkCurrentStockAmount(of fruitType: Fruit) -> Int {
-        return fruitType.showCurrentStock(to: self)
+        return fruitType.currentStockAmount()
     }
     
     mutating func makeJuice(of order: JuiceMenu) {
