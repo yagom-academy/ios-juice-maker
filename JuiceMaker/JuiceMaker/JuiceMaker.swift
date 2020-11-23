@@ -19,19 +19,19 @@ struct JuiceMaker {
         
         let initialStock = 10
         
-        addingStock(amount: initialStock, of: strawberry)
-        addingStock(amount: initialStock, of: banana)
-        addingStock(amount: initialStock, of: pineapple)
-        addingStock(amount: initialStock, of: kiwi)
-        addingStock(amount: initialStock, of: mango)
+        addStock(amount: initialStock, of: strawberry)
+        addStock(amount: initialStock, of: banana)
+        addStock(amount: initialStock, of: pineapple)
+        addStock(amount: initialStock, of: kiwi)
+        addStock(amount: initialStock, of: mango)
         
     }
     
-    mutating func addingStock(amount: Int, of fruitType: Fruit) {
+    mutating func addStock(amount: Int, of fruitType: Fruit) {
         fruitType.updateStockAmount(adding: amount)
     }
     
-    mutating func reducingStock(amount: Int, of fruitType: Fruit) {
+    mutating func reduceStock(amount: Int, of fruitType: Fruit) {
         fruitType.updateStockAmount(reducing: amount)
     }
     
@@ -47,17 +47,17 @@ struct JuiceMaker {
         
         switch order {
         case .ddalbaJuice:
-            reducingStock(amount: 10, of: strawberry)
-            reducingStock(amount: 1, of: banana)
+            reduceStock(amount: 10, of: strawberry)
+            reduceStock(amount: 1, of: banana)
         case .mangoJuice:
-            reducingStock(amount: 3, of: banana)
+            reduceStock(amount: 3, of: banana)
         case .mangoKiwiJuice:
-            reducingStock(amount: 2, of: mango)
-            reducingStock(amount: 1, of: kiwi)
+            reduceStock(amount: 2, of: mango)
+            reduceStock(amount: 1, of: kiwi)
         case .kiwiJuice:
-            reducingStock(amount: 3, of: kiwi)
+            reduceStock(amount: 3, of: kiwi)
         case .pineappleJuice:
-            reducingStock(amount: 2, of: pineapple)
+            reduceStock(amount: 2, of: pineapple)
         }
         
         doneMakingJuice(of: order)
