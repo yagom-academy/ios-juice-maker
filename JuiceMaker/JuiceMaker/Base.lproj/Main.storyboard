@@ -136,6 +136,13 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="wTu-Ma-beZ" id="Dbt-NK-fhV"/>
+                        <outlet property="kiwiStockLabel" destination="55R-Ah-kgp" id="QOQ-Ur-FYP"/>
+                        <outlet property="mangoStockLabel" destination="c1j-sw-NuF" id="aGd-HO-TIt"/>
+                        <outlet property="pineappleStockLabel" destination="VIO-yx-AEZ" id="dAb-Vf-tY4"/>
+                        <outlet property="strawberryStockLabel" destination="gNa-vj-My5" id="fqL-xk-rG4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -173,7 +180,7 @@
                         <barButtonItem key="leftBarButtonItem" id="9xo-Q7-3X4"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="hCs-xp-xeS">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="DUy-Pq-9v6">
-                                <rect key="frame" x="-23" y="-15" width="95" height="30"/>
+                                <rect key="frame" x="313" y="7" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="닫기"/>
                             </button>
