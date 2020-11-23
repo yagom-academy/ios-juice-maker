@@ -42,8 +42,8 @@ class JuiceMaker {
         self.mangoStock = mangoStock
     }
     
-    func make(juiceName: Juice) {
-        switch juiceName {
+    func make(juice: Juice) {
+        switch juice {
         case .strawberryJuice:
             strawberryStock -= amountOfNeed.strawberryForStrawberryJuice
         case .bananaJuice:
@@ -63,7 +63,7 @@ class JuiceMaker {
         }
     }
 
-    func change(fruitStockName: inout Int, amount: Int) {
-        fruitStockName += amount
+    func manage(fruitStock: inout Int, amount: Int) {
+        fruitStock += amount
     }
 }
