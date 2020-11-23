@@ -35,8 +35,8 @@ struct JuiceMaker {
         fruitType.updateStockAmount(reducing: amount)
     }
     
-    func checkCurrentStockAmount(of fruitType: Fruit) -> Int {
-        return fruitType.currentStockAmount()
+    func checkStockAmount(of fruitType: Fruit) -> Int {
+        return fruitType.stockAmount()
     }
     
     mutating func makeJuice(of order: JuiceMenu) {
@@ -64,33 +64,33 @@ struct JuiceMaker {
     func isAvailableMaking(juice: JuiceMenu) -> Bool {
         switch juice {
         case .strawberryJuice:
-            guard checkCurrentStockAmount(of: strawberry) >= 16 else {
+            guard checkStockAmount(of: strawberry) >= 16 else {
                 return false
             }
         case .bananaJuice:
-            guard checkCurrentStockAmount(of: banana) >= 2 else {
+            guard checkStockAmount(of: banana) >= 2 else {
                 return false
             }
         case .ddalbaJuice:
-            guard checkCurrentStockAmount(of: strawberry) >= 10,
-                  checkCurrentStockAmount(of: banana) >= 1 else {
+            guard checkStockAmount(of: strawberry) >= 10,
+                  checkStockAmount(of: banana) >= 1 else {
                 return false
             }
         case .kiwiJuice:
-            guard checkCurrentStockAmount(of: kiwi) >= 3 else {
+            guard checkStockAmount(of: kiwi) >= 3 else {
                 return false
             }
         case .mangoJuice:
-            guard checkCurrentStockAmount(of: mango) >= 3 else {
+            guard checkStockAmount(of: mango) >= 3 else {
                 return false
             }
         case .mangoKiwiJuice:
-            guard checkCurrentStockAmount(of: mango) >= 2,
-                  checkCurrentStockAmount(of: kiwi) >= 1 else {
+            guard checkStockAmount(of: mango) >= 2,
+                  checkStockAmount(of: kiwi) >= 1 else {
                 return false
             }
         case .pineappleJuice:
-            guard checkCurrentStockAmount(of: pineapple) >= 2 else {
+            guard checkStockAmount(of: pineapple) >= 2 else {
                 return false
             }
         }
@@ -99,6 +99,10 @@ struct JuiceMaker {
     
     func makeSuccessMessage(of menu: JuiceMenu) -> String {
         return "\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)"
+    }
+    
+    func makeFailMessage() -> String {
+        return "재료가 모자라요. 재고를 수정할까요?"
     }
 }
 

@@ -64,27 +64,28 @@ class ViewController: UIViewController {
         }
         
         guard juiceMaker.isAvailableMaking(juice: orderedMenu) else {
-            showFailedToOrderAlert()
+            let alertMessage = juiceMaker.makeFailMessage()
+            showFailedAlert(by: alertMessage)
             return
         }
         
         juiceMaker.makeJuice(of: orderedMenu)
         
         let alertMessage = juiceMaker.makeSuccessMessage(of: orderedMenu)
-        showSuccessAlert(of: alertMessage)
+        showSuccessAlert(by: alertMessage)
         
-        updateStockStatusAfterMaking(juice: orderedMenu)
+        updateStockStatusAfterMaking(order: orderedMenu)
 
         return
     }
 }
 extension ViewController {
     private func initializeStockLabel() {
-        strawberryCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.strawberry)
-        bananaCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.banana)
-        pineappleCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.pineapple)
-        kiwiCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.kiwi)
-        mangoCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.mango)
+        strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
+        bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
+        pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.pineapple)
+        kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
+        mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
     }
     
     private func initializeMenuOrder() {
@@ -97,29 +98,30 @@ extension ViewController {
         menuOrder[mangoOrderButton] = .mangoJuice
     }
 
-    private func updateStockStatusAfterMaking(juice order: JuiceMenu) {
+    private func updateStockStatusAfterMaking(order: JuiceMenu) {
         switch order {
         case .ddalbaJuice:
-            strawberryCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.strawberry)
-            bananaCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.banana)
+            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
+            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
         case .mangoKiwiJuice:
-            mangoCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.mango)
-            kiwiCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.kiwi)
+            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
+            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
         case .strawberryJuice:
-            strawberryCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.strawberry)
+            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
         case .bananaJuice:
-            bananaCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.banana)
+            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
         case .pineappleJuice:
-            pineappleCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.pineapple)
+            pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.pineapple)
         case .mangoJuice:
-            mangoCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.mango)
+            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
         case .kiwiJuice:
-            kiwiCount = juiceMaker.checkCurrentStockAmount(of: juiceMaker.kiwi)
+            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
         }
     }
     
-    private func showSuccessAlert(of message: String) {
+    private func showSuccessAlert(by message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         
         alert.addAction(okAction)
@@ -127,16 +129,16 @@ extension ViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func showFailedToOrderAlert() {
-        let failedMessage = "재료가 모자라요. 재고를 수정할까요?"
-        let alert = UIAlertController(title: nil, message: failedMessage, preferredStyle: .alert)
-        let notChangeStockAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
-        let changeStockAction = UIAlertAction(title: "네", style: .default) { action in
+    private func showFailedAlert(by message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "네", style: .default) { action in
             self.presentModifyingStockView()
         }
         
-        alert.addAction(notChangeStockAction)
-        alert.addAction(changeStockAction)
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
         
         present(alert, animated: true, completion: nil)
         

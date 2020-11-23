@@ -11,23 +11,23 @@ class Fruit {
     let name: String
     private var variationOfStockAmount: Int {
         willSet(newValue) {
-            self.currentStock += newValue
+            self.stock += newValue
         }
     }
-    private var currentStock: Int
+    private var stock: Int
     
     init(name: String) {
         self.name = name
         self.variationOfStockAmount = 0
-        currentStock = 0
+        stock = 0
     }
     
-    func currentStockAmount() -> Int {
-        return self.currentStock
+    func stockAmount() -> Int {
+        return self.stock
     }
     
     func updateStockAmount(reducing value: Int) {
-        guard currentStock - value >= 0 else {
+        guard stock - value >= 0 else {
             return
         }
         self.variationOfStockAmount = -value
