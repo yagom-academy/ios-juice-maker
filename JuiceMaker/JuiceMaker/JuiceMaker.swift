@@ -1,34 +1,5 @@
 import Foundation
 
-/*
-enum KindOfFruit {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case mango
-}
- */
-
-/*
-enum JuiceMenu {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case mango
-    case strawberryAndBanana
-    case mangoAndKiwi
-}
- */
-
-/*
-enum makeJuiceResult {
-    case success
-    case fail
-}
- */
-
 fileprivate struct Fruit {
     fileprivate enum Name {
         case strawberry
