@@ -160,7 +160,7 @@ class JuiceMaker {
             return
         }
         stockManager.useStrawberryBananaJuiceIngredients()
-        messenger.printSuccessMade(juice: "딸기바나나 쥬스")
+        messenger.printSuccessMade(juice: Menu.strawberryBananaJuice.rawValue)
         
     }
     
@@ -170,7 +170,7 @@ class JuiceMaker {
             return
         }
         stockManager.useeBananaJuiceIngredients()
-        messenger.printSuccessMade(juice: "바나나 쥬스")
+        messenger.printSuccessMade(juice: Menu.bananaJuice.rawValue)
     }
     
     func makeKiwiJuice() {
@@ -179,7 +179,7 @@ class JuiceMaker {
             return
         }
         stockManager.useKiwiJuiceIngredients()
-        messenger.printSuccessMade(juice: "키위 쥬스")
+        messenger.printSuccessMade(juice: Menu.kiwiJuice.rawValue)
     }
     
     func makePineappleJuice() {
@@ -188,7 +188,7 @@ class JuiceMaker {
             return
         }
         stockManager.usePineappleJuiceIngredients()
-        messenger.printSuccessMade(juice: "파인애플 쥬스")
+        messenger.printSuccessMade(juice: Menu.pineappleJuice.rawValue)
     }
     
     func makeMangoJuice() {
@@ -197,7 +197,7 @@ class JuiceMaker {
             return
         }
         stockManager.useMangoJuiceIngredients()
-        messenger.printSuccessMade(juice: "망고 쥬스")
+        messenger.printSuccessMade(juice: Menu.mangoJuice.rawValue)
     }
     
     func makeMangoKiwiJuice() {
@@ -206,7 +206,7 @@ class JuiceMaker {
             return
         }
         stockManager.useMangoKiwiJuiceIngredients()
-        messenger.printSuccessMade(juice: "망고키위 쥬스")
+        messenger.printSuccessMade(juice: Menu.mangoKiwiJuice.rawValue)
     }
     
 }
