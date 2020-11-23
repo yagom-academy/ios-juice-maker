@@ -11,6 +11,7 @@ import Foundation
 enum JuiceMakerError: Error {
     case outOfStock
     case unknownFruit
+    case unknownRecipe
 }
 
 enum JuiceName: String {
@@ -56,17 +57,16 @@ class Fruit {
 typealias recipe = [FruitName: UInt]
 
 struct Recipe {
-    let strawberryJuice: recipe = [.strawberry: 16]
-    let bananaJuice: recipe = [.banana: 2]
-    let mangoJuice: recipe = [.mango: 3]
-    let kiwiJuice: recipe = [.kiwi: 3]
-    let pineappleJuice: recipe = [.pineapple: 2]
-    let strawberryBananaJuice: recipe = [.strawberry: 10, .banana: 1]
-    let mangoKiwiJuice: recipe = [.mango: 2, .kiwi: 1]
+    let name: JuiceName
+    var recipe: recipe
+    
+    init(name: JuiceName, recipe: recipe) {
+        self.name = name
+        self.recipe = recipe
+    }
 }
 
 class JuiceMaker {
-    let recipes = Recipe()
     private(set) var fruits: [FruitName: Fruit] = [
         .strawberry: Fruit(name: .strawberry),
         .banana: Fruit(name: .banana),
@@ -74,21 +74,33 @@ class JuiceMaker {
         .mango: Fruit(name: .mango),
         .pineapple: Fruit(name: .pineapple)
     ]
-  
+ 
+    private(set) var recipes: [JuiceName: Recipe] = [
+        .strawberryJuice: Recipe(name: .strawberryJuice, recipe: [.strawberry: 16]),
+        .bananaJuice: Recipe(name: .bananaJuice, recipe: [.banana: 2]),
+        .mangoJuice: Recipe(name: .mangoJuice, recipe: [.mango: 3]),
+        .kiwiJuice: Recipe(name: .kiwiJuice, recipe: [.kiwi: 3]),
+        .pineappleJuice: Recipe(name: .pineappleJuice, recipe: [.pineapple: 2]),
+        .strawberryBananaJuice: Recipe(name: .strawberryBananaJuice, recipe: [.strawberry: 10, .banana: 1]),
+        .mangoKiwiJuice: Recipe(name: .mangoKiwiJuice, recipe: [.mango: 2, .kiwi: 1])
+    ]
+    
     func make(juice: JuiceName) throws {
-        let recipe = recipes.strawberryJuice
+        guard let selectedjuice = recipes[juice] else {
+            throw JuiceMakerError.unknownRecipe
+        }
         
-        for (neededfruit, neededAmount) in recipe {
+        for (neededfruit, neededAmount) in selectedjuice.recipe {
             guard let neededFruit = fruits[neededfruit] else {
                 throw JuiceMakerError.unknownFruit
             }
-            
+
             guard neededFruit.isEnough(amount: neededAmount) else {
                 throw JuiceMakerError.outOfStock
             }
         }
         
-        for (neededfruit, neededAmount) in recipe {
+        for (neededfruit, neededAmount) in selectedjuice.recipe {
             guard let neededFruit = fruits[neededfruit] else {
                 throw JuiceMakerError.unknownFruit
             }
