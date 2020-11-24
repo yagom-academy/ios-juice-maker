@@ -387,6 +387,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xfD-Ac-D8I"/>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="JVV-yF-msy" id="XfW-yj-vZF"/>
+                        <outlet property="kiwiStockLabel" destination="UmW-2F-eLt" id="JWq-FF-Cie"/>
+                        <outlet property="mangoStockLabel" destination="Yvf-TR-eUY" id="y1K-su-GJh"/>
+                        <outlet property="pineappleStockLabel" destination="hqt-2r-0j2" id="b6Y-Lc-qTx"/>
+                        <outlet property="strawberryStockLabel" destination="p19-Y5-LNo" id="WD8-9s-axA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNk-Qs-5f6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
