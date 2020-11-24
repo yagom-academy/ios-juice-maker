@@ -1,24 +1,306 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FLv-SK-Ee4">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rhk-Y1-Z9X">
+                                <rect key="frame" x="64" y="74" width="768" height="122"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdA-xI-boN">
+                                        <rect key="frame" x="0.0" y="0.0" width="153.5" height="122"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTj-xx-l9W">
+                                                <rect key="frame" x="44.5" y="0.0" width="65" height="72"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtF-tq-Ijb">
+                                                <rect key="frame" x="34.5" y="92" width="85" height="30"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="7SV-FO-S83"/>
+                                                    <constraint firstAttribute="height" constant="30" id="KIZ-KP-2jQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="CTj-xx-l9W" firstAttribute="centerX" secondItem="wdA-xI-boN" secondAttribute="centerX" id="VEA-P4-Gvj"/>
+                                            <constraint firstItem="VtF-tq-Ijb" firstAttribute="top" secondItem="CTj-xx-l9W" secondAttribute="bottom" constant="20" id="arp-tb-YBK"/>
+                                            <constraint firstItem="CTj-xx-l9W" firstAttribute="top" secondItem="wdA-xI-boN" secondAttribute="top" id="mI8-GS-GO5"/>
+                                            <constraint firstItem="VtF-tq-Ijb" firstAttribute="centerX" secondItem="CTj-xx-l9W" secondAttribute="centerX" id="vD6-0t-118"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R23-pq-dpM">
+                                        <rect key="frame" x="153.5" y="0.0" width="153.5" height="122"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls5-KW-i6M">
+                                                <rect key="frame" x="44.5" y="0.0" width="65" height="72"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYW-ST-QUw">
+                                                <rect key="frame" x="34.5" y="92" width="85" height="30"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="Y0d-Y6-ytW"/>
+                                                    <constraint firstAttribute="height" constant="30" id="p1p-Ph-Fxd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="pYW-ST-QUw" firstAttribute="top" secondItem="ls5-KW-i6M" secondAttribute="bottom" constant="20" id="1NM-XO-FCt"/>
+                                            <constraint firstItem="pYW-ST-QUw" firstAttribute="centerX" secondItem="ls5-KW-i6M" secondAttribute="centerX" id="YG5-rj-5xV"/>
+                                            <constraint firstItem="ls5-KW-i6M" firstAttribute="centerX" secondItem="R23-pq-dpM" secondAttribute="centerX" id="eMz-43-I2f"/>
+                                            <constraint firstItem="ls5-KW-i6M" firstAttribute="top" secondItem="R23-pq-dpM" secondAttribute="top" id="gWz-YE-eSm"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhI-PR-Fx2">
+                                        <rect key="frame" x="307" y="0.0" width="154" height="122"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzd-Rm-wVX">
+                                                <rect key="frame" x="44.5" y="0.0" width="65" height="72"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sde-eu-yNH">
+                                                <rect key="frame" x="34.5" y="92" width="85" height="30"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="HdY-GM-99s"/>
+                                                    <constraint firstAttribute="width" constant="85" id="bcT-IH-Zss"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Bzd-Rm-wVX" firstAttribute="top" secondItem="zhI-PR-Fx2" secondAttribute="top" id="6Ds-R4-LzR"/>
+                                            <constraint firstItem="Sde-eu-yNH" firstAttribute="centerX" secondItem="Bzd-Rm-wVX" secondAttribute="centerX" id="8sZ-ja-doS"/>
+                                            <constraint firstItem="Bzd-Rm-wVX" firstAttribute="centerX" secondItem="zhI-PR-Fx2" secondAttribute="centerX" id="Kwr-cJ-Tiu"/>
+                                            <constraint firstItem="Sde-eu-yNH" firstAttribute="top" secondItem="Bzd-Rm-wVX" secondAttribute="bottom" constant="20" id="elM-hV-rOw"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8E3-pJ-xbH">
+                                        <rect key="frame" x="461" y="0.0" width="153.5" height="122"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kV-XQ-NXJ">
+                                                <rect key="frame" x="44" y="0.0" width="65" height="72"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNr-Mu-r2T">
+                                                <rect key="frame" x="34" y="92" width="85" height="30"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="3mP-3B-3Xw"/>
+                                                    <constraint firstAttribute="height" constant="30" id="6LW-si-rub"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="ZNr-Mu-r2T" firstAttribute="centerX" secondItem="9kV-XQ-NXJ" secondAttribute="centerX" id="3qD-3v-8p5"/>
+                                            <constraint firstItem="9kV-XQ-NXJ" firstAttribute="top" secondItem="8E3-pJ-xbH" secondAttribute="top" id="JDz-OO-TbC"/>
+                                            <constraint firstItem="ZNr-Mu-r2T" firstAttribute="top" secondItem="9kV-XQ-NXJ" secondAttribute="bottom" constant="20" id="SEs-im-gEg"/>
+                                            <constraint firstItem="9kV-XQ-NXJ" firstAttribute="centerX" secondItem="8E3-pJ-xbH" secondAttribute="centerX" id="aCW-l4-daJ"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSn-tD-5WB">
+                                        <rect key="frame" x="614.5" y="0.0" width="153.5" height="122"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBU-eT-e2S">
+                                                <rect key="frame" x="44" y="0.0" width="65" height="72"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEg-ge-80W">
+                                                <rect key="frame" x="34" y="92" width="85" height="30"/>
+                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="2Kb-N1-gDx"/>
+                                                    <constraint firstAttribute="width" constant="85" id="3CM-T9-hue"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="GBU-eT-e2S" firstAttribute="centerX" secondItem="bSn-tD-5WB" secondAttribute="centerX" id="2wb-yy-0GS"/>
+                                            <constraint firstItem="GBU-eT-e2S" firstAttribute="top" secondItem="bSn-tD-5WB" secondAttribute="top" id="B3b-gu-n7D"/>
+                                            <constraint firstItem="eEg-ge-80W" firstAttribute="centerX" secondItem="GBU-eT-e2S" secondAttribute="centerX" id="Jqi-Vn-p5J"/>
+                                            <constraint firstItem="eEg-ge-80W" firstAttribute="top" secondItem="GBU-eT-e2S" secondAttribute="bottom" constant="20" id="cAi-lW-OlZ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="122" id="l7N-oo-rC7"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="7LO-It-r2G">
+                                <rect key="frame" x="64" y="256" width="609.5" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjz-bC-RJI">
+                                        <rect key="frame" x="0.0" y="0.0" width="292" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="reK-xa-EII"/>
+                                        </constraints>
+                                        <state key="normal" title="딸바쥬스 주문">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM9-kH-VPp">
+                                        <rect key="frame" x="317" y="0.0" width="292.5" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="f9Q-Nn-GWT"/>
+                                        </constraints>
+                                        <state key="normal" title="망키쥬스 주문">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="IYa-EQ-fAm">
+                                <rect key="frame" x="64" y="311" width="768" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu3-AF-Cbm">
+                                        <rect key="frame" x="0.0" y="0.0" width="133.5" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="6wM-N9-ocy"/>
+                                        </constraints>
+                                        <state key="normal" title="딸기쥬스 주문">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7d-VF-QYq">
+                                        <rect key="frame" x="158.5" y="0.0" width="133.5" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="lfg-Vy-o3k"/>
+                                        </constraints>
+                                        <state key="normal" title="바나나쥬스 주문">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dn1-kQ-bIL">
+                                        <rect key="frame" x="317" y="0.0" width="134" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="e6W-fW-Qsk"/>
+                                        </constraints>
+                                        <state key="normal" title="파인애플쥬스 주문">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyx-As-l3U">
+                                        <rect key="frame" x="476" y="0.0" width="133.5" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="GHV-Tw-Ze1"/>
+                                        </constraints>
+                                        <state key="normal" title="키위쥬스 주문">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asr-1h-86T">
+                                        <rect key="frame" x="634.5" y="0.0" width="133.5" height="30"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="FZ5-LW-lct"/>
+                                        </constraints>
+                                        <state key="normal" title="망고쥬스 주문">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IYa-EQ-fAm" firstAttribute="top" secondItem="7LO-It-r2G" secondAttribute="bottom" constant="25" id="5lg-vU-iYn"/>
+                            <constraint firstItem="IYa-EQ-fAm" firstAttribute="leading" secondItem="7LO-It-r2G" secondAttribute="leading" id="D8I-lO-RhL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rhk-Y1-Z9X" secondAttribute="trailing" constant="20" id="EhN-YK-TJw"/>
+                            <constraint firstItem="7LO-It-r2G" firstAttribute="top" secondItem="rhk-Y1-Z9X" secondAttribute="bottom" constant="60" id="JlQ-d2-Ghr"/>
+                            <constraint firstItem="rhk-Y1-Z9X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Q1f-Jl-Gvu"/>
+                            <constraint firstItem="rhk-Y1-Z9X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="QzO-tq-3P2"/>
+                            <constraint firstItem="IYa-EQ-fAm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dR5-gB-vGO"/>
+                            <constraint firstItem="xyx-As-l3U" firstAttribute="trailing" secondItem="sM9-kH-VPp" secondAttribute="trailing" id="fXS-uE-BHe"/>
+                            <constraint firstItem="7LO-It-r2G" firstAttribute="leading" secondItem="rhk-Y1-Z9X" secondAttribute="leading" id="ss6-8a-GQQ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Lpq-SD-yTr">
+                        <barButtonItem key="rightBarButtonItem" title="재고 수정" id="Fjt-5N-c7f"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="546.42857142857144" y="101.44927536231884"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="c2X-zJ-MY3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FLv-SK-Ee4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bsP-Ci-XNo">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VmV-MO-bYd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hni-ju-Da0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-196.20535714285714" y="101.44927536231884"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
