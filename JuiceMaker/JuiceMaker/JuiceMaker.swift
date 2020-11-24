@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum Message: String {
+    case success = "쥬스 나왔습니다. 맛있게 드세요."
+    case outOfStock = "재고가 모자라요. 재고를 수정할까요?"
+}
+
 enum JuiceMakerError: Error {
     case outOfStock
     case unknownFruit

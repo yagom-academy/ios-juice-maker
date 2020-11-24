@@ -14,7 +14,7 @@ class StockViewController: UIViewController {
     }
 
     @IBAction func touchUpDismissPageButton() {
-        guard let stockView = self.presentingViewController else { return }
+//        guard let stockView = self.presentingViewController else { return }
         
         self.dismiss(animated: true, completion: nil)
     }
