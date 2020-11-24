@@ -33,18 +33,25 @@ class ViewController: UIViewController {
     }
 
     @IBAction func juiceOrderButton1(_ sender: UIButton) {
+        makeJuice(.strawberryJuice)
     }
     @IBAction func juiceOrderButton2(_ sender: UIButton) {
+        makeJuice(.bananaJuice)
     }
     @IBAction func juiceOrderButton3(_ sender: UIButton) {
+        makeJuice(.pineappleJuice)
     }
     @IBAction func juiceOrderButton4(_ sender: UIButton) {
+        makeJuice(.kiwiJuice)
     }
     @IBAction func juiceOrderButton5(_ sender: UIButton) {
+        makeJuice(.mangoJuice)
     }
     @IBAction func juiceOrderButton6(_ sender: UIButton) {
+        makeJuice(.strawberryAndBananaJuice)
     }
     @IBAction func juiceOrderButton7(_ sender: UIButton) {
+        makeJuice(.mangoAndKiwiJuice)
     }
 }
 
