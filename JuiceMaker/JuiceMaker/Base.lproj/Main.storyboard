@@ -205,6 +205,18 @@
                             <constraint firstItem="not-HB-jyy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="44" id="QxD-pz-ZbV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="fruitImageView1" destination="Dqz-YT-JgG" id="44T-vW-40Y"/>
+                        <outlet property="fruitImageView2" destination="pbs-YK-1ts" id="xDK-QT-VXJ"/>
+                        <outlet property="fruitImageView3" destination="dXP-i0-yzB" id="aS3-TQ-hWS"/>
+                        <outlet property="fruitImageView4" destination="fSz-p1-sbJ" id="qdC-hK-0nS"/>
+                        <outlet property="fruitImageView5" destination="IuR-5i-SSy" id="cBp-v5-x1G"/>
+                        <outlet property="fruitStockLabel1" destination="Pyx-J5-Ewd" id="brO-O9-ol6"/>
+                        <outlet property="fruitStockLabel2" destination="Agv-Z0-B0Z" id="KdX-kk-xHn"/>
+                        <outlet property="fruitStockLabel3" destination="REO-kL-kRN" id="Bew-dZ-bN8"/>
+                        <outlet property="fruitStockLabel4" destination="JMs-PY-lMV" id="xR8-5u-Edi"/>
+                        <outlet property="fruitStockLabel5" destination="sjv-Ub-Due" id="lVg-x3-lrB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
