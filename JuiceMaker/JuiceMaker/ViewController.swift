@@ -30,6 +30,9 @@ class ViewController: UIViewController {
         updateFruitStockLabel(fruit: .pineapple)
         updateFruitStockLabel(fruit: .kiwi)
         updateFruitStockLabel(fruit: .mango)
+        
+        
+        
     }
 
     @IBAction func juiceOrderButton1(_ sender: UIButton) {
