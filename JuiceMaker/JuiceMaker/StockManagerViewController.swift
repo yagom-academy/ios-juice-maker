@@ -7,6 +7,6 @@ class StockManagerViewController: UIViewController {
     }
     
     @IBAction func pressedCloseButton(_ sender: UIButton) {
-        
+        navigationController?.popViewController(animated: true)
     }
 }
