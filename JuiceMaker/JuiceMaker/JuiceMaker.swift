@@ -5,7 +5,6 @@
 //  STEP2
 
 import Foundation
-import UIKit
 
 enum Fruit {
     case strawberry
