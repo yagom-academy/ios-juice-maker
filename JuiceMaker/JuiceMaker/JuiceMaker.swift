@@ -5,6 +5,7 @@
 //  STEP2
 
 import Foundation
+import UIKit
 
 enum Fruit {
     case strawberry
@@ -43,6 +44,14 @@ class JuiceMaker {
         case false:
             print("재료가 모자라요. 재고를 수정할까요?")
         }
+    }
+    
+    func showPosibleAlert(order: Juice) {
+        let alert = UIAlertController(title: "\(order) 나왔습니다!", message: "맛있게 드세요 :)", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+        alert.addAction(OKAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func addFruit(_ fruit: Fruit) {
