@@ -25,44 +25,6 @@ enum Juice: String {
     case mangoAndKiwiJuice = "망키쥬스"
 }
 
-/// 쥬스 메이커 타입 
-class JuiceMaker {
-    var fruitStock: FruitStock
-    
-    init(initialFruitNumber: Int) {
-        fruitStock = FruitStock(initialFruitNumber: initialFruitNumber)
-    }
-    init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
-        fruitStock = FruitStock(strawberry: strawberry, banana: banana, pineapple: pineapple, kiwi: kiwi, mango: mango)
-    }
-
-    func makeJuice(_ order: Juice) {
-        switch fruitStock.isFruitEnough(order: order) {
-        case true:
-            fruitStock.useFruit(order: order)
-            print("\(order) 나왔습니다! 맛있게 드세요 :)")
-        case false:
-            print("재료가 모자라요. 재고를 수정할까요?")
-        }
-    }
-    
-    func showPosibleAlert(order: Juice) {
-        let alert = UIAlertController(title: "\(order) 나왔습니다!", message: "맛있게 드세요 :)", preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-
-        alert.addAction(OKAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func addFruit(_ fruit: Fruit) {
-        fruitStock.addOneFruit(fruit)
-    }
-    
-    func minusFruit(_ fruit: Fruit) {
-        fruitStock.minusOneFruit(fruit)
-    }
-}
-
 // 재고 관리 구조체 -> 클래스
 class FruitStock {
     // 과일 재고
@@ -89,7 +51,7 @@ class FruitStock {
     }
     
     // 과일 재고 추가/제거
-    fileprivate func addOneFruit(_ fruit: Fruit) {
+    func addOneFruit(_ fruit: Fruit) {
         switch fruit {
         case .strawberry:
             strawberry += 1
@@ -104,7 +66,7 @@ class FruitStock {
         }
     }
     
-    fileprivate func minusOneFruit(_ fruit: Fruit) {
+    func minusOneFruit(_ fruit: Fruit) {
         switch fruit {
         case .strawberry:
             strawberry -= 1
@@ -139,7 +101,7 @@ class FruitStock {
         }
     }
     
-    fileprivate func useFruit(order: Juice) {
+    func useFruit(order: Juice) {
         switch order {
         case .strawberryJuice:
             strawberry -= 16
