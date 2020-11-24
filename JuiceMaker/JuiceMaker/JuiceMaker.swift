@@ -10,47 +10,88 @@ enum Fruit: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-enum Juice: String {
-    case strawbana, mangki, strawberry, banana, pineapple, kiwi, mango
-    
-    var description: String {
-        switch self {
-        case .strawbana: return "딸바쥬스"
-        case .mangki: return "망키쥬스"
-        case .strawberry: return "딸기쥬스"
-        case .banana: return "바나나쥬스"
-        case .pineapple: return "파인애플쥬스"
-        case .kiwi: return "키위쥬스"
-        case .mango: return "망고쥬스"
-        default: fatalError("Unexpected juice: \(self)")
+protocol MakerRecipe {
+    associatedtype Juice: MakerJuice
+}
+
+protocol MakerJuice {
+    var description: String { get }
+    var ingredients: [Fruit: Int] { get }
+}
+
+class YagomRecipe: MakerRecipe {
+    enum Juice: MakerJuice {
+        case strawbana, mangki, strawberry, banana, pineapple, kiwi, mango
+        
+        var description: String {
+            switch self {
+            case .strawbana: return "딸바쥬스"
+            case .mangki: return "망키쥬스"
+            case .strawberry: return "딸기쥬스"
+            case .banana: return "바나나쥬스"
+            case .pineapple: return "파인애플쥬스"
+            case .kiwi: return "키위쥬스"
+            case .mango: return "망고쥬스"
+            }
         }
-    }
-    
-    var ingredients: [Fruit: Int] {
-        switch self {
-        case .strawbana: return [.strawberry: 10, .banana: 1]
-        case .mangki: return [.mango: 2, .kiwi: 1]
-        case .strawberry: return [.strawberry: 16]
-        case .banana: return [.banana: 2]
-        case .pineapple: return [.pineapple: 2]
-        case .kiwi: return [.kiwi: 3]
-        case .mango: return [.mango: 3]
-        default: fatalError("Unexpected juice: \(self)")
+        
+        var ingredients: [Fruit: Int] {
+            switch self {
+            case .strawbana: return [.strawberry: 10, .banana: 1]
+            case .mangki: return [.mango: 2, .kiwi: 1]
+            case .strawberry: return [.strawberry: 16]
+            case .banana: return [.banana: 2]
+            case .pineapple: return [.pineapple: 2]
+            case .kiwi: return [.kiwi: 3]
+            case .mango: return [.mango: 3]
+            }
         }
     }
 }
 
-class JuiceMaker {
-    let OUT_OF_STOCK: Int = 0
+class ZziruruRecipe: MakerRecipe {
+    enum Juice: MakerJuice {
+        case strawbana, mangki, strawberry, banana, pineapple, kiwi, mango
+        
+        var description: String {
+            switch self {
+            case .strawbana: return "딸바쥬스"
+            case .mangki: return "망키쥬스"
+            case .strawberry: return "딸기쥬스"
+            case .banana: return "바나나쥬스"
+            case .pineapple: return "파인애플쥬스"
+            case .kiwi: return "키위쥬스"
+            case .mango: return "망고쥬스"
+            }
+        }
+        
+        var ingredients: [Fruit: Int] {
+            switch self {
+            case .strawbana: return [.strawberry: 10, .banana: 1]
+            case .mangki: return [.mango: 2, .kiwi: 1]
+            case .strawberry: return [.strawberry: 16]
+            case .banana: return [.banana: 2]
+            case .pineapple: return [.pineapple: 2]
+            case .kiwi: return [.kiwi: 3]
+            case .mango: return [.mango: 3]
+            }
+        }
+    }
+}
+
+class JuiceMaker<T: MakerRecipe> {
+    private let outOfStock: Int = 0
     private var stock: [Fruit: Int] = [:]
+    private var recipe: T
     
-    init(stockCount: Int) {
+    init(stockCount: Int, recipe: T) {
         for fruit in Fruit.allCases {
             stock[fruit] = stockCount
         }
+        self.recipe = recipe
     }
     
-    func make(juice: Juice) {
+    func make(juice: T.Juice) {
         if isEnough(ingredients: juice.ingredients) {
             for (fruit, count) in juice.ingredients {
                 guard let stockCount = stock[fruit] else { return }
@@ -71,7 +112,7 @@ class JuiceMaker {
     }
     
     func stock(of fruit: Fruit) -> Int {
-        return stock[fruit] ?? OUT_OF_STOCK
+        return stock[fruit] ?? outOfStock
     }
     
     private func isEnough(ingredients: [Fruit: Int]) -> Bool {
@@ -83,4 +124,4 @@ class JuiceMaker {
     }
 }
 
-let maker = JuiceMaker(stockCount: 10)
+let maker = JuiceMaker(stockCount: 10, recipe: YagomRecipe())
