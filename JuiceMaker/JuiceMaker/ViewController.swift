@@ -31,12 +31,26 @@ class ViewController: UIViewController {
         mangoStockLabel.text = String(stock)
     }
     
-    @IBAction func pressedStrawberryAndBananaJuiceButton(_ sender: UIButton) {
+    func orderJuice() {
         if juiceMaker.makeJuice(memu: .strawberryAndBanana) == .success {
             let alert = UIAlertController(title: "딸바쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: .default))
             present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
+            alert.addAction(UIAlertAction(title: "예", style: .default) { _ in
+                guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") else {
+                    return
+                }
+                self.navigationController?.pushViewController(stockViewController, animated: true)
+            })
+            present(alert, animated: true)
         }
+    }
+    
+    @IBAction func pressedStrawberryAndBananaJuiceButton(_ sender: UIButton) {
+        orderJuice()
     }
     
     @IBAction func pressedMangoAndKiwiJuiceButton(_ sender: UIButton) {
