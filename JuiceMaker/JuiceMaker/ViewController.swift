@@ -54,6 +54,7 @@ class ViewController: UIViewController {
         makeJuice(.mangoAndKiwiJuice)
     }
     @IBAction func manageStockButton(_ sender: UIButton) {
+        moveToManageStockVC()
     }
 }
 
@@ -69,7 +70,10 @@ extension ViewController {
     
     func showFailAlert(order: Juice) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let OKAction = UIAlertAction(title: "예", style: .default) {
+            (UIAlertAction) in
+            self.moveToManageStockVC()
+        }
         let cancleAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         
         alert.addAction(OKAction)
