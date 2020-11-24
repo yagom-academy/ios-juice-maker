@@ -143,6 +143,9 @@
                                 <state key="normal" title="딸기쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="juiceOrderButton1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fah-vY-DpH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Y3q-a5-yZH">
                                 <rect key="frame" x="222" y="318" width="100" height="40"/>
@@ -152,6 +155,9 @@
                                 <state key="normal" title="바나나쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="juiceOrderButton2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H0C-ls-S7c"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vh4-CN-xDr">
                                 <rect key="frame" x="398" y="318" width="100" height="40"/>
@@ -161,6 +167,9 @@
                                 <state key="normal" title="파인애플쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="juiceOrderButton3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vyh-6x-3sm"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eIF-Zi-30v">
                                 <rect key="frame" x="576" y="318" width="100" height="40"/>
@@ -170,6 +179,9 @@
                                 <state key="normal" title="키위쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="juiceOrderButton4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gTB-3J-esQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Mmx-q7-4jt">
                                 <rect key="frame" x="744" y="318" width="100" height="40"/>
@@ -179,6 +191,9 @@
                                 <state key="normal" title="망고쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="juiceOrderButton5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X9G-M3-8IW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8O0-qR-s4C">
                                 <rect key="frame" x="66" y="259" width="256" height="40"/>
@@ -187,6 +202,9 @@
                                 <state key="normal" title="딸바쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="juiceOrderButton6:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1aI-H8-hfu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb6-5W-yqd">
                                 <rect key="frame" x="398" y="259" width="256" height="40"/>
@@ -195,6 +213,9 @@
                                 <state key="normal" title="망키쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="juiceOrderButton7:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eHu-m3-1Fp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

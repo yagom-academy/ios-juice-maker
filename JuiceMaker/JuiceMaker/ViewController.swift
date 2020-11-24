@@ -25,6 +25,20 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func juiceOrderButton1(_ sender: UIButton) {
+    }
+    @IBAction func juiceOrderButton2(_ sender: UIButton) {
+    }
+    @IBAction func juiceOrderButton3(_ sender: UIButton) {
+    }
+    @IBAction func juiceOrderButton4(_ sender: UIButton) {
+    }
+    @IBAction func juiceOrderButton5(_ sender: UIButton) {
+    }
+    @IBAction func juiceOrderButton6(_ sender: UIButton) {
+    }
+    @IBAction func juiceOrderButton7(_ sender: UIButton) {
+    }
 
 }
 
