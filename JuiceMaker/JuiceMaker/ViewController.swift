@@ -47,3 +47,13 @@ class ViewController: UIViewController {
     }
 }
 
+// alert 띄우기
+extension ViewController {
+    func showPosibleAlert(order: Juice) {
+        let alert = UIAlertController(title: nil, message: "\(order) 나왔습니다! 맛있게 드세요 :)", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+        alert.addAction(OKAction)
+        present(alert, animated: true, completion: nil)
+    }
+}
