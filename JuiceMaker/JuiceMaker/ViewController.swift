@@ -22,7 +22,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let fruitStock = FruitStock(initialFruitNumber: 10)
+        fruitStockLabel1.text = "\(fruitStock.strawberry)"
+        fruitStockLabel2.text = "\(fruitStock.banana)"
+        fruitStockLabel3.text = "\(fruitStock.pineapple)"
+        fruitStockLabel4.text = "\(fruitStock.kiwi)"
+        fruitStockLabel5.text = "\(fruitStock.mango)"
     }
 
     @IBAction func juiceOrderButton1(_ sender: UIButton) {
@@ -39,6 +45,5 @@ class ViewController: UIViewController {
     }
     @IBAction func juiceOrderButton7(_ sender: UIButton) {
     }
-
 }
 
