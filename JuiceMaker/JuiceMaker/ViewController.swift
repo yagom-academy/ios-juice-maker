@@ -92,6 +92,10 @@ class ViewController: UIViewController {
        }
    }
     
+    @IBAction func touchUpMoveToStockViewButton() {
+        moveToManageStockPage()
+    }
+    
     func showSuccessAlert(juice: JuiceName) {
         let message = juice.rawValue + successMessage
         let alert = UIAlertController(title: nil,
@@ -125,8 +129,10 @@ class ViewController: UIViewController {
     }
     
     func moveToManageStockPage() {
-        let manageStockViewControlloer = UINavigationController(rootViewController: StockViewController())
-        present(manageStockViewControlloer, animated: true, completion: nil)
+        let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController")
+        
+        stockViewController?.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        self.present(stockViewController!, animated: true, completion: nil)
     }
     
     func changeLabel() {
