@@ -13,69 +13,57 @@ enum Juice {
     case mangoKiwiJuice
 }
 
-enum Fruit {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+struct FruitAmountForJuice {
+    fileprivate let strawberryForStrawberryJuice: UInt = 16
+    fileprivate let bananaForBananaJuice: UInt = 2
+    fileprivate let pineappleForPineappleJuice: UInt = 2
+    fileprivate let kiwiForKiwiJuice: UInt = 3
+    fileprivate let mangoForMangoJuice: UInt = 3
+    fileprivate let strawberryForStrawberryBananaJuice: UInt = 10
+    fileprivate let bananaForStrawberryBananaJuice: UInt = 1
+    fileprivate let mangoForMangoKiwiJuice: UInt = 2
+    fileprivate let kiwiForMangoKiwiJuice: UInt = 1
 }
-
+       
 class JuiceMaker {
-    var strawberryStock: Int = 10
-    var bananaStock: Int = 10
-    var pineappleStock: Int = 10
-    var kiwiStock: Int = 10
-    var mangoStock: Int = 10
+    fileprivate(set) var strawberryStock: UInt
+    fileprivate(set) var bananaStock: UInt
+    fileprivate(set) var pineappleStock: UInt
+    fileprivate(set) var kiwiStock: UInt
+    fileprivate(set) var mangoStock: UInt
     
-    func makeJuice(_ juice: Juice) {
+    private var amountOfNeed = FruitAmountForJuice()
+    
+    init(strawberryStock: UInt, bananaStock: UInt, pineappleStock: UInt, kiwiStock: UInt, mangoStock: UInt) {
+        self.strawberryStock = strawberryStock
+        self.bananaStock = bananaStock
+        self.pineappleStock = pineappleStock
+        self.kiwiStock = kiwiStock
+        self.mangoStock = mangoStock
+    }
+    
+    func make(juice: Juice) {
         switch juice {
         case .strawberryJuice:
-            strawberryStock -= 3
+            strawberryStock -= amountOfNeed.strawberryForStrawberryJuice
         case .bananaJuice:
-            bananaStock -= 3
+            bananaStock -= amountOfNeed.bananaForBananaJuice
         case .pineappleJuice:
-            pineappleStock -= 3
+            pineappleStock -= amountOfNeed.pineappleForPineappleJuice
         case .kiwiJuice:
-            kiwiStock -= 3
+            kiwiStock -= amountOfNeed.kiwiForKiwiJuice
         case .mangoJuice:
-            mangoStock -= 3
+            mangoStock -= amountOfNeed.mangoForMangoJuice
         case .strawberryBananaJuice:
-            strawberryStock -= 10
-            bananaStock -= 1
+            strawberryStock -= amountOfNeed.strawberryForStrawberryBananaJuice
+            bananaStock -= amountOfNeed.bananaForStrawberryBananaJuice
         case .mangoKiwiJuice:
-            mangoStock -= 2
-            kiwiStock -= 1
+            mangoStock -= amountOfNeed.mangoForMangoKiwiJuice
+            kiwiStock -= amountOfNeed.kiwiForMangoKiwiJuice
         }
     }
-    
-    func addFruitStock(_ fruit: Fruit) {
-        switch fruit {
-        case .strawberry:
-            strawberryStock += 1
-        case .banana:
-            bananaStock += 1
-        case .pineapple:
-            pineappleStock += 1
-        case .kiwi:
-            kiwiStock += 1
-        case .mango:
-            mangoStock += 1
-        }
-    }
-    
-    func removeFruitStock(_ fruit: Fruit) {
-        switch fruit {
-        case .strawberry:
-            strawberryStock -= 1
-        case .banana:
-            bananaStock -= 1
-        case .pineapple:
-            pineappleStock -= 1
-        case .kiwi:
-            kiwiStock -= 1
-        case .mango:
-            mangoStock -= 1
-        }
+
+    func manage(fruitStock: inout Int, amount: Int) {
+        fruitStock += amount
     }
 }
