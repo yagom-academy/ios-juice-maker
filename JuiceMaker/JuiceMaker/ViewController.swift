@@ -31,8 +31,11 @@ class ViewController: UIViewController {
         updateFruitStockLabel(fruit: .kiwi)
         updateFruitStockLabel(fruit: .mango)
         
-        
-        
+        fruitImageView1.image = UIImage(named: "딸기")
+        fruitImageView2.image = UIImage(named: "바나나")
+        fruitImageView3.image = UIImage(named: "파인애플")
+        fruitImageView4.image = UIImage(named: "키위")
+        fruitImageView5.image = UIImage(named: "망고")
     }
 
     @IBAction func juiceOrderButton1(_ sender: UIButton) {
