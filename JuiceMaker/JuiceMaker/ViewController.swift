@@ -24,11 +24,11 @@ class ViewController: UIViewController {
     }
     
     func updateStockLabel() {
-        strawberryStockLabel.text = String(juiceMaker.fruitStock(name: .strawberry))
-        bananaStockLabel.text = String(juiceMaker.fruitStock(name: .banana))
-        pineappleStockLabel.text = String(juiceMaker.fruitStock(name: .pineapple))
-        kiwiStockLabel.text = String(juiceMaker.fruitStock(name: .kiwi))
-        mangoStockLabel.text = String(juiceMaker.fruitStock(name: .mango))
+        strawberryStockLabel.text = String(juiceMaker.fruitStock(name: .strawberry)) + "개"
+        bananaStockLabel.text = String(juiceMaker.fruitStock(name: .banana)) + "개"
+        pineappleStockLabel.text = String(juiceMaker.fruitStock(name: .pineapple)) + "개"
+        kiwiStockLabel.text = String(juiceMaker.fruitStock(name: .kiwi)) + "개"
+        mangoStockLabel.text = String(juiceMaker.fruitStock(name: .mango)) + "개"
     }
     
     func orderJuice(menu: JuiceMaker.JuiceMenu) {
