@@ -243,6 +243,57 @@
             </objects>
             <point key="canvasLocation" x="138.61607142857142" y="69.565217391304358"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="n5x-Gz-47b">
+            <objects>
+                <viewController id="NKI-kU-Rst" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d38-Jz-XTK">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgI-ML-Xhx">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 관리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbN-ef-czB">
+                                        <rect key="frame" x="383.5" y="23" width="129" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="neI-1U-I50">
+                                        <rect key="frame" x="786" y="15" width="60" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="5og-v2-yZe"/>
+                                            <constraint firstAttribute="width" constant="60" id="taP-VK-JvO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSDGothicNeoI-Regular" family=".AppleKoreanFont" pointSize="28"/>
+                                        <state key="normal" title="닫기"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.88321729270000005" green="0.88321729270000005" blue="0.88321729270000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="neI-1U-I50" secondAttribute="trailing" constant="50" id="2p6-0i-sHZ"/>
+                                    <constraint firstItem="bbN-ef-czB" firstAttribute="centerX" secondItem="OgI-ML-Xhx" secondAttribute="centerX" id="4D9-e4-Pml"/>
+                                    <constraint firstAttribute="bottom" secondItem="neI-1U-I50" secondAttribute="bottom" constant="15" id="D5J-fZ-eQl"/>
+                                    <constraint firstItem="bbN-ef-czB" firstAttribute="centerY" secondItem="OgI-ML-Xhx" secondAttribute="centerY" id="DCp-l2-jTj"/>
+                                    <constraint firstItem="neI-1U-I50" firstAttribute="top" secondItem="OgI-ML-Xhx" secondAttribute="top" constant="15" id="V6t-kA-2Jw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IzC-I4-3kN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OgI-ML-Xhx" firstAttribute="trailing" secondItem="IzC-I4-3kN" secondAttribute="trailing" constant="44" id="8PJ-k6-9cX"/>
+                            <constraint firstItem="OgI-ML-Xhx" firstAttribute="width" secondItem="OgI-ML-Xhx" secondAttribute="height" multiplier="112:11" id="PbB-rC-Wgw"/>
+                            <constraint firstItem="IzC-I4-3kN" firstAttribute="leading" secondItem="OgI-ML-Xhx" secondAttribute="leading" constant="44" id="kLU-tA-wlx"/>
+                            <constraint firstItem="OgI-ML-Xhx" firstAttribute="top" secondItem="IzC-I4-3kN" secondAttribute="top" id="nsY-BM-hnk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7T-8g-zzT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118" y="849"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
