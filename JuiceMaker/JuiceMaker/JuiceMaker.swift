@@ -1,7 +1,7 @@
 import Foundation
 
-fileprivate class Fruit {
-    fileprivate enum Name {
+class Fruit {
+    enum Name {
         case strawberry
         case banana
         case kiwi
@@ -188,5 +188,9 @@ class JuiceMaker {
         } else {
             return .fail
         }
+    }
+    
+    func fruitStock(name: Fruit.Name) -> Int {
+        fruitManager.stockOfFruit(name: name)
     }
 }
