@@ -129,7 +129,7 @@ class JuiceMaker {
     private func makeBananaJuice() -> MakeJuiceResult {
         let bananaConsumtion = 2
         if fruitManager.isEnough(name: .banana, amount: bananaConsumtion) {
-            fruitManager.consumeFruit(name: .strawberry, amount: bananaConsumtion)
+            fruitManager.consumeFruit(name: .banana, amount: bananaConsumtion)
             return .success
         } else {
             return .fail
@@ -138,8 +138,8 @@ class JuiceMaker {
     
     private func makeKiwiJuice() -> MakeJuiceResult {
         let kiwiConsumtion = 3
-        if fruitManager.isEnough(name: .strawberry, amount: kiwiConsumtion) {
-            fruitManager.consumeFruit(name: .strawberry, amount: kiwiConsumtion)
+        if fruitManager.isEnough(name: .kiwi, amount: kiwiConsumtion) {
+            fruitManager.consumeFruit(name: .kiwi, amount: kiwiConsumtion)
             return .success
         } else {
             return .fail
@@ -148,8 +148,8 @@ class JuiceMaker {
     
     private func makePineappleJuice() -> MakeJuiceResult {
         let pineappleConsumtion = 2
-        if fruitManager.isEnough(name: .strawberry, amount: pineappleConsumtion) {
-            fruitManager.consumeFruit(name: .strawberry, amount: pineappleConsumtion)
+        if fruitManager.isEnough(name: .pineapple, amount: pineappleConsumtion) {
+            fruitManager.consumeFruit(name: .pineapple, amount: pineappleConsumtion)
             return .success
         } else {
             return .fail
@@ -158,8 +158,8 @@ class JuiceMaker {
     
     private func makeMangoJuice() -> MakeJuiceResult {
         let mangoConsumtion = 3
-        if fruitManager.isEnough(name: .strawberry, amount: mangoConsumtion) {
-            fruitManager.consumeFruit(name: .strawberry, amount: mangoConsumtion)
+        if fruitManager.isEnough(name: .mango, amount: mangoConsumtion) {
+            fruitManager.consumeFruit(name: .mango, amount: mangoConsumtion)
             return .success
         } else {
             return .fail
