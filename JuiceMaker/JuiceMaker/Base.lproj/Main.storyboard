@@ -289,7 +289,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Lpq-SD-yTr">
                         <barButtonItem key="rightBarButtonItem" title="재고 수정" id="Fjt-5N-c7f">
                             <connections>
-                                <segue destination="Fvv-QT-JGQ" kind="show" id="jVK-Wi-zEH"/>
+                                <segue destination="Fvv-QT-JGQ" kind="show" identifier="showFruitStore" id="jVK-Wi-zEH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
