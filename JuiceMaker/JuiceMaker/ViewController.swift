@@ -9,7 +9,7 @@ import UIKit
 class ViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     private var menuMap = [UIButton : JuiceMenu]()
-    private var fruitImage = ["🍓", "🍌", "🍍", "🥝", "🥭"]
+    private var fruitSymbol = ["🍓", "🍌", "🍍", "🥝", "🥭"]
     
     private var strawberryCount : Int = 0 {
         didSet {
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             mangoCountLabel.text = "\(mangoCount)"
         }
     }
-    @IBOutlet var fruitLabels: [UILabel]!
+    @IBOutlet var fruitImageLabels: [UILabel]!
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
     @IBOutlet weak var pineappleCountLabel: UILabel!
@@ -83,8 +83,8 @@ class ViewController: UIViewController {
 }
 extension ViewController {
     private func initializeFruitImage() {
-        for fruitIdx in 0..<fruitLabels.count {
-            fruitLabels[fruitIdx].text = fruitImage[fruitIdx]
+        for fruitIdx in 0..<fruitImageLabels.count {
+            fruitImageLabels[fruitIdx].text = fruitSymbol[fruitIdx]
         }
     }
     private func initializeStockLabel() {
