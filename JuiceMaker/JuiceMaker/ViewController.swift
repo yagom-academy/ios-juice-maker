@@ -25,11 +25,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fruitStockLabel1.text = "\(fruitStock.strawberry)"
-        fruitStockLabel2.text = "\(fruitStock.banana)"
-        fruitStockLabel3.text = "\(fruitStock.pineapple)"
-        fruitStockLabel4.text = "\(fruitStock.kiwi)"
-        fruitStockLabel5.text = "\(fruitStock.mango)"
+        updateFruitStockLabel(fruit: .strawberry)
+        updateFruitStockLabel(fruit: .banana)
+        updateFruitStockLabel(fruit: .pineapple)
+        updateFruitStockLabel(fruit: .kiwi)
+        updateFruitStockLabel(fruit: .mango)
     }
 
     @IBAction func juiceOrderButton1(_ sender: UIButton) {
@@ -90,7 +90,7 @@ extension ViewController {
 }
 
 extension ViewController {
-    func updateFruitStockLabel(_ fruit: Fruit) {
+    func updateFruitStockLabel(fruit: Fruit) {
         switch fruit {
         case .strawberry:
             fruitStockLabel1.text = "\(fruitStock.strawberry)"
