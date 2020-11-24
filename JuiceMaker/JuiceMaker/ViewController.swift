@@ -8,7 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var juiceMaker = JuiceMaker()
-    var menuOrder = [UIButton : JuiceMenu]()
+    private var menuOfOrderButton = [UIButton : JuiceMenu]()
     
     private var strawberryCount : Int = 0 {
         didSet {
@@ -58,8 +58,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuiceMenu(_ orderButton: UIButton) {
-        guard let orderedMenu = menuOrder[orderButton] else {
-            print("Error")
+        guard let orderedMenu = menuOfOrderButton[orderButton] else {
+            print("Error: 버튼과 연결된 메뉴가 없습니다.")
             return
         }
         
@@ -89,13 +89,13 @@ extension ViewController {
     }
     
     private func initializeMenuOrder() {
-        menuOrder[ddalbaOrderButton] = .ddalbaJuice
-        menuOrder[mankiOrderButton] = .mangoKiwiJuice
-        menuOrder[strawberryOrderButton] = .strawberryJuice
-        menuOrder[bananaOrderButton] = .bananaJuice
-        menuOrder[pineappleOrderButton] = .pineappleJuice
-        menuOrder[kiwiOrderButton] = .kiwiJuice
-        menuOrder[mangoOrderButton] = .mangoJuice
+        menuOfOrderButton[ddalbaOrderButton] = .ddalbaJuice
+        menuOfOrderButton[mankiOrderButton] = .mangoKiwiJuice
+        menuOfOrderButton[strawberryOrderButton] = .strawberryJuice
+        menuOfOrderButton[bananaOrderButton] = .bananaJuice
+        menuOfOrderButton[pineappleOrderButton] = .pineappleJuice
+        menuOfOrderButton[kiwiOrderButton] = .kiwiJuice
+        menuOfOrderButton[mangoOrderButton] = .mangoJuice
     }
 
     private func updateStockStatusAfterMaking(order: JuiceMenu) {
