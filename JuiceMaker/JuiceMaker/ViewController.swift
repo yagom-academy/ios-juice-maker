@@ -20,15 +20,15 @@ class ViewController: UIViewController {
         
         let initializeStockValue = 10
         juiceMaker = JuiceMaker(stock: initializeStockValue)
-        initializeLabel(stock: initializeStockValue)
+        updateStockLabel()
     }
     
-    func initializeLabel(stock: Int) {
-        strawberryStockLabel.text = String(stock)
-        bananaStockLabel.text = String(stock)
-        pineappleStockLabel.text = String(stock)
-        kiwiStockLabel.text = String(stock)
-        mangoStockLabel.text = String(stock)
+    func updateStockLabel() {
+        strawberryStockLabel.text = String(juiceMaker.fruitStock(name: .strawberry))
+        bananaStockLabel.text = String(juiceMaker.fruitStock(name: .banana))
+        pineappleStockLabel.text = String(juiceMaker.fruitStock(name: .pineapple))
+        kiwiStockLabel.text = String(juiceMaker.fruitStock(name: .kiwi))
+        mangoStockLabel.text = String(juiceMaker.fruitStock(name: .mango))
     }
     
     func orderJuice(menu: JuiceMaker.JuiceMenu) {
@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         } else {
             orderFailAlert()
         }
+        updateStockLabel()
     }
     
     func orderSuccessAlert(menu: JuiceMaker.JuiceMenu) {
