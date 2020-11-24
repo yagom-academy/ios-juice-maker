@@ -83,6 +83,7 @@ extension ViewController {
         case true:
             showSuccessAlert(order: order)
             fruitStock.useFruit(order: order)
+            updateFruitStockLabel(order: order)
         case false:
             showFailAlert(order: order)
         }
@@ -105,24 +106,24 @@ extension ViewController {
         }
     }
     
-    //    func updateFruitStock(order: Juice) {
-    //        switch order {
-    //        case .strawberryJuice:
-    //            fruitStockLabel1.text = "\(fruitStock.strawberry)"
-    //        case .bananaJuice:
-    //            fruitStockLabel2.text = "\(fruitStock.banana)"
-    //        case .pineappleJuice:
-    //            fruitStockLabel3.text = "\(fruitStock.pineapple)"
-    //        case .kiwiJuice:
-    //            fruitStockLabel4.text = "\(fruitStock.kiwi)"
-    //        case .mangoJuice:
-    //            fruitStockLabel5.text = "\(fruitStock.mango)"
-    //        case .strawberryAndBananaJuice:
-    //            fruitStockLabel1.text = "\(fruitStock.strawberry)"
-    //            fruitStockLabel2.text = "\(fruitStock.banana)"
-    //        case .mangoAndKiwiJuice:
-    //            fruitStockLabel5.text = "\(fruitStock.mango)"
-    //            fruitStockLabel4.text = "\(fruitStock.kiwi)"
-    //        }
-    //    }
+    func updateFruitStockLabel(order: Juice) {
+        switch order {
+        case .strawberryJuice:
+            fruitStockLabel1.text = "\(fruitStock.strawberry)"
+        case .bananaJuice:
+            fruitStockLabel2.text = "\(fruitStock.banana)"
+        case .pineappleJuice:
+            fruitStockLabel3.text = "\(fruitStock.pineapple)"
+        case .kiwiJuice:
+            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+        case .mangoJuice:
+            fruitStockLabel5.text = "\(fruitStock.mango)"
+        case .strawberryAndBananaJuice:
+            fruitStockLabel1.text = "\(fruitStock.strawberry)"
+            fruitStockLabel2.text = "\(fruitStock.banana)"
+        case .mangoAndKiwiJuice:
+            fruitStockLabel5.text = "\(fruitStock.mango)"
+            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+        }
+    }
 }
