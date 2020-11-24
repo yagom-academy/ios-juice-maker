@@ -1,6 +1,6 @@
 import Foundation
 
-fileprivate struct Fruit {
+fileprivate class Fruit {
     fileprivate enum Name {
         case strawberry
         case banana
@@ -17,11 +17,11 @@ fileprivate struct Fruit {
         self.stock = count
     }
     
-    mutating func add(count :Int) {
+    func add(count :Int) {
         self.stock += count
     }
     
-    mutating func subtract(count: Int) {
+    func subtract(count: Int) {
         self.stock -= count
     }
 }
@@ -34,7 +34,7 @@ fileprivate struct FruitManager {
     }
     
     mutating func supplyFruit(name: Fruit.Name, amount: Int) {
-        guard var fruit = fruits[name] else {
+        guard let fruit = fruits[name] else {
             return
         }
         
@@ -42,7 +42,7 @@ fileprivate struct FruitManager {
     }
     
     mutating func consumeFruit(name: Fruit.Name, amount: Int) {
-        guard var fruit = fruits[name] else {
+        guard let fruit = fruits[name] else {
             return
         }
         
