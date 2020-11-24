@@ -7,6 +7,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var fruitStock = FruitStock(initialFruitNumber: 10)
 
     @IBOutlet weak var fruitImageView1: UIImageView!
     @IBOutlet weak var fruitImageView2: UIImageView!
@@ -23,7 +25,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let fruitStock = FruitStock(initialFruitNumber: 10)
         fruitStockLabel1.text = "\(fruitStock.strawberry)"
         fruitStockLabel2.text = "\(fruitStock.banana)"
         fruitStockLabel3.text = "\(fruitStock.pineapple)"
