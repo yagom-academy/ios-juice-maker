@@ -57,7 +57,7 @@ class ViewController: UIViewController {
 
 // alert 띄우기
 extension ViewController {
-    func showPosibleAlert(order: Juice) {
+    func showSuccessAlert(order: Juice) {
         let alert = UIAlertController(title: nil, message: "\(order.rawValue) 나왔습니다! 맛있게 드세요 :)", preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
 
@@ -65,7 +65,7 @@ extension ViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showImposibleAlert(order: Juice) {
+    func showFailAlert(order: Juice) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "예", style: .default, handler: nil)
         let cancleAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
@@ -81,10 +81,10 @@ extension ViewController {
     func makeJuice(_ order: Juice) {
         switch fruitStock.isFruitEnough(order: order) {
         case true:
-            showPosibleAlert(order: order)
+            showSuccessAlert(order: order)
             fruitStock.useFruit(order: order)
         case false:
-            showImposibleAlert(order: order)
+            showFailAlert(order: order)
         }
     }
 }
