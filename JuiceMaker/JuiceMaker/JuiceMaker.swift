@@ -26,7 +26,14 @@ enum Juice: String {
 
 /// 쥬스 메이커 타입 
 class JuiceMaker {
-    var fruitStock = FruitStock(initialFruitNumber: 10)
+    var fruitStock: FruitStock
+    
+    init(initialFruitNumber: Int) {
+        fruitStock = FruitStock(initialFruitNumber: initialFruitNumber)
+    }
+    init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
+        fruitStock = FruitStock(strawberry: strawberry, banana: banana, pineapple: pineapple, kiwi: kiwi, mango: mango)
+    }
 
     func makeJuice(_ order: Juice) {
         switch fruitStock.isFruitEnough(order: order) {
