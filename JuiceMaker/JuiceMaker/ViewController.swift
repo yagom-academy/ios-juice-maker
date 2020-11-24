@@ -90,6 +90,7 @@ extension ViewController {
     }
 }
 
+// 과일재고 업데이트하기
 extension ViewController {
     func updateFruitStockLabel(fruit: Fruit) {
         switch fruit {

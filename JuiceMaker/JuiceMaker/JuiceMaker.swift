@@ -24,9 +24,8 @@ enum Juice: String {
     case mangoAndKiwiJuice = "망키쥬스"
 }
 
-// 재고 관리 구조체 -> 클래스
+// 재고 관리 클래스
 class FruitStock {
-    // 과일 재고
     private(set) var strawberry: Int
     private(set) var banana: Int
     private(set) var pineapple: Int
@@ -100,6 +99,7 @@ class FruitStock {
         }
     }
     
+    // 과일 사용하기
     func useFruit(order: Juice) {
         switch order {
         case .strawberryJuice:
