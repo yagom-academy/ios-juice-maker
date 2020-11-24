@@ -10,27 +10,27 @@ class ViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     var menuOrder = [UIButton : JuiceMenu]()
     
-    var strawberryCount : Int = 0 {
+    private var strawberryCount : Int = 0 {
         didSet {
             strawberryCountLabel.text = "\(strawberryCount)"
         }
     }
-    var bananaCount : Int = 0 {
+    private var bananaCount : Int = 0 {
         didSet {
             bananaCountLabel.text = "\(bananaCount)"
         }
     }
-    var pineappleCount : Int = 0 {
+    private var pineappleCount : Int = 0 {
         didSet {
             pineappleCountLabel.text = "\(pineappleCount)"
         }
     }
-    var kiwiCount : Int = 0 {
+    private var kiwiCount : Int = 0 {
         didSet {
             kiwiCountLabel.text = "\(kiwiCount)"
         }
     }
-    var mangoCount : Int = 0 {
+    private var mangoCount : Int = 0 {
         didSet {
             mangoCountLabel.text = "\(mangoCount)"
         }
