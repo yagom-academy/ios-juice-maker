@@ -88,3 +88,41 @@ extension ViewController {
         }
     }
 }
+
+extension ViewController {
+    func updateFruitStockLabel(_ fruit: Fruit) {
+        switch fruit {
+        case .strawberry:
+            fruitStockLabel1.text = "\(fruitStock.strawberry)"
+        case .banana:
+            fruitStockLabel2.text = "\(fruitStock.banana)"
+        case .pineapple:
+            fruitStockLabel3.text = "\(fruitStock.pineapple)"
+        case .kiwi:
+            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+        case .mango:
+            fruitStockLabel5.text = "\(fruitStock.mango)"
+        }
+    }
+    
+    //    func updateFruitStock(order: Juice) {
+    //        switch order {
+    //        case .strawberryJuice:
+    //            fruitStockLabel1.text = "\(fruitStock.strawberry)"
+    //        case .bananaJuice:
+    //            fruitStockLabel2.text = "\(fruitStock.banana)"
+    //        case .pineappleJuice:
+    //            fruitStockLabel3.text = "\(fruitStock.pineapple)"
+    //        case .kiwiJuice:
+    //            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+    //        case .mangoJuice:
+    //            fruitStockLabel5.text = "\(fruitStock.mango)"
+    //        case .strawberryAndBananaJuice:
+    //            fruitStockLabel1.text = "\(fruitStock.strawberry)"
+    //            fruitStockLabel2.text = "\(fruitStock.banana)"
+    //        case .mangoAndKiwiJuice:
+    //            fruitStockLabel5.text = "\(fruitStock.mango)"
+    //            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+    //        }
+    //    }
+}
