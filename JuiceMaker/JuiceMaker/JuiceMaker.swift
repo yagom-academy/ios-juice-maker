@@ -51,12 +51,12 @@ class YagomRecipe: MakerRecipe {
 
 class ZziruruRecipe: MakerRecipe {
     enum Juice: MakerJuice {
-        case strawbana, mangki, strawberry, banana, pineapple, kiwi, mango
+        case strawki, pinebana, strawberry, banana, pineapple, kiwi, mango
         
         var description: String {
             switch self {
-            case .strawbana: return "딸바쥬스"
-            case .mangki: return "망키쥬스"
+            case .strawki: return "딸키쥬스"
+            case .pinebana: return "파바쥬스"
             case .strawberry: return "딸기쥬스"
             case .banana: return "바나나쥬스"
             case .pineapple: return "파인애플쥬스"
@@ -67,20 +67,19 @@ class ZziruruRecipe: MakerRecipe {
         
         var ingredients: [Fruit: Int] {
             switch self {
-            case .strawbana: return [.strawberry: 10, .banana: 1]
-            case .mangki: return [.mango: 2, .kiwi: 1]
-            case .strawberry: return [.strawberry: 16]
-            case .banana: return [.banana: 2]
-            case .pineapple: return [.pineapple: 2]
-            case .kiwi: return [.kiwi: 3]
-            case .mango: return [.mango: 3]
+            case .strawki: return [.strawberry: 8, .kiwi: 2]
+            case .pinebana: return [.pineapple: 2, .banana: 1]
+            case .strawberry: return [.strawberry: 10]
+            case .banana: return [.banana: 1]
+            case .pineapple: return [.pineapple: 1]
+            case .kiwi: return [.kiwi: 2]
+            case .mango: return [.mango: 2]
             }
         }
     }
 }
 
 class JuiceMaker<T: MakerRecipe> {
-    private let outOfStock: Int = 0
     private var stock: [Fruit: Int] = [:]
     private var recipe: T
     
@@ -111,13 +110,14 @@ class JuiceMaker<T: MakerRecipe> {
         stock[fruit] = stockCount + count
     }
     
-    func stock(of fruit: Fruit) -> Int {
-        return stock[fruit] ?? outOfStock
+    func stock(of fruit: Fruit) -> Int? {
+        return stock[fruit]
     }
     
     private func isEnough(ingredients: [Fruit: Int]) -> Bool {
         for (fruit, count) in ingredients {
-            if stock(of: fruit) < count { return false }
+            guard let stock = stock(of: fruit) else { return false }
+            if stock < count { return false }
         }
         
         return true
