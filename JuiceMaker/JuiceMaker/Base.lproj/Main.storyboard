@@ -223,7 +223,7 @@
         <!--재고화면-->
         <scene sceneID="72m-hZ-nkB">
             <objects>
-                <viewController title="재고화면" id="PeT-NH-H7Y" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="stockViewController" title="재고화면" id="PeT-NH-H7Y" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XNb-WS-iEI">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
