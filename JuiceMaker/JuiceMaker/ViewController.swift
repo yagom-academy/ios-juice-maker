@@ -7,8 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
-    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
@@ -22,7 +20,7 @@ class ViewController: UIViewController {
 
     @IBAction func touchUpStrawberryJuiceButton() {
         do {
-            try juiceMaker.make(juice: .strawberryJuice)
+            try JuiceMaker.shared.make(juice: .strawberryJuice)
             showSuccessAlert(juice: .strawberryJuice)
             changeLabels()
         } catch {
@@ -32,7 +30,7 @@ class ViewController: UIViewController {
 
     @IBAction func touchUpBananaJuiceButton() {
        do {
-           try juiceMaker.make(juice: .bananaJuice)
+           try JuiceMaker.shared.make(juice: .bananaJuice)
            showSuccessAlert(juice: .bananaJuice)
            changeLabels()
        } catch {
@@ -42,7 +40,7 @@ class ViewController: UIViewController {
 
     @IBAction func touchUpMangoJuiceButton() {
        do {
-           try juiceMaker.make(juice: .mangoJuice)
+           try JuiceMaker.shared.make(juice: .mangoJuice)
            showSuccessAlert(juice: .mangoJuice)
            changeLabels()
        } catch {
@@ -52,7 +50,7 @@ class ViewController: UIViewController {
 
     @IBAction func touchUpKiwiJuiceButton() {
        do {
-           try juiceMaker.make(juice: .kiwiJuice)
+           try JuiceMaker.shared.make(juice: .kiwiJuice)
            showSuccessAlert(juice: .kiwiJuice)
            changeLabels()
        } catch {
@@ -62,7 +60,7 @@ class ViewController: UIViewController {
 
     @IBAction func touchUpPineappleJuiceButton() {
        do {
-           try juiceMaker.make(juice: .pineappleJuice)
+           try JuiceMaker.shared.make(juice: .pineappleJuice)
            showSuccessAlert(juice: .pineappleJuice)
            changeLabels()
        } catch {
@@ -72,7 +70,7 @@ class ViewController: UIViewController {
 
     @IBAction func touchUpStrawberryBananaJuiceButton() {
        do {
-           try juiceMaker.make(juice: .strawberryBananaJuice)
+           try JuiceMaker.shared.make(juice: .strawberryBananaJuice)
            showSuccessAlert(juice: .strawberryBananaJuice)
            changeLabels()
        } catch {
@@ -82,7 +80,7 @@ class ViewController: UIViewController {
 
     @IBAction func touchUpMangoKiwiJuiceButton() {
        do {
-           try juiceMaker.make(juice: .mangoKiwiJuice)
+           try JuiceMaker.shared.make(juice: .mangoKiwiJuice)
            showSuccessAlert(juice: .mangoKiwiJuice)
            changeLabels()
        } catch {
@@ -134,11 +132,11 @@ class ViewController: UIViewController {
     }
     
     func changeLabels() {
-        guard let strawberry = juiceMaker.fruits[.strawberry],
-              let banana = juiceMaker.fruits[.banana],
-              let mango = juiceMaker.fruits[.mango],
-              let kiwi = juiceMaker.fruits[.kiwi],
-              let pineapple = juiceMaker.fruits[.pineapple] else {
+        guard let strawberry = JuiceMaker.shared.fruits[.strawberry],
+              let banana = JuiceMaker.shared.fruits[.banana],
+              let mango = JuiceMaker.shared.fruits[.mango],
+              let kiwi = JuiceMaker.shared.fruits[.kiwi],
+              let pineapple = JuiceMaker.shared.fruits[.pineapple] else {
             return
         }
         strawberryStockLabel.text = "\(strawberry.amount)"

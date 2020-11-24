@@ -72,6 +72,9 @@ struct Recipe {
 }
 
 class JuiceMaker {
+    static let shared = JuiceMaker()
+    private init() {}
+    
     private(set) var fruits: [FruitName: Fruit] = [
         .strawberry: Fruit(name: .strawberry),
         .banana: Fruit(name: .banana),
