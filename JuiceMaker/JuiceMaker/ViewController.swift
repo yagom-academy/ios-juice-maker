@@ -10,7 +10,6 @@ class ViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     private var menuMap = [UIButton : JuiceMenu]()
     private var fruitSymbol = ["🍓", "🍌", "🍍", "🥝", "🥭"]
-    
     private var strawberryCount : Int = 0 {
         didSet {
             strawberryCountLabel.text = "\(strawberryCount)"
@@ -36,6 +35,7 @@ class ViewController: UIViewController {
             mangoCountLabel.text = "\(mangoCount)"
         }
     }
+    
     @IBOutlet var fruitImageLabels: [UILabel]!
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
@@ -50,7 +50,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleOrderButton: UIButton!
     @IBOutlet weak var kiwiOrderButton: UIButton!
     @IBOutlet weak var mangoOrderButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +86,7 @@ extension ViewController {
             fruitImageLabels[fruitIdx].text = fruitSymbol[fruitIdx]
         }
     }
+    
     private func initializeStockLabel() {
         strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
         bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
@@ -148,7 +148,6 @@ extension ViewController {
         alert.addAction(okAction)
         
         present(alert, animated: true, completion: nil)
-        
     }
     
     private func presentModifyingStockView() {
