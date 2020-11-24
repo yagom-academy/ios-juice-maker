@@ -210,11 +210,11 @@
                         <outlet property="pineappleOrderButton" destination="tsj-wx-BPi" id="pBb-TN-TVs"/>
                         <outlet property="strawberryCountLabel" destination="YJ2-18-TC8" id="v42-av-mSX"/>
                         <outlet property="strawberryOrderButton" destination="b6b-XW-bfQ" id="VA3-qn-R5W"/>
-                        <outletCollection property="fruitLabels" destination="RUQ-Pl-tHR" collectionClass="NSMutableArray" id="diG-FY-WUD"/>
-                        <outletCollection property="fruitLabels" destination="jVE-9e-59w" collectionClass="NSMutableArray" id="4ie-Ie-EjP"/>
-                        <outletCollection property="fruitLabels" destination="0qa-DA-hCy" collectionClass="NSMutableArray" id="AaG-32-hgf"/>
-                        <outletCollection property="fruitLabels" destination="YZu-mj-QT4" collectionClass="NSMutableArray" id="lL2-nc-QRF"/>
-                        <outletCollection property="fruitLabels" destination="aqn-xe-0Vt" collectionClass="NSMutableArray" id="Ze5-vL-CDy"/>
+                        <outletCollection property="fruitImageLabels" destination="RUQ-Pl-tHR" collectionClass="NSMutableArray" id="cBP-cx-b6o"/>
+                        <outletCollection property="fruitImageLabels" destination="jVE-9e-59w" collectionClass="NSMutableArray" id="z8m-BD-WQM"/>
+                        <outletCollection property="fruitImageLabels" destination="0qa-DA-hCy" collectionClass="NSMutableArray" id="ABm-5g-fU2"/>
+                        <outletCollection property="fruitImageLabels" destination="YZu-mj-QT4" collectionClass="NSMutableArray" id="HGK-B9-Gvl"/>
+                        <outletCollection property="fruitImageLabels" destination="aqn-xe-0Vt" collectionClass="NSMutableArray" id="p3m-NJ-eQ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
