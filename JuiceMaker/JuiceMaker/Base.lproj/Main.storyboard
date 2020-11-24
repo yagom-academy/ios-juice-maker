@@ -32,7 +32,10 @@
                                             <constraint firstAttribute="height" constant="58" id="9ig-OY-86I"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSDGothicNeoI-Regular" family=".AppleKoreanFont" pointSize="28"/>
-                                        <state key="normal" title="재고 확인"/>
+                                        <state key="normal" title="재고 관리"/>
+                                        <connections>
+                                            <action selector="manageStockButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mM6-dB-TDo"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.88321729270000005" green="0.88321729270000005" blue="0.88321729270000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -246,7 +249,7 @@
         <!--View Controller-->
         <scene sceneID="n5x-Gz-47b">
             <objects>
-                <viewController id="NKI-kU-Rst" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManageStockVC" id="NKI-kU-Rst" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d38-Jz-XTK">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

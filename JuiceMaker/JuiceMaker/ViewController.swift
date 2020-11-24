@@ -53,6 +53,8 @@ class ViewController: UIViewController {
     @IBAction func juiceOrderButton7(_ sender: UIButton) {
         makeJuice(.mangoAndKiwiJuice)
     }
+    @IBAction func manageStockButton(_ sender: UIButton) {
+    }
 }
 
 // alert 띄우기
@@ -126,5 +128,14 @@ extension ViewController {
             fruitStockLabel5.text = "\(fruitStock.mango)"
             fruitStockLabel4.text = "\(fruitStock.kiwi)"
         }
+    }
+}
+
+// 재고 관리 화면으로 이동하기
+extension ViewController {
+    func moveToManageStockVC() {
+        let manageStockView = self.storyboard!.instantiateViewController(identifier: "ManageStockVC")
+        manageStockView.modalTransitionStyle = .coverVertical
+        present(manageStockView, animated: true, completion: nil)
     }
 }
