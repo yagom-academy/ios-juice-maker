@@ -68,3 +68,16 @@ extension ViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
+// 쥬스 만들기
+extension ViewController {
+    func makeJuice(_ order: Juice) {
+        switch fruitStock.isFruitEnough(order: order) {
+        case true:
+            showPosibleAlert(order: order)
+            fruitStock.useFruit(order: order)
+        case false:
+            showImposibleAlert(order: order)
+        }
+    }
+}
