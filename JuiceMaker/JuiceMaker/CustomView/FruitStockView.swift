@@ -13,7 +13,7 @@ class FruitStockView : UIView {
     @IBOutlet weak var fruitView : FruitView!
     @IBOutlet weak var stockStepper: UIStepper!
     
-    var fruitStock: Int? = nil {
+    private(set) var fruitStock: Int? = nil {
         willSet {
             do {
                 try updateStockLabel(newValue)
@@ -37,6 +37,12 @@ class FruitStockView : UIView {
         let view = Bundle.main.loadNibNamed("FruitStockView", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
+    }
+    
+    func setStock(_ stock: Int) {
+        self.fruitStock = stock
+        stockStepper.value = Double(stock)
+        stockStepper.minimumValue = Double(stock)
     }
     
     private func updateStockLabel(_ stock: Int?) throws {
