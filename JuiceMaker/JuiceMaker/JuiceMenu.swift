@@ -15,5 +15,30 @@ enum JuiceMenu: String {
     case mangoKiwiJuice = "망고키위쥬스"
     case kiwiJuice = "키위쥬스"
     case pineappleJuice = "파인애플쥬스"
+    
+    func recipe() -> [String : Int] {
+        
+        var requiredFruits = [String : Int]()
+        
+        switch(self) {
+        case .strawberryJuice:
+            requiredFruits["strawberry"] = 16
+        case .bananaJuice:
+            requiredFruits["banana"] = 2
+        case .ddalbaJuice:
+            requiredFruits["strawberry"] = 10
+            requiredFruits["banana"] = 1
+        case .mangoJuice:
+            requiredFruits["mango"] = 3
+        case .mangoKiwiJuice:
+            requiredFruits["mango"] = 2
+            requiredFruits["kiwi"] = 1
+        case .kiwiJuice:
+            requiredFruits["kiwi"] = 3
+        case .pineappleJuice:
+            requiredFruits["pineapple"] = 2
+        }
+        return requiredFruits
+    }
 }
 
