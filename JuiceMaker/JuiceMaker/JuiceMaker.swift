@@ -34,7 +34,7 @@ class JuiceMaker {
     
     private var amountOfNeed = FruitAmountForJuice()
     
-    init(strawberryStock: UInt, bananaStock: UInt, pineappleStock: UInt, kiwiStock: UInt, mangoStock: UInt) {
+    init(strawberryStock: UInt = 10, bananaStock: UInt = 10, pineappleStock: UInt = 10, kiwiStock: UInt = 10, mangoStock: UInt = 10) {
         self.strawberryStock = strawberryStock
         self.bananaStock = bananaStock
         self.pineappleStock = pineappleStock

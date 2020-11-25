@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainView" id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <segue destination="0qT-ii-sP6" kind="presentation" id="tvX-Ub-9ao"/>
+                                    <segue destination="0qT-ii-sP6" kind="presentation" identifier="manageStockSegue" id="tvX-Ub-9ao"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqZ-Rp-6on">
@@ -252,11 +252,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="banana" destination="k0h-Ye-qTm" id="UgQ-jI-TtY"/>
-                        <outlet property="kiwi" destination="xSv-Wt-da6" id="gO2-3o-Mr1"/>
-                        <outlet property="mango" destination="t4n-Oa-x6w" id="9d7-Ni-wyI"/>
-                        <outlet property="pineapple" destination="0kY-7f-Ab3" id="p0A-Ef-RFE"/>
-                        <outlet property="strawberry" destination="a6Y-IZ-NSN" id="fqL-vT-ZOc"/>
+                        <outlet property="amountOfBanana" destination="k0h-Ye-qTm" id="Top-RK-1wk"/>
+                        <outlet property="amountOfKiwi" destination="xSv-Wt-da6" id="tju-q7-deD"/>
+                        <outlet property="amountOfMango" destination="t4n-Oa-x6w" id="NbU-Jk-u38"/>
+                        <outlet property="amountOfPineapple" destination="0kY-7f-Ab3" id="08E-MA-dhC"/>
+                        <outlet property="amountOfStrawberry" destination="a6Y-IZ-NSN" id="SFV-ei-HHW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -266,7 +266,7 @@
         <!--Manage Stock View Controller-->
         <scene sceneID="uVZ-38-Y2h">
             <objects>
-                <viewController storyboardIdentifier="changeStockView" id="0qT-ii-sP6" customClass="ManageStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="manageStockView" id="0qT-ii-sP6" customClass="ManageStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WjK-oR-2cy">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
