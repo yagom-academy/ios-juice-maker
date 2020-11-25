@@ -7,12 +7,27 @@
 
 import Foundation
 
-enum FruitsType : String {
-    case strawberry = "🍓"
-    case banana = "🍌"
-    case pineapple = "🍍"
-    case kiwi = "🥝"
-    case mango = "🥭"
+enum FruitsType {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+    
+    func getName() -> String {
+        switch self {
+        case .strawberry:
+            return "🍓"
+        case .banana:
+            return "🍌"
+        case .pineapple:
+            return "🍍"
+        case .kiwi:
+            return "🥝"
+        case .mango:
+            return "🥭"
+        }
+    }
 }
 
 class Fruit {

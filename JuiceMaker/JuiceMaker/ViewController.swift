@@ -44,7 +44,7 @@ class ViewController: UIViewController {
             fruitView.translatesAutoresizingMaskIntoConstraints = false
             fruitStack.addArrangedSubview(fruitView)
             fruitView.widthAnchor.constraint(equalTo: fruitView.heightAnchor, multiplier: 1.0).isActive = true
-            fruitView.fruitName.text = fruitName.rawValue
+            fruitView.fruitName.text = fruitName.getName()
             fruitView.fruitStock.text = String(fruit.stock)
             
             fruitViews.append(fruitView)
