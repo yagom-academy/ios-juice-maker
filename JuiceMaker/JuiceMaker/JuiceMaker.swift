@@ -9,17 +9,18 @@ import Foundation
 /// 쥬스 메이커 타입 
 struct JuiceMaker {
     var fruitsContainer = [Fruit]()
+    var fruitProductNumberContainer = [String : Int]()
     
-    private var strawberry = Fruit(name: "strawberry")
-    private var banana = Fruit(name: "banana")
-    private var pineapple = Fruit(name: "pineapple")
-    private var kiwi = Fruit(name: "kiwi")
-    private var mango = Fruit(name: "mango")
+    private var strawberry = Fruit(name: "strawberry", productNumber: 0)
+    private var banana = Fruit(name: "banana", productNumber: 1)
+    private var pineapple = Fruit(name: "pineapple", productNumber: 2)
+    private var kiwi = Fruit(name: "kiwi", productNumber: 3)
+    private var mango = Fruit(name: "mango", productNumber: 4)
     
     init() {
         
         let initialStock = 10
-        
+
         addStock(amount: initialStock, of: strawberry)
         addStock(amount: initialStock, of: banana)
         addStock(amount: initialStock, of: pineapple)
@@ -31,6 +32,10 @@ struct JuiceMaker {
         fruitsContainer.append(pineapple)
         fruitsContainer.append(kiwi)
         fruitsContainer.append(mango)
+        
+        for fruit in fruitsContainer {
+            fruitProductNumberContainer[fruit.name] = fruit.productNumber
+        }
     }
     
     mutating func addStock(amount: Int, of fruitType: Fruit) {

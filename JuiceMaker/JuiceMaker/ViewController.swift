@@ -11,40 +11,40 @@ class ViewController: UIViewController {
     private var menuMap = [UIButton : JuiceMenu]()
     private var fruitSymbol = ["🍓", "🍌", "🍍", "🥝", "🥭"]
     
+    
     private var strawberryCount : Int = 0 {
         didSet {
-            fruitStockLabels[strawberryProductNumber].text = "\(strawberryCount)"
+            strawberryLabel.text = "\(strawberryCount)"
         }
     }
     private var bananaCount : Int = 0 {
         didSet {
-            fruitStockLabels[bananaProductNumber].text = "\(bananaCount)"
+            bananaLabel.text = "\(bananaCount)"
         }
     }
     private var pineappleCount : Int = 0 {
         didSet {
-            fruitStockLabels[pineappleProductNumber].text = "\(pineappleCount)"
+           pineappleLabel.text = "\(pineappleCount)"
         }
     }
     private var kiwiCount : Int = 0 {
         didSet {
-            fruitStockLabels[kiwiProductNumber].text = "\(kiwiCount)"
+          kiwiLabel.text = "\(kiwiCount)"
         }
     }
     private var mangoCount : Int = 0 {
         didSet {
-            fruitStockLabels[mangoProductNumber].text = "\(mangoCount)"
+           mangoLabel.text = "\(mangoCount)"
         }
     }
     
-    let strawberryProductNumber = 0
-    let bananaProductNumber = 1
-    let pineappleProductNumber = 2
-    let kiwiProductNumber = 3
-    let mangoProductNumber = 4
-    
     @IBOutlet var fruitSymbolLabels: [UILabel]!
-    @IBOutlet var fruitStockLabels: [UILabel]!
+    
+    @IBOutlet weak var strawberryLabel: UILabel!
+    @IBOutlet weak var bananaLabel: UILabel!
+    @IBOutlet weak var pineappleLabel: UILabel!
+    @IBOutlet weak var kiwiLabel: UILabel!
+    @IBOutlet weak var mangoLabel: UILabel!
     
     @IBOutlet weak var ddalbaOrderButton: UIButton!
     @IBOutlet weak var mankiOrderButton: UIButton!
@@ -95,6 +95,14 @@ extension ViewController {
     }
     
     private func initializeStockLabels() {
+        guard let strawberryProductNumber = juiceMaker.fruitProductNumberContainer["strawberry"],
+              let bananaProductNumber = juiceMaker.fruitProductNumberContainer["banana"],
+              let pineappleProductNumber = juiceMaker.fruitProductNumberContainer["pineapple"],
+              let kiwiProductNumber = juiceMaker.fruitProductNumberContainer["kiwi"],
+              let mangoProductNumber = juiceMaker.fruitProductNumberContainer["mango"] else {
+            return
+        }
+
         strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[strawberryProductNumber])
         bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[bananaProductNumber])
         pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[pineappleProductNumber])
@@ -113,6 +121,14 @@ extension ViewController {
     }
     
     private func updateStockStatusAfterMaking(order: JuiceMenu) {
+        guard let strawberryProductNumber = juiceMaker.fruitProductNumberContainer["strawberry"],
+              let bananaProductNumber = juiceMaker.fruitProductNumberContainer["banana"],
+              let pineappleProductNumber = juiceMaker.fruitProductNumberContainer["pineapple"],
+              let kiwiProductNumber = juiceMaker.fruitProductNumberContainer["kiwi"],
+              let mangoProductNumber = juiceMaker.fruitProductNumberContainer["mango"] else {
+            return
+        }
+        
         switch order {
         case .ddalbaJuice:
             strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[strawberryProductNumber])
