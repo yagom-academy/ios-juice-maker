@@ -189,65 +189,44 @@ class JuiceMaker {
     var messenger = Messenger()
     
     func makeStrawberryJuice() {
-        guard stockManager.strawberry >= 16 else {
-            messenger.printOutOfStock()
-            return
-        }
+        stockManager.IsEnough(juice: .strawberryJuice)
         stockManager.useStrawberryJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.strawberryJuice.rawValue)
     }
     
     func makeStrawberryBananaJuice() {
-        guard stockManager.strawberry >= 10 && stockManager.banana >= 1 else {
-            messenger.printOutOfStock()
-            return
-        }
+        stockManager.IsEnough(juice: .strawberryBananaJuice)
         stockManager.useStrawberryBananaJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.strawberryBananaJuice.rawValue)
         
     }
     
     func makeBananaJuice() {
-        guard stockManager.banana >= 2 else {
-            messenger.printOutOfStock()
-            return
-        }
+        stockManager.IsEnough(juice: .bananaJuice)
         stockManager.useeBananaJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.bananaJuice.rawValue)
     }
     
     func makeKiwiJuice() {
-        guard stockManager.kiwi >= 3 else {
-            messenger.printOutOfStock()
-            return
-        }
+        stockManager.IsEnough(juice: .kiwiJuice)
         stockManager.useKiwiJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.kiwiJuice.rawValue)
     }
     
     func makePineappleJuice() {
-        guard stockManager.pineapple >= 2 else {
-            messenger.printOutOfStock()
-            return
-        }
+        stockManager.IsEnough(juice: .pineappleJuice)
         stockManager.usePineappleJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.pineappleJuice.rawValue)
     }
     
     func makeMangoJuice() {
-        guard stockManager.mango >= 3 else {
-            messenger.printOutOfStock()
-            return
-        }
+        stockManager.IsEnough(juice: .mangoJuice)
         stockManager.useMangoJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.mangoJuice.rawValue)
     }
     
     func makeMangoKiwiJuice() {
-        guard stockManager.mango >= 2 && stockManager.kiwi >= 1 else {
-            messenger.printOutOfStock()
-            return
-        }
+        stockManager.IsEnough(juice: .mangoKiwiJuice)
         stockManager.useMangoKiwiJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.mangoKiwiJuice.rawValue)
     }
