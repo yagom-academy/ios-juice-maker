@@ -15,8 +15,8 @@ enum JuiceMakerError: Error {
 // - 쥬스종류에 따라 제작
 class JuiceMaker {
     // 과일창고와 레시피는 변경할 수 있도록 var로 선언
-    var fruitStorage: FruitStorage
-    var juiceRecipes: JuiceRecipes
+    private var fruitStorage: FruitStorage
+    private var juiceRecipes: JuiceRecipes
     
     init(fruitStorage: FruitStorage, juiceRecipes: JuiceRecipes) {
         self.fruitStorage = fruitStorage
