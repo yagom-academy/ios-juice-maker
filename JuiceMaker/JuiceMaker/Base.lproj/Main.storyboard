@@ -16,61 +16,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUQ-Pl-tHR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUQ-Pl-tHR" userLabel="StrawberrySymbol">
                                 <rect key="frame" x="265" y="87" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJ2-18-TC8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJ2-18-TC8" userLabel="StrawberryLabel">
                                 <rect key="frame" x="244.5" y="107" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVE-9e-59w">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVE-9e-59w" userLabel="BananaSymbol">
                                 <rect key="frame" x="356.5" y="87" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpa-Rg-Jvi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpa-Rg-Jvi" userLabel="BananaLabel">
                                 <rect key="frame" x="336" y="107" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qa-DA-hCy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qa-DA-hCy" userLabel="PineappleSymbol">
                                 <rect key="frame" x="448" y="87" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjZ-H5-JkW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjZ-H5-JkW" userLabel="PineappleLabel">
                                 <rect key="frame" x="427.5" y="107" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZu-mj-QT4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZu-mj-QT4" userLabel="KiwiSymbol">
                                 <rect key="frame" x="539.5" y="87" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkh-YE-0AD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkh-YE-0AD" userLabel="KiwiLabel">
                                 <rect key="frame" x="519" y="107" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqn-xe-0Vt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqn-xe-0Vt" userLabel="MangoSymbol">
                                 <rect key="frame" x="631" y="87" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4u-aN-3fD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4u-aN-3fD" userLabel="MangoLabel">
                                 <rect key="frame" x="610.5" y="107" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -96,7 +96,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="딸바쥬스 주문"/>
                                 <connections>
-                                    <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ek4-ys-FZl"/>
+                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ek4-ys-FZl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKl-7F-Ijj">
@@ -105,7 +105,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="망키쥬스 주문"/>
                                 <connections>
-                                    <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b6F-t0-GvJ"/>
+                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b6F-t0-GvJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsj-wx-BPi">
@@ -114,7 +114,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="파인애플쥬스 주문"/>
                                 <connections>
-                                    <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mg4-uk-dSc"/>
+                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mg4-uk-dSc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlW-sU-Nde">
@@ -123,7 +123,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="키위쥬스 주문"/>
                                 <connections>
-                                    <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KnN-3y-pA4"/>
+                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KnN-3y-pA4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6b-XW-bfQ">
@@ -132,7 +132,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="딸기쥬스 주문"/>
                                 <connections>
-                                    <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Knj-n0-Yec"/>
+                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Knj-n0-Yec"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-W8-PYq">
@@ -141,7 +141,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="바나나쥬스 주문"/>
                                 <connections>
-                                    <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGx-Od-ofz"/>
+                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGx-Od-ofz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJq-qY-pGi">
@@ -150,7 +150,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="망고쥬스 주문"/>
                                 <connections>
-                                    <action selector="orderJuiceMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KTr-EW-t64"/>
+                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KTr-EW-t64"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -198,23 +198,23 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bananaCountLabel" destination="Kpa-Rg-Jvi" id="4lY-jZ-hre"/>
                         <outlet property="bananaOrderButton" destination="9wd-W8-PYq" id="ups-oQ-F3w"/>
                         <outlet property="ddalbaOrderButton" destination="8PN-Ug-8Km" id="ATT-Qx-qi1"/>
-                        <outlet property="kiwiCountLabel" destination="bkh-YE-0AD" id="qAx-vB-qYZ"/>
                         <outlet property="kiwiOrderButton" destination="jlW-sU-Nde" id="0OC-sM-SoX"/>
-                        <outlet property="mangoCountLabel" destination="A4u-aN-3fD" id="Zcb-q8-Ktk"/>
                         <outlet property="mangoOrderButton" destination="fJq-qY-pGi" id="d1c-Cl-RaV"/>
                         <outlet property="mankiOrderButton" destination="oKl-7F-Ijj" id="0Wz-jf-0VO"/>
-                        <outlet property="pineappleCountLabel" destination="wjZ-H5-JkW" id="2Ba-C6-CZ0"/>
                         <outlet property="pineappleOrderButton" destination="tsj-wx-BPi" id="pBb-TN-TVs"/>
-                        <outlet property="strawberryCountLabel" destination="YJ2-18-TC8" id="v42-av-mSX"/>
                         <outlet property="strawberryOrderButton" destination="b6b-XW-bfQ" id="VA3-qn-R5W"/>
-                        <outletCollection property="fruitImageLabels" destination="RUQ-Pl-tHR" collectionClass="NSMutableArray" id="cBP-cx-b6o"/>
-                        <outletCollection property="fruitImageLabels" destination="jVE-9e-59w" collectionClass="NSMutableArray" id="z8m-BD-WQM"/>
-                        <outletCollection property="fruitImageLabels" destination="0qa-DA-hCy" collectionClass="NSMutableArray" id="ABm-5g-fU2"/>
-                        <outletCollection property="fruitImageLabels" destination="YZu-mj-QT4" collectionClass="NSMutableArray" id="HGK-B9-Gvl"/>
-                        <outletCollection property="fruitImageLabels" destination="aqn-xe-0Vt" collectionClass="NSMutableArray" id="p3m-NJ-eQ7"/>
+                        <outletCollection property="fruitSymbolLabels" destination="RUQ-Pl-tHR" collectionClass="NSMutableArray" id="jJ9-jB-9KM"/>
+                        <outletCollection property="fruitSymbolLabels" destination="jVE-9e-59w" collectionClass="NSMutableArray" id="zsA-Xh-IeY"/>
+                        <outletCollection property="fruitSymbolLabels" destination="0qa-DA-hCy" collectionClass="NSMutableArray" id="gjK-he-1Zm"/>
+                        <outletCollection property="fruitSymbolLabels" destination="YZu-mj-QT4" collectionClass="NSMutableArray" id="Ztr-et-XEp"/>
+                        <outletCollection property="fruitSymbolLabels" destination="aqn-xe-0Vt" collectionClass="NSMutableArray" id="Ek4-9w-tKM"/>
+                        <outletCollection property="fruitStockLabels" destination="YJ2-18-TC8" collectionClass="NSMutableArray" id="9kW-eP-Gm6"/>
+                        <outletCollection property="fruitStockLabels" destination="Kpa-Rg-Jvi" collectionClass="NSMutableArray" id="mjw-8w-gYP"/>
+                        <outletCollection property="fruitStockLabels" destination="wjZ-H5-JkW" collectionClass="NSMutableArray" id="Pc9-5H-Ttm"/>
+                        <outletCollection property="fruitStockLabels" destination="bkh-YE-0AD" collectionClass="NSMutableArray" id="XXj-tG-XqE"/>
+                        <outletCollection property="fruitStockLabels" destination="A4u-aN-3fD" collectionClass="NSMutableArray" id="WFk-KO-R46"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -242,8 +242,8 @@
                                     <action selector="tappedCloseButton:" destination="sak-DG-hij" eventType="touchUpInside" id="95c-GC-xx9"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0P-wL-gdV">
-                                <rect key="frame" x="240" y="81" width="50" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StrawberrySymbol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0P-wL-gdV">
+                                <rect key="frame" x="87.5" y="81" width="355" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -254,8 +254,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-WF-1Bm">
-                                <rect key="frame" x="331.5" y="81" width="50" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BananaSymbol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-WF-1Bm">
+                                <rect key="frame" x="211.5" y="81" width="290" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -266,8 +266,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9A-bZ-7RD">
-                                <rect key="frame" x="423" y="81" width="50" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BananaSymbol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9A-bZ-7RD">
+                                <rect key="frame" x="303" y="81" width="290" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -278,8 +278,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKs-kp-OER">
-                                <rect key="frame" x="514.5" y="81" width="50" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KiwiSymbol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKs-kp-OER">
+                                <rect key="frame" x="427.5" y="81" width="224" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -290,8 +290,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDv-PO-by0">
-                                <rect key="frame" x="606" y="81" width="50" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MangoSymbol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDv-PO-by0">
+                                <rect key="frame" x="491.5" y="81" width="279" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -337,6 +337,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IHn-be-Etp"/>
+                    <connections>
+                        <outletCollection property="fruitSymbolLabels" destination="L0P-wL-gdV" collectionClass="NSMutableArray" id="ZgQ-ej-N2t"/>
+                        <outletCollection property="fruitSymbolLabels" destination="d3H-WF-1Bm" collectionClass="NSMutableArray" id="ZrV-xG-Msl"/>
+                        <outletCollection property="fruitSymbolLabels" destination="i9A-bZ-7RD" collectionClass="NSMutableArray" id="m1i-Po-1nM"/>
+                        <outletCollection property="fruitSymbolLabels" destination="BKs-kp-OER" collectionClass="NSMutableArray" id="tar-on-Gf7"/>
+                        <outletCollection property="fruitSymbolLabels" destination="iDv-PO-by0" collectionClass="NSMutableArray" id="B1f-Ud-Zj2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSw-L6-zUB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
