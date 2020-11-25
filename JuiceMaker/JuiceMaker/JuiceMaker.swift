@@ -20,7 +20,7 @@ struct JuiceMaker {
     init() {
         
         let initialStock = 10
-
+        
         addStock(amount: initialStock, of: strawberry)
         addStock(amount: initialStock, of: banana)
         addStock(amount: initialStock, of: pineapple)
@@ -53,30 +53,37 @@ struct JuiceMaker {
     mutating func makeJuice(of order: JuiceMenu, with requiredFruits: [String: Int] ) {
         switch order {
         case .strawberryJuice:
-            let requiredStrawberry = requiredFruits["strawberry"] ?? 0
-            reduceStock(amount: requiredStrawberry, of: strawberry)
+            if let requiredStrawberry = requiredFruits["strawberry"] {
+                reduceStock(amount: requiredStrawberry, of: strawberry)
+            }
         case .bananaJuice:
-            let requiredBanana = requiredFruits["banana"] ?? 0
-            reduceStock(amount: requiredBanana, of: banana)
+            if let requiredBanana = requiredFruits["banana"] {
+                reduceStock(amount: requiredBanana, of: banana)
+            }
         case .ddalbaJuice:
-            let requiredStrawberry = requiredFruits["strawberry"] ?? 0
-            let requiredBanana = requiredFruits["banana"] ?? 0
-            reduceStock(amount: requiredStrawberry, of: strawberry)
-            reduceStock(amount: requiredBanana, of: banana)
+            if let requiredStrawberry = requiredFruits["strawberry"],
+               let requiredBanana = requiredFruits["banana"] {
+                reduceStock(amount: requiredStrawberry, of: strawberry)
+                reduceStock(amount: requiredBanana, of: banana)
+            }
         case .mangoJuice:
-            let requiredMango = requiredFruits["mango"] ?? 0
-            reduceStock(amount: requiredMango, of: mango)
+            if let requiredMango = requiredFruits["mango"] {
+                reduceStock(amount: requiredMango, of: mango)
+            }
         case .mangoKiwiJuice:
-            let requiredMango = requiredFruits["mango"] ?? 0
-            let requiredKiwi = requiredFruits["kiwi"] ?? 0
-            reduceStock(amount: requiredMango, of: mango)
-            reduceStock(amount: requiredKiwi, of: kiwi)
+            if let requiredMango = requiredFruits["mango"],
+               let requiredKiwi = requiredFruits["kiwi"] {
+                reduceStock(amount: requiredMango, of: mango)
+                reduceStock(amount: requiredKiwi, of: kiwi)
+            }
         case .kiwiJuice:
-            let requiredKiwi = requiredFruits["kiwi"] ?? 0
-            reduceStock(amount: requiredKiwi, of: kiwi)
+            if let requiredKiwi = requiredFruits["kiwi"] {
+                reduceStock(amount: requiredKiwi, of: kiwi)
+            }
         case .pineappleJuice:
-            let requiredPineapple = requiredFruits["pineapple"] ?? 0
-            reduceStock(amount: requiredPineapple, of: pineapple)
+            if let requiredPineapple = requiredFruits["pineapple"] {
+                reduceStock(amount: requiredPineapple, of: pineapple)
+            }
         }
     }
     
