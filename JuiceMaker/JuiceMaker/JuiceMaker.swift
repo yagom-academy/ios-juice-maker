@@ -33,8 +33,7 @@ class StockManager {
     private(set) var mango: UInt
     
     //MARK: - initialStock
-    init() {
-        let initialStock: UInt = 10
+    init(initialStock: UInt = 10) {
         strawberry = initialStock
         banana = initialStock
         pineapple = initialStock
@@ -138,6 +137,50 @@ class StockManager {
     // MARK: - showAllStock
     func showFruitStock() {
         print("딸기:\(strawberry) 바나나:\(banana) 파인애플:\(pineapple) 망고:\(mango) 키위:\(kiwi)")
+    }
+    
+    // MARK: - IsEnoughIngredients
+    func IsEnough(juice: Menu) {
+        
+        switch juice {
+        case .strawberryJuice:
+            guard strawberry >= recipe.strawberryOfStrawberryJuice else {
+                messenger.printOutOfStock()
+                return
+            }
+        case .bananaJuice:
+            guard banana >= recipe.bananaOfBananaJuice else {
+                messenger.printOutOfStock()
+                return
+            }
+        case .strawberryBananaJuice:
+            guard strawberry >= recipe.strawberryOfStrawberryBananaJuice &&
+                    banana >= recipe.bananaOfStrawberryBananaJuice else {
+                messenger.printOutOfStock()
+                return
+            }
+        case .pineappleJuice:
+            guard pineapple >= recipe.pineappleOfPineappleJuice else {
+                messenger.printOutOfStock()
+                return
+            }
+        case .kiwiJuice:
+            guard kiwi >= recipe.kiwiOfKiwiJuice else {
+                messenger.printOutOfStock()
+                return
+            }
+        case .mangoJuice:
+            guard mango >= recipe.mangoOfMangoJuice else {
+                messenger.printOutOfStock()
+                return
+            }
+        case .mangoKiwiJuice:
+            guard mango >= recipe.mangoOfMangoKiwiJuice &&
+                    kiwi >= recipe.kiwiOfMangoKiwiJuice else {
+                messenger.printOutOfStock()
+                return
+            }
+        }
     }
 }
 
