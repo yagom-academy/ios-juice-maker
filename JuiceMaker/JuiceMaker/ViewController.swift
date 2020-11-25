@@ -8,53 +8,33 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
+    @IBOutlet var fruitCountLabels: [UILabel]!
+    @IBOutlet var orderJuiceButtons: [UIButton]!
     
     private var juiceMaker: JuiceMaker?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.juiceMaker = JuiceMaker(fruitManager: FruitManager(fruitsStore: [Fruit.strawberry: 10, Fruit.banana: 10, Fruit.pineapple: 10, Fruit.kiwi: 10, Fruit.mango: 10]), recipes: [Juice.strawberry: [Fruit.strawberry: 16], Juice.banana: [Fruit.banana: 2], Juice.kiwi: [Fruit.kiwi: 3], Juice.pineapple: [Fruit.pineapple: 2], Juice.strawberrybanana: [Fruit.strawberry: 10, Fruit.banana: 1], Juice.mango: [Fruit.mango: 3] ,Juice.mangokiwi: [Fruit.mango: 2, Fruit.kiwi: 1]])
+        self.juiceMaker = JuiceMaker(fruitManager: FruitManager(fruitsStore: [Fruit.strawberry: 10, Fruit.banana: 10, Fruit.pineapple: 10, Fruit.kiwi: 10, Fruit.mango: 10]),
+                                                                recipes: [Juice.strawberry: [Fruit.strawberry: 16], Juice.banana: [Fruit.banana: 2], Juice.kiwi: [Fruit.kiwi: 3], Juice.pineapple: [Fruit.pineapple: 2], Juice.strawberrybanana: [Fruit.strawberry: 10, Fruit.banana: 1], Juice.mango: [Fruit.mango: 3] ,Juice.mangokiwi: [Fruit.mango: 2, Fruit.kiwi: 1]])
         
-        self.refreshFruitCountLabel([Fruit.strawberry, Fruit.banana, Fruit.pineapple, Fruit.kiwi, Fruit.mango])
+        self.refreshFruitCountLabel()
     }
     
     /**
      과일 개수를 나타내는 레이블을 갱신하는 함수.
-     
-     - Parameter fruits: 개수를 갱신할 과일
      */
-    func refreshFruitCountLabel(_ fruits: [Fruit]) {
-        guard let fruitStore = self.juiceMaker?.fruitManager.fruitStore else {
-            print("과일저장소를 불러올 수 없어서 과일 개수를 나타낼 수 없습니다.")
-            return
-        }
-        
-        for fruit in fruits {
-            guard let fruitCount = fruitStore[fruit] else {
-                print("\(fruit)은 과일 저장소에서 불러올 수 없는 과일 때문에 과일 개수를 나타낼 수 없습니다.")
+    func refreshFruitCountLabel() {
+        for (index, fruit) in [Fruit.strawberry, Fruit.banana, Fruit.pineapple, Fruit.kiwi, Fruit.mango].enumerated() {
+            guard let fruitCount = self.juiceMaker?.fruitManager.fruitStore[fruit] else {
+                print("\(fruit)의 재고 개수를 나타낼 수 없습니다.")
                 return
             }
             
             let fruitCountText = String(fruitCount)
             
-            switch fruit {
-            case Fruit.strawberry:
-                self.strawberryCountLabel.text = fruitCountText
-            case Fruit.banana:
-                self.bananaCountLabel.text = fruitCountText
-            case Fruit.pineapple:
-                self.pineappleCountLabel.text = fruitCountText
-            case Fruit.kiwi:
-                self.kiwiCountLabel.text = fruitCountText
-            case Fruit.mango:
-                self.mangoCountLabel.text = fruitCountText
-            }
+            self.fruitCountLabels[index].text = fruitCountText
         }
     }
     
@@ -85,13 +65,12 @@ class ViewController: UIViewController {
      
      - Parameters:
         - juice: 쥬스 버튼이 터치되면 주문할 쥬스
-        - fruits: 재고 레이블을 갱신할 과일
      */
-    func touchUpOrderJuiceButton(juice: Juice, fruits: [Fruit]) {
+    func orderJuice(juice: Juice) {
         do {
             try self.juiceMaker?.make(juice: juice)
             
-            self.refreshFruitCountLabel(fruits)
+            self.refreshFruitCountLabel()
         
             self.showAlert(message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", alertAction1: UIAlertAction(title: "확인", style: .default, handler: nil), alertAction2: nil)
         } catch JuiceMakerError.insufficientFruit {
@@ -102,34 +81,31 @@ class ViewController: UIViewController {
             self.showAlert(message: "쥬스 제조 과정에서 오류가 발생하였습니다.", alertAction1: UIAlertAction(title: "확인", style: .default, handler: nil), alertAction2: nil)
         }
     }
-
-    @IBAction func touchUpOrderStrawberryBananaJuiceButton(_ sender: Any) {
-        self.touchUpOrderJuiceButton(juice: Juice.strawberrybanana, fruits: [Fruit.strawberry, Fruit.banana])
-    }
     
-    @IBAction func touchUpOrderMangoKiwiJuiceButton(_ sender: Any) {
-        self.touchUpOrderJuiceButton(juice: Juice.mangokiwi, fruits: [Fruit.mango, Fruit.kiwi])
-    }
-    
-    @IBAction func touchUpOrderStrawberryJuiceButton(_ sender: Any) {
-        self.touchUpOrderJuiceButton(juice: Juice.strawberry, fruits: [Fruit.strawberry])
-    }
-    
-    @IBAction func touchUpOrderBananaJuiceButton(_ sender: Any) {
-        self.touchUpOrderJuiceButton(juice: Juice.banana, fruits: [Fruit.banana])
-    }
-    
-    @IBAction func touchUpOrderPineappleJuiceButton(_ sender: Any) {
-        self.touchUpOrderJuiceButton(juice: Juice.pineapple, fruits: [Fruit.pineapple])
-    }
-    
-    @IBAction func touchUpOrderKiwiJuiceButton(_ sender: Any) {
-        self.touchUpOrderJuiceButton(juice: Juice.kiwi, fruits: [Fruit.kiwi])
-    }
-    
-    @IBAction func touchUpOrderMangoJuiceButton(_ sender: Any) {
-        self.touchUpOrderJuiceButton(juice: Juice.mango, fruits: [Fruit.mango])
+    @IBAction func touchUpOrderJucieButton(_ sender: Any) {
+        guard let orderJuiceButton = sender as? UIButton else {
+            print("터치한 뷰는 버튼이 아닙니다.")
+            return
+        }
+        
+        switch orderJuiceButton {
+        case orderJuiceButtons[0]:
+            orderJuice(juice: Juice.strawberrybanana)
+        case orderJuiceButtons[1]:
+            orderJuice(juice: Juice.mangokiwi)
+        case orderJuiceButtons[2]:
+            orderJuice(juice: Juice.strawberry)
+        case orderJuiceButtons[3]:
+            orderJuice(juice: Juice.banana)
+        case orderJuiceButtons[4]:
+            orderJuice(juice: Juice.pineapple)
+        case orderJuiceButtons[5]:
+            orderJuice(juice: Juice.kiwi)
+        case orderJuiceButtons[6]:
+            orderJuice(juice: Juice.mango)
+        default:
+            print("버튼에 문제가 있습니다.")
+        }
     }
     
 }
-
