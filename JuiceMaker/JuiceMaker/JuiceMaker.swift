@@ -1,6 +1,7 @@
 import Foundation
 
 /// 쥬스 메이커 타입
+
 //과일 종류
 enum Fruit {
     case strawberry
@@ -10,6 +11,14 @@ enum Fruit {
     case mango
 }
 
+enum StockCheckResult {
+    case available
+    case notAvailable
+}
+
+typealias FruitForJuice = [Fruit: Int]
+
+
 //과일 수량
 //FruitStock을 구조체로 선언한 이유는 값타입으로만 사용될 것 이라 생각하여 구조체를 사용했습니다.
 struct FruitStock {
@@ -18,6 +27,25 @@ struct FruitStock {
     private(set) var pineapple: Int
     private(set) var kiwii: Int
     private(set) var mango: Int
+    
+    //현재 보유한 과일 재고로 가능한가?
+    func checkAvailable(_ fruits: FruitForJuice) -> StockCheckResult {
+        for (fruit, fruitUsed) in fruits {
+            switch fruit {
+            case .banana:
+                if banana < fruitUsed {return .notAvailable}
+            case .kiwii:
+                if kiwii < fruitUsed { return .notAvailable }
+            case .mango:
+                if mango < fruitUsed { return .notAvailable }
+            case .pineapple:
+                if pineapple < fruitUsed { return .notAvailable }
+            case .strawberry:
+                if strawberry < fruitUsed { return .notAvailable }
+            }
+        }
+        return .available
+    }
     
     //과일 재고 추가
     mutating func changeStock(fruit: Fruit, stock: Int) {
@@ -52,25 +80,31 @@ class JuiceMaker {
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
-    func makeJuice(with fruits: [Fruit: Int]) {
-        for (fruit, fruitUsed) in fruits {
-            switch fruit {
-            case .banana:
-                fruitStock.changeStock(fruit: .banana,
-                                        stock: fruitStock.banana - fruitUsed)
-            case .kiwii:
-                fruitStock.changeStock(fruit: .kiwii,
-                                        stock: fruitStock.kiwii - fruitUsed)
-            case .mango:
-                fruitStock.changeStock(fruit: .mango, stock:
-                                            fruitStock.mango - fruitUsed)
-            case .pineapple:
-                fruitStock.changeStock(fruit: .pineapple,
-                                        stock: fruitStock.pineapple - fruitUsed)
-            case .strawberry:
-                fruitStock.changeStock(fruit: .strawberry,
-                                        stock: fruitStock.strawberry - fruitUsed)
+    func makeJuice(with fruits: FruitForJuice) -> Bool {
+        switch fruitStock.checkAvailable(fruits) {
+        case .available:
+            for (fruit, fruitUsed) in fruits {
+                switch fruit {
+                case .banana:
+                    fruitStock.changeStock(fruit: .banana,
+                                            stock: fruitStock.banana - fruitUsed)
+                case .kiwii:
+                    fruitStock.changeStock(fruit: .kiwii,
+                                            stock: fruitStock.kiwii - fruitUsed)
+                case .mango:
+                    fruitStock.changeStock(fruit: .mango, stock:
+                                                fruitStock.mango - fruitUsed)
+                case .pineapple:
+                    fruitStock.changeStock(fruit: .pineapple,
+                                            stock: fruitStock.pineapple - fruitUsed)
+                case .strawberry:
+                    fruitStock.changeStock(fruit: .strawberry,
+                                            stock: fruitStock.strawberry - fruitUsed)
+                }
             }
+            return true
+        case .notAvailable:
+            return false
         }
     }
 }
