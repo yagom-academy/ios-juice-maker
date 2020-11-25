@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by taetae.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -23,8 +23,8 @@ enum Menu: String {
 }
 
 class StockManager {
-    var messenger = Messenger()
-    var recipe = Recipe()
+    let messenger = Messenger()
+    let recipe = Recipe()
     
     private(set) var strawberry: UInt
     private(set) var banana: UInt
@@ -140,53 +140,47 @@ class StockManager {
     }
     
     // MARK: - IsEnoughIngredients
-    func IsEnough(juice: Menu) {
+    func IsEnough(juice: Menu) -> Bool {
         
         switch juice {
         case .strawberryJuice:
             guard strawberry >= recipe.strawberryOfStrawberryJuice else {
-                messenger.printOutOfStock()
-                return
+                return false
             }
         case .bananaJuice:
             guard banana >= recipe.bananaOfBananaJuice else {
-                messenger.printOutOfStock()
-                return
+                return false
             }
         case .strawberryBananaJuice:
             guard strawberry >= recipe.strawberryOfStrawberryBananaJuice &&
                     banana >= recipe.bananaOfStrawberryBananaJuice else {
-                messenger.printOutOfStock()
-                return
+                return false
             }
         case .pineappleJuice:
             guard pineapple >= recipe.pineappleOfPineappleJuice else {
-                messenger.printOutOfStock()
-                return
+                return false
             }
         case .kiwiJuice:
             guard kiwi >= recipe.kiwiOfKiwiJuice else {
-                messenger.printOutOfStock()
-                return
+                return false
             }
         case .mangoJuice:
             guard mango >= recipe.mangoOfMangoJuice else {
-                messenger.printOutOfStock()
-                return
+                return false
             }
         case .mangoKiwiJuice:
             guard mango >= recipe.mangoOfMangoKiwiJuice &&
                     kiwi >= recipe.kiwiOfMangoKiwiJuice else {
-                messenger.printOutOfStock()
-                return
+                return false
             }
         }
+        return true
     }
 }
 
 class JuiceMaker {
-    var stockManager = StockManager()
-    var messenger = Messenger()
+    let stockManager = StockManager()
+    let messenger = Messenger()
     
     func makeStrawberryJuice() {
         stockManager.IsEnough(juice: .strawberryJuice)
