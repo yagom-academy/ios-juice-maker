@@ -270,7 +270,7 @@
         <!--Stock Manage View Controller-->
         <scene sceneID="LEN-Ix-cFU">
             <objects>
-                <viewController storyboardIdentifier="StockManageVC" id="4Bf-bx-oZB" customClass="StockManageViewController" customModule="JuiceMaker" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StockManageVC" id="4Bf-bx-oZB" customClass="StockManageViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DRd-KE-OfS">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,13 +363,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EqJ-2c-0iE"/>
-                    <connections>
-                        <outlet property="bananaStockLabel" destination="lKD-ve-Pwj" id="2Un-eA-Zn0"/>
-                        <outlet property="kiwiStockLabel" destination="WHq-UH-SBS" id="CVl-Hr-QhZ"/>
-                        <outlet property="mangoStockLabel" destination="6DL-Og-ZU4" id="bGq-U8-NS7"/>
-                        <outlet property="pineappleStockLabel" destination="raG-cf-Y8S" id="pRR-ij-aQr"/>
-                        <outlet property="strawberryStockLabel" destination="pFp-28-k49" id="9Tp-TS-NE8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHV-9D-9RM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
