@@ -67,17 +67,17 @@ class ViewController: UIViewController {
             return
         }
         
-         let menuRecipe = orderedMenu.recipe()
+        let menuRecipe = orderedMenu.recipe()
         
         guard juiceMaker.isAvailableMaking(juice: orderedMenu, checking: menuRecipe) else {
-            let alertMessage = juiceMaker.makeFailMessage()
+            let alertMessage = makeFailMessage()
             showFailedAlert(by: alertMessage)
             return
         }
         
         juiceMaker.makeJuice(of: orderedMenu, with: menuRecipe)
         
-        let alertMessage = juiceMaker.makeSuccessMessage(of: orderedMenu)
+        let alertMessage = makeSuccessMessage(of: orderedMenu)
         showSuccessAlert(by: alertMessage)
         
         updateStockStatusAfterMaking(order: orderedMenu)
@@ -111,7 +111,7 @@ extension ViewController {
         menuMap[kiwiOrderButton] = .kiwiJuice
         menuMap[mangoOrderButton] = .mangoJuice
     }
-
+    
     private func updateStockStatusAfterMaking(order: JuiceMenu) {
         switch order {
         case .ddalbaJuice:
@@ -133,13 +133,21 @@ extension ViewController {
         }
     }
     
+    private func makeSuccessMessage(of menu: JuiceMenu) -> String {
+        return "\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)"
+    }
+    
+    private func makeFailMessage() -> String {
+        return "재료가 모자라요. 재고를 수정할까요?"
+    }
+    
     private func showSuccessAlert(by message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         
         alert.addAction(okAction)
-
+        
         present(alert, animated: true, completion: nil)
     }
     

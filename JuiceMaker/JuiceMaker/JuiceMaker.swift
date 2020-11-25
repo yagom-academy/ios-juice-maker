@@ -147,14 +147,6 @@ struct JuiceMaker {
         }
         return true
     }
-    
-    func makeSuccessMessage(of menu: JuiceMenu) -> String {
-        return "\(menu.rawValue) 가 완성되었습니다. 맛있게 드세요 :)"
-    }
-    
-    func makeFailMessage() -> String {
-        return "재료가 모자라요. 재고를 수정할까요?"
-    }
 }
 
 
