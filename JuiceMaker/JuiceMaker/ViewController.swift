@@ -7,7 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet var fruitCountLabels: [UILabel]!
     @IBOutlet var orderJuiceButtons: [UIButton]!
     
@@ -16,8 +15,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.juiceMaker = JuiceMaker(fruitManager: FruitManager(fruitsStore: [Fruit.strawberry: 10, Fruit.banana: 10, Fruit.pineapple: 10, Fruit.kiwi: 10, Fruit.mango: 10]),
-                                                                recipes: [Juice.strawberry: [Fruit.strawberry: 16], Juice.banana: [Fruit.banana: 2], Juice.kiwi: [Fruit.kiwi: 3], Juice.pineapple: [Fruit.pineapple: 2], Juice.strawberrybanana: [Fruit.strawberry: 10, Fruit.banana: 1], Juice.mango: [Fruit.mango: 3] ,Juice.mangokiwi: [Fruit.mango: 2, Fruit.kiwi: 1]])
+        self.juiceMaker = JuiceMaker(
+                            fruitManager: FruitManager(
+                                fruitsStore: [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]),
+            recipes: [.strawberry: [.strawberry: 16], .banana: [.banana: 2], .kiwi: [.kiwi: 3], .pineapple: [.pineapple: 2], .strawberrybanana: [.strawberry: 10, .banana: 1], .mango: [.mango: 3] , .mangokiwi: [.mango: 2, .kiwi: 1]])
         
         self.refreshFruitCountLabel()
     }
@@ -26,7 +27,9 @@ class ViewController: UIViewController {
      과일 개수를 나타내는 레이블을 갱신하는 함수.
      */
     func refreshFruitCountLabel() {
-        for (index, fruit) in [Fruit.strawberry, Fruit.banana, Fruit.pineapple, Fruit.kiwi, Fruit.mango].enumerated() {
+        let fruitAllCases: [Fruit] = [.strawberry, .banana, .pineapple, .kiwi, .mango]
+        
+        for (index, fruit) in fruitAllCases.enumerated() {
             guard let fruitCount = self.juiceMaker?.fruitManager.fruitStore[fruit] else {
                 print("\(fruit)의 재고 개수를 나타낼 수 없습니다.")
                 return
@@ -107,5 +110,4 @@ class ViewController: UIViewController {
             print("버튼에 문제가 있습니다.")
         }
     }
-    
 }
