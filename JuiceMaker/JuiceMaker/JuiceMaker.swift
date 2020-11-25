@@ -8,13 +8,14 @@ import Foundation
 
 /// 쥬스 메이커 타입 
 struct JuiceMaker {
+    var fruitsContainer = [Fruit]()
     
-    var strawberry = Fruit(name: "strawberry")
-    var banana = Fruit(name: "banana")
-    var pineapple = Fruit(name: "pineapple")
-    var kiwi = Fruit(name: "kiwi")
-    var mango = Fruit(name: "mango")
-
+    private var strawberry = Fruit(name: "strawberry")
+    private var banana = Fruit(name: "banana")
+    private var pineapple = Fruit(name: "pineapple")
+    private var kiwi = Fruit(name: "kiwi")
+    private var mango = Fruit(name: "mango")
+    
     init() {
         
         let initialStock = 10
@@ -24,6 +25,12 @@ struct JuiceMaker {
         addStock(amount: initialStock, of: pineapple)
         addStock(amount: initialStock, of: kiwi)
         addStock(amount: initialStock, of: mango)
+        
+        fruitsContainer.append(strawberry)
+        fruitsContainer.append(banana)
+        fruitsContainer.append(pineapple)
+        fruitsContainer.append(kiwi)
+        fruitsContainer.append(mango)
     }
     
     mutating func addStock(amount: Int, of fruitType: Fruit) {
@@ -122,7 +129,7 @@ struct JuiceMaker {
                   let requiredKiwi = requiredFruits["kiwi"] else {
                 return false
             }
-         
+            
             guard checkStockAmount(of: mango) >= requiredMango,
                   checkStockAmount(of: kiwi) >= requiredKiwi else {
                 return false

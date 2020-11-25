@@ -10,38 +10,41 @@ class ViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
     private var menuMap = [UIButton : JuiceMenu]()
     private var fruitSymbol = ["🍓", "🍌", "🍍", "🥝", "🥭"]
+    
     private var strawberryCount : Int = 0 {
         didSet {
-            strawberryCountLabel.text = "\(strawberryCount)"
+            fruitStockLabels[strawberryProductNumber].text = "\(strawberryCount)"
         }
     }
     private var bananaCount : Int = 0 {
         didSet {
-            bananaCountLabel.text = "\(bananaCount)"
+            fruitStockLabels[bananaProductNumber].text = "\(bananaCount)"
         }
     }
     private var pineappleCount : Int = 0 {
         didSet {
-            pineappleCountLabel.text = "\(pineappleCount)"
+            fruitStockLabels[pineappleProductNumber].text = "\(pineappleCount)"
         }
     }
     private var kiwiCount : Int = 0 {
         didSet {
-            kiwiCountLabel.text = "\(kiwiCount)"
+            fruitStockLabels[kiwiProductNumber].text = "\(kiwiCount)"
         }
     }
     private var mangoCount : Int = 0 {
         didSet {
-            mangoCountLabel.text = "\(mangoCount)"
+            fruitStockLabels[mangoProductNumber].text = "\(mangoCount)"
         }
     }
     
+    let strawberryProductNumber = 0
+    let bananaProductNumber = 1
+    let pineappleProductNumber = 2
+    let kiwiProductNumber = 3
+    let mangoProductNumber = 4
+    
     @IBOutlet var fruitSymbolLabels: [UILabel]!
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
+    @IBOutlet var fruitStockLabels: [UILabel]!
     
     @IBOutlet weak var ddalbaOrderButton: UIButton!
     @IBOutlet weak var mankiOrderButton: UIButton!
@@ -53,24 +56,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeFruitImage()
-        initializeStockLabel()
+        initializeFruitImages()
+        initializeStockLabels()
         initializeMenuOrder()
     }
     
-    @IBAction func orderJuiceMenu(_ orderButton: UIButton) {
-        guard let orderedMenu = menuMap[orderButton] else {
+    @IBAction func tappedOrderButton(_ orderType: UIButton) {
+        guard let orderedMenu = menuMap[orderType] else {
             print("Error: 버튼과 연결된 메뉴가 없습니다.")
             return
         }
         
-        guard juiceMaker.isAvailableMaking(juice: orderedMenu) else {
+         let menuRecipe = orderedMenu.recipe()
+        
+        guard juiceMaker.isAvailableMaking(juice: orderedMenu, checking: menuRecipe) else {
             let alertMessage = juiceMaker.makeFailMessage()
             showFailedAlert(by: alertMessage)
             return
         }
         
-        juiceMaker.makeJuice(of: orderedMenu)
+        juiceMaker.makeJuice(of: orderedMenu, with: menuRecipe)
         
         let alertMessage = juiceMaker.makeSuccessMessage(of: orderedMenu)
         showSuccessAlert(by: alertMessage)
@@ -79,18 +84,22 @@ class ViewController: UIViewController {
     }
 }
 extension ViewController {
-    private func initializeFruitImage() {
+    private func initializeFruitImages() {
+        guard fruitSymbolLabels.count == fruitSymbol.count else {
+            print("과일 이미지 갯수랑 화면의 이미지 레이블 갯수가 맞지 않습니다. ")
+            return
+        }
         for fruitIndex in 0..<fruitSymbolLabels.count {
             fruitSymbolLabels[fruitIndex].text = fruitSymbol[fruitIndex]
         }
     }
     
-    private func initializeStockLabel() {
-        strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
-        bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
-        pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.pineapple)
-        kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
-        mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
+    private func initializeStockLabels() {
+        strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[strawberryProductNumber])
+        bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[bananaProductNumber])
+        pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[pineappleProductNumber])
+        kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[kiwiProductNumber])
+        mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[mangoProductNumber])
     }
     
     private func initializeMenuOrder() {
@@ -106,21 +115,21 @@ extension ViewController {
     private func updateStockStatusAfterMaking(order: JuiceMenu) {
         switch order {
         case .ddalbaJuice:
-            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
-            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
+            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[strawberryProductNumber])
+            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[bananaProductNumber])
         case .mangoKiwiJuice:
-            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
-            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
+            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[mangoProductNumber])
+            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[kiwiProductNumber])
         case .strawberryJuice:
-            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
+            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[strawberryProductNumber])
         case .bananaJuice:
-            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
+            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[bananaProductNumber])
         case .pineappleJuice:
-            pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.pineapple)
+            pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[pineappleProductNumber])
         case .mangoJuice:
-            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
+            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[mangoProductNumber])
         case .kiwiJuice:
-            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
+            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.fruitsContainer[kiwiProductNumber])
         }
     }
     
