@@ -144,30 +144,28 @@ class JuiceMaker {
     private func makeStrawberryAndBananaJuice() -> MakeJuiceResult {
         let strawberryConsumtion = 10
         let bananaConsumtion = 1
-        if fruitManager.isEnough(name: .strawberry, amount: strawberryConsumtion) && fruitManager.isEnough(name: .banana, amount: bananaConsumtion){
-            fruitManager.consumeFruit(name: .strawberry, amount: strawberryConsumtion)
-            fruitManager.consumeFruit(name: .banana, amount: bananaConsumtion)
-            return .success
-        } else {
-            return .fail
-        }
+        return makeTwoIngredientJuice(firstName: .strawberry, firstAmount: strawberryConsumtion, secondName: .banana, secondAmount: bananaConsumtion)
     }
     
     private func makeMangoAndKiwiJuice() -> MakeJuiceResult {
         let mangoConsumtion = 2
         let kiwiConsumtion = 1
-        if fruitManager.isEnough(name: .mango, amount: mangoConsumtion) && fruitManager.isEnough(name: .kiwi, amount: kiwiConsumtion){
-            fruitManager.consumeFruit(name: .mango, amount: mangoConsumtion)
-            fruitManager.consumeFruit(name: .kiwi, amount: kiwiConsumtion)
+        return makeTwoIngredientJuice(firstName: .mango, firstAmount: mangoConsumtion, secondName: .kiwi, secondAmount: kiwiConsumtion)
+    }
+    
+    private func makeOneIngredientJuice(name: Fruit.Name, amount: Int) -> MakeJuiceResult {
+        if fruitManager.isEnough(name: name, amount: amount) {
+            fruitManager.consumeFruit(name: name, amount: amount)
             return .success
         } else {
             return .fail
         }
     }
     
-    private func makeOneIngredientJuice(name: Fruit.Name, amount: Int) -> MakeJuiceResult {
-        if fruitManager.isEnough(name: name, amount: amount) {
-            fruitManager.consumeFruit(name: name, amount: amount)
+    private func makeTwoIngredientJuice(firstName: Fruit.Name, firstAmount: Int, secondName: Fruit.Name, secondAmount: Int) -> MakeJuiceResult {
+        if fruitManager.isEnough(name: firstName, amount: firstAmount) && fruitManager.isEnough(name: secondName, amount: secondAmount){
+            fruitManager.consumeFruit(name: firstName, amount: firstAmount)
+            fruitManager.consumeFruit(name: secondName, amount: secondAmount)
             return .success
         } else {
             return .fail
