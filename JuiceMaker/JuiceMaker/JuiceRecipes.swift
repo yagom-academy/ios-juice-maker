@@ -23,15 +23,21 @@ struct JuiceRecipe {
 
 // 쥬스 레시피의 프로퍼티는 인스턴스내에서 변경되지 않으므로 struct로 선언
 struct JuiceRecipes {
-    let juiceRecipe: [Juice:JuiceRecipe]
+    fileprivate var juiceRecipes: [Juice:JuiceRecipe]
     
     func getRecipe(of juice: Juice) -> JuiceRecipe? {
-        return juiceRecipe[juice]
+        return juiceRecipes[juice]
+    }
+    
+    /// 레시피 수정
+    /// - Returns: 쥬스의 레시피가 이미 있다면 새로운 레시피로 수정 후 원래 레시피를 반환, 없다면 새로운 레시피를 추가한 후 nil 반환
+    mutating func updateRecipe(of juice: Juice, with recipe: JuiceRecipe) -> JuiceRecipe? {
+        return juiceRecipes.updateValue(recipe, forKey: juice)
     }
 }
 
 // 야곰의 쥬스 레시피 상수
-let yagomsJuiceRecipes: JuiceRecipes = JuiceRecipes(juiceRecipe: [
+let yagomsJuiceRecipes: JuiceRecipes = JuiceRecipes(juiceRecipes: [
     .strawberryJuice:JuiceRecipe(needFruits: [.strawberry:16]),
     .bananaJuice:JuiceRecipe(needFruits: [.banana:2]),
     .kiwiJuice:JuiceRecipe(needFruits: [.kiwi:3]),
