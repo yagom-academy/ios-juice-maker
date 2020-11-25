@@ -70,3 +70,7 @@ class Stock {
         }
     }
 }
+
+struct JuiceMaker {
+    var stock = Stock()
+}
