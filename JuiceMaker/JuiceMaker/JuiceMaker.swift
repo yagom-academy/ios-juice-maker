@@ -20,7 +20,7 @@ struct FruitStock {
     private(set) var mango: Int
     
     //과일 재고 추가
-    mutating func stockChanged(fruit: Fruit, stock: Int) {
+    mutating func changeStock(fruit: Fruit, stock: Int) {
         switch fruit {
         case .strawberry:
             strawberry = stock
@@ -56,19 +56,19 @@ class JuiceMaker {
         for (fruit, fruitUsed) in fruits {
             switch fruit {
             case .banana:
-                fruitStock.stockChanged(fruit: .banana,
+                fruitStock.changeStock(fruit: .banana,
                                         stock: fruitStock.banana - fruitUsed)
             case .kiwii:
-                fruitStock.stockChanged(fruit: .kiwii,
+                fruitStock.changeStock(fruit: .kiwii,
                                         stock: fruitStock.kiwii - fruitUsed)
             case .mango:
-                fruitStock.stockChanged(fruit: .mango, stock:
+                fruitStock.changeStock(fruit: .mango, stock:
                                             fruitStock.mango - fruitUsed)
             case .pineapple:
-                fruitStock.stockChanged(fruit: .pineapple,
+                fruitStock.changeStock(fruit: .pineapple,
                                         stock: fruitStock.pineapple - fruitUsed)
             case .strawberry:
-                fruitStock.stockChanged(fruit: .strawberry,
+                fruitStock.changeStock(fruit: .strawberry,
                                         stock: fruitStock.strawberry - fruitUsed)
             }
         }
