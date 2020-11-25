@@ -51,10 +51,7 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
         alert.addAction(UIAlertAction(title: "예", style: .default) { _ in
-            guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") else {
-                return
-            }
-            self.navigationController?.pushViewController(stockViewController, animated: true)
+            self.performSegue(withIdentifier: "ToStockManager", sender: nil)
         })
         present(alert, animated: true)
     }
