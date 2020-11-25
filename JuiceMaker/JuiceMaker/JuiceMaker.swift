@@ -11,15 +11,15 @@ enum Fruits {
 }
 
 class FruitStock: NSObject {
-    @objc fileprivate(set) var strawberry: Int
-    @objc fileprivate(set) var banana: Int
-    @objc fileprivate(set) var pineapple: Int
-    @objc fileprivate(set) var kiwi: Int
-    @objc fileprivate(set) var mango: Int
+    @objc fileprivate(set) var strawberry: UInt
+    @objc fileprivate(set) var banana: UInt
+    @objc fileprivate(set) var pineapple: UInt
+    @objc fileprivate(set) var kiwi: UInt
+    @objc fileprivate(set) var mango: UInt
     
     let instanceForSuperInit = NSObject()
     
-    init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
+    init(strawberry: UInt, banana: UInt, pineapple: UInt, kiwi: UInt, mango: UInt) {
         self.strawberry = strawberry
         self.banana = banana
         self.pineapple = pineapple
