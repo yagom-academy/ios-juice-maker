@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var juiceMaker = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
     private var menuMap = [UIButton : JuiceMenu]()
     private var fruitSymbol = ["🍓", "🍌", "🍍", "🥝", "🥭"]
     private var strawberryCount : Int = 0 {
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet var fruitImageLabels: [UILabel]!
+    @IBOutlet var fruitSymbolLabels: [UILabel]!
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
     @IBOutlet weak var pineappleCountLabel: UILabel!
@@ -76,14 +76,12 @@ class ViewController: UIViewController {
         showSuccessAlert(by: alertMessage)
         
         updateStockStatusAfterMaking(order: orderedMenu)
-
-        return
     }
 }
 extension ViewController {
     private func initializeFruitImage() {
-        for fruitIdx in 0..<fruitImageLabels.count {
-            fruitImageLabels[fruitIdx].text = fruitSymbol[fruitIdx]
+        for fruitIndex in 0..<fruitSymbolLabels.count {
+            fruitSymbolLabels[fruitIndex].text = fruitSymbol[fruitIndex]
         }
     }
     
