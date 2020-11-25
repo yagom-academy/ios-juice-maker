@@ -29,7 +29,7 @@ struct FruitStock {
     private(set) var mango: Int
     
     //현재 보유한 과일 재고로 가능한가?
-    func checkAvailable(_ fruits: FruitForJuice) -> StockCheckResult {
+    func canMakeJuice(_ fruits: FruitForJuice) -> StockCheckResult {
         for (fruit, fruitUsed) in fruits {
             switch fruit {
             case .banana:
@@ -80,31 +80,25 @@ class JuiceMaker {
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
-    func makeJuice(with fruits: FruitForJuice) -> Bool {
-        switch fruitStock.checkAvailable(fruits) {
-        case .available:
-            for (fruit, fruitUsed) in fruits {
-                switch fruit {
-                case .banana:
-                    fruitStock.changeStock(fruit: .banana,
-                                            stock: fruitStock.banana - fruitUsed)
-                case .kiwii:
-                    fruitStock.changeStock(fruit: .kiwii,
-                                            stock: fruitStock.kiwii - fruitUsed)
-                case .mango:
-                    fruitStock.changeStock(fruit: .mango, stock:
-                                                fruitStock.mango - fruitUsed)
-                case .pineapple:
-                    fruitStock.changeStock(fruit: .pineapple,
-                                            stock: fruitStock.pineapple - fruitUsed)
-                case .strawberry:
-                    fruitStock.changeStock(fruit: .strawberry,
-                                            stock: fruitStock.strawberry - fruitUsed)
-                }
+    func makeJuice(with fruits: FruitForJuice) {
+        for (fruit, fruitUsed) in fruits {
+            switch fruit {
+            case .banana:
+                fruitStock.changeStock(fruit: .banana,
+                                       stock: fruitStock.banana - fruitUsed)
+            case .kiwii:
+                fruitStock.changeStock(fruit: .kiwii,
+                                       stock: fruitStock.kiwii - fruitUsed)
+            case .mango:
+                fruitStock.changeStock(fruit: .mango, stock:
+                                        fruitStock.mango - fruitUsed)
+            case .pineapple:
+                fruitStock.changeStock(fruit: .pineapple,
+                                       stock: fruitStock.pineapple - fruitUsed)
+            case .strawberry:
+                fruitStock.changeStock(fruit: .strawberry,
+                                       stock: fruitStock.strawberry - fruitUsed)
             }
-            return true
-        case .notAvailable:
-            return false
         }
     }
 }
