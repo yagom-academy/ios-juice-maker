@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class StockManageViewController: ViewController {
+class StockManageViewController: UIViewController {
     
     @IBAction func touchUpGoBackButton(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
