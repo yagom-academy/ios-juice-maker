@@ -6,4 +6,21 @@
 
 import Foundation
 
-/// 쥬스 메이커 타입 
+enum JuiceName: String {
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
+}
+
+enum FruitName: String {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
+
