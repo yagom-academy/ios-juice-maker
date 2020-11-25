@@ -15,11 +15,7 @@ class FruitStockView : UIView {
     
     private(set) var fruitStock: Int? = nil {
         willSet {
-            do {
-                try updateStockLabel(newValue)
-            } catch {
-                debugPrint("Error: System in FruitStockView")
-            }
+            updateStockLabel(newValue)
         }
     }
     
@@ -45,9 +41,10 @@ class FruitStockView : UIView {
         stockStepper.minimumValue = Double(stock)
     }
     
-    private func updateStockLabel(_ stock: Int?) throws {
+    private func updateStockLabel(_ stock: Int?) {
         guard let newStock = stock else {
-            throw JuiceMakerError.system
+            debugPrint("Error: System in FruitStockView (stock is nil)")
+            return
         }
         fruitView.fruitStock.text = String(newStock)
     }
