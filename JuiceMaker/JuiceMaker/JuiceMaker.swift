@@ -39,4 +39,20 @@ class Stock {
         self.mango = initialStock
         self.pineapple = initialStock
     }
+    
+    func add(fruitName: FruitName, stock: UInt) {
+        switch fruitName {
+        case .banana:
+            banana += stock
+        case .strawberry:
+            starwberry += stock
+        case .pineapple:
+            pineapple += stock
+        case .kiwi:
+            kiwi += stock
+        case .mango:
+            mango += stock
+        }
+    }
+
 }
