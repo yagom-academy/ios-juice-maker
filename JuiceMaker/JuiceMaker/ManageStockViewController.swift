@@ -23,7 +23,7 @@ class ManageStockViewController: ViewController {
         showFruitStock()
     }
     
-    override func showFruitStock() {
+    func showFruitStock() {
         numberOfStrawberry.text = String(strawberryStock)
         numberOfBanana.text = String(bananaStock)
         numberOfPineapple.text = String(pineappleStock)
