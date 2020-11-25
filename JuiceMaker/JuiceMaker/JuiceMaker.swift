@@ -10,10 +10,6 @@ enum Fruits {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-struct FruitsLabel {
-    let fruits: [String] = ["strawberry", "banana", "pineapple", "kiwi", "mango"]
-}
-
 class FruitStock: NSObject {
     @objc fileprivate(set) var strawberry: Int
     @objc fileprivate(set) var banana: Int
@@ -34,12 +30,10 @@ class FruitStock: NSObject {
     
     func addStocks(fruitsName: Fruits, amount: Int) {
         let fruit = "\(fruitsName)"
-        if FruitsLabel().fruits.contains(fruit) {
-            if let addFruit = value(forKey: fruit) as? Int {
-                setValue(addFruit + amount, forKey: fruit)
-            } else {
-                print("존재하지 않는 과일입니다. 알림 구현")
-            }
+        if let fruitToAddStock = value(forKey: fruit) as? Int {
+            setValue(fruitToAddStock + amount, forKey: fruit)
+        } else {
+            print("존재하지 않는 과일입니다. 알림 구현")
         }
     }
 }
