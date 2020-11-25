@@ -35,10 +35,14 @@ class JuiceMaker {
         return true
     }
     
-    private func consumeStock(of juiceRecipe: JuiceRecipe) {
+    private func consumeStock(of juiceRecipe: JuiceRecipe) -> Bool {
         for (fruit, count) in juiceRecipe.needFruits {
-            fruitStorage.subtractStock(of: fruit, count: count)
+            guard fruitStorage.subtractStock(of: fruit, count: count) else {
+                return false
+            }
         }
+        
+        return true
     }
         
     func make(juice: Juice) throws {
@@ -50,6 +54,8 @@ class JuiceMaker {
             throw JuiceMakerError.lowStock
         }
 
-        consumeStock(of: recipe)
+        guard consumeStock(of: recipe) else {
+            throw JuiceMakerError.lowStock
+        }
     }
 }
