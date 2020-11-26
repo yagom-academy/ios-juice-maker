@@ -14,14 +14,12 @@ enum Fruits: String {
     case mango = "망고"
 }
 
-class FruitStock: NSObject {
-    @objc fileprivate(set) var strawberry: UInt
-    @objc fileprivate(set) var banana: UInt
-    @objc fileprivate(set) var pineapple: UInt
-    @objc fileprivate(set) var kiwi: UInt
-    @objc fileprivate(set) var mango: UInt
-    
-    let instanceForSuperInit = NSObject()
+class FruitStock {
+    fileprivate(set) var strawberry: UInt
+    fileprivate(set) var banana: UInt
+    fileprivate(set) var pineapple: UInt
+    fileprivate(set) var kiwi: UInt
+    fileprivate(set) var mango: UInt
     
     init(strawberry: UInt, banana: UInt, pineapple: UInt, kiwi: UInt, mango: UInt) {
         self.strawberry = strawberry
@@ -31,13 +29,20 @@ class FruitStock: NSObject {
         self.mango = mango
     }
     
-    
-    func addStocks(fruitsName: Fruits, amount: Int) {
-        let fruit = "\(fruitsName)"
-        if let fruitsCount = value(forKey: fruit) as? Int {
-            setValue(fruitsCount + amount, forKey: fruit)
-        } else {
-            print("존재하지 않는 과일입니다. 알림 구현")
+    func addStocks(fruitName: Fruits, amount: UInt, isPlus: Bool) {
+        switch fruitName {
+        case .strawberry where strawberry >= amount:
+            strawberry = isPlus ? strawberry + amount : strawberry - amount
+        case .banana where banana >= amount:
+            banana = isPlus ? banana + amount : banana - amount
+        case .pineapple where pineapple >= amount:
+            pineapple = isPlus ? pineapple + amount : pineapple - amount
+        case .kiwi where kiwi >= amount:
+            kiwi = isPlus ? kiwi + amount : kiwi - amount
+        case .mango where mango >= amount:
+            mango = isPlus ? mango + amount : mango - amount
+        default:
+            print("현재 남은 수량보다 차감하려는 재고가 더 많습니다. 알람 구현")
         }
     }
 }
