@@ -7,6 +7,6 @@ class StockManagerViewController: UIViewController {
     }
     
     @IBAction func pressedCloseButton(_ sender: UIButton) {
-        
+        dismiss(animated: true)
     }
 }
