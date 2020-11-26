@@ -79,10 +79,10 @@ class ViewController: UIViewController {
         guard let juice = FruitJuice(rawValue: menu) else { return }
         do {
             try juiceMaker.makeJuice(orderedJuice: juice)
-            showAlert(type: AlertType.complete, juiceName: menu)
+            showAlert(type: .complete, juiceName: menu)
         }
         catch {
-            showAlert(type: AlertType.warning)
+            showAlert(type: .warning)
         }
     }
     
