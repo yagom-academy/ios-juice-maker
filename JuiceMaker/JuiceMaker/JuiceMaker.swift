@@ -34,7 +34,7 @@ struct FruitStock {
     private(set) var mango: Int
     
     //현재 보유한 과일 재고로 가능한가?
-    func canMakeJuice(with recipe: Recipe) -> StockCheckResult {
+    private func canMakeJuice(with recipe: Recipe) -> StockCheckResult {
         for (fruit, fruitUsed) in recipe {
             switch fruit {
             case .banana:
