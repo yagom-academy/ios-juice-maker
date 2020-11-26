@@ -117,40 +117,40 @@ class JuiceMaker {
     }
     
     private func makeStrawberryJuice() -> MakeJuiceResult {
-        let strawberryConsumtion = 16
-        return makeOneIngredientJuice(name: .strawberry, amount: strawberryConsumtion)
+        let strawberry = 16
+        return makeOneIngredientJuice(name: .strawberry, amount: strawberry)
     }
     
     private func makeBananaJuice() -> MakeJuiceResult {
-        let bananaConsumtion = 2
-        return makeOneIngredientJuice(name: .banana, amount: bananaConsumtion)
+        let banana = 2
+        return makeOneIngredientJuice(name: .banana, amount: banana)
     }
     
     private func makeKiwiJuice() -> MakeJuiceResult {
-        let kiwiConsumtion = 3
-        return makeOneIngredientJuice(name: .kiwi, amount: kiwiConsumtion)
+        let kiwi = 3
+        return makeOneIngredientJuice(name: .kiwi, amount: kiwi)
     }
     
     private func makePineappleJuice() -> MakeJuiceResult {
-        let pineappleConsumtion = 2
-        return makeOneIngredientJuice(name: .pineapple, amount: pineappleConsumtion)
+        let pineapple = 2
+        return makeOneIngredientJuice(name: .pineapple, amount: pineapple)
     }
     
     private func makeMangoJuice() -> MakeJuiceResult {
-        let mangoConsumtion = 3
-        return makeOneIngredientJuice(name: .mango, amount: mangoConsumtion)
+        let mango = 3
+        return makeOneIngredientJuice(name: .mango, amount: mango)
     }
     
     private func makeStrawberryAndBananaJuice() -> MakeJuiceResult {
-        let strawberryConsumtion = 10
-        let bananaConsumtion = 1
-        return makeTwoIngredientJuice(firstName: .strawberry, firstAmount: strawberryConsumtion, secondName: .banana, secondAmount: bananaConsumtion)
+        let strawberry = 10
+        let banana = 1
+        return makeTwoIngredientJuice(firstName: .strawberry, firstAmount: strawberry, secondName: .banana, secondAmount: banana)
     }
     
     private func makeMangoAndKiwiJuice() -> MakeJuiceResult {
-        let mangoConsumtion = 2
-        let kiwiConsumtion = 1
-        return makeTwoIngredientJuice(firstName: .mango, firstAmount: mangoConsumtion, secondName: .kiwi, secondAmount: kiwiConsumtion)
+        let mango = 2
+        let kiwi = 1
+        return makeTwoIngredientJuice(firstName: .mango, firstAmount: mango, secondName: .kiwi, secondAmount: kiwi)
     }
     
     private func makeOneIngredientJuice(name: Fruit.Name, amount: Int) -> MakeJuiceResult {
@@ -163,7 +163,7 @@ class JuiceMaker {
     }
     
     private func makeTwoIngredientJuice(firstName: Fruit.Name, firstAmount: Int, secondName: Fruit.Name, secondAmount: Int) -> MakeJuiceResult {
-        if fruitManager.isEnough(name: firstName, amount: firstAmount) && fruitManager.isEnough(name: secondName, amount: secondAmount){
+        if fruitManager.isEnough(name: firstName, amount: firstAmount) && fruitManager.isEnough(name: secondName, amount: secondAmount) {
             fruitManager.consumeFruit(name: firstName, amount: firstAmount)
             fruitManager.consumeFruit(name: secondName, amount: secondAmount)
             return .success
