@@ -25,11 +25,11 @@ class StockViewController: UIViewController {
     }
     
     func changeLabels() {
-        guard let strawberry = JuiceMaker.shared.fruits[.strawberry],
-              let banana = JuiceMaker.shared.fruits[.banana],
-              let mango = JuiceMaker.shared.fruits[.mango],
-              let kiwi = JuiceMaker.shared.fruits[.kiwi],
-              let pineapple = JuiceMaker.shared.fruits[.pineapple] else {
+        guard let strawberry = JuiceMaker.common.fruits[.strawberry],
+              let banana = JuiceMaker.common.fruits[.banana],
+              let mango = JuiceMaker.common.fruits[.mango],
+              let kiwi = JuiceMaker.common.fruits[.kiwi],
+              let pineapple = JuiceMaker.common.fruits[.pineapple] else {
             return
         }
         strawberryStockLabel.text = "\(strawberry.amount)"
