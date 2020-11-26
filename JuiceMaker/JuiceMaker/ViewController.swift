@@ -144,7 +144,7 @@ extension ViewController {
 // 재고 관리 화면으로 이동하기
 extension ViewController {
     func moveToManageStockVC() {
-        let manageStockView = self.storyboard!.instantiateViewController(identifier: "ManageStockVC")
+        guard let manageStockView = self.storyboard?.instantiateViewController(identifier: "ManageStockVC") else { return }
         manageStockView.modalTransitionStyle = .coverVertical
         present(manageStockView, animated: true, completion: nil)
     }
