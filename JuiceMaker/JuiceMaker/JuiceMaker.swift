@@ -6,8 +6,12 @@
 
 import Foundation
 
-enum Fruits {
-    case strawberry, banana, pineapple, kiwi, mango
+enum Fruits: String {
+    case strawberry = "딸기"
+    case banana = "바나나"
+    case pineapple = "파인애플"
+    case kiwi = "키위"
+    case mango = "망고"
 }
 
 class FruitStock: NSObject {
@@ -30,8 +34,8 @@ class FruitStock: NSObject {
     
     func addStocks(fruitsName: Fruits, amount: Int) {
         let fruit = "\(fruitsName)"
-        if let fruitToAddStock = value(forKey: fruit) as? Int {
-            setValue(fruitToAddStock + amount, forKey: fruit)
+        if let fruitsCount = value(forKey: fruit) as? Int {
+            setValue(fruitsCount + amount, forKey: fruit)
         } else {
             print("존재하지 않는 과일입니다. 알림 구현")
         }
@@ -39,32 +43,66 @@ class FruitStock: NSObject {
 }
 
 class JuiceMaker: FruitStock {
+    let completionSentence = "쥬스 나왔습니다! 맛있게 드세요"
+    let adjustmentSentence = "재료가 모자라요. 재고를 수정할까요?"
+    
     
     func makeOriginalJuice(material fruit: Fruits) {
         switch fruit {
         case .strawberry:
-            strawberry -= 16
+            if strawberry >= 16 {
+                print(fruit.rawValue + completionSentence)
+                strawberry -= 16
+            } else {
+                print(adjustmentSentence)
+            }
         case .banana:
-            banana -= 2
+            if banana >= 2 {
+                print(fruit.rawValue + completionSentence)
+                banana -= 2
+            } else {
+                print(adjustmentSentence)
+            }
         case .pineapple:
-            pineapple -= 2
+            if pineapple >= 2 {
+                print(fruit.rawValue + completionSentence)
+                pineapple -= 2
+            } else {
+                print(adjustmentSentence)
+            }
         case .kiwi:
-            kiwi -= 3
+            if kiwi >= 3 {
+                print(fruit.rawValue + completionSentence)
+                kiwi -= 3
+            } else {
+                print(adjustmentSentence)
+            }
         case .mango:
-            mango -= 3
+            if mango >= 3 {
+                print(fruit.rawValue + completionSentence)
+                mango -= 3
+            } else {
+                print(adjustmentSentence)
+            }
         }
     }
     
     func makeMixedJuice(fruit1: Fruits, fruit2: Fruits) {
         switch (fruit1, fruit2) {
         case (.strawberry, .banana), (.banana, .strawberry):
-            strawberry -= 10
-            banana -= 1
+            if strawberry >= 10 && banana >= 1 {
+                print(fruit1.rawValue + fruit2.rawValue + completionSentence)
+                strawberry -= 10
+                banana -= 1
+            } else {
+                print(adjustmentSentence)
+            }
         case (.kiwi, .mango), (.mango, .kiwi):
+            print(fruit1.rawValue + fruit2.rawValue + completionSentence)
             kiwi -= 2
             mango -= 1
         default:
-            print("메뉴 준비 중이라는 알림 구현")
+            print(adjustmentSentence)
         }
     }
 }
