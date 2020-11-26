@@ -12,7 +12,7 @@ enum Juice {
     case strawberryBananaJuice
     case mangoKiwiJuice
 }
-
+    
 struct FruitAmountForJuice {
     fileprivate let strawberryForStrawberryJuice: UInt = 16
     fileprivate let bananaForBananaJuice: UInt = 2
