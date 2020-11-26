@@ -42,7 +42,7 @@ class FruitStorage {
     /// 재고 수량 빼기
     /// - Returns: 원하는 수량 만큼 뺄 수 있으면 빼고 true 반환, 없으면 빼지 않고 false 반환
     func subtractStock(of fruit: Fruit, count: UInt) -> Bool {
-        guard Int(fruitStocks[fruit.rawValue]) - Int(count) >= 0 else {
+        guard fruitStocks[fruit.rawValue] >= count else {
             return false
         }
         
