@@ -16,7 +16,12 @@ enum StockCheckResult {
     case notAvailable
 }
 
-typealias FruitForJuice = [Fruit: Int]
+enum Result {
+    case success
+    case failure
+}
+
+typealias Recipe = [Fruit: Int]
 
 
 //과일 수량
@@ -29,8 +34,8 @@ struct FruitStock {
     private(set) var mango: Int
     
     //현재 보유한 과일 재고로 가능한가?
-    func canMakeJuice(_ fruits: FruitForJuice) -> StockCheckResult {
-        for (fruit, fruitUsed) in fruits {
+    private func canMakeJuice(with recipe: Recipe) -> StockCheckResult {
+        for (fruit, fruitUsed) in recipe {
             switch fruit {
             case .banana:
                 if banana < fruitUsed {return .notAvailable}
@@ -45,6 +50,29 @@ struct FruitStock {
             }
         }
         return .available
+    }
+    
+    mutating func useFruit(recipe: Recipe) -> Result {
+        switch canMakeJuice(with: recipe) {
+        case .available:
+            for (fruit, fruitUsed) in recipe {
+                switch fruit {
+                case .strawberry:
+                    strawberry = strawberry - fruitUsed
+                case .banana:
+                    banana = banana - fruitUsed
+                case .kiwii:
+                    kiwii = kiwii - fruitUsed
+                case .mango:
+                    mango = mango - fruitUsed
+                case .pineapple:
+                    pineapple = pineapple - fruitUsed
+                }
+            }
+            return .success
+        case .notAvailable:
+            return .failure
+        }
     }
     
     //과일 재고 추가
@@ -68,7 +96,7 @@ struct FruitStock {
 //JuiceMaker를 class로 선언한 이유는 나중에 JuiceMaker라는 인스턴스를 가지고
 //재고를 늘리거나 음료를 만들 때 참조 타입으로 내부의 값을 변경시켜주는 것이 맞다고 생각하여 class를 사용.
 class JuiceMaker {
-    var fruitStock: FruitStock
+    private(set) var fruitStock: FruitStock
     
     //JuiceMaker 인스턴스 생성 시 초기 과일 재고 입력.
     init(stock: FruitStock) {
@@ -77,28 +105,15 @@ class JuiceMaker {
                                 pineapple: stock.pineapple,
                                 kiwii: stock.kiwii,
                                 mango: stock.mango)
+        
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
-    func makeJuice(with fruits: FruitForJuice) {
-        for (fruit, fruitUsed) in fruits {
-            switch fruit {
-            case .banana:
-                fruitStock.changeStock(fruit: .banana,
-                                       stock: fruitStock.banana - fruitUsed)
-            case .kiwii:
-                fruitStock.changeStock(fruit: .kiwii,
-                                       stock: fruitStock.kiwii - fruitUsed)
-            case .mango:
-                fruitStock.changeStock(fruit: .mango, stock:
-                                        fruitStock.mango - fruitUsed)
-            case .pineapple:
-                fruitStock.changeStock(fruit: .pineapple,
-                                       stock: fruitStock.pineapple - fruitUsed)
-            case .strawberry:
-                fruitStock.changeStock(fruit: .strawberry,
-                                       stock: fruitStock.strawberry - fruitUsed)
-            }
-        }
+    func makeJuice(with recipe: Recipe) -> Result {
+        return fruitStock.useFruit(recipe: recipe)
+    }
+    
+    func updateStock(fruit: Fruit, stock: Int) {
+        fruitStock.changeStock(fruit: fruit, stock: stock)
     }
 }
