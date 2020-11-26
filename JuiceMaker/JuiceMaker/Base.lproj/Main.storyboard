@@ -185,7 +185,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <segue destination="PeT-NH-H7Y" kind="show" identifier="ToStockManager" id="Luq-wY-lbF"/>
+                                    <segue destination="PeT-NH-H7Y" kind="presentation" identifier="ToStockManager" id="Luq-wY-lbF"/>
                                 </connections>
                             </button>
                         </barButtonItem>
