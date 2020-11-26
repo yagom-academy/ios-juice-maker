@@ -42,92 +42,47 @@ class ViewController: UIViewController {
         
     @IBAction private func touchUpStrawberryBananaJuiceButton(_ sender: UIButton) {
         let strawberryBananaJuice: String = "딸기바나나쥬스"
-        guard let menu = FruitsJuice(rawValue: strawberryBananaJuice) else { return }
-        do {
-            try juiceMaker.makeJuice(orderedJuice: menu)
-            showAlert(type: AlertType.complete, juiceName: strawberryBananaJuice)
-            showFruitsStock()
-        }
-        catch {
-            showAlert(type: AlertType.warning)
-        }
+        makeJuiceAndShowAlert(menu: strawberryBananaJuice)
     }
     
     @IBAction private func touchUpMangoKiwiJuiceButton(_ sender: UIButton) {
         let mangoKiwiJuice: String = "망고키위쥬스"
-        guard let menu = FruitsJuice(rawValue: mangoKiwiJuice) else { return }
-        do {
-            try juiceMaker.makeJuice(orderedJuice: menu)
-            showAlert(type: AlertType.complete, juiceName: mangoKiwiJuice)
-            showFruitsStock()
-        }
-        catch {
-            showAlert(type: AlertType.warning)
-        }
+        makeJuiceAndShowAlert(menu: mangoKiwiJuice)
     }
     
     @IBAction private func touchUpStrawberryJuiceButton(_ sender: UIButton) {
         let strawberryJuice: String = "딸기쥬스"
-        guard let menu = FruitsJuice(rawValue: strawberryJuice) else { return }
-        do {
-            try juiceMaker.makeJuice(orderedJuice: menu)
-            showAlert(type: AlertType.complete, juiceName: strawberryJuice)
-            showFruitsStock()
-        }
-        catch {
-            showAlert(type: AlertType.warning)
-        }
+        makeJuiceAndShowAlert(menu: strawberryJuice)
     }
     
     @IBAction private func touchUpBananaJuiceButton(_ sender: UIButton) {
         let bananaJuice: String = "바나나쥬스"
-        guard let menu = FruitsJuice(rawValue: bananaJuice) else { return }
-        do {
-            try juiceMaker.makeJuice(orderedJuice: menu)
-            showAlert(type: AlertType.complete, juiceName: bananaJuice)
-            showFruitsStock()
-        }
-        catch {
-            showAlert(type: AlertType.warning)
-        }
+        makeJuiceAndShowAlert(menu: bananaJuice)
     }
     
     @IBAction private func touchUpPineappleJuiceButton(_ sender: UIButton) {
         let pineappleJuice: String = "파인애플쥬스"
-        guard let menu = FruitsJuice(rawValue: pineappleJuice) else { return }
-        do {
-            try juiceMaker.makeJuice(orderedJuice: menu)
-            showAlert(type: AlertType.complete, juiceName: pineappleJuice)
-            showFruitsStock()
-        }
-        catch {
-            showAlert(type: AlertType.warning)
-        }
+        makeJuiceAndShowAlert(menu: pineappleJuice)
     }
     
     @IBAction private func touchUpKiwiJuiceButton(_ sender: UIButton) {
         let kiwiJuice: String = "키위쥬스"
-        guard let menu = FruitsJuice(rawValue: kiwiJuice) else { return }
-        do {
-            try juiceMaker.makeJuice(orderedJuice: menu)
-            showAlert(type: AlertType.complete, juiceName: kiwiJuice)
-            showFruitsStock()
-        }
-        catch {
-            showAlert(type: AlertType.warning)
-        }
+        makeJuiceAndShowAlert(menu: kiwiJuice)
     }
     
     @IBAction private func touchUpMangoJuiceButton(_ sender: UIButton) {
         let mangoJuice: String = "망고쥬스"
-        guard let menu = FruitsJuice(rawValue: mangoJuice) else { return }
+        makeJuiceAndShowAlert(menu: mangoJuice)
+    }
+    
+    private func makeJuiceAndShowAlert(menu : String) {
+        guard let juice = FruitJuice(rawValue: menu) else { return }
         do {
-            try juiceMaker.makeJuice(orderedJuice: menu)
-            showAlert(type: AlertType.complete, juiceName: mangoJuice)
-            showFruitsStock()
+            try juiceMaker.makeJuice(orderedJuice: juice)
+            showAlert(type: .complete, juiceName: menu)
         }
         catch {
-            showAlert(type: AlertType.warning)
+            showAlert(type: .warning)
         }
     }
     
@@ -136,11 +91,11 @@ class ViewController: UIViewController {
     }
     
     private func moveToStockManageVC() {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManageVC") else {
+        guard let stockManageVC = self.storyboard?.instantiateViewController(withIdentifier: "StockManageVC") else {
             return
         }
-        vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-        present(vc, animated: true, completion: nil)
+        stockManageVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        present(stockManageVC, animated: true, completion: nil)
     }
     
     private func showAlert(type: AlertType, juiceName: String? = nil) {
@@ -160,7 +115,9 @@ class ViewController: UIViewController {
             guard let menu = juiceName else { return }
             let completeMessage: String = "\(menu) 나왔습니다! 맛있게 드세요!"
             let alert = UIAlertController(title: nil, message: completeMessage, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "닫기", style: .cancel)
+            let closeAction = UIAlertAction(title: "닫기", style: .cancel) {_ in
+                self.showFruitsStock()
+            }
             
             alert.addAction(closeAction)
             present(alert, animated: true, completion: nil)

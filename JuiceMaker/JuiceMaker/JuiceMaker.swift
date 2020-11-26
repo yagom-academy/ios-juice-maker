@@ -5,23 +5,23 @@
 //
 
 class StockManager {
-    private(set) var strawberry = Fruits(fruitType: .strawberry)
-    private(set) var banana = Fruits(fruitType: .banana)
-    private(set) var pineapple = Fruits(fruitType: .pineapple)
-    private(set) var kiwi = Fruits(fruitType: .kiwi)
-    private(set) var mango = Fruits(fruitType: .mango)
+    private(set) var strawberry = Fruit(fruitType: .strawberry)
+    private(set) var banana = Fruit(fruitType: .banana)
+    private(set) var pineapple = Fruit(fruitType: .pineapple)
+    private(set) var kiwi = Fruit(fruitType: .kiwi)
+    private(set) var mango = Fruit(fruitType: .mango)
     
-    private let strawberryJuice = Juices().fruitJuices[0]
-    private let bananaJuice = Juices().fruitJuices[1]
-    private let kiwiJuice = Juices().fruitJuices[2]
-    private let pineappleJuice = Juices().fruitJuices[3]
-    private let mangoJuice = Juices().fruitJuices[4]
-    private let strawberryBananaJuice = Juices().fruitJuices[5]
-    private let mangoKiwiJuice = Juices().fruitJuices[6]
+    private let strawberryJuice = Juice.fruitJuices[0]
+    private let bananaJuice = Juice.fruitJuices[1]
+    private let kiwiJuice = Juice.fruitJuices[2]
+    private let pineappleJuice = Juice.fruitJuices[3]
+    private let mangoJuice = Juice.fruitJuices[4]
+    private let strawberryBananaJuice = Juice.fruitJuices[5]
+    private let mangoKiwiJuice = Juice.fruitJuices[6]
     
-    private var juiceReceipt = JuiceReceipt(name: .none, fruits: [.init(name: .none, need: 0)])
+    private var juiceReceipt = JuiceReceipt(name: .optional, fruits: [.init(name: .optional, need: 0)])
     
-    func orderCheck(menu: FruitsJuice) {
+    func orderCheck(menu: FruitJuice) {
         switch menu {
         case .strawberryJuice:
             juiceReceipt = strawberryJuice
@@ -67,7 +67,7 @@ class StockManager {
         }
     }
     
-    func makingJuice(_ menuName: FruitsJuice) {
+    func makingJuice(_ menuName: FruitJuice) {
         switch menuName {
         case .strawberryJuice:
             let fruit = juiceReceipt.fruits[0]
@@ -130,7 +130,7 @@ class StockManager {
 class JuiceMaker {
     let stockManager = StockManager()
     
-    func makeJuice(orderedJuice: FruitsJuice) throws {
+    func makeJuice(orderedJuice: FruitJuice) throws {
         stockManager.orderCheck(menu: orderedJuice)
         try stockManager.checkCanMakeJuice()
         stockManager.makingJuice(orderedJuice)
