@@ -19,7 +19,7 @@ class StockManager {
     private let strawberryBananaJuice = Juice.fruitJuices[5]
     private let mangoKiwiJuice = Juice.fruitJuices[6]
     
-    private var juiceReceipt = JuiceReceipt(name: .none, fruits: [.init(name: .none, need: 0)])
+    private var juiceReceipt = JuiceReceipt(name: .optional, fruits: [.init(name: .optional, need: 0)])
     
     func orderCheck(menu: FruitJuice) {
         switch menu {

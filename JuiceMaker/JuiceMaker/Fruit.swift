@@ -11,7 +11,7 @@ enum FruitType: String {
     case pineapple = "파인애플"
     case kiwi = "키위"
     case mango = "망고"
-    case none
+    case optional
 }
 
 class Fruit {

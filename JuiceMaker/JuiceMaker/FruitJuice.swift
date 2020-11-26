@@ -13,7 +13,7 @@ enum FruitJuice: String {
     case mangoJuice = "망고쥬스"
     case strawberryBananaJuice = "딸기바나나쥬스"
     case mangoKiwiJuice = "망고키위쥬스"
-    case none
+    case optional
 }
 
 struct JuiceReceipt {
