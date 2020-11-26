@@ -237,9 +237,6 @@
                                 <rect key="frame" x="771" y="7" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="닫기"/>
-                                <connections>
-                                    <action selector="pressedCloseButton:" destination="PeT-NH-H7Y" eventType="touchUpInside" id="ZFw-DV-FnA"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
