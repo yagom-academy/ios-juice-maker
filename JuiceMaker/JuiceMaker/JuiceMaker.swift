@@ -172,7 +172,7 @@ class JuiceMaker {
         }
     }
     
-    func fruitStock(name: Fruit.Name) -> Int {
+    func getStock(name: Fruit.Name) -> Int {
         fruitManager.stockOfFruit(name: name)
     }
 }
