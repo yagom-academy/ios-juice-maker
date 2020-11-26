@@ -25,7 +25,7 @@ struct JuiceRecipe {
 struct JuiceRecipes {
     fileprivate var juiceRecipes: [Juice:JuiceRecipe]
     
-    func getRecipe(of juice: Juice) -> JuiceRecipe? {
+    func juiceRecipe(of juice: Juice) -> JuiceRecipe? {
         return juiceRecipes[juice]
     }
     

@@ -46,7 +46,7 @@ class JuiceMaker {
     }
         
     func make(juice: Juice) throws {
-        guard let recipe = juiceRecipes.getRecipe(of: juice) else {
+        guard let recipe = juiceRecipes.juiceRecipe(of: juice) else {
             throw JuiceMakerError.noRecipe
         }
         
