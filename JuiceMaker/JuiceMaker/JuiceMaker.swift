@@ -12,6 +12,12 @@ enum AlertMessage: String {
     case successMade = " 나왔습니다. 맛있게 드세요."
 }
 
+enum AlertCase: Error {
+    case outOfStock
+    case wrongRequest
+    case successMade
+}
+
 enum Menu: String {
     case strawberryJuice = "딸기 쥬스"
     case bananaJuice = "바나나 쥬스"
@@ -20,6 +26,18 @@ enum Menu: String {
     case kiwiJuice = "키위 쥬스"
     case mangoJuice = "망고 쥬스"
     case mangoKiwiJuice = "망고키위 쥬스"
+}
+
+class Recipe {
+    let strawberryOfStrawberryJuice:UInt = 16
+    let strawberryOfStrawberryBananaJuice:UInt = 10
+    let bananaOfStrawberryBananaJuice:UInt = 1
+    let bananaOfBananaJuice:UInt = 2
+    let kiwiOfKiwiJuice:UInt = 3
+    let pineappleOfPineappleJuice:UInt = 2
+    let mangoOfMangoJuice:UInt = 3
+    let kiwiOfMangoKiwiJuice:UInt = 1
+    let mangoOfMangoKiwiJuice:UInt = 2
 }
 
 class StockManager {
@@ -182,64 +200,64 @@ class JuiceMaker {
     let stockManager = StockManager()
     let messenger = Messenger()
     
-    func makeStrawberryJuice() {
+    func makeStrawberryJuice() throws {
         guard stockManager.IsEnough(juice: .strawberryJuice) else {
             messenger.printOutOfStock()
-            return
+            throw AlertCase.outOfStock
         }
         stockManager.useStrawberryJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.strawberryJuice.rawValue)
     }
     
-    func makeStrawberryBananaJuice() {
+    func makeStrawberryBananaJuice() throws {
         guard stockManager.IsEnough(juice: .strawberryBananaJuice) else {
             messenger.printOutOfStock()
-            return
+            throw AlertCase.outOfStock
         }
         stockManager.useStrawberryBananaJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.strawberryBananaJuice.rawValue)
     }
     
-    func makeBananaJuice() {
+    func makeBananaJuice() throws {
         guard stockManager.IsEnough(juice: .bananaJuice) else {
             messenger.printOutOfStock()
-            return
+            throw AlertCase.outOfStock
         }
         stockManager.useeBananaJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.bananaJuice.rawValue)
     }
     
-    func makeKiwiJuice() {
+    func makeKiwiJuice() throws {
         guard stockManager.IsEnough(juice: .kiwiJuice) else {
             messenger.printOutOfStock()
-            return
+            throw AlertCase.outOfStock
         }
         stockManager.useKiwiJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.kiwiJuice.rawValue)
     }
     
-    func makePineappleJuice() {
+    func makePineappleJuice() throws {
         guard stockManager.IsEnough(juice: .pineappleJuice) else {
             messenger.printOutOfStock()
-            return
+            throw AlertCase.outOfStock
         }
         stockManager.usePineappleJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.pineappleJuice.rawValue)
     }
     
-    func makeMangoJuice() {
+    func makeMangoJuice() throws {
         guard stockManager.IsEnough(juice: .mangoJuice) else {
             messenger.printOutOfStock()
-            return
+            throw AlertCase.outOfStock
         }
         stockManager.useMangoJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.mangoJuice.rawValue)
     }
     
-    func makeMangoKiwiJuice() {
+    func makeMangoKiwiJuice() throws {
         guard stockManager.IsEnough(juice: .mangoKiwiJuice) else {
             messenger.printOutOfStock()
-            return
+            throw AlertCase.outOfStock
         }
         stockManager.useMangoKiwiJuiceIngredients()
         messenger.printSuccessMade(juice: Menu.mangoKiwiJuice.rawValue)
@@ -259,16 +277,4 @@ class Messenger {
     func printSuccessMade(juice: String) {
         print("\(juice)" + AlertMessage.successMade.rawValue)
     }
-}
-
-class Recipe {
-    let strawberryOfStrawberryJuice:UInt = 16
-    let strawberryOfStrawberryBananaJuice:UInt = 10
-    let bananaOfStrawberryBananaJuice:UInt = 1
-    let bananaOfBananaJuice:UInt = 2
-    let kiwiOfKiwiJuice:UInt = 3
-    let pineappleOfPineappleJuice:UInt = 2
-    let mangoOfMangoJuice:UInt = 3
-    let kiwiOfMangoKiwiJuice:UInt = 1
-    let mangoOfMangoKiwiJuice:UInt = 2
 }
