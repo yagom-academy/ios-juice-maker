@@ -227,8 +227,21 @@
                     <view key="view" contentMode="scaleToFill" id="XNb-WS-iEI">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xmb-wa-tcS">
+                                <rect key="frame" x="822" y="20" width="30" height="30"/>
+                                <state key="normal" title="닫기"/>
+                                <connections>
+                                    <action selector="pressedCloseButton:" destination="PeT-NH-H7Y" eventType="touchUpInside" id="SiF-ZR-VUC"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="RUh-UM-mYU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RUh-UM-mYU" firstAttribute="trailing" secondItem="Xmb-wa-tcS" secondAttribute="trailing" constant="30" id="U8G-wd-rNt"/>
+                            <constraint firstItem="Xmb-wa-tcS" firstAttribute="top" secondItem="RUh-UM-mYU" secondAttribute="top" constant="20" id="nl8-9H-8w6"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 추가" id="PWy-sS-JfZ">
                         <barButtonItem key="leftBarButtonItem" id="9xo-Q7-3X4"/>
