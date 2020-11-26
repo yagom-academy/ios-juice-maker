@@ -35,7 +35,7 @@ struct FruitsNeedToMakeRecipe {
 }
 
 struct Juice {
-    let fruitJuices: [JuiceReceipt] = [
+    static let fruitJuices: [JuiceReceipt] = [
         JuiceReceipt(name: .strawberryJuice, fruits: [.init(name: .strawberry, need: 16)]),
         JuiceReceipt(name: .bananaJuice, fruits: [.init(name: .banana, need: 2)]),
         JuiceReceipt(name: .kiwiJuice, fruits: [.init(name: .kiwi, need: 3)]),

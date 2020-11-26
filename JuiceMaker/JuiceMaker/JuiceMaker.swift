@@ -11,13 +11,13 @@ class StockManager {
     private(set) var kiwi = Fruit(fruitType: .kiwi)
     private(set) var mango = Fruit(fruitType: .mango)
     
-    private let strawberryJuice = Juice().fruitJuices[0]
-    private let bananaJuice = Juice().fruitJuices[1]
-    private let kiwiJuice = Juice().fruitJuices[2]
-    private let pineappleJuice = Juice().fruitJuices[3]
-    private let mangoJuice = Juice().fruitJuices[4]
-    private let strawberryBananaJuice = Juice().fruitJuices[5]
-    private let mangoKiwiJuice = Juice().fruitJuices[6]
+    private let strawberryJuice = Juice.fruitJuices[0]
+    private let bananaJuice = Juice.fruitJuices[1]
+    private let kiwiJuice = Juice.fruitJuices[2]
+    private let pineappleJuice = Juice.fruitJuices[3]
+    private let mangoJuice = Juice.fruitJuices[4]
+    private let strawberryBananaJuice = Juice.fruitJuices[5]
+    private let mangoKiwiJuice = Juice.fruitJuices[6]
     
     private var juiceReceipt = JuiceReceipt(name: .none, fruits: [.init(name: .none, need: 0)])
     
