@@ -242,11 +242,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bananaStockLabel" destination="ljf-EP-kTO" id="UH7-BR-0Nl"/>
-                        <outlet property="kiwiStockLabel" destination="XSS-8r-bJV" id="Z9t-U0-5Ec"/>
-                        <outlet property="mangoStockLabel" destination="U4P-68-7Xs" id="wW0-G6-gaI"/>
-                        <outlet property="pineappleStockLabel" destination="Fvq-I0-9Gt" id="pEH-L9-V1z"/>
-                        <outlet property="strawberryStockLabel" destination="B5v-aU-VM5" id="YzE-PU-XBp"/>
+                        <outlet property="bananaStockLabel" destination="ljf-EP-kTO" id="zI2-s4-6Iy"/>
+                        <outlet property="kiwiStockLabel" destination="XSS-8r-bJV" id="a7c-OY-egV"/>
+                        <outlet property="mangoStockLabel" destination="U4P-68-7Xs" id="e7Z-zg-86L"/>
+                        <outlet property="pineappleStockLabel" destination="Fvq-I0-9Gt" id="4RQ-3L-zn6"/>
+                        <outlet property="strawberryStockLabel" destination="B5v-aU-VM5" id="HJz-n7-QDj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -271,7 +271,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="닫기"/>
                                                 <connections>
-                                                    <action selector="touchUpDismissPageButton" destination="EGD-L6-DTk" eventType="touchUpInside" id="azP-Tw-YIa"/>
+                                                    <action selector="touchUpDismissPageButton" destination="EGD-L6-DTk" eventType="touchUpInside" id="klw-0Z-fBG"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -343,28 +343,66 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZaU-13-kRY">
+                                <rect key="frame" x="109" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="strawberryStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="SIB-oL-ibM"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TQt-Mp-EUo">
+                                <rect key="frame" x="547" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="kiwiStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="FoV-aP-KvT"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-lz-ApP">
+                                <rect key="frame" x="401" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="mangoStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="UIJ-8Y-N5h"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SSU-IV-Gpa">
+                                <rect key="frame" x="255" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="bananaStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="IMk-0M-g47"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-M8-LiY">
+                                <rect key="frame" x="693" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="pineappleStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="AHt-9m-NhC"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OKH-jm-sku"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="TQt-Mp-EUo" firstAttribute="centerX" secondItem="UmW-2F-eLt" secondAttribute="centerX" id="1QK-ks-h2w"/>
                             <constraint firstItem="qfj-nr-EAL" firstAttribute="centerY" secondItem="4NE-VW-SwX" secondAttribute="centerY" id="2lE-nr-BIX"/>
+                            <constraint firstItem="CgE-lz-ApP" firstAttribute="top" secondItem="Yvf-TR-eUY" secondAttribute="bottom" constant="25" id="4as-IH-ugV"/>
                             <constraint firstItem="qfj-nr-EAL" firstAttribute="top" secondItem="gO6-Wh-CF7" secondAttribute="bottom" constant="20" id="6z7-Bg-uJZ"/>
                             <constraint firstItem="Yvf-TR-eUY" firstAttribute="leading" secondItem="SWZ-Uh-1SH" secondAttribute="leading" id="7N5-FR-9mQ"/>
                             <constraint firstAttribute="trailing" secondItem="gO6-Wh-CF7" secondAttribute="trailing" id="7hY-c9-ada"/>
                             <constraint firstItem="JVV-yF-msy" firstAttribute="centerY" secondItem="p19-Y5-LNo" secondAttribute="centerY" id="7no-bl-b3W"/>
                             <constraint firstItem="hqt-2r-0j2" firstAttribute="leading" secondItem="qfj-nr-EAL" secondAttribute="leading" id="8oS-25-6jZ"/>
                             <constraint firstItem="kcP-uO-Zuz" firstAttribute="leading" secondItem="SWZ-Uh-1SH" secondAttribute="trailing" constant="60" id="9ZI-Uy-ULJ"/>
+                            <constraint firstItem="SSU-IV-Gpa" firstAttribute="top" secondItem="JVV-yF-msy" secondAttribute="bottom" constant="25" id="Cyk-wa-Xgp"/>
                             <constraint firstItem="Yvf-TR-eUY" firstAttribute="trailing" secondItem="SWZ-Uh-1SH" secondAttribute="trailing" id="Evv-hz-rcn"/>
                             <constraint firstItem="hwJ-I9-cVR" firstAttribute="leading" secondItem="JVV-yF-msy" secondAttribute="leading" id="Gjo-sF-Y6Q"/>
+                            <constraint firstItem="WfP-M8-LiY" firstAttribute="centerX" secondItem="hqt-2r-0j2" secondAttribute="centerX" id="Gof-4z-4wt"/>
+                            <constraint firstItem="ZaU-13-kRY" firstAttribute="centerX" secondItem="p19-Y5-LNo" secondAttribute="centerX" id="H8R-9l-Kc3"/>
                             <constraint firstItem="hqt-2r-0j2" firstAttribute="trailing" secondItem="qfj-nr-EAL" secondAttribute="trailing" id="HCZ-jI-Cdu"/>
                             <constraint firstItem="kcP-uO-Zuz" firstAttribute="trailing" secondItem="UmW-2F-eLt" secondAttribute="trailing" id="HUI-2q-YlV"/>
                             <constraint firstItem="p19-Y5-LNo" firstAttribute="top" secondItem="4NE-VW-SwX" secondAttribute="bottom" constant="10" id="HYI-gV-Vtw"/>
+                            <constraint firstItem="ZaU-13-kRY" firstAttribute="top" secondItem="p19-Y5-LNo" secondAttribute="bottom" constant="25" id="I7I-WZ-1vU"/>
                             <constraint firstItem="hwJ-I9-cVR" firstAttribute="trailing" secondItem="JVV-yF-msy" secondAttribute="trailing" id="K5d-Yo-FML"/>
                             <constraint firstItem="p19-Y5-LNo" firstAttribute="leading" secondItem="4NE-VW-SwX" secondAttribute="leading" id="NEI-bH-YAv"/>
                             <constraint firstItem="hqt-2r-0j2" firstAttribute="centerX" secondItem="qfj-nr-EAL" secondAttribute="centerX" id="NSe-Jo-r6o"/>
                             <constraint firstItem="4NE-VW-SwX" firstAttribute="top" secondItem="gO6-Wh-CF7" secondAttribute="bottom" constant="20" id="Qqc-2d-Tne"/>
+                            <constraint firstItem="WfP-M8-LiY" firstAttribute="top" secondItem="hqt-2r-0j2" secondAttribute="bottom" constant="25" id="Qt2-02-Ypc"/>
                             <constraint firstItem="hwJ-I9-cVR" firstAttribute="leading" secondItem="4NE-VW-SwX" secondAttribute="trailing" constant="60" id="Rm7-Cp-QtA"/>
                             <constraint firstItem="SWZ-Uh-1SH" firstAttribute="top" secondItem="gO6-Wh-CF7" secondAttribute="bottom" constant="20" id="T1f-aa-cUa"/>
+                            <constraint firstItem="CgE-lz-ApP" firstAttribute="centerX" secondItem="Yvf-TR-eUY" secondAttribute="centerX" id="T5o-mf-xgS"/>
                             <constraint firstItem="gO6-Wh-CF7" firstAttribute="leading" secondItem="rnA-PC-7y7" secondAttribute="leading" id="VQw-tO-7L5"/>
                             <constraint firstItem="kcP-uO-Zuz" firstAttribute="centerY" secondItem="4NE-VW-SwX" secondAttribute="centerY" id="VgX-y5-v8A"/>
                             <constraint firstItem="SWZ-Uh-1SH" firstAttribute="leading" secondItem="hwJ-I9-cVR" secondAttribute="trailing" constant="60" id="XAw-QY-rml"/>
@@ -373,6 +411,8 @@
                             <constraint firstItem="kcP-uO-Zuz" firstAttribute="top" secondItem="gO6-Wh-CF7" secondAttribute="bottom" constant="20" id="aJo-Hf-Qx8"/>
                             <constraint firstItem="hqt-2r-0j2" firstAttribute="centerY" secondItem="p19-Y5-LNo" secondAttribute="centerY" id="cHW-Nf-Nig"/>
                             <constraint firstItem="SWZ-Uh-1SH" firstAttribute="centerY" secondItem="4NE-VW-SwX" secondAttribute="centerY" id="e6X-tn-qsr"/>
+                            <constraint firstItem="SSU-IV-Gpa" firstAttribute="centerX" secondItem="JVV-yF-msy" secondAttribute="centerX" id="hGa-3V-xCm"/>
+                            <constraint firstItem="TQt-Mp-EUo" firstAttribute="top" secondItem="UmW-2F-eLt" secondAttribute="bottom" constant="25" id="ikA-Dx-MfX"/>
                             <constraint firstItem="UmW-2F-eLt" firstAttribute="top" secondItem="kcP-uO-Zuz" secondAttribute="bottom" constant="10" id="jOS-3c-FRQ"/>
                             <constraint firstItem="SWZ-Uh-1SH" firstAttribute="centerX" secondItem="rnA-PC-7y7" secondAttribute="centerX" id="jmc-t3-PP8"/>
                             <constraint firstItem="JVV-yF-msy" firstAttribute="top" secondItem="hwJ-I9-cVR" secondAttribute="bottom" constant="10" id="k1O-63-98D"/>
@@ -392,7 +432,7 @@
                         <outlet property="kiwiStockLabel" destination="UmW-2F-eLt" id="JWq-FF-Cie"/>
                         <outlet property="mangoStockLabel" destination="Yvf-TR-eUY" id="y1K-su-GJh"/>
                         <outlet property="pineappleStockLabel" destination="hqt-2r-0j2" id="b6Y-Lc-qTx"/>
-                        <outlet property="strawberryStockLabel" destination="p19-Y5-LNo" id="WD8-9s-axA"/>
+                        <outlet property="strawberryStockLabel" destination="p19-Y5-LNo" id="Ivk-86-Nfv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNk-Qs-5f6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

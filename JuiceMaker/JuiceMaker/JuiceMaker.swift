@@ -9,8 +9,9 @@
 import Foundation
 
 enum Message: String {
-    case success = "쥬스 나왔습니다. 맛있게 드세요."
+    case success = " 나왔습니다. 맛있게 드세요."
     case outOfStock = "재고가 모자라요. 재고를 수정할까요?"
+    case machineError = "관리자에게 문의해주세요."
 }
 
 enum JuiceMakerError: Error {
@@ -72,25 +73,25 @@ struct Recipe {
 }
 
 class JuiceMaker {
-    static let shared = JuiceMaker()
+    static let common = JuiceMaker()
     private init() {}
     
-    private(set) var fruits: [FruitName: Fruit] = [
-        .strawberry: Fruit(name: .strawberry),
-        .banana: Fruit(name: .banana),
-        .kiwi: Fruit(name: .kiwi),
-        .mango: Fruit(name: .mango),
-        .pineapple: Fruit(name: .pineapple)
+    private(set) var fruits: [FruitName : Fruit] = [
+        .strawberry : Fruit(name : .strawberry),
+        .banana : Fruit(name : .banana),
+        .kiwi : Fruit(name : .kiwi),
+        .mango : Fruit(name : .mango),
+        .pineapple : Fruit(name : .pineapple)
     ]
  
-    private(set) var recipes: [JuiceName: Recipe] = [
-        .strawberryJuice: Recipe(name: .strawberryJuice, recipe: [.strawberry: 16]),
-        .bananaJuice: Recipe(name: .bananaJuice, recipe: [.banana: 2]),
-        .mangoJuice: Recipe(name: .mangoJuice, recipe: [.mango: 3]),
-        .kiwiJuice: Recipe(name: .kiwiJuice, recipe: [.kiwi: 3]),
-        .pineappleJuice: Recipe(name: .pineappleJuice, recipe: [.pineapple: 2]),
-        .strawberryBananaJuice: Recipe(name: .strawberryBananaJuice, recipe: [.strawberry: 10, .banana: 1]),
-        .mangoKiwiJuice: Recipe(name: .mangoKiwiJuice, recipe: [.mango: 2, .kiwi: 1])
+    private(set) var recipes: [JuiceName : Recipe] = [
+        .strawberryJuice : Recipe(name: .strawberryJuice, recipe: [.strawberry : 16]),
+        .bananaJuice : Recipe(name: .bananaJuice, recipe: [.banana : 2]),
+        .mangoJuice : Recipe(name: .mangoJuice, recipe: [.mango : 3]),
+        .kiwiJuice : Recipe(name: .kiwiJuice, recipe: [.kiwi : 3]),
+        .pineappleJuice : Recipe(name: .pineappleJuice, recipe: [.pineapple : 2]),
+        .strawberryBananaJuice : Recipe(name: .strawberryBananaJuice, recipe: [.strawberry : 10, .banana : 1]),
+        .mangoKiwiJuice : Recipe(name: .mangoKiwiJuice, recipe: [.mango : 2, .kiwi : 1])
     ]
     
     func make(juice: JuiceName) throws {
@@ -116,5 +117,3 @@ class JuiceMaker {
         }
     }
 }
-    
-
