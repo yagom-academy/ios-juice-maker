@@ -20,7 +20,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
                                 <items>
                                     <navigationItem title="맛있는 주스를 만들어 드려요!" id="ece-CE-GnV">
-                                        <barButtonItem key="rightBarButtonItem" title="재고 수정" id="KYP-Nh-yyJ"/>
+                                        <barButtonItem key="rightBarButtonItem" title="재고 수정" id="KYP-Nh-yyJ">
+                                            <connections>
+                                                <action selector="moveManageStock" destination="BYZ-38-t0r" id="LuZ-iu-N7X"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -31,12 +35,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="154.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HHP-vf-W4n">
-                                                <rect key="frame" x="0.0" y="0.0" width="154.5" height="154.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="154.5"/>
                                             </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="HHP-vf-W4n" firstAttribute="centerY" secondItem="hXa-aX-Hnj" secondAttribute="centerY" id="FfJ-8s-E2j"/>
-                                            <constraint firstItem="HHP-vf-W4n" firstAttribute="centerY" secondItem="hXa-aX-Hnj" secondAttribute="centerY" id="OH2-L3-rny"/>
                                             <constraint firstAttribute="bottom" secondItem="HHP-vf-W4n" secondAttribute="bottom" id="Uhf-hM-erm"/>
                                             <constraint firstItem="HHP-vf-W4n" firstAttribute="leading" secondItem="hXa-aX-Hnj" secondAttribute="leading" id="a8v-dP-9CE"/>
                                             <constraint firstItem="HHP-vf-W4n" firstAttribute="top" secondItem="hXa-aX-Hnj" secondAttribute="top" id="dPt-xH-4tO"/>
