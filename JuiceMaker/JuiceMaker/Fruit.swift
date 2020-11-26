@@ -14,7 +14,7 @@ enum FruitType: String {
     case none
 }
 
-class Fruits {
+class Fruit {
     let fruitType: FruitType
     private(set) var stock: Int
     

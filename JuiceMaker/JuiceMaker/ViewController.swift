@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     }
     
     private func makeJuiceAndShowAlert(menu : String) {
-        guard let juice = FruitsJuice(rawValue: menu) else { return }
+        guard let juice = FruitJuice(rawValue: menu) else { return }
         do {
             try juiceMaker.makeJuice(orderedJuice: juice)
             showAlert(type: AlertType.complete, juiceName: menu)
