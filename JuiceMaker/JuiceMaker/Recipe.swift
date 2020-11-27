@@ -8,13 +8,13 @@
 import Foundation
 
 class Recipe {
-    let strawberryOfStrawberryJuice:UInt = 16
-    let strawberryOfStrawberryBananaJuice:UInt = 10
-    let bananaOfStrawberryBananaJuice:UInt = 1
-    let bananaOfBananaJuice:UInt = 2
-    let kiwiOfKiwiJuice:UInt = 3
-    let pineappleOfPineappleJuice:UInt = 2
-    let mangoOfMangoJuice:UInt = 3
-    let kiwiOfMangoKiwiJuice:UInt = 1
-    let mangoOfMangoKiwiJuice:UInt = 2
+    let strawberryRequiredOfStrawberryJuice:UInt = 16
+    let strawberryRequiredOfStrawberryBananaJuice:UInt = 10
+    let bananaRequiredOfStrawberryBananaJuice:UInt = 1
+    let bananaRequiredOfBananaJuice:UInt = 2
+    let kiwiRequiredOfKiwiJuice:UInt = 3
+    let pineappleRequiredOfPineappleJuice:UInt = 2
+    let mangoRequiredOfMangoJuice:UInt = 3
+    let kiwiRequiredOfMangoKiwiJuice:UInt = 1
+    let mangoRequiredOfMangoKiwiJuice:UInt = 2
 }
