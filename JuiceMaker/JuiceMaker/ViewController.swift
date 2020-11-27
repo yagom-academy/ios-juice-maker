@@ -10,17 +10,17 @@ class ViewController: UIViewController {
     
     var fruitStock = FruitStock(initialFruitNumber: 10)
 
-    @IBOutlet weak var fruitImageView1: UIImageView!
-    @IBOutlet weak var fruitImageView2: UIImageView!
-    @IBOutlet weak var fruitImageView3: UIImageView!
-    @IBOutlet weak var fruitImageView4: UIImageView!
-    @IBOutlet weak var fruitImageView5: UIImageView!
+    @IBOutlet weak var strawberryImageView: UIImageView!
+    @IBOutlet weak var bananaImageView: UIImageView!
+    @IBOutlet weak var pineappleImageView: UIImageView!
+    @IBOutlet weak var kiwiImageView: UIImageView!
+    @IBOutlet weak var mangoImageView: UIImageView!
     
-    @IBOutlet weak var fruitStockLabel1: UILabel!
-    @IBOutlet weak var fruitStockLabel2: UILabel!
-    @IBOutlet weak var fruitStockLabel3: UILabel!
-    @IBOutlet weak var fruitStockLabel4: UILabel!
-    @IBOutlet weak var fruitStockLabel5: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,32 +31,32 @@ class ViewController: UIViewController {
         updateFruitStockLabel(fruit: .kiwi)
         updateFruitStockLabel(fruit: .mango)
         
-        fruitImageView1.image = UIImage(named: "딸기")
-        fruitImageView2.image = UIImage(named: "바나나")
-        fruitImageView3.image = UIImage(named: "파인애플")
-        fruitImageView4.image = UIImage(named: "키위")
-        fruitImageView5.image = UIImage(named: "망고")
+        strawberryImageView.image = UIImage(named: "딸기")
+        bananaImageView.image = UIImage(named: "바나나")
+        pineappleImageView.image = UIImage(named: "파인애플")
+        kiwiImageView.image = UIImage(named: "키위")
+        mangoImageView.image = UIImage(named: "망고")
     }
 
-    @IBAction func juiceOrderButton1(_ sender: UIButton) {
+    @IBAction func orderStrawberryJuiceButton(_ sender: UIButton) {
         makeJuice(.strawberryJuice)
     }
-    @IBAction func juiceOrderButton2(_ sender: UIButton) {
+    @IBAction func orderBananaJuiceButton(_ sender: UIButton) {
         makeJuice(.bananaJuice)
     }
-    @IBAction func juiceOrderButton3(_ sender: UIButton) {
+    @IBAction func orderPineappleJuiceButton(_ sender: UIButton) {
         makeJuice(.pineappleJuice)
     }
-    @IBAction func juiceOrderButton4(_ sender: UIButton) {
+    @IBAction func orderKiwiJuiceButton(_ sender: UIButton) {
         makeJuice(.kiwiJuice)
     }
-    @IBAction func juiceOrderButton5(_ sender: UIButton) {
+    @IBAction func orderMangoJuiceButton(_ sender: UIButton) {
         makeJuice(.mangoJuice)
     }
-    @IBAction func juiceOrderButton6(_ sender: UIButton) {
+    @IBAction func orderStrawberryAndBananaJuiceButton(_ sender: UIButton) {
         makeJuice(.strawberryAndBananaJuice)
     }
-    @IBAction func juiceOrderButton7(_ sender: UIButton) {
+    @IBAction func orderMangoAndKiwiJuiceButton(_ sender: UIButton) {
         makeJuice(.mangoAndKiwiJuice)
     }
     @IBAction func manageStockButton(_ sender: UIButton) {
@@ -107,36 +107,36 @@ extension ViewController {
     func updateFruitStockLabel(fruit: Fruit) {
         switch fruit {
         case .strawberry:
-            fruitStockLabel1.text = "\(fruitStock.strawberry)"
+            strawberryStockLabel.text = "\(fruitStock.strawberry)"
         case .banana:
-            fruitStockLabel2.text = "\(fruitStock.banana)"
+            bananaStockLabel.text = "\(fruitStock.banana)"
         case .pineapple:
-            fruitStockLabel3.text = "\(fruitStock.pineapple)"
+            pineappleStockLabel.text = "\(fruitStock.pineapple)"
         case .kiwi:
-            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+            kiwiStockLabel.text = "\(fruitStock.kiwi)"
         case .mango:
-            fruitStockLabel5.text = "\(fruitStock.mango)"
+            mangoStockLabel.text = "\(fruitStock.mango)"
         }
     }
     
     func updateFruitStockLabel(order: Juice) {
         switch order {
         case .strawberryJuice:
-            fruitStockLabel1.text = "\(fruitStock.strawberry)"
+            strawberryStockLabel.text = "\(fruitStock.strawberry)"
         case .bananaJuice:
-            fruitStockLabel2.text = "\(fruitStock.banana)"
+            bananaStockLabel.text = "\(fruitStock.banana)"
         case .pineappleJuice:
-            fruitStockLabel3.text = "\(fruitStock.pineapple)"
+            pineappleStockLabel.text = "\(fruitStock.pineapple)"
         case .kiwiJuice:
-            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+            kiwiStockLabel.text = "\(fruitStock.kiwi)"
         case .mangoJuice:
-            fruitStockLabel5.text = "\(fruitStock.mango)"
+            mangoStockLabel.text = "\(fruitStock.mango)"
         case .strawberryAndBananaJuice:
-            fruitStockLabel1.text = "\(fruitStock.strawberry)"
-            fruitStockLabel2.text = "\(fruitStock.banana)"
+            strawberryStockLabel.text = "\(fruitStock.strawberry)"
+            bananaStockLabel.text = "\(fruitStock.banana)"
         case .mangoAndKiwiJuice:
-            fruitStockLabel5.text = "\(fruitStock.mango)"
-            fruitStockLabel4.text = "\(fruitStock.kiwi)"
+            mangoStockLabel.text = "\(fruitStock.mango)"
+            kiwiStockLabel.text = "\(fruitStock.kiwi)"
         }
     }
 }
