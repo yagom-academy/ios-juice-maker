@@ -16,9 +16,13 @@ class StockViewController: UIViewController {
         updateFruitStockLabel()        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        restock()
+    }
+    
     @IBAction func touchUpDismissPageButton() {
         self.dismiss(animated: true, completion: nil)
-        restock()
     }
     
     @IBAction func stepperValueChanged(_ sender: Any) {
