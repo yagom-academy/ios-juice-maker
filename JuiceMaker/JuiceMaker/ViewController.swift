@@ -73,9 +73,8 @@ class ViewController: UIViewController {
             return
         }
         
-        juiceMaker.makeJuice(of: orderedMenu)
-        
-        let alertMessage = makeSuccessMessage(of: orderedMenu)
+        let resultOfMaker = juiceMaker.makeJuice(of: orderedMenu)
+        let alertMessage = makeSuccessMessage(with: resultOfMaker)
         showSuccessAlert(by: alertMessage)
         
         updateStockStatusAfterMaking(order: orderedMenu)
@@ -131,8 +130,8 @@ extension ViewController {
         }
     }
     
-    private func makeSuccessMessage(of menu: JuiceMenu) -> String {
-        return "\(menu) 가 완성되었습니다. 맛있게 드세요 :)"
+    private func makeSuccessMessage(with juiceName: String) -> String {
+        return "\(juiceName)이 완성되었습니다. 맛있게 드세요 :)"
     }
     
     private func makeFailMessage() -> String {

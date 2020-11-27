@@ -19,7 +19,7 @@ struct JuiceMaker {
     let bananaJuice = JuiceMenu.bananaJuice(name: "바나나쥬스", requiredBananas: 2)
     let ddalbaJuice = JuiceMenu.ddalbaJuice(name: "딸바쥬스", requiredStrawberries: 10, requiredBananas: 1)
     let mangoJuice = JuiceMenu.mangoJuice(name: "망고쥬스", requiredMangos: 3)
-    let mangoKiwiJuice = JuiceMenu.mangoKiwiJuice(name: "딸바쥬스", requiredMangos: 2, requiredKiwis: 1)
+    let mangoKiwiJuice = JuiceMenu.mangoKiwiJuice(name: "망고키위쥬스", requiredMangos: 2, requiredKiwis: 1)
     let kiwiJuice = JuiceMenu.kiwiJuice(name: "키위쥬스", requiredKiwis: 3)
     let pineappleJuice = JuiceMenu.pineappleJuice(name: "파인애플쥬스", requiredPineapples: 2)
     
@@ -47,24 +47,31 @@ struct JuiceMaker {
         return fruitType.stockAmount()
     }
     
-    mutating func makeJuice(of order: JuiceMenu) {
+    mutating func makeJuice(of order: JuiceMenu) -> String {
         switch order {
-        case .strawberryJuice(_, let requiredStrawberries):
+        case .strawberryJuice(let name, let requiredStrawberries):
             reduceStock(amount: requiredStrawberries, of: strawberry)
-        case .bananaJuice(_, let requiredBananas):
+            return name
+        case .bananaJuice(let name, let requiredBananas):
             reduceStock(amount: requiredBananas, of: banana)
-        case .ddalbaJuice(_, let requiredStrawberries, let requiredBananas):
+            return name
+        case .ddalbaJuice(let name, let requiredStrawberries, let requiredBananas):
             reduceStock(amount: requiredStrawberries, of: strawberry)
             reduceStock(amount: requiredBananas, of: banana)
-        case .mangoJuice(_, let requiredMangos):
+            return name
+        case .mangoJuice(let name, let requiredMangos):
             reduceStock(amount: requiredMangos, of: mango)
-        case .mangoKiwiJuice(_, let requiredMangos, let requiredKiwis):
+            return name
+        case .mangoKiwiJuice(let name, let requiredMangos, let requiredKiwis):
             reduceStock(amount: requiredMangos, of: mango)
             reduceStock(amount: requiredKiwis, of: kiwi)
-        case .kiwiJuice(_, let requiredKiwis):
+            return name
+        case .kiwiJuice(let name, let requiredKiwis):
             reduceStock(amount: requiredKiwis, of: kiwi)
-        case .pineappleJuice(_, let requiredPineapples):
+            return name
+        case .pineappleJuice(let name, let requiredPineapples):
             reduceStock(amount: requiredPineapples, of: pineapple)
+            return name
         }
     }
     
