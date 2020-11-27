@@ -9,17 +9,7 @@ import UIKit
 
 class StockViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    
-    let strawberry = JuiceMaker.common.fruits[.strawberry]
-    let banana = JuiceMaker.common.fruits[.banana]
-    let mango = JuiceMaker.common.fruits[.mango]
-    let kiwi = JuiceMaker.common.fruits[.kiwi]
-    let pineapple = JuiceMaker.common.fruits[.pineapple]
+    @IBOutlet var stockLabel: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,63 +18,55 @@ class StockViewController: UIViewController {
     
     @IBAction func touchUpDismissPageButton() {
         self.dismiss(animated: true, completion: nil)
-        
-        let strawberryAmount = UInt(strawberryStockLabel.text!)! - strawberry!.amount
-        let bananaAmount = UInt(bananaStockLabel.text!)! - banana!.amount
-        let mangoAmount = UInt(mangoStockLabel.text!)! - mango!.amount
-        let kiwiAmount = UInt(kiwiStockLabel.text!)! - kiwi!.amount
-        let pineappleAmount = UInt(pineappleStockLabel.text!)! - pineapple!.amount
-        
-        strawberry?.supply(amount: strawberryAmount)
-        banana?.supply(amount: bananaAmount)
-        mango?.supply(amount: mangoAmount)
-        kiwi?.supply(amount: kiwiAmount)
-        pineapple?.supply(amount: pineappleAmount)
+        restock()
     }
     
-    func makeStepperValueChanged(fruit: FruitName, sender: UIStepper) {
-        let inputValue = UInt(sender.value)
+    @IBAction func stepperValueChanged(_ sender: Any) {
+        guard let stepper = sender as? UIStepper else {
+            return showMachineErrorAlert()
+        }
         
-        switch fruit {
-        case .strawberry:
-            strawberryStockLabel.text = String(strawberry!.amount + inputValue)
-        case .banana:
-            bananaStockLabel.text = String(banana!.amount + inputValue)
-        case .mango:
-            mangoStockLabel.text = String(mango!.amount + inputValue)
-        case .kiwi:
-            kiwiStockLabel.text = String(kiwi!.amount + inputValue)
-        case .pineapple:
-            pineappleStockLabel.text = String(pineapple!.amount + inputValue)
+        let tag = stepper.tag
+        guard let fruit = Fruit(rawValue: tag) else {
+            return showMachineErrorAlert()
+        }
+        
+        makeStepperValueChanged(fruit: fruit, sender: stepper)
+    }
+    
+    func makeStepperValueChanged(fruit: Fruit, sender: UIStepper) {
+        let inputValue = UInt(sender.value)
+        guard let selectedFruit = JuiceMaker.common.fruits[fruit] else {
+            return showMachineErrorAlert()
+        }
+
+        stockLabel[fruit.rawValue].text = String(selectedFruit.amount + inputValue)
+    }
+    
+    func restock() {
+        for fruit in JuiceMaker.common.fruits {
+            guard let labelText = stockLabel[fruit.key.rawValue].text else {
+                return showMachineErrorAlert()
+            }
+            
+            guard let labelNumber: UInt = UInt(labelText) else {
+                return showMachineErrorAlert()
+            }
+            
+            let currentAmount: UInt = labelNumber - fruit.value.amount
+            
+            fruit.value.supply(amount: currentAmount)
         }
     }
     
-    @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
-        makeStepperValueChanged(fruit: .strawberry, sender: sender)
-    }
-    
-    @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
-        makeStepperValueChanged(fruit: .banana, sender: sender)
-    }
-    
-    @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
-        makeStepperValueChanged(fruit: .kiwi, sender: sender)
-    }
-    
-    @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
-        makeStepperValueChanged(fruit: .mango, sender: sender)
-    }
-    
-    @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
-        makeStepperValueChanged(fruit: .pineapple, sender: sender)
-    }
-    
-    func updateFruitStockLabel() {
-        strawberryStockLabel.text = String(strawberry?.amount ?? 0)
-        bananaStockLabel.text = String(banana?.amount ?? 0)
-        mangoStockLabel.text = String(mango?.amount ?? 0)
-        kiwiStockLabel.text = String(kiwi?.amount ?? 0)
-        pineappleStockLabel.text = String(pineapple?.amount ?? 0)
+    private func updateFruitStockLabel() {
+        for fruitName in JuiceMaker.common.fruits {
+            guard let fruit = JuiceMaker.common.fruits[fruitName.key] else {
+                return showMachineErrorAlert()
+            }
+            
+            stockLabel[fruitName.key.rawValue].text = String(fruit.amount)
+        }
     }
 }
 

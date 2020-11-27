@@ -26,7 +26,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="재고 수정"/>
                                                 <connections>
-                                                    <action selector="touchUpMoveToStockViewButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="T0t-0y-tVG"/>
+                                                    <action selector="touchUpMoveToStockViewButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="el2-qJ-6iL"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -100,10 +100,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpStrawberryJuiceButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="sJf-iW-Brb"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CJS-y2-TvT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cEJ-iE-AiD">
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cEJ-iE-AiD">
                                 <rect key="frame" x="405" y="243" width="232" height="61"/>
                                 <color key="backgroundColor" red="0.29074816730000003" green="0.47457776190000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -111,10 +111,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpMangoKiwiJuiceButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="lwB-Aw-bLd"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GIU-T4-Tqs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vvI-t9-2NF">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vvI-t9-2NF">
                                 <rect key="frame" x="702.5" y="324" width="75" height="61"/>
                                 <color key="backgroundColor" red="0.29074816730000003" green="0.47457776190000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -122,10 +122,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpPineappleJuiceButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="331-tc-ye4"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b5F-hz-toX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="czs-RU-iEk">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="czs-RU-iEk">
                                 <rect key="frame" x="551" y="324" width="86" height="61"/>
                                 <color key="backgroundColor" red="0.29074816730000003" green="0.47457776190000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -133,10 +133,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpKiwiJuiceButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="d8j-2q-w6R"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Zb-5V-Slg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-xN-6O5">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-xN-6O5">
                                 <rect key="frame" x="405" y="324" width="86" height="61"/>
                                 <color key="backgroundColor" red="0.29074816730000003" green="0.47457776190000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -144,10 +144,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpMangoJuiceButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="zns-M0-je2"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8No-RI-cjG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eak-VL-mSh">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eak-VL-mSh">
                                 <rect key="frame" x="248" y="324" width="97" height="61"/>
                                 <color key="backgroundColor" red="0.29074816730000003" green="0.47457776190000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -155,10 +155,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpBananaJuiceButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="53C-IS-HS4"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AYQ-3W-Yd2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aC1-Zp-Qp7">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aC1-Zp-Qp7">
                                 <rect key="frame" x="102" y="243" width="243" height="61"/>
                                 <color key="backgroundColor" red="0.29074816730000003" green="0.47457776190000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -166,7 +166,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpStrawberryBananaJuiceButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cfa-4L-gXp"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aQS-J5-TzE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfr-YS-6AD">
@@ -242,11 +242,18 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outletCollection property="stockLaber" destination="B5v-aU-VM5" collectionClass="NSMutableArray" id="Mux-mu-veP"/>
-                        <outletCollection property="stockLaber" destination="ljf-EP-kTO" collectionClass="NSMutableArray" id="Vge-Hx-LJo"/>
-                        <outletCollection property="stockLaber" destination="U4P-68-7Xs" collectionClass="NSMutableArray" id="YBq-Cx-Byl"/>
-                        <outletCollection property="stockLaber" destination="XSS-8r-bJV" collectionClass="NSMutableArray" id="O0p-iO-YjC"/>
-                        <outletCollection property="stockLaber" destination="Fvq-I0-9Gt" collectionClass="NSMutableArray" id="aVe-pe-Ebs"/>
+                        <outletCollection property="stockLabel" destination="B5v-aU-VM5" collectionClass="NSMutableArray" id="Mux-mu-veP"/>
+                        <outletCollection property="stockLabel" destination="ljf-EP-kTO" collectionClass="NSMutableArray" id="Vge-Hx-LJo"/>
+                        <outletCollection property="stockLabel" destination="U4P-68-7Xs" collectionClass="NSMutableArray" id="YBq-Cx-Byl"/>
+                        <outletCollection property="stockLabel" destination="XSS-8r-bJV" collectionClass="NSMutableArray" id="O0p-iO-YjC"/>
+                        <outletCollection property="stockLabel" destination="Fvq-I0-9Gt" collectionClass="NSMutableArray" id="aVe-pe-Ebs"/>
+                        <outletCollection property="juiceOrderButton" destination="aC1-Zp-Qp7" collectionClass="NSMutableArray" id="LFV-1Y-kXd"/>
+                        <outletCollection property="juiceOrderButton" destination="cEJ-iE-AiD" collectionClass="NSMutableArray" id="EkY-18-kz6"/>
+                        <outletCollection property="juiceOrderButton" destination="xS5-ad-5Db" collectionClass="NSMutableArray" id="5R8-LL-cbg"/>
+                        <outletCollection property="juiceOrderButton" destination="eak-VL-mSh" collectionClass="NSMutableArray" id="I7r-v7-Q7c"/>
+                        <outletCollection property="juiceOrderButton" destination="Jdx-xN-6O5" collectionClass="NSMutableArray" id="Wn4-kX-uig"/>
+                        <outletCollection property="juiceOrderButton" destination="czs-RU-iEk" collectionClass="NSMutableArray" id="rNK-I6-EOG"/>
+                        <outletCollection property="juiceOrderButton" destination="vvI-t9-2NF" collectionClass="NSMutableArray" id="RWF-gf-0E1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -270,6 +277,9 @@
                                                 <rect key="frame" x="637" y="7" width="199" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="닫기"/>
+                                                <connections>
+                                                    <action selector="touchUpDismissPageButton" destination="EGD-L6-DTk" eventType="touchUpInside" id="dwm-lX-Jh7"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -312,28 +322,28 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvf-TR-eUY">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvf-TR-eUY">
                                 <rect key="frame" x="405" y="169.5" width="86" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmW-2F-eLt">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmW-2F-eLt">
                                 <rect key="frame" x="551" y="169.5" width="86" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-2r-0j2">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-2r-0j2">
                                 <rect key="frame" x="697" y="169.5" width="86" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVV-yF-msy">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVV-yF-msy">
                                 <rect key="frame" x="259" y="169.5" width="86" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -342,18 +352,33 @@
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZaU-13-kRY">
                                 <rect key="frame" x="109" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="My1-Bg-n16"/>
+                                </connections>
                             </stepper>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TQt-Mp-EUo">
+                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TQt-Mp-EUo">
                                 <rect key="frame" x="547" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="ofA-ia-QJ6"/>
+                                </connections>
                             </stepper>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-lz-ApP">
+                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-lz-ApP">
                                 <rect key="frame" x="401" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="zBn-qC-ec9"/>
+                                </connections>
                             </stepper>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SSU-IV-Gpa">
+                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SSU-IV-Gpa">
                                 <rect key="frame" x="255" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="kLS-1S-Nie"/>
+                                </connections>
                             </stepper>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-M8-LiY">
+                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-M8-LiY">
                                 <rect key="frame" x="693" y="228" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="wna-Br-6Cz"/>
+                                </connections>
                             </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OKH-jm-sku"/>
@@ -410,11 +435,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="xfD-Ac-D8I"/>
                     <connections>
-                        <outlet property="bananaStockLabel" destination="JVV-yF-msy" id="XfW-yj-vZF"/>
-                        <outlet property="kiwiStockLabel" destination="UmW-2F-eLt" id="JWq-FF-Cie"/>
-                        <outlet property="mangoStockLabel" destination="Yvf-TR-eUY" id="y1K-su-GJh"/>
-                        <outlet property="pineappleStockLabel" destination="hqt-2r-0j2" id="b6Y-Lc-qTx"/>
-                        <outlet property="strawberryStockLabel" destination="p19-Y5-LNo" id="Ivk-86-Nfv"/>
+                        <outletCollection property="stockLabel" destination="p19-Y5-LNo" collectionClass="NSMutableArray" id="ac8-RW-dN4"/>
+                        <outletCollection property="stockLabel" destination="JVV-yF-msy" collectionClass="NSMutableArray" id="9K5-NY-JHO"/>
+                        <outletCollection property="stockLabel" destination="Yvf-TR-eUY" collectionClass="NSMutableArray" id="oTE-Pv-QhY"/>
+                        <outletCollection property="stockLabel" destination="UmW-2F-eLt" collectionClass="NSMutableArray" id="VFS-xs-mOF"/>
+                        <outletCollection property="stockLabel" destination="hqt-2r-0j2" collectionClass="NSMutableArray" id="N6A-dH-E80"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNk-Qs-5f6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

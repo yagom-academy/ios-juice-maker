@@ -8,34 +8,19 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var stockLaber: [UILabel]!
-    /*
-     @IBOutlet weak var strawberryStockLabel: UILabel!
-     @IBOutlet weak var bananaStockLabel: UILabel!
-     @IBOutlet weak var mangoStockLabel: UILabel!
-     @IBOutlet weak var kiwiStockLabel: UILabel!
-     @IBOutlet weak var pineappleStockLabel: UILabel!
-     */
-    let strawberry = JuiceMaker.common.fruits[.strawberry]
-    let banana = JuiceMaker.common.fruits[.banana]
-    let mango = JuiceMaker.common.fruits[.mango]
-    let kiwi = JuiceMaker.common.fruits[.kiwi]
-    let pineapple = JuiceMaker.common.fruits[.pineapple]
+    @IBOutlet var stockLabel: [UILabel]!
+    @IBOutlet var juiceOrderButton: [UIButton]!
     
     override func viewWillAppear(_ animated: Bool) {
-        do {
-            try updateFruitStockLabel()
-        }
-        catch {
-            showMachineErrorAlert()
-        }
+        super.viewWillAppear(true)
+        updateFruitStockLabel()
     }
     
-    func make(juice: JuiceName) {
+    func make(juice: Juice) {
         do {
             try JuiceMaker.common.make(juice: juice)
             showSuccessAlert(about: juice)
-           // updateFruitStockLabel(juice: juice)
+            updateFruitStockLabel(about: juice)
         } catch JuiceMakerError.outOfStock {
             showOutOfStockAlert()
         } catch {
@@ -43,79 +28,40 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func touchUpStrawberryJuiceButton() {
-        make(juice: .strawberryJuice)
+    @IBAction func touchUpJuiceOrderButton(_ sender: Any) {
+        guard let touchedjuiceOrderButton = sender as? UIButton else {
+            return showMachineErrorAlert()
+        }
+        
+        let tag = touchedjuiceOrderButton.tag
+        guard let selectedJuice = Juice(rawValue: tag) else {
+            return showMachineErrorAlert()
+        }
+        
+        make(juice: selectedJuice)
     }
     
-    @IBAction func touchUpBananaJuiceButton() {
-        make(juice: .bananaJuice)
+    private func updateFruitStockLabel() {
+        for fruitName in JuiceMaker.common.fruits {
+            guard let fruit = JuiceMaker.common.fruits[fruitName.key] else {
+                return showMachineErrorAlert()
+            }
+            
+            stockLabel[fruitName.key.rawValue].text = String(fruit.amount)
+        }
     }
     
-    @IBAction func touchUpMangoJuiceButton() {
-        make(juice: .mangoJuice)
-    }
-    
-    @IBAction func touchUpKiwiJuiceButton() {
-        make(juice: .kiwiJuice)
-    }
-    
-    @IBAction func touchUpPineappleJuiceButton() {
-        make(juice: .pineappleJuice)
-    }
-    
-    @IBAction func touchUpStrawberryBananaJuiceButton() {
-        make(juice: .strawberryBananaJuice)
-    }
-    
-    @IBAction func touchUpMangoKiwiJuiceButton() {
-        make(juice: .mangoKiwiJuice)
+    private func updateFruitStockLabel(about juice: Juice) {
+        for (neededFruit, _ ) in juice.recipe(about: juice) {
+            guard let fruit = JuiceMaker.common.fruits[neededFruit] else {
+                return showMachineErrorAlert()
+            }
+            stockLabel[neededFruit.rawValue].text = String(fruit.amount)
+        }
     }
     
     @IBAction func touchUpMoveToStockViewButton() {
         moveToManageStockPage()
-    }
-    
-    private func showSuccessAlert(about juice: JuiceName) {
-        let message = juice.rawValue + Message.success.rawValue
-        let alert = UIAlertController(title: nil,
-                                      message: message,
-                                      preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK",
-                                     style: .default,
-                                     handler: nil//{
-                                        // _ in
-                                        // self.updateFruitStockLabel(juice: juice)
-                                    // }
-                                    )
-        
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func showOutOfStockAlert() {
-        let alert = UIAlertController(title: nil,
-                                      message: Message.outOfStock.rawValue,
-                                      preferredStyle: .alert)
-        let yesButton = UIAlertAction(title: "yes",
-                                      style: .default,
-                                      handler: { _ in
-                                        self.moveToManageStockPage()
-                                      })
-        let noButton = UIAlertAction(title: "no",
-                                     style: .default,
-                                     handler: nil)
-        
-        alert.addAction(yesButton)
-        alert.addAction(noButton)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func showMachineErrorAlert() {
-        let alert = UIAlertController(title: "ERROR", message: Message.machineError.rawValue, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
     }
     
     private func moveToManageStockPage() {
@@ -127,48 +73,39 @@ class ViewController: UIViewController {
         present(stockViewController, animated: true, completion: nil)
     }
     
-    private func updateFruitStockLabel() throws {
-        for fruitName in JuiceMaker.common.fruits {
-            guard let fruit = JuiceMaker.common.fruits[fruitName.key] else {
-                throw JuiceMakerError.unknownFruit
-            }
-            
-            stockLaber[0].text = String(fruit.amount)
-            stockLaber[1].text = String(fruit.amount)
-            stockLaber[2].text = String(fruit.amount)
-            stockLaber[3].text = String(fruit.amount)
-            stockLaber[4].text = String(fruit.amount)
-        }
-         /*
-            strawberryStockLabel.text = String(strawberry?.amount ?? 0)
-            bananaStockLabel.text = String(banana?.amount ?? 0)
-            mangoStockLabel.text = String(mango?.amount ?? 0)
-            kiwiStockLabel.text = String(kiwi?.amount ?? 0)
-            pineappleStockLabel.text = String(pineapple?.amount ?? 0)
-         */
+    private func showSuccessAlert(about juice: Juice) {
+        let message = juice.describeJuiceName(juice: juice) + Message.success.rawValue
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default,
+                                     handler: { _ in
+                                        self.updateFruitStockLabel(about: juice)
+                                     })
+        
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
     }
-        /*
-        private func updateFruitStockLabel(juice: JuiceName) {
-            guard let selctedjuice = JuiceMaker.common.recipes[juice] else { return }
-            
-            switch selctedjuice.name {
-            case .strawberryJuice:
-                strawberryStockLabel.text = String(strawberry?.amount ?? 0)
-            case .bananaJuice:
-                bananaStockLabel.text = String(banana?.amount ?? 0)
-            case .mangoJuice:
-                mangoStockLabel.text = String(mango?.amount ?? 0)
-            case .kiwiJuice:
-                kiwiStockLabel.text = String(kiwi?.amount ?? 0)
-            case .pineappleJuice:
-                pineappleStockLabel.text = String(pineapple?.amount ?? 0)
-            case .strawberryBananaJuice:
-                strawberryStockLabel.text = String(strawberry?.amount ?? 0)
-                bananaStockLabel.text = String(banana?.amount ?? 0)
-            case .mangoKiwiJuice:
-                mangoStockLabel.text = String(mango?.amount ?? 0)
-                kiwiStockLabel.text = String(kiwi?.amount ?? 0)
-            }
-        }
- */
+    
+    private func showOutOfStockAlert() {
+        let alert = UIAlertController(title: nil, message: Message.outOfStock.rawValue, preferredStyle: .alert)
+        let yesButton = UIAlertAction(title: "yes", style: .default,
+                                      handler: { _ in
+                                        self.moveToManageStockPage()
+                                      })
+        let noButton = UIAlertAction(title: "no", style: .default, handler: nil)
+        
+        alert.addAction(yesButton)
+        alert.addAction(noButton)
+        present(alert, animated: true, completion: nil)
     }
+}
+
+extension UIViewController {
+    
+    func showMachineErrorAlert() {
+        let alert = UIAlertController(title: "ERROR", message: Message.machineError.rawValue, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
+    }
+}
