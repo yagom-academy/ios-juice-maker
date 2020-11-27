@@ -13,7 +13,11 @@ class StockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStockLabel()        
+        updateFruitStockLabel(fruit: .strawberry)
+        updateFruitStockLabel(fruit: .banana)
+        updateFruitStockLabel(fruit: .mango)
+        updateFruitStockLabel(fruit: .kiwi)
+        updateFruitStockLabel(fruit: .pineapple)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,16 +39,7 @@ class StockViewController: UIViewController {
             return showMachineErrorAlert()
         }
         
-        makeStepperValueChanged(fruit: fruit, sender: stepper)
-    }
-    
-    func makeStepperValueChanged(fruit: Fruit.Name, sender: UIStepper) {
-        let inputValue = UInt(sender.value)
-        guard let selectedFruit = JuiceMaker.common.fruits[fruit] else {
-            return showMachineErrorAlert()
-        }
-
-        stockLabel[fruit.rawValue].text = String(selectedFruit.amount + inputValue)
+        updateFruitStockLabel(fruit: fruit, sender: stepper)
     }
     
     func restock() {
@@ -63,13 +58,16 @@ class StockViewController: UIViewController {
         }
     }
     
-    private func updateFruitStockLabel() {
-        for fruitName in JuiceMaker.common.fruits {
-            guard let fruit = JuiceMaker.common.fruits[fruitName.key] else {
+    private func updateFruitStockLabel(fruit: Fruit.Name, sender: UIStepper? = nil) {
+        guard let selectedFruit = JuiceMaker.common.fruits[fruit] else {
                 return showMachineErrorAlert()
             }
-            
-            stockLabel[fruitName.key.rawValue].text = String(fruit.amount)
+        
+        if let inputSender = sender {
+            let inputValue = UInt(inputSender.value)
+            stockLabel[fruit.rawValue].text = String(selectedFruit.amount + inputValue)
+        } else {
+            stockLabel[fruit.rawValue].text = String(selectedFruit.amount)
         }
     }
 }
