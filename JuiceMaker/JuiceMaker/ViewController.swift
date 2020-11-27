@@ -12,7 +12,7 @@ enum AlertType {
 }
 
 class ViewController: UIViewController {
-    let juiceMaker: JuiceMaker = JuiceMaker()
+    let juiceMaker: JuiceMaker = JuiceMaker.common
     @IBOutlet private weak var changeStockButton: UIButton!
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
