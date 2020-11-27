@@ -27,34 +27,25 @@ class StockManager {
     }
     
     //MARK: - giveIngredients
-    func useStrawberryJuiceIngredients() {
-        strawberryInventoryAmount -= recipe.strawberryRequiredOfStrawberryJuice
-    }
-    
-    func useStrawberryBananaJuiceIngredients() {
-        strawberryInventoryAmount -= recipe.strawberryRequiredOfStrawberryBananaJuice
-        bananaInventoryAmount -= recipe.bananaRequiredOfStrawberryBananaJuice
-    }
-    
-    func useeBananaJuiceIngredients() {
-        bananaInventoryAmount -= recipe.bananaRequiredOfBananaJuice
-    }
-    
-    func useKiwiJuiceIngredients() {
-        kiwiInventoryAmount -= recipe.kiwiRequiredOfKiwiJuice
-    }
-    
-    func usePineappleJuiceIngredients() {
-        pineappleInventoryAmount -= recipe.pineappleRequiredOfPineappleJuice
-    }
-    
-    func useMangoJuiceIngredients() {
-        mangoInventoryAmount -= recipe.mangoRequiredOfMangoJuice
-    }
-    
-    func useMangoKiwiJuiceIngredients() {
-        mangoInventoryAmount -= recipe.mangoRequiredOfMangoKiwiJuice
-        kiwiInventoryAmount -= recipe.kiwiRequiredOfMangoKiwiJuice
+    func useJuiceIngredients(juiceName: Menu) {
+        switch juiceName {
+        case .strawberryJuice:
+            strawberryInventoryAmount -= recipe.strawberryRequiredOfStrawberryJuice
+        case .bananaJuice:
+            bananaInventoryAmount -= recipe.bananaRequiredOfBananaJuice
+        case .strawberryBananaJuice:
+            strawberryInventoryAmount -= recipe.strawberryRequiredOfStrawberryBananaJuice
+            bananaInventoryAmount -= recipe.bananaRequiredOfStrawberryBananaJuice
+        case .pineappleJuice:
+            pineappleInventoryAmount -= recipe.pineappleRequiredOfPineappleJuice
+        case .mangoJuice:
+            mangoInventoryAmount -= recipe.mangoRequiredOfMangoJuice
+        case .kiwiJuice:
+            kiwiInventoryAmount -= recipe.kiwiRequiredOfKiwiJuice
+        case .mangoKiwiJuice:
+            mangoInventoryAmount -= recipe.mangoRequiredOfMangoKiwiJuice
+            kiwiInventoryAmount -= recipe.kiwiRequiredOfMangoKiwiJuice
+        }
     }
     
     // MARK: - addStock
