@@ -8,7 +8,7 @@
 import Foundation
 
 enum JuiceMenu{
-    case strawberryJuice(name: String,requiredStrawberries: Int)
+    case strawberryJuice(name: String, requiredStrawberries: Int)
     case bananaJuice(name: String, requiredBananas: Int)
     case ddalbaJuice(name: String, requiredStrawberries: Int, requiredBananas: Int)
     case mangoJuice(name: String, requiredMangos: Int)
