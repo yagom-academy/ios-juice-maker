@@ -56,6 +56,26 @@ class StockManageViewController: UIViewController {
             JuiceMaker.common.stockManager.mango.add(stock: Int(mangoStepper.value) - mangoStock)
         }
     
+    @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
+        strawberryStockLabel.text = Int(sender.value).description
+    }
+        
+    @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
+        bananaStockLabel.text = Int(sender.value).description
+    }
+        
+    @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
+        pineappleStockLabel.text = Int(sender.value).description
+    }
+        
+    @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
+        kiwiStockLabel.text = Int(sender.value).description
+    }
+        
+    @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
+        mangoStockLabel.text = Int(sender.value).description
+    }
+    
     @IBAction func touchUpGoBackButton(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
