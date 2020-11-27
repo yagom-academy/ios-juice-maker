@@ -16,9 +16,9 @@ class ViewController: UIViewController {
         updateFruitStockLabel()
     }
     
-    func make(juice: Juice) {
+    func makeJuice(_ juice: Juice) {
         do {
-            try JuiceMaker.common.make(juice: juice)
+            try JuiceMaker.common.makeJuice(juice)
             showSuccessAlert(about: juice)
             updateFruitStockLabel(about: juice)
         } catch JuiceMakerError.outOfStock {
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             return showMachineErrorAlert()
         }
         
-        make(juice: selectedJuice)
+        makeJuice(selectedJuice)
     }
     
     private func updateFruitStockLabel() {
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     }
     
     private func updateFruitStockLabel(about juice: Juice) {
-        for (neededFruit, _ ) in juice.recipe(about: juice) {
+        for (neededFruit, _ ) in juice.recipe {
             guard let fruit = JuiceMaker.common.fruits[neededFruit] else {
                 return showMachineErrorAlert()
             }
@@ -109,3 +109,4 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+

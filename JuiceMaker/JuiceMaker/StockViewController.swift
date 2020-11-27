@@ -27,14 +27,14 @@ class StockViewController: UIViewController {
         }
         
         let tag = stepper.tag
-        guard let fruit = Fruit.name(rawValue: tag) else {
+        guard let fruit = Fruit.Name(rawValue: tag) else {
             return showMachineErrorAlert()
         }
         
         makeStepperValueChanged(fruit: fruit, sender: stepper)
     }
     
-    func makeStepperValueChanged(fruit: Fruit.name, sender: UIStepper) {
+    func makeStepperValueChanged(fruit: Fruit.Name, sender: UIStepper) {
         let inputValue = UInt(sender.value)
         guard let selectedFruit = JuiceMaker.common.fruits[fruit] else {
             return showMachineErrorAlert()
@@ -69,4 +69,3 @@ class StockViewController: UIViewController {
         }
     }
 }
-

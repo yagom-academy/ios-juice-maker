@@ -111,7 +111,7 @@ class JuiceMaker {
         .pineapple : Fruit(name : .pineapple)
     ]
     
-    func make(juice: Juice) throws {
+    func makeJuice(_ juice: Juice) throws {
         for (neededFruit, neededAmount) in juice.recipe {
             guard let fruit = fruits[neededFruit] else {
                 throw JuiceMakerError.unknownFruit
