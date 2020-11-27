@@ -27,6 +27,19 @@ class StockManageViewController: UIViewController {
     private var kiwiStock: Int = JuiceMaker.common.stockManager.kiwi.stock
     private var mangoStock: Int = JuiceMaker.common.stockManager.mango.stock
     
+    private func setStepper() {
+            strawberryStepper.value = Double(strawberryStock)
+            strawberryStepper.minimumValue = 0
+            bananaStepper.value = Double(bananaStock)
+            bananaStepper.minimumValue = 0
+            pineappleStepper.value = Double(pineappleStock)
+            pineappleStepper.minimumValue = 0
+            kiwiStepper.value = Double(kiwiStock)
+            kiwiStepper.minimumValue = 0
+            mangoStepper.value = Double(mangoStock)
+            mangoStepper.minimumValue = 0
+        }
+    
     @IBAction func touchUpGoBackButton(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
