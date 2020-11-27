@@ -14,7 +14,7 @@ struct JuiceName {
 }
     
 class ViewController: UIViewController {
-    var juiceMaker: JuiceMaker = JuiceMaker()
+    private var juiceMaker: JuiceMaker = JuiceMaker()
     
     private let order = JuiceName()
     
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         if (juiceMaker.strawberryStock >= 10) && (juiceMaker.bananaStock >= 1) {
             juiceMaker.make(juice: Juice.strawberryBananaJuice)
             showOrderMessage(juice)
-            updateStock(juice: Juice.strawberryBananaJuice)
+            updatefruitStock(juice: Juice.strawberryBananaJuice)
         }
         else {
             showAlertMessage()
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         if (juiceMaker.mangoStock >= 2) && (juiceMaker.kiwiStock >= 1) {
             juiceMaker.make(juice: Juice.mangoKiwiJuice)
             showOrderMessage(juice)
-            updateStock(juice: Juice.mangoKiwiJuice)
+            updatefruitStock(juice: Juice.mangoKiwiJuice)
         }
         else {
             showAlertMessage()
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         if juiceMaker.strawberryStock >= 16 {
             juiceMaker.make(juice: Juice.strawberryJuice)
             showOrderMessage(juice)
-            updateStock(juice: Juice.strawberryJuice)
+            updatefruitStock(juice: Juice.strawberryJuice)
         }
         else {
             showAlertMessage()
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         if juiceMaker.bananaStock >= 2 {
             juiceMaker.make(juice: Juice.bananaJuice)
             showOrderMessage(juice)
-            updateStock(juice: Juice.bananaJuice)
+            updatefruitStock(juice: Juice.bananaJuice)
         }
         else {
             showAlertMessage()
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         if juiceMaker.pineappleStock >= 2 {
             juiceMaker.make(juice: Juice.pineappleJuice)
             showOrderMessage(juice)
-            updateStock(juice: Juice.pineappleJuice)
+            updatefruitStock(juice: Juice.pineappleJuice)
         }
         else {
             showAlertMessage()
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         if juiceMaker.kiwiStock >= 3 {
             juiceMaker.make(juice: Juice.kiwiJuice)
             showOrderMessage(juice)
-            updateStock(juice: Juice.kiwiJuice)
+            updatefruitStock(juice: Juice.kiwiJuice)
         }
         else {
             showAlertMessage()
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         if juiceMaker.mangoStock >= 3 {
             juiceMaker.make(juice: Juice.mangoJuice)
             showOrderMessage(juice)
-            updateStock(juice: Juice.mangoJuice)
+            updatefruitStock(juice: Juice.mangoJuice)
         }
         else {
             showAlertMessage()
@@ -135,7 +135,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func updateStock(juice: Juice) {
+    func updatefruitStock(juice: Juice) {
         switch juice {
         case .strawberryBananaJuice:
             amountOfStrawberry.text = String(juiceMaker.strawberryStock)
