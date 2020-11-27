@@ -9,11 +9,11 @@ import Foundation
 /// 쥬스 메이커 타입 
 struct JuiceMaker {
 
-    let strawberry = Fruit(name: "strawberry")
-    let banana = Fruit(name: "banana")
-    let pineapple = Fruit(name: "pineapple")
-    let kiwi = Fruit(name: "kiwi")
-    let mango = Fruit(name: "mango")
+    private var strawberry = Fruit(name: "strawberry")
+    private var banana = Fruit(name: "banana")
+    private var pineapple = Fruit(name: "pineapple")
+    private var kiwi = Fruit(name: "kiwi")
+    private var mango = Fruit(name: "mango")
     
     let strawberryJuice = JuiceMenu.strawberryJuice(name: "딸기쥬스", requiredStrawberries: 16)
     let bananaJuice = JuiceMenu.bananaJuice(name: "바나나쥬스", requiredBananas: 2)
@@ -22,6 +22,33 @@ struct JuiceMaker {
     let mangoKiwiJuice = JuiceMenu.mangoKiwiJuice(name: "망고키위쥬스", requiredMangos: 2, requiredKiwis: 1)
     let kiwiJuice = JuiceMenu.kiwiJuice(name: "키위쥬스", requiredKiwis: 3)
     let pineappleJuice = JuiceMenu.pineappleJuice(name: "파인애플쥬스", requiredPineapples: 2)
+    
+    var strawberryStock: Int {
+        get {
+            return self.strawberry.stockAmount()
+        }
+    }
+    var bananaStock: Int {
+        get {
+            return self.banana.stockAmount()
+        }
+    }
+    var pineappleStock: Int {
+        get {
+            return self.pineapple.stockAmount()
+        }
+    }
+    var kiwiStock: Int {
+        get {
+            return self.kiwi.stockAmount()
+        }
+    }
+    var mangoStock: Int {
+        get {
+            return self.mango.stockAmount()
+        }
+    }
+    
     
     init() {
         
@@ -43,9 +70,9 @@ struct JuiceMaker {
         fruitType.updateStockAmount(reducing: amount)
     }
     
-    func checkStockAmount(of fruitType: Fruit) -> Int {
-        return fruitType.stockAmount()
-    }
+//    func checkStockAmount(of fruitType: Fruit) -> Int {
+//        return fruitType.stockAmount()
+//    }
     
     mutating func makeJuice(of order: JuiceMenu) -> String {
         switch order {
@@ -78,34 +105,34 @@ struct JuiceMaker {
     func isAvailableMaking(juice: JuiceMenu) -> Bool {
         switch juice {
         case .strawberryJuice(_, let requiredStrawberries):
-            guard checkStockAmount(of: strawberry) >= requiredStrawberries else {
+            guard strawberryStock >= requiredStrawberries else {
                 return false
             }
         case .bananaJuice(_, let requiredBananas):
-            guard checkStockAmount(of: banana) >= requiredBananas else {
+            guard bananaStock >= requiredBananas else {
                 return false
             }
         case .ddalbaJuice(_, let requiredStrawberries, let requiredBananas):
-            guard checkStockAmount(of: strawberry) >= requiredStrawberries,
-                  checkStockAmount(of: banana) >= requiredBananas else {
+            guard strawberryStock >= requiredStrawberries,
+                  bananaStock >= requiredBananas else {
                 return false
             }
         case .mangoJuice(_, let requiredMangos):
-            guard checkStockAmount(of: mango) >= requiredMangos else {
+            guard mangoStock >= requiredMangos else {
                 return false
             }
         case .mangoKiwiJuice(_, let requiredMangos, let requiredKiwis):
-            guard checkStockAmount(of: mango) >= requiredMangos,
-                  checkStockAmount(of: kiwi) >= requiredKiwis else {
+            guard mangoStock >= requiredMangos,
+                  kiwiStock >= requiredKiwis else {
                 return false
             }
         case .kiwiJuice(_, let requiredKiwis):
-            guard checkStockAmount(of: kiwi) >= requiredKiwis else {
+            guard kiwiStock >= requiredKiwis else {
                 return false
             }
             
         case .pineappleJuice(_, let requiredPineapples):
-            guard checkStockAmount(of: pineapple) >= requiredPineapples else {
+            guard pineappleStock >= requiredPineapples else {
                 return false
             }
         }
