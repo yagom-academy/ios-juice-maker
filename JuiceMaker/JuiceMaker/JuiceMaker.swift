@@ -16,12 +16,14 @@ enum StockCheckResult {
     case notAvailable
 }
 
-enum Result {
-    case success
-    case failure
-}
-
 typealias Recipe = [Fruit: Int]
+
+class StockError: Error {
+    var message: String
+    init(message: String) {
+        self.message = message
+    }
+}
 
 
 //과일 수량
@@ -52,7 +54,7 @@ struct FruitStock {
         return .available
     }
     
-    mutating func useFruit(recipe: Recipe) -> Result {
+    mutating func useFruit(recipe: Recipe, completionHandler: (Result<Any?, Error>) -> Void) {
         switch canMakeJuice(with: recipe) {
         case .available:
             for (fruit, fruitUsed) in recipe {
@@ -69,9 +71,9 @@ struct FruitStock {
                     pineapple = pineapple - fruitUsed
                 }
             }
-            return .success
+            completionHandler(.success("재작 가능합니다."))
         case .notAvailable:
-            return .failure
+            completionHandler(.failure(StockError(message: "재고가 부족합니다!")))
         }
     }
     
@@ -109,8 +111,15 @@ class JuiceMaker {
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
-    func makeJuice(with recipe: Recipe) -> Result {
-        return fruitStock.useFruit(recipe: recipe)
+    func makeJuice(with recipe: Recipe, completionHandler: (Result<String, Error>) -> Void) {
+        fruitStock.useFruit(recipe: recipe) { (result) in
+            switch result {
+            case .success(_):
+                completionHandler(.success(" 쥬스가 나왔습니다!"))
+            case .failure(let message):
+                completionHandler(.failure(message))
+            }
+        }
     }
     
     func updateStock(fruit: Fruit, stock: Int) {
