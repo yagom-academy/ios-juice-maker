@@ -9,7 +9,6 @@ import Foundation
 
 class Fruit {
     let name: String
-    let productNumber: Int
     private var variationOfStockAmount: Int {
         willSet(newValue) {
             self.stock += newValue
@@ -17,9 +16,8 @@ class Fruit {
     }
     private var stock: Int
     
-    init(name: String, productNumber: Int) {
+    init(name: String) {
         self.name = name
-        self.productNumber = productNumber
         self.variationOfStockAmount = 0
         stock = 0
     }
