@@ -70,10 +70,6 @@ struct JuiceMaker {
         fruitType.updateStockAmount(reducing: amount)
     }
     
-//    func checkStockAmount(of fruitType: Fruit) -> Int {
-//        return fruitType.stockAmount()
-//    }
-    
     mutating func makeJuice(of order: JuiceMenu) -> String {
         switch order {
         case .strawberryJuice(let name, let requiredStrawberries):

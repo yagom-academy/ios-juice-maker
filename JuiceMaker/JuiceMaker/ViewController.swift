@@ -92,11 +92,11 @@ extension ViewController {
     }
     
     private func initializeStockLabels() {
-        strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
-        bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
-        pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.pineapple)
-        kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
-        mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
+        strawberryCount = juiceMaker.strawberryStock
+        bananaCount = juiceMaker.bananaStock
+        pineappleCount = juiceMaker.pineappleStock
+        kiwiCount = juiceMaker.kiwiStock
+        mangoCount = juiceMaker.mangoStock
     }
     
     private func initializeMenuOrder() {
@@ -112,21 +112,21 @@ extension ViewController {
     private func updateStockStatusAfterMaking(order: JuiceMenu) {
         switch order {
         case .ddalbaJuice:
-            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
-            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
+            strawberryCount = juiceMaker.strawberryStock
+            bananaCount = juiceMaker.bananaStock
         case .mangoKiwiJuice:
-            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
-            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
+            mangoCount = juiceMaker.mangoStock
+            kiwiCount = juiceMaker.kiwiStock
         case .strawberryJuice:
-            strawberryCount = juiceMaker.checkStockAmount(of: juiceMaker.strawberry)
+            strawberryCount = juiceMaker.strawberryStock
         case .bananaJuice:
-            bananaCount = juiceMaker.checkStockAmount(of: juiceMaker.banana)
+            bananaCount = juiceMaker.bananaStock
         case .pineappleJuice:
-            pineappleCount = juiceMaker.checkStockAmount(of: juiceMaker.pineapple)
+            pineappleCount = juiceMaker.pineappleStock
         case .mangoJuice:
-            mangoCount = juiceMaker.checkStockAmount(of: juiceMaker.mango)
+            mangoCount = juiceMaker.mangoStock
         case .kiwiJuice:
-            kiwiCount = juiceMaker.checkStockAmount(of: juiceMaker.kiwi)
+            kiwiCount = juiceMaker.kiwiStock
         }
     }
     
