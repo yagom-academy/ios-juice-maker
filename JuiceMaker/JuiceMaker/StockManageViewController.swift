@@ -40,6 +40,14 @@ class StockManageViewController: UIViewController {
             mangoStepper.minimumValue = 0
         }
     
+    private func showFruitsStock() {
+            strawberryStockLabel.text = String(strawberryStock)
+            bananaStockLabel.text = String(bananaStock)
+            pineappleStockLabel.text = String(pineappleStock)
+            kiwiStockLabel.text = String(kiwiStock)
+            mangoStockLabel.text = String(mangoStock)
+        }
+    
     @IBAction func touchUpGoBackButton(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
