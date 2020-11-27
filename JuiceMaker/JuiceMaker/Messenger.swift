@@ -16,7 +16,7 @@ class Messenger {
         print(AlertMessage.wrongRequest.rawValue)
     }
     
-    func printSuccessMade(juice: String) {
-        print("\(juice)" + AlertMessage.successMade.rawValue)
+    func printSuccessMade(juice: Menu) {
+        print("\(juice.rawValue)" + AlertMessage.successMade.rawValue)
     }
 }
