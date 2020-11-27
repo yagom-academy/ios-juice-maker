@@ -6,14 +6,14 @@
 
 import Foundation
 
-enum Juice: String {
-    case strawberry = "딸기쥬스"
-    case banana = "바나나쥬스"
-    case kiwi = "키위쥬스"
-    case pineapple = "파인애플쥬스"
-    case strawberrybanana = "딸바쥬스"
-    case mango = "망고쥬스"
-    case mangokiwi = "망키쥬스"
+enum Juice: UInt, CaseIterable {
+    case strawberry = 0
+    case banana = 1
+    case kiwi = 2
+    case pineapple = 3
+    case strawberrybanana = 4
+    case mango = 5
+    case mangokiwi = 6
 }
 
 enum JuiceMakerError: Error {

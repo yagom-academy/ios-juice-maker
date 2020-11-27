@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum Fruit {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+enum Fruit: UInt, CaseIterable {
+    case strawberry = 0
+    case banana = 1
+    case pineapple = 2
+    case kiwi = 3
+    case mango = 4
 }
 
 enum FruitManagerError: Error {
