@@ -30,8 +30,8 @@ enum Juice: Int {
     case strawberryBananaJuice = 5
     case mangoKiwiJuice = 6
     
-    func describeJuiceName(juice: Juice) -> String {
-        switch juice {
+    var describtion: String {
+        switch self {
         case .strawberryJuice:
             return "딸기 쥬스"
         case .bananaJuice:
