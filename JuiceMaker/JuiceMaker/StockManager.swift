@@ -72,7 +72,7 @@ class StockManager {
     // MARK: - substractStock
     func substractStrawberryStock() {
         guard strawberryInventoryAmount > 0 else {
-            messenger.printWrongRequest()
+            messenger.printAlertMessage(alertCase: .wrongRequest)
             return
         }
         strawberryInventoryAmount -= 1
@@ -80,7 +80,7 @@ class StockManager {
     
     func substractBananaStock() {
         guard bananaInventoryAmount > 0 else {
-            messenger.printWrongRequest()
+            messenger.printAlertMessage(alertCase: .wrongRequest)
             return
         }
         bananaInventoryAmount -= 1
@@ -88,7 +88,7 @@ class StockManager {
     
     func substractPineappleStock() {
         guard pineappleInventoryAmount > 0 else {
-            messenger.printWrongRequest()
+            messenger.printAlertMessage(alertCase: .wrongRequest)
             return
         }
         pineappleInventoryAmount -= 1
@@ -96,7 +96,7 @@ class StockManager {
     
     func substractMangoStock() {
         guard mangoInventoryAmount > 0 else {
-            messenger.printWrongRequest()
+            messenger.printAlertMessage(alertCase: .wrongRequest)
             return
         }
         mangoInventoryAmount -= 1
@@ -104,7 +104,7 @@ class StockManager {
     
     func substractKiwiStock() {
         guard kiwiInventoryAmount > 0 else {
-            messenger.printWrongRequest()
+            messenger.printAlertMessage(alertCase: .wrongRequest)
             return
         }
         kiwiInventoryAmount -= 1
