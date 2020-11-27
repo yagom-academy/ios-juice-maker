@@ -22,7 +22,7 @@ class StockViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        restock()
+        applyFruitStockModification()
     }
     
     @IBAction func touchUpDismissPageButton() {
@@ -42,7 +42,7 @@ class StockViewController: UIViewController {
         updateFruitStockLabel(fruit: fruit, sender: stepper)
     }
     
-    func restock() {
+    func applyFruitStockModification() {
         for fruit in JuiceMaker.common.fruits {
             guard let labelText = stockLabel[fruit.key.rawValue].text else {
                 return showMachineErrorAlert()
