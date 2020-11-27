@@ -27,6 +27,12 @@ class StockManageViewController: UIViewController {
     private var kiwiStock: Int = JuiceMaker.common.stockManager.kiwi.stock
     private var mangoStock: Int = JuiceMaker.common.stockManager.mango.stock
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        showFruitsStock()
+        setStepper()
+    }
+    
     private func setStepper() {
             strawberryStepper.value = Double(strawberryStock)
             strawberryStepper.minimumValue = 0
