@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         guard let stockManageVC = self.storyboard?.instantiateViewController(withIdentifier: "StockManageVC") else {
             return
         }
-        stockManageVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        stockManageVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         present(stockManageVC, animated: true, completion: nil)
     }
     
