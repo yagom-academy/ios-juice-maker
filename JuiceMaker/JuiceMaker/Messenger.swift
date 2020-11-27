@@ -8,15 +8,18 @@
 import Foundation
 
 class Messenger {
-    func printOutOfStock() {
-        print(AlertMessage.outOfStock.rawValue)
+    func printAlertMessage(alertCase: AlertCase) {
+        switch alertCase {
+        case .outOfStock:
+            print(AlertMessage.outOfStock.rawValue)
+        case .wrongRequest:
+            print(AlertMessage.wrongRequest.rawValue)
+        default:
+            return
+        }
     }
     
-    func printWrongRequest() {
-        print(AlertMessage.wrongRequest.rawValue)
-    }
-    
-    func printSuccessMade(juice: Menu) {
-        print("\(juice.rawValue)" + AlertMessage.successMade.rawValue)
+    func printSuccessMade(selectedJuice: Menu) {
+        print("\(selectedJuice.rawValue)" + AlertMessage.successMade.rawValue)
     }
 }
