@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias recipe = [Fruit: UInt]
+typealias Recipe = [Fruit: UInt]
 
 enum Message: String {
     case success = " 나왔습니다. 맛있게 드세요."
@@ -49,7 +49,7 @@ enum Juice: Int {
         }
     }
     
-    func recipe(about juice: Juice) -> recipe {
+    func recipe(about juice: Juice) -> Recipe {
         switch juice {
         case .strawberryJuice:
             return [.strawberry : 16]
