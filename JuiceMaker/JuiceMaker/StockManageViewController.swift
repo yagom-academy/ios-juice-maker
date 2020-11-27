@@ -83,6 +83,7 @@ class StockManageViewController: UIViewController {
     }
     
     @IBAction func touchUpGoBackButton(_ sender: UIButton) {
+        setFruitStock()
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
