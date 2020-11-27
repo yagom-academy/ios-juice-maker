@@ -20,11 +20,10 @@ class ViewController: UIViewController {
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //todo -> 화면전환할때 값을 같이 보내는 방법을 찾아서 step3를 진행할것
-        showFruitsStock()
-    }
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(true)
+            showFruitsStock()
+        }
     
     func showFruitsStock() {
         let strawberryStock: Int = juiceMaker.stockManager.strawberry.stock
