@@ -129,7 +129,8 @@ class StockManager {
 
 class JuiceMaker {
     let stockManager = StockManager()
-    
+    static let common = JuiceMaker()
+    private init() {  }
     func makeJuice(orderedJuice: FruitJuice) throws {
         stockManager.orderCheck(menu: orderedJuice)
         try stockManager.checkCanMakeJuice()
