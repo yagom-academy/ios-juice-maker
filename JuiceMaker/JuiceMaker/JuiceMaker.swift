@@ -49,8 +49,8 @@ enum Juice: Int {
         }
     }
     
-    func recipe(about juice: Juice) -> Recipe {
-        switch juice {
+    var recipe: Recipe {
+        switch self {
         case .strawberryJuice:
             return [.strawberry : 16]
         case .bananaJuice:
@@ -112,7 +112,7 @@ class JuiceMaker {
     ]
     
     func make(juice: Juice) throws {
-        for (neededFruit, neededAmount) in juice.recipe(about: juice) {
+        for (neededFruit, neededAmount) in juice.recipe {
             guard let fruit = fruits[neededFruit] else {
                 throw JuiceMakerError.unknownFruit
             }
@@ -122,7 +122,7 @@ class JuiceMaker {
             }
         }
         
-        for (neededFruit, neededAmount) in juice.recipe(about: juice) {
+        for (neededFruit, neededAmount) in juice.recipe {
             guard let fruit = fruits[neededFruit] else {
                 throw JuiceMakerError.unknownFruit
             }
