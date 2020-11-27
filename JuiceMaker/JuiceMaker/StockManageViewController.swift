@@ -48,6 +48,14 @@ class StockManageViewController: UIViewController {
             mangoStockLabel.text = String(mangoStock)
         }
     
+    private func setFruitStock() {
+            JuiceMaker.common.stockManager.strawberry.add(stock: Int(strawberryStepper.value) - strawberryStock)
+            JuiceMaker.common.stockManager.banana.add(stock: Int(bananaStepper.value) - bananaStock)
+            JuiceMaker.common.stockManager.pineapple.add(stock: Int(pineappleStepper.value) - pineappleStock)
+            JuiceMaker.common.stockManager.kiwi.add(stock: Int(kiwiStepper.value) - kiwiStock)
+            JuiceMaker.common.stockManager.mango.add(stock: Int(mangoStepper.value) - mangoStock)
+        }
+    
     @IBAction func touchUpGoBackButton(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
