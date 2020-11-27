@@ -25,7 +25,7 @@ class ViewController: UIViewController {
             showFruitsStock()
         }
     
-    func showFruitsStock() {
+    private func showFruitsStock() {
         let strawberryStock: Int = juiceMaker.stockManager.strawberry.stock
         let bananaStock: Int = juiceMaker.stockManager.banana.stock
         let pineappleStock: Int = juiceMaker.stockManager.pineapple.stock
