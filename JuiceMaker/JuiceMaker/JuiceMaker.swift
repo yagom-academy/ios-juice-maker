@@ -35,67 +35,12 @@ class JuiceMaker {
     let stockManager = StockManager()
     let messenger = Messenger()
     
-    func makeStrawberryJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: .strawberryJuice) else {
-            messenger.printOutOfStock()
+    func makeJuice(juiceName: Menu) throws {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: juiceName) else {
+            messenger.printAlertMessage(alertCase: .outOfStock)
             throw AlertCase.outOfStock
         }
-        stockManager.useStrawberryJuiceIngredients()
-        messenger.printSuccessMade(juice: Menu.strawberryJuice.rawValue)
+        stockManager.useJuiceIngredients(juiceName: juiceName)
+        messenger.printSuccessMade(selectedJuice: juiceName)
     }
-    
-    func makeStrawberryBananaJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: .strawberryBananaJuice) else {
-            messenger.printOutOfStock()
-            throw AlertCase.outOfStock
-        }
-        stockManager.useStrawberryBananaJuiceIngredients()
-        messenger.printSuccessMade(juice: Menu.strawberryBananaJuice.rawValue)
-    }
-    
-    func makeBananaJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: .bananaJuice) else {
-            messenger.printOutOfStock()
-            throw AlertCase.outOfStock
-        }
-        stockManager.useeBananaJuiceIngredients()
-        messenger.printSuccessMade(juice: Menu.bananaJuice.rawValue)
-    }
-    
-    func makeKiwiJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: .kiwiJuice) else {
-            messenger.printOutOfStock()
-            throw AlertCase.outOfStock
-        }
-        stockManager.useKiwiJuiceIngredients()
-        messenger.printSuccessMade(juice: Menu.kiwiJuice.rawValue)
-    }
-    
-    func makePineappleJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: .pineappleJuice) else {
-            messenger.printOutOfStock()
-            throw AlertCase.outOfStock
-        }
-        stockManager.usePineappleJuiceIngredients()
-        messenger.printSuccessMade(juice: Menu.pineappleJuice.rawValue)
-    }
-    
-    func makeMangoJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: .mangoJuice) else {
-            messenger.printOutOfStock()
-            throw AlertCase.outOfStock
-        }
-        stockManager.useMangoJuiceIngredients()
-        messenger.printSuccessMade(juice: Menu.mangoJuice.rawValue)
-    }
-    
-    func makeMangoKiwiJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: .mangoKiwiJuice) else {
-            messenger.printOutOfStock()
-            throw AlertCase.outOfStock
-        }
-        stockManager.useMangoKiwiJuiceIngredients()
-        messenger.printSuccessMade(juice: Menu.mangoKiwiJuice.rawValue)
-    }
-    
 }
