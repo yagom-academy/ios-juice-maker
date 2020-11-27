@@ -8,14 +8,20 @@ import Foundation
 
 /// 쥬스 메이커 타입 
 struct JuiceMaker {
-    var fruitsContainer = [Fruit]()
-    var fruitProductNumberContainer = [String : Int]()
+
+    let strawberry = Fruit(name: "strawberry")
+    let banana = Fruit(name: "banana")
+    let pineapple = Fruit(name: "pineapple")
+    let kiwi = Fruit(name: "kiwi")
+    let mango = Fruit(name: "mango")
     
-    private var strawberry = Fruit(name: "strawberry", productNumber: 0)
-    private var banana = Fruit(name: "banana", productNumber: 1)
-    private var pineapple = Fruit(name: "pineapple", productNumber: 2)
-    private var kiwi = Fruit(name: "kiwi", productNumber: 3)
-    private var mango = Fruit(name: "mango", productNumber: 4)
+    let strawberryJuice = JuiceMenu.strawberryJuice(name: "딸기쥬스", requiredStrawberries: 16)
+    let bananaJuice = JuiceMenu.bananaJuice(name: "바나나쥬스", requiredBananas: 2)
+    let ddalbaJuice = JuiceMenu.ddalbaJuice(name: "딸바쥬스", requiredStrawberries: 10, requiredBananas: 1)
+    let mangoJuice = JuiceMenu.mangoJuice(name: "망고쥬스", requiredMangos: 3)
+    let mangoKiwiJuice = JuiceMenu.mangoKiwiJuice(name: "딸바쥬스", requiredMangos: 2, requiredKiwis: 1)
+    let kiwiJuice = JuiceMenu.kiwiJuice(name: "키위쥬스", requiredKiwis: 3)
+    let pineappleJuice = JuiceMenu.pineappleJuice(name: "파인애플쥬스", requiredPineapples: 2)
     
     init() {
         
@@ -26,16 +32,7 @@ struct JuiceMaker {
         addStock(amount: initialStock, of: pineapple)
         addStock(amount: initialStock, of: kiwi)
         addStock(amount: initialStock, of: mango)
-        
-        fruitsContainer.append(strawberry)
-        fruitsContainer.append(banana)
-        fruitsContainer.append(pineapple)
-        fruitsContainer.append(kiwi)
-        fruitsContainer.append(mango)
-        
-        for fruit in fruitsContainer {
-            fruitProductNumberContainer[fruit.name] = fruit.productNumber
-        }
+
     }
     
     mutating func addStock(amount: Int, of fruitType: Fruit) {
@@ -50,112 +47,60 @@ struct JuiceMaker {
         return fruitType.stockAmount()
     }
     
-    mutating func makeJuice(of order: JuiceMenu, with requiredFruits: [String: Int] ) {
+    mutating func makeJuice(of order: JuiceMenu) {
         switch order {
-        case .strawberryJuice:
-            if let requiredStrawberry = requiredFruits["strawberry"] {
-                reduceStock(amount: requiredStrawberry, of: strawberry)
-            }
-        case .bananaJuice:
-            if let requiredBanana = requiredFruits["banana"] {
-                reduceStock(amount: requiredBanana, of: banana)
-            }
-        case .ddalbaJuice:
-            if let requiredStrawberry = requiredFruits["strawberry"],
-               let requiredBanana = requiredFruits["banana"] {
-                reduceStock(amount: requiredStrawberry, of: strawberry)
-                reduceStock(amount: requiredBanana, of: banana)
-            }
-        case .mangoJuice:
-            if let requiredMango = requiredFruits["mango"] {
-                reduceStock(amount: requiredMango, of: mango)
-            }
-        case .mangoKiwiJuice:
-            if let requiredMango = requiredFruits["mango"],
-               let requiredKiwi = requiredFruits["kiwi"] {
-                reduceStock(amount: requiredMango, of: mango)
-                reduceStock(amount: requiredKiwi, of: kiwi)
-            }
-        case .kiwiJuice:
-            if let requiredKiwi = requiredFruits["kiwi"] {
-                reduceStock(amount: requiredKiwi, of: kiwi)
-            }
-        case .pineappleJuice:
-            if let requiredPineapple = requiredFruits["pineapple"] {
-                reduceStock(amount: requiredPineapple, of: pineapple)
-            }
+        case .strawberryJuice(_, let requiredStrawberries):
+            reduceStock(amount: requiredStrawberries, of: strawberry)
+        case .bananaJuice(_, let requiredBananas):
+            reduceStock(amount: requiredBananas, of: banana)
+        case .ddalbaJuice(_, let requiredStrawberries, let requiredBananas):
+            reduceStock(amount: requiredStrawberries, of: strawberry)
+            reduceStock(amount: requiredBananas, of: banana)
+        case .mangoJuice(_, let requiredMangos):
+            reduceStock(amount: requiredMangos, of: mango)
+        case .mangoKiwiJuice(_, let requiredMangos, let requiredKiwis):
+            reduceStock(amount: requiredMangos, of: mango)
+            reduceStock(amount: requiredKiwis, of: kiwi)
+        case .kiwiJuice(_, let requiredKiwis):
+            reduceStock(amount: requiredKiwis, of: kiwi)
+        case .pineappleJuice(_, let requiredPineapples):
+            reduceStock(amount: requiredPineapples, of: pineapple)
         }
     }
     
-    func isAvailableMaking(juice: JuiceMenu, checking requiredFruits: [String : Int]) -> Bool {
+    func isAvailableMaking(juice: JuiceMenu) -> Bool {
         switch juice {
-        case .strawberryJuice:
-            guard let requiredStrawberry = requiredFruits["strawberry"] else {
+        case .strawberryJuice(_, let requiredStrawberries):
+            guard checkStockAmount(of: strawberry) >= requiredStrawberries else {
+                return false
+            }
+        case .bananaJuice(_, let requiredBananas):
+            guard checkStockAmount(of: banana) >= requiredBananas else {
+                return false
+            }
+        case .ddalbaJuice(_, let requiredStrawberries, let requiredBananas):
+            guard checkStockAmount(of: strawberry) >= requiredStrawberries,
+                  checkStockAmount(of: banana) >= requiredBananas else {
+                return false
+            }
+        case .mangoJuice(_, let requiredMangos):
+            guard checkStockAmount(of: mango) >= requiredMangos else {
+                return false
+            }
+        case .mangoKiwiJuice(_, let requiredMangos, let requiredKiwis):
+            guard checkStockAmount(of: mango) >= requiredMangos,
+                  checkStockAmount(of: kiwi) >= requiredKiwis else {
+                return false
+            }
+        case .kiwiJuice(_, let requiredKiwis):
+            guard checkStockAmount(of: kiwi) >= requiredKiwis else {
                 return false
             }
             
-            guard checkStockAmount(of: strawberry) >= requiredStrawberry else {
+        case .pineappleJuice(_, let requiredPineapples):
+            guard checkStockAmount(of: pineapple) >= requiredPineapples else {
                 return false
             }
-            
-        case .bananaJuice:
-            guard let requiredBanana = requiredFruits["banana"] else {
-                return false
-            }
-            
-            guard checkStockAmount(of: banana) >= requiredBanana else {
-                return false
-            }
-            
-        case .ddalbaJuice:
-            guard let requiredStrawberry = requiredFruits["strawberry"],
-                  let requiredBanana = requiredFruits["banana"] else {
-                return false
-            }
-            
-            guard checkStockAmount(of: strawberry) >= requiredStrawberry,
-                  checkStockAmount(of: banana) >= requiredBanana else {
-                return false
-            }
-            
-        case .kiwiJuice:
-            guard let requiredKiwi = requiredFruits["kiwi"] else {
-                return false
-            }
-            
-            guard checkStockAmount(of: kiwi) >= requiredKiwi else {
-                return false
-            }
-            
-        case .mangoJuice:
-            guard let requiredMango = requiredFruits["mango"] else {
-                return false
-            }
-            
-            guard checkStockAmount(of: mango) >= requiredMango else {
-                return false
-            }
-            
-        case .mangoKiwiJuice:
-            guard let requiredMango = requiredFruits["mango"],
-                  let requiredKiwi = requiredFruits["kiwi"] else {
-                return false
-            }
-            
-            guard checkStockAmount(of: mango) >= requiredMango,
-                  checkStockAmount(of: kiwi) >= requiredKiwi else {
-                return false
-            }
-            
-        case .pineappleJuice:
-            guard let requiredPineapple = requiredFruits["pineapple"] else {
-                return false
-            }
-            
-            guard checkStockAmount(of: pineapple) >= requiredPineapple else {
-                return false
-            }
-            
         }
         return true
     }
