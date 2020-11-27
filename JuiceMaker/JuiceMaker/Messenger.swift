@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+class Messenger {
+    func printOutOfStock() {
+        print(AlertMessage.outOfStock.rawValue)
+    }
+    
+    func printWrongRequest() {
+        print(AlertMessage.wrongRequest.rawValue)
+    }
+    
+    func printSuccessMade(juice: String) {
+        print("\(juice)" + AlertMessage.successMade.rawValue)
+    }
+}
