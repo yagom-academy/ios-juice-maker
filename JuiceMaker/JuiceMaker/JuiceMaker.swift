@@ -28,12 +28,20 @@ class StockError: Error {
 
 //과일 수량
 //FruitStock을 구조체로 선언한 이유는 값타입으로만 사용될 것 이라 생각하여 구조체를 사용했습니다.
-struct FruitStock {
+class FruitStock {
     private(set) var strawberry: Int
     private(set) var banana: Int
     private(set) var pineapple: Int
     private(set) var kiwii: Int
     private(set) var mango: Int
+    
+    init(strawberry: Int, banana: Int, pineapple: Int, kiwii: Int, mango: Int) {
+        self.strawberry = strawberry
+        self.banana = banana
+        self.pineapple = pineapple
+        self.kiwii = kiwii
+        self.mango = mango
+    }
     
     //현재 보유한 과일 재고로 가능한가?
     private func canMakeJuice(with recipe: Recipe) -> StockCheckResult {
@@ -54,7 +62,7 @@ struct FruitStock {
         return .available
     }
     
-    mutating func useFruit(recipe: Recipe, completionHandler: (Result<Any?, Error>) -> Void) {
+    fileprivate func useFruit(recipe: Recipe, completionHandler: (Result<Any?, Error>) -> Void) {
         switch canMakeJuice(with: recipe) {
         case .available:
             for (fruit, fruitUsed) in recipe {
@@ -78,7 +86,7 @@ struct FruitStock {
     }
     
     //과일 재고 추가
-    mutating func changeStock(fruit: Fruit, stock: Int) {
+    fileprivate func changeStock(fruit: Fruit, stock: Int) {
         switch fruit {
         case .strawberry:
             strawberry = stock
@@ -102,12 +110,7 @@ class JuiceMaker {
     
     //JuiceMaker 인스턴스 생성 시 초기 과일 재고 입력.
     init(stock: FruitStock) {
-        fruitStock = FruitStock(strawberry: stock.strawberry,
-                                banana: stock.banana,
-                                pineapple: stock.pineapple,
-                                kiwii: stock.kiwii,
-                                mango: stock.mango)
-        
+        fruitStock = stock
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
