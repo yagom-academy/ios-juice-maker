@@ -36,7 +36,7 @@ class JuiceMaker {
     let messenger = Messenger()
     
     func makeStrawberryJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(juice: .strawberryJuice) else {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: .strawberryJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -45,7 +45,7 @@ class JuiceMaker {
     }
     
     func makeStrawberryBananaJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(juice: .strawberryBananaJuice) else {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: .strawberryBananaJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -54,7 +54,7 @@ class JuiceMaker {
     }
     
     func makeBananaJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(juice: .bananaJuice) else {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: .bananaJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -63,7 +63,7 @@ class JuiceMaker {
     }
     
     func makeKiwiJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(juice: .kiwiJuice) else {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: .kiwiJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -72,7 +72,7 @@ class JuiceMaker {
     }
     
     func makePineappleJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(juice: .pineappleJuice) else {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: .pineappleJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -81,7 +81,7 @@ class JuiceMaker {
     }
     
     func makeMangoJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(juice: .mangoJuice) else {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: .mangoJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -90,7 +90,7 @@ class JuiceMaker {
     }
     
     func makeMangoKiwiJuice() throws {
-        guard stockManager.isEnoughToMakeJuice(juice: .mangoKiwiJuice) else {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: .mangoKiwiJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }

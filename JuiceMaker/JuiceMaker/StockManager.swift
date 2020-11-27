@@ -125,9 +125,9 @@ class StockManager {
     }
     
     // MARK: - IsEnoughIngredients
-    func isEnoughToMakeJuice(juice: Menu) -> Bool {
+    func isEnoughToMakeJuice(selectedJuice: Menu) -> Bool {
         
-        switch juice {
+        switch selectedJuice {
         case .strawberryJuice:
             guard strawberryInventoryAmount >= recipe.strawberryRequiredOfStrawberryJuice else {
                 return false
