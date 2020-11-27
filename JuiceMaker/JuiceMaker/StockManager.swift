@@ -125,7 +125,7 @@ class StockManager {
     }
     
     // MARK: - IsEnoughIngredients
-    func IsEnough(juice: Menu) -> Bool {
+    func isEnoughToMake(juice: Menu) -> Bool {
         
         switch juice {
         case .strawberryJuice:

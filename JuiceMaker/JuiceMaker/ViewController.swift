@@ -29,11 +29,11 @@ class ViewController: UIViewController {
     }
     
     func updateStock() {
-        strawberryStockLable.text = String(JuiceMaker.common.stockManager.strawberry)
-        bananaStockLable.text = String(JuiceMaker.common.stockManager.banana)
-        pineappleStockLable.text = String(JuiceMaker.common.stockManager.pineapple)
-        kiwiStockLable.text = String(JuiceMaker.common.stockManager.kiwi)
-        mangoStockLable.text = String(JuiceMaker.common.stockManager.mango)
+        strawberryStockLable.text = String(JuiceMaker.common.stockManager.strawberryInventoryAmount)
+        bananaStockLable.text = String(JuiceMaker.common.stockManager.bananaInventoryAmount)
+        pineappleStockLable.text = String(JuiceMaker.common.stockManager.pineappleInventoryAmount)
+        kiwiStockLable.text = String(JuiceMaker.common.stockManager.kiwiInventoryAmount)
+        mangoStockLable.text = String(JuiceMaker.common.stockManager.mangoInventoryAmount)
     }
     
     func showSuccessAlert(menu: Menu) {

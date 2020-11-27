@@ -36,7 +36,7 @@ class JuiceMaker {
     let messenger = Messenger()
     
     func makeStrawberryJuice() throws {
-        guard stockManager.IsEnough(juice: .strawberryJuice) else {
+        guard stockManager.isEnoughToMake(juice: .strawberryJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -45,7 +45,7 @@ class JuiceMaker {
     }
     
     func makeStrawberryBananaJuice() throws {
-        guard stockManager.IsEnough(juice: .strawberryBananaJuice) else {
+        guard stockManager.isEnoughToMake(juice: .strawberryBananaJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -54,7 +54,7 @@ class JuiceMaker {
     }
     
     func makeBananaJuice() throws {
-        guard stockManager.IsEnough(juice: .bananaJuice) else {
+        guard stockManager.isEnoughToMake(juice: .bananaJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -63,7 +63,7 @@ class JuiceMaker {
     }
     
     func makeKiwiJuice() throws {
-        guard stockManager.IsEnough(juice: .kiwiJuice) else {
+        guard stockManager.isEnoughToMake(juice: .kiwiJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -72,7 +72,7 @@ class JuiceMaker {
     }
     
     func makePineappleJuice() throws {
-        guard stockManager.IsEnough(juice: .pineappleJuice) else {
+        guard stockManager.isEnoughToMake(juice: .pineappleJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -81,7 +81,7 @@ class JuiceMaker {
     }
     
     func makeMangoJuice() throws {
-        guard stockManager.IsEnough(juice: .mangoJuice) else {
+        guard stockManager.isEnoughToMake(juice: .mangoJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
@@ -90,7 +90,7 @@ class JuiceMaker {
     }
     
     func makeMangoKiwiJuice() throws {
-        guard stockManager.IsEnough(juice: .mangoKiwiJuice) else {
+        guard stockManager.isEnoughToMake(juice: .mangoKiwiJuice) else {
             messenger.printOutOfStock()
             throw AlertCase.outOfStock
         }
