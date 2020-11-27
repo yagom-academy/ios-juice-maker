@@ -8,12 +8,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    
+    @IBOutlet var stockLaber: [UILabel]!
+    /*
+     @IBOutlet weak var strawberryStockLabel: UILabel!
+     @IBOutlet weak var bananaStockLabel: UILabel!
+     @IBOutlet weak var mangoStockLabel: UILabel!
+     @IBOutlet weak var kiwiStockLabel: UILabel!
+     @IBOutlet weak var pineappleStockLabel: UILabel!
+     */
     let strawberry = JuiceMaker.common.fruits[.strawberry]
     let banana = JuiceMaker.common.fruits[.banana]
     let mango = JuiceMaker.common.fruits[.mango]
@@ -21,14 +23,19 @@ class ViewController: UIViewController {
     let pineapple = JuiceMaker.common.fruits[.pineapple]
     
     override func viewWillAppear(_ animated: Bool) {
-        updateFruitStockLabel()
+        do {
+            try updateFruitStockLabel()
+        }
+        catch {
+            showMachineErrorAlert()
+        }
     }
     
     func make(juice: JuiceName) {
         do {
             try JuiceMaker.common.make(juice: juice)
             showSuccessAlert(about: juice)
-            updateFruitStockLabel(juice: juice)
+           // updateFruitStockLabel(juice: juice)
         } catch JuiceMakerError.outOfStock {
             showOutOfStockAlert()
         } catch {
@@ -75,9 +82,11 @@ class ViewController: UIViewController {
                                       preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK",
                                      style: .default,
-                                     handler: { _ in
-                                        self.updateFruitStockLabel(juice: juice)
-                                     })
+                                     handler: nil//{
+                                        // _ in
+                                        // self.updateFruitStockLabel(juice: juice)
+                                    // }
+                                    )
         
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
@@ -118,34 +127,48 @@ class ViewController: UIViewController {
         present(stockViewController, animated: true, completion: nil)
     }
     
-    private func updateFruitStockLabel() {
-        strawberryStockLabel.text = String(strawberry?.amount ?? 0)
-        bananaStockLabel.text = String(banana?.amount ?? 0)
-        mangoStockLabel.text = String(mango?.amount ?? 0)
-        kiwiStockLabel.text = String(kiwi?.amount ?? 0)
-        pineappleStockLabel.text = String(pineapple?.amount ?? 0)
-    }
-    
-    private func updateFruitStockLabel(juice: JuiceName) {
-        guard let selctedjuice = JuiceMaker.common.recipes[juice] else { return }
-        
-        switch selctedjuice.name {
-        case .strawberryJuice:
-            strawberryStockLabel.text = String(strawberry?.amount ?? 0)
-        case .bananaJuice:
-            bananaStockLabel.text = String(banana?.amount ?? 0)
-        case .mangoJuice:
-            mangoStockLabel.text = String(mango?.amount ?? 0)
-        case .kiwiJuice:
-            kiwiStockLabel.text = String(kiwi?.amount ?? 0)
-        case .pineappleJuice:
-            pineappleStockLabel.text = String(pineapple?.amount ?? 0)
-        case .strawberryBananaJuice:
-            strawberryStockLabel.text = String(strawberry?.amount ?? 0)
-            bananaStockLabel.text = String(banana?.amount ?? 0)
-        case .mangoKiwiJuice:
-            mangoStockLabel.text = String(mango?.amount ?? 0)
-            kiwiStockLabel.text = String(kiwi?.amount ?? 0)
+    private func updateFruitStockLabel() throws {
+        for fruitName in JuiceMaker.common.fruits {
+            guard let fruit = JuiceMaker.common.fruits[fruitName.key] else {
+                throw JuiceMakerError.unknownFruit
+            }
+            
+            stockLaber[0].text = String(fruit.amount)
+            stockLaber[1].text = String(fruit.amount)
+            stockLaber[2].text = String(fruit.amount)
+            stockLaber[3].text = String(fruit.amount)
+            stockLaber[4].text = String(fruit.amount)
         }
+         /*
+            strawberryStockLabel.text = String(strawberry?.amount ?? 0)
+            bananaStockLabel.text = String(banana?.amount ?? 0)
+            mangoStockLabel.text = String(mango?.amount ?? 0)
+            kiwiStockLabel.text = String(kiwi?.amount ?? 0)
+            pineappleStockLabel.text = String(pineapple?.amount ?? 0)
+         */
     }
-}
+        /*
+        private func updateFruitStockLabel(juice: JuiceName) {
+            guard let selctedjuice = JuiceMaker.common.recipes[juice] else { return }
+            
+            switch selctedjuice.name {
+            case .strawberryJuice:
+                strawberryStockLabel.text = String(strawberry?.amount ?? 0)
+            case .bananaJuice:
+                bananaStockLabel.text = String(banana?.amount ?? 0)
+            case .mangoJuice:
+                mangoStockLabel.text = String(mango?.amount ?? 0)
+            case .kiwiJuice:
+                kiwiStockLabel.text = String(kiwi?.amount ?? 0)
+            case .pineappleJuice:
+                pineappleStockLabel.text = String(pineapple?.amount ?? 0)
+            case .strawberryBananaJuice:
+                strawberryStockLabel.text = String(strawberry?.amount ?? 0)
+                bananaStockLabel.text = String(banana?.amount ?? 0)
+            case .mangoKiwiJuice:
+                mangoStockLabel.text = String(mango?.amount ?? 0)
+                kiwiStockLabel.text = String(kiwi?.amount ?? 0)
+            }
+        }
+ */
+    }

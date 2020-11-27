@@ -64,28 +64,28 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4P-68-7Xs">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4P-68-7Xs">
                                 <rect key="frame" x="405" y="169.5" width="86" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSS-8r-bJV">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSS-8r-bJV">
                                 <rect key="frame" x="551" y="169.5" width="86" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvq-I0-9Gt">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvq-I0-9Gt">
                                 <rect key="frame" x="702.5" y="169.5" width="75" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljf-EP-kTO">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljf-EP-kTO">
                                 <rect key="frame" x="248" y="169.5" width="97" height="33.5"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -242,11 +242,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bananaStockLabel" destination="ljf-EP-kTO" id="zI2-s4-6Iy"/>
-                        <outlet property="kiwiStockLabel" destination="XSS-8r-bJV" id="a7c-OY-egV"/>
-                        <outlet property="mangoStockLabel" destination="U4P-68-7Xs" id="e7Z-zg-86L"/>
-                        <outlet property="pineappleStockLabel" destination="Fvq-I0-9Gt" id="4RQ-3L-zn6"/>
-                        <outlet property="strawberryStockLabel" destination="B5v-aU-VM5" id="HJz-n7-QDj"/>
+                        <outletCollection property="stockLaber" destination="B5v-aU-VM5" collectionClass="NSMutableArray" id="Mux-mu-veP"/>
+                        <outletCollection property="stockLaber" destination="ljf-EP-kTO" collectionClass="NSMutableArray" id="Vge-Hx-LJo"/>
+                        <outletCollection property="stockLaber" destination="U4P-68-7Xs" collectionClass="NSMutableArray" id="YBq-Cx-Byl"/>
+                        <outletCollection property="stockLaber" destination="XSS-8r-bJV" collectionClass="NSMutableArray" id="O0p-iO-YjC"/>
+                        <outletCollection property="stockLaber" destination="Fvq-I0-9Gt" collectionClass="NSMutableArray" id="aVe-pe-Ebs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -270,9 +270,6 @@
                                                 <rect key="frame" x="637" y="7" width="199" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="닫기"/>
-                                                <connections>
-                                                    <action selector="touchUpDismissPageButton" destination="EGD-L6-DTk" eventType="touchUpInside" id="klw-0Z-fBG"/>
-                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -345,33 +342,18 @@
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZaU-13-kRY">
                                 <rect key="frame" x="109" y="228" width="94" height="32"/>
-                                <connections>
-                                    <action selector="strawberryStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="SIB-oL-ibM"/>
-                                </connections>
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TQt-Mp-EUo">
                                 <rect key="frame" x="547" y="228" width="94" height="32"/>
-                                <connections>
-                                    <action selector="kiwiStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="FoV-aP-KvT"/>
-                                </connections>
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-lz-ApP">
                                 <rect key="frame" x="401" y="228" width="94" height="32"/>
-                                <connections>
-                                    <action selector="mangoStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="UIJ-8Y-N5h"/>
-                                </connections>
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SSU-IV-Gpa">
                                 <rect key="frame" x="255" y="228" width="94" height="32"/>
-                                <connections>
-                                    <action selector="bananaStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="IMk-0M-g47"/>
-                                </connections>
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-M8-LiY">
                                 <rect key="frame" x="693" y="228" width="94" height="32"/>
-                                <connections>
-                                    <action selector="pineappleStepperValueChanged:" destination="EGD-L6-DTk" eventType="valueChanged" id="AHt-9m-NhC"/>
-                                </connections>
                             </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OKH-jm-sku"/>
