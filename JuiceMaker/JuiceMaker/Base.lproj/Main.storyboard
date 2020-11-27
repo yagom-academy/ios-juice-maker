@@ -58,7 +58,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYW-ST-QUw">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYW-ST-QUw">
                                                 <rect key="frame" x="34.5" y="92" width="85" height="30"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
@@ -87,7 +87,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sde-eu-yNH">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sde-eu-yNH">
                                                 <rect key="frame" x="34.5" y="92" width="85" height="30"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
@@ -116,7 +116,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNr-Mu-r2T">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNr-Mu-r2T">
                                                 <rect key="frame" x="34" y="92" width="85" height="30"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
@@ -145,7 +145,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEg-ge-80W">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEg-ge-80W">
                                                 <rect key="frame" x="34" y="92" width="85" height="30"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
@@ -173,7 +173,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="7LO-It-r2G">
                                 <rect key="frame" x="64" y="256" width="609.5" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjz-bC-RJI">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjz-bC-RJI">
                                         <rect key="frame" x="0.0" y="0.0" width="292" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
@@ -183,10 +183,10 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpOrderJucieButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VQV-No-cOH"/>
+                                            <action selector="touchUpOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VQV-No-cOH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM9-kH-VPp">
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM9-kH-VPp">
                                         <rect key="frame" x="317" y="0.0" width="292.5" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
@@ -196,7 +196,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpOrderJucieButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bd2-IQ-SnE"/>
+                                            <action selector="touchUpOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bd2-IQ-SnE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -214,10 +214,10 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpOrderJucieButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IOd-Sx-G5g"/>
+                                            <action selector="touchUpOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IOd-Sx-G5g"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7d-VF-QYq">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7d-VF-QYq">
                                         <rect key="frame" x="158.5" y="0.0" width="133.5" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
@@ -227,10 +227,10 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpOrderJucieButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xTa-Wg-AQM"/>
+                                            <action selector="touchUpOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xTa-Wg-AQM"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dn1-kQ-bIL">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dn1-kQ-bIL">
                                         <rect key="frame" x="317" y="0.0" width="134" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
@@ -240,10 +240,10 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpOrderJucieButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YQm-ur-TOM"/>
+                                            <action selector="touchUpOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YQm-ur-TOM"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyx-As-l3U">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyx-As-l3U">
                                         <rect key="frame" x="476" y="0.0" width="133.5" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
@@ -253,10 +253,10 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpOrderJucieButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WVM-po-BvJ"/>
+                                            <action selector="touchUpOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WVM-po-BvJ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asr-1h-86T">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asr-1h-86T">
                                         <rect key="frame" x="634.5" y="0.0" width="133.5" height="30"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
@@ -266,7 +266,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpOrderJucieButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGz-PE-e7G"/>
+                                            <action selector="touchUpOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGz-PE-e7G"/>
                                         </connections>
                                     </button>
                                 </subviews>
