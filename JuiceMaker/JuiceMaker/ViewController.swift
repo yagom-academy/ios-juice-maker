@@ -60,10 +60,6 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func touchUpMoveToStockViewButton() {
-        moveToManageStockPage()
-    }
-    
     private func moveToManageStockPage() {
         guard let currentStoryboard = self.storyboard else { return }
         
