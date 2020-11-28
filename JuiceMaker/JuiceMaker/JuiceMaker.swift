@@ -51,59 +51,118 @@ class JuiceMaker: FruitStock {
     private var completionSentence: String = " 쥬스 나왔습니다! 맛있게 드세요"
     private let adjustmentSentence = "재료가 모자라요. 재고를 수정할까요?"
     
-    private func checkConsumption(fruit: UInt) -> UInt {
-        switch fruit {
-        case strawberry:
-            return 16
-        case banana, pineapple:
-            return 2
-        case kiwi, mango:
-            return 3
-        default:
-            return 0
+    // 과일 소비량 상수화
+    private struct OriginalJuiceConsumption {
+        static let strawberry: UInt = 16
+        static let banana: UInt = 2
+        static let pineapple: UInt = 2
+        static let kiwi: UInt = 3
+        static let mango: UInt = 3
+    }
+    // 과일 소비량 상수화
+    private struct MixedJuiceConsumption {
+        static var strawberry: UInt = 0
+        static var banana: UInt = 0
+        static var pineapple: UInt = 0
+        static var kiwi: UInt = 0
+        static var mango: UInt = 0
+        
+        static var ddlaba: (strawberry: UInt, banana: UInt) {
+            self.strawberry = 10
+            self.banana = 1
+            return (strawberry, banana)
+        }
+        
+        static var mangki: (kiwi: UInt, mango: UInt) {
+            self.kiwi = 2
+            self.mango = 1
+            return (kiwi, mango)
         }
     }
     
-    private func checkCanMakeJuice(currentStock: inout UInt, result fruit: Fruit) {
-        if currentStock >= checkConsumption(fruit: currentStock) {
+    // 한 종류의 과일을 소모하는 쥬스의 과일 소비량
+    private func consumeFruit(fruit: Fruit) -> UInt {
+        switch fruit {
+        case .strawberry:
+            return OriginalJuiceConsumption.strawberry
+        case .banana:
+            return OriginalJuiceConsumption.banana
+        case .pineapple:
+            return OriginalJuiceConsumption.kiwi
+        case .kiwi:
+            return OriginalJuiceConsumption.kiwi
+        case .mango:
+            return OriginalJuiceConsumption.mango
+        }
+    }
+    
+    // 두 종류 이상의 과일을 소모하는 쥬스의 과일 소비량
+    private func consumeFruit(fruit1: Fruit, fruit2: Fruit) -> (UInt, UInt) {
+        switch (fruit1, fruit2) {
+        case (.strawberry, .banana), (.banana, .strawberry):
+            return MixedJuiceConsumption.ddlaba
+        case (.kiwi, .mango), (.mango, .kiwi):
+            return MixedJuiceConsumption.mangki
+        default:
+            return (0, 0)
+        }
+    }
+    
+    // 한 종류의 과일을 소모하는 쥬스를 만들기 위한 사전 재고 확인
+    private func checkAndRenewStock(fruitStock: UInt, fruitName fruit: Fruit) -> UInt {
+        var currentStock = fruitStock
+        if currentStock >= consumeFruit(fruit: fruit) {
             print(fruit.rawValue + completionSentence)
-            currentStock -= checkConsumption(fruit: currentStock)
+            currentStock -= consumeFruit(fruit: fruit)
         } else {
             print(adjustmentSentence)
         }
+        return currentStock
     }
     
+    // 두 종류 이상의 과일을 소모하는 쥬스를 만들기 위한 사전 재고 확인
+    private func checkAndRenewStock(fruitStock1: UInt, fruitStock2: UInt, fruitName fruit: (Fruit, Fruit)) -> (UInt, UInt) {
+        var currentStock1 = fruitStock1
+        var currentStock2 = fruitStock2
+        if (currentStock1, currentStock2) >= consumeFruit(fruit1: fruit.0, fruit2: fruit.1) {
+            print(fruit.0.rawValue + fruit.1.rawValue + completionSentence)
+            currentStock1 -= consumeFruit(fruit1: fruit.0, fruit2: fruit.1).0
+            currentStock2 -= consumeFruit(fruit1: fruit.0, fruit2: fruit.1).1
+        } else {
+            print(adjustmentSentence)
+        }
+        return (currentStock1, currentStock2)
+    }
+    
+    // 한 종류의 과일을 소모하여 만드는 쥬스
     func makeOriginalJuice(material fruit: Fruit) {
         switch fruit {
         case .strawberry:
-            checkCanMakeJuice(currentStock: &strawberry, result: .strawberry)
+            strawberry = checkAndRenewStock(fruitStock: strawberry, fruitName: .strawberry)
         case .banana:
-            checkCanMakeJuice(currentStock: &banana, result: .banana)
+            banana = checkAndRenewStock(fruitStock: banana, fruitName: .banana)
         case .pineapple:
-            checkCanMakeJuice(currentStock: &pineapple, result: .pineapple)
+            pineapple = checkAndRenewStock(fruitStock: pineapple, fruitName: .pineapple)
         case .kiwi:
-            checkCanMakeJuice(currentStock: &kiwi, result: .kiwi)
+            kiwi = checkAndRenewStock(fruitStock: kiwi, fruitName: .kiwi)
         case .mango:
-            checkCanMakeJuice(currentStock: &mango, result: .mango)
+            mango = checkAndRenewStock(fruitStock: mango, fruitName: .mango)
         }
     }
     
-    func makeMixedJuice(fruit1: Fruit, fruit2: Fruit) {
-        switch (fruit1, fruit2) {
-        case (.strawberry, .banana), (.banana, .strawberry):
-            if strawberry >= 10 && banana >= 1 {
-                print(fruit1.rawValue + fruit2.rawValue + completionSentence)
-                strawberry -= 10
-                banana -= 1
-            } else {
-                print(adjustmentSentence)
-            }
-        case (.kiwi, .mango), (.mango, .kiwi):
-            print(fruit1.rawValue + fruit2.rawValue + completionSentence)
-            kiwi -= 2
-            mango -= 1
+    // 두 종류 이상의 과일을 소모하여 만드는 쥬스
+    func makeMixedJuice(material fruit: Fruit...) {
+        let checkStrawberryCanMixBanana = checkAndRenewStock(fruitStock1: strawberry, fruitStock2: banana, fruitName: (.strawberry, .banana))
+        let checkKiwiCanMixMango = checkAndRenewStock(fruitStock1: kiwi, fruitStock2: mango, fruitName: (.kiwi, .mango))
+        switch fruit {
+        case [.strawberry, .banana]:
+            strawberry = checkStrawberryCanMixBanana.0
+            banana = checkStrawberryCanMixBanana.1
+        case [.kiwi, .mango]:
+            kiwi = checkKiwiCanMixMango.0
+            mango = checkKiwiCanMixMango.1
         default:
-            print(adjustmentSentence)
+            print("메뉴 준비중입니다!")
         }
     }
 }
