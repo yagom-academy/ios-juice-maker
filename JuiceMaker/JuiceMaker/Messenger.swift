@@ -19,7 +19,7 @@ class Messenger {
         }
     }
     
-    func printSuccessMade(selectedJuiceName: Menu) {
-        print("\(selectedJuiceName.rawValue)" + AlertMessage.successMade.rawValue)
+    func printSuccessMade(orderedJuiceName: Menu) {
+        print("\(orderedJuiceName.rawValue)" + AlertMessage.successMade.rawValue)
     }
 }
