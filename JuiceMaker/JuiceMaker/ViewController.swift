@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     enum YagomJuice: Juice {
         case strawbana, mangki, strawberry, banana, pineapple, kiwi, mango
         
@@ -50,42 +50,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleOrderButton: UIButton!
     @IBOutlet weak var kiwiOrderButton: UIButton!
     @IBOutlet weak var mangoOrderButton: UIButton!
+    
     @IBAction func strawbanaOrderCameIn(_ sender: UIButton) {
-        guard let juiceMaker = juiceMaker else { return }
-        juiceMaker.make(juice: YagomJuice.strawbana)
-        updateViewWithCurrentStock()
+        make(juice: YagomJuice.strawbana)
     }
     @IBAction func mangkiOrderCameIn(_ sender: UIButton) {
-        guard let juiceMaker = juiceMaker else { return }
-        juiceMaker.make(juice: YagomJuice.mangki)
-        updateViewWithCurrentStock()
+        make(juice: YagomJuice.mangki)
     }
     @IBAction func strawberryOrderCameIn(_ sender: UIButton) {
-        guard let juiceMaker = juiceMaker else { return }
-        juiceMaker.make(juice: YagomJuice.strawberry)
-        updateViewWithCurrentStock()
+        make(juice: YagomJuice.strawberry)
     }
     @IBAction func bananaOrderCameIn(_ sender: UIButton) {
-        guard let juiceMaker = juiceMaker else { return }
-        juiceMaker.make(juice: YagomJuice.banana)
-        updateViewWithCurrentStock()
+        make(juice: YagomJuice.banana)
     }
     @IBAction func pineappleOrderCameIn(_ sender: UIButton) {
-        guard let juiceMaker = juiceMaker else { return }
-        juiceMaker.make(juice: YagomJuice.pineapple)
-        updateViewWithCurrentStock()
+        make(juice: YagomJuice.pineapple)
     }
     @IBAction func kiwiOrderCameIn(_ sender: UIButton) {
-        guard let juiceMaker = juiceMaker else { return }
-        juiceMaker.make(juice: YagomJuice.kiwi)
-        updateViewWithCurrentStock()
+        make(juice: YagomJuice.kiwi)
     }
     @IBAction func mangoOrderCameIn(_ sender: UIButton) {
-        guard let juiceMaker = juiceMaker else { return }
-        juiceMaker.make(juice: YagomJuice.mango)
-        updateViewWithCurrentStock()
+        make(juice: YagomJuice.mango)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +80,12 @@ class ViewController: UIViewController {
         juiceMaker.delegate = self
         updateViewWithCurrentStock()
         buttonInitialSetting()
+    }
+    
+    private func make(juice: Juice) {
+        guard let juiceMaker = juiceMaker else { return }
+        juiceMaker.make(juice: juice)
+        updateViewWithCurrentStock()
     }
     
     private func updateViewWithCurrentStock() {

@@ -20,7 +20,7 @@ protocol ResultProcessDelegate {
     func alertWithCancel(_: String)
 }
 
-class JuiceMaker {
+final class JuiceMaker {
     private var stock: [Fruit: Int] = [:]
     var delegate: ResultProcessDelegate?
     

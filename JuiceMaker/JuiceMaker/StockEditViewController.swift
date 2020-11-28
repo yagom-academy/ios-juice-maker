@@ -7,5 +7,5 @@
 
 import UIKit
 
-class StockEditViewController: UIViewController {
+final class StockEditViewController: UIViewController {
 }
