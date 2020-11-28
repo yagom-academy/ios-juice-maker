@@ -10,95 +10,35 @@ enum Fruit: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-protocol MakerRecipe {
-    associatedtype Juice: MakerJuice
-}
-
-protocol MakerJuice {
+protocol Juice {
     var description: String { get }
     var ingredients: [Fruit: Int] { get }
 }
 
-class YagomRecipe: MakerRecipe {
-    enum Juice: MakerJuice {
-        case strawbana, mangki, strawberry, banana, pineapple, kiwi, mango
-        
-        var description: String {
-            switch self {
-            case .strawbana: return "딸바쥬스"
-            case .mangki: return "망키쥬스"
-            case .strawberry: return "딸기쥬스"
-            case .banana: return "바나나쥬스"
-            case .pineapple: return "파인애플쥬스"
-            case .kiwi: return "키위쥬스"
-            case .mango: return "망고쥬스"
-            }
-        }
-        
-        var ingredients: [Fruit: Int] {
-            switch self {
-            case .strawbana: return [.strawberry: 10, .banana: 1]
-            case .mangki: return [.mango: 2, .kiwi: 1]
-            case .strawberry: return [.strawberry: 16]
-            case .banana: return [.banana: 2]
-            case .pineapple: return [.pineapple: 2]
-            case .kiwi: return [.kiwi: 3]
-            case .mango: return [.mango: 3]
-            }
-        }
-    }
+protocol ResultProcessDelegate {
+    func alert(_: String)
+    func alertWithCancel(_: String)
 }
 
-class ZziruruRecipe: MakerRecipe {
-    enum Juice: MakerJuice {
-        case strawki, pinebana, strawberry, banana, pineapple, kiwi, mango
-        
-        var description: String {
-            switch self {
-            case .strawki: return "딸키쥬스"
-            case .pinebana: return "파바쥬스"
-            case .strawberry: return "딸기쥬스"
-            case .banana: return "바나나쥬스"
-            case .pineapple: return "파인애플쥬스"
-            case .kiwi: return "키위쥬스"
-            case .mango: return "망고쥬스"
-            }
-        }
-        
-        var ingredients: [Fruit: Int] {
-            switch self {
-            case .strawki: return [.strawberry: 8, .kiwi: 2]
-            case .pinebana: return [.pineapple: 2, .banana: 1]
-            case .strawberry: return [.strawberry: 10]
-            case .banana: return [.banana: 1]
-            case .pineapple: return [.pineapple: 1]
-            case .kiwi: return [.kiwi: 2]
-            case .mango: return [.mango: 2]
-            }
-        }
-    }
-}
-
-class JuiceMaker<T: MakerRecipe> {
+class JuiceMaker {
     private var stock: [Fruit: Int] = [:]
-    private var recipe: T
+    var delegate: ResultProcessDelegate?
     
-    init(stockCount: Int, recipe: T) {
+    init(stockCount: Int) {
         for fruit in Fruit.allCases {
             stock[fruit] = stockCount
         }
-        self.recipe = recipe
     }
     
-    func make(juice: T.Juice) {
+    func make(juice: Juice) {
         if isEnough(ingredients: juice.ingredients) {
             for (fruit, count) in juice.ingredients {
                 guard let stockCount = stock[fruit] else { return }
                 stock[fruit] = stockCount - count
             }
-            print("\(juice.description) 나왔습니다! 맛있게 드세요!")
+            delegate?.alert("\(juice.description) 나왔습니다! 맛있게 드세요!")
         } else {
-            print("재료가 모자랍니다.")
+            delegate?.alertWithCancel("재료가 모자랍니다.")
         }
     }
     
@@ -123,5 +63,3 @@ class JuiceMaker<T: MakerRecipe> {
         return true
     }
 }
-
-let maker = JuiceMaker(stockCount: 10, recipe: YagomRecipe())
