@@ -30,7 +30,7 @@ enum Juice: Int {
     case strawberryBananaJuice = 5
     case mangoKiwiJuice = 6
     
-    var describtion: String {
+    var description: String {
         switch self {
         case .strawberryJuice:
             return "딸기 쥬스"
