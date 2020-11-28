@@ -68,88 +68,43 @@ class ViewController: UIViewController {
         present(alert, animated: false, completion: nil)
     }
     
-    @IBAction func orderStrawberryJuice() {
+    func makeOrderedJuice(menuName: Menu) {
         do {
-            try JuiceMaker.common.makeJuice(selectedJuiceName: .strawberryJuice)
-            showSuccessAlert(menu: .strawberryJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: menuName)
+            showSuccessAlert(menu: menuName)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
         } catch {
             showMachineBreakdownAlert()
         }
         updateStock()
+    }
+    
+    @IBAction func orderStrawberryJuice() {
+        makeOrderedJuice(menuName: .strawberryJuice)
     }
     
     @IBAction func orderBananaJuice() {
-        do {
-            try JuiceMaker.common.makeJuice(selectedJuiceName: .bananaJuice)
-            showSuccessAlert(menu: .bananaJuice)
-        } catch AlertCase.outOfStock {
-            showOutOfStockAlert()
-        } catch {
-            showMachineBreakdownAlert()
-        }
-        updateStock()
+        makeOrderedJuice(menuName: .bananaJuice)
     }
     
     @IBAction func orderStrawberryBananaJuice() {
-        do {
-            try JuiceMaker.common.makeJuice(selectedJuiceName: .strawberryBananaJuice)
-            showSuccessAlert(menu: .strawberryBananaJuice)
-        } catch AlertCase.outOfStock {
-            showOutOfStockAlert()
-        } catch {
-            showMachineBreakdownAlert()
-        }
-        updateStock()
+        makeOrderedJuice(menuName: .strawberryBananaJuice)
     }
     
     @IBAction func orderPineappleJuice() {
-        do {
-            try JuiceMaker.common.makeJuice(selectedJuiceName: .pineappleJuice)
-            showSuccessAlert(menu: .pineappleJuice)
-        } catch AlertCase.outOfStock {
-            showOutOfStockAlert()
-        } catch {
-            showMachineBreakdownAlert()
-        }
-        updateStock()
+        makeOrderedJuice(menuName: .pineappleJuice)
     }
     
     @IBAction func orderKiwiJuice() {
-        do {
-            try JuiceMaker.common.makeJuice(selectedJuiceName: .kiwiJuice)
-            showSuccessAlert(menu: .kiwiJuice)
-        } catch AlertCase.outOfStock {
-            showOutOfStockAlert()
-        } catch {
-            showMachineBreakdownAlert()
-        }
-        updateStock()
+        makeOrderedJuice(menuName: .kiwiJuice)
     }
     
     @IBAction func orderMangoJuice() {
-        do {
-            try JuiceMaker.common.makeJuice(selectedJuiceName: .mangoJuice)
-            showSuccessAlert(menu: .mangoJuice)
-        } catch AlertCase.outOfStock {
-            showOutOfStockAlert()
-        } catch {
-            showMachineBreakdownAlert()
-        }
-        updateStock()
+        makeOrderedJuice(menuName: .mangoJuice)
     }
     
     @IBAction func orderMangoKiwiJuice() {
-        do {
-            try JuiceMaker.common.makeJuice(selectedJuiceName: .mangoKiwiJuice)
-            showSuccessAlert(menu: .mangoKiwiJuice)
-        } catch AlertCase.outOfStock {
-            showOutOfStockAlert()
-        } catch {
-            showMachineBreakdownAlert()
-        }
-        updateStock()
+        makeOrderedJuice(menuName: .mangoKiwiJuice)
     }
-
 }
