@@ -35,12 +35,12 @@ class JuiceMaker {
     let stockManager = StockManager()
     let messenger = Messenger()
     
-    func makeJuice(juiceName: Menu) throws {
-        guard stockManager.isEnoughToMakeJuice(selectedJuice: juiceName) else {
+    func makeJuice(selectedJuiceName: Menu) throws {
+        guard stockManager.isEnoughToMakeJuice(selectedJuice: selectedJuiceName) else {
             messenger.printAlertMessage(alertCase: .outOfStock)
             throw AlertCase.outOfStock
         }
-        stockManager.useJuiceIngredients(juiceName: juiceName)
-        messenger.printSuccessMade(selectedJuice: juiceName)
+        stockManager.useJuiceIngredients(selectedJuiceName: selectedJuiceName)
+        messenger.printSuccessMade(selectedJuiceName: selectedJuiceName)
     }
 }

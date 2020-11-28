@@ -70,7 +70,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderStrawberryJuice() {
         do {
-            try JuiceMaker.common.makeJuice(juiceName: .strawberryJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: .strawberryJuice)
             showSuccessAlert(menu: .strawberryJuice)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderBananaJuice() {
         do {
-            try JuiceMaker.common.makeJuice(juiceName: .bananaJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: .bananaJuice)
             showSuccessAlert(menu: .bananaJuice)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderStrawberryBananaJuice() {
         do {
-            try JuiceMaker.common.makeJuice(juiceName: .strawberryBananaJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: .strawberryBananaJuice)
             showSuccessAlert(menu: .strawberryBananaJuice)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderPineappleJuice() {
         do {
-            try JuiceMaker.common.makeJuice(juiceName: .pineappleJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: .pineappleJuice)
             showSuccessAlert(menu: .pineappleJuice)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
@@ -118,7 +118,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderKiwiJuice() {
         do {
-            try JuiceMaker.common.makeJuice(juiceName: .kiwiJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: .kiwiJuice)
             showSuccessAlert(menu: .kiwiJuice)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
@@ -130,7 +130,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderMangoJuice() {
         do {
-            try JuiceMaker.common.makeJuice(juiceName: .mangoJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: .mangoJuice)
             showSuccessAlert(menu: .mangoJuice)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
@@ -142,7 +142,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderMangoKiwiJuice() {
         do {
-            try JuiceMaker.common.makeJuice(juiceName: .mangoKiwiJuice)
+            try JuiceMaker.common.makeJuice(selectedJuiceName: .mangoKiwiJuice)
             showSuccessAlert(menu: .mangoKiwiJuice)
         } catch AlertCase.outOfStock {
             showOutOfStockAlert()
@@ -151,5 +151,5 @@ class ViewController: UIViewController {
         }
         updateStock()
     }
-    
+
 }

@@ -27,8 +27,8 @@ class StockManager {
     }
     
     //MARK: - giveIngredients
-    func useJuiceIngredients(juiceName: Menu) {
-        switch juiceName {
+    func useJuiceIngredients(selectedJuiceName: Menu) {
+        switch selectedJuiceName {
         case .strawberryJuice:
             strawberryInventoryAmount -= recipe.strawberryRequiredOfStrawberryJuice
         case .bananaJuice:
