@@ -18,16 +18,15 @@ enum StockCheckResult {
 
 typealias Recipe = [Fruit: Int]
 
-class StockError: Error {
-    var message: String
+class StockError: LocalizedError {
+    var errorDescription: String?
     init(message: String) {
-        self.message = message
+        errorDescription = message
     }
 }
 
 
 //과일 수량
-//FruitStock을 구조체로 선언한 이유는 값타입으로만 사용될 것 이라 생각하여 구조체를 사용했습니다.
 class FruitStock {
     private(set) var strawberry: Int
     private(set) var banana: Int
@@ -47,22 +46,20 @@ class FruitStock {
     private func canMakeJuice(with recipe: Recipe) -> StockCheckResult {
         for (fruit, fruitUsed) in recipe {
             switch fruit {
-            case .banana:
-                if banana < fruitUsed {return .notAvailable}
-            case .kiwii:
-                if kiwii < fruitUsed { return .notAvailable }
-            case .mango:
-                if mango < fruitUsed { return .notAvailable }
-            case .pineapple:
-                if pineapple < fruitUsed { return .notAvailable }
-            case .strawberry:
-                if strawberry < fruitUsed { return .notAvailable }
+            case .banana where banana < fruitUsed: return .notAvailable
+            case .kiwii where kiwii < fruitUsed: return .notAvailable
+            case .mango where mango < fruitUsed: return .notAvailable
+            case .pineapple where pineapple < fruitUsed: return .notAvailable
+            case .strawberry where strawberry < fruitUsed: return .notAvailable
+            default:
+                continue
             }
         }
         return .available
     }
     
-    fileprivate func useFruit(recipe: Recipe, completionHandler: (Result<Any?, Error>) -> Void) {
+    //Juice재작 시 사용하는 과일
+    fileprivate func useFruit(recipe: Recipe, completionHandler: (Result<Any?, StockError>) -> Void) {
         switch canMakeJuice(with: recipe) {
         case .available:
             for (fruit, fruitUsed) in recipe {
@@ -114,13 +111,13 @@ class JuiceMaker {
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
-    func makeJuice(with recipe: Recipe, completionHandler: (Result<String, Error>) -> Void) {
-        fruitStock.useFruit(recipe: recipe) { (result) in
+    func makeJuice(with recipe: Recipe, completionHandler: (Result<String, StockError>) -> Void) {
+        fruitStock.useFruit(recipe: recipe) { result in
             switch result {
             case .success(_):
                 completionHandler(.success(" 쥬스가 나왔습니다!"))
-            case .failure(let message):
-                completionHandler(.failure(message))
+            case .failure(_):
+                completionHandler(.failure(StockError(message: "재료가 모자라요. 재고를 수정할까요?")))
             }
         }
     }
