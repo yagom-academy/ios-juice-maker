@@ -112,7 +112,7 @@ class JuiceMaker {
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
     func makeJuice(with recipe: Recipe, completionHandler: (Result<String, StockError>) -> Void) {
-        fruitStock.useFruit(recipe: recipe) { (result) in
+        fruitStock.useFruit(recipe: recipe) { result in
             switch result {
             case .success(_):
                 completionHandler(.success(" 쥬스가 나왔습니다!"))

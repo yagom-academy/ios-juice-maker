@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     }
     
     private func orderJuice(with recipe: Recipe, juiceName: String) {
-        juiceMaker.makeJuice(with: recipe) { (result) in
+        juiceMaker.makeJuice(with: recipe) { result in
             switch result {
             case .success(let message):
                 let alert = UIAlertController(title: "성공!", message: "\(juiceName)\(message)", preferredStyle: .alert)
