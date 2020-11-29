@@ -70,7 +70,7 @@ class ViewController: UIViewController {
     }
     
     private func showSuccessAlert(about juice: Juice) {
-        let message = juice.describtion + Message.success.rawValue
+        let message = String(describing: juice) + Message.success.rawValue
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default,
                                      handler: { _ in
