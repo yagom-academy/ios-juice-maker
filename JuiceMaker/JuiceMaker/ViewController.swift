@@ -60,15 +60,6 @@ class ViewController: UIViewController {
         }
     }
     
-    private func moveToManageStockPage() {
-        guard let currentStoryboard = self.storyboard else { return }
-        
-        let stockViewController = currentStoryboard.instantiateViewController(withIdentifier: "StockViewController")
-        
-        stockViewController.modalPresentationStyle = .fullScreen
-        present(stockViewController, animated: true, completion: nil)
-    }
-    
     private func showSuccessAlert(about juice: Juice) {
         let message = String(describing: juice) + Message.success.rawValue
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -85,7 +76,7 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: Message.outOfStock.rawValue, preferredStyle: .alert)
         let yesButton = UIAlertAction(title: "yes", style: .default,
                                       handler: { _ in
-                                        self.moveToManageStockPage()
+                                        self.performSegue(withIdentifier: "moveToManageStockPage", sender: nil)
                                       })
         let noButton = UIAlertAction(title: "no", style: .default, handler: nil)
         

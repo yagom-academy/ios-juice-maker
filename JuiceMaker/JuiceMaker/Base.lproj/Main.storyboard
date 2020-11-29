@@ -26,7 +26,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="재고 수정"/>
                                                 <connections>
-                                                    <segue destination="EGD-L6-DTk" kind="presentation" modalPresentationStyle="fullScreen" id="h8M-WH-TFu"/>
+                                                    <segue destination="EGD-L6-DTk" kind="presentation" identifier="moveToManageStockPage" modalPresentationStyle="fullScreen" id="h8M-WH-TFu"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
