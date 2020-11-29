@@ -46,16 +46,13 @@ class FruitStock {
     private func canMakeJuice(with recipe: Recipe) -> StockCheckResult {
         for (fruit, fruitUsed) in recipe {
             switch fruit {
-            case .banana:
-                if banana < fruitUsed {return .notAvailable}
-            case .kiwii:
-                if kiwii < fruitUsed { return .notAvailable }
-            case .mango:
-                if mango < fruitUsed { return .notAvailable }
-            case .pineapple:
-                if pineapple < fruitUsed { return .notAvailable }
-            case .strawberry:
-                if strawberry < fruitUsed { return .notAvailable }
+            case .banana where banana < fruitUsed: return .notAvailable
+            case .kiwii where kiwii < fruitUsed: return .notAvailable
+            case .mango where mango < fruitUsed: return .notAvailable
+            case .pineapple where pineapple < fruitUsed: return .notAvailable
+            case .strawberry where strawberry < fruitUsed: return .notAvailable
+            default:
+                continue
             }
         }
         return .available
