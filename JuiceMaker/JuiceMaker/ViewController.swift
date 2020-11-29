@@ -3,11 +3,11 @@ import UIKit
 class ViewController: UIViewController {
 
     //MARK: - Outlets
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet private weak var strawberryStock: UILabel!
+    @IBOutlet private weak var bananaStock: UILabel!
+    @IBOutlet private weak var pineappleStock: UILabel!
+    @IBOutlet private weak var kiwiiStock: UILabel!
+    @IBOutlet private weak var mangoStock: UILabel!
     
     let juiceMaker = JuiceMaker(stock: FruitStock(strawberry: 10, banana: 10, pineapple: 10, kiwii: 10, mango: 10))
     
@@ -21,25 +21,25 @@ class ViewController: UIViewController {
     }
     
     //MARK: - IBActions
-    @IBAction func orderStrawberryBanana(_ sender: Any) {
+    @IBAction private func orderStrawberryBanana(_ sender: Any) {
         orderJuice(with: [.strawberry: 10, .banana: 1], juiceName: "딸바")
     }
-    @IBAction func orderMangoKiwii(_ sender: UIButton) {
+    @IBAction private func orderMangoKiwii(_ sender: UIButton) {
         orderJuice(with: [.mango: 2, .kiwii: 1], juiceName: "망고키위")
     }
-    @IBAction func orderStrawberry(_ sender: UIButton) {
+    @IBAction private func orderStrawberry(_ sender: UIButton) {
         orderJuice(with: [.strawberry: 16], juiceName: "딸기")
     }
-    @IBAction func orderBanana(_ sender: UIButton) {
+    @IBAction private func orderBanana(_ sender: UIButton) {
         orderJuice(with: [.banana: 2], juiceName: "바나나")
     }
-    @IBAction func orderPineApple(_ sender: UIButton) {
+    @IBAction private func orderPineApple(_ sender: UIButton) {
         orderJuice(with: [.pineapple: 2], juiceName: "파인애플")
     }
-    @IBAction func orderKiwii(_ sender: UIButton) {
+    @IBAction private func orderKiwii(_ sender: UIButton) {
         orderJuice(with: [.kiwii: 3], juiceName: "키위")
     }
-    @IBAction func orderMango(_ sender: UIButton) {
+    @IBAction private func orderMango(_ sender: UIButton) {
         orderJuice(with: [.mango: 3], juiceName: "망고")
     }
     
