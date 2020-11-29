@@ -59,7 +59,7 @@ class FruitStock {
     }
     
     //Juice재작 시 사용하는 과일
-    fileprivate func useFruit(recipe: Recipe, completionHandler: (Result<Any?, Error>) -> Void) {
+    fileprivate func useFruit(recipe: Recipe, completionHandler: (Result<Any?, StockError>) -> Void) {
         switch canMakeJuice(with: recipe) {
         case .available:
             for (fruit, fruitUsed) in recipe {
@@ -111,13 +111,13 @@ class JuiceMaker {
     }
     
     //어떤 과일을 몇개 써서 쥬스를 만들었나?
-    func makeJuice(with recipe: Recipe, completionHandler: (Result<String, Error>) -> Void) {
+    func makeJuice(with recipe: Recipe, completionHandler: (Result<String, StockError>) -> Void) {
         fruitStock.useFruit(recipe: recipe) { (result) in
             switch result {
             case .success(_):
                 completionHandler(.success(" 쥬스가 나왔습니다!"))
-            case .failure(let message):
-                completionHandler(.failure(message))
+            case .failure(_):
+                completionHandler(.failure(StockError(message: "재료가 모자라요. 재고를 수정할까요?")))
             }
         }
     }

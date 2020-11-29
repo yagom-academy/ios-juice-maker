@@ -51,8 +51,10 @@ class ViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
                 configureStockLabel()
-            case .failure(_):
-                let alert = UIAlertController(title: "실패!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+            case .failure(let message):
+                let alert = UIAlertController(title: "실패!",
+                                              message: "\(message.errorDescription ?? "알 수 없는 에러")",
+                                              preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "예", style: .default, handler: { (_) in
                     self.performSegue(withIdentifier: "EditStockSegue", sender: self)
                 }))
