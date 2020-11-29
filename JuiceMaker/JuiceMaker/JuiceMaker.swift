@@ -18,10 +18,10 @@ enum StockCheckResult {
 
 typealias Recipe = [Fruit: Int]
 
-class StockError: Error {
-    var message: String
+class StockError: LocalizedError {
+    var errorDescription: String?
     init(message: String) {
-        self.message = message
+        errorDescription = message
     }
 }
 
