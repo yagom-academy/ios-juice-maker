@@ -8,35 +8,82 @@
 
 import Foundation
 
+typealias Recipe = [Fruit.Name: UInt]
+
+enum Message: String {
+    case success = " 나왔습니다. 맛있게 드세요."
+    case outOfStock = "재고가 모자라요. 재고를 수정할까요?"
+    case machineError = "관리자에게 문의해주세요."
+}
+
 enum JuiceMakerError: Error {
     case outOfStock
-    case unknownRecipe
     case unknownFruit
 }
 
-enum JuiceName: String {
-    case strawberryJuice = "딸기 쥬스"
-    case bananaJuice = "바나나 쥬스"
-    case mangoJuice = "망고 쥬스"
-    case kiwiJuice = "키위 쥬스"
-    case pineappleJuice = "파인애플 쥬스"
-    case strawberryBananaJuice = "딸기바나나 쥬스"
-    case mangoKiwiJuice = "키위망고 쥬스"
+enum Juice: Int {
+    case strawberryJuice = 0
+    case bananaJuice = 1
+    case mangoJuice = 2
+    case kiwiJuice = 3
+    case pineappleJuice = 4
+    case strawberryBananaJuice = 5
+    case mangoKiwiJuice = 6
+    
+    var recipe: Recipe {
+        switch self {
+        case .strawberryJuice:
+            return [.strawberry : 16]
+        case .bananaJuice:
+            return [.banana : 2]
+        case .mangoJuice:
+            return [.mango : 3]
+        case .kiwiJuice:
+            return [.kiwi : 3]
+        case .pineappleJuice:
+            return [.pineapple : 2]
+        case .strawberryBananaJuice:
+            return [.strawberry : 10, .banana : 1]
+        case .mangoKiwiJuice:
+            return [.mango : 2, .kiwi : 1]
+        }
+    }
 }
 
-enum FruitName: String {
-    case strawberry = "딸기"
-    case banana = "바나나"
-    case mango = "망고"
-    case kiwi = "키위"
-    case pineapple = "파인애플"
+extension Juice: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기 쥬스"
+        case .bananaJuice:
+            return "바나나 쥬스"
+        case .mangoJuice:
+            return "망고 쥬스"
+        case .kiwiJuice:
+            return "키위 쥬스"
+        case .pineappleJuice:
+            return "파인애플 쥬스"
+        case .strawberryBananaJuice:
+            return "딸기바나나 쥬스"
+        case .mangoKiwiJuice:
+            return "망고키위 쥬스"
+        }
+    }
 }
 
 class Fruit {
-    let name: FruitName
+    enum Name: Int {
+        case strawberry = 0
+        case banana = 1
+        case mango = 2
+        case kiwi = 3
+        case pineapple = 4
+    }
+    
+    let name: Fruit.Name
     private(set) var amount: UInt
     
-    init(name: FruitName, initialStock: UInt = 10) {
+    init(name: Fruit.Name, initialStock: UInt = 10) {
         self.name = name
         self.amount = initialStock
     }
@@ -55,48 +102,33 @@ class Fruit {
 }
 
 class JuiceMaker {
-    private(set) var fruits: [FruitName: Fruit] = [
-        .strawberry: Fruit(name: .strawberry),
-        .banana: Fruit(name: .banana),
-        .kiwi: Fruit(name: .kiwi),
-        .mango: Fruit(name: .mango),
-        .pineapple: Fruit(name: .pineapple)
-    ]
-
-    private(set) var recipes: [JuiceName: [FruitName: UInt]] = [
-        .strawberryJuice: [.strawberry: 16],
-        .bananaJuice: [.banana: 2],
-        .mangoJuice: [.mango: 3],
-        .kiwiJuice: [.kiwi: 3],
-        .pineappleJuice: [.pineapple: 2],
-        .strawberryBananaJuice: [.strawberry: 10, .banana: 1],
-        .mangoKiwiJuice: [.mango: 2, .kiwi: 1]
+    static let common = JuiceMaker()
+    private init() {}
+    
+    private(set) var fruits: [Fruit.Name : Fruit] = [
+        .strawberry : Fruit(name : .strawberry),
+        .banana : Fruit(name : .banana),
+        .kiwi : Fruit(name : .kiwi),
+        .mango : Fruit(name : .mango),
+        .pineapple : Fruit(name : .pineapple)
     ]
     
-    func make(juice: JuiceName) throws {
-        guard let recipe = recipes[juice] else {
-            throw JuiceMakerError.unknownRecipe
-        }
-        
-        for (fruit, amount) in recipe {
-            guard let neededFruit = fruits[fruit] else {
+    func makeJuice(_ juice: Juice) throws {
+        for (neededFruit, neededAmount) in juice.recipe {
+            guard let fruit = fruits[neededFruit] else {
                 throw JuiceMakerError.unknownFruit
             }
-            
-            guard neededFruit.isEnough(amount: amount) else {
+
+            guard fruit.isEnough(amount: neededAmount) else {
                 throw JuiceMakerError.outOfStock
             }
         }
         
-        for (fruit, amount) in recipe {
-            fruits[fruit]!.use(amount: amount)
+        for (neededFruit, neededAmount) in juice.recipe {
+            guard let fruit = fruits[neededFruit] else {
+                throw JuiceMakerError.unknownFruit
+            }
+            fruit.use(amount: neededAmount)
         }
-        
-        alertMakingSuccess(juice: juice)
     }
-}
-
-func alertMakingSuccess(juice: JuiceName) {
-    let message: String = "\(juice.rawValue) 나왔습니다! 맛있게 드세요!"
-    print(message)
 }
