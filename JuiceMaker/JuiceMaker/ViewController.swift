@@ -1,9 +1,3 @@
-//
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -68,6 +62,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //StockLabel 수정.
     private func configureStockLabel() {
         strawberryStock.text = "\(juiceMaker.fruitStock.strawberry)"
         bananaStock.text = "\(juiceMaker.fruitStock.banana)"

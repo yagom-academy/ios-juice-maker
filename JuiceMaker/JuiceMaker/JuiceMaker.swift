@@ -27,7 +27,6 @@ class StockError: Error {
 
 
 //과일 수량
-//FruitStock을 구조체로 선언한 이유는 값타입으로만 사용될 것 이라 생각하여 구조체를 사용했습니다.
 class FruitStock {
     private(set) var strawberry: Int
     private(set) var banana: Int
@@ -62,6 +61,7 @@ class FruitStock {
         return .available
     }
     
+    //Juice재작 시 사용하는 과일
     fileprivate func useFruit(recipe: Recipe, completionHandler: (Result<Any?, Error>) -> Void) {
         switch canMakeJuice(with: recipe) {
         case .available:
