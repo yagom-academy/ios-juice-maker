@@ -11,13 +11,13 @@ class ViewController: UIViewController {
     
     let juiceMaker = JuiceMaker(stock: FruitStock(strawberry: 10, banana: 10, pineapple: 10, kiwii: 10, mango: 10))
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureStockLabel()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     //MARK: - IBActions
