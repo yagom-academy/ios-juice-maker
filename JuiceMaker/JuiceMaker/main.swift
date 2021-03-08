@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FruitJuice {
+enum FruitJuice: Int {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -17,7 +17,9 @@ enum FruitJuice {
     case mango_KiwiJuice
 }
 
-class Fruit {
+let currentFruitJuice :FruitJuice = .strawberryJuice
+
+class FruitStock {
     var strawberry: Int = 10
     var banana: Int = 10
     var kiwi: Int = 10
@@ -25,17 +27,44 @@ class Fruit {
     var mango: Int = 10
 }
 
-class JuiceMakers: Fruit {
+let currentFruitStock = FruitStock()
+
+class JuiceMaker: FruitStock {
     
-    func checkFruitStock(a: Int) {
-        print(a)
+    func checkFruitStock() {
+        print("과일 재고 : 딸기 \(strawberry), 바나나 \(banana), 파인애플 \(pineapple), 키위 \(kiwi), 망고 \(mango)")
     }
     
+    func manufacture(of: FruitJuice) {
+        switch of {
+        case .strawberryJuice:
+            currentFruitStock.strawberry -= 16
+        case .bananaJuice:
+            currentFruitStock.banana -= 2
+        case .kiwiJuice:
+            currentFruitStock.kiwi -= 3
+        case .pineappleJuice:
+            currentFruitStock.pineapple -= 2
+        case .straw_nanaJuice:
+            currentFruitStock.strawberry -= 10
+            currentFruitStock.banana -= 1
+        case .mangoJuice:
+            currentFruitStock.mango -= 3
+        case .mango_KiwiJuice:
+            currentFruitStock.mango -= 2
+            currentFruitStock.kiwi -= 1
+        }
+    }
+    
+    
+    
     func startJuiceMaking() {
-        checkFruitStock(a: strawberry)
+        checkFruitStock()
+        manufacture(of: currentFruitJuice)
+        print(currentFruitStock.strawberry)
     }
 }
 
 
-let abc = JuiceMakers()
+let abc = JuiceMaker()
 abc.startJuiceMaking()
