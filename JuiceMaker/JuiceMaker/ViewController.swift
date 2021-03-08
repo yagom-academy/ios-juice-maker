@@ -10,9 +10,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let testJuiceMaker = JuiceMaker()
+        testJuiceMaker.activeJuiceMaker()
+
         // Do any additional setup after loading the view.
     }
 
 
+    
 }
 
