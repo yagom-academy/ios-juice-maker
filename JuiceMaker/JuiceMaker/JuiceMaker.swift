@@ -79,7 +79,7 @@ class JuiceMaker {
             break
         }
         
-        for index in 0...currentStock.count {
+        for index in 0...(currentStock.count-1) {
             guard currentStock[index] > minimumNumber[index] else {
                 return
             }
