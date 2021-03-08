@@ -7,3 +7,15 @@
 import Foundation
 
 /// 쥬스 메이커 타입 
+
+class JuiceMaker {
+
+    var strawberryJuice: String = "딸기"
+    
+    func makeJuice() {
+        
+    }
+    
+    
+    
+}
