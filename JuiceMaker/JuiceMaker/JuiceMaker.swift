@@ -24,8 +24,6 @@ enum Juice: String {
     case mangoKiwi = "망고키위 쥬스"
 }
 
-
-
 enum Fruit: String {
     case strawberry = "strawberry"
     case banana = "banana"
@@ -109,20 +107,20 @@ class JuiceMaker {
         }
     }
     
-    func addFruit(fruitName: String , numberOfFruit: Int){
-        switch fruitName {
-        case "strawberry":
-            fruitStock.strawberry += numberOfFruit
-        case "banana":
-            fruitStock.banana += numberOfFruit
-        case "pineapple":
-            fruitStock.pineapple += numberOfFruit
-        case "kiwi":
-            fruitStock.kiwi += numberOfFruit
-        case "mango":
-            fruitStock.mango += numberOfFruit
+    func addFruit(name: String , number: Int){
+        switch name {
+        case Fruit.strawberry.rawValue:
+            fruitStock.strawberry += number
+        case Fruit.banana.rawValue:
+            fruitStock.banana += number
+        case Fruit.pineapple.rawValue:
+            fruitStock.pineapple += number
+        case Fruit.kiwi.rawValue:
+            fruitStock.kiwi += number
+        case Fruit.mango.rawValue:
+            fruitStock.mango += number
         default:
-            print("잘못된 입력입니다.")
+            break
         }
     }
 }
