@@ -5,3 +5,7 @@
 // 
 
 import Foundation
+
+enum Fruit {
+    case strawberry, banana, pineapple, kiwi, mango
+}
