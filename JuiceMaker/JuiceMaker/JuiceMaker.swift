@@ -34,3 +34,17 @@ enum Juice {
         }
     }
 }
+
+struct Stock {
+    private(set) var fruits: [Fruit: Int]
+    
+    mutating func decrease(by juice: Juice) {
+        for fruit in juice.recipe {
+            fruits[fruit.key]? -= fruit.value
+        }
+    }
+    
+    mutating func increase(_ fruit: Fruit, by number: Int) {
+        fruits[fruit]? += number
+    }
+}
