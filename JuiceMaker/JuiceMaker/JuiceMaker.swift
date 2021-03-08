@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
@@ -38,6 +38,13 @@ enum Juice {
 struct Stock {
     private(set) var fruits: [Fruit: Int]
     
+    init(basicValue: Int) {
+        fruits = [:]
+        for fruit in Fruit.allCases {
+            fruits[fruit] = basicValue
+        }
+    }
+    
     mutating func decrease(by juice: Juice) {
         for fruit in juice.recipe {
             fruits[fruit.key]? -= fruit.value
@@ -46,5 +53,13 @@ struct Stock {
     
     mutating func increase(_ fruit: Fruit, by number: Int) {
         fruits[fruit]? += number
+    }
+}
+
+class JuiceMaker {
+    var stock = Stock(basicValue: 10)
+    
+    func makeJuice(_ juice: Juice) {
+        stock.decrease(by: juice)
     }
 }
