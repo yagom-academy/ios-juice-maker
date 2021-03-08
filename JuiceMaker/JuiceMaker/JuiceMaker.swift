@@ -9,3 +9,7 @@ import Foundation
 enum Fruit {
     case strawberry, banana, pineapple, kiwi, mango
 }
+
+enum Juice {
+    case strawberry, banana, pineapple, kiwi, mango, strawnana, mangokiwi, tropical
+}
