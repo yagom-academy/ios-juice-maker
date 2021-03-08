@@ -12,4 +12,25 @@ enum Fruit {
 
 enum Juice {
     case strawberry, banana, pineapple, kiwi, mango, strawnana, mangokiwi, tropical
+    
+    var recipe: [Fruit: Int] {
+        switch self {
+        case .strawberry:
+            return [.strawberry: 16]
+        case .banana:
+            return [.banana: 2]
+        case .pineapple:
+            return [.pineapple: 2]
+        case .kiwi:
+            return [.kiwi: 3]
+        case .mango:
+            return [.mango: 3]
+        case .strawnana:
+            return [.strawberry: 10, .banana: 1]
+        case .mangokiwi:
+            return [.mango: 2, .kiwi: 1]
+        case .tropical:
+            return [.strawberry: 1, .banana: 1, .pineapple: 1, .kiwi: 1, .mango: 1]
+        }
+    }
 }
