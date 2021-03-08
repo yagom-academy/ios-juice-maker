@@ -7,10 +7,10 @@
 
 import Foundation
 
-var strawberryRequirement = [(strawberry, 16)]
-var bananaRequirement = [(banana, 2)]
-var kiwiRequirement = [(kiwi, 3)]
-var pineappleRequirement = [(pineapple, 2)]
-var strawBananaRequirement = [(strawberry, 10), (banana, 1)]
-var mangoRequirement = [(mango, 3)]
-var mangoKiwiRequirement = [(mango, 2), (kiwi, 1)]
+var strawberryRequirement = [(Fruits.strawberry, 16)]
+var bananaRequirement = [(Fruits.banana, 2)]
+var kiwiRequirement = [(Fruits.kiwi, 3)]
+var pineappleRequirement = [(Fruits.pineapple, 2)]
+var strawBananaRequirement = [(Fruits.strawberry, 10), (Fruits.banana, 1)]
+var mangoRequirement = [(Fruits.mango, 3)]
+var mangoKiwiRequirement = [(Fruits.mango, 2), (Fruits.kiwi, 1)]

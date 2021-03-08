@@ -18,9 +18,16 @@ class Fruit {
         self.stock += amount
     }
 }
-
-var strawberry = Fruit()
-var banana = Fruit()
-var kiwi = Fruit()
-var pineapple = Fruit()
-var mango = Fruit()
+struct Fruits: RawRepresentable {
+    let rawValue: Fruit
+    static let strawberry = Fruit()
+    static let banana = Fruit()
+    static let kiwi = Fruit()
+    static let pineapple = Fruit()
+    static let mango = Fruit()
+}
+//var strawberry = Fruit()
+//var banana = Fruit()
+//var kiwi = Fruit()
+//var pineapple = Fruit()
+//var mango = Fruit()
