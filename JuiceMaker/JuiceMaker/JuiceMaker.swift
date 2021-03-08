@@ -11,7 +11,7 @@ import Foundation
 
 class JuiceMaker {
     func checkStock(of fruit: Fruit) {
-        print("\(fruit)는 현재 \(fruit.leftStock)개 남아있습니다.")
+        print("\(fruit)는 현재 \(fruit.stock)개 남아있습니다.")
     }
     
     func makeJuice(juiceType: Juice) {
@@ -25,8 +25,8 @@ class JuiceMaker {
             print("재고가 부족하여 \(juiceType)을(를) 만들 수 없습니다.")
             
             for requirement in juiceType.requirements {
-                if requirement.needAmount > requirement.Fruit.leftStock {
-                    print("\(requirement.Fruit)의 현재 재고: \(requirement.Fruit.leftStock), 필요량: \(requirement.needAmount)")
+                if requirement.needAmount > requirement.Fruit.stock {
+                    print("\(requirement.Fruit)의 현재 재고: \(requirement.Fruit.stock), 필요량: \(requirement.needAmount)")
                 }
             }
         }
@@ -35,5 +35,4 @@ class JuiceMaker {
     func addStock(_ amount: Int, for fruitType: Fruit) {
         fruitType.addStock(amount)
     }
-
 }

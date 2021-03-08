@@ -8,13 +8,7 @@
 import Foundation
 
 class Fruit {
-    private var stock: Int = 10
-    
-    var leftStock: Int {
-        get {
-            return self.stock
-        }
-    }
+    public private(set) var stock: Int = 10
     
     func useStock(_ amount: Int) {
         self.stock -= amount

@@ -18,7 +18,7 @@ class Juice {
     
     func canMake() -> Bool {
         for requirement in requirements {
-            if requirement.Fruit.leftStock < requirement.needAmount {
+            if requirement.Fruit.stock < requirement.needAmount {
                 return false
             }
         }
@@ -27,7 +27,7 @@ class Juice {
 }
 
 var strawberryJuice = Juice(require: strawberryRequirement)
-var bananaberryJuice = Juice(require: bananaRequirement)
+var bananaJuice = Juice(require: bananaRequirement)
 var kiwiJuice = Juice(require: kiwiRequirement)
 var pineappleJuice = Juice(require: pineappleRequirement)
 var strawBananaJuice = Juice(require: strawBananaRequirement)
