@@ -12,9 +12,9 @@ enum FruitJuice: Int {
     case bananaJuice
     case kiwiJuice
     case pineappleJuice
-    case straw_nanaJuice
+    case strawberryBananaJuice
     case mangoJuice
-    case mango_KiwiJuice
+    case mangoKiwiJuice
 }
 
 let currentFruitJuice :FruitJuice = .strawberryJuice
