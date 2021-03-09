@@ -47,4 +47,9 @@ struct Stock {
 
 class JuiceMaker {
     private(set) var stock: Stock = Stock(initialCount: 10)
+    
+    func addStock(of fruit: Fruit) {
+        if let storedFruit = stock.fruits[fruit] {             stock.fruits[fruit] = storedFruit + 1
+        }
+    }
 }
