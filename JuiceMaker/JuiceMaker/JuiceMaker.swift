@@ -5,7 +5,7 @@
 //
 
 import Foundation
-typealias FruitCount = [Fruit: Int]
+typealias FruitCount = [Fruit: UInt]
 
 enum Fruit {
     case strawberry, banana, pineapple, kiwi, mango
@@ -42,7 +42,7 @@ enum JuiceMakerError: Error {
 struct Stock {
     var fruits: FruitCount
     
-    init(initialCount: Int) {
+    init(initialCount: UInt) {
         fruits = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
     }
 }
@@ -66,7 +66,7 @@ class JuiceMaker {
         }
     }
     
-    func subtractStock(of fruit: Fruit, count: Int) throws {
+    func subtractStock(of fruit: Fruit, count: UInt) throws {
         guard let storedFruit = stock.fruits[fruit] else {
             throw JuiceMakerError.unknownError
         }
