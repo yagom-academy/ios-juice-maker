@@ -10,11 +10,11 @@ import Foundation
 class Fruit {
     var stock: Int = 10
     
-    func upStock(count: Int) {
+    func plusStock(count: Int) {
         self.stock += count
     }
     
-    func downStock(count: Int) {
+    func minusStock(count: Int) {
         self.stock -= count
     }
 }

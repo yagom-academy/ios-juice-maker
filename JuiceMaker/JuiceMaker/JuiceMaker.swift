@@ -8,7 +8,6 @@ import Foundation
 
 /// 쥬스 메이커 타입
 class JuiceMaker {
-    
     func readFruitStock(fruit: Fruit) -> Int {
         let result: Int = fruit.stock
         
@@ -23,17 +22,16 @@ class JuiceMaker {
                 print("\(fruit)의 재고량 부족")
                 break
             } else {
-                fruit.downStock(count: needStock)
+                fruit.minusStock(count: needStock)
             }
         }
     }
     
-    func addFruitStock(fruit: Fruit, addStock: Int) {
-        fruit.upStock(count: addStock)
+    func plusFruitStock(fruit: Fruit, addStock: Int) {
+        fruit.plusStock(count: addStock)
     }
     
-    func revertFruitStock(fruit: Fruit, revertStock: Int) {
-        fruit.downStock(count: revertStock)
+    func minusFruitStock(fruit: Fruit, revertStock: Int) {
+        fruit.minusStock(count: revertStock)
     }
 }
-
