@@ -15,9 +15,9 @@ class JuiceMaker {
     }
     
     func makeJuice(juice: Juice) {
-        if juice.canMake() {
+        if juice.canMake {
             for requirement in juice.requirements {
-                requirement.Fruit.useStock(amount: requirement.needAmount)
+                requirement.Fruit.subtractStock(amount: requirement.needAmount)
             }
             
             print("\(juice)의 제조가 완료되었습니다!")
@@ -36,5 +36,3 @@ class JuiceMaker {
         fruitType.addStock(amount: amount)
     }
 }
-
-

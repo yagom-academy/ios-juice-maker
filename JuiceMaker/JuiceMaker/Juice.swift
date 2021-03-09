@@ -5,16 +5,16 @@
 //  Created by 천수현 on 2021/03/08.
 //
 
-typealias fruitAndNeedAmount = (Fruit: Fruit, needAmount: Int)
+typealias FruitAndNeedAmount = (Fruit: Fruit, needAmount: Int)
 
 class Juice {
-    var requirements: [fruitAndNeedAmount]
+    let requirements: [FruitAndNeedAmount]
     
-    init(require: [fruitAndNeedAmount]) {
+    init(require: [FruitAndNeedAmount]) {
         self.requirements = require
     }
     
-    func canMake() -> Bool {
+    var canMake: Bool {
         for requirement in requirements {
             if requirement.Fruit.stock < requirement.needAmount {
                 return false
@@ -25,7 +25,7 @@ class Juice {
 }
 
 enum JuiceType {
-    static let strawberryJuice: Juice = Juice(require: Requirements.strawberryRequirement)
+    static let strawberryJuice = Juice(require: Requirements.strawberryRequirement)
     static let bananaJuice = Juice(require: Requirements.bananaRequirement)
     static let kiwiJuice = Juice(require: Requirements.kiwiRequirement)
     static let pineappleJuice = Juice(require: Requirements.pineappleRequirement)
@@ -33,3 +33,4 @@ enum JuiceType {
     static let mangoJuice = Juice(require: Requirements.mangoRequirement)
     static let mangoKiwiJuice = Juice(require: Requirements.mangoKiwiRequirement)
 }
+
