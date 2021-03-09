@@ -5,8 +5,8 @@
 //  Created by 천수현 on 2021/03/08.
 //
 
-struct Requirements : RawRepresentable {
-    let rawValue: [fruitAndNeedAmount]
+
+enum Requirements {
     static let strawberryRequirement = [(FruitType.strawberry, 16)]
     static let bananaRequirement = [(FruitType.banana, 2)]
     static let kiwiRequirement = [(FruitType.kiwi, 3)]
