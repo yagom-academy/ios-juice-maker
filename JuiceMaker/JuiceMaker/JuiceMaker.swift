@@ -1,8 +1,8 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import Foundation
 
@@ -20,14 +20,25 @@ class JuiceMaker {
     private let stockOfFruit = StockOfFruit()
 
     func makeJuice(juice: Juice) {
-        if checkEnough(juice, necessaryFruit(juice: juice)) {
+        if checkEnough(juice) {
             print("\(juice) 나왔습니다! 맛있게 드세요!")
         } else {
             print("재료가 모자라요.")
         }
     }
     
-    func necessaryFruit(juice: Juice) -> [String:Int] {
+    func checkEnough(_ juice: Juice) -> Bool {
+        let fruitInfo = necessaryFruit(juice)
+        let stock = stockOfFruit.total(type: Fruit(rawValue: fruitInfo.keys.first!)!)
+        
+        if stock! >= fruitInfo.values.first! {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func necessaryFruit(_ juice: Juice) -> [String:Int] {
         var necessaryFruit = [String:Int]()
         
         let fruitInfos = juice.rawValue.components(separatedBy: ",")
@@ -47,15 +58,5 @@ class JuiceMaker {
         print(necessaryFruit)
         
         return necessaryFruit
-    }
-    
-    func checkEnough(_ juice: Juice, _ fruitInfo: [String:Int]) -> Bool {
-        let stock = stockOfFruit.total(type: Fruit(rawValue: fruitInfo.keys.first!)!)
-        
-        if stock! >= fruitInfo.values.first! {
-            return true
-        } else {
-            return false
-        }
     }
 }
