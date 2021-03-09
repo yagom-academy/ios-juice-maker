@@ -57,7 +57,7 @@ struct Stock {
 }
 
 class JuiceMaker {
-    var stock = Stock(basicValue: 10)
+    private(set) var stock = Stock(basicValue: 10)
     
     func makeJuice(_ juice: Juice) {
         stock.decrease(by: juice)
