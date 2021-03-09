@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Fruit: CustomStringConvertible {
+struct Fruit: CustomStringConvertible, Hashable {
   private var name: String
   private(set) var quantity: Int = 10
   
@@ -20,3 +20,12 @@ struct Fruit: CustomStringConvertible {
   }
 }
 
+struct Juice {
+  private var name: String
+  private(set) var ingredients: [Fruit: Int]
+  
+  init(newMenuName: String, requiredIngredients: [Fruit: Int]) {
+    name = newMenuName
+    ingredients = requiredIngredients
+  }
+}
