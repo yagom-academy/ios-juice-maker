@@ -6,4 +6,22 @@
 
 import Foundation
 
-/// 쥬스 메이커 타입 
+enum Fruit {
+    
+}
+
+enum Juice {
+
+}
+
+enum JuiceMakerError: Error {
+    
+}
+
+struct Stack {
+    
+}
+
+class JuiceMaker {
+    
+}
