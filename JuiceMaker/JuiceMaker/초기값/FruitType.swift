@@ -5,21 +5,19 @@
 //  Created by 천수현 on 2021/03/08.
 //
 
-import Foundation
-
 class Fruit {
     private(set) var stock: Int = 10
     
-    func useStock(_ amount: Int) {
+    func useStock(amount: Int) {
         self.stock -= amount
     }
     
-    func addStock(_ amount: Int) {
+    func addStock(amount: Int) {
         self.stock += amount
     }
 }
 
-struct Fruits: RawRepresentable {
+struct FruitType: RawRepresentable {
     let rawValue: Fruit
     static let strawberry = Fruit()
     static let banana = Fruit()
@@ -27,5 +25,3 @@ struct Fruits: RawRepresentable {
     static let pineapple = Fruit()
     static let mango = Fruit()
 }
-
-

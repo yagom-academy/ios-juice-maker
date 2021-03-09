@@ -5,14 +5,12 @@
 //  Created by 천수현 on 2021/03/08.
 //
 
-import Foundation
-
-typealias requirement = (Fruit: Fruit, needAmount: Int)
+typealias fruitAndNeedAmount = (Fruit: Fruit, needAmount: Int)
 
 class Juice {
-    var requirements: [requirement]
+    var requirements: [fruitAndNeedAmount]
     
-    init(require: [requirement]) {
+    init(require: [fruitAndNeedAmount]) {
         self.requirements = require
     }
     
@@ -26,7 +24,7 @@ class Juice {
     }
 }
 
-struct Juices : RawRepresentable {
+struct JuiceType : RawRepresentable {
     let rawValue: Juice
     static let strawberryJuice: Juice = Juice(require: Requirements.strawberryRequirement)
     static let bananaJuice = Juice(require: Requirements.bananaRequirement)

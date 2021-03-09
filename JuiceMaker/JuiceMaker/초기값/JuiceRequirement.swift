@@ -5,15 +5,13 @@
 //  Created by 천수현 on 2021/03/08.
 //
 
-import Foundation
-
 struct Requirements : RawRepresentable {
-    let rawValue: [requirement]
-    static let strawberryRequirement = [(Fruits.strawberry, 16)]
-    static let bananaRequirement = [(Fruits.banana, 2)]
-    static let kiwiRequirement = [(Fruits.kiwi, 3)]
-    static let pineappleRequirement = [(Fruits.pineapple, 2)]
-    static let strawBananaRequirement = [(Fruits.strawberry, 10), (Fruits.banana, 1)]
-    static let mangoRequirement = [(Fruits.mango, 3)]
-    static let mangoKiwiRequirement = [(Fruits.mango, 2), (Fruits.kiwi, 1)]
+    let rawValue: [fruitAndNeedAmount]
+    static let strawberryRequirement = [(FruitType.strawberry, 16)]
+    static let bananaRequirement = [(FruitType.banana, 2)]
+    static let kiwiRequirement = [(FruitType.kiwi, 3)]
+    static let pineappleRequirement = [(FruitType.pineapple, 2)]
+    static let strawBananaRequirement = [(FruitType.strawberry, 10), (FruitType.banana, 1)]
+    static let mangoRequirement = [(FruitType.mango, 3)]
+    static let mangoKiwiRequirement = [(FruitType.mango, 2), (FruitType.kiwi, 1)]
 }
