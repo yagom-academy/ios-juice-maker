@@ -39,12 +39,12 @@ enum JuiceMenu {
 
 /// 과일 재고
 struct Stock {
-  typealias CalculateMethod = (Int) -> Int
+  typealias AddOrSubtract = (Int) -> Int
   private(set) var fruits: [Fruit: Int]
-  private let add: CalculateMethod = { (numberOfFruit: Int) in
+  private let add: AddOrSubtract = { (numberOfFruit: Int) in
     return numberOfFruit + 1
   }
-  private let subtract: CalculateMethod = { (numberOfFruit: Int) in
+  private let subtract: AddOrSubtract = { (numberOfFruit: Int) in
     return numberOfFruit - 1
   }
   
@@ -56,7 +56,7 @@ struct Stock {
   }
   
   /// 탭한 과일의 재고를 하나 추가 또는 제거한다.
-  private mutating func adjustFruitStock(_of fruitName: Fruit,_by method: CalculateMethod) {
+  private mutating func adjustFruitStock(_of fruitName: Fruit,_by method: AddOrSubtract) {
     guard let fruitNumberInStock = fruits[fruitName] else { fatalError() }
     if method(fruitNumberInStock) >= 0 {
     fruits.updateValue(method(fruitNumberInStock), forKey: fruitName)
@@ -88,11 +88,11 @@ struct JuiceMaker {
   private(set) var stock = Stock()
   
   /// orderJuice() 메서드에서 받은 쥬스 제작
-  mutating func make(of juiceMenu: JuiceMenu) {
+  mutating func make(of juiceNameWithoutJuice: JuiceMenu) {
     // 쥬스 제작 얼럿을 화면에 표시한다.
 
     // 쥬스 제작에 사용된 재료를 재고에서 뺀다.
-    stock.subtractFruitFromStock(forMaking: juiceMenu)
+    stock.subtractFruitFromStock(forMaking: juiceNameWithoutJuice)
   }
   //  /// 탭한 쥬스 종류에 따른 주문을 생성
   //  func orderJuice() -> JuiceMenu {
@@ -106,7 +106,3 @@ struct JuiceMaker {
   //    make(of: orderedJuice)
   //  }
 }
-
-var juiceMaker = JuiceMaker()
-juiceMaker.make(of: .mangoKiwi)
-juiceMaker.stock.checkStock()
