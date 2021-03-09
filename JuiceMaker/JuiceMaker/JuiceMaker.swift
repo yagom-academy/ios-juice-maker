@@ -34,7 +34,8 @@ enum Juice {
 }
 
 enum JuiceMakerError: Error {
-
+    case outOfStock
+    case unknownError
 }
 
 struct Stock {
@@ -48,8 +49,30 @@ struct Stock {
 class JuiceMaker {
     private(set) var stock: Stock = Stock(initialCount: 10)
     
-    func addStock(of fruit: Fruit) {
-        if let storedFruit = stock.fruits[fruit] {             stock.fruits[fruit] = storedFruit + 1
+    func makeJuice(using juice: Juice) {
+        for (ingredient, amount) in juice.recipe {
+            do {
+                try subtractStock(of: ingredient, count: amount)
+            } catch {
+                print("재고가 부족합니다")
+            }
         }
+    }
+    
+    func addStock(of fruit: Fruit) {
+        if let storedFruit = stock.fruits[fruit] {
+            stock.fruits[fruit] = storedFruit + 1
+        }
+    }
+    
+    func subtractStock(of fruit: Fruit, count: Int) throws {
+        guard let storedFruit = stock.fruits[fruit] else {
+            throw JuiceMakerError.unknownError
+        }
+        
+        if storedFruit < count {
+            throw JuiceMakerError.outOfStock
+        }
+        stock.fruits[fruit] = storedFruit - count
     }
 }
