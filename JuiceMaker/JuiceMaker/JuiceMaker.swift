@@ -20,7 +20,11 @@ class JuiceMaker {
     private let stockOfFruit = StockOfFruit()
 
     func makeJuice(juice: Juice) {
-
+        if checkEnough(juice, necessaryFruit(juice: juice)) {
+            print("\(juice) 나왔습니다! 맛있게 드세요!")
+        } else {
+            print("재료가 모자라요.")
+        }
     }
     
     func necessaryFruit(juice: Juice) -> [String:Int] {
@@ -29,6 +33,12 @@ class JuiceMaker {
     }
     
     func checkEnough(_ juice: Juice, _ fruitInfo: [String:Int]) -> Bool {
-        return false
+        let stock = stockOfFruit.total(type: Fruit(rawValue: fruitInfo.keys.first!)!)
+        
+        if stock! >= fruitInfo.values.first! {
+            return true
+        } else {
+            return false
+        }
     }
 }
