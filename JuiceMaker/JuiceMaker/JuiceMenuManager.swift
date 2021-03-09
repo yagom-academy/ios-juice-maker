@@ -28,11 +28,11 @@ struct Ingredient {
 }
 
 struct Menu {
-  let strawberryJuice = Juice(nameOf: "딸기쥬스", need: Ingredient.strawberryJuice)
-  let bananaJuice = Juice(nameOf: "바나나쥬스", need: Ingredient.bananaJuice)
-  let kiwiJuice = Juice(nameOf: "키위쥬스", need: Ingredient.kiwiJuice)
-  let pineapppleJuice = Juice(nameOf: "파인애플쥬스", need: Ingredient.pineapppleJuice)
-  let mangoJuice = Juice(nameOf: "망고쥬스", need: Ingredient.mangoJuice)
-  let strawberryBananaJuice = Juice(nameOf: "딸바쥬스", need: Ingredient.strawberryBananaJuice)
-  let mangoKiwiJuice = Juice(nameOf: "망키쥬스", need: Ingredient.mangoKiwiJuice)
+  static let strawberryJuice = Juice(nameOf: "딸기쥬스", need: Ingredient.strawberryJuice)
+  static let bananaJuice = Juice(nameOf: "바나나쥬스", need: Ingredient.bananaJuice)
+  static let kiwiJuice = Juice(nameOf: "키위쥬스", need: Ingredient.kiwiJuice)
+  static let pineapppleJuice = Juice(nameOf: "파인애플쥬스", need: Ingredient.pineapppleJuice)
+  static let mangoJuice = Juice(nameOf: "망고쥬스", need: Ingredient.mangoJuice)
+  static let strawberryBananaJuice = Juice(nameOf: "딸바쥬스", need: Ingredient.strawberryBananaJuice)
+  static let mangoKiwiJuice = Juice(nameOf: "망키쥬스", need: Ingredient.mangoKiwiJuice)
 }

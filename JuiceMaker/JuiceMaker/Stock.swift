@@ -22,16 +22,16 @@ struct Fruit: CustomStringConvertible, Hashable {
   mutating func add() {
     quantity += 1
   }
-  mutating func subtract() {
-    quantity -= 1
+  mutating func subtract(number: Int = 1) {
+    quantity -= number
   }
 }
 
 struct Stock {
-  static let strawberry = Fruit(nameOf: "딸기")
-  static let banana = Fruit(nameOf: "바나나")
-  static let kiwi = Fruit(nameOf: "키위")
-  static let pineapple = Fruit(nameOf: "파인애플")
-  static let mango = Fruit(nameOf: "망고")
+  static var strawberry = Fruit(nameOf: "딸기")
+  static var banana = Fruit(nameOf: "바나나")
+  static var kiwi = Fruit(nameOf: "키위")
+  static var pineapple = Fruit(nameOf: "파인애플")
+  static var mango = Fruit(nameOf: "망고")
 }
 
