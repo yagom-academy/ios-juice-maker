@@ -7,55 +7,63 @@
 import Foundation
 
 enum Juice: String {
-    case 딸기쥬스 = "{\"Strawberry\":16}"
-    case 바나나쥬스 = "{\"Banana\":2}"
-    case 키위쥬스 = "{\"Kiwi\":3}"
-    case 파인애플쥬스 = "{\"Pineapple\":2}"
-    case 딸바쥬스 = "{\"Strawberry\":10},{\"Banana\":1}"
-    case 망고쥬스 = "{\"Mango\":3}"
-    case 망고키위쥬스 = "{\"Mango\":2},{\"Kiwi\":1}"
+    case strawberryJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case strawberryBananaJuice = "딸바쥬스"
+    case mangoJuice = "망고쥬스"
+    case mangoKiwiJuice = "망고키위쥬스"
 }
 
 class JuiceMaker {
-    private let stockOfFruit = StockOfFruit()
+    private var stockOfFruit = StockOfFruit()
 
     func makeJuice(juice: Juice) {
-        if checkEnough(juice) {
-            print("\(juice) 나왔습니다! 맛있게 드세요!")
-        } else {
-            print("재료가 모자라요.")
+        let necessaryStock = necessaryFruit(juice)
+        guard let preparedFruit = settingFruit(necessaryStock),
+              !preparedFruit.isEmpty else {
+            return
         }
+        
+        for (fruit, stock) in preparedFruit {
+            stockOfFruit.use(type: Fruit(rawValue: fruit)!, count: stock)
+        }
+            
+        print("\(juice.rawValue)가 나왔습니다! 맛있게 드세요!")
     }
     
-    func checkEnough(_ juice: Juice) -> Bool {
-        let fruitInfo = necessaryFruit(juice)
-        let stock = stockOfFruit.total(type: Fruit(rawValue: fruitInfo.keys.first!)!)
+    func settingFruit(_ necessaryStock: [String:Int]) -> [String:Int]? {
+        var preparedFruit = [String:Int]()
         
-        if stock! >= fruitInfo.values.first! {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func necessaryFruit(_ juice: Juice) -> [String:Int] {
-        var necessaryFruit = [String:Int]()
-        
-        let fruitInfos = juice.rawValue.components(separatedBy: ",")
-        var jsonData = [String:Int]()
-        for fruitInfo in fruitInfos {
-            let data = Data(fruitInfo.utf8)
-            do {
-                jsonData = try JSONSerialization.jsonObject(
-                    with: data, options: []) as! [String : Int]
-                
-                necessaryFruit.updateValue(jsonData.values.first!, forKey: jsonData.keys.first!)
-            } catch let error as NSError {
-                print("Failed to load: \(error.localizedDescription)")
+        for(fruit, stock) in necessaryStock {
+            guard let necessaryFruit = Fruit(rawValue: fruit) else {
+                print("과일 선택이 잘못되었습니다.")
+                preparedFruit.removeAll()
+                break
+            }
+            
+            let currentStock = stockOfFruit.total(type: necessaryFruit)!
+            if currentStock < stock {
+                print("\(fruit)의 재료가 \(stock - currentStock)개 부족합니다.")
+                preparedFruit.removeAll()
+                break
+            } else {
+                preparedFruit[fruit] = stock
             }
         }
         
-        print(necessaryFruit)
+        return preparedFruit
+    }
+    
+    func necessaryFruit(_ necessaryJuice: Juice) -> [String:Int] {
+        var necessaryFruit = [String:Int]()
+        
+        let juiceRecipe = JuiceRecipe()
+        let necessaryJuiceRecipe = juiceRecipe.ordered(juice: necessaryJuice)
+        for ingredient in necessaryJuiceRecipe!.ingredient {
+            necessaryFruit[ingredient.fruit] = ingredient.stock
+        }
         
         return necessaryFruit
     }
