@@ -46,5 +46,5 @@ struct Stock {
 }
 
 class JuiceMaker {
-
+    private(set) var stock: Stock = Stock(initialCount: 10)
 }
