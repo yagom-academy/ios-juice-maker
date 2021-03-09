@@ -22,10 +22,10 @@ struct Fruit: CustomStringConvertible, Hashable {
 }
 
 struct Stock {
-  let strawberry = Fruit(nameOf: "딸기")
-  let banana = Fruit(nameOf: "바나나")
-  let kiwi = Fruit(nameOf: "키위")
-  let pineapple = Fruit(nameOf: "파인애플")
-  let mango = Fruit(nameOf: "망고")
+  static let strawberry = Fruit(nameOf: "딸기")
+  static let banana = Fruit(nameOf: "바나나")
+  static let kiwi = Fruit(nameOf: "키위")
+  static let pineapple = Fruit(nameOf: "파인애플")
+  static let mango = Fruit(nameOf: "망고")
 }
 
