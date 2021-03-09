@@ -5,6 +5,7 @@
 //
 
 import Foundation
+
 typealias FruitCount = [Fruit: UInt]
 
 enum Fruit {
