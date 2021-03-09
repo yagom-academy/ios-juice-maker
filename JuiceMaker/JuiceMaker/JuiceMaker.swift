@@ -30,31 +30,30 @@ class JuiceMaker {
         }
         return true
     }
-    func consumeFriut(fruit: Fruit, stock: Int) {
+    func consumeFruit(fruit: Fruit, stock: Int) {
         fruitStocks[fruit.index] -= stock
     }
     func makeFruitJuice(juice: FruitJuice) {
         switch juice {
         case .strawberry:
-            consumeFriut(fruit: .strawberry, stock: 16)
+            consumeFruit(fruit: .strawberry, stock: 16)
         case .banana:
-            consumeFriut(fruit: .banana, stock: 2)
+            consumeFruit(fruit: .banana, stock: 2)
         case .kiwi:
-            consumeFriut(fruit: .kiwi, stock: 3)
+            consumeFruit(fruit: .kiwi, stock: 3)
         case .pineapple:
-            consumeFriut(fruit: .pineapple, stock: 2)
+            consumeFruit(fruit: .pineapple, stock: 2)
         case .strawberryBanana:
-            consumeFriut(fruit: .strawberry, stock: 10)
-            consumeFriut(fruit: .banana, stock: 1)
+            consumeFruit(fruit: .strawberry, stock: 10)
+            consumeFruit(fruit: .banana, stock: 1)
         case .mango:
-            consumeFriut(fruit: .mango, stock: 3)
+            consumeFruit(fruit: .mango, stock: 3)
         case .mangoKiwi:
-            consumeFriut(fruit: .mango, stock: 2)
-            consumeFriut(fruit: .kiwi, stock: 1)
+            consumeFruit(fruit: .mango, stock: 2)
+            consumeFruit(fruit: .kiwi, stock: 1)
         }
     }
     func addStock(fruit: Fruit) {
         fruitStocks[fruit.index] += 1
     }
 }
-
