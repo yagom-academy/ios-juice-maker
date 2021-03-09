@@ -47,14 +47,12 @@ struct Stock {
     
     mutating func decrease(by juice: Juice) {
         for fruit in juice.recipe {
-            guard let stock: Int = fruits[fruit.key] else { fatalError() }
-            fruits.updateValue(stock - fruit.value, forKey: fruit.key)
+            fruits[fruit.key]? -= fruit.value
         }
     }
     
     mutating func increase(_ fruit: Fruit, by number: Int) {
-        guard let stock: Int = fruits[fruit] else { fatalError() }
-        fruits.updateValue(stock + number, forKey: fruit)
+        fruits[fruit]? += number
     }
 }
 
