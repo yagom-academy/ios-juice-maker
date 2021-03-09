@@ -11,7 +11,7 @@ class Fruit {
     var stock: Int = 10
     
     func upStock(count: Int) {
-        self.stock -= count
+        self.stock += count
     }
     
     func downStock(count: Int) {
