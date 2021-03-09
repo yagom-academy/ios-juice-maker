@@ -39,12 +39,12 @@ enum JuiceMenu {
 
 /// 과일 재고
 struct Stock {
-  typealias AddOrSubtract = (Int) -> Int
+  typealias CalculateMethod = (Int) -> Int
   private(set) var fruits: [Fruit: Int]
-  private let add: AddOrSubtract = { (numberOfFruit: Int) in
+  private let add: CalculateMethod = { (numberOfFruit: Int) in
     return numberOfFruit + 1
   }
-  private let subtract: AddOrSubtract = { (numberOfFruit: Int) in
+  private let subtract: CalculateMethod = { (numberOfFruit: Int) in
     return numberOfFruit - 1
   }
   
@@ -56,10 +56,10 @@ struct Stock {
   }
   
   /// 탭한 과일의 재고를 하나 추가 또는 제거한다.
-  private mutating func adjustFruitStock(_of fruitName: Fruit,_by method: AddOrSubtract) {
+  private mutating func adjustFruitStock(_of fruitName: Fruit,_by addOrSubtract: CalculateMethod) {
     guard let fruitNumberInStock = fruits[fruitName] else { fatalError() }
-    if method(fruitNumberInStock) >= 0 {
-    fruits.updateValue(method(fruitNumberInStock), forKey: fruitName)
+    if addOrSubtract(fruitNumberInStock) >= 0 {
+    fruits.updateValue(addOrSubtract(fruitNumberInStock), forKey: fruitName)
     } else {
       print("재고가 부족하여 더 이상 줄일 수 없습니다.")
     }
