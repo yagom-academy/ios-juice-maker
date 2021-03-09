@@ -12,50 +12,27 @@ enum AppError: Error {
     case outOfStock
     case unknownError
 }
+enum FruitType {
+    static let strawberry = Fruit()
+    static let banana = Fruit()
+    static let kiwi = Fruit()
+    static let pineapple = Fruit()
+    static let mango = Fruit()
+}
 
 /// 과일재고를 확인할 수 있습니다.
-class FruitType {
-    var fruits: [String: Int]
-        
-    init(fruits: [String: Int]) {
-        self.fruits = fruits
+class Fruit {
+    private(set) var fruitStock = 10
+    func addStock() {
+        fruitStock += 1
     }
-    
-    var strawberry: FruitType {
-        get {
-            return FruitType(fruits: ["딸기": 10])
-        }
-    }
-    var banana: FruitType {
-        get {
-            return FruitType(fruits: ["바나나": 10])
-        }
-    }
-    var kiwi: FruitType {
-        get {
-            return FruitType(fruits: ["키위": 10])
-        }
-    }
-    var pineapple: FruitType {
-        get {
-            return FruitType(fruits: ["파인애플": 10])
-        }
-    }
-    var mango: FruitType {
-        get {
-            return FruitType(fruits: ["망고": 10])
-        }
+    func useStock(amount: Int) {
+        fruitStock -= amount
     }
 }
-var test: FruitType = FruitType(fruits: ["바나나": 10])
 
 class JuiceMaker {
 
-    
-    func confirmFruitsInStock() {
-        
-    }
-    
     func makeJuice() {
         
     }
