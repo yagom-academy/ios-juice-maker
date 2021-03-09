@@ -17,8 +17,7 @@ class Fruit {
     }
 }
 
-struct FruitType: RawRepresentable {
-    let rawValue: Fruit
+enum FruitType {
     static let strawberry = Fruit()
     static let banana = Fruit()
     static let kiwi = Fruit()

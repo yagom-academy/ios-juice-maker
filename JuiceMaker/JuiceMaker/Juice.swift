@@ -24,8 +24,7 @@ class Juice {
     }
 }
 
-struct JuiceType : RawRepresentable {
-    let rawValue: Juice
+enum JuiceType {
     static let strawberryJuice: Juice = Juice(require: Requirements.strawberryRequirement)
     static let bananaJuice = Juice(require: Requirements.bananaRequirement)
     static let kiwiJuice = Juice(require: Requirements.kiwiRequirement)
