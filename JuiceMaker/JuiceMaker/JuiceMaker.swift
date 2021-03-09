@@ -37,8 +37,12 @@ enum JuiceMakerError: Error {
 
 }
 
-struct Stack {
-
+struct Stock {
+    var fruits: [Fruit: Int]
+    
+    init(initialCount: Int) {
+        fruits = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
+    }
 }
 
 class JuiceMaker {
