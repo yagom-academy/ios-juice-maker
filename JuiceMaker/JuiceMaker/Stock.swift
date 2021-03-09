@@ -21,17 +21,7 @@ struct Fruit: CustomStringConvertible, Hashable {
   }
 }
 
-struct Juice {
-  private var name: String
-  private(set) var ingredients: [Fruit: Int]
-  
-  init(newMenuName: String, requiredIngredients: [Fruit: Int]) {
-    name = newMenuName
-    ingredients = requiredIngredients
-  }
-}
-
-struct FruitForIngredient {
+struct Stock {
   let strawberry = Fruit(nameOf: "딸기")
   let banana = Fruit(nameOf: "바나나")
   let kiwi = Fruit(nameOf: "키위")
