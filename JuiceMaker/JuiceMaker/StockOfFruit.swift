@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Fruit: String {
+enum Fruit: String, CaseIterable {
     case strawberry = "Strawberry"
     case banana = "Banana"
     case pineapple = "Pineapple"
@@ -19,7 +19,9 @@ class StockOfFruit {
     private var stock = [Fruit:Int]()
     
     init() {
-
+        for fruit in Fruit.allCases {
+            self.stock[fruit] = 0
+        }
     }
 
     func total(type: Fruit) -> Int? {
@@ -27,8 +29,10 @@ class StockOfFruit {
     }
     
     func add(type: Fruit) {
+        stock[type]! += 1
     }
     
     func subtract(type: Fruit) {
+        stock[type]! -= 1
     }
 }
