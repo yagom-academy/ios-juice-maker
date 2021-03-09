@@ -1,5 +1,5 @@
 //
-//  FruitInStock.swift
+//  StockOfFruit.swift
 //  JuiceMaker
 //
 //  Created by 강경 on 2021/03/08.
@@ -15,12 +15,12 @@ enum Fruit: String, CaseIterable {
     case mango = "Mango"
 }
 
-class StockOfFruit {
+struct StockOfFruit {
     private var stock = [Fruit:Int]()
     
     init() {
         for fruit in Fruit.allCases {
-            self.stock[fruit] = 0
+            self.stock[fruit] = 1
         }
     }
 
@@ -28,11 +28,15 @@ class StockOfFruit {
         return stock[type]
     }
     
-    func add(type: Fruit) {
+    mutating func use(type: Fruit, count: Int) {
+        stock[type]! -= count
+    }
+    
+    mutating func add(type: Fruit) {
         stock[type]! += 1
     }
     
-    func subtract(type: Fruit) {
+    mutating func subtract(type: Fruit) {
         stock[type]! -= 1
     }
 }
