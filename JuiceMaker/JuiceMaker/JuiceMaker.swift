@@ -8,6 +8,11 @@ import Foundation
 
 /// 쥬스 메이커 타입 
 
+enum AppError: Error {
+    case outOfStock
+    case unknownError
+}
+
 /// 과일재고를 확인할 수 있습니다.
 class FruitType {
     var fruits: [String: Int]
