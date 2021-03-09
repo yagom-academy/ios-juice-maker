@@ -29,6 +29,23 @@ class JuiceMaker {
     
     func necessaryFruit(juice: Juice) -> [String:Int] {
         var necessaryFruit = [String:Int]()
+        
+        let fruitInfos = juice.rawValue.components(separatedBy: ",")
+        var jsonData = [String:Int]()
+        for fruitInfo in fruitInfos {
+            let data = Data(fruitInfo.utf8)
+            do {
+                jsonData = try JSONSerialization.jsonObject(
+                    with: data, options: []) as! [String : Int]
+                
+                necessaryFruit.updateValue(jsonData.values.first!, forKey: jsonData.keys.first!)
+            } catch let error as NSError {
+                print("Failed to load: \(error.localizedDescription)")
+            }
+        }
+        
+        print(necessaryFruit)
+        
         return necessaryFruit
     }
     
