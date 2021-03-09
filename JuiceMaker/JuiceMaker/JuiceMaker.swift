@@ -5,6 +5,7 @@
 //
 
 import Foundation
+typealias FruitCount = [Fruit: Int]
 
 enum Fruit {
     case strawberry, banana, pineapple, kiwi, mango
@@ -13,7 +14,7 @@ enum Fruit {
 enum Juice {
     case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangokiwi
 
-    var recipe: [Fruit: Int] {
+    var recipe: FruitCount {
         switch self {
         case .strawberry:
             return [.strawberry: 16]
@@ -39,7 +40,7 @@ enum JuiceMakerError: Error {
 }
 
 struct Stock {
-    var fruits: [Fruit: Int]
+    var fruits: FruitCount
     
     init(initialCount: Int) {
         fruits = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
