@@ -7,10 +7,13 @@
 
 import Foundation
 
-var strawberryRequirement = [(Fruits.strawberry, 16)]
-var bananaRequirement = [(Fruits.banana, 2)]
-var kiwiRequirement = [(Fruits.kiwi, 3)]
-var pineappleRequirement = [(Fruits.pineapple, 2)]
-var strawBananaRequirement = [(Fruits.strawberry, 10), (Fruits.banana, 1)]
-var mangoRequirement = [(Fruits.mango, 3)]
-var mangoKiwiRequirement = [(Fruits.mango, 2), (Fruits.kiwi, 1)]
+struct Requirements : RawRepresentable {
+    let rawValue: [requirement]
+    static let strawberryRequirement = [(Fruits.strawberry, 16)]
+    static let bananaRequirement = [(Fruits.banana, 2)]
+    static let kiwiRequirement = [(Fruits.kiwi, 3)]
+    static let pineappleRequirement = [(Fruits.pineapple, 2)]
+    static let strawBananaRequirement = [(Fruits.strawberry, 10), (Fruits.banana, 1)]
+    static let mangoRequirement = [(Fruits.mango, 3)]
+    static let mangoKiwiRequirement = [(Fruits.mango, 2), (Fruits.kiwi, 1)]
+}
