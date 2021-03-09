@@ -45,14 +45,14 @@ struct Fruit {
     }
     
     func isCheckedStock(needFruitAmount: Int) -> Bool {
-            return thisFruitAmount >= needFruitAmount
-        }
-        mutating func useStock(useableFruitAmount: Int) {
-            thisFruitAmount -= useableFruitAmount
-        }
-        mutating func addStock() {
-            thisFruitAmount += 1
-        }
+        return thisFruitAmount >= needFruitAmount
+    }
+    mutating func useStock(useableFruitAmount: Int) {
+        thisFruitAmount -= useableFruitAmount
+    }
+    mutating func addStock() {
+        thisFruitAmount += 1
+    }
 }
 
 protocol ReadOnlyJuiceMaker {
@@ -67,15 +67,24 @@ class JuiceMaker: ReadOnlyJuiceMaker {
                                           .mango : Fruit(whatFruit: .mango)]
     
     func makeJuice(juice: Juices) throws {
-            do {
-                try juice.recipe.forEach {
-                    guard var whatFruit = fruitStorage[$0.key], whatFruit.isCheckedStock(needFruitAmount: $0.value) else {
-                        throw MakerError.nonStock
-                    }
-                    whatFruit.useStock(useableFruitAmount: $0.value)
+        do {
+            try juice.recipe.forEach {
+                guard var whatFruit = fruitStorage[$0.key], whatFruit.isCheckedStock(needFruitAmount: $0.value) else {
+                    throw MakerError.nonStock
                 }
-            } catch {
-                print("\(juice) 재고 부족")
+                whatFruit.useStock(useableFruitAmount: $0.value)
             }
+        } catch {
+            print("\(juice) 재고 부족")
         }
+    }
+    func totalStock() -> [Furits:Fruit] {
+        return fruitStorage
+    }
+    func fruitStock(fruit: Furits) throws -> Int {
+        guard let fruitStock = fruitStorage[fruit] else {
+            throw MakerError.nonStock
+        }
+        return fruitStock.thisFruitAmount
+    }
 }
