@@ -1,5 +1,5 @@
 //
-//  Recipe.swift
+//  JuiceRecipe.swift
 //  JuiceMaker
 //
 //  Created by 강경 on 2021/03/09.
@@ -29,7 +29,7 @@ class JuiceRecipe {
         self.allRecipe = try! JSONDecoder().decode(Recipe.self, from: jsonData)
     }
     
-    func orderedJuiceRecipe(juice: Juice) -> Recipe.JuiceRecipe? {
+    func ordered(juice: Juice) -> Recipe.JuiceRecipe? {
         let orderedJuice = juice.rawValue
         var recipe: Recipe.JuiceRecipe?
 
