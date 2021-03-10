@@ -34,7 +34,7 @@ enum Fruit: String {
 
 /// 쥬스 메이커 타입 
 class JuiceMaker {
-    var fruitStock : FruitInfo
+    private var fruitStock : FruitInfo
     
     init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
         fruitStock = FruitInfo(strawberry: strawberry, banana: banana, pineapple: pineapple, kiwi: kiwi, mango: mango)
