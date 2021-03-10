@@ -40,7 +40,7 @@ enum JuiceMakerError: Error {
     case notFoundFruit
 }
 
-struct Stock {
+struct FruitStock {
     var fruits: FruitCount
     
     init(initialCount: UInt) {
@@ -49,7 +49,7 @@ struct Stock {
 }
 
 class JuiceMaker {
-    private(set) var stock: Stock = Stock(initialCount: 10)
+    private(set) var stock: FruitStock = FruitStock(initialCount: 10)
     
     func makeJuice(using juice: Juice) {
         for (ingredient, amount) in juice.recipe {
