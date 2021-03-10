@@ -8,7 +8,7 @@
 import Foundation
 
 enum Fruit: String, CaseIterable, Codable {
-  case strawberry, banana, pineapple, kiwi, mango
+    case strawberry, banana, pineapple, kiwi, mango
 }
 
 enum Juice: String {
