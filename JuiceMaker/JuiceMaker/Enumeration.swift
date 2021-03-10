@@ -11,26 +11,16 @@ enum Fruit: String, CaseIterable, Codable {
   case strawberry, banana, pineapple, kiwi, mango
 }
 
-enum Juice: String, Codable {
-  case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice,
-       strawberryBananaJuice, mangoJuice, mangoKiwiJuice
-  
-  var name: String {
-    switch self {
-    case .strawberryJuice:
-      return "딸기쥬스"
-    case .bananaJuice:
-      return "바나나쥬스"
-    case .kiwiJuice:
-      return "키위쥬스"
-    case .pineappleJuice:
-      return "파인애플쥬스"
-    case .strawberryBananaJuice:
-      return "딸바쥬스"
-    case .mangoJuice:
-      return "망고쥬스"
-    case .mangoKiwiJuice:
-      return "망고키위쥬스"
+enum Juice: String {
+    case strawberryJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case strawberryBananaJuice = "딸바쥬스"
+    case mangoJuice = "망고쥬스"
+    case mangoKiwiJuice = "망고키위쥬스"
+    
+    var name: String {
+        return self.rawValue
     }
-  }
 }
