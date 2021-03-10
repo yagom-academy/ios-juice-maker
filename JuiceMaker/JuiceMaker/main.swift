@@ -42,7 +42,8 @@ class JuiceMaker: FruitStock {
         of = of - much
     }
     
-    func canmakeJuice(amount: Int, subtract: Int) -> Bool {
+    
+    func canMakeJuice(amount: Int, subtract: Int) -> Bool {
         if amount >= subtract {
             return true
         } else {
@@ -50,7 +51,8 @@ class JuiceMaker: FruitStock {
         }
     }
     
-    func manufactureJuice(juice: FruitJuice) {
+    
+    func recipeOfJuice(juice: FruitJuice) {
         switch juice {
         case .strawberryJuice:
             subtractAmount(of: &strawberry, as: 16)
@@ -71,15 +73,54 @@ class JuiceMaker: FruitStock {
         }
     }
     
-    func startJuiceMaking() {
-        checkFruitStock()
-        if canmakeJuice(amount: strawberry, subtract: 16) {
-            manufactureJuice(juice: .strawberryJuice)
+    func manufactureJuice(of: FruitJuice) {
+        switch of {
+        case .strawberryJuice:
+            if canMakeJuice(amount: strawberry, subtract: 16) == true {
+                recipeOfJuice(juice: .strawberryJuice)
+                return
+            }
+        case .bananaJuice:
+            if canMakeJuice(amount: banana, subtract: 2) == true {
+                recipeOfJuice(juice: .bananaJuice)
+                return
+            }
+        case .kiwiJuice:
+            if canMakeJuice(amount: kiwi, subtract: 3) == true {
+                recipeOfJuice(juice: .kiwiJuice)
+                return
+            }
+        case .pineappleJuice:
+            if canMakeJuice(amount: pineapple, subtract: 2) == true {
+                recipeOfJuice(juice: .pineappleJuice)
+                return
+            }
+        case .mangoJuice:
+            if canMakeJuice(amount: mango, subtract: 3) == true {
+                recipeOfJuice(juice: .mangoJuice)
+                return
+            }
+        case .strawberryBananaJuice:
+            if canMakeJuice(amount: strawberry, subtract: 10) && canMakeJuice(amount: banana, subtract: 1) == true {
+                recipeOfJuice(juice: .strawberryBananaJuice)
+                return
+            }
+        case .mangoKiwiJuice:
+            if canMakeJuice(amount: mango, subtract: 2) && canMakeJuice(amount: kiwi, subtract: 1) == true {
+                recipeOfJuice(juice: .mangoKiwiJuice)
+                return
+            }
         }
-        print(strawberry)
     }
+    
+    func start() {
+        checkFruitStock()
+        manufactureJuice(of: .strawberryBananaJuice)
+        checkFruitStock()
+    }
+    
 }
 
+let juiceMaker = JuiceMaker()
+juiceMaker.start()
 
-let abc = JuiceMaker()
-abc.startJuiceMaking()
