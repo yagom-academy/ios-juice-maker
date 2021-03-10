@@ -36,8 +36,10 @@ struct JuiceMaker {
   mutating func make(of orderedJuice: Juice) {
     let requiredFruits = getRequiredFruits(of: orderedJuice)
     let stockedFruits = getStockedFruits(by: requiredFruits)
-    guard !stockedFruits.isEmpty else { return }
-    
+    if stockedFruits.isEmpty {
+      print("입력이 잘못되었습니다. 찾는 과일이 없습니다. 에러 발생 메서드 make(of:)")
+    }
+
     for (fruit, quantity) in stockedFruits {
       stock.subtract(for: fruit, amount: quantity)
     }
@@ -49,7 +51,7 @@ struct JuiceMaker {
     var requiredFruits = [Fruit: Int]()
     
     let recipe = JuiceRecipe()
-    guard let recipeForOrderedJuice = recipe.find(for : orderedJuice) else {
+    guard let recipeForOrderedJuice = recipe.find(for: orderedJuice) else {
       fatalError()
     }
     
@@ -64,9 +66,7 @@ struct JuiceMaker {
     var stockedFruits = [Fruit: Int]()
     
     for (fruit, requiredQuantity) in requiredFruits {
-      let requiredFruit: Fruit = fruit
-      
-      let stockedQuantity = stock.count(for: requiredFruit)
+      let stockedQuantity = stock.count(for: fruit)
       if stockedQuantity < requiredQuantity {
         print("\(fruit)의 재료가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
         stockedFruits.removeAll()
