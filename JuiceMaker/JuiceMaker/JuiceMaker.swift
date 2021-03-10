@@ -105,18 +105,18 @@ class JuiceMaker {
         deductInventory(name: name)
     }
     
-    func addFruit(name: Fruit , number: Int) {
+    func addFruit(name: Fruit , count: Int) {
         switch name {
         case Fruit.strawberry:
-            Inventory[name]! += number
+            Inventory[name]! += count
         case Fruit.banana:
-            Inventory[name]! += number
+            Inventory[name]! += count
         case Fruit.pineapple:
-            Inventory[name]! += number
+            Inventory[name]! += count
         case Fruit.kiwi:
-            Inventory[name]! += number
+            Inventory[name]! += count
         case Fruit.mango:
-            Inventory[name]! += number
+            Inventory[name]! += count
         default:
             break
         }
