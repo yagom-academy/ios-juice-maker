@@ -42,7 +42,15 @@ class JuiceMaker: FruitStock {
         of = of - much
     }
     
-    func sellectJuice(juice: FruitJuice) {
+    func canmakeJuice(amount: Int, subtract: Int) -> Bool {
+        if amount >= subtract {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func manufactureJuice(juice: FruitJuice) {
         switch juice {
         case .strawberryJuice:
             subtractAmount(of: &strawberry, as: 16)
@@ -65,8 +73,10 @@ class JuiceMaker: FruitStock {
     
     func startJuiceMaking() {
         checkFruitStock()
-        sellectJuice(juice: .strawberryJuice)
-        print(currentFruitStock.strawberry)
+        if canmakeJuice(amount: strawberry, subtract: 16) {
+            manufactureJuice(juice: .strawberryJuice)
+        }
+        print(strawberry)
     }
 }
 
