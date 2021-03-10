@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - Fruit Type
 enum Fruit: String, CaseIterable, Codable {
   case strawberry, banana, pineapple, kiwi, mango
 }
 
+// MARK: - Stock Type
 struct Stock {
   private var stock = [Fruit: Int]()
   
@@ -25,12 +27,12 @@ struct Stock {
     return fruitNumberInStock
   }
   
-  mutating func subtract(for fruit: Fruit, amount: Int = 1) {
+  internal mutating func subtract(for fruit: Fruit, amount: Int = 1) {
     guard var fruitNumberInStock = stock[fruit] else { fatalError() }
     fruitNumberInStock -= amount
   }
   
-  mutating func add(for fruit: Fruit) {
+  internal mutating func add(for fruit: Fruit) {
     guard var FruitNumberInStock = stock[fruit] else { fatalError() }
     FruitNumberInStock += 1
   }
