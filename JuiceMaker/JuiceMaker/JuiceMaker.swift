@@ -42,6 +42,18 @@ enum Fruit {
     case mango
 }
 
+enum DeductionCount {
+    static let strawberryOfStrawberryJuice = 16
+    static let bananaOfBananaJuice = 2
+    static let kiwiOfKiwiJuice = 3
+    static let pineappleOfPineappleJuice = 2
+    static let strawberryOfstrawberryBananaJuice = 10
+    static let bananaOfstrawberryBananaJuice = 1
+    static let mangoOfMangoJuice = 3
+    static let mangoOfMangoKiwiJuice = 2
+    static let kiwiOfMangoKiwiJuice = 1
+}
+
 /// 쥬스 메이커 타입 
 class JuiceMaker {
     private var fruitStock : FruitInfo
