@@ -50,6 +50,7 @@ struct FruitInfo {
 
 class JuiceMaker {
     private var Inventory: [Fruit:Int] = [Fruit.strawberry: 0, Fruit.banana: 0, Fruit.pineapple: 0, Fruit.kiwi: 0, Fruit.mango: 0]
+    
     init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
         Inventory[Fruit.strawberry] = strawberry
         Inventory[Fruit.banana] = banana
@@ -57,9 +58,33 @@ class JuiceMaker {
         Inventory[Fruit.kiwi] = kiwi
         Inventory[Fruit.mango] = mango
     }
+    
     var fruitInventory:[Fruit:Int] {
         get {
             return Inventory
+        }
+    }
+    
+    func deductInventory(name:Juice){
+        switch name {
+        case Juice.strawberry:
+            Inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfStrawberryJuice
+        case Juice.banana:
+            Inventory[Fruit.banana]! -= DeductionCount.bananaOfBananaJuice
+        case Juice.kiwi:
+            Inventory[Fruit.kiwi]! -= DeductionCount.kiwiOfKiwiJuice
+        case Juice.pineapple:
+            Inventory[Fruit.pineapple]! -= DeductionCount.pineappleOfPineappleJuice
+        case Juice.strawberryBanana:
+            Inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfstrawberryBananaJuice
+            Inventory[Fruit.banana]! -= DeductionCount.bananaOfstrawberryBananaJuice
+        case Juice.mango:
+            Inventory[Fruit.mango]! -= DeductionCount.mangoOfMangoJuice
+        case Juice.mangoKiwi:
+            Inventory[Fruit.mango]! -= DeductionCount.mangoOfMangoKiwiJuice
+            Inventory[Fruit.kiwi]! -= DeductionCount.kiwiOfMangoKiwiJuice
+        default:
+            break
         }
     }
 }
