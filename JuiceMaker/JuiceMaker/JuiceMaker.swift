@@ -41,10 +41,10 @@ enum JuiceMakerError: Error {
 }
 
 struct FruitStock {
-    var fruits: FruitCount
+    var remainedFruit: FruitCount
     
     init(initialCount: UInt) {
-        fruits = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
+        remainedFruit = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
     }
 }
 
@@ -62,19 +62,19 @@ class JuiceMaker {
     }
     
     func addStock(of fruit: Fruit) {
-        if let storedFruit = stock.fruits[fruit] {
-            stock.fruits[fruit] = storedFruit + 1
+        if let storedFruit = stock.remainedFruit[fruit] {
+            stock.remainedFruit[fruit] = storedFruit + 1
         }
     }
     
     func subtractStock(of fruit: Fruit, count: UInt) throws {
-        guard let storedFruit = stock.fruits[fruit] else {
+        guard let storedFruit = stock.remainedFruit[fruit] else {
             throw JuiceMakerError.notFoundFruit
         }
         
         if storedFruit < count {
             throw JuiceMakerError.outOfStock
         }
-        stock.fruits[fruit] = storedFruit - count
+        stock.remainedFruit[fruit] = storedFruit - count
     }
 }
