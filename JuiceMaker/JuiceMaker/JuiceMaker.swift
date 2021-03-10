@@ -7,11 +7,7 @@
 import Foundation
 
 struct FruitInfo {
-    var strawberry: Int
-    var banana: Int
-    var pineapple: Int
-    var kiwi: Int
-    var mango: Int
+    let firstName: Fruit, firstCount: Int, secondName: Fruit?, secondCount: Int?
 }
 
 enum Juice: String {
