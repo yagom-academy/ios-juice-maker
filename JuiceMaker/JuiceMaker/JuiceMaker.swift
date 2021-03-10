@@ -8,7 +8,7 @@ import Foundation
 
 /// 쥬스 메이커 타입
 class JuiceMaker {
-    func readFruitStock(fruit: Fruit) -> Int {
+    func returnFruitStock(fruit: Fruit) -> Int {
         let result: Int = fruit.stock
         
         return result

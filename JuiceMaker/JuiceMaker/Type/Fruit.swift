@@ -8,7 +8,7 @@
 import Foundation
 
 class Fruit {
-    var stock: Int = 10
+    private(set) var stock: Int = 10
     
     func plusStock(count: Int) {
         self.stock += count
