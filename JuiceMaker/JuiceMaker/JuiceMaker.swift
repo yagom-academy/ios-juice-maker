@@ -33,48 +33,49 @@ enum Juice: String, Codable {
 struct JuiceMaker {
   private var stock = Stock()
   
-  mutating func make(of juice: Juice) {
-    let requiredIngredients = checkIngredients(juice)
-    let preparedIngredients = setIngredients(requiredIngredients)
-    guard !preparedIngredients.isEmpty else { return }
+  mutating func make(of orderedJuice: Juice) {
+    let requiredFruits = getRequiredFruits(of: orderedJuice)
+    let stockedFruits = getStockedFruits(by: requiredFruits)
+    guard !stockedFruits.isEmpty else { return }
     
-    for (fruit, remainingFruit) in preparedIngredients {
-      stock.subtract(from: fruit, count: remainingFruit)
+    for (fruit, quantity) in stockedFruits {
+      stock.subtract(for: fruit, amount: quantity)
     }
     
-    print("\(juice.name)가 나왔습니다! 맛있게 드세요!")
+    print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
   }
   
-  func checkIngredients(_ necessaryJuice: Juice) -> [Fruit: Int] {
-    var necessaryFruit = [Fruit: Int]()
+  func getRequiredFruits(of orderedJuice: Juice) -> [Fruit: Int] {
+    var requiredFruits = [Fruit: Int]()
     
-    let juiceRecipe = JuiceRecipe()
-    guard let necessaryJuiceRecipe = juiceRecipe.ordered(juice: necessaryJuice) else {
+    let recipe = JuiceRecipe()
+    guard let recipeForOrderedJuice = recipe.find(for : orderedJuice) else {
       fatalError()
     }
-    for ingredient in necessaryJuiceRecipe.ingredient {
-      necessaryFruit[ingredient.fruit] = ingredient.stock
+    
+    for ingredient in recipeForOrderedJuice.ingredient {
+      requiredFruits[ingredient.fruitName] = ingredient.quantity
     }
     
-    return necessaryFruit
+    return requiredFruits
   }
   
-  func setIngredients(_ necessaryStock: [Fruit: Int]) -> [Fruit: Int] {
-    var preparedFruit = [Fruit: Int]()
+  func getStockedFruits(by requiredFruits: [Fruit: Int]) -> [Fruit: Int] {
+    var stockedFruits = [Fruit: Int]()
     
-    for (fruit, remainingFruit) in necessaryStock {
-      let necessaryFruit: Fruit = fruit
+    for (fruit, requiredQuantity) in requiredFruits {
+      let requiredFruit: Fruit = fruit
       
-      let currentStock = stock.count(for: necessaryFruit)
-      if currentStock < remainingFruit {
-        print("\(fruit)의 재료가 \(remainingFruit - currentStock)개 부족합니다.")
-        preparedFruit.removeAll()
+      let stockedQuantity = stock.count(for: requiredFruit)
+      if stockedQuantity < requiredQuantity {
+        print("\(fruit)의 재료가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
+        stockedFruits.removeAll()
         break
       } else {
-        preparedFruit[fruit] = remainingFruit
+        stockedFruits[fruit] = requiredQuantity
       }
     }
     
-    return preparedFruit
+    return stockedFruits
   }
 }
