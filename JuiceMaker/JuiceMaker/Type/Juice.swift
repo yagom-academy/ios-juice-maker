@@ -10,15 +10,15 @@ import Foundation
 class Juice {
     var recipe: [(Fruit, Int)]
     
-    init(require: [(Fruit, Int)]) {
-        self.recipe = require
+    init(setRecipe: [(Fruit, Int)]) {
+        self.recipe = setRecipe
     }
 }
 
-var strawberryJuice = Juice(require: [(strawberry, 16)])
-var bananaJuice = Juice(require: [(banana, 2)])
-var kiwiJuice = Juice(require: [(kiwi, 3)])
-var pineaplleJucie = Juice(require: [(pineapple, 2)])
-var strawbaJuice = Juice(require: [(strawberry, 10), (banana, 1)])
-var mangoJuice = Juice(require: [(mango, 3)])
-var mangokiwiJuice = Juice(require: [(mango, 2), (kiwi, 1)])
+var strawberryJuice = Juice(setRecipe: [(strawberry, 16)])
+var bananaJuice = Juice(setRecipe: [(banana, 2)])
+var kiwiJuice = Juice(setRecipe: [(kiwi, 3)])
+var pineaplleJucie = Juice(setRecipe: [(pineapple, 2)])
+var strawbaJuice = Juice(setRecipe: [(strawberry, 10), (banana, 1)])
+var mangoJuice = Juice(setRecipe: [(mango, 3)])
+var mangokiwiJuice = Juice(setRecipe: [(mango, 2), (kiwi, 1)])
