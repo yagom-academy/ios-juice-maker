@@ -47,3 +47,15 @@ enum Juice {
 struct FruitInfo {
     let firstName: Fruit, firstCount: Int, secondName: Fruit?, secondCount: Int?
 }
+
+class JuiceMaker {
+    private var Inventory: [Fruit:Int] = [Fruit.strawberry: 0, Fruit.banana: 0, Fruit.pineapple: 0, Fruit.kiwi: 0, Fruit.mango: 0]
+    init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
+        Inventory[Fruit.strawberry] = strawberry
+        Inventory[Fruit.banana] = banana
+        Inventory[Fruit.pineapple] = pineapple
+        Inventory[Fruit.kiwi] = kiwi
+        Inventory[Fruit.mango] = mango
+    }
+    
+}
