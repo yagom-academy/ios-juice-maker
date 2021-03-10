@@ -11,11 +11,11 @@ struct JuiceRecipe {
     private let recipeBook: Recipe
     
     init() {
-        guard let jsonData = jsonString.data(using: .utf8) else { fatalError() }
+        let jsonData = Data(jsonString.utf8)
         self.recipeBook = try! JSONDecoder().decode(Recipe.self, from: jsonData)
     }
     
-    func find(for juice: Juice) -> Recipe.JuiceRecipe? {
+    internal func find(for juice: Juice) -> Recipe.JuiceRecipe? {
         let orderedJuice = juice.name
         var recipe: Recipe.JuiceRecipe?
         
@@ -29,6 +29,7 @@ struct JuiceRecipe {
     }
 }
 
+// MARK: - Codable Struct
 /// json파일을 Codable로 가져오기위한 Struct
 struct Recipe: Codable {
     struct JuiceRecipe: Codable {

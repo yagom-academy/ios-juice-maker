@@ -20,7 +20,7 @@ enum Juice: String {
     case mangoJuice = "망고쥬스"
     case mangoKiwiJuice = "망고키위쥬스"
     
-    var name: String {
+    internal var name: String {
         return self.rawValue
     }
 }
