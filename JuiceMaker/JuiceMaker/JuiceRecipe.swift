@@ -10,7 +10,7 @@ import Foundation
 struct Recipe: Codable {
     struct JuiceRecipe: Codable {
         struct Ingredient: Codable {
-            var fruit: String
+            var fruit: Fruit
             var stock: Int
         }
         
@@ -21,16 +21,16 @@ struct Recipe: Codable {
     var juiceRecipe: [JuiceRecipe]
 }
 
-class JuiceRecipe {
+struct JuiceRecipe {
     private let allRecipe: Recipe
     
     init() {
-        let jsonData = jsonString.data(using: .utf8)!
-        self.allRecipe = try! JSONDecoder().decode(Recipe.self, from: jsonData)
+      guard let jsonData = jsonString.data(using: .utf8) else { fatalError() }
+      self.allRecipe = try! JSONDecoder().decode(Recipe.self, from: jsonData)
     }
     
     func ordered(juice: Juice) -> Recipe.JuiceRecipe? {
-        let orderedJuice = juice.rawValue
+        let orderedJuice = juice.name
         var recipe: Recipe.JuiceRecipe?
 
         for juiceRecipe in allRecipe.juiceRecipe {

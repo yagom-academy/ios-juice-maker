@@ -7,36 +7,31 @@
 
 import Foundation
 
-enum Fruit: String, CaseIterable {
-    case strawberry = "Strawberry"
-    case banana = "Banana"
-    case pineapple = "Pineapple"
-    case kiwi = "Kiwi"
-    case mango = "Mango"
+enum Fruit: String, CaseIterable, Codable {
+  case strawberry, banana, pineapple, kiwi, mango
 }
 
-struct StockOfFruit {
-    private var stock = [Fruit:Int]()
-    
-    init() {
-        for fruit in Fruit.allCases {
-            self.stock[fruit] = 1
-        }
+struct Stock {
+  private var stock = [Fruit: Int]()
+  
+  init() {
+    for fruit in Fruit.allCases {
+      self.stock[fruit] = 1
     }
-
-    func total(type: Fruit) -> Int? {
-        return stock[type]
-    }
-    
-    mutating func use(type: Fruit, count: Int) {
-        stock[type]! -= count
-    }
-    
-    mutating func add(type: Fruit) {
-        stock[type]! += 1
-    }
-    
-    mutating func subtract(type: Fruit) {
-        stock[type]! -= 1
-    }
+  }
+  
+  func count(for fruit: Fruit) -> Int {
+    guard let remainingFruitNumber = stock[fruit] else { fatalError() }
+    return remainingFruitNumber
+  }
+  
+  mutating func subtract(from fruit: Fruit, count: Int = 1) {
+    guard var stockedFruit = stock[fruit] else { fatalError() }
+    stockedFruit -= count
+  }
+  
+  mutating func add(of fruit: Fruit) {
+    guard var stockedFruit = stock[fruit] else { fatalError() }
+    stockedFruit += 1
+  }
 }
