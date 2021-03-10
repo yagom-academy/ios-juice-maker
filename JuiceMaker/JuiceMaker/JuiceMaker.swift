@@ -37,7 +37,7 @@ enum Juice {
 
 enum JuiceMakerError: Error {
     case outOfStock
-    case unknownError
+    case notFoundFruit
 }
 
 struct Stock {
@@ -69,7 +69,7 @@ class JuiceMaker {
     
     func subtractStock(of fruit: Fruit, count: UInt) throws {
         guard let storedFruit = stock.fruits[fruit] else {
-            throw JuiceMakerError.unknownError
+            throw JuiceMakerError.notFoundFruit
         }
         
         if storedFruit < count {
