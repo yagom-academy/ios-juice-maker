@@ -22,7 +22,7 @@ enum Juice {
         case .banana:
             return [.banana: 2]
         case .kiwi:
-            return [.kiwi:3]
+            return [.kiwi: 3]
         case .pineapple:
             return [.pineapple: 2]
         case .strawberryBanana:
@@ -36,8 +36,7 @@ enum Juice {
 }
 
 enum JuiceMakerError: Error {
-    case outOfStock
-    case notFoundFruit
+    case outOfStock, notFoundFruit
 }
 
 struct FruitStock {
