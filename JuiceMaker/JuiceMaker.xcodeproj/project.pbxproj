@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		852B689F25F60C800002DD70 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B689E25F60C800002DD70 /* Stock.swift */; };
+		85AE80DA25F920480040BCD2 /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AE80D925F920480040BCD2 /* Enumeration.swift */; };
 		85B6DA6025F79A750003D676 /* JuiceRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		852B689E25F60C800002DD70 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		85AE80D925F920480040BCD2 /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
 		85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRecipe.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				852B689E25F60C800002DD70 /* Stock.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */,
+				85AE80D925F920480040BCD2 /* Enumeration.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 				85B6DA6025F79A750003D676 /* JuiceRecipe.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
+				85AE80DA25F920480040BCD2 /* Enumeration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,15 +1,11 @@
 //
-//  StockOfFruit.swift
+//  Stock.swift
 //  JuiceMaker
 //
 //  Created by 강경 on 2021/03/08.
 //
 
 import Foundation
-
-enum Fruit: String, CaseIterable, Codable {
-  case strawberry, banana, pineapple, kiwi, mango
-}
 
 struct Stock {
   private var stock = [Fruit: Int]()
