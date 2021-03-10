@@ -59,13 +59,13 @@ class JuiceMaker {
         inventory[Fruit.mango] = mango
     }
     
-    var fruitInventory:[Fruit:Int] {
+    var fruitInventory: [Fruit:Int] {
         get {
             return inventory
         }
     }
     
-    func deductInventory(name:Juice){
+    func deductInventory(name:Juice) {
         switch name {
         case Juice.strawberry:
             inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfStrawberryJuice
@@ -91,8 +91,8 @@ class JuiceMaker {
     func makeFruitJuice(name: Juice) {
         let firstName: Fruit = name.fruitCount.firstName
         let firstCount: Int = name.fruitCount.firstCount
-        let secondName : Fruit? = name.fruitCount.secondName
-        let secondCount : Int? = name.fruitCount.secondCount
+        let secondName: Fruit? = name.fruitCount.secondName
+        let secondCount: Int? = name.fruitCount.secondCount
         
         if firstCount > inventory[firstName]! {
             return
@@ -105,7 +105,7 @@ class JuiceMaker {
         deductInventory(name: name)
     }
     
-    func addFruit(name: Fruit , count: Int) {
+    func addFruit(name: Fruit, count: Int) {
         switch name {
         case Fruit.strawberry:
             inventory[name]! += count
