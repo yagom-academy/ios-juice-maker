@@ -57,5 +57,9 @@ class JuiceMaker {
         Inventory[Fruit.kiwi] = kiwi
         Inventory[Fruit.mango] = mango
     }
-    
+    var fruitInventory:[Fruit:Int] {
+        get {
+            return Inventory
+        }
+    }
 }
