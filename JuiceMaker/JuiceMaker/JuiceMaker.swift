@@ -87,4 +87,21 @@ class JuiceMaker {
             break
         }
     }
+    
+    func makeFruitJuice(name: Juice) {
+        let firstName: Fruit = name.fruitCount.firstName
+        let firstCount: Int = name.fruitCount.firstCount
+        let secondName : Fruit? = name.fruitCount.secondName
+        let secondCount : Int? = name.fruitCount.secondCount
+        
+        if firstCount > Inventory[firstName]! {
+            return
+        }
+        
+        if secondCount != nil && secondName != nil && secondCount! > Inventory[secondName!]! {
+            return
+        }
+        
+        deductInventory(name: name)
+    }
 }
