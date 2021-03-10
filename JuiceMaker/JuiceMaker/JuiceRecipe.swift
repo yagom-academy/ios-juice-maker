@@ -29,7 +29,7 @@ struct JuiceRecipe {
     self.recipeBook = try! JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
-  func find(for : Juice) -> Recipe.JuiceRecipe? {
+  func find(for juice: Juice) -> Recipe.JuiceRecipe? {
     let orderedJuice = juice.name
     var recipe: Recipe.JuiceRecipe?
     

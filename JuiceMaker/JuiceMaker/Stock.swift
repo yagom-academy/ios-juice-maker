@@ -21,17 +21,17 @@ struct Stock {
   }
   
   func count(for fruit: Fruit) -> Int {
-    guard let remainingFruitNumber = stock[fruit] else { fatalError() }
-    return remainingFruitNumber
+    guard let fruitNumberInStock = stock[fruit] else { fatalError() }
+    return fruitNumberInStock
   }
   
   mutating func subtract(for fruit: Fruit, amount: Int = 1) {
-    guard var stockedFruit = stock[fruit] else { fatalError() }
-    stockedFruit -= amount
+    guard var fruitNumberInStock = stock[fruit] else { fatalError() }
+    fruitNumberInStock -= amount
   }
   
-  mutating func add(of fruit: Fruit) {
-    guard var stockedFruit = stock[fruit] else { fatalError() }
-    stockedFruit += 1
+  mutating func add(for fruit: Fruit) {
+    guard var FruitNumberInStock = stock[fruit] else { fatalError() }
+    FruitNumberInStock += 1
   }
 }
