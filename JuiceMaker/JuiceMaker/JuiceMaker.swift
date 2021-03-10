@@ -30,8 +30,8 @@ struct JuiceMaker {
       for: requiredFruits(for: orderedJuice)
     )
     
-    if hasEnoughIngredients(for: stockedFruitsForJuice) {
-      subtractStockedFruits(for: stockedFruitsForJuice)
+    if hasEnoughIngredients(in: stockedFruitsForJuice) {
+      subtractStockedFruits(from: stockedFruitsForJuice)
       printOrderCompleted(for: orderedJuice)
     } else {
       printNotEnoughIngredients()
@@ -66,7 +66,7 @@ struct JuiceMaker {
     return stockedFruits
   }
   
-  private func hasEnoughIngredients(for stockedFruits: [Fruit: Int]) -> Bool {
+  private func hasEnoughIngredients(in stockedFruits: [Fruit: Int]) -> Bool {
     if stockedFruits.isEmpty {
       return false
     } else {
@@ -74,7 +74,7 @@ struct JuiceMaker {
     }
   }
   
-  private mutating func subtractStockedFruits(for stockedFruits: [Fruit: Int]) {
+  private mutating func subtractStockedFruits(from stockedFruits: [Fruit: Int]) {
     for (fruit, quantity) in stockedFruits {
       stock.subtract(for: fruit, amount: quantity)
     }
