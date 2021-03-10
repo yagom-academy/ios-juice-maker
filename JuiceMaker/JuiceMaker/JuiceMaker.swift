@@ -10,14 +10,28 @@ struct FruitInfo {
     let firstName: Fruit, firstCount: Int, secondName: Fruit?, secondCount: Int?
 }
 
-enum Juice: String {
-    case strawberry = "딸기 쥬스"
-    case banana = "바나나 쥬스"
-    case pineapple = "파인애플 쥬스"
-    case kiwi = "키위 쥬스"
-    case mango = "망고 쥬스"
-    case strawberryBanana = "딸바 쥬스"
-    case mangoKiwi = "망고키위 쥬스"
+enum Juice {
+    case strawberry, banana, pineapple, kiwi, mango, strawberryBanana, mangoKiwi
+    var fruitCount : FruitInfo {
+        switch self {
+        case .strawberry:
+            return FruitInfo(firstName:Fruit.strawberry, firstCount: 16, secondName: nil, secondCount: nil)
+        case .banana:
+            return FruitInfo(firstName:Fruit.banana, firstCount: 2, secondName: nil, secondCount: nil)
+        case .pineapple:
+            return FruitInfo(firstName:Fruit.pineapple, firstCount: 2, secondName: nil, secondCount: nil)
+        case .kiwi:
+            return FruitInfo(firstName:Fruit.kiwi, firstCount: 3, secondName: nil, secondCount: nil)
+        case .mango:
+            return FruitInfo(firstName:Fruit.mango, firstCount: 3, secondName: nil, secondCount: nil)
+        case .strawberryBanana:
+            return FruitInfo(firstName:Fruit.strawberry, firstCount: 10, secondName: Fruit.banana, secondCount: 1)
+        case .mangoKiwi:
+            return FruitInfo(firstName:Fruit.mango, firstCount: 2, secondName: Fruit.kiwi, secondCount: 1)
+        default:
+            break
+        }
+    }
 }
 
 enum Fruit: String {
