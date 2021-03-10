@@ -34,12 +34,12 @@ enum Juice {
     }
 }
 
-enum Fruit: String {
-    case strawberry = "strawberry"
-    case banana = "banana"
-    case pineapple = "pineapple"
-    case kiwi = "kiwi"
-    case mango = "mango"
+enum Fruit {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
 }
 
 /// 쥬스 메이커 타입 
