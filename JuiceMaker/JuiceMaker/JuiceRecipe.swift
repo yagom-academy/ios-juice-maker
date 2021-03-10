@@ -27,7 +27,7 @@ struct JuiceRecipe {
   private let recipeBook: Recipe
   
   init() {
-    guard let jsonData = jsonString.data(using: .utf8) else { fatalError() }
+    let jsonData = Data(jsonString.utf8)
     self.recipeBook = try! JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
