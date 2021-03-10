@@ -49,40 +49,40 @@ struct FruitInfo {
 }
 
 class JuiceMaker {
-    private var Inventory: [Fruit:Int] = [Fruit.strawberry: 0, Fruit.banana: 0, Fruit.pineapple: 0, Fruit.kiwi: 0, Fruit.mango: 0]
+    private var inventory: [Fruit:Int] = [Fruit.strawberry: 0, Fruit.banana: 0, Fruit.pineapple: 0, Fruit.kiwi: 0, Fruit.mango: 0]
     
     init(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) {
-        Inventory[Fruit.strawberry] = strawberry
-        Inventory[Fruit.banana] = banana
-        Inventory[Fruit.pineapple] = pineapple
-        Inventory[Fruit.kiwi] = kiwi
-        Inventory[Fruit.mango] = mango
+        inventory[Fruit.strawberry] = strawberry
+        inventory[Fruit.banana] = banana
+        inventory[Fruit.pineapple] = pineapple
+        inventory[Fruit.kiwi] = kiwi
+        inventory[Fruit.mango] = mango
     }
     
     var fruitInventory:[Fruit:Int] {
         get {
-            return Inventory
+            return inventory
         }
     }
     
     func deductInventory(name:Juice){
         switch name {
         case Juice.strawberry:
-            Inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfStrawberryJuice
+            inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfStrawberryJuice
         case Juice.banana:
-            Inventory[Fruit.banana]! -= DeductionCount.bananaOfBananaJuice
+            inventory[Fruit.banana]! -= DeductionCount.bananaOfBananaJuice
         case Juice.kiwi:
-            Inventory[Fruit.kiwi]! -= DeductionCount.kiwiOfKiwiJuice
+            inventory[Fruit.kiwi]! -= DeductionCount.kiwiOfKiwiJuice
         case Juice.pineapple:
-            Inventory[Fruit.pineapple]! -= DeductionCount.pineappleOfPineappleJuice
+            inventory[Fruit.pineapple]! -= DeductionCount.pineappleOfPineappleJuice
         case Juice.strawberryBanana:
-            Inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfstrawberryBananaJuice
-            Inventory[Fruit.banana]! -= DeductionCount.bananaOfstrawberryBananaJuice
+            inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfstrawberryBananaJuice
+            inventory[Fruit.banana]! -= DeductionCount.bananaOfstrawberryBananaJuice
         case Juice.mango:
-            Inventory[Fruit.mango]! -= DeductionCount.mangoOfMangoJuice
+            inventory[Fruit.mango]! -= DeductionCount.mangoOfMangoJuice
         case Juice.mangoKiwi:
-            Inventory[Fruit.mango]! -= DeductionCount.mangoOfMangoKiwiJuice
-            Inventory[Fruit.kiwi]! -= DeductionCount.kiwiOfMangoKiwiJuice
+            inventory[Fruit.mango]! -= DeductionCount.mangoOfMangoKiwiJuice
+            inventory[Fruit.kiwi]! -= DeductionCount.kiwiOfMangoKiwiJuice
         default:
             break
         }
@@ -94,11 +94,11 @@ class JuiceMaker {
         let secondName : Fruit? = name.fruitCount.secondName
         let secondCount : Int? = name.fruitCount.secondCount
         
-        if firstCount > Inventory[firstName]! {
+        if firstCount > inventory[firstName]! {
             return
         }
         
-        if secondCount != nil && secondName != nil && secondCount! > Inventory[secondName!]! {
+        if secondCount != nil && secondName != nil && secondCount! > inventory[secondName!]! {
             return
         }
         
@@ -108,15 +108,15 @@ class JuiceMaker {
     func addFruit(name: Fruit , count: Int) {
         switch name {
         case Fruit.strawberry:
-            Inventory[name]! += count
+            inventory[name]! += count
         case Fruit.banana:
-            Inventory[name]! += count
+            inventory[name]! += count
         case Fruit.pineapple:
-            Inventory[name]! += count
+            inventory[name]! += count
         case Fruit.kiwi:
-            Inventory[name]! += count
+            inventory[name]! += count
         case Fruit.mango:
-            Inventory[name]! += count
+            inventory[name]! += count
         default:
             break
         }
