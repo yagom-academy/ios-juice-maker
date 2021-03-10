@@ -61,9 +61,9 @@ class JuiceMaker {
         }
     }
     
-    func addStock(of fruit: Fruit) {
+    func addStock(of fruit: Fruit, count: UInt) {
         if let storedFruit = stock.remainedFruit[fruit] {
-            stock.remainedFruit[fruit] = storedFruit + 1
+            stock.remainedFruit[fruit] = storedFruit + count
         }
     }
     
