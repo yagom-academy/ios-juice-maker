@@ -13,8 +13,8 @@ class JuiceMaker {
         return result
     }
     
-    func makeFruitJuice(juice: Juice) -> String {
-        let recipe: [(Fruit, Int)] = juice.recipe
+    func makeFruitJuice(object: Juice) -> String {
+        let recipe: [(Fruit, Int)] = object.recipe
         var messege: String = ""
         
         for (fruit, needStock) in recipe {
@@ -23,7 +23,7 @@ class JuiceMaker {
                 break
             } else {
                 fruit.minusStock(count: needStock)
-                messege = "\(juice) 쥬스 나왔습니다! 맛있게 드세요!"
+                messege = "\(object) 쥬스 나왔습니다! 맛있게 드세요!"
             }
         }
         
