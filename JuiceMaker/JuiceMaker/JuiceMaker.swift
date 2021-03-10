@@ -30,11 +30,11 @@ class JuiceMaker {
         return messege
     }
     
-    func plusFruitStock(fruit: Fruit, addStock: Int) {
-        fruit.plusStock(count: addStock)
+    func plusNumberToStock(fruit: Fruit, number: Int) {
+        fruit.plusStock(count: number)
     }
     
-    func minusFruitStock(fruit: Fruit, revertStock: Int) {
-        fruit.minusStock(count: revertStock)
+    func minusNumberToStock(fruit: Fruit, number: Int) {
+        fruit.minusStock(count: number)
     }
 }
