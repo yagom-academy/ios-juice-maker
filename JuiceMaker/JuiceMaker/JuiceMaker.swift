@@ -6,7 +6,6 @@
 
 import Foundation
 
-/// 쥬스 메이커 타입
 class JuiceMaker {
     func returnFruitStock(fruit: Fruit) -> Int {
         let result: Int = fruit.stock
