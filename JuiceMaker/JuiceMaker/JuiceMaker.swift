@@ -65,38 +65,38 @@ class JuiceMaker {
         }
     }
     
-    func minusInventory(fruit: Fruit, count: Int){
-        guard let oldValue = inventory[fruit] else {
+    func minusInventory(name: Fruit, count: Int){
+        guard let oldValue = inventory[name] else {
             return
         }
-        inventory.updateValue(oldValue - count, forKey: fruit)
+        inventory.updateValue(oldValue - count, forKey: name)
     }
     
-    func plusInventory(fruit: Fruit, Count: Int){
+    func plusInventory(fruit: Fruit, count: Int){
         guard let oldValue = inventory[fruit] else {
             return
         }
-        inventory.updateValue(oldValue + Count, forKey: fruit)
+        inventory.updateValue(oldValue + count, forKey: fruit)
     }
     
     func deductInventory(name: Juice) {
         switch name {
         case Juice.strawberry:
-            minusInventory(fruit: Fruit.strawberry, count: DeductionCount.strawberryOfStrawberryJuice)
+            minusInventory(name: Fruit.strawberry, count: DeductionCount.strawberryOfStrawberryJuice)
         case Juice.banana:
-            minusInventory(fruit: Fruit.banana, count: DeductionCount.bananaOfBananaJuice)
+            minusInventory(name: Fruit.banana, count: DeductionCount.bananaOfBananaJuice)
         case Juice.kiwi:
-            minusInventory(fruit: Fruit.kiwi, count: DeductionCount.kiwiOfKiwiJuice)
+            minusInventory(name: Fruit.kiwi, count: DeductionCount.kiwiOfKiwiJuice)
         case Juice.pineapple:
-            minusInventory(fruit: Fruit.pineapple, count: DeductionCount.pineappleOfPineappleJuice)
+            minusInventory(name: Fruit.pineapple, count: DeductionCount.pineappleOfPineappleJuice)
         case Juice.strawberryBanana:
-            minusInventory(fruit: Fruit.strawberry, count: DeductionCount.strawberryOfstrawberryBananaJuice)
-            minusInventory(fruit: Fruit.banana, count: DeductionCount.bananaOfstrawberryBananaJuice)
+            minusInventory(name: Fruit.strawberry, count: DeductionCount.strawberryOfstrawberryBananaJuice)
+            minusInventory(name: Fruit.banana, count: DeductionCount.bananaOfstrawberryBananaJuice)
         case Juice.mango:
-            minusInventory(fruit: Fruit.mango, count: DeductionCount.mangoOfMangoJuice)
+            minusInventory(name: Fruit.mango, count: DeductionCount.mangoOfMangoJuice)
         case Juice.mangoKiwi:
-            minusInventory(fruit: Fruit.mango, count: DeductionCount.mangoOfMangoKiwiJuice)
-            minusInventory(fruit: Fruit.kiwi, count: DeductionCount.kiwiOfMangoKiwiJuice)
+            minusInventory(name: Fruit.mango, count: DeductionCount.mangoOfMangoKiwiJuice)
+            minusInventory(name: Fruit.kiwi, count: DeductionCount.kiwiOfMangoKiwiJuice)
         default:
             break
         }
@@ -119,20 +119,4 @@ class JuiceMaker {
         deductInventory(name: name)
     }
     
-    func addFruit(name: Fruit, count: Int) {
-        switch name {
-        case Fruit.strawberry:
-            inventory[name]! += count
-        case Fruit.banana:
-            inventory[name]! += count
-        case Fruit.pineapple:
-            inventory[name]! += count
-        case Fruit.kiwi:
-            inventory[name]! += count
-        case Fruit.mango:
-            inventory[name]! += count
-        default:
-            break
-        }
-    }
 }
