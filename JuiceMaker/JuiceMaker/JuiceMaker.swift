@@ -65,33 +65,38 @@ class JuiceMaker {
         }
     }
     
-    func minusInventory(fruit: Fruit, deductionCount: Int){
+    func minusInventory(fruit: Fruit, count: Int){
         guard let oldValue = inventory[fruit] else {
             return
         }
-        inventory.updateValue(oldValue - deductionCount, forKey: fruit)
+        inventory.updateValue(oldValue - count, forKey: fruit)
     }
     
-    
+    func plusInventory(fruit: Fruit, Count: Int){
+        guard let oldValue = inventory[fruit] else {
+            return
+        }
+        inventory.updateValue(oldValue + Count, forKey: fruit)
+    }
     
     func deductInventory(name: Juice) {
         switch name {
         case Juice.strawberry:
-            minusInventory(fruit: Fruit.strawberry, deductionCount: DeductionCount.strawberryOfStrawberryJuice)
+            minusInventory(fruit: Fruit.strawberry, count: DeductionCount.strawberryOfStrawberryJuice)
         case Juice.banana:
-            minusInventory(fruit: Fruit.banana, deductionCount: DeductionCount.bananaOfBananaJuice)
+            minusInventory(fruit: Fruit.banana, count: DeductionCount.bananaOfBananaJuice)
         case Juice.kiwi:
-            minusInventory(fruit: Fruit.kiwi, deductionCount: DeductionCount.kiwiOfKiwiJuice)
+            minusInventory(fruit: Fruit.kiwi, count: DeductionCount.kiwiOfKiwiJuice)
         case Juice.pineapple:
-            minusInventory(fruit: Fruit.pineapple, deductionCount: DeductionCount.pineappleOfPineappleJuice)
+            minusInventory(fruit: Fruit.pineapple, count: DeductionCount.pineappleOfPineappleJuice)
         case Juice.strawberryBanana:
-            minusInventory(fruit: Fruit.strawberry, deductionCount: DeductionCount.strawberryOfstrawberryBananaJuice)
-            minusInventory(fruit: Fruit.banana, deductionCount: DeductionCount.bananaOfstrawberryBananaJuice)
+            minusInventory(fruit: Fruit.strawberry, count: DeductionCount.strawberryOfstrawberryBananaJuice)
+            minusInventory(fruit: Fruit.banana, count: DeductionCount.bananaOfstrawberryBananaJuice)
         case Juice.mango:
-            minusInventory(fruit: Fruit.mango, deductionCount: DeductionCount.mangoOfMangoJuice)
+            minusInventory(fruit: Fruit.mango, count: DeductionCount.mangoOfMangoJuice)
         case Juice.mangoKiwi:
-            minusInventory(fruit: Fruit.mango, deductionCount: DeductionCount.mangoOfMangoKiwiJuice)
-            minusInventory(fruit: Fruit.kiwi, deductionCount: DeductionCount.kiwiOfMangoKiwiJuice)
+            minusInventory(fruit: Fruit.mango, count: DeductionCount.mangoOfMangoKiwiJuice)
+            minusInventory(fruit: Fruit.kiwi, count: DeductionCount.kiwiOfMangoKiwiJuice)
         default:
             break
         }
