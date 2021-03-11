@@ -6,35 +6,4 @@
 
 import Foundation
 
-class JuiceMaker {
-    func returnFruitStock(fruit: Fruit) -> Int {
-        let result: Int = fruit.stock
-        
-        return result
-    }
-    
-    func makeFruitJuice(object: Juice) -> String {
-        let recipe: [(Fruit, Int)] = object.recipe
-        var messege: String = ""
-        
-        for (fruit, needStock) in recipe {
-            if fruit.stock < needStock {
-                messege = "재료가 모자라요. 재고를 수정할까요?"
-                break
-            } else {
-                fruit.minusStock(count: needStock)
-                messege = "\(object) 쥬스 나왔습니다! 맛있게 드세요!"
-            }
-        }
-        
-        return messege
-    }
-    
-    func plusNumberToStock(fruit: Fruit, number: Int) {
-        fruit.plusStock(count: number)
-    }
-    
-    func minusNumberToStock(fruit: Fruit, number: Int) {
-        fruit.minusStock(count: number)
-    }
-}
+
