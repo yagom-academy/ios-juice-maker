@@ -8,11 +8,8 @@
 import Foundation
 
 struct JuiceMaker {
- 
-    func makeJuice(fruit: Fruit, requiredAmount: Int) {
-        if fruit.quantity >= requiredAmount {
-            fruit.useStock(amount: requiredAmount)
-        }
+    func makeJuice(fruit: inout Fruit, requiredAmount: Int) {
+            fruit.useStock(amount: 16)
     }
     
 }

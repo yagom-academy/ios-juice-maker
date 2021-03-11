@@ -9,7 +9,7 @@ import Foundation
 
 struct Fruit {
     let name: String
-    private(set) var quantity: Int = 10
+    var quantity: Int = 10
 
     mutating func useStock(amount: Int) {
         quantity -= amount
@@ -21,6 +21,7 @@ struct Fruit {
         quantity -= 1
     }
 }
+
 var strawberry: Fruit = Fruit(name: "딸기")
 var banana: Fruit = Fruit(name: "바나나")
 var kiwi: Fruit = Fruit(name: "키위")
