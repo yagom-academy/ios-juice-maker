@@ -39,7 +39,7 @@ struct JuiceRecipe {
 struct Recipe: Codable {
   struct JuiceRecipe: Codable {
     struct Ingredient: Codable {
-      var fruitName: Fruit
+      var fruitName: String
       var quantity: Int
     }
     
@@ -52,88 +52,87 @@ struct Recipe: Codable {
 
 // MARK: - json파일로 따로 빼낼예정
 private let jsonString = """
-{
-    "juiceRecipe":
-    [
-        {
-            "name": "딸기쥬스",
-            "ingredient":
-            [
-                {
-                    "fruit": "Strawberry",
-                    "stock": 16
-                }
-            ]
-        },
-        {
-            "name": "바나나쥬스",
-            "ingredient":
-            [
-                {
-                    "fruit": "Banana",
-                    "stock": 2
-                }
-            ]
-        },
-        {
-            "name": "키위쥬스",
-            "ingredient":
-            [
-                {
-                    "fruit": "Kiwi",
-                    "stock": 3
-                }
-            ]
-        },
-        {
-            "name": "파인애플쥬스",
-            "ingredient":
-            [
-                {
-                    "fruit": "Pineapple",
-                    "stock": 2
-                }
-            ]
-        },
-        {
-            "name": "딸바쥬스",
-            "ingredient":
-            [
-                {
-                    "fruit": "Strawberry",
-                    "stock": 10
-                },
-                {
-                    "fruit": "Banana",
-                    "stock": 1
-                }
-            ]
-        },
-        {
-            "name": "망고쥬스",
-            "ingredient":
-            [
-                {
-                    "fruit": "Mango",
-                    "stock": 3
-                }
-            ]
-        },
-        {
-            "name": "망고키위쥬스",
-            "ingredient":
-            [
-                {
-                    "fruit": "Mango",
-                    "stock": 2
-                },
-                {
-                    "fruit": "Kiwi",
-                    "stock": 1
-                }
-            ]
-        }
-    ]
-}
+    {
+        "juiceRecipes":
+        [
+            {
+                "name": "딸기쥬스",
+                "ingredient":
+                [
+                    {
+                        "fruitName": "Strawberry",
+                        "quantity": 16
+                    }
+                ]
+            },
+            {
+                "name": "바나나쥬스",
+                "ingredient":
+                [
+                    {
+                        "fruitName": "Banana",
+                        "quantity": 2
+                    }
+                ]
+            },
+            {
+                "name": "키위쥬스",
+                "ingredient":
+                [
+                    {
+                        "fruitName": "Kiwi",
+                        "quantity": 3
+                    }
+                ]
+            },
+            {
+                "name": "파인애플쥬스",
+                "ingredient":
+                [
+                    {
+                        "fruitName": "Pineapple",
+                        "quantity": 2
+                    }
+                ]
+            },
+            {
+                "name": "딸바쥬스",
+                "ingredient":
+                [
+                    {
+                        "fruitName": "Strawberry",
+                        "quantity": 10
+                    },
+                    {
+                        "fruitName": "Banana",
+                        "quantity": 1
+                    }
+                ]
+            },
+            {
+                "name": "망고쥬스",
+                "ingredient":
+                [
+                    {
+                        "fruitName": "Mango",
+                        "quantity": 3
+                    }
+                ]
+            },
+            {
+                "name": "망고키위쥬스",
+                "ingredient":
+                [
+                    {
+                        "fruitName": "Mango",
+                        "quantity": 2
+                    },
+                    {
+                        "fruitName": "Kiwi",
+                        "quantity": 1
+                    }
+                ]
+            }
+        ]
+    }
 """
-
