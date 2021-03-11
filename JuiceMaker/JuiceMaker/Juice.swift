@@ -10,7 +10,7 @@ typealias FruitAndNeedAmount = (Fruit: Fruit, needAmount: Int)
 class Juice {
     let requirements: [FruitAndNeedAmount]
     
-    init(require: [FruitAndNeedAmount]) {
+    init(_ require: [FruitAndNeedAmount]) {
         self.requirements = require
     }
     
@@ -25,11 +25,11 @@ class Juice {
 }
 
 enum JuiceType {
-    static let strawberryJuice = Juice(require: Requirements.strawberryRequirement)
-    static let bananaJuice = Juice(require: Requirements.bananaRequirement)
-    static let kiwiJuice = Juice(require: Requirements.kiwiRequirement)
-    static let pineappleJuice = Juice(require: Requirements.pineappleRequirement)
-    static let strawBananaJuice = Juice(require: Requirements.strawBananaRequirement)
-    static let mangoJuice = Juice(require: Requirements.mangoRequirement)
-    static let mangoKiwiJuice = Juice(require: Requirements.mangoKiwiRequirement)
+    static let strawberryJuice = Juice(Requirements.strawberry)
+    static let bananaJuice = Juice(Requirements.banana)
+    static let kiwiJuice = Juice(Requirements.kiwi)
+    static let pineappleJuice = Juice(Requirements.pineapple)
+    static let strawBananaJuice = Juice(Requirements.strawBanana)
+    static let mangoJuice = Juice(Requirements.mango)
+    static let mangoKiwiJuice = Juice(Requirements.mangoKiwi)
 }
