@@ -146,21 +146,7 @@
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
-                                                <fragment content="딸기쥬스">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" metaFont="system" size="18"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=" ">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="18" name="SFPro-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="주문">
+                                                <fragment content="딸기쥬스 주문">
                                                     <attributes>
                                                         <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <font key="NSFont" metaFont="system" size="18"/>
@@ -186,7 +172,7 @@
                                                 <fragment content=" ">
                                                     <attributes>
                                                         <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="18" name="SFPro-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -232,7 +218,7 @@
                                                 <fragment content=" ">
                                                     <attributes>
                                                         <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="18" name="SFPro-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -263,7 +249,7 @@
                                                 <fragment content=" ">
                                                     <attributes>
                                                         <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="18" name="SFPro-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -336,6 +322,13 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outletCollection property="fruitStockLabels" destination="1Bj-sF-lBV" collectionClass="NSMutableArray" id="1wk-zU-dnM"/>
+                        <outletCollection property="fruitStockLabels" destination="CIW-d4-Dag" collectionClass="NSMutableArray" id="mNz-tR-GiA"/>
+                        <outletCollection property="fruitStockLabels" destination="GIC-Gc-idQ" collectionClass="NSMutableArray" id="aiL-Vq-bYt"/>
+                        <outletCollection property="fruitStockLabels" destination="hD2-19-9Qq" collectionClass="NSMutableArray" id="11J-I9-sEi"/>
+                        <outletCollection property="fruitStockLabels" destination="Vdu-Yp-I00" collectionClass="NSMutableArray" id="943-kx-wYS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
