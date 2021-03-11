@@ -78,11 +78,11 @@ class JuiceMaker {
         return true
 }
     
-    func madeFruitsJuice(juice: FruitsJuice) -> String {
-        switch juice {
+    func madeFruitsJuice(name: FruitsJuice) -> String {
+        switch name {
         case .strawberryJuice:
             if checkFruitStock(of: .strawberryJuice) {
-                for ingredient in juice.jucieRecipe().Ingredients {
+                for ingredient in name.jucieRecipe().Ingredients {
                     ingredient.fruit.reducefruit(amount: ingredient.amount)
                 }
                 return successMessage
@@ -91,7 +91,7 @@ class JuiceMaker {
             }
         case .bananaJuice:
             if checkFruitStock(of: .bananaJuice) {
-                for ingredient in juice.jucieRecipe().Ingredients {
+                for ingredient in name.jucieRecipe().Ingredients {
                     ingredient.fruit.reducefruit(amount: ingredient.amount)
                 }
                 return successMessage
@@ -100,7 +100,7 @@ class JuiceMaker {
             }
         case .pineappleJuice:
             if checkFruitStock(of: .pineappleJuice) {
-                for ingredient in juice.jucieRecipe().Ingredients {
+                for ingredient in name.jucieRecipe().Ingredients {
                     ingredient.fruit.reducefruit(amount: ingredient.amount)
                 }
                 return successMessage
@@ -109,7 +109,7 @@ class JuiceMaker {
             }
         case .kiwiJuice:
             if checkFruitStock(of: .kiwiJuice) {
-                for ingredient in juice.jucieRecipe().Ingredients {
+                for ingredient in name.jucieRecipe().Ingredients {
                     ingredient.fruit.reducefruit(amount: ingredient.amount)
                 }
                 return successMessage
@@ -118,7 +118,7 @@ class JuiceMaker {
             }
         case .mangoJuice:
             if checkFruitStock(of: .mangoJuice) {
-                for ingredient in juice.jucieRecipe().Ingredients {
+                for ingredient in name.jucieRecipe().Ingredients {
                     ingredient.fruit.reducefruit(amount: ingredient.amount)
                 }
                 return successMessage
@@ -127,7 +127,7 @@ class JuiceMaker {
             }
         case .mangoKiwiJuice:
             if checkFruitStock(of: .mangoKiwiJuice) {
-                for ingredient in juice.jucieRecipe().Ingredients {
+                for ingredient in name.jucieRecipe().Ingredients {
                     ingredient.fruit.reducefruit(amount: ingredient.amount)
                 }
                 return successMessage
@@ -136,7 +136,7 @@ class JuiceMaker {
             }
         case .strawberryBananaJuice:
             if checkFruitStock(of: .strawberryBananaJuice) {
-                for ingredient in juice.jucieRecipe().Ingredients {
+                for ingredient in name.jucieRecipe().Ingredients {
                     ingredient.fruit.reducefruit(amount: ingredient.amount)
                 }
                 return successMessage
