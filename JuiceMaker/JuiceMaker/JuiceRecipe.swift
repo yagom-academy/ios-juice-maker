@@ -7,6 +7,21 @@
 
 import Foundation
 
+// MARK: - Recipe Type for Defining Decoded JSON
+struct Recipe: Codable {
+  struct JuiceRecipe: Codable {
+    struct Ingredient: Codable {
+      var fruitName: Fruit
+      var quantity: Int
+    }
+    
+    var name: String
+    var ingredient: [Ingredient]
+  }
+  
+  var juiceRecipes: [JuiceRecipe]
+}
+
 // MARK: - JuiceRecipe Type
 struct JuiceRecipe {
   private let wrapedRecipeBook: Recipe?
@@ -16,7 +31,7 @@ struct JuiceRecipe {
     self.wrapedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
-  internal func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
+  func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
     let orderedJuice = juice.name
     var recipe: Recipe.JuiceRecipe?
     
