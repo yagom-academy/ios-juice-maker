@@ -16,7 +16,7 @@ enum Juice: String, Codable {
   case mangoJuice = "망고쥬스"
   case mangoKiwiJuice = "망고키위쥬스"
   
-  internal var name: String {
+  var name: String {
     return rawValue
   }
 }

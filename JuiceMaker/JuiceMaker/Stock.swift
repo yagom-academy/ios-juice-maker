@@ -29,14 +29,14 @@ struct Stock {
     return fruitNumberInStock
   }
   
-  internal mutating func subtract(for fruit: Fruit, amount: Int = 1) throws {
+  mutating func subtract(for fruit: Fruit, amount: Int = 1) throws {
     guard var fruitNumberInStock = stock[fruit] else {
       throw FruitError.invalidFruit
     }
     fruitNumberInStock -= amount
   }
   
-  internal mutating func add(for fruit: Fruit) throws {
+  mutating func add(for fruit: Fruit) throws {
     guard var FruitNumberInStock = stock[fruit] else {
       throw FruitError.invalidFruit
     }

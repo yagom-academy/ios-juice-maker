@@ -11,12 +11,12 @@ import Foundation
 struct Recipe: Codable {
   struct JuiceRecipe: Codable {
     struct Ingredient: Codable {
-      internal var fruitName: Fruit
-      internal var quantity: Int
+      var fruitName: Fruit
+      var quantity: Int
     }
     
-    internal var name: String
-    internal var ingredient: [Ingredient]
+    var name: String
+    var ingredient: [Ingredient]
   }
   
   var juiceRecipes: [JuiceRecipe]
@@ -31,7 +31,7 @@ struct JuiceRecipe {
     self.recipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
-  internal func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
+  func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
     let orderedJuice = juice.name
     var recipe: Recipe.JuiceRecipe?
     
