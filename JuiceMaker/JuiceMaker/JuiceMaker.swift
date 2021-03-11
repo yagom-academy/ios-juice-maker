@@ -15,49 +15,69 @@ class Fruit {
         self.fruitAmount = amount
     }
     
-    internal func stockedFruit() -> Int {
-        return self.fruitAmount
-    }
-    
-    internal func addfruit() {
+    func addfruit() {
         self.fruitAmount += 1
     }
     
-    internal func reducefruit(amount: Int) {
+    func reducefruit(amount: Int) {
         self.fruitAmount -= amount
     }
 }
 
+var strawberry = Fruit(name: "딸기", amount: 10)
+var banana = Fruit(name: "바나나", amount: 10)
+var pineapple = Fruit(name: "파일애플", amount: 10)
+var kiwi = Fruit(name: "키위", amount: 10)
+var mango = Fruit(name: "망고", amount: 10)
+
 enum FruitsJuice {
     case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice, strawberryBananaJuice, mangoKiwiJuice
+    
+    func jucieRecipe() -> JuiceIngredients {
+//        var result =
+        switch self {
+        case .strawberryJuice:
+            return JuiceIngredients(ingredients: [(strawberry,16)])
+        case .bananaJuice:
+            return JuiceIngredients(ingredients: [(banana,2)])
+        case .pineappleJuice:
+            return JuiceIngredients(ingredients: [(pineapple,2)])
+        case .kiwiJuice:
+            return JuiceIngredients(ingredients: [(kiwi,3)])
+        case .mangoJuice:
+            return JuiceIngredients(ingredients: [(mango,3)])
+        case .strawberryBananaJuice:
+            return JuiceIngredients(ingredients: [(strawberry,10), (banana,1)])
+        case .mangoKiwiJuice:
+            return JuiceIngredients(ingredients: [(mango,2), (kiwi,2)])
+        
+        }
+    }
+}
+
+typealias ingredient = (Fruit, Int)
+
+class JuiceIngredients {
+    var Ingredients: [ingredient]
+    
+    init(ingredients: [ingredient]) {
+        self.Ingredients = ingredients
+    }
 }
 
 class JuiceMaker {
-    private var strawberry = Fruit(name: "딸기", amount: 10)
-    private var banana = Fruit(name: "바나나", amount: 10)
-    private var pineapple = Fruit(name: "파일애플", amount: 10)
-    private var kiwi = Fruit(name: "키위", amount: 10)
-    private var mango = Fruit(name: "망고", amount: 10)
-    private var fruitStock: [String : Int] = [:]
-    
-    // 과일 재고 확인
-    internal func remainedFruitsStock() -> [String : Int]{
-        self.fruitStock =
-            [
-                strawberry.fruitName: strawberry.fruitAmount,
-                banana.fruitName: banana.fruitAmount,
-                pineapple.fruitName: pineapple.fruitAmount,
-                kiwi.fruitName: kiwi.fruitAmount,
-                mango.fruitName: mango.fruitAmount]
-        
-        return fruitStock
+    // 쥬스 제조
+//    func checkFruitStock(something: FruitsJuice, other: Fruit) -> Bool {
+//        if something.jucieRecipe().Ingredients < other.fruitAmount {
+//
+//        }
     }
     
-    // 쥬스 제조
     func produceFruitsJuice(juice: FruitsJuice) {
         switch juice {
         case .strawberryJuice:
-            strawberry.reducefruit(amount: 16)
+            if true { // 재고가 충분한지 -> Bool
+            }           // true를 반환하면 JuiceIngredients 개수만큼 감소(reduceFruit)
         case .bananaJuice:
             banana.reducefruit(amount: 2)
         case .pineappleJuice:
@@ -74,6 +94,5 @@ class JuiceMaker {
             banana.reducefruit(amount: 1)
         }
     }
-    
 }
 
