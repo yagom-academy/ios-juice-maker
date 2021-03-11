@@ -6,15 +6,34 @@
 
 import Foundation
 
-struct Recipe {
-    typealias Recipe = [(fruit: String, requiredQuantity: Int)]
+struct JuiceRecipe {
+    typealias Recipe = [ingredient]
     
-    let strawberryJuiceRecipe: Recipe = [("딸기", 16)]
-    let bananaJuiceRecipe: Recipe = [("바나나", 2)]
-    let kiwiJuiceRecipe: Recipe = [("키위", 3)]
-    let pineappleJuiceRecipe: Recipe = [("파인애플", 2)]
-    let strawberryBananaJuiceRecipe: Recipe = [("딸기", 10), ("바나나", 1) ]
-    let mangoJuiceRecipe: Recipe = [("망고", 3)]
-    let mangoKiwiJuiceRecipe: Recipe = [("망고", 2), ("키위", 1)]
+    static let strawberryJuiceRecipe: Recipe = [ingredient("딸기", 16)]
+    static let bananaJuiceRecipe: Recipe = [ingredient("바나나", 2)]
+    static let kiwiJuiceRecipe: Recipe = [ingredient("키위", 3)]
+    static let pineappleJuiceRecipe: Recipe = [ingredient("파인애플", 2)]
+    static let strawberryBananaJuiceRecipe: Recipe = [ingredient("딸기", 10), ingredient("바나나", 1) ]
+    static let mangoJuiceRecipe: Recipe = [ingredient("망고", 3)]
+    static let mangoKiwiJuiceRecipe: Recipe = [ingredient("망고", 2), ingredient("키위", 1)]
 }
 
+struct ingredient: Equatable {
+    
+    let fruit: String
+    let requiredQuantity: Int
+    let a: A
+    
+    init(_ fruit: String, _ requiredQuantity: Int) {
+        self.fruit = fruit
+        self.requiredQuantity = requiredQuantity
+        self.a = A()
+    }
+}
+class A: Equatable {
+    static func == (lhs: A, rhs: A) -> Bool {
+        return true
+    }
+    
+    
+}

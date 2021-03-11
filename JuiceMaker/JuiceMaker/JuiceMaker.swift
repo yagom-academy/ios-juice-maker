@@ -2,14 +2,24 @@
 //  JuiceMaker.swift
 //  JuiceMaker
 //
-//  Created by 오인탁 on 2021/03/11.
+//  Created by Tak on 2021/03/11.
 //
 
 import Foundation
 
+enum AppError: Error {
+    case outOfStock
+    case unknownError
+}
 struct JuiceMaker {
-    func makeJuice(fruit: inout Fruit, requiredAmount: Int) {
-            fruit.useStock(amount: 16)
+    func makeJuice(juice: JuiceRecipe.Recipe) throws {
+        
+        switch juice {
+        case JuiceRecipe.strawberryJuiceRecipe:
+            if FruitType.strawberry.quantity >= JuiceRecipe.strawberryJuiceRecipe[0].requiredQuantity {
+                FruitType.strawberry.useStock(amount: JuiceRecipe.strawberryJuiceRecipe[0].requiredQuantity)
+            }
+        default: ()
+        }
     }
-    
 }
