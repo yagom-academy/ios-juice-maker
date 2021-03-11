@@ -7,88 +7,124 @@
 import Foundation
 
 /// 쥬스 메이커 타입 
-class Fruit {
-    var fruitName: String
-    var fruitAmount: Int
-    
-    init(specie: String, amount: Int) {
-        self.fruitName = specie
-        self.fruitAmount = amount
-    }
+enum Fruits {
+    case strawberry, banana, pineapple, kiwi, mango
 }
 
-class FruitsStock {
-    private(set) var strawberry = Fruit(specie: "딸기", amount: 10)
-    private(set) var banana = Fruit(specie: "바나나", amount: 10)
-    private(set) var pineapple = Fruit(specie: "파일애플", amount: 10)
-    private(set) var kiwi = Fruit(specie: "키위", amount: 10)
-    private(set) var mango = Fruit(specie: "망고", amount: 10)
-}
-
-enum FruitsJuice {
+enum Juice {
     case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice, strawberryBananaJuice, mangoKiwiJuice
 }
 
+enum CheckStock {
+    case inStock, outStock, none
+}
+
+enum JuiceMakeResult: String {
+    case success = "Success"
+    case fail = "Fail"
+    case none
+}
+
 class JuiceMaker {
-    var fruitStock = FruitsStock()
+    private(set) var stockAmount = 0
+    private(set) var strawberry = 10
+    private(set) var banana = 10
+    private(set) var pineapple = 10
+    private(set) var kiwi = 10
+    private(set) var mango = 10
     
     // 과일 재고 확인
-    func remainedFruitsStock() -> [String : Int] {
-        let fruitsStockList: [String : Int] =
-            [
-                fruitStock.strawberry.fruitName: fruitStock.strawberry.fruitAmount,
-                fruitStock.banana.fruitName: fruitStock.banana.fruitAmount,
-                fruitStock.pineapple.fruitName: fruitStock.pineapple.fruitAmount,
-                fruitStock.kiwi.fruitName: fruitStock.kiwi.fruitAmount,
-                fruitStock.mango.fruitName: fruitStock.mango.fruitAmount
-            ]
-        return fruitsStockList
-    }
-    
-    // 과일 재고 줄이기
-    func reducedFruitsStock(name: Fruit, amount: Int) {
-        name.fruitAmount -= amount
-    }
+    // 과일 재고를 확인하는 이유?: 쥬스를 만들때 과일의 재고를 확인하고 재고가 남아있으면 만들기 시작, 없으면 만들지 못함
+    // 쥬스를 만드는데 들어가는 과일 개수를 구조체로 선언 ???
+    // 레시피 메소드를 따로 선언 ???
+    func checkFruitsStock(menu: Juice) -> CheckStock {
+        var availability = CheckStock.none
         
-    // 쥬스 제조
-    func produceFruitsJuice(juice: FruitsJuice) {
-        switch juice {
+        switch menu {
         case .strawberryJuice:
-            reducedFruitsStock(name: fruitStock.strawberry, amount: 16)
+            if strawberry >= 16 {
+                availability = .inStock
+            } else {
+                availability = .outStock
+            }
         case .bananaJuice:
-            reducedFruitsStock(name: fruitStock.banana, amount: 2)
-        case .pineappleJuice:
-            reducedFruitsStock(name: fruitStock.pineapple, amount: 2)
+            if banana >= 2 {
+                availability = .inStock
+            } else {
+                availability = .outStock
+            }
         case .kiwiJuice:
-            reducedFruitsStock(name: fruitStock.kiwi, amount: 3)
-        case .mangoJuice:
-            reducedFruitsStock(name: fruitStock.mango, amount: 3)
-        case .mangoKiwiJuice:
-            reducedFruitsStock(name: fruitStock.mango, amount: 2)
-            reducedFruitsStock(name: fruitStock.kiwi, amount: 1)
+            if kiwi >= 3 {
+                availability = .inStock
+            } else {
+                availability = .outStock
+            }
+        case .pineappleJuice:
+            if pineapple >= 2 {
+                availability = .inStock
+            } else {
+                availability = .outStock
+            }
         case .strawberryBananaJuice:
-            reducedFruitsStock(name: fruitStock.strawberry, amount: 10)
-            reducedFruitsStock(name: fruitStock.banana, amount: 1)
+            if strawberry >= 10 && banana >= 1 {
+                availability = .inStock
+            } else {
+                availability = .outStock
+            }
+        case .mangoJuice:
+            if mango >= 3 {
+                availability = .inStock
+            } else {
+                availability = .outStock
+            }
+        case .mangoKiwiJuice:
+            if mango >= 2 && kiwi >= 1 {
+                availability = .inStock
+            } else {
+                availability = .outStock
+            }
+        }
+        return availability
+    }
+    
+    func juiceRecipe(menu: Juice) {
+        switch menu {
+        case .strawberryJuice:
+            strawberry -= 16
+        case .bananaJuice:
+            banana -= 2
+        case .kiwiJuice:
+            kiwi -= 3
+        case .pineappleJuice:
+            pineapple -= 2
+        case .strawberryBananaJuice:
+            strawberry -= 10
+            banana -= 1
+        case .mangoJuice:
+            mango -= 3
+        case .mangoKiwiJuice:
+            mango -= 2
+            kiwi -= 1
         }
     }
     
-    // STEP-3 재고 페이지에서 과일 재고 추가
-    func addToFruitsStock(name: Fruit) {
-        let stock = FruitsStock()
+    func addFruitsAmount(amount: Int) {
+        stockAmount += amount
+    }
+    
+    func makeJuice(menu: Juice) -> JuiceMakeResult {
+        let check = checkFruitsStock(menu: menu)
+        var result = JuiceMakeResult.none
         
-        switch name.fruitName {
-        case "딸기":
-            stock.strawberry.fruitAmount += 1
-        case "바나나":
-            stock.banana.fruitAmount += 1
-        case "파인애플":
-            stock.pineapple.fruitAmount += 1
-        case "키위":
-            stock.kiwi.fruitAmount += 1
-        case "망고":
-            stock.mango.fruitAmount += 1
+        switch check {
+        case .inStock:
+            juiceRecipe(menu: menu)
+            result = .success
+        case .outStock:
+            result = .fail
         default:
-            print("과일을 찾을 수 없습니다.")
+            result = .none
         }
+        return result
     }
 }
