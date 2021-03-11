@@ -72,7 +72,7 @@ class JuiceMaker {
         inventory.updateValue(oldValue - count, forKey: name)
     }
     
-    func plusInventory(name: Fruit, count: Int){
+    func addFruit(name: Fruit, count: Int){
         guard let oldValue = inventory[name] else {
             return
         }
