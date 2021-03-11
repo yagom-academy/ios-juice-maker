@@ -40,6 +40,7 @@ struct JuiceMaker {
     var requiredFruits = [Fruit: Int]()
 
     for ingredient in try recipe(for: orderedJuice).ingredient {
+
       guard let fruitName = Fruit(rawValue: ingredient.fruitName) else {
         throw FruitError.invalidFruit
       }
@@ -87,15 +88,10 @@ struct JuiceMaker {
   private func recipe(for orderedJuice: Juice) throws -> Recipe.JuiceRecipe {
     let recipe = JuiceRecipe()
     guard let recipeForOrderedJuice = try recipe.find(for: orderedJuice) else {
-      printRecipeNotAvailable()
       throw RecipeError.invalidRecipe
     }
     
     return recipeForOrderedJuice
-  }
-  
-  private func printRecipeNotAvailable() {
-    print("쥬스 레시피가 레시피북에 없습니다.")
   }
   
   private func printNotEnoughIngredients() {
