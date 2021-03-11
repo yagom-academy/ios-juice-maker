@@ -45,7 +45,10 @@ enum Juice {
 }
 
 struct FruitInfo {
-    let firstName: Fruit, firstCount: Int, secondName: Fruit?, secondCount: Int?
+    let firstName: Fruit
+    let firstCount: Int
+    let secondName: Fruit?
+    let secondCount: Int?
 }
 
 class JuiceMaker {
