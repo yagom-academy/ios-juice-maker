@@ -40,7 +40,10 @@ struct JuiceMaker {
     var requiredFruits = [Fruit: Int]()
 
     for ingredient in try recipe(for: orderedJuice).ingredient {
-      requiredFruits[ingredient.fruitName] = ingredient.quantity
+      guard let fruitName = Fruit(rawValue: ingredient.fruitName) else {
+        throw FruitError.invalidFruit
+      }
+      requiredFruits[fruitName] = ingredient.quantity
     }
     
     return requiredFruits

@@ -9,22 +9,22 @@ import Foundation
 
 // MARK: - JuiceRecipe Type
 struct JuiceRecipe {
-  private let recipeBook: Recipe?
+  private let wrapedRecipeBook: Recipe?
   
   init() {
     let jsonData = Data(jsonString.utf8)
-    self.recipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
+    self.wrapedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
   internal func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
     let orderedJuice = juice.name
     var recipe: Recipe.JuiceRecipe?
     
-    guard let safeRecipeBook = recipeBook else {
+    guard let recipeBook = wrapedRecipeBook else {
       throw RecipeError.invalidRecipe
     }
     
-    for juiceRecipe in safeRecipeBook.juiceRecipes {
+    for juiceRecipe in recipeBook.juiceRecipes {
       if juiceRecipe.name == orderedJuice {
         recipe = juiceRecipe
       }
@@ -136,3 +136,4 @@ private let jsonString = """
         ]
     }
 """
+
