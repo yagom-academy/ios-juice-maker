@@ -7,15 +7,14 @@
 
 import Foundation
 
-enum JsonError: Error {
-    case invalidJsonString
-}
-
 enum FruitError: Error {
-    case invalidFruitRawValue
-    case invalidFruit
+  case invalidFruit
 }
 
 enum JuiceError: Error {
-    case invalidJuice
+  case invalidJuice
+}
+
+enum RecipeError: Error {
+  case invalidRecipe
 }

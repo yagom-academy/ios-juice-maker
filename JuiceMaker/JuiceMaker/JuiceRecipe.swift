@@ -24,18 +24,22 @@ struct Recipe: Codable {
 
 // MARK: - JuiceRecipe Type
 struct JuiceRecipe {
-  private let recipeBook: Recipe
+  private let recipeBook: Recipe?
   
   init() {
     let jsonData = Data(jsonString.utf8)
-    self.recipeBook = try! JSONDecoder().decode(Recipe.self, from: jsonData)
+    self.recipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
-  internal func find(for juice: Juice) -> Recipe.JuiceRecipe? {
+  internal func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
     let orderedJuice = juice.name
     var recipe: Recipe.JuiceRecipe?
     
-    for juiceRecipe in recipeBook.juiceRecipes {
+    guard let safeRecipeBook = recipeBook else {
+      throw RecipeError.invalidRecipe
+    }
+    
+    for juiceRecipe in safeRecipeBook.juiceRecipes {
       if juiceRecipe.name == orderedJuice {
         recipe = juiceRecipe
       }
@@ -43,6 +47,8 @@ struct JuiceRecipe {
     
     return recipe
   }
+
+
   
   // MARK: - JSON
   // json파일로 따로 빼낼예정

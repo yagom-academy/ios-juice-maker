@@ -70,11 +70,11 @@
 				852B689E25F60C800002DD70 /* Stock.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */,
+				AA8948D325F98DD9005E402A /* Error.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
-				AA8948D325F98DD9005E402A /* Error.swift */,
 			);
 			path = JuiceMaker;
 			sourceTree = "<group>";
