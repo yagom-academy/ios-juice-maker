@@ -25,19 +25,19 @@ enum Juice {
     var fruitCount : FruitInfo {
         switch self {
         case .strawberry:
-            return FruitInfo(firstName:Fruit.strawberry, firstCount: 16, secondName: nil, secondCount: nil)
+            return FruitInfo(firstName:Fruit.strawberry, firstCount: DeductionCount.strawberryOfStrawberryJuice, secondName: nil, secondCount: nil)
         case .banana:
-            return FruitInfo(firstName:Fruit.banana, firstCount: 2, secondName: nil, secondCount: nil)
+            return FruitInfo(firstName:Fruit.banana, firstCount: DeductionCount.bananaOfBananaJuice, secondName: nil, secondCount: nil)
         case .pineapple:
-            return FruitInfo(firstName:Fruit.pineapple, firstCount: 2, secondName: nil, secondCount: nil)
+            return FruitInfo(firstName:Fruit.pineapple, firstCount: DeductionCount.pineappleOfPineappleJuice, secondName: nil, secondCount: nil)
         case .kiwi:
-            return FruitInfo(firstName:Fruit.kiwi, firstCount: 3, secondName: nil, secondCount: nil)
+            return FruitInfo(firstName:Fruit.kiwi, firstCount: DeductionCount.kiwiOfKiwiJuice, secondName: nil, secondCount: nil)
         case .mango:
-            return FruitInfo(firstName:Fruit.mango, firstCount: 3, secondName: nil, secondCount: nil)
+            return FruitInfo(firstName:Fruit.mango, firstCount: DeductionCount.mangoOfMangoJuice, secondName: nil, secondCount: nil)
         case .strawberryBanana:
-            return FruitInfo(firstName:Fruit.strawberry, firstCount: 10, secondName: Fruit.banana, secondCount: 1)
+            return FruitInfo(firstName:Fruit.strawberry, firstCount: DeductionCount.strawberryOfstrawberryBananaJuice, secondName: Fruit.banana, secondCount: DeductionCount.bananaOfstrawberryBananaJuice)
         case .mangoKiwi:
-            return FruitInfo(firstName:Fruit.mango, firstCount: 2, secondName: Fruit.kiwi, secondCount: 1)
+            return FruitInfo(firstName:Fruit.mango, firstCount: DeductionCount.mangoOfMangoKiwiJuice, secondName: Fruit.kiwi, secondCount: DeductionCount.kiwiOfMangoKiwiJuice)
         default:
             break
         }
