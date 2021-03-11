@@ -50,7 +50,6 @@ enum FruitsJuice {
             return JuiceIngredients(ingredients: [(strawberry,10), (banana,1)])
         case .mangoKiwiJuice:
             return JuiceIngredients(ingredients: [(mango,2), (kiwi,2)])
-        
         }
     }
 }
@@ -93,6 +92,6 @@ class JuiceMaker {
             strawberry.reducefruit(amount: 10)
             banana.reducefruit(amount: 1)
         }
+        return result
     }
-}
 
