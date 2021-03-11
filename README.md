@@ -1,13 +1,3 @@
-# 🍑 타임라인
-
-- 월 - 팀 그라운드 룰, step1 각자 설계
-- 화 - Flowchart 그리기, UML 보류, step1 코드리뷰
-- 수 - 개인 공부 및 질문
-- 목 - 코드리뷰
-- 금 -
-
-<br>
-
 # 🍑 우리 팀만의 규칙
 
 - 모든 팀원이 참여하는 것과 같은 기본적인 규칙 이외의 우리 팀만의 규칙을 정해요.
@@ -88,4 +78,16 @@
     - 좋은 커밋 메시지를 작성하기 위한 커밋 템플릿 만들어보기 : [https://junwoo45.github.io/2020-02-06-commit_template/](https://junwoo45.github.io/2020-02-06-commit_template/)
     - 커밋 메시지의 규칙 : [https://udacity.github.io/git-styleguide/](https://udacity.github.io/git-styleguide/)
     - [https://blog.munilive.com/posts/my-git-commit-guide.html](https://blog.munilive.com/posts/my-git-commit-guide.html)
+<br>
 
+# 🍑 타임라인
+
+- 월 - 팀 그라운드 룰, step1 각자 설계
+- 화 - Flowchart 그리기, UML 보류, step1 코드리뷰
+- 수 - 개인 공부 및 질문
+- 목 - 코드리뷰
+- 금 -
+
+<br>
+# Flowchart
+![쥬스메이커 Flow Chart](https://user-images.githubusercontent.com/65153742/110746427-2306b900-8280-11eb-9b32-7b5e305d30d2.png)
