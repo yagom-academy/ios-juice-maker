@@ -1,5 +1,5 @@
 //
-//  StockOfFruit.swift
+//  Stock.swift
 //  JuiceMaker
 //
 //  Created by 강경 on 2021/03/08.
