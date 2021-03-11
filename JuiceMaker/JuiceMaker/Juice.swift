@@ -6,85 +6,15 @@
 
 import Foundation
 
-/// 쥬스 메이커 타입 
-
-enum AppError: Error {
-    case outOfStock
-    case unknownError
-}
-enum FruitType {
-    static let strawberry = Fruit()
-    static let banana = Fruit()
-    static let kiwi = Fruit()
-    static let pineapple = Fruit()
-    static let mango = Fruit()
+struct Juice {
+    let name: String
 }
 
-enum JuiceType {
-    static let strawberryJuice = Juice()
-    static let bananaJuice = Juice()
-    static let kiwiJuice = Juice()
-    static let pineappleJuice = Juice()
-    static let strawberryBananaJuice = Juice()
-    static let mangoJuice = Juice()
-    static let mangoKiwiJuice = Juice()
-}
+let strawberryJuice: Juice = Juice(name: "딸기주스")
+let bananaJuice: Juice = Juice(name: "바나나주스")
+let kiwiJuice: Juice = Juice(name: "키위주스")
+let pineappleJuice: Juice = Juice(name: "파인애플주스")
+let mangoJuice: Juice = Juice(name: "망고주스")
+let strawberryBananaJuice: Juice = Juice(name: "딸바주스")
+let mangoKiwiJuice: Juice = Juice(name: "망고키위주스")
 
-/// 과일재고를 확인할 수 있습니다.
-class Fruit {
-    private(set) var fruitStock = 32
-    func addStock() {
-        fruitStock += 1
-    }
-    func useStock(amount: Int) {
-        fruitStock -= amount
-    }
-}
-
-
-class Juice {
-    
-
-    func makeJuice(amount: Int) {
-        
-    }
-    
-    func makeStrawberryJuice() throws {
-        let requiredAmount: Int = 16
-        if FruitType.strawberry.fruitStock > requiredAmount || FruitType.strawberry.fruitStock == requiredAmount {
-            FruitType.strawberry.useStock(amount: requiredAmount)
-        }
-        else {
-            throw AppError.outOfStock
-        }
-    }
-    
-    func makeBananaJuice() throws {
-        let requiredAmount: Int = 2
-        if FruitType.banana.fruitStock > requiredAmount || FruitType.banana.fruitStock == requiredAmount {
-            FruitType.banana.useStock(amount: requiredAmount)
-        }
-        else {
-            throw AppError.outOfStock
-        }
-    }
-    
-    func makeKiwiJuice() {
-        
-    }
-    
-    func makeStrawberryBananaJuice() {
-        
-    }
-    
-    func makeMangoJuice() {
-        
-    }
-    
-    func makeMangoKiwiJuice() {
-        
-    }
-
-}
-
-let juiceMaker: Juice = Juice()
