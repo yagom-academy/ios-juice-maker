@@ -8,37 +8,37 @@ import Foundation
 
 class JuiceMaker {
     
-    let fruitStorage = FruitStock.shared
+    var fruitStorage = FruitStock.shared
     
-    func makeJuice(juice: Juices) {
-        for (whatFruit, needFruitsForJuice) in juice.juiceRecipe {
+    func make(order: Juices) {
+        for (kind, amountForJuice) in order.recipe {
             do {
-                try chcekFruitStock(fruit: whatFruit, amount: needFruitsForJuice)
-                consumeFruit(fruit: whatFruit, amount: needFruitsForJuice)
+                try hasFruitStock(fruit: kind, amount: amountForJuice)
+                consumeFruit(fruit: kind, amount: amountForJuice)
             } catch {
-                // 알럿 처리 부분
+                // TODO: -  lackStock 알럿 처리
             }
         }
     }
     
-    func consumeFruit(fruit whatFruit: Fruits, amount needFruitsForJuice: Int) {
+    func consumeFruit(fruit kind: Fruits, amount: Int) {
         do {
-            try fruitStorage.fruitManager(fruit: whatFruit, amount: -needFruitsForJuice)
+            try fruitStorage.manageStorage(fruit: kind, amount: -amount)
         } catch {
-            return
+            // TODO: - inValidStock 알럿 처리
         }
     }
     
-    func addFruitStock(fruit whatFruit: Fruits, amount addFruits: Int = 1) {
+    func addFruitStock(fruit kind: Fruits, amount addFruits: Int = 1) {
         do {
-            try fruitStorage.fruitManager(fruit: whatFruit, amount: addFruits)
+            try fruitStorage.manageStorage(fruit: kind, amount: addFruits)
         } catch {
-            return
+            // TODO: - inValidStock 알럿 처리
         }
     }
     
-    func chcekFruitStock(fruit whatFruit: Fruits, amount needFruitsForJuice: Int) throws {
-        guard let stock = fruitStorage.fruits[whatFruit], needFruitsForJuice > 0, stock - needFruitsForJuice >= 0 else {
+    func hasFruitStock(fruit kind: Fruits, amount: Int) throws {
+        guard let stock = fruitStorage.fruits[kind], amount > 0, stock - amount >= 0 else {
             throw StockError.lackStock
         }
     }
