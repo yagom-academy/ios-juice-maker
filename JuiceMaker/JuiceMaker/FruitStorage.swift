@@ -2,18 +2,14 @@ import Foundation
 
 typealias Storage = [Fruits : Int]
 
-enum StockError: Error {
-    case lackStock
-    case inValidStock
-    case unknown
-}
 enum Fruits: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
+
 enum Juices {
     case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice, strawberryBananaJuice, mangoKiwiJuice
     
-    var juiceRecipe : Storage {
+    var recipe : Storage {
         switch self {
         case .strawberryJuice:
             return [.strawberry : 16]
@@ -34,20 +30,25 @@ enum Juices {
 }
 
 class FruitStock {
-    public private(set) var fruits: Storage = [:]
+    public private(set) var fruits: Storage
     
-    static let shared = FruitStock(initFruitAmount: 10)
+    static let shared = FruitStock()
     
-    func fruitManager(fruit Whatfruit: Fruits, amount thisFruitAmount: Int) throws {
-        guard let stock = fruits[Whatfruit] else {
-            throw StockError.inValidStock
-        }
-        fruits.updateValue(stock + thisFruitAmount, forKey: Whatfruit)
+    private init() {
+        self.fruits = [:]
+        initStorage(amount: 10)
     }
     
-    init(initFruitAmount: Int) {
-        for whatFruit in Fruits.allCases {
-            fruits.updateValue(initFruitAmount, forKey: whatFruit)
+    func manageStorage(fruit kind: Fruits, amount: Int) throws {
+        guard let stock = fruits[kind] else {
+            throw StockError.inValidStock
+        }
+        fruits.updateValue(stock + amount, forKey: kind)
+    }
+    
+    private func initStorage(amount: Int) {
+        for kindFruit in Fruits.allCases {
+            fruits.updateValue(amount, forKey: kindFruit)
         }
     }
 }
