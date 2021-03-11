@@ -65,7 +65,14 @@ class JuiceMaker {
         }
     }
     
-    func deductInventory(name:Juice) {
+    func updateInventory(fruit: Fruit, deductionCount: Int){
+        guard let oldValue = inventory[fruit] else {
+            return
+        }
+        inventory.updateValue(oldValue - deductionCount, forKey: fruit)
+    }
+    
+    func deductInventory(name: Juice) {
         switch name {
         case Juice.strawberry:
             inventory[Fruit.strawberry]! -= DeductionCount.strawberryOfStrawberryJuice
