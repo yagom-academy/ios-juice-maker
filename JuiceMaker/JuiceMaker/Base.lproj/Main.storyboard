@@ -33,7 +33,7 @@
                                     <color key="titleColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="SaA-LG-edX" kind="presentation" id="1ep-Be-0Lp"/>
+                                    <segue destination="SaA-LG-edX" kind="presentation" identifier="stockChanger" id="1ep-Be-0Lp"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-ED-rfC">
@@ -358,20 +358,34 @@
             </objects>
             <point key="canvasLocation" x="350.54347826086962" y="111.59420289855073"/>
         </scene>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="tjd-fZ-Cmp">
             <objects>
-                <viewController id="SaA-LG-edX" sceneMemberID="viewController">
+                <viewController id="SaA-LG-edX" customClass="SecondViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HqP-a1-Xhh">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p39-lE-eoC">
+                                <rect key="frame" x="328.66666666666669" y="192" width="79" height="30"/>
+                                <state key="normal" title="Test Button"/>
+                                <connections>
+                                    <action selector="backButton:" destination="SaA-LG-edX" eventType="touchUpInside" id="cKD-gf-Y57"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="huN-nX-B0k"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="p39-lE-eoC" firstAttribute="centerX" secondItem="HqP-a1-Xhh" secondAttribute="centerX" id="kQb-bF-pIe"/>
+                            <constraint firstItem="p39-lE-eoC" firstAttribute="centerY" secondItem="HqP-a1-Xhh" secondAttribute="centerY" id="l1v-uq-6iQ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1X7-cq-ANX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94a-SE-uqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1018" y="112"/>
+            <point key="canvasLocation" x="1017.3913043478261" y="111.59420289855073"/>
         </scene>
     </scenes>
     <resources>
