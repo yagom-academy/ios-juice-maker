@@ -8,14 +8,14 @@
 import Foundation
 
 enum JsonError: Error {
-    case invalidJsonString
+  case invalidJsonString
 }
 
 enum FruitError: Error {
-    case invalidFruitRawValue
-    case invalidFruit
+  case invalidFruitRawValue
+  case invalidFruit
 }
 
 enum JuiceError: Error {
-    case invalidJuice
+  case invalidJuice
 }

@@ -8,41 +8,41 @@
 import Foundation
 
 struct JuiceRecipe {
-    private let recipeBook: Recipe
+  private let recipeBook: Recipe
+  
+  init() {
+    let jsonData = Data(jsonString.utf8)
+    self.recipeBook = try! JSONDecoder().decode(Recipe.self, from: jsonData)
+  }
+  
+  internal func find(for juice: Juice) -> Recipe.JuiceRecipe? {
+    let orderedJuice = juice.name
+    var recipe: Recipe.JuiceRecipe?
     
-    init() {
-        let jsonData = Data(jsonString.utf8)
-        self.recipeBook = try! JSONDecoder().decode(Recipe.self, from: jsonData)
+    for juiceRecipe in recipeBook.juiceRecipes {
+      if juiceRecipe.name == orderedJuice {
+        recipe = juiceRecipe
+      }
     }
     
-    internal func find(for juice: Juice) -> Recipe.JuiceRecipe? {
-        let orderedJuice = juice.name
-        var recipe: Recipe.JuiceRecipe?
-        
-        for juiceRecipe in recipeBook.juiceRecipes {
-            if juiceRecipe.name == orderedJuice {
-                recipe = juiceRecipe
-            }
-        }
-        
-        return recipe
-    }
+    return recipe
+  }
 }
 
 // MARK: - Codable Struct
 /// json파일을 Codable로 가져오기위한 Struct
 struct Recipe: Codable {
-    struct JuiceRecipe: Codable {
-        struct Ingredient: Codable {
-            var fruitName: Fruit
-            var quantity: Int
-        }
-        
-        var name: String
-        var ingredient: [Ingredient]
+  struct JuiceRecipe: Codable {
+    struct Ingredient: Codable {
+      var fruitName: Fruit
+      var quantity: Int
     }
     
-    var juiceRecipes: [JuiceRecipe]
+    var name: String
+    var ingredient: [Ingredient]
+  }
+  
+  var juiceRecipes: [JuiceRecipe]
 }
 
 // MARK: - json파일로 따로 빼낼예정
