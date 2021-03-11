@@ -33,4 +33,3 @@ enum JuiceType {
     static let mangoJuice = Juice(require: Requirements.mangoRequirement)
     static let mangoKiwiJuice = Juice(require: Requirements.mangoKiwiRequirement)
 }
-
