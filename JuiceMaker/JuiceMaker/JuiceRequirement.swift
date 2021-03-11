@@ -15,3 +15,4 @@ enum Requirements {
     static let mangoRequirement = [(FruitType.mango, 3)]
     static let mangoKiwiRequirement = [(FruitType.mango, 2), (FruitType.kiwi, 1)]
 }
+
