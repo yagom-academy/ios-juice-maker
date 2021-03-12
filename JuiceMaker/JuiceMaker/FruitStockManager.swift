@@ -1,0 +1,49 @@
+//
+//  FruitStock.swift
+//  JuiceMaker
+//
+//  Created by Seungjin Baek on 2021/03/12.
+//
+
+import Foundation
+
+
+class FruitStockManager {
+    static let shared = FruitStockManager()
+    private(set) var fruitStockAmounts: [String:Int] = [:]
+    private(set) var fruitTypes: [String] = ["strawberry", "banana", "pineapple", "kiwi", "mango"]
+    
+    private init() {
+        initializeFruitStockAmount(with: 10)
+    }
+    
+    private func initializeFruitStockAmount(with baseFruitAmount: Int) {
+        for fruitType in fruitTypes {
+            fruitStockAmounts[fruitType] = baseFruitAmount
+        }
+    }
+    
+    func increaseStockAmount(of fruitType: String, by fruitNumber: Int) {
+        if var fruitTypeStockAmount = fruitStockAmounts[fruitType] {
+            fruitTypeStockAmount += fruitNumber
+        }
+    }
+    
+    func decreaseStockAmount(of fruitType: String, by fruitNumber: Int) {
+        if var fruitTypeStockAmount = fruitStockAmounts[fruitType] {
+            fruitTypeStockAmount -= fruitNumber
+        }
+    }
+    
+    func isMoreThanOne(fruitType: String) -> Bool {
+        guard let fruitTypeStockAmount = fruitStockAmounts[fruitType] else { return false }
+        if fruitTypeStockAmount > 0 {
+            return true
+        }
+        return false
+    }
+    
+    func add(fruitType: String) {
+        fruitTypes.append(fruitType)
+    }
+}
