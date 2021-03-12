@@ -36,7 +36,7 @@ class FruitStock {
     
     private init() {
         self.fruits = [:]
-        initStorage(amount: 10)
+        initStorage(amount: 15)
     }
     
     func manageStorage(fruit kind: Fruits, amount: Int) throws {
