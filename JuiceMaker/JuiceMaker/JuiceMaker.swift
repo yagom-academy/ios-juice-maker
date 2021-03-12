@@ -90,8 +90,5 @@ class JuiceMaker {
         
         return result
     }
-    
-    
-    
-    
+
 }
