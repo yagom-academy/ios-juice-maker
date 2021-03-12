@@ -2,7 +2,7 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import Foundation
 
@@ -19,29 +19,28 @@ enum Juice {
 }
 
 class JuiceMaker {
-    // Array Index -> strawberry = 0, banana = 1, pineapple = 2, kiwi = 3, mango = 4
-    private var stock: [Int] = [10, 10, 10, 10, 10]
+    // Array Index -> 0 = strawberry, 1 = banana, 2 = pineapple, 3 = kiwi, 4 = mango
+    private var stocks: [Int] = [10, 10, 10, 10, 10]
     var messeges: printMessege = .unknownError
     
     func nowStock(index: Int) -> Int {
-        return stock[index]
+        return stocks[index]
     }
     
-    func useStock(index: Int, amount: Int) {
-        self.stock[index] -= amount
+    func subtractStock(index: Int, amount: Int) {
+        self.stocks[index] -= amount
     }
     
     func addStock(index: Int, amount: Int) {
-        self.stock[index] += amount
+        self.stocks[index] += amount
     }
-    
     
     func checkCompareAmountToStock(juiceMenu: Juice) -> Bool {
         var result: Bool = false
         let recipe = matchJuiceRecipe(targetJuice: juiceMenu)
         
         for (target, compareAmount) in recipe {
-            if stock[target] < compareAmount {
+            if stocks[target] < compareAmount {
                 result = false
                 break
             } else {
@@ -84,7 +83,7 @@ class JuiceMaker {
         
         if checkStockStatus {
             for (key, value) in recipe {
-                useStock(index: key, amount: value)
+                subtractStock(index: key, amount: value)
             }
             messeges = .completeMakeJuice
         } else {
