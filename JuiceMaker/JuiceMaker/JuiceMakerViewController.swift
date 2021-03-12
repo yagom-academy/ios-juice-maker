@@ -52,7 +52,13 @@ extension JuiceMakerViewController {
         let failAlert = UIAlertController(title: nil , message: "재료가 모자라요 재고를 수정할까요?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default, handler : nil )
         let stockSettingAction = UIAlertAction(title: "예", style: .cancel){ (action) in
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
+                return
+            }
 
+            vc.modalPresentationStyle = .fullScreen
+                
+            self.present(vc,animated: true)
         }
         failAlert.addAction(stockSettingAction)
         failAlert.addAction(cancel)
@@ -79,7 +85,6 @@ extension JuiceMakerViewController {
         mangoLabel.text = String(stock[.mango]!)
         kiwiLabel.text = String(stock[.kiwi]!)
     }
-
 }
 
 
