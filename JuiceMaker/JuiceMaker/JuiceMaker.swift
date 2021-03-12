@@ -35,7 +35,7 @@ class JuiceMaker {
         self.stocks[index] += quantity
     }
     
-    func isEnoughStock(juiceMenu: Juice) -> Bool {
+    func isCheckStock(juiceMenu: Juice) -> Bool {
         var result: Bool = false
         let recipe = selectJuiceRecipe(targetJuice: juiceMenu)
         
@@ -79,9 +79,9 @@ class JuiceMaker {
     
     func makeJuice(juiceName: Juice) {
         let recipe = selectJuiceRecipe(targetJuice: juiceName)
-        let checkStockStatus: Bool = isEnoughStock(juiceMenu: juiceName )
+        let isStockStatus: Bool = isCheckStock(juiceMenu: juiceName )
         
-        if checkStockStatus {
+        if isStockStatus {
             for (key, value) in recipe {
                 subtractStock(index: key, quantity: value)
             }
