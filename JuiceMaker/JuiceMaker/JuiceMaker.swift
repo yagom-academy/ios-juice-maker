@@ -90,5 +90,4 @@ class JuiceMaker {
             messeges = .notEnoughStock
         }
     }
-    
 }

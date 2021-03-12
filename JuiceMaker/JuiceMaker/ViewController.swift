@@ -25,10 +25,5 @@ class ViewController: UIViewController {
         print(test.nowStock(index: 0))
         print(test.nowStock(index: 1))
     }
-    
-    
-    
-
-
 }
 
