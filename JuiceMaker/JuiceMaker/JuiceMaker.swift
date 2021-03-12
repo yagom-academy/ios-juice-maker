@@ -2,7 +2,7 @@
 //  JuiceMaker.swift
 //  JuiceMaker
 //
-//  Created by Tak on 2021/03/11.
+//  Created by James & Tak on 2021/03/11.
 //
 
 import Foundation
@@ -20,16 +20,25 @@ enum Juice {
 }
 
 class JuiceMaker {
-    func increaseFruit() {
-    
+    var fruitStorage = FruitStorage.shared.refrigerator
+    func increaseFruit(input: Fruit) throws {
+        guard let stock = fruitStorage[input] else {
+            throw AppError.unknownError
+        }
+        fruitStorage.updateValue(stock + 1, forKey: input)
     }
-    func decreaseFruit() {
-        
+    func decreaseFruit(input: Fruit) throws {
+        guard let stock = fruitStorage[input], stock > 0 else {
+            throw AppError.unknownError
+        }
+        fruitStorage.updateValue(stock - 1, forKey: input)
     }
-    func consumeFruit() {
-        
+    func consumeFruit(input: Fruit, amount: Int) throws {
+        guard let stock = fruitStorage[input] else {
+            throw AppError.unknownError
+        }
+        fruitStorage.updateValue(stock + amount, forKey: input)
     }
-    
     func makeJuice() {
         
     }

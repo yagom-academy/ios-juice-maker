@@ -13,9 +13,9 @@ class FruitStorage {
     
     private init() {
         refrigerator = [:]
-        initialize()
+        setInitialFruitAmount()
     }
-    func initialize() {
+    func setInitialFruitAmount() {
         refrigerator = [Fruit.strawberry: 10, Fruit.banana: 10, Fruit.kiwi: 10, Fruit.mango: 10, Fruit.pineapple: 10]
     }
 }
