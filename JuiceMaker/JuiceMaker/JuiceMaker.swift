@@ -10,12 +10,13 @@ import Foundation
 
 
 class JuiceMaker {
+    public static var shared = JuiceMaker()
     
     func checkStock(of fruit: Fruit) {
         print("\(fruit)는 현재 \(fruit.stock)개 남아있습니다.")
     }
     
-    func make(menu: Juice) {
+    func make(_ menu: Juice) {
         if menu.canMake {
             for requirement in menu.requirements {
                 requirement.Fruit.subtractStock(amount: requirement.needAmount)

@@ -35,14 +35,14 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05D-7o-Xko">
                                                 <rect key="frame" x="2" y="0.0" width="130" height="107"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-04-mZt" userLabel="Strawberry Stock">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-04-mZt" userLabel="Strawberry Stock" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="17" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="Bqf-DU-tjJ"/>
                                                     <constraint firstAttribute="width" constant="100" id="GfQ-6j-mZo"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -54,7 +54,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bsO-Pd-e5W">
                                                 <rect key="frame" x="1.5" y="0.0" width="131" height="107"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjU-AR-6Qe">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjU-AR-6Qe" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="17" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
@@ -73,7 +73,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cbb-EI-Pc6">
                                                 <rect key="frame" x="1.5" y="0.0" width="131" height="107"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zU-ef-Pyv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zU-ef-Pyv" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="17" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
@@ -141,16 +141,16 @@
                                                 <accessibility key="accessibilityConfiguration" label="strawBanana"/>
                                                 <state key="normal" title="딸바쥬스 주문"/>
                                                 <connections>
-                                                    <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PhS-4r-8HR"/>
+                                                    <action selector="touchUpStrawBanana:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HWF-q5-Jh2"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHY-2q-smQ" customClass="JuiceButton" customModule="JuiceMaker">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHY-2q-smQ" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="345" y="0.0" width="294.5" height="66.5"/>
                                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                                 <accessibility key="accessibilityConfiguration" label="mangoKiwi"/>
                                                 <state key="normal" title="망키쥬스 주문"/>
                                                 <connections>
-                                                    <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OpB-aN-qYG"/>
+                                                    <action selector="touchUpMangoKiwi:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nfr-xE-PpP"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -164,7 +164,7 @@
                                                 <accessibility key="accessibilityConfiguration" label="strawberry"/>
                                                 <state key="normal" title="딸기쥬스 주문"/>
                                                 <connections>
-                                                    <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7FR-r0-A39"/>
+                                                    <action selector="touchUpStrawberry:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FqJ-7j-vc3"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQj-7U-zMA" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -173,7 +173,7 @@
                                                 <accessibility key="accessibilityConfiguration" label="banana"/>
                                                 <state key="normal" title="바나나쥬스 주문"/>
                                                 <connections>
-                                                    <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bKZ-LV-pA5"/>
+                                                    <action selector="touchUpBanana:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I4u-uc-MWS"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cG1-zF-ji1" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -182,7 +182,7 @@
                                                 <accessibility key="accessibilityConfiguration" label="pineapple"/>
                                                 <state key="normal" title="파인애플쥬스 주문"/>
                                                 <connections>
-                                                    <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P1g-SX-vKq"/>
+                                                    <action selector="touchUpPineapple:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Scm-v2-Gd8"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4s-n1-mxv" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -191,7 +191,7 @@
                                                 <accessibility key="accessibilityConfiguration" label="kiwi"/>
                                                 <state key="normal" title="키위쥬스 주문"/>
                                                 <connections>
-                                                    <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qgf-Fj-shC"/>
+                                                    <action selector="touchUpKiwi:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fBQ-ob-dVe"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nas-Q4-ija" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -200,7 +200,7 @@
                                                 <accessibility key="accessibilityConfiguration" label="mango"/>
                                                 <state key="normal" title="망고쥬스 주문"/>
                                                 <connections>
-                                                    <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rxr-zV-g9z"/>
+                                                    <action selector="touchUpMango:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ryr-lG-Pgt"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -230,18 +230,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bananaButton" destination="RQj-7U-zMA" id="cCP-HW-uep"/>
-                        <outlet property="bananaStock" destination="rjU-AR-6Qe" id="1MT-Ce-yhD"/>
-                        <outlet property="kiwiButton" destination="n4s-n1-mxv" id="nqH-dJ-bRp"/>
-                        <outlet property="kiwiStock" destination="KB1-Pq-72g" id="5dN-Pr-qOr"/>
-                        <outlet property="mangoButton" destination="nas-Q4-ija" id="t8u-x7-WEK"/>
-                        <outlet property="mangoKiwi" destination="HHY-2q-smQ" id="6c7-Fq-ktC"/>
-                        <outlet property="mangoStock" destination="tPG-Ng-F8X" id="g7O-mX-425"/>
-                        <outlet property="pineappleButton" destination="cG1-zF-ji1" id="PDC-7u-9Vg"/>
-                        <outlet property="pineappleStock" destination="6zU-ef-Pyv" id="gFf-BZ-sR8"/>
-                        <outlet property="strawBananaButton" destination="Jle-tk-CQ2" id="oEp-vu-KYJ"/>
-                        <outlet property="strawberryButton" destination="tAB-bb-LTe" id="nqu-UC-GWX"/>
-                        <outlet property="strawberryStock" destination="j4k-04-mZt" id="xlP-14-666"/>
+                        <outlet property="bananaStock" destination="rjU-AR-6Qe" id="KDw-z7-f5z"/>
+                        <outlet property="kiwiStock" destination="KB1-Pq-72g" id="V00-EV-hQB"/>
+                        <outlet property="mangoStock" destination="tPG-Ng-F8X" id="xal-hH-fiQ"/>
+                        <outlet property="pineappleStock" destination="6zU-ef-Pyv" id="2Lc-uW-MNo"/>
+                        <outlet property="strawberryStock" destination="j4k-04-mZt" id="omI-7f-Oei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
