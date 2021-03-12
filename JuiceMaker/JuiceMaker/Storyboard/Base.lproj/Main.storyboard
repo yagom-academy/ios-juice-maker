@@ -1,24 +1,343 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_5" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Juice Maker View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="JuiceMakerViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Xz0-g2-Fp0">
+                                <rect key="frame" x="60" y="49.999999999999993" width="776" height="123.33333333333331"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1935_3" translatesAutoresizingMaskIntoConstraints="NO" id="GAz-Mf-Lp9" userLabel="딸기">
+                                        <rect key="frame" x="0.0" y="0.0" width="123.33333333333333" height="123.33333333333333"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="GAz-Mf-Lp9" secondAttribute="height" multiplier="1:1" id="dAt-RB-ecw"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1939_3" translatesAutoresizingMaskIntoConstraints="NO" id="M91-uu-Am1" userLabel="바나나">
+                                        <rect key="frame" x="163.33333333333334" y="0.0" width="123.00000000000003" height="123.33333333333333"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="M91-uu-Am1" secondAttribute="height" multiplier="1:1" id="NPD-8T-npl"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2305_3" translatesAutoresizingMaskIntoConstraints="NO" id="Jwp-Qz-Vmd" userLabel="파인애플">
+                                        <rect key="frame" x="326.33333333333331" y="0.0" width="123.33333333333331" height="123.33333333333333"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Jwp-Qz-Vmd" secondAttribute="height" multiplier="1:1" id="57E-ce-aan"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2315_3" translatesAutoresizingMaskIntoConstraints="NO" id="TVs-gx-0mk" userLabel="망고">
+                                        <rect key="frame" x="489.66666666666663" y="0.0" width="123" height="123.33333333333333"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="TVs-gx-0mk" secondAttribute="height" multiplier="1:1" id="1Mt-EH-9ds"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1940_3" translatesAutoresizingMaskIntoConstraints="NO" id="Wom-9G-vJ2" userLabel="키위">
+                                        <rect key="frame" x="652.66666666666663" y="0.0" width="123.33333333333337" height="123.33333333333333"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Wom-9G-vJ2" secondAttribute="height" multiplier="1:1" id="aoc-4t-Oie"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="250" constant="120" id="prm-UB-p9K"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="39F-Rk-6Xt">
+                                <rect key="frame" x="60" y="313" width="776" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHX-tB-zPW">
+                                        <rect key="frame" x="0.0" y="0.0" width="143.33333333333334" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="딸기 쥬스 주문"/>
+                                        <connections>
+                                            <action selector="touchUpjuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jcw-eo-OPe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDU-pO-oA0">
+                                        <rect key="frame" x="158.33333333333334" y="0.0" width="143.00000000000003" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="바나나 쥬스 주문"/>
+                                        <connections>
+                                            <action selector="touchUpjuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dd0-7r-rWv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yl-qe-lC3">
+                                        <rect key="frame" x="316.33333333333331" y="0.0" width="143.33333333333331" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="파인애플 쥬스 주문"/>
+                                        <connections>
+                                            <action selector="touchUpjuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8M1-EM-tZQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lS3-w6-lzA">
+                                        <rect key="frame" x="474.66666666666663" y="0.0" width="143" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="키위 쥬스 주문"/>
+                                        <connections>
+                                            <action selector="touchUpjuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jg3-wJ-wdZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pC-iC-XsD">
+                                        <rect key="frame" x="632.66666666666663" y="0.0" width="143.33333333333337" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="망고 쥬스 주문"/>
+                                        <connections>
+                                            <action selector="touchUpjuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xyU-58-paP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="750" constant="60" id="Bbl-2l-trK"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="95" translatesAutoresizingMaskIntoConstraints="NO" id="9ug-o7-O5W">
+                                <rect key="frame" x="84" y="181.33333333333334" width="728" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YH-ri-TFK">
+                                        <rect key="frame" x="0.0" y="0.0" width="69.666666666666671" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRB-Vp-qYJ">
+                                        <rect key="frame" x="164.66666666666666" y="0.0" width="69.666666666666657" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEa-e7-6pc">
+                                        <rect key="frame" x="329.33333333333331" y="0.0" width="69.333333333333314" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="en6-Hp-eIc">
+                                        <rect key="frame" x="493.66666666666669" y="0.0" width="69.666666666666686" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HT-fO-4J6">
+                                        <rect key="frame" x="658.33333333333337" y="0.0" width="69.666666666666629" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6UV-fb-Ao4"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-65" translatesAutoresizingMaskIntoConstraints="NO" id="SyE-ND-aCq">
+                                <rect key="frame" x="60" y="238" width="776" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7T-TB-EyS">
+                                        <rect key="frame" x="0.0" y="0.0" width="302" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="딸기 바나나 쥬스 주문"/>
+                                        <connections>
+                                            <action selector="touchUpjuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9zP-ex-jGP"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1490_6-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dh9-7d-TJ6" userLabel="점원">
+                                        <rect key="frame" x="237" y="0.0" width="302" height="60"/>
+                                    </imageView>
+                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Vv-oO-4XQ">
+                                        <rect key="frame" x="474" y="0.0" width="302" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="망고 키위 쥬스 주문"/>
+                                        <connections>
+                                            <action selector="touchUpjuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KoI-se-Cle"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="750" constant="60" id="KAf-Ph-hCv"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrO-nZ-FFr">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="53"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맛있는 쥬스를 만들어 드려요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esl-SJ-RE2">
+                                        <rect key="frame" x="298" y="11" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="aJ4-Mm-zcd"/>
+                                            <constraint firstAttribute="height" constant="30" id="ee1-lU-ryH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPd-LU-KCP">
+                                        <rect key="frame" x="788" y="11" width="67" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title="재고 수정"/>
+                                        <connections>
+                                            <segue destination="2Ba-Tp-0ua" kind="show" id="WNL-BC-KC4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstItem="RPd-LU-KCP" firstAttribute="top" secondItem="HrO-nZ-FFr" secondAttribute="top" constant="11" id="5M7-sP-3aZ"/>
+                                    <constraint firstItem="RPd-LU-KCP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="esl-SJ-RE2" secondAttribute="trailing" priority="999" constant="193" id="W4P-BP-uWF"/>
+                                    <constraint firstItem="esl-SJ-RE2" firstAttribute="leading" secondItem="HrO-nZ-FFr" secondAttribute="leading" priority="999" constant="298" id="b7a-4g-OiJ"/>
+                                    <constraint firstItem="esl-SJ-RE2" firstAttribute="centerX" secondItem="HrO-nZ-FFr" secondAttribute="centerX" id="kML-kL-Ldj"/>
+                                    <constraint firstAttribute="trailing" secondItem="RPd-LU-KCP" secondAttribute="trailing" constant="41" id="vKu-NF-xim"/>
+                                    <constraint firstItem="esl-SJ-RE2" firstAttribute="top" secondItem="HrO-nZ-FFr" secondAttribute="top" constant="11" id="zqz-TQ-Q45"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="39F-Rk-6Xt" secondAttribute="trailing" constant="16" id="9N8-5i-wfj"/>
+                            <constraint firstItem="SyE-ND-aCq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Aix-MO-inS"/>
+                            <constraint firstItem="Xz0-g2-Fp0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="CWG-Q6-JQE"/>
+                            <constraint firstItem="9ug-o7-O5W" firstAttribute="top" secondItem="Xz0-g2-Fp0" secondAttribute="bottom" constant="8" id="ItI-Ut-BYX"/>
+                            <constraint firstAttribute="leading" secondItem="HrO-nZ-FFr" secondAttribute="leading" id="LDG-3P-YZr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9ug-o7-O5W" secondAttribute="trailing" constant="40" id="Oah-9E-Ghg"/>
+                            <constraint firstItem="Xz0-g2-Fp0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Oqj-DG-ScR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SyE-ND-aCq" secondAttribute="trailing" constant="16" id="TMc-6V-3HZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="39F-Rk-6Xt" secondAttribute="bottom" constant="20" id="TYg-pP-bxc"/>
+                            <constraint firstItem="9ug-o7-O5W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="XKL-0n-Mi0"/>
+                            <constraint firstItem="HrO-nZ-FFr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gcN-6y-QPR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xz0-g2-Fp0" secondAttribute="trailing" constant="16" id="gw3-OQ-Xho"/>
+                            <constraint firstItem="39F-Rk-6Xt" firstAttribute="top" secondItem="SyE-ND-aCq" secondAttribute="bottom" constant="15" id="lGY-CD-xWm"/>
+                            <constraint firstItem="39F-Rk-6Xt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="pTY-Ma-Dlw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HrO-nZ-FFr" secondAttribute="bottom" constant="340" id="sXu-aA-EMb"/>
+                            <constraint firstItem="HrO-nZ-FFr" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="vhB-SF-I3m"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bananaButton" destination="GDU-pO-oA0" id="wfX-RJ-wra"/>
+                        <outlet property="bananaLabel" destination="WRB-Vp-qYJ" id="Dg9-EG-eIZ"/>
+                        <outlet property="kiwiButton" destination="lS3-w6-lzA" id="GzO-eq-TIk"/>
+                        <outlet property="kiwiLabel" destination="4HT-fO-4J6" id="Ssp-hc-xdg"/>
+                        <outlet property="mangoButton" destination="0pC-iC-XsD" id="Bxp-io-I7l"/>
+                        <outlet property="mangoKiwiButton" destination="9Vv-oO-4XQ" id="51F-f9-hL2"/>
+                        <outlet property="mangoLabel" destination="en6-Hp-eIc" id="LrT-GO-8SS"/>
+                        <outlet property="pineappleButton" destination="3yl-qe-lC3" id="5OX-mC-yCF"/>
+                        <outlet property="pineappleLabel" destination="nEa-e7-6pc" id="913-ZP-49r"/>
+                        <outlet property="strawberryButton" destination="AHX-tB-zPW" id="0ch-WC-8Dg"/>
+                        <outlet property="strawberryLabel" destination="4YH-ri-TFK" id="BMF-Qm-zb7"/>
+                        <outlet property="strawberyBananaButton" destination="J7T-TB-EyS" id="vTV-VV-z1s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="889.95535714285711" y="137.68115942028987"/>
+        </scene>
+        <!--Stock Manager View Controller-->
+        <scene sceneID="hD9-4G-bdi">
+            <objects>
+                <viewController storyboardIdentifier="StockManagerViewController" id="2Ba-Tp-0ua" customClass="StockManagerViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gPi-fy-RKv">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mib-Um-xMb">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="53"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 추가" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ag-pO-G4A">
+                                        <rect key="frame" x="298" y="11" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="Nqy-68-TUk"/>
+                                            <constraint firstAttribute="height" constant="30" id="cCk-Ny-pJZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9or-4Q-hrS">
+                                        <rect key="frame" x="791" y="11" width="64" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title="닫기"/>
+                                        <connections>
+                                            <action selector="closeButton:" destination="2Ba-Tp-0ua" eventType="touchUpInside" id="rhk-yj-szL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="9or-4Q-hrS" secondAttribute="trailing" constant="41" id="3LU-29-HAz"/>
+                                    <constraint firstItem="9or-4Q-hrS" firstAttribute="top" secondItem="mib-Um-xMb" secondAttribute="top" constant="11" id="Iu1-cy-JcH"/>
+                                    <constraint firstItem="1ag-pO-G4A" firstAttribute="leading" secondItem="mib-Um-xMb" secondAttribute="leading" constant="298" id="RW9-W7-Oll"/>
+                                    <constraint firstItem="1ag-pO-G4A" firstAttribute="top" secondItem="mib-Um-xMb" secondAttribute="top" constant="11" id="YAT-vm-5St"/>
+                                    <constraint firstItem="1ag-pO-G4A" firstAttribute="centerX" secondItem="mib-Um-xMb" secondAttribute="centerX" id="rhO-MD-YwA"/>
+                                    <constraint firstItem="9or-4Q-hrS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1ag-pO-G4A" secondAttribute="trailing" constant="193" id="z2u-un-9RH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9T8-kG-CMy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mib-Um-xMb" firstAttribute="top" secondItem="9T8-kG-CMy" secondAttribute="top" id="0Fv-7S-oUu"/>
+                            <constraint firstItem="mib-Um-xMb" firstAttribute="trailing" secondItem="9T8-kG-CMy" secondAttribute="trailing" constant="44" id="8Ul-y6-I9O"/>
+                            <constraint firstItem="9T8-kG-CMy" firstAttribute="leading" secondItem="mib-Um-xMb" secondAttribute="leading" constant="44" id="FH0-5q-ZC2"/>
+                            <constraint firstItem="9T8-kG-CMy" firstAttribute="bottom" secondItem="mib-Um-xMb" secondAttribute="bottom" constant="340" id="QMT-lY-Y2R"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hnN-sU-rle"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9HD-sh-24p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1557" y="135"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="1490_6-1" width="480.5" height="643"/>
+        <image name="1935_3" width="446" height="361"/>
+        <image name="1939_3" width="322" height="322.5"/>
+        <image name="1940_3" width="403.5" height="392"/>
+        <image name="2305_3" width="635" height="581.5"/>
+        <image name="2315_3" width="531.5" height="496"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
