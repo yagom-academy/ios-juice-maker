@@ -10,7 +10,7 @@ enum FruitTypes {
     case strawberry, banana, kiwi, pineapple, mango
 }
 
-class Fruit {
+class FruitManager {
     private var fruit: FruitTypes
     private(set) var stock: Int
 
@@ -19,7 +19,7 @@ class Fruit {
         self.stock = 10
     }
 
-    func checkStock(_ requiredFruitAmount: Int) -> Bool {
+    func haveStock(_ requiredFruitAmount: Int) -> Bool {
         if stock < requiredFruitAmount { return false }
         else { return true }
     }

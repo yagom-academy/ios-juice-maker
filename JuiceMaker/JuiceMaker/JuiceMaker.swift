@@ -6,25 +6,20 @@
 import Foundation
 
 struct JuiceMaker {
-    var fruits: [FruitTypes: Fruit] = [
-        .strawberry: Fruit(.strawberry),
-        .banana: Fruit(.banana),
-        .kiwi: Fruit(.kiwi),
-        .mango: Fruit(.mango),
-        .pineapple: Fruit(.pineapple)
+    var fruitInformation: [FruitTypes: FruitManager] = [
+        .strawberry: FruitManager(.strawberry),
+        .banana: FruitManager(.banana),
+        .kiwi: FruitManager(.kiwi),
+        .mango: FruitManager(.mango),
+        .pineapple: FruitManager(.pineapple)
     ]
     
-    func makeJuice(juice: JuiceTypes) {
-        for (fruitType, requiredAmount) in juice.recipe() {
-            if let fruit = fruits[fruitType] {
-                if fruit.checkStock(requiredAmount) {
+    func makeJuice(of orderedMenu: JuiceTypes) -> Bool {
+        for (fruitType, requiredAmount) in orderedMenu.recipe() {
+            if let fruit = fruitInformation[fruitType], fruit.haveStock(requiredAmount) {
                     fruit.subtractStock(requiredAmount)
-                } else {
-                    print("재고가 모자라요.")
-                    return
-                }
+                } else { return false }
             }
-        }
-        print("\(juice.name()) 나왔습니다! 맛있게 드세요!")
+        return true
     }
 }

@@ -5,10 +5,20 @@
 //
 import Foundation
 
-enum JuiceTypes {
-    case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice, strawberryBananaJuice, mangoJuice, mangoKiwiJuice
+enum JuiceTypes: String, CustomStringConvertible {
+    case strawberryJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case strawberryBananaJuice = "딸바쥬스"
+    case mangoJuice = "망고쥬스"
+    case mangoKiwiJuice = "망키쥬스"
     
-    func recipe() -> [FruitTypes:Int] {
+    var description: String {
+        return "\(self.rawValue)"
+    }
+    
+    func recipe() -> [FruitTypes: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
@@ -24,25 +34,6 @@ enum JuiceTypes {
             return [.mango: 3]
         case .mangoKiwiJuice:
             return [.mango: 2, .kiwi: 1]
-        }
-    }
-    
-    func name() -> String {
-        switch self {
-        case .strawberryJuice:
-            return "딸기쥬스"
-        case .bananaJuice:
-            return "바나나쥬스"
-        case .kiwiJuice:
-            return "키위쥬스"
-        case .pineappleJuice:
-            return "파인애플쥬스"
-        case .strawberryBananaJuice:
-            return "딸바쥬스"
-        case .mangoJuice:
-            return "망고쥬스"
-        case .mangoKiwiJuice:
-            return "망키쥬스"
         }
     }
 }
