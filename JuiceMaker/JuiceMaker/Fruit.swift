@@ -19,7 +19,7 @@ class FruitStock {
         self.stock = stock
     }
 
-    func haveStock(_ requiredFruitAmount: Int) -> Bool {
+    func isStockExist(_ requiredFruitAmount: Int) -> Bool {
         if stock < requiredFruitAmount { return false }
         else { return true }
     }
