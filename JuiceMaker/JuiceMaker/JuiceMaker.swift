@@ -27,20 +27,20 @@ class JuiceMaker {
         return stocks[index]
     }
     
-    func subtractStock(index: Int, amount: Int) {
-        self.stocks[index] -= amount
+    func subtractStock(index: Int, quantity: Int) {
+        self.stocks[index] -= quantity
     }
     
-    func addStock(index: Int, amount: Int) {
-        self.stocks[index] += amount
+    func addStock(index: Int, quantity: Int) {
+        self.stocks[index] += quantity
     }
     
     func isEnoughStock(juiceMenu: Juice) -> Bool {
         var result: Bool = false
-        let recipe = matchJuiceRecipe(targetJuice: juiceMenu)
+        let recipe = selectJuiceRecipe(targetJuice: juiceMenu)
         
-        for (target, compareAmount) in recipe {
-            if stocks[target] < compareAmount {
+        for (index, compareQuantity) in recipe {
+            if stocks[index] < compareQuantity {
                 result = false
                 break
             } else {
@@ -51,7 +51,7 @@ class JuiceMaker {
         return result
     }
     
-    func matchJuiceRecipe(targetJuice: Juice) -> [Int: Int] {
+    func selectJuiceRecipe(targetJuice: Juice) -> [Int: Int] {
         var recipe: [Int: Int] = [:]
         
         //  recipe = [Key: Value] -> [stock Array index : recipe need amount]
@@ -78,12 +78,12 @@ class JuiceMaker {
     }
     
     func makeJuice(juiceName: Juice) {
-        let recipe = matchJuiceRecipe(targetJuice: juiceName)
+        let recipe = selectJuiceRecipe(targetJuice: juiceName)
         let checkStockStatus: Bool = isEnoughStock(juiceMenu: juiceName )
         
         if checkStockStatus {
             for (key, value) in recipe {
-                subtractStock(index: key, amount: value)
+                subtractStock(index: key, quantity: value)
             }
             messeges = .completeMakeJuice
         } else {
