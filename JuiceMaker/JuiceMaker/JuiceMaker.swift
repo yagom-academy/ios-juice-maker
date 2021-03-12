@@ -80,7 +80,7 @@ struct Stock {
 class JuiceMaker {
     private(set) var stock = Stock(basicValue: 10)
     
-    func makeJuice(_ juice: Juice) {
+    func make(_ juice: Juice) {
         stock.decrease(by: juice)
     }
 }

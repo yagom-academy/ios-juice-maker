@@ -6,57 +6,61 @@
 
 import UIKit
 
-import UIKit
-
 class ViewController: UIViewController {
     // MARK:- property
-    @IBOutlet var fruitStockLabels: [UILabel]!
     let juiceMaker = JuiceMaker()
     var hasStock: Bool = true
+    @IBOutlet var fruitStockLabels: [UILabel]!
+    
     // MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStockLabel()
+        updateFruitStockLabels()
     }
+    
     // MARK:- Method
     @IBAction func juiceOrderButton(_ sender: Any) {
         hasStock = true
         guard let button = sender as? UIButton else { return }
-        guard let juice = Juice(rawValue: button.tag) else { fatalError() }
+        guard let juice = Juice(rawValue: button.tag) else { return }
         
         for fruit in juice.recipe {
-            if juiceMaker.stock.fruits[fruit.key]! < fruit.value {
+            guard let stock = juiceMaker.stock.fruits[fruit.key] else { return }
+            if stock < fruit.value {
                 hasStock = false
             }
         }
         
         if hasStock {
-            juiceMaker.makeJuice(juice)
-            orderCompletedAlert(juiceName: juice.name)
+            juiceMaker.make(juice)
+            orderCompletedAlert(with: juice.name)
         } else {
-            orderFailAlert()
+            orderFailedAlert()
         }
     }
     
-    func updateFruitStockLabel() {
+    func updateFruitStockLabels() {
         for index in 0..<fruitStockLabels.count {
-            guard let stock = juiceMaker.stock.fruits[Fruit(rawValue: index)!] else { fatalError() }
+            guard let fruitType = Fruit(rawValue: index) else { return }
+            guard let stock = juiceMaker.stock.fruits[fruitType] else { return }
+            
             fruitStockLabels[index].text = String(stock)
         }
     }
 }
+
 // MARK:- Extension
 extension ViewController {
-    func orderCompletedAlert(juiceName: String) {
+    func orderCompletedAlert(with juiceName: String) {
         let alert = UIAlertController(title: "\(juiceName) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "감사합니다!", style: .default, handler: nil)
         
-        updateFruitStockLabel()
+        updateFruitStockLabels()
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
     
-    func orderFailAlert() {
+    func orderFailedAlert() {
         let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
             self.performSegue(withIdentifier: "stockChanger", sender: nil)
