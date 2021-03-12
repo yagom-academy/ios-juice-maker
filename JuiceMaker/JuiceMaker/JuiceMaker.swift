@@ -6,15 +6,15 @@
 import Foundation
 
 struct JuiceMaker {
-    var fruitInformation: [FruitTypes: FruitManager] = [
-        .strawberry: FruitManager(.strawberry),
-        .banana: FruitManager(.banana),
-        .kiwi: FruitManager(.kiwi),
-        .mango: FruitManager(.mango),
-        .pineapple: FruitManager(.pineapple)
+    var fruitInformation: [FruitTypes: FruitStock] = [
+        .strawberry: FruitStock(.strawberry),
+        .banana: FruitStock(.banana),
+        .kiwi: FruitStock(.kiwi),
+        .mango: FruitStock(.mango),
+        .pineapple: FruitStock(.pineapple)
     ]
     
-    func makeJuice(of orderedMenu: JuiceTypes) -> Bool {
+    func canMakeJuice(of orderedMenu: JuiceTypes) -> Bool {
         for (fruitType, requiredAmount) in orderedMenu.recipe() {
             if let fruit = fruitInformation[fruitType], fruit.haveStock(requiredAmount) {
                     fruit.subtractStock(requiredAmount)

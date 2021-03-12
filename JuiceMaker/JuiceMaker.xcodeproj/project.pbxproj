@@ -14,7 +14,7 @@
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
-		E231F5FA25F9F16600E6C2F3 /* FruitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231F5F925F9F16600E6C2F3 /* FruitManager.swift */; };
+		E231F5FA25F9F16600E6C2F3 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231F5F925F9F16600E6C2F3 /* Fruit.swift */; };
 		E231F5FE25F9F1E800E6C2F3 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E231F5FD25F9F1E800E6C2F3 /* Juice.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +28,7 @@
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
-		E231F5F925F9F16600E6C2F3 /* FruitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitManager.swift; sourceTree = "<group>"; };
+		E231F5F925F9F16600E6C2F3 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		E231F5FD25F9F1E800E6C2F3 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +70,7 @@
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
-				E231F5F925F9F16600E6C2F3 /* FruitManager.swift */,
+				E231F5F925F9F16600E6C2F3 /* Fruit.swift */,
 				E231F5FD25F9F1E800E6C2F3 /* Juice.swift */,
 			);
 			path = JuiceMaker;
@@ -146,7 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E231F5FA25F9F16600E6C2F3 /* FruitManager.swift in Sources */,
+				E231F5FA25F9F16600E6C2F3 /* Fruit.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

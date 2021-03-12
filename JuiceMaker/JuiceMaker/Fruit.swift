@@ -10,11 +10,11 @@ enum FruitTypes {
     case strawberry, banana, kiwi, pineapple, mango
 }
 
-class FruitManager {
+class FruitStock {
     private var fruit: FruitTypes
     private(set) var stock: Int
 
-    init(_ fruit: FruitTypes) {
+    init(_ fruit: FruitTypes, _ stock: Int) {
         self.fruit = fruit
         self.stock = 10
     }
