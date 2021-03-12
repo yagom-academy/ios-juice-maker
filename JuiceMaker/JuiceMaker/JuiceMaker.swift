@@ -6,4 +6,16 @@
 
 import Foundation
 
-/// 쥬스 메이커 타입 
+
+class JuiceMaker {
+    let juiceRecipe: RecipeBook = JuiceRecipe().getJuiceIngredients()
+    let fruitStockManager = FruitStockManager.shared
+    
+    func makeJuice(juiceName: String) {
+        guard let juiceIngredients: FruitTypeAndAmount = juiceRecipe[juiceName] else { return }
+        
+        for (fruitType, fruitNumber) in juiceIngredients {
+            fruitStockManager.decreaseStockAmount(of: fruitType, by: fruitNumber)
+        }
+    }
+}
