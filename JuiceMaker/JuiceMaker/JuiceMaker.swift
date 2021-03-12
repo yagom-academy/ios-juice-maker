@@ -19,6 +19,7 @@ enum Juice {
 }
 
 class JuiceMaker {
+    // Array Index -> strawberry = 0, banana = 1, pineapple = 2, kiwi = 3, mango = 4
     private var stock: [Int] = [10, 10, 10, 10, 10]
     var messeges: printMessege = .unknownError
     
@@ -54,7 +55,7 @@ class JuiceMaker {
     func matchJuiceRecipe(targetJuice: Juice) -> [Int: Int] {
         var recipe: [Int: Int] = [:]
         
-        // strawberry = 0, banana = 1, pineapple = 2, kiwi = 3, mango = 4
+        //  recipe = [Key: Value] -> [stock Array index : recipe need amount]
         switch targetJuice {
         case .strawberryJuice:
             recipe = [0:16]
