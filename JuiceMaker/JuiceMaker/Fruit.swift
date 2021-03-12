@@ -12,11 +12,11 @@ enum FruitTypes {
 
 class FruitStock {
     private var fruit: FruitTypes
-    private(set) var stock: Int
+    private(set) var stock = 10
 
     init(_ fruit: FruitTypes, _ stock: Int) {
         self.fruit = fruit
-        self.stock = 10
+        self.stock = stock
     }
 
     func haveStock(_ requiredFruitAmount: Int) -> Bool {
