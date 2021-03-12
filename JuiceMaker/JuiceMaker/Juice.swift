@@ -25,11 +25,11 @@ class Juice {
 }
 
 enum JuiceType {
-    static let strawberryJuice = Juice(Requirements.strawberry)
-    static let bananaJuice = Juice(Requirements.banana)
-    static let kiwiJuice = Juice(Requirements.kiwi)
-    static let pineappleJuice = Juice(Requirements.pineapple)
-    static let strawBananaJuice = Juice(Requirements.strawBanana)
-    static let mangoJuice = Juice(Requirements.mango)
-    static let mangoKiwiJuice = Juice(Requirements.mangoKiwi)
+    static let strawberry = Juice(Requirements.strawberry)
+    static let banana = Juice(Requirements.banana)
+    static let kiwi = Juice(Requirements.kiwi)
+    static let pineapple = Juice(Requirements.pineapple)
+    static let strawBanana = Juice(Requirements.strawBanana)
+    static let mango = Juice(Requirements.mango)
+    static let mangoKiwi = Juice(Requirements.mangoKiwi)
 }

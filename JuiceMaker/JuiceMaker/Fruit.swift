@@ -12,7 +12,7 @@ class Fruit {
         self.stock -= amount
     }
     
-    func addStock(amount: Int) {
+    func addStock(_ amount: Int) {
         self.stock += amount
     }
 }

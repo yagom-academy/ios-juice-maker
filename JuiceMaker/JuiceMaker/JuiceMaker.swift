@@ -10,6 +10,7 @@ import Foundation
 
 
 class JuiceMaker {
+    
     func checkStock(of fruit: Fruit) {
         print("\(fruit)는 현재 \(fruit.stock)개 남아있습니다.")
     }
@@ -32,7 +33,7 @@ class JuiceMaker {
         }
     }
     
-    func addStock(_ amount: Int, for fruitType: Fruit) {
-        fruitType.addStock(amount: amount)
+    func addStock(_ amount: Int, for fruit: Fruit) {
+        fruit.addStock(amount)
     }
 }
