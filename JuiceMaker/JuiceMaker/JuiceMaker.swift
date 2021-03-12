@@ -35,27 +35,25 @@ class JuiceMaker {
         self.stocks[index] += quantity
     }
     
-    func isCheckStock(juiceMenu: Juice) -> Bool {
-        var result: Bool = false
-        let recipe = selectJuiceRecipe(targetJuice: juiceMenu)
+    func makeJuice(juiceName: Juice) {
+        let recipe = selectJuiceRecipe(juiceName)
+        let isStockStatus: Bool = isCheckStock(juiceName)
         
-        for (index, compareQuantity) in recipe {
-            if stocks[index] < compareQuantity {
-                result = false
-                break
-            } else {
-                result = true
+        if isStockStatus {
+            for (key, value) in recipe {
+                subtractStock(index: key, quantity: value)
             }
+            messeges = .completeMakeJuice
+        } else {
+            messeges = .notEnoughStock
         }
-        
-        return result
     }
     
-    func selectJuiceRecipe(targetJuice: Juice) -> [Int: Int] {
+    func selectJuiceRecipe(_ juiceName: Juice) -> [Int: Int] {
         var recipe: [Int: Int] = [:]
         
         //  recipe = [Key: Value] -> [stock Array index : recipe need amount]
-        switch targetJuice {
+        switch juiceName {
         case .strawberryJuice:
             recipe = [0:16]
         case .bananaJuice:
@@ -77,17 +75,23 @@ class JuiceMaker {
         return recipe
     }
     
-    func makeJuice(juiceName: Juice) {
-        let recipe = selectJuiceRecipe(targetJuice: juiceName)
-        let isStockStatus: Bool = isCheckStock(juiceMenu: juiceName )
+    func isCheckStock(_ juiceName: Juice) -> Bool {
+        var result: Bool = false
+        let recipe = selectJuiceRecipe(juiceName)
         
-        if isStockStatus {
-            for (key, value) in recipe {
-                subtractStock(index: key, quantity: value)
+        for (index, compareQuantity) in recipe {
+            if stocks[index] < compareQuantity {
+                result = false
+                break
+            } else {
+                result = true
             }
-            messeges = .completeMakeJuice
-        } else {
-            messeges = .notEnoughStock
         }
+        
+        return result
     }
+    
+    
+    
+    
 }
