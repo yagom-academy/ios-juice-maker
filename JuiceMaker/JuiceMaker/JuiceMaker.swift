@@ -111,15 +111,28 @@ class JuiceMaker {
         let secondName: Fruit? = name.fruitCount.secondName
         let secondCount: Int? = name.fruitCount.secondCount
         
-        if firstCount > inventory[firstName]! {
+        guard let firstStock = inventory[firstName] else {
             return
         }
         
-        if secondCount != nil && secondName != nil && secondCount! > inventory[secondName!]! {
+        if firstCount > firstStock {
             return
         }
         
+        guard let unwrappingSecondName = secondName, let unwrappingSecondCount = secondCount else {
+            deductInventory(name: name)
+            return
+        }
+        
+        guard let secondStock = inventory[unwrappingSecondName] else {
+            return
+        }
+        
+        if unwrappingSecondCount > secondStock {
+            return
+        }
         deductInventory(name: name)
+        
     }
     
 }
