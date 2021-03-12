@@ -54,8 +54,6 @@ extension Juices: CustomStringConvertible {
             return "망고 키위 쥬스"
         }
     }
-    
-    
 }
 
 class FruitStock {

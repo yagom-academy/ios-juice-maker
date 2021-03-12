@@ -16,19 +16,13 @@ class JuiceMaker {
                 try hasFruitStock(fruit: kind, amount: amountForJuice)
                 try consumeFruit(fruit: kind, amount: amountForJuice)
             } catch {
-                // TODO: -  lackStock 알럿 처리
                 throw StockError.lackStock
             }
         }
     }
     
-    func consumeFruit(fruit kind: Fruits, amount: Int) throws {
-        do {
-            try fruitStorage.manageStorage(fruit: kind, amount: -amount)
-        } catch {
-            // TODO: - inValidStock 알럿 처리
-            throw StockError.inValidStock
-        }
+    func currentFruitStock() -> Storage {
+        return fruitStorage.fruits
     }
     
     func addFruitStock(fruit kind: Fruits, amount addFruits: Int = 1) throws {
@@ -40,13 +34,17 @@ class JuiceMaker {
         }
     }
     
-    func hasFruitStock(fruit kind: Fruits, amount: Int) throws {
-        guard let stock = fruitStorage.fruits[kind], amount > 0, stock - amount >= 0 else {
-            throw StockError.lackStock
+    private func consumeFruit(fruit kind: Fruits, amount: Int) throws {
+        do {
+            try fruitStorage.manageStorage(fruit: kind, amount: -amount)
+        } catch {
+            throw StockError.inValidStock
         }
     }
     
-    func currentFruitStock() -> Storage {
-        return fruitStorage.fruits
+    private func hasFruitStock(fruit kind: Fruits, amount: Int) throws {
+        guard let stock = fruitStorage.fruits[kind], amount > 0, stock - amount >= 0 else {
+            throw StockError.lackStock
+        }
     }
 }
