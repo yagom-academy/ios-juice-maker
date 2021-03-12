@@ -34,7 +34,6 @@ enum FruitsJuice {
     case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice, strawberryBananaJuice, mangoKiwiJuice
     
     func jucieRecipe() -> JuiceIngredients {
-        
         switch self {
         case .strawberryJuice:
             return JuiceIngredients(ingredients: [(strawberry,16)])
@@ -72,77 +71,20 @@ class JuiceMaker {
     private func checkFruitStock(of juice: FruitsJuice) -> Bool {
         for ingredient in juice.jucieRecipe().ingredients {
             if ingredient.amount < ingredient.fruit.amount {
-                return false
+                return true
             }
         }
-        return true
+        return false
     }
     
-    func madeFruitsJuice(name: FruitsJuice) -> String {
-        switch name {
-        case .strawberryJuice:
-            if checkFruitStock(of: .strawberryJuice) {
-                for ingredient in name.jucieRecipe().ingredients {
-                    ingredient.fruit.reducefruit(amount: ingredient.amount)
-                }
-                return successMessage
-            } else {
-                return failureMessage
+    func informJuiceOrderResult(name: FruitsJuice) -> String {
+        if checkFruitStock(of: name) {
+            for ingredient in name.jucieRecipe().ingredients {
+                ingredient.fruit.reducefruit(amount: ingredient.amount)
             }
-        case .bananaJuice:
-            if checkFruitStock(of: .bananaJuice) {
-                for ingredient in name.jucieRecipe().ingredients {
-                    ingredient.fruit.reducefruit(amount: ingredient.amount)
-                }
-                return successMessage
-            } else {
-                return failureMessage
-            }
-        case .pineappleJuice:
-            if checkFruitStock(of: .pineappleJuice) {
-                for ingredient in name.jucieRecipe().ingredients {
-                    ingredient.fruit.reducefruit(amount: ingredient.amount)
-                }
-                return successMessage
-            } else {
-                return failureMessage
-            }
-        case .kiwiJuice:
-            if checkFruitStock(of: .kiwiJuice) {
-                for ingredient in name.jucieRecipe().ingredients {
-                    ingredient.fruit.reducefruit(amount: ingredient.amount)
-                }
-                return successMessage
-            } else {
-                return failureMessage
-            }
-        case .mangoJuice:
-            if checkFruitStock(of: .mangoJuice) {
-                for ingredient in name.jucieRecipe().ingredients {
-                    ingredient.fruit.reducefruit(amount: ingredient.amount)
-                }
-                return successMessage
-            } else {
-                return failureMessage
-            }
-        case .mangoKiwiJuice:
-            if checkFruitStock(of: .mangoKiwiJuice) {
-                for ingredient in name.jucieRecipe().ingredients {
-                    ingredient.fruit.reducefruit(amount: ingredient.amount)
-                }
-                return successMessage
-            } else {
-                return failureMessage
-            }
-        case .strawberryBananaJuice:
-            if checkFruitStock(of: .strawberryBananaJuice) {
-                for ingredient in name.jucieRecipe().ingredients {
-                    ingredient.fruit.reducefruit(amount: ingredient.amount)
-                }
-                return successMessage
-            } else {
-                return failureMessage
-            }
+            return successMessage
+        } else {
+            return failureMessage
         }
     }
 }
