@@ -6,8 +6,14 @@ enum Fruits: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-enum Juices {
-    case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice, strawberryBananaJuice, mangoKiwiJuice
+enum Juices: Int {
+    case strawberryJuice = 1
+    case bananaJuice = 2
+    case pineappleJuice = 3
+    case kiwiJuice = 4
+    case mangoJuice = 5
+    case strawberryBananaJuice = 6
+    case mangoKiwiJuice = 7
     
     var recipe : Storage {
         switch self {
@@ -27,6 +33,29 @@ enum Juices {
             return [.mango : 2, .kiwi : 1]
         }
     }
+}
+
+extension Juices: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기 쥬스"
+        case .bananaJuice:
+            return "바나나 쥬스"
+        case .pineappleJuice:
+            return "파인애플 쥬스"
+        case .kiwiJuice:
+            return "키위 쥬스"
+        case .mangoJuice:
+            return "망고 쥬스"
+        case .strawberryBananaJuice:
+            return "딸기 바나나 쥬스"
+        case .mangoKiwiJuice:
+            return "망고 키위 쥬스"
+        }
+    }
+    
+    
 }
 
 class FruitStock {

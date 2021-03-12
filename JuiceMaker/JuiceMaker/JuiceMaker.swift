@@ -10,30 +10,33 @@ class JuiceMaker {
     
     var fruitStorage = FruitStock.shared
     
-    func make(order: Juices) {
+    func make(order: Juices) throws {
         for (kind, amountForJuice) in order.recipe {
             do {
                 try hasFruitStock(fruit: kind, amount: amountForJuice)
-                consumeFruit(fruit: kind, amount: amountForJuice)
+                try consumeFruit(fruit: kind, amount: amountForJuice)
             } catch {
                 // TODO: -  lackStock 알럿 처리
+                throw StockError.lackStock
             }
         }
     }
     
-    func consumeFruit(fruit kind: Fruits, amount: Int) {
+    func consumeFruit(fruit kind: Fruits, amount: Int) throws {
         do {
             try fruitStorage.manageStorage(fruit: kind, amount: -amount)
         } catch {
             // TODO: - inValidStock 알럿 처리
+            throw StockError.inValidStock
         }
     }
     
-    func addFruitStock(fruit kind: Fruits, amount addFruits: Int = 1) {
+    func addFruitStock(fruit kind: Fruits, amount addFruits: Int = 1) throws {
         do {
             try fruitStorage.manageStorage(fruit: kind, amount: addFruits)
         } catch {
             // TODO: - inValidStock 알럿 처리
+            throw StockError.inValidStock
         }
     }
     
