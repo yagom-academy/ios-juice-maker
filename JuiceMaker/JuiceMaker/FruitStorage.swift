@@ -57,13 +57,12 @@ extension Juices: CustomStringConvertible {
 }
 
 class FruitStock {
-    public private(set) var fruits: Storage
+    public private(set) var fruits: Storage = [:]
     
-    static let shared = FruitStock()
-    
-    private init() {
-        self.fruits = [:]
-        initStorage(amount: 15)
+    init(initAmount: Int) {
+        for kindFruit in Fruits.allCases {
+            fruits.updateValue(initAmount, forKey: kindFruit)
+        }
     }
     
     func manageStorage(fruit kind: Fruits, amount: Int) throws {
@@ -71,11 +70,5 @@ class FruitStock {
             throw StockError.inValidStock
         }
         fruits.updateValue(stock + amount, forKey: kind)
-    }
-    
-    private func initStorage(amount: Int) {
-        for kindFruit in Fruits.allCases {
-            fruits.updateValue(amount, forKey: kindFruit)
-        }
     }
 }

@@ -4,12 +4,11 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
     
-    let maker = JuiceMaker()
+    var juiceMaker = JuiceMaker.shared
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -25,17 +24,15 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoKiwiButton: UIButton!
     @IBOutlet weak var strawberyBananaButton: UIButton!
     
-    
     @IBAction func touchUpjuiceOrderButton(_ sender: Any) {
         let orderButton = sender as! UIButton
         let selectedFruit = Juices(rawValue: orderButton.tag)!
         do {
-            try maker.make(order: selectedFruit)
+            try juiceMaker.make(order: selectedFruit)
         } catch {
-            LakeStockAlert()
+            lakeStockAlert()
         }
         orderSuccessAlert(selectedFruit)
-    
     }
     
     override func viewDidLoad() {
@@ -48,10 +45,10 @@ class JuiceMakerViewController: UIViewController {
 }
 
 extension JuiceMakerViewController {
-    func LakeStockAlert() {
+    func lakeStockAlert() {
         let failAlert = UIAlertController(title: nil , message: "재료가 모자라요 재고를 수정할까요?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default)
-        let stockSettingAction = UIAlertAction(title: "예", style: .cancel){ (action) in
+        let stockSettingAction = UIAlertAction(title: "예", style: .cancel){ action in
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
                 return
             }
@@ -70,13 +67,12 @@ extension JuiceMakerViewController {
         let action = UIAlertAction(title: "OK", style: .default) { _ in
             self.updataStock()
         }
-
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
     
     func updataStock() {
-        let stock = maker.currentFruitStock()
+        let stock = juiceMaker.currentFruitStock()
         strawberryLabel.text = String(stock[.strawberry]!)
         bananaLabel.text = String(stock[.banana]!)
         pineappleLabel.text = String(stock[.pineapple]!)
