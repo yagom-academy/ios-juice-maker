@@ -16,6 +16,25 @@ enum Fruit: Int, CaseIterable {
 
 enum FruitJuice {
     case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangoKiwi
+    
+    var recipe: [Fruit: Int] {
+        switch self {
+        case .strawberry:
+            return [.strawberry: 16]
+        case .banana:
+            return [.banana: 2]
+        case .kiwi:
+            return [.kiwi: 3]
+        case .pineapple:
+            return [.pineapple: 2]
+        case .strawberryBanana:
+            return [.strawberry: 10, .banana: 1]
+        case .mango:
+            return [.mango: 3]
+        case .mangoKiwi:
+            return [.mango: 2, .kiwi: 1]
+        }
+    }
 }
 
 class JuiceMaker {
@@ -34,23 +53,8 @@ class JuiceMaker {
         fruitStocks[fruit.index] -= stock
     }
     func makeFruitJuice(juice: FruitJuice) {
-        switch juice {
-        case .strawberry:
-            consumeFruit(fruit: .strawberry, stock: 16)
-        case .banana:
-            consumeFruit(fruit: .banana, stock: 2)
-        case .kiwi:
-            consumeFruit(fruit: .kiwi, stock: 3)
-        case .pineapple:
-            consumeFruit(fruit: .pineapple, stock: 2)
-        case .strawberryBanana:
-            consumeFruit(fruit: .strawberry, stock: 10)
-            consumeFruit(fruit: .banana, stock: 1)
-        case .mango:
-            consumeFruit(fruit: .mango, stock: 3)
-        case .mangoKiwi:
-            consumeFruit(fruit: .mango, stock: 2)
-            consumeFruit(fruit: .kiwi, stock: 1)
+        for (ingredient, amount) in juice.recipe {
+            consumeFruit(fruit: ingredient, stock: amount)
         }
     }
     func addStock(fruit: Fruit) {
