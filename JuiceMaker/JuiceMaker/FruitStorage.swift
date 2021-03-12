@@ -16,6 +16,6 @@ class FruitStorage {
         setInitialFruitAmount()
     }
     func setInitialFruitAmount() {
-        refrigerator = [Fruit.strawberry: 10, Fruit.banana: 10, Fruit.kiwi: 10, Fruit.mango: 10, Fruit.pineapple: 10]
+        refrigerator = [Fruit.strawberry: 10, Fruit.banana: 0, Fruit.kiwi: 10, Fruit.mango: 10, Fruit.pineapple: 10]
     }
 }
