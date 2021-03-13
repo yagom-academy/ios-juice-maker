@@ -7,21 +7,6 @@
 
 import Foundation
 
-// MARK: - Recipe Type for Defining Decoded JSON
-struct Recipe: Codable {
-  struct JuiceRecipe: Codable {
-    struct Ingredient: Codable {
-      var fruitName: Fruit
-      var quantity: Int
-    }
-    
-    var name: String
-    var ingredient: [Ingredient]
-  }
-  
-  var juiceRecipes: [JuiceRecipe]
-}
-
 // MARK: - JuiceRecipe Type
 struct JuiceRecipe {
   private let wrapedRecipeBook: Recipe?
