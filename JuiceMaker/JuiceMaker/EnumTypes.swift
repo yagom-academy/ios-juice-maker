@@ -15,6 +15,23 @@ enum Fruit: String, CaseIterable, Decodable {
   case mango = "Mango"
 }
 
+extension Fruit: CustomStringConvertible {
+  var description: String {
+    switch self {
+    case .strawberry:
+      return "딸기"
+    case .banana:
+      return "바나나"
+    case .pineapple:
+      return "파인애플"
+    case .kiwi:
+      return "키위"
+    case .mango:
+      return "망고"
+    }
+  }
+}
+
 enum Juice: String {
   case strawberryJuice = "딸기쥬스"
   case bananaJuice = "바나나쥬스"
