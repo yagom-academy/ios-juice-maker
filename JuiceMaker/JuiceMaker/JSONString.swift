@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Recipe Type이 디코딩할 jsonString
-private let jsonString = """
+let jsonString = """
     {
         "juiceRecipes":
         [

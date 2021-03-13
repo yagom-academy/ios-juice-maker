@@ -9,18 +9,18 @@ import Foundation
 
 // MARK: - JuiceRecipe Type
 struct JuiceRecipe {
-  private let wrapedRecipeBook: Recipe?
+  private let wrappedRecipeBook: Recipe?
   
   init() {
     let jsonData = Data(jsonString.utf8)
-    self.wrapedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
+    self.wrappedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
   func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
     let orderedJuice = juice.name
     var recipe: Recipe.JuiceRecipe?
     
-    guard let recipeBook = wrapedRecipeBook else {
+    guard let recipeBook = wrappedRecipeBook else {
       throw RecipeError.invalidRecipe
     }
     
