@@ -21,6 +21,14 @@ class Stock {
     print("🔥 과일 입력이 잘못되었습니다.")
   }
   
+  func checkStock(for fruit: Fruit) {
+    guard let fruitNumberInStock = stock[fruit] else {
+      printInvalidFruitError()
+      return
+    }
+    print("\(fruit): \(fruitNumberInStock)")
+  }
+  
   func count(for fruit: Fruit) throws -> Int {
     guard let fruitNumberInStock = stock[fruit] else {
       throw FruitError.invalidFruit
