@@ -30,6 +30,7 @@ class JuiceMaker {
     for ingredient in try recipe.find(for: orderedJuice).ingredient {
       guard let fruit = ingredient.fruitName,
             let quantity = ingredient.quantity else {
+        informErrorLocation(functionName: #function)
         throw FruitError.invalidFruit
       }
       requiredFruits[fruit] = quantity

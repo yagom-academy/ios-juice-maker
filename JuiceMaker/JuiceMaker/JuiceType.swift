@@ -20,6 +20,7 @@ struct JuiceRecipe {
     var recipe: JuiceType?
     
     guard let recipeBook = wrappedRecipeBook else {
+      informErrorLocation(functionName: #function)
       throw RecipeError.invalidRecipe
     }
     
@@ -30,6 +31,7 @@ struct JuiceRecipe {
     }
     
     guard let unwrappedRecipe = recipe else {
+      informErrorLocation(functionName: #function)
       throw RecipeError.invalidRecipe
     }
     

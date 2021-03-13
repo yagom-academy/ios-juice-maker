@@ -7,6 +7,10 @@
 
 import Foundation
 
+func informErrorLocation(functionName: String) {
+  print("에러 발생: \(functionName)")
+}
+
 enum FruitError: Error, CustomStringConvertible {
   case invalidFruit
   
