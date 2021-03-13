@@ -8,15 +8,13 @@ import Foundation
 
 // MARK: - JuiceMaker Type
 class JuiceMaker {
-  private var stock = Stock()
+  var stock = Stock()
   
   func make(of orderedJuice: Juice) {
     do {
-      let requiredFruitsForJuice = try requiredFruits(for: orderedJuice)
-      let stockedFruitsForJuice = try stockedFruits(for: requiredFruitsForJuice)
-      
-      if hasEnoughIngredients(in: stockedFruitsForJuice) {
-        comsumeStockedFruits(for: stockedFruitsForJuice)
+      let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
+      if try hasEnoughFruits(of: requiredFruits) {
+        comsumeStockedFruits(for: requiredFruits)
         printOrderCompleted(for: orderedJuice)
       }
     } catch {
@@ -25,7 +23,7 @@ class JuiceMaker {
   }
   
   // MARK: - Component Methods for 'make(of:)'
-  private func requiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
+  private func checkRequiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
     var requiredFruits = [Fruit: Int]()
     let recipe = JuiceRecipe()
     
@@ -40,29 +38,17 @@ class JuiceMaker {
     return requiredFruits
   }
   
-  private func stockedFruits(for requiredFruits: [Fruit: Int]) throws -> [Fruit: Int] {
-    var stockedFruits = [Fruit: Int]()
-    
+  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) throws -> Bool {
+ 
     for (fruit, requiredQuantity) in requiredFruits {
       let stockedQuantity = try stock.count(for: fruit)
       if stockedQuantity < requiredQuantity {
-        print("\(fruit)의 재료가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
-        stockedFruits.removeAll()
-        break
-      } else {
-        stockedFruits[fruit] = requiredQuantity
+        print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
+        return false
       }
     }
     
-    return stockedFruits
-  }
-  
-  private func hasEnoughIngredients(in stockedFruits: [Fruit: Int]) -> Bool {
-    if stockedFruits.isEmpty {
-      return false
-    } else {
-      return true
-    }
+    return true
   }
   
   private func comsumeStockedFruits(for requiredFruits: [Fruit: Int]) {
