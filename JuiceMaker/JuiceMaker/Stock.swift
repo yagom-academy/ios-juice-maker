@@ -45,7 +45,7 @@ class Stock {
     if fruitNumberInStock >= 0 {
       stock[fruit] = fruitNumberInStock - amount
     } else {
-      print()
+      print("재고가 없어 더 차감할 수 없습니다.")
     }
   }
   
