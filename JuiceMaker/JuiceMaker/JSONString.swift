@@ -2,7 +2,7 @@
 //  JSONString.swift
 //  JuiceMaker
 //
-//  Created by Ryan-Son on 2021/03/13.
+//  Created by 강경, Ryan on 2021/03/13.
 //
 
 import Foundation

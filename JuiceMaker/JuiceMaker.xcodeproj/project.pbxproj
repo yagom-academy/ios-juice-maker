@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		852B689F25F60C800002DD70 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B689E25F60C800002DD70 /* Stock.swift */; };
-		85B6DA6025F79A750003D676 /* JuiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6DA5F25F79A750003D676 /* JuiceType.swift */; };
+		85B6DA6025F79A750003D676 /* JuiceRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */; };
 		AAE1486325FCA441004C758F /* JSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1486225FCA441004C758F /* JSONString.swift */; };
 		AAE6BC3825F9FFBF00173636 /* EnumTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6BC3725F9FFBF00173636 /* EnumTypes.swift */; };
 		AAE6BC3C25FA001000173636 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6BC3B25FA001000173636 /* Error.swift */; };
@@ -23,7 +23,7 @@
 
 /* Begin PBXFileReference section */
 		852B689E25F60C800002DD70 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
-		85B6DA5F25F79A750003D676 /* JuiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceType.swift; sourceTree = "<group>"; };
+		85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRecipe.swift; sourceTree = "<group>"; };
 		AAE1486225FCA441004C758F /* JSONString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONString.swift; sourceTree = "<group>"; };
 		AAE6BC3725F9FFBF00173636 /* EnumTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumTypes.swift; sourceTree = "<group>"; };
 		AAE6BC3B25FA001000173636 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				852B689E25F60C800002DD70 /* Stock.swift */,
-				85B6DA5F25F79A750003D676 /* JuiceType.swift */,
+				85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */,
 				AAE6BC3725F9FFBF00173636 /* EnumTypes.swift */,
 				AAE6BC3B25FA001000173636 /* Error.swift */,
 				AAE1486225FCA441004C758F /* JSONString.swift */,
@@ -159,7 +159,7 @@
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				852B689F25F60C800002DD70 /* Stock.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
-				85B6DA6025F79A750003D676 /* JuiceType.swift in Sources */,
+				85B6DA6025F79A750003D676 /* JuiceRecipe.swift in Sources */,
 				AAE1486325FCA441004C758F /* JSONString.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				AAE6BC3825F9FFBF00173636 /* EnumTypes.swift in Sources */,

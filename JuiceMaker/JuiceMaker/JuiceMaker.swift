@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom.
+//  Created by 강경, Ryan.
 //  Copyright © yagom academy. All rights reserved.
 //
 
