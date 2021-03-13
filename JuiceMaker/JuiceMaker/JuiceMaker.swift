@@ -36,13 +36,14 @@ class JuiceMaker {
   // MARK: - Component Methods for 'make(of:)'
   private func requiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
     var requiredFruits = [Fruit: Int]()
-
-    for ingredient in try recipe(for: orderedJuice).ingredient {
-
-      guard let fruitName = ingredient.fruitName else {
+    let recipe = JuiceRecipe()
+    
+    for ingredient in try recipe.find(for: orderedJuice).ingredient {
+      guard let fruit = ingredient.fruitName,
+            let quantity = ingredient.quantity else {
         throw FruitError.invalidFruit
       }
-      requiredFruits[fruitName] = ingredient.quantity
+      requiredFruits[fruit] = quantity
     }
     
     return requiredFruits
@@ -81,14 +82,5 @@ class JuiceMaker {
   
   private func printOrderCompleted(for orderedJuice: Juice) {
     print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
-  }
-  
-  private func recipe(for orderedJuice: Juice) throws -> JuiceType {
-    let recipe = JuiceRecipe()
-    guard let recipeForOrderedJuice = try recipe.find(for: orderedJuice) else {
-      throw RecipeError.invalidRecipe
-    }
-    
-    return recipeForOrderedJuice
   }
 }

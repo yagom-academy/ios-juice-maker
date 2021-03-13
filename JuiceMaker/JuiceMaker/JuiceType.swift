@@ -16,8 +16,7 @@ struct JuiceRecipe {
     self.wrappedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
-  func find(for juice: Juice) throws -> JuiceType? {
-    let orderedJuice = juice.name
+  func find(for orderedJuice: Juice) throws -> JuiceType {
     var recipe: JuiceType?
     
     guard let recipeBook = wrappedRecipeBook else {
@@ -25,12 +24,16 @@ struct JuiceRecipe {
     }
     
     for juiceRecipe in recipeBook.juiceRecipes {
-      if juiceRecipe.name == orderedJuice {
+      if juiceRecipe.name == orderedJuice.name {
         recipe = juiceRecipe
       }
     }
     
-    return recipe
+    guard let unwrappedRecipe = recipe else {
+      throw RecipeError.invalidRecipe
+    }
+    
+    return unwrappedRecipe
   }
 }
 
