@@ -16,9 +16,9 @@ struct JuiceRecipe {
     self.wrappedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
-  func find(for juice: Juice) throws -> Recipe.JuiceRecipe? {
+  func find(for juice: Juice) throws -> JuiceType? {
     let orderedJuice = juice.name
-    var recipe: Recipe.JuiceRecipe?
+    var recipe: JuiceType?
     
     guard let recipeBook = wrappedRecipeBook else {
       throw RecipeError.invalidRecipe
@@ -34,18 +34,19 @@ struct JuiceRecipe {
   }
 }
 
-// MARK: - Codable Struct
-/// json파일을 Codable로 가져오기위한 Struct
-struct Recipe: Codable {
-  struct JuiceRecipe: Codable {
-    struct Ingredient: Codable {
-      var fruitName: String
-      var quantity: Int
-    }
-    
-    var name: String
-    var ingredient: [Ingredient]
-  }
-  
-  var juiceRecipes: [JuiceRecipe]
+// MARK: - Recipe, JuiceType, Ingredient Type
+/// JSON 파일을 디코딩하기 위한 Struct
+struct Recipe: Decodable {
+  var juiceRecipes: [JuiceType]
 }
+
+struct JuiceType: Decodable {
+  var name: String
+  var ingredient: [Ingredient]
+}
+
+struct Ingredient: Decodable {
+  var fruitName: Fruit
+  var quantity: Int
+}
+

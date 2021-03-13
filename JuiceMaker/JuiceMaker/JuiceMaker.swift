@@ -85,8 +85,8 @@ struct JuiceMaker {
     print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
   }
   
-  private func recipe(for orderedJuice: Juice) throws -> Recipe.JuiceRecipe {
-    let recipe = JuiceRecipe()
+  private func recipe(for orderedJuice: Juice) throws -> JuiceRecipe {
+    let recipe = JuiceType()
     guard let recipeForOrderedJuice = try recipe.find(for: orderedJuice) else {
       throw RecipeError.invalidRecipe
     }
