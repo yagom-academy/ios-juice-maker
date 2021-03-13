@@ -2,13 +2,34 @@
 //  Enumeration.swift
 //  JuiceMaker
 //
-//  Created by 강경 on 2021/03/11.
+//  Created by 강경, Ryan on 2021/03/11.
 //
 
 import Foundation
 
-enum Fruit: String, CaseIterable, Codable {
-  case strawberry, banana, pineapple, kiwi, mango
+enum Fruit: String, CaseIterable, Decodable {
+  case strawberry = "Strawberry"
+  case banana = "Banana"
+  case pineapple = "Pineapple"
+  case kiwi = "Kiwi"
+  case mango = "Mango"
+}
+
+extension Fruit: CustomStringConvertible {
+  var description: String {
+    switch self {
+    case .strawberry:
+      return "딸기"
+    case .banana:
+      return "바나나"
+    case .pineapple:
+      return "파인애플"
+    case .kiwi:
+      return "키위"
+    case .mango:
+      return "망고"
+    }
+  }
 }
 
 enum Juice: String {
@@ -20,7 +41,7 @@ enum Juice: String {
   case mangoJuice = "망고쥬스"
   case mangoKiwiJuice = "망고키위쥬스"
   
-  internal var name: String {
+  var name: String {
     return self.rawValue
   }
 }

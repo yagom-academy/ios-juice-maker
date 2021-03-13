@@ -2,13 +2,13 @@
 //  Stock.swift
 //  JuiceMaker
 //
-//  Created by 강경 on 2021/03/08.
+//  Created by 강경, Ryan on 2021/03/08.
 //
 
 import Foundation
 
 // MARK: - Stock Type
-struct Stock {
+class Stock {
   private var stock = [Fruit: Int]()
   
   init() {
@@ -17,24 +17,43 @@ struct Stock {
     }
   }
   
+  func checkStock(for fruit: Fruit) {
+    guard let fruitNumberInStock = stock[fruit] else {
+      printInvalidFruitError()
+      return
+    }
+    print("\(fruit): \(fruitNumberInStock)")
+  }
+  
+  func printInvalidFruitError() {
+    print("🔥 과일 입력이 잘못되었습니다.")
+  }
+  
   func count(for fruit: Fruit) throws -> Int {
     guard let fruitNumberInStock = stock[fruit] else {
+      informErrorLocation(functionName: #function)
       throw FruitError.invalidFruit
     }
     return fruitNumberInStock
   }
   
-  mutating func subtract(for fruit: Fruit, amount: Int = 1) throws {
-    guard var fruitNumberInStock = stock[fruit] else {
-      throw FruitError.invalidFruit
+  func subtract(for fruit: Fruit, amount: Int = 1) {
+    guard let fruitNumberInStock = stock[fruit] else {
+      printInvalidFruitError()
+      return
     }
-    fruitNumberInStock -= amount
+    if fruitNumberInStock >= 0 {
+      stock[fruit] = fruitNumberInStock - amount
+    } else {
+      print()
+    }
   }
   
-  mutating func add(for fruit: Fruit) throws {
-    guard var FruitNumberInStock = stock[fruit] else {
-      throw FruitError.invalidFruit
+  func add(for fruit: Fruit) {
+    guard let fruitNumberInStock = stock[fruit] else {
+      printInvalidFruitError()
+      return
     }
-    FruitNumberInStock += 1
+    stock[fruit] = fruitNumberInStock + 1
   }
 }

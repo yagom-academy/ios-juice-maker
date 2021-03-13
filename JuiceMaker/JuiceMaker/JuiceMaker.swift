@@ -1,83 +1,60 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom.
+//  Created by 강경, Ryan.
 //  Copyright © yagom academy. All rights reserved.
 //
 
 import Foundation
 
 // MARK: - JuiceMaker Type
-struct JuiceMaker {
-  private var stock = Stock()
+class JuiceMaker {
+  var stock = Stock()
   
-  mutating func make(of orderedJuice: Juice) {
+  func make(of orderedJuice: Juice) {
     do {
-      let requiredFruitsForJuice = try requiredFruits(for: orderedJuice)
-      let stockedFruitsForJuice = try stockedFruits(for: requiredFruitsForJuice)
-      
-      if hasEnoughIngredients(in: stockedFruitsForJuice) {
-        try subtractStockedFruits(from: stockedFruitsForJuice)
+      let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
+      if try hasEnoughFruits(of: requiredFruits) {
+        comsumeStockedFruits(for: requiredFruits)
         printOrderCompleted(for: orderedJuice)
-      } else {
-        printNotEnoughIngredients()
       }
     } catch {
-      switch error {
-      case FruitError.invalidFruit:
-        print("과일 입력이 잘못되었습니다.")
-      case JuiceError.invalidJuice:
-        print("쥬스 입력이 잘못되었습니다.")
-      case RecipeError.invalidRecipe:
-        print("레시피 입력이 잘못되었습니다.")
-      default:
-        print("알 수 없는 에러입니다. \(error)")
-      }
+      handleErrorForMake(error)
     }
   }
   
   // MARK: - Component Methods for 'make(of:)'
-  private func requiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
+  private func checkRequiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
     var requiredFruits = [Fruit: Int]()
-
-    for ingredient in try recipe(for: orderedJuice).ingredient {
-
-      guard let fruitName = Fruit(rawValue: ingredient.fruitName) else {
+    let recipe = JuiceRecipe()
+    
+    for ingredient in try recipe.find(for: orderedJuice).ingredient {
+      guard let fruit = ingredient.fruitName,
+            let quantity = ingredient.quantity else {
+        informErrorLocation(functionName: #function)
         throw FruitError.invalidFruit
       }
-      requiredFruits[fruitName] = ingredient.quantity
+      requiredFruits[fruit] = quantity
     }
     
     return requiredFruits
   }
   
-  private func stockedFruits(for requiredFruits: [Fruit: Int]) throws -> [Fruit: Int] {
-    var stockedFruits = [Fruit: Int]()
-    
+  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) throws -> Bool {
+ 
     for (fruit, requiredQuantity) in requiredFruits {
       let stockedQuantity = try stock.count(for: fruit)
       if stockedQuantity < requiredQuantity {
-        print("\(fruit)의 재료가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
-        stockedFruits.removeAll()
-        break
-      } else {
-        stockedFruits[fruit] = requiredQuantity
+        print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
+        return false
       }
     }
     
-    return stockedFruits
+    return true
   }
   
-  private func hasEnoughIngredients(in stockedFruits: [Fruit: Int]) -> Bool {
-    if stockedFruits.isEmpty {
-      return false
-    } else {
-      return true
-    }
-  }
-  
-  private mutating func subtractStockedFruits(from stockedFruits: [Fruit: Int]) throws {
-    for (fruit, quantity) in stockedFruits {
-      try stock.subtract(for: fruit, amount: quantity)
+  private func comsumeStockedFruits(for requiredFruits: [Fruit: Int]) {
+    for (fruit, quantity) in requiredFruits {
+      stock.subtract(for: fruit, amount: quantity)
     }
   }
   
@@ -85,16 +62,14 @@ struct JuiceMaker {
     print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
   }
   
-  private func recipe(for orderedJuice: Juice) throws -> Recipe.JuiceRecipe {
-    let recipe = JuiceRecipe()
-    guard let recipeForOrderedJuice = try recipe.find(for: orderedJuice) else {
-      throw RecipeError.invalidRecipe
+  private func handleErrorForMake(_ error: Error) {
+    switch error {
+    case FruitError.invalidFruit,
+         JuiceError.invalidJuice,
+         RecipeError.invalidRecipe:
+      print(error)
+    default:
+      print("알 수 없는 에러입니다. \(error)")
     }
-    
-    return recipeForOrderedJuice
-  }
-  
-  private func printNotEnoughIngredients() {
-    print("재료가 모자랍니다.")
   }
 }
