@@ -17,6 +17,10 @@ class Stock {
     }
   }
   
+  func printInvalidFruitError() {
+    print("🔥 과일 입력이 잘못되었습니다.")
+  }
+  
   func count(for fruit: Fruit) throws -> Int {
     guard let fruitNumberInStock = stock[fruit] else {
       throw FruitError.invalidFruit
@@ -24,17 +28,23 @@ class Stock {
     return fruitNumberInStock
   }
   
-  func subtract(for fruit: Fruit, amount: Int = 1) throws {
-    guard var fruitNumberInStock = stock[fruit] else {
-      throw FruitError.invalidFruit
+  func subtract(for fruit: Fruit, amount: Int = 1) {
+    guard let fruitNumberInStock = stock[fruit] else {
+      printInvalidFruitError()
+      return
     }
-    fruitNumberInStock -= amount
+    if fruitNumberInStock >= 0 {
+      stock[fruit] = fruitNumberInStock - amount
+    } else {
+      print()
+    }
   }
   
-  func add(for fruit: Fruit) throws {
-    guard var FruitNumberInStock = stock[fruit] else {
-      throw FruitError.invalidFruit
+  func add(for fruit: Fruit) {
+    guard let fruitNumberInStock = stock[fruit] else {
+      printInvalidFruitError()
+      return
     }
-    FruitNumberInStock += 1
+    stock[fruit] = fruitNumberInStock + 1
   }
 }
