@@ -16,20 +16,11 @@ class JuiceMaker {
       let stockedFruitsForJuice = try stockedFruits(for: requiredFruitsForJuice)
       
       if hasEnoughIngredients(in: stockedFruitsForJuice) {
-        try subtractStockedFruits(from: stockedFruitsForJuice)
+        comsumeStockedFruits(for: stockedFruitsForJuice)
         printOrderCompleted(for: orderedJuice)
       }
     } catch {
-      switch error {
-      case FruitError.invalidFruit:
-        print("과일 입력이 잘못되었습니다.")
-      case JuiceError.invalidJuice:
-        print("쥬스 입력이 잘못되었습니다.")
-      case RecipeError.invalidRecipe:
-        print("레시피 입력이 잘못되었습니다.")
-      default:
-        print("알 수 없는 에러입니다. \(error)")
-      }
+      handleErrorForMake(error)
     }
   }
   
@@ -74,13 +65,24 @@ class JuiceMaker {
     }
   }
   
-  private func subtractStockedFruits(from stockedFruits: [Fruit: Int]) throws {
-    for (fruit, quantity) in stockedFruits {
-      try stock.subtract(for: fruit, amount: quantity)
+  private func comsumeStockedFruits(for requiredFruits: [Fruit: Int]) {
+    for (fruit, quantity) in requiredFruits {
+      stock.subtract(for: fruit, amount: quantity)
     }
   }
   
   private func printOrderCompleted(for orderedJuice: Juice) {
     print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
+  }
+  
+  private func handleErrorForMake(_ error: Error) {
+    switch error {
+    case FruitError.invalidFruit,
+         JuiceError.invalidJuice,
+         RecipeError.invalidRecipe:
+      print(error)
+    default:
+      print("알 수 없는 에러입니다. \(error)")
+    }
   }
 }
