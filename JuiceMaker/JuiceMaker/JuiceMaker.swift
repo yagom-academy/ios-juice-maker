@@ -18,8 +18,6 @@ class JuiceMaker {
       if hasEnoughIngredients(in: stockedFruitsForJuice) {
         try subtractStockedFruits(from: stockedFruitsForJuice)
         printOrderCompleted(for: orderedJuice)
-      } else {
-        printNotEnoughIngredients()
       }
     } catch {
       switch error {
@@ -92,9 +90,5 @@ class JuiceMaker {
     }
     
     return recipeForOrderedJuice
-  }
-  
-  private func printNotEnoughIngredients() {
-    print("재료가 모자랍니다.")
   }
 }
