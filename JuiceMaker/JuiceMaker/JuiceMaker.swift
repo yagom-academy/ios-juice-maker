@@ -10,9 +10,9 @@ import Foundation
 
 
 class JuiceMaker {
-    public static var shared = JuiceMaker()
+    static let shared = JuiceMaker()
     
-    func checkStock(of fruit: Fruit) {
+    private func checkStock(of fruit: Fruit) {
         print("\(fruit)는 현재 \(fruit.stock)개 남아있습니다.")
     }
     
@@ -20,6 +20,7 @@ class JuiceMaker {
         if menu.canMake {
             for requirement in menu.requirements {
                 requirement.Fruit.subtractStock(amount: requirement.needAmount)
+                print(requirement.Fruit.stock)
             }
             
             print("\(menu)의 제조가 완료되었습니다!")
@@ -34,7 +35,7 @@ class JuiceMaker {
         }
     }
     
-    func addStock(_ amount: Int, for fruit: Fruit) {
+    private func addStock(_ amount: Int, for fruit: Fruit) {
         fruit.addStock(amount)
     }
 }
