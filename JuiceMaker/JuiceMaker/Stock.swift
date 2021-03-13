@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Stock Type
-struct Stock {
+class Stock {
   private var stock = [Fruit: Int]()
   
   init() {
@@ -24,14 +24,14 @@ struct Stock {
     return fruitNumberInStock
   }
   
-  mutating func subtract(for fruit: Fruit, amount: Int = 1) throws {
+  func subtract(for fruit: Fruit, amount: Int = 1) throws {
     guard var fruitNumberInStock = stock[fruit] else {
       throw FruitError.invalidFruit
     }
     fruitNumberInStock -= amount
   }
   
-  mutating func add(for fruit: Fruit) throws {
+  func add(for fruit: Fruit) throws {
     guard var FruitNumberInStock = stock[fruit] else {
       throw FruitError.invalidFruit
     }

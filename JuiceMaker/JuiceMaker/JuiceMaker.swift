@@ -7,10 +7,10 @@
 import Foundation
 
 // MARK: - JuiceMaker Type
-struct JuiceMaker {
+class JuiceMaker {
   private var stock = Stock()
   
-  mutating func make(of orderedJuice: Juice) {
+  func make(of orderedJuice: Juice) {
     do {
       let requiredFruitsForJuice = try requiredFruits(for: orderedJuice)
       let stockedFruitsForJuice = try stockedFruits(for: requiredFruitsForJuice)
@@ -75,7 +75,7 @@ struct JuiceMaker {
     }
   }
   
-  private mutating func subtractStockedFruits(from stockedFruits: [Fruit: Int]) throws {
+  private func subtractStockedFruits(from stockedFruits: [Fruit: Int]) throws {
     for (fruit, quantity) in stockedFruits {
       try stock.subtract(for: fruit, amount: quantity)
     }
