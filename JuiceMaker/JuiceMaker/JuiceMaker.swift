@@ -22,11 +22,7 @@ class JuiceMaker {
                 requirement.Fruit.subtractStock(amount: requirement.needAmount)
                 print(requirement.Fruit.stock)
             }
-            
-            print("\(menu)의 제조가 완료되었습니다!")
         } else {
-            print("재고가 부족하여 \(menu)을(를) 만들 수 없습니다.")
-            
             for requirement in menu.requirements {
                 if requirement.needAmount > requirement.Fruit.stock {
                     print("\(requirement.Fruit)의 현재 재고: \(requirement.Fruit.stock), 필요량: \(requirement.needAmount)")

@@ -8,10 +8,11 @@
 typealias FruitAndNeedAmount = (Fruit: Fruit, needAmount: Int)
 
 class Juice {
-    let requirements: [FruitAndNeedAmount]
-    
-    init(_ require: [FruitAndNeedAmount]) {
+    private(set) var requirements: [FruitAndNeedAmount]
+    let name: String
+    init(_ require: [FruitAndNeedAmount], _ juiceName: String) {
         self.requirements = require
+        self.name = juiceName
     }
     
     var canMake: Bool {
@@ -25,11 +26,11 @@ class Juice {
 }
 
 enum JuiceType {
-    static let strawberry = Juice(Requirements.strawberry)
-    static let banana = Juice(Requirements.banana)
-    static let kiwi = Juice(Requirements.kiwi)
-    static let pineapple = Juice(Requirements.pineapple)
-    static let strawBanana = Juice(Requirements.strawBanana)
-    static let mango = Juice(Requirements.mango)
-    static let mangoKiwi = Juice(Requirements.mangoKiwi)
+    static let strawberry = Juice(Requirements.strawberry, "딸기쥬스")
+    static let banana = Juice(Requirements.banana, "바나나쥬스")
+    static let kiwi = Juice(Requirements.kiwi, "키위쥬스")
+    static let pineapple = Juice(Requirements.pineapple, "파인애플쥬스")
+    static let strawBanana = Juice(Requirements.strawBanana, "딸바쥬스")
+    static let mango = Juice(Requirements.mango, "망고쥬스")
+    static let mangoKiwi = Juice(Requirements.mangoKiwi, "망키쥬스")
 }
