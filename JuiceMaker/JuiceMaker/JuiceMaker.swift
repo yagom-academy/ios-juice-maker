@@ -41,7 +41,7 @@ struct JuiceMaker {
 
     for ingredient in try recipe(for: orderedJuice).ingredient {
 
-      guard let fruitName = Fruit(rawValue: ingredient.fruitName) else {
+      guard let fruitName = ingredient.fruitName else {
         throw FruitError.invalidFruit
       }
       requiredFruits[fruitName] = ingredient.quantity
@@ -85,8 +85,8 @@ struct JuiceMaker {
     print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
   }
   
-  private func recipe(for orderedJuice: Juice) throws -> JuiceRecipe {
-    let recipe = JuiceType()
+  private func recipe(for orderedJuice: Juice) throws -> JuiceType {
+    let recipe = JuiceRecipe()
     guard let recipeForOrderedJuice = try recipe.find(for: orderedJuice) else {
       throw RecipeError.invalidRecipe
     }
