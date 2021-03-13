@@ -7,14 +7,35 @@
 
 import Foundation
 
-enum FruitError: Error {
+enum FruitError: Error, CustomStringConvertible {
   case invalidFruit
+  
+  var description: String {
+    switch self {
+    case .invalidFruit:
+      return "🔥 과일 입력이 잘못되었습니다."
+    }
+  }
 }
 
-enum JuiceError: Error {
+enum JuiceError: Error, CustomStringConvertible {
   case invalidJuice
+  
+  var description: String {
+    switch self {
+    case .invalidJuice:
+      return "🔥 쥬스 입력이 잘못되었습니다."
+    }
+  }
 }
 
-enum RecipeError: Error {
+enum RecipeError: Error, CustomStringConvertible {
   case invalidRecipe
+  
+  var description: String {
+    switch self {
+    case .invalidRecipe:
+      return "🔥 레시피 입력이 잘못되었습니다."
+    }
+  }
 }
