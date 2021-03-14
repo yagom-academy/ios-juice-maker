@@ -9,8 +9,8 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var strawberryStock: StockLabel!
-    //FIXME: 여기서 @IBOutlet var strawberryStock: StockLabel! = StockLabel(FruitType.strawberry)를 해줘도 왜 속성값이 안바뀌어 있을까?..
     @IBOutlet var bananaStock: StockLabel!
+    //FIXME: 이곳에서 @IBOutlet var bananaStock: StockLabel! = StockLabel(FruitType.banana)를 작성하면 버튼을 누를 시점에 속성값이 바뀌어있지 않습니다. (디폴트 속성값인 strawberry로 되어있었습니다.)
     @IBOutlet var pineappleStock: StockLabel!
     @IBOutlet var kiwiStock: StockLabel!
     @IBOutlet var mangoStock: StockLabel!
@@ -25,15 +25,15 @@ class ViewController: UIViewController {
     
     @IBAction func touchUpJuiceButton(_ sender: JuiceButton) {
         if sender.juice.canMake {
+            JuiceMaker.make(sender.juice)
             successAlert(sender.juice)
-            //FIXME: 왜 여기다 update() 쓰면 처음 버튼 눌렀을때는 update안되고 다음번 버튼 눌렀을 때 이전턴걸로 update가 될까???
+            //FIXME: 이곳에서 update()를 호출하면 처음 버튼을 눌렀을때는 update가 되지 않고 다음번 버튼을 눌렀을 때 이전 턴의 결과로 update가 이루어집니다.
         } else {
             failAlert()
         }
-        JuiceMaker.shared.make(sender.juice)
         update()
     }
-    func update() {
+    private func update() {
         strawberryStock.text = String(FruitType.strawberry.stock)
         bananaStock.text = String(FruitType.banana.stock)
         pineappleStock.text = String(FruitType.pineapple.stock)
@@ -43,9 +43,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //strawberryStock = StockLabel(FruitType.strawberry)
-        //bananaStock = StockLabel(FruitType.banana)
-        //FIXME: 왜 위에처럼 하면 안되고 밑에처럼 하면 될까?..
         strawberryStock.fruit = FruitType.strawberry
         bananaStock.fruit = FruitType.banana
         pineappleStock.fruit = FruitType.pineapple

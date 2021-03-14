@@ -10,11 +10,6 @@ typealias FruitAndNeedAmount = (Fruit: Fruit, needAmount: Int)
 class Juice {
     private(set) var requirements: [FruitAndNeedAmount]
     let name: String
-    init(_ require: [FruitAndNeedAmount], _ juiceName: String) {
-        self.requirements = require
-        self.name = juiceName
-    }
-    
     var canMake: Bool {
         for requirement in requirements {
             if requirement.Fruit.stock < requirement.needAmount {
@@ -22,6 +17,11 @@ class Juice {
             }
         }
         return true
+    }
+    
+    init(_ require: [FruitAndNeedAmount], _ juiceName: String) {
+        self.requirements = require
+        self.name = juiceName
     }
 }
 
