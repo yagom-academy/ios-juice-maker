@@ -25,10 +25,10 @@ class ViewController: UIViewController {
     
     @IBAction func touchUpJuiceButton(_ sender: JuiceButton) {
         if sender.juice.canMake {
-            present(successAlert(sender.juice), animated: true, completion: nil)
+            successAlert(sender.juice)
             //FIXME: 왜 여기다 update() 쓰면 처음 버튼 눌렀을때는 update안되고 다음번 버튼 눌렀을 때 이전턴걸로 update가 될까???
         } else {
-            present(failAlert(), animated: true, completion: nil)
+            failAlert()
         }
         JuiceMaker.shared.make(sender.juice)
         update()

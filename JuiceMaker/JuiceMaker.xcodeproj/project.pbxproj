@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C2240CE25FD2FF000F5F329 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2240CD25FD2FF000F5F329 /* UIViewExtension.swift */; };
+		1C2240D525FD30A900F5F329 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2240D425FD30A900F5F329 /* StockViewController.swift */; };
 		1C4E80E225FB482400E1A133 /* JuiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E80E125FB482400E1A133 /* JuiceButton.swift */; };
 		1C6CBFDF25F9F20600D3F351 /* FruitStockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6CBFDE25F9F20600D3F351 /* FruitStockLabel.swift */; };
 		1CBDAEA925FCF2BD0016FC4C /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBDAEA825FCF2BD0016FC4C /* Alerts.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		1C2240CD25FD2FF000F5F329 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		1C2240D425FD30A900F5F329 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		1C4E80E125FB482400E1A133 /* JuiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceButton.swift; sourceTree = "<group>"; };
 		1C6CBFDE25F9F20600D3F351 /* FruitStockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockLabel.swift; sourceTree = "<group>"; };
 		1CBDAEA825FCF2BD0016FC4C /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				1C4E80E125FB482400E1A133 /* JuiceButton.swift */,
 				1C2240CD25FD2FF000F5F329 /* UIViewExtension.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
+				1C2240D425FD30A900F5F329 /* StockViewController.swift */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
@@ -168,6 +171,7 @@
 				1CFDBEF525F613FE00D3E649 /* Fruit.swift in Sources */,
 				1C6CBFDF25F9F20600D3F351 /* FruitStockLabel.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				1C2240D525FD30A900F5F329 /* StockViewController.swift in Sources */,
 				1CBDAEA925FCF2BD0016FC4C /* Alerts.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
