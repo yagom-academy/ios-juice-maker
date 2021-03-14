@@ -2,7 +2,7 @@
 //  UIViewExtension.swift
 //  JuiceMaker
 //
-//  Created by 천수현 on 2021/03/13.
+//  Created by 천수현 on 2021/03/14.
 //
 
 import Foundation

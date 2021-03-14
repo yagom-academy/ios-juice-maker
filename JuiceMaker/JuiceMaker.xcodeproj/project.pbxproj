@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C2240CE25FD2FF000F5F329 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2240CD25FD2FF000F5F329 /* UIViewExtension.swift */; };
+		1C033EA625FDEE4A0065018A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C033EA525FDEE4A0065018A /* UIViewExtension.swift */; };
 		1C2240D525FD30A900F5F329 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2240D425FD30A900F5F329 /* StockViewController.swift */; };
 		1C4E80E225FB482400E1A133 /* JuiceButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E80E125FB482400E1A133 /* JuiceButtonClass.swift */; };
 		1C6CBFDF25F9F20600D3F351 /* StockLabelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6CBFDE25F9F20600D3F351 /* StockLabelClass.swift */; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C2240CD25FD2FF000F5F329 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		1C033EA525FDEE4A0065018A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		1C2240D425FD30A900F5F329 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		1C4E80E125FB482400E1A133 /* JuiceButtonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceButtonClass.swift; sourceTree = "<group>"; };
 		1C6CBFDE25F9F20600D3F351 /* StockLabelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLabelClass.swift; sourceTree = "<group>"; };
@@ -81,8 +81,8 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				1C6CBFDE25F9F20600D3F351 /* StockLabelClass.swift */,
+				1C033EA525FDEE4A0065018A /* UIViewExtension.swift */,
 				1C4E80E125FB482400E1A133 /* JuiceButtonClass.swift */,
-				1C2240CD25FD2FF000F5F329 /* UIViewExtension.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				1CBDAEA825FCF2BD0016FC4C /* Alerts.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
@@ -166,11 +166,11 @@
 			files = (
 				1CFDBEF225F613F500D3E649 /* JuiceClass.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
-				1C2240CE25FD2FF000F5F329 /* UIViewExtension.swift in Sources */,
 				1CFDBEFC25F6368300D3E649 /* JuiceRequirement.swift in Sources */,
 				1CFDBEF525F613FE00D3E649 /* FruitClass.swift in Sources */,
 				1C6CBFDF25F9F20600D3F351 /* StockLabelClass.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				1C033EA625FDEE4A0065018A /* UIViewExtension.swift in Sources */,
 				1C2240D525FD30A900F5F329 /* StockViewController.swift in Sources */,
 				1CBDAEA925FCF2BD0016FC4C /* Alerts.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

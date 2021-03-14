@@ -681,23 +681,11 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="6jk-iN-UwE">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
-        </designable>
-        <designable name="6zU-ef-Pyv">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
-        </designable>
         <designable name="HHY-2q-smQ">
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
         <designable name="Jle-tk-CQ2">
             <size key="intrinsicContentSize" width="82" height="30"/>
-        </designable>
-        <designable name="KB1-Pq-72g">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
-        </designable>
-        <designable name="LRh-r2-iaY">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
         </designable>
         <designable name="RQj-7U-zMA">
             <size key="intrinsicContentSize" width="95" height="30"/>
@@ -705,32 +693,14 @@
         <designable name="cG1-zF-ji1">
             <size key="intrinsicContentSize" width="108" height="30"/>
         </designable>
-        <designable name="eNa-UA-pH1">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
-        </designable>
-        <designable name="j4k-04-mZt">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
-        </designable>
         <designable name="n4s-n1-mxv">
             <size key="intrinsicContentSize" width="82" height="30"/>
-        </designable>
-        <designable name="nL0-wW-psR">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
         </designable>
         <designable name="nas-Q4-ija">
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
-        <designable name="rjU-AR-6Qe">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
-        </designable>
         <designable name="tAB-bb-LTe">
             <size key="intrinsicContentSize" width="82" height="30"/>
-        </designable>
-        <designable name="tPG-Ng-F8X">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
-        </designable>
-        <designable name="tk7-pW-qTQ">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
         </designable>
     </designables>
     <resources>
