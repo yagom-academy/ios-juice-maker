@@ -24,14 +24,14 @@ class FruitStockManager {
     }
     
     func increaseStockAmount(of fruitType: String, by fruitNumber: Int) {
-        if var fruitTypeStockAmount = fruitStockAmounts[fruitType] {
-            fruitTypeStockAmount += fruitNumber
+        if let fruitTypeStockAmount = fruitStockAmounts[fruitType] {
+            fruitStockAmounts[fruitType] = fruitTypeStockAmount + fruitNumber
         }
     }
     
     func decreaseStockAmount(of fruitType: String, by fruitNumber: Int) {
-        if var fruitTypeStockAmount = fruitStockAmounts[fruitType] {
-            fruitTypeStockAmount -= fruitNumber
+        if let fruitTypeStockAmount = fruitStockAmounts[fruitType] {
+            fruitStockAmounts[fruitType] = fruitTypeStockAmount - fruitNumber
         }
     }
     
