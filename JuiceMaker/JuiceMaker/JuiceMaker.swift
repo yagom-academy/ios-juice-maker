@@ -14,7 +14,7 @@ struct JuiceMaker {
         .pineapple: FruitStock(.pineapple, 10)
     ]
     
-    func canMakeJuice(of orderedMenu: JuiceTypes) -> Bool {
+    func didMakeJuice(of orderedMenu: JuiceTypes) -> Bool {
         for (fruitType, requiredAmount) in orderedMenu.recipe() {
             if let fruit = fruitInformation[fruitType], fruit.isStockExist(requiredAmount) {
                     fruit.subtractStock(requiredAmount)
