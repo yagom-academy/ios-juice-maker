@@ -21,9 +21,7 @@ struct JuiceRecipe {
         "mangoJuice":[("mango", 3)],
         "mangoKiwiJuice":[("mango", 2), ("kiwi", 1)]]
     
-    func getJuiceIngredients(of juiceName: String) -> FruitTypeAndAmount {
-        if let juiceRecipe = juiceIngredients[juiceName] {
-            return juiceRecipe
-        }
+    func getJuiceIngredients(of juiceName: String) -> FruitTypeAndAmount? {
+        return juiceIngredients[juiceName]
     }
 }

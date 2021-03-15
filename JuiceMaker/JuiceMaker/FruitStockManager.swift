@@ -9,7 +9,6 @@ import Foundation
 
 
 class FruitStockManager {
-    static let shared = FruitStockManager()
     private(set) var fruitStockAmounts: [String:Int] = [:]
     private(set) var fruitTypes: [String] = ["strawberry", "banana", "pineapple", "kiwi", "mango"]
     
