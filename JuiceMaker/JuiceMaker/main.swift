@@ -7,18 +7,17 @@
 
 import Foundation
 
+enum FruitJuice {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoJuice
+    case mangoKiwiJuice
+}
+
 class FruitStock {
-    
-    enum FruitJuice {
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
-    }
-    
     fileprivate(set) var strawberry: Int = 10
     fileprivate(set) var banana: Int = 10
     fileprivate(set) var kiwi: Int = 10
@@ -26,22 +25,20 @@ class FruitStock {
     fileprivate(set) var mango: Int = 10
 }
 
-let currentFruitStock = FruitStock()
-
-class JuiceMaker: FruitStock {
+class JuiceMaker {
+    var fruitStock = FruitStock()
     
-    func checkFruitStock() {
-        print("과일 재고 : 딸기 \(strawberry), 바나나 \(banana), 파인애플 \(pineapple), 키위 \(kiwi), 망고 \(mango)")
+    private func checkFruitStock() {
+        print("과일 재고 : 딸기 \(fruitStock.strawberry), 바나나 \(fruitStock.banana), 파인애플 \(fruitStock.pineapple), 키위 \(fruitStock.kiwi), 망고 \(fruitStock.mango)")
     }
     
-    func addAmount(of: inout Int, as much: Int) {
+    func addAmount(_ of: inout Int, as much: Int) {
         of = of + much
     }
     
-    func subtractAmount(of: inout Int, as much: Int) {
+    func subtractAmount(_ of: inout Int, as much: Int) {
         of = of - much
     }
-    
     
     func canMakeJuice(amount: Int, subtract: Int) -> Bool {
         if amount >= subtract {
@@ -51,74 +48,54 @@ class JuiceMaker: FruitStock {
         }
     }
     
-    
     func recipeOfJuice(juice: FruitJuice) {
         switch juice {
         case .strawberryJuice:
-            subtractAmount(of: &strawberry, as: 16)
+            subtractAmount(&fruitStock.strawberry, as: 16)
         case .bananaJuice:
-            subtractAmount(of: &banana, as: 2)
+            subtractAmount(&fruitStock.banana, as: 2)
         case .kiwiJuice:
-            subtractAmount(of: &kiwi, as: 3)
+            subtractAmount(&fruitStock.kiwi, as: 3)
         case .pineappleJuice:
-            subtractAmount(of: &pineapple, as: 2)
+            subtractAmount(&fruitStock.pineapple, as: 2)
         case .strawberryBananaJuice:
-            subtractAmount(of: &strawberry, as: 10)
-            subtractAmount(of: &banana, as: 1)
+            subtractAmount(&fruitStock.strawberry, as: 10)
+            subtractAmount(&fruitStock.banana, as: 1)
         case .mangoJuice:
-            subtractAmount(of: &mango, as: 3)
+            subtractAmount(&fruitStock.mango, as: 3)
         case .mangoKiwiJuice:
-            subtractAmount(of: &mango, as: 2)
-            subtractAmount(of: &kiwi, as: 1)
+            subtractAmount(&fruitStock.mango, as: 2)
+            subtractAmount(&fruitStock.kiwi, as: 1)
         }
     }
     
-    func manufactureJuice(of: FruitJuice) {
+    private func manufactureJuice(of: FruitJuice) {
         switch of {
-        case .strawberryJuice:
-            if canMakeJuice(amount: strawberry, subtract: 16) == true {
+        case .strawberryJuice where canMakeJuice(amount: fruitStock.strawberry, subtract: 16):
                 recipeOfJuice(juice: .strawberryJuice)
-                return
-            }
-        case .bananaJuice:
-            if canMakeJuice(amount: banana, subtract: 2) == true {
+        case .bananaJuice where canMakeJuice(amount: fruitStock.banana, subtract: 2):
                 recipeOfJuice(juice: .bananaJuice)
-                return
-            }
-        case .kiwiJuice:
-            if canMakeJuice(amount: kiwi, subtract: 3) == true {
+        case .kiwiJuice where canMakeJuice(amount: fruitStock.kiwi, subtract: 3):
                 recipeOfJuice(juice: .kiwiJuice)
-                return
-            }
-        case .pineappleJuice:
-            if canMakeJuice(amount: pineapple, subtract: 2) == true {
+            print(fruitStock.kiwi)
+        case .pineappleJuice where canMakeJuice(amount: fruitStock.pineapple, subtract: 2):
                 recipeOfJuice(juice: .pineappleJuice)
-                return
-            }
-        case .mangoJuice:
-            if canMakeJuice(amount: mango, subtract: 3) == true {
+        case .mangoJuice where canMakeJuice(amount: fruitStock.mango, subtract: 3):
                 recipeOfJuice(juice: .mangoJuice)
-                return
-            }
-        case .strawberryBananaJuice:
-            if canMakeJuice(amount: strawberry, subtract: 10) && canMakeJuice(amount: banana, subtract: 1) == true {
+        case .strawberryBananaJuice where canMakeJuice(amount: fruitStock.strawberry, subtract: 10) && canMakeJuice(amount: fruitStock.banana, subtract: 1):
                 recipeOfJuice(juice: .strawberryBananaJuice)
-                return
-            }
-        case .mangoKiwiJuice:
-            if canMakeJuice(amount: mango, subtract: 2) && canMakeJuice(amount: kiwi, subtract: 1) == true {
+        case .mangoKiwiJuice where canMakeJuice(amount: fruitStock.mango, subtract: 2) && canMakeJuice(amount: fruitStock.kiwi, subtract: 1):
                 recipeOfJuice(juice: .mangoKiwiJuice)
-                return
-            }
+        default:
+            return
         }
     }
     
     func start() {
         checkFruitStock()
-        manufactureJuice(of: .strawberryBananaJuice)
+        manufactureJuice(of: .kiwiJuice) // 예시로 키위주스를 만들어봤음
         checkFruitStock()
     }
-    
 }
 
 let juiceMaker = JuiceMaker()
