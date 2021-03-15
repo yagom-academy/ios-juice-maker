@@ -21,7 +21,7 @@ class ViewController: UIViewController {
             juiceMaker.make(juice)
             orderCompletedAlert(with: juice.name)
         } else {
-            orderFailedAlert()
+            outOfStockAlert()
         }
     }
     
@@ -56,7 +56,7 @@ extension ViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func orderFailedAlert() {
+    func outOfStockAlert() {
         let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
             self.performSegue(withIdentifier: "stockChanger", sender: nil)
