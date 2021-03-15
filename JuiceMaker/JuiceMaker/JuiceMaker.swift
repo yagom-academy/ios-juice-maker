@@ -45,6 +45,12 @@ struct FruitStock {
     init(initialCount: UInt) {
         remainedFruit = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
     }
+    
+    mutating func addStock(of fruit: Fruit, count: UInt) {
+        if let storedFruit = remainedFruit[fruit] {
+            remainedFruit[fruit] = storedFruit + count
+        }
+    }
 }
 
 class JuiceMaker {
@@ -57,12 +63,6 @@ class JuiceMaker {
             } catch {
                 print("재고가 부족합니다")
             }
-        }
-    }
-    
-    func addStock(of fruit: Fruit, count: UInt) {
-        if let storedFruit = stock.remainedFruit[fruit] {
-            stock.remainedFruit[fruit] = storedFruit + count
         }
     }
     
