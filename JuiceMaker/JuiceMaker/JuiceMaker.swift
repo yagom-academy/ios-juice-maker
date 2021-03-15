@@ -14,7 +14,7 @@ enum Fruit {
 
 enum Juice {
     case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangokiwi
-
+    
     var recipe: FruitCount {
         switch self {
         case .strawberry:
@@ -51,6 +51,12 @@ struct FruitStock {
             remainedFruit[fruit] = storedFruit + count
         }
     }
+    
+    mutating func subtractStock(of fruit: Fruit, count: UInt) {
+        if let storedFruit = remainedFruit[fruit] {
+            remainedFruit[fruit] = storedFruit - count
+        }
+    }
 }
 
 class JuiceMaker {
@@ -58,22 +64,8 @@ class JuiceMaker {
     
     func makeJuice(using juice: Juice) {
         for (ingredient, amount) in juice.recipe {
-            do {
-                try subtractStock(of: ingredient, count: amount)
-            } catch {
-                print("재고가 부족합니다")
-            }
+            stock.subtractStock(of: ingredient, count: amount)
         }
     }
     
-    func subtractStock(of fruit: Fruit, count: UInt) throws {
-        guard let storedFruit = stock.remainedFruit[fruit] else {
-            throw JuiceMakerError.notFoundFruit
-        }
-        
-        if storedFruit < count {
-            throw JuiceMakerError.outOfStock
-        }
-        stock.remainedFruit[fruit] = storedFruit - count
-    }
 }
