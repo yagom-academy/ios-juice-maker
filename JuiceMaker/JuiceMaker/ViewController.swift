@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    let juiceMaker = JuiceMaker(stock: Stock(basicValue: 10))
     @IBOutlet var fruitStockLabels = [UILabel]()
     
     override func viewDidLoad() {
