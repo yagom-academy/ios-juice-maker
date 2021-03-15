@@ -6,7 +6,11 @@
 
 import Foundation
 
-typealias FruitCount = [Fruit: UInt]
+typealias FruitCount = [Fruit: FruitInformation]
+
+struct FruitInformation {
+    var count: UInt
+}
 
 enum Fruit {
     case strawberry, banana, pineapple, kiwi, mango
@@ -18,19 +22,19 @@ enum Juice {
     var recipe: FruitCount {
         switch self {
         case .strawberry:
-            return [.strawberry: 16]
+            return [.strawberry: FruitInformation(count: 16)]
         case .banana:
-            return [.banana: 2]
+            return [.banana: FruitInformation(count: 2)]
         case .kiwi:
-            return [.kiwi: 3]
+            return [.kiwi: FruitInformation(count: 3)]
         case .pineapple:
-            return [.pineapple: 2]
+            return [.pineapple: FruitInformation(count: 2)]
         case .strawberryBanana:
-            return [.strawberry: 10, .banana: 1]
+            return [.strawberry: FruitInformation(count: 10), .banana: FruitInformation(count: 1)]
         case .mango:
-            return [.mango: 3]
+            return [.mango: FruitInformation(count: 3)]
         case .mangokiwi:
-            return [.mango: 2, .kiwi: 1]
+            return [.mango: FruitInformation(count: 2), .kiwi: FruitInformation(count: 1)]
         }
     }
 }
@@ -43,24 +47,24 @@ struct FruitStock {
     private var remainedFruit: FruitCount
     
     init(initialCount: UInt) {
-        remainedFruit = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
+        remainedFruit = [.strawberry: FruitInformation(count: initialCount), .banana: FruitInformation(count: initialCount), .kiwi: FruitInformation(count: initialCount), .pineapple: FruitInformation(count: initialCount), .mango: FruitInformation(count: initialCount)]
     }
     
     mutating func addStock(of fruit: Fruit, count: UInt) {
         if let storedFruit = remainedFruit[fruit] {
-            remainedFruit[fruit] = storedFruit + count
+            remainedFruit[fruit]?.count = storedFruit.count + count
         }
     }
     
     mutating func subtractStock(of fruit: Fruit, count: UInt) {
         if let storedFruit = remainedFruit[fruit] {
-            remainedFruit[fruit] = storedFruit - count
+            remainedFruit[fruit]?.count = storedFruit.count - count
         }
     }
     
     func readCount(of fruit: Fruit) -> UInt {
         if let storedFruit = remainedFruit[fruit] {
-            return storedFruit
+            return storedFruit.count
         } else {
             return 0
         }
@@ -71,13 +75,13 @@ class JuiceMaker {
     private var stock: FruitStock = FruitStock(initialCount: 10)
     
     func makeJuice(using juice: Juice) throws {
-        for (ingredient, amount) in juice.recipe {
+        for (ingredient, information) in juice.recipe {
             
-            guard stock.readCount(of: ingredient) > amount else {
+            guard stock.readCount(of: ingredient) >  information.count else {
                 throw JuiceMakerError.outOfStock
             }
             
-            stock.subtractStock(of: ingredient, count: amount)
+            stock.subtractStock(of: ingredient, count: information.count)
         }
     }
     
