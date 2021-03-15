@@ -18,6 +18,14 @@ enum Juice {
          strawbaJuice, mangkiJuice
 }
 
+class Fruit {
+    var strawberry: Int = 10
+    var banana: Int = 10
+    var pineapple: Int = 10
+    var kiwi: Int = 10
+    var mango: Int = 10
+}
+
 class JuiceMaker {
     // Array Index -> 0 = strawberry, 1 = banana, 2 = pineapple, 3 = kiwi, 4 = mango
     private var stocks: [Int] = [10, 10, 10, 10, 10]
@@ -90,8 +98,5 @@ class JuiceMaker {
         
         return result
     }
-    
-    
-    
-    
+
 }
