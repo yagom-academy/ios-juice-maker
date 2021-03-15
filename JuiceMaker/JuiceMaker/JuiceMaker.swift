@@ -66,6 +66,17 @@ struct Stock {
         }
     }
     
+    func hasFruits(for juice: Juice) -> Bool {
+        var hasFruit: Bool = true
+        
+        for fruit in juice.recipe {
+            guard let stock = self.fruits[fruit.key] else { fatalError() }
+            hasFruit = hasFruit && stock >= fruit.value ? true : false
+        }
+        
+        return hasFruit
+    }
+    
     mutating func decrease(by juice: Juice) {
         for fruit in juice.recipe {
             fruits[fruit.key]? -= fruit.value
