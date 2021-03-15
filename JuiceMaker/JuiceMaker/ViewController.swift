@@ -16,20 +16,24 @@ class ViewController: UIViewController {
     }
     
     @IBAction func juiceOrderButton(_ sender: UIButton) {
-        var hasStock: Bool = true
-        
         guard let juice = Juice(rawValue: sender.tag) else { return }
-        for fruit in juice.recipe {
-            guard let stock = juiceMaker.stock.fruits[fruit.key] else { return }
-            hasStock = hasStock && stock >= fruit.value ? true : false
-        }
-        
-        if hasStock {
+        if hasStock(for: juice) {
             juiceMaker.make(juice)
             orderCompletedAlert(with: juice.name)
         } else {
             orderFailedAlert()
         }
+    }
+    
+    func hasStock(for juice: Juice) -> Bool {
+        var hasFruit: Bool = true
+        
+        for fruit in juice.recipe {
+            guard let stock = juiceMaker.stock.fruits[fruit.key] else { fatalError() }
+            hasFruit = hasFruit && stock >= fruit.value ? true : false
+        }
+        
+        return hasFruit
     }
     
     func updateFruitStockLabels() {
