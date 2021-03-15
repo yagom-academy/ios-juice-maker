@@ -81,7 +81,6 @@ class JuiceMaker {
     
     func makeJuice(using juice: Juice) throws {
         for (ingredient, information) in juice.recipe {
-            
             guard stock.readCount(of: ingredient) >  information.count else {
                 throw JuiceMakerError.outOfStock
             }
