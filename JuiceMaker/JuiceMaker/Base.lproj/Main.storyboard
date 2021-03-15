@@ -438,23 +438,20 @@
                         <color key="backgroundColor" red="0.63777178877014284" green="0.98548370600000001" blue="0.51939653536949781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ceV-dG-OI0" secondAttribute="trailing" id="6SF-VT-TsC"/>
+                            <constraint firstItem="nMs-V5-Uxa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="6Tj-0l-UBI"/>
                             <constraint firstItem="FkW-nw-NhI" firstAttribute="top" secondItem="ceV-dG-OI0" secondAttribute="bottom" constant="15" id="8Q7-5g-hye"/>
                             <constraint firstItem="rt2-uJ-hRr" firstAttribute="leading" secondItem="FkW-nw-NhI" secondAttribute="leading" id="B4G-bS-30R"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rt2-uJ-hRr" secondAttribute="bottom" constant="20" id="MDc-60-Ua9"/>
                             <constraint firstItem="FkW-nw-NhI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Mss-4w-d3d"/>
                             <constraint firstItem="ceV-dG-OI0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NdM-p2-5M7"/>
-                            <constraint firstItem="nMs-V5-Uxa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="732" id="PWU-rK-MNN"/>
-                            <constraint firstItem="nMs-V5-Uxa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="S1o-fv-rpZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nMs-V5-Uxa" secondAttribute="trailing" constant="20" id="aOJ-yZ-StA"/>
                             <constraint firstItem="ceV-dG-OI0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="g1h-hk-EfZ"/>
                             <constraint firstItem="rt2-uJ-hRr" firstAttribute="trailing" secondItem="FkW-nw-NhI" secondAttribute="trailing" id="klE-G8-uOZ"/>
                             <constraint firstAttribute="trailing" secondItem="FkW-nw-NhI" secondAttribute="trailing" constant="20" id="no6-6R-duK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nMs-V5-Uxa" secondAttribute="trailing" constant="20" id="qFn-83-Ep1"/>
                             <constraint firstItem="rt2-uJ-hRr" firstAttribute="top" secondItem="FkW-nw-NhI" secondAttribute="bottom" constant="20" id="xRM-ca-rhv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="4Yo-fz-ckY">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="OFS-lZ-hMh"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="n3g-m1-ti7"/>
                     <connections>
                         <outlet property="bananaButton" destination="RQj-7U-zMA" id="oPw-vq-JBu"/>
                         <outlet property="bananaStock" destination="rjU-AR-6Qe" id="pDd-Fq-YF3"/>
@@ -472,7 +469,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652.90178571428567" y="115.94202898550725"/>
+            <point key="canvasLocation" x="656" y="-4"/>
         </scene>
         <!--StockViewController-->
         <scene sceneID="dxK-h8-xEP">
@@ -657,33 +654,31 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOc-hX-EHB" userLabel="닫기">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csc-f8-XvJ">
                                 <rect key="frame" x="802" y="10" width="30" height="30"/>
                                 <state key="normal" title="닫기"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" animates="NO" id="g5n-6V-Jh5"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" animates="NO" id="ubL-YJ-yTg"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X0t-Ua-a39"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="X0t-Ua-a39" firstAttribute="trailing" secondItem="dOc-hX-EHB" secondAttribute="trailing" constant="20" id="8hc-fD-Eoh"/>
+                            <constraint firstItem="csc-f8-XvJ" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" constant="10" id="2fh-JQ-kef"/>
                             <constraint firstItem="Vyh-1s-9v2" firstAttribute="leading" secondItem="Q4g-41-DTO" secondAttribute="leading" id="ANw-To-YeJ"/>
                             <constraint firstAttribute="trailing" secondItem="Vyh-1s-9v2" secondAttribute="trailing" id="F4k-gB-bLj"/>
                             <constraint firstAttribute="trailing" secondItem="TgE-Ii-y85" secondAttribute="trailing" constant="20" id="TEP-64-IIi"/>
                             <constraint firstItem="Vyh-1s-9v2" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" id="Wzo-dF-TGA"/>
                             <constraint firstItem="TgE-Ii-y85" firstAttribute="leading" secondItem="X0t-Ua-a39" secondAttribute="leading" constant="20" id="Yc6-pk-yIC"/>
                             <constraint firstItem="TgE-Ii-y85" firstAttribute="top" secondItem="Vyh-1s-9v2" secondAttribute="bottom" constant="15" id="f1Y-Da-7u7"/>
-                            <constraint firstItem="dOc-hX-EHB" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" constant="10" id="mel-Tm-uSd"/>
-                            <constraint firstItem="dOc-hX-EHB" firstAttribute="leading" secondItem="X0t-Ua-a39" secondAttribute="leading" constant="758" id="tiu-C8-dAN"/>
+                            <constraint firstItem="X0t-Ua-a39" firstAttribute="trailing" secondItem="csc-f8-XvJ" secondAttribute="trailing" constant="20" id="vBY-WY-Mzq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="uqf-Xu-skZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWd-tb-uOl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1367" y="116"/>
+            <point key="canvasLocation" x="634" y="1025"/>
         </scene>
     </scenes>
     <designables>
