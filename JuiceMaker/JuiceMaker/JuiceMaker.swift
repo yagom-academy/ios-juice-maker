@@ -40,7 +40,7 @@ enum JuiceMakerError: Error {
 }
 
 struct FruitStock {
-    var remainedFruit: FruitCount
+    private var remainedFruit: FruitCount
     
     init(initialCount: UInt) {
         remainedFruit = [.strawberry: initialCount, .banana: initialCount, .kiwi: initialCount, .pineapple: initialCount, .mango: initialCount]
@@ -68,7 +68,7 @@ struct FruitStock {
 }
 
 class JuiceMaker {
-    private(set) var stock: FruitStock = FruitStock(initialCount: 10)
+    private var stock: FruitStock = FruitStock(initialCount: 10)
     
     func makeJuice(using juice: Juice) throws {
         for (ingredient, amount) in juice.recipe {
@@ -81,4 +81,7 @@ class JuiceMaker {
         }
     }
     
+    func readStock(of fruit: Fruit) -> UInt {
+        return stock.readCount(of: fruit)
+    }
 }
