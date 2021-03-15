@@ -7,11 +7,12 @@
 
 
 enum Requirements {
-    static let strawberryRequirement = [(FruitType.strawberry, 16)]
-    static let bananaRequirement = [(FruitType.banana, 2)]
-    static let kiwiRequirement = [(FruitType.kiwi, 3)]
-    static let pineappleRequirement = [(FruitType.pineapple, 2)]
-    static let strawBananaRequirement = [(FruitType.strawberry, 10), (FruitType.banana, 1)]
-    static let mangoRequirement = [(FruitType.mango, 3)]
-    static let mangoKiwiRequirement = [(FruitType.mango, 2), (FruitType.kiwi, 1)]
+    static let strawberry = [(FruitType.strawberry, 16)]
+    static let banana = [(FruitType.banana, 2)]
+    static let kiwi = [(FruitType.kiwi, 3)]
+    static let pineapple = [(FruitType.pineapple, 2)]
+    static let strawBanana = [(FruitType.strawberry, 10), (FruitType.banana, 1)]
+    static let mango = [(FruitType.mango, 3)]
+    static let mangoKiwi = [(FruitType.mango, 2), (FruitType.kiwi, 1)]
 }
+
