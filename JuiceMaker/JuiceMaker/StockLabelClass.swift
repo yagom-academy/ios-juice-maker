@@ -8,14 +8,6 @@
 import Foundation
 import UIKit
 
-class StockLabel: UILabel {
+@IBDesignable class StockLabel: UILabel {
     var fruit: Fruit = FruitType.strawberry
-    
-//    init(_ fruitType: Fruit) {
-//        super.init(frame: .zero)
-//        self.fruit = fruitType
-//    }
-//    required init(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)!
-//    }
 }

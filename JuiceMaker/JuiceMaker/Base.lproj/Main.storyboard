@@ -25,7 +25,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="strawberry" translatesAutoresizingMaskIntoConstraints="NO" id="05D-7o-Xko">
                                                 <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-04-mZt" userLabel="Strawberry Stock" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-04-mZt" userLabel="StrawberryStock" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="17" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
@@ -202,6 +202,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="딸바쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0uL-Xn-Gle"/>
@@ -232,6 +233,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="망키쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zpc-67-8Ij"/>
@@ -267,6 +269,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="딸기쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ViK-xB-ldk"/>
@@ -297,6 +300,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="바나나쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WQd-Nc-coK"/>
@@ -327,6 +331,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="파인애플쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="APW-H6-Hc4"/>
@@ -357,6 +362,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="키위쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="py1-hS-ihE"/>
@@ -387,6 +393,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="망고쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZOq-NH-RAw"/>

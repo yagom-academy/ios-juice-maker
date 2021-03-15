@@ -7,10 +7,11 @@
 
 import Foundation
 import UIKit
-class JuiceButton: UIButton {
-    var juice: Juice = JuiceType.strawberry
+@IBDesignable class JuiceButton: UIButton {
+   var juice: Juice = JuiceType.strawberry
 
     func make(_ menu: Juice) {
         JuiceMaker.make(menu)
     }
+   @IBInspectable var juiceName: String = "딸기쥬스"
 }
