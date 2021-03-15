@@ -7,28 +7,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-    // MARK:- property
     let juiceMaker = JuiceMaker()
-    var hasStock: Bool = true
-    @IBOutlet var fruitStockLabels: [UILabel]!
+    @IBOutlet var fruitStockLabels = [UILabel]()
     
-    // MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockLabels()
     }
     
-    // MARK:- Method
-    @IBAction func juiceOrderButton(_ sender: Any) {
-        hasStock = true
-        guard let button = sender as? UIButton else { return }
-        guard let juice = Juice(rawValue: button.tag) else { return }
+    @IBAction func juiceOrderButton(_ sender: UIButton) {
+        var hasStock: Bool = true
         
+        guard let juice = Juice(rawValue: sender.tag) else { return }
         for fruit in juice.recipe {
             guard let stock = juiceMaker.stock.fruits[fruit.key] else { return }
-            if stock < fruit.value {
-                hasStock = false
-            }
+            hasStock = hasStock && stock >= fruit.value ? true : false
         }
         
         if hasStock {
@@ -49,7 +42,6 @@ class ViewController: UIViewController {
     }
 }
 
-// MARK:- Extension
 extension ViewController {
     func orderCompletedAlert(with juiceName: String) {
         let alert = UIAlertController(title: "\(juiceName) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
