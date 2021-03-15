@@ -6,86 +6,58 @@
 
 import Foundation
 
-/// 쥬스 메이커 타입 
+enum Fruit: Int, CaseIterable {
+    case strawberry, banana, pineapple, kiwi, mango
+    
+    var index: Int {
+        return self.rawValue
+    }
+}
 
 enum FruitJuice {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
-}
-
-enum Fruit {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case mango
-}
-
-class Stock {
-    var strawberryCount: Int = 10
-    var bananaCount: Int = 10
-    var pineappleCount: Int = 10
-    var kiwiCount: Int = 10
-    var mangoCount: Int = 10
+    case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangoKiwi
     
-    func add(input: Fruit) {
-        switch input {
-        case Fruit.strawberry:
-            strawberryCount += 1
-        case Fruit.banana:
-            bananaCount += 1
-        case Fruit.kiwi:
-            kiwiCount += 1
-        case Fruit.pineapple:
-            pineappleCount += 1
-        case Fruit.mango:
-            mangoCount += 1
+    var recipe: [Fruit: Int] {
+        switch self {
+        case .strawberry:
+            return [.strawberry: 16]
+        case .banana:
+            return [.banana: 2]
+        case .kiwi:
+            return [.kiwi: 3]
+        case .pineapple:
+            return [.pineapple: 2]
+        case .strawberryBanana:
+            return [.strawberry: 10, .banana: 1]
+        case .mango:
+            return [.mango: 3]
+        case .mangoKiwi:
+            return [.mango: 2, .kiwi: 1]
         }
     }
-    
-    func subtract(input: Fruit, number: Int) {
-        switch input {
-        case Fruit.strawberry:
-            strawberryCount -= number
-        case Fruit.banana:
-            bananaCount -= number
-        case Fruit.kiwi:
-            kiwiCount -= number
-        case Fruit.pineapple:
-            pineappleCount -= number
-        case Fruit.mango:
-            mangoCount -= number
-        }
-    }
-    
 }
 
 class JuiceMaker {
-    var stockBox: Stock = Stock()
+    private var fruitStocks = [Int](repeating: 10, count: Fruit.allCases.count)
     
-    func makeJuice(juice: FruitJuice) {
-        switch juice {
-        case FruitJuice.strawberry:
-            stockBox.subtract(input: Fruit.strawberry, number: 16)
-        case FruitJuice.banana:
-            stockBox.subtract(input: Fruit.banana, number: 2)
-        case FruitJuice.kiwi:
-            stockBox.subtract(input: Fruit.kiwi, number: 3)
-        case FruitJuice.pineapple:
-            stockBox.subtract(input: Fruit.pineapple, number: 2)
-        case FruitJuice.strawberryBanana:
-            stockBox.subtract(input: Fruit.strawberry, number: 10)
-            stockBox.subtract(input: Fruit.banana, number: 1)
-        case FruitJuice.mango:
-            stockBox.subtract(input: Fruit.mango, number: 3)
-        case FruitJuice.mangoKiwi:
-            stockBox.subtract(input: Fruit.mango, number: 2)
-            stockBox.subtract(input: Fruit.kiwi, number: 1)
+    func checkStock(fruit: Fruit) -> Int {
+        return fruitStocks[fruit.index]
+    }
+    func checkStockAvailable(fruit: Fruit, stock: Int) -> Bool {
+        if (checkStock(fruit: fruit) < stock) {
+            return false
         }
+        return true
+    }
+    func consumeFruit(fruit: Fruit, stock: Int) {
+        fruitStocks[fruit.index] -= stock
+    }
+    func makeFruitJuice(juice: FruitJuice) {
+        for (ingredient, amount) in juice.recipe {
+            consumeFruit(fruit: ingredient, stock: amount)
+        }
+    }
+    func addStock(fruit: Fruit) {
+        fruitStocks[fruit.index] += 1
     }
 }
