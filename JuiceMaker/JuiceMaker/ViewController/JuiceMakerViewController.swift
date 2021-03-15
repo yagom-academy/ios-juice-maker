@@ -24,6 +24,14 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoKiwiButton: UIButton!
     @IBOutlet weak var strawberyBananaButton: UIButton!
     
+    override func viewDidLoad() {
+        decorateButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updataStock()
+    }
+    
     @IBAction func touchUpjuiceOrderButton(_ sender: Any) {
         let orderButton = sender as! UIButton
         let selectedFruit = Juices(rawValue: orderButton.tag)!
@@ -35,16 +43,6 @@ class JuiceMakerViewController: UIViewController {
         orderSuccessAlert(selectedFruit)
     }
     
-    override func viewDidLoad() {
-        decorateButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        updataStock()
-    }
-}
-
-extension JuiceMakerViewController {
     func lakeStockAlert() {
         let failAlert = UIAlertController(title: nil , message: "재료가 모자라요 재고를 수정할까요?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default)
@@ -79,23 +77,12 @@ extension JuiceMakerViewController {
         mangoLabel.text = String(stock[.mango]!)
         kiwiLabel.text = String(stock[.kiwi]!)
     }
-    
-    func decorateButton() {
-        strawberryButton.layer.cornerRadius = 15
-        strawberryButton.layer.borderWidth = 1.2
-        bananaButton.layer.cornerRadius = 15
-        bananaButton.layer.borderWidth = 1.2
-        pineappleButton.layer.cornerRadius = 15
-        pineappleButton.layer.borderWidth = 1.2
-        kiwiButton.layer.cornerRadius = 15
-        kiwiButton.layer.borderWidth = 1.2
-        mangoButton.layer.cornerRadius = 15
-        mangoButton.layer.borderWidth = 1.2
-        mangoKiwiButton.layer.cornerRadius = 15
-        mangoKiwiButton.layer.borderWidth = 1.2
-        strawberyBananaButton.layer.cornerRadius = 15
-        strawberyBananaButton.layer.borderWidth = 1.2
-    }
 }
+
+
+  
+    
+    
+
 
 

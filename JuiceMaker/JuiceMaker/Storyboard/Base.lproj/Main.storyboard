@@ -236,11 +236,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SyE-ND-aCq" secondAttribute="trailing" constant="16" id="TMc-6V-3HZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="39F-Rk-6Xt" secondAttribute="bottom" constant="20" id="TYg-pP-bxc"/>
                             <constraint firstItem="9ug-o7-O5W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="XKL-0n-Mi0"/>
+                            <constraint firstItem="Xz0-g2-Fp0" firstAttribute="top" secondItem="HrO-nZ-FFr" secondAttribute="bottom" constant="-3.0000000000000071" id="eFU-lN-QA7"/>
                             <constraint firstItem="HrO-nZ-FFr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gcN-6y-QPR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xz0-g2-Fp0" secondAttribute="trailing" constant="16" id="gw3-OQ-Xho"/>
                             <constraint firstItem="39F-Rk-6Xt" firstAttribute="top" secondItem="SyE-ND-aCq" secondAttribute="bottom" constant="15" id="lGY-CD-xWm"/>
                             <constraint firstItem="39F-Rk-6Xt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="pTY-Ma-Dlw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HrO-nZ-FFr" secondAttribute="bottom" constant="340" id="sXu-aA-EMb"/>
                             <constraint firstItem="HrO-nZ-FFr" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="vhB-SF-I3m"/>
                         </constraints>
                     </view>

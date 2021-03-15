@@ -11,9 +11,7 @@ class JuiceMaker {
     static let shared = JuiceMaker()
     var fruitStorage = FruitStock(initAmount: 10)
     
-    private init() {
-        
-    }
+    private init() {}
     
     func make(order: Juices) throws {
         for (kind, amountForJuice) in order.recipe {

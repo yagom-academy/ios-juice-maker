@@ -1,3 +1,10 @@
+//
+//  JuiceData.swift
+//  JuiceMaker
+//
+//  Created by 윤재웅 on 2021/03/15.
+//
+
 import Foundation
 
 typealias Storage = [Fruits : Int]
@@ -53,22 +60,5 @@ extension Juices: CustomStringConvertible {
         case .mangoKiwiJuice:
             return "망고 키위 쥬스"
         }
-    }
-}
-
-class FruitStock {
-    public private(set) var fruits: Storage = [:]
-    
-    init(initAmount: Int) {
-        for kindFruit in Fruits.allCases {
-            fruits.updateValue(initAmount, forKey: kindFruit)
-        }
-    }
-    
-    func manageStorage(fruit kind: Fruits, amount: Int) throws {
-        guard let stock = fruits[kind] else {
-            throw StockError.inValidStock
-        }
-        fruits.updateValue(stock + amount, forKey: kind)
     }
 }
