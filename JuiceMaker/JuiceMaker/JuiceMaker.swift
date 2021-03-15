@@ -40,11 +40,11 @@ enum FruitJuice {
 class JuiceMaker {
     private var fruitStocks = [Int](repeating: 10, count: Fruit.allCases.count)
     
-    func checkStock(fruit: Fruit) -> Int {
+    func checkStock(of fruit: Fruit) -> Int {
         return fruitStocks[fruit.index]
     }
     func checkStockAvailable(fruit: Fruit, stock: Int) -> Bool {
-        if (checkStock(fruit: fruit) < stock) {
+        if (checkStock(of: fruit) < stock) {
             return false
         }
         return true
@@ -52,7 +52,7 @@ class JuiceMaker {
     func consumeFruit(fruit: Fruit, stock: Int) {
         fruitStocks[fruit.index] -= stock
     }
-    func makeFruitJuice(juice: FruitJuice) {
+    func makeFruitJuice(_ juice: FruitJuice) {
         for (ingredient, amount) in juice.recipe {
             consumeFruit(fruit: ingredient, stock: amount)
         }
@@ -61,3 +61,7 @@ class JuiceMaker {
         fruitStocks[fruit.index] += 1
     }
 }
+
+
+
+
