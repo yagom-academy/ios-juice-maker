@@ -10,13 +10,13 @@ import Foundation
 
 
 class JuiceMaker {
-    class func make(_ menu: Juice) {
+    class func make(menu: Juice) {
         for requirement in menu.requirements {
             requirement.Fruit.subtractStock(amount: requirement.needAmount)
         }
     }
     
-    func addStock(_ amount: Int, for fruit: Fruit) {
-        fruit.addStock(amount)
+    func addStock(fruit: Fruit, amount: Int) {
+        fruit.addStock(amount: amount)
     }
 }

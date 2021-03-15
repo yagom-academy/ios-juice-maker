@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-@IBDesignable class StockLabel: UILabel {
+class StockLabel: UILabel {
     var fruit: Fruit = FruitType.strawberry
 }

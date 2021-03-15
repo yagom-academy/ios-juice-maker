@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,22 +11,22 @@
         <!--Main-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Main" id="BYZ-38-t0r" userLabel="Main" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainStoryboard" title="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" userLabel="Main" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="FkW-nw-NhI" userLabel="Fruit Stack View">
-                                <rect key="frame" x="64" y="65" width="812" height="140"/>
+                                <rect key="frame" x="64" y="65" width="760" height="140"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RwZ-da-Hwg">
-                                        <rect key="frame" x="0.0" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="strawberry" translatesAutoresizingMaskIntoConstraints="NO" id="05D-7o-Xko">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-04-mZt" userLabel="StrawberryStock" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="Bqf-DU-tjJ"/>
@@ -50,13 +50,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hYk-YM-JVk">
-                                        <rect key="frame" x="169.5" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="159" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="bsO-Pd-e5W">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjU-AR-6Qe" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="2nP-5N-4yt"/>
@@ -80,14 +80,15 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q8U-Nw-bzn">
-                                        <rect key="frame" x="339" y="0.0" width="134" height="140"/>
+                                        <rect key="frame" x="318" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pineapple" translatesAutoresizingMaskIntoConstraints="NO" id="cbb-EI-Pc6">
-                                                <rect key="frame" x="0.0" y="0.0" width="134" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zU-ef-Pyv" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <color key="tintColor" red="0.63777178879999996" green="0.98548370600000001" blue="0.51939653539999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="8T7-Iw-NXJ"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="m3i-Jd-eu5"/>
@@ -107,13 +108,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ooc-El-F7R">
-                                        <rect key="frame" x="508" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="477" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kiwi" translatesAutoresizingMaskIntoConstraints="NO" id="bNl-0S-jIQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB1-Pq-72g" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17.5" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="Fft-Km-vSX"/>
@@ -137,13 +138,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5oc-m4-gD4">
-                                        <rect key="frame" x="677.5" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="636" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mango" translatesAutoresizingMaskIntoConstraints="NO" id="vc7-q9-Z7R">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPG-Ng-F8X" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17.5" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="46g-C2-FgR"/>
@@ -172,13 +173,13 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rt2-uJ-hRr" userLabel="Button Stack View">
-                                <rect key="frame" x="64" y="225" width="812" height="148"/>
+                                <rect key="frame" x="64" y="225" width="760" height="124"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="gli-GH-0EE" userLabel="Top Button Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="639.5" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="598" height="52"/>
                                         <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jle-tk-CQ2" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="295" height="64"/>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jle-tk-CQ2" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="274" height="52"/>
                                                 <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration" label="strawBanana"/>
                                                 <state key="normal">
@@ -202,14 +203,13 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="딸바쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0uL-Xn-Gle"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHY-2q-smQ" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="345" y="0.0" width="294.5" height="64"/>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHY-2q-smQ" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
+                                                <rect key="frame" x="324" y="0.0" width="274" height="52"/>
                                                 <color key="backgroundColor" red="0.9164523500384707" green="0.73090419611655488" blue="0.17815152093132364" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration" label="mangoKiwi"/>
                                                 <state key="normal">
@@ -233,7 +233,6 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="망키쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zpc-67-8Ij"/>
@@ -242,10 +241,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="qNA-xh-0y2" userLabel="Bottom Button Stack View">
-                                        <rect key="frame" x="0.0" y="84" width="812" height="64"/>
+                                        <rect key="frame" x="0.0" y="72" width="760" height="52"/>
                                         <subviews>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tAB-bb-LTe" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="122.5" height="64"/>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tAB-bb-LTe" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="52"/>
                                                 <color key="backgroundColor" red="1" green="0.21772115858554275" blue="0.22933048325231764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration" label="strawberry"/>
                                                 <state key="normal">
@@ -269,14 +268,13 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="딸기쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ViK-xB-ldk"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQj-7U-zMA" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="172.5" y="0.0" width="122.5" height="64"/>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQj-7U-zMA" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
+                                                <rect key="frame" x="162" y="0.0" width="112" height="52"/>
                                                 <color key="backgroundColor" red="1" green="0.89916243545016272" blue="0.097077327998884022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration" label="banana"/>
                                                 <state key="normal">
@@ -300,14 +298,13 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="바나나쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WQd-Nc-coK"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cG1-zF-ji1" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="345" y="0.0" width="122" height="64"/>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cG1-zF-ji1" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
+                                                <rect key="frame" x="324" y="0.0" width="112" height="52"/>
                                                 <color key="backgroundColor" red="1" green="0.99034621879184959" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration" label="pineapple"/>
                                                 <state key="normal">
@@ -331,14 +328,13 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="파인애플쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="APW-H6-Hc4"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4s-n1-mxv" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="517" y="0.0" width="122.5" height="64"/>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4s-n1-mxv" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
+                                                <rect key="frame" x="486" y="0.0" width="112" height="52"/>
                                                 <color key="backgroundColor" red="0.57579502589790676" green="1" blue="0.10079217956699982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration" label="kiwi"/>
                                                 <state key="normal">
@@ -362,14 +358,13 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="키위쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="py1-hS-ihE"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nas-Q4-ija" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="689.5" y="0.0" width="122.5" height="64"/>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nas-Q4-ija" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
+                                                <rect key="frame" x="648" y="0.0" width="112" height="52"/>
                                                 <color key="backgroundColor" red="1" green="0.70301626974721509" blue="0.17052115212712404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration" label="mango"/>
                                                 <state key="normal">
@@ -393,7 +388,6 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                         <color key="value" systemColor="labelColor"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="juiceName" value="망고쥬스"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchUpJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZOq-NH-RAw"/>
@@ -410,7 +404,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceV-dG-OI0">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="844" height="50"/>
                                 <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="VU9-Xf-Zu4"/>
@@ -426,11 +420,14 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMs-V5-Uxa">
-                                <rect key="frame" x="776" y="10" width="56" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9je-uu-Zeg">
+                                <rect key="frame" x="768" y="10" width="56" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="oiT-44-JKc"/>
+                                </constraints>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <segue destination="RWe-6J-gOF" kind="presentation" animates="NO" id="60N-9N-EvT"/>
+                                    <segue destination="RWe-6J-gOF" kind="presentation" animates="NO" id="Hsd-da-1s9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -438,20 +435,19 @@
                         <color key="backgroundColor" red="0.63777178877014284" green="0.98548370600000001" blue="0.51939653536949781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ceV-dG-OI0" secondAttribute="trailing" id="6SF-VT-TsC"/>
-                            <constraint firstItem="nMs-V5-Uxa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="6Tj-0l-UBI"/>
                             <constraint firstItem="FkW-nw-NhI" firstAttribute="top" secondItem="ceV-dG-OI0" secondAttribute="bottom" constant="15" id="8Q7-5g-hye"/>
                             <constraint firstItem="rt2-uJ-hRr" firstAttribute="leading" secondItem="FkW-nw-NhI" secondAttribute="leading" id="B4G-bS-30R"/>
+                            <constraint firstAttribute="trailing" secondItem="9je-uu-Zeg" secondAttribute="trailing" constant="20" id="HK4-m6-man"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rt2-uJ-hRr" secondAttribute="bottom" constant="20" id="MDc-60-Ua9"/>
                             <constraint firstItem="FkW-nw-NhI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Mss-4w-d3d"/>
                             <constraint firstItem="ceV-dG-OI0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NdM-p2-5M7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nMs-V5-Uxa" secondAttribute="trailing" constant="20" id="aOJ-yZ-StA"/>
                             <constraint firstItem="ceV-dG-OI0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="g1h-hk-EfZ"/>
                             <constraint firstItem="rt2-uJ-hRr" firstAttribute="trailing" secondItem="FkW-nw-NhI" secondAttribute="trailing" id="klE-G8-uOZ"/>
                             <constraint firstAttribute="trailing" secondItem="FkW-nw-NhI" secondAttribute="trailing" constant="20" id="no6-6R-duK"/>
                             <constraint firstItem="rt2-uJ-hRr" firstAttribute="top" secondItem="FkW-nw-NhI" secondAttribute="bottom" constant="20" id="xRM-ca-rhv"/>
+                            <constraint firstItem="9je-uu-Zeg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="y9Z-nH-gvR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="n3g-m1-ti7"/>
                     <connections>
                         <outlet property="bananaButton" destination="RQj-7U-zMA" id="oPw-vq-JBu"/>
                         <outlet property="bananaStock" destination="rjU-AR-6Qe" id="pDd-Fq-YF3"/>
@@ -476,20 +472,20 @@
             <objects>
                 <viewController storyboardIdentifier="StockViewController" title="StockViewController" id="RWe-6J-gOF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4g-41-DTO">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-Ii-y85" userLabel="Fruit Stack View">
-                                <rect key="frame" x="64" y="65" width="812" height="140"/>
+                                <rect key="frame" x="64" y="65" width="760" height="140"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-g0-JcD">
-                                        <rect key="frame" x="0.0" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="strawberry" translatesAutoresizingMaskIntoConstraints="NO" id="0Dx-eK-jSJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNa-UA-pH1" userLabel="Strawberry Stock" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="QRt-Pp-EO5"/>
@@ -513,13 +509,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Fu-7X-tKM">
-                                        <rect key="frame" x="169.5" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="159" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="0d2-Zm-ghm">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk7-pW-qTQ" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="L12-Bu-ogS"/>
@@ -543,13 +539,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-tC-Ric">
-                                        <rect key="frame" x="339" y="0.0" width="134" height="140"/>
+                                        <rect key="frame" x="318" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pineapple" translatesAutoresizingMaskIntoConstraints="NO" id="JC6-T2-Dey">
-                                                <rect key="frame" x="0.0" y="0.0" width="134" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jk-iN-UwE" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="nFQ-He-2KU"/>
@@ -573,13 +569,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Smw-CD-T0S">
-                                        <rect key="frame" x="508" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="477" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kiwi" translatesAutoresizingMaskIntoConstraints="NO" id="E8N-D9-G79">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nL0-wW-psR" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17.5" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="hE9-1L-ndI"/>
@@ -603,13 +599,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UOy-hh-hRT">
-                                        <rect key="frame" x="677.5" y="0.0" width="134.5" height="140"/>
+                                        <rect key="frame" x="636" y="0.0" width="124" height="140"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mango" translatesAutoresizingMaskIntoConstraints="NO" id="9mN-e9-Ygs">
-                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRh-r2-iaY" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="17.5" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="dV1-p1-h7x"/>
@@ -638,7 +634,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vyh-1s-9v2">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="844" height="50"/>
                                 <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Pcu-sn-jrv"/>
@@ -654,39 +650,43 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csc-f8-XvJ">
-                                <rect key="frame" x="802" y="10" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVP-4X-Heg">
+                                <rect key="frame" x="774" y="10" width="50" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="NR8-MF-vq5"/>
+                                </constraints>
                                 <state key="normal" title="닫기"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" animates="NO" id="ubL-YJ-yTg"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" animates="NO" id="1ez-rl-cHH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X0t-Ua-a39"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="csc-f8-XvJ" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" constant="10" id="2fh-JQ-kef"/>
                             <constraint firstItem="Vyh-1s-9v2" firstAttribute="leading" secondItem="Q4g-41-DTO" secondAttribute="leading" id="ANw-To-YeJ"/>
                             <constraint firstAttribute="trailing" secondItem="Vyh-1s-9v2" secondAttribute="trailing" id="F4k-gB-bLj"/>
                             <constraint firstAttribute="trailing" secondItem="TgE-Ii-y85" secondAttribute="trailing" constant="20" id="TEP-64-IIi"/>
+                            <constraint firstItem="kVP-4X-Heg" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" constant="10" id="Ulj-cb-cNt"/>
                             <constraint firstItem="Vyh-1s-9v2" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" id="Wzo-dF-TGA"/>
                             <constraint firstItem="TgE-Ii-y85" firstAttribute="leading" secondItem="X0t-Ua-a39" secondAttribute="leading" constant="20" id="Yc6-pk-yIC"/>
                             <constraint firstItem="TgE-Ii-y85" firstAttribute="top" secondItem="Vyh-1s-9v2" secondAttribute="bottom" constant="15" id="f1Y-Da-7u7"/>
-                            <constraint firstItem="X0t-Ua-a39" firstAttribute="trailing" secondItem="csc-f8-XvJ" secondAttribute="trailing" constant="20" id="vBY-WY-Mzq"/>
+                            <constraint firstAttribute="trailing" secondItem="kVP-4X-Heg" secondAttribute="trailing" constant="20" id="htk-JL-6tm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Loq-lO-Y62"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWd-tb-uOl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="634" y="1025"/>
+            <point key="canvasLocation" x="665" y="814"/>
         </scene>
     </scenes>
     <designables>
         <designable name="6jk-iN-UwE">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="6zU-ef-Pyv">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="HHY-2q-smQ">
             <size key="intrinsicContentSize" width="82" height="30"/>
@@ -695,10 +695,10 @@
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
         <designable name="KB1-Pq-72g">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="LRh-r2-iaY">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="RQj-7U-zMA">
             <size key="intrinsicContentSize" width="95" height="30"/>
@@ -707,31 +707,31 @@
             <size key="intrinsicContentSize" width="108" height="30"/>
         </designable>
         <designable name="eNa-UA-pH1">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="j4k-04-mZt">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="n4s-n1-mxv">
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
         <designable name="nL0-wW-psR">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="nas-Q4-ija">
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
         <designable name="rjU-AR-6Qe">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="tAB-bb-LTe">
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
         <designable name="tPG-Ng-F8X">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
         <designable name="tk7-pW-qTQ">
-            <size key="intrinsicContentSize" width="18" height="20.5"/>
+            <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>
