@@ -57,13 +57,26 @@ struct FruitStock {
             remainedFruit[fruit] = storedFruit - count
         }
     }
+    
+    func readCount(of fruit: Fruit) -> UInt {
+        if let storedFruit = remainedFruit[fruit] {
+            return storedFruit
+        } else {
+            return 0
+        }
+    }
 }
 
 class JuiceMaker {
     private(set) var stock: FruitStock = FruitStock(initialCount: 10)
     
-    func makeJuice(using juice: Juice) {
+    func makeJuice(using juice: Juice) throws {
         for (ingredient, amount) in juice.recipe {
+            
+            guard stock.readCount(of: ingredient) > amount else {
+                throw JuiceMakerError.outOfStock
+            }
+            
             stock.subtractStock(of: ingredient, count: amount)
         }
     }
