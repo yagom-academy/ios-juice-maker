@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		852B689F25F60C800002DD70 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B689E25F60C800002DD70 /* Stock.swift */; };
+		853A95EF2600C2B0001D7A29 /* modifyStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A95EE2600C2B0001D7A29 /* modifyStockViewController.swift */; };
 		85B6DA6025F79A750003D676 /* JuiceRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */; };
 		AA8DB076260063BF00CA0CBE /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8DB075260063BF00CA0CBE /* Fruit.swift */; };
 		AA8DB079260063D800CA0CBE /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8DB078260063D800CA0CBE /* Juice.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		852B689E25F60C800002DD70 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		853A95EE2600C2B0001D7A29 /* modifyStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modifyStockViewController.swift; sourceTree = "<group>"; };
 		85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRecipe.swift; sourceTree = "<group>"; };
 		AA8DB075260063BF00CA0CBE /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		AA8DB078260063D800CA0CBE /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				853A95EE2600C2B0001D7A29 /* modifyStockViewController.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				852B689E25F60C800002DD70 /* Stock.swift */,
 				85B6DA5F25F79A750003D676 /* JuiceRecipe.swift */,
@@ -184,6 +187,7 @@
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				AA8DB079260063D800CA0CBE /* Juice.swift in Sources */,
 				85B6DA6025F79A750003D676 /* JuiceRecipe.swift in Sources */,
+				853A95EF2600C2B0001D7A29 /* modifyStockViewController.swift in Sources */,
 				AAE1486325FCA441004C758F /* JSONString.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				AA8DB07F2600640600CA0CBE /* JuiceType.swift in Sources */,
