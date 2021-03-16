@@ -37,7 +37,9 @@ class JuiceMaker {
     var fruitStocks: [Fruit: Int] = [:]
     
     init(numberOfStocks: Int) {
-        fruitStocks = [.strawberry: numberOfStocks, .banana: numberOfStocks, .kiwi: numberOfStocks, .pineapple: numberOfStocks, .mango: numberOfStocks]
+        for fruit in Fruit.allCases {
+            fruitStocks[fruit] = numberOfStocks
+        }
     }
     func checkStock(of fruit: Fruit) -> Int {
         return fruitStocks[fruit]!
