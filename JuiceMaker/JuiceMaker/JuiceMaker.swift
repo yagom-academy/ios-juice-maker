@@ -77,14 +77,14 @@ struct Stock {
         return hasFruit
     }
     
-    mutating func decrease(by juice: Juice) {
-        for fruit in juice.recipe {
-            fruits[fruit.key]? -= fruit.value
+    mutating func decrease(by fruits: [Fruit: Int]) {
+        for fruit in fruits {
+            self.fruits[fruit.key]? -= fruit.value
         }
     }
     
-    mutating func increase(_ fruit: Fruit, by number: Int) {
-        fruits[fruit]? += number
+    mutating func change(_ fruit: Fruit, by quantity: Int) {
+        fruits[fruit]? += quantity
     }
 }
 
@@ -97,6 +97,10 @@ class JuiceMaker {
     }
     
     func make(_ juice: Juice) {
-        stock.decrease(by: juice)
+        stock.decrease(by: juice.recipe)
+    }
+    
+    func manageStock(_ fruit: Fruit, by quantity: Int) {
+        stock.change(fruit, by: quantity)
     }
 }
