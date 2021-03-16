@@ -1,3 +1,10 @@
+//
+//  JuiceData.swift
+//  JuiceMaker
+//
+//  Created by 윤재웅 on 2021/03/15.
+//
+
 import Foundation
 
 typealias Storage = [Fruits : Int]
@@ -6,14 +13,14 @@ enum Fruits: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-enum Juices: Int {
-    case strawberryJuice = 1
-    case bananaJuice = 2
-    case pineappleJuice = 3
-    case kiwiJuice = 4
-    case mangoJuice = 5
-    case strawberryBananaJuice = 6
-    case mangoKiwiJuice = 7
+enum Juices: String {
+    case strawberryJuice = "딸기 쥬스 주문"
+    case bananaJuice = "바나나 쥬스 주문"
+    case pineappleJuice = "파인애플 쥬스 주문"
+    case kiwiJuice = "키위 쥬스 주문"
+    case mangoJuice = "망고 쥬스 주문"
+    case strawberryBananaJuice = "딸기 바나나 쥬스 주문"
+    case mangoKiwiJuice = "망고 키위 쥬스 주문"
     
     var recipe : Storage {
         switch self {
@@ -53,22 +60,5 @@ extension Juices: CustomStringConvertible {
         case .mangoKiwiJuice:
             return "망고 키위 쥬스"
         }
-    }
-}
-
-class FruitStock {
-    public private(set) var fruits: Storage = [:]
-    
-    init(initAmount: Int) {
-        for kindFruit in Fruits.allCases {
-            fruits.updateValue(initAmount, forKey: kindFruit)
-        }
-    }
-    
-    func manageStorage(fruit kind: Fruits, amount: Int) throws {
-        guard let stock = fruits[kind] else {
-            throw StockError.inValidStock
-        }
-        fruits.updateValue(stock + amount, forKey: kind)
     }
 }
