@@ -8,9 +8,25 @@ import UIKit
 
 class ViewController: UIViewController {
   let juiceMaker = JuiceMaker()
-    
+   
+  @IBOutlet var strawberryStockQuantityLabel: UILabel!
+  @IBOutlet var bananaStockQuantityLabel: UILabel!
+  @IBOutlet var pineappleStockQuantityLabel: UILabel!
+  @IBOutlet var kiwiStockQuantityLabel: UILabel!
+  @IBOutlet var mangoStockQuantityLabel: UILabel!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    updateFruitStockQuantity()
+  }
+  
+  func updateFruitStockQuantity() {
+    strawberryStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.strawberry))"
+    bananaStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.banana))"
+    pineappleStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.pineapple))"
+    kiwiStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.kiwi))"
+    mangoStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.mango))"
   }
   
   func getAlert(_ isSuccess: Bool, _ message: String) {
@@ -18,15 +34,11 @@ class ViewController: UIViewController {
                                   message: message,
                                   preferredStyle: UIAlertController.Style.alert)
     
-    let btnOK = UIAlertAction(title: "확인",
-                              style: .default)
-    let btnMove = UIAlertAction(title: "예",
-                                style: .default) { (action) in
-      self.performSegue(withIdentifier: "goToModifyStockView",
-                        sender: self)
+    let btnOK = UIAlertAction(title: "확인", style: .default)
+    let btnMove = UIAlertAction(title: "예", style: .default) { (action) in
+      self.performSegue(withIdentifier: "goToModifyStockView", sender: self)
     }
-    let btnCancel = UIAlertAction(title: "아니오",
-                                  style: .cancel)
+    let btnCancel = UIAlertAction(title: "아니오", style: .cancel)
     
     if(isSuccess) {
       alert.addAction(btnOK)
@@ -58,8 +70,8 @@ class ViewController: UIViewController {
     guard let message: String = juiceMaker.make(of: orderedJuice)["message"] as? String else {
       return
     }
+    
+    updateFruitStockQuantity()
     getAlert(isSuccess, message)
   }
-  
 }
-
