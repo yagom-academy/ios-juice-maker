@@ -6,6 +6,8 @@
 import Foundation
 
 struct JuiceMaker {
+    static let shared = JuiceMaker()
+    
     var fruitInformation: [FruitTypes: FruitStock] = [
         .strawberry: FruitStock(.strawberry, 10),
         .banana: FruitStock(.banana, 10),
@@ -21,5 +23,11 @@ struct JuiceMaker {
                 } else { return false }
             }
         return true
+    }
+    
+    func fruitStock(of fruit: FruitTypes) throws -> String {
+        guard let fruitStock = fruitInformation[fruit] else {
+            throw JuiceMakerError.invalidFruit }
+        return String(fruitStock.stock)
     }
 }
