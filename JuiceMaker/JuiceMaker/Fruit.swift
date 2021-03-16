@@ -10,10 +10,14 @@ enum FruitTypes {
     case strawberry, banana, kiwi, pineapple, mango
 }
 
-class FruitStock {
+final class FruitStock {
     private var fruit: FruitTypes
-    private(set) var stock = 10
-
+    private(set) var stock = 10 {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name("didStockChanged"), object: fruit)
+        }
+    }
+    
     init(_ fruit: FruitTypes, _ stock: Int) {
         self.fruit = fruit
         self.stock = stock

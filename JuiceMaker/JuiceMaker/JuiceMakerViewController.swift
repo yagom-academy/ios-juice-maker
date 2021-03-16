@@ -25,28 +25,37 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFruitStock(_:)), name: Notification.Name("didStockChanged"), object: nil)
     }
     
     private func makeOrderedJuice(menu: JuiceTypes) {
         if juiceMaker.didMakeJuice(of: menu) {
             showOrderSuccessAlert(menu: menu)
-            updateFruitStock()
         } else {
             showOrderFailAlert()
         }
     }
     
-    func updateFruitStock() {
-        do {
-            try strawberryStockLabel.text = juiceMaker.fruitStock(of: .strawberry)
-            try bananaStockLabel.text = juiceMaker.fruitStock(of: .banana)
-            try pineappleStockLabel.text = juiceMaker.fruitStock(of: .pineapple)
-            try kiwiStockLabel.text = juiceMaker.fruitStock(of: .kiwi)
-            try mangoStockLabel.text = juiceMaker.fruitStock(of: .mango)
-        } catch {
-            print(error)
+    @objc private func updateFruitStock(_ notification: Notification) {
+            do {
+                guard let fruit = notification.object as? FruitTypes else { return }
+                switch fruit {
+                case .strawberry:
+                    try strawberryStockLabel.text = juiceMaker.fruitStock(of: .strawberry)
+                case .banana:
+                    try bananaStockLabel.text = juiceMaker.fruitStock(of: .banana)
+                case .kiwi:
+                    try kiwiStockLabel.text = juiceMaker.fruitStock(of: .kiwi)
+                case .mango:
+                    try mangoStockLabel.text = juiceMaker.fruitStock(of: .mango)
+                case .pineapple:
+                    try pineappleStockLabel.text = juiceMaker.fruitStock(of: .pineapple)
+                }
+            } catch {
+                print(error)
+            }
         }
-    }
 
     private func showOrderSuccessAlert(menu: JuiceTypes) {
         let alert = UIAlertController(title: nil, message: "\(menu) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
