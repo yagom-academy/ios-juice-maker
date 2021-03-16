@@ -90,8 +90,9 @@ struct Stock {
 
 class JuiceMaker {
     private(set) var stock: Stock
+    static let shared = JuiceMaker(stock: Stock(basicValue: 10))
     
-    init(stock: Stock) {
+    private init(stock: Stock) {
         self.stock = stock
     }
     
