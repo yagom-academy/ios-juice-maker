@@ -11,7 +11,7 @@ class JuiceMaker {
   func make(of orderedJuice: Juice) {
     do {
       let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
-      if hasEnoughFruits(of: requiredFruits) {
+      if try hasEnoughFruits(of: requiredFruits) {
         try consumeStockedFruits(for: requiredFruits)
         printOrderCompleted(for: orderedJuice)
       }
@@ -36,10 +36,10 @@ class JuiceMaker {
     return requiredFruits
   }
   
-  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) -> Bool {
+  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) throws -> Bool {
  
     for (fruit, requiredQuantity) in requiredFruits {
-      let stockedQuantity = Stock.shared.count(for: fruit)
+      let stockedQuantity = try Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
         print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
         return false
