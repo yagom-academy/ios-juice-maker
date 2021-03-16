@@ -9,15 +9,14 @@ import Foundation
 
 
 class FruitStockManager {
-    static let shared = FruitStockManager()
     private(set) var fruitStockAmounts: [String:Int] = [:]
     private(set) var fruitTypes: [String] = ["strawberry", "banana", "pineapple", "kiwi", "mango"]
     
-    private init() {
+    init() {
         initializeFruitStockAmount(with: 10)
     }
     
-    private func initializeFruitStockAmount(with baseFruitAmount: Int) {
+    func initializeFruitStockAmount(with baseFruitAmount: Int) {
         for fruitType in fruitTypes {
             fruitStockAmounts[fruitType] = baseFruitAmount
         }
