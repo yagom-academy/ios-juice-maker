@@ -241,7 +241,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <segue destination="fvd-dZ-7lm" kind="presentation" id="pIY-ga-RjG"/>
+                                    <segue destination="fvd-dZ-7lm" kind="presentation" identifier="goToModifyStockView" id="pIY-ga-RjG"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -22,7 +22,8 @@ class ViewController: UIViewController {
                               style: .default)
     let btnMove = UIAlertAction(title: "예",
                                 style: .default) { (action) in
-      print("화면이동")
+      self.performSegue(withIdentifier: "goToModifyStockView",
+                        sender: self)
     }
     let btnCancel = UIAlertAction(title: "아니오",
                                   style: .cancel)
