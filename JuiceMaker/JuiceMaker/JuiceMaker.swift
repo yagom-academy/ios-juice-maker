@@ -8,11 +8,13 @@ import Foundation
 
 
 class JuiceMaker {
-    func makeJuice(juiceType: JuiceRecipe) {
-        let juiceIngredients: FruitTypeAndAmount = JuiceRecipe.getJuiceIngredients(of: juiceType)
+    func makeJuice(juiceType: String) {
+        let recipeBook = RecipeBook()
+        let fruitStockManager = FruitStockManager()
+        guard let juiceIngredients: FruitTypeAndAmount = recipeBook.getJuiceIngredients(of: juiceType) else { return }
         
         for (fruitType, fruitNumber) in juiceIngredients {
-            FruitStockManager.decreaseStockAmount(of: fruitType, by: fruitNumber)
+            fruitStockManager.decreaseStockAmount(of: fruitType, by: fruitNumber)
         }
     }
 }
