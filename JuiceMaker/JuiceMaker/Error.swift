@@ -12,6 +12,7 @@ enum FruitError: Error, CustomStringConvertible {
   case nilHasOccurredWhileSubtracting
   case nilHasOccurredWhileAdding
   case nilHasOccurredWhileCheckingStock
+  case nilHasOccurredWhileCountingStock
   
   var description: String {
     switch self {
@@ -23,6 +24,8 @@ enum FruitError: Error, CustomStringConvertible {
       return "🔥 쥬스 재고 추가 중 stock[fruit] = nil이 발생하였습니다."
     case .nilHasOccurredWhileCheckingStock:
       return "🔥 쥬스 재고 확인 중 stock[fruit] = nil이 발생하였습니다."
+    case .nilHasOccurredWhileCountingStock:
+      return "🔥 쥬스 재고 반환 중 stock[fruit] = nil이 발생하였습니다."
     }
   }
 }
