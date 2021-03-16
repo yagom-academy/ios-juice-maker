@@ -11,8 +11,13 @@ import Foundation
 struct JuiceRecipe {
   private let wrappedRecipeBook: Recipe?
   
-  init() {
-    let jsonData = Data(jsonString.utf8)
+  init?() {
+    guard let path = Bundle.main.path(forResource: "Recipe", ofType: "json") else {
+      return nil
+    }
+    guard let jsonData = try? String(contentsOfFile: path).data(using: .utf8) else {
+      return nil
+    }
     self.wrappedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }
   
@@ -30,7 +35,6 @@ struct JuiceRecipe {
     }
     
     guard let unwrappedRecipe = recipe else {
-//      informErrorLocation(functionName: #function)
       throw RecipeError.nilHasOccurredWhileUnwrappingRecipe
     }
     
