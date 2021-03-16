@@ -8,13 +8,11 @@ import Foundation
 
 // MARK: - JuiceMaker Type
 class JuiceMaker {
-  var stock = Stock()
-  
   func make(of orderedJuice: Juice) {
     do {
       let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
-      if try hasEnoughFruits(of: requiredFruits) {
-        comsumeStockedFruits(for: requiredFruits)
+      if hasEnoughFruits(of: requiredFruits) {
+        try consumeStockedFruits(for: requiredFruits)
         printOrderCompleted(for: orderedJuice)
       }
     } catch {
@@ -30,8 +28,7 @@ class JuiceMaker {
     for ingredient in try recipe.find(for: orderedJuice).ingredient {
       guard let fruit = ingredient.fruitName,
             let quantity = ingredient.quantity else {
-        informErrorLocation(functionName: #function)
-        throw FruitError.invalidFruit
+        throw JuiceError.nilHasOccurredWhileCheckingRequiredFruits
       }
       requiredFruits[fruit] = quantity
     }
@@ -39,10 +36,10 @@ class JuiceMaker {
     return requiredFruits
   }
   
-  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) throws -> Bool {
+  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) -> Bool {
  
     for (fruit, requiredQuantity) in requiredFruits {
-      let stockedQuantity = try stock.count(for: fruit)
+      let stockedQuantity = Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
         print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
         return false
@@ -52,9 +49,9 @@ class JuiceMaker {
     return true
   }
   
-  private func comsumeStockedFruits(for requiredFruits: [Fruit: Int]) {
+  private func consumeStockedFruits(for requiredFruits: [Fruit: Int]) throws {
     for (fruit, quantity) in requiredFruits {
-      stock.subtract(for: fruit, amount: quantity)
+      try Stock.shared.subtract(for: fruit, amount: quantity)
     }
   }
   
@@ -63,13 +60,6 @@ class JuiceMaker {
   }
   
   private func handleErrorForMake(_ error: Error) {
-    switch error {
-    case FruitError.invalidFruit,
-         JuiceError.invalidJuice,
-         RecipeError.invalidRecipe:
-      print(error)
-    default:
-      print("알 수 없는 에러입니다. \(error)")
-    }
+    print(error)
   }
 }

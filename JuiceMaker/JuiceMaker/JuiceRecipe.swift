@@ -20,8 +20,7 @@ struct JuiceRecipe {
     var recipe: JuiceType?
     
     guard let recipeBook = wrappedRecipeBook else {
-      informErrorLocation(functionName: #function)
-      throw RecipeError.invalidRecipe
+      throw RecipeError.jsonDecodingFailed
     }
     
     for juiceRecipe in recipeBook.juiceRecipes {
@@ -31,37 +30,9 @@ struct JuiceRecipe {
     }
     
     guard let unwrappedRecipe = recipe else {
-      informErrorLocation(functionName: #function)
-      throw RecipeError.invalidRecipe
+      throw RecipeError.nilHasOccurredWhileUnwrappingRecipe
     }
     
     return unwrappedRecipe
-  }
-}
-
-// MARK: - Recipe, JuiceType, Ingredient Type
-/// JSON 파일을 디코딩하기 위한 Struct
-struct Recipe: Decodable {
-  var juiceRecipes: [JuiceType]
-}
-
-struct JuiceType: Decodable {
-  var name: String
-  var ingredient: [Ingredient]
-}
-
-struct Ingredient: Decodable {
-  var fruitName: Fruit?
-  var quantity: Int?
-  
-  private enum CodingKeys: String, CodingKey {
-    case fruitName
-    case quantity
-  }
-  
-  init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.fruitName = try? container.decode(Fruit.self, forKey: .fruitName)
-    self.quantity = try? container.decode(Int.self, forKey: .quantity)
   }
 }
