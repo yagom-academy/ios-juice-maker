@@ -7,101 +7,58 @@
 
 import Foundation
 
-enum AppError:Error {
+enum JuiceMakerError:Error {
     case outOfStock
     case unknownError
+    case unavailableAccess
 }
 
 enum Fruit {
     case strawberry, banana, kiwi, pineapple, mango
 }
-enum Juice {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case mangoJuice
-    case strawberryBananaJuice
-    case mangoKiwiJuice
+
+enum Juice: String {
+    case strawberryJuice = "딸기주스"
+    case bananaJuice = "바나나주스"
+    case kiwiJuice = "키위주스"
+    case pineappleJuice = "파인애플주스"
+    case mangoJuice = "망고주스"
+    case strawberryBananaJuice = "딸바주스"
+    case mangoKiwiJuice = "망키주스"
     
-    var recipe: [Fruit : Int] {
+    var recipe: [Fruit: Int] {
         switch self {
         case .strawberryJuice:
-            return [.strawberry : 16]
+            return [.strawberry: 16]
         case .bananaJuice:
-            return [.banana : 2]
+            return [.banana: 2]
         case .kiwiJuice:
-            return [.kiwi : 3]
+            return [.kiwi: 3]
         case .pineappleJuice:
-            return [.pineapple : 2]
+            return [.pineapple: 2]
         case .strawberryBananaJuice:
-            return [.strawberry : 10, .banana: 1]
+            return [.strawberry: 10, .banana: 1]
         case .mangoJuice:
-            return [.mango : 3]
+            return [.mango: 3]
         case .mangoKiwiJuice:
-            return [.mango : 2, .kiwi : 1]
-            
+            return [.mango: 2, .kiwi: 1]
         }
     }
 }
-
-extension Juice: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .strawberryJuice:
-            return "딸기쥬스"
-        case .bananaJuice:
-            return "바나나쥬스"
-        case .kiwiJuice:
-            return "키위쥬스"
-        case .pineappleJuice:
-            return "파인애플쥬스"
-        case .strawberryBananaJuice:
-            return "딸바쥬스"
-        case .mangoJuice:
-            return "망고쥬스"
-        case .mangoKiwiJuice:
-            return "망키쥬스"
-        }
-    }
-}
-
 
 class JuiceMaker {
-    var fruitStorage = FruitStorage.shared.refrigerator
+    private var fruitRefrigerator = FruitStorage.shared.refrigerator
     
-    func increaseFruit(input: Fruit) throws {
-        guard let stock = fruitStorage[input] else {
-            throw AppError.unknownError
-        }
-        fruitStorage.updateValue(stock + 1, forKey: input)
-    }
-    
-    func decreaseFruit(input: Fruit) throws {
-        guard let stock = fruitStorage[input], stock > 0 else {
-            throw AppError.unknownError
-        }
-        fruitStorage.updateValue(stock - 1, forKey: input)
-    }
-    
-    func executeJuiceMaker(juice: Juice) {
-        do {
-            try makeJuice(for: juice)
-        } catch {
-        }
-    }
-    
-    func makeJuice(for juice: Juice) throws -> Bool {
+    func makeJuice(flavor juice: Juice) throws -> Bool {
         for (fruit, requirements) in juice.recipe {
-            guard let stock = fruitStorage[fruit]
-            else {
-                throw AppError.unknownError
+            guard let stock = fruitRefrigerator[fruit] else {
+                throw JuiceMakerError.unavailableAccess
             }
             if stock >= requirements {
-                fruitStorage.updateValue(stock - requirements, forKey: fruit)
+                fruitRefrigerator.updateValue(stock - requirements, forKey: fruit)
             }
             else {
-                throw AppError.outOfStock
+                throw JuiceMakerError.outOfStock
             }
         }
         return true
