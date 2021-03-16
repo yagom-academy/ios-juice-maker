@@ -8,10 +8,12 @@
 import UIKit
 
 class SecondViewController: UIViewController {
+    let juiceMaker = JuiceMaker.shared
     @IBOutlet var fruitStockLabels = [UILabel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        update(labels: fruitStockLabels, by: juiceMaker.stock)
     }
     
     @IBAction func backButton(_ sender: Any) {

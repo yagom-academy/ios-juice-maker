@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStockLabels()
+        update(labels: fruitStockLabels, by: juiceMaker.stock)
     }
     
     @IBAction func juiceOrderButton(_ sender: UIButton) {
@@ -20,19 +20,10 @@ class ViewController: UIViewController {
         
         if juiceMaker.stock.hasFruits(for: juice) {
             juiceMaker.make(juice)
-            updateFruitStockLabels()
+            update(labels: fruitStockLabels, by: juiceMaker.stock)
             alert(title: "\(juice.name) 나왔습니다!", message: "맛있게 드세요!", actionTypes: [.ok("감사합니다!")])
         } else {
             alert(title: "재고가 모자라요.", message: "재고를 수정할까요?", actionTypes: [.ok("예", { _ in self.performSegue(withIdentifier: "stockChanger", sender: nil)}), .cancel("아니오")])
-        }
-    }
-    
-    func updateFruitStockLabels() {
-        for index in 0..<fruitStockLabels.count {
-            guard let fruitType = Fruit(rawValue: index) else { return }
-            guard let stock = juiceMaker.stock.fruits[fruitType] else { return }
-            
-            fruitStockLabels[index].text = String(stock)
         }
     }
     
@@ -44,5 +35,14 @@ class ViewController: UIViewController {
         }
         
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+func update(labels: [UILabel], by stock: Stock) {
+    for index in 0..<labels.count {
+        guard let fruitType = Fruit(rawValue: index) else { return }
+        guard let fruitStock = stock.fruits[fruitType] else { return }
+        
+        labels[index].text = String(fruitStock)
     }
 }
