@@ -240,6 +240,9 @@
                                 <rect key="frame" x="734" y="25" width="92" height="42"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="재고 수정"/>
+                                <connections>
+                                    <segue destination="fvd-dZ-7lm" kind="presentation" id="pIY-ga-RjG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -481,6 +484,9 @@
                                 <rect key="frame" x="772" y="20" width="44" height="42"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="닫기"/>
+                                <connections>
+                                    <action selector="touchUpDismissButton:" destination="fvd-dZ-7lm" eventType="touchUpInside" id="KL2-Zd-TeZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MvV-B9-uGa"/>
@@ -494,6 +500,7 @@
                             <constraint firstItem="MvV-B9-uGa" firstAttribute="bottom" secondItem="qjQ-x1-6Cc" secondAttribute="bottom" constant="100" id="tyc-O1-YUH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bXF-HV-tfc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mp4-As-LYq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

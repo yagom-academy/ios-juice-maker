@@ -14,16 +14,18 @@ class ViewController: UIViewController {
   }
   
   func getAlert(_ isSuccess: Bool, _ message: String) {
-    let alert = UIAlertController(
-      title: "",
-      message: message,
-      preferredStyle: UIAlertController.Style.alert)
+    let alert = UIAlertController(title: "",
+                                  message: message,
+                                  preferredStyle: UIAlertController.Style.alert)
     
-    let btnOK = UIAlertAction(title: "확인", style: .default)
-    let btnMove = UIAlertAction(title: "예", style: .default) { (action) in
+    let btnOK = UIAlertAction(title: "확인",
+                              style: .default)
+    let btnMove = UIAlertAction(title: "예",
+                                style: .default) { (action) in
       print("화면이동")
     }
-    let btnCancel = UIAlertAction(title: "아니오", style: .cancel)
+    let btnCancel = UIAlertAction(title: "아니오",
+                                  style: .cancel)
     
     if(isSuccess) {
       alert.addAction(btnOK)
@@ -32,7 +34,9 @@ class ViewController: UIViewController {
       alert.addAction(btnCancel)
     }
     
-    present(alert, animated: false, completion: nil)
+    present(alert,
+            animated: false,
+            completion: nil)
   }
   
   @IBAction func orderJuice(_ sender: UIButton) {
