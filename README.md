@@ -217,4 +217,11 @@
 
 3. 딕셔너리의 값을 변수에 담고 그 변수를 변경해주는 실수를 범했다. 값을 복사하므로 딕셔너리는 변경되지 않는다.
 
+4. 변경 과정에서 발생한 문제
+
+   - 변경은 설계를 하지 않고 무작정 진행하다보니 예상치 못한 곳에서 추가적인 문제 다수 발생
+   - refactor 할 때에는 전체적인 흐름을 고려하며 refactor할 필요가 있다.
+   - [String:FruitTypeAndAmount]를 protocol을 기반으로 한 enum으로 변경해주다보니 아래와 같은 오류 메세지 발생
+     - Instance member 'getJuiceIngredients' cannot be used on type 'JuiceRecipe'; did you mean to use a value of this type instead?
+
    
