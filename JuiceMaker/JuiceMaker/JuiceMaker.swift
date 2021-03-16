@@ -9,7 +9,7 @@ import Foundation
 typealias FruitCount = [Fruit: FruitInformation]
 
 struct FruitInformation {
-    var count: UInt
+    var count: Int
 }
 
 enum Fruit {
@@ -18,7 +18,7 @@ enum Fruit {
 
 enum Juice {
     case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangokiwi
-    
+
     var recipe: FruitCount {
         switch self {
         case .strawberry:
@@ -40,29 +40,30 @@ enum Juice {
 }
 
 enum JuiceMakerError: Error {
-    case outOfStock, notFoundFruit
+    case outOfStock
+    case invalidFruit
 }
 
-struct FruitStock {
+class FruitStock {
     private var remainedFruit: FruitCount
     
-    init(initialCount: UInt) {
+    init(initialCount: Int) {
         remainedFruit = [.strawberry: FruitInformation(count: initialCount), .banana: FruitInformation(count: initialCount), .kiwi: FruitInformation(count: initialCount), .pineapple: FruitInformation(count: initialCount), .mango: FruitInformation(count: initialCount)]
     }
     
-    mutating func addStock(of fruit: Fruit, count: UInt) {
+    func addStock(of fruit: Fruit, count: Int) {
         if let storedFruit = remainedFruit[fruit] {
             remainedFruit[fruit]?.count = storedFruit.count + count
         }
     }
     
-    mutating func subtractStock(of fruit: Fruit, count: UInt) {
+    func subtractStock(of fruit: Fruit, count: Int) {
         if let storedFruit = remainedFruit[fruit] {
             remainedFruit[fruit]?.count = storedFruit.count - count
         }
     }
     
-    func readCount(of fruit: Fruit) -> UInt {
+    func readCount(of fruit: Fruit) -> Int {
         if let storedFruit = remainedFruit[fruit] {
             return storedFruit.count
         } else {
@@ -73,11 +74,16 @@ struct FruitStock {
 
 class JuiceMaker {
     private var stock: FruitStock = FruitStock(initialCount: 10)
+    static let shared = JuiceMaker()
+    
+    private init(){
+        
+    }
     
     func makeJuice(using juice: Juice) throws {
         for (ingredient, information) in juice.recipe {
             
-            guard stock.readCount(of: ingredient) >  information.count else {
+            guard stock.readCount(of: ingredient) > information.count else {
                 throw JuiceMakerError.outOfStock
             }
             
@@ -85,7 +91,7 @@ class JuiceMaker {
         }
     }
     
-    func readStock(of fruit: Fruit) -> UInt {
-        return stock.readCount(of: fruit)
+    func readStock(of fruit: Fruit) -> Int {
+        stock.readCount(of: fruit)
     }
 }
