@@ -41,15 +41,24 @@ final class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.make(order: selectedFruit!)
         } catch {
-            lakeStockAlert(message: JuiceMakerError.lackStock.localizedDescription)
+            lakeStockAlert(JuiceMakerError.lackStock)
         }
         orderSuccessAlert(selectedFruit!)
     }
     
     // MARK: - Alert
     
-    private func lakeStockAlert(message: String) {
-        let failAlert = UIAlertController(title: nil , message: message, preferredStyle: .alert)
+    private func lakeStockAlert(_ error: Error) {
+        
+        var errorMessgae: String?
+        if let juiceError = error as? JuiceMakerError {
+            errorMessgae = juiceError.localizedDescription
+        }
+        else {
+            errorMessgae = JuiceMakerError.unknown.localizedDescription
+        }
+        
+        let failAlert = UIAlertController(title: nil , message: errorMessgae, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default)
         let stockSettingAction = UIAlertAction(title: "예", style: .cancel) { action in
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
