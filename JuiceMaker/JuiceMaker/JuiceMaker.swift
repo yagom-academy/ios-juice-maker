@@ -105,3 +105,4 @@ class JuiceMaker {
         
         return result
     }
+}
