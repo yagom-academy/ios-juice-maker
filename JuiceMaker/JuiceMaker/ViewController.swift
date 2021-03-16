@@ -64,10 +64,11 @@ class ViewController: UIViewController {
       return
     }
     
-    guard let isSuccess: Bool = juiceMaker.make(of: orderedJuice)["isSuccess"] as? Bool else {
+    let juice = juiceMaker.make(of: orderedJuice)
+    guard let isSuccess: Bool = juice["isSuccess"] as? Bool else {
       return
     }
-    guard let message: String = juiceMaker.make(of: orderedJuice)["message"] as? String else {
+    guard let message: String = juice["message"] as? String else {
       return
     }
     
