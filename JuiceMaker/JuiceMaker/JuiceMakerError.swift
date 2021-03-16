@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum JuiceMakerError: Error {
+    case invalidFruit
+}
