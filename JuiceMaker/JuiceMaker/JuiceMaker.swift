@@ -7,96 +7,107 @@
 import Foundation
 
 enum printMessege: String {
-    case unknownError = "알 수 없는 에러입니다."
     case nonExistentRecipe = "존재하지 않는 레시피 입니다."
     case notEnoughStock = "재고가 부족합니다."
     case completeMakeJuice = "쥬스가 완성되었습니다."
 }
 
-enum Juice {
-    case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice,
-         strawbaJuice, mangkiJuice
+class Fruit {
+    private (set) var stock: Int = 10
+    
+    func addStock(quantity: Int) {
+        self.stock += quantity
+    }
+    
+    func subtractStock(quantity: Int) {
+        self.stock -= quantity
+    }
+    
+    func nowStock() -> Int {
+        return self.stock
+    }
+    
+    func checkStock(requiredQuantity: Int) -> Bool {
+        if requiredQuantity <= nowStock() {
+            return true
+        }
+        
+        return false
+    }
 }
 
-class Fruit {
-    var strawberry: Int = 10
-    var banana: Int = 10
-    var pineapple: Int = 10
-    var kiwi: Int = 10
-    var mango: Int = 10
+class FruitStock {
+    static let strawberry = Fruit()
+    static let banana = Fruit()
+    static let pineapple = Fruit()
+    static let kiwi = Fruit()
+    static let mango = Fruit()
+}
+
+class Juice {
+    typealias Stock = Int
+    let recipe: [(Fruit,Stock)]
+    let name: String
+    
+    init(createRecipe: [(Fruit, Stock)], createName: String) {
+        self.recipe = createRecipe
+        self.name = createName
+    }
+    
+}
+
+class JuiceRecipe {
+    static let strawberryJuice = Juice(
+        createRecipe: [(FruitStock.strawberry, 16)], createName: "딸기쥬스")
+    static let bananaJuice = Juice(
+        createRecipe: [(FruitStock.banana, 2)], createName: "바나나쥬스")
+    static let pineappleJuice = Juice(
+        createRecipe: [(FruitStock.pineapple, 2)], createName: "파인애플쥬스")
+    static let kiwiJuice = Juice(
+        createRecipe: [(FruitStock.kiwi, 3)], createName: "키위쥬스")
+    static let mangoJuice = Juice(
+        createRecipe: [(FruitStock.mango, 3)], createName: "망고쥬스")
+    static let strawbaJuice = Juice(
+        createRecipe: [(FruitStock.strawberry, 10), (FruitStock.banana, 1)], createName: "딸바쥬스")
+    static let mangkiJuice = Juice(
+        createRecipe: [(FruitStock.mango, 1), (FruitStock.kiwi, 2)], createName: "망키쥬스")
 }
 
 class JuiceMaker {
-    // Array Index -> 0 = strawberry, 1 = banana, 2 = pineapple, 3 = kiwi, 4 = mango
-    private var stocks: [Int] = [10, 10, 10, 10, 10]
-    var messeges: printMessege = .unknownError
+    let stocks: FruitStock = FruitStock()
+    let juiceRecipe: JuiceRecipe = JuiceRecipe()
     
-    func nowStock(index: Int) -> Int {
-        return stocks[index]
-    }
-    
-    func subtractStock(index: Int, quantity: Int) {
-        self.stocks[index] -= quantity
-    }
-    
-    func addStock(index: Int, quantity: Int) {
-        self.stocks[index] += quantity
-    }
-    
-    func makeJuice(juiceName: Juice) {
-        let recipe = selectJuiceRecipe(juiceName)
-        let isStockStatus: Bool = isCheckStock(juiceName)
-        
-        if isStockStatus {
-            for (key, value) in recipe {
-                subtractStock(index: key, quantity: value)
+    func makeJuice(juiceName: Juice) -> printMessege {
+        var result: printMessege = .nonExistentRecipe
+
+        if recipeCheckStock(juiceName) {
+            for (fruit, needstock) in juiceName.recipe {
+                fruit.subtractStock(quantity: needstock)
             }
-            messeges = .completeMakeJuice
+            
+            result = .completeMakeJuice
         } else {
-            messeges = .notEnoughStock
-        }
-    }
-    
-    func selectJuiceRecipe(_ juiceName: Juice) -> [Int: Int] {
-        var recipe: [Int: Int] = [:]
-        
-        //  recipe = [Key: Value] -> [stock Array index : recipe need amount]
-        switch juiceName {
-        case .strawberryJuice:
-            recipe = [0:16]
-        case .bananaJuice:
-            recipe = [1:2]
-        case .pineappleJuice:
-            recipe = [2:2]
-        case .kiwiJuice:
-            recipe = [3:3]
-        case .mangoJuice:
-            recipe = [4:3]
-        case .strawbaJuice:
-            recipe = [0:10, 1:1]
-        case .mangkiJuice:
-            recipe = [3:1, 4:2]
-        default:
-            messeges = .nonExistentRecipe
+            result = .notEnoughStock
         }
         
-        return recipe
+        return result
     }
     
-    func isCheckStock(_ juiceName: Juice) -> Bool {
+    //  2. 주스 레시피에 필요한 과일의 재고량을 검토
+    func recipeCheckStock(_ juiceName: Juice) -> Bool {
         var result: Bool = false
-        let recipe = selectJuiceRecipe(juiceName)
         
-        for (index, compareQuantity) in recipe {
-            if stocks[index] < compareQuantity {
-                result = false
+        for (fruit, needstock) in juiceName.recipe {
+            result = fruit.checkStock(requiredQuantity: needstock)
+            
+            if !result {
                 break
-            } else {
-                result = true
             }
         }
         
         return result
     }
-
+    
 }
+
+
