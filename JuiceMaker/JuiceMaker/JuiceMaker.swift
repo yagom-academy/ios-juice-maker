@@ -6,6 +6,12 @@
 
 import Foundation
 
+enum StatusMessage: String {
+    case notExistRecipe = "존재하지 않는 레시피입니다."
+    case completeMakeJuice = "가 완성되었습니다 맛있게 드세요"
+    case notEnoughStock = "재고가 부족합니다. 재고를 수정할까요!"
+}
+
 class Fruit {
     private (set) var stock: Int = 10
     
@@ -21,7 +27,7 @@ class Fruit {
         return self.stock
     }
     
-    func checkStock(requiredQuantity: Int) -> Bool {
+    func canMakeJuice(requiredQuantity: Int) -> Bool {
         if requiredQuantity <= nowStock() {
             return true
         }
@@ -68,19 +74,19 @@ class JuiceRecipe {
 
 class JuiceMaker {
     let stocks: FruitStock = FruitStock()
-    let juiceRecipe: JuiceRecipe = JuiceRecipe()
+    let juiceRecipes: JuiceRecipe = JuiceRecipe()
     
-    func makeJuice(juiceName: Juice) -> String {
-        var result: String = "존재하지 않는 레시피입니다"
+    func makeJuice(juiceName: Juice) -> StatusMessage {
+        var result: StatusMessage = .notExistRecipe
 
         if compareStockToRecipe(juiceName) {
             for (fruit, needstock) in juiceName.recipe {
                 fruit.subtractStock(quantity: needstock)
             }
             
-            result = "\(juiceName.name)가 완성되었습니다! 맛있게 드세요"
+            result = .completeMakeJuice
         } else {
-            result = "재고가 부족합니다. 재고를 수정할까요?"
+            result = .notEnoughStock
         }
         
         return result
@@ -90,7 +96,7 @@ class JuiceMaker {
         var result: Bool = false
         
         for (fruit, needstock) in juiceName.recipe {
-            result = fruit.checkStock(requiredQuantity: needstock)
+            result = fruit.canMakeJuice(requiredQuantity: needstock)
             
             if !result {
                 break
