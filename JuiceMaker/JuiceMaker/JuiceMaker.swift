@@ -8,8 +8,6 @@ import Foundation
 
 // MARK: - JuiceMaker Type
 class JuiceMaker {
-  var stock = Stock()
-  
   func make(of orderedJuice: Juice) {
     do {
       let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
@@ -41,7 +39,7 @@ class JuiceMaker {
   private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) -> Bool {
  
     for (fruit, requiredQuantity) in requiredFruits {
-      let stockedQuantity = stock.count(for: fruit)
+      let stockedQuantity = Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
         print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
         return false
@@ -53,7 +51,7 @@ class JuiceMaker {
   
   private func consumeStockedFruits(for requiredFruits: [Fruit: Int]) throws {
     for (fruit, quantity) in requiredFruits {
-      try stock.subtract(for: fruit, amount: quantity)
+      try Stock.shared.subtract(for: fruit, amount: quantity)
     }
   }
   

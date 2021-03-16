@@ -57,7 +57,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA8DB0742600638400CA0CBE /* Models */ = {
+		AA8DB0A62600897D00CA0CBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				AA8DB075260063BF00CA0CBE /* Fruit.swift */,
@@ -88,7 +88,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				AA8DB0742600638400CA0CBE /* Models */,
+				AA8DB0A62600897D00CA0CBE /* Models */,
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,

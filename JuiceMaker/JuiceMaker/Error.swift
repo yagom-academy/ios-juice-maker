@@ -7,14 +7,11 @@
 
 import Foundation
 
-func informErrorLocation(functionName: String) {
-  print("에러 발생: \(functionName)")
-}
-
 enum FruitError: Error, CustomStringConvertible {
   case invalidFruit
   case nilHasOccurredWhileSubtracting
   case nilHasOccurredWhileAdding
+  case nilHasOccurredWhileCheckingStock
   
   var description: String {
     switch self {
@@ -24,6 +21,8 @@ enum FruitError: Error, CustomStringConvertible {
       return "🔥 쥬스 재고 차감 중 stock[fruit] = nil이 발생하였습니다."
     case .nilHasOccurredWhileAdding:
       return "🔥 쥬스 재고 추가 중 stock[fruit] = nil이 발생하였습니다."
+    case .nilHasOccurredWhileCheckingStock:
+      return "🔥 쥬스 재고 확인 중 stock[fruit] = nil이 발생하였습니다."
     }
   }
 }

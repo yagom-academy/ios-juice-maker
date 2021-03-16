@@ -9,20 +9,21 @@ import Foundation
 
 // MARK: - Stock Type
 class Stock {
+  private(set) static var shared = Stock()
   private var stock = [Fruit: Int]()
   
-  init() {
+  private init() {
     for fruit in Fruit.allCases {
-      self.stock[fruit] = 10
+      self.stock[fruit] = 20
     }
   }
   
-//  func checkStock(for fruit: Fruit) throws {
-//    guard let fruitNumberInStock = stock[fruit] else {
-//      throw FruitError.nilHasOccurredWhileCheckingStock
-//    }
-//    print("\(fruit): \(fruitNumberInStock)")
-//  }
+  func checkStock(for fruit: Fruit) throws {
+    guard let fruitNumberInStock = stock[fruit] else {
+      throw FruitError.nilHasOccurredWhileCheckingStock
+    }
+    print("\(fruit): \(fruitNumberInStock)")
+  }
   
   func count(for fruit: Fruit) -> Int {
     let returnValueForInvalidInput: Int = 0
