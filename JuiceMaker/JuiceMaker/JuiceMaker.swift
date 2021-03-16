@@ -73,7 +73,7 @@ class JuiceMaker {
     func makeJuice(juiceName: Juice) -> String {
         var result: String = "존재하지 않는 레시피입니다"
 
-        if recipeCheckStock(juiceName) {
+        if compareStockToRecipe(juiceName) {
             for (fruit, needstock) in juiceName.recipe {
                 fruit.subtractStock(quantity: needstock)
             }
@@ -86,7 +86,7 @@ class JuiceMaker {
         return result
     }
     
-    func recipeCheckStock(_ juiceName: Juice) -> Bool {
+    func compareStockToRecipe(_ juiceName: Juice) -> Bool {
         var result: Bool = false
         
         for (fruit, needstock) in juiceName.recipe {
