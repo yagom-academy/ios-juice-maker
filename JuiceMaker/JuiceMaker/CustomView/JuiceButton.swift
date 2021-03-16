@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JuiceButton: UIButton {
+final class JuiceButton: UIButton {
     private let cornerRadius: CGFloat = 15
     private let borderWidth: CGFloat = 1.2
 
@@ -17,5 +17,4 @@ class JuiceButton: UIButton {
         self.layer.cornerRadius = cornerRadius
         self.layer.borderWidth = borderWidth
     }
-    
 }

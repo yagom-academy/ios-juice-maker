@@ -7,9 +7,11 @@
 
 import UIKit
 
-class JuiceLabel: UILabel {
+final class JuiceLabel: UILabel {
     private let cornerRadius: CGFloat = 10
     private let borderWidth: CGFloat = 1
+    
+    var fruitLabel: Fruits?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -17,5 +19,6 @@ class JuiceLabel: UILabel {
         self.layer.cornerRadius = cornerRadius
         self.layer.borderWidth = borderWidth
         self.adjustsFontSizeToFitWidth = true
-    }    
+        self.text = String(JuiceMaker.shared.initStock())
+    }
 }

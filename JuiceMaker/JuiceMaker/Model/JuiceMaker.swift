@@ -9,7 +9,7 @@ import Foundation
 class JuiceMaker {
     
     static let shared = JuiceMaker()
-    private var fruitStorage = FruitStock(initAmount: 10)
+    private var fruitStorage = FruitStock(initAmount: 102)
     
     private init() {}
     
@@ -17,31 +17,27 @@ class JuiceMaker {
         for (kind, amountForJuice) in order.recipe {
             do {
                 try hasFruitStock(fruit: kind, amount: amountForJuice)
-                try consume(fruit: kind, amount: amountForJuice)
+                 consume(fruit: kind, amount: amountForJuice)
             } catch {
                 throw JuiceMakerError.lackStock
             }
         }
     }
     
-    func addFruitStock(fruit kind: Fruits, amount addFruits: Int = 1) throws {
-        do {
-            try fruitStorage.manageStorage(fruit: kind, amount: addFruits)
-        } catch {
-            throw JuiceMakerError.inValidStock
-        }
+    func addFruitStock(fruit kind: Fruits, amount addFruits: Int = 1) {
+        fruitStorage.manageStorage(fruit: kind, amount: addFruits)
     }
     
     func currentFruit(fruit: Fruits) -> String {
         return String(fruitStorage.fruits[fruit]!)
     }
     
-    private func consume(fruit kind: Fruits, amount: Int) throws {
-        do {
-            try fruitStorage.manageStorage(fruit: kind, amount: -amount)
-        } catch {
-            throw JuiceMakerError.inValidStock
-        }
+    func initStock() -> Int {
+        return fruitStorage.initValue
+    }
+    
+    private func consume(fruit kind: Fruits, amount: Int)  {
+        fruitStorage.manageStorage(fruit: kind, amount: -amount)
     }
     
     private func hasFruitStock(fruit kind: Fruits, amount: Int) throws {

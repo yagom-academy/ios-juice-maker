@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController {
     
     private var juiceMaker = JuiceMaker.shared
     
@@ -24,31 +24,34 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var mangoKiwiButton: JuiceButton!
     @IBOutlet private weak var strawberyBananaButton: JuiceButton!
     
+    // MARK: - ViewLife Cycle
+    
     override func viewDidLoad() {
-        initStock()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateLabel(_ :)),
                                                name: Notification.Name(rawValue: "changeFruitAmount"),
                                                object: nil)
     }
     
+    // MARK: - Action
+    
     @IBAction func touchUpJuiceOrderButton(_ sender: Any) {
-        let orderButton = sender as! UIButton
-        let selectedFruit = Juices(rawValue: orderButton.tag)!
+        let orderButton = sender as! JuiceButton
+        let selectedFruit = Juices(rawValue: orderButton.currentTitle!)
         do {
-            try juiceMaker.make(order: selectedFruit)
+            try juiceMaker.make(order: selectedFruit!)
         } catch {
-            lakeStockAlert()
+            lakeStockAlert(message: JuiceMakerError.lackStock.localizedDescription)
         }
-        orderSuccessAlert(selectedFruit)
+        orderSuccessAlert(selectedFruit!)
     }
     
     // MARK: - Alert
     
-    private func lakeStockAlert() {
-        let failAlert = UIAlertController(title: nil , message: "재료가 모자라요 재고를 수정할까요?", preferredStyle: .alert)
+    private func lakeStockAlert(message: String) {
+        let failAlert = UIAlertController(title: nil , message: message, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default)
-        let stockSettingAction = UIAlertAction(title: "예", style: .cancel){ action in
+        let stockSettingAction = UIAlertAction(title: "예", style: .cancel) { action in
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
                 return
             }
@@ -57,15 +60,12 @@ class JuiceMakerViewController: UIViewController {
         }
         failAlert.addAction(stockSettingAction)
         failAlert.addAction(cancel)
-
         present(failAlert, animated: true, completion: nil)
     }
 
     private func orderSuccessAlert(_ kindJuice: Juices) {
         let alert = UIAlertController(title: "주문 확인", message: "\(kindJuice) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default) { _ in
-            
-        }
+        let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
@@ -87,14 +87,6 @@ class JuiceMakerViewController: UIViewController {
         default:
             return
         }
-    }
-    
-    private func initStock() {
-        strawberryLabel.text = juiceMaker.currentFruit(fruit: .strawberry)
-        bananaLabel.text = juiceMaker.currentFruit(fruit: .banana)
-        pineappleLabel.text = juiceMaker.currentFruit(fruit: .pineapple)
-        kiwiLabel.text = juiceMaker.currentFruit(fruit: .kiwi)
-        mangoLabel.text = juiceMaker.currentFruit(fruit: .mango)
     }
 }
 
