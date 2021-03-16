@@ -59,13 +59,20 @@ class JuiceMakerViewController: UIViewController {
     
     private func showFailAlert() {
         let alert = UIAlertController(title: nil, message: "재고가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "예", style: .default) { (action) in
+            self.moveStockManagerVC()
+        }
         let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
         
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func moveStockManagerVC() {
+        guard let stockManagerVC = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as? StockManagerViewController else { return }
+        self.present(stockManagerVC, animated: true, completion: nil)
     }
 
 }
