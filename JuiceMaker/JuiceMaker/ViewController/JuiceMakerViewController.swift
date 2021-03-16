@@ -25,10 +25,6 @@ final class JuiceMakerViewController: UIViewController {
     
     // MARK: - ViewLife Cycle
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override func viewDidLoad() {
         initLabel()
     }
@@ -38,6 +34,10 @@ final class JuiceMakerViewController: UIViewController {
                                                selector: #selector(updateLabel(_ :)),
                                                name: Notification.Name(rawValue: "changeFruitAmount"),
                                                object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Action
