@@ -13,15 +13,25 @@ class ViewController: UIViewController {
     super.viewDidLoad()
   }
   
-  func getAlert(message: String) {
+  func getAlert(_ isSuccess: Bool, _ message: String) {
     let alert = UIAlertController(
       title: "",
       message: message,
       preferredStyle: UIAlertController.Style.alert)
     
-    alert.addAction(UIAlertAction(
-                      title: "확인",
-                      style: .default))
+    let btnOK = UIAlertAction(title: "확인", style: .default)
+    let btnMove = UIAlertAction(title: "예", style: .default) { (action) in
+      print("화면이동")
+    }
+    let btnCancel = UIAlertAction(title: "아니오", style: .cancel)
+    
+    if(isSuccess) {
+      alert.addAction(btnOK)
+    } else {
+      alert.addAction(btnMove)
+      alert.addAction(btnCancel)
+    }
+    
     present(alert, animated: false, completion: nil)
   }
   
@@ -37,7 +47,13 @@ class ViewController: UIViewController {
       return
     }
     
-    getAlert(message: juiceMaker.make(of: orderedJuice))
+    guard let isSuccess: Bool = juiceMaker.make(of: orderedJuice)["isSuccess"] as? Bool else {
+      return
+    }
+    guard let message: String = juiceMaker.make(of: orderedJuice)["message"] as? String else {
+      return
+    }
+    getAlert(isSuccess, message)
   }
   
 }

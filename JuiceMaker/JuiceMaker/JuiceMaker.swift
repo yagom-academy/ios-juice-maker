@@ -8,9 +8,8 @@ import Foundation
 
 // MARK: - JuiceMaker Type
 class JuiceMaker {
-  var resultMessage = ""
-
-  func make(of orderedJuice: Juice) -> String {
+  var resultMessage = ["message": "", "isSuccess": false] as [String : Any]
+  func make(of orderedJuice: Juice) -> [String: Any] {
     do {
       let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
       if hasEnoughFruits(of: requiredFruits) {
@@ -46,8 +45,9 @@ class JuiceMaker {
       let stockedQuantity = Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
         print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
-        let message = "\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다."
-        resultMessage = message
+        let message = "\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.\n재고를 수정할까요?"
+        resultMessage["isSuccess"] = false
+        resultMessage["message"] = message
         
         return false
       }
@@ -65,7 +65,8 @@ class JuiceMaker {
   private func printOrderCompleted(for orderedJuice: Juice) {
     print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
     let message = "\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!"
-    resultMessage = message
+    resultMessage["isSuccess"] = true
+    resultMessage["message"] = message
   }
   
   private func handleErrorForMake(_ error: Error) {
