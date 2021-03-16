@@ -382,6 +382,9 @@
                                 <state key="normal" title="닫기">
                                     <color key="titleColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButton:" destination="SaA-LG-edX" eventType="touchUpInside" id="jti-xN-GrI"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="68" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-cg-0Vo">
                                 <rect key="frame" x="69" y="90" width="788" height="71.666666666666686"/>
@@ -507,6 +510,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1X7-cq-ANX"/>
+                    <connections>
+                        <outletCollection property="fruitStockLabels" destination="fxC-No-3V1" collectionClass="NSMutableArray" id="nas-6F-qDI"/>
+                        <outletCollection property="fruitStockLabels" destination="XEG-V9-5s3" collectionClass="NSMutableArray" id="Of1-vU-tcj"/>
+                        <outletCollection property="fruitStockLabels" destination="cvy-Ft-DR3" collectionClass="NSMutableArray" id="NBX-OD-y8Y"/>
+                        <outletCollection property="fruitStockLabels" destination="sNc-Wr-7hM" collectionClass="NSMutableArray" id="rvF-zp-N4D"/>
+                        <outletCollection property="fruitStockLabels" destination="6xv-Dl-wg3" collectionClass="NSMutableArray" id="WNh-WD-QkH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94a-SE-uqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

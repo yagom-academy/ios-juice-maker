@@ -8,6 +8,8 @@
 import UIKit
 
 class SecondViewController: UIViewController {
+    @IBOutlet var fruitStockLabels = [UILabel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
