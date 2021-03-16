@@ -33,7 +33,7 @@
                                     <color key="titleColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="SaA-LG-edX" kind="presentation" identifier="stockChanger" id="1ep-Be-0Lp"/>
+                                    <segue destination="SaA-LG-edX" kind="presentation" identifier="stockChanger" modalPresentationStyle="fullScreen" id="1ep-Be-0Lp"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-ED-rfC">
@@ -470,22 +470,37 @@
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-vs-mun">
                                         <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="32"/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.88235294117647056" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="EKx-vJ-lBc"/>
+                                        </connections>
                                     </stepper>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-QH-mJH">
+                                    <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-QH-mJH">
                                         <rect key="frame" x="172.66666666666666" y="0.0" width="97.666666666666657" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="xQT-9w-Ghk"/>
+                                        </connections>
                                     </stepper>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZvV-wj-kID">
+                                    <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZvV-wj-kID">
                                         <rect key="frame" x="345.33333333333331" y="0.0" width="97.333333333333314" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="TrI-kz-Pkg"/>
+                                        </connections>
                                     </stepper>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-Lh-deg">
+                                    <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-Lh-deg">
                                         <rect key="frame" x="517.66666666666663" y="0.0" width="97.666666666666629" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="dDb-vb-lUF"/>
+                                        </connections>
                                     </stepper>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vUg-Yq-nOT">
+                                    <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vUg-Yq-nOT">
                                         <rect key="frame" x="690.33333333333337" y="0.0" width="97.666666666666629" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="mDm-HU-zTV"/>
+                                        </connections>
                                     </stepper>
                                 </subviews>
                             </stackView>
@@ -520,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94a-SE-uqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017.3913043478261" y="111.59420289855073"/>
+            <point key="canvasLocation" x="1017.2786177105833" y="110.74766355140186"/>
         </scene>
     </scenes>
     <resources>

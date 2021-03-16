@@ -10,8 +10,8 @@ class ViewController: UIViewController {
     let juiceMaker = JuiceMaker.shared
     @IBOutlet var fruitStockLabels = [UILabel]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         update(labels: fruitStockLabels, by: juiceMaker.stock)
     }
     
@@ -20,8 +20,8 @@ class ViewController: UIViewController {
         
         if juiceMaker.stock.hasFruits(for: juice) {
             juiceMaker.make(juice)
-            update(labels: fruitStockLabels, by: juiceMaker.stock)
             alert(title: "\(juice.name) 나왔습니다!", message: "맛있게 드세요!", actionTypes: [.ok("감사합니다!")])
+            update(labels: fruitStockLabels, by: juiceMaker.stock)
         } else {
             alert(title: "재고가 모자라요.", message: "재고를 수정할까요?", actionTypes: [.ok("예", { _ in self.performSegue(withIdentifier: "stockChanger", sender: nil)}), .cancel("아니오")])
         }
