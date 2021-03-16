@@ -29,10 +29,10 @@ class JuiceMakerViewController: UIViewController {
     
     private func makeOrderedJuice(menu: JuiceTypes) {
         if juiceMaker.didMakeJuice(of: menu) {
-            showSuccessAlert(menu: menu)
+            showOrderSuccessAlert(menu: menu)
             updateFruitStock()
         } else {
-            showFailAlert()
+            showOrderFailAlert()
         }
     }
     
@@ -48,7 +48,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
 
-    private func showSuccessAlert(menu: JuiceTypes) {
+    private func showOrderSuccessAlert(menu: JuiceTypes) {
         let alert = UIAlertController(title: nil, message: "\(menu) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         
@@ -57,7 +57,7 @@ class JuiceMakerViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func showFailAlert() {
+    private func showOrderFailAlert() {
         let alert = UIAlertController(title: nil, message: "재고가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { (action) in
             self.moveStockManagerVC()
