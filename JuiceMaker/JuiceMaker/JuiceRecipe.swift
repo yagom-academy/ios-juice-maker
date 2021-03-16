@@ -30,7 +30,7 @@ struct JuiceRecipe {
     }
     
     guard let unwrappedRecipe = recipe else {
-      informErrorLocation(functionName: #function)
+//      informErrorLocation(functionName: #function)
       throw RecipeError.nilHasOccurredWhileUnwrappingRecipe
     }
     
