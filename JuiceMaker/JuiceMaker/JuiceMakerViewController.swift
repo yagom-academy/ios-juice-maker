@@ -75,5 +75,31 @@ class JuiceMakerViewController: UIViewController {
         self.present(stockManagerVC, animated: true, completion: nil)
     }
 
+    @IBAction private func touchUpStrawberryJuiceOrderButton() {
+        makeOrderedJuice(menu: .strawberryJuice)
+    }
+    
+    @IBAction private func touchUpBananaJuiceOrderButton() {
+        makeOrderedJuice(menu: .bananaJuice)
+    }
+    
+    @IBAction private func touchUpPineappleJuiceOrderButton() {
+        makeOrderedJuice(menu: .pineappleJuice)
+    }
+    
+    @IBAction private func touchUpKiwiJuiceOrderButton() {
+        makeOrderedJuice(menu: .kiwiJuice)
+    }
+    
+    @IBAction private func touchUpMangoJuiceOrderButton() {
+        makeOrderedJuice(menu: .mangoJuice)
+    }
+    
+    @IBAction private func touchUpStrawberryBananaJuiceOrderButton() {
+        makeOrderedJuice(menu: .strawberryBananaJuice)
+    }
+    
+    @IBAction private func touchUpMangoKiwiJuiceOrderButton() {
+        makeOrderedJuice(menu: .mangoKiwiJuice)
+    }
 }
-

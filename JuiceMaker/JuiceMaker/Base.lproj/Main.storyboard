@@ -173,6 +173,9 @@
                                         <state key="normal" title="망키쥬스 주문">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchUpMangoKiwiJuiceOrderButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="RC2-aQ-jd6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -235,6 +238,9 @@
                                         <state key="normal" title="키위쥬스 주문">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchUpKiwiJuiceOrderButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="WX1-Ya-gwf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-sc-RqU">
                                         <rect key="frame" x="512" y="0.0" width="120" height="40"/>
@@ -247,6 +253,9 @@
                                         <state key="normal" title="망고쥬스 주문">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchUpMangoJuiceOrderButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wcv-5U-LYg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
