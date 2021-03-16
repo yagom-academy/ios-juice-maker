@@ -6,12 +6,6 @@
 
 import Foundation
 
-enum printMessege: String {
-    case nonExistentRecipe = "존재하지 않는 레시피 입니다."
-    case notEnoughStock = "재고가 부족합니다."
-    case completeMakeJuice = "쥬스가 완성되었습니다."
-}
-
 class Fruit {
     private (set) var stock: Int = 10
     
@@ -76,17 +70,17 @@ class JuiceMaker {
     let stocks: FruitStock = FruitStock()
     let juiceRecipe: JuiceRecipe = JuiceRecipe()
     
-    func makeJuice(juiceName: Juice) -> printMessege {
-        var result: printMessege = .nonExistentRecipe
+    func makeJuice(juiceName: Juice) -> String {
+        var result: String = "존재하지 않는 레시피입니다"
 
         if recipeCheckStock(juiceName) {
             for (fruit, needstock) in juiceName.recipe {
                 fruit.subtractStock(quantity: needstock)
             }
             
-            result = .completeMakeJuice
+            result = "\(juiceName.name)가 완성되었습니다! 맛있게 드세요"
         } else {
-            result = .notEnoughStock
+            result = "재고가 부족합니다. 재고를 수정할까요?"
         }
         
         return result

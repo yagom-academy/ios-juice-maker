@@ -12,11 +12,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let JuiceTest = JuiceMaker()
-        
-        print(JuiceTest.makeJuice(juiceName: JuiceRecipe.bananaJuice))
-        
-        print(FruitStock.banana.nowStock())
     }
 }
 
