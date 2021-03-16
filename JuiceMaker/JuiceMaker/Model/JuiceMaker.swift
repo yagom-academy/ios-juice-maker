@@ -7,7 +7,6 @@
 import Foundation
 
 class JuiceMaker {
-    
     static let shared = JuiceMaker()
     private var fruitStorage = FruitStock(initAmount: 102)
     

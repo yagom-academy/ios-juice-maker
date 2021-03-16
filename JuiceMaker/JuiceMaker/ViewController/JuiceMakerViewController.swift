@@ -7,7 +7,6 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
-    
     private var juiceMaker = JuiceMaker.shared
     
     @IBOutlet private weak var strawberryLabel: JuiceLabel!
@@ -26,7 +25,15 @@ final class JuiceMakerViewController: UIViewController {
     
     // MARK: - ViewLife Cycle
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
+        initLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateLabel(_ :)),
                                                name: Notification.Name(rawValue: "changeFruitAmount"),
@@ -49,15 +56,12 @@ final class JuiceMakerViewController: UIViewController {
     // MARK: - Alert
     
     private func lakeStockAlert(_ error: Error) {
-        
         var errorMessgae: String?
         if let juiceError = error as? JuiceMakerError {
             errorMessgae = juiceError.localizedDescription
-        }
-        else {
+        } else {
             errorMessgae = JuiceMakerError.unknown.localizedDescription
         }
-        
         let failAlert = UIAlertController(title: nil , message: errorMessgae, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default)
         let stockSettingAction = UIAlertAction(title: "예", style: .cancel) { action in
@@ -97,12 +101,12 @@ final class JuiceMakerViewController: UIViewController {
             return
         }
     }
+    
+    private func initLabel() {
+        strawberryLabel.text = juiceMaker.currentFruit(fruit: .strawberry)
+        bananaLabel.text = juiceMaker.currentFruit(fruit: .banana)
+        pineappleLabel.text = juiceMaker.currentFruit(fruit: .pineapple)
+        kiwiLabel.text = juiceMaker.currentFruit(fruit: .kiwi)
+        mangoLabel.text = juiceMaker.currentFruit(fruit: .mango)
+    }
 }
-
-
-  
-    
-    
-
-
-
