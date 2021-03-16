@@ -8,7 +8,9 @@ import Foundation
 
 // MARK: - JuiceMaker Type
 class JuiceMaker {
-  func make(of orderedJuice: Juice) {
+  var resultMessage = ""
+
+  func make(of orderedJuice: Juice) -> String {
     do {
       let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
       if hasEnoughFruits(of: requiredFruits) {
@@ -18,6 +20,8 @@ class JuiceMaker {
     } catch {
       handleErrorForMake(error)
     }
+    
+    return resultMessage
   }
   
   // MARK: - Component Methods for 'make(of:)'
@@ -42,6 +46,9 @@ class JuiceMaker {
       let stockedQuantity = Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
         print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
+        let message = "\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다."
+        resultMessage = message
+        
         return false
       }
     }
@@ -57,6 +64,8 @@ class JuiceMaker {
   
   private func printOrderCompleted(for orderedJuice: Juice) {
     print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
+    let message = "\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!"
+    resultMessage = message
   }
   
   private func handleErrorForMake(_ error: Error) {
