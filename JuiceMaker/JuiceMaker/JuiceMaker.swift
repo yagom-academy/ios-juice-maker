@@ -6,12 +6,8 @@
 
 import Foundation
 
-enum Fruit: Int, CaseIterable {
+enum Fruit: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
-    
-    var index: Int {
-        return self.rawValue
-    }
 }
 
 enum FruitJuice {
@@ -38,19 +34,24 @@ enum FruitJuice {
 }
 
 class JuiceMaker {
-    private var fruitStocks = [Int](repeating: 10, count: Fruit.allCases.count)
+    var fruitStocks: [Fruit: Int] = [:]
     
-    func checkStock(of fruit: Fruit) -> Int {
-        return fruitStocks[fruit.index]
+    init(numberOfStocks: Int) {
+        for fruit in Fruit.allCases {
+            fruitStocks[fruit] = numberOfStocks
+        }
     }
-    func checkStockAvailable(fruit: Fruit, stock: Int) -> Bool {
-        if (checkStock(of: fruit) < stock) {
+    func checkStock(of fruit: Fruit) -> Int {
+        return fruitStocks[fruit]!
+    }
+    func checkStockAvailable(fruit: Fruit, requestedStock: Int) -> Bool {
+        if (checkStock(of: fruit) < requestedStock) {
             return false
         }
         return true
     }
     func consumeFruit(fruit: Fruit, stock: Int) {
-        fruitStocks[fruit.index] -= stock
+        fruitStocks[fruit]! -= stock
     }
     func makeFruitJuice(_ juice: FruitJuice) {
         for (ingredient, amount) in juice.recipe {
@@ -58,10 +59,6 @@ class JuiceMaker {
         }
     }
     func addStock(fruit: Fruit) {
-        fruitStocks[fruit.index] += 1
+        fruitStocks[fruit]! += 1
     }
 }
-
-
-
-
