@@ -208,20 +208,143 @@
         - 싱글톤을 사용하면 단위 테스트, Mock 테스트가 어려워진다.(싱글톤은 만들어지는 방식이 제한적이라 mock object(가짜 오브젝트)로 대체되기 어렵다.) -> 불가능한건 아님
      3. 고민할 포인트 by 하이디
         - 문제들을 감수하고 대처할 정도로 싱글톤이 꼭 필요한지, 정말 앱의 모든곳에서 접근해야 할 만큼 공통되는 컴포넌트인지 -> 본 프로젝트의 경우 앱의 모든 곳에서 접근할 필요가 없음
+     
    - 결론 -> Singleton을 사용하지 않음
+
    - 싱글톤은 여러 변수에 따로 인스턴스를 생성해 저장해도 하나의 개념으로 공유된다.
+
+     
 
 2. 은닉화
 
    - 모든 요소에 은닉화를 생각하지 못했다. 프로퍼티나 메소드를 생성할 때 이 요소들이 외부에서 필요한지 매번 고민해보고 아니라면 은닉화 해주는 습관을 가질 필요가 있다.
 
+     
+
 3. 딕셔너리의 값을 변수에 담고 그 변수를 변경해주는 실수를 범했다. 값을 복사하므로 딕셔너리는 변경되지 않는다.
 
+   
+   
 4. 변경 과정에서 발생한 문제
 
    - 변경은 설계를 하지 않고 무작정 진행하다보니 예상치 못한 곳에서 추가적인 문제 다수 발생
+
    - refactor 할 때에는 전체적인 흐름을 고려하며 refactor할 필요가 있다.
+
    - [String:FruitTypeAndAmount]를 protocol을 기반으로 한 enum으로 변경해주다보니 아래와 같은 오류 메세지 발생
+
      - Instance member 'getJuiceIngredients' cannot be used on type 'JuiceRecipe'; did you mean to use a value of this type instead?
 
+       
+
+5. 변경 후 나의 코드
+
+   ```swift
+   typealias FruitTypeAndAmount = [(String, Int)]
    
+   protocol RecipeBook {
+       var menuName: String { get }
+       static func recipeIngredients(of juiceName: Self) -> FruitTypeAndAmount
+   }
+   
+   enum JuiceRecipe: RecipeBook {
+       case strawberryJuice
+       case bananaJuice
+       case kiwiJuice
+       case pineappleJuice
+       case strawberryBananaJuice
+       case mangoJuice
+       case mangoKiwiJuice
+       
+       var menuName: String {
+           switch self {
+           case .strawberryJuice:
+               return "strawberry"
+           case .bananaJuice:
+               return "banana"
+           case .kiwiJuice:
+               return "kiwi"
+           case .pineappleJuice:
+               return "pineapple"
+           case .strawberryBananaJuice:
+               return "strawberryBanana"
+           case .mangoJuice:
+               return "mango"
+           case .mangoKiwiJuice:
+               return "mangoKiwi"
+           }
+       }
+       
+       static func recipeIngredients(of juiceType: Self) -> FruitTypeAndAmount {
+           switch juiceType {
+           case .strawberryJuice:
+               return [("strawberry", 16)]
+           case .bananaJuice:
+               return [("banana", 2)]
+           case .kiwiJuice:
+               return [("kiwi", 3)]
+           case .pineappleJuice:
+               return [("pineapple", 2)]
+           case .strawberryBananaJuice:
+               return [("strawberry", 10), ("banana", 1)]
+           case .mangoJuice:
+               return [("mango", 3)]
+           case .mangoKiwiJuice:
+               return [("mango", 2), ("kiwi", 1)]
+           }
+       }
+       
+       static func getJuiceIngredients(of juiceType: Self) -> FruitTypeAndAmount {
+           return recipeIngredients(of: juiceType)
+       }
+   ```
+
+   - RecipeBook의 구조를 만들어 쥬스별로 케이스를 생성하려고 함
+
+   - JuiceMaker에서 "Instance member 'getJuiceIngredients' cannot be used on type 'JuiceRecipe'" 오류 발생
+
+     
+
+6. 피드백 받은 코드
+
+   ```swift
+   typealias FruitTypeAndAmount = [(String, Int)]
+   
+   class RecipeBook {
+   
+       private let recipes: [JuiceRecipe] = [StrawberryJuice(), BananaJuice(), KiwiJuice(), PineappleJuice(), StrawberryBananaJuice(), MangoJuice(), MangoKiwiJuice()]
+   
+       func getJuiceIngredients(of juiceName: String) -> FruitTypeAndAmount? {
+           return recipes.first(where: { $0.name == juiceName })?.recipe
+       }
+   }
+   
+   protocol JuiceRecipe {
+       var name: String { get }
+       var recipe: FruitTypeAndAmount { get }
+   }
+   
+   extension JuiceRecipe {
+       var name: String {
+           return String(describing: self)
+       }
+   }
+   
+   struct StrawberryJuice: JuiceRecipe {
+       var recipe: FruitTypeAndAmount {
+           return [("strawberry", 16)]
+       }
+   }
+   
+   struct BananaJuice: JuiceRecipe {
+       var recipe: FruitTypeAndAmount {
+           return [("banana", 2)]
+       }
+   }
+   
+   ...
+   ```
+
+   - Protocol의 필요성을 아직 이해하기가 힘듦
+   - extension은 단순히 연장해주는 개념인 줄 알았는데 한 곳에 작성하는 것이 아니라 추가적으로 extend 한 것을 보니 extension에 대한 학습 필요성이 있음 
+

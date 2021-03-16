@@ -10,61 +10,64 @@ import Foundation
 
 typealias FruitTypeAndAmount = [(String, Int)]
 
-protocol RecipeBook {
-    var menuName: String { get }
-    static func recipeIngredients(of juiceName: Self) -> FruitTypeAndAmount
-}
+class RecipeBook {
 
+    private let recipes: [JuiceRecipe] = [StrawberryJuice(), BananaJuice(), KiwiJuice(), PineappleJuice(), StrawberryBananaJuice(), MangoJuice(), MangoKiwiJuice()]
 
-enum JuiceRecipe: RecipeBook {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case strawbeeryBananaJuice
-    case mangoJuice
-    case mangoKiwiJuice
-    
-    var menuName: String {
-        switch self {
-        case .strawberryJuice:
-            return "strawberry"
-        case .bananaJuice:
-            return "banana"
-        case .kiwiJuice:
-            return "kiwi"
-        case .pineappleJuice:
-            return "pineapple"
-        case .strawbeeryBananaJuice:
-            return "strawberryBanana"
-        case .mangoJuice:
-            return "mango"
-        case .mangoKiwiJuice:
-            return "mangoKiwi"
-        }
-    }
-    
-    static func recipeIngredients(of juiceType: Self) -> FruitTypeAndAmount {
-        switch juiceType {
-        case .strawberryJuice:
-            return [("strawberry", 16)]
-        case .bananaJuice:
-            return [("banana", 2)]
-        case .kiwiJuice:
-            return [("kiwi", 3)]
-        case .pineappleJuice:
-            return [("pineapple", 2)]
-        case .strawbeeryBananaJuice:
-            return [("strawberry", 10), ("banana", 1)]
-        case .mangoJuice:
-            return [("mango", 3)]
-        case .mangoKiwiJuice:
-            return [("mango", 2), ("kiwi", 1)]
-        }
-    }
-    
-    static func getJuiceIngredients(of juiceType: Self) -> FruitTypeAndAmount {
-        return recipeIngredients(of: juiceType)
+    func getJuiceIngredients(of juiceName: String) -> FruitTypeAndAmount? {
+        return recipes.first(where: { $0.name == juiceName })?.recipe
     }
 }
 
+protocol JuiceRecipe {
+    var name: String { get }
+    var recipe: FruitTypeAndAmount { get }
+}
+
+extension JuiceRecipe {
+    var name: String {
+        return String(describing: self)
+    }
+}
+
+struct StrawberryJuice: JuiceRecipe {
+    var recipe: FruitTypeAndAmount {
+        return [("strawberry", 16)]
+    }
+}
+
+struct BananaJuice: JuiceRecipe {
+    var recipe: FruitTypeAndAmount {
+        return [("banana", 2)]
+    }
+}
+
+struct KiwiJuice: JuiceRecipe {
+    var recipe: FruitTypeAndAmount {
+        return [("kiwi", 3)]
+    }
+}
+
+struct PineappleJuice: JuiceRecipe {
+    var recipe: FruitTypeAndAmount {
+        return [("kiwi", 3)]
+    }
+}
+
+struct StrawberryBananaJuice: JuiceRecipe {
+    var recipe: FruitTypeAndAmount {
+        return [("kiwi", 3)]
+    }
+}
+
+struct MangoJuice: JuiceRecipe {
+    var recipe: FruitTypeAndAmount {
+        return [("kiwi", 3)]
+    }
+}
+
+struct MangoKiwiJuice: JuiceRecipe {
+    var recipe: FruitTypeAndAmount {
+        return [("kiwi", 3)]
+    }
+}
