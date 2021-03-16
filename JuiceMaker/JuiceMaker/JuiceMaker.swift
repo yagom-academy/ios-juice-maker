@@ -45,15 +45,14 @@ class FruitStock {
 }
 
 class Juice {
-    typealias Stock = Int
-    let recipe: [(Fruit,Stock)]
+    typealias NeedStock = Int
+    let recipe: [(Fruit,NeedStock)]
     let name: String
     
-    init(createRecipe: [(Fruit, Stock)], createName: String) {
+    init(createRecipe: [(Fruit, NeedStock)], createName: String) {
         self.recipe = createRecipe
         self.name = createName
     }
-    
 }
 
 class JuiceRecipe {
@@ -93,7 +92,6 @@ class JuiceMaker {
         return result
     }
     
-    //  2. 주스 레시피에 필요한 과일의 재고량을 검토
     func recipeCheckStock(_ juiceName: Juice) -> Bool {
         var result: Bool = false
         
@@ -107,7 +105,6 @@ class JuiceMaker {
         
         return result
     }
-    
 }
 
 
