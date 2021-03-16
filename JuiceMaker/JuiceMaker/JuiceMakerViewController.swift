@@ -21,7 +21,7 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var starwberryBananaJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceOrderButton: UIButton!
     
-    private let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
