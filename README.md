@@ -20,4 +20,6 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 
     ### **커밋 메시지 규칙**
 
-    [#이슈번호] 명령어 제목 * 모든 내용은 영어로 작성
+### 프로젝트 설계
+
+<img width="828" alt="image" src="https://user-images.githubusercontent.com/71783071/110710067-91c42200-8240-11eb-84a9-3813f67b4598.png">
