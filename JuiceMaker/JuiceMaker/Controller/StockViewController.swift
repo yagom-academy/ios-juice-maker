@@ -18,14 +18,22 @@ extension StockViewController {
         let yesAction = UIAlertAction(title: "예", style: .cancel){
             action in
             self.saveChanges()
-            //self.saveSuccessAlert()
+            let serialQueue = DispatchQueue(label: "serialQueue")
+            serialQueue.sync {
+                self.saveSuccessAlert()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.85) {
+                serialQueue.sync {
+                    let mainView = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
+                    mainView?.modalTransitionStyle = .flipHorizontal
+                    self.present(mainView!, animated: true, completion: nil)
+                }
+            }
         }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(yesAction)
         alert.addAction(noAction)
         present(alert, animated: true, completion: nil)
-        alert.dismiss(animated: false, completion: nil)
-        //여기서 saveSuccessAlert() 쓰니까 안되네?..
     }
     
     override func viewDidLoad() {
