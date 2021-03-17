@@ -8,31 +8,24 @@
 import Foundation
 
 class Fruit {
-    private(set) var amount: Int
-    
-    init(amount: Int) {
-        self.amount = amount
-    }
-    
-    func addFruit(amount: Int) {
-        self.amount += amount
-    }
-    
-    func reducefruit(amount: Int) {
-        self.amount -= amount
+    let name: String
+    let origin: String
+    let price: Int
+
+    init(name: String, origin: String, price: Int) {
+        self.name = name
+        self.origin = origin
+        self.price = price
     }
 }
 
-class FruitStock {
-    static let sharedInstance = FruitStock()
-    
-    let strawberry = Fruit(amount: 10)
-    let banana = Fruit(amount: 10)
-    let pineapple = Fruit(amount: 10)
-    let kiwi = Fruit(amount: 10)
-    let mango = Fruit(amount: 10)
-    
-    private init() {
-        
-    }
-}
+class Strawberry: Fruit {}
+
+class Banana: Fruit {}
+
+class Kiwi: Fruit {}
+
+class Pineapple: Fruit {}
+
+class Mango: Fruit {}
+

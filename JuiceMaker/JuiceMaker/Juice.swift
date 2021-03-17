@@ -7,21 +7,28 @@
 
 import Foundation
 
-typealias ingredient = (fruit: Fruit, amount: Int)
+typealias Recipe = (stock: ObjectIdentifier , requiredAmount : Int)
 
-class JuiceRecipe {
-    private(set) var ingredients: [ingredient]
-    
-    init(ingredients: [ingredient]) {
-        self.ingredients = ingredients
+class Juice {
+    var name: String
+    var recipe: [Recipe]
+
+    init(name: String, recipe: [Recipe]) {
+        self.name = name
+        self.recipe = recipe
     }
 }
 
-struct FruitJuice {
-    let singleton = FruitStock.sharedInstance
-    let strawberryJuice = JuiceRecipe(ingredients: [(singleton.strawberry,16)])
-    static let bananaJuice = JuiceRecipe(ingredients: [(FruitStock.banana,2)])
-    static let pineappleJuice = JuiceRecipe(ingredients: [(FruitStock.pineapple,2)])
-    static let kiwiJuice = JuiceRecipe(ingredients: [(FruitStock.kiwi,3)])
-    static let mangoJuice = JuiceRecipe(ingredients: [(FruitStock.mango,3)])
-}
+class StrawberryJuice: Juice {}
+
+class BananaJuice: Juice {}
+
+class KiwiJuice: Juice {}
+
+class PineappleJuice: Juice {}
+
+class MangoJuice: Juice {}
+
+class StrawberryBananaJuice: Juice {}
+
+class MangoKiwiJuice: Juice {}
