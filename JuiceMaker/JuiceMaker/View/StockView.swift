@@ -9,17 +9,17 @@ import UIKit
 
 class StockViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStock: StockLabel!
-    @IBOutlet weak var bananaStock: StockLabel!
-    @IBOutlet weak var pineappleStock: StockLabel!
-    @IBOutlet weak var kiwiStock: StockLabel!
-    @IBOutlet weak var mangoStock: StockLabel!
+    @IBOutlet var strawberryStock: StockLabel!
+    @IBOutlet var bananaStock: StockLabel!
+    @IBOutlet var pineappleStock: StockLabel!
+    @IBOutlet var kiwiStock: StockLabel!
+    @IBOutlet var mangoStock: StockLabel!
     
-    @IBOutlet weak var strawBerryStockStepper: UIStepper!
-    @IBOutlet weak var bananaStockStepper: UIStepper!
-    @IBOutlet weak var pineappleStockStepper: UIStepper!
-    @IBOutlet weak var kiwiStockStepper: UIStepper!
-    @IBOutlet weak var mangoStockStepper: UIStepper!
+    @IBOutlet var strawBerryStockStepper: StockStepper!
+    @IBOutlet var bananaStockStepper: StockStepper!
+    @IBOutlet var pineappleStockStepper: StockStepper!
+    @IBOutlet var kiwiStockStepper: StockStepper!
+    @IBOutlet var mangoStockStepper: StockStepper!
     
     
     /*

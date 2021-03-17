@@ -35,4 +35,15 @@ enum OrderAlert {
         alert.addAction(noAction)
         return alert
     }
+    
+    static func saveAlert() -> UIAlertController {
+        let alert = UIAlertController(title: nil , message: "이 상태로 재고수정을 마치시겠습니까?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .cancel){
+            action in
+        }
+        let noAction = UIAlertAction(title: "아니오", style: .default)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        return alert
+    }
 }

@@ -30,7 +30,7 @@ extension MainViewController {
     }
     
     private func showAlert(_ alert: UIAlertController) {
-        present(alert, animated: false, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     private func update() {
@@ -43,10 +43,15 @@ extension MainViewController {
     
     private func initializeStockLabel() {
         strawberryStock.fruit = FruitType.strawberry
+        strawberryStock.text = String(FruitType.strawberry.stock)
         bananaStock.fruit = FruitType.banana
+        bananaStock.text = String(FruitType.banana.stock)
         pineappleStock.fruit = FruitType.pineapple
+        pineappleStock.text = String(FruitType.pineapple.stock)
         kiwiStock.fruit = FruitType.kiwi
+        kiwiStock.text = String(FruitType.kiwi.stock)
         mangoStock.fruit = FruitType.mango
+        mangoStock.text = String(FruitType.mango.stock)
     }
     
     private func initializeJuiceOrderButton() {

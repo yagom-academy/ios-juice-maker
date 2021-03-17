@@ -17,7 +17,7 @@ class Fruit {
     }
 }
 
-enum FruitType {
+enum FruitType: CaseIterable {
     static let strawberry = Fruit()
     static let banana = Fruit()
     static let kiwi = Fruit()

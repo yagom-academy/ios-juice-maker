@@ -509,7 +509,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-Jn-vvb">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-Jn-vvb" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="165" width="94" height="35"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -556,7 +556,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yBb-r4-QrF">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yBb-r4-QrF" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="165" width="94" height="35"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -566,6 +566,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="touchUpStepper:" destination="RWe-6J-gOF" eventType="valueChanged" id="DrN-Rp-lio"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -600,7 +603,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rk4-Yi-F58">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rk4-Yi-F58" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="165" width="94" height="35"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -610,6 +613,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="touchUpStepper:" destination="RWe-6J-gOF" eventType="valueChanged" id="tDe-my-Udp"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -644,7 +650,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fXV-sB-AnC">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fXV-sB-AnC" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="165" width="94" height="35"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -654,6 +660,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="touchUpStepper:" destination="RWe-6J-gOF" eventType="valueChanged" id="Gw9-Qx-Cqa"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -688,7 +697,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="IGj-5N-Ama">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="IGj-5N-Ama" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="165" width="94" height="35"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -698,6 +707,9 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="touchUpStepper:" destination="RWe-6J-gOF" eventType="valueChanged" id="7gl-U6-bB5"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -733,17 +745,45 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" modalTransitionStyle="flipHorizontal" id="1ez-rl-cHH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Suq-xg-XSZ">
+                                <rect key="frame" x="387" y="299" width="70" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.89107412200000002" blue="0.16753689969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9jT-Pj-cHL"/>
+                                    <constraint firstAttribute="width" constant="70" id="Q2G-dZ-V8T"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="labelColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="touchUpSaveButton:" destination="RWe-6J-gOF" eventType="touchUpInside" id="Wd0-y2-dh7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X0t-Ua-a39"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Suq-xg-XSZ" firstAttribute="top" relation="lessThanOrEqual" secondItem="TgE-Ii-y85" secondAttribute="bottom" constant="50" id="7rP-A0-bKh"/>
                             <constraint firstItem="Vyh-1s-9v2" firstAttribute="leading" secondItem="Q4g-41-DTO" secondAttribute="leading" id="ANw-To-YeJ"/>
+                            <constraint firstItem="X0t-Ua-a39" firstAttribute="bottom" secondItem="Suq-xg-XSZ" secondAttribute="bottom" constant="20" id="ByZ-Nw-HYc"/>
                             <constraint firstAttribute="trailing" secondItem="Vyh-1s-9v2" secondAttribute="trailing" id="F4k-gB-bLj"/>
                             <constraint firstAttribute="trailing" secondItem="TgE-Ii-y85" secondAttribute="trailing" constant="20" id="TEP-64-IIi"/>
                             <constraint firstItem="kVP-4X-Heg" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" constant="10" id="Ulj-cb-cNt"/>
                             <constraint firstItem="Vyh-1s-9v2" firstAttribute="top" secondItem="X0t-Ua-a39" secondAttribute="top" id="Wzo-dF-TGA"/>
                             <constraint firstItem="TgE-Ii-y85" firstAttribute="leading" secondItem="X0t-Ua-a39" secondAttribute="leading" constant="20" id="Yc6-pk-yIC"/>
                             <constraint firstItem="TgE-Ii-y85" firstAttribute="top" secondItem="Vyh-1s-9v2" secondAttribute="bottom" constant="15" id="f1Y-Da-7u7"/>
+                            <constraint firstItem="Suq-xg-XSZ" firstAttribute="centerX" secondItem="Q4g-41-DTO" secondAttribute="centerX" id="fWN-rf-sVp"/>
                             <constraint firstAttribute="trailing" secondItem="kVP-4X-Heg" secondAttribute="trailing" constant="20" id="htk-JL-6tm"/>
                         </constraints>
                     </view>
@@ -776,6 +816,9 @@
         <designable name="HHY-2q-smQ">
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
+        <designable name="IGj-5N-Ama">
+            <size key="intrinsicContentSize" width="94" height="32"/>
+        </designable>
         <designable name="Jle-tk-CQ2">
             <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
@@ -788,14 +831,23 @@
         <designable name="RQj-7U-zMA">
             <size key="intrinsicContentSize" width="95" height="30"/>
         </designable>
+        <designable name="Rk4-Yi-F58">
+            <size key="intrinsicContentSize" width="94" height="32"/>
+        </designable>
         <designable name="cG1-zF-ji1">
             <size key="intrinsicContentSize" width="108" height="30"/>
         </designable>
         <designable name="eNa-UA-pH1">
             <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
         </designable>
+        <designable name="fXV-sB-AnC">
+            <size key="intrinsicContentSize" width="94" height="32"/>
+        </designable>
         <designable name="j4k-04-mZt">
             <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
+        </designable>
+        <designable name="kIo-Jn-vvb">
+            <size key="intrinsicContentSize" width="94" height="32"/>
         </designable>
         <designable name="n4s-n1-mxv">
             <size key="intrinsicContentSize" width="82" height="30"/>
@@ -817,6 +869,9 @@
         </designable>
         <designable name="tk7-pW-qTQ">
             <size key="intrinsicContentSize" width="18" height="20.333333333333332"/>
+        </designable>
+        <designable name="yBb-r4-QrF">
+            <size key="intrinsicContentSize" width="94" height="32"/>
         </designable>
     </designables>
     <resources>
