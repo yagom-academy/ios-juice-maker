@@ -8,9 +8,9 @@
 import Foundation
 
 class Fruit {
-    let name: String
-    let origin: String
-    let price: Int
+    private let name: String
+    private let origin: String
+    private let price: Int
 
     init(name: String, origin: String, price: Int) {
         self.name = name
