@@ -1,38 +1,25 @@
 //
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//  Controller.swift
+//  JuiceMaker
+//
+//  Created by 천수현 on 2021/03/16.
+//
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    @IBOutlet var strawberryStock: StockLabel!
-    @IBOutlet var bananaStock: StockLabel!
-    @IBOutlet var pineappleStock: StockLabel!
-    @IBOutlet var kiwiStock: StockLabel!
-    @IBOutlet var mangoStock: StockLabel!
-    
-    @IBOutlet var strawBananaButton: JuiceOrderButton!
-    @IBOutlet var mangoKiwiButton: JuiceOrderButton!
-    @IBOutlet var strawberryButton: JuiceOrderButton!
-    @IBOutlet var bananaButton: JuiceOrderButton!
-    @IBOutlet var pineappleButton: JuiceOrderButton!
-    @IBOutlet var kiwiButton: JuiceOrderButton!
-    @IBOutlet var mangoButton: JuiceOrderButton!
-    
+//MARK:- Contoller
+
+extension MainViewController {
     @IBAction func touchUpJuiceButton(_ sender: JuiceOrderButton) {
         if sender.juice.canMake {
             JuiceMaker.make(menu: sender.juice)
-            //successAlert(typeOfJuice: sender.juice)
             showAlert(OrderAlert.successAlert(typeOfJuice: sender.juice))
         } else {
             showAlert(OrderAlert.failAlert())
         }
         update()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -72,5 +59,3 @@ class ViewController: UIViewController {
         mangoButton.juice = JuiceType.mango
     }
 }
-
-

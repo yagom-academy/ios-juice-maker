@@ -11,7 +11,7 @@
         <!--Main-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MainStoryboard" title="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" userLabel="Main" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainStoryboard" title="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" userLabel="Main" customClass="MainViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -427,7 +427,7 @@
                                 </constraints>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <segue destination="RWe-6J-gOF" kind="presentation" animates="NO" id="Hsd-da-1s9"/>
+                                    <segue destination="RWe-6J-gOF" kind="presentation" modalTransitionStyle="flipHorizontal" id="Hsd-da-1s9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -470,22 +470,25 @@
         <!--StockViewController-->
         <scene sceneID="dxK-h8-xEP">
             <objects>
-                <viewController storyboardIdentifier="StockViewController" title="StockViewController" id="RWe-6J-gOF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StockViewController" title="StockViewController" id="RWe-6J-gOF" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4g-41-DTO">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-Ii-y85" userLabel="Fruit Stack View">
-                                <rect key="frame" x="64" y="65" width="760" height="140"/>
+                                <rect key="frame" x="64" y="65" width="760" height="200"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-g0-JcD">
-                                        <rect key="frame" x="0.0" y="0.0" width="124" height="140"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="200"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="strawberry" translatesAutoresizingMaskIntoConstraints="NO" id="0Dx-eK-jSJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="strawberry" translatesAutoresizingMaskIntoConstraints="NO" id="0Dx-eK-jSJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0Dx-eK-jSJ" secondAttribute="height" multiplier="1:1" id="PDt-Ir-ajC"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNa-UA-pH1" userLabel="Strawberry Stock" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="132" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="QRt-Pp-EO5"/>
@@ -506,16 +509,33 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kIo-Jn-vvb">
+                                                <rect key="frame" x="15" y="165" width="94" height="35"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="touchUpStepper:" destination="RWe-6J-gOF" eventType="valueChanged" id="sB8-1y-p4u"/>
+                                                </connections>
+                                            </stepper>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Fu-7X-tKM">
-                                        <rect key="frame" x="159" y="0.0" width="124" height="140"/>
+                                        <rect key="frame" x="159" y="0.0" width="124" height="200"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="0d2-Zm-ghm">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="0d2-Zm-ghm">
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0d2-Zm-ghm" secondAttribute="height" multiplier="1:1" id="JxD-wX-KvF"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk7-pW-qTQ" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="132" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="L12-Bu-ogS"/>
@@ -536,16 +556,30 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yBb-r4-QrF">
+                                                <rect key="frame" x="15" y="165" width="94" height="35"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </stepper>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-tC-Ric">
-                                        <rect key="frame" x="318" y="0.0" width="124" height="140"/>
+                                        <rect key="frame" x="318" y="0.0" width="124" height="200"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pineapple" translatesAutoresizingMaskIntoConstraints="NO" id="JC6-T2-Dey">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="pineapple" translatesAutoresizingMaskIntoConstraints="NO" id="JC6-T2-Dey">
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="JC6-T2-Dey" secondAttribute="height" multiplier="1:1" id="D8N-Ne-VA1"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jk-iN-UwE" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="132" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="nFQ-He-2KU"/>
@@ -566,16 +600,30 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rk4-Yi-F58">
+                                                <rect key="frame" x="15" y="165" width="94" height="35"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </stepper>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Smw-CD-T0S">
-                                        <rect key="frame" x="477" y="0.0" width="124" height="140"/>
+                                        <rect key="frame" x="477" y="0.0" width="124" height="200"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kiwi" translatesAutoresizingMaskIntoConstraints="NO" id="E8N-D9-G79">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="kiwi" translatesAutoresizingMaskIntoConstraints="NO" id="E8N-D9-G79">
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="E8N-D9-G79" secondAttribute="height" multiplier="1:1" id="WSh-mV-swd"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nL0-wW-psR" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="132" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="hE9-1L-ndI"/>
@@ -596,16 +644,30 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fXV-sB-AnC">
+                                                <rect key="frame" x="15" y="165" width="94" height="35"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </stepper>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UOy-hh-hRT">
-                                        <rect key="frame" x="636" y="0.0" width="124" height="140"/>
+                                        <rect key="frame" x="636" y="0.0" width="124" height="200"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mango" translatesAutoresizingMaskIntoConstraints="NO" id="9mN-e9-Ygs">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="mango" translatesAutoresizingMaskIntoConstraints="NO" id="9mN-e9-Ygs">
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="9mN-e9-Ygs" secondAttribute="height" multiplier="1:1" id="bue-Wp-L8U"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRh-r2-iaY" customClass="StockLabel" customModule="JuiceMaker" customModuleProvider="target">
-                                                <rect key="frame" x="12" y="115" width="100" height="25"/>
+                                                <rect key="frame" x="12" y="132" width="100" height="25"/>
                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="dV1-p1-h7x"/>
@@ -626,11 +688,22 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="IGj-5N-Ama">
+                                                <rect key="frame" x="15" y="165" width="94" height="35"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </stepper>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="9aC-7k-dmm"/>
+                                    <constraint firstAttribute="height" constant="200" id="9aC-7k-dmm"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vyh-1s-9v2">
@@ -657,7 +730,7 @@
                                 </constraints>
                                 <state key="normal" title="닫기"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" animates="NO" id="1ez-rl-cHH"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalTransitionStyle="flipHorizontal" id="1ez-rl-cHH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -675,10 +748,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Loq-lO-Y62"/>
+                    <connections>
+                        <outlet property="bananaStock" destination="tk7-pW-qTQ" id="ofQ-VZ-yQV"/>
+                        <outlet property="bananaStockStepper" destination="yBb-r4-QrF" id="cVH-VP-Q7G"/>
+                        <outlet property="kiwiStock" destination="nL0-wW-psR" id="fuK-lH-15X"/>
+                        <outlet property="kiwiStockStepper" destination="fXV-sB-AnC" id="Ogi-Su-o61"/>
+                        <outlet property="mangoStock" destination="LRh-r2-iaY" id="G3d-Ld-qlH"/>
+                        <outlet property="mangoStockStepper" destination="IGj-5N-Ama" id="YUE-Xn-klw"/>
+                        <outlet property="pineappleStock" destination="6jk-iN-UwE" id="SlJ-xV-XQn"/>
+                        <outlet property="pineappleStockStepper" destination="Rk4-Yi-F58" id="QXW-fj-5cG"/>
+                        <outlet property="strawBerryStockStepper" destination="kIo-Jn-vvb" id="Ynh-xS-Xu4"/>
+                        <outlet property="strawberryStock" destination="eNa-UA-pH1" id="vZo-0B-7Mx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWd-tb-uOl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="814"/>
+            <point key="canvasLocation" x="655" y="929"/>
         </scene>
     </scenes>
     <designables>

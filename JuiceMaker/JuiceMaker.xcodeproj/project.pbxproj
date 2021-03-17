@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C2240D525FD30A900F5F329 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2240D425FD30A900F5F329 /* StockViewController.swift */; };
+		1C2240D525FD30A900F5F329 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2240D425FD30A900F5F329 /* StockView.swift */; };
 		1C2F63C425FDFBFC002686E2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2F63C325FDFBFC002686E2 /* UIViewExtension.swift */; };
 		1C4E80E225FB482400E1A133 /* JuiceOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4E80E125FB482400E1A133 /* JuiceOrderButton.swift */; };
 		1C6CBFDF25F9F20600D3F351 /* StockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6CBFDE25F9F20600D3F351 /* StockLabel.swift */; };
+		1C73687E26019A9E00A3EA0A /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C73687D26019A9E00A3EA0A /* StockViewController.swift */; };
 		1CBDAEA925FCF2BD0016FC4C /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBDAEA825FCF2BD0016FC4C /* Alerts.swift */; };
+		1CC52FDB26005896007059C0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC52FDA26005896007059C0 /* MainViewController.swift */; };
 		1CFDBEF225F613F500D3E649 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFDBEF125F613F500D3E649 /* Juice.swift */; };
 		1CFDBEF525F613FE00D3E649 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFDBEF425F613FE00D3E649 /* Fruit.swift */; };
 		1CFDBEFC25F6368300D3E649 /* JuiceRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFDBEFB25F6368300D3E649 /* JuiceRequirement.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
-		C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* ViewController.swift */; };
+		C73DAF3B255D0CDD00020D38 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* MainView.swift */; };
 		C73DAF3E255D0CDD00020D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3C255D0CDD00020D38 /* Main.storyboard */; };
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
@@ -25,18 +27,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C2240D425FD30A900F5F329 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
+		1C2240D425FD30A900F5F329 /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
 		1C2F63C325FDFBFC002686E2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		1C4E80E125FB482400E1A133 /* JuiceOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceOrderButton.swift; sourceTree = "<group>"; };
 		1C6CBFDE25F9F20600D3F351 /* StockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLabel.swift; sourceTree = "<group>"; };
+		1C73687D26019A9E00A3EA0A /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		1CBDAEA825FCF2BD0016FC4C /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		1CC52FDA26005896007059C0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1CFDBEF125F613F500D3E649 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		1CFDBEF425F613FE00D3E649 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		1CFDBEFB25F6368300D3E649 /* JuiceRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRequirement.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C73DAF3A255D0CDD00020D38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C73DAF3A255D0CDD00020D38 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C73DAF3D255D0CDD00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C73DAF3F255D0CDE00020D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,6 +59,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CC52FD82600572B007059C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1CFDBEF425F613FE00D3E649 /* Fruit.swift */,
+				1CFDBEF125F613F500D3E649 /* Juice.swift */,
+				1CFDBEFB25F6368300D3E649 /* JuiceRequirement.swift */,
+				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1CC52FDD2600645E007059C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1CC52FDA26005896007059C0 /* MainViewController.swift */,
+				1C6CBFDE25F9F20600D3F351 /* StockLabel.swift */,
+				1C73687D26019A9E00A3EA0A /* StockViewController.swift */,
+				1C4E80E125FB482400E1A133 /* JuiceOrderButton.swift */,
+				1CBDAEA825FCF2BD0016FC4C /* Alerts.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1CC52FE02600648D007059C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3A255D0CDD00020D38 /* MainView.swift */,
+				1C2240D425FD30A900F5F329 /* StockView.swift */,
+				1C2F63C325FDFBFC002686E2 /* UIViewExtension.swift */,
+				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
+				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C73DAF2A255D0CDC00020D38 = {
 			isa = PBXGroup;
 			children = (
@@ -74,21 +113,12 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				1CFDBEF425F613FE00D3E649 /* Fruit.swift */,
-				1CFDBEF125F613F500D3E649 /* Juice.swift */,
-				1CFDBEFB25F6368300D3E649 /* JuiceRequirement.swift */,
-				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
-				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
+				1CC52FD82600572B007059C0 /* Model */,
+				1CC52FDD2600645E007059C0 /* Controller */,
+				1CC52FE02600648D007059C0 /* View */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
-				1C2F63C325FDFBFC002686E2 /* UIViewExtension.swift */,
-				1C6CBFDE25F9F20600D3F351 /* StockLabel.swift */,
-				1C4E80E125FB482400E1A133 /* JuiceOrderButton.swift */,
-				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
-				1CBDAEA825FCF2BD0016FC4C /* Alerts.swift */,
-				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
-				1C2240D425FD30A900F5F329 /* StockViewController.swift */,
+				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
-				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
 			path = JuiceMaker;
@@ -165,13 +195,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CFDBEF225F613F500D3E649 /* Juice.swift in Sources */,
-				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
+				1C73687E26019A9E00A3EA0A /* StockViewController.swift in Sources */,
+				C73DAF3B255D0CDD00020D38 /* MainView.swift in Sources */,
 				1CFDBEFC25F6368300D3E649 /* JuiceRequirement.swift in Sources */,
 				1CFDBEF525F613FE00D3E649 /* Fruit.swift in Sources */,
 				1C6CBFDF25F9F20600D3F351 /* StockLabel.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				1C2F63C425FDFBFC002686E2 /* UIViewExtension.swift in Sources */,
-				1C2240D525FD30A900F5F329 /* StockViewController.swift in Sources */,
+				1CC52FDB26005896007059C0 /* MainViewController.swift in Sources */,
+				1C2240D525FD30A900F5F329 /* StockView.swift in Sources */,
 				1CBDAEA925FCF2BD0016FC4C /* Alerts.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
