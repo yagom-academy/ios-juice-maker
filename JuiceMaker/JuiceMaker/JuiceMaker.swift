@@ -6,85 +6,41 @@
 
 import Foundation
 
-class Fruit {
-    private(set) var name: String
-    private(set) var amount: Int
-    
-    init(name: String, amount: Int) {
-        self.name = name
-        self.amount = amount
-    }
-    
-    func addFruit() {
-        self.amount += 1
-    }
-    
-    func reducefruit(amount: Int) {
-        self.amount -= amount
-    }
-}
-
-var strawberry = Fruit(name: "딸기", amount: 10)
-var banana = Fruit(name: "바나나", amount: 10)
-var pineapple = Fruit(name: "파일애플", amount: 10)
-var kiwi = Fruit(name: "키위", amount: 10)
-var mango = Fruit(name: "망고", amount: 10)
-
-enum FruitsJuice {
-    case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice, strawberryBananaJuice, mangoKiwiJuice
-    
-    func jucieRecipe() -> JuiceIngredients {
-        switch self {
-        case .strawberryJuice:
-            return JuiceIngredients(ingredients: [(strawberry,16)])
-        case .bananaJuice:
-            return JuiceIngredients(ingredients: [(banana,2)])
-        case .pineappleJuice:
-            return JuiceIngredients(ingredients: [(pineapple,2)])
-        case .kiwiJuice:
-            return JuiceIngredients(ingredients: [(kiwi,3)])
-        case .mangoJuice:
-            return JuiceIngredients(ingredients: [(mango,3)])
-        case .strawberryBananaJuice:
-            return JuiceIngredients(ingredients: [(strawberry,10), (banana,1)])
-        case .mangoKiwiJuice:
-            return JuiceIngredients(ingredients: [(mango,2), (kiwi,2)])
-        }
-    }
-}
-
-typealias ingredient = (fruit: Fruit, amount: Int)
-
-class JuiceIngredients {
-    private(set) var ingredients: [ingredient]
-    
-    init(ingredients: [ingredient]) {
-        self.ingredients = ingredients
-    }
-}
-
-let successMessage = "쥬스가 완성되었습니다."
-let failureMessage = "재고가 부족합니다."
+typealias juiceRecipe = [ObjectIdentifier : [Recipe]]
 
 class JuiceMaker {
+    private let recipes: juiceRecipe = [ObjectIdentifier(StrawberryJuice.self) : [(ObjectIdentifier(Strawberry.self), 16)],
+                             ObjectIdentifier(BananaJuice.self) : [(ObjectIdentifier(Banana.self), 2)],
+                             ObjectIdentifier(KiwiJuice.self) : [(ObjectIdentifier(Kiwi.self), 3)],
+                             ObjectIdentifier(PineappleJuice.self) : [(ObjectIdentifier(Pineapple.self), 2)],
+                             ObjectIdentifier(MangoJuice.self) : [(ObjectIdentifier(Mango.self), 3)],
+                             ObjectIdentifier(StrawberryBananaJuice.self) :  [(ObjectIdentifier(Strawberry.self), 10),(ObjectIdentifier(Banana.self), 1)],
+                             ObjectIdentifier(MangoKiwiJuice.self) : [(ObjectIdentifier(Mango.self), 2), (ObjectIdentifier(Kiwi.self), 1)]]
     
-    private func checkFruitStock(of juice: FruitsJuice) -> Bool {
-        for ingredient in juice.jucieRecipe().ingredients {
-            if ingredient.amount < ingredient.fruit.amount {
-                return true
+    var fruitsStorage = FruitsStorage.sharedInstance
+    
+    private func checkFruitStock(juice: ObjectIdentifier) -> Bool {
+        if let juiceRequirements = recipes[juice] {
+            for juiceRequirement in juiceRequirements {
+                if let stockAvailable = fruitsStorage.fruitsStock[juiceRequirement.stock] {
+                    if juiceRequirement.requiredAmount > stockAvailable {
+                        return false
+                    }
+                }
             }
         }
-        return false
+        return true
     }
     
-    func informJuiceOrderResult(name: FruitsJuice) -> String {
-        if checkFruitStock(of: name) {
-            for ingredient in name.jucieRecipe().ingredients {
-                ingredient.fruit.reducefruit(amount: ingredient.amount)
+    func makeJuice(juice: ObjectIdentifier) {
+        if checkFruitStock(juice: juice) {
+            if let juiceAvailable = recipes[juice]{
+                for index in juiceAvailable {
+                    fruitsStorage.reduceFruit(fruit: index.stock, amount: index.requiredAmount)
+                    print(fruitsStorage.fruitsStock)
+                }
             }
-            return successMessage
-        } else {
-            return failureMessage
+            return
         }
     }
 }
