@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,27 +13,385 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맛있는 쥬스를 만들어 드려요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdx-Sg-qB7">
+                                <rect key="frame" x="0.0" y="0.0" width="736" height="75"/>
+                                <color key="backgroundColor" red="0.57647058823529407" green="0.58431372549019611" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="WdS-B8-EPv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbq-YQ-34E">
+                                <rect key="frame" x="649" y="20" width="67" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="재고 수정">
+                                    <color key="titleColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SaA-LG-edX" kind="presentation" identifier="stockChanger" id="1ep-Be-0Lp"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-ED-rfC">
+                                <rect key="frame" x="25" y="90" width="686" height="71.666666666666686"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aM-KE-SBA">
+                                        <rect key="frame" x="0.0" y="0.0" width="117.33333333333333" height="71.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baD-jc-ZOv">
+                                        <rect key="frame" x="142.33333333333334" y="0.0" width="117.00000000000003" height="71.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JW-bW-TuV">
+                                        <rect key="frame" x="284.33333333333331" y="0.0" width="117.33333333333331" height="71.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-Ve-wvH">
+                                        <rect key="frame" x="426.66666666666669" y="0.0" width="117.00000000000006" height="71.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxO-ZV-jhO">
+                                        <rect key="frame" x="568.66666666666663" y="0.0" width="117.33333333333337" height="71.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="9G4-6m-wg0">
+                                <rect key="frame" x="25" y="176.66666666666666" width="686" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bj-sF-lBV">
+                                        <rect key="frame" x="0.0" y="0.0" width="113.33333333333333" height="34"/>
+                                        <color key="backgroundColor" red="0.74117647058823533" green="0.9882352941176471" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIW-d4-Dag">
+                                        <rect key="frame" x="143.33333333333334" y="0.0" width="113.00000000000003" height="34"/>
+                                        <color key="backgroundColor" red="0.74117647058823533" green="0.9882352941176471" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIC-Gc-idQ">
+                                        <rect key="frame" x="286.33333333333331" y="0.0" width="113.33333333333331" height="34"/>
+                                        <color key="backgroundColor" red="0.74117647058823533" green="0.9882352941176471" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hD2-19-9Qq">
+                                        <rect key="frame" x="429.66666666666669" y="0.0" width="113.00000000000006" height="34"/>
+                                        <color key="backgroundColor" red="0.74117647058823533" green="0.9882352941176471" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdu-Yp-I00">
+                                        <rect key="frame" x="572.66666666666663" y="0.0" width="113.33333333333337" height="34"/>
+                                        <color key="backgroundColor" red="0.74117647058823533" green="0.9882352941176471" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="IiE-Xt-fOL"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="IXJ-ma-vEZ">
+                                <rect key="frame" x="25" y="235.66666666666663" width="542.66666666666663" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-wX-T83">
+                                        <rect key="frame" x="0.0" y="0.0" width="256.33333333333331" height="50"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="딸바쥬스 주문">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="voe-Hh-7X4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iul-Fn-PP3">
+                                        <rect key="frame" x="286.33333333333337" y="0.0" width="256.33333333333337" height="50"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="망키쥬스 주문">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a9F-pB-YlT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="G1H-vr-tEx"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="bhh-OV-nZT">
+                                <rect key="frame" x="25" y="295.66666666666669" width="686" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-7H-GAE">
+                                        <rect key="frame" x="0.0" y="0.0" width="113.33333333333333" height="50"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="딸기쥬스 주문">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NDW-oD-rxl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-Hy-fJT">
+                                        <rect key="frame" x="143.33333333333334" y="0.0" width="113.00000000000003" height="50"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="바나나쥬스">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSOriginalFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="주문">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSOriginalFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nZx-SD-KN5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-jd-09V">
+                                        <rect key="frame" x="286.33333333333331" y="0.0" width="113.33333333333331" height="50"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="파인애플 쥬스 주문">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vTq-aY-eYm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5T-Mh-Blt">
+                                        <rect key="frame" x="429.66666666666669" y="0.0" width="113.00000000000006" height="50"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="키위쥬스">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSOriginalFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="주문">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSOriginalFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lfx-ax-i2f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWe-gE-uVg">
+                                        <rect key="frame" x="572.66666666666663" y="0.0" width="113.33333333333337" height="50"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="망고쥬스">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSOriginalFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="주문">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSOriginalFont" metaFont="system" size="18"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E3H-9x-2l0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wda-qO-3Un"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crY-L9-Zta">
+                                <rect key="frame" x="597.66666666666663" y="235.66666666666663" width="113.33333333333337" height="50"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="MYO-I1-xxJ"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="트로피컬 쥬스 주문">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" metaFont="system" size="18"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="utG-Tf-KyU"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.57647058823529407" green="0.58431372549019611" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bhh-OV-nZT" firstAttribute="top" secondItem="IXJ-ma-vEZ" secondAttribute="bottom" constant="10" id="2bN-rF-H5x"/>
+                            <constraint firstItem="IXJ-ma-vEZ" firstAttribute="top" secondItem="9G4-6m-wg0" secondAttribute="bottom" constant="25" id="98B-tY-VBp"/>
+                            <constraint firstItem="wdx-Sg-qB7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ceq-ab-oQf"/>
+                            <constraint firstItem="jbq-YQ-34E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="DnT-Gh-VMw"/>
+                            <constraint firstItem="IXJ-ma-vEZ" firstAttribute="leading" secondItem="1Bj-sF-lBV" secondAttribute="leading" id="Hlg-oT-UtK"/>
+                            <constraint firstItem="9G4-6m-wg0" firstAttribute="leading" secondItem="0fF-ED-rfC" secondAttribute="leading" id="P0b-8I-9Mo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jbq-YQ-34E" secondAttribute="trailing" constant="20" id="RW9-8Q-SNc"/>
+                            <constraint firstItem="crY-L9-Zta" firstAttribute="trailing" secondItem="Vdu-Yp-I00" secondAttribute="trailing" id="Sud-LF-z7D"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0fF-ED-rfC" secondAttribute="trailing" constant="25" id="Yi9-Oy-l7F"/>
+                            <constraint firstItem="9G4-6m-wg0" firstAttribute="top" secondItem="0fF-ED-rfC" secondAttribute="bottom" constant="15" id="aiP-fo-W0N"/>
+                            <constraint firstItem="wdx-Sg-qB7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="b2i-8y-TMl"/>
+                            <constraint firstItem="crY-L9-Zta" firstAttribute="top" secondItem="9G4-6m-wg0" secondAttribute="bottom" constant="25" id="c0s-vR-aNJ"/>
+                            <constraint firstItem="9G4-6m-wg0" firstAttribute="trailing" secondItem="0fF-ED-rfC" secondAttribute="trailing" id="gas-sI-sTi"/>
+                            <constraint firstItem="bhh-OV-nZT" firstAttribute="leading" secondItem="IXJ-ma-vEZ" secondAttribute="leading" id="hUZ-vU-Vls"/>
+                            <constraint firstItem="crY-L9-Zta" firstAttribute="leading" secondItem="Vdu-Yp-I00" secondAttribute="leading" id="itD-HJ-Iei"/>
+                            <constraint firstItem="0fF-ED-rfC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="kSK-G6-gMt"/>
+                            <constraint firstItem="0fF-ED-rfC" firstAttribute="top" secondItem="wdx-Sg-qB7" secondAttribute="bottom" constant="15" id="ru8-9D-v6p"/>
+                            <constraint firstItem="crY-L9-Zta" firstAttribute="trailing" secondItem="bhh-OV-nZT" secondAttribute="trailing" id="sd3-r7-Aqe"/>
+                            <constraint firstItem="wdx-Sg-qB7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="siE-cf-4OJ"/>
+                            <constraint firstItem="hD2-19-9Qq" firstAttribute="trailing" secondItem="IXJ-ma-vEZ" secondAttribute="trailing" id="zNt-0j-lsU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sDe-zb-VIv">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="qAl-pi-vfz">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dFl-80-CRd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dFl-80-CRd">
                                 <rect key="frame" x="317" y="0.0" width="77" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outletCollection property="fruitStockLabels" destination="1Bj-sF-lBV" collectionClass="NSMutableArray" id="1wk-zU-dnM"/>
+                        <outletCollection property="fruitStockLabels" destination="CIW-d4-Dag" collectionClass="NSMutableArray" id="mNz-tR-GiA"/>
+                        <outletCollection property="fruitStockLabels" destination="GIC-Gc-idQ" collectionClass="NSMutableArray" id="aiL-Vq-bYt"/>
+                        <outletCollection property="fruitStockLabels" destination="hD2-19-9Qq" collectionClass="NSMutableArray" id="11J-I9-sEi"/>
+                        <outletCollection property="fruitStockLabels" destination="Vdu-Yp-I00" collectionClass="NSMutableArray" id="943-kx-wYS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="113"/>
+            <point key="canvasLocation" x="350.54347826086962" y="111.59420289855073"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="tjd-fZ-Cmp">
+            <objects>
+                <viewController id="SaA-LG-edX" customClass="SecondViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HqP-a1-Xhh">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p39-lE-eoC">
+                                <rect key="frame" x="328.66666666666669" y="192" width="79" height="30"/>
+                                <state key="normal" title="Test Button"/>
+                                <connections>
+                                    <action selector="backButton:" destination="SaA-LG-edX" eventType="touchUpInside" id="cKD-gf-Y57"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="huN-nX-B0k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="p39-lE-eoC" firstAttribute="centerX" secondItem="HqP-a1-Xhh" secondAttribute="centerX" id="kQb-bF-pIe"/>
+                            <constraint firstItem="p39-lE-eoC" firstAttribute="centerY" secondItem="HqP-a1-Xhh" secondAttribute="centerY" id="l1v-uq-6iQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="1X7-cq-ANX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="94a-SE-uqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017.3913043478261" y="111.59420289855073"/>
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
