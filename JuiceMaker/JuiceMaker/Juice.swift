@@ -7,11 +7,11 @@
 
 import Foundation
 
-typealias Recipe = (stock: ObjectIdentifier , requiredAmount : Int)
+typealias Recipe = (stock: ObjectIdentifier, requiredAmount: Int)
 
 class Juice {
-    var name: String
-    var recipe: [Recipe]
+    private let name: String
+    private let recipe: [Recipe]
 
     init(name: String, recipe: [Recipe]) {
         self.name = name

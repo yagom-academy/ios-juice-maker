@@ -19,11 +19,11 @@ class JuiceMaker {
     
     var fruitsStorage = FruitsStorage.sharedInstance
     
-    private func checkFruitStock(juice: ObjectIdentifier) -> Bool {
-        if let juiceRequirements = recipes[juice] {
-            for juiceRequirement in juiceRequirements {
-                if let stockAvailable = fruitsStorage.fruitsStock[juiceRequirement.stock] {
-                    if juiceRequirement.requiredAmount > stockAvailable {
+    private func hasEnoughFruitStock(_ juice: juiceRecipe.Key) -> Bool {
+        if let juiceIngredients = recipes[juice] {
+            for juiceIngredient in juiceIngredients {
+                if let remainedFruitStock = fruitsStorage.fruitsStock[juiceIngredient.stock] {
+                    if juiceIngredient.requiredAmount > remainedFruitStock {
                         return false
                     }
                 }
@@ -32,11 +32,11 @@ class JuiceMaker {
         return true
     }
     
-    func makeJuice(juice: ObjectIdentifier) {
-        if checkFruitStock(juice: juice) {
-            if let juiceAvailable = recipes[juice]{
-                for index in juiceAvailable {
-                    fruitsStorage.reduceFruit(fruit: index.stock, amount: index.requiredAmount)
+    func makeJuice(_ juice: juiceRecipe.Key) {
+        if hasEnoughFruitStock(juice) {
+            if let juiceIngredient = recipes[juice]{
+                for juiceIngredient in juiceIngredient {
+                    fruitsStorage.reduceFruit(juiceIngredient.stock, amount: juiceIngredient.requiredAmount)
                     print(fruitsStorage.fruitsStock)
                 }
             }
