@@ -30,13 +30,17 @@ class JuiceRecipe {
     }
     
     func canMake(_ targetRecipe: ObjectIdentifier, _ checkStocks: FruitStock) -> Bool {
+        var state: Bool = false
         for (_fruit, _quantity) in _recipe[targetRecipe]! {
             if checkStocks.canMake(fruit: _fruit, quantity: _quantity) {
-              return true
+                state = true
+            } else {
+                state = false
+                break
             }
         }
         
-        return false
+        return state
     }
     
     func useRecipe(_ targetRecipe: ObjectIdentifier, _ useStocks: FruitStock) {
