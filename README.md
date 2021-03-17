@@ -89,6 +89,12 @@
 - 목 - 코드리뷰, step1 첫 PR
 - 금 - PR 코멘트 바탕으로 수정
 
+- 월 - alert 화면전환 방법 공부 
+- 화 - Notification Center 적용 및 step2 PR
+- 수 - 
+- 목 - 
+- 금 - 
+
 <br>
 
 # Flowchart
