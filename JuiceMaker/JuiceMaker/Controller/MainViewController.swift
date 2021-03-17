@@ -13,9 +13,9 @@ extension MainViewController {
     @IBAction func touchUpJuiceButton(_ sender: JuiceOrderButton) {
         if sender.juice.canMake {
             JuiceMaker.make(menu: sender.juice)
-            showAlert(OrderAlert.successAlert(typeOfJuice: sender.juice))
+            showAlert(successAlert(typeOfJuice: sender.juice))
         } else {
-            showAlert(OrderAlert.failAlert())
+            showAlert(failAlert())
         }
         update()
     }
