@@ -16,19 +16,16 @@ class JuiceMaker {
     let fruitStocks = FruitStock()
     let juiceRecipes = JuiceRecipe()
    
-    func orderMakeJuice(targetJuice: ObjectIdentifier) -> ErrorMessage {
-        var resultMessage: ErrorMessage = .notExistRecipe
-        if juiceRecipes.canMake(targetJuice, fruitStocks) {
-            makeJuice(targetJuice)
-            resultMessage = .completeMakeJuice
+    func order(juice: ObjectIdentifier) -> ErrorMessage {
+        if juiceRecipes.canMake(juice, fruitStocks) {
+            make(juice)
+            return .completeMakeJuice
         } else {
-            resultMessage = .notEnoughStock
+            return .notEnoughStock
         }
-        
-        return resultMessage
     }
     
-    func makeJuice(_ targetJuice: ObjectIdentifier) {
-        juiceRecipes.useRecipe(targetJuice, fruitStocks)
+    func make(_ juice: ObjectIdentifier) {
+        juiceRecipes.useRecipe(juice, fruitStocks)
     }
 }
