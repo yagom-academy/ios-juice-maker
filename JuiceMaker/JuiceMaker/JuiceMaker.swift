@@ -8,24 +8,27 @@ import Foundation
 
 enum ErrorMessage: String {
     case notExistRecipe = "존재하지 않는 레시피입니다."
-    case notEnoughStock = "재고가 부족합니다. 재고를 수정할까요!"
+    case notEnoughStock = "재고가 부족합니다. 재고를 수정할까요?"
+    case completeMakeJuice = "쥬스가 완성됐습니다. 맛있게 드세요!"
 }
 
 class JuiceMaker {
     let fruitStocks = FruitStock()
     let juiceRecipes = JuiceRecipe()
    
-    func orderMakeJuice(targetJuice: ObjectIdentifier) {
-        if juiceRecipes.canMake(targetRecipe: targetJuice, checkStocks: fruitStocks) {
-            //  쥬스를 만들 수 있다
+    func orderMakeJuice(targetJuice: ObjectIdentifier) -> ErrorMessage {
+        var resultMessage: ErrorMessage = .notExistRecipe
+        if juiceRecipes.canMake(targetJuice, fruitStocks) {
             makeJuice(targetJuice)
+            resultMessage = .completeMakeJuice
         } else {
-            //  쥬스를 만들 수 없다
-            
+            resultMessage = .notEnoughStock
         }
+        
+        return resultMessage
     }
     
     func makeJuice(_ targetJuice: ObjectIdentifier) {
-        juiceRecipes.useRecipe(targetRecipe: targetJuice, useStocks: fruitStocks)
+        juiceRecipes.useRecipe(targetJuice, fruitStocks)
     }
 }

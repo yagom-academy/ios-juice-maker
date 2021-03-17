@@ -7,7 +7,13 @@
 
 import Foundation
 
-class Fruit { }
+class Fruit {
+    private let _name: String
+    
+    init(name: String) {
+        _name = name
+    }
+}
 
 class Strawberry: Fruit {}
 class Banana: Fruit {}
