@@ -281,6 +281,13 @@ IAo
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="bananaStock" destination="d4A-Gj-QG4" id="S5a-Bq-3Y7"/>
+                        <outlet property="kiwiStock" destination="r62-yq-UIF" id="faM-X5-gOO"/>
+                        <outlet property="mangoStock" destination="vEy-Ly-bZF" id="LpU-vH-g6K"/>
+                        <outlet property="pineappleStock" destination="psM-DT-q5c" id="uWU-HF-LaI"/>
+                        <outlet property="strawberryStock" destination="aa0-NN-QQt" id="LNc-he-KgE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
