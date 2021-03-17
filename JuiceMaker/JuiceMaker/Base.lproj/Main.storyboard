@@ -153,6 +153,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="touchStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchDown" id="RIu-bA-BGO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wPw-Ov-Qve">
                                 <rect key="frame" x="17" y="240" width="109" height="47"/>
@@ -186,6 +189,9 @@ IAo
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="touchMangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchDown" id="6VO-wl-4LI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49C-5d-CLa">
                                 <rect key="frame" x="138" y="185" width="109" height="47"/>
@@ -204,6 +210,9 @@ IAo
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="touchBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchDown" id="qJB-f7-M0Q"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6v7-uF-9kP">
                                 <rect key="frame" x="138" y="240" width="109" height="47"/>
@@ -222,6 +231,9 @@ IAo
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="touchStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchDown" id="FFB-wD-AiE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pcs-XH-lM5">
                                 <rect key="frame" x="255" y="185" width="109" height="47"/>
@@ -240,6 +252,9 @@ IAo
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="touchPineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchDown" id="S4C-A2-6lT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-aa-jeC">
                                 <rect key="frame" x="372" y="185" width="109" height="47"/>
@@ -258,6 +273,9 @@ IAo
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="touchKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchDown" id="zpx-45-upA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qd5-AS-T06">
                                 <rect key="frame" x="255" y="240" width="109" height="47"/>
@@ -276,6 +294,9 @@ IAo
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="touchMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchDown" id="8fT-77-f6n"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -291,7 +312,7 @@ IAo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-259.85915492957747" y="116.25"/>
+            <point key="canvasLocation" x="74" y="184"/>
         </scene>
     </scenes>
     <resources>
