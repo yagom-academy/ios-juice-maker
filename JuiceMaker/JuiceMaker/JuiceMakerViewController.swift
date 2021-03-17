@@ -71,7 +71,7 @@ class JuiceMakerViewController: UIViewController {
         let okAction = UIAlertAction(title: "예", style: .default) { (action) in
             self.moveStockManagerVC()
         }
-        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         
         alert.addAction(okAction)
         alert.addAction(cancelAction)
