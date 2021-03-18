@@ -9,41 +9,38 @@ import UIKit
 final class JuiceMakerViewController: UIViewController {
     private var juiceMaker = JuiceMaker.shared
     
-    @IBOutlet private weak var strawberryLabel: JuiceLabel!
-    @IBOutlet private weak var bananaLabel: JuiceLabel!
-    @IBOutlet private weak var pineappleLabel: JuiceLabel!
-    @IBOutlet private weak var mangoLabel: JuiceLabel!
-    @IBOutlet private weak var kiwiLabel: JuiceLabel!
+    @IBOutlet private weak var strawberryLabel: FruitStockLabel!
+    @IBOutlet private weak var bananaLabel: FruitStockLabel!
+    @IBOutlet private weak var pineappleLabel: FruitStockLabel!
+    @IBOutlet private weak var mangoLabel: FruitStockLabel!
+    @IBOutlet private weak var kiwiLabel: FruitStockLabel!
     
-    @IBOutlet private weak var strawberryButton: JuiceButton!
-    @IBOutlet private weak var bananaButton: JuiceButton!
-    @IBOutlet private weak var pineappleButton: JuiceButton!
-    @IBOutlet private weak var kiwiButton: JuiceButton!
-    @IBOutlet private weak var mangoButton: JuiceButton!
-    @IBOutlet private weak var mangoKiwiButton: JuiceButton!
-    @IBOutlet private weak var strawberyBananaButton: JuiceButton!
+    @IBOutlet private weak var strawberryButton: OrderButton!
+    @IBOutlet private weak var bananaButton: OrderButton!
+    @IBOutlet private weak var pineappleButton: OrderButton!
+    @IBOutlet private weak var kiwiButton: OrderButton!
+    @IBOutlet private weak var mangoButton: OrderButton!
+    @IBOutlet private weak var mangoKiwiButton: OrderButton!
+    @IBOutlet private weak var strawberyBananaButton: OrderButton!
     
     // MARK: - ViewLife Cycle
     
     override func viewDidLoad() {
         initLabel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateLabel(_ :)),
                                                name: Notification.Name(rawValue: "changeFruitAmount"),
                                                object: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
+    override func viewWillAppear(_ animated: Bool) {
+        // TODO: - 재고 수정 반영
     }
-    
+        
     // MARK: - Action
     
     @IBAction func touchUpJuiceOrderButton(_ sender: Any) {
-        let orderButton = sender as! JuiceButton
+        let orderButton = sender as! OrderButton
         let selectedFruit = Juices(rawValue: orderButton.currentTitle!)
         do {
             try juiceMaker.make(order: selectedFruit!)
@@ -53,39 +50,17 @@ final class JuiceMakerViewController: UIViewController {
         orderSuccessAlert(selectedFruit!)
     }
     
-    // MARK: - Alert
-    
-    private func lakeStockAlert(_ error: Error) {
-        var errorMessgae: String?
-        if let juiceError = error as? JuiceMakerError {
-            errorMessgae = juiceError.localizedDescription
-        } else {
-            errorMessgae = JuiceMakerError.unknown.localizedDescription
+    @IBAction func touchUpModifyStock(_ sender: Any) {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
+            return
         }
-        let failAlert = UIAlertController(title: nil , message: errorMessgae, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "아니오", style: .default)
-        let stockSettingAction = UIAlertAction(title: "예", style: .cancel) { action in
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
-                return
-            }
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc,animated: true)
-        }
-        failAlert.addAction(stockSettingAction)
-        failAlert.addAction(cancel)
-        present(failAlert, animated: true, completion: nil)
-    }
-
-    private func orderSuccessAlert(_ kindJuice: Juices) {
-        let alert = UIAlertController(title: "주문 확인", message: "\(kindJuice) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc,animated: true)
     }
     
     // MARK: - Update Data
     
-     @objc private func updateLabel(_ notification: Notification) throws {
+     @objc private func updateLabel(_ notification: Notification) {
         switch notification.object! {
         case Fruits.strawberry :
             strawberryLabel.text = juiceMaker.currentFruit(fruit: .strawberry)

@@ -7,14 +7,13 @@
 
 import UIKit
 
-final class JuiceButton: UIButton {
-    private let cornerRadius: CGFloat = 15
-    private let borderWidth: CGFloat = 1.2
-
+final class OrderButton: UIButton {
+    var kindJuice: Juices?
+    
     required init?(coder: NSCoder) {
-        super.init(coder: coder)!
+        super.init(coder: coder)
         self.layer.backgroundColor = .init(genericCMYKCyan: 0.75, magenta: 0.45, yellow: 0.15, black: 0, alpha: 1)
-        self.layer.cornerRadius = cornerRadius
-        self.layer.borderWidth = borderWidth
+        self.layer.cornerRadius = 15
+        self.layer.borderWidth = 1.2
     }
 }
