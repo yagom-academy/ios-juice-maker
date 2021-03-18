@@ -125,7 +125,7 @@
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lhH-TM-StY"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T50-vb-owY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iul-Fn-PP3" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -136,7 +136,7 @@
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y6b-lT-17g"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9bL-Mr-YTq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -162,7 +162,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MTn-Cv-o32"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BOc-Rs-O2n"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-Hy-fJT" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -196,7 +196,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AQF-Dz-oLQ"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pQf-zX-x0I"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-jd-09V" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -214,7 +214,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I10-yG-o3P"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ivt-Wm-BPI"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5T-Mh-Blt" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -248,7 +248,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w2P-Ev-th7"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7jq-Sd-Ger"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWe-gE-uVg" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -282,7 +282,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUj-9Q-Wth"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3xA-cr-ROe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -308,7 +308,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gda-3t-N47"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uU8-tx-eDf"/>
                                 </connections>
                             </button>
                         </subviews>

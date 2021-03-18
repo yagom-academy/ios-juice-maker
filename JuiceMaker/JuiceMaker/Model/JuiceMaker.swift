@@ -31,11 +31,11 @@ struct Stock {
         }
     }
     
-    func hasFruits(for juice: Juice) -> Bool {
+    func hasFruits(for juice: Juice) throws -> Bool {
         var hasFruit: Bool = true
         
         for fruit in juice.recipe {
-            guard let stock = self.fruits[fruit.key] else { fatalError() }
+            guard let stock = self.fruits[fruit.key] else { throw StockError.invalidSelection }
             hasFruit = hasFruit && stock >= fruit.value ? true : false
         }
         

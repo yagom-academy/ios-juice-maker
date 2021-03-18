@@ -11,9 +11,9 @@ class StockStepper: UIStepper {
     var fruit: Fruit?
     var previousStepperValue: Double = 0
     
-    static func connectFruit(to steppers: [StockStepper]) {
+    static func connectFruit(to steppers: [StockStepper]) throws {
         for index in 0..<steppers.count {
-            guard let fruitType = Fruit(rawValue: index) else { return }
+            guard let fruitType = Fruit(rawValue: index) else { throw StockStepperError.invalidSelection }
             steppers[index].fruit = fruitType
         }
     }

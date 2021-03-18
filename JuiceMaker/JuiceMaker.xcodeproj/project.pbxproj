@@ -12,6 +12,7 @@
 		2708D06126032EE600C3B02B /* StockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D06026032EE600C3B02B /* StockLabel.swift */; };
 		2708D0772603361E00C3B02B /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D0762603361E00C3B02B /* Fruit.swift */; };
 		2708D07A2603363900C3B02B /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D0792603363900C3B02B /* Juice.swift */; };
+		2708D0802603396100C3B02B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D07F2603396100C3B02B /* Error.swift */; };
 		276EFB3626006A99001CE751 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EFB3526006A99001CE751 /* AlertExtension.swift */; };
 		27A00D7925FA1B2500FCA3E8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 		2708D06026032EE600C3B02B /* StockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLabel.swift; sourceTree = "<group>"; };
 		2708D0762603361E00C3B02B /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		2708D0792603363900C3B02B /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
+		2708D07F2603396100C3B02B /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		276EFB3526006A99001CE751 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				2708D0762603361E00C3B02B /* Fruit.swift */,
 				2708D0792603363900C3B02B /* Juice.swift */,
+				2708D07F2603396100C3B02B /* Error.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				2708D05A2602F41300C3B02B /* JuiceOrderButton.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				2708D0802603396100C3B02B /* Error.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				2708D07A2603363900C3B02B /* Juice.swift in Sources */,
 				2708D05E260314CC00C3B02B /* StockStepper.swift in Sources */,

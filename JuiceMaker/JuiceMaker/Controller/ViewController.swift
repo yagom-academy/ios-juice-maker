@@ -13,23 +13,37 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        JuiceOrderButton.connectJuice(to: juiceOrderButtons)
+        do {
+            try JuiceOrderButton.connectJuice(to: juiceOrderButtons)
+        } catch {
+            alert(error: error)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
+        do {
+            try StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
+        } catch {
+            alert(error: error)
+        }
     }
     
     @IBAction func touchUpJuiceOrderButton(_ sender: JuiceOrderButton) {
-        guard let juice = sender.juice else { return }
+        guard let juice = sender.juice else {
+            return alert(title: "오류", message: "버튼 고장", actionTypes: [.cancel("닫기", nil)])
+        }
         
-        if juiceMaker.stock.hasFruits(for: juice) {
-            juiceMaker.make(juice)
-            alert(title: "\(juice.name) 나왔습니다!", message: "맛있게 드세요!", actionTypes: [.ok("감사합니다!")])
-            StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
-        } else {
-            alert(title: "재고가 모자라요.", message: "재고를 수정할까요?", actionTypes: [.ok("예", { _ in self.performSegue(withIdentifier: "stockChanger", sender: nil)}), .cancel("아니오")])
+        do {
+            if try juiceMaker.stock.hasFruits(for: juice) {
+                juiceMaker.make(juice)
+                alert(title: "\(juice.name) 나왔습니다!", message: "맛있게 드세요!", actionTypes: [.ok("감사합니다!")])
+                try StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
+            } else {
+                alert(title: "재고가 모자라요.", message: "재고를 수정할까요?", actionTypes: [.ok("예", { _ in self.performSegue(withIdentifier: "stockChanger", sender: nil)}), .cancel("아니오")])
+            }
+        } catch {
+            alert(error: error)
         }
     }
     
@@ -41,5 +55,9 @@ class ViewController: UIViewController {
         }
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func alert(error: Error) {
+        alert(title: "오류", message: "\(error)", actionTypes: [.cancel("닫기", nil)])
     }
 }
