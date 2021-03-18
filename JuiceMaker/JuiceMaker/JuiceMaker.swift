@@ -9,11 +9,11 @@ struct JuiceMaker {
     static let shared = JuiceMaker()
     
     var fruitInformation: [FruitTypes: FruitStock] = [
-        .strawberry: FruitStock(.strawberry, 10),
-        .banana: FruitStock(.banana, 10),
-        .kiwi: FruitStock(.kiwi, 10),
-        .mango: FruitStock(.mango, 10),
-        .pineapple: FruitStock(.pineapple, 10)
+        .strawberry: FruitStock(.strawberry),
+        .banana: FruitStock(.banana),
+        .kiwi: FruitStock(.kiwi),
+        .mango: FruitStock(.mango),
+        .pineapple: FruitStock(.pineapple)
     ]
     
     func didMakeJuice(of orderedMenu: JuiceTypes) -> Bool {
