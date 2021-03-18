@@ -58,7 +58,7 @@ class JuiceMaker {
         do {
             try FruitStorage.shared.manageFruit(juice: order)
         } catch {
-            print("재고가 부족합니다.")
+            
         }
         return order
     }
