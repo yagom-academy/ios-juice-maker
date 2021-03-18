@@ -6,42 +6,40 @@
 
 import Foundation
 
-class JuiceMaker {
+final class JuiceMaker {
     static let shared = JuiceMaker()
-    private var fruitStorage = FruitStock(initAmount: 102)
-    
+    private var fruitStorage = FruitStock(initAmount: 20)
+ 
     private init() {}
     
-    func make(order: Juices) throws {
+    func make(order: Juices) -> Bool {
         for (kind, amountForJuice) in order.recipe {
-            do {
-                try hasFruitStock(fruit: kind, amount: amountForJuice)
-                 consume(fruit: kind, amount: amountForJuice)
-            } catch {
-                throw JuiceMakerError.lackStock
+            if hasFruitStock(fruit: kind, amount: amountForJuice) {
+                consume(fruit: kind, amount: amountForJuice)
+            } else {
+                return false
             }
+        }
+        return true
+    }
+    
+    func currentFruit(fruit: Fruits) -> Int {
+        if let amount = fruitStorage.fruits[fruit] {
+            return amount
+        } else {
+            NSLog(JuiceMakerError.invalidStock.localizedDescription)
+            fatalError()
         }
     }
     
-    func addFruitStock(fruit kind: Fruits, amount addFruits: Int = 1) {
-        fruitStorage.manageStorage(fruit: kind, amount: addFruits)
-    }
-    
-    func currentFruit(fruit: Fruits) -> String {
-        return String(fruitStorage.fruits[fruit]!)
-    }
-    
-    func initStock() -> Int {
-        return fruitStorage.initValue
-    }
-    
-    private func consume(fruit kind: Fruits, amount: Int)  {
+    private func consume(fruit kind: Fruits, amount: Int) {
         fruitStorage.manageStorage(fruit: kind, amount: -amount)
     }
     
-    private func hasFruitStock(fruit kind: Fruits, amount: Int) throws {
+    private func hasFruitStock(fruit kind: Fruits, amount: Int) -> Bool {
         guard let stock = fruitStorage.fruits[kind], amount > 0, stock - amount >= 0 else {
-            throw JuiceMakerError.lackStock
+            return false
         }
+        return true
     }
 }
