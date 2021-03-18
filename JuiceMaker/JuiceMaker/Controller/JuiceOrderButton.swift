@@ -6,9 +6,9 @@
 //
 
 import UIKit
-class JuiceOrderButton: UIButton {
-   var juice: Juice = JuiceType.strawberry
-
+@IBDesignable class JuiceOrderButton: UIButton {
+    var juice: Juice = JuiceType.strawberry
+    
     func make(menu: Juice) {
         JuiceMaker.make(menu: menu)
     }

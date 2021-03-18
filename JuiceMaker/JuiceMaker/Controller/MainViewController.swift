@@ -17,23 +17,21 @@ extension MainViewController {
         } else {
             showAlert(failAlert())
         }
-        update()
+        updateStockLabel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeStockLabel()
+        initializeJuiceOrderButton()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        initializeStockLabel()
-        initializeJuiceOrderButton()
+        updateStockLabel()
     }
     
-    private func showAlert(_ alert: UIAlertController) {
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func update() {
+    func updateStockLabel() {
         strawberryStock.text = String(FruitType.strawberry.stock)
         bananaStock.text = String(FruitType.banana.stock)
         pineappleStock.text = String(FruitType.pineapple.stock)
@@ -43,17 +41,12 @@ extension MainViewController {
     
     private func initializeStockLabel() {
         strawberryStock.fruit = FruitType.strawberry
-        strawberryStock.text = String(FruitType.strawberry.stock)
         bananaStock.fruit = FruitType.banana
-        bananaStock.text = String(FruitType.banana.stock)
         pineappleStock.fruit = FruitType.pineapple
-        pineappleStock.text = String(FruitType.pineapple.stock)
         kiwiStock.fruit = FruitType.kiwi
-        kiwiStock.text = String(FruitType.kiwi.stock)
         mangoStock.fruit = FruitType.mango
-        mangoStock.text = String(FruitType.mango.stock)
     }
-    
+
     private func initializeJuiceOrderButton() {
         strawBananaButton.juice = JuiceType.strawBanana
         mangoKiwiButton.juice = JuiceType.mangoKiwi

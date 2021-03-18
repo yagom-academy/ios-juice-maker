@@ -8,7 +8,7 @@
 import UIKit
 
 class StockViewController: UIViewController {
-    
+    var mainView = MainViewController()
     @IBOutlet var strawberryStock: StockLabel!
     @IBOutlet var bananaStock: StockLabel!
     @IBOutlet var pineappleStock: StockLabel!
