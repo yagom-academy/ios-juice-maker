@@ -3,7 +3,6 @@
 //  Created by 강경, Ryan.
 //  Copyright © yagom academy. All rights reserved.
 //
-
 import Foundation
 
 // MARK: - JuiceMaker Type
@@ -26,9 +25,11 @@ class JuiceMaker {
   // MARK: - Component Methods for 'make(of:)'
   private func checkRequiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
     var requiredFruits = [Fruit: Int]()
-    let recipe = JuiceRecipe()
+    guard let recipe = JuiceRecipe() else {
+      throw RecipeError.nilHasOccurredWhileUnwrappingRecipe
+    }
     
-    for ingredient in try recipe.find(for: orderedJuice).ingredient {
+    for ingredient in (try recipe.find(for: orderedJuice)).ingredient {
       guard let fruit = ingredient.fruitName,
             let quantity = ingredient.quantity else {
         throw JuiceError.nilHasOccurredWhileCheckingRequiredFruits

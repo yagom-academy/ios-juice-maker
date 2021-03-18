@@ -9,10 +9,24 @@ import UIKit
 
 class modifyStockViewController: UIViewController {
   
+  
+  @IBOutlet var strawberryStockQuantityLabel: UILabel!
+  @IBOutlet var bananaStockQuantityLabel: UILabel!
+  @IBOutlet var pineappleStockQuantityLabel: UILabel!
+  @IBOutlet var kiwiStockQuantityLabel: UILabel!
+  @IBOutlet var mangoStockQuantityLabel: UILabel!
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
+    updateFruitStockQuantity()
+  }
+  
+  func updateFruitStockQuantity() {
+    strawberryStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.strawberry))"
+    bananaStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.banana))"
+    pineappleStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.pineapple))"
+    kiwiStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.kiwi))"
+    mangoStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.mango))"
   }
   
   @IBAction func touchUpDismissButton(_ sender: UIButton) {
