@@ -7,6 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let fruitsStorageVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "fruitsStorageVC")
     let juiceMaker = JuiceMaker()
     
     @IBOutlet var strawberryStock: UILabel!
@@ -15,56 +16,79 @@ class ViewController: UIViewController {
     @IBOutlet var kiwiStock: UILabel!
     @IBOutlet var mangoStock: UILabel!
     
-    @IBAction func strawberryBananaJuiceOrder(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(StrawberryBananaJuice.self))
-        strawberryStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Strawberry.self)]!)
-        bananaStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Banana.self)]!)
+    @IBOutlet var strawberryBananaJuice: UIButton!
+    @IBOutlet var mangoKiwiJuice: UIButton!
+    @IBOutlet var strawberryJuice: UIButton!
+    @IBOutlet var bananaJuice: UIButton!
+    @IBOutlet var pineappleJuice: UIButton!
+    @IBOutlet var kiwiJuice: UIButton!
+    @IBOutlet var mangoJuice: UIButton!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStockText()
     }
     
-    @IBAction func mangoKiwiJuiceOrder(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(MangoKiwiJuice.self))
-        mangoStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Mango.self)]!)
-        kiwiStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Kiwi.self)]!)
+    @IBAction func goToFruitsStorage(_ sender: UIButton) {
+        present(fruitsStorageVC, animated: true)
     }
     
-    @IBAction func strawberryJuiceOrder(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(StrawberryJuice.self))
-        strawberryStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Strawberry.self)]!)
+    @IBAction func juiceOrder(_ sender: UIButton) {
+        var menu = ObjectIdentifier(StrawberryBananaJuice.self) // 기본값이 특정쥬스인게 이상함
         
-    }
-    
-    @IBAction func bananaJuiceOrder(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(BananaJuice.self))
-        bananaStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Banana.self)]!)
-    }
-    
-    @IBAction func pineappleJuiceOrder(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(PineappleJuice.self))
-        pineappleStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Pineapple.self)]!)
-    }
-    
-    @IBAction func kiwiJuiceOrder(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(KiwiJuice.self))
-        kiwiStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Kiwi.self)]!)
-    }
-    
-    @IBAction func mangoJuiceOrder(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(MangoJuice.self))
-        mangoStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Mango.self)]!)
+        switch sender {
+        case strawberryBananaJuice:
+            menu = ObjectIdentifier(StrawberryBananaJuice.self)
+        case mangoKiwiJuice:
+            menu = ObjectIdentifier(MangoKiwiJuice.self)
+        case strawberryJuice:
+            menu = ObjectIdentifier(StrawberryJuice.self)
+        case bananaJuice:
+            menu = ObjectIdentifier(BananaJuice.self)
+        case pineappleJuice:
+            menu = ObjectIdentifier(PineappleJuice.self)
+        case kiwiJuice:
+            menu = ObjectIdentifier(KiwiJuice.self)
+        case mangoJuice:
+            menu = ObjectIdentifier(MangoJuice.self)
+        default:
+            return // 예외처리 해줘야함
+        }
+        let order = juiceMaker.makeJuice(menu)
+        juiceOrderAlert(result: order)
+        updateStockText()
     }
 
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-    }
-    
-    func setup() {
+    func updateStockText() {
         strawberryStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Strawberry.self)]!)
         bananaStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Banana.self)]!)
         pineappleStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Pineapple.self)]!)
         kiwiStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Kiwi.self)]!)
         mangoStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Mango.self)]!)
     }
+    
+    func juiceOrderAlert(result: Bool) {
+        if result {
+            let alert = UIAlertController(title: nil, message: "쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert) // 쥬스 이름을 인자값으로 받아와야 하는데 쥬스 이름이 없음
+            let ok = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(ok)
+            present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "아니오", style: .destructive)
+            
+            
+            let ok = UIAlertAction(title: "예", style: .default) { _ in
+                self.present(self.fruitsStorageVC, animated: true)
+            }
+            
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            present(alert, animated: true)
+        }
+    }
+    
 }
+
 

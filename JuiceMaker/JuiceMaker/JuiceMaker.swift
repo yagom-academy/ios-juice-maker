@@ -32,15 +32,16 @@ class JuiceMaker {
         return true
     }
     
-    func makeJuice(_ juice: juiceRecipe.Key) {
+    func makeJuice(_ juice: juiceRecipe.Key) -> Bool {
         if hasEnoughFruitStock(juice) {
             if let juiceIngredient = recipes[juice]{
                 for juiceIngredient in juiceIngredient {
                     fruitsStorage.reduceFruit(juiceIngredient.stock, amount: juiceIngredient.requiredAmount)
                     print(fruitsStorage.fruitsStock)
+                    return true
                 }
             }
-            return
         }
+        return false
     }
 }
