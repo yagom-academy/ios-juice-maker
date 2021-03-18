@@ -25,9 +25,8 @@ struct JuiceMaker {
         return true
     }
     
-    func fruitStock(of fruit: FruitTypes) throws -> String {
-        guard let fruitStock = fruitInformation[fruit] else {
-            throw JuiceMakerError.invalidFruit }
+    func fruitStockCount(of fruit: FruitTypes) -> String? {
+        guard let fruitStock = fruitInformation[fruit] else { return nil }
         return String(fruitStock.stock)
     }
 }
