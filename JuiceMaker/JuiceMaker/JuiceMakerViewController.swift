@@ -38,24 +38,22 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @objc private func updateFruitStock(_ notification: Notification) {
-            do {
                 guard let fruit = notification.object as? FruitTypes else { return }
                 switch fruit {
                 case .strawberry:
-                    try strawberryStockLabel.text = juiceMaker.fruitStock(of: .strawberry)
+                    strawberryStockLabel.text = juiceMaker.fruitStockCount(of: .strawberry)
                 case .banana:
-                    try bananaStockLabel.text = juiceMaker.fruitStock(of: .banana)
+                    bananaStockLabel.text = juiceMaker.fruitStockCount(of: .banana)
                 case .kiwi:
-                    try kiwiStockLabel.text = juiceMaker.fruitStock(of: .kiwi)
+                    kiwiStockLabel.text = juiceMaker.fruitStockCount(of: .kiwi)
                 case .mango:
-                    try mangoStockLabel.text = juiceMaker.fruitStock(of: .mango)
+                    mangoStockLabel.text = juiceMaker.fruitStockCount(of: .mango)
                 case .pineapple:
-                    try pineappleStockLabel.text = juiceMaker.fruitStock(of: .pineapple)
-                }
-            } catch {
-                print(error)
-            }
+                    pineappleStockLabel.text = juiceMaker.fruitStockCount(of: .pineapple)
+                default:
+                    print("error")
         }
+    }
 
     private func showOrderSuccessAlert(menu: JuiceTypes) {
         let alert = UIAlertController(title: nil, message: "\(menu) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
