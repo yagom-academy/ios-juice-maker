@@ -13,7 +13,7 @@
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
-		D0A5CF0726032B2C007EF9CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0A5CF0526032B2C007EF9CF /* Main.storyboard */; };
+		D0A5CF0F26033255007EF9CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0A5CF0D26033255007EF9CF /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
-		D0A5CF0626032B2C007EF9CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../../../Downloads/ios-juice-maker/JuiceMaker/JuiceMaker/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		D0A5CF0E26033255007EF9CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
-				D0A5CF0526032B2C007EF9CF /* Main.storyboard */,
+				D0A5CF0D26033255007EF9CF /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
@@ -129,7 +129,7 @@
 			files = (
 				C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */,
 				C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */,
-				D0A5CF0726032B2C007EF9CF /* Main.storyboard in Resources */,
+				D0A5CF0F26033255007EF9CF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,10 +158,10 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		D0A5CF0526032B2C007EF9CF /* Main.storyboard */ = {
+		D0A5CF0D26033255007EF9CF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D0A5CF0626032B2C007EF9CF /* Base */,
+				D0A5CF0E26033255007EF9CF /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
