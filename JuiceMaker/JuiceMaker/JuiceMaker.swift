@@ -10,15 +10,11 @@ import Foundation
 class JuiceMaker {
   var orderResult = OrderResult(message: "", isSuccessed: false)
   
-  func make(of orderedJuice: Juice) {
-    do {
-      let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
-      if hasEnoughFruits(of: requiredFruits) {
-        try consumeStockedFruits(for: requiredFruits)
-        updateOrderResult(for: orderedJuice)
-      }
-    } catch {
-      print(error)
+  func make(of orderedJuice: Juice) throws {
+    let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
+    if hasEnoughFruits(of: requiredFruits) {
+      try consumeStockedFruits(for: requiredFruits)
+      updateOrderResult(for: orderedJuice)
     }
   }
   

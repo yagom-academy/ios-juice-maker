@@ -65,7 +65,11 @@ class ViewController: UIViewController {
       return
     }
     
-    juiceMaker.make(of: orderedJuice)
+    do {
+      try juiceMaker.make(of: orderedJuice)
+    } catch {
+      print(error)
+    }
     
     updateFruitStockQuantity()
     showAlert()
