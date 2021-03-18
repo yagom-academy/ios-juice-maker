@@ -19,7 +19,6 @@ enum FruitJuice: String {
     case mango = "망고"
     case mangoKiwi = "망키"
     
-    // recipe는 딕셔너리
     var recipe: [Fruit: Int] {
         switch self {
         case .strawberry:
@@ -41,15 +40,15 @@ enum FruitJuice: String {
 }
 
 class JuiceMaker {
-    var fruitStocks: [Fruit: Int] = [:]
+    var fruitStock: [Fruit: Int] = [:]
     
     init(numberOfStocks: Int) {
         for fruit in Fruit.allCases {
-            fruitStocks[fruit] = numberOfStocks
+            fruitStock[fruit] = numberOfStocks
         }
     }
     func checkStock(of fruit: Fruit) -> Int {
-        return fruitStocks[fruit]!
+        return fruitStock[fruit]!
     }
     func checkStockAvailable(fruit: Fruit, requestedStock: Int) -> Bool {
         if (checkStock(of: fruit) < requestedStock) {
@@ -58,7 +57,7 @@ class JuiceMaker {
         return true
     }
     func consumeFruit(fruit: Fruit, stock: Int) {
-        fruitStocks[fruit]! -= stock
+        fruitStock[fruit]! -= stock
     }
     func makeFruitJuice(_ juice: FruitJuice) {
         for (ingredient, amount) in juice.recipe {
@@ -66,8 +65,6 @@ class JuiceMaker {
         }
     }
     func addStock(fruit: Fruit) {
-        fruitStocks[fruit]! += 1
+        fruitStock[fruit]! += 1
     }
 }
-
-

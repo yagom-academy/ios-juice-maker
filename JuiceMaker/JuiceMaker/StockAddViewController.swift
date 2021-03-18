@@ -8,12 +8,8 @@
 import UIKit
 
 class StockAddViewController: UIViewController {
-    @IBAction func back(_ sender: UIButton) {
+    @IBAction func touchUpCloseButton(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    deinit {
-        print("deinit")
     }
 }
 

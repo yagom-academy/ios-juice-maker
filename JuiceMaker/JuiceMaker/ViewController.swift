@@ -24,25 +24,21 @@ class ViewController: UIViewController {
         stockOfKiwi.text = String(juiceMachine.checkStock(of: Fruit.kiwi))
         stockOfMango.text = String(juiceMachine.checkStock(of: Fruit.mango))
     }
-    // 재고를 확인하고 쥬스 만들기
+
     func checkStockAndMakeJuice(_ juiceType: FruitJuice) {
-        print(juiceType.recipe)
-        
         for (ingredient, amount) in juiceType.recipe {
             if juiceMachine.checkStockAvailable(fruit: ingredient, requestedStock: amount) == false {
                 showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
                 return
             }
         }
-        
         showAlert(message: "\(juiceType.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
         juiceMachine.makeFruitJuice(juiceType)
-        
         for (ingredient, _) in juiceType.recipe {
             updateStockLabel(fruit: ingredient)
         }
     }
-    
+
     func updateStockLabel(fruit: Fruit) {
         switch fruit {
         case .strawberry:
@@ -93,10 +89,8 @@ class ViewController: UIViewController {
             svc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
             self.present(svc, animated: true, completion: nil)
         }
-        
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
-        
         if message == "재료가 모자라요. 재고를 수정할까요?" {
             alert.addAction(cancelAction)
             alert.addAction(stockAddAction)
@@ -106,9 +100,4 @@ class ViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
     }
-    
-
-    
-
 }
-

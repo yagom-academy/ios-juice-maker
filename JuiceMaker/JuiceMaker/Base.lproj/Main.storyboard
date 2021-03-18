@@ -281,7 +281,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="닫기"/>
                                 <connections>
-                                    <action selector="back:" destination="Edc-nZ-8ca" eventType="touchUpInside" id="DPo-DN-Awc"/>
+                                    <action selector="touchUpCloseButton:" destination="Edc-nZ-8ca" eventType="touchUpInside" id="DPo-DN-Awc"/>
                                 </connections>
                             </button>
                         </subviews>
