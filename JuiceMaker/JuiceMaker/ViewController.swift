@@ -1,13 +1,14 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom.
+//  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-//
+// 
+
 import UIKit
 
 class ViewController: UIViewController {
   let juiceMaker = JuiceMaker()
-   
+  
   @IBOutlet var strawberryStockQuantityLabel: UILabel!
   @IBOutlet var bananaStockQuantityLabel: UILabel!
   @IBOutlet var pineappleStockQuantityLabel: UILabel!
@@ -28,22 +29,23 @@ class ViewController: UIViewController {
     mangoStockQuantityLabel.text = "\(Stock.shared.count(for: Fruit.mango))"
   }
   
-  func getAlert(_ isSuccess: Bool, _ message: String) {
+  func showAlert() {
     let alert = UIAlertController(title: "",
-                                  message: message,
+                                  message: juiceMaker.orderResult.message,
                                   preferredStyle: UIAlertController.Style.alert)
     
-    let btnOK = UIAlertAction(title: "확인", style: .default)
-    let btnMove = UIAlertAction(title: "예", style: .default) { (action) in
-      self.performSegue(withIdentifier: "goToModifyStockView", sender: self)
-    }
-    let btnCancel = UIAlertAction(title: "아니오", style: .cancel)
-    
-    if(isSuccess) {
-      alert.addAction(btnOK)
+    if juiceMaker.orderResult.isSuccessed {
+      let okAction = UIAlertAction(title: "확인", style: .default)
+      
+      alert.addAction(okAction)
     } else {
-      alert.addAction(btnMove)
-      alert.addAction(btnCancel)
+      let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
+      let moveAction = UIAlertAction(title: "예", style: .default) { (action) in
+        self.performSegue(withIdentifier: "goToModifyStockView", sender: self)
+      }
+      
+      alert.addAction(cancelAction)
+      alert.addAction(moveAction)
     }
     
     present(alert,
@@ -51,7 +53,7 @@ class ViewController: UIViewController {
             completion: nil)
   }
   
-  @IBAction func orderJuice(_ sender: UIButton) {
+  @IBAction func touchUpOrderButton(_ sender: UIButton) {
     guard let buttonTitle = sender.titleLabel else {
       return
     }
@@ -63,15 +65,9 @@ class ViewController: UIViewController {
       return
     }
     
-    let juice = juiceMaker.make(of: orderedJuice)
-    guard let isSuccess: Bool = juice["isSuccess"] as? Bool else {
-      return
-    }
-    guard let message: String = juice["message"] as? String else {
-      return
-    }
+    juiceMaker.make(of: orderedJuice)
     
     updateFruitStockQuantity()
-    getAlert(isSuccess, message)
+    showAlert()
   }
 }

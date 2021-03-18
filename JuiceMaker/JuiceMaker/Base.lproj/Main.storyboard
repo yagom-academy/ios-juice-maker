@@ -154,7 +154,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l4u-HJ-ebH"/>
+                                                            <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l4u-HJ-ebH"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBd-wk-0W2">
@@ -164,7 +164,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QDK-JT-Sq5"/>
+                                                            <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QDK-JT-Sq5"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -179,7 +179,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BTj-d9-4BD"/>
+                                                            <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BTj-d9-4BD"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMK-xO-SBN">
@@ -189,7 +189,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SOz-0u-j3O"/>
+                                                            <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SOz-0u-j3O"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ieo-BH-QCA">
@@ -199,7 +199,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U5Z-eJ-9M5"/>
+                                                            <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U5Z-eJ-9M5"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UI-Fn-X8f">
@@ -209,7 +209,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mdg-kU-WGt"/>
+                                                            <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mdg-kU-WGt"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BK-Vs-ePK">
@@ -219,7 +219,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rxo-Fn-kjR"/>
+                                                            <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rxo-Fn-kjR"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

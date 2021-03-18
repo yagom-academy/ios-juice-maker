@@ -3,23 +3,23 @@
 //  Created by 강경, Ryan.
 //  Copyright © yagom academy. All rights reserved.
 //
+
 import Foundation
 
 // MARK: - JuiceMaker Type
 class JuiceMaker {
-  var resultMessage = ["message": "", "isSuccess": false] as [String : Any]
-  func make(of orderedJuice: Juice) -> [String: Any] {
+  var orderResult = OrderResult(message: "", isSuccessed: false)
+  
+  func make(of orderedJuice: Juice) {
     do {
       let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
       if hasEnoughFruits(of: requiredFruits) {
         try consumeStockedFruits(for: requiredFruits)
-        printOrderCompleted(for: orderedJuice)
+        updateOrderResult(for: orderedJuice)
       }
     } catch {
-      handleErrorForMake(error)
+      print(error)
     }
-    
-    return resultMessage
   }
   
   // MARK: - Component Methods for 'make(of:)'
@@ -27,7 +27,7 @@ class JuiceMaker {
     var requiredFruits = [Fruit: Int]()
     let recipe = try JuiceRecipe()
     
-    for ingredient in (try recipe.find(for: orderedJuice)).ingredient {
+    for ingredient in try recipe.find(for: orderedJuice).ingredient {
       guard let fruit = ingredient.fruitName,
             let quantity = ingredient.quantity else {
         throw JuiceError.nilHasOccurredWhileCheckingRequiredFruits
@@ -39,14 +39,12 @@ class JuiceMaker {
   }
   
   private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) -> Bool {
- 
     for (fruit, requiredQuantity) in requiredFruits {
       let stockedQuantity = Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
-        print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
-        let message = "\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.\n재고를 수정할까요?"
-        resultMessage["isSuccess"] = false
-        resultMessage["message"] = message
+        orderResult.isSuccessed = false
+        orderResult.message =
+          "\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.\n재고를 수정할까요?"
         
         return false
       }
@@ -61,14 +59,8 @@ class JuiceMaker {
     }
   }
   
-  private func printOrderCompleted(for orderedJuice: Juice) {
-    print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
-    let message = "\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!"
-    resultMessage["isSuccess"] = true
-    resultMessage["message"] = message
-  }
-  
-  private func handleErrorForMake(_ error: Error) {
-    print(error)
+  private func updateOrderResult(for orderedJuice: Juice) {
+    orderResult.isSuccessed = true
+    orderResult.message = "\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!"
   }
 }
