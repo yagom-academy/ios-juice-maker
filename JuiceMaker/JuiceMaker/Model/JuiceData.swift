@@ -13,14 +13,14 @@ enum Fruits: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-enum Juices: String {
-    case strawberryJuice = "딸기 쥬스 주문"
-    case bananaJuice = "바나나 쥬스 주문"
-    case pineappleJuice = "파인애플 쥬스 주문"
-    case kiwiJuice = "키위 쥬스 주문"
-    case mangoJuice = "망고 쥬스 주문"
-    case strawberryBananaJuice = "딸기 바나나 쥬스 주문"
-    case mangoKiwiJuice = "망고 키위 쥬스 주문"
+enum Juices {
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
     
     var recipe : Storage {
         switch self {
