@@ -7,14 +7,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker.shared
     @IBOutlet var fruitStockLabels = [UILabel]()
-    @IBOutlet var juiceOrderButtons: [JuiceOrderButton]!
-    
+    @IBOutlet var juiceOrderButtons = [JuiceOrderButton]()
+    let juiceMaker = JuiceMaker.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        connectJuice(to: juiceOrderButtons)
+        JuiceOrderButton.connectJuice(to: juiceOrderButtons)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,13 +50,5 @@ func update(labels: [UILabel], by stock: Stock) {
         guard let fruitStock = stock.fruits[fruitType] else { return }
         
         labels[index].text = String(fruitStock)
-    }
-}
-
-func connectJuice(to buttons: [JuiceOrderButton]) {
-    for index in 0..<buttons.count {
-        guard let juiceType = Juice(rawValue: index) else { return }
-        
-        buttons[index].juice = juiceType
     }
 }
