@@ -8,14 +8,14 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-    @IBOutlet var fruitStockLabels = [UILabel]()
+    @IBOutlet var fruitStockLabels = [StockLabel]()
     @IBOutlet var stockSteppers = [StockStepper]()
     let juiceMaker = JuiceMaker.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         StockStepper.connectFruit(to: stockSteppers)
-        update(labels: fruitStockLabels, by: juiceMaker.stock)
+        StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -25,7 +25,7 @@ class SecondViewController: UIViewController {
     @IBAction func stepperValueChanged(_ sender: StockStepper) {
         guard let fruit = sender.fruit else { return }
         juiceMaker.manageStock(fruit, by: Int(sender.value - sender.previousStepperValue))
-        update(labels: fruitStockLabels, by: juiceMaker.stock)
+        StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
         sender.previousStepperValue = sender.value
     }
 }
