@@ -27,10 +27,6 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         initFuritLabel()
         initJuiceButton()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateLabel(_ :)),
-                                               name: Notification.Name(rawValue: "changeFruitAmount"),
-                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,23 +56,6 @@ final class JuiceMakerViewController: UIViewController {
     
     // MARK: - Update Data
     
-     @objc private func updateLabel(_ notification: Notification) {
-        switch notification.object! {
-        case Fruits.strawberry :
-            strawberryLabel.text = String(juiceMaker.currentFruit(fruit: .strawberry))
-        case Fruits.banana :
-            bananaLabel.text = String(juiceMaker.currentFruit(fruit: .banana))
-        case Fruits.pineapple :
-            pineappleLabel.text = String(juiceMaker.currentFruit(fruit: .pineapple))
-        case Fruits.kiwi :
-            kiwiLabel.text = String(juiceMaker.currentFruit(fruit: .kiwi))
-        case Fruits.mango :
-            mangoLabel.text = String(juiceMaker.currentFruit(fruit: .mango))
-        default:
-            return
-        }
-    }
-    
     private func initJuiceButton() {
         strawberryButton.initValue(kindJuice: .strawberryJuice)
         bananaButton.initValue(kindJuice: .bananaJuice)
@@ -88,10 +67,10 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func initFuritLabel() {
-        strawberryLabel.initValue(fruit: .strawberry, amount: juiceMaker.currentFruit(fruit: .strawberry))
-        bananaLabel.initValue(fruit: .banana, amount: juiceMaker.currentFruit(fruit: .banana))
-        pineappleLabel.initValue(fruit: .pineapple, amount: juiceMaker.currentFruit(fruit: .pineapple))
-        kiwiLabel.initValue(fruit: .kiwi, amount: juiceMaker.currentFruit(fruit: .kiwi))
-        mangoLabel.initValue(fruit: .mango, amount: juiceMaker.currentFruit(fruit: .mango))
+        strawberryLabel.initValue(fruit: .strawberry)
+        bananaLabel.initValue(fruit: .banana)
+        pineappleLabel.initValue(fruit: .pineapple)
+        kiwiLabel.initValue(fruit: .kiwi)
+        mangoLabel.initValue(fruit: .mango)
     }
 }
