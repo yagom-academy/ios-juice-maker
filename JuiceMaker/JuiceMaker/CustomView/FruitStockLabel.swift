@@ -8,6 +8,8 @@
 import UIKit
 
 final class FruitStockLabel: UILabel {
+    private(set) var kindFruit: Fruits?
+    private(set) var amount: Int?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -15,5 +17,10 @@ final class FruitStockLabel: UILabel {
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
         self.adjustsFontSizeToFitWidth = true
+    }
+    
+    func manage(fruit: Fruits, amount: Int) {
+        self.kindFruit = fruit
+        self.amount = amount
     }
 }

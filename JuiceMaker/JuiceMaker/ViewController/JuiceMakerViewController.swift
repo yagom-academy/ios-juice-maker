@@ -26,7 +26,8 @@ final class JuiceMakerViewController: UIViewController {
     // MARK: - ViewLife Cycle
     
     override func viewDidLoad() {
-        initLabel()
+        initFuritLabel()
+        initJuiceButton()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateLabel(_ :)),
                                                name: Notification.Name(rawValue: "changeFruitAmount"),
@@ -39,23 +40,25 @@ final class JuiceMakerViewController: UIViewController {
         
     // MARK: - Action
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: Any) {
-        let orderButton = sender as! OrderButton
-        let selectedFruit = Juices(rawValue: orderButton.currentTitle!)
+    @IBAction func touchUpJuiceOrderButton(_ sender: Any)  {
+        let orderButton = sender as? OrderButton
+        guard let kindJuice = orderButton?.kindJuice else {
+            return
+        }
         do {
-            try juiceMaker.make(order: selectedFruit!)
+            try juiceMaker.make(order: kindJuice)
         } catch {
             lakeStockAlert(JuiceMakerError.lackStock)
         }
-        orderSuccessAlert(selectedFruit!)
+        orderSuccessAlert(kindJuice)
     }
     
     @IBAction func touchUpModifyStock(_ sender: Any) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
+        guard let StockManagerViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
             return
         }
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc,animated: true)
+        StockManagerViewController.modalPresentationStyle = .fullScreen
+        self.present(StockManagerViewController,animated: true)
     }
     
     // MARK: - Update Data
@@ -63,25 +66,35 @@ final class JuiceMakerViewController: UIViewController {
      @objc private func updateLabel(_ notification: Notification) {
         switch notification.object! {
         case Fruits.strawberry :
-            strawberryLabel.text = juiceMaker.currentFruit(fruit: .strawberry)
+            strawberryLabel.text = String(juiceMaker.currentFruit(fruit: .strawberry))
         case Fruits.banana :
-            bananaLabel.text = juiceMaker.currentFruit(fruit: .banana)
+            bananaLabel.text = String(juiceMaker.currentFruit(fruit: .banana))
         case Fruits.pineapple :
-            pineappleLabel.text = juiceMaker.currentFruit(fruit: .pineapple)
+            pineappleLabel.text = String(juiceMaker.currentFruit(fruit: .pineapple))
         case Fruits.kiwi :
-            kiwiLabel.text = juiceMaker.currentFruit(fruit: .kiwi)
+            kiwiLabel.text = String(juiceMaker.currentFruit(fruit: .kiwi))
         case Fruits.mango :
-            mangoLabel.text = juiceMaker.currentFruit(fruit: .mango)
+            mangoLabel.text = String(juiceMaker.currentFruit(fruit: .mango))
         default:
             return
         }
     }
     
-    private func initLabel() {
-        strawberryLabel.text = juiceMaker.currentFruit(fruit: .strawberry)
-        bananaLabel.text = juiceMaker.currentFruit(fruit: .banana)
-        pineappleLabel.text = juiceMaker.currentFruit(fruit: .pineapple)
-        kiwiLabel.text = juiceMaker.currentFruit(fruit: .kiwi)
-        mangoLabel.text = juiceMaker.currentFruit(fruit: .mango)
+    private func initJuiceButton() {
+        strawberryButton.manage(kindJuice: .strawberryJuice)
+        bananaButton.manage(kindJuice: .bananaJuice)
+        pineappleButton.manage(kindJuice: .pineappleJuice)
+        kiwiButton.manage(kindJuice: .kiwiJuice)
+        mangoButton.manage(kindJuice: .mangoJuice)
+        mangoKiwiButton.manage(kindJuice: .mangoKiwiJuice)
+        strawberyBananaButton.manage(kindJuice: .strawberryBananaJuice)
+    }
+    
+    private func initFuritLabel() {
+        strawberryLabel.manage(fruit: .strawberry, amount: juiceMaker.currentFruit(fruit: .strawberry))
+        bananaLabel.manage(fruit: .banana, amount: juiceMaker.currentFruit(fruit: .banana))
+        pineappleLabel.manage(fruit: .pineapple, amount: juiceMaker.currentFruit(fruit: .pineapple))
+        kiwiLabel.manage(fruit: .kiwi, amount: juiceMaker.currentFruit(fruit: .kiwi))
+        mangoLabel.manage(fruit: .mango, amount: juiceMaker.currentFruit(fruit: .mango))
     }
 }

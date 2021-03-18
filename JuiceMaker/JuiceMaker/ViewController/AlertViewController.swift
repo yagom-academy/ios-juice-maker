@@ -18,11 +18,11 @@ extension JuiceMakerViewController {
         let failAlert = UIAlertController(title: nil , message: errorMessgae, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default)
         let stockSettingAction = UIAlertAction(title: "예", style: .cancel) { action in
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
+            guard let StockManagerViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
                 return
             }
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc,animated: true)
+            StockManagerViewController.modalPresentationStyle = .fullScreen
+            self.present(StockManagerViewController,animated: true)
         }
         failAlert.addAction(stockSettingAction)
         failAlert.addAction(cancel)
