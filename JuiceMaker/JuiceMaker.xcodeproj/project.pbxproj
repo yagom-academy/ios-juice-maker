@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38FCB86926023D570018A649 /* EditStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FCB86826023D570018A649 /* EditStockViewController.swift */; };
 		7065F9712601CB1500566C13 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7065F9702601CB1500566C13 /* Fruit.swift */; };
 		7065F9742601CB2D00566C13 /* FruitStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7065F9732601CB2D00566C13 /* FruitStock.swift */; };
 		7065F9772601CB3E00566C13 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7065F9762601CB3E00566C13 /* Juice.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38FCB86826023D570018A649 /* EditStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockViewController.swift; sourceTree = "<group>"; };
 		7065F9702601CB1500566C13 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		7065F9732601CB2D00566C13 /* FruitStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStock.swift; sourceTree = "<group>"; };
 		7065F9762601CB3E00566C13 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				70483AC22601D377007E75C5 /* Type */,
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
+				38FCB86826023D570018A649 /* EditStockViewController.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7065F9712601CB1500566C13 /* Fruit.swift in Sources */,
+				38FCB86926023D570018A649 /* EditStockViewController.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				7065F9772601CB3E00566C13 /* Juice.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
