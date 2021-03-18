@@ -475,35 +475,35 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="d9E-Ls-xg8">
                                 <rect key="frame" x="69" y="235.66666666666666" width="788" height="31.999999999999972"/>
                                 <subviews>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-vs-mun">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zUa-vs-mun" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="32"/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.88235294117647056" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="EKx-vJ-lBc"/>
                                         </connections>
                                     </stepper>
-                                    <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-QH-mJH">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-QH-mJH" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="172.66666666666666" y="0.0" width="97.666666666666657" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="xQT-9w-Ghk"/>
                                         </connections>
                                     </stepper>
-                                    <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZvV-wj-kID">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZvV-wj-kID" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="345.33333333333331" y="0.0" width="97.333333333333314" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="TrI-kz-Pkg"/>
                                         </connections>
                                     </stepper>
-                                    <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-Lh-deg">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-Lh-deg" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="517.66666666666663" y="0.0" width="97.666666666666629" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="stepperValueChanged:" destination="SaA-LG-edX" eventType="valueChanged" id="dDb-vb-lUF"/>
                                         </connections>
                                     </stepper>
-                                    <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vUg-Yq-nOT">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vUg-Yq-nOT" customClass="StockStepper" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="690.33333333333337" y="0.0" width="97.666666666666629" height="32"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.88235294119999996" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
@@ -539,6 +539,11 @@
                         <outletCollection property="fruitStockLabels" destination="cvy-Ft-DR3" collectionClass="NSMutableArray" id="NBX-OD-y8Y"/>
                         <outletCollection property="fruitStockLabels" destination="sNc-Wr-7hM" collectionClass="NSMutableArray" id="rvF-zp-N4D"/>
                         <outletCollection property="fruitStockLabels" destination="6xv-Dl-wg3" collectionClass="NSMutableArray" id="WNh-WD-QkH"/>
+                        <outletCollection property="stockSteppers" destination="zUa-vs-mun" id="fm7-P5-vR3"/>
+                        <outletCollection property="stockSteppers" destination="Pqo-QH-mJH" id="7xe-7u-NyM"/>
+                        <outletCollection property="stockSteppers" destination="ZvV-wj-kID" id="LaK-yH-huF"/>
+                        <outletCollection property="stockSteppers" destination="Lt0-Lh-deg" id="kcC-qN-QCt"/>
+                        <outletCollection property="stockSteppers" destination="vUg-Yq-nOT" id="CG2-6C-ca3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94a-SE-uqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
