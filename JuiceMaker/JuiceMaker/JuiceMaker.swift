@@ -68,31 +68,31 @@ class JuiceMaker {
         }
     }
     
-    private func manufactureJuice(of: FruitJuice) {
+    func manufactureJuice(of: FruitJuice) -> Bool {
         switch of {
         case .strawberryJuice where canMakeJuice(amount: fruitStock.strawberry, subtract: 16):
                 recipeOfJuice(juice: .strawberryJuice)
+            return true
         case .bananaJuice where canMakeJuice(amount: fruitStock.banana, subtract: 2):
                 recipeOfJuice(juice: .bananaJuice)
+            return true
         case .kiwiJuice where canMakeJuice(amount: fruitStock.kiwi, subtract: 3):
                 recipeOfJuice(juice: .kiwiJuice)
-            print(fruitStock.kiwi)
+            return true
         case .pineappleJuice where canMakeJuice(amount: fruitStock.pineapple, subtract: 2):
                 recipeOfJuice(juice: .pineappleJuice)
+            return true
         case .mangoJuice where canMakeJuice(amount: fruitStock.mango, subtract: 3):
                 recipeOfJuice(juice: .mangoJuice)
+            return true
         case .strawberryBananaJuice where canMakeJuice(amount: fruitStock.strawberry, subtract: 10) && canMakeJuice(amount: fruitStock.banana, subtract: 1):
                 recipeOfJuice(juice: .strawberryBananaJuice)
+            return true
         case .mangoKiwiJuice where canMakeJuice(amount: fruitStock.mango, subtract: 2) && canMakeJuice(amount: fruitStock.kiwi, subtract: 1):
                 recipeOfJuice(juice: .mangoKiwiJuice)
+            return true
         default:
-            return
+            return false
         }
-    }
-    
-    func start() {
-        checkFruitStock()
-        manufactureJuice(of: .kiwiJuice) // 예시로 키위주스를 만들어봤음
-        checkFruitStock()
     }
 }
