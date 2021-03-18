@@ -10,6 +10,8 @@
 		2708D05A2602F41300C3B02B /* JuiceOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D0592602F41300C3B02B /* JuiceOrderButton.swift */; };
 		2708D05E260314CC00C3B02B /* StockStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D05D260314CC00C3B02B /* StockStepper.swift */; };
 		2708D06126032EE600C3B02B /* StockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D06026032EE600C3B02B /* StockLabel.swift */; };
+		2708D0772603361E00C3B02B /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D0762603361E00C3B02B /* Fruit.swift */; };
+		2708D07A2603363900C3B02B /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D0792603363900C3B02B /* Juice.swift */; };
 		276EFB3626006A99001CE751 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EFB3526006A99001CE751 /* AlertExtension.swift */; };
 		27A00D7925FA1B2500FCA3E8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -25,6 +27,8 @@
 		2708D0592602F41300C3B02B /* JuiceOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceOrderButton.swift; sourceTree = "<group>"; };
 		2708D05D260314CC00C3B02B /* StockStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockStepper.swift; sourceTree = "<group>"; };
 		2708D06026032EE600C3B02B /* StockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLabel.swift; sourceTree = "<group>"; };
+		2708D0762603361E00C3B02B /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		2708D0792603363900C3B02B /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		276EFB3526006A99001CE751 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +53,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2708D0632603305200C3B02B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				2708D0762603361E00C3B02B /* Fruit.swift */,
+				2708D0792603363900C3B02B /* Juice.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2708D0642603307400C3B02B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2708D065260330B800C3B02B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
+				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
+				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
+				C73DAF44255D0CDF00020D38 /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		2708D066260330DC00C3B02B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
+				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2708D0732603351C00C3B02B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				276EFB3526006A99001CE751 /* AlertExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2708D0742603352D00C3B02B /* CustomClass */ = {
+			isa = PBXGroup;
+			children = (
+				2708D0592602F41300C3B02B /* JuiceOrderButton.swift */,
+				2708D05D260314CC00C3B02B /* StockStepper.swift */,
+				2708D06026032EE600C3B02B /* StockLabel.swift */,
+			);
+			path = CustomClass;
+			sourceTree = "<group>";
+		};
 		C73DAF2A255D0CDC00020D38 = {
 			isa = PBXGroup;
 			children = (
@@ -68,19 +129,12 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
-				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
-				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
-				27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */,
-				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
-				276EFB3526006A99001CE751 /* AlertExtension.swift */,
-				2708D0592602F41300C3B02B /* JuiceOrderButton.swift */,
-				2708D05D260314CC00C3B02B /* StockStepper.swift */,
-				2708D06026032EE600C3B02B /* StockLabel.swift */,
-				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
-				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
-				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
-				C73DAF44255D0CDF00020D38 /* Info.plist */,
+				2708D0632603305200C3B02B /* Model */,
+				2708D066260330DC00C3B02B /* View */,
+				2708D0642603307400C3B02B /* Controller */,
+				2708D0732603351C00C3B02B /* Extension */,
+				2708D0742603352D00C3B02B /* CustomClass */,
+				2708D065260330B800C3B02B /* Resource */,
 			);
 			path = JuiceMaker;
 			sourceTree = "<group>";
@@ -155,10 +209,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2708D0772603361E00C3B02B /* Fruit.swift in Sources */,
 				2708D05A2602F41300C3B02B /* JuiceOrderButton.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				2708D07A2603363900C3B02B /* Juice.swift in Sources */,
 				2708D05E260314CC00C3B02B /* StockStepper.swift in Sources */,
 				2708D06126032EE600C3B02B /* StockLabel.swift in Sources */,
 				27A00D7925FA1B2500FCA3E8 /* SecondViewController.swift in Sources */,
@@ -240,6 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -295,6 +352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -311,7 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JuiceMaker/Info.plist;
+				INFOPLIST_FILE = JuiceMaker/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -329,7 +387,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JuiceMaker/Info.plist;
+				INFOPLIST_FILE = JuiceMaker/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
