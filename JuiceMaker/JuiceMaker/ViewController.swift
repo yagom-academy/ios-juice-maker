@@ -24,81 +24,69 @@ class ViewController: UIViewController {
         stockOfKiwi.text = String(juiceMachine.checkStock(of: Fruit.kiwi))
         stockOfMango.text = String(juiceMachine.checkStock(of: Fruit.mango))
     }
+    // 재고를 확인하고 쥬스 만들기
+    func checkStockAndMakeJuice(_ juiceType: FruitJuice) {
+        print(juiceType.recipe)
+        
+        for (ingredient, amount) in juiceType.recipe {
+            if juiceMachine.checkStockAvailable(fruit: ingredient, requestedStock: amount) == false {
+                showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+                return
+            }
+        }
+        
+        showAlert(message: "\(juiceType.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
+        juiceMachine.makeFruitJuice(juiceType)
+        
+        for (ingredient, _) in juiceType.recipe {
+            updateStockLabel(fruit: ingredient)
+        }
+    }
+    
+    func updateStockLabel(fruit: Fruit) {
+        switch fruit {
+        case .strawberry:
+            stockOfStrawberry.text = String(juiceMachine.checkStock(of: .strawberry))
+        case .banana:
+            stockOfBanana.text = String(juiceMachine.checkStock(of: .banana))
+        case .kiwi:
+            stockOfKiwi.text = String(juiceMachine.checkStock(of: .kiwi))
+        case .mango:
+            stockOfMango.text = String(juiceMachine.checkStock(of: .mango))
+        case .pineapple:
+            stockOfPineapple.text = String(juiceMachine.checkStock(of: .pineapple))
+        }
+    }
     
     @IBAction func touchUpStrawberryJuiceButton(_ sender: UIButton) {
-        if juiceMachine.checkStockAvailable(fruit: .strawberry, requestedStock: 16) {
-            showAlert(message: "딸기 쥬스 나왔습니다! 맛있게 드세요!")
-            juiceMachine.makeFruitJuice(.strawberry)
-            stockOfStrawberry.text = String(juiceMachine.checkStock(of: Fruit.strawberry))
-        } else {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
-        }
+        checkStockAndMakeJuice(.strawberry)
     }
     
     @IBAction func touchUpBananaJuiceButton(_ sender: UIButton) {
-        if juiceMachine.checkStockAvailable(fruit: .banana, requestedStock: 2) {
-            showAlert(message: "바나나 쥬스 나왔습니다! 맛있게 드세요!")
-            juiceMachine.makeFruitJuice(.banana)
-            stockOfBanana.text = String(juiceMachine.checkStock(of: Fruit.banana))
-        } else {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
-        }
+        checkStockAndMakeJuice(.banana)
     }
     
     @IBAction func touchUpKiwiJuiceButton(_ sender: UIButton) {
-        if juiceMachine.checkStockAvailable(fruit: .kiwi, requestedStock: 3) {
-            showAlert(message: "키위 쥬스 나왔습니다! 맛있게 드세요!")
-            juiceMachine.makeFruitJuice(.kiwi)
-            stockOfKiwi.text = String(juiceMachine.checkStock(of: Fruit.kiwi))
-        } else {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
-        }
+        checkStockAndMakeJuice(.kiwi)
     }
     
     @IBAction func touchUpPineappleJuiceButton(_ sender: UIButton) {
-        if juiceMachine.checkStockAvailable(fruit: .pineapple, requestedStock: 2) {
-            showAlert(message: "파인애플 쥬스 나왔습니다! 맛있게 드세요!")
-            juiceMachine.makeFruitJuice(.pineapple)
-            stockOfPineapple.text = String(juiceMachine.checkStock(of: Fruit.pineapple))
-        } else {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
-        }
+        checkStockAndMakeJuice(.pineapple)
     }
     
     @IBAction func touchUpMangoJuiceButton(_ sender: UIButton) {
-        if juiceMachine.checkStockAvailable(fruit: .mango, requestedStock: 3) {
-            showAlert(message: "망고 쥬스 나왔습니다! 맛있게 드세요!")
-            juiceMachine.makeFruitJuice(.mango)
-            stockOfMango.text = String(juiceMachine.checkStock(of: Fruit.mango))
-        } else {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
-        }
+        checkStockAndMakeJuice(.mango)
     }
     
     @IBAction func touchUpStrawberryBananaJuiceButton(_ sender: UIButton) {
-        if juiceMachine.checkStockAvailable(fruit: .strawberry, requestedStock: 10) && juiceMachine.checkStockAvailable(fruit: .banana, requestedStock: 1) {
-            showAlert(message: "딸바 쥬스 나왔습니다! 맛있게 드세요!")
-            juiceMachine.makeFruitJuice(.strawberryBanana)
-            stockOfStrawberry.text = String(juiceMachine.checkStock(of: Fruit.strawberry))
-            stockOfBanana.text = String(juiceMachine.checkStock(of: Fruit.banana))
-        } else {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
-        }
+        checkStockAndMakeJuice(.strawberryBanana)
     }
     
     @IBAction func touchUpMangoKiwiJuiceButton(_ sender: UIButton) {
-        if juiceMachine.checkStockAvailable(fruit: .mango, requestedStock: 2) && juiceMachine.checkStockAvailable(fruit: .kiwi, requestedStock: 1) {
-            showAlert(message: "망고키위 쥬스 나왔습니다! 맛있게 드세요!")
-            juiceMachine.makeFruitJuice(.mangoKiwi)
-            stockOfMango.text = String(juiceMachine.checkStock(of: Fruit.mango))
-            stockOfKiwi.text = String(juiceMachine.checkStock(of: Fruit.kiwi))
-        } else {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?")
-        }
+        checkStockAndMakeJuice(.mangoKiwi)
     }
     
     func showAlert(message: String) {
-        
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let stockAddAction = UIAlertAction(title: "예", style: .default) { (action) in
             guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "StockAdd") else { return }

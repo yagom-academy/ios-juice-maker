@@ -10,9 +10,16 @@ enum Fruit: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-enum FruitJuice {
-    case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangoKiwi
+enum FruitJuice: String {
+    case strawberry = "딸기"
+    case banana = "바나나"
+    case kiwi = "키위"
+    case pineapple = "파인애플"
+    case strawberryBanana = "딸바"
+    case mango = "망고"
+    case mangoKiwi = "망키"
     
+    // recipe는 딕셔너리
     var recipe: [Fruit: Int] {
         switch self {
         case .strawberry:
