@@ -28,7 +28,6 @@ class Stock {
   func count(for fruit: Fruit) -> Int {
     let returnValueForInvalidInput: Int = 0
     guard let fruitNumberInStock = stock[fruit] else {
-      print("과일 입력이 잘못 되었습니다. 프로그램을 다시 확인해주세요. \(#function)")
       return returnValueForInvalidInput
     }
     return fruitNumberInStock
