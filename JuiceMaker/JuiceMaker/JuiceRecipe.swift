@@ -11,12 +11,12 @@ import Foundation
 struct JuiceRecipe {
   private let wrappedRecipeBook: Recipe?
   
-  init?() {
+  init() throws {
     guard let path = Bundle.main.path(forResource: "Recipe", ofType: "json") else {
-      return nil
+      throw RecipeError.canNotFindJSONPath
     }
     guard let jsonData = try? String(contentsOfFile: path).data(using: .utf8) else {
-      return nil
+      throw RecipeError.failedToConvertJSONAsDataFormat
     }
     self.wrappedRecipeBook = try? JSONDecoder().decode(Recipe.self, from: jsonData)
   }

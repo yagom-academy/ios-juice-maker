@@ -25,9 +25,7 @@ class JuiceMaker {
   // MARK: - Component Methods for 'make(of:)'
   private func checkRequiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
     var requiredFruits = [Fruit: Int]()
-    guard let recipe = JuiceRecipe() else {
-      throw RecipeError.nilHasOccurredWhileUnwrappingRecipe
-    }
+    let recipe = try JuiceRecipe()
     
     for ingredient in (try recipe.find(for: orderedJuice)).ingredient {
       guard let fruit = ingredient.fruitName,
