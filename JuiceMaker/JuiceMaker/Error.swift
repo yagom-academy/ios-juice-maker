@@ -8,21 +8,21 @@
 import Foundation
 
 enum FruitError: Error, CustomStringConvertible {
-  case invalidFruit
   case nilHasOccurredWhileSubtracting
   case nilHasOccurredWhileAdding
   case nilHasOccurredWhileCheckingStock
+  case nilHasOccurredWhileCountingStock
   
   var description: String {
     switch self {
-    case .invalidFruit:
-      return "🔥 과일 입력이 잘못되었습니다."
     case .nilHasOccurredWhileSubtracting:
       return "🔥 쥬스 재고 차감 중 stock[fruit] = nil이 발생하였습니다."
     case .nilHasOccurredWhileAdding:
       return "🔥 쥬스 재고 추가 중 stock[fruit] = nil이 발생하였습니다."
     case .nilHasOccurredWhileCheckingStock:
       return "🔥 쥬스 재고 확인 중 stock[fruit] = nil이 발생하였습니다."
+    case .nilHasOccurredWhileCountingStock:
+      return "🔥 쥬스 재고 반환 중 stock[fruit] = nil이 발생하였습니다."
     }
   }
 }

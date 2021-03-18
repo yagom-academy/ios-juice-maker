@@ -25,8 +25,7 @@ class Stock {
     print("\(fruit): \(fruitNumberInStock)")
   }
   
-  func count(for fruit: Fruit) -> Int {
-    let returnValueForInvalidInput: Int = 0
+  func count(for fruit: Fruit) throws -> Int {
     guard let fruitNumberInStock = stock[fruit] else {
       return returnValueForInvalidInput
     }

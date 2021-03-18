@@ -61,7 +61,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA8DB0A62600897D00CA0CBE /* Models */ = {
+		853A95F22600D258001D7A29 /* StructTypesForDecoding */ = {
+			isa = PBXGroup;
+			children = (
+				AA8DB0812600641100CA0CBE /* Ingredient.swift */,
+				AA8DB07E2600640600CA0CBE /* JuiceType.swift */,
+				AA8DB07B260063FD00CA0CBE /* Recipe.swift */,
+			);
+			path = StructTypesForDecoding;
+			sourceTree = "<group>";
+		};
+		853A95F32600D260001D7A29 /* EnumTypes */ = {
 			isa = PBXGroup;
 			children = (
 				AA8DB075260063BF00CA0CBE /* Fruit.swift */,

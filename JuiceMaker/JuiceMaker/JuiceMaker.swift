@@ -35,8 +35,9 @@ class JuiceMaker {
   }
   
   private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) -> Bool {
+
     for (fruit, requiredQuantity) in requiredFruits {
-      let stockedQuantity = Stock.shared.count(for: fruit)
+      let stockedQuantity = try Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
         orderResult.isSuccessed = false
         orderResult.message =
