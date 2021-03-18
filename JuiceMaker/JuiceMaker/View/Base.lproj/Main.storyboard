@@ -396,7 +396,7 @@
                                 </constraints>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <segue destination="RWe-6J-gOF" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="Hsd-da-1s9"/>
+                                    <segue destination="RWe-6J-gOF" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="4RF-QT-gPb"/>
                                 </connections>
                             </button>
                         </subviews>
