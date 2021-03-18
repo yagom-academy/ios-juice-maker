@@ -18,26 +18,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKp-rS-JkG">
-                                <rect key="frame" x="44" y="0.0" width="838" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="926" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맛있는 쥬스를 만들어 드려요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnV-mA-gZo">
-                                        <rect key="frame" x="321.66666666666669" y="14.666666666666664" width="195.00000000000006" height="21"/>
+                                        <rect key="frame" x="365.66666666666669" y="14.666666666666664" width="195.00000000000006" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Plu-lS-Ns5">
-                                        <rect key="frame" x="762" y="10" width="56" height="30"/>
+                                        <rect key="frame" x="830" y="10" width="56" height="30"/>
                                         <state key="normal" title="쥬스 재고"/>
+                                        <connections>
+                                            <action selector="goToFruitsStorage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kVH-Mi-RGl"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
-                                    <constraint firstItem="BnV-mA-gZo" firstAttribute="centerY" secondItem="bKp-rS-JkG" secondAttribute="centerY" id="C6X-Xf-RCb"/>
-                                    <constraint firstItem="BnV-mA-gZo" firstAttribute="centerX" secondItem="bKp-rS-JkG" secondAttribute="centerX" id="KP2-Qw-N1j"/>
-                                    <constraint firstAttribute="height" constant="50" id="eNC-QD-jxA"/>
-                                    <constraint firstItem="Plu-lS-Ns5" firstAttribute="centerY" secondItem="bKp-rS-JkG" secondAttribute="centerY" id="gTF-n4-mtz"/>
-                                    <constraint firstAttribute="trailing" secondItem="Plu-lS-Ns5" secondAttribute="trailing" constant="20" id="mbE-9N-ACj"/>
+                                    <constraint firstItem="BnV-mA-gZo" firstAttribute="centerY" secondItem="bKp-rS-JkG" secondAttribute="centerY" id="4r7-Qf-655"/>
+                                    <constraint firstItem="Plu-lS-Ns5" firstAttribute="centerY" secondItem="bKp-rS-JkG" secondAttribute="centerY" id="O3r-ek-wNF"/>
+                                    <constraint firstItem="BnV-mA-gZo" firstAttribute="centerX" secondItem="bKp-rS-JkG" secondAttribute="centerX" id="X4m-S0-oDp"/>
+                                    <constraint firstAttribute="height" constant="50" id="XzY-wm-TnF"/>
+                                    <constraint firstAttribute="trailing" secondItem="Plu-lS-Ns5" secondAttribute="trailing" constant="40" id="ziT-5c-5Ce"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxf-Oz-FGl">
@@ -118,7 +121,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="strawberryBananaJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yBw-iK-ByV"/>
+                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r2g-6X-lBd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWQ-XI-Snx">
@@ -129,7 +132,7 @@
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="mangoKiwiJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="065-dt-LDb"/>
+                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tlo-G4-ZlJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTK-Et-pFz">
@@ -162,7 +165,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="strawberryJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UfS-5h-Piw"/>
+                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hcl-6V-gXZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQh-UQ-IKz">
@@ -195,7 +198,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="bananaJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6v4-tP-YiF"/>
+                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jff-L0-VGM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-Cv-ZRW">
@@ -228,7 +231,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="pineappleJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yn3-wE-jSp"/>
+                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vf4-Iq-Ub6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eHr-Cx-LhC">
@@ -261,7 +264,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="kiwiJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="daX-5N-0wr"/>
+                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSc-vn-Anx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJd-RA-3pg">
@@ -294,7 +297,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="mangoJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tsB-sQ-bdj"/>
+                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6fV-7A-wmq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="바나나" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tS9-40-R3C">
@@ -309,22 +312,77 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bKp-rS-JkG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7DG-cH-ePj"/>
-                            <constraint firstItem="bKp-rS-JkG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="CQ0-7k-qTb"/>
-                            <constraint firstItem="bKp-rS-JkG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NzV-03-h0U"/>
-                            <constraint firstItem="bKp-rS-JkG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nIh-vi-fok"/>
+                            <constraint firstItem="bKp-rS-JkG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fEk-cf-Qtq"/>
+                            <constraint firstItem="bKp-rS-JkG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ilJ-tc-l2j"/>
+                            <constraint firstAttribute="trailing" secondItem="bKp-rS-JkG" secondAttribute="trailing" id="r2z-Zu-7hr"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bananaJuice" destination="KQh-UQ-IKz" id="pIC-s3-Jyc"/>
                         <outlet property="bananaStock" destination="tS9-40-R3C" id="Dy2-sL-Pl8"/>
+                        <outlet property="kiwiJuice" destination="eHr-Cx-LhC" id="HGe-8s-ufe"/>
                         <outlet property="kiwiStock" destination="knd-e8-5ZL" id="0kh-7S-nxt"/>
+                        <outlet property="mangoJuice" destination="PJd-RA-3pg" id="kjO-Qn-fC5"/>
+                        <outlet property="mangoKiwiJuice" destination="vWQ-XI-Snx" id="dCc-pT-Oof"/>
                         <outlet property="mangoStock" destination="zWf-ol-HWJ" id="ISj-TW-RQJ"/>
+                        <outlet property="pineappleJuice" destination="WRv-Cv-ZRW" id="lm9-4g-FPa"/>
                         <outlet property="pineappleStock" destination="YJf-hx-0Ka" id="TeG-RE-d1M"/>
+                        <outlet property="strawberryBananaJuice" destination="pHK-fU-KCE" id="bEX-Fq-BQj"/>
+                        <outlet property="strawberryJuice" destination="hTK-Et-pFz" id="mqD-YE-B6U"/>
                         <outlet property="strawberryStock" destination="1AH-sl-nx1" id="747-Tu-pjZ"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1064" y="70"/>
+        </scene>
+        <!--Fruits Storage View Controller-->
+        <scene sceneID="h5v-uU-ohQ">
+            <objects>
+                <viewController storyboardIdentifier="fruitsStorageVC" id="N7I-YU-2Nq" customClass="FruitsStorageViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BQW-kS-lqT">
+                        <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBt-9w-ufQ">
+                                <rect key="frame" x="0.0" y="0.0" width="926" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Src-YQ-iuy">
+                                        <rect key="frame" x="431" y="14.666666666666664" width="64" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idi-O9-Dr1">
+                                        <rect key="frame" x="856" y="10" width="30" height="30"/>
+                                        <state key="normal" title="닫기"/>
+                                        <connections>
+                                            <action selector="closeToFruitsStorage:" destination="N7I-YU-2Nq" eventType="touchUpInside" id="pfc-EY-knH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstItem="Idi-O9-Dr1" firstAttribute="centerY" secondItem="bBt-9w-ufQ" secondAttribute="centerY" id="2Ig-7q-QOq"/>
+                                    <constraint firstAttribute="height" constant="50" id="50X-cf-ms4"/>
+                                    <constraint firstItem="Src-YQ-iuy" firstAttribute="centerY" secondItem="bBt-9w-ufQ" secondAttribute="centerY" id="56K-BX-fgV"/>
+                                    <constraint firstAttribute="trailing" secondItem="Idi-O9-Dr1" secondAttribute="trailing" constant="40" id="L4S-Oe-bZS"/>
+                                    <constraint firstItem="Src-YQ-iuy" firstAttribute="centerX" secondItem="bBt-9w-ufQ" secondAttribute="centerX" id="PvD-5d-A9I"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WKJ-XZ-H78"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bBt-9w-ufQ" firstAttribute="top" secondItem="WKJ-XZ-H78" secondAttribute="top" id="2GL-sb-xK2"/>
+                            <constraint firstAttribute="trailing" secondItem="bBt-9w-ufQ" secondAttribute="trailing" id="u8a-eg-jlf"/>
+                            <constraint firstItem="bBt-9w-ufQ" firstAttribute="leading" secondItem="BQW-kS-lqT" secondAttribute="leading" id="wCB-hQ-ovp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aXD-qq-Xh2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MvJ-ug-0Lv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064" y="960"/>
         </scene>
     </scenes>
     <resources>
