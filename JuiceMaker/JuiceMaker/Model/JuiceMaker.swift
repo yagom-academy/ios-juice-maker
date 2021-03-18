@@ -12,15 +12,15 @@ final class JuiceMaker {
     
     private init() {}
     
-    func make(order: Juices) throws {
+    func make(order: Juices) -> Bool {
         for (kind, amountForJuice) in order.recipe {
-            do {
-                try hasFruitStock(fruit: kind, amount: amountForJuice)
-                 consume(fruit: kind, amount: amountForJuice)
-            } catch {
-                throw JuiceMakerError.lackStock
+            if hasFruitStock(fruit: kind, amount: amountForJuice) {
+                consume(fruit: kind, amount: amountForJuice)
+            } else {
+                return false
             }
         }
+        return true
     }
     
     func currentFruit(fruit: Fruits) -> Int {
@@ -31,9 +31,10 @@ final class JuiceMaker {
         fruitStorage.manageStorage(fruit: kind, amount: -amount)
     }
     
-    private func hasFruitStock(fruit kind: Fruits, amount: Int) throws {
+    private func hasFruitStock(fruit kind: Fruits, amount: Int) -> Bool {
         guard let stock = fruitStorage.fruits[kind], amount > 0, stock - amount >= 0 else {
-            throw JuiceMakerError.lackStock
+            return false
         }
+        return true
     }
 }

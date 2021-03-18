@@ -7,7 +7,7 @@ enum JuiceMakerError: Error {
 }
 
 extension JuiceMakerError: LocalizedError {
-    public var description: String {
+    public var errorDescription: String? {
         switch self {
         case .lackStock:
             return "재료가 모자라요\n 재고를 수정할까요?"

@@ -10,7 +10,10 @@ class FruitStock {
     }
     
     func manageStorage(fruit kind: Fruits, amount: Int) {
-        fruits.updateValue(fruits[kind]! + amount, forKey: kind)
+        guard let stock = fruits[kind] else {
+            return NSLog(JuiceMakerError.invalidStock.localizedDescription)
+        }
+        fruits.updateValue(stock + amount, forKey: kind)
         NotificationCenter.default.post(name: Notification.Name(rawValue: "changeFruitAmount"), object: kind)
     }
 }
