@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_7" orientation="landscape" appearance="light"/>
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,23 +11,22 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKp-rS-JkG">
-                                <rect key="frame" x="44" y="0.0" width="838" height="50"/>
+                                <rect key="frame" x="44" y="0.0" width="808" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맛있는 쥬스를 만들어 드려요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnV-mA-gZo">
-                                        <rect key="frame" x="321.66666666666669" y="14.666666666666664" width="195.00000000000006" height="21"/>
+                                        <rect key="frame" x="306.5" y="14.5" width="195" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Plu-lS-Ns5">
-                                        <rect key="frame" x="762" y="10" width="56" height="30"/>
+                                        <rect key="frame" x="732" y="10" width="56" height="30"/>
                                         <state key="normal" title="쥬스 재고"/>
                                     </button>
                                 </subviews>
@@ -138,24 +137,10 @@
                                 <color key="backgroundColor" red="0.2274509804" green="0.43529411759999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="딸기쥬스">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content=" ">
+                                        <fragment content="딸기쥬스 주문">
                                             <attributes>
                                                 <color key="NSColor" systemColor="systemBackgroundColor"/>
                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="주문">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -171,24 +156,10 @@
                                 <color key="backgroundColor" red="0.2274509804" green="0.43529411759999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="바나나쥬스">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content=" ">
+                                        <fragment content="바나나쥬스 주문">
                                             <attributes>
                                                 <color key="NSColor" systemColor="systemBackgroundColor"/>
                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="주문">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -204,24 +175,10 @@
                                 <color key="backgroundColor" red="0.2274509804" green="0.43529411759999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="파인애플 쥬스">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content=" ">
+                                        <fragment content="파인애플 쥬스 주문">
                                             <attributes>
                                                 <color key="NSColor" systemColor="systemBackgroundColor"/>
                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="주문">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -237,24 +194,10 @@
                                 <color key="backgroundColor" red="0.2274509804" green="0.43529411759999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="키위쥬스">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content=" ">
+                                        <fragment content="키위쥬스 주문">
                                             <attributes>
                                                 <color key="NSColor" systemColor="systemBackgroundColor"/>
                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="주문">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -270,24 +213,10 @@
                                 <color key="backgroundColor" red="0.2274509804" green="0.43529411759999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="망고쥬스">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content=" ">
+                                        <fragment content="망고쥬스 주문">
                                             <attributes>
                                                 <color key="NSColor" systemColor="systemBackgroundColor"/>
                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="주문">
-                                            <attributes>
-                                                <color key="NSColor" systemColor="systemBackgroundColor"/>
-                                                <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -323,6 +252,7 @@
                         <outlet property="strawberryStock" destination="1AH-sl-nx1" id="747-Tu-pjZ"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1064" y="70"/>
         </scene>

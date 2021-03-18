@@ -17,14 +17,14 @@ class ViewController: UIViewController {
     
     @IBAction func strawberryBananaJuiceOrder(_ sender: UIButton) {
         juiceMaker.makeJuice(ObjectIdentifier(StrawberryBananaJuice.self))
-        strawberryStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Strawberry.self)]!)
-        bananaStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Banana.self)]!)
+        strawberryStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Strawberry.self)]!)
+        bananaStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Banana.self)]!)
     }
     
     @IBAction func mangoKiwiJuiceOrder(_ sender: UIButton) {
         juiceMaker.makeJuice(ObjectIdentifier(MangoKiwiJuice.self))
-        mangoStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Mango.self)]!)
-        kiwiStock.text = String(juiceMaker.fruitsStorage.fruitsStock[ObjectIdentifier(Kiwi.self)]!)
+        mangoStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Mango.self)]!)
+        kiwiStock.text = String(FruitsStorage.sharedInstance.fruitsStock[ObjectIdentifier(Kiwi.self)]!)
     }
     
     @IBAction func strawberryJuiceOrder(_ sender: UIButton) {
