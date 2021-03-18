@@ -18,7 +18,7 @@ final class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
-    @IBOutlet private weak var starwberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceOrderButton: UIButton!
     
     private let juiceMaker = JuiceMaker.shared
@@ -82,31 +82,25 @@ final class JuiceMakerViewController: UIViewController {
         self.present(stockManagerVC, animated: true, completion: nil)
     }
 
-    @IBAction private func touchUpStrawberryJuiceOrderButton() {
-        makeOrderedJuice(menu: .strawberryJuice)
-    }
-    
-    @IBAction private func touchUpBananaJuiceOrderButton() {
-        makeOrderedJuice(menu: .bananaJuice)
-    }
-    
-    @IBAction private func touchUpPineappleJuiceOrderButton() {
-        makeOrderedJuice(menu: .pineappleJuice)
-    }
-    
-    @IBAction private func touchUpKiwiJuiceOrderButton() {
-        makeOrderedJuice(menu: .kiwiJuice)
-    }
-    
-    @IBAction private func touchUpMangoJuiceOrderButton() {
-        makeOrderedJuice(menu: .mangoJuice)
-    }
-    
-    @IBAction private func touchUpStrawberryBananaJuiceOrderButton() {
-        makeOrderedJuice(menu: .strawberryBananaJuice)
-    }
-    
-    @IBAction private func touchUpMangoKiwiJuiceOrderButton() {
-        makeOrderedJuice(menu: .mangoKiwiJuice)
+    @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {
+        switch sender {
+        case strawberryJuiceOrderButton:
+            makeOrderedJuice(menu: .strawberryJuice)
+        case bananaJuiceOrderButton:
+            makeOrderedJuice(menu: .bananaJuice)
+        case pineappleJuiceOrderButton:
+            makeOrderedJuice(menu: .pineappleJuice)
+        case kiwiJuiceOrderButton:
+            makeOrderedJuice(menu: .kiwiJuice)
+        case mangoJuiceOrderButton:
+            makeOrderedJuice(menu: .mangoJuice)
+        case mangoKiwiJuiceOrderButton:
+            makeOrderedJuice(menu: .mangoKiwiJuice)
+        case strawberryBananaJuiceOrderButton:
+            makeOrderedJuice(menu: .strawberryBananaJuice)
+        default: 
+            return
+        }
     }
 }
+
