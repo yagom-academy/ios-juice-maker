@@ -38,20 +38,18 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     @objc private func updateFruitStock(_ notification: Notification) {
-                guard let fruit = notification.object as? FruitTypes else { return }
-                switch fruit {
-                case .strawberry:
-                    strawberryStockLabel.text = juiceMaker.fruitStockCount(of: .strawberry)
-                case .banana:
-                    bananaStockLabel.text = juiceMaker.fruitStockCount(of: .banana)
-                case .kiwi:
-                    kiwiStockLabel.text = juiceMaker.fruitStockCount(of: .kiwi)
-                case .mango:
-                    mangoStockLabel.text = juiceMaker.fruitStockCount(of: .mango)
-                case .pineapple:
-                    pineappleStockLabel.text = juiceMaker.fruitStockCount(of: .pineapple)
-                default:
-                    print("error")
+        guard let fruit = notification.object as? FruitTypes else { return }
+        switch fruit {
+        case .strawberry:
+            strawberryStockLabel.text = juiceMaker.fruitStockCount(of: .strawberry)
+        case .banana:
+            bananaStockLabel.text = juiceMaker.fruitStockCount(of: .banana)
+        case .kiwi:
+            kiwiStockLabel.text = juiceMaker.fruitStockCount(of: .kiwi)
+        case .mango:
+            mangoStockLabel.text = juiceMaker.fruitStockCount(of: .mango)
+        case .pineapple:
+            pineappleStockLabel.text = juiceMaker.fruitStockCount(of: .pineapple)
         }
     }
 
