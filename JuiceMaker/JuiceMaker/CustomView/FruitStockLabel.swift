@@ -8,6 +8,7 @@
 import UIKit
 
 final class FruitStockLabel: UILabel {
+    private var juiceMaker = JuiceMaker.shared
     private(set) var kindFruit: Fruits?
     private(set) var amount: Int?
     
@@ -19,8 +20,14 @@ final class FruitStockLabel: UILabel {
         self.adjustsFontSizeToFitWidth = true
     }
     
-    func manage(fruit: Fruits, amount: Int) {
+    func initValue(fruit: Fruits, amount: Int) {
         self.kindFruit = fruit
         self.amount = amount
+        self.text = "\(amount)"
+    }
+    
+    func updateLabel() {
+        self.amount = juiceMaker.currentFruit(fruit: kindFruit!)
+        self.text = "\(String(describing: amount))"
     }
 }

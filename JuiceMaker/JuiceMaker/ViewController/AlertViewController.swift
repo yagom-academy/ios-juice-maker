@@ -28,7 +28,7 @@ extension JuiceMakerViewController {
         failAlert.addAction(cancel)
         present(failAlert, animated: true, completion: nil)
     }
-
+    
     func orderSuccessAlert(_ kindJuice: Juices) {
         let alert = UIAlertController(title: "주문 확인", message: "\(kindJuice) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)

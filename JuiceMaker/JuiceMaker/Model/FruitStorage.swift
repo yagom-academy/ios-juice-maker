@@ -1,6 +1,6 @@
 import Foundation
 
-class FruitStock {
+final class FruitStock {
     public private(set) var fruits: Storage = [:]
     
     init(initAmount: Int) {

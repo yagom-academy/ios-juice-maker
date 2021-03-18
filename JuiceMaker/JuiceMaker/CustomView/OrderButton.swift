@@ -17,7 +17,7 @@ final class OrderButton: UIButton {
         self.layer.borderWidth = 1.2
     }
     
-    func manage(kindJuice: Juices) {
+    func initValue(kindJuice: Juices) {
         self.kindJuice = kindJuice
     }
 }
