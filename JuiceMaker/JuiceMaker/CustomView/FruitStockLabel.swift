@@ -31,7 +31,7 @@ final class FruitStockLabel: UILabel {
         self.text = String(amount)
     }
     
-    @objc func updateLabel(_ notification: Notification) {
+    @objc private func updateLabel(_ notification: Notification) {
         guard let fruit = kindFruit, let amount = juiceMaker.fruitStorage.fruits[fruit] else {
             return
         }
