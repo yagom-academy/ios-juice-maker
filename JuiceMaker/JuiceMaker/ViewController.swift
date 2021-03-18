@@ -9,14 +9,21 @@ import UIKit
 class ViewController: UIViewController {
     let juiceMaker = JuiceMaker.shared
     @IBOutlet var fruitStockLabels = [UILabel]()
+    @IBOutlet var juiceOrderButtons: [JuiceOrderButton]!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        connectJuice(to: juiceOrderButtons)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         update(labels: fruitStockLabels, by: juiceMaker.stock)
     }
     
-    @IBAction func juiceOrderButton(_ sender: UIButton) {
-        guard let juice = Juice(rawValue: sender.tag) else { return }
+    @IBAction func touchUpJuiceOrderButton(_ sender: JuiceOrderButton) {
+        guard let juice = sender.juice else { return }
         
         if juiceMaker.stock.hasFruits(for: juice) {
             juiceMaker.make(juice)
@@ -44,5 +51,13 @@ func update(labels: [UILabel], by stock: Stock) {
         guard let fruitStock = stock.fruits[fruitType] else { return }
         
         labels[index].text = String(fruitStock)
+    }
+}
+
+func connectJuice(to buttons: [JuiceOrderButton]) {
+    for index in 0..<buttons.count {
+        guard let juiceType = Juice(rawValue: index) else { return }
+        
+        buttons[index].juice = juiceType
     }
 }

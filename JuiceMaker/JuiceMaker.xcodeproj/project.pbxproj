@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2708D05A2602F41300C3B02B /* JuiceOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708D0592602F41300C3B02B /* JuiceOrderButton.swift */; };
 		276EFB3626006A99001CE751 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EFB3526006A99001CE751 /* AlertExtension.swift */; };
 		27A00D7925FA1B2500FCA3E8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2708D0592602F41300C3B02B /* JuiceOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceOrderButton.swift; sourceTree = "<group>"; };
 		276EFB3526006A99001CE751 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				27A00D7825FA1B2500FCA3E8 /* SecondViewController.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				276EFB3526006A99001CE751 /* AlertExtension.swift */,
+				2708D0592602F41300C3B02B /* JuiceOrderButton.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2708D05A2602F41300C3B02B /* JuiceOrderButton.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

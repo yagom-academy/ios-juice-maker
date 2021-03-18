@@ -117,7 +117,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="IXJ-ma-vEZ">
                                 <rect key="frame" x="69" y="235.66666666666663" width="624.33333333333337" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-wX-T83">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-wX-T83" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="297.33333333333331" height="50"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -125,10 +125,10 @@
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="voe-Hh-7X4"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lhH-TM-StY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iul-Fn-PP3">
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iul-Fn-PP3" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="327.33333333333331" y="0.0" width="296.99999999999994" height="50"/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.88235294117647056" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -136,7 +136,7 @@
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a9F-pB-YlT"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y6b-lT-17g"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -147,7 +147,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="bhh-OV-nZT">
                                 <rect key="frame" x="69" y="295.66666666666669" width="788" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-7H-GAE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-7H-GAE" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="133.66666666666666" height="50"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal">
@@ -162,10 +162,10 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NDW-oD-rxl"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MTn-Cv-o32"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-Hy-fJT">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-Hy-fJT" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="163.66666666666669" y="0.0" width="133.66666666666669" height="50"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal">
@@ -196,10 +196,10 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nZx-SD-KN5"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AQF-Dz-oLQ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-jd-09V">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-jd-09V" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="327.33333333333331" y="0.0" width="133.33333333333331" height="50"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal">
@@ -214,10 +214,10 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vTq-aY-eYm"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I10-yG-o3P"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5T-Mh-Blt">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5T-Mh-Blt" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="490.66666666666669" y="0.0" width="133.66666666666669" height="50"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal">
@@ -248,10 +248,10 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lfx-ax-i2f"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w2P-Ev-th7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWe-gE-uVg">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWe-gE-uVg" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="654.33333333333337" y="0.0" width="133.66666666666663" height="50"/>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal">
@@ -282,7 +282,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E3H-9x-2l0"/>
+                                            <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUj-9Q-Wth"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -290,7 +290,7 @@
                                     <constraint firstAttribute="height" constant="50" id="wda-qO-3Un"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crY-L9-Zta">
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crY-L9-Zta" customClass="JuiceOrderButton" customModule="JuiceMaker" customModuleProvider="target">
                                 <rect key="frame" x="723.33333333333337" y="235.66666666666663" width="133.66666666666663" height="50"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.87450980389999999" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -308,7 +308,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="utG-Tf-KyU"/>
+                                    <action selector="touchUpJuiceOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gda-3t-N47"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -352,6 +352,14 @@
                         <outletCollection property="fruitStockLabels" destination="GIC-Gc-idQ" collectionClass="NSMutableArray" id="aiL-Vq-bYt"/>
                         <outletCollection property="fruitStockLabels" destination="hD2-19-9Qq" collectionClass="NSMutableArray" id="11J-I9-sEi"/>
                         <outletCollection property="fruitStockLabels" destination="Vdu-Yp-I00" collectionClass="NSMutableArray" id="943-kx-wYS"/>
+                        <outletCollection property="juiceOrderButtons" destination="gIe-7H-GAE" collectionClass="NSMutableArray" id="bcv-Zc-ydn"/>
+                        <outletCollection property="juiceOrderButtons" destination="1CT-Hy-fJT" collectionClass="NSMutableArray" id="d8f-jE-xG3"/>
+                        <outletCollection property="juiceOrderButtons" destination="mbb-jd-09V" collectionClass="NSMutableArray" id="Mmx-68-cXX"/>
+                        <outletCollection property="juiceOrderButtons" destination="A5T-Mh-Blt" collectionClass="NSMutableArray" id="Bfq-KQ-bVo"/>
+                        <outletCollection property="juiceOrderButtons" destination="pWe-gE-uVg" collectionClass="NSMutableArray" id="gsa-VN-Nyo"/>
+                        <outletCollection property="juiceOrderButtons" destination="oAF-wX-T83" collectionClass="NSMutableArray" id="lWH-v9-nkF"/>
+                        <outletCollection property="juiceOrderButtons" destination="iul-Fn-PP3" collectionClass="NSMutableArray" id="GyP-2j-bJ6"/>
+                        <outletCollection property="juiceOrderButtons" destination="crY-L9-Zta" collectionClass="NSMutableArray" id="E06-zY-rIP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
