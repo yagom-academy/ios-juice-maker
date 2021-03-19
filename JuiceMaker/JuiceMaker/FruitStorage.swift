@@ -21,35 +21,18 @@ class FruitStorage {
         }
     }
     
-    func increaseStock(of fruit: Fruit, by quantity: Int) throws {
+    func manageFruit(fruit: Fruit, quantity: Int) {
         guard let stock = refrigerator[fruit] else {
-            throw JuiceMakerError.outOfStock
+            return
         }
-        if quantity >= 0 {
-            refrigerator.updateValue(stock + quantity, forKey: fruit)
-        }
+        refrigerator.updateValue(stock + quantity, forKey: fruit)
+
     }
     
-    func decreaseStock(of fruit: Fruit, by quantity: Int) throws {
-        guard let stock = refrigerator[fruit], stock >= quantity else {
-            throw JuiceMakerError.outOfStock
+    func hasEnoughFruit(fruit: Fruit, requiredQuantity: Int) -> Bool {
+        guard let stock = refrigerator[fruit],requiredQuantity > 0, stock - requiredQuantity >= 0 else {
+            return false
         }
-        if quantity >= 0 {
-            refrigerator.updateValue(stock - quantity, forKey: fruit)
-        }
-    }
-    
-    func manageFruit(juice: Juice) throws {
-        for (fruit, requirements) in juice.recipe {
-            guard let stock = refrigerator[fruit] else {
-                throw JuiceMakerError.invalidAccess
-            }
-            if stock >= requirements {
-                refrigerator.updateValue(stock - requirements, forKey: fruit)
-            }
-            else {
-                throw JuiceMakerError.outOfStock
-            }
-        }
+        return true
     }
 }

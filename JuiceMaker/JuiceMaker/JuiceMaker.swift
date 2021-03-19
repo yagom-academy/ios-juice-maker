@@ -54,12 +54,18 @@ extension Juice: CustomStringConvertible {
 
 class JuiceMaker {
     
-    func makeJuice(order: Juice) -> Juice {
-        do {
-            try FruitStorage.shared.manageFruit(juice: order)
-        } catch {
-            
+    func grindFruit(fruit: Fruit, amount: Int) {
+        FruitStorage.shared.manageFruit(fruit: fruit, quantity: -amount)
+    }
+    
+    func makeJuice(order: Juice) throws {
+        for (ingredients, requirements) in order.recipe {
+            if FruitStorage.shared.hasEnoughFruit(fruit: ingredients, requiredQuantity: requirements) {
+                grindFruit(fruit: ingredients, amount: requirements)
+            }
+            else {
+                throw JuiceMakerError.outOfStock
+            }
         }
-        return order
     }
 }

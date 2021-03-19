@@ -16,19 +16,19 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맛있는 쥬스를 만들어 드려요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQs-LV-gSU">
-                                <rect key="frame" x="247" y="10" width="402" height="41"/>
+                                <rect key="frame" x="291" y="10" width="314.5" height="39"/>
                                 <fontDescription key="fontDescription" name="BazziOTFRegular" family="Bazzi OTF" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4HJ-Y7-Itz">
-                                <rect key="frame" x="746" y="0.5" width="100" height="60"/>
+                                <rect key="frame" x="746" y="-0.5" width="100" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="FtW-Wp-RV6"/>
                                     <constraint firstAttribute="height" constant="60" id="fJu-wO-hnO"/>
@@ -36,7 +36,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <segue destination="n85-O5-Ryf" kind="presentation" id="j9H-d5-5IS"/>
+                                    <action selector="didTouchCurrentVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3oT-Ey-xvJ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHQ-UQ-NgS">
@@ -135,6 +135,9 @@
                                 <state key="normal" title="키위쥬스    주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchUpMakeKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f03-wM-7yg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hYy-2s-Wgc">
                                 <rect key="frame" x="688" y="318" width="140" height="50"/>
@@ -147,6 +150,9 @@
                                 <state key="normal" title="망고쥬스    주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchUpMakeMangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ODn-AS-jgf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="e7J-qo-paU">
                                 <rect key="frame" x="378" y="318" width="140" height="50"/>
@@ -159,6 +165,9 @@
                                 <state key="normal" title="파인애플쥬스       주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchUpMakepineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FLV-Ye-fXN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vF6-dH-VBb">
                                 <rect key="frame" x="68" y="253" width="295" height="50"/>
@@ -171,6 +180,9 @@
                                 <state key="normal" title="딸바쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchUpMakeStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t3D-bs-2rh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V74-ch-Sim">
                                 <rect key="frame" x="378" y="253" width="295" height="50"/>
@@ -183,6 +195,9 @@
                                 <state key="normal" title="망키쥬스 주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchUpMakeMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CaR-2X-c8W"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="strawberry" translatesAutoresizingMaskIntoConstraints="NO" id="eJ6-HY-PsG">
                                 <rect key="frame" x="68" y="62" width="140" height="100"/>
@@ -280,25 +295,28 @@
         <!--Storage View Controller-->
         <scene sceneID="3y0-yg-LtD">
             <objects>
-                <viewController id="n85-O5-Ryf" customClass="StorageViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StorageViewController" id="n85-O5-Ryf" customClass="StorageViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3NS-dE-cSd">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 추가" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYs-U7-R3J">
-                                <rect key="frame" x="382.5" y="10" width="131" height="41"/>
+                                <rect key="frame" x="393.5" y="10" width="109" height="39"/>
                                 <fontDescription key="fontDescription" name="BazziOTFRegular" family="Bazzi OTF" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVI-FZ-MuM">
-                                <rect key="frame" x="746" y="0.5" width="100" height="60"/>
+                                <rect key="frame" x="746" y="-0.5" width="100" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="EpC-WW-m4p"/>
                                     <constraint firstAttribute="height" constant="60" id="LKA-an-c0f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="닫기"/>
+                                <connections>
+                                    <action selector="touchUpDismissButton:" destination="n85-O5-Ryf" eventType="touchUpInside" id="qEC-9x-Okl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svz-na-Yku">
                                 <rect key="frame" x="68" y="187" width="140" height="40"/>
@@ -446,6 +464,7 @@
                             <constraint firstItem="cVI-FZ-MuM" firstAttribute="centerY" secondItem="HYs-U7-R3J" secondAttribute="centerY" id="vnL-Hm-lsb"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TPx-Xd-9Rj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82J-90-WUk" sceneMemberID="firstResponder"/>
             </objects>
