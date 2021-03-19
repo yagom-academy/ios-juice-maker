@@ -13,38 +13,28 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try JuiceOrderButton.connectJuice(to: juiceOrderButtons)
-        } catch {
-            alert(error: error)
-        }
+        JuiceOrderButton.connectJuice(to: juiceOrderButtons)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        do {
-            try StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
-        } catch {
-            alert(error: error)
-        }
+        StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
     }
     
     @IBAction func touchUpJuiceOrderButton(_ sender: JuiceOrderButton) {
-        guard let juice = sender.juice else {
-            return alert(title: "오류", message: "버튼 고장", actionTypes: [.cancel("닫기", nil)])
-        }
+        guard let juice = sender.juice else { fatalError() }
         
         do {
             if try juiceMaker.stock.hasFruits(for: juice) {
                 juiceMaker.make(juice)
                 alert(title: "\(juice.name) 나왔습니다!", message: "맛있게 드세요!", actionTypes: [.ok("감사합니다!")])
-                try StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
+                StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
             } else {
                 alert(title: "재고가 모자라요.", message: "재고를 수정할까요?", actionTypes: [.ok("예", { _ in self.performSegue(withIdentifier: "stockChanger", sender: nil)}), .cancel("아니오")])
             }
-        } catch {
-            alert(error: error)
-        }
+        } catch StockError.invalidSelection {
+            print(StockError.invalidSelection.message)
+        } catch { fatalError() }
     }
     
     func alert(title: String, message: String, actionTypes: [UIAlertAction.ActionType]) {
@@ -55,9 +45,5 @@ class ViewController: UIViewController {
         }
         
         present(alertController, animated: true, completion: nil)
-    }
-    
-    func alert(error: Error) {
-        alert(title: "오류", message: "\(error)", actionTypes: [.cancel("닫기", nil)])
     }
 }

@@ -10,9 +10,9 @@ import UIKit
 class JuiceOrderButton: UIButton {
     var juice: Juice?
     
-    static func connectJuice(to buttons: [JuiceOrderButton]) throws {
+    static func connectJuice(to buttons: [JuiceOrderButton]) {
         for index in 0..<buttons.count {
-            guard let juiceType = Juice(rawValue: index) else { throw JuiceOrderButtonError.invalidSelection }
+            guard let juiceType = Juice(rawValue: index) else { fatalError() }
             
             buttons[index].juice = juiceType
         }

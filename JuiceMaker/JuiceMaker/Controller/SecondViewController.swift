@@ -14,12 +14,8 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try StockStepper.connectFruit(to: stockSteppers)
-            try StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
-        } catch {
-            alert(error: error)
-        }
+        StockStepper.connectFruit(to: stockSteppers)
+        StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -27,15 +23,10 @@ class SecondViewController: UIViewController {
     }
     
     @IBAction func stepperValueChanged(_ sender: StockStepper) {
-        guard let fruit = sender.fruit else {
-            return alert(title: "오류", message: "스태퍼 고장", actionTypes: [.cancel("닫기", nil)])
-        }
+        guard let fruit = sender.fruit else { fatalError() }
+        
         juiceMaker.manageStock(fruit, by: Int(sender.value - sender.previousStepperValue))
-        do {
-            try StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
-        } catch {
-            alert(error: error)
-        }
+        StockLabel.update(labels: fruitStockLabels, by: juiceMaker.stock)
         sender.previousStepperValue = sender.value
     }
     
@@ -47,9 +38,5 @@ class SecondViewController: UIViewController {
         }
         
         present(alertController, animated: true, completion: nil)
-    }
-    
-    func alert(error: Error) {
-        alert(title: "오류", message: "\(error)", actionTypes: [.cancel("닫기", nil)])
     }
 }
