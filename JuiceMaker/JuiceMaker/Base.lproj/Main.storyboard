@@ -231,6 +231,20 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="gRa-eP-KMK">
                         <barButtonItem key="rightBarButtonItem" title="재고 수정" id="dQ5-1w-n4C"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaCount" destination="Gbz-dc-Ktc" id="ubV-8E-qmN"/>
+                        <outlet property="kiwiCount" destination="ghS-vv-UcU" id="lbO-6h-gkd"/>
+                        <outlet property="mangoCount" destination="cTj-sr-IKQ" id="jYo-h5-l8T"/>
+                        <outlet property="orderBananaJuiceButton" destination="2Kt-tf-yIh" id="X4d-4d-uLi"/>
+                        <outlet property="orderKiwiJuiceButton" destination="CqD-ol-OGW" id="7gR-1q-xDb"/>
+                        <outlet property="orderMangoJuiceButton" destination="sDa-UI-Ozu" id="dij-dV-9Qx"/>
+                        <outlet property="orderMangoKiwiJuiceButton" destination="BcS-xf-6ln" id="kuA-32-dvq"/>
+                        <outlet property="orderPineappleJuiceButton" destination="MPp-Df-Ur3" id="z93-jq-stb"/>
+                        <outlet property="orderStrawberryBananaJuiceButton" destination="LCV-M7-W1O" id="yoo-0T-2Vz"/>
+                        <outlet property="orderStrawberryJuiceButton" destination="cK8-og-7fr" id="Hrf-Yo-Daf"/>
+                        <outlet property="pineappleCount" destination="Um5-92-aTG" id="EMc-Ca-bG4"/>
+                        <outlet property="strawberryCount" destination="ddR-gt-XFN" id="GAc-HW-gc4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
