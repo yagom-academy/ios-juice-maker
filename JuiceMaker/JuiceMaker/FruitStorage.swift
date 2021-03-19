@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FruitStorage {
+final class FruitStorage {
     static let shared = FruitStorage()
     private(set) var refrigerator: [Fruit: Int]
     

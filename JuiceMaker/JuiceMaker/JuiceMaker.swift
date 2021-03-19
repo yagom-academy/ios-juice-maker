@@ -48,13 +48,13 @@ enum Juice: String {
 
 extension Juice: CustomStringConvertible {
     var description: String {
-        return "\(self.rawValue)"
+        return rawValue
         }
     }
 
-class JuiceMaker {
+final class JuiceMaker {
     
-    func grindFruit(fruit: Fruit, amount: Int) {
+    private func grindFruit(fruit: Fruit, amount: Int) {
         FruitStorage.shared.manageFruit(fruit: fruit, quantity: -amount)
     }
     

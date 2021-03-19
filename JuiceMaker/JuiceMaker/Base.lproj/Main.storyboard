@@ -36,7 +36,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="재고 수정"/>
                                 <connections>
-                                    <action selector="didTouchCurrentVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3oT-Ey-xvJ"/>
+                                    <action selector="didTouchCurrentViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3oT-Ey-xvJ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHQ-UQ-NgS">
@@ -281,11 +281,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bananaStockLable" destination="dmE-mL-25Q" id="LoH-5h-NDC"/>
-                        <outlet property="kiwiStockLable" destination="wE7-PQ-lWo" id="7kK-IT-nh3"/>
-                        <outlet property="mangoStockLable" destination="mxs-wi-0Di" id="7H6-Yf-MQN"/>
-                        <outlet property="pineappleStockLable" destination="kCf-C7-poI" id="elg-Uc-8ZT"/>
-                        <outlet property="strawberryStockLable" destination="wHQ-UQ-NgS" id="Zkx-Tj-Abz"/>
+                        <outlet property="bananaStockLabel" destination="dmE-mL-25Q" id="LoH-5h-NDC"/>
+                        <outlet property="kiwiStockLabel" destination="wE7-PQ-lWo" id="7kK-IT-nh3"/>
+                        <outlet property="mangoStockLabel" destination="mxs-wi-0Di" id="7H6-Yf-MQN"/>
+                        <outlet property="pineappleStockLabel" destination="kCf-C7-poI" id="elg-Uc-8ZT"/>
+                        <outlet property="strawberryStockLabel" destination="wHQ-UQ-NgS" id="Zkx-Tj-Abz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

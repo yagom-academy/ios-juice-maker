@@ -7,15 +7,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var strawberryStockLable: UILabel!
-    @IBOutlet weak var bananaStockLable: UILabel!
-    @IBOutlet weak var pineappleStockLable: UILabel!
-    @IBOutlet weak var kiwiStockLable: UILabel!
-    @IBOutlet weak var mangoStockLable: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
     
-    let juiceMaker: JuiceMaker = JuiceMaker()
+    private let juiceMaker: JuiceMaker = JuiceMaker()
     
-    func juiceIsReadyAlert(message: String) {
+    private func showJuiceIsReadyAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func notEnoughFruitAlert(message: String) {
+    private func warnNotEnoughFruitAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         let yesAction = UIAlertAction(title: "예", style: .default) { (action) in
@@ -37,15 +37,12 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func didTouchCurrentVC(_ sender: Any) {
-        let newVC = self.storyboard?.instantiateViewController(withIdentifier: "StorageViewController")
-        newVC?.modalTransitionStyle = .flipHorizontal
-        self.present(newVC!, animated: true, completion: nil)
+    @IBAction func didTouchCurrentViewController(_ sender: Any) {
+        guard let newViewController = self.storyboard?.instantiateViewController(withIdentifier: "StorageViewController") else {
+            return
+        }
+        newViewController.modalTransitionStyle = .flipHorizontal
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     @IBAction func touchUpMakeStrawberryJuiceButton(_ sender: UIButton) {
@@ -54,10 +51,10 @@ class ViewController: UIViewController {
             guard let stockOfStrawberry = FruitStorage.shared.refrigerator[.strawberry] else {
                 throw JuiceMakerError.invalidAccess
             }
-            strawberryStockLable.text = String(stockOfStrawberry)
-            juiceIsReadyAlert(message: "\(Juice.strawberryJuice.description) 나왔습니다. 맛있게 드세요")
+            strawberryStockLabel.text = String(stockOfStrawberry)
+            showJuiceIsReadyAlert(message: "\(Juice.strawberryJuice) 나왔습니다. 맛있게 드세요")
         } catch {
-            notEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
@@ -67,10 +64,10 @@ class ViewController: UIViewController {
             guard let stockOfBanana = FruitStorage.shared.refrigerator[.banana] else {
                 return
             }
-            bananaStockLable.text = String(stockOfBanana)
-            juiceIsReadyAlert(message: "\(Juice.bananaJuice.description) 나왔습니다. 맛있게 드세요!!")
+            bananaStockLabel.text = String(stockOfBanana)
+            showJuiceIsReadyAlert(message: "\(Juice.bananaJuice) 나왔습니다. 맛있게 드세요!!")
         } catch {
-            notEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
@@ -80,10 +77,10 @@ class ViewController: UIViewController {
             guard let stockOfPineapple = FruitStorage.shared.refrigerator[.pineapple] else {
                 return
             }
-            pineappleStockLable.text = String(stockOfPineapple)
-            juiceIsReadyAlert(message: "\(Juice.pineappleJuice.description) 나왔습니다. 맛있게 드세요")
+            pineappleStockLabel.text = String(stockOfPineapple)
+            showJuiceIsReadyAlert(message: "\(Juice.pineappleJuice) 나왔습니다. 맛있게 드세요")
         } catch {
-            notEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
@@ -93,10 +90,10 @@ class ViewController: UIViewController {
             guard let stockOfKiwi = FruitStorage.shared.refrigerator[.kiwi] else {
                 return
             }
-            kiwiStockLable.text = String(stockOfKiwi)
-            juiceIsReadyAlert(message: "\(Juice.kiwiJuice.description) 나왔습니다. 맛있게 드세요")
+            kiwiStockLabel.text = String(stockOfKiwi)
+            showJuiceIsReadyAlert(message: "\(Juice.kiwiJuice) 나왔습니다. 맛있게 드세요")
         } catch {
-            notEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
@@ -106,10 +103,10 @@ class ViewController: UIViewController {
             guard let stockOfMango = FruitStorage.shared.refrigerator[.mango] else {
                 return
             }
-            mangoStockLable.text = String(stockOfMango)
-            juiceIsReadyAlert(message: "\(Juice.mangoJuice.description) 나왔습니다. 맛있게 드세요")
+            mangoStockLabel.text = String(stockOfMango)
+            showJuiceIsReadyAlert(message: "\(Juice.mangoJuice) 나왔습니다. 맛있게 드세요")
         } catch {
-            notEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
@@ -120,11 +117,11 @@ class ViewController: UIViewController {
                   let stockOfBanana = FruitStorage.shared.refrigerator[.banana] else {
                 return
             }
-            strawberryStockLable.text = String(stockOfStrawberry)
-            bananaStockLable.text = String(stockOfBanana)
-            juiceIsReadyAlert(message: "\(Juice.strawberryBananaJuice.description) 나왔습니다. 맛있게 드세요")
+            strawberryStockLabel.text = String(stockOfStrawberry)
+            bananaStockLabel.text = String(stockOfBanana)
+            showJuiceIsReadyAlert(message: "\(Juice.strawberryBananaJuice) 나왔습니다. 맛있게 드세요")
         } catch {
-            notEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
@@ -135,11 +132,11 @@ class ViewController: UIViewController {
                   let stockOfKiwi = FruitStorage.shared.refrigerator[.kiwi] else {
                 return
             }
-            mangoStockLable.text = String(stockOfMango)
-            kiwiStockLable.text = String(stockOfKiwi)
-            juiceIsReadyAlert(message: "\(Juice.mangoKiwiJuice.description) 나왔습니다. 맛있게 드세요")
+            mangoStockLabel.text = String(stockOfMango)
+            kiwiStockLabel.text = String(stockOfKiwi)
+            showJuiceIsReadyAlert(message: "\(Juice.mangoKiwiJuice.rawValue) 나왔습니다. 맛있게 드세요")
         } catch {
-            notEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
 }
