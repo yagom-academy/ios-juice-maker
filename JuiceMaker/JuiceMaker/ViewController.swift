@@ -27,12 +27,22 @@ class ViewController: UIViewController {
         initializeButtons()
     }
     
+    func updateFruitCount() {
+        strawberryCount.text = String(JuiceMaker.shared.readStock(of: .strawberry))
+        bananaCount.text = String(JuiceMaker.shared
+                                    .readStock(of: .banana))
+        kiwiCount.text = String(JuiceMaker.shared.readStock(of: .kiwi))
+        pineappleCount.text = String(JuiceMaker.shared.readStock(of: .pineapple))
+        mangoCount.text = String(JuiceMaker.shared.readStock(of: .mango))
+    }
+    
     @IBAction func orderJuice(_ sender: OrderJuiceButton) {
         guard let juice = sender.juice else {
             return
         }
         let alert = sender.make(using: juice)
         self.present(alert, animated: true, completion: nil)
+        updateFruitCount()
     }
 
     func initializeButtons() {
