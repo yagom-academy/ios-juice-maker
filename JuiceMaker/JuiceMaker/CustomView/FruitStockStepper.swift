@@ -12,11 +12,11 @@ final class FruitStockStepper: UIView {
     private var juiceMaker = JuiceMaker.shared
     private(set) var kindFruit: Fruits?
     
-    public var leftButton = UIButton(type: .system)
-    public var rightButton = UIButton(type: .system)
-    public var centerLabel = UILabel()
+    private var leftButton = UIButton(type: .system)
+    private var rightButton = UIButton(type: .system)
+    private var centerLabel = UILabel()
     
-    public var value: Int = 0 {
+    private(set) var value: Int = 0 {
         didSet {
             self.centerLabel.text = String(value)
         }
@@ -64,7 +64,7 @@ final class FruitStockStepper: UIView {
         self.rightButton.addTarget(self, action: #selector(valueChange(_:)), for: .touchUpInside)
     }
     
-    @objc public func valueChange(_ sender: UIButton) {
+    @objc private func valueChange(_ sender: UIButton) {
         if value + sender.tag < 0 {
             return
         } else {
@@ -72,7 +72,7 @@ final class FruitStockStepper: UIView {
         }
     }
     
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         let buttonWidth = self.frame.height
         let labelWidth = self.frame.width - (buttonWidth * 2)
