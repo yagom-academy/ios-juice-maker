@@ -68,13 +68,13 @@ iOS 쥬스 메이커 재고관리 시작 저장소
     	
     	}
 
-    	*/// 과일재고 추가함수
-    	fu*nc addFruit() {
+    	/// 과일재고 추가함수
+    	func addFruit() {
 
     	}
 
-    	*/// 과일재고 삭제함수
-    	fu*nc deleteFruit() {
+    	/// 과일재고 삭제함수
+    	func deleteFruit() {
 
     	}
     }
@@ -84,9 +84,9 @@ iOS 쥬스 메이커 재고관리 시작 저장소
     	let fruitInStock = FruitInStock()
 
     	/// 과일쥬스 제조함수
-    	*func makeJuice() {
+    	func makeJuice() {
 
-    	}*
+    	}
     }
 
     class JuiceMakerView {
