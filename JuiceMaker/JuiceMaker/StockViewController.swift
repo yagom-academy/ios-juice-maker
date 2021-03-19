@@ -15,21 +15,29 @@ class StockViewController: UIViewController {
     @IBOutlet weak var pineappleStock: UILabel!
     @IBOutlet weak var kiwiStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawStepper: UIStepper!
+    
+    func showPresentStock() {
+        strawberryStock.text = String(FruitStock.shared.strawberry)
+        bananaStock.text = String(FruitStock.shared.banana)
+        pineappleStock.text = String(FruitStock.shared.pineapple)
+        kiwiStock.text = String(FruitStock.shared.kiwi)
+        mangoStock.text = String(FruitStock.shared.mango)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryStock.text = String(juiceMaker.fruitStock.strawberry)
+        showPresentStock()
     }
     
-//    @IBAction func strawberryStepUp(_ sender: Any) {
+    @IBAction func closeButton(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+//    @IBAction func strawberryStepperAction(_ sender: Any) {
+//        JuiceMaker().addAmount(<#T##of: &Int##Int#>, as: Int(sender.value))
 //    }
-//    @IBAction func bananaStepUp(_ sender: Any) {
-//    }
-//    @IBAction func pineappleStepUp(_ sender: Any) {
-//    }
-//    @IBAction func kiwiStepUp(_ sender: Any) {
-//    }
-//    @IBAction func mangoStepUp(_ sender: Any) {
-//    }
+    
+    
     
 }

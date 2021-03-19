@@ -448,6 +448,10 @@ Cg
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="HrJ-3L-Gbu">
                                 <rect key="frame" x="89" y="251" width="94" height="32"/>
                                 <color key="tintColor" systemColor="systemBlueColor"/>
+                                <connections>
+                                    <action selector="strawberryStepper:" destination="qJd-ba-kqq" eventType="valueChanged" id="F6N-W3-0e8"/>
+                                    <action selector="strawberryStepperAction:" destination="qJd-ba-kqq" eventType="valueChanged" id="SQc-nn-O6z"/>
+                                </connections>
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Jcq-Dt-w5D">
                                 <rect key="frame" x="224" y="251" width="94" height="32"/>
@@ -462,7 +466,11 @@ Cg
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="재고 추가" id="R9B-N8-fn8">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="da2-uc-H9w"/>
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="da2-uc-H9w">
+                                            <connections>
+                                                <action selector="closeButton:" destination="qJd-ba-kqq" id="3Zk-0P-ZXm"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -512,6 +520,7 @@ Cg
                         <outlet property="kiwiStock" destination="HkU-nW-2zc" id="zN5-a2-ynG"/>
                         <outlet property="mangoStock" destination="4Hn-cR-Jmz" id="lJL-IQ-y8D"/>
                         <outlet property="pineappleStock" destination="qeM-Xp-Ddc" id="VVd-XC-F43"/>
+                        <outlet property="strawStepper" destination="HrJ-3L-Gbu" id="5pY-wo-efR"/>
                         <outlet property="strawberryStock" destination="7A8-ua-DjR" id="4yv-L0-tha"/>
                     </connections>
                 </viewController>

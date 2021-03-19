@@ -6,8 +6,6 @@
 
 import UIKit
 
-let juiceMaker = JuiceMaker()
-
 class ViewController: UIViewController {
     
     @IBOutlet weak var strawberryStockVC: UILabel!
@@ -19,7 +17,7 @@ class ViewController: UIViewController {
     
     
     func showAlert(juice: FruitJuice) {
-        switch juiceMaker.manufactureJuice(of: juice) {
+        switch JuiceMaker().canMakeJuice(of: juice) {
         case true:
             let alertRight = UIAlertController(title: nil, message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
             let rightAction = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -39,7 +37,11 @@ class ViewController: UIViewController {
     }
     
     func showPresentStock() {
-        strawberryStockVC.text = String(juiceMaker.fruitStock.strawberry)
+        strawberryStockVC.text = String(FruitStock.shared.strawberry)
+        bananaStockVC.text = String(FruitStock.shared.banana)
+        pineappleStockVC.text = String(FruitStock.shared.pineapple)
+        kiwiStockVC.text = String(FruitStock.shared.kiwi)
+        mangoStockVC.text = String(FruitStock.shared.mango)
     }
     
     override func viewDidLoad() {
@@ -47,24 +49,40 @@ class ViewController: UIViewController {
         showPresentStock()
     }
 
-
     @IBAction func strawberryBananaJuiceOrder(_ sender: Any) {
-        juiceMaker.manufactureJuice(of: FruitJuice.strawberryBananaJuice)
         showAlert(juice: .strawberryBananaJuice)
-        print(juiceMaker.fruitStock.strawberry)
-        print(juiceMaker.fruitStock.banana)
+        JuiceMaker().serveJuice(of: FruitJuice.strawberryBananaJuice)
+        showPresentStock()
     }
     @IBAction func mangoKiwiJuiceOrder(_ sender: Any) {
+        showAlert(juice: .mangoKiwiJuice)
+        JuiceMaker().serveJuice(of: FruitJuice.mangoKiwiJuice)
+        showPresentStock()
     }
     @IBAction func strawberryJuiceOrder(_ sender: Any) {
+        showAlert(juice: .strawberryJuice)
+        JuiceMaker().serveJuice(of: FruitJuice.strawberryJuice)
+        showPresentStock()
     }
     @IBAction func bananaJuiceOrder(_ sender: Any) {
+        showAlert(juice: .bananaJuice)
+        JuiceMaker().serveJuice(of: FruitJuice.bananaJuice)
+        showPresentStock()
     }
     @IBAction func pineappleJuiceOrder(_ sender: Any) {
+        showAlert(juice: .pineappleJuice)
+        JuiceMaker().serveJuice(of: FruitJuice.pineappleJuice)
+        showPresentStock()
     }
     @IBAction func kiwiJuiceOrder(_ sender: Any) {
+        showAlert(juice: .kiwiJuice)
+        JuiceMaker().serveJuice(of: FruitJuice.kiwiJuice)
+        showPresentStock()
     }
     @IBAction func mangoJuiceOrder(_ sender: Any) {
+        showAlert(juice: .mangoJuice)
+        JuiceMaker().serveJuice(of: FruitJuice.mangoJuice)
+        showPresentStock()
     }
     
     
