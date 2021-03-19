@@ -269,7 +269,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-633" y="528"/>
+            <point key="canvasLocation" x="-775" y="575"/>
+        </scene>
+        <!--Stock View Controller-->
+        <scene sceneID="bQc-kQ-Zhf">
+            <objects>
+                <viewController id="OM7-Cs-7Nc" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kEl-Sf-frr">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PxZ-8f-UoI">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
+                                <items>
+                                    <navigationItem title="재고 추가" id="Yw6-li-niI">
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6qo-p5-Jqe"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3d2-1g-ToK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PxZ-8f-UoI" firstAttribute="leading" secondItem="kEl-Sf-frr" secondAttribute="leading" id="Izf-O5-1tv"/>
+                            <constraint firstAttribute="trailing" secondItem="PxZ-8f-UoI" secondAttribute="trailing" id="acg-Fm-fLo"/>
+                            <constraint firstItem="PxZ-8f-UoI" firstAttribute="top" secondItem="3d2-1g-ToK" secondAttribute="top" id="f1M-YW-9AI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdx-1P-k5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-775" y="1304"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PCB-7T-tce">
