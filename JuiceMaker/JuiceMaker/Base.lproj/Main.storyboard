@@ -152,7 +152,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="matchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RnX-bm-Se8"/>
+                                    <action selector="tapMatchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RnX-bm-Se8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49C-5d-CLa" userLabel="바나나쥬스 만들기">
@@ -173,7 +173,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="matchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hlK-Tn-5K4"/>
+                                    <action selector="tapMatchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hlK-Tn-5K4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pcs-XH-lM5">
@@ -194,7 +194,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="matchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qgf-Cl-mMR"/>
+                                    <action selector="tapMatchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qgf-Cl-mMR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-aa-jeC">
@@ -215,7 +215,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="matchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dUN-44-V6u"/>
+                                    <action selector="tapMatchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dUN-44-V6u"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wPw-Ov-Qve" userLabel="망고쥬스 만들기">
@@ -236,7 +236,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="matchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="12N-Qf-Idw"/>
+                                    <action selector="tapMatchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="12N-Qf-Idw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6v7-uF-9kP" userLabel="딸바쥬스 만들기">
@@ -257,7 +257,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="matchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G4F-Bn-yvP"/>
+                                    <action selector="tapMatchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G4F-Bn-yvP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qd5-AS-T06">
@@ -278,7 +278,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="matchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xbd-zr-Cmm"/>
+                                    <action selector="tapMatchButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xbd-zr-Cmm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -286,11 +286,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="bananaStock" destination="d4A-Gj-QG4" id="S5a-Bq-3Y7"/>
-                        <outlet property="kiwiStock" destination="r62-yq-UIF" id="faM-X5-gOO"/>
-                        <outlet property="mangoStock" destination="vEy-Ly-bZF" id="LpU-vH-g6K"/>
-                        <outlet property="pineappleStock" destination="psM-DT-q5c" id="uWU-HF-LaI"/>
-                        <outlet property="strawberryStock" destination="aa0-NN-QQt" id="LNc-he-KgE"/>
+                        <outlet property="bananaStockLabel" destination="d4A-Gj-QG4" id="S5a-Bq-3Y7"/>
+                        <outlet property="kiwiStockLabel" destination="r62-yq-UIF" id="faM-X5-gOO"/>
+                        <outlet property="mangoStockLabel" destination="vEy-Ly-bZF" id="LpU-vH-g6K"/>
+                        <outlet property="pineappleStockLabel" destination="psM-DT-q5c" id="uWU-HF-LaI"/>
+                        <outlet property="strawberryStockLabel" destination="aa0-NN-QQt" id="LNc-he-KgE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -478,6 +478,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="1pG-5y-E3e"/>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="o5V-We-rxJ" id="wy3-Da-W8i"/>
+                        <outlet property="kiwiStockLabel" destination="usk-8o-L9x" id="Xkh-uX-79M"/>
+                        <outlet property="mangoStockLabel" destination="9x4-K3-14F" id="HL4-Yf-VWf"/>
+                        <outlet property="pineappleStockLabel" destination="JfL-IJ-joD" id="wCT-HO-p4s"/>
+                        <outlet property="strawberryStockLabel" destination="6A1-EZ-CRR" id="1r8-Yf-KKi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ql-Gf-3HO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

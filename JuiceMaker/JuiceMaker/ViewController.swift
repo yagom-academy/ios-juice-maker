@@ -6,75 +6,76 @@
 
 import UIKit
 
+var juiceMaker = JuiceMaker()
+
 class ViewController: UIViewController {
-    var juiceMaker: JuiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock : UILabel!
-    @IBOutlet weak var pineappleStock : UILabel!
-    @IBOutlet weak var kiwiStock : UILabel!
-    @IBOutlet weak var mangoStock : UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel : UILabel!
+    @IBOutlet weak var pineappleStockLabel : UILabel!
+    @IBOutlet weak var kiwiStockLabel : UILabel!
+    @IBOutlet weak var mangoStockLabel : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nowStocks()
+        settingStockLabel()
     }
     
-    func nowStocks() {
-        strawberryStock.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Strawberry.self)))
-        bananaStock.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Banana.self)))
-        pineappleStock.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Pineapple.self)))
-        kiwiStock.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Kiwi.self)))
-        mangoStock.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Mango.self)))
+    private func settingStockLabel() {
+        strawberryStockLabel.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Strawberry.self)))
+        bananaStockLabel.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Banana.self)))
+        pineappleStockLabel.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Pineapple.self)))
+        kiwiStockLabel.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Kiwi.self)))
+        mangoStockLabel.text = String(juiceMaker.fruitStocks.check(fruit: ObjectIdentifier(Mango.self)))
     }
     
-    @IBAction func matchButton(sender: AnyObject) {
+    @IBAction private func tapMatchButton(sender: AnyObject) {
         guard let button = sender as? UIButton else{
             return
         }
         
         switch button.tag {
         case 1:
-            juiceButton(ObjectIdentifier(StrawberryJuice.self), "딸기쥬스")
+            alertAccordingToOrder(juiceRecipe: ObjectIdentifier(StrawberryJuice.self), juiceName: "딸기쥬스")
         case 2:
-            juiceButton(ObjectIdentifier(BananaJuice.self), "바나나쥬스")
+            alertAccordingToOrder(juiceRecipe: ObjectIdentifier(BananaJuice.self), juiceName: "바나나쥬스")
         case 3:
-            juiceButton(ObjectIdentifier(PineappleJuice.self), "파인애플쥬스")
+            alertAccordingToOrder(juiceRecipe: ObjectIdentifier(PineappleJuice.self), juiceName: "파인애플쥬스")
         case 4:
-            juiceButton(ObjectIdentifier(KiwiJuice.self), "키위쥬스")
+            alertAccordingToOrder(juiceRecipe: ObjectIdentifier(KiwiJuice.self), juiceName: "키위쥬스")
         case 5:
-            juiceButton(ObjectIdentifier(MangoJuice.self), "망고쥬스")
+            alertAccordingToOrder(juiceRecipe: ObjectIdentifier(MangoJuice.self), juiceName: "망고쥬스")
         case 6:
-            juiceButton(ObjectIdentifier(StrawberryBananaJuice.self), "딸바쥬스")
+            alertAccordingToOrder(juiceRecipe: ObjectIdentifier(StrawberryBananaJuice.self), juiceName: "딸바쥬스")
         case 7:
-            juiceButton(ObjectIdentifier(MangoKiwiJuice.self), "망고키위쥬스")
+            alertAccordingToOrder(juiceRecipe: ObjectIdentifier(MangoKiwiJuice.self), juiceName: "망고키위쥬스")
         default:
-            print("모르는 버튼")
+            return
         }
     }
     
-    func juiceButton(_ juiceRecipe: ObjectIdentifier, _ juiceName: String) {
-                let orderState: ErrorMessage = juiceMaker.order(juice: juiceRecipe)
-                print("orderState의 상태 : \(orderState)")
-                switch orderState {
-                case .completeMakeJuice:
-                    showSuccessAlert(message: juiceName)
-                default:
-                    showFailAlert()
-                }
+    private func alertAccordingToOrder(juiceRecipe: ObjectIdentifier, juiceName: String) {
+        let orderState: OrderRestultMessage = juiceMaker.order(juice: juiceRecipe)
+
+        switch orderState {
+        case .completeMakeJuice:
+            showSuccessAlert(message: juiceName)
+        default:
+            showFailAlert()
+        }
     }
     
-    func showSuccessAlert(message: String) {
+    private func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: "\(message)가 완성되었습니다. 맛있게 드세요", preferredStyle: .alert)
         let okAtion = UIAlertAction(title: "OK", style: .default) {
-            (action) in self.nowStocks()
+            (action) in self.settingStockLabel()
         }
         alert.addAction(okAtion)
         present(alert, animated: true, completion: nil)
     }
     
-    func showFailAlert() {
+    private func showFailAlert() {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?" , preferredStyle: .alert)
         let noAtion = UIAlertAction(title: "아니오", style: .cancel)
         let yesAtion = UIAlertAction(title: "예", style: .default) { action in
@@ -88,10 +89,10 @@ class ViewController: UIViewController {
     }
     
     func moveViewController(name: String) {
-        let sceneName = self.storyboard?.instantiateViewController(withIdentifier: name)
+        let viewControllerName = self.storyboard?.instantiateViewController(withIdentifier: name)
         
-        sceneName?.modalTransitionStyle = .crossDissolve
-        self.present(sceneName!, animated: true, completion: nil)
+        viewControllerName?.modalTransitionStyle = .crossDissolve
+        self.present(viewControllerName!, animated: true, completion: nil)
     }
 }
 

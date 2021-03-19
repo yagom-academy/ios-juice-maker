@@ -29,7 +29,7 @@ class JuiceRecipe {
         ]
     }
     
-    func canMake(_ targetRecipe: ObjectIdentifier, _ checkStocks: FruitStock) -> Bool {
+    func canMake(targetRecipe: ObjectIdentifier, checkStocks: FruitStock) -> Bool {
         for (_fruit, _quantity) in _recipe[targetRecipe]! {
             if !checkStocks.canMake(fruit: _fruit, quantity: _quantity) {
                 return false
@@ -39,7 +39,7 @@ class JuiceRecipe {
         return true
     }
     
-    func useRecipe(_ targetRecipe: ObjectIdentifier, _ useStocks: FruitStock) {
+    func useRecipe(targetRecipe: ObjectIdentifier, useStocks: FruitStock) {
         for (_fruit, _quantity) in _recipe[targetRecipe]! {
             useStocks.sub(fruit: _fruit, quantity: _quantity)
         }
