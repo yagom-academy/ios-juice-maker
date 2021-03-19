@@ -26,6 +26,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         initializeButtons()
     }
+    
+    @IBAction func orderJuice(_ sender: OrderJuiceButton) {
+        
+    }
 
     func initializeButtons() {
         orderStrawberryJuiceButton.juice = .strawberry
