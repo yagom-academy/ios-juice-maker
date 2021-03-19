@@ -7,9 +7,16 @@
 import Foundation
 
 typealias juiceRecipe = [ObjectIdentifier : [Recipe]]
+typealias juiceName = [ObjectIdentifier : String]
 
 class JuiceMaker {
-    private let recipes: juiceRecipe = [ObjectIdentifier(StrawberryJuice.self) : [(ObjectIdentifier(Strawberry.self), 16)],
+
+    let juicename : juiceName = [ObjectIdentifier(StrawberryJuice.self) : "딸기쥬스", ObjectIdentifier(BananaJuice.self) : "바나나쥬스",
+                                         ObjectIdentifier(KiwiJuice.self) : "키위쥬스", ObjectIdentifier(PineappleJuice.self) : "파인애플쥬스",
+                                         ObjectIdentifier(MangoJuice.self): "망고쥬스", ObjectIdentifier(StrawberryBananaJuice.self) : "딸바쥬스",
+                                         ObjectIdentifier(MangoKiwiJuice.self) : "망키쥬스"]
+    
+    let recipes: juiceRecipe = [ObjectIdentifier(StrawberryJuice.self) : [(ObjectIdentifier(Strawberry.self), 16)],
                              ObjectIdentifier(BananaJuice.self) : [(ObjectIdentifier(Banana.self), 2)],
                              ObjectIdentifier(KiwiJuice.self) : [(ObjectIdentifier(Kiwi.self), 3)],
                              ObjectIdentifier(PineappleJuice.self) : [(ObjectIdentifier(Pineapple.self), 2)],
@@ -21,11 +28,9 @@ class JuiceMaker {
     
     private func hasEnoughFruitStock(_ juice: juiceRecipe.Key) -> Bool {
         if let juiceIngredients = recipes[juice] {
-            for juiceIngredient in juiceIngredients {
-                if let remainedFruitStock = fruitsStorage.fruitsStock[juiceIngredient.stock] {
-                    if juiceIngredient.requiredAmount > remainedFruitStock {
-                        return false
-                    }
+            for ingredient in juiceIngredients {
+                if let remainedFruitStock = fruitsStorage.fruitsStock[ingredient.stock], ingredient.requiredAmount > remainedFruitStock {
+                    return false
                 }
             }
         }
@@ -37,7 +42,6 @@ class JuiceMaker {
             if let juiceIngredient = recipes[juice]{
                 for juiceIngredient in juiceIngredient {
                     fruitsStorage.reduceFruit(juiceIngredient.stock, amount: juiceIngredient.requiredAmount)
-                    print(fruitsStorage.fruitsStock)
                     return true
                 }
             }

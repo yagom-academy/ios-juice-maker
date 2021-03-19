@@ -10,12 +10,10 @@ import Foundation
 typealias Recipe = (stock: ObjectIdentifier, requiredAmount: Int)
 
 class Juice {
-    private let name: String
-    private let recipe: [Recipe]
+    var name: String
 
-    init(name: String, recipe: [Recipe]) {
+    init(name: String) {
         self.name = name
-        self.recipe = recipe
     }
 }
 

@@ -8,9 +8,9 @@
 import Foundation
 
 class Fruit {
-    private let name: String
-    private let origin: String
-    private let price: Int
+    let name: String
+    let origin: String
+    let price: Int
 
     init(name: String, origin: String, price: Int) {
         self.name = name
@@ -19,13 +19,18 @@ class Fruit {
     }
 }
 
-class Strawberry: Fruit {}
+class Strawberry: Fruit {
+}
 
-class Banana: Fruit {}
+class Banana: Fruit {
+}
 
-class Kiwi: Fruit {}
+class Kiwi: Fruit {
+}
 
-class Pineapple: Fruit {}
+class Pineapple: Fruit {
+}
 
-class Mango: Fruit {}
+class Mango: Fruit {
+}
 
