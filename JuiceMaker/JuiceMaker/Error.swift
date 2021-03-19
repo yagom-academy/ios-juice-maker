@@ -41,6 +41,8 @@ enum JuiceError: Error, CustomStringConvertible {
 enum RecipeError: Error, CustomStringConvertible {
   case jsonDecodingFailed
   case nilHasOccurredWhileUnwrappingRecipe
+  case canNotFindJSONPath
+  case failedToConvertJSONAsDataFormat
   
   var description: String {
     switch self {
@@ -48,6 +50,10 @@ enum RecipeError: Error, CustomStringConvertible {
       return "JSON 디코딩 작업에 실패하여 레시피를 읽어 들이지 못했습니다."
     case .nilHasOccurredWhileUnwrappingRecipe:
       return "레시피를 가져오는 과정에서 옵셔널 해제에 실패했습니다."
+    case .canNotFindJSONPath:
+      return "지정된 경로에 JSON파일이 없습니다."
+    case .failedToConvertJSONAsDataFormat:
+      return "JSON을 데이터로 변환하는데 실패하였습니다."
     }
   }
 }

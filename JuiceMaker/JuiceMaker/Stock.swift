@@ -27,7 +27,7 @@ class Stock {
   
   func count(for fruit: Fruit) throws -> Int {
     guard let fruitNumberInStock = stock[fruit] else {
-      throw FruitError.nilHasOccurredWhileCountingStock
+      return returnValueForInvalidInput
     }
     return fruitNumberInStock
   }

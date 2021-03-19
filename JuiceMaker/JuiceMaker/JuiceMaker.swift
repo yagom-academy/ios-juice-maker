@@ -8,22 +8,20 @@ import Foundation
 
 // MARK: - JuiceMaker Type
 class JuiceMaker {
-  func make(of orderedJuice: Juice) {
-    do {
-      let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
-      if try hasEnoughFruits(of: requiredFruits) {
-        try consumeStockedFruits(for: requiredFruits)
-        printOrderCompleted(for: orderedJuice)
-      }
-    } catch {
-      handleErrorForMake(error)
+  var orderResult = OrderResult(message: "", isSuccessed: false)
+  
+  func make(of orderedJuice: Juice) throws {
+    let requiredFruits: [Fruit: Int] = try checkRequiredFruits(for: orderedJuice)
+    if hasEnoughFruits(of: requiredFruits) {
+      try consumeStockedFruits(for: requiredFruits)
+      updateOrderResult(for: orderedJuice)
     }
   }
   
   // MARK: - Component Methods for 'make(of:)'
   private func checkRequiredFruits(for orderedJuice: Juice) throws -> [Fruit: Int] {
     var requiredFruits = [Fruit: Int]()
-    let recipe = JuiceRecipe()
+    let recipe = try JuiceRecipe()
     
     for ingredient in try recipe.find(for: orderedJuice).ingredient {
       guard let fruit = ingredient.fruitName,
@@ -36,12 +34,15 @@ class JuiceMaker {
     return requiredFruits
   }
   
-  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) throws -> Bool {
- 
+  private func hasEnoughFruits(of requiredFruits: [Fruit: Int]) -> Bool {
+
     for (fruit, requiredQuantity) in requiredFruits {
       let stockedQuantity = try Stock.shared.count(for: fruit)
       if stockedQuantity < requiredQuantity {
-        print("\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.")
+        orderResult.isSuccessed = false
+        orderResult.message =
+          "\(fruit)(이)가 \(requiredQuantity - stockedQuantity)개 부족합니다.\n재고를 수정할까요?"
+        
         return false
       }
     }
@@ -55,11 +56,8 @@ class JuiceMaker {
     }
   }
   
-  private func printOrderCompleted(for orderedJuice: Juice) {
-    print("\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!")
-  }
-  
-  private func handleErrorForMake(_ error: Error) {
-    print(error)
+  private func updateOrderResult(for orderedJuice: Juice) {
+    orderResult.isSuccessed = true
+    orderResult.message = "\(orderedJuice.name)가 나왔습니다! 맛있게 드세요!"
   }
 }
