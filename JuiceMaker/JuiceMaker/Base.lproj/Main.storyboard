@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKp-rS-JkG">
-                                <rect key="frame" x="0.0" y="0.0" width="926" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="맛있는 쥬스를 만들어 드려요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnV-mA-gZo">
-                                        <rect key="frame" x="365.66666666666669" y="14.666666666666664" width="195.00000000000006" height="21"/>
+                                        <rect key="frame" x="350.5" y="14.5" width="195" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Plu-lS-Ns5">
-                                        <rect key="frame" x="830" y="10" width="56" height="30"/>
+                                        <rect key="frame" x="800" y="10" width="56" height="30"/>
                                         <state key="normal" title="쥬스 재고"/>
                                         <connections>
                                             <action selector="goToFruitsStorage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kVH-Mi-RGl"/>
@@ -120,7 +120,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r2g-6X-lBd"/>
+                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r2g-6X-lBd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWQ-XI-Snx">
@@ -131,7 +131,7 @@
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tlo-G4-ZlJ"/>
+                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tlo-G4-ZlJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTK-Et-pFz">
@@ -150,7 +150,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hcl-6V-gXZ"/>
+                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hcl-6V-gXZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQh-UQ-IKz">
@@ -169,7 +169,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jff-L0-VGM"/>
+                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jff-L0-VGM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-Cv-ZRW">
@@ -188,7 +188,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vf4-Iq-Ub6"/>
+                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vf4-Iq-Ub6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eHr-Cx-LhC">
@@ -207,7 +207,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSc-vn-Anx"/>
+                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSc-vn-Anx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJd-RA-3pg">
@@ -226,7 +226,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6fV-7A-wmq"/>
+                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6fV-7A-wmq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="바나나" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tS9-40-R3C">
@@ -247,18 +247,18 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bananaJuice" destination="KQh-UQ-IKz" id="pIC-s3-Jyc"/>
-                        <outlet property="bananaStock" destination="tS9-40-R3C" id="Dy2-sL-Pl8"/>
-                        <outlet property="kiwiJuice" destination="eHr-Cx-LhC" id="HGe-8s-ufe"/>
-                        <outlet property="kiwiStock" destination="knd-e8-5ZL" id="0kh-7S-nxt"/>
-                        <outlet property="mangoJuice" destination="PJd-RA-3pg" id="kjO-Qn-fC5"/>
-                        <outlet property="mangoKiwiJuice" destination="vWQ-XI-Snx" id="dCc-pT-Oof"/>
-                        <outlet property="mangoStock" destination="zWf-ol-HWJ" id="ISj-TW-RQJ"/>
-                        <outlet property="pineappleJuice" destination="WRv-Cv-ZRW" id="lm9-4g-FPa"/>
-                        <outlet property="pineappleStock" destination="YJf-hx-0Ka" id="TeG-RE-d1M"/>
-                        <outlet property="strawberryBananaJuice" destination="pHK-fU-KCE" id="bEX-Fq-BQj"/>
-                        <outlet property="strawberryJuice" destination="hTK-Et-pFz" id="mqD-YE-B6U"/>
-                        <outlet property="strawberryStock" destination="1AH-sl-nx1" id="747-Tu-pjZ"/>
+                        <outlet property="bananaJuiceBtn" destination="KQh-UQ-IKz" id="pIC-s3-Jyc"/>
+                        <outlet property="bananaStockLabel" destination="tS9-40-R3C" id="Dy2-sL-Pl8"/>
+                        <outlet property="kiwiJuiceBtn" destination="eHr-Cx-LhC" id="HGe-8s-ufe"/>
+                        <outlet property="kiwiStockLabel" destination="knd-e8-5ZL" id="0kh-7S-nxt"/>
+                        <outlet property="mangoJuiceBtn" destination="PJd-RA-3pg" id="kjO-Qn-fC5"/>
+                        <outlet property="mangoKiwiJuiceBtn" destination="vWQ-XI-Snx" id="dCc-pT-Oof"/>
+                        <outlet property="mangoStockLabel" destination="zWf-ol-HWJ" id="ISj-TW-RQJ"/>
+                        <outlet property="pineappleJuiceBtn" destination="WRv-Cv-ZRW" id="lm9-4g-FPa"/>
+                        <outlet property="pineappleStockLabel" destination="YJf-hx-0Ka" id="TeG-RE-d1M"/>
+                        <outlet property="strawberryBananaJuiceBtn" destination="pHK-fU-KCE" id="bEX-Fq-BQj"/>
+                        <outlet property="strawberryJuiceBtn" destination="hTK-Et-pFz" id="mqD-YE-B6U"/>
+                        <outlet property="strawberryStockLabel" destination="1AH-sl-nx1" id="747-Tu-pjZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -270,20 +270,20 @@
             <objects>
                 <viewController storyboardIdentifier="fruitsStorageVC" id="N7I-YU-2Nq" customClass="FruitsStorageViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BQW-kS-lqT">
-                        <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBt-9w-ufQ">
-                                <rect key="frame" x="0.0" y="0.0" width="926" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Src-YQ-iuy">
-                                        <rect key="frame" x="431" y="14.666666666666664" width="64" height="21"/>
+                                        <rect key="frame" x="416" y="14.5" width="64" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idi-O9-Dr1">
-                                        <rect key="frame" x="856" y="10" width="30" height="30"/>
+                                        <rect key="frame" x="826" y="10" width="30" height="30"/>
                                         <state key="normal" title="닫기"/>
                                         <connections>
                                             <action selector="closeToFruitsStorage:" destination="N7I-YU-2Nq" eventType="touchUpInside" id="pfc-EY-knH"/>
