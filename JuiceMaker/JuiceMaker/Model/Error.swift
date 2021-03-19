@@ -7,16 +7,11 @@
 
 enum StockError: Error {
     case invalidSelection
-}
-
-enum JuiceOrderButtonError: Error {
-    case invalidSelection
-}
-
-enum StockStepperError: Error {
-    case invalidSelection
-}
-
-enum StockLabelError: Error {
-    case invalidSelection
+    
+    var message: String {
+        switch self {
+        case .invalidSelection:
+            return "해당 쥬스를 만들기 위한 과일이 존재하지 않습니다."
+        }
+    }
 }

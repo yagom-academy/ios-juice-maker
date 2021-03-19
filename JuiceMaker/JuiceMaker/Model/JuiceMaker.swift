@@ -35,8 +35,8 @@ struct Stock {
         var hasFruit: Bool = true
         
         for fruit in juice.recipe {
-            guard let stock = self.fruits[fruit.key] else { throw StockError.invalidSelection }
-            hasFruit = hasFruit && stock >= fruit.value ? true : false
+            guard let fruitStock: Int = self.fruits[fruit.key] else { throw StockError.invalidSelection }
+            hasFruit = hasFruit && fruitStock >= fruit.value
         }
         
         return hasFruit

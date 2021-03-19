@@ -338,7 +338,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sDe-zb-VIv">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="qAl-pi-vfz">
+                        <barButtonItem key="rightBarButtonItem" id="qAl-pi-vfz">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dFl-80-CRd">
                                 <rect key="frame" x="317" y="0.0" width="77" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
