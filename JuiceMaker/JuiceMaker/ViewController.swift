@@ -55,5 +55,12 @@ class ViewController: UIViewController {
         orderPineappleJuiceButton.juice = .pineapple
     }
 
+    @IBAction func moveStock(_ sender: Any) {
+        guard let stockVC = self.storyboard?.instantiateViewController(identifier: "stockVC") else {
+            return
+        }
+
+        self.present(stockVC, animated: false, completion: nil)
+    }
 }
 

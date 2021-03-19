@@ -250,7 +250,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="gRa-eP-KMK">
-                        <barButtonItem key="rightBarButtonItem" title="재고 수정" id="dQ5-1w-n4C"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고 수정" id="dQ5-1w-n4C">
+                            <connections>
+                                <action selector="moveStock:" destination="BYZ-38-t0r" id="J8A-hw-gZ7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaCount" destination="Gbz-dc-Ktc" id="ubV-8E-qmN"/>
@@ -274,7 +278,7 @@
         <!--Stock View Controller-->
         <scene sceneID="bQc-kQ-Zhf">
             <objects>
-                <viewController id="OM7-Cs-7Nc" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="stockVC" id="OM7-Cs-7Nc" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kEl-Sf-frr">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
