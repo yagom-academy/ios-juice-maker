@@ -7,7 +7,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    //MARK:-- @IBOutlet Properties
+    
     @IBOutlet weak var strawberryCount: UILabel!
     @IBOutlet weak var bananaCount: UILabel!
     @IBOutlet weak var pineappleCount: UILabel!
@@ -22,18 +24,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var orderKiwiJuiceButton: OrderJuiceButton!
     @IBOutlet weak var orderMangoJuiceButton: OrderJuiceButton!
     
+    //MARK:-- Override function
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeButtons()
     }
     
-    func updateFruitCount() {
-        strawberryCount.text = String(JuiceMaker.shared.readStock(of: .strawberry))
-        bananaCount.text = String(JuiceMaker.shared
-                                    .readStock(of: .banana))
-        kiwiCount.text = String(JuiceMaker.shared.readStock(of: .kiwi))
-        pineappleCount.text = String(JuiceMaker.shared.readStock(of: .pineapple))
-        mangoCount.text = String(JuiceMaker.shared.readStock(of: .mango))
+    //MARK:-- @IBAction Function
+
+    @IBAction func moveStock(_ sender: Any) {
+        guard let stockVC = self.storyboard?.instantiateViewController(identifier: "stockVC") else {
+            return
+        }
+
+        self.present(stockVC, animated: false, completion: nil)
     }
     
     @IBAction func orderJuice(_ sender: OrderJuiceButton) {
@@ -45,6 +50,8 @@ class ViewController: UIViewController {
         updateFruitCount()
     }
 
+    //MARK:-- function
+
     func initializeButtons() {
         orderStrawberryJuiceButton.juice = .strawberry
         orderBananaJuiceButton.juice = .banana
@@ -54,13 +61,14 @@ class ViewController: UIViewController {
         orderMangoKiwiJuiceButton.juice = .mangokiwi
         orderPineappleJuiceButton.juice = .pineapple
     }
-
-    @IBAction func moveStock(_ sender: Any) {
-        guard let stockVC = self.storyboard?.instantiateViewController(identifier: "stockVC") else {
-            return
-        }
-
-        self.present(stockVC, animated: false, completion: nil)
+    
+    func updateFruitCount() {
+        strawberryCount.text = String(JuiceMaker.shared.readStock(of: .strawberry))
+        bananaCount.text = String(JuiceMaker.shared
+                                    .readStock(of: .banana))
+        kiwiCount.text = String(JuiceMaker.shared.readStock(of: .kiwi))
+        pineappleCount.text = String(JuiceMaker.shared.readStock(of: .pineapple))
+        mangoCount.text = String(JuiceMaker.shared.readStock(of: .mango))
     }
 }
 
