@@ -7,7 +7,7 @@
 
 import UIKit
 
-class orderAlertController: UIAlertController {
+class OrderAlertController: UIAlertController {
 
     func alertOfSuccess(juice: Juice) -> UIAlertController {
         let alert = UIAlertController(title: "\(juice.rawValue) 쥬스 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
