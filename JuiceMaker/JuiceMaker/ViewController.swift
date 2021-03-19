@@ -31,6 +31,11 @@ class ViewController: UIViewController {
         initializeButtons()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateFruitCount()
+    }
+    
     //MARK:-- @IBAction Function
 
     @IBAction func moveStock(_ sender: Any) {
