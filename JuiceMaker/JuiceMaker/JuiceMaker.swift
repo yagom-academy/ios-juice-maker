@@ -16,7 +16,7 @@ class JuiceMaker {
                                          ObjectIdentifier(MangoJuice.self): "망고쥬스", ObjectIdentifier(StrawberryBananaJuice.self) : "딸바쥬스",
                                          ObjectIdentifier(MangoKiwiJuice.self) : "망키쥬스"]
     
-    let recipes: juiceRecipe = [ObjectIdentifier(StrawberryJuice.self) : [(ObjectIdentifier(Strawberry.self), 16)],
+    let recipes: juiceRecipe = [ObjectIdentifier(StrawberryJuice.self) : [(ObjectIdentifier(Strawberry.self), 6)],
                              ObjectIdentifier(BananaJuice.self) : [(ObjectIdentifier(Banana.self), 2)],
                              ObjectIdentifier(KiwiJuice.self) : [(ObjectIdentifier(Kiwi.self), 3)],
                              ObjectIdentifier(PineappleJuice.self) : [(ObjectIdentifier(Pineapple.self), 2)],
@@ -37,15 +37,15 @@ class JuiceMaker {
         return true
     }
     
-    func makeJuice(_ juice: juiceRecipe.Key) -> Bool {
+    func makeJuice(_ juice: juiceRecipe.Key, completion: (Bool, ObjectIdentifier) -> Void) {
         if hasEnoughFruitStock(juice) {
             if let juiceIngredient = recipes[juice]{
                 for juiceIngredient in juiceIngredient {
                     fruitsStorage.reduceFruit(juiceIngredient.stock, amount: juiceIngredient.requiredAmount)
-                    return true
+                    completion(true, juice)
                 }
             }
         }
-        return false
+        completion(false, juice)
     }
 }

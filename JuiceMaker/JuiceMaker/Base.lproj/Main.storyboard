@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -120,7 +120,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r2g-6X-lBd"/>
+                                    <action selector="orderStrawberryBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r0z-e3-5ze"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWQ-XI-Snx">
@@ -131,7 +131,7 @@
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tlo-G4-ZlJ"/>
+                                    <action selector="orderMangoKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eI6-Ph-Ubq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hTK-Et-pFz">
@@ -150,7 +150,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hcl-6V-gXZ"/>
+                                    <action selector="orderStrawberryJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ime-Pw-V2O"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQh-UQ-IKz">
@@ -169,7 +169,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jff-L0-VGM"/>
+                                    <action selector="orderBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G10-Sn-wFS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-Cv-ZRW">
@@ -188,7 +188,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vf4-Iq-Ub6"/>
+                                    <action selector="orderPineappleJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kfz-Dn-VjA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eHr-Cx-LhC">
@@ -207,7 +207,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSc-vn-Anx"/>
+                                    <action selector="orderKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uia-Rs-sjy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJd-RA-3pg">
@@ -226,7 +226,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6fV-7A-wmq"/>
+                                    <action selector="orderMangoJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="baG-pA-ZZR"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="바나나" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tS9-40-R3C">
@@ -247,17 +247,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bananaJuiceBtn" destination="KQh-UQ-IKz" id="pIC-s3-Jyc"/>
                         <outlet property="bananaStockLabel" destination="tS9-40-R3C" id="Dy2-sL-Pl8"/>
-                        <outlet property="kiwiJuiceBtn" destination="eHr-Cx-LhC" id="HGe-8s-ufe"/>
                         <outlet property="kiwiStockLabel" destination="knd-e8-5ZL" id="0kh-7S-nxt"/>
-                        <outlet property="mangoJuiceBtn" destination="PJd-RA-3pg" id="kjO-Qn-fC5"/>
-                        <outlet property="mangoKiwiJuiceBtn" destination="vWQ-XI-Snx" id="dCc-pT-Oof"/>
                         <outlet property="mangoStockLabel" destination="zWf-ol-HWJ" id="ISj-TW-RQJ"/>
-                        <outlet property="pineappleJuiceBtn" destination="WRv-Cv-ZRW" id="lm9-4g-FPa"/>
                         <outlet property="pineappleStockLabel" destination="YJf-hx-0Ka" id="TeG-RE-d1M"/>
-                        <outlet property="strawberryBananaJuiceBtn" destination="pHK-fU-KCE" id="bEX-Fq-BQj"/>
-                        <outlet property="strawberryJuiceBtn" destination="hTK-Et-pFz" id="mqD-YE-B6U"/>
                         <outlet property="strawberryStockLabel" destination="1AH-sl-nx1" id="747-Tu-pjZ"/>
                     </connections>
                 </viewController>

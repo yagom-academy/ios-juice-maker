@@ -30,44 +30,37 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        let order = juiceMaker.makeJuice(ObjectIdentifier(StrawberryJuice.self))
-        juiceOrderAlert(result: order, name: ObjectIdentifier(StrawberryJuice.self))
+        juiceMaker.makeJuice(ObjectIdentifier(StrawberryJuice.self), completion: juiceOrderAlert(result:name:))
         updateStockText()
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
-        let order = juiceMaker.makeJuice(ObjectIdentifier(BananaJuice.self))
-        juiceOrderAlert(result: order, name: ObjectIdentifier(BananaJuice.self))
+        juiceMaker.makeJuice(ObjectIdentifier(BananaJuice.self), completion: juiceOrderAlert(result:name:))
         updateStockText()
     }
-    
+
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        let order = juiceMaker.makeJuice(ObjectIdentifier(KiwiJuice.self))
-        juiceOrderAlert(result: order, name: ObjectIdentifier(StrawberryJuice.self))
+        juiceMaker.makeJuice(ObjectIdentifier(KiwiJuice.self), completion: juiceOrderAlert(result:name:))
         updateStockText()
     }
-    
+
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        let order = juiceMaker.makeJuice(ObjectIdentifier(PineappleJuice.self))
-        juiceOrderAlert(result: order, name: ObjectIdentifier(PineappleJuice.self))
+        juiceMaker.makeJuice(ObjectIdentifier(PineappleJuice.self), completion: juiceOrderAlert(result:name:))
         updateStockText()
     }
-    
+
     @IBAction func orderMangoJuice(_ sender: UIButton) {
-        let order = juiceMaker.makeJuice(ObjectIdentifier(MangoJuice.self))
-        juiceOrderAlert(result: order, name: ObjectIdentifier(MangoJuice.self))
+        juiceMaker.makeJuice(ObjectIdentifier(MangoJuice.self), completion: juiceOrderAlert(result:name:))
         updateStockText()
     }
-    
+
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        let order = juiceMaker.makeJuice(ObjectIdentifier(StrawberryBananaJuice.self))
-        juiceOrderAlert(result: order, name: ObjectIdentifier(StrawberryBananaJuice.self))
+        juiceMaker.makeJuice(ObjectIdentifier(StrawberryBananaJuice.self), completion: juiceOrderAlert(result:name:))
         updateStockText()
     }
-    
+
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        let order = juiceMaker.makeJuice(ObjectIdentifier(MangoKiwiJuice.self))
-        juiceOrderAlert(result: order, name: ObjectIdentifier(MangoKiwiJuice.self))
+        juiceMaker.makeJuice(ObjectIdentifier(MangoKiwiJuice.self), completion: juiceOrderAlert(result:name:))
         updateStockText()
     }
 
@@ -88,7 +81,7 @@ class ViewController: UIViewController {
     
     func juiceOrderAlert(result: Bool, name: juiceName.Key) {
         if result {
-            let alert = UIAlertController(title: nil, message: "\(juiceMaker.juicename[name]!) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert) // 쥬스 이름을 인자값으로 받아와야 하는데 쥬스 이름이 없음
+            let alert = UIAlertController(title: nil, message: "\(juiceMaker.juicename[name]!) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
             let ok = UIAlertAction(title: "확인", style: .default)
             
             alert.addAction(ok)
