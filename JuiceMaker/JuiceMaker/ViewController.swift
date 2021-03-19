@@ -14,13 +14,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiCount: UILabel!
     @IBOutlet weak var mangoCount: UILabel!
     
-    @IBOutlet weak var orderStrawberryBananaJuiceButton: UIButton!
-    @IBOutlet weak var orderStrawberryJuiceButton: UIButton!
-    @IBOutlet weak var orderBananaJuiceButton: UIButton!
-    @IBOutlet weak var orderPineappleJuiceButton: UIButton!
-    @IBOutlet weak var orderMangoKiwiJuiceButton: UIButton!
-    @IBOutlet weak var orderKiwiJuiceButton: UIButton!
-    @IBOutlet weak var orderMangoJuiceButton: UIButton!
+    @IBOutlet weak var orderStrawberryBananaJuiceButton: OrderJuiceButton!
+    @IBOutlet weak var orderStrawberryJuiceButton: OrderJuiceButton!
+    @IBOutlet weak var orderBananaJuiceButton: OrderJuiceButton!
+    @IBOutlet weak var orderPineappleJuiceButton: OrderJuiceButton!
+    @IBOutlet weak var orderMangoKiwiJuiceButton: OrderJuiceButton!
+    @IBOutlet weak var orderKiwiJuiceButton: OrderJuiceButton!
+    @IBOutlet weak var orderMangoJuiceButton: OrderJuiceButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
