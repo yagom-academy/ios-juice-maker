@@ -27,7 +27,7 @@ enum JuiceTypes: String, CustomStringConvertible {
         case .kiwiJuice:
             return [.kiwi: 3]
         case .pineappleJuice:
-            return [.mango: 3]
+            return [.pineapple: 3]
         case .strawberryBananaJuice:
             return [.strawberry: 10, .banana: 1]
         case .mangoJuice:

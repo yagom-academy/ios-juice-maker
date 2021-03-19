@@ -10,16 +10,20 @@ enum FruitTypes {
     case strawberry, banana, kiwi, pineapple, mango
 }
 
-class FruitManager {
+final class FruitStock {
     private var fruit: FruitTypes
-    private(set) var stock: Int
-
-    init(_ fruit: FruitTypes) {
-        self.fruit = fruit
-        self.stock = 10
+    private(set) var stock: Int {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name("didStockChanged"), object: fruit)
+        }
     }
 
-    func haveStock(_ requiredFruitAmount: Int) -> Bool {
+    init(_ fruit: FruitTypes, _ stock: Int = 10) {
+        self.fruit = fruit
+        self.stock = stock
+    }
+
+    func isStockExist(_ requiredFruitAmount: Int) -> Bool {
         if stock < requiredFruitAmount { return false }
         else { return true }
     }
