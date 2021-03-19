@@ -24,9 +24,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        initializeButtons()
     }
 
+    func initializeButtons() {
+        orderStrawberryJuiceButton.juice = .strawberry
+        orderBananaJuiceButton.juice = .banana
+        orderStrawberryBananaJuiceButton.juice = .strawberryBanana
+        orderKiwiJuiceButton.juice = .kiwi
+        orderMangoJuiceButton.juice = .mango
+        orderMangoKiwiJuiceButton.juice = .mangokiwi
+        orderPineappleJuiceButton.juice = .pineapple
+    }
 
 }
 
