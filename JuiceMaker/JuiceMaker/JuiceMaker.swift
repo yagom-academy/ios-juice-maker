@@ -23,16 +23,9 @@ class FruitStock {
     fileprivate(set) var kiwi: Int = 10
     fileprivate(set) var pineapple: Int = 10
     fileprivate(set) var mango: Int = 10
-    
-    init() {}
 }
 
 class JuiceMaker {
-    
-    private func checkFruitStock() {
-        print("과일 재고 : 딸기 \(FruitStock.shared.strawberry), 바나나 \(FruitStock.shared.banana), 파인애플 \(FruitStock.shared.pineapple), 키위 \(FruitStock.shared.kiwi), 망고 \(FruitStock.shared.mango)")
-    }
-    
     func addAmount(_ of: inout Int, as much: Int) {
         of = of + much
     }

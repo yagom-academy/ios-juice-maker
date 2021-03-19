@@ -9,7 +9,6 @@ import UIKit
 
 
 class StockViewController: UIViewController {
-    
     @IBOutlet weak var strawberryStock: UILabel!
     @IBOutlet weak var bananaStock: UILabel!
     @IBOutlet weak var pineappleStock: UILabel!
@@ -33,11 +32,4 @@ class StockViewController: UIViewController {
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true)
     }
-    
-//    @IBAction func strawberryStepperAction(_ sender: Any) {
-//        JuiceMaker().addAmount(<#T##of: &Int##Int#>, as: Int(sender.value))
-//    }
-    
-    
-    
 }
