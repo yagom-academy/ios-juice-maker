@@ -400,7 +400,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="hnN-sU-rle"/>
                     <connections>
+                        <outlet property="bananaStepper" destination="S1d-yj-hwC" id="33s-Bb-rMK"/>
+                        <outlet property="kiwiStepper" destination="m9C-ec-kxm" id="ssI-ez-ofe"/>
+                        <outlet property="mangoStepper" destination="9cS-dh-Lmw" id="dAa-Qx-cdx"/>
+                        <outlet property="pineappleStepper" destination="aZB-Ti-PJO" id="yaZ-Jd-W2X"/>
                         <outlet property="saveButton" destination="SoD-V1-fgG" id="fXk-xc-BRd"/>
+                        <outlet property="strawberryStepper" destination="bgp-qO-sIU" id="Xlm-io-glc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9HD-sh-24p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

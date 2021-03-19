@@ -8,7 +8,7 @@
 import UIKit
 
 extension JuiceMakerViewController {
-    func lakeStockAlert(_ error: Error) {
+    func lackStockAlert(_ error: Error) {
         var errorMessgae: String?
         if let juiceError = error as? JuiceMakerError {
             errorMessgae = juiceError.localizedDescription
@@ -16,8 +16,8 @@ extension JuiceMakerViewController {
             errorMessgae = JuiceMakerError.unknown.localizedDescription
         }
         let failAlert = UIAlertController(title: nil , message: errorMessgae, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "아니오", style: .default)
-        let stockSettingAction = UIAlertAction(title: "예", style: .cancel) { action in
+        let cancel = UIAlertAction(title: "아니오", style: .cancel)
+        let stockSettingAction = UIAlertAction(title: "예", style: .default) { action in
             guard let stockManagerViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerViewController") as? StockManagerViewController else {
                 return
             }

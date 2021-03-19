@@ -41,7 +41,7 @@ final class JuiceMakerViewController: UIViewController {
             return
         }
         guard juiceMaker.make(order: kindJuice) else {
-            return lakeStockAlert(JuiceMakerError.lackStock)
+            return lackStockAlert(JuiceMakerError.lackStock)
         }
         orderSuccessAlert(kindJuice)
     }
