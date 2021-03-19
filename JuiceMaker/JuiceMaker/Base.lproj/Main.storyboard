@@ -11,23 +11,12 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstVC" id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxo-Ae-OcD">
-                                <rect key="frame" x="60" y="268" width="125" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                <state key="normal" title="딸기쥬스 주문">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="orderStrawberryJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xdX-jc-pnp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTF-TJ-Rjk">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTF-TJ-Rjk" customClass="OrderUIButton" customModule="JuiceMaker" customModuleProvider="target">
                                 <rect key="frame" x="60" y="203" width="278" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -35,10 +24,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderStrawberryBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f0Y-Lc-Jfc"/>
+                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zf2-lu-W4u"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKC-Xk-Crm">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKC-Xk-Crm" customClass="OrderUIButton" customModule="JuiceMaker" customModuleProvider="target">
                                 <rect key="frame" x="213" y="269" width="125" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -46,10 +35,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2R5-b6-cK5"/>
+                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hc1-ht-COZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aE0-D9-HF6">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aE0-D9-HF6" customClass="OrderUIButton" customModule="JuiceMaker" customModuleProvider="target">
                                 <rect key="frame" x="357" y="270" width="125" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -57,10 +46,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderPineappleJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Pt-je-uNT"/>
+                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jWA-zz-ryR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7C-fr-FPH">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7C-fr-FPH" customClass="OrderUIButton" customModule="JuiceMaker" customModuleProvider="target">
                                 <rect key="frame" x="510" y="270" width="125" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -68,10 +57,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fXs-u1-j6W"/>
+                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JCp-7p-kDp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaN-7b-ZT7">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaN-7b-ZT7" customClass="OrderUIButton" customModule="JuiceMaker" customModuleProvider="target">
                                 <rect key="frame" x="659" y="268" width="125" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -79,10 +68,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderMangoJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1bF-4i-ZSw"/>
+                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XmU-Sd-3UI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVA-Gq-rU1">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVA-Gq-rU1" customClass="OrderUIButton" customModule="JuiceMaker" customModuleProvider="target">
                                 <rect key="frame" x="357" y="202" width="278" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
@@ -90,7 +79,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orderMangoKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6eC-rI-Sme"/>
+                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2b-og-uac"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="littledeep_illustration_strawberry_style1" translatesAutoresizingMaskIntoConstraints="NO" id="ExD-0b-9xb">
@@ -153,33 +142,82 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxo-Ae-OcD" customClass="OrderUIButton" customModule="JuiceMaker" customModuleProvider="target">
+                                <rect key="frame" x="60" y="268" width="125" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <state key="normal" title="딸기쥬스 주문">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BzG-Bs-y9v"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="IJH-ev-PNm">
-                        <barButtonItem key="rightBarButtonItem" title="재고 수정" id="bQI-pD-GeL"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고 수정" id="bQI-pD-GeL">
+                            <connections>
+                                <action selector="changeView:" destination="BYZ-38-t0r" id="V9V-Mz-ikV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addStock" destination="bQI-pD-GeL" id="7Ic-Y5-ok8"/>
                         <outlet property="bananaCount" destination="Vxm-r7-LqT" id="0uk-58-kTg"/>
                         <outlet property="kiwiCount" destination="EoX-qz-Kh8" id="ZTJ-v6-K5z"/>
                         <outlet property="mangoCount" destination="U3e-UJ-gAb" id="LJV-Lp-p7R"/>
-                        <outlet property="orderBananaJuiceButton" destination="DKC-Xk-Crm" id="feE-6e-5ju"/>
-                        <outlet property="orderKiwiJuiceButton" destination="T7C-fr-FPH" id="e2c-1p-4eh"/>
-                        <outlet property="orderMangoJuiceButton" destination="TaN-7b-ZT7" id="u2V-Ez-a87"/>
-                        <outlet property="orderMangoKiwiJuiceButton" destination="hVA-Gq-rU1" id="Aqb-wK-gyW"/>
-                        <outlet property="orderPineappleJuiceButton" destination="aE0-D9-HF6" id="XQu-yw-BQ2"/>
-                        <outlet property="orderStrawberryBananaJuiceButton" destination="KTF-TJ-Rjk" id="mLn-4A-5TU"/>
-                        <outlet property="orderStrawberryJuiceButton" destination="gxo-Ae-OcD" id="as4-5H-S4y"/>
+                        <outlet property="orderBananaJuiceButton" destination="DKC-Xk-Crm" id="9xV-WP-saP"/>
+                        <outlet property="orderKiwiJuiceButton" destination="T7C-fr-FPH" id="pm2-cq-WN0"/>
+                        <outlet property="orderMangoJuiceButton" destination="TaN-7b-ZT7" id="S6Y-Ib-gwB"/>
+                        <outlet property="orderMangoKiwiJuiceButton" destination="hVA-Gq-rU1" id="dHY-au-eLh"/>
+                        <outlet property="orderPineappleJuiceButton" destination="aE0-D9-HF6" id="k2e-Cm-FS6"/>
+                        <outlet property="orderStrawberryBananaJuiceButton" destination="KTF-TJ-Rjk" id="i21-zF-Nw2"/>
+                        <outlet property="orderStrawberryJuiceButton" destination="gxo-Ae-OcD" id="g7w-Zi-r5D"/>
                         <outlet property="pineappleCount" destination="oX4-u8-E39" id="kd3-kR-Tbw"/>
                         <outlet property="strawberryCount" destination="322-9t-Kcp" id="AKV-tq-STL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2277" y="-1891"/>
+            <point key="canvasLocation" x="-1900" y="-2115"/>
+        </scene>
+        <!--Update View Controller-->
+        <scene sceneID="Fdh-av-MIb">
+            <objects>
+                <viewController storyboardIdentifier="secondVC" id="pMX-hG-a7X" customClass="UpdateViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="brw-Fq-sEl">
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mYQ-AO-8yR">
+                                <rect key="frame" x="0.0" y="12" width="844" height="32"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="3js-S4-Oz5">
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="zxL-me-dg1">
+                                            <connections>
+                                                <action selector="returnView:" destination="pMX-hG-a7X" id="xvy-g8-aGH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BEZ-PV-SPt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeSecondView" destination="zxL-me-dg1" id="dz0-Z8-hhO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bpj-0T-ylM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2450" y="-1494"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZOa-Qt-UkG">
@@ -197,7 +235,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wup-XW-H1u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2298" y="-2678"/>
+            <point key="canvasLocation" x="-2450" y="-2898"/>
         </scene>
     </scenes>
     <resources>

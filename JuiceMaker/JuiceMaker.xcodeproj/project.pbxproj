@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52386EAC2604401D002F8368 /* OrderUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52386EAB2604401D002F8368 /* OrderUIButton.swift */; };
+		52E039772602EC2D0090DE54 /* JuiceIsMadeAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E039762602EC2D0090DE54 /* JuiceIsMadeAlertController.swift */; };
+		52E0397A2602ED870090DE54 /* OutOfStockUIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E039792602ED870090DE54 /* OutOfStockUIAlertController.swift */; };
+		52E0398A26034E5C0090DE54 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0398926034E5C0090DE54 /* UpdateViewController.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
 		C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* ViewController.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52386EAB2604401D002F8368 /* OrderUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderUIButton.swift; sourceTree = "<group>"; };
+		52E039762602EC2D0090DE54 /* JuiceIsMadeAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceIsMadeAlertController.swift; sourceTree = "<group>"; };
+		52E039792602ED870090DE54 /* OutOfStockUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutOfStockUIAlertController.swift; sourceTree = "<group>"; };
+		52E0398926034E5C0090DE54 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +69,10 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				52386EAB2604401D002F8368 /* OrderUIButton.swift */,
+				52E0398926034E5C0090DE54 /* UpdateViewController.swift */,
+				52E039762602EC2D0090DE54 /* JuiceIsMadeAlertController.swift */,
+				52E039792602ED870090DE54 /* OutOfStockUIAlertController.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
@@ -140,9 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E039772602EC2D0090DE54 /* JuiceIsMadeAlertController.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				52E0397A2602ED870090DE54 /* OutOfStockUIAlertController.swift in Sources */,
+				52386EAC2604401D002F8368 /* OrderUIButton.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				52E0398A26034E5C0090DE54 /* UpdateViewController.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
