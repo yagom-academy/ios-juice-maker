@@ -52,7 +52,7 @@ class ViewController: UIViewController {
                 throw JuiceMakerError.invalidAccess
             }
             strawberryStockLabel.text = String(stockOfStrawberry)
-            showJuiceIsReadyAlert(message: "\(Juice.strawberryJuice) 나왔습니다. 맛있게 드세요")
+            showJuiceIsReadyAlert(message: "\(Juice.strawberryJuice.rawValue) 나왔습니다. 맛있게 드세요")
         } catch {
             warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
                 return
             }
             bananaStockLabel.text = String(stockOfBanana)
-            showJuiceIsReadyAlert(message: "\(Juice.bananaJuice) 나왔습니다. 맛있게 드세요!!")
+            showJuiceIsReadyAlert(message: "\(Juice.bananaJuice.rawValue) 나왔습니다. 맛있게 드세요!!")
         } catch {
             warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
                 return
             }
             pineappleStockLabel.text = String(stockOfPineapple)
-            showJuiceIsReadyAlert(message: "\(Juice.pineappleJuice) 나왔습니다. 맛있게 드세요")
+            showJuiceIsReadyAlert(message: "\(Juice.pineappleJuice.rawValue) 나왔습니다. 맛있게 드세요")
         } catch {
             warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
                 return
             }
             kiwiStockLabel.text = String(stockOfKiwi)
-            showJuiceIsReadyAlert(message: "\(Juice.kiwiJuice) 나왔습니다. 맛있게 드세요")
+            showJuiceIsReadyAlert(message: "\(Juice.kiwiJuice.rawValue) 나왔습니다. 맛있게 드세요")
         } catch {
             warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
                 return
             }
             mangoStockLabel.text = String(stockOfMango)
-            showJuiceIsReadyAlert(message: "\(Juice.mangoJuice) 나왔습니다. 맛있게 드세요")
+            showJuiceIsReadyAlert(message: "\(Juice.mangoJuice.rawValue) 나왔습니다. 맛있게 드세요")
         } catch {
             warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
             }
             strawberryStockLabel.text = String(stockOfStrawberry)
             bananaStockLabel.text = String(stockOfBanana)
-            showJuiceIsReadyAlert(message: "\(Juice.strawberryBananaJuice) 나왔습니다. 맛있게 드세요")
+            showJuiceIsReadyAlert(message: "\(Juice.strawberryBananaJuice.rawValue) 나왔습니다. 맛있게 드세요")
         } catch {
             warnNotEnoughFruitAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
