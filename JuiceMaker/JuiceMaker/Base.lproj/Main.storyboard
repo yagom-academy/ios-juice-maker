@@ -287,7 +287,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
                                 <items>
                                     <navigationItem title="재고 추가" id="Yw6-li-niI">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6qo-p5-Jqe"/>
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6qo-p5-Jqe">
+                                            <connections>
+                                                <action selector="touchUpClosedButton:" destination="OM7-Cs-7Nc" id="I2D-h0-sa8"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
