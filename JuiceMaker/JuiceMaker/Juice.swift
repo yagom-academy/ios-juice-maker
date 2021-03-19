@@ -10,7 +10,7 @@ import Foundation
 typealias Recipe = (stock: ObjectIdentifier, requiredAmount: Int)
 
 class Juice {
-    var name: String
+    let name: String
 
     init(name: String) {
         self.name = name
@@ -18,15 +18,9 @@ class Juice {
 }
 
 class StrawberryJuice: Juice {}
-
 class BananaJuice: Juice {}
-
 class KiwiJuice: Juice {}
-
 class PineappleJuice: Juice {}
-
 class MangoJuice: Juice {}
-
 class StrawberryBananaJuice: Juice {}
-
 class MangoKiwiJuice: Juice {}

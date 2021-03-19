@@ -24,7 +24,7 @@ class JuiceMaker {
                              ObjectIdentifier(StrawberryBananaJuice.self) :  [(ObjectIdentifier(Strawberry.self), 10),(ObjectIdentifier(Banana.self), 1)],
                              ObjectIdentifier(MangoKiwiJuice.self) : [(ObjectIdentifier(Mango.self), 2), (ObjectIdentifier(Kiwi.self), 1)]]
     
-    var fruitsStorage = FruitsStorage.sharedInstance
+    let fruitsStorage = FruitsStorage.sharedInstance
     
     private func hasEnoughFruitStock(_ juice: juiceRecipe.Key) -> Bool {
         if let juiceIngredients = recipes[juice] {
@@ -37,7 +37,7 @@ class JuiceMaker {
         return true
     }
     
-    func makeJuice(_ juice: juiceRecipe.Key, completion: (Bool, ObjectIdentifier) -> Void) {
+    func makeJuice(_ juice: juiceRecipe.Key, completion: (Bool, juiceName.Key) -> Void) {
         if hasEnoughFruitStock(juice) {
             if let juiceIngredient = recipes[juice]{
                 for juiceIngredient in juiceIngredient {
