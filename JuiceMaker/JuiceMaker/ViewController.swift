@@ -28,7 +28,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: OrderJuiceButton) {
-        
+        guard let juice = sender.juice else {
+            return
+        }
+        let alert = sender.make(using: juice)
+        self.present(alert, animated: true, completion: nil)
     }
 
     func initializeButtons() {
