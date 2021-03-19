@@ -81,9 +81,7 @@ class JuiceMaker {
     private var stock: FruitStock = FruitStock(initialCount: 10)
     static let shared = JuiceMaker()
     
-    private init() {
-        
-    }
+    private init() { }
     
     func makeJuice(using juice: Juice) throws {
         for (ingredient, information) in juice.recipe {
