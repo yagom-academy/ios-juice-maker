@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum JuiceMakerError:Error {
+enum JuiceMakerError: Error {
     case outOfStock
     case unknownError
-    case unavailableAccess
+    case invalidAccess
 }
 
 enum Fruit {
@@ -18,13 +18,13 @@ enum Fruit {
 }
 
 enum Juice: String {
-    case strawberryJuice = "딸기주스"
-    case bananaJuice = "바나나주스"
-    case kiwiJuice = "키위주스"
-    case pineappleJuice = "파인애플주스"
-    case mangoJuice = "망고주스"
-    case strawberryBananaJuice = "딸바주스"
-    case mangoKiwiJuice = "망키주스"
+    case strawberryJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case mangoJuice = "망고쥬스"
+    case strawberryBananaJuice = "딸바쥬스"
+    case mangoKiwiJuice = "망키쥬스"
     
     var recipe: [Fruit: Int] {
         switch self {
@@ -46,21 +46,26 @@ enum Juice: String {
     }
 }
 
-class JuiceMaker {
-    private var fruitRefrigerator = FruitStorage.shared.refrigerator
+extension Juice: CustomStringConvertible {
+    var description: String {
+        return rawValue
+        }
+    }
+
+final class JuiceMaker {
     
-    func makeJuice(flavor juice: Juice) throws -> Bool {
-        for (fruit, requirements) in juice.recipe {
-            guard let stock = fruitRefrigerator[fruit] else {
-                throw JuiceMakerError.unavailableAccess
-            }
-            if stock >= requirements {
-                fruitRefrigerator.updateValue(stock - requirements, forKey: fruit)
+    private func grindFruit(fruit: Fruit, amount: Int) {
+        FruitStorage.shared.manageFruit(fruit: fruit, quantity: -amount)
+    }
+    
+    func makeJuice(order: Juice) throws {
+        for (ingredients, requirements) in order.recipe {
+            if FruitStorage.shared.hasEnoughFruit(fruit: ingredients, requiredQuantity: requirements) {
+                grindFruit(fruit: ingredients, amount: requirements)
             }
             else {
                 throw JuiceMakerError.outOfStock
             }
         }
-        return true
     }
 }
