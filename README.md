@@ -33,13 +33,37 @@ Sunny, Steven
 - stepper 공부 및 구현
 - view 생명주기 공부
 
-# step1
+# Step 1
 ## FlowChart
 ![flowchart_(1)](https://user-images.githubusercontent.com/35272802/110903308-94ab3980-834a-11eb-9151-713eec617746.png)
 
 ## Class diagram
 ![classDiagram](https://user-images.githubusercontent.com/35272802/110903528-f075c280-834a-11eb-9851-03067d4ddea6.jpeg)
 
+## 피드백 및 개선 내용 (1)
+- 과일을 어떤 타입으로 할지 고민하다가 결국에는 enum을 선택
+- enum을 선택한 이유: 프로젝트 요구 사항에 새로운 종류의 과일이 추가 되는 것이 없음.
+- 문제점: 과일 타입에서 rawValue를 사용하고 싶은 경우가 생김
+- JuiceMaker의 프로터피로 fruitStocks 라는 과일의 수량을 배열을 선언 후 rawValue를 사용해서 인덱스로 접근
+- 과일 타입 안에 index를 선언해서 rawValue를 리턴 (코드 9-15줄 참고)
+
+-  Fruit이 rawValue로 Int를 사용하지 않도록 개선
+-  이유: rawValue를 사용하며 은닉화에 좋지 않음
+-  배열을 딕셔너리로 바꿔줌
+-  fruitStock을 숫자로 표현하지 않고 [Fruit: Int] 타입으로 구현 
+-  checkStock 메서드에서도 인덱스로 접근하지 않고 과일 자체를 키로 넣어서 확인 가능
+
+## 피드백 및 개선 내용 (2)
+- 메서드는 호출하는 쪽 기준으로 어떻게 사용되는지도 고려해서 이름 짓기
+- checkStock(fruit: Fruit)을 juiceMaker.checkStock(of: .kiwi)으로 수정
+
+## 피드백 및 개선 내용 (3)
+- 메서드 호출하는 쪽 기준으로 생각할 때 단어 반복 지양하기 
+- makeFruitJuice(juice: FruitJuice) -> Juice라는 단어가 두 번 반복
+- 스위프트에서는 argument label도 함수 이름에 포함된다는 걸 고려해서 작성하기
+- argument label을 쓰지 않는게 적합하다고 생각하여 _를 사용해서 생략함
+
+# Step 2
 ## Storyboard
 <img width="1075" alt="Screen Shot 2021-03-20 at 1 49 18 PM" src="https://user-images.githubusercontent.com/70262005/111859299-3b16c080-8983-11eb-892d-2671eb3059b0.png">
 
