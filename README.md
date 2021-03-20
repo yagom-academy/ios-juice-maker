@@ -69,19 +69,22 @@ Sunny, Steven
 
 ## 실행 화면
 ![Simulator Screen Shot - iPhone SE (2nd generation) - 2021-03-20 at 17 52 06](https://user-images.githubusercontent.com/70262005/111864773-4cbd8f80-89a6-11eb-851c-c1fb00a0d843.png)
+- 우측 상단의 재고 수정 버튼을 클릭하면 아래의 재고 추가 화면으로 이동
+- Segue의 Show(Push) 방식으로 화면 전환
 
-우측 상단의 재고 수정 버튼을 클릭하면 아래의 재고 추가 화면으로 이동함.
 ![Simulator Screen Shot - iPhone SE (2nd generation) - 2021-03-20 at 17 52 14](https://user-images.githubusercontent.com/70262005/111864805-770f4d00-89a6-11eb-9861-047798748ef8.png)
-닫기 버튼 클릭할 시 처음의 주문 화면으로 돌아감.
+- 닫기 버튼 클릭할 시 처음의 주문 화면으로 돌아감
+- UIButton을 활용하여 StockAddViewController에서 이전의 뷰 컨트롤러를 호출 적용
 
 ![Simulator Screen Shot - iPhone SE (2nd generation) - 2021-03-20 at 17 52 33](https://user-images.githubusercontent.com/70262005/111864866-dc633e00-89a6-11eb-9e00-435f4ece142a.png)
-재고가 있어서 주문이 성공적으로 이뤄졌을 때의 alert.
+- 재고가 있어서 주문이 성공적으로 이뤄졌을 때의 alert
 
 ![Simulator Screen Shot - iPhone SE (2nd generation) - 2021-03-20 at 17 52 43](https://user-images.githubusercontent.com/70262005/111864889-ff8ded80-89a6-11eb-92ea-5be7876412a9.png)
-재고 부족시 추가할지 아닐지 선택할 수 있는 alert 표시.
-'예'를 선택시 재고 수정 화면으로 이동.
+- UIAlertController를 활용하여 재고 부족시 추가할지 아닐지 선택할 수 있는 alert 표시
+- '예'를 선택시 재고 수정 화면으로 이동
+- HIG에 근거하여 cancel 버튼 좌측에 위치
 
 ![Simulator Screen Shot - iPhone SE (2nd generation) - 2021-03-20 at 17 53 00](https://user-images.githubusercontent.com/70262005/111864919-2ba96e80-89a7-11eb-8fa8-b50e392b6670.png)
-+, - 를 누르면 재고가 각각 1개씨 증가 혹은 감소함.
+- UIStepper를 활용하여 +, - 를 누르면 재고가 각각 1개씨 증가 혹은 감소함
 
 
