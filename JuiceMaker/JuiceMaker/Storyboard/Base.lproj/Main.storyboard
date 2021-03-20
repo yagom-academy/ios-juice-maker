@@ -55,7 +55,7 @@
                                     <constraint firstAttribute="height" priority="250" constant="120" id="prm-UB-p9K"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="39F-Rk-6Xt">
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="39F-Rk-6Xt">
                                 <rect key="frame" x="60" y="313" width="776" height="60"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHX-tB-zPW" customClass="OrderButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -153,7 +153,7 @@
                                     <constraint firstAttribute="height" constant="30" id="6UV-fb-Ao4"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-65" translatesAutoresizingMaskIntoConstraints="NO" id="SyE-ND-aCq">
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" distribution="fillEqually" spacing="-65" translatesAutoresizingMaskIntoConstraints="NO" id="SyE-ND-aCq">
                                 <rect key="frame" x="60" y="238" width="776" height="60"/>
                                 <subviews>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7T-TB-EyS" customClass="OrderButton" customModule="JuiceMaker" customModuleProvider="target">
@@ -225,6 +225,7 @@
                             <constraint firstItem="SyE-ND-aCq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Aix-MO-inS"/>
                             <constraint firstItem="Xz0-g2-Fp0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="CWG-Q6-JQE"/>
                             <constraint firstItem="9ug-o7-O5W" firstAttribute="top" secondItem="Xz0-g2-Fp0" secondAttribute="bottom" constant="8" id="ItI-Ut-BYX"/>
+                            <constraint firstItem="SyE-ND-aCq" firstAttribute="top" secondItem="Xz0-g2-Fp0" secondAttribute="bottom" constant="64.666666666666686" id="J8s-PU-0Hu"/>
                             <constraint firstAttribute="leading" secondItem="HrO-nZ-FFr" secondAttribute="leading" id="LDG-3P-YZr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9ug-o7-O5W" secondAttribute="trailing" constant="40" id="Oah-9E-Ghg"/>
                             <constraint firstItem="Xz0-g2-Fp0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Oqj-DG-ScR"/>
@@ -291,6 +292,7 @@
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="9or-4Q-hrS" secondAttribute="trailing" constant="41" id="3LU-29-HAz"/>
+                                    <constraint firstAttribute="height" constant="53" id="GPX-YO-fmE"/>
                                     <constraint firstItem="9or-4Q-hrS" firstAttribute="top" secondItem="mib-Um-xMb" secondAttribute="top" constant="11" id="Iu1-cy-JcH"/>
                                     <constraint firstItem="1ag-pO-G4A" firstAttribute="leading" secondItem="mib-Um-xMb" secondAttribute="leading" constant="298" id="RW9-W7-Oll"/>
                                     <constraint firstItem="1ag-pO-G4A" firstAttribute="top" secondItem="mib-Um-xMb" secondAttribute="top" constant="11" id="YAT-vm-5St"/>
@@ -299,7 +301,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="obd-SV-Fyw">
-                                <rect key="frame" x="60" y="82.999999999999986" width="808" height="129.66666666666663"/>
+                                <rect key="frame" x="64" y="82.999999999999986" width="808" height="129.66666666666663"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1935_3" translatesAutoresizingMaskIntoConstraints="NO" id="VhM-ZX-ZdA" userLabel="딸기">
                                         <rect key="frame" x="0.0" y="0.0" width="129.66666666666666" height="129.66666666666666"/>
@@ -386,23 +388,22 @@
                         <constraints>
                             <constraint firstItem="mib-Um-xMb" firstAttribute="top" secondItem="9T8-kG-CMy" secondAttribute="top" id="0Fv-7S-oUu"/>
                             <constraint firstItem="mib-Um-xMb" firstAttribute="trailing" secondItem="9T8-kG-CMy" secondAttribute="trailing" constant="44" id="8Ul-y6-I9O"/>
-                            <constraint firstItem="obd-SV-Fyw" firstAttribute="leading" secondItem="9T8-kG-CMy" secondAttribute="leading" constant="16" id="EjY-Ds-l65"/>
+                            <constraint firstItem="obd-SV-Fyw" firstAttribute="leading" secondItem="9T8-kG-CMy" secondAttribute="leading" constant="20" id="EjY-Ds-l65"/>
                             <constraint firstItem="9T8-kG-CMy" firstAttribute="leading" secondItem="mib-Um-xMb" secondAttribute="leading" constant="44" id="FH0-5q-ZC2"/>
                             <constraint firstItem="obd-SV-Fyw" firstAttribute="top" secondItem="mib-Um-xMb" secondAttribute="bottom" constant="30" id="K1H-20-dHK"/>
-                            <constraint firstItem="9T8-kG-CMy" firstAttribute="bottom" secondItem="mib-Um-xMb" secondAttribute="bottom" constant="340" id="QMT-lY-Y2R"/>
                             <constraint firstItem="9T8-kG-CMy" firstAttribute="bottom" secondItem="SoD-V1-fgG" secondAttribute="bottom" constant="30" id="T6I-af-hpS"/>
                             <constraint firstItem="SoD-V1-fgG" firstAttribute="centerX" secondItem="9T8-kG-CMy" secondAttribute="centerX" id="T72-pP-4br"/>
                             <constraint firstItem="9T8-kG-CMy" firstAttribute="bottom" secondItem="INn-on-hvP" secondAttribute="bottom" constant="120" id="afQ-ql-AJm"/>
+                            <constraint firstItem="obd-SV-Fyw" firstAttribute="trailing" secondItem="9T8-kG-CMy" secondAttribute="trailing" constant="20" id="bsI-7r-hcs"/>
                             <constraint firstItem="INn-on-hvP" firstAttribute="leading" secondItem="9T8-kG-CMy" secondAttribute="leading" constant="12" id="hYw-Hf-jkW"/>
-                            <constraint firstItem="obd-SV-Fyw" firstAttribute="trailing" secondItem="9T8-kG-CMy" secondAttribute="trailing" constant="16" id="jDn-do-K36"/>
                             <constraint firstItem="INn-on-hvP" firstAttribute="trailing" secondItem="9T8-kG-CMy" secondAttribute="trailing" constant="20" id="kZE-ZY-UfB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hnN-sU-rle"/>
                     <connections>
                         <outlet property="bananaStepper" destination="S1d-yj-hwC" id="33s-Bb-rMK"/>
-                        <outlet property="kiwiStepper" destination="m9C-ec-kxm" id="ssI-ez-ofe"/>
-                        <outlet property="mangoStepper" destination="9cS-dh-Lmw" id="dAa-Qx-cdx"/>
+                        <outlet property="kiwiStepper" destination="9cS-dh-Lmw" id="2zq-mY-foB"/>
+                        <outlet property="mangoStepper" destination="m9C-ec-kxm" id="bGk-dK-mmE"/>
                         <outlet property="pineappleStepper" destination="aZB-Ti-PJO" id="yaZ-Jd-W2X"/>
                         <outlet property="saveButton" destination="SoD-V1-fgG" id="fXk-xc-BRd"/>
                         <outlet property="strawberryStepper" destination="bgp-qO-sIU" id="Xlm-io-glc"/>

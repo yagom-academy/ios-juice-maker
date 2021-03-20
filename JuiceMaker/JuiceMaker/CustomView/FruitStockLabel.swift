@@ -8,31 +8,28 @@
 import UIKit
 
 final class FruitStockLabel: UILabel {
-    private var juiceMaker = JuiceMaker.shared
+    private var fruitAmount: Int?
     private(set) var kindFruit: Fruits?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateLabel(_ :)),
-                                               name: Notification.Name(rawValue: "changeFruitAmount"),
-                                               object: nil)
         self.layer.backgroundColor = .init(gray: 0.8, alpha: 0.6)
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
         self.adjustsFontSizeToFitWidth = true
     }
     
-    func initValue(fruit: Fruits) {
-        guard let amount = juiceMaker.fruitStorage.fruits[fruit] else {
+    func initValue(fruit: Fruits, amount: Int?) {
+        guard let amount = amount else {
             return
         }
         self.kindFruit = fruit
+        self.fruitAmount = amount
         self.text = String(amount)
     }
     
-    @objc private func updateLabel(_ notification: Notification) {
-        guard let fruit = kindFruit, let amount = juiceMaker.fruitStorage.fruits[fruit] else {
+    func updateLabel(kindFruit: Fruits, fruitAmount: Int?) {
+        guard let amount = fruitAmount else {
             return
         }
         self.text = String(amount)

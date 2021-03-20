@@ -7,14 +7,13 @@
 
 import UIKit
 
-@IBDesignable
 final class FruitStockStepper: UIView {
-    private var juiceMaker = JuiceMaker.shared
     private(set) var kindFruit: Fruits?
-    
-    private var leftButton = UIButton(type: .system)
-    private var rightButton = UIButton(type: .system)
+    private var leftButton = StepperButton(type: .system)
+    private var rightButton = StepperButton(type: .system)
     private var centerLabel = UILabel()
+    private let upValue = 1
+    private let downValue = -1
     
     private(set) var value: Int = 0 {
         didSet {
@@ -38,17 +37,8 @@ final class FruitStockStepper: UIView {
     }
     
     private func setup() {
-        self.leftButton.tag = -1
-        self.leftButton.setTitle("↡", for: .normal)
-        self.leftButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        self.leftButton.layer.borderWidth = 1
-        self.leftButton.layer.borderColor = UIColor.blue.cgColor
-        
-        self.rightButton.tag = 1
-        self.rightButton.setTitle("↟", for: .normal)
-        self.rightButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        self.rightButton.layer.borderWidth = 1
-        self.rightButton.layer.borderColor = UIColor.red.cgColor
+        self.leftButton.stepperButtonSetting(updownValue: upValue, updownShape: "↡", color: UIColor.red.cgColor)
+        self.rightButton.stepperButtonSetting(updownValue: downValue, updownShape: "↟", color: UIColor.blue.cgColor)
         
         self.centerLabel.text = String(value)
         self.centerLabel.font = UIFont.systemFont(ofSize: 16)

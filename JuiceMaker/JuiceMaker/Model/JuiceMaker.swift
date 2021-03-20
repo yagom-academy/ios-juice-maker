@@ -8,7 +8,7 @@ import Foundation
 
 final class JuiceMaker {
     static let shared = JuiceMaker()
-    var fruitStorage = FruitStock(initAmount: 20)
+    private var fruitStorage = FruitStock(initAmount: 20)
  
     private init() {}
     
@@ -22,8 +22,12 @@ final class JuiceMaker {
         }
         return true
     }
+    
+    func currentFruit(kindFruit fruit: Fruits) -> Int? {
+        return fruitStorage.fruits[fruit]
+    }
 
-    private func consume(fruit kind: Fruits, amount: Int) {
+    func consume(fruit kind: Fruits, amount: Int) {
         fruitStorage.manageStorage(fruit: kind, amount: -amount)
     }
     

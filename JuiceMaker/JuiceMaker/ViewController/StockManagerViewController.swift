@@ -17,7 +17,7 @@ final class StockManagerViewController: UIViewController {
     }
     
     @IBAction func closeButton(_ sender: Any) {
-        saveStockAlert()
+        dismiss(animated: true)
     }
     @IBAction func touchUpSaveButton(_ sender: Any) {
         saveStockAlert()
@@ -29,14 +29,14 @@ final class StockManagerViewController: UIViewController {
     }
     
     private func initStepper() {
-        strawberryStepper.initStepper(amount: juiceMaker.fruitStorage.fruits[.strawberry])
-        bananaStepper.initStepper(amount: juiceMaker.fruitStorage.fruits[.banana])
-        pineappleStepper.initStepper(amount: juiceMaker.fruitStorage.fruits[.pineapple])
-        kiwiStepper.initStepper(amount: juiceMaker.fruitStorage.fruits[.kiwi])
-        mangoStepper.initStepper(amount: juiceMaker.fruitStorage.fruits[.mango])
+        strawberryStepper.initStepper(amount: juiceMaker.currentFruit(kindFruit: .strawberry))
+        bananaStepper.initStepper(amount: juiceMaker.currentFruit(kindFruit: .banana))
+        pineappleStepper.initStepper(amount: juiceMaker.currentFruit(kindFruit: .pineapple))
+        kiwiStepper.initStepper(amount: juiceMaker.currentFruit(kindFruit: .kiwi))
+        mangoStepper.initStepper(amount: juiceMaker.currentFruit(kindFruit: .mango))
     }
     
-    func saveStockAlert() {
+    private func saveStockAlert() {
         let saveAlert = UIAlertController(title: nil , message: "재고를 수정할까요?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니오", style: .default) { action in
             self.dismiss(animated: true)
@@ -44,16 +44,16 @@ final class StockManagerViewController: UIViewController {
         let stockSettingAction = UIAlertAction(title: "예", style: .default) { action in
             self.successAlert()
             self.dismiss(animated: true) {
-                self.juiceMaker.fruitStorage.manageStorage(fruit: .strawberry,
-                                                           amount: self.strawberryStepper.value - self.juiceMaker.fruitStorage.fruits[.strawberry]!)
-                self.juiceMaker.fruitStorage.manageStorage(fruit: .banana,
-                                                           amount: self.bananaStepper.value - self.juiceMaker.fruitStorage.fruits[.banana]!)
-                self.juiceMaker.fruitStorage.manageStorage(fruit: .pineapple,
-                                                           amount: self.pineappleStepper.value - self.juiceMaker.fruitStorage.fruits[.pineapple]!)
-                self.juiceMaker.fruitStorage.manageStorage(fruit: .kiwi,
-                                                           amount: self.kiwiStepper.value - self.juiceMaker.fruitStorage.fruits[.kiwi]!)
-                self.juiceMaker.fruitStorage.manageStorage(fruit: .mango,
-                                                            amount: self.mangoStepper.value - self.juiceMaker.fruitStorage.fruits[.mango]!)
+                self.juiceMaker.consume(fruit: .strawberry,
+                                        amount: self.juiceMaker.currentFruit(kindFruit: .strawberry)! - self.strawberryStepper.value)
+                self.juiceMaker.consume(fruit: .banana,
+                                        amount: self.juiceMaker.currentFruit(kindFruit: .banana)! - self.bananaStepper.value)
+                self.juiceMaker.consume(fruit: .pineapple,
+                                        amount: self.juiceMaker.currentFruit(kindFruit: .pineapple)! - self.pineappleStepper.value)
+                self.juiceMaker.consume(fruit: .kiwi,
+                                        amount: self.juiceMaker.currentFruit(kindFruit: .kiwi)! - self.kiwiStepper.value)
+                self.juiceMaker.consume(fruit: .mango,
+                                        amount: self.juiceMaker.currentFruit(kindFruit: .mango)! - self.mangoStepper.value)
                 self.dismiss(animated: true)
             }
         }
@@ -62,7 +62,7 @@ final class StockManagerViewController: UIViewController {
         present(saveAlert, animated: true)
     }
     
-    func successAlert() {
+    private func successAlert() {
         let successAlert = UIAlertController(title: nil, message: "수정되었습니다", preferredStyle: .alert)
         present(successAlert, animated: true)
     }
