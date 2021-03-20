@@ -38,5 +38,9 @@ Sunny, Steven
 ## FlowChart
 ![flowchart_(1)](https://user-images.githubusercontent.com/35272802/110903308-94ab3980-834a-11eb-9151-713eec617746.png)
 
-## class diagram
+## Class diagram
 ![classDiagram](https://user-images.githubusercontent.com/35272802/110903528-f075c280-834a-11eb-9851-03067d4ddea6.jpeg)
+
+## Storyboard
+<img width="1075" alt="Screen Shot 2021-03-20 at 1 49 18 PM" src="https://user-images.githubusercontent.com/70262005/111859299-3b16c080-8983-11eb-892d-2671eb3059b0.png">
+
