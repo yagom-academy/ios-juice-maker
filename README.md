@@ -17,17 +17,16 @@ Sunny, Steven
 - 클래스, enum, 옵셔널, 이니셜라이져, 매게변수 학습
 - step1 코드 수정 후 PR 보냄
 ### 3/12
-- 
+- step1 PR review 코멘트 확인
 ### 3/15
-
+- Notification Center, addObserver, 딕셔너리, 매개변수 학습
 ### 3/16
-
+- step1 PR review 추가 코멘트 확인
 ### 3/17
-- 
-
+- step2 코드 작성
 ### 3/18
 - 생명주기 활동학습
-- step2 pr 보냄.
+- step2 PR 보냄
 - 코드 리펙토링(재고 확인과 주스 만들기를 하나의 함수로 합침)
 
 ### 3/19
