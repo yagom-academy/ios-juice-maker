@@ -17,16 +17,16 @@ Sunny, Steven
 - 클래스, enum, 옵셔널, 이니셜라이져, 매게변수 학습
 - step1 코드 수정 후 PR 보냄
 ### 3/12
-- step1 PR review 코멘트 확인
+- Step 1 PR review 코멘트 확인
 ### 3/15
 - Notification Center, addObserver, 딕셔너리, 매개변수 학습
 ### 3/16
-- step1 PR review 추가 코멘트 확인
+- Step 1 PR review 추가 코멘트 확인
 ### 3/17
-- step2 코드 작성
+- Step 2 코드 작성
 ### 3/18
 - 생명주기 활동학습
-- step2 PR 보냄
+- Step 2 PR 보냄
 - 코드 리펙토링(재고 확인과 주스 만들기를 하나의 함수로 합침)
 ### 3/19
 - viewcontroller간에 데이터 전송 공부 및 프로젝트에 적용(과일 재고에 적용)
@@ -85,6 +85,6 @@ Sunny, Steven
 - HIG에 근거하여 cancel 버튼 좌측에 위치
 
 ![Simulator Screen Shot - iPhone SE (2nd generation) - 2021-03-20 at 17 53 00](https://user-images.githubusercontent.com/70262005/111864919-2ba96e80-89a7-11eb-8fa8-b50e392b6670.png)
-- UIStepper를 활용하여 +, - 를 누르면 재고가 각각 1개씨 증가 혹은 감소함
+- UIStepper를 활용하여 +, - 를 누르면 재고가 각각 1개씩 증가 혹은 감소함
 
 
