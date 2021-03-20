@@ -37,8 +37,8 @@ final class FruitStockStepper: UIView {
     }
     
     private func setup() {
-        self.leftButton.stepperButtonSetting(updownValue: upValue, updownShape: "↡", color: UIColor.red.cgColor)
-        self.rightButton.stepperButtonSetting(updownValue: downValue, updownShape: "↟", color: UIColor.blue.cgColor)
+        self.leftButton.stepperButtonSetting(updownValue: downValue, updownShape: "↡", color: UIColor.red.cgColor)
+        self.rightButton.stepperButtonSetting(updownValue: upValue, updownShape: "↟", color: UIColor.blue.cgColor)
         
         self.centerLabel.text = String(value)
         self.centerLabel.font = UIFont.systemFont(ofSize: 16)
