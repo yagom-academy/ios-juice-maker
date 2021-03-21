@@ -16,8 +16,14 @@ enum Fruit {
     case strawberry, banana, pineapple, kiwi, mango
 }
 
-enum Juice {
-    case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangokiwi
+enum Juice: String {
+    case strawberry = "딸기"
+    case banana = "바나나"
+    case kiwi = "키위"
+    case pineapple = "파인애플"
+    case strawberryBanana = "딸바"
+    case mango = "망고"
+    case mangokiwi = "망키"
     
     var recipe: FruitCount {
         switch self {
@@ -75,13 +81,11 @@ class JuiceMaker {
     private var stock: FruitStock = FruitStock(initialCount: 10)
     static let shared = JuiceMaker()
     
-    private init() {
-        
-    }
+    private init() { }
     
     func makeJuice(using juice: Juice) throws {
         for (ingredient, information) in juice.recipe {
-            guard stock.readCount(of: ingredient) >  information.count else {
+            guard stock.readCount(of: ingredient) >=  information.count else {
                 throw JuiceMakerError.outOfStock
             }
             
