@@ -19,69 +19,75 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateStockText()
+        showFruitsStock()
     }
     
     @IBAction func goToFruitsStorage(_ sender: UIButton) {
         guard let fruitsStorageVC = self.storyboard?.instantiateViewController(withIdentifier: "fruitsStorageVC") else {
             return
         }
+        fruitsStorageVC.modalPresentationStyle = .fullScreen
         present(fruitsStorageVC, animated: true)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(StrawberryJuice.self), completion: juiceOrderAlert(result:name:))
-        updateStockText()
+        juiceMaker.makeJuice(ObjectIdentifier(StrawberryJuice.self), completion: juiceOrderAlert(result:juice:))
+        updateFruitsStock(ObjectIdentifier(StrawberryJuice.self))
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(BananaJuice.self), completion: juiceOrderAlert(result:name:))
-        updateStockText()
+        juiceMaker.makeJuice(ObjectIdentifier(BananaJuice.self), completion: juiceOrderAlert(result:juice:))
+        updateFruitsStock(ObjectIdentifier(BananaJuice.self))
     }
 
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(KiwiJuice.self), completion: juiceOrderAlert(result:name:))
-        updateStockText()
+        juiceMaker.makeJuice(ObjectIdentifier(KiwiJuice.self), completion: juiceOrderAlert(result:juice:))
+        updateFruitsStock(ObjectIdentifier(KiwiJuice.self))
     }
 
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(PineappleJuice.self), completion: juiceOrderAlert(result:name:))
-        updateStockText()
+        juiceMaker.makeJuice(ObjectIdentifier(PineappleJuice.self), completion: juiceOrderAlert(result:juice:))
+        updateFruitsStock(ObjectIdentifier(PineappleJuice.self))
     }
 
     @IBAction func orderMangoJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(MangoJuice.self), completion: juiceOrderAlert(result:name:))
-        updateStockText()
+        juiceMaker.makeJuice(ObjectIdentifier(MangoJuice.self), completion: juiceOrderAlert(result:juice:))
+        updateFruitsStock(ObjectIdentifier(MangoJuice.self))
     }
 
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(StrawberryBananaJuice.self), completion: juiceOrderAlert(result:name:))
-        updateStockText()
+        juiceMaker.makeJuice(ObjectIdentifier(StrawberryBananaJuice.self), completion: juiceOrderAlert(result:juice:))
+        updateFruitsStock(ObjectIdentifier(StrawberryBananaJuice.self))
     }
 
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(ObjectIdentifier(MangoKiwiJuice.self), completion: juiceOrderAlert(result:name:))
-        updateStockText()
-    }
-
-    func updateStockText() {
-        guard let remainedStrawberryStock = fruitsStorage.fruitsStock[ObjectIdentifier(Strawberry.self)],
-              let remainedBananaStock = fruitsStorage.fruitsStock[ObjectIdentifier(Banana.self)],
-              let remainedKiwiStock = fruitsStorage.fruitsStock[ObjectIdentifier(Kiwi.self)],
-              let remainedPineappleStock = fruitsStorage.fruitsStock[ObjectIdentifier(Pineapple.self)],
-              let remainedMangoStock = fruitsStorage.fruitsStock[ObjectIdentifier(Mango.self)] else {
-            return
-        }
-        strawberryStockLabel.text = String(remainedStrawberryStock)
-        bananaStockLabel.text = String(remainedBananaStock)
-        pineappleStockLabel.text = String(remainedPineappleStock)
-        kiwiStockLabel.text = String(remainedKiwiStock)
-        mangoStockLabel.text = String(remainedMangoStock)
+        juiceMaker.makeJuice(ObjectIdentifier(MangoKiwiJuice.self), completion: juiceOrderAlert(result:juice:))
+        updateFruitsStock(ObjectIdentifier(MangoKiwiJuice.self))
     }
     
-    func juiceOrderAlert(result: Bool, name: juiceName.Key) {
+    func updateFruitsStock(_ juice: juiceRecipe.Key) {
+        let somedict = [ObjectIdentifier(Strawberry.self) : self.strawberryStockLabel,
+                        ObjectIdentifier(Banana.self) : self.bananaStockLabel,
+                        ObjectIdentifier(Pineapple.self) : self.pineappleStockLabel,
+                        ObjectIdentifier(Kiwi.self) : self.kiwiStockLabel,
+                        ObjectIdentifier(Mango.self) : self.mangoStockLabel]
+        
+        for index in juiceMaker.recipes[juice]! {
+            somedict[index.stock]!!.text = String(fruitsStorage.fruitsStock[index.stock]!)
+        }
+    }
+
+    func showFruitsStock() {
+        strawberryStockLabel.text = String(fruitsStorage.fruitsStock[ObjectIdentifier(Strawberry.self)] ?? 0)
+        bananaStockLabel.text = String(fruitsStorage.fruitsStock[ObjectIdentifier(Banana.self)] ?? 0)
+        pineappleStockLabel.text = String(fruitsStorage.fruitsStock[ObjectIdentifier(Kiwi.self)] ?? 0)
+        kiwiStockLabel.text = String(fruitsStorage.fruitsStock[ObjectIdentifier(Kiwi.self)] ?? 0)
+        mangoStockLabel.text = String(fruitsStorage.fruitsStock[ObjectIdentifier(Kiwi.self)] ?? 0)
+    }
+    
+    func juiceOrderAlert(result: Bool, juice: juiceName.Key) {
         if result {
-            let alert = UIAlertController(title: nil, message: "\(juiceMaker.juicename[name]!) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "\(juiceMaker.juicename[juice]!) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
             let ok = UIAlertAction(title: "확인", style: .default)
             
             alert.addAction(ok)

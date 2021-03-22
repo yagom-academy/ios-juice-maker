@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -367,6 +367,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fSY-1s-m3H">
+                                <rect key="frame" x="729" y="278" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="mangoStepperBtn:" destination="N7I-YU-2Nq" eventType="valueChanged" id="1Dt-FS-fQL"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LOX-05-cuZ">
+                                <rect key="frame" x="561" y="278" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="kiwiStepperBtn:" destination="N7I-YU-2Nq" eventType="valueChanged" id="vNZ-Fb-dMD"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="V65-2D-bWr">
+                                <rect key="frame" x="401" y="278" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="pineappleStepperBtn:" destination="N7I-YU-2Nq" eventType="valueChanged" id="BpC-fu-gqG"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="j0C-ii-vDe">
+                                <rect key="frame" x="260" y="278" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="bananaStepperBtn:" destination="N7I-YU-2Nq" eventType="valueChanged" id="vPc-Lo-s3Z"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="uuR-St-a5m">
+                                <rect key="frame" x="113" y="278" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="strawberryStepperBtn:" destination="N7I-YU-2Nq" eventType="valueChanged" id="a8k-cH-oat"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WKJ-XZ-H78"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -377,6 +412,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aXD-qq-Xh2"/>
+                    <connections>
+                        <outlet property="bananaStepperBtn" destination="j0C-ii-vDe" id="VcA-3Y-WLC"/>
+                        <outlet property="bananaStockStepperLabel" destination="Qe2-dg-dcl" id="UkK-ZY-KNi"/>
+                        <outlet property="kiwiStepperBtn" destination="LOX-05-cuZ" id="5sI-JM-84f"/>
+                        <outlet property="kiwiStockStepperLabel" destination="7OG-4o-j46" id="Ay4-XD-PSb"/>
+                        <outlet property="mangoStepperBtn" destination="fSY-1s-m3H" id="zJg-QF-vM3"/>
+                        <outlet property="mangoStockStepperLabel" destination="a9G-0p-8M8" id="d1c-GX-P9i"/>
+                        <outlet property="pineappleStepperBtn" destination="V65-2D-bWr" id="tBm-8D-NhC"/>
+                        <outlet property="pineappleStockStepperLabel" destination="qqS-oy-RQM" id="vla-4k-mbL"/>
+                        <outlet property="strawberryStepperBtn" destination="uuR-St-a5m" id="gA6-ZQ-u47"/>
+                        <outlet property="strawberryStockStepperLabel" destination="ps8-xE-F6h" id="lsU-XD-iVv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MvJ-ug-0Lv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
