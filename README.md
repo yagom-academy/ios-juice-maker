@@ -119,7 +119,8 @@
 
 - #### 버튼을 통한 segue 방식의 화면 전환 구현
 
-  <img src="../../assets/Project%20Review/JuiceMaker/1.png" alt="1" style="zoom: 33%;" />
+<img width="668" alt="1" src="https://user-images.githubusercontent.com/67148595/112602092-9995e000-8e56-11eb-884c-0b5eaab9e0bf.png">
+
 
 
 
