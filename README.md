@@ -9,7 +9,6 @@
 
 ### 이번 Step에서 공부한 내용 📚
 
-<br/>
 
 - #### enum + static property의 활용
 
@@ -26,7 +25,6 @@
   }
   ```
   
-  <br/>
   
 - #### 읽기 전용 property의 구현을 위해 `private(set)` 사용
 
@@ -38,7 +36,6 @@
   ```
 
 
-<br/>
 
 ### 피드백을 통해 개선한 부분
 
@@ -58,7 +55,6 @@
 
 
 
-<br/> 
 
 ### 이번 Step에서 공부한 내용 📚
 
@@ -98,7 +94,6 @@
 
 
 
-<br/> 
 
 - #### Dispatch Queue를 활용하여 Alert이 자동으로 dismiss 되도록 변경
 
@@ -117,7 +112,6 @@
 
 
 
-<br/> 
 
 - #### 버튼을 통한 segue 방식의 화면 전환 구현
 
@@ -126,7 +120,6 @@
 
 
 
-<br/> 
 
 - #### Alert의 action을 통한 화면 전환(modal로 띄워준 화면을 dismiss 하는 방식) 구현 + 화면 전환 방식 (transitionStyle) customizing
 
@@ -152,7 +145,6 @@
 
 
 
-<br/> 
 
 ### 피드백을 통해 개선한 부분
 
