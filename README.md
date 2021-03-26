@@ -104,15 +104,15 @@
 
   ```swift
   func successAlert(typeOfJuice: Juice) -> UIAlertController {
-          let alert = UIAlertController(title: "주문 확인", 
-          message: "\(typeOfJuice.name) 나왔습니다! 맛있게 드세요!", 
-          preferredStyle: .alert)
-          
-          DispatchQueue.main.asyncAfter(deadline: .now() + 0.85) {
-              alert.dismiss(animated: true, completion: nil)
-          }
-          return alert
-  }
+        let alert = UIAlertController(title: "주문 확인",
+                                      message: "\(typeOfJuice.name) 나왔습니다! 맛있게 드세요!",
+                                      preferredStyle: .alert)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.85) {
+            alert.dismiss(animated: true, completion: nil)
+        }
+        return alert
+    }
   ```
 
 
