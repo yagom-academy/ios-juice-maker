@@ -5,11 +5,9 @@
 // 
 
 import Foundation
-
-// 쥬스 메이커 타입 
+ 
 struct JuiceMaker {
     let fruitStore = FruitStore()
-    
     let recipe = [
         "strawberryJuice": ["strawberry": 16],
         "bananaJuice": ["banana": 2],

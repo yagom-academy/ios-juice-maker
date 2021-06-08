@@ -6,17 +6,28 @@
 
 import Foundation
 
-// 과일 타입
+enum FruitStoreError: Error {
+    case outOfStock
+}
+
 class Fruit {
     var stock = 10
     
     func increaseStock() {
         stock += 1
     }
-    func decreaseStock() {
+    
+    func decreaseStock() throws {
+        if stock - 1 < 0 {
+            throw FruitStoreError.outOfStock
+        }
         stock -= 1
     }
-    func decreaseStock(number: Int) {
+    
+    func decreaseStock(number: Int) throws {
+        if stock - number < 0 {
+            throw FruitStoreError.outOfStock
+        }
         stock -= number
     }
 }
@@ -33,7 +44,7 @@ class FruitStore {
             useStocks(ingredient: ingredient, amount: amount)
         }
     }
-
+    
     func useStocks(ingredient: String, amount: Int) {
         var target: Fruit
         switch ingredient {
@@ -50,6 +61,10 @@ class FruitStore {
         default:
             return
         }
-        target.decreaseStock(number: amount)
+        do {
+            try target.decreaseStock(number: amount)
+        } catch {
+            print("재고가 없습니다.")
+        }
     }
 }
