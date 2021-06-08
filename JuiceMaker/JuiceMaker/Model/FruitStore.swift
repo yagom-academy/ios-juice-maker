@@ -27,4 +27,29 @@ class FruitStore {
     let kiwi = Fruit()
     let pineapple = Fruit()
     let mango = Fruit()
+    
+    func makeJuice(for ingredients: [String:Int]) {
+        for (ingredient, amount) in ingredients {
+            useStocks(ingredient: ingredient, amount: amount)
+        }
+    }
+
+    func useStocks(ingredient: String, amount: Int) {
+        var target: Fruit
+        switch ingredient {
+        case "strawberry":
+            target = strawberry
+        case "banana":
+            target = banana
+        case "kiwi":
+            target = kiwi
+        case "pineapple":
+            target = pineapple
+        case "mango":
+            target = mango
+        default:
+            return
+        }
+        target.decreaseStock(number: amount)
+    }
 }
