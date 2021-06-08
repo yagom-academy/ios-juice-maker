@@ -6,7 +6,16 @@
 
 import Foundation
 
-// 과일 타입
+typealias JuiceRecepe = (Fruit, UInt)
+
 class FruitStore {
-    
+    var fruitStocks: [Fruit: Int] = [:]
+   
+    init(initialValue: Int = 10) {
+        let fruitList = Fruit.makeFruitList()
+        
+        for fruit in fruitList {
+            self.fruitStocks[fruit] = initialValue
+        }
+    }
 }
