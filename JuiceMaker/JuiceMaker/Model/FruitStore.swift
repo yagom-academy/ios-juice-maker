@@ -53,7 +53,22 @@ class FruitStore {
 			self.mangoStock -= number
 		}
 	}
-	
+    
+    func hasEnoughFruitsStock(fruit: Fruit, number: Int) -> Bool {
+        switch fruit {
+        case .strawberry:
+            return self.strawberryStock >= number
+        case .banana:
+            return self.bananaStock >= number
+        case .pineapple:
+            return self.pineappleStock >= number
+        case .kiwi:
+            return self.kiwiStock >= number
+        case .mango:
+            return self.mangoStock >= number
+        }
+    }
+    
 	init(defaultStock:Int = 10) {
 		self.strawberryStock = defaultStock
 		self.bananaStock = defaultStock
