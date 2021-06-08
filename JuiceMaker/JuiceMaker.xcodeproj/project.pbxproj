@@ -54,8 +54,8 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -8,27 +8,59 @@ struct JuiceMaker {
     var pineapple = Pineapple()
     var mango = Mango()
     
-    func strawberryJuice() {
-        strawberry.increment(amount: -16)
+    enum JuiceMakerError: Error {
+        case countUnderZero
     }
-    func bananJuice() {
-        banana.increment(amount: -2)
+    
+    func strawberryJuice() throws {
+        if strawberry.count >= 16 {
+            strawberry.increment(amount: -16)
+        } else {
+            throw JuiceMakerError.countUnderZero
+        }
     }
-    func kiwiJuice() {
-        kiwi.increment(amount: -3)
+    func bananaJuice() throws {
+        if banana.count >= 2 {
+            banana.increment(amount: -2)
+        } else {
+            throw JuiceMakerError.countUnderZero
+        }
     }
-    func pineappleJuice() {
-        pineapple.increment(amount: -2)
+    func kiwiJuice() throws {
+        if kiwi.count >= 3 {
+            kiwi.increment(amount: -3)
+        } else {
+            throw JuiceMakerError.countUnderZero
+        }
     }
-    func mangoJuice() {
-        mango.increment(amount: -3)
+    func pineappleJuice() throws {
+        if pineapple.count >= 2 {
+            pineapple.increment(amount: -2)
+        } else {
+            throw JuiceMakerError.countUnderZero
+        }
     }
-    func strawberryBananaJuice() {
-        strawberry.increment(amount: -10)
-        banana.increment(amount: -1)
+    func mangoJuice() throws {
+        if mango.count >= 3 {
+            mango.increment(amount: -3)
+        } else {
+            throw JuiceMakerError.countUnderZero
+        }
     }
-    func mangoKiwiJuice() {
-        mango.increment(amount: -2)
-        kiwi.increment(amount: -1)
+    func strawberryBananaJuice() throws {
+        if strawberry.count >= 10 && banana.count >= 1 {
+            strawberry.increment(amount: -10)
+            banana.increment(amount: -1)
+        } else {
+            throw JuiceMakerError.countUnderZero
+        }
+    }
+    func mangoKiwiJuice() throws {
+        if mango.count >= 2 && kiwi.count >= 1 {
+            mango.increment(amount: -2)
+            kiwi.increment(amount: -1)
+        } else {
+            throw JuiceMakerError.countUnderZero
+        }
     }
 }
