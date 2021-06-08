@@ -1,12 +1,5 @@
-//
-//  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
-//  Copyright © yagom. All rights reserved.
-// 
-
 import Foundation
 
-// 과일 타입
 enum Fruit {
     case strawberry
     case banana
@@ -31,39 +24,36 @@ class FruitStore {
 }
 
 class Strawberry: FruitStore {
-    
     override init() {
         super.init()
         self.fruit = Fruit.strawberry
     }
 }
+
 class Banana: FruitStore {
-    
     override init() {
         super.init()
         self.fruit = Fruit.banana
     }
 }
+
 class Pineapple: FruitStore {
-    
     override init() {
         super.init()
         self.fruit = Fruit.pineapple
     }
 }
+
 class Kiwi: FruitStore {
-    
     override init() {
         super.init()
         self.fruit = Fruit.kiwi
     }
 }
+
 class Mango: FruitStore {
-    
     override init() {
         super.init()
         self.fruit = Fruit.mango
     }
 }
-
-
