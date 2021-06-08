@@ -8,7 +8,6 @@ struct JuiceMaker {
     var pineapple = Pineapple()
     var mango = Mango()
     
-    
     func strawberryJuice() {
         strawberry.increment(amount: -16)
     }
@@ -32,5 +31,4 @@ struct JuiceMaker {
         mango.increment(amount: -2)
         kiwi.increment(amount: -1)
     }
-    
 }
