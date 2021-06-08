@@ -19,5 +19,7 @@ enum Fruit: String, CustomStringConvertible {
 }
 
 class FruitStore {
-    
+    enum InventoryManagementError: Error {
+        case outOfStock
+    }
 }
