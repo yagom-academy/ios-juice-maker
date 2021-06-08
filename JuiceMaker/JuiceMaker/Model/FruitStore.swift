@@ -8,8 +8,8 @@ import Foundation
 
 // 과일 타입
 class FruitStore {
-	var name: String
-	var count = 10
+	private var name: String
+	private var count = 10
 	
 	init(fruitName name: String) {
 		self.name = name
@@ -23,7 +23,7 @@ class FruitStore {
         }
     }
     
-    func getStatus() -> (String, Int) {
+    func getStatus() -> (name: String, count: Int) {
         return (name, count)
     }
 }
