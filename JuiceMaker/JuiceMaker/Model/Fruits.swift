@@ -11,6 +11,6 @@ enum Fruits {
     case strawberry
     case banana
     case kiwi
-    case pienapple
+    case pineapple
     case mango
 }

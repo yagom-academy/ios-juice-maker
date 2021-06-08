@@ -22,7 +22,7 @@ class FruitStore {
             return banana
         case .kiwi:
             return kiwi
-        case .pienapple:
+        case .pineapple:
             return pineapple
         case .mango:
             return mango
@@ -37,7 +37,7 @@ class FruitStore {
             banana += amout
         case .kiwi:
             kiwi += amout
-        case .pienapple:
+        case .pineapple:
             pineapple += amout
         case .mango:
             mango += amout
@@ -52,7 +52,7 @@ class FruitStore {
             banana -= amout
         case .kiwi:
             kiwi -= amout
-        case .pienapple:
+        case .pineapple:
             pineapple -= amout
         case .mango:
             mango -= amout
