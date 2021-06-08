@@ -1,4 +1,4 @@
 Juice Maker
 
 **플로우 차트**
-![flowChart](./image/flowchart.jpg)
+![flowChart](./image/flowchart.png)
