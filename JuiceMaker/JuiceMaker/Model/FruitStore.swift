@@ -11,20 +11,20 @@ enum FruitStoreError: Error {
 }
 
 class Fruit {
-    var stock = 10
+    private var stock = 10
     
-    func increaseStock() {
+    fileprivate func increaseStock() {
         stock += 1
     }
     
-    func decreaseStock() throws {
+    fileprivate func decreaseStock() throws {
         if stock - 1 < 0 {
             throw FruitStoreError.outOfStock
         }
         stock -= 1
     }
     
-    func decreaseStock(number: Int) throws {
+    fileprivate func decreaseStock(number: Int) throws {
         if stock - number < 0 {
             throw FruitStoreError.outOfStock
         }
@@ -33,11 +33,11 @@ class Fruit {
 }
 
 class FruitStore {
-    let strawberry = Fruit()
-    let banana = Fruit()
-    let kiwi = Fruit()
-    let pineapple = Fruit()
-    let mango = Fruit()
+    private let strawberry = Fruit()
+    private let banana = Fruit()
+    private let kiwi = Fruit()
+    private let pineapple = Fruit()
+    private let mango = Fruit()
     
     func makeJuice(for ingredients: [String:Int]) {
         for (ingredient, amount) in ingredients {
@@ -45,7 +45,7 @@ class FruitStore {
         }
     }
     
-    func useStocks(ingredient: String, amount: Int) {
+    private func useStocks(ingredient: String, amount: Int) {
         var target: Fruit
         switch ingredient {
         case "strawberry":

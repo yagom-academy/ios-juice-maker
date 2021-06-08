@@ -17,8 +17,8 @@ enum Juice {
 }
  
 struct JuiceMaker {
-    let fruitStore = FruitStore()
-    let recipe = [
+    private let fruitStore = FruitStore()
+    private let recipe = [
         Juice.strawberry: ["strawberry": 16],
         Juice.banana: ["banana": 2],
         Juice.kiwi: ["kiwi": 3],
