@@ -5,20 +5,30 @@
 // 
 
 import Foundation
+
+enum Juice {
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case strawberryBanana
+    case mango
+    case mangoKiwi
+}
  
 struct JuiceMaker {
     let fruitStore = FruitStore()
     let recipe = [
-        "strawberryJuice": ["strawberry": 16],
-        "bananaJuice": ["banana": 2],
-        "kiwiJuice": ["kiwi": 3],
-        "pineapple": ["pineapple": 2],
-        "strawberryBananaJuice": ["stawberry": 10, "banana": 1],
-        "mangoJuice": ["mango": 3],
-        "mangoKiwiJuice": ["mango": 2, "kiwi": 1]
+        Juice.strawberry: ["strawberry": 16],
+        Juice.banana: ["banana": 2],
+        Juice.kiwi: ["kiwi": 3],
+        Juice.pineapple: ["pineapple": 2],
+        Juice.strawberryBanana: ["stawberry": 10, "banana": 1],
+        Juice.mango: ["mango": 3],
+        Juice.mangoKiwi: ["mango": 2, "kiwi": 1]
     ]
     
-    func orderJuice(name: String) {
+    func orderJuice(name: Juice) {
         guard let ingredients = recipe[name] else {
             return
         }
