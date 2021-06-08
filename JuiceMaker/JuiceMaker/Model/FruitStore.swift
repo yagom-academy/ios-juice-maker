@@ -9,13 +9,21 @@ import Foundation
 // 과일 타입
 class FruitStore {
 	var name: String
-	var count: Int
+	var count = 10
 	
-	init(fruitname: String, leftcount: Int) {
-		self.name = fruitname
-		self.count = leftcount
+	init(fruitName name: String) {
+		self.name = name
 	}
-	
+    
+    func setCount(amount number: Int){
+        count += number
+        
+        if count < 0 {
+            count = 0
+        }
+    }
+    
+    func getStatus() -> (String, Int) {
+        return (name, count)
+    }
 }
-
-
