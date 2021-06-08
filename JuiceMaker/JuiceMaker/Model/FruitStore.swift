@@ -6,10 +6,15 @@
 
 import Foundation
 
-// 과일 타입
 class FruitStore {
 	private var name: String
 	private var count = 10
+	
+	var status: (name: String, count: Int) {
+		get {
+			return (name, count)
+		}
+	}
 	
 	init(fruitName name: String) {
 		self.name = name
@@ -21,9 +26,5 @@ class FruitStore {
         if count < 0 {
             count = 0
         }
-    }
-    
-    func getStatus() -> (name: String, count: Int) {
-        return (name, count)
     }
 }
