@@ -16,7 +16,6 @@ enum Fruit {
 	case mango
 }
 	
-	
 class FruitStore {
 	var strawberryStock: Int
 	var bananaStock: Int
@@ -76,6 +75,4 @@ class FruitStore {
 		self.kiwiStock = defaultStock
 		self.mangoStock = defaultStock
 	}
-	
-	
 }
