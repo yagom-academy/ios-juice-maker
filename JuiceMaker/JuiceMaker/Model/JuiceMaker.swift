@@ -18,7 +18,7 @@ struct JuiceMaker {
         return true
     }
     
-    func checkStocks(of menu: JuiceMenu) -> Bool {
+    private func checkStocks(of menu: JuiceMenu) -> Bool {
         var isAvailable = true
         for (fruit, amout) in menu.neededFruits {
             isAvailable = isAvailable && fruitStore.getStock(of: fruit) >= amout
