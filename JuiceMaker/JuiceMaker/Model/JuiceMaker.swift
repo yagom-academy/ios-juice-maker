@@ -19,4 +19,11 @@ struct JuiceMaker {
         "mangoJuice": ["mango": 3],
         "mangoKiwiJuice": ["mango": 2, "kiwi": 1]
     ]
+    
+    func orderJuice(name: String) {
+        guard let ingredients = recipe[name] else {
+            return
+        }
+        fruitStore.makeJuice(for: ingredients)
+    }
 }
