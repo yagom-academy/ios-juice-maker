@@ -21,13 +21,27 @@ enum Fruit: String, CustomStringConvertible, CaseIterable {
 class FruitStore {
     static let initialNumberOfFruits = 10
     
-    let inventory: [Fruit: Int] = Fruit.allCases.reduce([Fruit: Int]()) { bag, crop in
+    var inventory: [Fruit: Int] = Fruit.allCases.reduce([Fruit: Int]()) { bag, crop in
         var bag = bag
         bag[crop] = initialNumberOfFruits
         return bag
     }
-    
+    func change(numberOf number: Int, crop: Fruit, isAdd: Bool) throws {
+        guard let numberOfFruitExist = inventory[crop] else {
+            throw InventoryManagementError.cropThatDoNotExist
+        }
+        if isAdd {
+            inventory[crop] = numberOfFruitExist + number
+            return
+        } else if numberOfFruitExist >= number {
+            throw InventoryManagementError.outOfStock
+        } else {
+            inventory[crop] = numberOfFruitExist - number
+        }
+        
+    }
     enum InventoryManagementError: Error {
         case outOfStock
+        case cropThatDoNotExist
     }
 }
