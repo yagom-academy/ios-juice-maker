@@ -20,7 +20,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        fruitStore.forEach(({$0.amount}))
+        fruitStore.forEach{print($0.amount)}
+        print(fruitStore[0].maker(16))
     }
 
 
