@@ -8,31 +8,37 @@ import Foundation
 
 // 과일 타입
 class FruitStore {
-    var strawberryStock: Int = 10
-    var bananaStock: Int = 10
-    var pineappleStock: Int = 10
-    var KiwiStock: Int = 10
-    var mangoStock: Int = 10
-
-    enum Fruit {
-        case strawberry, banana, pineapple, kiwi, mango
+    //- 각 과일의 초기 재고 : 10개
+    //- 각 과일의 수량 n개를 변경하는 기능이 있습니다
+    var amount: Int = 10
+    
+    func stockPlus(stock:Int) {
+        amount += stock
     }
     
-    func inventoryManagement(name: Fruit, amount : Int) {
-        switch name {
-        case .strawberry :
-            strawberryStock += amount
-        case .banana :
-            bananaStock += amount
-        case .pineapple :
-            pineappleStock += amount
-        case .kiwi :
-            KiwiStock += amount
-        case .mango :
-            mangoStock += amount
-        }
+    func stockMinus(stock: Int) {
+        amount -= stock
     }
     
+}
 
+class StrawberryStock: FruitStore {
+    
+}
+
+class BananaStock: FruitStore {
+    
+}
+
+class KiwiStock: FruitStore {
+    
+}
+
+class PineappleStock: FruitStore {
+    
+}
+
+class MangoStock: FruitStore {
+    
 }
 

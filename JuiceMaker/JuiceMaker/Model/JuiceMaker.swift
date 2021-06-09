@@ -26,7 +26,7 @@ struct JuiceMaker {
         
         switch btnCliked {
         case .strawberryJuice:
-            result = strawberryJuiceMaker()
+            strawberryJuiceMaker()
             
         default:
             return
@@ -37,12 +37,13 @@ struct JuiceMaker {
     
     func strawberryJuiceMaker() -> Bool {
         if fruitStore.strawberryStock >= 16 {
-            fruitStore.strawberryStock -= 16
+            fruitStore.inventoryManagement(name: .strawberry, amount: -16)
             return true
         } else {
             print("재고가 부족합니다!")
             return false
         }
+        
         
         
     }
