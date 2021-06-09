@@ -6,7 +6,16 @@
 
 import Foundation
 
-// 과일 타입
+enum Fruit: CaseIterable{
+    case strawberry, banana, pineapple, kiwi, mango
+}
+
 class FruitStore {
-    
+    var fruitStock = [Fruit: Int]()
+
+    init() {
+        for fruit in Fruit.allCases {
+            fruitStock[fruit] = 10
+        }
+    }
 }
