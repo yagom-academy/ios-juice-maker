@@ -23,7 +23,7 @@ struct JuiceMaker {
         case strawberryBanana
         case mangoKiwi
         
-        func menuRecipe() -> [(Fruit, Int)] {
+        func menuRecipe() -> [(requiredCrop: Fruit, requestedAmount: Int)] {
             var recipe: [(Fruit, Int)]
             
             switch self {

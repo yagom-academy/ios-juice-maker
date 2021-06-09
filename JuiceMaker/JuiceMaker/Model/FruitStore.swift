@@ -37,6 +37,16 @@ class FruitStore {
         inventory[crop] = numberOfFruitExist - number
     }
     
+    func changeForJuice(_ recipe: [(requiredCrop: Fruit, requestedAmount: Int)]) throws {
+        for demand in recipe {
+            let numberOfFruitExist = try checkExistAndGiveBackNumber(of: demand.requiredCrop)
+            try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: demand.requestedAmount)
+        }
+        try recipe.forEach {
+            try change(numberOf: $0.requestedAmount, crop: $0.requiredCrop, isAdd: false)
+        }
+    }
+    
     func checkExistAndGiveBackNumber(of crop: Fruit) throws -> Int {
         guard let numberOfFruitExist = inventory[crop] else {
             throw InventoryManagementError.cropThatDoNotExist
