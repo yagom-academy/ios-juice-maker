@@ -12,10 +12,15 @@ enum Fruit: CaseIterable{
 
 class FruitStore {
     var fruitStock = [Fruit: Int]()
-
+    
     init() {
         for fruit in Fruit.allCases {
             fruitStock[fruit] = 10
         }
+    }
+    
+    func increaseStock(fruit: Fruit) {
+        guard let stock = fruitStock[fruit] else { return }
+        fruitStock[fruit] = stock + 1
     }
 }
