@@ -33,4 +33,15 @@ class FruitStore {
         
         fruitStocks[fruitName] = totalCount
     }
+    
+    func useStocks(with juiceRecipes: [JuiceRecepe]) {
+        for (fruitName, count) in juiceRecipes {
+            guard let fruitStock = fruitStocks[fruitName] else {
+                // 올바르지 않은 접근에 대한 알럿.
+                return
+            }
+            // 재고 차감 로직.
+            fruitStocks[fruitName] = fruitStock - Int(count)
+        }
+    }
 }
