@@ -28,4 +28,19 @@ class FruitStore {
                 return mango
             }
         }
+    
+    func changeStock(_ fruit: Fruit, _ changingQuantity: Int) {
+            switch fruit {
+            case .strawberry:
+                strawberry -= changingQuantity
+            case .banana:
+                banana -= changingQuantity
+            case .pineapple:
+                pineapple -= changingQuantity
+            case .kiwi:
+                kiwi -= changingQuantity
+            case .mango:
+                mango -= changingQuantity
+            }
+        }
 }
