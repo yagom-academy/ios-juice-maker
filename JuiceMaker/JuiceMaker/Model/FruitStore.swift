@@ -23,4 +23,14 @@ class FruitStore {
         guard let stock = fruitStock[fruit] else { return }
         fruitStock[fruit] = stock + 1
     }
+    
+    func decreaseStock(fruit: Fruit) {
+        guard let stock = fruitStock[fruit] else { return }
+        if stock < 1 {
+            fruitStock[fruit] = 0
+        } else {
+            fruitStock[fruit] = stock - 1
+        }
+    }
+    
 }
