@@ -13,16 +13,14 @@ struct JuiceMaker {
         case kiwiJuice
         case mangoJuice
         case pineappleJuice
-        
         case strawberryBananaJuice
         case mangoKiwiJuice
         
         var recipeIngredients: [Fruit: Int] {
             switch self {
-            
             case .strawberryJuice:
                 return [.strawberry: 16]
-                
+
             case .bananaJuice:
                 return [.banana: 2]
                 

@@ -37,7 +37,6 @@ class FruitStore {
         guard let stock = fruitStock[fruit] else { return }
         if stock < needs {
             print("재고가 부족합니다. 재고를 추가할까요?")
-
         } else {
             fruitStock[fruit] = stock - needs
         }
