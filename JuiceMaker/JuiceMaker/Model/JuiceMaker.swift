@@ -16,7 +16,7 @@ struct JuiceMaker {
         
         do {
             try warehouse.changeForJuice(recipe)
-            outcomeCreated =  .success(description: JuiceMakingResult.completeOrderMessage)
+            outcomeCreated =  .success(description: "\(menuName)\(JuiceMakingResult.completeOrderMessage)")
         } catch FruitStore.InventoryManagementError.outOfStock {
             outcomeCreated =  .failure(description: JuiceMakingResult.outOfStockMessage)
         } catch FruitStore.InventoryManagementError.cropThatDoNotExist {
@@ -27,16 +27,20 @@ struct JuiceMaker {
         return outcomeCreated
     }
     
-    enum JuiceMenu {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-        case strawberryBanana
-        case mangoKiwi
+    enum JuiceMenu: String, CustomStringConvertible {
+        case strawberry = "딸기 쥬스"
+        case banana = "바나나 쥬스"
+        case pineapple = "파인애플 쥬스"
+        case kiwi = "키위 쥬스"
+        case mango = "망고 쥬스"
+        case strawberryBanana = "딸바 쥬스"
+        case mangoKiwi = "망키 쥬스"
         
-        func menuRecipe() -> [(requiredCrop: Fruit, requestedAmount: Int)] {
+        var description: String {
+            self.rawValue
+        }
+        
+        fileprivate func menuRecipe() -> [(requiredCrop: Fruit, requestedAmount: Int)] {
             var recipe: [(Fruit, Int)]
             
             switch self {
@@ -60,10 +64,10 @@ struct JuiceMaker {
     }
     
     enum JuiceMakingResult {
-        static let completeOrderMessage = "쥬스 나왔습니다! 맛있게 드세요!"
-        static let outOfStockMessage = "재료가 모자라요. 재고를 수정할까요?"
-        static let cropThatDoNotExistMessage = "해당 과일은 없습니다!"
-        static let unknownErrorMessage = "알 수 없는 문제로 쥬스를 만들지 못했습니다!"
+        fileprivate static let completeOrderMessage = " 나왔습니다! 맛있게 드세요!"
+        fileprivate static let outOfStockMessage = "재료가 모자라요. 재고를 수정할까요?"
+        fileprivate static let cropThatDoNotExistMessage = "해당 과일은 없습니다!"
+        fileprivate static let unknownErrorMessage = "알 수 없는 문제로 쥬스를 만들지 못했습니다!"
         
         case success(description: String)
         case failure(description: String)
