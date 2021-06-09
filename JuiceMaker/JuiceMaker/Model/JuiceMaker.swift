@@ -7,7 +7,7 @@
 import Foundation
 
 // 쥬스 메이커 타입
-enum Juice {
+enum Juice: CustomStringConvertible {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -34,14 +34,27 @@ enum Juice {
             return [.mango: 2, .kiwi: 1]
         }
     }
+    var description: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기"
+        case .bananaJuice:
+            return "바나나"
+        case .kiwiJuice:
+            return "키위"
+        case .pineappleJuice:
+            return "파인애플"
+        case .strawberryBananaJuice:
+            return "딸바"
+        case .mangoJuice:
+            return "망고"
+        case .mangoKiwiJuice:
+            return "망키"
+        }
+    }
 }
 
 struct JuiceMaker {
-//    var strawberry = FruitStore(name: Fruits.strawberry)
-//    var banana = FruitStore(name: Fruits.banana)
-//    var pineapple = FruitStore(name: Fruits.pineapple)
-//    var kiwi = FruitStore(name: Fruits.kiwi)
-//    var mango = FruitStore(name: Fruits.mango)
     let fruits = [
         Fruits.strawberry: FruitStore(name: Fruits.strawberry),
         Fruits.banana: FruitStore(name: Fruits.banana),
@@ -52,7 +65,7 @@ struct JuiceMaker {
     
     func order(juice: Juice) {
         checkStock(of: juice)
-        makeJuice()
+        blend(juice: juice)
     }
     
     func checkStock(of juice: Juice) {
@@ -64,7 +77,13 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice() {
-        
+    func blend(juice: Juice) {
+        for (fruitName, count) in juice.ingredients {
+            guard let fruit = fruits[fruitName] else {
+                return
+            }
+            fruit.consumeStock(of: count)
+        }
+        print("\(juice.description) 쥬스 나왔습니다!")
     }
 }
