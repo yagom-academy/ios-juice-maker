@@ -14,5 +14,18 @@ class FruitStore {
     var kiwi: Int = 10
     var mango: Int = 10
     
-    
+    func currentStock(_ fruit: Fruit) -> Int {
+            switch fruit {
+            case .strawberry:
+                return strawberry
+            case .banana:
+                return banana
+            case .pineapple:
+                return pineapple
+            case .kiwi:
+                return kiwi
+            case .mango:
+                return mango
+            }
+        }
 }
