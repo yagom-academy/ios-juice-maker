@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Juice {
+enum Juice: CustomStringConvertible {
     case strawberry
     case banana
     case kiwi
@@ -34,5 +34,23 @@ enum Juice {
             return [(.mango, 2), (.kiwi, 1)]
         }
     }
+    
+    var description: String {
+        switch self {
+        case .strawberry:
+            return "딸기 쥬스"
+        case .banana:
+            return "바나나 쥬스"
+        case .kiwi:
+            return "키위 쥬스"
+        case .pineapple:
+            return "파인애플 쥬스"
+        case .strawberryBanana:
+            return "딸바 쥬스"
+        case .mango:
+            return "망고 쥬스"
+        case .mangoKiwi:
+            return "망키 쥬스"
+        }
+    }
 }
-

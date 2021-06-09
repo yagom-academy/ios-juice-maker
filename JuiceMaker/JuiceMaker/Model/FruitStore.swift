@@ -9,39 +9,44 @@ import Foundation
 typealias JuiceRecepe = (fruitName: Fruit, count: UInt)
 
 class FruitStore {
-    
     var fruitStocks: [Fruit: Int] = [:]
     
     init(initialValue: Int = 10) {
         let fruitList = Fruit.makeFruitList()
+        
         for fruit in fruitList {
             self.fruitStocks[fruit] = initialValue
         }
     }
     
-    func addStock(fruitName: Fruit, count: Int) {
+    func addStock(fruitName: Fruit, count: Int) throws {
         guard let fruitCount = fruitStocks[fruitName] else {
-            // Alert
-            return
+            throw JuiceMakerError.invaildAccess
         }
         
         let totalCount = fruitCount + count
+        
         guard totalCount >= 0 else {
-            // throw
-            return
+            throw JuiceMakerError.invaildStockCount
         }
         
         fruitStocks[fruitName] = totalCount
     }
     
-    func useStocks(with juiceRecipes: [JuiceRecepe]) {
+    func useStocks(with juiceRecipes: [JuiceRecepe]) throws {
         for (fruitName, count) in juiceRecipes {
             guard let fruitStock = fruitStocks[fruitName] else {
-                // 올바르지 않은 접근에 대한 알럿.
-                return
+                throw JuiceMakerError.invaildAccess
             }
-            // 재고 차감 로직.
             fruitStocks[fruitName] = fruitStock - Int(count)
         }
+    }
+    
+    func getFruitStock(on juice: Fruit) throws -> Int {
+        guard let fruitStock = fruitStocks[juice] else {
+            throw JuiceMakerError.invaildAccess
+        }
+        
+        return fruitStock
     }
 }
