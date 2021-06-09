@@ -17,10 +17,10 @@ enum Fruits {
 // 과일 타입
 class FruitStore {
     private var stock: Int = 10
-    private let name: Fruits
+    private let fruit: Fruits
     
-    init(name: Fruits) {
-        self.name = name
+    init(fruit: Fruits) {
+        self.fruit = fruit
     }
     
     var stockLeft: Int {

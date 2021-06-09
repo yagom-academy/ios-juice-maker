@@ -6,6 +6,10 @@
 
 import Foundation
 
+enum JuiceMakerError: Error {
+    case outOfStock
+}
+
 // 쥬스 메이커 타입
 enum Juice: CustomStringConvertible {
     case strawberryJuice
@@ -56,23 +60,26 @@ enum Juice: CustomStringConvertible {
 
 struct JuiceMaker {
     let fruits = [
-        Fruits.strawberry: FruitStore(name: Fruits.strawberry),
-        Fruits.banana: FruitStore(name: Fruits.banana),
-        Fruits.pineapple: FruitStore(name: Fruits.pineapple),
-        Fruits.kiwi: FruitStore(name: Fruits.kiwi),
-        Fruits.mango: FruitStore(name: Fruits.mango)
+        Fruits.strawberry: FruitStore(fruit: Fruits.strawberry),
+        Fruits.banana: FruitStore(fruit: Fruits.banana),
+        Fruits.pineapple: FruitStore(fruit: Fruits.pineapple),
+        Fruits.kiwi: FruitStore(fruit: Fruits.kiwi),
+        Fruits.mango: FruitStore(fruit: Fruits.mango)
     ]
     
     func order(juice: Juice) {
-        checkStock(of: juice)
-        blend(juice: juice)
+        do {
+            try checkStock(of: juice)
+            blend(juice: juice)
+        } catch {
+            print("재고 부족")
+        }
     }
     
-    func checkStock(of juice: Juice) {
+    func checkStock(of juice: Juice) throws {
         for (fruitName, count) in juice.ingredients {
             guard let fruit = fruits[fruitName], fruit.hasMoreThan(requiredAmount: count) else {
-                print("재고 부족")
-                return
+                throw JuiceMakerError.outOfStock
             }
         }
     }
