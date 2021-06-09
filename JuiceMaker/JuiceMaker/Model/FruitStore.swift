@@ -17,9 +17,9 @@ enum Fruits {
 // 과일 타입
 class FruitStore {
     private var stock: Int = 10
-    private let name: String
+    private let name: Fruits
     
-    init(name: String) {
+    init(name: Fruits) {
         self.name = name
     }
     
@@ -33,5 +33,12 @@ class FruitStore {
 
     func consumeStock(of number: Int) {
         stock -= number
+    }
+    
+    func hasMoreThan(requiredAmount: Int) -> Bool {
+        if stock < requiredAmount {
+            return false
+        }
+        return true
     }
 }

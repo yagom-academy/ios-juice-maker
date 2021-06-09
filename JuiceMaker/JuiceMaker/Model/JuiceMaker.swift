@@ -15,12 +15,9 @@ enum Juice {
     case strawberryBananaJuice
     case mangoJuice
     case mangoKiwiJuice
-}
-
-struct Recipe {
-    let juice: Juice
+    
     var ingredients: [Fruits: Int] {
-        switch juice {
+        switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
         case .bananaJuice:
@@ -40,5 +37,34 @@ struct Recipe {
 }
 
 struct JuiceMaker {
+//    var strawberry = FruitStore(name: Fruits.strawberry)
+//    var banana = FruitStore(name: Fruits.banana)
+//    var pineapple = FruitStore(name: Fruits.pineapple)
+//    var kiwi = FruitStore(name: Fruits.kiwi)
+//    var mango = FruitStore(name: Fruits.mango)
+    let fruits = [
+        Fruits.strawberry: FruitStore(name: Fruits.strawberry),
+        Fruits.banana: FruitStore(name: Fruits.banana),
+        Fruits.pineapple: FruitStore(name: Fruits.pineapple),
+        Fruits.kiwi: FruitStore(name: Fruits.kiwi),
+        Fruits.mango: FruitStore(name: Fruits.mango)
+    ]
     
+    func order(juice: Juice) {
+        checkStock(of: juice)
+        makeJuice()
+    }
+    
+    func checkStock(of juice: Juice) {
+        for (fruitName, count) in juice.ingredients {
+            guard let fruit = fruits[fruitName], fruit.hasMoreThan(requiredAmount: count) else {
+                print("재고 부족")
+                return
+            }
+        }
+    }
+    
+    func makeJuice() {
+        
+    }
 }
