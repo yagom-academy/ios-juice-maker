@@ -21,8 +21,8 @@ enum Fruit: CaseIterable {
 }
 
 class FruitStore {
-    
     var fruits: [Fruit: Int]
+    
     init() {
         var fruits = [Fruit: Int]()
         for key in Fruit.allCases {
@@ -42,25 +42,25 @@ class FruitStore {
         }
     }
     
-    func makeJuice(for ingredients: [Fruit: Int]) {
-        do {
-            try validateEnoughStock(ingredients: ingredients)
-        } catch {
-            
-        }
-        for (ingredient, amount) in ingredients {
-            do {
-            } catch {
-                print("에러")
-            }
-    
-        }
-    }
-    
-    private func useStocks(ingredient: Fruit, amount: Int = 1) throws {
+    private func decreaseStock(ingredient: Fruit, amount: Int = 1) throws {
         guard let stocks = fruits[ingredient] else {
             throw FruitStoreError.invaildFruit
         }
         fruits[ingredient] = stocks - amount
+    }
+    
+    func useStocks(ingredients: [Fruit: Int]) {
+        for (fruit, amount) in ingredients {
+            fruits[fruit]? -= amount
+        }
+    }
+    
+    func makeJuice(for ingredients: [Fruit: Int]) {
+        do {
+            try validateEnoughStock(ingredients: ingredients)
+        } catch {
+            print(error.localizedDescription)
+        }
+        useStocks(ingredients: ingredients)
     }
 }
