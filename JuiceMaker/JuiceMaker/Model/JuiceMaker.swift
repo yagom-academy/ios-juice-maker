@@ -1,38 +1,33 @@
 import Foundation
 
 struct JuiceMaker {
-    
-    var strawberry = Fruit()
-    var banana = Fruit()
-    var kiwi = Fruit()
-    var pineapple = Fruit()
-    var mango = Fruit()
-    
+    var fruits = FruitStore()
+
     enum JuiceMakerError: Error {
         case countUnderZero
     }
-    
+
     func strawberryJuice() throws {
-        try strawberry.decreaseStock(amount: 16)
+        try fruits.decreaseStock(amount: 16, fruit: self.fruits.strawberry)
     }
     func bananaJuice() throws {
-        try banana.decreaseStock(amount: 2)
+        try fruits.decreaseStock(amount: 2, fruit: fruits.banana)
     }
     func kiwiJuice() throws {
-        try kiwi.decreaseStock(amount: 3)
+        try fruits.decreaseStock(amount: 3, fruit: fruits.kiwi)
     }
     func pineappleJuice() throws {
-        try pineapple.decreaseStock(amount: 2)
+        try fruits.decreaseStock(amount: 2, fruit: fruits.pineapple)
     }
     func mangoJuice() throws {
-        try mango.decreaseStock(amount: 3)
+        try fruits.decreaseStock(amount: 3, fruit: fruits.mango)
     }
     func strawberryBananaJuice() throws {
-        try strawberry.decreaseStock(amount: 10)
-        try banana.decreaseStock(amount: 1)
+        try fruits.decreaseStock(amount: 10, fruit: fruits.strawberry)
+        try fruits.decreaseStock(amount: 1, fruit: fruits.banana)
     }
     func mangoKiwiJuice() throws {
-        try mango.decreaseStock(amount: 2)
-        try kiwi.decreaseStock(amount: 1)
+        try fruits.decreaseStock(amount: 2, fruit: fruits.mango)
+        try fruits.decreaseStock(amount: 1, fruit: fruits.kiwi)
     }
 }
