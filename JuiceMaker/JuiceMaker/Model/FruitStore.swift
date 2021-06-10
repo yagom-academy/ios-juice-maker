@@ -8,6 +8,7 @@ import Foundation
 
 enum FruitStoreError: Error {
     case outOfStock
+    case invaildFruit
 }
 
 enum Fruit: CaseIterable {
@@ -30,15 +31,35 @@ class FruitStore {
         self.fruits = fruits
     }
     
-    func makeJuice(for ingredients: [Fruit: Int]) {
-        for (ingredient, amount) in ingredients {
-            useStocks(ingredient: ingredient, amount: amount)
+    func validateEnoughStock(ingredients: [Fruit: Int]) throws {
+        for (fruit, amount) in ingredients {
+            guard let stock = fruits[fruit] else {
+                throw FruitStoreError.invaildFruit
+            }
+            if stock < amount {
+                throw FruitStoreError.outOfStock
+            }
         }
     }
     
-    private func useStocks(ingredient: Fruit, amount: Int = 1) {
+    func makeJuice(for ingredients: [Fruit: Int]) {
+        do {
+            try validateEnoughStock(ingredients: ingredients)
+        } catch {
+            
+        }
+        for (ingredient, amount) in ingredients {
+            do {
+            } catch {
+                print("에러")
+            }
+    
+        }
+    }
+    
+    private func useStocks(ingredient: Fruit, amount: Int = 1) throws {
         guard let stocks = fruits[ingredient] else {
-            return
+            throw FruitStoreError.invaildFruit
         }
         fruits[ingredient] = stocks - amount
     }
