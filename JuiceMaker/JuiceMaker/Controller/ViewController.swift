@@ -103,7 +103,11 @@ class ViewController: UIViewController {
     }
     func showAlert(message: String){
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default)
+        let okAction = UIAlertAction(title: "예", style: .default){(action) in
+            let vcName = self.storyboard?.instantiateViewController(identifier: "test")
+            vcName?.modalTransitionStyle = .coverVertical
+            self.present(vcName!, animated: true, completion: nil)
+        }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         
         alert.addAction(okAction)
