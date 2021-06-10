@@ -26,15 +26,23 @@ class FruitStore {
         return bag
     }
     
-    func change(numberOf number: Int, crop: Fruit, isAdd: Bool) throws {
-        let numberOfFruitExist = try checkExistAndGiveBackNumber(of: crop)
+    func increaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) throws {
+        inventory[fruit] = numberOfFruitExist + number
+    }
+    
+    func decreaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) throws {
+        try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: number)
+        inventory[fruit] = numberOfFruitExist - number
+    }
+    
+    func change(numberOf number: Int, fruit: Fruit, isAdd: Bool) throws {
+        let numberOfFruitExist = try checkExistAndGiveBackNumber(of: fruit)
         
         if isAdd {
-            inventory[crop] = numberOfFruitExist + number
-            return
+            try increaseStock(of: fruit, by: number, from: numberOfFruitExist)
+        } else {
+            try decreaseStock(of: fruit, by: number, from: numberOfFruitExist)
         }
-        try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: number)
-        inventory[crop] = numberOfFruitExist - number
     }
     
     func changeForJuice(_ recipe: [(requiredCrop: Fruit, requestedAmount: Int)]) throws {
@@ -43,7 +51,7 @@ class FruitStore {
             try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: demand.requestedAmount)
         }
         try recipe.forEach {
-            try change(numberOf: $0.requestedAmount, crop: $0.requiredCrop, isAdd: false)
+            try change(numberOf: $0.requestedAmount, fruit: $0.requiredCrop, isAdd: false)
         }
     }
     
