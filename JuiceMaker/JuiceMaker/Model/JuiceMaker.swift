@@ -8,25 +8,6 @@ import Foundation
 
 // 쥬스 메이커 타입 
 struct JuiceMaker {
-    let fruitStore: FruitStore
-    
-    func produce(kindOf menuName: JuiceMenu) -> JuiceMakingResult {
-        let recipes = menuName.menuRecipe()
-        var outcomeCreated: JuiceMakingResult
-        
-        do {
-            try fruitStore.consumeStocks(recipes)
-            outcomeCreated = .success(description: "\(menuName)\(JuiceMakingResult.completeOrderMessage)")
-        } catch FruitStore.InventoryManagementError.outOfStock {
-            outcomeCreated = .failure(description: JuiceMakingResult.outOfStockMessage)
-        } catch FruitStore.InventoryManagementError.fruitThatDoesNotExist {
-            outcomeCreated = .failure(description: JuiceMakingResult.fruitThatDoesNotExistMessage)
-        } catch {
-            outcomeCreated = .failure(description: JuiceMakingResult.unknownErrorMessage)
-        }
-        return outcomeCreated
-    }
-    
     enum JuiceMenu: String, CustomStringConvertible {
         case strawberry = "딸기 쥬스"
         case banana = "바나나 쥬스"
@@ -40,24 +21,24 @@ struct JuiceMaker {
             self.rawValue
         }
         
-        fileprivate func menuRecipe() -> [(requiredFruit: Fruit, requestedAmount: Int)] {
+        fileprivate func receiveRecipes() -> [(requiredFruit: Fruit, requestedAmount: Int)] {
             var recipe: [(Fruit, Int)]
             
             switch self {
             case .strawberry:
-                recipe = [(Fruit.strawberry, 16)]
+                recipe = [(.strawberry, 16)]
             case .banana:
-                recipe = [(Fruit.banana, 2)]
+                recipe = [(.banana, 2)]
             case .kiwi:
-                recipe = [(Fruit.kiwi, 3)]
+                recipe = [(.kiwi, 3)]
             case .pineapple:
-                recipe = [(Fruit.pineapple, 2)]
+                recipe = [(.pineapple, 2)]
             case .mango:
-                recipe = [(Fruit.mango, 3)]
+                recipe = [(.mango, 3)]
             case .strawberryBanana:
-                recipe = [(Fruit.strawberry, 10), (Fruit.banana, 1)]
+                recipe = [(.strawberry, 10), (.banana, 1)]
             case .mangoKiwi:
-                recipe = [(Fruit.mango, 2), (Fruit.kiwi, 1)]
+                recipe = [(.mango, 2), (.kiwi, 1)]
             }
             return recipe
         }
@@ -65,11 +46,26 @@ struct JuiceMaker {
     
     enum JuiceMakingResult {
         fileprivate static let completeOrderMessage = " 나왔습니다! 맛있게 드세요!"
-        fileprivate static let outOfStockMessage = "재료가 모자라요. 재고를 수정할까요?"
-        fileprivate static let fruitThatDoesNotExistMessage = "해당 과일은 없습니다!"
         fileprivate static let unknownErrorMessage = "알 수 없는 문제로 쥬스를 만들지 못했습니다!"
-        
-        case success(description: String)
+
+        case success(message: String)
         case failure(description: String)
+    }
+    
+    let fruitStore: FruitStore
+    
+    func produce(kindOf menuName: JuiceMenu) -> JuiceMakingResult {
+        let recipes = menuName.receiveRecipes()
+        var outcomeCreated: JuiceMakingResult
+        
+        do {
+            try fruitStore.consumeStocks(recipes)
+            outcomeCreated = .success(message: "\(menuName)\(JuiceMakingResult.completeOrderMessage)")
+        } catch FruitStore.InventoryManagementError.inventoryError(let message) {
+            outcomeCreated = .failure(description: message)
+        } catch {
+            outcomeCreated = .failure(description: JuiceMakingResult.unknownErrorMessage)
+        }
+        return outcomeCreated
     }
 }

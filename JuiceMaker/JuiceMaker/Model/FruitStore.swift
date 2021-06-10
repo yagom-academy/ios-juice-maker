@@ -20,8 +20,10 @@ enum Fruit: String, CustomStringConvertible, CaseIterable {
 
 class FruitStore {
     enum InventoryManagementError: Error {
-        case outOfStock
-        case fruitThatDoesNotExist
+        fileprivate static let outOfStockMessage = "재료가 모자라요. 재고를 수정할까요?"
+        fileprivate static let fruitThatDoesNotExistMessage = "해당 과일은 없습니다!"
+        
+        case inventoryError(description: String)
     }
     
     private static let initialNumberOfFruits = 10
@@ -60,14 +62,14 @@ class FruitStore {
     
     private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
         guard let numberOfFruitExist = inventory[fruit] else {
-            throw InventoryManagementError.fruitThatDoesNotExist
+            throw InventoryManagementError.inventoryError(description: InventoryManagementError.fruitThatDoesNotExistMessage)
         }
         return numberOfFruitExist
     }
     
     private func checkStock(amountOfCropsPresent: Int, amountRequired: Int) throws {
         guard amountOfCropsPresent >= amountRequired else {
-            throw InventoryManagementError.outOfStock
+            throw InventoryManagementError.inventoryError(description: InventoryManagementError.outOfStockMessage)
         }
     }
     
