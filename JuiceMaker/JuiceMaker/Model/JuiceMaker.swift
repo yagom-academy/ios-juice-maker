@@ -11,11 +11,11 @@ struct JuiceMaker {
     let fruitStore: FruitStore
     
     func produce(kindOf menuName: JuiceMenu) -> JuiceMakingResult {
-        let recipe = menuName.menuRecipe()
+        let recipes = menuName.menuRecipe()
         var outcomeCreated: JuiceMakingResult
         
         do {
-            try fruitStore.changeForJuice(recipe)
+            try fruitStore.consumeStocks(recipes)
             outcomeCreated = .success(description: "\(menuName)\(JuiceMakingResult.completeOrderMessage)")
         } catch FruitStore.InventoryManagementError.outOfStock {
             outcomeCreated = .failure(description: JuiceMakingResult.outOfStockMessage)
@@ -40,7 +40,7 @@ struct JuiceMaker {
             self.rawValue
         }
         
-        fileprivate func menuRecipe() -> [(requiredCrop: Fruit, requestedAmount: Int)] {
+        fileprivate func menuRecipe() -> [(requiredFruit: Fruit, requestedAmount: Int)] {
             var recipe: [(Fruit, Int)]
             
             switch self {

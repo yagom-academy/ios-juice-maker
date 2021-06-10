@@ -31,12 +31,11 @@ class FruitStore {
         return bag
     }
     
-    func increaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) throws {
+    func increaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
         inventory[fruit] = numberOfFruitExist + number
     }
     
-    func decreaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) throws {
-        try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: number)
+    func decreaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
         inventory[fruit] = numberOfFruitExist - number
     }
     
@@ -44,19 +43,18 @@ class FruitStore {
         let numberOfFruitExist = try giveBackNumberIfExist(of: fruit)
         
         if isAdd {
-            try increaseStock(of: fruit, by: number, from: numberOfFruitExist)
+            increaseStock(of: fruit, by: number, from: numberOfFruitExist)
         } else {
-            try decreaseStock(of: fruit, by: number, from: numberOfFruitExist)
+            try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: number)
+            decreaseStock(of: fruit, by: number, from: numberOfFruitExist)
         }
     }
     
-    func changeForJuice(_ recipe: [(requiredCrop: Fruit, requestedAmount: Int)]) throws {
-        for demand in recipe {
-            let numberOfFruitExist = try giveBackNumberIfExist(of: demand.requiredCrop)
-            try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: demand.requestedAmount)
-        }
-        try recipe.forEach {
-            try change(numberOf: $0.requestedAmount, fruit: $0.requiredCrop, isAdd: false)
+    func consumeStocks(_ recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws {
+        let numberOfFruitsExist = try checkIngredients(for: recipes)
+        
+        for (recipe, numberOfFruit) in zip(recipes, numberOfFruitsExist) {
+            decreaseStock(of: recipe.requiredFruit, by: recipe.requestedAmount, from: numberOfFruit)
         }
     }
     
@@ -70,6 +68,23 @@ class FruitStore {
     private func checkStock(amountOfCropsPresent: Int, amountRequired: Int) throws {
         guard amountOfCropsPresent >= amountRequired else {
             throw InventoryManagementError.outOfStock
+        }
+    }
+    
+    func checkIngredients(for recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws -> [Int] {
+        var numberOfFruitsExist = [Int]()
+        
+        for demand in recipes {
+            let numberOfFruit = try giveBackNumberIfExist(of: demand.requiredFruit)
+            try checkStock(amountOfCropsPresent: numberOfFruit, amountRequired: demand.requestedAmount)
+            numberOfFruitsExist.append(numberOfFruit)
+        }
+        return numberOfFruitsExist
+    }
+    
+    func useIngredients(accordingTo recipes: [(requiredFruit: Fruit, requestedAmount: Int)], checkedAmountOfFruits: [Int]) {
+        for (recipe, numberOfFruit) in zip(recipes, checkedAmountOfFruits) {
+            decreaseStock(of: recipe.requiredFruit, by: recipe.requestedAmount, from: numberOfFruit)
         }
     }
 }
