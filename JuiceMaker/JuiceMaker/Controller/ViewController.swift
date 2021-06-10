@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         } catch {
             
         }
-        strawberryLabel.text = String(myJuiceMaker.strawberry.count)
-        bananaLabel.text = String(myJuiceMaker.banana.count)
+        strawberryLabel.text = String(myJuiceMaker.strawberry.stock)
+        bananaLabel.text = String(myJuiceMaker.banana.stock)
     }
     @IBAction func mangoKiwiButton(_ sender: UIButton) {
         do {
@@ -34,8 +34,8 @@ class ViewController: UIViewController {
         } catch {
             
         }
-        kiwiLabel.text = String(myJuiceMaker.kiwi.count)
-        mangoLabel.text = String(myJuiceMaker.mango.count)
+        kiwiLabel.text = String(myJuiceMaker.kiwi.stock)
+        mangoLabel.text = String(myJuiceMaker.mango.stock)
     }
     @IBAction func strawberryButton(_ sender: UIButton) {
         do {
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         } catch {
             print("another Error")
         }
-        strawberryLabel.text = String(myJuiceMaker.strawberry.count)
+        strawberryLabel.text = String(myJuiceMaker.strawberry.stock)
     }
     @IBAction func bananaButton(_ sender: UIButton) {
         do {
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         } catch {
             
         }
-        bananaLabel.text = String(myJuiceMaker.banana.count)
+        bananaLabel.text = String(myJuiceMaker.banana.stock)
     }
     @IBAction func pineappleButton(_ sender: UIButton) {
         do {
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         } catch {
             
         }
-        pineappleLabel.text = String(myJuiceMaker.pineapple.count)
+        pineappleLabel.text = String(myJuiceMaker.pineapple.stock)
     }
     @IBAction func kiwiButton(_ sender: UIButton) {
         do {
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         } catch {
             
         }
-        kiwiLabel.text = String(myJuiceMaker.kiwi.count)
+        kiwiLabel.text = String(myJuiceMaker.kiwi.stock)
     }
     @IBAction func mangoButton(_ sender: UIButton) {
         do {
@@ -85,15 +85,15 @@ class ViewController: UIViewController {
         } catch {
             
         }
-        mangoLabel.text = String(myJuiceMaker.mango.count)
+        mangoLabel.text = String(myJuiceMaker.mango.stock)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryLabel.text = String(myJuiceMaker.strawberry.count)
-        bananaLabel.text = String(myJuiceMaker.banana.count)
-        pineappleLabel.text = String(myJuiceMaker.pineapple.count)
-        kiwiLabel.text = String(myJuiceMaker.kiwi.count)
-        mangoLabel.text = String(myJuiceMaker.mango.count)
+        strawberryLabel.text = String(myJuiceMaker.strawberry.stock)
+        bananaLabel.text = String(myJuiceMaker.banana.stock)
+        pineappleLabel.text = String(myJuiceMaker.pineapple.stock)
+        kiwiLabel.text = String(myJuiceMaker.kiwi.stock)
+        mangoLabel.text = String(myJuiceMaker.mango.stock)
     }
 }

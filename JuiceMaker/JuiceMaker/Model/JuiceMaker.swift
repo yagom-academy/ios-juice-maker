@@ -2,11 +2,11 @@ import Foundation
 
 struct JuiceMaker {
     
-    var strawberry = Strawberry()
-    var banana = Banana()
-    var kiwi = Kiwi()
-    var pineapple = Pineapple()
-    var mango = Mango()
+    var strawberry = Fruit()
+    var banana = Fruit()
+    var kiwi = Fruit()
+    var pineapple = Fruit()
+    var mango = Fruit()
     
     enum JuiceMakerError: Error {
         case countUnderZero
