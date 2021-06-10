@@ -28,11 +28,8 @@ class FruitStore {
         }
     }
     
-    func increaseFruitStock(fruit: HandlingFruit, amount: Int) {
-        if var selectedFruitStock = fruitStock[fruit] {
-            selectedFruitStock += amount
-            fruitStock[fruit] = selectedFruitStock
-        }
+    func setFruitStock(fruit: HandlingFruit, amount: Int) {
+        fruitStock[fruit] = amount
     }
     
     func decreaseFruitStock(fruit: HandlingFruit, amount: Int) {
