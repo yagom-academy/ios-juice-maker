@@ -11,14 +11,14 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     
-    let fruitStores: [Fruits: FruitStore] = [
-        .strawberry : StrawberryStock(),
+    let fruitStore: [Fruits: FruitStore] = [
+        .strawberry: StrawberryStock(),
         .banana: BananaStock(),
         .pineapple: PineappleStock(),
         .kiwi: KiwiStock(),
         .mango: MangoStock()
     ]
-
+    
     enum JuiceType: Int {
         case strawberryJuice 
         case bananaJuice
@@ -27,7 +27,7 @@ struct JuiceMaker {
         case mangoJuice
         case ddalbaJuice
         case mangoKiwiJuice
-
+        
         func material() -> [Fruits: Int] {
             switch self {
             case .strawberryJuice:
@@ -43,28 +43,32 @@ struct JuiceMaker {
             case .ddalbaJuice:
                 return [.strawberry: 10, .banana: 1]
             case .mangoKiwiJuice:
-                return [.mango: 2 , .kiwi: 1]
+                return [.mango: 2, .kiwi: 1]
             }
         }
     }
-
-    func makeJuice(order: JuiceType) {
-            guard checkStock(fruit: order) else {
+    
+    func makeJuice(order: JuiceType) -> Bool {
+        guard checkStock(fruit: order) else {
+            return false
+        }
+        order.material().forEach { (fruitType,requiredAmount) in
+            if let fruit = self.fruitStore[fruitType] {
+                fruit.stockMinus(stock: requiredAmount)
+            } else {
                 return
             }
-            order.material().forEach { (fruitType,requiredAmount) in
-                fruitStores[fruitType]?.stockMinus(stock: requiredAmount)
-            }
         }
+        return true
+    }
     
     func checkStock(fruit: JuiceType) -> Bool {
         var results: [Bool] = []
         fruit.material().forEach { (fruitType,requiredAmount) in
-            results.append(self.fruitStores[fruitType]?.isStockLeft(requiredAmount) ?? false)
+            results.append(self.fruitStore[fruitType]?.isStockLeft(requiredAmount) ?? false)
         }
         let filtered = results.filter({ $0 })
         return !filtered.isEmpty
-       
     }
 }
 

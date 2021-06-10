@@ -25,7 +25,6 @@ class FruitStore {
     
     func stockMinus(stock: Int) {
         amount -= stock
-        
     }
     
     func isStockLeft(_ requiredStock: Int) -> Bool {
@@ -34,7 +33,6 @@ class FruitStore {
         } else {
             return false
         }
-        
     }
 }
 
@@ -71,7 +69,6 @@ class MangoStock: FruitStore {
         super.init()
         name = .mango
     }
-    
 }
 
 
