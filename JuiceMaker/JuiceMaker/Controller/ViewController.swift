@@ -17,13 +17,16 @@ class ViewController: UIViewController {
     ]
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        fruitStore.forEach{print($0.amount)}
-        print(fruitStore[0].maker(16))
+        //fruitStore.forEach{print($0.amount)}
+        //print(fruitStore[0].maker(16))
+        
+        
+
+ 
+
     }
-
-
 }
-
