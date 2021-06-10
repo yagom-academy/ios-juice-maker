@@ -14,9 +14,9 @@ class FruitStore {
             return count
         }
     }
-    let name: String
+    let name: Fruit
     
-    init(storeName: String){
+    init(storeName: Fruit){
         name = storeName
     }
     
