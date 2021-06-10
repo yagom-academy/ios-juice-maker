@@ -19,19 +19,19 @@ enum Juice {
 struct JuiceMaker {
     private let fruitStore = FruitStore()
     private let recipe = [
-        Juice.strawberry: ["strawberry": 16],
-        Juice.banana: ["banana": 2],
-        Juice.kiwi: ["kiwi": 3],
-        Juice.pineapple: ["pineapple": 2],
-        Juice.strawberryBanana: ["stawberry": 10, "banana": 1],
-        Juice.mango: ["mango": 3],
-        Juice.mangoKiwi: ["mango": 2, "kiwi": 1]
+        Juice.strawberry: [Fruit.strawberry: 16],
+        Juice.banana: [Fruit.banana: 2],
+        Juice.kiwi: [Fruit.kiwi: 3],
+        Juice.pineapple: [Fruit.pineapple: 2],
+        Juice.strawberryBanana: [Fruit.strawberry: 10, Fruit.banana: 1],
+        Juice.mango: [Fruit.mango: 3],
+        Juice.mangoKiwi: [Fruit.mango: 2, Fruit.kiwi: 1]
     ]
     
     func orderJuice(name: Juice) {
         guard let ingredients = recipe[name] else {
             return
         }
-        //fruitStore.makeJuice(for: ingredients)
+        fruitStore.makeJuice(for: ingredients)
     }
 }

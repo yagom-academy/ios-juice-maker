@@ -30,32 +30,16 @@ class FruitStore {
         self.fruits = fruits
     }
     
-    /*func makeJuice(for ingredients: [String:Int]) {
+    func makeJuice(for ingredients: [Fruit: Int]) {
         for (ingredient, amount) in ingredients {
             useStocks(ingredient: ingredient, amount: amount)
         }
     }
     
-    private func useStocks(ingredient: String, amount: Int) {
-        var target: Fruit
-        switch ingredient {
-        case "strawberry":
-            target = strawberry
-        case "banana":
-            target = banana
-        case "kiwi":
-            target = kiwi
-        case "pineapple":
-            target = pineapple
-        case "mango":
-            target = mango
-        default:
+    private func useStocks(ingredient: Fruit, amount: Int = 1) {
+        guard let stocks = fruits[ingredient] else {
             return
         }
-        do {
-            try target.decreaseStock(number: amount)
-        } catch {
-            print("재고가 없습니다.")
-        }
-    }*/
+        fruits[ingredient] = stocks - amount
+    }
 }
