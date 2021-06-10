@@ -6,7 +6,7 @@
 
 import Foundation
 
-typealias JuiceRecepe = (fruitName: Fruit, count: UInt)
+typealias JuiceRecipe = (fruitName: Fruit, count: UInt)
 
 class FruitStore {
     var fruitStocks: [Fruit: Int] = [:]
@@ -33,7 +33,7 @@ class FruitStore {
         fruitStocks[fruitName] = totalCount
     }
     
-    func useStocks(with juiceRecipes: [JuiceRecepe]) throws {
+    func useStocks(with juiceRecipes: [JuiceRecipe]) throws {
         for (fruitName, count) in juiceRecipes {
             guard let fruitStock = fruitStocks[fruitName] else {
                 throw JuiceMakerError.invaildAccess

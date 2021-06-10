@@ -16,7 +16,7 @@ enum Juice: CustomStringConvertible {
     case mango
     case mangoKiwi
     
-    var recipe: [JuiceRecepe] {
+    var recipe: [JuiceRecipe] {
         switch self {
         case .strawberry:
             return [(Fruit.strawberry, 16)]
