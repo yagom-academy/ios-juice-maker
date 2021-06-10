@@ -8,11 +8,20 @@ import Foundation
 
 // 과일 타입
 class FruitStore {
-    private var strawberry = 10
-    private var banana = 10
-    private var kiwi = 10
-    private var pineapple = 10
-    private var mango = 10
+    private let defaultStock: Int = 10
+    private var strawberry: Int
+    private var banana: Int
+    private var kiwi: Int
+    private var pineapple: Int
+    private var mango: Int
+    
+    init() {
+        strawberry = defaultStock
+        banana = defaultStock
+        kiwi = defaultStock
+        pineapple = defaultStock
+        mango = defaultStock
+    }
     
     func getStock(of fruit: Fruits) -> Int {
         switch fruit {
