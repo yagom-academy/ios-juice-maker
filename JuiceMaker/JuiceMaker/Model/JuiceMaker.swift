@@ -8,21 +8,21 @@ import Foundation
 
 // 쥬스 메이커 타입 
 struct JuiceMaker {
-    let warehouse: FruitStore
+    let fruitStore: FruitStore
     
     func produce(kindOf menuName: JuiceMenu) -> JuiceMakingResult {
         let recipe = menuName.menuRecipe()
         var outcomeCreated: JuiceMakingResult
         
         do {
-            try warehouse.changeForJuice(recipe)
-            outcomeCreated =  .success(description: "\(menuName)\(JuiceMakingResult.completeOrderMessage)")
+            try fruitStore.changeForJuice(recipe)
+            outcomeCreated = .success(description: "\(menuName)\(JuiceMakingResult.completeOrderMessage)")
         } catch FruitStore.InventoryManagementError.outOfStock {
-            outcomeCreated =  .failure(description: JuiceMakingResult.outOfStockMessage)
-        } catch FruitStore.InventoryManagementError.cropThatDoNotExist {
-            outcomeCreated =  .failure(description: JuiceMakingResult.cropThatDoNotExistMessage)
+            outcomeCreated = .failure(description: JuiceMakingResult.outOfStockMessage)
+        } catch FruitStore.InventoryManagementError.fruitThatDoesNotExist {
+            outcomeCreated = .failure(description: JuiceMakingResult.fruitThatDoesNotExistMessage)
         } catch {
-            outcomeCreated =  .failure(description: JuiceMakingResult.unknownErrorMessage)
+            outcomeCreated = .failure(description: JuiceMakingResult.unknownErrorMessage)
         }
         return outcomeCreated
     }
@@ -55,7 +55,7 @@ struct JuiceMaker {
             case .mango:
                 recipe = [(Fruit.mango, 3)]
             case .strawberryBanana:
-                recipe = [(Fruit.strawberry, 10),(Fruit.banana, 1)]
+                recipe = [(Fruit.strawberry, 10), (Fruit.banana, 1)]
             case .mangoKiwi:
                 recipe = [(Fruit.mango, 2), (Fruit.kiwi, 1)]
             }
@@ -66,7 +66,7 @@ struct JuiceMaker {
     enum JuiceMakingResult {
         fileprivate static let completeOrderMessage = " 나왔습니다! 맛있게 드세요!"
         fileprivate static let outOfStockMessage = "재료가 모자라요. 재고를 수정할까요?"
-        fileprivate static let cropThatDoNotExistMessage = "해당 과일은 없습니다!"
+        fileprivate static let fruitThatDoesNotExistMessage = "해당 과일은 없습니다!"
         fileprivate static let unknownErrorMessage = "알 수 없는 문제로 쥬스를 만들지 못했습니다!"
         
         case success(description: String)

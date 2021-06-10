@@ -21,11 +21,11 @@ enum Fruit: String, CustomStringConvertible, CaseIterable {
 class FruitStore {
     enum InventoryManagementError: Error {
         case outOfStock
-        case cropThatDoNotExist
+        case fruitThatDoesNotExist
     }
     
     private static let initialNumberOfFruits = 10
-    private var inventory: [Fruit: Int] = Fruit.allCases.reduce([Fruit: Int]()) { bag, fruit in
+    private var inventory = Fruit.allCases.reduce([Fruit: Int]()) { bag, fruit in
         var bag = bag
         bag[fruit] = initialNumberOfFruits
         return bag
@@ -62,7 +62,7 @@ class FruitStore {
     
     private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
         guard let numberOfFruitExist = inventory[fruit] else {
-            throw InventoryManagementError.cropThatDoNotExist
+            throw InventoryManagementError.fruitThatDoesNotExist
         }
         return numberOfFruitExist
     }
