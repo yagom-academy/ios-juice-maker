@@ -31,7 +31,7 @@ class FruitStore {
         self.fruits = fruits
     }
     
-    func validateEnoughStock(ingredients: [Fruit: Int]) throws {
+    func validateEnoughStocks(ingredients: [Fruit: Int]) throws {
         for (fruit, amount) in ingredients {
             guard let stock = fruits[fruit] else {
                 throw FruitStoreError.invaildFruit
@@ -42,7 +42,7 @@ class FruitStore {
         }
     }
     
-    private func decreaseStocks(ingredient: Fruit, amount: Int = 1) throws {
+    private func decreaseStock(ingredient: Fruit, amount: Int = 1) throws {
         guard let stocks = fruits[ingredient] else {
             throw FruitStoreError.invaildFruit
         }
