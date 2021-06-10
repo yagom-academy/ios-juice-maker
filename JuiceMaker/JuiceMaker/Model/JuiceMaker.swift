@@ -7,106 +7,75 @@
 import Foundation
 
 struct JuiceMaker {
-	enum JuiceMenu {
-		case strawberryJuice
-		case kiwiJuice
-		case bananaJuice
-		case pineappleJuice
-		case strawNanaJuice
-		case mangoJucie
-		case mangoKiwiJucie
+    
+    enum JuiceMenu {
+        case strawberryJuice
+        case bananaJuice
+        case kiwiJuice
+        case mangoJuice
+        case pineappleJuice
+        case strawNanaJuice
+        case mangoKiwiJuice
         
-        var recipe : [(store: FruitList, amount: Int)] {
+        var recipe:[(Fruit ,Int)] {
             switch self {
             case .strawberryJuice:
-                return [(store: .strawberry, amount: 16)]
-            case .mangoKiwiJucie:
-                return [(store: .mango, amount: 2)]
-            case .kiwiJuice:
-                return [(store: .kiwi, amount: 3)]
+                return [(.strawberry, 16)]
             case .bananaJuice:
-                return [(store: .banana, amount: 2)]
+                return [(.banana, 2)]
+            case .kiwiJuice:
+                return [(.kiwi, 3)]
+            case .mangoJuice:
+                return [(.mango, 3)]
             case .pineappleJuice:
-                return [(store: .pineapple, amount: 3)]
+                return [(.pineapple, 2)]
             case .strawNanaJuice:
-                return [(store: .strawberry, amount: 10),
-                        (store: .banana, amount:1)]
-            case .mangoJucie:
-                return [(store: .mango, amount: 16)]
+                return [(.strawberry, 10), (.banana, 1)]
+            case .mangoKiwiJuice:
+                return [(.mango, 2), (.kiwi, 1)]
             }
         }
-	}
-
-	enum FruitList: String {
-		case strawberry = "딸기"
-		case banana = "바나나"
-		case kiwi = "키위"
-		case mango = "망고"
-		case pineapple = "파인애플"
-	}
+    }
     
-	private let bananaStore = FruitStore(fruitName: FruitList.banana.rawValue)
-	private let strawberryStore = FruitStore(fruitName: FruitList.strawberry.rawValue)
-	private let kiwiStore = FruitStore(fruitName: FruitList.kiwi.rawValue)
-	private let mangoSotre = FruitStore(fruitName: FruitList.mango.rawValue)
-	private let pineappleStore = FruitStore(fruitName: FruitList.pineapple.rawValue)
+    enum Fruit: String, CaseIterable {
+        case strawberry = "딸기"
+        case banana = "바나나"
+        case kiwi = "키위"
+        case mango = "망고"
+        case pineapple = "파인애플"
+    }
     
-    private func makeJuice(targetStore store: FruitStore, amount number: Int) -> Bool {
-        if store.status.count > number {
-            store.setCount(amount: -number)
+    let fruitStores =  [FruitStore]()
+    
+    init(){
+        for fruit in Fruit.allCases {
+            fruitStores.append(FruitStore(storeName: fruit.rawValue))
+        }
+    }
+    
+    func checkJuiceMakable(targetStore: FruitStore, amount: Int) -> Bool {
+        if targetStore.stock >= amount {
             return true
         } else {
             return false
         }
     }
     
-    private func makeStrawNanaJuice() -> Bool {
-		let strawberryLeftCount = strawberryStore.status.count
-		let bananaLeftCount = bananaStore.status.count
-        
-        if strawberryLeftCount > 10, bananaLeftCount > 1 {
-            strawberryStore.setCount(amount: -10)
-            bananaStore.setCount(amount: -1)
-            return true
-        } else {
-            return false
+    func makeJuice(wanted: JuiceMenu){
+        let recipes = wanted.recipe
+        var makable = true
+        for (fruit, amount) in recipes {
+            if let store = fruitStores.first(where: { store in store.name == fruit.rawValue}) {
+                
+                let haveStock = checkJuiceMakable(targetStore: store, amount: amount)
+                
+                if !haveStock {
+                    makable = false
+                    break
+                }
+            }
         }
     }
     
-    private func makeMangoKiwiJucie() -> Bool {
-		let mangoLeftCount = mangoSotre.status.count
-		let kiwiLeftCount = kiwiStore.status.count
-        
-        if mangoLeftCount > 2, kiwiLeftCount > 1 {
-            mangoSotre.setCount(amount: -2)
-            kiwiStore.setCount(amount: -1)
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    public func makeJuice(menu type: JuiceMenu) -> Bool {
-        var outcome: Bool
-        
-        switch type {
-        case .strawberryJuice:
-            outcome = makeJuice(targetStore: strawberryStore, amount: 16)
-        case .bananaJuice:
-            outcome = makeJuice(targetStore: bananaStore, amount: 2)
-        case .kiwiJuice:
-            outcome = makeJuice(targetStore: kiwiStore, amount: 3)
-        case .pineappleJuice:
-            outcome = makeJuice(targetStore: pineappleStore, amount: 3)
-        case .mangoJucie:
-            outcome = makeJuice(targetStore: mangoSotre, amount: 2)
-        case .strawNanaJuice:
-            outcome = makeStrawNanaJuice()
-        case .mangoKiwiJucie:
-            outcome = makeMangoKiwiJucie()
-        }
-        
-        return outcome
-    }
 }
 

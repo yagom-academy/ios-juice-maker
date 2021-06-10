@@ -7,24 +7,20 @@
 import Foundation
 
 class FruitStore {
-	private var name: String
-	private var count = 10
-	
-	var status: (name: String, count: Int) {
-		get {
-			return (name, count)
-		}
-	}
-	
-	init(fruitName name: String) {
-		self.name = name
-	}
+    private var count = 10
     
-    func setCount(amount number: Int){
-        count += number
-        
-        if count < 0 {
-            count = 0
+    var stock: Int {
+        get {
+            return count
         }
+    }
+    let name: String
+    
+    init(storeName: String){
+        name = storeName
+    }
+    
+    func setStock(amount number: Int){
+        count += number
     }
 }
