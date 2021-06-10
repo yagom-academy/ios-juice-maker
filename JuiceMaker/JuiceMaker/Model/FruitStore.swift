@@ -19,10 +19,15 @@ enum Fruit: String, CustomStringConvertible, CaseIterable {
 }
 
 class FruitStore {
+    enum InventoryManagementError: Error {
+        case outOfStock
+        case cropThatDoNotExist
+    }
+    
     private static let initialNumberOfFruits = 10
-    private var inventory: [Fruit: Int] = Fruit.allCases.reduce([Fruit: Int]()) { bag, crop in
+    private var inventory: [Fruit: Int] = Fruit.allCases.reduce([Fruit: Int]()) { bag, fruit in
         var bag = bag
-        bag[crop] = initialNumberOfFruits
+        bag[fruit] = initialNumberOfFruits
         return bag
     }
     
@@ -36,7 +41,7 @@ class FruitStore {
     }
     
     func change(numberOf number: Int, fruit: Fruit, isAdd: Bool) throws {
-        let numberOfFruitExist = try checkExistAndGiveBackNumber(of: fruit)
+        let numberOfFruitExist = try giveBackNumberIfExist(of: fruit)
         
         if isAdd {
             try increaseStock(of: fruit, by: number, from: numberOfFruitExist)
@@ -47,7 +52,7 @@ class FruitStore {
     
     func changeForJuice(_ recipe: [(requiredCrop: Fruit, requestedAmount: Int)]) throws {
         for demand in recipe {
-            let numberOfFruitExist = try checkExistAndGiveBackNumber(of: demand.requiredCrop)
+            let numberOfFruitExist = try giveBackNumberIfExist(of: demand.requiredCrop)
             try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: demand.requestedAmount)
         }
         try recipe.forEach {
@@ -55,8 +60,8 @@ class FruitStore {
         }
     }
     
-    private func checkExistAndGiveBackNumber(of crop: Fruit) throws -> Int {
-        guard let numberOfFruitExist = inventory[crop] else {
+    private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
+        guard let numberOfFruitExist = inventory[fruit] else {
             throw InventoryManagementError.cropThatDoNotExist
         }
         return numberOfFruitExist
@@ -66,10 +71,5 @@ class FruitStore {
         guard amountOfCropsPresent >= amountRequired else {
             throw InventoryManagementError.outOfStock
         }
-    }
-    
-    enum InventoryManagementError: Error {
-        case outOfStock
-        case cropThatDoNotExist
     }
 }
