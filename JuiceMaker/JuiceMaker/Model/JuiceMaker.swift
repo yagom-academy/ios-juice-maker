@@ -65,7 +65,7 @@ struct JuiceMaker {
     
     func makeJuice(recipe: JuiceRecipe) {
         for (fruit, amount) in recipe.recipeIngredients {
-            fruitstore.usingStock(fruit: fruit, needs: amount)
+            fruitstore.usingFruits(fruit: fruit, needs: amount)
             print("\(recipe)쥬스 나왔습니다! 맛있게 드세요!")
         }
     }
