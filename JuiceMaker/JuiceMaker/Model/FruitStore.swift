@@ -42,7 +42,7 @@ class FruitStore {
         }
     }
     
-    private func decreaseStock(ingredient: Fruit, amount: Int = 1) throws {
+    private func decreaseStocks(ingredient: Fruit, amount: Int = 1) throws {
         guard let stocks = fruits[ingredient] else {
             throw FruitStoreError.invaildFruit
         }
