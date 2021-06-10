@@ -67,7 +67,7 @@ struct JuiceMaker {
 	}
 	
 	func checkFruitAmount(receipe: (name: Fruit, amount: Int)) -> Bool {
-		guard let store = findFruitStore(name: receipe.name) else {
+		guard let store = findFruitStore(fruit: receipe.name) else {
 			return false
 		}
 		if store.stock >= receipe.amount {
@@ -77,11 +77,11 @@ struct JuiceMaker {
 		}
 	}
 	
-	func findFruitStore(name: Fruit) -> FruitStore? {
+	func findFruitStore(fruit: Fruit) -> FruitStore? {
 		var targetStore: FruitStore?
 		
 		for store in fruitStores {
-			if store.name == name.rawValue {
+			if store.name == fruit {
 				targetStore = store
 				break
 			}
