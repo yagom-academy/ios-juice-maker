@@ -17,14 +17,16 @@ enum Fruit: CaseIterable {
 }
 	
 class FruitStore {
-    
-    var fruitStocks = [Fruit: Int]()
-    init(defaultStock: Int = 10, fruit: Fruit) {
+	static let fruitStore = FruitStore()
+	
+    private var fruitStocks = [Fruit: Int]()
+	
+    private init(defaultStock: Int = 10) {
         for fruit in Fruit.allCases {
             fruitStocks.updateValue(defaultStock, forKey: fruit)
         }
     }
-  
+	
 	func add(fruit: Fruit, number: Int) {
         fruitStocks[fruit]? += number
 	}
