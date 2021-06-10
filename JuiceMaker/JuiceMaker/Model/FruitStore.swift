@@ -10,36 +10,27 @@ enum FruitStoreError: Error {
     case outOfStock
 }
 
-class Fruit {
-    private var stock = 10
-    
-    fileprivate func increaseStock() {
-        stock += 1
-    }
-    
-    fileprivate func decreaseStock() throws {
-        if stock - 1 < 0 {
-            throw FruitStoreError.outOfStock
-        }
-        stock -= 1
-    }
-    
-    fileprivate func decreaseStock(number: Int) throws {
-        if stock - number < 0 {
-            throw FruitStoreError.outOfStock
-        }
-        stock -= number
-    }
+enum Fruit: CaseIterable {
+    static let defaultStock = 10
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case mango
 }
 
 class FruitStore {
-    private let strawberry = Fruit()
-    private let banana = Fruit()
-    private let kiwi = Fruit()
-    private let pineapple = Fruit()
-    private let mango = Fruit()
     
-    func makeJuice(for ingredients: [String:Int]) {
+    var fruits: [Fruit: Int]
+    init() {
+        var fruits = [Fruit: Int]()
+        for key in Fruit.allCases {
+            fruits[key] = Fruit.defaultStock
+        }
+        self.fruits = fruits
+    }
+    
+    /*func makeJuice(for ingredients: [String:Int]) {
         for (ingredient, amount) in ingredients {
             useStocks(ingredient: ingredient, amount: amount)
         }
@@ -66,5 +57,5 @@ class FruitStore {
         } catch {
             print("재고가 없습니다.")
         }
-    }
+    }*/
 }
