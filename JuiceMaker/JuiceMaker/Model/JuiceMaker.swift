@@ -10,6 +10,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
+    
     let fruitStores: [Fruits: FruitStore] = [
         .strawberry : StrawberryStock(),
         .banana: BananaStock(),
@@ -47,13 +48,15 @@ struct JuiceMaker {
         }
     }
 
-    func makeJuice() {
-        guard checkStock(fruit: .kiwiJuice) else {
-            return
+    func makeJuice(order: JuiceType) {
+            guard checkStock(fruit: order) else {
+                return
+            }
+            order.material().forEach { (fruitType,requiredAmount) in
+                fruitStores[fruitType]?.stockMinus(stock: requiredAmount)
+            }
         }
-    }
-
-    // checkStock의 결과를 받아서 재고가 있으면 makejuice가 작동을하고 필요 레시피만큼 재료를 소진시킨다
+    
     func checkStock(fruit: JuiceType) -> Bool {
         var results: [Bool] = []
         fruit.material().forEach { (fruitType,requiredAmount) in

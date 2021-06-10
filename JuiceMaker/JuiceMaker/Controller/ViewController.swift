@@ -8,25 +8,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let fruitStore: [FruitStore] = [
-        StrawberryStock(),
-        BananaStock(),
-        PineappleStock(),
-        KiwiStock(),
-        MangoStock()
-    ]
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        //fruitStore.forEach{print($0.amount)}
-        //print(fruitStore[0].maker(16))
-        
-        
 
- 
+        
+        let value = JuiceMaker()
+        
+       // value.makeJuice(order: .bananaJuice)
+        value.makeJuice(order: .ddalbaJuice)
+      
+       // print(value.fruitStores[.strawberry, default: .].amount)
 
     }
 }
