@@ -10,20 +10,20 @@ import Foundation
 struct JuiceMaker {
     let store = FruitStore()
     
-    func makeJuice(_ type: Juice) -> Juice? {
-        if checkStock(type.ingredients) {
-            for ingredient in type.ingredients as [(fruit: Fruit, removingQuantity:Int)] {
-                store.changeStock(ingredient.fruit, ingredient.removingQuantity)
+    func makeJuice(_ juice: Juice) -> Juice? {
+        if checkStock(juice.ingredients) {
+            for ingredient in juice.ingredients {
+                store.changeStock(ingredient.key, ingredient.value)
             }
-            return type
+            return juice
         } else {
             return nil
         }
     }
     
-    func checkStock(_ ingredients: [(fruit: Fruit, removingQuantity:Int)]) -> Bool {
+    func checkStock(_ ingredients: Dictionary<Fruit, Int>) -> Bool {
         for ingredient in ingredients {
-            if store.currentStock(ingredient.fruit) < ingredient.removingQuantity {
+            if store.currentStock(ingredient.key) < ingredient.value {
                 return false
             }
         }
@@ -67,22 +67,22 @@ enum Juice: Int, CustomStringConvertible {
         }
     }
     
-    var ingredients: [(Fruit, Int)] {
+    var ingredients: Dictionary<Fruit, Int> {
         switch self {
         case .strawberryJuice:
-            return [(.strawberry, 16)]
+            return [.strawberry:16]
         case .bananaJuice:
-            return [(.banana, 2)]
+            return [.banana:2]
         case .pineappleJuice:
-            return [(.pineapple, 2)]
+            return [.pineapple:2]
         case .kiwiJuice:
-            return [(.kiwi, 3)]
+            return [.kiwi:3]
         case .mangoJuice:
-            return [(.mango, 3)]
+            return [.mango:3]
         case .strawberryBananaJuice:
-            return [(.strawberry, 10), (.banana, 1)]
+            return [.strawberry:10, .banana:1]
         case .mangoKiwiJuice:
-            return [(.mango, 2), (.kiwi, 1)]
+            return [.mango:2, .kiwi:1]
         }
     }
 }
