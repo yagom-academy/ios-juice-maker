@@ -15,6 +15,26 @@ struct JuiceMaker {
 		case strawNanaJuice
 		case mangoJucie
 		case mangoKiwiJucie
+        
+        var recipe : [(store: FruitList, amount: Int)] {
+            switch self {
+            case .strawberryJuice:
+                return [(store: .strawberry, amount: 16)]
+            case .mangoKiwiJucie:
+                return [(store: .mango, amount: 2)]
+            case .kiwiJuice:
+                return [(store: .kiwi, amount: 3)]
+            case .bananaJuice:
+                return [(store: .banana, amount: 2)]
+            case .pineappleJuice:
+                return [(store: .pineapple, amount: 3)]
+            case .strawNanaJuice:
+                return [(store: .strawberry, amount: 10),
+                        (store: .banana, amount:1)]
+            case .mangoJucie:
+                return [(store: .mango, amount: 16)]
+            }
+        }
 	}
 
 	enum FruitList: String {
@@ -31,45 +51,9 @@ struct JuiceMaker {
 	private let mangoSotre = FruitStore(fruitName: FruitList.mango.rawValue)
 	private let pineappleStore = FruitStore(fruitName: FruitList.pineapple.rawValue)
     
-    private func makeBananaJuice() -> Bool {
-        if bananaStore.status.count > 2 {
-            bananaStore.setCount(amount: -2)
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    private func makeStrawberryJuice() -> Bool {
-		if strawberryStore.status.count > 16 {
-            strawberryStore.setCount(amount: -16)
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    private func makeKiwiJuice() -> Bool {
-		if kiwiStore.status.count > 3 {
-            kiwiStore.setCount(amount: -3)
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    private func makePineappleJuice() -> Bool {
-		if pineappleStore.status.count > 2 {
-            pineappleStore.setCount(amount: -2)
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    private func makeMangoJuice() -> Bool {
-		if mangoSotre.status.count > 3 {
-            mangoSotre.setCount(amount: -3)
+    private func makeJuice(targetStore store: FruitStore, amount number: Int) -> Bool {
+        if store.status.count > number {
+            store.setCount(amount: -number)
             return true
         } else {
             return false
@@ -107,15 +91,15 @@ struct JuiceMaker {
         
         switch type {
         case .strawberryJuice:
-            outcome = makeStrawberryJuice()
+            outcome = makeJuice(targetStore: strawberryStore, amount: 16)
         case .bananaJuice:
-            outcome = makeBananaJuice()
+            outcome = makeJuice(targetStore: bananaStore, amount: 2)
         case .kiwiJuice:
-            outcome = makeKiwiJuice()
+            outcome = makeJuice(targetStore: kiwiStore, amount: 3)
         case .pineappleJuice:
-            outcome = makePineappleJuice()
+            outcome = makeJuice(targetStore: pineappleStore, amount: 3)
         case .mangoJucie:
-            outcome = makeMangoJuice()
+            outcome = makeJuice(targetStore: mangoSotre, amount: 2)
         case .strawNanaJuice:
             outcome = makeStrawNanaJuice()
         case .mangoKiwiJucie:
