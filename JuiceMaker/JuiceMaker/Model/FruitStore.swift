@@ -14,7 +14,7 @@ class FruitStore {
         if fruit.stock - amount >= 0{
             fruit.stock -= amount
         }else {
-            throw JuiceMaker.JuiceMakerError.countUnderZero
+            throw JuiceMaker.JuiceMakerError.insufficientFruit
         }
     }
 

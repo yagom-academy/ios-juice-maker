@@ -17,83 +17,83 @@ class ViewController: UIViewController {
     
     @IBAction func strawberryBananaButton(_ sender: UIButton) {
         do {
-            try myJuiceMaker.strawberryBananaJuice()
-        } catch JuiceMaker.JuiceMakerError.countUnderZero {
+            try myJuiceMaker.makeStrawberryBananaJuice()
+        } catch JuiceMaker.JuiceMakerError.insufficientFruit {
             print("countUnderZero")
         } catch {
             
         }
-        strawberryLabel.text = String(myJuiceMaker.fruits.strawberry.stock)
-        bananaLabel.text = String(myJuiceMaker.fruits.banana.stock)
+        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
+        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
     }
     @IBAction func mangoKiwiButton(_ sender: UIButton) {
         do {
-            try myJuiceMaker.mangoKiwiJuice()
-        } catch JuiceMaker.JuiceMakerError.countUnderZero {
+            try myJuiceMaker.makeMangoKiwiJuice()
+        } catch JuiceMaker.JuiceMakerError.insufficientFruit {
             print("countUnderZero")
         } catch {
             
         }
-        kiwiLabel.text = String(myJuiceMaker.fruits.kiwi.stock)
-        mangoLabel.text = String(myJuiceMaker.fruits.mango.stock)
+        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
     @IBAction func strawberryButton(_ sender: UIButton) {
         do {
-            try myJuiceMaker.strawberryJuice()
-        } catch JuiceMaker.JuiceMakerError.countUnderZero {
+            try myJuiceMaker.makeStrawberryJuice()
+        } catch JuiceMaker.JuiceMakerError.insufficientFruit {
             print("countUnderZeroerror")
         } catch {
             print("another Error")
         }
-        strawberryLabel.text = String(myJuiceMaker.fruits.strawberry.stock)
+        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
     }
     @IBAction func bananaButton(_ sender: UIButton) {
         do {
-            try myJuiceMaker.bananaJuice()
-        } catch JuiceMaker.JuiceMakerError.countUnderZero {
+            try myJuiceMaker.makeBananaJuice()
+        } catch JuiceMaker.JuiceMakerError.insufficientFruit {
             print("countUnderZeroerror")
         } catch {
             
         }
-        bananaLabel.text = String(myJuiceMaker.fruits.banana.stock)
+        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
     }
     @IBAction func pineappleButton(_ sender: UIButton) {
         do {
-            try myJuiceMaker.pineappleJuice()
-        } catch JuiceMaker.JuiceMakerError.countUnderZero {
+            try myJuiceMaker.makePineappleJuice()
+        } catch JuiceMaker.JuiceMakerError.insufficientFruit {
             print("countUnderZeroerror")
         } catch {
             
         }
-        pineappleLabel.text = String(myJuiceMaker.fruits.pineapple.stock)
+        pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
     }
     @IBAction func kiwiButton(_ sender: UIButton) {
         do {
-            try myJuiceMaker.kiwiJuice()
-        } catch JuiceMaker.JuiceMakerError.countUnderZero {
+            try myJuiceMaker.makeKiwiJuice()
+        } catch JuiceMaker.JuiceMakerError.insufficientFruit {
             print("countUnderZeroerror")
         } catch {
             
         }
-        kiwiLabel.text = String(myJuiceMaker.fruits.kiwi.stock)
+        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
     }
     @IBAction func mangoButton(_ sender: UIButton) {
         do {
-            try myJuiceMaker.mangoJuice()
-        } catch JuiceMaker.JuiceMakerError.countUnderZero {
+            try myJuiceMaker.makeMangoJuice()
+        } catch JuiceMaker.JuiceMakerError.insufficientFruit {
             print("countUnderZeroerror")
         } catch {
             
         }
-        mangoLabel.text = String(myJuiceMaker.fruits.mango.stock)
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryLabel.text = String(myJuiceMaker.fruits.strawberry.stock)
-        bananaLabel.text = String(myJuiceMaker.fruits.banana.stock)
-        pineappleLabel.text = String(myJuiceMaker.fruits.pineapple.stock)
-        kiwiLabel.text = String(myJuiceMaker.fruits.kiwi.stock)
-        mangoLabel.text = String(myJuiceMaker.fruits.mango.stock)
+        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
+        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
+        pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
+        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
 }

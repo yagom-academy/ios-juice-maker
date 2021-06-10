@@ -1,33 +1,33 @@
 import Foundation
 
 struct JuiceMaker {
-    var fruits = FruitStore()
+    var fruitStore = FruitStore()
 
     enum JuiceMakerError: Error {
-        case countUnderZero
+        case insufficientFruit
     }
 
-    func strawberryJuice() throws {
-        try fruits.decreaseStock(amount: 16, fruit: self.fruits.strawberry)
+    func makeStrawberryJuice() throws {
+        try fruitStore.decreaseStock(amount: 16, fruit: self.fruitStore.strawberry)
     }
-    func bananaJuice() throws {
-        try fruits.decreaseStock(amount: 2, fruit: fruits.banana)
+    func makeBananaJuice() throws {
+        try fruitStore.decreaseStock(amount: 2, fruit: fruitStore.banana)
     }
-    func kiwiJuice() throws {
-        try fruits.decreaseStock(amount: 3, fruit: fruits.kiwi)
+    func makeKiwiJuice() throws {
+        try fruitStore.decreaseStock(amount: 3, fruit: fruitStore.kiwi)
     }
-    func pineappleJuice() throws {
-        try fruits.decreaseStock(amount: 2, fruit: fruits.pineapple)
+    func makePineappleJuice() throws {
+        try fruitStore.decreaseStock(amount: 2, fruit: fruitStore.pineapple)
     }
-    func mangoJuice() throws {
-        try fruits.decreaseStock(amount: 3, fruit: fruits.mango)
+    func makeMangoJuice() throws {
+        try fruitStore.decreaseStock(amount: 3, fruit: fruitStore.mango)
     }
-    func strawberryBananaJuice() throws {
-        try fruits.decreaseStock(amount: 10, fruit: fruits.strawberry)
-        try fruits.decreaseStock(amount: 1, fruit: fruits.banana)
+    func makeStrawberryBananaJuice() throws {
+        try fruitStore.decreaseStock(amount: 10, fruit: fruitStore.strawberry)
+        try fruitStore.decreaseStock(amount: 1, fruit: fruitStore.banana)
     }
-    func mangoKiwiJuice() throws {
-        try fruits.decreaseStock(amount: 2, fruit: fruits.mango)
-        try fruits.decreaseStock(amount: 1, fruit: fruits.kiwi)
+    func makeMangoKiwiJuice() throws {
+        try fruitStore.decreaseStock(amount: 2, fruit: fruitStore.mango)
+        try fruitStore.decreaseStock(amount: 1, fruit: fruitStore.kiwi)
     }
 }
