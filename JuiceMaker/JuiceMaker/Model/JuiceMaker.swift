@@ -26,14 +26,13 @@ struct JuiceMaker {
         do {
             let juiceRecipes = juice.recipe
 
-            for (fruitName, count) in juiceRecipes {
-                let stock = try fruitStore.getFruitStock(on: fruitName)
-                
-                guard stock > count else {
+            for juiceRecipe in juiceRecipes {
+                guard try fruitStore.hasEnoughStock(of: juiceRecipe) else {
                     print(Message.outOfStock)
                     return
                 }
             }
+            
             try fruitStore.useStocks(with: juiceRecipes)
             Message.completeMakingJuice(on: juice)
         } catch {

@@ -49,4 +49,11 @@ class FruitStore {
         
         return fruitStock
     }
+    
+    func hasEnoughStock(of recipe: JuiceRecipe) throws -> Bool {
+        let (fruitName, count) = recipe
+        let stock = try getFruitStock(on: fruitName)
+        return stock > count
+    }
+    
 }
