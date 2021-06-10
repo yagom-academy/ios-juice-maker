@@ -29,33 +29,33 @@ class FruitStore {
         }
     }
     
-    func addStock(of fruit: Fruits, amout: Int) {
+    func addStock(of fruit: Fruits, amount: Int) {
         switch fruit {
         case .strawberry:
-            strawberry += amout
+            strawberry += amount
         case .banana:
-            banana += amout
+            banana += amount
         case .kiwi:
-            kiwi += amout
+            kiwi += amount
         case .pineapple:
-            pineapple += amout
+            pineapple += amount
         case .mango:
-            mango += amout
+            mango += amount
         }
     }
     
-    func minusStock(of fruit: Fruits, amout: Int) {
+    func subtractStock(of fruit: Fruits, amount: Int) {
         switch fruit {
         case .strawberry:
-            strawberry -= amout
+            strawberry -= amount
         case .banana:
-            banana -= amout
+            banana -= amount
         case .kiwi:
-            kiwi -= amout
+            kiwi -= amount
         case .pineapple:
-            pineapple -= amout
+            pineapple -= amount
         case .mango:
-            mango -= amout
+            mango -= amount
         }
     }
 }
