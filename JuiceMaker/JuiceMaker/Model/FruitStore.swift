@@ -11,15 +11,16 @@ enum Fruit {
 class FruitStore {
     var fruit: Fruit?
     var count = 10
-    
-    func increment(){
-        count += 1
-    }
-    func increment(amount:Int){
+
+    func increaseStock(amount:Int = 1){
         count += amount
     }
-    func decrease(){
-        count -= 1
+    func decreaseStock(amount:Int = 1) throws {
+        if count - amount >= 0{
+            count -= amount
+        }else {
+            throw JuiceMaker.JuiceMakerError.countUnderZero
+        }
     }
 }
 

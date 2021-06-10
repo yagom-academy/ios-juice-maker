@@ -13,54 +13,26 @@ struct JuiceMaker {
     }
     
     func strawberryJuice() throws {
-        if strawberry.count >= 16 {
-            strawberry.increment(amount: -16)
-        } else {
-            throw JuiceMakerError.countUnderZero
-        }
+        try strawberry.decreaseStock(amount: 16)
     }
     func bananaJuice() throws {
-        if banana.count >= 2 {
-            banana.increment(amount: -2)
-        } else {
-            throw JuiceMakerError.countUnderZero
-        }
+        try banana.decreaseStock(amount: 2)
     }
     func kiwiJuice() throws {
-        if kiwi.count >= 3 {
-            kiwi.increment(amount: -3)
-        } else {
-            throw JuiceMakerError.countUnderZero
-        }
+        try kiwi.decreaseStock(amount: 3)
     }
     func pineappleJuice() throws {
-        if pineapple.count >= 2 {
-            pineapple.increment(amount: -2)
-        } else {
-            throw JuiceMakerError.countUnderZero
-        }
+        try pineapple.decreaseStock(amount: 2)
     }
     func mangoJuice() throws {
-        if mango.count >= 3 {
-            mango.increment(amount: -3)
-        } else {
-            throw JuiceMakerError.countUnderZero
-        }
+        try mango.decreaseStock(amount: 3)
     }
     func strawberryBananaJuice() throws {
-        if strawberry.count >= 10 && banana.count >= 1 {
-            strawberry.increment(amount: -10)
-            banana.increment(amount: -1)
-        } else {
-            throw JuiceMakerError.countUnderZero
-        }
+        try strawberry.decreaseStock(amount: 10)
+        try banana.decreaseStock(amount: 1)
     }
     func mangoKiwiJuice() throws {
-        if mango.count >= 2 && kiwi.count >= 1 {
-            mango.increment(amount: -2)
-            kiwi.increment(amount: -1)
-        } else {
-            throw JuiceMakerError.countUnderZero
-        }
+        try mango.decreaseStock(amount: 2)
+        try kiwi.decreaseStock(amount: 1)
     }
 }
