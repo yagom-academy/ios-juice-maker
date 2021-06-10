@@ -26,12 +26,25 @@ class FruitStore {
         
         fruitStocks[fruit] = fruitCount + count
     }
+
+    func minusStock(of fruit: Fruit, count: UInt) throws {
+        guard let fruitCount = fruitStocks[fruit] else {
+            throw JuiceMakerError.invaildAccess
+        }
+        
+        guard fruitCount > count else {
+            throw JuiceMakerError.invaildStockCount
+        }
+        
+        fruitStocks[fruit] = fruitCount - count
+    }
     
     func useStocks(with juiceRecipes: [JuiceRecipe]) throws {
         for (fruitName, count) in juiceRecipes {
             guard let fruitStock = fruitStocks[fruitName] else {
                 throw JuiceMakerError.invaildAccess
             }
+            
             fruitStocks[fruitName] = fruitStock - count
         }
     }
