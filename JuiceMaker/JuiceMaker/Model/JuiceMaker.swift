@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    enum Message {
+    private enum Message {
         static let outOfStock = "재료가 모자라요. 재고를 수정할까요?"
         static let nonZeroStock = "재고를 0미만으로 설정 할 수 없습니다"
         
@@ -16,7 +16,7 @@ struct JuiceMaker {
         }
     }
     
-    let fruitStore: FruitStore
+    private let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore

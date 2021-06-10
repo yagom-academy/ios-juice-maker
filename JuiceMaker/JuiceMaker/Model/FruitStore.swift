@@ -6,12 +6,12 @@
 
 import Foundation
 
-typealias JuiceRecipe = (fruitName: Fruit, count: UInt)
+typealias JuiceRecipe = (fruit: Fruit, count: UInt)
 
 class FruitStore {
-    var fruitStocks: [Fruit: Int] = [:]
+    private var fruitStocks: [Fruit: UInt] = [:]
     
-    init(initialValue: Int = 10) {
+    init(initialValue: UInt = 10) {
         let fruitList = Fruit.makeFruitList()
         
         for fruit in fruitList {
@@ -19,18 +19,12 @@ class FruitStore {
         }
     }
     
-    func addStock(fruitName: Fruit, count: Int) throws {
-        guard let fruitCount = fruitStocks[fruitName] else {
+    func addStock(of fruit: Fruit, count: UInt) throws {
+        guard let fruitCount = fruitStocks[fruit] else {
             throw JuiceMakerError.invaildAccess
         }
         
-        let totalCount = fruitCount + count
-        
-        guard totalCount >= 0 else {
-            throw JuiceMakerError.invaildStockCount
-        }
-        
-        fruitStocks[fruitName] = totalCount
+        fruitStocks[fruit] = fruitCount + count
     }
     
     func useStocks(with juiceRecipes: [JuiceRecipe]) throws {
@@ -38,12 +32,12 @@ class FruitStore {
             guard let fruitStock = fruitStocks[fruitName] else {
                 throw JuiceMakerError.invaildAccess
             }
-            fruitStocks[fruitName] = fruitStock - Int(count)
+            fruitStocks[fruitName] = fruitStock - count
         }
     }
     
-    func getFruitStock(on juice: Fruit) throws -> Int {
-        guard let fruitStock = fruitStocks[juice] else {
+    func getFruitStock(of fruit: Fruit) throws -> UInt {
+        guard let fruitStock = fruitStocks[fruit] else {
             throw JuiceMakerError.invaildAccess
         }
         
@@ -51,8 +45,8 @@ class FruitStore {
     }
     
     func hasEnoughStock(of recipe: JuiceRecipe) throws -> Bool {
-        let (fruitName, count) = recipe
-        let stock = try getFruitStock(on: fruitName)
+        let (fruit, count) = recipe
+        let stock = try getFruitStock(of: fruit)
         return stock > count
     }
     
