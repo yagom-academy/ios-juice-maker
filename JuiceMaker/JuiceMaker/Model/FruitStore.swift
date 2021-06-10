@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by luyan. 
 //  Copyright © yagom. All rights reserved.
 // 
 
