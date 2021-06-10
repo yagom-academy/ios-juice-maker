@@ -16,11 +16,8 @@ enum Fruits {
 
 // 과일 타입
 class FruitStore {
-    
-    //- 각 과일의 초기 재고 : 10개
-    //- 각 과일의 수량 n개를 변경하는 기능이 있습니다
+    var name: Fruits? = nil
     var amount: Int = 10
-    var requiredStock = 0
     
     func stockPlus(stock:Int) {
         amount += stock
@@ -31,7 +28,7 @@ class FruitStore {
         
     }
     
-    func isStockLeft() -> Bool {
+    func isStockLeft(_ requiredStock: Int) -> Bool {
         if amount >= requiredStock {
             return true
         } else {
@@ -44,35 +41,35 @@ class FruitStore {
 class StrawberryStock: FruitStore {
     override init() {
         super.init()
-        requiredStock = 16
+        name = .strawberry
     }
 }
 
 class BananaStock: FruitStore {
     override init() {
         super.init()
-        requiredStock = 2
+        name = .banana
     }
 }
 
 class KiwiStock: FruitStore {
     override init() {
         super.init()
-        requiredStock = 2
+        name = .kiwi
     }
 }
 
 class PineappleStock: FruitStore {
     override init() {
         super.init()
-        requiredStock = 3
+        name = .pineapple
     }
 }
 
 class MangoStock: FruitStore {
     override init() {
         super.init()
-        requiredStock = 3
+        name = .mango
     }
     
 }

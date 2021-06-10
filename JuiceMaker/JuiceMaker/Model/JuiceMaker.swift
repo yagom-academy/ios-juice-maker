@@ -19,7 +19,7 @@ struct JuiceMaker {
     ]
 
     enum JuiceType: Int {
-        case strawberryJuice = 0
+        case strawberryJuice 
         case bananaJuice
         case pineappleJuice
         case kiwiJuice
@@ -27,22 +27,22 @@ struct JuiceMaker {
         case ddalbaJuice
         case mangoKiwiJuice
 
-        func material() -> [Fruits] {
+        func material() -> [Fruits: Int] {
             switch self {
             case .strawberryJuice:
-                return [.strawberry]
+                return [.strawberry: 16]
             case .bananaJuice:
-                return [.banana]
+                return [.banana: 2]
             case .pineappleJuice:
-                return [.pineapple]
+                return [.pineapple: 3]
             case .kiwiJuice:
-                return [.kiwi]
+                return [.kiwi: 2]
             case .mangoJuice:
-                return [.mango]
+                return [.mango: 3]
             case .ddalbaJuice:
-                return [.strawberry, .banana]
+                return [.strawberry: 10, .banana: 1]
             case .mangoKiwiJuice:
-                return [.mango ,.kiwi]
+                return [.mango: 2 , .kiwi: 1]
             }
         }
     }
@@ -56,8 +56,8 @@ struct JuiceMaker {
     // checkStock의 결과를 받아서 재고가 있으면 makejuice가 작동을하고 필요 레시피만큼 재료를 소진시킨다
     func checkStock(fruit: JuiceType) -> Bool {
         var results: [Bool] = []
-        fruit.material().forEach { fruitType in
-            results.append(self.fruitStores[fruitType]?.isStockLeft() ?? false)
+        fruit.material().forEach { (fruitType,requiredAmount) in
+            results.append(self.fruitStores[fruitType]?.isStockLeft(requiredAmount) ?? false)
         }
         let filtered = results.filter({ $0 })
         return !filtered.isEmpty
