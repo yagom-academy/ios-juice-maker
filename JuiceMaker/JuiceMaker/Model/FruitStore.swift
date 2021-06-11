@@ -19,10 +19,13 @@ class FruitStore {
         case mango
     }
     
-    static var storage: [Fruit: UInt] = [.strawberry: defaultStock, .banana: defaultStock, .pineapple: defaultStock, .kiwi: defaultStock, .mango: defaultStock]
+    static var storage: [Fruit: UInt] = [.strawberry: defaultStock,
+                                         .banana: defaultStock,
+                                         .pineapple: defaultStock,
+                                         .kiwi: defaultStock,
+                                         .mango: defaultStock]
     
     func modifyStock(fruit: Fruit, count: UInt) {
         FruitStore.storage[fruit] = count
     }
 }
-
