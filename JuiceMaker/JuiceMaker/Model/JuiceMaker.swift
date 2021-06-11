@@ -51,6 +51,7 @@ struct JuiceMaker {
                 try fruitstore.usingFruits(fruit: fruit, needs: amount)
             } catch FruitError.outOfStock {
                 throw FruitError.outOfStock
+                
             }
         }
     }
