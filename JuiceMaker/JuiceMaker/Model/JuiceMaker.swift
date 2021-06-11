@@ -49,9 +49,8 @@ struct JuiceMaker {
         for (fruit, amount) in recipe.recipeIngredients {
             do {
                 try fruitstore.usingFruits(fruit: fruit, needs: amount)
-                print("\(recipe) 나왔습니다! 맛있게 드세요!")
             } catch FruitError.outOfStock {
-                print("재료가 모자라요. 재고를 수정할까요?")
+                throw FruitError.outOfStock
             }
         }
     }
