@@ -53,11 +53,7 @@ struct JuiceMaker {
             return false
         }
         order.material().forEach { (fruitType,requiredAmount) in
-            if let fruit = self.fruitStore[fruitType] {
-                fruit.stockMinus(stock: requiredAmount)
-            } else {
-                return
-            }
+            self.fruitStore[fruitType]?.stockMinus(stock: requiredAmount)
         }
         return true
     }
@@ -67,8 +63,7 @@ struct JuiceMaker {
         fruit.material().forEach { (fruitType,requiredAmount) in
             results.append(self.fruitStore[fruitType]?.isStockLeft(requiredAmount) ?? false)
         }
-        let filtered = results.filter({ $0 })
-        return !filtered.isEmpty
+        return !results.filter({ $0 }).isEmpty
     }
 }
 
