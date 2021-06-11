@@ -2,13 +2,11 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by luyan. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import Foundation
 
 struct JuiceMaker {
-    var store: FruitStore = FruitStore()
-    
     enum JuiceMenu {
         case strawberry
         case banana
@@ -38,7 +36,9 @@ struct JuiceMaker {
         }
     }
     
-    func isSelectedMenuOutOfStock(menu selectedJuice: [HandlingFruit:Int]) throws -> Bool {
+    private var store: FruitStore = FruitStore()
+    
+    private func isSelectedMenuOutOfStock(menu selectedJuice: [HandlingFruit:Int]) throws -> Bool {
         for ingredient in selectedJuice {
             if let stock = try? store.checkFruitStock(fruit: ingredient.key), ingredient.value > stock {
                 return true
