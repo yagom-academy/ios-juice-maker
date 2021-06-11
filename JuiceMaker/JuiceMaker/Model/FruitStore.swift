@@ -23,6 +23,11 @@ class FruitStore {
         }
     }
     
+    func increaseStock(fruit: Fruit) {
+        guard let stock = fruitStock[fruit] else { return }
+        fruitStock[fruit] = stock + 1
+    }
+    
     func usingFruits(fruit: Fruit, needs: Int) {
         guard let stock = fruitStock[fruit] else { return }
         if stock < needs {
