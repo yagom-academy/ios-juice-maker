@@ -56,7 +56,7 @@ struct JuiceMaker {
     
     func blend(juice: Juice) throws {
         for (fruit, amount) in juice.ingredients {
-            try fruitStore.consumeStock(of: fruit, by: amount)
+            try fruitStore.reduceStock(of: fruit, by: amount)
         }
     }
 }

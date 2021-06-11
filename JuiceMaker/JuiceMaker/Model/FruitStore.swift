@@ -17,6 +17,7 @@ enum Fruit: CaseIterable {
 enum FruitStoreError: Error {
     case outOfStock
     case invalidFruit
+    case outOfRange
 }
 
 // 과일 타입
@@ -36,18 +37,25 @@ class FruitStore {
         throw FruitStoreError.invalidFruit
     }
 
-    func updateStock(of fruit: Fruit, by number: Int) throws {
+    // Stepper의 value로 업데이트하기 위한 메서드
+    func updateStock(of fruit: Fruit, by amount: Int) throws {
         guard let _ = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
         }
-        fruitList[fruit]? = number
+        guard amount >= 0 else {
+            throw FruitStoreError.outOfRange
+        }
+        fruitList[fruit]? = amount
     }
 
-    func consumeStock(of fruit: Fruit, by number: Int) throws {
-        guard let _ = fruitList[fruit] else {
+    func reduceStock(of fruit: Fruit, by amountToReduce: Int) throws {
+        guard let stock = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
         }
-        fruitList[fruit]? -= number
+        guard stock - amountToReduce >= 0 else {
+            throw FruitStoreError.outOfRange
+        }
+        fruitList[fruit]? -= amountToReduce
     }
 
     func hasMoreThan(of fruit: Fruit, by requiredAmount: Int) throws {
