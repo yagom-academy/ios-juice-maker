@@ -41,7 +41,7 @@ class ViewController: UIViewController {
             return
         }
         refreshStockLabel()
-        showAlert(message: Message.orderSuccess.rawValue, okAction: okAction, cancelAction: nil)
+		showAlert(message: "\(recipe.rawValue)\(Message.orderSuccess.rawValue)", okAction: okAction, cancelAction: nil)
     }
     
     @IBAction func orderDdalbaJuice(_ sender: UIButton) {
