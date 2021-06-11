@@ -28,11 +28,11 @@ struct JuiceMaker {
         Juice.mangoKiwi: [Fruit.mango: 2, Fruit.kiwi: 1]
     ]
     
-    func orderJuice(name: Juice) {
+    func orderJuice(name: Juice) throws {
         guard let ingredients = recipe[name] else {
             return
         }
-        fruitStore.makeJuice(for: ingredients)
+        try fruitStore.makeJuice(for: ingredients)
     }
     
     func returnStockString(of fruit: Fruit) throws -> String {

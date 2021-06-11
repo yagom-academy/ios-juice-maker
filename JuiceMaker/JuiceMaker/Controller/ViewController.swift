@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStockLabels()
-        
     }
     
     func updateStockLabels() {
@@ -30,7 +29,6 @@ class ViewController: UIViewController {
         } catch {
             print("에러")
         }
-        
     }
 
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
@@ -38,8 +36,14 @@ class ViewController: UIViewController {
               let juice = Juice(rawValue: juiceName) else {
             return
         }
-        juiceMaker.orderJuice(name: juice)
-        updateStockLabels()
+        do {
+            try juiceMaker.orderJuice(name: juice)
+            updateStockLabels()
+        } catch FruitStoreError.outOfStock {
+            print("재고 부족 에러 발생")
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 

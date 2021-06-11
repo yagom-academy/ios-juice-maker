@@ -55,12 +55,8 @@ class FruitStore {
         }
     }
     
-    func makeJuice(for ingredients: [Fruit: Int]) {
-        do {
-            try validateEnoughStocks(ingredients: ingredients)
-            useStocks(ingredients: ingredients)
-        } catch {
-            print(error.localizedDescription)
-        }
+    func makeJuice(for ingredients: [Fruit: Int]) throws {
+        try validateEnoughStocks(ingredients: ingredients)
+        useStocks(ingredients: ingredients)
     }
 }
