@@ -56,38 +56,22 @@ enum Juice: CustomStringConvertible {
 }
 
 struct JuiceMaker {
-    let fruits = [
-        Fruit.strawberry: FruitStore(fruit: Fruit.strawberry),
-        Fruit.banana: FruitStore(fruit: Fruit.banana),
-        Fruit.pineapple: FruitStore(fruit: Fruit.pineapple),
-        Fruit.kiwi: FruitStore(fruit: Fruit.kiwi),
-        Fruit.mango: FruitStore(fruit: Fruit.mango)
-    ]
+    let fruitStore = FruitStore()
     
-    func order(juice: Juice) {
-        do {
-            try checkStock(of: juice)
-            blend(juice: juice)
-        } catch {
-            print("재고 부족")
-        }
+    func order(juice: Juice) throws {
+        try checkStock(of: juice)
+        try blend(juice: juice)
     }
     
     func checkStock(of juice: Juice) throws {
-        for (fruitName, count) in juice.ingredients {
-            guard let fruit = fruits[fruitName], fruit.hasMoreThan(requiredAmount: count) else {
-                throw JuiceMakerError.outOfStock
-            }
+        for (fruit, amount) in juice.ingredients {
+            try fruitStore.hasMoreThan(of: fruit, by: amount)
         }
     }
     
-    func blend(juice: Juice) {
-        for (fruitName, count) in juice.ingredients {
-            guard let fruit = fruits[fruitName] else {
-                return
-            }
-            fruit.consumeStock(of: count)
+    func blend(juice: Juice) throws {
+        for (fruit, amount) in juice.ingredients {
+            try fruitStore.consumeStock(of: fruit, by: amount)
         }
-        print("\(juice.description) 쥬스 나왔습니다!")
     }
 }

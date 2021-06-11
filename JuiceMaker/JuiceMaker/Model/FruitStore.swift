@@ -50,13 +50,12 @@ class FruitStore {
         fruitList[fruit]? -= number
     }
 
-    func hasMoreThan(of fruit: Fruit, requiredAmount: Int) throws -> Bool {
+    func hasMoreThan(of fruit: Fruit, by requiredAmount: Int) throws {
         guard let stock = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
         }
         if stock < requiredAmount {
-            return false
+            throw FruitStoreError.outOfStock
         }
-        return true
     }
 }
