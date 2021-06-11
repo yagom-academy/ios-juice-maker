@@ -11,7 +11,7 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     
-    let fruitStore: [Fruits: FruitStore] = [
+    private let fruitStore: [Fruits: FruitStore] = [
         .strawberry: StrawberryStock(),
         .banana: BananaStock(),
         .pineapple: PineappleStock(),
@@ -48,7 +48,7 @@ struct JuiceMaker {
         }
     }
     
-        func makeJuice(order: JuiceType) -> Bool {
+    private func makeJuice(order: JuiceType) -> Bool {
         guard checkStock(fruit: order) else {
             return false
         }
@@ -62,7 +62,7 @@ struct JuiceMaker {
         return true
     }
     
-    func checkStock(fruit: JuiceType) -> Bool {
+    private func checkStock(fruit: JuiceType) -> Bool {
         var results: [Bool] = []
         fruit.material().forEach { (fruitType,requiredAmount) in
             results.append(self.fruitStore[fruitType]?.isStockLeft(requiredAmount) ?? false)
