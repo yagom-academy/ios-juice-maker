@@ -12,6 +12,7 @@ enum Fruit: CaseIterable{
 
 enum FruitError: Error {
     case outOfStock
+    case outOfStockWhenMakeFruits
 }
 
 class FruitStore {
@@ -23,10 +24,10 @@ class FruitStore {
         }
     }
     
-//    func increaseStock(fruit: Fruit) {
-//        guard let stock = fruitStock[fruit] else { return }
-//        fruitStock[fruit] = stock + 1
-//    }
+    func increaseStock(fruit: Fruit) {
+        guard let stock = fruitStock[fruit] else { return }
+        fruitStock[fruit] = stock + 1
+    }
 //
 //    func decreaseStock(fruit: Fruit) throws {
 //        guard let stock = fruitStock[fruit] else { return }
@@ -34,10 +35,10 @@ class FruitStore {
 //        }
 //    }
     
-    func usingFruits(fruit: Fruit, needs: Int) {
+    func usingFruits(fruit: Fruit, needs: Int) throws {
         guard let stock = fruitStock[fruit] else { return }
         if stock < needs {
-            print("재고가 부족합니다. 재고를 추가할까요?")
+            throw FruitError.outOfStock
         } else {
             fruitStock[fruit] = stock - needs
         }
