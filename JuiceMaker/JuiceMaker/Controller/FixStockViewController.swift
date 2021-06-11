@@ -8,11 +8,12 @@
 import UIKit
 
 class FixStockViewController: UIViewController {
-
+    var fruitStore = FruitStore()
+    
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func starawberryStepper(_ sender: UIStepper) {
+    @IBAction func strawberryStepper(_ sender: UIStepper) {
     }
     @IBAction func bananaStepper(_ sender: UIStepper) {
     }

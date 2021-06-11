@@ -8,7 +8,7 @@ struct JuiceMaker {
     }
 
     func makeStrawberryJuice() throws {
-        try fruitStore.decreaseStock(amount: 16, fruit: self.fruitStore.strawberry)
+        try fruitStore.decreaseStock(amount: 16, fruit: fruitStore.strawberry)
     }
     func makeBananaJuice() throws {
         try fruitStore.decreaseStock(amount: 2, fruit: fruitStore.banana)

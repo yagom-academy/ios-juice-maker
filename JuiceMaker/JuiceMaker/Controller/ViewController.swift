@@ -7,13 +7,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    let myJuiceMaker = JuiceMaker()
+
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
+    
+    let myJuiceMaker = JuiceMaker()
     
     @IBAction func strawberryBananaButton(_ sender: UIButton) {
         do {
