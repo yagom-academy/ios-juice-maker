@@ -44,19 +44,18 @@ enum Recipe: String {
 
 // 쥬스 메이커 타입 
 struct JuiceMaker {
-	
     let connectedStore = FruitStore.fruitStore
-    
-	func makeJuice(recipe: Recipe) {
+
+	func canMakeJuice(recipe: Recipe) -> Bool {
 		for (fruit, amount) in recipe.requiredIngredients {
 			guard connectedStore.hasEnoughFruitsStock(fruit: fruit, number: amount) else {
-				return
+				return false
 			}
 		}
 		for (fruit, amount) in recipe.requiredIngredients {
 			_ = connectedStore.consume(fruit: fruit, number: amount)
 		}
-		Alert.shared.showOrderSuccessAlert(message: "\(recipe.rawValue)\(Message.orderSuccess.rawValue)")
+        return true
 	}
 	
 }

@@ -49,7 +49,7 @@ class FruitStore {
 
 	func hasEnoughFruitsStock(fruit: Fruit, number: UInt) -> Bool {
         guard let fruitStocks = fruitStocks[fruit] else { return false }
-        return  fruitStocks > number
+        return  fruitStocks >= number
     }
 }
 
