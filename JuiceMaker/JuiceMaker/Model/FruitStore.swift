@@ -19,12 +19,12 @@ enum HandlingFruit: String, CaseIterable {
 }
 
 class FruitStore {
-    let defaultStock: Int = 10
+    private let defaultStock: Int = 10
     var fruitStock: [HandlingFruit:Int] = [:]
     
     init() {
-        for i in HandlingFruit.allCases {
-            fruitStock[i] = defaultStock
+        for fruit in HandlingFruit.allCases {
+            fruitStock[fruit] = defaultStock
         }
     }
     
@@ -33,9 +33,7 @@ class FruitStore {
     }
     
     func decreaseFruitStock(fruit: HandlingFruit, amount: Int) {
-        guard let selectedFruitStock = fruitStock[fruit] else {
-            return
-        }
+        guard let selectedFruitStock = fruitStock[fruit], selectedFruitStock - amount >= 0 else { return }
         let changedStock = selectedFruitStock - amount
         fruitStock[fruit] = changedStock
     }
