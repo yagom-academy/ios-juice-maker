@@ -19,30 +19,38 @@ enum Fruit: CaseIterable {
 class FruitStore {
 	static let fruitStore = FruitStore()
 	
-    private var fruitStocks = [Fruit: Int]()
+    private var fruitStocks = [Fruit: UInt]()
 	
-    private init(defaultStock: Int = 10) {
+    private init(defaultStock: UInt = 10) {
         for fruit in Fruit.allCases {
             fruitStocks.updateValue(defaultStock, forKey: fruit)
         }
     }
-    func lookUpStocks() -> [Fruit:Int]{
+	
+    func lookUpStocks() -> [Fruit: UInt] {
         return fruitStocks
     }
     
-	func add(fruit: Fruit, number: Int) {
-        fruitStocks[fruit]? += number
+	func add(fruit: Fruit, number: UInt) -> UInt {
+		guard let quantity = fruitStocks[fruit] else {
+			return 0
+		}
+		fruitStocks[fruit] = quantity + number
+		return number
+	}
+	
+	func consume(fruit: Fruit, number: UInt) -> UInt {
+		guard let stock = fruitStocks[fruit], stock >= number else {
+			return 0
+		}
+		fruitStocks[fruit] = stock - number
+		return number
 	}
 
-	func consume(fruit:Fruit, number:Int){
-		fruitStocks[fruit]? -= number
-	}
-
-	func hasEnoughFruitsStock(fruit: Fruit, number: Int) -> Bool {
+	func hasEnoughFruitsStock(fruit: Fruit, number: UInt) -> Bool {
         guard let fruitStocks = fruitStocks[fruit] else { return false }
         return  fruitStocks > number
     }
-    
 }
 
 

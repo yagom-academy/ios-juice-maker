@@ -7,17 +7,16 @@
 import Foundation
 
 
-enum Recipe {
+enum Recipe: String {
+	case strawberryJuice = "딸기쥬스"
+	case bananaJuice = "바나나쥬스"
+	case kiwiJuice = "키위쥬스"
+	case pineappleJuice = "파인애플쥬스"
+	case ddalbaJuice = "딸바쥬스"
+	case mangoJuice = "망고쥬스"
+	case mangoKiwiJuice = "망고키위쥬스"
 	
-	case strawberryJuice
-	case bananaJuice
-	case kiwiJuice
-	case pineappleJuice
-	case ddalbaJuice
-	case mangoJuice
-	case mangoKiwiJuice
-	
-	var requiredIngredients: [Fruit: Int] {
+	var requiredIngredients: [Fruit: UInt] {
 		switch self {
 		case .strawberryJuice:
 			return [Fruit.strawberry: 16]
@@ -51,13 +50,13 @@ struct JuiceMaker {
 	func makeJuice(recipe: Recipe) {
 		for (fruit, amount) in recipe.requiredIngredients {
 			guard connectedStore.hasEnoughFruitsStock(fruit: fruit, number: amount) else {
-                
 				return
 			}
 		}
 		for (fruit, amount) in recipe.requiredIngredients {
-			connectedStore.consume(fruit: fruit, number: amount)
+			_ = connectedStore.consume(fruit: fruit, number: amount)
 		}
+		Alert.shared.showOrderSuccessAlert(message: "\(recipe.rawValue)\(Message.orderSuccess.rawValue)")
 	}
 	
 }
