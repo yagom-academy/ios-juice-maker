@@ -42,7 +42,6 @@ struct JuiceMaker {
         }
     }
     
-    
     let fruitstore = FruitStore()
     
     func makeJuice(recipe: JuiceRecipe) throws {

@@ -42,7 +42,6 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
     @IBAction func strawberryJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryJuice)
@@ -93,6 +92,7 @@ class ViewController: UIViewController {
             showEmptyStockAlert(recipe: .mangoJuice)
         }
     }
+    
     @IBAction func strawberryBananaButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryBananaJuice)
@@ -103,6 +103,7 @@ class ViewController: UIViewController {
             showEmptyStockAlert(recipe: .strawberryBananaJuice)
         }
     }
+    
     @IBAction func mangoKiwiButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoKiwiJuice)
@@ -113,7 +114,5 @@ class ViewController: UIViewController {
             showEmptyStockAlert(recipe: .mangoKiwiJuice)
         }
     }
-    
- 
 }
 
