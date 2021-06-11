@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum Fruits {
+enum Fruit: CaseIterable {
     case strawberry
     case banana
     case pineapple
@@ -14,28 +14,46 @@ enum Fruits {
     case mango
 }
 
+enum FruitStoreError: Error {
+    case outOfStock
+    case invalidFruit
+}
+
 // 과일 타입
 class FruitStore {
-    private var stock: Int = 10
-    private let fruit: Fruits
+    private var fruitList: [Fruit: Int] = [:]
     
-    init(fruit: Fruits) {
-        self.fruit = fruit
+    init() {
+        for fruit in Fruit.allCases {
+            fruitList[fruit] = 10
+        }
     }
     
-    var stockLeft: Int {
-        return stock
+    func showStockLeft(fruit: Fruit) throws -> Int {
+        if let stockLeft = fruitList[fruit] {
+            return stockLeft
+        }
+        throw FruitStoreError.invalidFruit
     }
 
-    func updateStock(by number: Int) {
-        stock = number
+    func updateStock(of fruit: Fruit, by number: Int) throws {
+        guard let _ = fruitList[fruit] else {
+            throw FruitStoreError.invalidFruit
+        }
+        fruitList[fruit] = number
     }
 
-    func consumeStock(of number: Int) {
-        stock -= number
+    func consumeStock(of fruit: Fruit, by number: Int) throws {
+        guard let stock = fruitList[fruit] else {
+            throw FruitStoreError.invalidFruit
+        }
+        fruitList[fruit] = stock - number
     }
-    
-    func hasMoreThan(requiredAmount: Int) -> Bool {
+
+    func hasMoreThan(of fruit: Fruit, requiredAmount: Int) throws -> Bool {
+        guard let stock = fruitList[fruit] else {
+            throw FruitStoreError.invalidFruit
+        }
         if stock < requiredAmount {
             return false
         }

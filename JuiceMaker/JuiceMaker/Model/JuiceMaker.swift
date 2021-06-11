@@ -6,9 +6,6 @@
 
 import Foundation
 
-enum JuiceMakerError: Error {
-    case outOfStock
-}
 
 // 쥬스 메이커 타입
 enum Juice: CustomStringConvertible {
@@ -20,7 +17,7 @@ enum Juice: CustomStringConvertible {
     case mangoJuice
     case mangoKiwiJuice
     
-    var ingredients: [Fruits: Int] {
+    var ingredients: [Fruit: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
@@ -60,11 +57,11 @@ enum Juice: CustomStringConvertible {
 
 struct JuiceMaker {
     let fruits = [
-        Fruits.strawberry: FruitStore(fruit: Fruits.strawberry),
-        Fruits.banana: FruitStore(fruit: Fruits.banana),
-        Fruits.pineapple: FruitStore(fruit: Fruits.pineapple),
-        Fruits.kiwi: FruitStore(fruit: Fruits.kiwi),
-        Fruits.mango: FruitStore(fruit: Fruits.mango)
+        Fruit.strawberry: FruitStore(fruit: Fruit.strawberry),
+        Fruit.banana: FruitStore(fruit: Fruit.banana),
+        Fruit.pineapple: FruitStore(fruit: Fruit.pineapple),
+        Fruit.kiwi: FruitStore(fruit: Fruit.kiwi),
+        Fruit.mango: FruitStore(fruit: Fruit.mango)
     ]
     
     func order(juice: Juice) {
