@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 쥬스 메이커 타입 
 struct JuiceMaker {
     enum JuiceMenu: String, CustomStringConvertible {
         case strawberry = "딸기 쥬스"
