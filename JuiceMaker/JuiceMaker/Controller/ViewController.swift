@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             kiwiStockLabel.text = try juiceMaker.returnStockString(of: .kiwi)
             mangoStockLabel.text = try juiceMaker.returnStockString(of: .mango)
         } catch {
-            print("에러")
+            return
         }
     }
     
