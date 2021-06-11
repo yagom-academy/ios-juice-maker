@@ -20,7 +20,6 @@ class FruitStore {
     }
 }
 
-//private
 class Fruit {
     var stock: Int
     init(stock: Int = 10) {

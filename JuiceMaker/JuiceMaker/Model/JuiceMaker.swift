@@ -31,3 +31,4 @@ struct JuiceMaker {
         try fruitStore.decreaseStock(amount: 1, fruit: fruitStore.kiwi)
     }
 }
+
