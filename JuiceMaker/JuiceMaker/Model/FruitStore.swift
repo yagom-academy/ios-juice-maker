@@ -35,7 +35,7 @@ class FruitStore {
 		fruitStocks[fruit]? -= number
 	}
 
-    func hasEnoughFruitsStock(fruit: Fruit, number: Int) -> Bool {
+	func hasEnoughFruitsStock(fruit: Fruit, number: Int) -> Bool {
         guard let fruitStocks = fruitStocks[fruit] else { return false }
         return  fruitStocks > number
     }
