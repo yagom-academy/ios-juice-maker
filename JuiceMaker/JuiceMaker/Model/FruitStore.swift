@@ -55,9 +55,7 @@ class FruitStore {
     func consumeStocks(_ recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws {
         let numberOfFruitsExist = try checkIngredients(for: recipes)
         
-        for (recipe, numberOfFruit) in zip(recipes, numberOfFruitsExist) {
-            decreaseStock(of: recipe.requiredFruit, by: recipe.requestedAmount, from: numberOfFruit)
-        }
+        useIngredients(accordingTo: recipes, checkedAmountOfFruits: numberOfFruitsExist)
     }
     
     private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
@@ -85,8 +83,8 @@ class FruitStore {
     }
     
     func useIngredients(accordingTo recipes: [(requiredFruit: Fruit, requestedAmount: Int)], checkedAmountOfFruits: [Int]) {
-        for (recipe, numberOfFruit) in zip(recipes, checkedAmountOfFruits) {
-            decreaseStock(of: recipe.requiredFruit, by: recipe.requestedAmount, from: numberOfFruit)
+        for (index, fruitAmount) in checkedAmountOfFruits.enumerated() {
+            decreaseStock(of: recipes[index].requiredFruit, by: recipes[index].requestedAmount, from: fruitAmount)
         }
     }
 }
