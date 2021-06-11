@@ -28,11 +28,7 @@ class FruitStore {
     }
     
     func isStockLeft(_ requiredStock: Int) -> Bool {
-        if amount >= requiredStock {
-            return true
-        } else {
-            return false
-        }
+        return amount >= requiredStock
     }
 }
 
