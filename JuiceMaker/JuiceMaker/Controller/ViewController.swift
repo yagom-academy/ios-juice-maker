@@ -34,7 +34,8 @@ class ViewController: UIViewController {
     func showOutOfStockErrorAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler : { (action) in
-            print("화면이동")
+            guard let changeStockVC = self.storyboard?.instantiateViewController(identifier: "changeStock") else { return }
+            self.present(changeStockVC, animated: true, completion: nil)
         })
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler : nil)
         alert.addAction(cancel)
