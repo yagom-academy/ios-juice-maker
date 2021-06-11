@@ -275,7 +275,7 @@
         <!--View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changeStock" id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -416,6 +416,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="B6z-iU-xc4"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="nC5-Ir-Opl"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="rDL-pS-E9W"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="4mG-y7-xQm"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="TrS-TF-2Ur"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
