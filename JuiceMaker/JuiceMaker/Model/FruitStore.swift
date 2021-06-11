@@ -19,13 +19,13 @@ class FruitStore {
     
     public init() {
         for fruit in Fruit.allCases {
-            fruitStock[fruit] = 10
+            increaseStock(fruit: fruit, count: 10)
         }
     }
     
-    public func increaseStock(fruit: Fruit) {
+    public func increaseStock(fruit: Fruit, count: Int) {
         guard let stock = fruitStock[fruit] else { return }
-        fruitStock[fruit] = stock + 1
+        fruitStock[fruit] = stock + count
     }
     
     public func usingFruits(fruit: Fruit, needs: Int) {
