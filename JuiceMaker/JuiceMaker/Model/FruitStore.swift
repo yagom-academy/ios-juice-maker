@@ -15,20 +15,20 @@ enum FruitError: Error {
 }
 
 class FruitStore {
-    var fruitStock = [Fruit: Int]()
+    private var fruitStock = [Fruit: Int]()
     
-    init() {
+    public init() {
         for fruit in Fruit.allCases {
             fruitStock[fruit] = 10
         }
     }
     
-    func increaseStock(fruit: Fruit) {
+    public func increaseStock(fruit: Fruit) {
         guard let stock = fruitStock[fruit] else { return }
         fruitStock[fruit] = stock + 1
     }
     
-    func usingFruits(fruit: Fruit, needs: Int) {
+    public func usingFruits(fruit: Fruit, needs: Int) {
         guard let stock = fruitStock[fruit] else { return }
         if stock < needs {
             print("재고가 부족합니다. 재고를 추가할까요?")
