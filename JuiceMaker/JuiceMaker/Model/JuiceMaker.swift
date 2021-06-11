@@ -9,35 +9,35 @@ import Foundation
 
 enum Recipe {
 	
-	case strawberryJuiceRecipe
-	case bananaJuiceRecipe
-	case kiwiJuiceRecipe
-	case pineappleJuiceRecipe
-	case ddalbaJuiceRecipe
-	case mangoJuiceRecipe
-	case mangoKiwiJuiceRecipe
+	case strawberryJuice
+	case bananaJuice
+	case kiwiJuice
+	case pineappleJuice
+	case ddalbaJuice
+	case mangoJuice
+	case mangoKiwiJuice
 	
-	var ingredients: [Fruit: Int] {
+	var requiredIngredients: [Fruit: Int] {
 		switch self {
-		case .strawberryJuiceRecipe:
+		case .strawberryJuice:
 			return [Fruit.strawberry: 16]
 		
-		case .bananaJuiceRecipe:
+		case .bananaJuice:
 			return [Fruit.banana: 2]
 		
-		case .kiwiJuiceRecipe:
+		case .kiwiJuice:
 			return [Fruit.kiwi: 3]
 			
-		case .pineappleJuiceRecipe:
+		case .pineappleJuice:
 			return [Fruit.pineapple: 2]
 			
-		case .ddalbaJuiceRecipe:
+		case .ddalbaJuice:
 			return [Fruit.strawberry: 10, Fruit.banana: 1]
 			
-		case .mangoJuiceRecipe:
+		case .mangoJuice:
 			return [Fruit.mango: 3]
 			
-		case .mangoKiwiJuiceRecipe:
+		case .mangoKiwiJuice:
 			return [Fruit.mango: 2, Fruit.kiwi: 1]
 		}
 	}
@@ -46,15 +46,16 @@ enum Recipe {
 // 쥬스 메이커 타입 
 struct JuiceMaker {
 	
-	let connectedStore = FruitStore.fruitStore
+    let connectedStore = FruitStore.fruitStore
     
 	func makeJuice(recipe: Recipe) {
-		for (fruit, amount) in recipe.ingredients {
+		for (fruit, amount) in recipe.requiredIngredients {
 			guard connectedStore.hasEnoughFruitsStock(fruit: fruit, number: amount) else {
+                
 				return
 			}
 		}
-		for (fruit, amount) in recipe.ingredients {
+		for (fruit, amount) in recipe.requiredIngredients {
 			connectedStore.consume(fruit: fruit, number: amount)
 		}
 	}

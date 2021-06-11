@@ -26,7 +26,10 @@ class FruitStore {
             fruitStocks.updateValue(defaultStock, forKey: fruit)
         }
     }
-	
+    func lookUpStocks() -> [Fruit:Int]{
+        return fruitStocks
+    }
+    
 	func add(fruit: Fruit, number: Int) {
         fruitStocks[fruit]? += number
 	}
