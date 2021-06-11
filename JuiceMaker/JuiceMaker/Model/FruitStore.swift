@@ -47,6 +47,13 @@ class FruitStore {
         }
         fruitList[fruit]? = amount
     }
+    
+    func addStock(of fruit: Fruit, by amountToAdd: Int) throws {
+        guard let _ = fruitList[fruit] else {
+            throw FruitStoreError.invalidFruit
+        }
+        fruitList[fruit]? += amountToAdd
+    }
 
     func reduceStock(of fruit: Fruit, by amountToReduce: Int) throws {
         guard let stock = fruitList[fruit] else {
