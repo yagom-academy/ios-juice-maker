@@ -76,12 +76,5 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         refreshStockLabel()
     }
-    
-    func showOrderSuccessAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "네!", style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-    }
 }
 
