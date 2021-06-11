@@ -16,10 +16,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabels), name: isChangedFruit, object: nil)
         updateStockLabels()
     }
     
-    func updateStockLabels() {
+    @objc func updateStockLabels() {
         do {
             strawberryStockLabel.text = try juiceMaker.returnStockString(of: .strawberry)
             bananaStockLabel.text = try juiceMaker.returnStockString(of: .banana)
@@ -58,7 +59,6 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(name: juice)
             showSuccessOrderAlert(title: juice)
-            updateStockLabels()
         } catch FruitStoreError.outOfStock {
             showOutOfStockErrorAlert()
         } catch {

@@ -20,6 +20,8 @@ enum Fruit: CaseIterable {
     case mango
 }
 
+let isChangedFruit = Notification.Name("isChangedFruit")
+
 class FruitStore {
     var fruits: [Fruit: Int]
     
@@ -52,6 +54,7 @@ class FruitStore {
     private func useStocks(ingredients: [Fruit: Int]) {
         for (fruit, amount) in ingredients {
             fruits[fruit]? -= amount
+            NotificationCenter.default.post(name: isChangedFruit, object: nil)
         }
     }
     
