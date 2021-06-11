@@ -30,6 +30,26 @@ class ViewController: UIViewController {
             print("에러")
         }
     }
+    
+    func showOutOfStockErrorAlert() {
+        let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler : { (action) in
+            print("화면이동")
+        })
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler : nil)
+        alert.addAction(cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showSuccessOrderAlert(title juice: Juice) {
+        let alert = UIAlertController(title: "\(juice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler : nil )
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler : nil)
+        alert.addAction(cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
 
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         guard let juiceName = sender.titleLabel?.text?.components(separatedBy: " ").first,
@@ -38,9 +58,10 @@ class ViewController: UIViewController {
         }
         do {
             try juiceMaker.orderJuice(name: juice)
+            showSuccessOrderAlert(title: juice)
             updateStockLabels()
         } catch FruitStoreError.outOfStock {
-            print("재고 부족 에러 발생")
+            showOutOfStockErrorAlert()
         } catch {
             print(error.localizedDescription)
         }
