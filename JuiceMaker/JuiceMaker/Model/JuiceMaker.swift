@@ -6,16 +6,15 @@
 
 import Foundation
 
-
 // 쥬스 메이커 타입
-enum Juice: CustomStringConvertible {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case strawberryBananaJuice
-    case mangoJuice
-    case mangoKiwiJuice
+enum Juice: String, CustomStringConvertible {
+    case strawberryJuice = "딸기"
+    case bananaJuice = "바나나"
+    case kiwiJuice = "키위"
+    case pineappleJuice = "파인애플"
+    case strawberryBananaJuice = "딸바"
+    case mangoJuice = "망고"
+    case mangoKiwiJuice = "망키"
     
     var ingredients: [Fruit: Int] {
         switch self {
@@ -36,22 +35,7 @@ enum Juice: CustomStringConvertible {
         }
     }
     var description: String {
-        switch self {
-        case .strawberryJuice:
-            return "딸기"
-        case .bananaJuice:
-            return "바나나"
-        case .kiwiJuice:
-            return "키위"
-        case .pineappleJuice:
-            return "파인애플"
-        case .strawberryBananaJuice:
-            return "딸바"
-        case .mangoJuice:
-            return "망고"
-        case .mangoKiwiJuice:
-            return "망키"
-        }
+        self.rawValue
     }
 }
 
@@ -61,6 +45,7 @@ struct JuiceMaker {
     func order(juice: Juice) throws {
         try checkStock(of: juice)
         try blend(juice: juice)
+        print(juice)
     }
     
     func checkStock(of juice: Juice) throws {
