@@ -33,29 +33,12 @@ class FruitStore {
         return bag
     }
     
-    func increaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
+    private func increaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
         inventory[fruit] = numberOfFruitExist + number
     }
     
-    func decreaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
+    private func decreaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
         inventory[fruit] = numberOfFruitExist - number
-    }
-    
-    func change(numberOf number: Int, fruit: Fruit, isAdd: Bool) throws {
-        let numberOfFruitExist = try giveBackNumberIfExist(of: fruit)
-        
-        if isAdd {
-            increaseStock(of: fruit, by: number, from: numberOfFruitExist)
-        } else {
-            try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: number)
-            decreaseStock(of: fruit, by: number, from: numberOfFruitExist)
-        }
-    }
-    
-    func consumeStocks(_ recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws {
-        let numberOfFruitsExist = try checkIngredients(for: recipes)
-        
-        useIngredients(accordingTo: recipes, checkedAmountOfFruits: numberOfFruitsExist)
     }
     
     private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
@@ -71,7 +54,18 @@ class FruitStore {
         }
     }
     
-    func checkIngredients(for recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws -> [Int] {
+    func change(numberOf number: Int, fruit: Fruit, isAdd: Bool) throws {
+        let numberOfFruitExist = try giveBackNumberIfExist(of: fruit)
+        
+        if isAdd {
+            increaseStock(of: fruit, by: number, from: numberOfFruitExist)
+        } else {
+            try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: number)
+            decreaseStock(of: fruit, by: number, from: numberOfFruitExist)
+        }
+    }
+    
+    private func checkIngredients(for recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws -> [Int] {
         var numberOfFruitsExist = [Int]()
         
         for demand in recipes {
@@ -82,9 +76,16 @@ class FruitStore {
         return numberOfFruitsExist
     }
     
-    func useIngredients(accordingTo recipes: [(requiredFruit: Fruit, requestedAmount: Int)], checkedAmountOfFruits: [Int]) {
+    private func useIngredients(accordingTo recipes: [(requiredFruit: Fruit, requestedAmount: Int)], checkedAmountOfFruits: [Int]) {
         for (index, fruitAmount) in checkedAmountOfFruits.enumerated() {
             decreaseStock(of: recipes[index].requiredFruit, by: recipes[index].requestedAmount, from: fruitAmount)
         }
     }
+    
+    func consumeStocks(_ recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws {
+        let numberOfFruitsExist = try checkIngredients(for: recipes)
+        
+        useIngredients(accordingTo: recipes, checkedAmountOfFruits: numberOfFruitsExist)
+    }
+    
 }
