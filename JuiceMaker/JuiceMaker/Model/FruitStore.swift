@@ -58,9 +58,9 @@ class FruitStore {
     func makeJuice(for ingredients: [Fruit: Int]) {
         do {
             try validateEnoughStocks(ingredients: ingredients)
+            useStocks(ingredients: ingredients)
         } catch {
             print(error.localizedDescription)
         }
-        useStocks(ingredients: ingredients)
     }
 }

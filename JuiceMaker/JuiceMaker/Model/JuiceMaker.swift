@@ -34,4 +34,11 @@ struct JuiceMaker {
         }
         fruitStore.makeJuice(for: ingredients)
     }
+    
+    func returnStockString(of fruit: Fruit) throws -> String {
+        guard let stock = fruitStore.fruits[fruit] else {
+            throw FruitStoreError.invaildFruit
+        }
+        return String(stock)
+    }
 }

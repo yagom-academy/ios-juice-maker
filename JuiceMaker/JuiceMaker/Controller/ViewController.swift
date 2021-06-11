@@ -16,7 +16,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        updateStockLabels()
+        
+    }
+    
+    func updateStockLabels() {
+        do {
+            strawberryStockLabel.text = try juiceMaker.returnStockString(of: .strawberry)
+            bananaStockLabel.text = try juiceMaker.returnStockString(of: .banana)
+            pineappleStockLabel.text = try juiceMaker.returnStockString(of: .pineapple)
+            kiwiStockLabel.text = try juiceMaker.returnStockString(of: .kiwi)
+            mangoStockLabel.text = try juiceMaker.returnStockString(of: .mango)
+        } catch {
+            print("에러")
+        }
         
     }
 
@@ -26,7 +39,7 @@ class ViewController: UIViewController {
             return
         }
         juiceMaker.orderJuice(name: juice)
-        print(juiceMaker.fruitStore.fruits)
+        updateStockLabels()
     }
 }
 
