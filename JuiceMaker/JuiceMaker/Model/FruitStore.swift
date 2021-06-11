@@ -8,7 +8,6 @@ import Foundation
 
 // 과일 타입
 class FruitStore {
-    
     static let defaultStock: UInt = 10
     
     enum Fruit {

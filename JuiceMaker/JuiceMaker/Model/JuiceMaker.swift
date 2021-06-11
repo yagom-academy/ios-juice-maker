@@ -8,7 +8,6 @@ import Foundation
 
 // 쥬스 메이커 타입 
 struct JuiceMaker {
-    
     enum Menu {
         case strawberry
         case banana
@@ -64,5 +63,19 @@ struct JuiceMaker {
             }
         }
         return isIngredientRemain
+    }
+    
+    func makeJuice(menu: Menu) {
+        let fruitStore = FruitStore()
+        let userMenuRecipe = defaultJuiceRecipe(juiceMenu: menu)
+        
+        if isJuiceAvailable(menu: menu) {
+            for (fruit, count) in userMenuRecipe {
+                fruitStore.modifyStock(fruit: fruit,
+                                       changes: -Int(count))
+            }
+        } else {
+            print("재고 부족")
+        }
     }
 }
