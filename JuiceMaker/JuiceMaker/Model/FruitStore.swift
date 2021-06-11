@@ -33,7 +33,7 @@ class FruitStore {
     }
     
     func decreaseFruitStock(fruit: HandlingFruit, amount: Int) {
-        guard let selectedFruitStock = fruitStock[fruit], selectedFruitStock - amount >= 0 else { return }
+        guard let selectedFruitStock = fruitStock[fruit] else { return }
         let changedStock = selectedFruitStock - amount
         fruitStock[fruit] = changedStock
     }
