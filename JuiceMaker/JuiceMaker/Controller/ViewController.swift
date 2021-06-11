@@ -33,22 +33,20 @@ class ViewController: UIViewController {
     
     func showOutOfStockErrorAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler : { (action) in
+        let yesAction = UIAlertAction(title: "예", style: .default, handler : { (action) in
             guard let changeStockVC = self.storyboard?.instantiateViewController(identifier: "changeStock") else { return }
             self.present(changeStockVC, animated: true, completion: nil)
         })
-        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler : nil)
-        alert.addAction(cancel)
-        alert.addAction(okAction)
+        let noAction = UIAlertAction(title: "아니오", style: .cancel, handler : nil)
+        alert.addAction(noAction)
+        alert.addAction(yesAction)
         present(alert, animated: true, completion: nil)
     }
     
     func showSuccessOrderAlert(title juice: Juice) {
         let alert = UIAlertController(title: "\(juice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler : nil )
-        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler : nil)
-        alert.addAction(cancel)
-        alert.addAction(okAction)
+        let checkAction = UIAlertAction(title: "확인", style: .default, handler : nil )
+        alert.addAction(checkAction)
         present(alert, animated: true, completion: nil)
     }
 
