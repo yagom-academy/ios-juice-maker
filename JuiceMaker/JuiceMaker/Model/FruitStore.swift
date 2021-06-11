@@ -25,7 +25,16 @@ class FruitStore {
                                          .kiwi: defaultStock,
                                          .mango: defaultStock]
     
-    func modifyStock(fruit: Fruit, count: UInt) {
-        FruitStore.storage[fruit] = count
+    func modifyStock(fruit: Fruit, changes: Int) {
+        guard let currentStock = FruitStore.storage[fruit] else {
+            return
+        }
+        let sumResult = changes + Int(currentStock)
+        
+        if sumResult >= 0 {
+            FruitStore.storage[fruit] = UInt(sumResult)
+        } else {
+            FruitStore.storage[fruit] = 0
+        }
     }
 }
