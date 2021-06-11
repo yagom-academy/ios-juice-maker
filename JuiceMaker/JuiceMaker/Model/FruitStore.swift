@@ -40,14 +40,14 @@ class FruitStore {
         guard let _ = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
         }
-        fruitList[fruit] = number
+        fruitList[fruit]? = number
     }
 
     func consumeStock(of fruit: Fruit, by number: Int) throws {
-        guard let stock = fruitList[fruit] else {
+        guard let _ = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
         }
-        fruitList[fruit] = stock - number
+        fruitList[fruit]? -= number
     }
 
     func hasMoreThan(of fruit: Fruit, requiredAmount: Int) throws -> Bool {
