@@ -11,7 +11,7 @@ class FruitStore {
         case strawberry, banana, pineapple, kiwi, mango
     }
     
-    private var fruits = [Fruit: Int]()
+    private(set) var fruits = [Fruit: Int]()
     
     init(initialStock: Int) {
         for fruit in Fruit.allCases {

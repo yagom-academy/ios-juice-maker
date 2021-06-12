@@ -59,4 +59,13 @@ struct JuiceMaker {
     func make(_ juice: Juice) {
         stock.decrease(fruits: juice.recipe)
     }
+    
+    func hasFruit(_ juice: Juice) -> Bool {
+        for fruit in juice.recipe {
+            guard let stock: Int = stock.fruits[fruit.key], stock >= fruit.value else {
+                return false
+            }
+        }
+        return true
+    }
 }
