@@ -42,7 +42,30 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
+        succeededMakingJuiceAlert(message: "딸기 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+    @IBAction func orderBananaJuice(_ sender: UIButton) {
         succeededMakingJuiceAlert(message: "바나나 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+    
+    @IBAction func orderPineappleJuice(_ sender: UIButton) {
+        succeededMakingJuiceAlert(message: "파인애플 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+    
+    @IBAction func orderkiwiJuice(_ sender: UIButton) {
+        succeededMakingJuiceAlert(message: "키위 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+    
+    @IBAction func orderMangoJuice(_ sender: UIButton) {
+        succeededMakingJuiceAlert(message: "망고 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+    
+    @IBAction func orderDdalbaJuice(_ sender: UIButton) {
+        succeededMakingJuiceAlert(message: "딸바 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+    
+    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
+        succeededMakingJuiceAlert(message: "망키 쥬스 나왔습니다! 맛있게 드세요!")
     }
     
     
