@@ -20,10 +20,14 @@ class FruitStore {
     }
     
     func increase(fruit: Fruit, quantity: Int) {
-        fruits[fruit]? += quantity
+        guard var fruits = fruits[fruit] else { return }
+        fruits += quantity
     }
     
-    func decrease(fruit: Fruit, quantity: Int) {
-        fruits[fruit]? -= quantity
+    func decrease(fruits: [Fruit: Int]) {
+        for fruit in fruits {
+            guard var fruits = self.fruits[fruit.key] else { return }
+            fruits -= fruit.value
+        }
     }
 }
