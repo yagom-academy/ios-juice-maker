@@ -60,10 +60,11 @@ struct JuiceMaker {
         stock.decrease(fruits: juice.recipe)
     }
     
-    func hasFruit(_ juice: Juice) -> Bool {
-        for fruit in juice.recipe {
-            guard let stock: Int = stock.fruits[fruit.key], stock >= fruit.value else {
-                return false
+    func hasFruit(_ juice: Juice) throws -> Bool {
+        for recipe in juice.recipe {
+            guard let fruitStock: Int = stock.fruits[recipe.key], fruitStock >= recipe.value else
+            {
+                throw JuiceMakerError.outOfStock
             }
         }
         return true
