@@ -48,7 +48,7 @@ struct JuiceMaker {
         }
     }
     
-    private func makeJuice(order: JuiceType) -> Bool {
+    func makeJuice(order: JuiceType) -> Bool {
         guard checkStock(fruit: order) else {
             return false
         }

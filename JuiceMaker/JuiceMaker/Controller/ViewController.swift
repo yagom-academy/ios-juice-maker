@@ -24,6 +24,28 @@ class ViewController: UIViewController {
         mangoStockLabel.text = String(stock[.banana]?.amount ?? 0)
     }
     
+    func succeededMakingJuiceAlert(message: String) {
+        
+        let alert = UIAlertController(title: nil,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인" ,
+                                     style: . default) { (action) in
+            self.juiceMaker.makeJuice(order: .bananaJuice)
+            print("hi")
+        }
+        
+        alert.addAction(okAction)
+        present(alert,
+                animated: true,
+                completion: nil)
+    }
+    
+    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
+        succeededMakingJuiceAlert(message: "바나나 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
