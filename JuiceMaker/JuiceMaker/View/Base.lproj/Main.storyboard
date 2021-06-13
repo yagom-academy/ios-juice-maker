@@ -239,7 +239,7 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
                                 <action selector="modifyStocks:" destination="BYZ-38-t0r" id="ZfU-6H-17e"/>
-                                <segue destination="WwV-Td-3Bn" kind="modal" identifier="showStock" id="b7N-4k-Ts2"/>
+                                <segue destination="WwV-Td-3Bn" kind="modal" identifier="showStock" id="Axg-7o-6D1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -424,7 +424,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="HfT-V6-oKw"/>
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="HfT-V6-oKw">
+                            <connections>
+                                <action selector="closeModifyView:" destination="Yu1-lM-nqp" id="cJs-Ua-qPi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="gKu-86-RhI" id="8OZ-UW-BPI"/>
@@ -443,6 +447,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Vdy-dc-RXk"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -42,14 +42,15 @@ class MainViewController: UIViewController {
             NSLog("버튼 에러")
             return
         }
-        
-        if let result = maker.makeJuice(juice) {
-            successAlert(result.description)
-            updateUI()
-        } else {
+        do {
+            try maker.makeJuice(juice)
+            successAlert(juice.description)
+        } catch {
+            print(error)
             failAlert()
         }
     }
+    
     @IBAction func modifyStocks(_ sender: Any) {
         performSegue(withIdentifier: "showStock", sender: nil)
     }
@@ -57,21 +58,54 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(maker.store.fruitStocks)
+        print("prepare 동작함")
+        
         let vc = segue.destination as? ModifyViewController
         vc?.store = maker.store
     }
+    
     func updateUI() {
-        strawberryLabel.text = String(maker.store.currentStock(.strawberry))
-        bananaLabel.text = String(maker.store.currentStock(.banana))
-        pineappleLabel.text = String(maker.store.currentStock(.pineapple))
-        kiwiLabel.text = String(maker.store.currentStock(.kiwi))
-        mangoLabel.text = String(maker.store.currentStock(.mango))
+        do {
+        strawberryLabel.text = String( try maker.store.currentStock(.strawberry))
+        bananaLabel.text = String( try maker.store.currentStock(.banana))
+        pineappleLabel.text = String( try maker.store.currentStock(.pineapple))
+        kiwiLabel.text = String( try maker.store.currentStock(.kiwi))
+        mangoLabel.text = String( try maker.store.currentStock(.mango))
+        } catch {
+            
+        }
     }
+    
     func successAlert(_ juiceName: String) {
+        let alert = UIAlertController(title: "음료 주문 성공", message: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "예", style: .default) {(action: UIAlertAction!) -> Void in
+            
+            
+            NSLog("주문성공")
+        }
         
+        alert.addAction(confirmAction)
+        
+        present(alert, animated: true, completion:nil)
     }
+    
     func failAlert() {
+       
+        let alert = UIAlertController(title: "음료 주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "예", style: .default) {(action: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: "showStock", sender: nil)
+            
+            NSLog("주문실패_재고수정")
+        }
+        let cancelAction = UIAlertAction(title: "아니요", style: .default) {(action: UIAlertAction!) -> Void in
+            NSLog("주문실패")
+        }
         
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion:nil)
     }
 }
 

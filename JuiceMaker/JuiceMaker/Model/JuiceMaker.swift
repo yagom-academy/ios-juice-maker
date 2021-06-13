@@ -10,33 +10,41 @@ import Foundation
 struct JuiceMaker {
     let store = FruitStore()
     
-    func makeJuice(_ juice: Juice) -> Juice? {
-        if checkStock(juice.ingredients) {
-            for ingredient in juice.ingredients {
-                store.changeStock(ingredient.key, ingredient.value)
+    func makeJuice(_ juice: Juice) throws {
+        do {
+            try checkStock(juice.ingredients)
+            for (fruit, removingQuantities) in juice.ingredients {
+                try store.changeStock(fruit, removingQuantities)
             }
-            return juice
-        } else {
-            return nil
+        } catch JuiceMakerError.outOfStock {
+            throw MainError.outOfStock
+        } catch JuiceMakerError.nilItem {
+            // 재고에 없는 과일 관련처리
         }
     }
     
-    func checkStock(_ ingredients: Dictionary<Fruit, Int>) -> Bool {
-        for ingredient in ingredients {
-            if store.currentStock(ingredient.key) < ingredient.value {
-                return false
+    func checkStock(_ ingredients: [(Fruit, Int)]) throws {
+        for (fruit, removingQuantities) in ingredients {
+            do {
+                if try store.currentStock(fruit) < removingQuantities {
+                    throw JuiceMakerError.outOfStock
+                }
+            } catch JuiceMakerError.outOfStock{
+                throw MainError.outOfStock
+            } catch JuiceMakerError.nilItem {
+                // 재고에 없는 과일 관련처리
             }
         }
-        return true
     }
 }
+    
+enum JuiceMakerError: Error {
+    case outOfStock
+    case nilItem // 재고에 없는 과일
+}
 
-enum Fruit {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+enum MainError: Error {
+    case outOfStock
 }
 
 enum Juice: Int, CustomStringConvertible {
@@ -67,22 +75,22 @@ enum Juice: Int, CustomStringConvertible {
         }
     }
     
-    var ingredients: Dictionary<Fruit, Int> {
+    var ingredients: [(Fruit, Int)] {
         switch self {
         case .strawberryJuice:
-            return [.strawberry:16]
+            return [(.strawberry, 16)]
         case .bananaJuice:
-            return [.banana:2]
+            return [(.banana, 2)]
         case .pineappleJuice:
-            return [.pineapple:2]
+            return [(.pineapple, 2)]
         case .kiwiJuice:
-            return [.kiwi:3]
+            return [(.kiwi, 3)]
         case .mangoJuice:
-            return [.mango:3]
+            return [(.mango, 3)]
         case .strawberryBananaJuice:
-            return [.strawberry:10, .banana:1]
+            return [(.strawberry, 10), (.banana, 1)]
         case .mangoKiwiJuice:
-            return [.mango:2, .kiwi:1]
+            return [(.mango, 2), (.kiwi, 1)]
         }
     }
 }

@@ -20,6 +20,8 @@ class ModifyViewController: UIViewController {
         super.viewDidLoad()
         
         updateUI()
+        
+        print(store.fruitStocks)
     }
     
 
@@ -33,11 +35,19 @@ class ModifyViewController: UIViewController {
     }
     */
     func updateUI() {
-        strawberryLabel.text = String(store.currentStock(.strawberry))
-        bananaLabel.text = String(store.currentStock(.banana))
-        pineappleLabel.text = String(store.currentStock(.pineapple))
-        kiwiLabel.text = String(store.currentStock(.kiwi))
-        mangoLabel.text = String(store.currentStock(.mango))
+        do {
+            strawberryLabel.text = String( try store.currentStock(.strawberry))
+            bananaLabel.text = String( try store.currentStock(.banana))
+            pineappleLabel.text = String( try store.currentStock(.pineapple))
+            kiwiLabel.text = String( try store.currentStock(.kiwi))
+            mangoLabel.text = String( try store.currentStock(.mango))
+        } catch {
+            
+        }
     }
 
+    @IBAction func closeModifyView(_ sender: Any) {
+        dismiss(animated: false)
+    }
+    
 }
