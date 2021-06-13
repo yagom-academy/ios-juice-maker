@@ -40,7 +40,10 @@ class FruitStore {
             throw JuiceMakerError.nilItem
         }
         fruitStocks.updateValue(stock - changingQuantity, forKey: fruit)
-        // notification updateUI()
+        
+        NotificationCenter.default.post(
+                    name: NSNotification.Name(rawValue: "updateUI"),
+                    object: nil)
     }
     
     func increaseByOne(_ fruit: Fruit) throws {
@@ -57,5 +60,11 @@ class FruitStore {
         }
         fruitStocks.updateValue(stock - 1, forKey: fruit)
         // notification updateUI()
+    }
+    
+    func postChangingByOne() {
+        NotificationCenter.default.post(
+                    name: NSNotification.Name(rawValue: "updateUI"),
+                    object: nil)
     }
 }

@@ -34,7 +34,13 @@ class MainViewController: UIViewController {
         kiwiButton.tag = 6
         pineappleButton.tag = 7
         
+        NotificationCenter.default.addObserver(self,
+                    selector: #selector(updateUI),
+                    name: NSNotification.Name(rawValue: "updateUI"),
+                    object: nil)
+        
         updateUI()
+
     }
     
     @IBAction func makeJuiceAction(_ sender: UIButton) {
@@ -52,29 +58,31 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func modifyStocks(_ sender: Any) {
-        performSegue(withIdentifier: "showStock", sender: nil)
+        performSegue(withIdentifier: "showStock", sender: sender)
     }
 }
 
 extension MainViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(maker.store.fruitStocks)
-        print("prepare 동작함")
-        
-        let vc = segue.destination as? ModifyViewController
-        vc?.store = maker.store
-    }
-    
-    func updateUI() {
+    @objc func updateUI() {
         do {
-        strawberryLabel.text = String( try maker.store.currentStock(.strawberry))
-        bananaLabel.text = String( try maker.store.currentStock(.banana))
-        pineappleLabel.text = String( try maker.store.currentStock(.pineapple))
-        kiwiLabel.text = String( try maker.store.currentStock(.kiwi))
-        mangoLabel.text = String( try maker.store.currentStock(.mango))
+            strawberryLabel.text = String( try maker.store.currentStock(.strawberry))
+            bananaLabel.text = String( try maker.store.currentStock(.banana))
+            pineappleLabel.text = String( try maker.store.currentStock(.pineapple))
+            kiwiLabel.text = String( try maker.store.currentStock(.kiwi))
+            mangoLabel.text = String( try maker.store.currentStock(.mango))
         } catch {
             
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(maker.store.fruitStocks)
+        print("prepare 동작함")
+            let vc = segue.destination as? ModifyViewController
+            print("변화전 : \(vc?.store)")
+            vc?.store = self.maker.store
+        vc?.str = "아씨발"
+            print("변화후 : \(vc?.store)")
     }
     
     func successAlert(_ juiceName: String) {
@@ -94,7 +102,7 @@ extension MainViewController {
        
         let alert = UIAlertController(title: "음료 주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default) {(action: UIAlertAction!) -> Void in
-            self.performSegue(withIdentifier: "showStock", sender: nil)
+            self.performSegue(withIdentifier: "showStock", sender: self)
             
             NSLog("주문실패_재고수정")
         }

@@ -239,7 +239,6 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
                                 <action selector="modifyStocks:" destination="BYZ-38-t0r" id="ZfU-6H-17e"/>
-                                <segue destination="WwV-Td-3Bn" kind="modal" identifier="showStock" id="Axg-7o-6D1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -256,6 +255,7 @@
                         <outlet property="strawberryBananaButton" destination="hrc-2F-fzl" id="AhD-oB-tov"/>
                         <outlet property="strawberryButton" destination="avd-o5-3JM" id="cZh-pJ-EyL"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="PmJ-N3-wqF"/>
+                        <segue destination="WwV-Td-3Bn" kind="presentation" identifier="showStock" id="D98-vT-sVl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -283,7 +283,7 @@
         <!--Modify View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ModifyViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="modifyViewController" id="Yu1-lM-nqp" customClass="ModifyViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,7 +455,6 @@
                         <outlet property="pineappleLabel" destination="YJI-ER-LJR" id="tqR-VA-bVs"/>
                         <outlet property="pineappleStepper" destination="xbn-6P-grO" id="SDA-B6-o6k"/>
                         <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="O8K-Yv-f8g"/>
-                        <outlet property="strawberrySpe" destination="ZQk-f4-zrz" id="bz1-q2-B7X"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="BS9-dJ-dsj"/>
                     </connections>
                 </viewController>

@@ -16,6 +16,7 @@ struct JuiceMaker {
             for (fruit, removingQuantities) in juice.ingredients {
                 try store.changeStock(fruit, removingQuantities)
             }
+            
         } catch JuiceMakerError.outOfStock {
             throw MainError.outOfStock
         } catch JuiceMakerError.nilItem {

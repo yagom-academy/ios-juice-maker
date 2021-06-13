@@ -21,6 +21,7 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var pineappleStepper: UIStepper!
     
     var store = FruitStore()
+    var str = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,15 @@ class ModifyViewController: UIViewController {
         kiwiStepper.tag = 4
         pineappleStepper.tag = 5
         
-        updateUI()
-        
+        NotificationCenter.default.addObserver(self,
+                    selector: #selector(updateUI),
+                    name: NSNotification.Name(rawValue: "updateUI"),
+                    object: nil)
+        print(str)
         print(store.fruitStocks)
+        
+        
+        updateUI()
     }
     
 
@@ -46,7 +53,7 @@ class ModifyViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func updateUI() {
+    @objc func updateUI() {
         do {
             strawberryLabel.text = String( try store.currentStock(.strawberry))
             bananaLabel.text = String( try store.currentStock(.banana))
@@ -63,16 +70,6 @@ class ModifyViewController: UIViewController {
     }
     
     @IBAction func valueChangedSteppers(_ sender: UIStepper) {
-//        guard let juice = fruit(rawValue: sender.tag) else {
-            NSLog("버튼 에러")
-            return
-//        }
-    
-        do {
-//            try maker.makeJuice(juice)
-        } catch {
-            print(error)
-        }
     }
     
 }
