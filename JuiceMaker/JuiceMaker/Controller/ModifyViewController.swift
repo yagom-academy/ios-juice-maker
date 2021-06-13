@@ -14,10 +14,22 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    
     var store = FruitStore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        strawberryStepper.tag = 1
+        bananaStepper.tag = 2
+        mangoStepper.tag = 3
+        kiwiStepper.tag = 4
+        pineappleStepper.tag = 5
         
         updateUI()
         
@@ -42,12 +54,25 @@ class ModifyViewController: UIViewController {
             kiwiLabel.text = String( try store.currentStock(.kiwi))
             mangoLabel.text = String( try store.currentStock(.mango))
         } catch {
-            
+            print("UI 변경 실패")
         }
     }
 
     @IBAction func closeModifyView(_ sender: Any) {
         dismiss(animated: false)
+    }
+    
+    @IBAction func valueChangedSteppers(_ sender: UIStepper) {
+//        guard let juice = fruit(rawValue: sender.tag) else {
+            NSLog("버튼 에러")
+            return
+//        }
+    
+        do {
+//            try maker.makeJuice(juice)
+        } catch {
+            print(error)
+        }
     }
     
 }
