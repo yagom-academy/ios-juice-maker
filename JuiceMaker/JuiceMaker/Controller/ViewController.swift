@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, sendBackDelegate {
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -100,9 +100,7 @@ class ViewController: UIViewController {
     func showAlert(message: String){
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default){(action) in
-            let fixStockVc = self.storyboard?.instantiateViewController(identifier: "fixStockNavigationController")
-            fixStockVc?.modalTransitionStyle = .coverVertical
-            self.present(fixStockVc!, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "fixStockSegue", sender: self)
         }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         
@@ -116,8 +114,8 @@ class ViewController: UIViewController {
            let navigationController = segue.destination as? UINavigationController
         {
             let nextVC = navigationController.visibleViewController as? FixStockViewController
-            
             nextVC?.fruitStore = myJuiceMaker.fruitStore
+            nextVC?.delegate = self
         }
     }
     
@@ -129,4 +127,9 @@ class ViewController: UIViewController {
         kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
         mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
+    
+    func dataRecieved(data: String) {
+        strawberryLabel.text = data
+    }
+
 }

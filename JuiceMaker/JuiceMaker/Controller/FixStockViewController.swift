@@ -1,6 +1,10 @@
 
 import UIKit
 
+protocol sendBackDelegate {
+    func dataRecieved(data: String)
+}
+
 class FixStockViewController: UIViewController {
     
     @IBOutlet weak var strawberryLabel: UILabel!
@@ -8,6 +12,7 @@ class FixStockViewController: UIViewController {
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
+    
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
     @IBOutlet weak var pineappleStepper: UIStepper!
@@ -15,9 +20,10 @@ class FixStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
    
     var fruitStore = FruitStore()
+    var delegate: sendBackDelegate?
      
     @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
-        strawberryLabel.text = Int(sender.value).description
+        strawberryLabel.text = (fruitStore.strawberry.stock + Int(sender.value)).description
     }
     @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
     }
@@ -28,8 +34,19 @@ class FixStockViewController: UIViewController {
     @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
     }
     
+    func textToInt(text: String?) -> Int {
+        guard let text = text else {
+            return 0
+        }
+        guard let number = Int(text) else {
+            return 0
+        }
+        return number
+    }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
+        fruitStore.strawberry.stock = textToInt(text: strawberryLabel.text)
+        delegate?.dataRecieved(data: fruitStore.strawberry.stock.description)
         dismiss(animated: true, completion: nil)
     }
 
@@ -43,5 +60,6 @@ class FixStockViewController: UIViewController {
         
         strawberryStepper.wraps = false
         strawberryStepper.autorepeat = true
+        strawberryStepper.minimumValue = Double(Int.min)
     }
 }

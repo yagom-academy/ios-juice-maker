@@ -1,11 +1,11 @@
 import Foundation
 
 class FruitStore {
-    var strawberry = Fruit()
-    var banana = Fruit()
-    var kiwi = Fruit()
-    var pineapple = Fruit()
-    var mango = Fruit()
+    private(set) var strawberry = Fruit()
+    private(set) var banana = Fruit()
+    private(set) var kiwi = Fruit()
+    private(set) var pineapple = Fruit()
+    private(set) var mango = Fruit()
 
     func increaseStock(amount: Int = 1, fruit: Fruit) {
         fruit.stock += amount
