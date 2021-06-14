@@ -22,10 +22,10 @@ enum FruitStoreError: Error {
 
 // 과일 타입
 class FruitStore {
-    static let shared = FruitStore(initialStock: 10)
+    static let shared = FruitStore()
     private var fruitList: [Fruit: Int] = [:]
 
-    private init(initialStock: Int) {
+    private init(initialStock: Int = 10) {
         for fruit in Fruit.allCases {
             fruitList[fruit] = initialStock
         }
@@ -38,7 +38,7 @@ class FruitStore {
         throw FruitStoreError.invalidFruit
     }
 
-    // Stepper의 value로 업데이트하기 위한 메서드
+    /// Stepper의 value로 업데이트하기 위한 메서드
     func updateStock(of fruit: Fruit, by amount: Int) throws {
         guard let _ = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
