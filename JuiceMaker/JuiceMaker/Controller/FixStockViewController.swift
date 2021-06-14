@@ -45,7 +45,12 @@ class FixStockViewController: UIViewController {
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        fruitStore.strawberry.stock = textToInt(text: strawberryLabel.text)
+        guard let stock = strawberryLabel.text, let num = Int(stock), num >= 0 else {
+            print(JuiceMakerError.insufficientFruit)
+            return
+        }
+        fruitStore.strawberry.stock = num
+        //fruitStore.strawberry.stock = textToInt(text: strawberryLabel.text)
         delegate?.dataRecieved(data: fruitStore.strawberry.stock.description)
         dismiss(animated: true, completion: nil)
     }
