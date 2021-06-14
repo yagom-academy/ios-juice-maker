@@ -269,9 +269,6 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
-                                                <connections>
-                                                    <action selector="changed:" destination="Yu1-lM-nqp" eventType="valueChanged" id="IDB-1g-5rs"/>
-                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>

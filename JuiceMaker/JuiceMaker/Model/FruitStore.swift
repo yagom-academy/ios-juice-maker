@@ -26,9 +26,9 @@ class FruitStore {
         case inventoryError(description: String)
     }
     
-    private static let initialNumberOfFruits = 10
     private var inventory = Fruit.allCases.reduce([Fruit: Int]()) { bag, fruit in
         var bag = bag
+        let initialNumberOfFruits = 10
         bag[fruit] = initialNumberOfFruits
         return bag
     }
@@ -48,8 +48,8 @@ class FruitStore {
         return numberOfFruitExist
     }
     
-    private func checkStock(amountOfCropsPresent: Int, amountRequired: Int) throws {
-        guard amountOfCropsPresent >= amountRequired else {
+    private func checkStock(amountOfFruitPresent: Int, amountRequired: Int) throws {
+        guard amountOfFruitPresent >= amountRequired else {
             throw InventoryManagementError.inventoryError(description: InventoryManagementError.outOfStockMessage)
         }
     }
@@ -63,7 +63,7 @@ class FruitStore {
         
         for demand in recipes {
             let numberOfFruit = try giveBackNumberIfExist(of: demand.requiredFruit)
-            try checkStock(amountOfCropsPresent: numberOfFruit, amountRequired: demand.requestedAmount)
+            try checkStock(amountOfFruitPresent: numberOfFruit, amountRequired: demand.requestedAmount)
             numberOfFruitsExist.append(numberOfFruit)
         }
         return numberOfFruitsExist
@@ -80,5 +80,4 @@ class FruitStore {
         
         useIngredients(accordingTo: recipes, checkedAmountOfFruits: numberOfFruitsExist)
     }
-    
 }
