@@ -40,7 +40,7 @@ enum Juice: String {
 }
 
 struct JuiceMaker {
-    let fruitStore = FruitStore(initialStock: 10)
+    let fruitStore = FruitStore.shared
 
     func order(juice: Juice) throws {
         try checkStock(of: juice)

@@ -22,9 +22,10 @@ enum FruitStoreError: Error {
 
 // 과일 타입
 class FruitStore {
+    static let shared = FruitStore(initialStock: 10)
     private var fruitList: [Fruit: Int] = [:]
 
-    init(initialStock: Int) {
+    private init(initialStock: Int) {
         for fruit in Fruit.allCases {
             fruitList[fruit] = initialStock
         }
