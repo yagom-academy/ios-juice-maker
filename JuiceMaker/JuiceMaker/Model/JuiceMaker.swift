@@ -78,13 +78,12 @@ struct JuiceMaker {
     }
     
     func checkStock(_ ingredients: Dictionary<Fruit, Int>) -> Bool {
-//        for ingredient in ingredients {
-//            if store.currentStock(ingredient.key) < ingredient.value {
-//                return false
-//            }
-//        }
-//        return true
+        for (fruit, removingQuantity) in ingredients {
+            if store.currentStock(fruit) < removingQuantity {
+                return false
+            }
+        }
         
-        return ingredients.filter({ store.currentStock($0.key) < $0.value }).isEmpty // filter 후 배열 인자 존재 == 재고보다 소모될 양이 많았던 경우가 존재 -> false
+        return true
     }
 }
