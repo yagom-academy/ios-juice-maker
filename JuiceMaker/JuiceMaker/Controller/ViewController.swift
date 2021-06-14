@@ -13,6 +13,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func changedStockButton(_ sender: Any) {
+        guard let presentModal = storyboard?.instantiateViewController(identifier: "stockChange") else { return }
+        present(presentModal, animated: true, completion: nil)
+    }
+    
 }
 
