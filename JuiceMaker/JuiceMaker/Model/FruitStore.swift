@@ -30,6 +30,10 @@ class FruitStore {
         }
     }
     
+    func changeFruitStock(fruit: HandlingFruit, amount: Int) {
+            fruitStock[fruit] = amount
+    }
+    
     func useFruitToMakeJuice(ingredients: [HandlingFruit: Int]) {
         for fruit in ingredients {
             guard let selectedFruitStock = fruitStock[fruit.key] else { return }
