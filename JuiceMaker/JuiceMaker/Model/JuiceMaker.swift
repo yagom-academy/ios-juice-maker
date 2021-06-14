@@ -8,12 +8,6 @@ import Foundation
 
 // 쥬스 메이커 타입 
 struct JuiceMaker {
-    private var stock: FruitStore
-    
-    init(stock: FruitStore) {
-        self.stock = stock
-    }
-    
     enum Juice: Int {
         case strawnana, mangokiwi, strawberry, banana, pineapple, kiwi, mango
         
@@ -57,12 +51,12 @@ struct JuiceMaker {
     }
     
     func make(_ juice: Juice) {
-        stock.decrease(fruits: juice.recipe)
+        FruitStore.shared.decrease(fruits: juice.recipe)
     }
     
     func hasFruit(_ juice: Juice) throws -> Bool {
         for recipe in juice.recipe {
-            guard let fruitStock: Int = stock.fruits[recipe.key], fruitStock >= recipe.value else
+            guard let fruitStock: Int = FruitStore.shared.fruits[recipe.key], fruitStock >= recipe.value else
             {
                 throw JuiceMakerError.outOfStock
             }
