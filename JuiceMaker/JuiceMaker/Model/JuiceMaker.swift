@@ -35,28 +35,21 @@ struct JuiceMaker {
             }
         }
     }
-    private var store: FruitStore = FruitStore.shared
-//    private var store: FruitStore = FruitStore()
     
-    private func isSelectedMenuOutOfStock(menu selectedJuice: [HandlingFruit: Int]) throws -> Bool {
-        for ingredient in selectedJuice {
-            if let stock = try? store.checkFruitStock(fruit: ingredient.key), ingredient.value > stock {
-                return true
-            }
-        }
-        return false
-    }
+    private let store: FruitStore = FruitStore.shared
     
     func makeJuice(menu: JuiceMenu) {
-        let selectedJuice: [HandlingFruit: Int] = menu.recipe
-        let isEmpty = try? isSelectedMenuOutOfStock(menu: selectedJuice)
-        if isEmpty != nil, isEmpty == false {
-            for ingredient in selectedJuice {
-                store.decreaseFruitStock(fruit: ingredient.key, amount: ingredient.value)
+        do{
+            let ingredients: [HandlingFruit: Int] = menu.recipe
+            let isOutOfStock = try store.isIngredientOutOfStock(ingredients: ingredients)
+            if isOutOfStock == false {
+                store.useFruitToMakeJuice(ingredients: ingredients)
+                print(menu, "Juice made")
             }
+        } catch FruitStoreError.outOfStock {
+            print("Out of stock")
+        } catch {
+            print("Invalid Error")
         }
-        store.printFruitStock()
     }
-    
-    
 }

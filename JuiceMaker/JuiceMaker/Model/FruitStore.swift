@@ -22,35 +22,36 @@ class FruitStore {
     static let shared = FruitStore()
     
     private let defaultStock: Int = 10
-    private var fruitStock: [HandlingFruit: Int] = [:]
+    private var fruitStock: [HandlingFruit: Int] = [: ]
     
     private init() {
-        for fruit in HandlingFruit.allCases {
-            fruitStock[fruit] = defaultStock
+        fruitStock = HandlingFruit.allCases.reduce(into: [: ]) { fruitStock, HandlingFruit in
+            fruitStock[HandlingFruit] = defaultStock
         }
     }
     
-    func setFruitStock(fruit: HandlingFruit, amount: Int) {
-        fruitStock[fruit] = amount
+    func useFruitToMakeJuice(ingredients: [HandlingFruit: Int]) {
+        for fruit in ingredients {
+            guard let selectedFruitStock = fruitStock[fruit.key] else { return }
+            fruitStock[fruit.key] = selectedFruitStock - fruit.value
+        }
     }
     
-    func decreaseFruitStock(fruit: HandlingFruit, amount: Int) {
-        guard let selectedFruitStock = fruitStock[fruit], selectedFruitStock - amount >= 0 else { return }
-        let changedStock = selectedFruitStock - amount
-        fruitStock[fruit] = changedStock
+    func isIngredientOutOfStock(ingredients: [HandlingFruit: Int]) throws -> Bool {
+        let totalIngrdients = ingredients.map { return ($0, $1) }
+        for fruit in totalIngrdients {
+            if try haveEnoughFruitToMakeJuice(fruit: fruit) == false {
+                return true
+            }
+        }
+        return false
     }
     
-    func checkFruitStock(fruit: HandlingFruit) throws -> Int {
-        guard let selectedFruitStock = fruitStock[fruit], selectedFruitStock >= 0 else {
+    func haveEnoughFruitToMakeJuice(fruit: (name: HandlingFruit,stock: Int)) throws -> Bool {
+        guard let selectedFruitStock = fruitStock[fruit.name], selectedFruitStock >= fruit.stock else {
             throw FruitStoreError.outOfStock
         }
-        return selectedFruitStock
-    }
-    
-    func printFruitStock(){
-        for i in fruitStock {
-            print(i)
-        }
+        return true
     }
 }
 
