@@ -39,14 +39,25 @@ class ViewController: UIViewController {
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인" ,
                                      style: . default) { (action) in
-            self.juiceMaker.makeJuice(order: .bananaJuice)
-           
+            self.juiceMaker.makeJuice(order: message)
         }
         
         alert.addAction(okAction)
         present(alert,
                 animated: true,
                 completion: nil)
+    }
+    
+    func failedMakingJuiceAlert() {
+        let alert = UIAlertController(title: nil,
+                                      message: "재료가 모자라요. 재고를 수정할까요?",
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let noAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func orderFruitJuice(_ sender: UIButton) {

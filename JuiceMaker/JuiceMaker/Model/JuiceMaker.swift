@@ -48,14 +48,13 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(order: JuiceType) -> Bool {
+    func makeJuice(order: JuiceType) {
         guard checkStock(fruit: order) else {
-            return false
+            return
         }
         order.material().forEach { (fruitType,requiredAmount) in
             self.fruitStore[fruitType]?.stockMinus(stock: requiredAmount)
         }
-        return true
     }
     
     private func checkStock(fruit: JuiceType) -> Bool {
