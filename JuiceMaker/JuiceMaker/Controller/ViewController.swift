@@ -5,14 +5,19 @@
 // 
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let juiceMaker = JuiceMaker()
+        juiceMaker.makeJuice(menu: .strawberryBanana)
+        juiceMaker.makeJuice(menu: .kiwi)
+        juiceMaker.makeJuice(menu: .strawberry)
+        
     }
 
-
+    
 }
-

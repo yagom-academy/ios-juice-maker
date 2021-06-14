@@ -16,29 +16,29 @@ struct JuiceMaker {
         case mango
         case mangoKiwi
         
-        var recipe: [HandlingFruit:Int] {
+        var recipe: [HandlingFruit: Int] {
             switch self {
             case .strawberry:
-                return [.strawberry:16]
+                return [.strawberry: 16]
             case .banana:
-                return [.banana:10]
+                return [.banana: 10]
             case .kiwi:
-                return [.kiwi:3]
+                return [.kiwi: 3]
             case .fineapple:
-                return [.fineapple:2]
+                return [.fineapple: 2]
             case .strawberryBanana:
-                return [.strawberry:10, .banana:1]
+                return [.strawberry: 10, .banana: 1]
             case .mango:
-                return [.mango:3]
+                return [.mango: 3]
             case .mangoKiwi:
-                return [.mango:2, .kiwi:1]
+                return [.mango: 2, .kiwi: 1]
             }
         }
     }
+    private var store: FruitStore = FruitStore.shared
+//    private var store: FruitStore = FruitStore()
     
-    private var store: FruitStore = FruitStore()
-    
-    private func isSelectedMenuOutOfStock(menu selectedJuice: [HandlingFruit:Int]) throws -> Bool {
+    private func isSelectedMenuOutOfStock(menu selectedJuice: [HandlingFruit: Int]) throws -> Bool {
         for ingredient in selectedJuice {
             if let stock = try? store.checkFruitStock(fruit: ingredient.key), ingredient.value > stock {
                 return true
@@ -48,12 +48,15 @@ struct JuiceMaker {
     }
     
     func makeJuice(menu: JuiceMenu) {
-        let selectedJuice: [HandlingFruit:Int] = menu.recipe
+        let selectedJuice: [HandlingFruit: Int] = menu.recipe
         let isEmpty = try? isSelectedMenuOutOfStock(menu: selectedJuice)
         if isEmpty != nil, isEmpty == false {
             for ingredient in selectedJuice {
                 store.decreaseFruitStock(fruit: ingredient.key, amount: ingredient.value)
             }
         }
+        store.printFruitStock()
     }
+    
+    
 }

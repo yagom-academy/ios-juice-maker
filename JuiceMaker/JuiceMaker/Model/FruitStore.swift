@@ -19,10 +19,12 @@ enum HandlingFruit: String, CaseIterable {
 }
 
 class FruitStore {
-    private let defaultStock: Int = 10
-    var fruitStock: [HandlingFruit:Int] = [:]
+    static let shared = FruitStore()
     
-    init() {
+    private let defaultStock: Int = 10
+    private var fruitStock: [HandlingFruit: Int] = [:]
+    
+    private init() {
         for fruit in HandlingFruit.allCases {
             fruitStock[fruit] = defaultStock
         }
@@ -43,6 +45,12 @@ class FruitStore {
             throw FruitStoreError.outOfStock
         }
         return selectedFruitStock
+    }
+    
+    func printFruitStock(){
+        for i in fruitStock {
+            print(i)
+        }
     }
 }
 
