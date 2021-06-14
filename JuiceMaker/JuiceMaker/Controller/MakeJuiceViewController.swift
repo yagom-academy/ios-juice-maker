@@ -164,8 +164,12 @@ class MakeJuiceViewController: UIViewController, sendBackDelegate {
         mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
     
-    func dataRecieved(data: String) {
-        strawberryLabel.text = data
+    func dataReload() {
+        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
+        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
+        pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
+        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
 
 }

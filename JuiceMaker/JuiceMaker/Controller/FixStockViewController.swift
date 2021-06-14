@@ -2,7 +2,7 @@
 import UIKit
 
 protocol sendBackDelegate {
-    func dataRecieved(data: String)
+    func dataReload()
 }
 
 class FixStockViewController: UIViewController {
@@ -26,12 +26,16 @@ class FixStockViewController: UIViewController {
         strawberryLabel.text = (fruitStore.strawberry.stock + Int(sender.value)).description
     }
     @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
+        bananaLabel.text = (fruitStore.banana.stock + Int(sender.value)).description
     }
     @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
+        pineappleLabel.text = (fruitStore.pineapple.stock + Int(sender.value)).description
     }
     @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
+        kiwiLabel.text = (fruitStore.kiwi.stock + Int(sender.value)).description
     }
     @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
+        mangoLabel.text = (fruitStore.mango.stock + Int(sender.value)).description
     }
     
     func textToInt(text: String?) -> Int {
@@ -50,8 +54,29 @@ class FixStockViewController: UIViewController {
             return
         }
         fruitStore.strawberry.stock = num
+        guard let stock = bananaLabel.text, let num = Int(stock), num >= 0 else {
+            print(JuiceMakerError.insufficientFruit)
+            return
+        }
+        fruitStore.banana.stock = num
+        guard let stock = pineappleLabel.text, let num = Int(stock), num >= 0 else {
+            print(JuiceMakerError.insufficientFruit)
+            return
+        }
+        fruitStore.pineapple.stock = num
+        guard let stock = kiwiLabel.text, let num = Int(stock), num >= 0 else {
+            print(JuiceMakerError.insufficientFruit)
+            return
+        }
+        fruitStore.kiwi.stock = num
+        guard let stock = mangoLabel.text, let num = Int(stock), num >= 0 else {
+            print(JuiceMakerError.insufficientFruit)
+            return
+        }
+        fruitStore.mango.stock = num
+        
         //fruitStore.strawberry.stock = textToInt(text: strawberryLabel.text)
-        delegate?.dataRecieved(data: fruitStore.strawberry.stock.description)
+        delegate?.dataReload()
         dismiss(animated: true, completion: nil)
     }
 
@@ -66,5 +91,17 @@ class FixStockViewController: UIViewController {
         strawberryStepper.wraps = false
         strawberryStepper.autorepeat = true
         strawberryStepper.minimumValue = Double(Int.min)
+        bananaStepper.wraps = false
+        bananaStepper.autorepeat = true
+        bananaStepper.minimumValue = Double(Int.min)
+        kiwiStepper.wraps = false
+        kiwiStepper.autorepeat = true
+        kiwiStepper.minimumValue = Double(Int.min)
+        pineappleStepper.wraps = false
+        pineappleStepper.autorepeat = true
+        pineappleStepper.minimumValue = Double(Int.min)
+        mangoStepper.wraps = false
+        mangoStepper.autorepeat = true
+        mangoStepper.minimumValue = Double(Int.min)
     }
 }
