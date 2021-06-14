@@ -63,17 +63,18 @@ struct JuiceMaker {
             }
         }
     }
-    
     let store = FruitStore()
     
-    func makeJuice(_ juice: Juice) -> Juice? {
-        if checkStock(juice.ingredients) {
-            for ingredient in juice.ingredients {
-                store.changeStock(ingredient.key, ingredient.value)
+    func makeJuice(_ juice: Juice) {
+        do {
+            try checkStock(juice.ingredients)
+            
+            for (fruit, removingQuantity) in juice.ingredients {
+                store.changeStock(fruit, removingQuantity)
             }
-            return juice
-        } else {
-            return nil
+            // success notification (juice.description)
+        } catch {
+            // fail notification (juice.description)
         }
     }
     
@@ -87,5 +88,5 @@ struct JuiceMaker {
 }
 
 enum JuiceMakerError: Error {
-  case outOfStock
+    case outOfStock
 }
