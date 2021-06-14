@@ -15,6 +15,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var ddalbaBtn: UIButton!
+    @IBOutlet weak var mangkiBtn: UIButton!
+    @IBOutlet weak var strawberryBtn: UIButton!
+    @IBOutlet weak var bananaBtn: UIButton!
+    @IBOutlet weak var pineappleBtn: UIButton!
+    @IBOutlet weak var kiwiBtn: UIButton!
+    @IBOutlet weak var mangoBtn: UIButton!
+    
     func printFruitLabel() {
         let stock = juiceMaker.fruitStore
         strawberryStockLabel.text = String(stock[.strawberry]?.amount ?? 0)
@@ -24,15 +32,15 @@ class ViewController: UIViewController {
         mangoStockLabel.text = String(stock[.banana]?.amount ?? 0)
     }
     
-    func succeededMakingJuiceAlert(message: String) {
+    func succeededMakingJuiceAlert(_ message: JuiceMaker.JuiceType) {
         
         let alert = UIAlertController(title: nil,
-                                      message: message,
+                                      message: "\(message.rawValue) 나왔습니다! 맛있게 드세요!",
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인" ,
                                      style: . default) { (action) in
             self.juiceMaker.makeJuice(order: .bananaJuice)
-            print("hi")
+           
         }
         
         alert.addAction(okAction)
@@ -41,32 +49,27 @@ class ViewController: UIViewController {
                 completion: nil)
     }
     
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        succeededMakingJuiceAlert(message: "딸기 쥬스 나왔습니다! 맛있게 드세요!")
-    }
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
-        succeededMakingJuiceAlert(message: "바나나 쥬스 나왔습니다! 맛있게 드세요!")
-    }
-    
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        succeededMakingJuiceAlert(message: "파인애플 쥬스 나왔습니다! 맛있게 드세요!")
-    }
-    
-    @IBAction func orderkiwiJuice(_ sender: UIButton) {
-        succeededMakingJuiceAlert(message: "키위 쥬스 나왔습니다! 맛있게 드세요!")
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
-        succeededMakingJuiceAlert(message: "망고 쥬스 나왔습니다! 맛있게 드세요!")
-    }
-    
-    @IBAction func orderDdalbaJuice(_ sender: UIButton) {
-        succeededMakingJuiceAlert(message: "딸바 쥬스 나왔습니다! 맛있게 드세요!")
+    @IBAction func orderFruitJuice(_ sender: UIButton) {
+        switch sender {
+        case ddalbaBtn:
+            succeededMakingJuiceAlert(.ddalbaJuice)
+        case mangkiBtn:
+            succeededMakingJuiceAlert(.mangoKiwiJuice)
+        case strawberryBtn:
+            succeededMakingJuiceAlert(.strawberryJuice)
+        case bananaBtn:
+            succeededMakingJuiceAlert(.bananaJuice)
+        case pineappleBtn:
+            succeededMakingJuiceAlert(.pineappleJuice)
+        case kiwiBtn:
+            succeededMakingJuiceAlert(.kiwiJuice)
+        case mangoBtn:
+            succeededMakingJuiceAlert(.mangoJuice)
+        default:
+            return
+        }
     }
     
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        succeededMakingJuiceAlert(message: "망키 쥬스 나왔습니다! 맛있게 드세요!")
-    }
     
     
     override func viewDidLoad() {

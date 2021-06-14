@@ -19,14 +19,14 @@ struct JuiceMaker {
         .mango: MangoStock()
     ]
     
-    enum JuiceType: Int {
-        case strawberryJuice 
-        case bananaJuice
-        case pineappleJuice
-        case kiwiJuice
-        case mangoJuice
-        case ddalbaJuice
-        case mangoKiwiJuice
+    enum JuiceType: String {
+        case strawberryJuice = "딸기 쥬스"
+        case bananaJuice = "바나나 쥬스"
+        case pineappleJuice = "파인애플 쥬스"
+        case kiwiJuice = "키위 쥬스"
+        case mangoJuice = "망고 쥬스"
+        case ddalbaJuice = "딸바 쥬스"
+        case mangoKiwiJuice = "망키 쥬스"
         
         func material() -> [Fruits: Int] {
             switch self {
