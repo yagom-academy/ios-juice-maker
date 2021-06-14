@@ -28,3 +28,21 @@ class MainViewController: UIViewController {
     
 }
 
+extension MainViewController {
+    func successAlert() {
+        let alert = UIAlertController(title: "*** 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "감사합니다.", style: .default)
+        alert.addAction(confirmAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func failAlert() {
+        let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "예", style: .default){ _ in print("예 선택")}
+        let cancelAction = UIAlertAction(title: "아니오", style: .default){ _ in print("아니오 선택")}
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+}
