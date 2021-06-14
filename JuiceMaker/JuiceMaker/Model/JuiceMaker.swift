@@ -6,18 +6,18 @@
 
 import Foundation
 
-enum Juice {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
+enum Juice: String {
+    case strawberry = "딸기쥬스"
+    case banana = "바나나쥬스"
+    case kiwi = "키위쥬스"
+    case pineapple = "파인애플쥬스"
+    case strawberryBanana = "딸바쥬스"
+    case mango = "망고쥬스"
+    case mangoKiwi = "망키쥬스"
 }
  
 struct JuiceMaker {
-    private let fruitStore = FruitStore()
+    let fruitStore = FruitStore()
     private let recipe = [
         Juice.strawberry: [Fruit.strawberry: 16],
         Juice.banana: [Fruit.banana: 2],
@@ -28,10 +28,17 @@ struct JuiceMaker {
         Juice.mangoKiwi: [Fruit.mango: 2, Fruit.kiwi: 1]
     ]
     
-    func orderJuice(name: Juice) {
+    func orderJuice(name: Juice) throws {
         guard let ingredients = recipe[name] else {
             return
         }
-        fruitStore.makeJuice(for: ingredients)
+        try fruitStore.makeJuice(for: ingredients)
+    }
+    
+    func returnStockString(of fruit: Fruit) throws -> String {
+        guard let stock = fruitStore.fruits[fruit] else {
+            throw FruitStoreError.invaildFruit
+        }
+        return String(stock)
     }
 }
