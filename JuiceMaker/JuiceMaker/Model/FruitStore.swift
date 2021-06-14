@@ -17,7 +17,7 @@ enum Fruit: CaseIterable {
 enum FruitStoreError: Error {
     case outOfStock
     case invalidFruit
-    case outOfRange
+    case stockBelowMinimum
 }
 
 // 과일 타입
@@ -43,7 +43,7 @@ class FruitStore {
             throw FruitStoreError.invalidFruit
         }
         guard amount >= 0 else {
-            throw FruitStoreError.outOfRange
+            throw FruitStoreError.stockBelowMinimum
         }
         fruitList[fruit]? = amount
     }
@@ -60,7 +60,7 @@ class FruitStore {
             throw FruitStoreError.invalidFruit
         }
         guard stock - amountToReduce >= 0 else {
-            throw FruitStoreError.outOfRange
+            throw FruitStoreError.stockBelowMinimum
         }
         fruitList[fruit]? -= amountToReduce
     }
