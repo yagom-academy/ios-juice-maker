@@ -77,13 +77,15 @@ struct JuiceMaker {
         }
     }
     
-    func checkStock(_ ingredients: Dictionary<Fruit, Int>) -> Bool {
+    func checkStock(_ ingredients: Dictionary<Fruit, Int>) throws {
         for (fruit, removingQuantity) in ingredients {
             if store.currentStock(fruit) < removingQuantity {
-                return false
+                throw JuiceMakerError.outOfStock
             }
         }
-        
-        return true
     }
+}
+
+enum JuiceMakerError: Error {
+  case outOfStock
 }
