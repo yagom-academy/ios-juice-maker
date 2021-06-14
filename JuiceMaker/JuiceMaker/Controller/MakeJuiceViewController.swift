@@ -1,7 +1,7 @@
 
 import UIKit
 
-enum JuiceName: CustomStringConvertible{
+enum JuiceName: CustomStringConvertible {
     case strawberryBanana
     case mangoKiwi
     case strawberry
@@ -30,7 +30,13 @@ enum JuiceName: CustomStringConvertible{
     }
 }
 
-class MakeJuiceViewController: UIViewController, sendBackDelegate {
+extension MakeJuiceViewController: FixStockViewDelegate {
+    func fixStockView(stock: String) {
+        strawberryLabel.text = stock
+    }
+}
+
+class MakeJuiceViewController: UIViewController {
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -38,92 +44,54 @@ class MakeJuiceViewController: UIViewController, sendBackDelegate {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    let myJuiceMaker = JuiceMaker()
+    private let myJuiceMaker = JuiceMaker()
+    private let fixStockSegue = "fixStockSegue"
 
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        do {
-            try myJuiceMaker.makeJuice(juiceName: .strawberryBanana)
-        } catch JuiceMakerError.insufficientFruit {
-            showAlert(message: .insufficientFruit)
-        } catch {
-            showAlert(message: .unexpectedError)
-        }
-        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
-        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
-        showCompleteMessage(juiceName: .strawberryBanana)
+    @IBAction func StrawberryBananaJuiceButtonDidTap(_ sender: UIButton) {
+        checkStockAndAlert(juiceName: .strawberryBanana)
+        reloadLabels()
     }
     
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        do {
-            try myJuiceMaker.makeJuice(juiceName: .mangoKiwi)
-        } catch JuiceMakerError.insufficientFruit {
-            showAlert(message: .insufficientFruit)
-        } catch {
-            showAlert(message: .unexpectedError)
-        }
-        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
-        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
-        showCompleteMessage(juiceName: .mangoKiwi)
+    @IBAction func MangoKiwiJuiceButtonDidTap(_ sender: UIButton) {
+        checkStockAndAlert(juiceName: .mangoKiwi)
+        reloadLabels()
     }
     
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        do {
-            try myJuiceMaker.makeJuice(juiceName: .strawberry)
-        } catch JuiceMakerError.insufficientFruit {
-            showAlert(message: .insufficientFruit)
-        } catch {
-            showAlert(message: .unexpectedError)
-        }
-        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
-        showCompleteMessage(juiceName: .strawberry)
+    @IBAction func StrawberryJuiceButtonDidTap(_ sender: UIButton) {
+        checkStockAndAlert(juiceName: .strawberry)
+        reloadLabels()
+    }
+
+    
+    @IBAction func BananaJuiceButtonDidTap(_ sender: UIButton) {
+        checkStockAndAlert(juiceName: .banana)
+        reloadLabels()
     }
     
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
-        do {
-            try myJuiceMaker.makeJuice(juiceName: .banana)
-        } catch JuiceMakerError.insufficientFruit {
-            showAlert(message: .insufficientFruit)
-        } catch {
-            showAlert(message: .unexpectedError)
-        }
-        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
-        showCompleteMessage(juiceName: .banana)
+    @IBAction func PineappleJuiceButtonDidTap(_ sender: UIButton) {
+        checkStockAndAlert(juiceName: .pineapple)
+        reloadLabels()
     }
     
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        do {
-            try myJuiceMaker.makeJuice(juiceName: .pineapple)
-        } catch JuiceMakerError.insufficientFruit {
-            showAlert(message: .insufficientFruit)
-        } catch {
-            showAlert(message: .unexpectedError)
-        }
-        pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
-        showCompleteMessage(juiceName: .pineapple)
+    @IBAction func KiwiJuiceButtonDidTap(_ sender: UIButton) {
+        checkStockAndAlert(juiceName: .kiwi)
+        reloadLabels()
     }
     
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        do {
-            try myJuiceMaker.makeJuice(juiceName: .kiwi)
-        } catch JuiceMakerError.insufficientFruit {
-            showAlert(message: .insufficientFruit)
-        } catch {
-            showAlert(message: .unexpectedError)
-        }
-        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
-        showCompleteMessage(juiceName: .kiwi)
+    @IBAction func MangoJuiceButtonDidTap(_ sender: UIButton) {
+        checkStockAndAlert(juiceName: .mango)
+        reloadLabels()
     }
     
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
+    func checkStockAndAlert(juiceName: JuiceName) {
         do {
-            try myJuiceMaker.makeJuice(juiceName: .mango)
+            try myJuiceMaker.makeJuice(juiceName: juiceName)
         } catch JuiceMakerError.insufficientFruit {
             showAlert(message: .insufficientFruit)
         } catch {
             showAlert(message: .unexpectedError)
         }
-        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
-        showCompleteMessage(juiceName: .mango)
+        showCompleteMessage(juiceName: juiceName)
     }
     
     func showCompleteMessage(juiceName: JuiceName){
@@ -136,7 +104,7 @@ class MakeJuiceViewController: UIViewController, sendBackDelegate {
     func showAlert(message: JuiceMakerError){
         let alert = UIAlertController(title: nil, message: message.description, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default){(action) in
-            self.performSegue(withIdentifier: "fixStockSegue", sender: self)
+            self.performSegue(withIdentifier: self.fixStockSegue, sender: self)
         }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         
@@ -146,7 +114,7 @@ class MakeJuiceViewController: UIViewController, sendBackDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "fixStockSegue",
+        if segue.identifier == fixStockSegue,
            let navigationController = segue.destination as? UINavigationController
         {
             let fixStockVC = navigationController.visibleViewController as? FixStockViewController
@@ -157,15 +125,15 @@ class MakeJuiceViewController: UIViewController, sendBackDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadLabels()
+    }
+    
+    func reloadLabels() {
         strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
         bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
         pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
         kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
         mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
-    }
-    
-    func dataRecieved(data: String) {
-        strawberryLabel.text = data
     }
 
 }

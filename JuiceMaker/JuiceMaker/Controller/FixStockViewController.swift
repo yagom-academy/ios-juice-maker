@@ -1,8 +1,8 @@
 
 import UIKit
 
-protocol sendBackDelegate {
-    func dataRecieved(data: String)
+protocol FixStockViewDelegate {
+    func fixStockView(stock: String)
 }
 
 class FixStockViewController: UIViewController {
@@ -20,7 +20,7 @@ class FixStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
    
     var fruitStore = FruitStore()
-    var delegate: sendBackDelegate?
+    var delegate: FixStockViewDelegate?
      
     @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
         strawberryLabel.text = (fruitStore.strawberry.stock + Int(sender.value)).description
@@ -45,13 +45,12 @@ class FixStockViewController: UIViewController {
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        guard let stock = strawberryLabel.text, let num = Int(stock), num >= 0 else {
+        guard let stock = strawberryLabel.text, let number = Int(stock), number >= 0 else {
             print(JuiceMakerError.insufficientFruit)
             return
         }
-        fruitStore.strawberry.stock = num
-        //fruitStore.strawberry.stock = textToInt(text: strawberryLabel.text)
-        delegate?.dataRecieved(data: fruitStore.strawberry.stock.description)
+        fruitStore.strawberry.stock = number
+        delegate?.fixStockView(stock: fruitStore.strawberry.stock.description)
         dismiss(animated: true, completion: nil)
     }
 
