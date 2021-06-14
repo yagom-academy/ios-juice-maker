@@ -20,7 +20,7 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var pineappleStepper: UIStepper!
     
-    var store = FruitStore()
+    var store = FruitStore.shared
     var str = ""
 
     override func viewDidLoad() {

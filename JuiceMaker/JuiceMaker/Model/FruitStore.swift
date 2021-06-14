@@ -21,10 +21,11 @@ class FruitStore {
 //    private var pineapple: Int = 10
 //    private var kiwi: Int = 10
 //    private var mango: Int = 10
+    static let shared = FruitStore()
 
     var fruitStocks: Dictionary<Fruit, Int>
     
-    init() {
+    private init() {
         fruitStocks = [.strawberry:10, .banana:10, .pineapple:10, .kiwi:10, .mango:10]
     }
     

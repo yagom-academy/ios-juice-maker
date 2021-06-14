@@ -75,16 +75,6 @@ extension MainViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(maker.store.fruitStocks)
-        print("prepare 동작함")
-            let vc = segue.destination as? ModifyViewController
-            print("변화전 : \(vc?.store)")
-            vc?.store = self.maker.store
-        vc?.str = "아씨발"
-            print("변화후 : \(vc?.store)")
-    }
-    
     func successAlert(_ juiceName: String) {
         let alert = UIAlertController(title: "음료 주문 성공", message: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default) {(action: UIAlertAction!) -> Void in
