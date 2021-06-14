@@ -12,7 +12,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,6 +125,9 @@
                                                 <state key="normal" title="딸바쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PPd-21-Dxg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
                                                 <rect key="frame" x="328.66666666666669" y="0.0" width="313.00000000000006" height="72.666666666666671"/>
@@ -133,6 +136,9 @@
                                                 <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FIS-Mv-hdf"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -149,6 +155,9 @@
                                                         <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="imE-sm-CDl"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
                                                         <rect key="frame" x="164.33333333333331" y="0.0" width="148.33333333333331" height="72.666666666666671"/>
@@ -157,6 +166,9 @@
                                                         <state key="normal" title="바나나쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sN3-kN-2Uu"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -170,6 +182,9 @@
                                                         <state key="normal" title="망고쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F1w-BP-9zn"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
                                                         <rect key="frame" x="164.66666666666669" y="0.0" width="148.33333333333331" height="72.666666666666671"/>
@@ -178,6 +193,9 @@
                                                         <state key="normal" title="키위쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pOw-wh-uyN"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -188,6 +206,9 @@
                                                 <state key="normal" title="파인애플쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="juiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zq3-40-PRQ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -217,6 +238,13 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="fv7-jN-Mg7"/>
+                        <outlet property="kiwiLabel" destination="FZq-de-TJG" id="ruk-8f-2j4"/>
+                        <outlet property="mangoLabel" destination="ccQ-Dk-PuY" id="DH6-QB-6kZ"/>
+                        <outlet property="pineappleLabel" destination="3Ce-SU-JeH" id="Eus-ln-KPY"/>
+                        <outlet property="strawberryLabel" destination="Qas-vP-td6" id="YrR-5q-gBC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -240,10 +268,10 @@
             </objects>
             <point key="canvasLocation" x="954" y="20"/>
         </scene>
-        <!--View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="ModifiyViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -383,7 +411,7 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r">
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="IPd-6v-y2C"/>
                     </navigationItem>
                 </viewController>
