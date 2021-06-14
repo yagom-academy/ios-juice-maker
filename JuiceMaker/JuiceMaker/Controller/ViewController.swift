@@ -25,15 +25,14 @@ class ViewController: UIViewController {
     
     func printFruitLabel() {
         let stock = juiceMaker.fruitStore
-        strawberryStockLabel.text = String(stock[.strawberry]?.amount ?? 0)
-        bananaStockLabel.text = String(stock[.banana]?.amount ?? 0)
-        pineappleStockLabel.text = String(stock[.pineapple]?.amount ?? 0)
-        kiwiStockLabel.text = String(stock[.kiwi]?.amount ?? 0)
-        mangoStockLabel.text = String(stock[.mango]?.amount ?? 0)
+        strawberryStockLabel?.text = String(stock[.strawberry]?.amount ?? 0)
+        bananaStockLabel?.text = String(stock[.banana]?.amount ?? 0)
+        pineappleStockLabel?.text = String(stock[.pineapple]?.amount ?? 0)
+        kiwiStockLabel?.text = String(stock[.kiwi]?.amount ?? 0)
+        mangoStockLabel?.text = String(stock[.mango]?.amount ?? 0)
     }
     
     func succeededMakingJuiceAlert(_ message: JuiceMaker.JuiceType) {
-        
         let alert = UIAlertController(title: nil,
                                       message: "\(message.rawValue) 나왔습니다! 맛있게 드세요!",
                                       preferredStyle: .alert)
@@ -42,7 +41,6 @@ class ViewController: UIViewController {
             self.juiceMaker.makeJuice(order: message)
             self.printFruitLabel()
         }
-        
         alert.addAction(okAction)
         present(alert,
                 animated: true,
@@ -53,12 +51,16 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: "재료가 모자라요. 재고를 수정할까요?",
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "예", style: .default) { (action) in
+            self.changeView()
+        }
         let noAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
         
         alert.addAction(okAction)
         alert.addAction(noAction)
-        present(alert, animated: true, completion: nil)
+        present(alert,
+                animated: true,
+                completion: nil)
     }
     
     @IBAction func orderFruitJuice(_ sender: UIButton) {
@@ -90,10 +92,17 @@ class ViewController: UIViewController {
         }
     }
     
+    func changeView() {
+        guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "AddStock")
+        else{
+            return
+        }
+        mainVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        self.present(mainVC, animated: true)
+    }
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         printFruitLabel()
     }
 }
