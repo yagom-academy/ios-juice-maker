@@ -6,7 +6,21 @@
 
 import Foundation
 
-// 과일 타입
 class FruitStore {
+    private var count = 10
     
+    var stock: Int {
+        get {
+            return count
+        }
+    }
+    let name: Fruit
+    
+    init(storeName: Fruit){
+        name = storeName
+    }
+    
+    func setStock(amount number: Int){
+        count += number
+    }
 }
