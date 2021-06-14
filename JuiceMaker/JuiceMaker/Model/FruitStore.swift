@@ -3,7 +3,6 @@
 //  Created by yagom. 
 //  Copyright © yagom. All rights reserved.
 // 
-
 import Foundation
 
 enum Fruit: CaseIterable{
@@ -16,19 +15,22 @@ enum FruitError: Error {
 }
 
 class FruitStore {
-    var fruitStock = [Fruit: Int]()
+    private var fruitStock = [Fruit: Int]()
     
-    init() {
+    public init() {
         for fruit in Fruit.allCases {
-            fruitStock[fruit] = 10
+            increaseStock(fruit: fruit, count: 10)
         }
     }
-    
-    func increaseStock(fruit: Fruit) {
-        guard let stock = fruitStock[fruit] else { return }
-        fruitStock[fruit] = stock + 1
+
+    public func getStockAmount(fruit: Fruit) -> Int {
+        return fruitStock[fruit] ?? 0
     }
     
+    public func increaseStock(fruit: Fruit, count: Int) {
+        fruitStock[fruit] = fruitStock[fruit] ?? 0 + count
+    }
+
     func usingFruits(fruit: Fruit, needs: Int) throws {
         guard let stock = fruitStock[fruit] else { return }
         if stock < needs {
