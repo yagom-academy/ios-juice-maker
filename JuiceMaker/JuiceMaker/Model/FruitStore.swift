@@ -54,15 +54,8 @@ class FruitStore {
         }
     }
     
-    func change(numberOf number: Int, fruit: Fruit, isAdd: Bool) throws {
-        let numberOfFruitExist = try giveBackNumberIfExist(of: fruit)
-        
-        if isAdd {
-            increaseStock(of: fruit, by: number, from: numberOfFruitExist)
-        } else {
-            try checkStock(amountOfCropsPresent: numberOfFruitExist, amountRequired: number)
-            decreaseStock(of: fruit, by: number, from: numberOfFruitExist)
-        }
+    func changeAmount(of fruit: Fruit, to number: Int) {
+        inventory[fruit] = number
     }
     
     private func checkIngredients(for recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws -> [Int] {

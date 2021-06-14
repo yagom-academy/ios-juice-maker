@@ -12,7 +12,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
 
-
+    
+    @IBAction func changed(_ sender: UIStepper) {
+        sender.value
+    }
+    
 }
 
