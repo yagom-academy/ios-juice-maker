@@ -6,7 +6,7 @@ protocol sendBackDelegate {
 }
 
 class FixStockViewController: UIViewController {
-    
+
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -45,39 +45,12 @@ class FixStockViewController: UIViewController {
         textToInt(text: kiwiLabel.text)
         textToInt(text: mangoLabel.text)
         delegate?.dataReload()
-        
-//        guard let stock = strawberryLabel.text, let num = Int(stock), num >= 0 else {
-//            print(JuiceMakerError.insufficientFruit)
-//            return
-//        }
-//        fruitStore.strawberry.stock = num
-//        guard let stock = bananaLabel.text, let num = Int(stock), num >= 0 else {
-//            print(JuiceMakerError.insufficientFruit)
-//            return
-//        }
-//        fruitStore.banana.stock = num
-//        guard let stock = pineappleLabel.text, let num = Int(stock), num >= 0 else {
-//            print(JuiceMakerError.insufficientFruit)
-//            return
-//        }
-//        fruitStore.pineapple.stock = num
-//        guard let stock = kiwiLabel.text, let num = Int(stock), num >= 0 else {
-//            print(JuiceMakerError.insufficientFruit)
-//            return
-//        }
-//        fruitStore.kiwi.stock = num
-//        guard let stock = mangoLabel.text, let num = Int(stock), num >= 0 else {
-//            print(JuiceMakerError.insufficientFruit)
-//            return
-//        }
-//        fruitStore.mango.stock = num
-//        delegate?.dataReload()
-//        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func textToInt(text: String?) {
-        guard let stock = text, let num = Int(stock), num >= 0 else {
-            print(JuiceMakerError.insufficientFruit)
+        guard let stock = text, let num = Int(stock) else {
+            print(JuiceMakerError.unexpectedError)
             return
         }
         switch text {
@@ -108,10 +81,15 @@ class FixStockViewController: UIViewController {
         stepper(stepper: pineappleStepper)
         stepper(stepper: mangoStepper)
         
+        strawberryStepper.minimumValue -= Double(fruitStore.strawberry.stock)
+        bananaStepper.minimumValue -= Double(fruitStore.banana.stock)
+        pineappleStepper.minimumValue -= Double(fruitStore.pineapple.stock)
+        kiwiStepper.minimumValue -= Double(fruitStore.kiwi.stock)
+        mangoStepper.minimumValue -= Double(fruitStore.mango.stock)
+        
         func stepper(stepper: UIStepper) {
             stepper.wraps = false
             stepper.autorepeat = true
-            stepper.minimumValue = Double(Int.min)
         }
     }
 }
