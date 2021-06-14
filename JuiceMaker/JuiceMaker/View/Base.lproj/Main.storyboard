@@ -243,17 +243,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaButton" destination="y2A-PH-DJY" id="Ks6-Gd-7zr"/>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="fsa-lq-PMO"/>
-                        <outlet property="kiwiButton" destination="wcW-7H-RXw" id="rL9-Wb-BtV"/>
                         <outlet property="kiwiLabel" destination="FZq-de-TJG" id="FSr-PJ-feF"/>
-                        <outlet property="mangoButton" destination="BFb-ka-wGA" id="ov0-m4-OBe"/>
-                        <outlet property="mangoKiwiButton" destination="ngP-kF-Yii" id="mLf-3s-avO"/>
                         <outlet property="mangoLabel" destination="ccQ-Dk-PuY" id="4MQ-0W-hch"/>
-                        <outlet property="pineappleButton" destination="q6G-4X-bVm" id="GYf-0X-bLB"/>
                         <outlet property="pineappleLabel" destination="3Ce-SU-JeH" id="urM-Z0-X7N"/>
-                        <outlet property="strawberryBananaButton" destination="hrc-2F-fzl" id="AhD-oB-tov"/>
-                        <outlet property="strawberryButton" destination="avd-o5-3JM" id="cZh-pJ-EyL"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="PmJ-N3-wqF"/>
                         <segue destination="WwV-Td-3Bn" kind="presentation" identifier="showStock" id="D98-vT-sVl"/>
                     </connections>
@@ -447,15 +440,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="gKu-86-RhI" id="8OZ-UW-BPI"/>
-                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="EgD-hj-uef"/>
                         <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="DOQ-LO-jj0"/>
-                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="xTc-Fz-D4r"/>
                         <outlet property="mangoLabel" destination="MpT-VW-hCb" id="KRT-sy-gpC"/>
-                        <outlet property="mangoStepper" destination="Rcr-xr-eqz" id="2hq-V6-g3Y"/>
                         <outlet property="pineappleLabel" destination="YJI-ER-LJR" id="tqR-VA-bVs"/>
-                        <outlet property="pineappleStepper" destination="xbn-6P-grO" id="SDA-B6-o6k"/>
                         <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="O8K-Yv-f8g"/>
-                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="BS9-dJ-dsj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
@@ -465,7 +453,6 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Vdy-dc-RXk"/>
@@ -478,6 +465,7 @@
                         <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="wH1-3A-cBm"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="19" y="1056"/>
         </scene>

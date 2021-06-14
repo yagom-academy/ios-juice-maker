@@ -16,56 +16,48 @@ enum Fruit {
 
 // 과일 타입
 class FruitStore {
-//    private var strawberry: Int = 10
-//    private var banana: Int = 10
-//    private var pineapple: Int = 10
-//    private var kiwi: Int = 10
-//    private var mango: Int = 10
     static let shared = FruitStore()
 
-    var fruitStocks: Dictionary<Fruit, Int>
+    private var fruitStocks: Dictionary<Fruit, Int>
+    private let emptyQuantity = 0
     
     private init() {
         fruitStocks = [.strawberry:10, .banana:10, .pineapple:10, .kiwi:10, .mango:10]
     }
     
-    func currentStock(_ fruit: Fruit) throws -> Int {
+    internal func currentStock(_ fruit: Fruit) -> Int {
         guard let stock = fruitStocks[fruit] else {
-            throw JuiceMakerError.nilItem
+            return emptyQuantity
         }
         return stock
     }
-    
-    func changeStock(_ fruit: Fruit, _ changingQuantity: Int) throws {
+    internal func changeStock(_ fruit: Fruit, _ changingQuantity: Int) {
         guard let stock = fruitStocks[fruit] else {
-            throw JuiceMakerError.nilItem
+            return
         }
         fruitStocks.updateValue(stock - changingQuantity, forKey: fruit)
         
         NotificationCenter.default.post(
-                    name: NSNotification.Name(rawValue: "updateUI"),
-                    object: nil)
+                name: NSNotification.Name(rawValue: "updateUILabels"), object: nil, userInfo: ["과일종류": fruit])
     }
-    
-    func increaseByOne(_ fruit: Fruit) throws {
-        guard let stock = fruitStocks[fruit] else {
-            throw JuiceMakerError.nilItem
-        }
-        fruitStocks.updateValue(stock + 1, forKey: fruit)
-        // notification updateUI()
-    }
-    
-    func decreaseByOne(_ fruit: Fruit) throws {
-        guard let stock = fruitStocks[fruit] else {
-            throw JuiceMakerError.nilItem
-        }
-        fruitStocks.updateValue(stock - 1, forKey: fruit)
-        // notification updateUI()
-    }
-    
-    func postChangingByOne() {
-        NotificationCenter.default.post(
-                    name: NSNotification.Name(rawValue: "updateUI"),
-                    object: nil)
-    }
+//    func increaseByOne(_ fruit: Fruit) {
+//        guard let stock = fruitStocks[fruit] else {
+//            return
+//        }
+//        fruitStocks.updateValue(stock + 1, forKey: fruit)
+//        // notification updateUI()
+//    }
+//
+//    func decreaseByOne(_ fruit: Fruit)  {
+//        guard let stock = fruitStocks[fruit] else {
+//            return
+//        }
+//        fruitStocks.updateValue(stock - 1, forKey: fruit)
+//        // notification updateUI()
+//    }
+//
+//    func postChangingByOne() {
+//        NotificationCenter.default.post(
+//                    name: NSNotification.Name(rawValue: "updateUILabels"), object: nil)
+//    }
 }

@@ -14,62 +14,45 @@ class ModifyViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    
     var store = FruitStore.shared
-    var str = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        strawberryStepper.tag = 1
-        bananaStepper.tag = 2
-        mangoStepper.tag = 3
-        kiwiStepper.tag = 4
-        pineappleStepper.tag = 5
-        
         NotificationCenter.default.addObserver(self,
-                    selector: #selector(updateUI),
-                    name: NSNotification.Name(rawValue: "updateUI"),
-                    object: nil)
-        print(str)
-        print(store.fruitStocks)
+                    selector: #selector(updateUILabels),
+                    name: NSNotification.Name(rawValue: "updateUILabels"), object: nil)
         
-        
-        updateUI()
+        updateUILabels(Notification(name: NSNotification.Name(rawValue: "updateUILabels"), object: nil))
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    @objc func updateUI() {
-        do {
-            strawberryLabel.text = String( try store.currentStock(.strawberry))
-            bananaLabel.text = String( try store.currentStock(.banana))
-            pineappleLabel.text = String( try store.currentStock(.pineapple))
-            kiwiLabel.text = String( try store.currentStock(.kiwi))
-            mangoLabel.text = String( try store.currentStock(.mango))
-        } catch {
-            print("UI 변경 실패")
-        }
-    }
-
     @IBAction func closeModifyView(_ sender: Any) {
         dismiss(animated: false)
     }
-    
-    @IBAction func valueChangedSteppers(_ sender: UIStepper) {
+}
+
+extension ModifyViewController {
+    @objc func updateUILabels(_ notification: Notification) {
+        if let info = notification.userInfo {
+            guard let infoValue = info["과일종류"], let fruit = infoValue as? Fruit else { print("재고조회 에러 - userInfo"); return }
+            switch fruit {
+            case .strawberry:
+                strawberryLabel.text = String(store.currentStock(.strawberry))
+            case .banana:
+                bananaLabel.text = String(store.currentStock(.banana))
+            case .pineapple:
+                pineappleLabel.text = String(store.currentStock(.pineapple))
+            case .kiwi:
+                kiwiLabel.text = String(store.currentStock(.kiwi))
+            case .mango:
+                mangoLabel.text = String(store.currentStock(.mango))
+            }
+        } else {
+            strawberryLabel.text = String(store.currentStock(.strawberry))
+            bananaLabel.text = String(store.currentStock(.banana))
+            pineappleLabel.text = String(store.currentStock(.pineapple))
+            kiwiLabel.text = String(store.currentStock(.kiwi))
+            mangoLabel.text = String(store.currentStock(.mango))
+        }
     }
-    
 }

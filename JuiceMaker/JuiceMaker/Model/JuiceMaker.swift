@@ -10,30 +10,24 @@ import Foundation
 struct JuiceMaker {
     let store = FruitStore.shared
     
-    func makeJuice(_ juice: Juice) throws {
+    func makeJuice(_ juice: Juice) {
         do {
             try checkStock(juice.ingredients)
             for (fruit, removingQuantities) in juice.ingredients {
-                try store.changeStock(fruit, removingQuantities)
+                store.changeStock(fruit, removingQuantities)
             }
-            
-        } catch JuiceMakerError.outOfStock {
-            throw MainError.outOfStock
-        } catch JuiceMakerError.nilItem {
-            // 재고에 없는 과일 관련처리
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "successAlert"), object: nil, userInfo: ["쥬스이름":juice.description])
+        } catch {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "failAlert"), object: nil)
         }
     }
     
     func checkStock(_ ingredients: [(Fruit, Int)]) throws {
         for (fruit, removingQuantities) in ingredients {
             do {
-                if try store.currentStock(fruit) < removingQuantities {
+                if store.currentStock(fruit) < removingQuantities {
                     throw JuiceMakerError.outOfStock
                 }
-            } catch JuiceMakerError.outOfStock{
-                throw MainError.outOfStock
-            } catch JuiceMakerError.nilItem {
-                // 재고에 없는 과일 관련처리
             }
         }
     }
@@ -48,14 +42,14 @@ enum MainError: Error {
     case outOfStock
 }
 
-enum Juice: Int, CustomStringConvertible {
-    case strawberryBananaJuice = 1
-    case mangoKiwiJuice
-    case strawberryJuice
-    case bananaJuice
-    case mangoJuice
-    case kiwiJuice
-    case pineappleJuice
+enum Juice: String, CustomStringConvertible {
+    case strawberryBananaJuice = "딸바쥬스 주문"
+    case mangoKiwiJuice = "망키쥬스 주문"
+    case strawberryJuice = "딸기쥬스 주문"
+    case bananaJuice = "바나나쥬스 주문"
+    case mangoJuice = "망고쥬스 주문"
+    case kiwiJuice = "키위쥬스 주문"
+    case pineappleJuice = "파인애플쥬스 주문"
     
     var description: String {
         switch self {
