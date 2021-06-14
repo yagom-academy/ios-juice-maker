@@ -27,9 +27,9 @@ class ViewController: UIViewController {
         let stock = juiceMaker.fruitStore
         strawberryStockLabel.text = String(stock[.strawberry]?.amount ?? 0)
         bananaStockLabel.text = String(stock[.banana]?.amount ?? 0)
-        pineappleStockLabel.text = String(stock[.banana]?.amount ?? 0)
-        kiwiStockLabel.text = String(stock[.banana]?.amount ?? 0)
-        mangoStockLabel.text = String(stock[.banana]?.amount ?? 0)
+        pineappleStockLabel.text = String(stock[.pineapple]?.amount ?? 0)
+        kiwiStockLabel.text = String(stock[.kiwi]?.amount ?? 0)
+        mangoStockLabel.text = String(stock[.mango]?.amount ?? 0)
     }
     
     func succeededMakingJuiceAlert(_ message: JuiceMaker.JuiceType) {
@@ -40,6 +40,7 @@ class ViewController: UIViewController {
         let okAction = UIAlertAction(title: "확인" ,
                                      style: . default) { (action) in
             self.juiceMaker.makeJuice(order: message)
+            self.printFruitLabel()
         }
         
         alert.addAction(okAction)
@@ -63,25 +64,31 @@ class ViewController: UIViewController {
     @IBAction func orderFruitJuice(_ sender: UIButton) {
         switch sender {
         case ddalbaBtn:
-            succeededMakingJuiceAlert(.ddalbaJuice)
+            judgingPossibilityOfStock(.ddalbaJuice)
         case mangkiBtn:
-            succeededMakingJuiceAlert(.mangoKiwiJuice)
+            judgingPossibilityOfStock(.mangoKiwiJuice)
         case strawberryBtn:
-            succeededMakingJuiceAlert(.strawberryJuice)
+            judgingPossibilityOfStock(.strawberryJuice)
         case bananaBtn:
-            succeededMakingJuiceAlert(.bananaJuice)
+            judgingPossibilityOfStock(.bananaJuice)
         case pineappleBtn:
-            succeededMakingJuiceAlert(.pineappleJuice)
+            judgingPossibilityOfStock(.pineappleJuice)
         case kiwiBtn:
-            succeededMakingJuiceAlert(.kiwiJuice)
+            judgingPossibilityOfStock(.kiwiJuice)
         case mangoBtn:
-            succeededMakingJuiceAlert(.mangoJuice)
+            judgingPossibilityOfStock(.mangoJuice)
         default:
             return
         }
     }
     
-    
+    func judgingPossibilityOfStock(_ juice: JuiceMaker.JuiceType) {
+        if juiceMaker.checkStock(fruit: juice) {
+            succeededMakingJuiceAlert(juice)
+        } else {
+            failedMakingJuiceAlert()
+        }
+    }
     
     override func viewDidLoad() {
         

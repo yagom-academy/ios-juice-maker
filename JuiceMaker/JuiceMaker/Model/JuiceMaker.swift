@@ -57,7 +57,7 @@ struct JuiceMaker {
         }
     }
     
-    private func checkStock(fruit: JuiceType) -> Bool {
+    func checkStock(fruit: JuiceType) -> Bool {
         var results: [Bool] = []
         fruit.material().forEach { (fruitType,requiredAmount) in
             results.append(self.fruitStore[fruitType]?.isStockLeft(requiredAmount) ?? false)
