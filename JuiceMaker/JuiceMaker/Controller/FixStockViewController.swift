@@ -38,46 +38,60 @@ class FixStockViewController: UIViewController {
         mangoLabel.text = (fruitStore.mango.stock + Int(sender.value)).description
     }
     
-    func textToInt(text: String?) -> Int {
-        guard let text = text else {
-            return 0
-        }
-        guard let number = Int(text) else {
-            return 0
-        }
-        return number
+    @IBAction func closeButton(_ sender: UIBarButtonItem) {
+        textToInt(text: strawberryLabel.text)
+        textToInt(text: bananaLabel.text)
+        textToInt(text: pineappleLabel.text)
+        textToInt(text: kiwiLabel.text)
+        textToInt(text: mangoLabel.text)
+        delegate?.dataReload()
+        
+//        guard let stock = strawberryLabel.text, let num = Int(stock), num >= 0 else {
+//            print(JuiceMakerError.insufficientFruit)
+//            return
+//        }
+//        fruitStore.strawberry.stock = num
+//        guard let stock = bananaLabel.text, let num = Int(stock), num >= 0 else {
+//            print(JuiceMakerError.insufficientFruit)
+//            return
+//        }
+//        fruitStore.banana.stock = num
+//        guard let stock = pineappleLabel.text, let num = Int(stock), num >= 0 else {
+//            print(JuiceMakerError.insufficientFruit)
+//            return
+//        }
+//        fruitStore.pineapple.stock = num
+//        guard let stock = kiwiLabel.text, let num = Int(stock), num >= 0 else {
+//            print(JuiceMakerError.insufficientFruit)
+//            return
+//        }
+//        fruitStore.kiwi.stock = num
+//        guard let stock = mangoLabel.text, let num = Int(stock), num >= 0 else {
+//            print(JuiceMakerError.insufficientFruit)
+//            return
+//        }
+//        fruitStore.mango.stock = num
+//        delegate?.dataReload()
+//        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        guard let stock = strawberryLabel.text, let num = Int(stock), num >= 0 else {
+    func textToInt(text: String?) {
+        guard let stock = text, let num = Int(stock), num >= 0 else {
             print(JuiceMakerError.insufficientFruit)
             return
         }
-        fruitStore.strawberry.stock = num
-        guard let stock = bananaLabel.text, let num = Int(stock), num >= 0 else {
-            print(JuiceMakerError.insufficientFruit)
-            return
+        switch text {
+        case strawberryLabel.text:
+            fruitStore.strawberry.stock = num
+        case bananaLabel.text:
+            fruitStore.banana.stock = num
+        case pineappleLabel.text:
+            fruitStore.pineapple.stock = num
+        case kiwiLabel.text:
+            fruitStore.kiwi.stock = num
+        default:
+            fruitStore.mango.stock = num
         }
-        fruitStore.banana.stock = num
-        guard let stock = pineappleLabel.text, let num = Int(stock), num >= 0 else {
-            print(JuiceMakerError.insufficientFruit)
-            return
-        }
-        fruitStore.pineapple.stock = num
-        guard let stock = kiwiLabel.text, let num = Int(stock), num >= 0 else {
-            print(JuiceMakerError.insufficientFruit)
-            return
-        }
-        fruitStore.kiwi.stock = num
-        guard let stock = mangoLabel.text, let num = Int(stock), num >= 0 else {
-            print(JuiceMakerError.insufficientFruit)
-            return
-        }
-        fruitStore.mango.stock = num
-        
-        //fruitStore.strawberry.stock = textToInt(text: strawberryLabel.text)
-        delegate?.dataReload()
-        dismiss(animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
@@ -88,20 +102,16 @@ class FixStockViewController: UIViewController {
         kiwiLabel.text = String(fruitStore.kiwi.stock)
         mangoLabel.text = String(fruitStore.mango.stock)
         
-        strawberryStepper.wraps = false
-        strawberryStepper.autorepeat = true
-        strawberryStepper.minimumValue = Double(Int.min)
-        bananaStepper.wraps = false
-        bananaStepper.autorepeat = true
-        bananaStepper.minimumValue = Double(Int.min)
-        kiwiStepper.wraps = false
-        kiwiStepper.autorepeat = true
-        kiwiStepper.minimumValue = Double(Int.min)
-        pineappleStepper.wraps = false
-        pineappleStepper.autorepeat = true
-        pineappleStepper.minimumValue = Double(Int.min)
-        mangoStepper.wraps = false
-        mangoStepper.autorepeat = true
-        mangoStepper.minimumValue = Double(Int.min)
+        stepper(stepper: strawberryStepper)
+        stepper(stepper: bananaStepper)
+        stepper(stepper: kiwiStepper)
+        stepper(stepper: pineappleStepper)
+        stepper(stepper: mangoStepper)
+        
+        func stepper(stepper: UIStepper) {
+            stepper.wraps = false
+            stepper.autorepeat = true
+            stepper.minimumValue = Double(Int.min)
+        }
     }
 }
