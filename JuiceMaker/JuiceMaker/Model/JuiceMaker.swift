@@ -15,7 +15,7 @@ enum Juice: String {
     case strawberryBananaJuice = "딸바"
     case mangoJuice = "망고"
     case mangoKiwiJuice = "망키"
-    
+
     var ingredients: [Fruit: Int] {
         switch self {
         case .strawberryJuice:
@@ -40,20 +40,20 @@ enum Juice: String {
 }
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
-    
+    let fruitStore = FruitStore(initialStock: 10)
+
     func order(juice: Juice) throws {
         try checkStock(of: juice)
         try blend(juice: juice)
         print(juice.menu)
     }
-    
+
     func checkStock(of juice: Juice) throws {
         for (fruit, amount) in juice.ingredients {
             try fruitStore.hasMoreThan(of: fruit, by: amount)
         }
     }
-    
+
     func blend(juice: Juice) throws {
         for (fruit, amount) in juice.ingredients {
             try fruitStore.reduceStock(of: fruit, by: amount)

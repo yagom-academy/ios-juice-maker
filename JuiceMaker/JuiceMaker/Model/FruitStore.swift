@@ -23,13 +23,13 @@ enum FruitStoreError: Error {
 // 과일 타입
 class FruitStore {
     private var fruitList: [Fruit: Int] = [:]
-    
-    init() {
+
+    init(initialStock: Int) {
         for fruit in Fruit.allCases {
-            fruitList[fruit] = 10
+            fruitList[fruit] = initialStock
         }
     }
-    
+
     func showStockLeft(fruit: Fruit) throws -> Int {
         if let stockLeft = fruitList[fruit] {
             return stockLeft
@@ -47,7 +47,7 @@ class FruitStore {
         }
         fruitList[fruit]? = amount
     }
-    
+
     func addStock(of fruit: Fruit, by amountToAdd: Int) throws {
         guard let _ = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
