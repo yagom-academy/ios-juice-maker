@@ -15,7 +15,7 @@ enum JuiceMenu {
 	case strawNanaJuice
 	case mangoKiwiJuice
 	
-	var recipe:[(Fruit ,Int)] {
+	var recipe:[(Fruit, Int)] {
 		switch self {
 		case .strawberryJuice:
 			return [(.strawberry, 16)]
@@ -44,9 +44,8 @@ enum Fruit: String, CaseIterable {
 }
 
 struct JuiceMaker {
-
 	
-	var fruitStores =  [FruitStore]()
+	private var fruitStores =  [FruitStore]()
 	
 	init(){
 		for fruit in Fruit.allCases {
@@ -55,37 +54,33 @@ struct JuiceMaker {
 	}
 	
 	func checkJuiceMakable(recipes: [(Fruit, Int)]) -> Bool {
-		var makable = true
 		
-		for recipe in recipes {
-			makable = checkFruitAmount(receipe: recipe)
-			if !makable {
-				return false
-			}
+		let checkedRecipes = recipes.filter{ recipe in
+			checkFruitAmountAbout(recipe: recipe)
 		}
-		return makable
+		
+		return recipes.count == checkedRecipes.count
 	}
 	
-	func checkFruitAmount(receipe: (name: Fruit, amount: Int)) -> Bool {
-		guard let store = findFruitStore(name: receipe.name) else {
+	private func checkFruitAmountAbout(recipe: (name: Fruit, amount: Int)) -> Bool {
+		
+		let store = findFruitStore(fruitName: recipe.name)
+		
+		guard store.count != 0 else {
 			return false
 		}
-		if store.stock >= receipe.amount {
+		
+		if recipe.amount <= store.count {
 			return true
 		} else {
 			return false
 		}
 	}
 	
-	func findFruitStore(name: Fruit) -> FruitStore? {
-		var targetStore: FruitStore?
+	private func findFruitStore(fruitName: Fruit) -> [FruitStore] {
 		
-		for store in fruitStores {
-			if store.name == name.rawValue {
-				targetStore = store
-				break
-			}
-		}
+		let targetStore = fruitStores.filter{ store in store.name == fruitName }
+		
 		return targetStore
 	}
 }
