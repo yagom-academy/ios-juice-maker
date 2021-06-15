@@ -28,7 +28,7 @@ class FruitStore {
     
     public func increaseStock(fruit: Fruit, count: Int) {
         let stock = fruitStock[fruit] ?? 0
-        fruitStock[fruit] = (fruitStock[fruit] ?? 0) + count
+        fruitStock[fruit] = stock + count
     }
 
     func usingFruits(fruit: Fruit, needs: Int) throws {
