@@ -7,58 +7,61 @@
 import Foundation
 
 
-enum Recipe {
-	
-	case strawberryJuiceRecipe
-	case bananaJuiceRecipe
-	case kiwiJuiceRecipe
-	case pineappleJuiceRecipe
-	case ddalbaJuiceRecipe
-	case mangoJuiceRecipe
-	case mangoKiwiJuiceRecipe
-	
-	var ingredients: [Fruit: Int] {
-		switch self {
-		case .strawberryJuiceRecipe:
-			return [Fruit.strawberry: 16]
-		
-		case .bananaJuiceRecipe:
-			return [Fruit.banana: 2]
-		
-		case .kiwiJuiceRecipe:
-			return [Fruit.kiwi: 3]
-			
-		case .pineappleJuiceRecipe:
-			return [Fruit.pineapple: 2]
-			
-		case .ddalbaJuiceRecipe:
-			return [Fruit.strawberry: 10, Fruit.banana: 1]
-			
-		case .mangoJuiceRecipe:
-			return [Fruit.mango: 3]
-			
-		case .mangoKiwiJuiceRecipe:
-			return [Fruit.mango: 2, Fruit.kiwi: 1]
-		}
-	}
+enum JuiceRecipe: String {
+    case strawberry = "딸기쥬스"
+    case banana = "바나나쥬스"
+    case kiwi = "키위쥬스"
+    case pineapple = "파인애플쥬스"
+    case ddalba = "딸바쥬스"
+    case mango = "망고쥬스"
+    case mangoKiwi = "망키쥬스"
+    
+    var requiredIngredients: [Fruit: UInt] {
+        switch self {
+        case .strawberry:
+            return [.strawberry: 16]
+            
+        case .banana:
+            return [.banana: 2]
+            
+        case .kiwi:
+            return [.kiwi: 3]
+            
+        case .pineapple:
+            return [.pineapple: 2]
+            
+        case .ddalba:
+            return [.strawberry: 10, .banana: 1]
+            
+        case .mango:
+            return [.mango: 3]
+            
+        case .mangoKiwi:
+            return [.mango: 2, .kiwi: 1]
+        }
+    }
+    
+    var juiceButtonName: String {
+        return "\(self.rawValue) 주문"
+    }
 }
 
-// 쥬스 메이커 타입 
 struct JuiceMaker {
-	
-	let connectedStore = FruitStore.fruitStore
     
-	func makeJuice(recipe: Recipe) {
-		for (fruit, amount) in recipe.ingredients {
-			guard connectedStore.hasEnoughFruitsStock(fruit: fruit, number: amount) else {
-				return
-			}
-		}
-		for (fruit, amount) in recipe.ingredients {
-			connectedStore.consume(fruit: fruit, number: amount)
-		}
-	}
-	
+    func canMakeJuice(recipe: JuiceRecipe) -> Bool {
+        for (fruit, amount) in recipe.requiredIngredients {
+            guard FruitStore.shared.hasEnoughFruitsStock(fruit: fruit, number: amount) else {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func makeJuice(recipe: JuiceRecipe) {
+        for (fruit, amount) in recipe.requiredIngredients {
+            FruitStore.shared.consume(fruit: fruit, number: amount)
+        }
+    }
 }
 
 
