@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol FixStockViewDelegate {
+protocol FixStockViewControllerDelegate {
     func fixStockView(stock: String)
 }
 
@@ -20,7 +20,7 @@ class FixStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
    
     var fruitStore = FruitStore()
-    var delegate: FixStockViewDelegate?
+    var delegate: FixStockViewControllerDelegate?
      
     @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
         strawberryLabel.text = (fruitStore.strawberry.stock + Int(sender.value)).description

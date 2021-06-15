@@ -30,12 +30,6 @@ enum JuiceName: CustomStringConvertible {
     }
 }
 
-extension MakeJuiceViewController: FixStockViewDelegate {
-    func fixStockView(stock: String) {
-        strawberryLabel.text = stock
-    }
-}
-
 class MakeJuiceViewController: UIViewController {
 
     @IBOutlet weak var strawberryLabel: UILabel!
@@ -49,38 +43,40 @@ class MakeJuiceViewController: UIViewController {
 
     @IBAction func StrawberryBananaJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .strawberryBanana)
-        reloadLabels()
+        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
+        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
     }
     
     @IBAction func MangoKiwiJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .mangoKiwi)
-        reloadLabels()
+        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
     
     @IBAction func StrawberryJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .strawberry)
-        reloadLabels()
+        strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
     }
 
     
     @IBAction func BananaJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .banana)
-        reloadLabels()
+        bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
     }
     
     @IBAction func PineappleJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .pineapple)
-        reloadLabels()
+        pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
     }
     
     @IBAction func KiwiJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .kiwi)
-        reloadLabels()
+        kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
     }
     
     @IBAction func MangoJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .mango)
-        reloadLabels()
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
     }
     
     func checkStockAndAlert(juiceName: JuiceName) {
@@ -125,15 +121,15 @@ class MakeJuiceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadLabels()
-    }
-    
-    func reloadLabels() {
         strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
         bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
         pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
         kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
-        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
-    }
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)    }
+}
 
+extension MakeJuiceViewController: FixStockViewControllerDelegate {
+    func fixStockView(stock: String) {
+        strawberryLabel.text = stock
+    }
 }
