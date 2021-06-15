@@ -1,12 +1,12 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import Foundation
 
-// 쥬스 메이커 타입 
+// 쥬스 메이커 타입
 struct JuiceMaker {
     enum Menu {
         case strawberry
@@ -40,25 +40,16 @@ struct JuiceMaker {
     func isJuiceAvailable(menu: Menu) -> Bool {
         var isIngredientRemain: Bool = true
         let orderedJuiceRecipe = defaultJuiceRecipe(juiceMenu: menu)
-        
-        var neededIngredient = [FruitStore.Fruit]()
-        var neededIngredientCount = [UInt]()
-        
-        for (fruit, count) in orderedJuiceRecipe {
-            neededIngredient.append(fruit)
-            neededIngredientCount.append(count)
-        }
+        let neededIngredient = Array(orderedJuiceRecipe.keys)
         
         for i in 0..<orderedJuiceRecipe.count {
-            guard let recipeNumber = orderedJuiceRecipe[neededIngredient[i]],
-                  let storageNumber = FruitStore.storage[neededIngredient[i]]
+            guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[neededIngredient[i]],
+                  let currentRemainedFruitNumber = FruitStore.storage[neededIngredient[i]]
             else {
                 return false
             }
             
-            if recipeNumber <= storageNumber {
-                continue
-            } else {
+            if necessaryFruitNumberForMenu > currentRemainedFruitNumber {
                 isIngredientRemain = false
             }
         }
