@@ -275,7 +275,7 @@
         <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="changeStock" id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changeStock" id="Yu1-lM-nqp" customClass="ChnageStockViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -301,6 +301,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="strawberryStepper:" destination="Blr-3J-Ue9" eventType="valueChanged" id="iMp-h5-VKR"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -423,14 +426,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="KFd-OU-aBR"/>
                         <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="B6z-iU-xc4"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="Bkw-ys-053"/>
                         <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="nC5-Ir-Opl"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="fhm-3D-tsj"/>
                         <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="rDL-pS-E9W"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="AVH-1r-ada"/>
                         <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="4mG-y7-xQm"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="PKX-ri-Lkq"/>
                         <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="TrS-TF-2Ur"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
+                <exit id="Blr-3J-Ue9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1637" y="901"/>
         </scene>

@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    let juiceMaker = JuiceMaker()
+    let juiceMaker = JuiceMaker.shared
     var successOrderAlert: UIAlertController?
     var outOfStockErrorAlert: UIAlertController?
     

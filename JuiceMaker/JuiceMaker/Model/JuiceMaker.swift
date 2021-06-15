@@ -17,6 +17,8 @@ enum Juice: String {
 }
  
 struct JuiceMaker {
+    static let shared = JuiceMaker()
+    private init() { }
     let fruitStore = FruitStore()
     private let recipe = [
         Juice.strawberry: [Fruit.strawberry: 16],
@@ -40,5 +42,12 @@ struct JuiceMaker {
             throw FruitStoreError.invaildFruit
         }
         return String(stock)
+    }
+    
+    func returnStockDouble(of fruit: Fruit) throws -> Double {
+        guard let stock = fruitStore.fruits[fruit] else {
+            throw FruitStoreError.invaildFruit
+        }
+        return Double(stock)
     }
 }

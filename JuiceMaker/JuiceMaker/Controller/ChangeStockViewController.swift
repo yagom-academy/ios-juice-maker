@@ -1,0 +1,32 @@
+//
+//  ChangeStockViewController.swift
+//  JuiceMaker
+//
+//  Created by Terry Lee on 2021/06/15.
+//
+
+import UIKit
+
+class ChangeStockViewController: ViewController {
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func setStepperInitialValue() {
+        do {
+            strawberryStepper.value = try juiceMaker.returnStockDouble(of: .strawberry)
+            bananaStepper.value = try juiceMaker.returnStockDouble(of: .banana)
+            pineappleStepper.value = try juiceMaker.returnStockDouble(of: .pineapple)
+            kiwiStepper.value = try juiceMaker.returnStockDouble(of: .kiwi)
+            mangoStepper.value = try juiceMaker.returnStockDouble(of: .mango)
+        } catch {
+            return
+        }
+    }
+}
