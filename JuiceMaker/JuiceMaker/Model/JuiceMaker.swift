@@ -20,10 +20,9 @@ struct JuiceMaker {
     func makeJuice(juiceName: JuiceName) throws {
         switch juiceName{
         case .strawberryBanana:
-            try fruitStore.decreaseStock(amount: 10, fruit: fruitStore.strawberry)
-            try fruitStore.decreaseStock(amount: 1, fruit: fruitStore.banana)
+            try fruitStore.decreaseStock(firstFruitAmount: 10, firstFruit: fruitStore.strawberry, secondFruitAmount: 1, secondFruit: fruitStore.banana)
         case .mangoKiwi:
-            try fruitStore.decreaseStock(amount: 2, fruit: fruitStore.mango)
+            try fruitStore.decreaseStock(firstFruitAmount: 2, firstFruit: fruitStore.mango, secondFruitAmount: 3, secondFruit: fruitStore.kiwi)
             try fruitStore.decreaseStock(amount: 1, fruit: fruitStore.kiwi)
         case .strawberry:
             try fruitStore.decreaseStock(amount: 16, fruit: fruitStore.strawberry)

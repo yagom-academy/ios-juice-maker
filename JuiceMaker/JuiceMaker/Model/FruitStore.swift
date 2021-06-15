@@ -18,6 +18,15 @@ class FruitStore {
             throw JuiceMakerError.insufficientFruit
         }
     }
+    
+    func decreaseStock(firstFruitAmount: Int = 1, firstFruit: Fruit, secondFruitAmount: Int = 1, secondFruit: Fruit) throws {
+        if firstFruit.stock - firstFruitAmount >= 0 && secondFruit.stock - secondFruitAmount >= 0 {
+            firstFruit.stock -= firstFruitAmount
+            secondFruit.stock -= secondFruitAmount
+        } else {
+            throw JuiceMakerError.insufficientFruit
+        }
+    }
 }
 
 class Fruit {
