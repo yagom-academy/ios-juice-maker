@@ -32,10 +32,10 @@ class FruitStore {
     }
 
     func showStockLeft(fruit: Fruit) throws -> Int {
-        if let stockLeft = fruitList[fruit] {
-            return stockLeft
+        guard let stockLeft = fruitList[fruit] else {
+            throw FruitStoreError.invalidFruit
         }
-        throw FruitStoreError.invalidFruit
+        return stockLeft
     }
 
     /// Stepper의 value로 업데이트하기 위한 메서드

@@ -77,14 +77,27 @@ class JuiceMakerViewController: UIViewController {
             try juiceMaker.order(juice: juice)
             showAllFruitStockLabels()
             showJuiceIsReadyAlert(message: "\(juice.menu)쥬스 나왔습니다! 맛있게 드세요!")
-        } catch {
+        } catch FruitStoreError.outOfStock {
             showOutOfStockAlert()
+        } catch FruitStoreError.invalidFruit {
+            showWarningAlert(message: "없는 과일입니다.", actionTitle: "OK")
+        } catch FruitStoreError.stockBelowMinimum {
+            showWarningAlert(message: "과일재고는 음수가 될 수 없습니다.", actionTitle: "OK")
+        } catch {
+            showWarningAlert(message: "알 수 없는 에러가 발생했습니다.", actionTitle: "OK")
         }
     }
 
     func showJuiceIsReadyAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "🥤", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showWarningAlert(message: String, actionTitle: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: actionTitle, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
