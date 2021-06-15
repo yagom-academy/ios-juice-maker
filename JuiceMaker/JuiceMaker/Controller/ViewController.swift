@@ -48,7 +48,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showInitialNumberOnLabel()
-        
+        setUpTargetActionOnButtons()
+    }
+    
+    func setUpTargetActionOnButtons() {
         orderStrawberryButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
         orderBananaButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
         orderPineAppleButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
