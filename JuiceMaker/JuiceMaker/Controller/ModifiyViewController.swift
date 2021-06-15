@@ -13,6 +13,5 @@ class ModifiyViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    
 
 }

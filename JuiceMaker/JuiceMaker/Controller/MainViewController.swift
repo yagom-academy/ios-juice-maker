@@ -18,10 +18,12 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceSuccess(_:)), name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceFail), name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUILabel(_:)), name: Notification.Name(rawValue: "updateUILabel"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceSuccess(_:)),
+                                               name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceFail),
+                                               name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUILabel(_:)),
+                                               name: Notification.Name(rawValue: "updateUILabel"), object: nil)
         for fruit in Fruit.allCases {
             NotificationCenter.default.post(name: Notification.Name("updateUILabel"), object: nil, userInfo: ["과일종류":fruit])
         }
@@ -30,7 +32,6 @@ class MainViewController: UIViewController {
     @IBAction func juiceOrder(_ sender: UIButton) {
         guard let titleLabel = sender.titleLabel else { print("버튼 타이틀 에러"); return }
         guard let text = titleLabel.text, let juice = Juice(rawValue: text) else { print("쥬스 구분실패"); return }
-//        print(juice)
         juiceMaker.makeJuice(juice)
     }
 }
@@ -64,13 +65,11 @@ extension MainViewController {
         guard let userInfoValue = userInfo["쥬스이름"], let juiceName = userInfoValue as? String else {
             print("userInfoValue 에러"); return
         }
-        
         let alert = UIAlertController(title: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "감사합니다.", style: .default) { _ in print("주문성공")}
         alert.addAction(confirmAction)
         present(alert, animated: true, completion: nil)
     }
-    
     @objc func alertMakingJuiceFail() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default){ _ in print("주문실패 - 예 선택")}
@@ -79,5 +78,4 @@ extension MainViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
-    
 }

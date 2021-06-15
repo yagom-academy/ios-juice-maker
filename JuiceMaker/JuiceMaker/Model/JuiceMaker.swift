@@ -22,7 +22,6 @@ struct JuiceMaker {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
         }
     }
-    
     func checkStock(_ ingredients: Dictionary<Fruit, Int>) throws {
         for (fruit, removingQuantity) in ingredients {
             if fruitStore.currentStock(fruit) < removingQuantity {

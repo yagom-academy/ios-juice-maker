@@ -20,10 +20,8 @@ class FruitStore {
             print("재고에 존재하지 않는 과일")
             return emptyQuantity
         }
-        
         return stock
     }
-    
     func changeStock(_ fruit: Fruit, _ changingQuantity: Int) {
         guard let stock = fruitStocks[fruit] else {
             print("재고에 존재하지 않는 과일")
