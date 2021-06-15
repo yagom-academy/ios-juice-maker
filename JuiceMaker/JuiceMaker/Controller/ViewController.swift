@@ -73,8 +73,7 @@ class ViewController: UIViewController {
             try juiceMaker.order(juice: juice)
             showJuiceIsReadyAlert(message: "\(juice.menu)쥬스 나왔습니다! 맛있게 드세요!")
         } catch {
-            // alert
-            showJuiceIsReadyAlert(message: "재고 부족입니다!")
+            showOutOfStockAlert()
         }
     }
 
@@ -83,5 +82,22 @@ class ViewController: UIViewController {
         let okAction = UIAlertAction(title: "🥤", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func showOutOfStockAlert() {
+        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default) {
+            action in
+            self.navigateToFruitStore()
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    func navigateToFruitStore() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let fruitStoreViewController = storyboard.instantiateViewController(withIdentifier: "fruitStore") as! FruitStoreViewController
+        self.present(fruitStoreViewController, animated: true, completion: nil)
     }
 }
