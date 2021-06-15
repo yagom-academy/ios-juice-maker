@@ -218,9 +218,11 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaNumber" destination="gvk-pA-Lw5" id="ufi-nf-1GA"/>
-                        <outlet property="kiwiNumber" destination="FZq-de-TJG" id="fjn-dC-LS7"/>
-                        <outlet property="mangoNumber" destination="3Ce-SU-JeH" id="VaN-t2-7mx"/>
+                        <outlet property="numberOfBanana" destination="gvk-pA-Lw5" id="5g3-fu-7Om"/>
+                        <outlet property="numberOfKiwi" destination="FZq-de-TJG" id="o8W-mL-gYo"/>
+                        <outlet property="numberOfMango" destination="3Ce-SU-JeH" id="1XM-zq-GuO"/>
+                        <outlet property="numberOfPineApple" destination="ccQ-Dk-PuY" id="lmG-KI-cZq"/>
+                        <outlet property="numberOfStrawberry" destination="Qas-vP-td6" id="9q7-sv-hqR"/>
                         <outlet property="orderBananaButton" destination="y2A-PH-DJY" id="1Xd-Sq-eI6"/>
                         <outlet property="orderMangoButton" destination="q6G-4X-bVm" id="GkB-Ym-CXV"/>
                         <outlet property="orderMangoKiwiButton" destination="ngP-kF-Yii" id="EOM-FC-Nx5"/>
@@ -228,8 +230,6 @@
                         <outlet property="orderStrawberryBananaButton" destination="hrc-2F-fzl" id="Hpe-30-eoF"/>
                         <outlet property="orderStrawberryButton" destination="avd-o5-3JM" id="yES-Ei-iNL"/>
                         <outlet property="orderkiwiButton" destination="wcW-7H-RXw" id="iPh-pb-uxw"/>
-                        <outlet property="pineappleNumber" destination="ccQ-Dk-PuY" id="OQe-0D-yFk"/>
-                        <outlet property="strawberryNumber" destination="Qas-vP-td6" id="VQo-tg-irs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

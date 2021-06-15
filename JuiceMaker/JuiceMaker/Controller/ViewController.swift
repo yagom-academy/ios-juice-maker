@@ -92,7 +92,21 @@ extension ViewController {
             result = .failure(description: message)
         }
         
+        self.present(generateAlert(by: result), animated: true, completion: nil)
     }
  
+    func generateAlert(by result: JuiceMaker.JuiceMakingResult) -> UIAlertController {
+        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        switch result {
+        case .success(let message):
+            alert.message = message
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        case .failure(let message):
+            alert.message = message
+            alert.addAction(UIAlertAction(title: "예", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: nil))
+        }
+        return alert
+    }
 }
 
