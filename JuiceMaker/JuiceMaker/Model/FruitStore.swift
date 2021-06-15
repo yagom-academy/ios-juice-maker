@@ -41,7 +41,7 @@ class FruitStore {
         inventory[fruit] = numberOfFruitExist - number
     }
     
-    private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
+    func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
         guard let numberOfFruitExist = inventory[fruit] else {
             throw InventoryManagementError.inventoryError(description: InventoryManagementError.fruitThatDoesNotExistMessage)
         }

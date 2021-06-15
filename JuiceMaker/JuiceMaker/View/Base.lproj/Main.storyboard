@@ -217,6 +217,13 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaNumber" destination="gvk-pA-Lw5" id="ufi-nf-1GA"/>
+                        <outlet property="kiwiNumber" destination="FZq-de-TJG" id="fjn-dC-LS7"/>
+                        <outlet property="mangoNumber" destination="3Ce-SU-JeH" id="VaN-t2-7mx"/>
+                        <outlet property="pineappleNumber" destination="ccQ-Dk-PuY" id="OQe-0D-yFk"/>
+                        <outlet property="strawberryNumber" destination="Qas-vP-td6" id="VQo-tg-irs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -387,7 +394,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="901"/>
+            <point key="canvasLocation" x="1613" y="900"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
@@ -405,7 +412,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="21"/>
+            <point key="canvasLocation" x="1613" y="20"/>
         </scene>
     </scenes>
     <resources>
