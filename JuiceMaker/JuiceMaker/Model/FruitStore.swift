@@ -3,7 +3,6 @@
 //  Created by yagom. 
 //  Copyright © yagom. All rights reserved.
 // 
-
 import Foundation
 
 enum Fruit: CaseIterable{
@@ -12,6 +11,7 @@ enum Fruit: CaseIterable{
 
 enum FruitError: Error {
     case outOfStock
+    case outOfStockWhenMakeFruits
 }
 
 class FruitStore {
@@ -22,16 +22,19 @@ class FruitStore {
             increaseStock(fruit: fruit, count: 10)
         }
     }
-    
-    public func increaseStock(fruit: Fruit, count: Int) {
-        guard let stock = fruitStock[fruit] else { return }
-        fruitStock[fruit] = stock + count
+    public func getStockAmount(fruit: Fruit) -> Int {
+        return fruitStock[fruit] ?? 0
     }
     
-    public func usingFruits(fruit: Fruit, needs: Int) {
+    public func increaseStock(fruit: Fruit, count: Int) {
+        let stock = fruitStock[fruit] ?? 0
+        fruitStock[fruit] = (fruitStock[fruit] ?? 0) + count
+    }
+
+    func usingFruits(fruit: Fruit, needs: Int) throws {
         guard let stock = fruitStock[fruit] else { return }
         if stock < needs {
-            print("재고가 부족합니다. 재고를 추가할까요?")
+            throw FruitError.outOfStock
         } else {
             fruitStock[fruit] = stock - needs
         }
