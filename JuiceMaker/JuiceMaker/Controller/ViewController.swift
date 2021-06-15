@@ -77,14 +77,16 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    func moveToNavigationController(action: UIAlertAction) {
+        guard let stockManagerNC = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNC") else {
+            return
+        }
+        
+        self.present(stockManagerNC, animated: true)
+    }
+    
     func orderJuice(of juice: Juice) {
-        showConfirm(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?" , yesHandler: { _ in
-            guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNC") else {
-                return
-            }
-            
-            self.present(uvc, animated: true)
-        })
+//        showConfirm(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?" , yesHandler: moveToNavigationController)
     }
     
     // MARK: - IBAction
