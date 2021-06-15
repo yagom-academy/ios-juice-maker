@@ -17,6 +17,9 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(successAlert(_:)), name: Notification.Name(rawValue: "successAlert"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(failAlert), name: Notification.Name(rawValue: "failAlert"), object: nil)
     }
     
     @IBAction func juiceOrder(_ sender: UIButton) {
@@ -29,14 +32,19 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    func successAlert() {
-        let alert = UIAlertController(title: "*** 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
+    @objc func successAlert(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else { print("userInfo에러"); return
+        }
+        guard let anyType = userInfo["쥬스이름"], let juiceName = anyType as? String else { print("anyType에러"); return
+        }
+        
+        let alert = UIAlertController(title: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "감사합니다.", style: .default)
         alert.addAction(confirmAction)
         present(alert, animated: true, completion: nil)
     }
     
-    func failAlert() {
+    @objc func failAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default){ _ in print("예 선택")}
         let cancelAction = UIAlertAction(title: "아니오", style: .default){ _ in print("아니오 선택")}

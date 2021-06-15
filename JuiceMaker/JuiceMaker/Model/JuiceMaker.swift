@@ -17,9 +17,9 @@ struct JuiceMaker {
             for (fruit, removingQuantity) in juice.ingredients {
                 store.changeStock(fruit, removingQuantity)
             }
-            // success notification (juice.description)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "successAlert"), object: nil, userInfo: ["쥬스이름": juice.description])
         } catch {
-            // fail notification (juice.description)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "failAlert"), object: nil)
         }
     }
     
