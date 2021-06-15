@@ -19,7 +19,7 @@ class FruitStore {
         }
     }
     
-    private func getStocks(of fruit: Fruit) throws -> UInt {
+   func getStocks(of fruit: Fruit) throws -> UInt {
         guard let fruitStock = fruitStocks[fruit] else {
             throw JuiceMakerError.invaildAccess
         }

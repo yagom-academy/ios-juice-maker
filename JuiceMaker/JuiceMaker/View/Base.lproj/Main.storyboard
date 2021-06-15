@@ -145,22 +145,22 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Pnn-0B-qbM">
                                         <rect key="frame" x="0.0" y="80.666666666666657" width="806" height="72.666666666666657"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-e6-NWs">
-                                                <rect key="frame" x="0.0" y="0.0" width="312.66666666666669" height="72.666666666666671"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM">
+                                                <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="72.666666666666671"/>
+                                                <color key="backgroundColor" name="AccentColor"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <state key="normal" title="딸기쥬스 주문">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="orderStrawberryJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bcd-dq-1U9"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-e6-NWs">
+                                                <rect key="frame" x="223.66666666666669" y="0.0" width="89" height="72.666666666666671"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="148.33333333333334" height="72.666666666666671"/>
-                                                        <color key="backgroundColor" name="AccentColor"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="딸기쥬스 주문">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="orderStrawberryJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bcd-dq-1U9"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
-                                                        <rect key="frame" x="164.33333333333331" y="0.0" width="148.33333333333331" height="72.666666666666671"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="89" height="72.666666666666671"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <state key="normal" title="바나나쥬스 주문">
@@ -244,12 +244,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="vYT-3O-m26"/>
+                        <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="riD-al-lYj"/>
                         <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="ZVU-tg-mPV"/>
+                        <outlet property="kiwiLabel" destination="FZq-de-TJG" id="IkY-mP-B5O"/>
                         <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="c5b-S4-NUO"/>
                         <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="ywr-gC-e1e"/>
+                        <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="huP-2g-XXo"/>
                         <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="sCu-QY-ULP"/>
+                        <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="KAh-SC-9tS"/>
                         <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="IwP-z6-8yh"/>
                         <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="bkx-fw-Jqw"/>
+                        <outlet property="strawberryLabel" destination="Qas-vP-td6" id="fdX-Dl-lm7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

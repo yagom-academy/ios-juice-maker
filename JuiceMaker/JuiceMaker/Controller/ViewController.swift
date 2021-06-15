@@ -7,7 +7,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    private var juiceMaker: JuiceMaker!
+    private var labelList: [Fruit: UILabel]!
     // MARK: - IBOutlet
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
@@ -17,12 +18,43 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceButton: UIButton!
     @IBOutlet weak var mangoJuiceButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var strawberryLabel: UILabel!
+    @IBOutlet weak var bananaLabel: UILabel!
+    @IBOutlet weak var pineappleLabel: UILabel!
+    @IBOutlet weak var kiwiLabel: UILabel!
+    @IBOutlet weak var mangoLabel: UILabel!
     
     // MARK: - Method
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let fruitStore = FruitStore()
+        juiceMaker = JuiceMaker(fruitStore: fruitStore)
+//        initLabelList()
+//        initLabelsText(of: fruitStore)
+    }
+    
+    func initLabelList() {
+        labelList[.strawberry] = strawberryLabel
+        labelList[.banana] = bananaLabel
+        labelList[.pineapple] = pineappleLabel
+        labelList[.kiwi] = kiwiLabel
+        labelList[.mango] = mangoLabel
+    }
+    
+    func initLabelsText(of fruitStore: FruitStore) {
+        do {
+            let fruitList = Fruit.makeFruitList()
+            for fruit in fruitList {
+                let fruitStock = try fruitStore.getStocks(of: fruit)
+                if let uiLabel = labelList[fruit] {
+                    uiLabel.text = "\(fruitStock)"
+                }
+            }
+        } catch {
+            
+        }
+    }
+    
     func showAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title,
                                       message: message,
