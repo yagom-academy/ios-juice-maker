@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		275335542677B2420053B822 /* StockChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275335532677B2420053B822 /* StockChangeViewController.swift */; };
+		275335572677BCE30053B822 /* StockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275335562677BCE30053B822 /* StockLabel.swift */; };
 		27C293922675249D00BE2124 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C293912675249D00BE2124 /* JuiceMakerError.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		275335532677B2420053B822 /* StockChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChangeViewController.swift; sourceTree = "<group>"; };
+		275335562677BCE30053B822 /* StockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLabel.swift; sourceTree = "<group>"; };
 		27C293912675249D00BE2124 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		275335552677BCC70053B822 /* CustomClass */ = {
+			isa = PBXGroup;
+			children = (
+				275335562677BCE30053B822 /* StockLabel.swift */,
+			);
+			path = CustomClass;
+			sourceTree = "<group>";
+		};
 		27C293902675249100BE2124 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				275335552677BCC70053B822 /* CustomClass */,
 				27C293902675249100BE2124 /* Error */,
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
@@ -188,6 +199,7 @@
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				275335542677B2420053B822 /* StockChangeViewController.swift in Sources */,
+				275335572677BCE30053B822 /* StockLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
