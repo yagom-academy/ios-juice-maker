@@ -65,8 +65,26 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func showConfirm(title: String?, message: String?, yesHandler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: yesHandler)
+        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true)
+    }
+    
     func orderJuice(of juice: Juice) {
-        showAlert(title: "주문완료", message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!")
+        showConfirm(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?" , yesHandler: { _ in
+            guard let uvc = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNC") else {
+                return
+            }
+            
+            self.present(uvc, animated: true)
+        })
     }
     
     // MARK: - IBAction
