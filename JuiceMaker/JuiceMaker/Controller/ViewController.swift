@@ -8,7 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private var juiceMaker: JuiceMaker!
-    private var labelList: [Fruit: UILabel]!
+    private var labelList = [Fruit: UILabel]()
     // MARK: - IBOutlet
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
@@ -29,8 +29,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let fruitStore = FruitStore()
         juiceMaker = JuiceMaker(fruitStore: fruitStore)
-//        initLabelList()
-//        initLabelsText(of: fruitStore)
+        initLabelList()
+        initLabelsText(of: fruitStore)
     }
     
     func initLabelList() {
