@@ -130,7 +130,7 @@
                                                 <rect key="frame" x="328.66666666666669" y="0.0" width="313.00000000000006" height="72.666666666666671"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <state key="normal" title="딸바쥬스 주문">
+                                                <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -146,7 +146,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="148.33333333333334" height="72.666666666666671"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="딸바쥬스 주문">
+                                                        <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
@@ -221,6 +221,13 @@
                         <outlet property="bananaNumber" destination="gvk-pA-Lw5" id="ufi-nf-1GA"/>
                         <outlet property="kiwiNumber" destination="FZq-de-TJG" id="fjn-dC-LS7"/>
                         <outlet property="mangoNumber" destination="3Ce-SU-JeH" id="VaN-t2-7mx"/>
+                        <outlet property="orderBananaButton" destination="y2A-PH-DJY" id="1Xd-Sq-eI6"/>
+                        <outlet property="orderMangoButton" destination="q6G-4X-bVm" id="GkB-Ym-CXV"/>
+                        <outlet property="orderMangoKiwiButton" destination="ngP-kF-Yii" id="EOM-FC-Nx5"/>
+                        <outlet property="orderPineAppleButton" destination="BFb-ka-wGA" id="sHa-i9-jCH"/>
+                        <outlet property="orderStrawberryBananaButton" destination="hrc-2F-fzl" id="Hpe-30-eoF"/>
+                        <outlet property="orderStrawberryButton" destination="avd-o5-3JM" id="yES-Ei-iNL"/>
+                        <outlet property="orderkiwiButton" destination="wcW-7H-RXw" id="iPh-pb-uxw"/>
                         <outlet property="pineappleNumber" destination="ccQ-Dk-PuY" id="OQe-0D-yFk"/>
                         <outlet property="strawberryNumber" destination="Qas-vP-td6" id="VQo-tg-irs"/>
                     </connections>
