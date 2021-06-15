@@ -7,9 +7,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    // MARK: - Properties
     private var juiceMaker: JuiceMaker!
     private var labelList = [Fruit: UILabel]()
-    // MARK: - IBOutlet
+    
+    // MARK: - IBOutlets - UIButton
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     @IBOutlet weak var strawberryJuiceButton: UIButton!
@@ -18,13 +20,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceButton: UIButton!
     @IBOutlet weak var mangoJuiceButton: UIButton!
     
+    // MARK: - IBOutlets - UILabel
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    // MARK: - Method
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         let fruitStore = FruitStore()
@@ -51,7 +54,7 @@ class ViewController: UIViewController {
                 }
             }
         } catch {
-            
+            fatalError("유효하지 않은 접근입니다.")
         }
     }
     
@@ -90,37 +93,19 @@ class ViewController: UIViewController {
             try juiceMaker.makeJuice(juice: juice)
             updateLabelsText(of: juiceMaker.getFruitStore())
             showAlert(title: "주문 완료", message: JuiceMaker.Message.completeMakingJuice(on: juice))
+        } catch JuiceMakerError.outOfStock {
+            showConfirm(title: "재고부족", message: JuiceMaker.Message.outOfStock, yesHandler: moveToNavigationController)
         } catch {
-            
+            fatalError("유효하지 않은 접근입니다.")
         }
     }
     
-    // MARK: - IBAction
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        orderJuice(of: .strawberryBanana)
-    }
-    
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        orderJuice(of: .mangoKiwi)
-    }
-    
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        orderJuice(of: .strawberry)
-    }
-    
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
-        orderJuice(of: .banana)
-    }
-    
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        orderJuice(of: .pineapple)
-    }
-    
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        orderJuice(of: .kiwi)
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
-        orderJuice(of: .mango)
-    }
+    // MARK: - IBActions
+    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) { orderJuice(of: .strawberryBanana) }
+    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) { orderJuice(of: .mangoKiwi) }
+    @IBAction func orderStrawberryJuice(_ sender: UIButton) { orderJuice(of: .strawberry) }
+    @IBAction func orderBananaJuice(_ sender: UIButton) { orderJuice(of: .banana) }
+    @IBAction func orderPineappleJuice(_ sender: UIButton) { orderJuice(of: .pineapple) }
+    @IBAction func orderKiwiJuice(_ sender: UIButton) { orderJuice(of: .kiwi) }
+    @IBAction func orderMangoJuice(_ sender: UIButton) { orderJuice(of: .mango) }
 }
