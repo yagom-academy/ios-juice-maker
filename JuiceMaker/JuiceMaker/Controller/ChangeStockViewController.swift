@@ -29,4 +29,12 @@ class ChangeStockViewController: ViewController {
             return
         }
     }
+    
+    @IBAction func changeFruitStock(_ sender: UIStepper) {
+        guard let fruitName = sender.restorationIdentifier, let fruit = Fruit(rawValue: fruitName) else {
+            return
+        }
+        juiceMaker.fruitStore.fruits[fruit] = Int(sender.value)
+        updateStockLabels()
+    }
 }
