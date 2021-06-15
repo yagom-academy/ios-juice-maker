@@ -45,7 +45,6 @@ struct JuiceMaker {
     func order(juice: Juice) throws {
         try checkStock(of: juice)
         try blend(juice: juice)
-        print(juice.menu)
     }
 
     func checkStock(of juice: Juice) throws {

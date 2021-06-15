@@ -8,11 +8,23 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    enum JuiceError: Error {
+        case invalidJuiceOrder
+    }
+    
     @IBOutlet weak var strawberryStock: UILabel!
     @IBOutlet weak var bananaStock: UILabel!
     @IBOutlet weak var pineappleStock: UILabel!
     @IBOutlet weak var kiwiStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
+    
+    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var strawberryJuiceButton: UIButton!
+    @IBOutlet weak var bananaJuiceButton: UIButton!
+    @IBOutlet weak var pineappleJuiceButton: UIButton!
+    @IBOutlet weak var kiwiJuiceButton: UIButton!
+    @IBOutlet weak var mangoJuiceButton: UIButton!
     
     let fruitStore = FruitStore.shared
     
@@ -31,13 +43,35 @@ class ViewController: UIViewController {
         }
         label.text = String(initialStock)
     }
+    
+    func findJuiceMenu(from sender: UIButton) throws -> Juice {
+        switch sender {
+        case strawberryBananaJuiceButton:
+            return .strawberryBananaJuice
+        case mangoKiwiJuiceButton:
+            return .mangoKiwiJuice
+        case strawberryJuiceButton:
+            return .strawberryJuice
+        case bananaJuiceButton:
+            return .bananaJuice
+        case pineappleJuiceButton:
+            return .pineappleJuice
+        case kiwiJuiceButton:
+            return .kiwiJuice
+        case mangoJuiceButton:
+            return .mangoJuice
+        default:
+            throw JuiceError.invalidJuiceOrder
+        }
+    }
 
-    @IBAction func strawberryBananaTapped(_ sender: Any) {
+    @IBAction func juiceButtonTapped(_ sender: UIButton) {
         let juiceMaker = JuiceMaker()
 
         do {
-            try juiceMaker.order(juice: .strawberryBananaJuice)
-            showJuiceIsReadyAlert(message: "딸바쥬스 나왔습니다!")
+            let juice = try findJuiceMenu(from: sender)
+            try juiceMaker.order(juice: juice)
+            showJuiceIsReadyAlert(message: "\(juice.menu)쥬스 나왔습니다! 맛있게 드세요!")
         } catch {
             // alert
             showJuiceIsReadyAlert(message: "재고 부족입니다!")
