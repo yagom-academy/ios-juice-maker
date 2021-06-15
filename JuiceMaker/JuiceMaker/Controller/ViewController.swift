@@ -95,9 +95,14 @@ class ViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
     func navigateToFruitStore() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let fruitStoreViewController = storyboard.instantiateViewController(withIdentifier: "fruitStore") as! FruitStoreViewController
-        self.present(fruitStoreViewController, animated: true, completion: nil)
+        guard let fruitStoreNavigationController = self.storyboard?.instantiateViewController(
+                withIdentifier: "fruitStoreNavigationController"
+        ) else {
+            return
+        }
+        
+        self.present(fruitStoreNavigationController, animated: true, completion: nil)
     }
 }
