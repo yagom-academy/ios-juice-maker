@@ -37,4 +37,8 @@ class ChangeStockViewController: ViewController {
         juiceMaker.fruitStore.fruits[fruit] = Int(sender.value)
         updateStockLabels()
     }
+    
+    @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }
