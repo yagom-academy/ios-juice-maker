@@ -7,14 +7,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    let juiceMaker = JuiceMaker()
+    
+    @IBOutlet weak var strawberryStock: UILabel!
+    @IBOutlet weak var bananaStock: UILabel!
+    @IBOutlet weak var pineappleStock: UILabel!
+    @IBOutlet weak var kiwiStock: UILabel!
+    @IBOutlet weak var mangoStock: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        currentStockOfFruits()
         // Do any additional setup after loading the view.
     }
     
-    let juiceMaker = JuiceMaker()
+    func currentStockOfFruits() {
+        strawberryStock.text = "\(juiceMaker.fruitStore.getStock(of: .strawberry))"
+        bananaStock.text = "\(juiceMaker.fruitStore.getStock(of: .banana))"
+        pineappleStock.text = "\(juiceMaker.fruitStore.getStock(of: .pineapple))"
+        kiwiStock.text = "\(juiceMaker.fruitStore.getStock(of: .kiwi))"
+        mangoStock.text = "\(juiceMaker.fruitStore.getStock(of: .mango))"
+    }
     
     @IBAction func touchUpModifyStock(_ sender: UIBarButtonItem) {
         guard let moveIntoModifyStock = self.storyboard?.instantiateViewController(withIdentifier: "storage") else { return }
@@ -45,6 +58,7 @@ class ViewController: UIViewController {
         guard let selectMenu = selectMenu else { return }
         do {
             try juiceMaker.makeJuice(of: selectMenu)
+                currentStockOfFruits()
                 alertMessage(Juice: selectMenu , makeJuice: true)
             } catch ErrorCase.outOfStock {
                 alertMessage(Juice: selectMenu, makeJuice: false)
