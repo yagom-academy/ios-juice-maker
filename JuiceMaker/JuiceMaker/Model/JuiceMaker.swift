@@ -6,14 +6,14 @@
 
 import Foundation
 
-enum JuiceMenu {
-	case strawberryJuice
-	case bananaJuice
-	case kiwiJuice
-	case mangoJuice
-	case pineappleJuice
-	case strawNanaJuice
-	case mangoKiwiJuice
+enum JuiceMenu: String {
+	case strawberryJuice = "딸기쥬스"
+	case bananaJuice = "바나나쥬스"
+	case kiwiJuice = "키위쥬스"
+	case mangoJuice = "망고쥬스"
+	case pineappleJuice = "파인애플쥬스"
+	case strawNanaJuice = "딸바쥬스"
+	case mangoKiwiJuice = "망키쥬스"
 	
 	var recipe:[(Fruit, Int)] {
 		switch self {
@@ -44,45 +44,45 @@ enum Fruit: String, CaseIterable {
 }
 
 struct JuiceMaker {
-    
-    enum ErrorList: Error {
-        case lackOfStock
-    }
 	
-	private var fruitStores =  [FruitStore]()
+	enum ErrorList: Error {
+		case lackOfStock
+	}
+	
+	var fruitStores = [FruitStore]()
 	
 	init(){
 		for fruit in Fruit.allCases {
 			fruitStores.append(FruitStore(storeName: fruit))
 		}
 	}
-    
-    func orderJuice(menu: JuiceMenu) throws -> Bool {
-    
-        try checkJuiceMakable(recipes: menu.recipe)
-        
-        menu.recipe.forEach{ (fruit, amount) in
-            let targetStore = findFruitStore(fruitName: fruit)
-            
-            targetStore.setStock(amount: -amount)
-        }
-        
-        return true
-    }
+	
+	func orderJuice(menu: JuiceMenu) throws -> Bool {
+	
+		try checkJuiceMakable(recipes: menu.recipe)
+		
+		menu.recipe.forEach{ (fruit, amount) in
+			let targetStore = findFruitStore(fruitName: fruit)
+			
+			targetStore.setStock(amount: -amount)
+		}
+		
+		return true
+	}
 	
 	private func checkJuiceMakable(recipes: [(Fruit, Int)]) throws {
 		let checkedRecipes = recipes.filter{ recipe in
 			checkFruitAmountAbout(recipe: recipe)
 		}
-        
-        guard recipes.count == checkedRecipes.count else {
-            throw ErrorList.lackOfStock
-        }
+		
+		guard recipes.count == checkedRecipes.count else {
+			throw ErrorList.lackOfStock
+		}
 	}
 	
 	private func checkFruitAmountAbout(recipe: (name: Fruit, amount: Int)) -> Bool {
 		
-        let store = findFruitStore(fruitName: recipe.name)
+		let store = findFruitStore(fruitName: recipe.name)
 		
 		if recipe.amount <= store.stock {
 			return true
@@ -94,16 +94,10 @@ struct JuiceMaker {
 	private func findFruitStore(fruitName: Fruit) -> FruitStore {
 		
 		let targetStore = fruitStores.filter{ store in
-            store.name == fruitName
-        }
+			store.name == fruitName
+		}
 		
 		return targetStore[0]
 	}
 }
-
-
-
-
-
-
 
