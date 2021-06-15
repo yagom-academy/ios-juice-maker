@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom.
+//  Created by EHD, Soll.
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -17,6 +17,8 @@ struct JuiceMaker {
         case mango
         case mangoKiwi
     }
+    
+    let fruitStore = FruitStore()
     
     func defaultJuiceRecipe(juiceMenu: Menu) -> [FruitStore.Fruit: UInt]{
         switch juiceMenu {
@@ -57,7 +59,6 @@ struct JuiceMaker {
     }
     
     func makeJuice(menu: Menu) {
-        let fruitStore = FruitStore()
         let userMenuRecipe = defaultJuiceRecipe(juiceMenu: menu)
         
         if isJuiceAvailable(menu: menu) {
