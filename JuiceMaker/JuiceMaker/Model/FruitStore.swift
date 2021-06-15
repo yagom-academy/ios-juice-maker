@@ -36,7 +36,7 @@ class FruitStore {
     func minusStock(of fruit: Fruit, count: UInt) throws {
         let fruitStock = try getStocks(of: fruit)
         
-        guard fruitStock > count else {
+        guard fruitStock >= count else {
             throw JuiceMakerError.invaildStockCount
         }
         
@@ -54,6 +54,6 @@ class FruitStore {
     func hasEnoughStock(of recipe: JuiceRecipe) throws -> Bool {
         let (fruit, count) = recipe
         let fruitStock = try getStocks(of: fruit)
-        return fruitStock > count
+        return fruitStock >= count
     }
 }

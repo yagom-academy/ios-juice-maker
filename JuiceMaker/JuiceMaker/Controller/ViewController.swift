@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         let fruitStore = FruitStore()
         juiceMaker = JuiceMaker(fruitStore: fruitStore)
         initLabelList()
-        initLabelsText(of: fruitStore)
+        updateLabelsText(of: fruitStore)
     }
     
     func initLabelList() {
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         labelList[.mango] = mangoLabel
     }
     
-    func initLabelsText(of fruitStore: FruitStore) {
+    func updateLabelsText(of fruitStore: FruitStore) {
         do {
             let fruitList = Fruit.makeFruitList()
             for fruit in fruitList {
@@ -86,7 +86,13 @@ class ViewController: UIViewController {
     }
     
     func orderJuice(of juice: Juice) {
-//        showConfirm(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?" , yesHandler: moveToNavigationController)
+        do {
+            try juiceMaker.makeJuice(juice: juice)
+            updateLabelsText(of: juiceMaker.getFruitStore())
+            showAlert(title: "주문 완료", message: JuiceMaker.Message.completeMakingJuice(on: juice))
+        } catch {
+            
+        }
     }
     
     // MARK: - IBAction
