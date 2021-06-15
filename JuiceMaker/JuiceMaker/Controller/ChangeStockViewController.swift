@@ -16,6 +16,7 @@ class ChangeStockViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setStepperInitialValue()
     }
     
     func setStepperInitialValue() {
