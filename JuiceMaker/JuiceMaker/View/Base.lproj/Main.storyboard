@@ -12,7 +12,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="JuiceMakerViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -244,17 +244,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="A0b-8V-RB9"/>
-                        <outlet property="bananaStock" destination="gvk-pA-Lw5" id="q8I-Bu-sPW"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="q8I-Bu-sPW"/>
                         <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="kEg-Rx-vMY"/>
-                        <outlet property="kiwiStock" destination="FZq-de-TJG" id="lRy-M3-ivp"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="lRy-M3-ivp"/>
                         <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="jOU-HJ-pPM"/>
                         <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="GwE-sX-TOT"/>
-                        <outlet property="mangoStock" destination="3Ce-SU-JeH" id="pTs-6Z-Rn6"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="pTs-6Z-Rn6"/>
                         <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="ctC-Eb-R59"/>
-                        <outlet property="pineappleStock" destination="ccQ-Dk-PuY" id="bgi-55-Gfq"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="bgi-55-Gfq"/>
                         <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="9Qp-ci-EVu"/>
                         <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="SxC-Ur-qtM"/>
-                        <outlet property="strawberryStock" destination="Qas-vP-td6" id="1aw-YP-H63"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="1aw-YP-H63"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

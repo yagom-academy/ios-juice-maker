@@ -6,17 +6,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     
     enum JuiceError: Error {
         case invalidJuiceOrder
     }
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
     
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
@@ -30,11 +30,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setInitialStock(of: .strawberry, label: strawberryStock)
-        setInitialStock(of: .banana, label: bananaStock)
-        setInitialStock(of: .pineapple, label: pineappleStock)
-        setInitialStock(of: .kiwi, label: kiwiStock)
-        setInitialStock(of: .mango, label: mangoStock)
+        setInitialStock(of: .strawberry, label: strawberryStockLabel)
+        setInitialStock(of: .banana, label: bananaStockLabel)
+        setInitialStock(of: .pineapple, label: pineappleStockLabel)
+        setInitialStock(of: .kiwi, label: kiwiStockLabel)
+        setInitialStock(of: .mango, label: mangoStockLabel)
     }
 
     func setInitialStock(of fruit: Fruit, label: UILabel) {
