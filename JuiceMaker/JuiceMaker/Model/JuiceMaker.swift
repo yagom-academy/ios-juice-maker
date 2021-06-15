@@ -43,10 +43,11 @@ struct JuiceMaker {
         }
     }
     
-    enum JuiceMakingResult {
-        fileprivate static let completeOrderMessage = " 나왔습니다! 맛있게 드세요!"
+    enum JuiceMakingError {
         fileprivate static let unknownErrorMessage = "알 수 없는 문제로 쥬스를 만들지 못했습니다!"
-
+    }
+    
+    enum JuiceMakingResult {
         case success(message: String)
         case failure(description: String)
     }
@@ -59,11 +60,13 @@ struct JuiceMaker {
         
         do {
             try fruitStore.consumeStocks(recipes)
-            outcomeCreated = .success(message: "\(menuName)\(JuiceMakingResult.completeOrderMessage)")
+            
+            let completeOrderMessage = " 나왔습니다! 맛있게 드세요!"
+            outcomeCreated = .success(message: "\(menuName)\(completeOrderMessage)")
         } catch FruitStore.InventoryManagementError.inventoryError(let message) {
             outcomeCreated = .failure(description: message)
         } catch {
-            outcomeCreated = .failure(description: JuiceMakingResult.unknownErrorMessage)
+            outcomeCreated = .failure(description: JuiceMakingError.unknownErrorMessage)
         }
         return outcomeCreated
     }
