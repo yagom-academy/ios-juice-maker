@@ -6,6 +6,7 @@
 
 import UIKit
 
+//MARK:- 저장 프로퍼티 및 라이프사이클
 class ViewController: UIViewController {
     @IBOutlet var numberOfStrawberry: UILabel!
     @IBOutlet var numberOfBanana: UILabel!
@@ -22,6 +23,16 @@ class ViewController: UIViewController {
     @IBOutlet var orderMangoKiwiButton: UIButton!
     
     var juiceMaker = JuiceMaker(fruitStore: FruitStore())
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showInitialNumberOnLabel()
+        setUpTargetActionOnButtons()
+    }
+}
+
+//MARK:- 레이블과 버튼 셋팅
+extension ViewController {
     
     func takeInitialNumber(of fruit: Fruit) -> Int {
         var initialNumber: Int
@@ -45,12 +56,6 @@ class ViewController: UIViewController {
         setUp(number: takeInitialNumber(of: .kiwi), on: numberOfKiwi)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        showInitialNumberOnLabel()
-        setUpTargetActionOnButtons()
-    }
-    
     func setUpTargetActionOnButtons() {
         orderStrawberryButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
         orderBananaButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
@@ -60,6 +65,10 @@ class ViewController: UIViewController {
         orderStrawberryBananaButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
         orderMangoKiwiButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
     }
+}
+
+//MARK:- 쥬스 주문 관련
+extension ViewController {
     
     @objc func orderJuice(_ sender: UIButton) {
         let result: JuiceMaker.JuiceMakingResult
