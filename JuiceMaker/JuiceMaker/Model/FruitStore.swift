@@ -22,7 +22,7 @@ class FruitStore {
     static let shared = FruitStore()
     
     private let defaultStock: Int = 10
-    private var fruitStock: [HandlingFruit: Int] = [: ]
+    private(set) var fruitStock: [HandlingFruit: Int] = [: ]
     
     private init() {
         fruitStock = HandlingFruit.allCases.reduce(into: [: ]) { fruitStock, HandlingFruit in
@@ -31,7 +31,7 @@ class FruitStore {
     }
     
     func changeFruitStock(fruit: HandlingFruit, amount: Int) {
-            fruitStock[fruit] = amount
+        fruitStock[fruit] = amount
     }
     
     func useFruitToMakeJuice(ingredients: [HandlingFruit: Int]) {

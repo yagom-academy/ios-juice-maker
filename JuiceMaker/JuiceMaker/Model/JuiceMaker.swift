@@ -6,36 +6,36 @@
 
 import Foundation
 
-struct JuiceMaker {
-    enum JuiceMenu {
-        case strawberry
-        case banana
-        case kiwi
-        case fineapple
-        case strawberryBanana
-        case mango
-        case mangoKiwi
-        
-        var recipe: [HandlingFruit: Int] {
-            switch self {
-            case .strawberry:
-                return [.strawberry: 16]
-            case .banana:
-                return [.banana: 10]
-            case .kiwi:
-                return [.kiwi: 3]
-            case .fineapple:
-                return [.fineapple: 2]
-            case .strawberryBanana:
-                return [.strawberry: 10, .banana: 1]
-            case .mango:
-                return [.mango: 3]
-            case .mangoKiwi:
-                return [.mango: 2, .kiwi: 1]
-            }
+enum JuiceMenu: Int {
+    case strawberry = 1
+    case banana = 2
+    case kiwi = 3
+    case fineapple = 4
+    case strawberryBanana = 5
+    case mango = 6
+    case mangoKiwi = 7
+    
+    var recipe: [HandlingFruit: Int] {
+        switch self {
+        case .strawberry:
+            return [.strawberry: 16]
+        case .banana:
+            return [.banana: 10]
+        case .kiwi:
+            return [.kiwi: 3]
+        case .fineapple:
+            return [.fineapple: 2]
+        case .strawberryBanana:
+            return [.strawberry: 10, .banana: 1]
+        case .mango:
+            return [.mango: 3]
+        case .mangoKiwi:
+            return [.mango: 2, .kiwi: 1]
         }
     }
-    
+}
+
+struct JuiceMaker {
     private let store: FruitStore = FruitStore.shared
     
     func makeJuice(menu: JuiceMenu) {
@@ -51,5 +51,9 @@ struct JuiceMaker {
         } catch {
             print("Invalid Error")
         }
+    }
+    
+    func updateFruitStore() -> [HandlingFruit: Int] {
+        return self.store.fruitStock
     }
 }

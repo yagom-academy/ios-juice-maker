@@ -8,13 +8,21 @@ import UIKit
 import Foundation
 
 class ViewController: UIViewController {
-
+    let juiceMaker = JuiceMaker()
+    
+    @IBAction func clickOrderButton(_ sender: UIButton) {
+        guard let orderJuice: JuiceMenu = JuiceMenu.init(rawValue: sender.tag) else { return }
+        juiceMaker.makeJuice(menu: orderJuice)
+        updateFruitStock()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let juiceMaker = JuiceMaker()
-        juiceMaker.makeJuice(menu: .banana)
-        juiceMaker.makeJuice(menu: .strawberryBanana)
-        juiceMaker.makeJuice(menu: .kiwi)
+        updateFruitStock()
+    }
+    
+    func updateFruitStock() {
+        print(juiceMaker.updateFruitStore())
+        
     }
 }
