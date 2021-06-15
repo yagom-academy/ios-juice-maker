@@ -57,7 +57,7 @@ struct JuiceMaker {
 		}
 	}
 	
-	func orderJuice(menu: JuiceMenu) throws -> Bool {
+	func orderJuice(menu: JuiceMenu) throws {
 	
 		try checkJuiceMakable(recipes: menu.recipe)
 		
@@ -66,8 +66,6 @@ struct JuiceMaker {
 			
 			targetStore.setStock(amount: -amount)
 		}
-		
-		return true
 	}
 	
 	private func checkJuiceMakable(recipes: [(Fruit, Int)]) throws {
