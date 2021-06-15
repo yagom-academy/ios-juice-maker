@@ -42,8 +42,8 @@ struct JuiceMaker {
         }
     }
     
-    let fruitstore = FruitStore()
-    
+    private let fruitstore = FruitStore()
+  
     func makeJuice(recipe: JuiceRecipe) throws {
         for (fruit, amount) in recipe.recipeIngredients {
             do {
