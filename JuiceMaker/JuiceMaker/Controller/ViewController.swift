@@ -14,20 +14,30 @@ class ViewController: UIViewController {
     @IBOutlet var mangoNumber: UILabel!
     var juiceMaker = JuiceMaker(fruitStore: FruitStore())
     
-    func takeInitialNumber(of fruit: Fruit) -> String {
-        var initialNumber: String
+    func takeInitialNumber(of fruit: Fruit) -> Int {
+        var initialNumber: Int
         do {
-            let fruitNumber = try juiceMaker.fruitStore.giveBackNumberIfExist(of: fruit)
-            initialNumber = String(fruitNumber)
+           initialNumber = try juiceMaker.fruitStore.giveBackNumberIfExist(of: fruit)
         } catch {
-            initialNumber = "0"
+            initialNumber = 0
         }
         return initialNumber
     }
     
+    func setUp(number: Int, on label: UILabel) {
+        label.text = String(number)
+    }
+    
+    func showInitialNumberOnLabel() {
+        setUp(number: takeInitialNumber(of: .strawberry), on: strawberryNumber)
+        setUp(number: takeInitialNumber(of: .banana), on: bananaNumber)
+        setUp(number: takeInitialNumber(of: .mango), on: mangoNumber)
+        setUp(number: takeInitialNumber(of: .pineapple), on: pineappleNumber)
+        setUp(number: takeInitialNumber(of: .kiwi), on: kiwiNumber)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        showInitialNumberOnLabel()
     }
  
 }
