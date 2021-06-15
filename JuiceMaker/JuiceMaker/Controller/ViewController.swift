@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func strawberryJuiceButton(_ sender: UIButton) {
+    @IBAction func strawberryJuiceButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryJuice)
             strawberryStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .strawberry))
