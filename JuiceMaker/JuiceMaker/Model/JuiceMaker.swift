@@ -22,8 +22,7 @@ struct JuiceMaker {
         case .strawberryBanana:
             try fruitStore.decreaseStock(firstFruitAmount: 10, firstFruit: fruitStore.strawberry, secondFruitAmount: 1, secondFruit: fruitStore.banana)
         case .mangoKiwi:
-            try fruitStore.decreaseStock(firstFruitAmount: 2, firstFruit: fruitStore.mango, secondFruitAmount: 3, secondFruit: fruitStore.kiwi)
-            try fruitStore.decreaseStock(amount: 1, fruit: fruitStore.kiwi)
+            try fruitStore.decreaseStock(firstFruitAmount: 2, firstFruit: fruitStore.mango, secondFruitAmount: 1, secondFruit: fruitStore.kiwi)
         case .strawberry:
             try fruitStore.decreaseStock(amount: 16, fruit: fruitStore.strawberry)
         case .banana:

@@ -86,10 +86,9 @@ class FixStockViewController: UIViewController {
         pineappleStepper.minimumValue -= Double(fruitStore.pineapple.stock)
         kiwiStepper.minimumValue -= Double(fruitStore.kiwi.stock)
         mangoStepper.minimumValue -= Double(fruitStore.mango.stock)
-        
-        func stepper(stepper: UIStepper) {
-            stepper.wraps = false
-            stepper.autorepeat = true
-        }
+    }
+    func stepper(stepper: UIStepper) {
+        stepper.wraps = false
+        stepper.autorepeat = true
     }
 }
