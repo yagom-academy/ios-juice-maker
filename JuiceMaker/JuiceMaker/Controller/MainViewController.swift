@@ -20,6 +20,11 @@ class MainViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(successAlert(_:)), name: Notification.Name(rawValue: "successAlert"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(failAlert), name: Notification.Name(rawValue: "failAlert"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUILabel(_:)), name: Notification.Name(rawValue: "updateUILabel"), object: nil)
+        for fruit in Fruit.allCases {
+            NotificationCenter.default.post(name: Notification.Name("updateUILabel"), object: nil, userInfo: ["과일종류":fruit])
+        }
     }
     
     @IBAction func juiceOrder(_ sender: UIButton) {
@@ -28,14 +33,36 @@ class MainViewController: UIViewController {
 //        print(juice)
         maker.makeJuice(juice)
     }
-    
 }
 
 extension MainViewController {
-    @objc func successAlert(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else { print("userInfo에러"); return
+    @objc func updateUILabel(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            print("userInfo 에러"); return
         }
-        guard let anyType = userInfo["쥬스이름"], let juiceName = anyType as? String else { print("anyType에러"); return
+        guard let userInfoValue = userInfo["과일종류"], let fruit = userInfoValue as? Fruit else {
+            print("userInfoValue 에러"); return
+        }
+        let currentStock = String(maker.store.currentStock(fruit))
+        switch fruit {
+        case .strawberry:
+            strawberryLabel.text = currentStock
+        case .banana:
+            bananaLabel.text = currentStock
+        case .pineapple:
+            pineappleLabel.text = currentStock
+        case .kiwi:
+            kiwiLabel.text = currentStock
+        case .mango:
+            mangoLabel.text = currentStock
+        }
+    }
+    @objc func successAlert(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            print("userInfo 에러"); return
+        }
+        guard let userInfoValue = userInfo["쥬스이름"], let juiceName = userInfoValue as? String else {
+            print("userInfoValue 에러"); return
         }
         
         let alert = UIAlertController(title: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)

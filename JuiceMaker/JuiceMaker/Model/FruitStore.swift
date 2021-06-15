@@ -29,7 +29,7 @@ class FruitStore {
             print("재고에 존재하지 않는 과일")
             return
         }
-        
         fruitStocks.updateValue(stock - changingQuantity, forKey: fruit)
+        NotificationCenter.default.post(name: Notification.Name("updateUILabel"), object: nil, userInfo: ["과일종류":fruit])
     }
 }

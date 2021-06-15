@@ -9,7 +9,7 @@ enum JuiceMakerError: Error {
     case outOfStock
 }
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawberry
     case banana
     case pineapple
