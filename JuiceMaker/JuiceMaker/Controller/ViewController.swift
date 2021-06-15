@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func touchUpModifyStock(_ sender: UIBarButtonItem) {
-        let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "storage")
-        self.navigationController?.pushViewController(pushVC!, animated: true)
+        guard let moveIntoModifyStock = self.storyboard?.instantiateViewController(withIdentifier: "storage") else { return }
+        self.navigationController?.pushViewController(moveIntoModifyStock, animated: true)
     }
     
 }
