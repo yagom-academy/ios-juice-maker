@@ -30,18 +30,22 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setInitialStock(of: .strawberry, label: strawberryStockLabel)
-        setInitialStock(of: .banana, label: bananaStockLabel)
-        setInitialStock(of: .pineapple, label: pineappleStockLabel)
-        setInitialStock(of: .kiwi, label: kiwiStockLabel)
-        setInitialStock(of: .mango, label: mangoStockLabel)
+        showAllFruitStockLabels()
+    }
+    
+    func showAllFruitStockLabels() {
+        showCurrentStockLabel(of: .strawberry, label: strawberryStockLabel)
+        showCurrentStockLabel(of: .banana, label: bananaStockLabel)
+        showCurrentStockLabel(of: .pineapple, label: pineappleStockLabel)
+        showCurrentStockLabel(of: .kiwi, label: kiwiStockLabel)
+        showCurrentStockLabel(of: .mango, label: mangoStockLabel)
     }
 
-    func setInitialStock(of fruit: Fruit, label: UILabel) {
-        guard let initialStock = try? fruitStore.showStockLeft(fruit: fruit) else {
+    func showCurrentStockLabel(of fruit: Fruit, label: UILabel) {
+        guard let currentStock = try? fruitStore.showStockLeft(fruit: fruit) else {
             return
         }
-        label.text = String(initialStock)
+        label.text = String(currentStock)
     }
     
     func findJuiceMenu(from sender: UIButton) throws -> Juice {
@@ -71,6 +75,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             let juice = try findJuiceMenu(from: sender)
             try juiceMaker.order(juice: juice)
+            showAllFruitStockLabels()
             showJuiceIsReadyAlert(message: "\(juice.menu)쥬스 나왔습니다! 맛있게 드세요!")
         } catch {
             showOutOfStockAlert()
