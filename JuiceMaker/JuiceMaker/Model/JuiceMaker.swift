@@ -10,12 +10,11 @@ import Foundation
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
-    func makeJuice(of menu: JuiceMenu) -> Bool {
-        guard checkStocks(of: menu) else { return false }
+    func makeJuice(of menu: JuiceMenu) throws {
+        guard checkStocks(of: menu) else { throw ErrorCase.outOfStock  }
         for (fruit, amount) in menu.neededFruits {
             fruitStore.subtractStock(of: fruit, amount: amount)
         }
-        return true
     }
     
     private func checkStocks(of menu: JuiceMenu) -> Bool {
