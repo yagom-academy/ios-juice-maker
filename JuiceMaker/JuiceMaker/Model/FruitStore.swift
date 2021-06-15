@@ -6,14 +6,6 @@
 
 import Foundation
 
-enum Fruit {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
 // 과일 타입
 class FruitStore {
     static let shared = FruitStore()
