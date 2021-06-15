@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     @IBOutlet var kiwiStockLabel: UILabel!
     @IBOutlet var mangoStockLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
-    let fruitStore = FruitStore.sharedInstance
+    private let juiceMaker = JuiceMaker()
+    private let fruitStore = FruitStore.sharedInstance
      
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +24,14 @@ class ViewController: UIViewController {
         mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
     }
     
-    func showMenuServingAlert(recipe: JuiceMaker.JuiceRecipe) {
+    private func showMenuServingAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "\(recipe.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "감사합니다", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
     
-    func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
+    private func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
         self.present(self.storyboard!.instantiateViewController(identifier: "StockEdit"), animated: true)
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func strawberryJuiceButton(_ sender: UIButton) {
+    @IBAction private func strawberryJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryJuice)
             strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func bananaJuiceButton(_ sender: UIButton) {
+    @IBAction private func bananaJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .bananaJuice)
             bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func pineappleJuiceButton(_ sender: UIButton) {
+    @IBAction private func pineappleJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .pineappleJuice)
             pineappleStockLabel.text = String(fruitStore.getStockAmount(fruit: .pineapple))
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func kiwiJuiceButton(_ sender: UIButton) {
+    @IBAction private func kiwiJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .kiwiJuice)
             kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func mangoJuiceButton(_ sender: UIButton) {
+    @IBAction private func mangoJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoJuice)
             mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func strawberryBananaButton(_ sender: UIButton) {
+    @IBAction private func strawberryBananaButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryBananaJuice)
             strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func mangoKiwiButton(_ sender: UIButton) {
+    @IBAction private func mangoKiwiButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoKiwiJuice)
             mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))

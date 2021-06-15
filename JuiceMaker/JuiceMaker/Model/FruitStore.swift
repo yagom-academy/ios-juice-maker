@@ -31,6 +31,17 @@ class FruitStore {
         let stock = fruitStock[fruit] ?? 0
         fruitStock[fruit] = stock + count
     }
+    
+    public func decreaseStock(fruit: Fruit, count: Int) {
+        let stock = fruitStock[fruit] ?? 0
+        if stock >= count {
+            fruitStock[fruit] = stock - count
+        }
+    }
+    
+    public func inputStock(fruit: Fruit, count: Int) {
+        fruitStock[fruit] = count
+    }
 
     func usingFruits(fruit: Fruit, needs: Int) throws {
         guard let stock = fruitStock[fruit] else { return }
