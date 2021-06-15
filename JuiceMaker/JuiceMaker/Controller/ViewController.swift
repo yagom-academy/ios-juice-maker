@@ -13,14 +13,15 @@ class ViewController: UIViewController {
     @IBOutlet var mangoStockLabel: UILabel!
     
     let juiceMaker = JuiceMaker()
-    
+    let fruitStore = FruitStore.sharedInstance
+     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .strawberry))
-        bananaStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .banana))
-        pineappleStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .pineapple))
-        kiwiStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .kiwi))
-        mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))
+        strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
+        bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
+        pineappleStockLabel.text = String(fruitStore.getStockAmount(fruit: .pineapple))
+        kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
+        mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
     }
     
     func showMenuServingAlert(recipe: JuiceMaker.JuiceRecipe) {
@@ -44,7 +45,7 @@ class ViewController: UIViewController {
     @IBAction func strawberryJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryJuice)
-            strawberryStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .strawberry))
+            strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
             showMenuServingAlert(recipe: .strawberryJuice)
         } catch {
             showEmptyStockAlert(recipe: .strawberryJuice)
@@ -54,7 +55,7 @@ class ViewController: UIViewController {
     @IBAction func bananaJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .bananaJuice)
-            bananaStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .banana))
+            bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
             showMenuServingAlert(recipe: .bananaJuice)
         } catch {
             showEmptyStockAlert(recipe: .bananaJuice)
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
     @IBAction func pineappleJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .pineappleJuice)
-            pineappleStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .pineapple))
+            pineappleStockLabel.text = String(fruitStore.getStockAmount(fruit: .pineapple))
             showMenuServingAlert(recipe: .pineappleJuice)
         } catch {
             showEmptyStockAlert(recipe: .pineappleJuice)
@@ -74,7 +75,7 @@ class ViewController: UIViewController {
     @IBAction func kiwiJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .kiwiJuice)
-            kiwiStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .kiwi))
+            kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
             showMenuServingAlert(recipe: .kiwiJuice)
         } catch {
             showEmptyStockAlert(recipe: .kiwiJuice)
@@ -85,7 +86,7 @@ class ViewController: UIViewController {
     @IBAction func mangoJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoJuice)
-            mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))
+            mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
             showMenuServingAlert(recipe: .mangoJuice)
         } catch {
             showEmptyStockAlert(recipe: .mangoJuice)
@@ -95,8 +96,8 @@ class ViewController: UIViewController {
     @IBAction func strawberryBananaButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryBananaJuice)
-            strawberryStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .strawberry))
-            bananaStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .banana))
+            strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
+            bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
             showMenuServingAlert(recipe: .strawberryBananaJuice)
         } catch {
             showEmptyStockAlert(recipe: .strawberryBananaJuice)
@@ -106,8 +107,8 @@ class ViewController: UIViewController {
     @IBAction func mangoKiwiButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoKiwiJuice)
-            mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))
-            kiwiStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .kiwi))
+            mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
+            kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
             showMenuServingAlert(recipe: .mangoKiwiJuice)
         } catch {
             showEmptyStockAlert(recipe: .mangoKiwiJuice)
