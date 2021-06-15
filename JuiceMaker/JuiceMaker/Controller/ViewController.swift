@@ -35,7 +35,11 @@ class ViewController: UIViewController {
             return
         }
     }
-
+    
+    @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         guard let juiceName = sender.titleLabel?.text?.components(separatedBy: " ").first,
               let juice = Juice(rawValue: juiceName) else {

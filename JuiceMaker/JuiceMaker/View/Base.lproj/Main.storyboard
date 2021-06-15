@@ -416,7 +416,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Xe1-0m-HlE"/>
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Xe1-0m-HlE">
+                            <connections>
+                                <action selector="touchUpCloseButton:" destination="Yu1-lM-nqp" id="fi8-pM-f8a"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="B6z-iU-xc4"/>
