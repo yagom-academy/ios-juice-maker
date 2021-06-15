@@ -7,11 +7,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var strawberryNumber: UILabel!
-    @IBOutlet var bananaNumber: UILabel!
-    @IBOutlet var pineappleNumber: UILabel!
-    @IBOutlet var kiwiNumber: UILabel!
-    @IBOutlet var mangoNumber: UILabel!
+    @IBOutlet var numberOfStrawberry: UILabel!
+    @IBOutlet var numberOfBanana: UILabel!
+    @IBOutlet var numberOfPineApple: UILabel!
+    @IBOutlet var numberOfKiwi: UILabel!
+    @IBOutlet var numberOfMango: UILabel!
     
     @IBOutlet var orderStrawberryButton: UIButton!
     @IBOutlet var orderBananaButton: UIButton!
@@ -38,11 +38,11 @@ class ViewController: UIViewController {
     }
     
     func showInitialNumberOnLabel() {
-        setUp(number: takeInitialNumber(of: .strawberry), on: strawberryNumber)
-        setUp(number: takeInitialNumber(of: .banana), on: bananaNumber)
-        setUp(number: takeInitialNumber(of: .mango), on: mangoNumber)
-        setUp(number: takeInitialNumber(of: .pineapple), on: pineappleNumber)
-        setUp(number: takeInitialNumber(of: .kiwi), on: kiwiNumber)
+        setUp(number: takeInitialNumber(of: .strawberry), on: numberOfStrawberry)
+        setUp(number: takeInitialNumber(of: .banana), on: numberOfBanana)
+        setUp(number: takeInitialNumber(of: .mango), on: numberOfMango)
+        setUp(number: takeInitialNumber(of: .pineapple), on: numberOfPineApple)
+        setUp(number: takeInitialNumber(of: .kiwi), on: numberOfKiwi)
     }
     
     override func viewDidLoad() {
