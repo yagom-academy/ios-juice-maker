@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet var kiwiStockLabel: UILabel!
     @IBOutlet var mangoStockLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))
     }
     
-    func showMenuServingAlert(recipe: JuiceMaker.JuiceRecipe) {
+    private func showMenuServingAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "\(recipe.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "감사합니다", style: .default)
         alert.addAction(okAction)

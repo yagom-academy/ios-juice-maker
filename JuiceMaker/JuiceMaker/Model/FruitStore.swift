@@ -11,23 +11,22 @@ enum Fruit: CaseIterable{
 
 enum FruitError: Error {
     case outOfStock
-    case outOfStockWhenMakeFruits
 }
 
 class FruitStore {
     private var fruitStock = [Fruit: Int]()
     
-    public init() {
+    init() {
         for fruit in Fruit.allCases {
             increaseStock(fruit: fruit, count: 10)
         }
     }
 
-    public func getStockAmount(fruit: Fruit) -> Int {
+    func getStockAmount(fruit: Fruit) -> Int {
         return fruitStock[fruit] ?? 0
     }
     
-    public func increaseStock(fruit: Fruit, count: Int) {
+    func increaseStock(fruit: Fruit, count: Int) {
         let stock = fruitStock[fruit] ?? 0
         fruitStock[fruit] = stock + count
     }
