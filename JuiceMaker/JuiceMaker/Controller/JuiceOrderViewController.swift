@@ -8,14 +8,39 @@ import UIKit
 
 class JuiceOrderViewController: UIViewController {
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
+	
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
     @IBOutlet private weak var pineappleStockLabel: UILabel!
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
-    
-    func refreshStockLabel() {
+	@IBOutlet private weak var strawberryJuiceButton: UIButton!
+	@IBOutlet private weak var bananaJuiceButton: UIButton!
+	@IBOutlet private weak var kiwiJuiceButton: UIButton!
+	@IBOutlet private weak var pineappleJuiceButton: UIButton!
+	@IBOutlet private weak var mangoJuiceButton: UIButton!
+	@IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
+	@IBOutlet private weak var ddalbaJuiceButton: UIButton!
+	
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		strawberryJuiceButton.setTitle(JuiceRecipe.strawberry.juiceButtonName, for: .normal)
+		bananaJuiceButton.setTitle(JuiceRecipe.banana.juiceButtonName, for: .normal)
+		kiwiJuiceButton.setTitle(JuiceRecipe.kiwi.juiceButtonName, for: .normal)
+		pineappleJuiceButton.setTitle(JuiceRecipe.pineapple.juiceButtonName, for: .normal)
+		mangoKiwiJuiceButton.setTitle(JuiceRecipe.mangoKiwi.juiceButtonName, for: .normal)
+		ddalbaJuiceButton.setTitle(JuiceRecipe.ddalba.juiceButtonName, for: .normal)
+		mangoJuiceButton.setTitle(JuiceRecipe.mango.juiceButtonName, for: .normal)
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
+		refreshStockLabel()
+	}
+	
+    private func refreshStockLabel() {
         let stocks = FruitStore.shared.fruitStocks
         
         for (fruit, quantity) in stocks {
@@ -34,7 +59,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func orderJuice(recipe: JuiceRecipe) {
+    private func orderJuice(recipe: JuiceRecipe) {
         guard juiceMaker.canMakeJuice(recipe: recipe) else {
             showAlert(message: Message.outOfStock.rawValue, okAction: moveToAddStockView(), cancelAction: cancelAction)
             return
@@ -44,7 +69,7 @@ class JuiceOrderViewController: UIViewController {
         showAlert(message: "\(recipe.rawValue)\(Message.orderSuccess.rawValue)", okAction: okAction, cancelAction: nil)
     }
     
-    @IBAction func orderJuice(_ sender: UIButton) {
+    @IBAction private func orderJuice(_ sender: UIButton) {
         switch sender.titleLabel?.text {
         case JuiceRecipe.strawberry.juiceButtonName:
             orderJuice(recipe: .strawberry)
@@ -62,13 +87,5 @@ class JuiceOrderViewController: UIViewController {
             orderJuice(recipe: .mangoKiwi)
         default: break
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        refreshStockLabel()
     }
 }
