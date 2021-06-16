@@ -239,7 +239,7 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
                                 <action selector="touchUpChangeStockButton:" destination="BYZ-38-t0r" id="uvF-S2-HTV"/>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" id="EwG-hB-Upk"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" modalPresentationStyle="fullScreen" id="EwG-hB-Upk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

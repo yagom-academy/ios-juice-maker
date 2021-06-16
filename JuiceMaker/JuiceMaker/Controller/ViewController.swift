@@ -11,14 +11,10 @@ class ViewController: UIViewController {
     @IBOutlet var pineappleStockLabel: UILabel!
     @IBOutlet var kiwiStockLabel: UILabel!
     @IBOutlet var mangoStockLabel: UILabel!
+    @IBOutlet var test: UIAlertController!
     
     private let juiceMaker = JuiceMaker()
     private let fruitStore = FruitStore.sharedInstance
-     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        settingAllLabelText()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         settingAllLabelText()
@@ -38,7 +34,7 @@ class ViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
+
     private func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let vc = self.storyboard!.instantiateViewController(identifier: "StockEdit")
@@ -51,7 +47,7 @@ class ViewController: UIViewController {
         alert.addAction(noAction)
         present(alert, animated: true, completion: nil)
     }
-    
+
     @IBAction func strawberryJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryJuice)
