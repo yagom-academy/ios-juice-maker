@@ -13,14 +13,14 @@ enum juiceMakerError: Error {
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    enum Menu {
-        case strawberry
-        case banana
-        case kiwi
-        case pineapple
-        case strawberryBanana
-        case mango
-        case mangoKiwi
+    enum Menu: String {
+        case strawberry = "딸기"
+        case banana = "바나나"
+        case kiwi = "키위"
+        case pineapple = "파인애플"
+        case strawberryBanana = "딸바"
+        case mango = "망고"
+        case mangoKiwi = "망키"
     }
     
     let fruitStore = FruitStore()

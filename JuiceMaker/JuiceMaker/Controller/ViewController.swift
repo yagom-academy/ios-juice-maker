@@ -30,15 +30,31 @@ class ViewController: UIViewController {
     
     let juiceMaker: JuiceMaker = JuiceMaker()
     
-    func whenButtonsTaped(menu: JuiceMaker.Menu) {
+    func whenButtonsTapped(menu: JuiceMaker.Menu) {
         do {
             try juiceMaker.makeJuice(menu: menu)
             let orderCompletedAlert = UIAlertController(title: nil,
-                                                        message: "*** 쥬스 나왔습니다! 맛있게 드세요!",
+                                                        message: "\(menu.rawValue) 쥬스 나왔습니다! 맛있게 드세요!",
                                                         preferredStyle: UIAlertController.Style.alert)
+            
+            let confirm = UIAlertAction(title: "확인", style: .default, handler: nil)
+            orderCompletedAlert.addAction(confirm)
+            
             present(orderCompletedAlert, animated: true, completion: nil)
         } catch juiceMakerError.outOfStock {
-            print("Out of stock error")
+            let outOfStockAlert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
+
+            let yes = UIAlertAction(title: "예", style: .default, handler: {_ in let showModifyStockView = self.storyboard?.instantiateViewController(withIdentifier: "modifyStockViewController")
+                                        
+                                        showModifyStockView?.modalTransitionStyle = .coverVertical
+                                        self.present(showModifyStockView!, animated: true, completion: nil)} )
+            let no = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+            
+            outOfStockAlert.addAction(yes)
+            outOfStockAlert.addAction(no)
+            present(outOfStockAlert, animated: true, completion: nil)
+
+            
         } catch juiceMakerError.invalidNumber {
             print("Invalid number error")
         } catch {
@@ -47,25 +63,25 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryBananaJuiceButton(_ sender: Any) {
-        whenButtonsTaped(menu: .strawberryBanana)
+        whenButtonsTapped(menu: .strawberryBanana)
     }
     @IBAction func orderMangoKiwiJuiceButton(_ sender: Any) {
-        whenButtonsTaped(menu: .mangoKiwi)
+        whenButtonsTapped(menu: .mangoKiwi)
     }
     @IBAction func orderStrawberryJuice(_ sender: Any) {
-        whenButtonsTaped(menu: .strawberry)
+        whenButtonsTapped(menu: .strawberry)
     }
     @IBAction func orderBananaJuiceButton(_ sender: Any) {
-        whenButtonsTaped(menu: .banana)
+        whenButtonsTapped(menu: .banana)
     }
     @IBAction func orderPineappleJuiceButton(_ sender: Any) {
-        whenButtonsTaped(menu: .pineapple)
+        whenButtonsTapped(menu: .pineapple)
     }
     @IBAction func orderKiwiJuiceButton(_ sender: Any) {
-        whenButtonsTaped(menu: .kiwi)
+        whenButtonsTapped(menu: .kiwi)
     }
     @IBAction func orderMangoJuiceButton(_ sender: Any) {
-        whenButtonsTaped(menu: .mango)
+        whenButtonsTapped(menu: .mango)
     }
 }
 
