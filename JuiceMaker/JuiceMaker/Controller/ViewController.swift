@@ -30,10 +30,12 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
+    private func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        guard let modalViewController = self.storyboard?.instantiateViewController(identifier: "StockEdit") else { return }
+        modalViewController.modalPresentationStyle = .fullScreen
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
-        self.present(self.storyboard!.instantiateViewController(identifier: "StockEdit"), animated: true)
+            self.present(modalViewController, animated: true)
         }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(okAction)
@@ -41,7 +43,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func strawberryJuiceButton(_ sender: UIButton) {
+    @IBAction func strawberryJuiceButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryJuice)
             strawberryStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .strawberry))
@@ -51,7 +53,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func bananaJuiceButton(_ sender: UIButton) {
+    @IBAction func bananaJuiceButtonDidTab(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .bananaJuice)
             bananaStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .banana))
@@ -61,7 +63,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func pineappleJuiceButton(_ sender: UIButton) {
+    @IBAction func pineappleJuiceButtonDidTab(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .pineappleJuice)
             pineappleStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .pineapple))
@@ -71,7 +73,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func kiwiJuiceButton(_ sender: UIButton) {
+    @IBAction func kiwiJuiceButtonDidTab(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .kiwiJuice)
             kiwiStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .kiwi))
@@ -82,7 +84,7 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func mangoJuiceButton(_ sender: UIButton) {
+    @IBAction func mangoJuiceButtonDidTab(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoJuice)
             mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))
@@ -92,7 +94,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func strawberryBananaButton(_ sender: UIButton) {
+    @IBAction func strawberryBananaButtonDidTab(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryBananaJuice)
             strawberryStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .strawberry))
@@ -103,7 +105,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func mangoKiwiButton(_ sender: UIButton) {
+    @IBAction func mangoKiwiButtonDidTab(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoKiwiJuice)
             mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))

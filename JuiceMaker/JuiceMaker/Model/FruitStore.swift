@@ -22,6 +22,7 @@ class FruitStore {
             increaseStock(fruit: fruit, count: 10)
         }
     }
+
     public func getStockAmount(fruit: Fruit) -> Int {
         return fruitStock[fruit] ?? 0
     }
