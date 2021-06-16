@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func currentStockOfFruits() {
+    private func currentStockOfFruits() {
         strawberryStock.text = "\(juiceMaker.fruitStore.getStock(of: .strawberry))"
         bananaStock.text = "\(juiceMaker.fruitStore.getStock(of: .banana))"
         pineappleStock.text = "\(juiceMaker.fruitStore.getStock(of: .pineapple))"
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
             }
     }
     
-    func alertMessage(juice: JuiceMenu?, makeJuice: Bool, unknownErrorMessage: String?) {
+    private func alertMessage(juice: JuiceMenu?, makeJuice: Bool, unknownErrorMessage: String?) {
         if makeJuice == true {
             guard let juice = juice else { return }
             let sucessAlert = UIAlertController(title: "주문하신 \(juice.rawValue) 나왔습니다", message: nil, preferredStyle: UIAlertController.Style.alert)
