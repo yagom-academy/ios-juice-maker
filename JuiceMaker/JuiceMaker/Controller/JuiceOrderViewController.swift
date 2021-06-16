@@ -61,12 +61,12 @@ class JuiceOrderViewController: UIViewController {
     
     private func orderJuice(recipe: JuiceRecipe) {
         guard juiceMaker.canMakeJuice(recipe: recipe) else {
-            showAlert(message: Message.outOfStock.rawValue, okAction: moveToAddStockView(), cancelAction: cancelAction)
+            showAlert(message: OrderResultMessage.outOfStock.rawValue, okAction: moveToAddStockView(), cancelAction: cancelAction)
             return
         }
         juiceMaker.makeJuice(recipe: recipe)
         refreshStockLabel()
-        showAlert(message: "\(recipe.rawValue)\(Message.orderSuccess.rawValue)", okAction: okAction, cancelAction: nil)
+        showAlert(message: "\(recipe.rawValue)\(OrderResultMessage.orderSuccess.rawValue)", okAction: okAction, cancelAction: nil)
     }
     
     @IBAction private func orderJuice(_ sender: UIButton) {

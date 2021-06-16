@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum Message: String {
+enum OrderResultMessage: String {
     case orderSuccess = " 나왔습니다! 맛있게 드세요!"
     case outOfStock = "재료가 모자라요. 재고를 수정할까요?"
 }
