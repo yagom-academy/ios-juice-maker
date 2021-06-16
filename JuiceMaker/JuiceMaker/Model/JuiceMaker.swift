@@ -62,7 +62,7 @@ struct JuiceMaker {
         fruit.material().forEach { (fruitType,requiredAmount) in
             results.append(self.fruitStore[fruitType]?.isStockLeft(requiredAmount) ?? false)
         }
-        return !results.filter({ $0 }).isEmpty
+        return results.filter({ !$0 }).isEmpty
     }
 }
 
