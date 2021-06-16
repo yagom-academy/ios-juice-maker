@@ -17,7 +17,11 @@ enum Fruits {
 // 과일 타입
 class FruitStore {
     var name: Fruits? = nil
-    var amount: Int = 10
+    private var amount: Int = 10
+    
+    func checkAmount() -> Int {
+        return amount
+    }
     
     private func stockPlus(stock:Int) {
         amount += stock

@@ -23,13 +23,17 @@ class ViewController: UIViewController {
     @IBOutlet private weak var kiwiBtn: UIButton!
     @IBOutlet private weak var mangoBtn: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     private func showFruitLabel() {
         let stock = juiceMaker.fruitStore
-        strawberryStockLabel.text = String(stock[.strawberry]?.amount ?? 0)
-        bananaStockLabel.text = String(stock[.banana]?.amount ?? 0)
-        pineappleStockLabel.text = String(stock[.pineapple]?.amount ?? 0)
-        kiwiStockLabel.text = String(stock[.kiwi]?.amount ?? 0)
-        mangoStockLabel.text = String(stock[.mango]?.amount ?? 0)
+        strawberryStockLabel.text = String(stock[.strawberry]?.checkAmount() ?? 0)
+        bananaStockLabel.text = String(stock[.banana]?.checkAmount() ?? 0)
+        pineappleStockLabel.text = String(stock[.pineapple]?.checkAmount() ?? 0)
+        kiwiStockLabel.text = String(stock[.kiwi]?.checkAmount() ?? 0)
+        mangoStockLabel.text = String(stock[.mango]?.checkAmount() ?? 0)
     }
     
     private func succeededMakingJuiceAlert(_ message: JuiceMaker.JuiceType) {
@@ -93,15 +97,11 @@ class ViewController: UIViewController {
     }
     
     private func changeView() {
-        guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "AddStock")
-        else{
+        guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "AddStock") else {
             return
         }
         mainVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         self.present(mainVC, animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }
