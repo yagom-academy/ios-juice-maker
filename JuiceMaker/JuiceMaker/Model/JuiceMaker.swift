@@ -41,6 +41,7 @@ struct JuiceMaker {
             }
         }
     }
+    
     public let fruitstore = FruitStore.sharedInstance
     
     func makeJuice(recipe: JuiceRecipe) throws {

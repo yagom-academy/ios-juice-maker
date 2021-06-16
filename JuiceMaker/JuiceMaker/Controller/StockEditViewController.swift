@@ -18,17 +18,13 @@ class StockEditViewController: UIViewController {
     @IBOutlet weak var pineappleStepper: UIStepper!
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
-    
+        
     let juiceMaker = JuiceMaker()
     let fruitStore = FruitStore.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
-        bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
-        pineappleStockLabel.text = String(fruitStore.getStockAmount(fruit: .pineapple))
-        kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
-        mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
+        settingAllLabelText()
         strawberryStepper.value = Double(fruitStore.getStockAmount(fruit: .strawberry))
         bananaStepper.value = Double(fruitStore.getStockAmount(fruit: .banana))
         pineappleStepper.value = Double(fruitStore.getStockAmount(fruit: .pineapple))
@@ -36,31 +32,39 @@ class StockEditViewController: UIViewController {
         mangoStepper.value = Double(fruitStore.getStockAmount(fruit: .mango))
     }
     
-    @IBAction private func strawberryStepper(_ sender: UIStepper) {
+    private func settingAllLabelText() {
+        strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
+        bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
+        pineappleStockLabel.text = String(fruitStore.getStockAmount(fruit: .pineapple))
+        kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
+        mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
+    }
+    
+    @IBAction func strawberryStepper(_ sender: UIStepper) {
         strawberryStepper.value = Double(sender.value)
         fruitStore.inputStock(fruit: .strawberry, count: Int(strawberryStepper.value))
         strawberryStockLabel.text = String(Int(strawberryStepper.value))
     }
     
-    @IBAction private func bananaStepper(_ sender: UIStepper) {
+    @IBAction func bananaStepper(_ sender: UIStepper) {
         bananaStepper.value = Double(sender.value)
         fruitStore.inputStock(fruit: .banana, count: Int(bananaStepper.value))
         bananaStockLabel.text = String(Int(bananaStepper.value))
     }
     
-    @IBAction private func pineappleStepper(_ sender: UIStepper) {
+    @IBAction func pineappleStepper(_ sender: UIStepper) {
         pineappleStepper.value = Double(sender.value)
         fruitStore.inputStock(fruit: .pineapple, count: Int(pineappleStepper.value))
         pineappleStockLabel.text = String(Int(pineappleStepper.value))
     }
     
-    @IBAction private func kiwiStepper(_ sender: UIStepper) {
+    @IBAction func kiwiStepper(_ sender: UIStepper) {
         kiwiStepper.value = Double(sender.value)
         fruitStore.inputStock(fruit: .kiwi, count: Int(kiwiStepper.value))
         kiwiStockLabel.text = String(Int(kiwiStepper.value))
     }
     
-    @IBAction private func mangoStepper(_ sender: UIStepper) {
+    @IBAction func mangoStepper(_ sender: UIStepper) {
         mangoStepper.value = Double(sender.value)
         fruitStore.inputStock(fruit: .mango, count: Int(mangoStepper.value))
         mangoStockLabel.text = String(Int(mangoStepper.value))

@@ -239,7 +239,7 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
                                 <action selector="touchUpChangeStockButton:" destination="BYZ-38-t0r" id="uvF-S2-HTV"/>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" id="PBI-bJ-Yzd"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" id="EwG-hB-Upk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -282,7 +282,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-vx-u60">
-                                <rect key="frame" x="60" y="55.666666666666657" width="806" height="213.99999999999997"/>
+                                <rect key="frame" x="60" y="73.333333333333314" width="806" height="214"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8wA-yN-4Dl">
                                         <rect key="frame" x="0.0" y="0.0" width="148.33333333333334" height="214"/>
@@ -422,7 +422,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkI-ut-iRM">
-                                <rect key="frame" x="866" y="30" width="30" height="29"/>
+                                <rect key="frame" x="866" y="74" width="30" height="29"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <state key="normal" title="닫기"/>
                                 <connections>
@@ -478,9 +478,6 @@
             <point key="canvasLocation" x="1637" y="21"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="PBI-bJ-Yzd"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
