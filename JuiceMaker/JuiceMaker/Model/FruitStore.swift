@@ -22,7 +22,7 @@ class FruitStore {
         }
     }
 
-    func getStockAmount(fruit: Fruit) -> Int {
+    func stockAmount(fruit: Fruit) -> Int {
         return fruitStock[fruit] ?? 0
     }
     
