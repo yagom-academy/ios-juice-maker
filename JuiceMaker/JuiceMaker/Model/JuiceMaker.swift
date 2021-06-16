@@ -6,6 +6,11 @@
 
 import Foundation
 
+enum juiceMakerError: Error {
+    case outOfStock
+    case invalidNumber
+}
+
 // 쥬스 메이커 타입
 struct JuiceMaker {
     enum Menu {
@@ -39,7 +44,7 @@ struct JuiceMaker {
         }
     }
     
-    func isJuiceAvailable(menu: Menu) -> Bool {
+    func isJuiceAvailable(menu: Menu) throws -> Bool {
         var isIngredientRemain: Bool = true
         let orderedJuiceRecipe = defaultJuiceRecipe(juiceMenu: menu)
         let neededIngredient = Array(orderedJuiceRecipe.keys)
@@ -48,26 +53,34 @@ struct JuiceMaker {
             guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[neededIngredient[i]],
                   let currentRemainedFruitNumber = FruitStore.storage[neededIngredient[i]]
             else {
-                return false
+                print("invalidNumber from isJuiceAvailable()")
+                throw juiceMakerError.invalidNumber
             }
             
             if necessaryFruitNumberForMenu > currentRemainedFruitNumber {
                 isIngredientRemain = false
+                print("Out of stock from isJuiceAvailable()")
+                throw juiceMakerError.outOfStock
             }
         }
         return isIngredientRemain
     }
     
-    func makeJuice(menu: Menu) {
+    func makeJuice(menu: Menu) throws {
         let userMenuRecipe = defaultJuiceRecipe(juiceMenu: menu)
         
-        if isJuiceAvailable(menu: menu) {
+        do {
+            try isJuiceAvailable(menu: menu)
             for (fruit, count) in userMenuRecipe {
                 fruitStore.modifyStock(fruit: fruit,
                                        changes: -Int(count))
+                
             }
-        } else {
-            print("재고 부족")
+        } catch juiceMakerError.outOfStock {
+            print("Out of stock from makeJuice()")
+            throw juiceMakerError.outOfStock
+        } catch juiceMakerError.invalidNumber {
+            throw juiceMakerError.invalidNumber
         }
     }
 }
