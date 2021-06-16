@@ -30,10 +30,12 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
+    private func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        guard let modalViewController = self.storyboard?.instantiateViewController(identifier: "StockEdit") else { return }
+        modalViewController.modalPresentationStyle = .fullScreen
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
-        self.present(self.storyboard!.instantiateViewController(identifier: "StockEdit"), animated: true)
+            self.present(modalViewController, animated: true)
         }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(okAction)
