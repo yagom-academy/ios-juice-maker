@@ -31,7 +31,7 @@ enum JuiceName: CustomStringConvertible {
 }
 
 class MakeJuiceViewController: UIViewController {
-
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -40,7 +40,7 @@ class MakeJuiceViewController: UIViewController {
     
     private let myJuiceMaker = JuiceMaker()
     private let fixStockSegueIdentifier = "fixStockSegue"
-
+    
     @IBAction func StrawberryBananaJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .strawberryBanana)
         strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
@@ -57,7 +57,7 @@ class MakeJuiceViewController: UIViewController {
         checkStockAndAlert(juiceName: .strawberry)
         strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
     }
-
+    
     @IBAction func BananaJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .banana)
         bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
@@ -124,7 +124,8 @@ class MakeJuiceViewController: UIViewController {
         bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
         pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
         kiwiLabel.text = String(myJuiceMaker.fruitStore.kiwi.stock)
-        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)    }
+        mangoLabel.text = String(myJuiceMaker.fruitStore.mango.stock)
+    }
 }
 
 extension MakeJuiceViewController: FixStockViewControllerDelegate {
