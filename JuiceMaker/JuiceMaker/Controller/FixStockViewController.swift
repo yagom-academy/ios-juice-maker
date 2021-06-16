@@ -2,7 +2,7 @@
 import UIKit
 
 protocol FixStockViewControllerDelegate: MakeJuiceViewController {
-    func fixStockView(stock: String)
+    func fixStockViewController(stock: String)
 }
 
 class FixStockViewController: UIViewController {
@@ -50,7 +50,7 @@ class FixStockViewController: UIViewController {
             return
         }
         fruitStore.strawberry.stock = number
-        delegate?.fixStockView(stock: fruitStore.strawberry.stock.description)
+        delegate?.fixStockViewController(stock: fruitStore.strawberry.stock.description)
         dismiss(animated: true, completion: nil)
     }
 

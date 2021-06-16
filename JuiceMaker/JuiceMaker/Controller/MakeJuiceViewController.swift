@@ -39,7 +39,7 @@ class MakeJuiceViewController: UIViewController {
     @IBOutlet weak var mangoLabel: UILabel!
     
     private let myJuiceMaker = JuiceMaker()
-    private let fixStockSegue = "fixStockSegue"
+    private let fixStockSegueIdentifier = "fixStockSegue"
 
     @IBAction func StrawberryBananaJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .strawberryBanana)
@@ -58,7 +58,6 @@ class MakeJuiceViewController: UIViewController {
         strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
     }
 
-    
     @IBAction func BananaJuiceButtonDidTap(_ sender: UIButton) {
         checkStockAndAlert(juiceName: .banana)
         bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
@@ -100,7 +99,7 @@ class MakeJuiceViewController: UIViewController {
     func showAlert(message: JuiceMakerError){
         let alert = UIAlertController(title: nil, message: message.description, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default){(action) in
-            self.performSegue(withIdentifier: self.fixStockSegue, sender: self)
+            self.performSegue(withIdentifier: self.fixStockSegueIdentifier, sender: self)
         }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         
@@ -110,7 +109,7 @@ class MakeJuiceViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == fixStockSegue,
+        if segue.identifier == fixStockSegueIdentifier,
            let navigationController = segue.destination as? UINavigationController
         {
             let fixStockVC = navigationController.visibleViewController as? FixStockViewController
@@ -129,7 +128,7 @@ class MakeJuiceViewController: UIViewController {
 }
 
 extension MakeJuiceViewController: FixStockViewControllerDelegate {
-    func fixStockView(stock: String) {
+    func fixStockViewController(stock: String) {
         strawberryLabel.text = stock
     }
 }
