@@ -1,7 +1,7 @@
 
 import UIKit
 
-protocol FixStockViewControllerDelegate: MakeJuiceViewController {
+protocol FixStockViewControllerDelegate: class {
     func fixStockViewController(stock: String)
 }
 
