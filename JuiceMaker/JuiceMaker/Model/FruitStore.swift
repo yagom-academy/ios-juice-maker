@@ -6,8 +6,6 @@
 
 import Foundation
 
-// 과일 타입
-
 enum Fruit: CaseIterable {
 	case strawberry
 	case banana
@@ -18,8 +16,15 @@ enum Fruit: CaseIterable {
 	
 class FruitStore {
     
+	//MARK:- Singleton
+	
 	static let shared = FruitStore()
+	
+	//MARK:- Read-Only Property
+	
     private(set) var fruitStocks = [Fruit: UInt]()
+	
+	//MARK:- Private Initializer
 	
     private init(defaultStock: UInt = 10) {
         for fruit in Fruit.allCases {
@@ -27,6 +32,8 @@ class FruitStore {
         }
     }
     
+	//MARK:- Internal Functions
+	
 	func add(fruit: Fruit, number: UInt) {
 		guard let quantity = fruitStocks[fruit] else {
 			return

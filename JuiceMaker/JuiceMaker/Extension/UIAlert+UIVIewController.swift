@@ -14,16 +14,23 @@ enum OrderResultMessage: String {
 }
 
 extension UIViewController {
+	
+	//MARK:- Computed Properties
+	
     var okAction: UIAlertAction {
         return UIAlertAction(title: "네!", style: .default)
     }
+	
     var cancelAction: UIAlertAction {
         return UIAlertAction(title: "아니오", style: .default)
     }
     
-    func moveToAddStockView() -> UIAlertAction {
+	//MARK:- Internal Functions
+	
+	func moveToAddStockView() -> UIAlertAction {
         let moveToAddStockViewAction = UIAlertAction(title: "네", style: .default) { action in
-            guard let addStockViewController = self.storyboard?.instantiateViewController(identifier: "moveToSecondViewController") else { return }
+			guard let addStockViewController = self.storyboard?.instantiateViewController(identifier: "StockAddNavigationController") else { return }
+			addStockViewController.modalPresentationStyle = .fullScreen
             self.present(addStockViewController, animated: true, completion: nil)
         }
         return moveToAddStockViewAction
