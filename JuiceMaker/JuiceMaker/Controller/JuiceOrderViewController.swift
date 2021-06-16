@@ -9,6 +9,11 @@ import UIKit
 class JuiceOrderViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
+	var increasedStrawberry:UInt = 0
+	var increasedBanana:UInt = 0
+	var increasedKiwi:UInt = 0
+	var increasedPineapple:UInt = 0
+	var increasedMango:UInt = 0
 	
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -37,27 +42,8 @@ class JuiceOrderViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
-		refreshStockLabel()
+		refreshStockLabel(strawberryStockLabel: strawberryStockLabel, bananaStockLabel: bananaStockLabel, pineappleStockLabel: pineappleStockLabel, kiwiStockLabel: kiwiStockLabel, mangoStockLabel: mangoStockLabel)
 	}
-	
-    private func refreshStockLabel() {
-        let stocks = FruitStore.shared.fruitStocks
-        
-        for (fruit, quantity) in stocks {
-            switch fruit {
-            case .strawberry:
-                strawberryStockLabel?.text = "\(quantity)"
-            case .banana:
-                bananaStockLabel?.text = "\(quantity)"
-            case .pineapple:
-                pineappleStockLabel?.text = "\(quantity)"
-            case .kiwi:
-                kiwiStockLabel?.text = "\(quantity)"
-            case .mango:
-                mangoStockLabel?.text = "\(quantity)"
-            }
-        }
-    }
     
     private func orderJuice(recipe: JuiceRecipe) {
         guard juiceMaker.canMakeJuice(recipe: recipe) else {
@@ -65,7 +51,7 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         juiceMaker.makeJuice(recipe: recipe)
-        refreshStockLabel()
+		refreshStockLabel(strawberryStockLabel: strawberryStockLabel, bananaStockLabel: bananaStockLabel, pineappleStockLabel: pineappleStockLabel, kiwiStockLabel: kiwiStockLabel, mangoStockLabel: mangoStockLabel)
         showAlert(message: "\(recipe.rawValue)\(OrderResultMessage.orderSuccess.rawValue)", okAction: okAction, cancelAction: nil)
     }
     
