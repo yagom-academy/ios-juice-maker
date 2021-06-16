@@ -15,11 +15,11 @@ class JuiceOrderViewController: UIViewController {
 	var increasedPineapple:UInt = 0
 	var increasedMango:UInt = 0
 	
-    @IBOutlet private weak var strawberryStockLabel: UILabel!
-    @IBOutlet private weak var bananaStockLabel: UILabel!
-    @IBOutlet private weak var pineappleStockLabel: UILabel!
-    @IBOutlet private weak var kiwiStockLabel: UILabel!
-    @IBOutlet private weak var mangoStockLabel: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
 	@IBOutlet private weak var strawberryJuiceButton: UIButton!
 	@IBOutlet private weak var bananaJuiceButton: UIButton!
 	@IBOutlet private weak var kiwiJuiceButton: UIButton!
@@ -38,11 +38,13 @@ class JuiceOrderViewController: UIViewController {
 		mangoKiwiJuiceButton.setTitle(JuiceRecipe.mangoKiwi.juiceButtonName, for: .normal)
 		ddalbaJuiceButton.setTitle(JuiceRecipe.ddalba.juiceButtonName, for: .normal)
 		mangoJuiceButton.setTitle(JuiceRecipe.mango.juiceButtonName, for: .normal)
+        
+        
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
-		refreshStockLabel(strawberryStockLabel: strawberryStockLabel, bananaStockLabel: bananaStockLabel, pineappleStockLabel: pineappleStockLabel, kiwiStockLabel: kiwiStockLabel, mangoStockLabel: mangoStockLabel)
+        refreshStockLabel(strawberryStockLabel: strawberryStockLabel, bananaStockLabel: bananaStockLabel, pineappleStockLabel: pineappleStockLabel, kiwiStockLabel: kiwiStockLabel, mangoStockLabel: mangoStockLabel)
 	}
     
     private func orderJuice(recipe: JuiceRecipe) {
