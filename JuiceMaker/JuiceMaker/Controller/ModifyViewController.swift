@@ -37,6 +37,9 @@ class ModifyViewController: UIViewController {
         mangoStepper.value = Double(fruitStore[.mango])
         kiwiStepper.value = Double(fruitStore[.kiwi])
         pineappleStepper.value = Double(fruitStore[.pineapple])
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         for fruit in Fruit.allCases {
             updateUILabel(fruit)
         }

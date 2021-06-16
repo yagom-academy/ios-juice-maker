@@ -25,14 +25,17 @@ class MainViewController: UIViewController {
             juiceMaker.fruitStore.observe(\.kiwi, options: [.new]) { _, _ in self.updateUILabel(.kiwi) },
             juiceMaker.fruitStore.observe(\.pineapple, options: [.new]) { _, _ in self.updateUILabel(.pineapple) }
         ]
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         for fruit in Fruit.allCases {
             updateUILabel(fruit)
         }
     }
     
-    @IBAction func makeJuiceAction(_ sender: UIButton) {
+    @IBAction func orderJuiceAction(_ sender: UIButton) {
         guard let titleLabel = sender.titleLabel else { print("버튼 타이틀 에러"); return }
-        guard let text = titleLabel.text, let juice = Juice(rawValue: text) else { print("쥬스 조회 에러"); return }
+        guard let text = titleLabel.text, let juice = juiceMaker.menuOfJuice[text] else { print("쥬스 조회 에러"); return }
         juiceMaker.makeJuice(juice) { getResult in
             switch getResult {
             case .success(let juiceName):
@@ -57,19 +60,23 @@ class MainViewController: UIViewController {
         }
     }
     func alertMakingJuiceResult(_ juiceName: String? = nil) {
-        var alert = UIAlertController()
-        var actions = Array<UIAlertAction>()
+        var alert = UIAlertController(), actions = Array<UIAlertAction>()
+        var title = String(), message = String()
         if let name = juiceName {
-            alert = UIAlertController(title: "음료 주문 성공", message: "\(name)쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+            title = "음료 주문 성공"
+            message = "\(name)쥬스 나왔습니다! 맛있게 드세요!"
             actions = [UIAlertAction(title: "예", style: .default)]
         } else {
-            alert = UIAlertController(title: "음료 주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+            title = "음료 주문 실패"
+            message = "재료가 모자라요. 재고를 수정할까요?"
             actions = [ UIAlertAction(title: "예", style: .default) { _ in
                 self.performSegue(withIdentifier: "showStock", sender: self)
             }, UIAlertAction(title: "아니오", style: .default) ]
-            
         }
-        _ = actions.map({ alert.addAction($0) })
+        alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        for action in actions {
+            alert.addAction(action)
+        }
         present(alert, animated: true, completion:nil)
     }
 }
