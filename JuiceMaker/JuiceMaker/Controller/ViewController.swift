@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func bananaJuiceButtonDidTab(_ sender: UIButton) {
+    @IBAction func bananaJuiceButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .bananaJuice)
             bananaStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .banana))
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func pineappleJuiceButtonDidTab(_ sender: UIButton) {
+    @IBAction func pineappleJuiceButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .pineappleJuice)
             pineappleStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .pineapple))
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func kiwiJuiceButtonDidTab(_ sender: UIButton) {
+    @IBAction func kiwiJuiceButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .kiwiJuice)
             kiwiStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .kiwi))
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func mangoJuiceButtonDidTab(_ sender: UIButton) {
+    @IBAction func mangoJuiceButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoJuice)
             mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func strawberryBananaButtonDidTab(_ sender: UIButton) {
+    @IBAction func strawberryBananaButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryBananaJuice)
             strawberryStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .strawberry))
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func mangoKiwiButtonDidTab(_ sender: UIButton) {
+    @IBAction func mangoKiwiButtonDidTap(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoKiwiJuice)
             mangoStockLabel.text = String(juiceMaker.fruitstore.getStockAmount(fruit: .mango))
