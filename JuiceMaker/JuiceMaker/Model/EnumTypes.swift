@@ -45,7 +45,7 @@ enum Juice: String, CustomStringConvertible {
         }
     }
     
-    var ingredients: [(Fruit, Int)] {
+    var ingredients: [(Fruit, UInt)] {
         switch self {
         case .strawberryJuice:
             return [(.strawberry, 16)]

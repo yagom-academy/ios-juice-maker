@@ -7,49 +7,50 @@
 import Foundation
 
 // 과일 타입
-class FruitStore {
+class FruitStore: NSObject { // : ObservableObject?
     static let shared = FruitStore()
 
-    private var fruitStocks: Dictionary<Fruit, Int>
-    private let emptyQuantity = 0
+    @objc dynamic internal var strawberry: UInt = 10
+    @objc dynamic internal var banana: UInt = 10
+    @objc dynamic internal var pineapple: UInt = 10
+    @objc dynamic internal var kiwi: UInt = 10
+    @objc dynamic internal var mango: UInt = 10
     
-    private init() {
-        fruitStocks = [.strawberry:10, .banana:10, .pineapple:10, .kiwi:10, .mango:10]
+    subscript(_ fruit: Fruit) -> UInt {
+        get {
+            switch fruit {
+            case .strawberry:
+                return strawberry
+            case .banana:
+                return banana
+            case .pineapple:
+                return pineapple
+            case .kiwi:
+                return kiwi
+            case .mango:
+                return mango
+            }
+        }
+        set {
+            switch fruit {
+            case .strawberry:
+                strawberry = newValue
+            case .banana:
+                banana = newValue
+            case .pineapple:
+                pineapple = newValue
+            case .kiwi:
+                kiwi = newValue
+            case .mango:
+                mango = newValue
+            }
+        }
     }
     
-    internal func currentStock(_ fruit: Fruit) -> Int {
-        guard let stock = fruitStocks[fruit] else {
-            return emptyQuantity
-        }
-        return stock
+    internal func changeStock(_ fruit: Fruit, _ changingQuantity: UInt) {
+        self[fruit] -= changingQuantity
     }
-    internal func changeStock(_ fruit: Fruit, _ changingQuantity: Int) {
-        guard let stock = fruitStocks[fruit] else {
-            return
-        }
-        fruitStocks.updateValue(stock - changingQuantity, forKey: fruit)
-        
-        NotificationCenter.default.post(
-                name: NSNotification.Name(rawValue: "updateUILabels"), object: nil, userInfo: ["과일종류": fruit])
+    internal func changeCurrentStockToValue(_ fruit: Fruit, _ changedValue: UInt) {
+        self[fruit] = changedValue
     }
-//    func increaseByOne(_ fruit: Fruit) {
-//        guard let stock = fruitStocks[fruit] else {
-//            return
-//        }
-//        fruitStocks.updateValue(stock + 1, forKey: fruit)
-//        // notification updateUI()
-//    }
-//
-//    func decreaseByOne(_ fruit: Fruit)  {
-//        guard let stock = fruitStocks[fruit] else {
-//            return
-//        }
-//        fruitStocks.updateValue(stock - 1, forKey: fruit)
-//        // notification updateUI()
-//    }
-//
-//    func postChangingByOne() {
-//        NotificationCenter.default.post(
-//                    name: NSNotification.Name(rawValue: "updateUILabels"), object: nil)
-//    }
 }

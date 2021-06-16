@@ -13,84 +13,63 @@ class MainViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    var juiceMaker = JuiceMaker()
+    var observation = [NSKeyValueObservation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self,
-                    selector: #selector(updateUILabels(_:)),
-                    name: NSNotification.Name(rawValue: "updateUILabels"), object: nil)
-        NotificationCenter.default.addObserver(self,
-                    selector: #selector(alertMakingJuiceSuccess(_:)),
-                    name: NSNotification.Name(rawValue: "successAlert"), object: nil)
-        NotificationCenter.default.addObserver(self,
-                    selector: #selector(alertMakingJuiceFail),
-                    name: NSNotification.Name(rawValue: "failAlert"), object: nil)
-        
+        observation = [
+            juiceMaker.fruitStore.observe(\.strawberry, options: [.new]) { _, _ in self.updateUILabel(.strawberry) },
+            juiceMaker.fruitStore.observe(\.banana, options: [.new]) { _, _ in self.updateUILabel(.banana) },
+            juiceMaker.fruitStore.observe(\.mango, options: [.new]) { _, _ in self.updateUILabel(.mango) },
+            juiceMaker.fruitStore.observe(\.kiwi, options: [.new]) { _, _ in self.updateUILabel(.kiwi) },
+            juiceMaker.fruitStore.observe(\.pineapple, options: [.new]) { _, _ in self.updateUILabel(.pineapple) }
+        ]
         for fruit in Fruit.allCases {
-            NotificationCenter.default.post(
-                    name: NSNotification.Name(rawValue: "updateUILabels"), object: nil, userInfo: ["과일종류": fruit])
+            updateUILabel(fruit)
         }
     }
     
     @IBAction func makeJuiceAction(_ sender: UIButton) {
-        guard let titleLabel = sender.titleLabel else {
-            print("버튼 타이틀 에러"); return
+        guard let titleLabel = sender.titleLabel else { print("버튼 타이틀 에러"); return }
+        guard let text = titleLabel.text, let juice = Juice(rawValue: text) else { print("쥬스 조회 에러"); return }
+        juiceMaker.makeJuice(juice) { getResult in
+            switch getResult {
+            case .success(let juiceName):
+                self.alertMakingJuiceResult(juiceName)
+            case .failure(let error):
+                self.alertMakingJuiceResult()
+                print(error)
+            }
         }
-        guard let text = titleLabel.text, let juice = Juice(rawValue: text) else {
-            print("쥬스 조회 에러"); return
-        }
-        juiceMaker.makeJuice(juice)
     }
-    
     @IBAction func moveToModifyView(_ sender: Any) {
         performSegue(withIdentifier: "showStock", sender: sender)
     }
-}
-
-extension MainViewController {
-    @objc func updateUILabels(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else {
-            print("userInfo 에러"); return
-        }
-        guard let infoValue = userInfo["과일종류"], let fruit = infoValue as? Fruit else {
-            print("재고조회 에러 - userInfo"); return
-        }
+    
+    func updateUILabel(_ fruit: Fruit) {
         switch fruit {
-        case .strawberry:
-            strawberryLabel.text = String(juiceMaker.store.currentStock(.strawberry))
-        case .banana:
-            bananaLabel.text = String(juiceMaker.store.currentStock(.banana))
-        case .pineapple:
-            pineappleLabel.text = String(juiceMaker.store.currentStock(.pineapple))
-        case .kiwi:
-            kiwiLabel.text = String(juiceMaker.store.currentStock(.kiwi))
-        case .mango:
-            mangoLabel.text = String(juiceMaker.store.currentStock(.mango))
+        case .strawberry:   strawberryLabel.text = String(juiceMaker.fruitStore[.strawberry])
+        case .banana:       bananaLabel.text = String(juiceMaker.fruitStore[.banana])
+        case .pineapple:    pineappleLabel.text = String(juiceMaker.fruitStore[.pineapple])
+        case .kiwi:         kiwiLabel.text = String(juiceMaker.fruitStore[.kiwi])
+        case .mango:        mangoLabel.text = String(juiceMaker.fruitStore[.mango])
         }
     }
-    @objc func alertMakingJuiceSuccess(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else {
-            print("userInfo 에러"); return
+    func alertMakingJuiceResult(_ juiceName: String? = nil) {
+        var alert = UIAlertController()
+        var actions = Array<UIAlertAction>()
+        if let name = juiceName {
+            alert = UIAlertController(title: "음료 주문 성공", message: "\(name)쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+            actions = [UIAlertAction(title: "예", style: .default)]
+        } else {
+            alert = UIAlertController(title: "음료 주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+            actions = [ UIAlertAction(title: "예", style: .default) { _ in
+                self.performSegue(withIdentifier: "showStock", sender: self)
+            }, UIAlertAction(title: "아니오", style: .default) ]
+            
         }
-        guard let infoValue = userInfo["쥬스이름"], let juiceName = infoValue as? String else {
-            print("쥬스이름 에러"); return
-        }
-        let alert = UIAlertController(title: "음료 주문 성공", message: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "예", style: .default) { _ in print("주문성공 - \(juiceName)") }
-        alert.addAction(confirmAction)
-        present(alert, animated: true, completion:nil)
-    }
-    @objc func alertMakingJuiceFail() {
-        let alert = UIAlertController(title: "음료 주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
-//            self.performSegue(withIdentifier: "showStock", sender: self)
-            print("주문실패 -> 예: 재고수정")
-        }
-        let cancelAction = UIAlertAction(title: "아니오", style: .default) { _ in print("주문실패 -> 아니오") }
-        alert.addAction(confirmAction)
-        alert.addAction(cancelAction)
+        _ = actions.map({ alert.addAction($0) })
         present(alert, animated: true, completion:nil)
     }
 }

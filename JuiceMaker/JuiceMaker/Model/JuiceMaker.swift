@@ -7,25 +7,25 @@
 import Foundation
 
 // 쥬스 메이커 타입 
-struct JuiceMaker {
-    let store = FruitStore.shared
-    
-    func makeJuice(_ juice: Juice) {
+class JuiceMaker {
+    let fruitStore = FruitStore.shared
+
+    func makeJuice(_ juice: Juice, _ completion: @escaping (Result<String, JuiceMakerError>) -> Void) {
         do {
             try checkStock(juice.ingredients)
             for (fruit, removingQuantities) in juice.ingredients {
-                store.changeStock(fruit, removingQuantities)
+                fruitStore.changeStock(fruit, removingQuantities)
             }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "successAlert"), object: nil, userInfo: ["쥬스이름":juice.description])
+            completion(.success(juice.description))
         } catch {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "failAlert"), object: nil)
+            completion(.failure(.outOfStock))
         }
     }
     
-    func checkStock(_ ingredients: [(Fruit, Int)]) throws {
+    func checkStock(_ ingredients: [(Fruit, UInt)]) throws {
         for (fruit, removingQuantities) in ingredients {
             do {
-                if store.currentStock(fruit) < removingQuantities {
+                if fruitStore[fruit] < removingQuantities {
                     throw JuiceMakerError.outOfStock
                 }
             }
