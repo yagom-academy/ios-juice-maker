@@ -52,6 +52,10 @@ struct JuiceMaker {
         return self.fruitStore[fruit]?.getAmount() ?? 0
     }
     
+//    func stockPlus(_ fruit: Fruits) {
+//        return self.fruitStore[fruit]?.stockPlus(stock: <#T##Int#>)
+//    }
+    
     func makeJuice(order: JuiceType) {
         guard checkStock(fruit: order) else {
             return

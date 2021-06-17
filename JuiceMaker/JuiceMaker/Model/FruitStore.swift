@@ -23,7 +23,7 @@ class FruitStore {
         return amount
     }
     
-    private func stockPlus(stock:Int) {
+    func stockPlus(stock:Int) {
         amount += stock
     }
     

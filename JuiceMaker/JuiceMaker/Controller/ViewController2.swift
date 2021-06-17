@@ -32,5 +32,8 @@ class ViewController2: UIViewController {
         mangoStockLabel.text = String(juiceMaker.getAmount(.mango))
     }
     
-    
+    @IBAction func strawberryStepper(_ sender: UIStepper) {
+        print(sender.value)
+        
+    }
 }
