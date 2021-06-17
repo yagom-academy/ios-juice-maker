@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, LabelUpdatable {
     // MARK: - Type
     private enum Message {
         static let outOfStock = "재료가 모자라요. 재고를 수정할까요?"
@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Properties
-    private var juiceMaker = JuiceMaker(fruitStore: FruitStore())
-    private var labelList = [Fruit: UILabel]()
+    private var juiceMaker = JuiceMaker(fruitStore: FruitStore.shared)
+    var labelList = [Fruit: UILabel]()
     
     // MARK: - IBOutlets - UIButton
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
@@ -54,20 +54,6 @@ class ViewController: UIViewController {
         labelList[.pineapple] = pineappleLabel
         labelList[.kiwi] = kiwiLabel
         labelList[.mango] = mangoLabel
-    }
-    
-    private func updateLabelsText(of fruitStore: FruitStore) {
-        do {
-            let fruitList = Fruit.makeFruitList()
-            for fruit in fruitList {
-                let fruitStock = try fruitStore.getStocks(of: fruit)
-                if let uiLabel = labelList[fruit] {
-                    uiLabel.text = "\(fruitStock)"
-                }
-            }
-        } catch {
-            fatalError("유효하지 않은 접근입니다.")
-        }
     }
     
     private func showAlert(title: String?, message: String?) {

@@ -10,6 +10,7 @@ typealias JuiceRecipe = (fruit: Fruit, count: UInt)
 
 class FruitStore {
     private var fruitStocks: [Fruit: UInt] = [:]
+    static let shared: FruitStore = FruitStore.init()
     
     init(initialValue: UInt = 10) {
         let fruitList = Fruit.makeFruitList()
