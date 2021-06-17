@@ -44,19 +44,10 @@ enum JuiceMenu: String {
 struct JuiceMaker {
     private let store: FruitStore = FruitStore.shared
     
-    func makeJuice(menu: JuiceMenu) {
-        do{
-            let ingredients: [HandlingFruit: Int] = menu.recipe
-            let isOutOfStock = try store.isIngredientOutOfStock(ingredients: ingredients)
-            if isOutOfStock == false {
-                store.useFruitToMakeJuice(ingredients: ingredients)
-                NotificationCenter.default.post(name: DidRecieveOrderMenuNotification, object: nil, userInfo: ["menu": menu])
-            }
-        } catch FruitStoreError.outOfStock {
-            NotificationCenter.default.post(name: DidRecieveOrderMenuNotification, object: nil, userInfo: nil)
-            print("Out of stock")
-        } catch {
-            print("Invalid Error")
-        }
+    func makeJuice(menu: JuiceMenu) throws {
+        let ingredients: [HandlingFruit: Int] = menu.recipe
+        try store.isAllIngredientEnough(ingredients: ingredients)
+        store.useFruitToMakeJuice(ingredients: ingredients)
+        NotificationCenter.default.post(name: DidRecieveOrderMenuNotification, object: nil, userInfo: ["menu": menu])
     }
 }

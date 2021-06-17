@@ -44,20 +44,16 @@ class FruitStore {
         NotificationCenter.default.post(name: DidRecieveStockChangeNotification, object: nil, userInfo: ["stock": fruitStock])
     }
     
-    func isIngredientOutOfStock(ingredients: [HandlingFruit: Int]) throws -> Bool {
+    func isAllIngredientEnough(ingredients: [HandlingFruit: Int]) throws {
         let totalIngrdients = ingredients.map { return ($0, $1) }
         for fruit in totalIngrdients {
-            if try haveEnoughFruitToMakeJuice(fruit: fruit) == false {
-                return true
-            }
+            try haveEnoughFruit(fruit: fruit)
         }
-        return false
     }
     
-    func haveEnoughFruitToMakeJuice(fruit: (name: HandlingFruit,stock: Int)) throws -> Bool {
+    func haveEnoughFruit(fruit: (name: HandlingFruit,stock: Int)) throws {
         guard let selectedFruitStock = fruitStock[fruit.name], selectedFruitStock >= fruit.stock else {
             throw FruitStoreError.outOfStock
         }
-        return true
     }
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 class StockManageViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
