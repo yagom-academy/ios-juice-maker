@@ -418,11 +418,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
-                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="8CW-UI-kL4"/>
-                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="Z2Z-3e-fhw"/>
-                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="Lq4-8T-r26"/>
-                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="fNx-eJ-fOe"/>
-                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="qga-iE-ocf"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="PIo-Af-VeW"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="c4S-kd-Dxb"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="eDq-9k-OMf"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="oNi-Fg-lmj"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="m1O-MH-dJ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

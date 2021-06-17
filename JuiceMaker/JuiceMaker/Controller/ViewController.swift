@@ -8,7 +8,7 @@ import UIKit
 
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    static let juiceMaker = JuiceMaker()
     
     var stockAlert: UIAlertController {
         let alert = UIAlertController(title: "경고!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
                 style: .default,
                 handler: { _ in
                     self.goNextView()
+					
                 }
             )
         )
@@ -42,19 +43,25 @@ class ViewController: UIViewController {
         changeTextOn(label: mangoStockLabel, about: .mango)
         changeTextOn(label: pineappleStockLabel, about: .pineapple)
     }
-    
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+	}
+	
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    
+	
+	
     @IBAction func makeStrawNanaJuice(_ sender: UIButton) {
         let currentMenu: JuiceMenu = .strawNanaJuice
         
         do {
-            try juiceMaker.orderJuice(menu: currentMenu)
+			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
             
             changeTextOn(label: strawberryStockLabel, about: .strawberry)
             changeTextOn(label: bananaStockLabel, about: .banana)
@@ -69,10 +76,10 @@ class ViewController: UIViewController {
         let currentMenu: JuiceMenu = .strawberryJuice
         
         do {
-            try juiceMaker.orderJuice(menu: currentMenu)
+			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
             
             changeTextOn(label: strawberryStockLabel, about: .strawberry)
-            
+			            
             showCompleteAlert(about: currentMenu)
         } catch {
             self.present(stockAlert, animated: false, completion: nil)
@@ -83,7 +90,7 @@ class ViewController: UIViewController {
         let currentMenu: JuiceMenu = .mangoKiwiJuice
         
         do {
-            try juiceMaker.orderJuice(menu: currentMenu)
+			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
             
             changeTextOn(label: mangoStockLabel, about: .mango)
             changeTextOn(label: kiwiStockLabel, about: .kiwi)
@@ -98,7 +105,7 @@ class ViewController: UIViewController {
         let currentMenu: JuiceMenu = .mangoJuice
         
         do {
-            try juiceMaker.orderJuice(menu: currentMenu)
+			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
             
             changeTextOn(label: mangoStockLabel, about: .mango)
             
@@ -113,7 +120,7 @@ class ViewController: UIViewController {
         let currentMenu: JuiceMenu = .kiwiJuice
         
         do {
-            try juiceMaker.orderJuice(menu: currentMenu)
+			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
             
             changeTextOn(label: kiwiStockLabel, about: .kiwi)
             
@@ -127,7 +134,7 @@ class ViewController: UIViewController {
         let currentMenu: JuiceMenu = .bananaJuice
         
         do {
-            try juiceMaker.orderJuice(menu: currentMenu)
+			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
             
             changeTextOn(label: bananaStockLabel, about: .banana)
             
@@ -141,7 +148,7 @@ class ViewController: UIViewController {
         let currentMenu: JuiceMenu = .pineappleJuice
         
         do {
-            try juiceMaker.orderJuice(menu: currentMenu)
+			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
             
             changeTextOn(label: pineappleStockLabel, about: .pineapple)
             
@@ -153,10 +160,12 @@ class ViewController: UIViewController {
     
     @IBAction func touchOnNextButton(){
         goNextView()
+		self.navigationItem.leftBarButtonItem = nil
+
     }
     
     func changeTextOn(label: UILabel, about fruit: Fruit) {
-        let fruitStore = juiceMaker.fruitStores.filter { $0.name == fruit }.first
+		let fruitStore = ViewController.juiceMaker.fruitStores.filter { $0.name == fruit }.first
         if let stockLeft = fruitStore?.stock {
             label.text = "\(stockLeft)"
         }
