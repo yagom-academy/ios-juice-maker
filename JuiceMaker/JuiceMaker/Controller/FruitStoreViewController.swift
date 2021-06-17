@@ -25,6 +25,8 @@ class FruitStoreViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
+    let fruitStore = FruitStore.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -54,14 +56,35 @@ class FruitStoreViewController: UIViewController {
         fruitStockLabel.text = Int(sender.value).description
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func findStepper(of fruit: Fruit) -> UIStepper {
+        switch fruit {
+        case .strawberry:
+            return strawberryStepper
+        case .banana:
+            return bananaStepper
+        case .pineapple:
+            return pineappleStepper
+        case .kiwi:
+            return kiwiStepper
+        case .mango:
+            return mangoStepper
+        }
     }
-    */
-
+    
+    func updateFruitStock(of fruit: Fruit) {
+        let fruitStepper = findStepper(of: fruit)
+        let fruitStock = Int(fruitStepper.value)
+        do {
+            try fruitStore.updateStock(of: fruit, by: fruitStock)
+        } catch {
+            print("updateStock Error")
+        }
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        for fruit in Fruit.allCases {
+            updateFruitStock(of: fruit)
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
