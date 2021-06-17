@@ -41,15 +41,22 @@ struct JuiceMaker {
             }
         }
     }
-    
+
     let fruitstore = FruitStore.sharedInstance
     
     func makeJuice(recipe: JuiceRecipe) throws {
-        for (fruit, amount) in recipe.recipeIngredients {
-            do {
-                try fruitstore.usingFruits(fruit: fruit, needs: amount)
-            } catch FruitError.outOfStock {
-                throw FruitError.outOfStock
+        switch recipe {
+        case .strawberryBananaJuice:
+            try fruitstore.usingFruits(fruit1: .strawberry, needs1: 10, fruit2: .banana, needs2: 1)
+        case .mangoKiwiJuice:
+            try fruitstore.usingFruits(fruit1: .mango, needs1: 2, fruit2: .kiwi, needs2: 1)
+        default:
+            for (fruit, amount) in recipe.recipeIngredients{
+                do {
+                    try fruitstore.usingFruits(fruit: fruit, needs: amount)
+                } catch FruitError.outOfStock {
+                    throw FruitError.outOfStock
+                }
             }
         }
     }

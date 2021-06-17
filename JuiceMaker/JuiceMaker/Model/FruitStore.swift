@@ -51,4 +51,14 @@ class FruitStore {
             fruitStock[fruit] = stock - needs
         }
     }
+    
+    func usingFruits(fruit1: Fruit, needs1: Int, fruit2: Fruit, needs2: Int) throws {
+        guard let stock1 = fruitStock[fruit1], let stock2 = fruitStock[fruit2] else { return }
+        if stock1 >= needs1 && stock2 >= needs2 {
+            fruitStock[fruit1] = stock1 - needs1
+            fruitStock[fruit2] = stock2 - needs2
+        } else {
+            throw FruitError.outOfStock
+        }
+    }
 }

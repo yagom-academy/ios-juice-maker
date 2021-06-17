@@ -33,7 +33,7 @@ class JuiceMakerViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-
+    
     private func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         guard let modalViewController = self.storyboard?.instantiateViewController(identifier: "StockEdit") else { return }
@@ -46,77 +46,52 @@ class JuiceMakerViewController: UIViewController {
         alert.addAction(noAction)
         present(alert, animated: true, completion: nil)
     }
-
+    
     @IBAction func strawberryJuiceButtonDidTap(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(recipe: .strawberryJuice)
-            strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
-            showMenuServingAlert(recipe: .strawberryJuice)
-        } catch {
-            showEmptyStockAlert(recipe: .strawberryJuice)
-        }
+        makingJuice(recipe: .strawberryJuice)
+        strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
     }
     
     @IBAction func bananaJuiceButtonDidTap(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(recipe: .bananaJuice)
-            bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
-            showMenuServingAlert(recipe: .bananaJuice)
-        } catch {
-            showEmptyStockAlert(recipe: .bananaJuice)
-        }
+        makingJuice(recipe: .bananaJuice)
+        bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
     }
     
     @IBAction func pineappleJuiceButtonDidTap(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(recipe: .pineappleJuice)
-            pineappleStockLabel.text = String(fruitStore.stockAmount(fruit: .pineapple))
-            showMenuServingAlert(recipe: .pineappleJuice)
-        } catch {
-            showEmptyStockAlert(recipe: .pineappleJuice)
-        }
+        makingJuice(recipe: .pineappleJuice)
+        pineappleStockLabel.text = String(fruitStore.stockAmount(fruit: .pineapple))
     }
     
     @IBAction func kiwiJuiceButtonDidTap(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(recipe: .kiwiJuice)
-            kiwiStockLabel.text = String(fruitStore.stockAmount(fruit: .kiwi))
-            showMenuServingAlert(recipe: .kiwiJuice)
-        } catch {
-            showEmptyStockAlert(recipe: .kiwiJuice)
-        }
+        makingJuice(recipe: .kiwiJuice)
+        kiwiStockLabel.text = String(fruitStore.stockAmount(fruit: .kiwi))
     }
     
     
     @IBAction func mangoJuiceButtonDidTap(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(recipe: .mangoJuice)
-            mangoStockLabel.text = String(fruitStore.stockAmount(fruit: .mango))
-            showMenuServingAlert(recipe: .mangoJuice)
-        } catch {
-            showEmptyStockAlert(recipe: .mangoJuice)
-        }
+        makingJuice(recipe: .mangoJuice)
+        mangoStockLabel.text = String(fruitStore.stockAmount(fruit: .mango))
     }
     
     @IBAction func strawberryBananaButtonDidTap(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(recipe: .strawberryBananaJuice)
-            strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
-            bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
-            showMenuServingAlert(recipe: .strawberryBananaJuice)
-        } catch {
-            showEmptyStockAlert(recipe: .strawberryBananaJuice)
-        }
+        makingJuice(recipe: .strawberryBananaJuice)
+        strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
+        bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
     }
     
     @IBAction func mangoKiwiButtonDidTap(_ sender: UIButton) {
+        makingJuice(recipe: .mangoKiwiJuice)
+        mangoStockLabel.text = String(fruitStore.stockAmount(fruit: .mango))
+        kiwiStockLabel.text = String(fruitStore.stockAmount(fruit: .kiwi))
+    }
+    
+    private func makingJuice(recipe: JuiceMaker.JuiceRecipe) {
         do {
-            try juiceMaker.makeJuice(recipe: .mangoKiwiJuice)
-            mangoStockLabel.text = String(fruitStore.stockAmount(fruit: .mango))
-            kiwiStockLabel.text = String(fruitStore.stockAmount(fruit: .kiwi))
-            showMenuServingAlert(recipe: .mangoKiwiJuice)
+            try juiceMaker.makeJuice(recipe: recipe)
+            showMenuServingAlert(recipe: recipe)
         } catch {
-            showEmptyStockAlert(recipe: .mangoKiwiJuice)
+            showEmptyStockAlert(recipe: recipe)
         }
     }
 }
+
