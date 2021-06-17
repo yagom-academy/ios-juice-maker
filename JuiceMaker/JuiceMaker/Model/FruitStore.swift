@@ -24,7 +24,7 @@ class FruitStore {
     }
     
     func stockPlus(stock:Int) {
-        amount += stock
+        amount = stock
     }
     
     func stockMinus(stock: Int) {

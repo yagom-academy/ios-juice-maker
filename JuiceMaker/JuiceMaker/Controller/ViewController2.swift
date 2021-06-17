@@ -13,10 +13,11 @@ class ViewController2: UIViewController {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet weak var strawberryStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        strawberryStepper.value = Double(juiceMaker.getAmount(.strawberry))
         showFruitLabel()
     }
     
@@ -33,7 +34,7 @@ class ViewController2: UIViewController {
     }
     
     @IBAction func strawberryStepper(_ sender: UIStepper) {
-        print(sender.value)
-        
+        juiceMaker.stockPlus(.strawberry, stock: Int(sender.value))
+        showFruitLabel()
     }
 }
