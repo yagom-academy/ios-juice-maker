@@ -107,10 +107,18 @@ extension ViewController {
             alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         case .failure(let message):
             alert.message = message
-            alert.addAction(UIAlertAction(title: "예", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "예", style: .default, handler: transitionToStockManagement(_:)))
             alert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: nil))
         }
         return alert
+    }
+}
+
+//MARK:- 화면이동 관련
+extension ViewController {
+    func transitionToStockManagement(_ sender: UIAlertAction) {
+        let segueName = "segueToStockManagement"
+        performSegue(withIdentifier: segueName, sender: sender)
     }
 }
 
