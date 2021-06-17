@@ -29,7 +29,24 @@ class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        initializeAllFruitStockLabelsAndSteppers()
+    }
+    
+    func initializeAllFruitStockLabelsAndSteppers() {
+        initializeStockLabelAndStepper(of: .strawberry, label: strawberryStockLabel)
+        initializeStockLabelAndStepper(of: .banana, label: bananaStockLabel)
+        initializeStockLabelAndStepper(of: .pineapple, label: pineappleStockLabel)
+        initializeStockLabelAndStepper(of: .kiwi, label: kiwiStockLabel)
+        initializeStockLabelAndStepper(of: .mango, label: mangoStockLabel)
+    }
+
+    func initializeStockLabelAndStepper(of fruit: Fruit, label: UILabel) {
+        guard let currentStock = try? fruitStore.showStockLeft(fruit: fruit) else {
+            return
+        }
+        label.text = String(currentStock)
+        let fruitStepper = findStepper(of: fruit)
+        fruitStepper.value = Double(currentStock)
     }
     
     func findFruit(from sender: UIStepper) throws -> UILabel {
@@ -48,14 +65,14 @@ class FruitStoreViewController: UIViewController {
             throw StepperError.invalidFruitStepper
         }
     }
-    
+
     @IBAction func fruitStepperTapped(_ sender: UIStepper) {
         guard let fruitStockLabel = try? findFruit(from: sender) else {
             return
         }
         fruitStockLabel.text = Int(sender.value).description
     }
-    
+
     func findStepper(of fruit: Fruit) -> UIStepper {
         switch fruit {
         case .strawberry:

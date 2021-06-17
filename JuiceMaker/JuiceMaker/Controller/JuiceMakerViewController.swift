@@ -30,7 +30,7 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAllFruitStockLabels()
+        initializeAllFruitStockLabels()
 
         NotificationCenter.default.addObserver(self, selector: #selector(showCurrentStockLabel(_:)), name: .changedFruitStock, object: nil)
     }
@@ -51,15 +51,15 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func showAllFruitStockLabels() {
-        showinitialStockLabel(of: .strawberry, label: strawberryStockLabel)
-        showinitialStockLabel(of: .banana, label: bananaStockLabel)
-        showinitialStockLabel(of: .pineapple, label: pineappleStockLabel)
-        showinitialStockLabel(of: .kiwi, label: kiwiStockLabel)
-        showinitialStockLabel(of: .mango, label: mangoStockLabel)
+    func initializeAllFruitStockLabels() {
+        initializeStockLabel(of: .strawberry, label: strawberryStockLabel)
+        initializeStockLabel(of: .banana, label: bananaStockLabel)
+        initializeStockLabel(of: .pineapple, label: pineappleStockLabel)
+        initializeStockLabel(of: .kiwi, label: kiwiStockLabel)
+        initializeStockLabel(of: .mango, label: mangoStockLabel)
     }
 
-    func showinitialStockLabel(of fruit: Fruit, label: UILabel) {
+    func initializeStockLabel(of fruit: Fruit, label: UILabel) {
         guard let currentStock = try? fruitStore.showStockLeft(fruit: fruit) else {
             return
         }
