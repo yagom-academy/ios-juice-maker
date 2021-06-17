@@ -7,7 +7,7 @@
 import Foundation
 
 // 쥬스 메이커 타입
-enum Juice: String, CustomStringConvertible {
+enum Juice: String {
     case strawberryJuice = "딸기"
     case bananaJuice = "바나나"
     case kiwiJuice = "키위"
@@ -15,7 +15,7 @@ enum Juice: String, CustomStringConvertible {
     case strawberryBananaJuice = "딸바"
     case mangoJuice = "망고"
     case mangoKiwiJuice = "망키"
-    
+
     var ingredients: [Fruit: Int] {
         switch self {
         case .strawberryJuice:
@@ -34,26 +34,25 @@ enum Juice: String, CustomStringConvertible {
             return [.mango: 2, .kiwi: 1]
         }
     }
-    var description: String {
+    var menu: String {
         self.rawValue
     }
 }
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
-    
+    let fruitStore = FruitStore.shared
+
     func order(juice: Juice) throws {
         try checkStock(of: juice)
         try blend(juice: juice)
-        print(juice)
     }
-    
+
     func checkStock(of juice: Juice) throws {
         for (fruit, amount) in juice.ingredients {
             try fruitStore.hasMoreThan(of: fruit, by: amount)
         }
     }
-    
+
     func blend(juice: Juice) throws {
         for (fruit, amount) in juice.ingredients {
             try fruitStore.reduceStock(of: fruit, by: amount)

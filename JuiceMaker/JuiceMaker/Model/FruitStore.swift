@@ -17,37 +17,38 @@ enum Fruit: CaseIterable {
 enum FruitStoreError: Error {
     case outOfStock
     case invalidFruit
-    case outOfRange
+    case stockBelowMinimum
 }
 
 // 과일 타입
 class FruitStore {
+    static let shared = FruitStore()
     private var fruitList: [Fruit: Int] = [:]
-    
-    init() {
+
+    private init(initialStock: Int = 10) {
         for fruit in Fruit.allCases {
-            fruitList[fruit] = 10
+            fruitList[fruit] = initialStock
         }
-    }
-    
-    func showStockLeft(fruit: Fruit) throws -> Int {
-        if let stockLeft = fruitList[fruit] {
-            return stockLeft
-        }
-        throw FruitStoreError.invalidFruit
     }
 
-    // Stepper의 value로 업데이트하기 위한 메서드
+    func showStockLeft(fruit: Fruit) throws -> Int {
+        guard let stockLeft = fruitList[fruit] else {
+            throw FruitStoreError.invalidFruit
+        }
+        return stockLeft
+    }
+
+    /// Stepper의 value로 업데이트하기 위한 메서드
     func updateStock(of fruit: Fruit, by amount: Int) throws {
         guard let _ = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
         }
         guard amount >= 0 else {
-            throw FruitStoreError.outOfRange
+            throw FruitStoreError.stockBelowMinimum
         }
         fruitList[fruit]? = amount
     }
-    
+
     func addStock(of fruit: Fruit, by amountToAdd: Int) throws {
         guard let _ = fruitList[fruit] else {
             throw FruitStoreError.invalidFruit
@@ -60,7 +61,7 @@ class FruitStore {
             throw FruitStoreError.invalidFruit
         }
         guard stock - amountToReduce >= 0 else {
-            throw FruitStoreError.outOfRange
+            throw FruitStoreError.stockBelowMinimum
         }
         fruitList[fruit]? -= amountToReduce
     }
