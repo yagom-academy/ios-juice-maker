@@ -23,23 +23,23 @@ class FruitStore {
         }
     }
     
-    public func getStockAmount(fruit: Fruit) -> Int {
+    func stockAmount(fruit: Fruit) -> Int {
         return fruitStock[fruit] ?? 0
     }
     
-    public func increaseStock(fruit: Fruit, count: Int) {
+    func increaseStock(fruit: Fruit, count: Int) {
         let stock = fruitStock[fruit] ?? 0
         fruitStock[fruit] = stock + count
     }
     
-    public func decreaseStock(fruit: Fruit, count: Int) {
+    func decreaseStock(fruit: Fruit, count: Int) {
         let stock = fruitStock[fruit] ?? 0
         if stock >= count {
             fruitStock[fruit] = stock - count
         }
     }
     
-    public func inputStock(fruit: Fruit, count: Int) {
+    func inputStock(fruit: Fruit, count: Int) {
         fruitStock[fruit] = count
     }
 

@@ -12,7 +12,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="JuiceMakerViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -303,7 +303,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="strawberryStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="9XU-5c-y31"/>
+                                                    <action selector="strawberryStepperDidTap:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="2Xm-5j-ljt"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -330,7 +330,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="bananaStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="Fkh-Pv-14m"/>
+                                                    <action selector="bananaStepperDidTap:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="vrJ-ve-S6a"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -357,7 +357,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="pineappleStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="ccL-SB-ASE"/>
+                                                    <action selector="pineappleStepperDidTap:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="u19-tj-uQ6"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -384,7 +384,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="kiwiStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="pTQ-TF-acx"/>
+                                                    <action selector="kiwiStepperDidTap:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="A2Q-P2-qpk"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -411,7 +411,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="mangoStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="kST-du-vNA"/>
+                                                    <action selector="mangoStepperDidTap:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="eYb-eQ-Xe5"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -426,7 +426,7 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <state key="normal" title="닫기"/>
                                 <connections>
-                                    <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="rww-hq-p3Y"/>
+                                    <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="yp1-n3-CJf"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -5,13 +5,12 @@
 // 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     @IBOutlet var strawberryStockLabel: UILabel!
     @IBOutlet var bananaStockLabel: UILabel!
     @IBOutlet var pineappleStockLabel: UILabel!
     @IBOutlet var kiwiStockLabel: UILabel!
     @IBOutlet var mangoStockLabel: UILabel!
-    @IBOutlet var test: UIAlertController!
     
     private let juiceMaker = JuiceMaker()
     private let fruitStore = FruitStore.sharedInstance
@@ -21,11 +20,11 @@ class ViewController: UIViewController {
     }
     
     private func settingAllLabelText() {
-        strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
-        bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
-        pineappleStockLabel.text = String(fruitStore.getStockAmount(fruit: .pineapple))
-        kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
-        mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
+        strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
+        bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
+        pineappleStockLabel.text = String(fruitStore.stockAmount(fruit: .pineapple))
+        kiwiStockLabel.text = String(fruitStore.stockAmount(fruit: .kiwi))
+        mangoStockLabel.text = String(fruitStore.stockAmount(fruit: .mango))
     }
     
     private func showMenuServingAlert(recipe: JuiceMaker.JuiceRecipe) {
@@ -37,10 +36,10 @@ class ViewController: UIViewController {
 
     private func showEmptyStockAlert(recipe: JuiceMaker.JuiceRecipe) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let vc = self.storyboard!.instantiateViewController(identifier: "StockEdit")
-        vc.modalPresentationStyle = .fullScreen
+        guard let modalViewController = self.storyboard?.instantiateViewController(identifier: "StockEdit") else { return }
+        modalViewController.modalPresentationStyle = .fullScreen
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
-            self.present(vc, animated: true)
+            self.present(modalViewController, animated: true)
         }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(okAction)
@@ -51,7 +50,7 @@ class ViewController: UIViewController {
     @IBAction func strawberryJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryJuice)
-            strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
+            strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
             showMenuServingAlert(recipe: .strawberryJuice)
         } catch {
             showEmptyStockAlert(recipe: .strawberryJuice)
@@ -61,7 +60,7 @@ class ViewController: UIViewController {
     @IBAction func bananaJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .bananaJuice)
-            bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
+            bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
             showMenuServingAlert(recipe: .bananaJuice)
         } catch {
             showEmptyStockAlert(recipe: .bananaJuice)
@@ -71,7 +70,7 @@ class ViewController: UIViewController {
     @IBAction func pineappleJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .pineappleJuice)
-            pineappleStockLabel.text = String(fruitStore.getStockAmount(fruit: .pineapple))
+            pineappleStockLabel.text = String(fruitStore.stockAmount(fruit: .pineapple))
             showMenuServingAlert(recipe: .pineappleJuice)
         } catch {
             showEmptyStockAlert(recipe: .pineappleJuice)
@@ -81,7 +80,7 @@ class ViewController: UIViewController {
     @IBAction func kiwiJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .kiwiJuice)
-            kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
+            kiwiStockLabel.text = String(fruitStore.stockAmount(fruit: .kiwi))
             showMenuServingAlert(recipe: .kiwiJuice)
         } catch {
             showEmptyStockAlert(recipe: .kiwiJuice)
@@ -92,7 +91,7 @@ class ViewController: UIViewController {
     @IBAction func mangoJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoJuice)
-            mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
+            mangoStockLabel.text = String(fruitStore.stockAmount(fruit: .mango))
             showMenuServingAlert(recipe: .mangoJuice)
         } catch {
             showEmptyStockAlert(recipe: .mangoJuice)
@@ -102,8 +101,8 @@ class ViewController: UIViewController {
     @IBAction func strawberryBananaButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .strawberryBananaJuice)
-            strawberryStockLabel.text = String(fruitStore.getStockAmount(fruit: .strawberry))
-            bananaStockLabel.text = String(fruitStore.getStockAmount(fruit: .banana))
+            strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
+            bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
             showMenuServingAlert(recipe: .strawberryBananaJuice)
         } catch {
             showEmptyStockAlert(recipe: .strawberryBananaJuice)
@@ -113,8 +112,8 @@ class ViewController: UIViewController {
     @IBAction func mangoKiwiButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(recipe: .mangoKiwiJuice)
-            mangoStockLabel.text = String(fruitStore.getStockAmount(fruit: .mango))
-            kiwiStockLabel.text = String(fruitStore.getStockAmount(fruit: .kiwi))
+            mangoStockLabel.text = String(fruitStore.stockAmount(fruit: .mango))
+            kiwiStockLabel.text = String(fruitStore.stockAmount(fruit: .kiwi))
             showMenuServingAlert(recipe: .mangoKiwiJuice)
         } catch {
             showEmptyStockAlert(recipe: .mangoKiwiJuice)
