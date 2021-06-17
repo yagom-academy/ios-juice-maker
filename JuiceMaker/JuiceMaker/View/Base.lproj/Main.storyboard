@@ -308,6 +308,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeStrawberryStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Avv-uU-NQR"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -332,6 +335,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeBananaStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="qCV-fO-AAI"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -356,6 +362,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changePineappleStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="kgn-c3-wft"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -380,6 +389,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeKiwiStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="cHT-pw-Jam"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -404,6 +416,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeMangoStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="vIj-5w-YPw"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -429,6 +444,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="N2S-yM-9iI"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="IG2-7y-p3l"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="Hg5-Vs-Y4P"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="nFG-QW-WeW"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="teb-Om-t7v"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="kon-ur-z8f"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="DiU-nd-3JX"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="S98-MJ-yqg"/>
+                        <outlet property="stawberryStockLabel" destination="0yV-kn-zaT" id="G7v-Zq-Pez"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="3Gv-Kb-5CW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
