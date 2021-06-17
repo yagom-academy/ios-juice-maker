@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class OrderJuiceViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStock: UILabel!
@@ -17,11 +17,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentStockOfFruits()
+        showStockOfFruits()
         // Do any additional setup after loading the view.
     }
     
-    private func currentStockOfFruits() {
+    private func showStockOfFruits() {
         strawberryStock.text = "\(juiceMaker.fruitStore.getStock(of: .strawberry))"
         bananaStock.text = "\(juiceMaker.fruitStore.getStock(of: .banana))"
         pineappleStock.text = "\(juiceMaker.fruitStore.getStock(of: .pineapple))"
@@ -58,16 +58,16 @@ class ViewController: UIViewController {
         guard let selectMenu = selectMenu else { return }
         do {
             try juiceMaker.makeJuice(of: selectMenu)
-                currentStockOfFruits()
-                alertMessage(juice: selectMenu , makeJuice: true, unknownErrorMessage: nil)
+                showStockOfFruits()
+                showResultOfOrder(juice: selectMenu , makeJuice: true, unknownErrorMessage: nil)
             } catch ErrorCase.outOfStock {
-                alertMessage(juice: selectMenu, makeJuice: false, unknownErrorMessage: nil)
+                showResultOfOrder(juice: selectMenu, makeJuice: false, unknownErrorMessage: nil)
             } catch {
-                alertMessage(juice: nil, makeJuice: false, unknownErrorMessage: "Unexpected error: \(error).")
+                showResultOfOrder(juice: nil, makeJuice: false, unknownErrorMessage: "Unexpected error: \(error).")
             }
     }
     
-    private func alertMessage(juice: JuiceMenu?, makeJuice: Bool, unknownErrorMessage: String?) {
+    private func showResultOfOrder(juice: JuiceMenu?, makeJuice: Bool, unknownErrorMessage: String?) {
         if makeJuice == true {
             guard let juice = juice else { return }
             let sucessAlert = UIAlertController(title: "주문하신 \(juice.rawValue) 나왔습니다", message: nil, preferredStyle: UIAlertController.Style.alert)
