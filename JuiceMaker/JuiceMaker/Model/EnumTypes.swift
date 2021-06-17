@@ -5,17 +5,6 @@
 //  Created by Yongwoo Marco on 2021/06/15.
 //
 
-enum JuiceMakerError: Error {
-    case outOfStock
-}
-
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
 
 //enum Juice: String, CustomStringConvertible {
 //    case strawberryBananaJuice = "딸바쥬스 주문"

@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
         for action in actions {
             alert.addAction(action)
         }
-        present(alert, animated: true, completion:nil)
+        present(alert, animated: true, completion: nil)
     }
 }
 
