@@ -31,8 +31,13 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeAllFruitStockLabels()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(showCurrentStockLabel(_:)), name: .changedFruitStock, object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(showCurrentStockLabel(_:)),
+            name: .changedFruitStock,
+            object: nil
+        )
     }
     
     @objc func showCurrentStockLabel(_ notification: Notification) {
@@ -60,10 +65,14 @@ class JuiceMakerViewController: UIViewController {
     }
 
     func initializeStockLabel(of fruit: Fruit, label: UILabel) {
-        guard let currentStock = try? fruitStore.showStockLeft(fruit: fruit) else {
-            return
+        do {
+            let currentStock = try fruitStore.showStockLeft(fruit: fruit)
+            label.text = String(currentStock)
+        } catch FruitStoreError.invalidFruit {
+            showNotificationAlert(message: "없는 과일입니다.", actionTitle: "OK")
+        } catch {
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.", actionTitle: "OK")
         }
-        label.text = String(currentStock)
     }
     
     func findJuiceMenu(from sender: UIButton) throws -> Juice {
@@ -113,7 +122,11 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func showOutOfStockAlert() {
-        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: nil,
+            message: "재료가 모자라요. 재고를 수정할까요?",
+            preferredStyle: .alert
+        )
         let okAction = UIAlertAction(title: "예", style: .default) {
             action in
             self.navigateToFruitStore()
@@ -126,8 +139,9 @@ class JuiceMakerViewController: UIViewController {
     
     func navigateToFruitStore() {
         guard let fruitStoreNavigationController = self.storyboard?.instantiateViewController(
-                withIdentifier: "fruitStoreNavigationController"
+            withIdentifier: "fruitStoreNavigationController"
         ) else {
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.", actionTitle: "OK")
             return
         }
         
