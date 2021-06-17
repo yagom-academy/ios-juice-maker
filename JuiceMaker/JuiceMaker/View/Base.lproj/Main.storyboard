@@ -236,8 +236,26 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <segue destination="WwV-Td-3Bn" kind="show" id="wvV-7T-n8t"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="2hr-fs-tzD"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="7JH-fX-OsD"/>
+                        <outlet property="fineappleJuiceButton" destination="BFb-ka-wGA" id="7U4-HR-PIo"/>
+                        <outlet property="fineappleStockLabel" destination="ccQ-Dk-PuY" id="7E4-Ow-dNC"/>
+                        <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="Zma-iy-hhR"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="Xq3-uB-Y2P"/>
+                        <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="bpI-g5-f3u"/>
+                        <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="kbn-L9-pLO"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="NCL-ri-etW"/>
+                        <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="FfN-cy-WCR"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="BqU-07-LDi"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="ltm-4i-f5B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="StockManageView" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -404,17 +422,24 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="ZI9-gi-JX8">
+                            <connections>
+                                <action selector="ClickCloseButton:" destination="Yu1-lM-nqp" id="cse-FC-Nb5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="901"/>
+            <point key="canvasLocation" x="1562" y="1021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="DhC-AT-3bd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -426,7 +451,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="21"/>
+            <point key="canvasLocation" x="1562" y="93"/>
         </scene>
     </scenes>
     <resources>

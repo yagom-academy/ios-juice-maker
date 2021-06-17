@@ -6,6 +6,8 @@
 
 import Foundation
 
+let DidRecieveStockChangeNotification: Notification.Name = Notification.Name("DidReceiveStockChange")
+
 enum FruitStoreError: Error {
     case outOfStock
 }
@@ -39,6 +41,7 @@ class FruitStore {
             guard let selectedFruitStock = fruitStock[fruit.key] else { return }
             fruitStock[fruit.key] = selectedFruitStock - fruit.value
         }
+        NotificationCenter.default.post(name: DidRecieveStockChangeNotification, object: nil, userInfo: ["stock": fruitStock])
     }
     
     func isIngredientOutOfStock(ingredients: [HandlingFruit: Int]) throws -> Bool {
@@ -58,4 +61,3 @@ class FruitStore {
         return true
     }
 }
-

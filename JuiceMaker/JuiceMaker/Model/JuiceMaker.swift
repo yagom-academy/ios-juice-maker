@@ -6,14 +6,16 @@
 
 import Foundation
 
-enum JuiceMenu: Int {
-    case strawberry = 1
-    case banana = 2
-    case kiwi = 3
-    case fineapple = 4
-    case strawberryBanana = 5
-    case mango = 6
-    case mangoKiwi = 7
+let DidRecieveOrderMenuNotification: Notification.Name = Notification.Name("DidRecieveOrderMenu")
+
+enum JuiceMenu: String {
+    case strawberry = "딸기쥬스"
+    case banana = "바나나쥬스"
+    case kiwi = "키위쥬스"
+    case fineapple = "파인애플쥬스"
+    case strawberryBanana = "딸바쥬스"
+    case mango = "망고쥬스"
+    case mangoKiwi = "망키쥬스"
     
     var recipe: [HandlingFruit: Int] {
         switch self {
@@ -33,6 +35,10 @@ enum JuiceMenu: Int {
             return [.mango: 2, .kiwi: 1]
         }
     }
+    
+    func description() -> String {
+        return self.rawValue
+    }
 }
 
 struct JuiceMaker {
@@ -44,16 +50,13 @@ struct JuiceMaker {
             let isOutOfStock = try store.isIngredientOutOfStock(ingredients: ingredients)
             if isOutOfStock == false {
                 store.useFruitToMakeJuice(ingredients: ingredients)
-                print(menu, "Juice made")
+                NotificationCenter.default.post(name: DidRecieveOrderMenuNotification, object: nil, userInfo: ["menu": menu])
             }
         } catch FruitStoreError.outOfStock {
+            NotificationCenter.default.post(name: DidRecieveOrderMenuNotification, object: nil, userInfo: nil)
             print("Out of stock")
         } catch {
             print("Invalid Error")
         }
-    }
-    
-    func updateFruitStore() -> [HandlingFruit: Int] {
-        return self.store.fruitStock
     }
 }
