@@ -30,7 +30,7 @@ class FruitStore {
 }
 
 class Fruit {
-    var stock: Int
+    var stock: Int 
     init(stock: Int = 10) {
         self.stock = stock
     }

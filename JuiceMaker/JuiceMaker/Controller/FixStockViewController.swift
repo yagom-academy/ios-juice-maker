@@ -1,8 +1,8 @@
 
 import UIKit
 
-protocol sendBackDelegate {
-    func dataReload()
+protocol FixStockViewControllerDelegate: class {
+    func fixStockViewController()
 }
 
 class FixStockViewController: UIViewController {
@@ -20,7 +20,7 @@ class FixStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
    
     var fruitStore = FruitStore()
-    var delegate: sendBackDelegate?
+    weak var delegate: FixStockViewControllerDelegate?
      
     @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
         strawberryLabel.text = (fruitStore.strawberry.stock + Int(sender.value)).description
@@ -39,56 +39,57 @@ class FixStockViewController: UIViewController {
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        textToInt(text: strawberryLabel.text)
-        textToInt(text: bananaLabel.text)
-        textToInt(text: pineappleLabel.text)
-        textToInt(text: kiwiLabel.text)
-        textToInt(text: mangoLabel.text)
-        delegate?.dataReload()
+        typeChange(of: strawberryLabel.text)
+        typeChange(of: bananaLabel.text)
+        typeChange(of: pineappleLabel.text)
+        typeChange(of: kiwiLabel.text)
+        typeChange(of: mangoLabel.text)
+        delegate?.fixStockViewController()
         dismiss(animated: true, completion: nil)
     }
-    
-    func textToInt(text: String?) {
-        guard let stock = text, let num = Int(stock) else {
-            print(JuiceMakerError.unexpectedError)
-            return
-        }
-        switch text {
-        case strawberryLabel.text:
-            fruitStore.strawberry.stock = num
-        case bananaLabel.text:
-            fruitStore.banana.stock = num
-        case pineappleLabel.text:
-            fruitStore.pineapple.stock = num
-        case kiwiLabel.text:
-            fruitStore.kiwi.stock = num
-        default:
-            fruitStore.mango.stock = num
-        }
-    }
 
+    func typeChange(of stockInString: String?) {
+            guard let stock = stockInString, let stockInInt = Int(stock) else {
+                print(JuiceMakerError.unexpectedError)
+                return
+            }
+            switch stockInString {
+            case strawberryLabel.text:
+                fruitStore.strawberry.stock = stockInInt
+            case bananaLabel.text:
+                fruitStore.banana.stock = stockInInt
+            case pineappleLabel.text:
+                fruitStore.pineapple.stock = stockInInt
+            case kiwiLabel.text:
+                fruitStore.kiwi.stock = stockInInt
+            default:
+                fruitStore.mango.stock = stockInInt
+            }
+        }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        strawberryLabel.text = String(fruitStore.strawberry.stock)
-        bananaLabel.text = String(fruitStore.banana.stock)
-        pineappleLabel.text = String(fruitStore.pineapple.stock)
-        kiwiLabel.text = String(fruitStore.kiwi.stock)
-        mangoLabel.text = String(fruitStore.mango.stock)
-        
-        stepper(stepper: strawberryStepper)
-        stepper(stepper: bananaStepper)
-        stepper(stepper: kiwiStepper)
-        stepper(stepper: pineappleStepper)
-        stepper(stepper: mangoStepper)
-        
-        strawberryStepper.minimumValue -= Double(fruitStore.strawberry.stock)
-        bananaStepper.minimumValue -= Double(fruitStore.banana.stock)
-        pineappleStepper.minimumValue -= Double(fruitStore.pineapple.stock)
-        kiwiStepper.minimumValue -= Double(fruitStore.kiwi.stock)
-        mangoStepper.minimumValue -= Double(fruitStore.mango.stock)
-    }
-    func stepper(stepper: UIStepper) {
-        stepper.wraps = false
-        stepper.autorepeat = true
-    }
+            super.viewDidLoad()
+            strawberryLabel.text = String(fruitStore.strawberry.stock)
+            bananaLabel.text = String(fruitStore.banana.stock)
+            pineappleLabel.text = String(fruitStore.pineapple.stock)
+            kiwiLabel.text = String(fruitStore.kiwi.stock)
+            mangoLabel.text = String(fruitStore.mango.stock)
+
+            setUpStepper(stepper: strawberryStepper)
+            setUpStepper(stepper: bananaStepper)
+            setUpStepper(stepper: kiwiStepper)
+            setUpStepper(stepper: pineappleStepper)
+            setUpStepper(stepper: mangoStepper)
+
+            strawberryStepper.minimumValue -= Double(fruitStore.strawberry.stock)
+            bananaStepper.minimumValue -= Double(fruitStore.banana.stock)
+            pineappleStepper.minimumValue -= Double(fruitStore.pineapple.stock)
+            kiwiStepper.minimumValue -= Double(fruitStore.kiwi.stock)
+            mangoStepper.minimumValue -= Double(fruitStore.mango.stock)
+        }
+    
+        func setUpStepper(stepper: UIStepper) {
+            stepper.wraps = false
+            stepper.autorepeat = true
+        }
 }
