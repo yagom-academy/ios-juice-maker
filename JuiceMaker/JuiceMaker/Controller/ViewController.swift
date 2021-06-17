@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Properties
-    private var juiceMaker: JuiceMaker!
+    private var juiceMaker = JuiceMaker(fruitStore: FruitStore())
     private var labelList = [Fruit: UILabel]()
     
     // MARK: - IBOutlets - UIButton
@@ -39,8 +39,6 @@ class ViewController: UIViewController {
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let fruitStore = FruitStore()
-        juiceMaker = JuiceMaker(fruitStore: fruitStore)
         initLabelList()
     }
     
@@ -48,6 +46,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         updateLabelsText(of: juiceMaker.getFruitStore)
     }
+    
     // MARK: - Methods
     private func initLabelList() {
         labelList[.strawberry] = strawberryLabel
@@ -108,6 +107,8 @@ class ViewController: UIViewController {
             showAlert(title: "주문 완료", message: Message.completeMakingJuice(on: juice))
         } catch JuiceMakerError.outOfStock {
             showConfirm(title: "재고부족", message: Message.outOfStock, yesHandler: moveToNavigationController)
+        } catch JuiceMakerError.invaildAccess {
+            showAlert(title: "Error", message: "유효하지 않은 접근입니다.")
         } catch {
             fatalError("유효하지 않은 접근입니다.")
         }
