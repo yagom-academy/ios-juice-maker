@@ -26,7 +26,7 @@ class FruitStore {
         case inventoryError(description: String)
     }
     
-    private var inventory = Fruit.allCases.reduce([Fruit: Int]()) { bag, fruit in
+    private(set) var inventory = Fruit.allCases.reduce([Fruit: Int]()) { bag, fruit in
         var bag = bag
         let initialNumberOfFruits = 10
         bag[fruit] = initialNumberOfFruits
@@ -35,13 +35,15 @@ class FruitStore {
     
     private func increaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
         inventory[fruit] = numberOfFruitExist + number
+        NotificationCenter.default.post(name: .fruitsAmountDidChange, object: nil, userInfo: [fruit: numberOfFruitExist + number])
     }
     
     private func decreaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
         inventory[fruit] = numberOfFruitExist - number
+        NotificationCenter.default.post(name: .fruitsAmountDidChange, object: nil, userInfo: [fruit: numberOfFruitExist - number])
     }
     
-    func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
+    private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
         guard let numberOfFruitExist = inventory[fruit] else {
             throw InventoryManagementError.inventoryError(description: InventoryManagementError.fruitThatDoesNotExistMessage)
         }

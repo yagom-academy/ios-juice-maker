@@ -26,34 +26,38 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showInitialNumberOnLabel()
+        showNumberOnLabel(fruits: juiceMaker.fruitStore.inventory)
         setUpTargetActionOnButtons()
+        registerObserver()
+    }
+
+    deinit {
+        turnOffObserver()
     }
 }
 
 //MARK:- 레이블과 버튼 셋팅
 extension ViewController {
     
-    func takeInitialNumber(of fruit: Fruit) -> Int {
-        var initialNumber: Int
-        do {
-           initialNumber = try juiceMaker.fruitStore.giveBackNumberIfExist(of: fruit)
-        } catch {
-            initialNumber = 0
-        }
-        return initialNumber
-    }
-    
     func setUp(number: Int, on label: UILabel) {
         label.text = String(number)
     }
     
-    func showInitialNumberOnLabel() {
-        setUp(number: takeInitialNumber(of: .strawberry), on: numberOfStrawberry)
-        setUp(number: takeInitialNumber(of: .banana), on: numberOfBanana)
-        setUp(number: takeInitialNumber(of: .mango), on: numberOfMango)
-        setUp(number: takeInitialNumber(of: .pineapple), on: numberOfPineApple)
-        setUp(number: takeInitialNumber(of: .kiwi), on: numberOfKiwi)
+    func showNumberOnLabel(fruits: [Fruit: Int]) {
+        for fruit in fruits {
+            switch fruit.key {
+            case .strawberry:
+                setUp(number: fruit.value, on: numberOfStrawberry)
+            case .banana:
+                setUp(number: fruit.value, on: numberOfBanana)
+            case .pineapple:
+                setUp(number: fruit.value, on: numberOfPineApple)
+            case .kiwi:
+                setUp(number: fruit.value, on: numberOfKiwi)
+            case .mango:
+                setUp(number: fruit.value, on: numberOfMango)
+            }
+        }
     }
     
     func setUpTargetActionOnButtons() {
@@ -110,3 +114,25 @@ extension ViewController {
     }
 }
 
+//MARK:- Notification 이름 정의
+extension Notification.Name {
+    static let fruitsAmountDidChange = Notification.Name("fruitsAmountDidChange")
+}
+
+//MARK:- NotificationCenter Observer 관련
+extension ViewController {
+    func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeFruitsAmount(_:)), name: .fruitsAmountDidChange, object: nil)
+    }
+    
+    @objc func didChangeFruitsAmount(_ noti: Notification) {
+        guard let userInfo = noti.userInfo, let fruitInfo = userInfo as? [Fruit: Int] else {
+            return
+        }
+        self.showNumberOnLabel(fruits: fruitInfo)
+    }
+    
+    func turnOffObserver() {
+        NotificationCenter.default.removeObserver(self, name: .fruitsAmountDidChange, object: nil)
+    }
+}
