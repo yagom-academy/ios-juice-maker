@@ -33,14 +33,20 @@ class FruitStore {
         return bag
     }
     
+    private func sendNotification(about fruit: Fruit, number: Int) {
+        NotificationCenter.default.post(name: .fruitsAmountDidChange, object: nil, userInfo: [fruit: number])
+    }
+    
     private func increaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
-        inventory[fruit] = numberOfFruitExist + number
-        NotificationCenter.default.post(name: .fruitsAmountDidChange, object: nil, userInfo: [fruit: numberOfFruitExist + number])
+        let valueAfterChange = numberOfFruitExist + number
+        inventory[fruit] = valueAfterChange
+        sendNotification(about: fruit, number: valueAfterChange)
     }
     
     private func decreaseStock(of fruit: Fruit, by number: Int, from numberOfFruitExist: Int) {
-        inventory[fruit] = numberOfFruitExist - number
-        NotificationCenter.default.post(name: .fruitsAmountDidChange, object: nil, userInfo: [fruit: numberOfFruitExist - number])
+        let valueAfterChange = numberOfFruitExist - number
+        inventory[fruit] = valueAfterChange
+        sendNotification(about: fruit, number: valueAfterChange)
     }
     
     private func giveBackNumberIfExist(of fruit: Fruit) throws -> Int {
