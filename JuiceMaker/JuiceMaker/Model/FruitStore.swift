@@ -25,7 +25,7 @@ class FruitStore {
     static let shared = FruitStore()
     private var fruitList: [Fruit: Int] = [:]
 
-    private init(initialStock: Int = 10) {
+    init(initialStock: Int = 10) {
         for fruit in Fruit.allCases {
             fruitList[fruit] = initialStock
         }
