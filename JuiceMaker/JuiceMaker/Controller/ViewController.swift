@@ -6,8 +6,9 @@
 
 import UIKit
 
+let juiceMaker = JuiceMaker()
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인" ,
                                      style: . default) { (action) in
-            self.juiceMaker.makeJuice(order: message)
+            juiceMaker.makeJuice(order: message)
             self.showFruitLabel()
         }
         alert.addAction(okAction)

@@ -429,6 +429,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="fC4-WA-vjq"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="uZp-5d-Jt2"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="mV8-Dg-rzB"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="8RG-Wr-B4p"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="4b2-6S-d5A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
