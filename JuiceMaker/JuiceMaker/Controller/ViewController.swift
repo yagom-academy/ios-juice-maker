@@ -50,11 +50,12 @@ class ViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        changePineappleStockUILabel()
-        changeKiwiStockUILabel()
-        changeMangoStockUILabel()
-        changeBananaStockUILabel()
-        changeStrawberryStockUILabel()
+		changeTextOn(label: strawberryStockLabel, about: .strawberry)
+		changeTextOn(label: bananaStockLabel, about: .banana)
+		changeTextOn(label: kiwiStockLabel, about: .kiwi)
+		changeTextOn(label: mangoStockLabel, about: .mango)
+		changeTextOn(label: pineappleStockLabel, about: .pineapple)
+		
 	}
 	
 	@IBOutlet weak var strawberryStockLabel: UILabel!
@@ -68,9 +69,9 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(menu: .strawNanaJuice)
             
-            changeStrawberryStockUILabel()
-            changeBananaStockUILabel()
-            
+			changeTextOn(label: strawberryStockLabel, about: .strawberry)
+			changeTextOn(label: bananaStockLabel, about: .banana)
+
             self.present(completeAlert, animated: false, completion: nil)
 
         } catch {
@@ -82,7 +83,7 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(menu: .strawberryJuice)
             
-            changeStrawberryStockUILabel()
+			changeTextOn(label: strawberryStockLabel, about: .strawberry)
             
         } catch {
             self.present(stockAlert, animated: false, completion: nil)
@@ -93,8 +94,8 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(menu: .mangoKiwiJuice)
             
-            changeMangoStockUILabel()
-            changeKiwiStockUILabel()
+			changeTextOn(label: mangoStockLabel, about: .mango)
+			changeTextOn(label: kiwiStockLabel, about: .kiwi)
             
         } catch {
             self.present(stockAlert, animated: false, completion: nil)
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(menu: .mangoJuice)
             
-            changeMangoStockUILabel()
+			changeTextOn(label: mangoStockLabel, about: .mango)
             
         } catch {
             self.present(stockAlert, animated: false, completion: nil)
@@ -117,8 +118,8 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(menu: .kiwiJuice)
             
-            changeKiwiStockUILabel()
-            
+			changeTextOn(label: kiwiStockLabel, about: .kiwi)
+			
         } catch {
             self.present(stockAlert, animated: false, completion: nil)
         }
@@ -128,8 +129,8 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(menu: .bananaJuice)
             
-            changeBananaStockUILabel()
-            
+			changeTextOn(label: bananaStockLabel, about: .banana)
+			
         } catch {
             self.present(stockAlert, animated: false, completion: nil)
         }
@@ -139,50 +140,18 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.orderJuice(menu: .pineappleJuice)
             
-            changePineappleStockUILabel()
-            
+			changeTextOn(label: pineappleStockLabel, about: .pineapple)
+			
         } catch {
             self.present(stockAlert, animated: false, completion: nil)
         }
     }
     
-    func changeStrawberryStockUILabel() {
-        let strawberryStore = juiceMaker.fruitStores.filter { $0.name == .strawberry }.first
-        
-        if let strawberryLeft = strawberryStore?.stock {
-            strawberryStockLabel.text = "\(strawberryLeft)"
-        }
-    }
+	func changeTextOn(label: UILabel, about fruit: Fruit) {
+		let fruitStore = juiceMaker.fruitStores.filter { $0.name == fruit }.first
+		if let stockLeft = fruitStore?.stock {
+			label.text = "\(stockLeft)"
+		}
+	}
     
-    func changeBananaStockUILabel() {
-        let bananaStore = juiceMaker.fruitStores.filter{ $0.name == .banana }.first
-        
-        if let bananaLeft = bananaStore?.stock {
-            bananaStockLabel.text = "\(bananaLeft)"
-        }
-    }
-    
-    func changePineappleStockUILabel() {
-        let pineappleStore = juiceMaker.fruitStores.filter { $0.name == .pineapple }.first
-        
-        if let pineappleLeft = pineappleStore?.stock {
-            pineappleStockLabel.text = "\(pineappleLeft)"
-        }
-    }
-    
-    func changeMangoStockUILabel() {
-        let mangoStore = juiceMaker.fruitStores.filter{ $0.name == .mango }.first
-        
-        if let mangoLeft = mangoStore?.stock {
-            mangoStockLabel.text = "\(mangoLeft)"
-        }
-    }
-    
-    func changeKiwiStockUILabel() {
-        let kiwiStore = juiceMaker.fruitStores.filter{ $0.name == .kiwi }.first
-        
-        if let kiwiLeft = kiwiStore?.stock {
-            kiwiStockLabel.text = "\(kiwiLeft)"
-        }
-    }
 }
