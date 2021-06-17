@@ -7,7 +7,7 @@
 import UIKit
 
 //MARK:- 저장 프로퍼티 및 라이프사이클
-class ViewController: UIViewController {
+class JuiceMakingViewController: UIViewController {
     @IBOutlet var numberOfStrawberry: UILabel!
     @IBOutlet var numberOfBanana: UILabel!
     @IBOutlet var numberOfPineApple: UILabel!
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
 }
 
 //MARK:- 레이블과 버튼 셋팅
-extension ViewController {
+extension JuiceMakingViewController {
     
     func setUp(number: Int, on label: UILabel) {
         label.text = String(number)
@@ -72,7 +72,7 @@ extension ViewController {
 }
 
 //MARK:- 쥬스 주문 관련
-extension ViewController {
+extension JuiceMakingViewController {
     
     @objc func orderJuice(_ sender: UIButton) {
         let result: JuiceMaker.JuiceMakingResult
@@ -115,7 +115,7 @@ extension ViewController {
 }
 
 //MARK:- 화면이동 관련
-extension ViewController {
+extension JuiceMakingViewController {
     func transitionToStockManagement(_ sender: UIAlertAction) {
         let segueName = "segueToStockManagement"
         performSegue(withIdentifier: segueName, sender: sender)
@@ -128,7 +128,7 @@ extension Notification.Name {
 }
 
 //MARK:- NotificationCenter Observer 관련
-extension ViewController {
+extension JuiceMakingViewController {
     func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeFruitsAmount(_:)), name: .fruitsAmountDidChange, object: nil)
     }
