@@ -20,6 +20,8 @@ enum FruitStoreError: Error {
     case stockBelowMinimum
 }
 
+let notificationKey = "notificationKey"
+
 // 과일 타입
 class FruitStore {
     static let shared = FruitStore()
@@ -64,6 +66,11 @@ class FruitStore {
             throw FruitStoreError.stockBelowMinimum
         }
         fruitList[fruit]? -= amountToReduce
+        guard let currentStock = fruitList[fruit] else {
+            return
+        }
+        let fruitStock = FruitStock(fruit: fruit, stock: currentStock)
+        NotificationCenter.default.post(name: .notificationKey, object: fruitStock)
     }
 
     func hasMoreThan(of fruit: Fruit, by requiredAmount: Int) throws {
@@ -74,4 +81,13 @@ class FruitStore {
             throw FruitStoreError.outOfStock
         }
     }
+}
+
+struct FruitStock {
+    let fruit: Fruit
+    let stock: Int
+}
+
+extension Notification.Name {
+    static let notificationKey = Notification.Name("notificationKey")
 }

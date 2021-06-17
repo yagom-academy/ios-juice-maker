@@ -31,17 +31,35 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showAllFruitStockLabels()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(showCurrentStockLabel(_:)), name: .notificationKey, object: nil)
+    }
+    
+    @objc func showCurrentStockLabel(_ notification: Notification) {
+        let fruitStock = notification.object as! FruitStock
+        switch fruitStock.fruit {
+        case .strawberry:
+            self.strawberryStockLabel.text = String(fruitStock.stock)
+        case .banana:
+            self.bananaStockLabel.text = String(fruitStock.stock)
+        case .pineapple:
+            self.pineappleStockLabel.text = String(fruitStock.stock)
+        case .kiwi:
+            self.kiwiStockLabel.text = String(fruitStock.stock)
+        case .mango:
+            self.mangoStockLabel.text = String(fruitStock.stock)
+        }
     }
     
     func showAllFruitStockLabels() {
-        showCurrentStockLabel(of: .strawberry, label: strawberryStockLabel)
-        showCurrentStockLabel(of: .banana, label: bananaStockLabel)
-        showCurrentStockLabel(of: .pineapple, label: pineappleStockLabel)
-        showCurrentStockLabel(of: .kiwi, label: kiwiStockLabel)
-        showCurrentStockLabel(of: .mango, label: mangoStockLabel)
+        showinitialStockLabel(of: .strawberry, label: strawberryStockLabel)
+        showinitialStockLabel(of: .banana, label: bananaStockLabel)
+        showinitialStockLabel(of: .pineapple, label: pineappleStockLabel)
+        showinitialStockLabel(of: .kiwi, label: kiwiStockLabel)
+        showinitialStockLabel(of: .mango, label: mangoStockLabel)
     }
 
-    func showCurrentStockLabel(of fruit: Fruit, label: UILabel) {
+    func showinitialStockLabel(of fruit: Fruit, label: UILabel) {
         guard let currentStock = try? fruitStore.showStockLeft(fruit: fruit) else {
             return
         }
@@ -75,7 +93,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             let juice = try findJuiceMenu(from: sender)
             try juiceMaker.order(juice: juice)
-            showAllFruitStockLabels()
+//            showAllFruitStockLabels()
             showJuiceIsReadyAlert(message: "\(juice.menu)쥬스 나왔습니다! 맛있게 드세요!")
         } catch FruitStoreError.outOfStock {
             showOutOfStockAlert()
