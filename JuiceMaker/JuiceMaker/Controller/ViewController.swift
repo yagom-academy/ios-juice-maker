@@ -18,7 +18,7 @@ class ViewController: UIViewController {
                 title: "네",
                 style: .default,
                 handler: { _ in
-                    print("go to next scene")
+                    self.goNextView()
                 }
             )
         )
@@ -151,6 +151,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func touchOnNextButton(){
+        goNextView()
+    }
+    
     func changeTextOn(label: UILabel, about fruit: Fruit) {
         let fruitStore = juiceMaker.fruitStores.filter { $0.name == fruit }.first
         if let stockLeft = fruitStore?.stock {
@@ -173,4 +177,11 @@ class ViewController: UIViewController {
         self.present(alert, animated: false, completion: nil)
     }
     
+    func goNextView(){
+        let nextViewControllerId = self.storyboard?.instantiateViewController(withIdentifier: "FruitStore")
+        
+        if let nextViewController: UIViewController = nextViewControllerId {
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
+    }
 }
