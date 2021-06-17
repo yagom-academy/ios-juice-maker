@@ -37,7 +37,7 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
         super.viewWillAppear(animated)
         updateLabelsText(of: fruitStore)
     }
-   
+    
     // MARK: - Methods
     private func initStepperMaximumValue() {
         strawberryStepper.maximumValue = stepperMaximumValue
@@ -61,23 +61,34 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
         dismiss(animated: true, completion: nil)
     }
     
+    func updateLabelAndStock(of fruitName: Fruit, to senderValue: Double) {
+        let changedValue = Int(senderValue)
+        
+        guard changedValue >= 0 else {
+            return
+        }
+        
+        fruitStore.updateStock(of: fruitName, count: UInt(changedValue))
+        stawberryStockLabel.text = changedValue.description
+    }
     @IBAction func changeStrawberryStock(_ sender: UIStepper) {
-        stawberryStockLabel.text = Int(sender.value).description
+        updateLabelAndStock(of: .strawberry, to: sender.value)
     }
     
+    
     @IBAction func changeBananaStock(_ sender: UIStepper) {
-        bananaStockLabel.text = String(Int(sender.value))
+        updateLabelAndStock(of: .banana, to: sender.value)
     }
     
     @IBAction func changePineappleStock(_ sender: UIStepper) {
-        pineappleStockLabel.text = Int(sender.value).description
+        updateLabelAndStock(of: .pineapple, to: sender.value)
     }
     
     @IBAction func changeKiwiStock(_ sender: UIStepper) {
-        kiwiStockLabel.text = Int(sender.value).description
+        updateLabelAndStock(of: .kiwi, to: sender.value)
     }
     
     @IBAction func changeMangoStock(_ sender: UIStepper) {
-        mangoStockLabel.text = Int(sender.value).description
+        updateLabelAndStock(of: .mango, to: sender.value)
     }
 }
