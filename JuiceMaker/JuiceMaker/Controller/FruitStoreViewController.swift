@@ -7,15 +7,53 @@
 
 import UIKit
 
+enum StepperError: Error {
+    case invalidFruitStepper
+}
+
 class FruitStoreViewController: UIViewController {
 
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
+    
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
-
+    func findFruit(from sender: UIStepper) throws -> UILabel {
+        switch sender {
+        case strawberryStepper:
+            return strawberryStockLabel
+        case bananaStepper:
+            return bananaStockLabel
+        case pineappleStepper:
+            return pineappleStockLabel
+        case kiwiStepper:
+            return kiwiStockLabel
+        case mangoStepper:
+            return mangoStockLabel
+        default:
+            throw StepperError.invalidFruitStepper
+        }
+    }
+    
+    @IBAction func fruitStepperTapped(_ sender: UIStepper) {
+        guard let fruitStockLabel = try? findFruit(from: sender) else {
+            return
+        }
+        fruitStockLabel.text = Int(sender.value).description
+    }
+    
     /*
     // MARK: - Navigation
 
