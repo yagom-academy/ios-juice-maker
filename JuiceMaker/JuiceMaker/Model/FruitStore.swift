@@ -7,9 +7,17 @@ class FruitStore {
     private(set) var pineapple = Fruit()
     private(set) var mango = Fruit()
     
-    func decreaseStock(amount: Int, fruit: Fruit) throws {
+    func decreaseStock(amount: Int = 1, fruit: Fruit) throws {
         if fruit.stock - amount >= 0 {
             fruit.stock -= amount
+        } else {
+            throw JuiceMakerError.insufficientFruit
+        }
+    }
+    
+    func increaseStock(amount: Int = 1, fruit: Fruit) throws {
+        if fruit.stock + amount >= 0 {
+            fruit.stock += amount
         } else {
             throw JuiceMakerError.insufficientFruit
         }

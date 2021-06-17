@@ -31,7 +31,7 @@ enum JuiceName: CustomStringConvertible {
 }
 
 class MakeJuiceViewController: UIViewController {
-
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -129,7 +129,7 @@ class MakeJuiceViewController: UIViewController {
 }
 
 extension MakeJuiceViewController: FixStockViewControllerDelegate {
-    func fixStockViewController() {
+    func fixStockViewControllerDidTapCloseButton(_ fixStockVC: FixStockViewController) {
         strawberryLabel.text = String(myJuiceMaker.fruitStore.strawberry.stock)
         bananaLabel.text = String(myJuiceMaker.fruitStore.banana.stock)
         pineappleLabel.text = String(myJuiceMaker.fruitStore.pineapple.stock)
