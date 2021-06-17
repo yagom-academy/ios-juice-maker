@@ -28,12 +28,11 @@ class ViewController: UIViewController {
     }
     
     private func showFruitLabel() {
-        let stock = juiceMaker.fruitStore
-        strawberryStockLabel.text = String(stock[.strawberry]?.checkAmount() ?? 0)
-        bananaStockLabel.text = String(stock[.banana]?.checkAmount() ?? 0)
-        pineappleStockLabel.text = String(stock[.pineapple]?.checkAmount() ?? 0)
-        kiwiStockLabel.text = String(stock[.kiwi]?.checkAmount() ?? 0)
-        mangoStockLabel.text = String(stock[.mango]?.checkAmount() ?? 0)
+        strawberryStockLabel.text = String(juiceMaker.checkAmount(.strawberry))
+        bananaStockLabel.text = String(juiceMaker.checkAmount(.banana))
+        pineappleStockLabel.text = String(juiceMaker.checkAmount(.pineapple))
+        kiwiStockLabel.text = String(juiceMaker.checkAmount(.kiwi))
+        mangoStockLabel.text = String(juiceMaker.checkAmount(.mango))
     }
     
     private func succeededMakingJuiceAlert(_ message: JuiceMaker.JuiceType) {

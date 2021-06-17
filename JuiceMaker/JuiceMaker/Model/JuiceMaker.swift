@@ -11,7 +11,7 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     
-    let fruitStore: [Fruits: FruitStore] = [
+    private let fruitStore: [Fruits: FruitStore] = [
         .strawberry: StrawberryStock(),
         .banana: BananaStock(),
         .pineapple: PineappleStock(),
@@ -46,6 +46,10 @@ struct JuiceMaker {
                 return [.mango: 2, .kiwi: 1]
             }
         }
+    }
+    
+    func checkAmount(_ fruit: Fruits) -> Int {
+        return self.fruitStore[fruit]?.getAmount() ?? 0
     }
     
     func makeJuice(order: JuiceType) {

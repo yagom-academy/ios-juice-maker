@@ -19,7 +19,7 @@ class FruitStore {
     var name: Fruits? = nil
     private var amount: Int = 10
     
-    func checkAmount() -> Int {
+    func getAmount() -> Int {
         return amount
     }
     
