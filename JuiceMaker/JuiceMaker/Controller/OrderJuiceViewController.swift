@@ -14,6 +14,13 @@ class OrderJuiceViewController: UIViewController {
     @IBOutlet weak var pineappleStock: UILabel!
     @IBOutlet weak var kiwiStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var touchBananaJuice: UIButton!
+    @IBOutlet weak var touchStrawberryBananaJuice: UIButton!
+    @IBOutlet weak var tocuhStrawberryJuice: UIButton!
+    @IBOutlet weak var touchPineaplleJuice: UIButton!
+    @IBOutlet weak var touchMangoKiwiJuice: UIButton!
+    @IBOutlet weak var touchKiwiJuice: UIButton!
+    @IBOutlet weak var touchMangoJuice: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,23 +44,23 @@ class OrderJuiceViewController: UIViewController {
     @IBAction func touchUpJuiceMenu(_ sender: UIButton) {
         var selectMenu: JuiceMenu?
     
-        switch sender.tag {
-        case 0:
+        switch sender {
+        case touchBananaJuice:
             selectMenu = .bananaJuice
-        case 1:
+        case touchStrawberryBananaJuice:
             selectMenu = .strawberryBananaJuice
-        case 2:
+        case tocuhStrawberryJuice:
             selectMenu = .strawberryJuice
-        case 3:
+        case touchPineaplleJuice:
             selectMenu = .pineappleJuice
-        case 4:
+        case touchMangoKiwiJuice:
             selectMenu = .mangoKiwiJuice
-        case 5:
+        case touchKiwiJuice:
             selectMenu = .kiwiJuice
-        case 6:
+        case touchMangoJuice:
             selectMenu = .mangoJuice
         default:
-            print("잘못된 입력입니다.")
+            print("알수없는 버튼입니다.")
         }
         guard let selectMenu = selectMenu else { return }
         do {
