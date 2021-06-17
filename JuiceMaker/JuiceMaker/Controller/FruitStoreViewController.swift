@@ -41,12 +41,16 @@ class FruitStoreViewController: UIViewController {
     }
 
     func initializeStockLabelAndStepper(of fruit: Fruit, label: UILabel) {
-        guard let currentStock = try? fruitStore.showStockLeft(fruit: fruit) else {
-            return
+        do {
+            let currentStock = try fruitStore.showStockLeft(fruit: fruit)
+            let fruitStepper = findStepper(of: fruit)
+            fruitStepper.value = Double(currentStock)
+            label.text = String(currentStock)
+        } catch FruitStoreError.invalidFruit {
+            showNotificationAlert(message: "없는 과일입니다.", actionTitle: "OK")
+        } catch {
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.", actionTitle: "OK")
         }
-        label.text = String(currentStock)
-        let fruitStepper = findStepper(of: fruit)
-        fruitStepper.value = Double(currentStock)
     }
     
     func findFruit(from sender: UIStepper) throws -> UILabel {
@@ -67,10 +71,14 @@ class FruitStoreViewController: UIViewController {
     }
 
     @IBAction func fruitStepperTapped(_ sender: UIStepper) {
-        guard let fruitStockLabel = try? findFruit(from: sender) else {
-            return
+        do {
+            let fruitStockLabel = try findFruit(from: sender)
+            fruitStockLabel.text = Int(sender.value).description
+        } catch StepperError.invalidFruitStepper {
+            showNotificationAlert(message: "잘못된 UIStepper입니다.", actionTitle: "OK")
+        } catch {
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.", actionTitle: "OK")
         }
-        fruitStockLabel.text = Int(sender.value).description
     }
 
     func findStepper(of fruit: Fruit) -> UIStepper {
@@ -93,8 +101,12 @@ class FruitStoreViewController: UIViewController {
         let fruitStock = Int(fruitStepper.value)
         do {
             try fruitStore.updateStock(of: fruit, by: fruitStock)
+        } catch FruitStoreError.invalidFruit {
+            showNotificationAlert(message: "없는 과일입니다.", actionTitle: "OK")
+        } catch FruitStoreError.stockBelowMinimum {
+            showNotificationAlert(message: "과일재고는 음수가 될 수 없습니다.", actionTitle: "OK")
         } catch {
-            print("updateStock Error")
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.", actionTitle: "OK")
         }
     }
     
@@ -103,5 +115,12 @@ class FruitStoreViewController: UIViewController {
             updateFruitStock(of: fruit)
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func showNotificationAlert(message: String, actionTitle: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: actionTitle, style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
