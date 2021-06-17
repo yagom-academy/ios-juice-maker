@@ -39,32 +39,32 @@ class FixStockViewController: UIViewController {
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        typeChange(of: strawberryLabel.text)
-        typeChange(of: bananaLabel.text)
-        typeChange(of: pineappleLabel.text)
-        typeChange(of: kiwiLabel.text)
-        typeChange(of: mangoLabel.text)
+        do {
+            try fruitStore.strawberry.stock = typeChange(of: strawberryLabel.text)
+            try fruitStore.banana.stock = typeChange(of: bananaLabel.text)
+            try fruitStore.pineapple.stock = typeChange(of: pineappleLabel.text)
+            try fruitStore.kiwi.stock = typeChange(of: kiwiLabel.text)
+            try fruitStore.mango.stock = typeChange(of: mangoLabel.text)
+        } catch {
+            showAlert(message: .unexpectedError)
+        }
         delegate?.fixStockViewController()
         dismiss(animated: true, completion: nil)
     }
+    
+    func showAlert(message: JuiceMakerError){
+        let alert = UIAlertController(title: nil, message: message.description, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "예", style: .cancel)
+        
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
 
-    func typeChange(of stockInString: String?) {
+    func typeChange(of stockInString: String?) throws -> Int {
             guard let stock = stockInString, let stockInInt = Int(stock) else {
-                print(JuiceMakerError.unexpectedError)
-                return
+                throw JuiceMakerError.unexpectedError
             }
-            switch stockInString {
-            case strawberryLabel.text:
-                fruitStore.strawberry.stock = stockInInt
-            case bananaLabel.text:
-                fruitStore.banana.stock = stockInInt
-            case pineappleLabel.text:
-                fruitStore.pineapple.stock = stockInInt
-            case kiwiLabel.text:
-                fruitStore.kiwi.stock = stockInInt
-            default:
-                fruitStore.mango.stock = stockInInt
-            }
+        return stockInInt
         }
     
     override func viewDidLoad() {

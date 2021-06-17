@@ -6,12 +6,8 @@ class FruitStore {
     private(set) var kiwi = Fruit()
     private(set) var pineapple = Fruit()
     private(set) var mango = Fruit()
-
-    func increaseStock(amount: Int = 1, fruit: Fruit) {
-        fruit.stock += amount
-    }
     
-    func decreaseStock(amount: Int = 1, fruit: Fruit) throws {
+    func decreaseStock(amount: Int, fruit: Fruit) throws {
         if fruit.stock - amount >= 0 {
             fruit.stock -= amount
         } else {
@@ -19,7 +15,7 @@ class FruitStore {
         }
     }
     
-    func decreaseStock(firstFruitAmount: Int = 1, firstFruit: Fruit, secondFruitAmount: Int = 1, secondFruit: Fruit) throws {
+    func decreaseStock(firstFruitAmount: Int, firstFruit: Fruit, secondFruitAmount: Int, secondFruit: Fruit) throws {
         if firstFruit.stock - firstFruitAmount >= 0 && secondFruit.stock - secondFruitAmount >= 0 {
             firstFruit.stock -= firstFruitAmount
             secondFruit.stock -= secondFruitAmount

@@ -1,7 +1,7 @@
 
 import UIKit
 
-enum JuiceName: CustomStringConvertible{
+enum JuiceName: CustomStringConvertible {
     case strawberryBanana
     case mangoKiwi
     case strawberry
