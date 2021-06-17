@@ -32,7 +32,7 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         showAllFruitStockLabels()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(showCurrentStockLabel(_:)), name: .notificationKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showCurrentStockLabel(_:)), name: .changedFruitStock, object: nil)
     }
     
     @objc func showCurrentStockLabel(_ notification: Notification) {
