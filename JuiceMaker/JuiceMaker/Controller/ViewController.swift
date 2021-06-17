@@ -6,6 +6,11 @@
 
 import UIKit
 
+extension Notification.Name {
+    static let recieveOrderMenuNotification = Notification.Name("DidRecieveOrderMenu")
+    static let recieveStockChangeNotification = Notification.Name("DidReceiveStockChange")
+}
+
 class ViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     
@@ -47,7 +52,7 @@ class ViewController: UIViewController {
             guard let juiceName = juice else { return }
             try juiceMaker.makeJuice(menu: juiceName)
         } catch FruitStoreError.outOfStock {
-            NotificationCenter.default.post(name: DidRecieveOrderMenuNotification, object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: .recieveOrderMenuNotification, object: nil, userInfo: nil)
             print("Don't have enough fruit to make the juice")
         } catch {
             print("Invalid Error")
@@ -56,19 +61,19 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveStockChangeNotification), name: DidRecieveStockChangeNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveMenuMadeNotification), name: DidRecieveOrderMenuNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveStockChangeNotification), name: .recieveStockChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveMenuMadeNotification), name: .recieveOrderMenuNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshFruitStock()
     }
-    @objc func didReceiveStockChangeNotification(_ notificiation: Notification) {
+    @objc private func didReceiveStockChangeNotification(_ notificiation: Notification) {
         refreshFruitStock()
     }
     
-    @objc func didReceiveMenuMadeNotification(_ notificiation: Notification) {
+    @objc private func didReceiveMenuMadeNotification(_ notificiation: Notification) {
         if let menu: JuiceMenu = notificiation.userInfo?["menu"] as? JuiceMenu {
             let alert = makeJuiceSuccessAlert(menu: menu)
             self.present(alert, animated: true, completion: nil)
@@ -99,13 +104,13 @@ class ViewController: UIViewController {
 }
 
 extension ViewController {
-    func makeJuiceSuccessAlert(menu: JuiceMenu) -> UIAlertController {
+    private func makeJuiceSuccessAlert(menu: JuiceMenu) -> UIAlertController {
         let alert = UIAlertController(title: "\(menu.description()) 쥬스 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "예", style: .default, handler: nil))
         return alert
     }
     
-    func makeJuiceFailAlert() -> UIAlertController {
+    private func makeJuiceFailAlert() -> UIAlertController {
         let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("예", comment: "Default action"), style: .default, handler: { _ in
             guard let nextViewController = self.storyboard?.instantiateViewController(identifier: "StockManageViewController") else { return }

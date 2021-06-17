@@ -6,8 +6,6 @@
 
 import Foundation
 
-let DidRecieveOrderMenuNotification: Notification.Name = Notification.Name("DidRecieveOrderMenu")
-
 enum JuiceMenu: String {
     case strawberry = "딸기쥬스"
     case banana = "바나나쥬스"
@@ -48,6 +46,6 @@ struct JuiceMaker {
         let ingredients: [HandlingFruit: Int] = menu.recipe
         try store.isAllIngredientEnough(ingredients: ingredients)
         store.useFruitToMakeJuice(ingredients: ingredients)
-        NotificationCenter.default.post(name: DidRecieveOrderMenuNotification, object: nil, userInfo: ["menu": menu])
+        NotificationCenter.default.post(name: .recieveOrderMenuNotification, object: nil, userInfo: ["menu": menu])
     }
 }
