@@ -4,7 +4,7 @@ enum JuiceMakerError: Error, CustomStringConvertible {
     case insufficientFruit
     case unexpectedError
     
-    var description: String{
+    var description: String {
         switch self {
         case .insufficientFruit:
             return "재고가 모자라요. 재고를 수정할까요?"
@@ -23,7 +23,6 @@ struct JuiceMaker {
             try fruitStore.decreaseStock(firstFruitAmount: 10, firstFruit: fruitStore.strawberry, secondFruitAmount: 1, secondFruit: fruitStore.banana)
         case .mangoKiwi:
             try fruitStore.decreaseStock(firstFruitAmount: 2, firstFruit: fruitStore.mango, secondFruitAmount: 3, secondFruit: fruitStore.kiwi)
-            try fruitStore.decreaseStock(amount: 1, fruit: fruitStore.kiwi)
         case .strawberry:
             try fruitStore.decreaseStock(amount: 16, fruit: fruitStore.strawberry)
         case .banana:
