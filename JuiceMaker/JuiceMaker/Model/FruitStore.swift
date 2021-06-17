@@ -12,7 +12,7 @@ class FruitStore {
     private var fruitStocks: [Fruit: UInt] = [:]
     static let shared: FruitStore = FruitStore.init()
     
-    init(initialValue: UInt = 10) {
+    private init(initialValue: UInt = 10) {
         let fruitList = Fruit.makeFruitList()
         
         for fruit in fruitList {
