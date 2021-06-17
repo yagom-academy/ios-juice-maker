@@ -88,19 +88,17 @@ class ViewController: UIViewController {
 extension ViewController {
     func successAlert(menu: JuiceMenu) -> UIAlertController {
         let alert = UIAlertController(title: "\(menu.description()) 쥬스 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
-        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
     }
+    
     func failAlert() -> UIAlertController {
         let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("예", comment: "Default action"), style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
+            guard let nextViewController = self.storyboard?.instantiateViewController(identifier: "StockManageViewController") else { return }
+            self.present(nextViewController, animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("아니오", comment: "Default action"), style: .cancel, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
-        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("아니오", comment: "Default action"), style: .cancel, handler: nil))
         return alert
     }
 }
