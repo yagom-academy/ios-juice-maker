@@ -13,13 +13,13 @@ class StockModifyViewController: UIViewController {
 	
 	private var fruitSteppers = [UIStepper]()
 	private var fruitLabels = [UILabel]()
-	private struct previousStocks {
-		let strawberry: UInt
-		let banana: UInt
-		let kiwi: UInt
-		let pineapple: UInt
-		let mango: UInt
-	}
+//	private struct previousStocks {
+		var previousStrawberryStock: UInt = 0
+		var previousBananaStock: UInt = 0
+		var previousKiwiStock: UInt = 0
+		var previousPineappleStock: UInt = 0
+		var previousMangoStock: UInt = 0
+//	}
 	//MARK:- IBOutlets
 	
 	@IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -44,8 +44,23 @@ class StockModifyViewController: UIViewController {
 	}
 	
 	@IBAction private func touchUpFruitStepper(_ sender: UIStepper) {
+        
 		let changeStock = UInt(sender.value)
 		let fruit = Fruit(rawValue: sender.tag)
+        
+        switch fruit {
+        case .strawberry:
+            strawberryStockLabel.text = "\(previousStrawberryStock + changeStock)"
+        case .banana:
+            bananaStockLabel.text = "\(previousBananaStock + changeStock)"
+        case .kiwi:
+            kiwiStockLabel.text = "\(previousKiwiStock + changeStock)"
+        case .pineapple:
+            pineappleStockLabel.text = "\(previousPineappleStock + changeStock)"
+        case .mango:
+            mangoStockLabel.text = "\(previousMangoStock + changeStock)"
+        default: break
+        }
 	}
 	
 	//MARK:- Life Cycle
@@ -57,12 +72,14 @@ class StockModifyViewController: UIViewController {
 		fruitSteppers = [strawberryStepper, bananaStepper, kiwiStepper, pineappleStepper, mangoStepper]
 		setFruitLabelsTag(fruitLabels: fruitLabels)
 		setStepperTag(fruitSteppers: fruitSteppers)
+        
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		refreshStockLabel(fruitLabels: fruitLabels)
+        loadPreviousFruitStock()
 	}
 }
 
@@ -80,11 +97,6 @@ extension StockModifyViewController {
 //MARK:- Private Functions
 
 extension StockModifyViewController {
-	private func setFruitLabelsTag() {
-		for (index, fruitLabel) in fruitLabels.enumerated() {
-			fruitLabel.tag = index
-		}
-	}
 	
 	private func addStocks() {
 		for stepper in fruitSteppers {
@@ -94,4 +106,19 @@ extension StockModifyViewController {
 			FruitStore.shared.add(fruit: fruit, number: UInt(stepper.value))
 		}
 	}
+    
+    private func loadPreviousFruitStock() {
+    guard let strawberryStockLabelText = strawberryStockLabel.text, let strawberryStock = UInt(strawberryStockLabelText),
+          let bananaStockLabelText = bananaStockLabel.text, let bananaStock = UInt(bananaStockLabelText),
+          let kiwiStockLabelText = kiwiStockLabel.text, let kiwiStock = UInt(kiwiStockLabelText),
+          let pineappleStockLabelText = pineappleStockLabel.text, let pineappleStock = UInt(pineappleStockLabelText),
+          let mangoStockLabelText = mangoStockLabel.text, let mangoStock = UInt(mangoStockLabelText) else {
+        return
+    }
+    previousStrawberryStock = strawberryStock
+    previousBananaStock = bananaStock
+    previousKiwiStock = kiwiStock
+    previousPineappleStock = pineappleStock
+    previousMangoStock = mangoStock
+    }
 }

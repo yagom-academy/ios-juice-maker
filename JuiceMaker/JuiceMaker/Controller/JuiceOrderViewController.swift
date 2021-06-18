@@ -29,28 +29,6 @@ class JuiceOrderViewController: UIViewController {
 	@IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
 	@IBOutlet private weak var ddalbaJuiceButton: UIButton!
 	
-	//MARK:- IBAction
-	
-	@IBAction private func orderJuice(_ sender: UIButton) {
-		switch sender.titleLabel?.text {
-		case JuiceRecipe.strawberry.juiceButtonName:
-			orderJuice(recipe: .strawberry)
-		case JuiceRecipe.banana.juiceButtonName:
-			orderJuice(recipe: .banana)
-		case JuiceRecipe.kiwi.juiceButtonName:
-			orderJuice(recipe: .kiwi)
-		case JuiceRecipe.mango.juiceButtonName:
-			orderJuice(recipe: .mango)
-		case JuiceRecipe.pineapple.juiceButtonName:
-			orderJuice(recipe: .pineapple)
-		case JuiceRecipe.ddalba.juiceButtonName:
-			orderJuice(recipe: .ddalba)
-		case JuiceRecipe.mangoKiwi.juiceButtonName:
-			orderJuice(recipe: .mangoKiwi)
-		default: break
-		}
-	}
-	
 	//MARK:- Life Cycle
 	
 	override func viewDidLoad() {
@@ -69,12 +47,7 @@ class JuiceOrderViewController: UIViewController {
 //MARK:- Private Functions
 
 extension JuiceOrderViewController {
-//    private func setFruitLabelsTag() {
-//        for (index, fruitLabel) in fruitLabels.enumerated() {
-//            fruitLabel.tag = index
-//        }
-//    }
-    
+
 	private func orderJuice(recipe: JuiceRecipe) {
 		guard juiceMaker.canMakeJuice(recipe: recipe) else {
 			showAlert(message: OrderResultMessage.outOfStock.rawValue, okAction: moveToAddStockView(), cancelAction: cancelAction)
@@ -96,12 +69,27 @@ extension JuiceOrderViewController {
 	}
 }
 
-//MARK:- Shared Properties, methods.
-
-extension UIViewController {
-	func setFruitLabelsTag(fruitLabels: [UILabel]) {
-		for (index, fruitLabel) in fruitLabels.enumerated() {
-			fruitLabel.tag = index
-		}
-	}
+extension JuiceOrderViewController {
+    
+    //MARK:- IBAction
+    
+    @IBAction private func orderJuice(_ sender: UIButton) {
+        switch sender.titleLabel?.text {
+        case JuiceRecipe.strawberry.juiceButtonName:
+            orderJuice(recipe: .strawberry)
+        case JuiceRecipe.banana.juiceButtonName:
+            orderJuice(recipe: .banana)
+        case JuiceRecipe.kiwi.juiceButtonName:
+            orderJuice(recipe: .kiwi)
+        case JuiceRecipe.mango.juiceButtonName:
+            orderJuice(recipe: .mango)
+        case JuiceRecipe.pineapple.juiceButtonName:
+            orderJuice(recipe: .pineapple)
+        case JuiceRecipe.ddalba.juiceButtonName:
+            orderJuice(recipe: .ddalba)
+        case JuiceRecipe.mangoKiwi.juiceButtonName:
+            orderJuice(recipe: .mangoKiwi)
+        default: break
+        }
+    }
 }

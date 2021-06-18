@@ -28,12 +28,11 @@ extension UIViewController {
 	//MARK:- Internal Functions
 	
 	func moveToAddStockView() -> UIAlertAction {
-        let moveToAddStockViewAction = UIAlertAction(title: "네", style: .default) { action in
+        return UIAlertAction(title: "네", style: .default) { action in
 			guard let addStockViewController = self.storyboard?.instantiateViewController(identifier: "StockAddNavigationController") else { return }
 			addStockViewController.modalPresentationStyle = .fullScreen
             self.present(addStockViewController, animated: true, completion: nil)
         }
-        return moveToAddStockViewAction
     }
     
     func showAlert(message: String, okAction: UIAlertAction, cancelAction: UIAlertAction?) {
@@ -45,13 +44,4 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 	
-    func refreshStockLabel(fruitLabels: [UILabel]) {
-		let stocks = FruitStore.shared.fruitStocks
-	
-        for fruitLabel in fruitLabels {
-            if let fruit = Fruit(rawValue: fruitLabel.tag), let quantity = stocks[fruit] {
-                fruitLabel.text = "\(quantity)"
-            }
-        }
-	}
 }
