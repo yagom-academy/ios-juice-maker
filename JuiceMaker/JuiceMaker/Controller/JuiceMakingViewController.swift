@@ -8,11 +8,11 @@ import UIKit
 
 //MARK:- 저장 프로퍼티 및 라이프사이클
 class JuiceMakingViewController: UIViewController {
-    @IBOutlet private var numberOfStrawberry: UILabel!
-    @IBOutlet private var numberOfBanana: UILabel!
-    @IBOutlet private var numberOfPineApple: UILabel!
-    @IBOutlet private var numberOfKiwi: UILabel!
-    @IBOutlet private var numberOfMango: UILabel!
+    @IBOutlet private var numberOfStrawberryLabel: UILabel!
+    @IBOutlet private var numberOfBananaLabel: UILabel!
+    @IBOutlet private var numberOfPineAppleLabel: UILabel!
+    @IBOutlet private var numberOfKiwiLabel: UILabel!
+    @IBOutlet private var numberOfMangoLabel: UILabel!
     
     @IBOutlet private var orderStrawberryButton: UIButton!
     @IBOutlet private var orderBananaButton: UIButton!
@@ -47,15 +47,15 @@ extension JuiceMakingViewController {
         for fruit in fruits {
             switch fruit.key {
             case .strawberry:
-                setUp(number: fruit.value, on: numberOfStrawberry)
+                setUp(number: fruit.value, on: numberOfStrawberryLabel)
             case .banana:
-                setUp(number: fruit.value, on: numberOfBanana)
+                setUp(number: fruit.value, on: numberOfBananaLabel)
             case .pineapple:
-                setUp(number: fruit.value, on: numberOfPineApple)
+                setUp(number: fruit.value, on: numberOfPineAppleLabel)
             case .kiwi:
-                setUp(number: fruit.value, on: numberOfKiwi)
+                setUp(number: fruit.value, on: numberOfKiwiLabel)
             case .mango:
-                setUp(number: fruit.value, on: numberOfMango)
+                setUp(number: fruit.value, on: numberOfMangoLabel)
             }
         }
     }
