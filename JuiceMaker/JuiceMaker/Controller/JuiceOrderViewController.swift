@@ -57,7 +57,7 @@ class JuiceOrderViewController: UIViewController {
 		super.viewDidLoad()
 		setButtonTitles()
         fruitLabels = [strawberryStockLabel, bananaStockLabel, kiwiStockLabel, pineappleStockLabel, mangoStockLabel]
-        setFruitLabelsTag()
+        setFruitLabelsTag(fruitLabels: fruitLabels)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -69,11 +69,11 @@ class JuiceOrderViewController: UIViewController {
 //MARK:- Private Functions
 
 extension JuiceOrderViewController {
-    private func setFruitLabelsTag() {
-        for (index, fruitLabel) in fruitLabels.enumerated() {
-            fruitLabel.tag = index
-        }
-    }
+//    private func setFruitLabelsTag() {
+//        for (index, fruitLabel) in fruitLabels.enumerated() {
+//            fruitLabel.tag = index
+//        }
+//    }
     
 	private func orderJuice(recipe: JuiceRecipe) {
 		guard juiceMaker.canMakeJuice(recipe: recipe) else {
@@ -93,5 +93,15 @@ extension JuiceOrderViewController {
 		mangoKiwiJuiceButton.setTitle(JuiceRecipe.mangoKiwi.juiceButtonName, for: .normal)
 		ddalbaJuiceButton.setTitle(JuiceRecipe.ddalba.juiceButtonName, for: .normal)
 		mangoJuiceButton.setTitle(JuiceRecipe.mango.juiceButtonName, for: .normal)
+	}
+}
+
+//MARK:- Shared Properties, methods.
+
+extension UIViewController {
+	func setFruitLabelsTag(fruitLabels: [UILabel]) {
+		for (index, fruitLabel) in fruitLabels.enumerated() {
+			fruitLabel.tag = index
+		}
 	}
 }
