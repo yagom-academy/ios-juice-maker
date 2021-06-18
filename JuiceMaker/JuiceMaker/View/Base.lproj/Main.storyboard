@@ -438,8 +438,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="닫기"/>
                                 <connections>
-                                    <action selector="ex:" destination="ga8-1V-5WA" eventType="touchUpInside" id="U8q-tp-que"/>
-                                    <action selector="ex:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="goo-Vj-6zB"/>
+                                    <action selector="exitFuirtStore:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="8oD-BY-0Uo"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -458,7 +457,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
-                <exit id="ga8-1V-5WA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="778" y="1527"/>
         </scene>

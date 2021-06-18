@@ -70,7 +70,7 @@ class ViewController: UIViewController {
 		self.navigationItem.hidesBackButton = true
 	}
 	
-	@IBAction func ex(_ sender: UIButton) {
+	@IBAction func exitFuirtStore(_ sender: UIButton) {
 		self.navigationController?.popViewController(animated: true)
 	}
 	
