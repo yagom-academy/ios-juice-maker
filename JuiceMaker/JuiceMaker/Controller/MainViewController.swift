@@ -7,8 +7,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    @IBOutlet var stockLabels: [StockLabel] = []
-    @IBOutlet var juiceOrderButtons: [JuiceOrderButton] = []
+    @IBOutlet private var stockLabels: [StockLabel] = []
+    @IBOutlet private var juiceOrderButtons: [JuiceOrderButton] = []
     let juiceMaker = JuiceMaker.juiceMaker
     
     override func viewDidLoad() {
@@ -17,15 +17,15 @@ class MainViewController: UIViewController {
         updateLabel()
     }
     
-    func orderButton() {
+    private func orderButton() {
         JuiceOrderButton.connectJuice(to: juiceOrderButtons)
     }
     
-    func updateLabel() {
+    private func updateLabel() {
         StockLabel.update(numbers: stockLabels, of: juiceMaker.fruitStore)
     }
 
-    @IBAction func juiceOrderButton(_ sender: JuiceOrderButton) {
+    @IBAction private func juiceOrderButton(_ sender: JuiceOrderButton) {
         guard let juice = sender.juice else { return }
         
         do {
@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    func completeAlert(title: String, message: String) {
+    private func completeAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { _ in
             self.updateLabel()
@@ -55,7 +55,7 @@ extension MainViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func outOfStock(title: String) {
+    private func outOfStock(title: String) {
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
             self.performSegue(withIdentifier: "stockChange", sender: nil)
