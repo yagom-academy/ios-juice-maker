@@ -29,6 +29,7 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
     override func viewDidLoad() {
         super.viewDidLoad()
         initStepperMaximumValue()
+        initStepperWithTag()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +39,14 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
     }
     
     // MARK: - Methods
+    func initStepperWithTag() {
+        strawberryStepper.tag = Fruit.strawberry.fruitTag
+        bananaStepper.tag = Fruit.banana.fruitTag
+        pineappleStepper.tag = Fruit.pineapple.fruitTag
+        kiwiStepper.tag = Fruit.kiwi.fruitTag
+        mangoStepper.tag = Fruit.mango.fruitTag
+    }
+    
     private func initStepperMaximumValue() {
         strawberryStepper.maximumValue = stepperMaximumValue
         bananaStepper.maximumValue =
@@ -68,7 +77,7 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
             fatalError("알 수 없는 오류")
         }
     }
-    // MARK: - IBActions
+    
     @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -85,24 +94,11 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
         label.text = changedValue.description
     }
     
-    @IBAction func changeStrawberryStock(_ sender: UIStepper) {
-        updateLabelAndStock(of: .strawberry, to: sender.value)
-    }
-    
-    
-    @IBAction func changeBananaStock(_ sender: UIStepper) {
-        updateLabelAndStock(of: .banana, to: sender.value)
-    }
-    
-    @IBAction func changePineappleStock(_ sender: UIStepper) {
-        updateLabelAndStock(of: .pineapple, to: sender.value)
-    }
-    
-    @IBAction func changeKiwiStock(_ sender: UIStepper) {
-        updateLabelAndStock(of: .kiwi, to: sender.value)
-    }
-    
-    @IBAction func changeMangoStock(_ sender: UIStepper) {
-        updateLabelAndStock(of: .mango, to: sender.value)
+    // MARK: - IBActions
+    @IBAction func changeFruitStock(_ sender: UIStepper) {
+        guard let fruitName = Fruit(rawValue: sender.tag) else {
+            return
+        }
+        updateLabelAndStock(of: fruitName, to: sender.value)
     }
 }

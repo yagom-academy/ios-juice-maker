@@ -309,7 +309,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStrawberryStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Avv-uU-NQR"/>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="dek-aB-yXG"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -336,7 +336,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeBananaStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="qCV-fO-AAI"/>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="imq-Ta-c9F"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -363,7 +363,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changePineappleStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="kgn-c3-wft"/>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="kfQ-o6-kMS"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -390,7 +390,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeKiwiStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="cHT-pw-Jam"/>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="sF9-uV-tXZ"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -417,7 +417,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeMangoStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="vIj-5w-YPw"/>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="8HK-MQ-1Zl"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -440,7 +440,7 @@
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="jii-xU-sl5">
                             <connections>
-                                <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" id="Plm-37-cmE"/>
+                                <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" id="bmc-Kj-bNi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

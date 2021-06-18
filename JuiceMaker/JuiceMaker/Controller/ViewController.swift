@@ -38,7 +38,7 @@ class ViewController: UIViewController, LabelUpdatable {
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        initButtonToTag()
+        initButtonWithTag()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +48,7 @@ class ViewController: UIViewController, LabelUpdatable {
     }
     
     // MARK: - Methods
-    func initButtonToTag() {
+    func initButtonWithTag() {
         strawberryBananaJuiceButton.tag = Juice.strawberryBanana.juiceTag
         strawberryJuiceButton.tag = Juice.strawberry.juiceTag
         bananaJuiceButton.tag = Juice.banana.juiceTag

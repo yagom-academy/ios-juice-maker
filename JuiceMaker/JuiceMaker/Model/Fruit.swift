@@ -7,14 +7,18 @@
 
 import Foundation
 
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+enum Fruit: Int, CaseIterable {
+    case strawberry = 1
+    case banana = 2
+    case pineapple = 3
+    case kiwi = 4
+    case mango = 5
     
     static func makeFruitList() -> [Fruit] {
         return Fruit.allCases
+    }
+    
+    var fruitTag: Int {
+        return self.rawValue
     }
 }
