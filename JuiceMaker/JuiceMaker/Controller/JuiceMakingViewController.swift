@@ -32,7 +32,7 @@ class JuiceMakingViewController: UIViewController {
     }
 
     deinit {
-        turnOffObserver()
+        removeObserver()
     }
 }
 
@@ -95,7 +95,7 @@ extension JuiceMakingViewController {
             result = .failure(description: message)
         }
         
-        self.present(generateAlert(by: result), animated: true, completion: nil)
+        self.present(generateAlert(by: result), animated: true)
     }
  
     private func generateAlert(by result: JuiceMaker.JuiceMakingResult) -> UIAlertController {
@@ -139,7 +139,7 @@ extension JuiceMakingViewController {
         self.showNumberOnLabel(fruits: fruitInfo)
     }
     
-    private func turnOffObserver() {
+    private func removeObserver() {
         NotificationCenter.default.removeObserver(self, name: .fruitsAmountDidChange, object: nil)
     }
 }
