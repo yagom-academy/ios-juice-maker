@@ -6,6 +6,14 @@
 
 import Foundation
 
+enum JuiceMakerError: Error {
+    case outOfStock
+}
+
+struct Juice {
+    var name: String
+    var ingredients: Dictionary<Fruit, Int>
+}
 // 쥬스 메이커 타입
 struct JuiceMaker {
     let fruitStore = FruitStore()

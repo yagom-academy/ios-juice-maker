@@ -6,6 +6,13 @@
 
 import Foundation
 
+enum Fruit: CaseIterable {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
 // 과일 타입
 class FruitStore {
     @objc dynamic var strawberry = 10
