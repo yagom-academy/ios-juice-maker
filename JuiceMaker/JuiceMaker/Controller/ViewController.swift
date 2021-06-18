@@ -27,12 +27,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("1 - viewDidLoad")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showFruitLabel(_:)), name: Notification.Name("changeFruitStock"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(showFruitLabel(_:)), name: Notification.Name("changeFruitStock"), object: nil)
         print("1 - viewWillAppear")
     }
     
@@ -43,12 +42,14 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("changeFruitStock"), object: nil)
         print("1 - viewWillDisappear")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("1 - viewDidDisappear")
+        print("---------------------")
     }
     
     
@@ -125,6 +126,7 @@ class ViewController: UIViewController {
             return
         }
         mainVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        mainVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(mainVC, animated: true)
     }
     
