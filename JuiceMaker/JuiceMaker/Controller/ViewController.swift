@@ -38,6 +38,7 @@ class ViewController: UIViewController, LabelUpdatable {
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        initButtonToTag()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +48,16 @@ class ViewController: UIViewController, LabelUpdatable {
     }
     
     // MARK: - Methods
+    func initButtonToTag() {
+        strawberryBananaJuiceButton.tag = Juice.strawberryBanana.juiceTag
+        strawberryJuiceButton.tag = Juice.strawberry.juiceTag
+        bananaJuiceButton.tag = Juice.banana.juiceTag
+        kiwiJuiceButton.tag = Juice.kiwi.juiceTag
+        pineappleJuiceButton.tag = Juice.pineapple.juiceTag
+        mangoJuiceButton.tag = Juice.mango.juiceTag
+        mangoKiwiJuiceButton.tag = Juice.mangoKiwi.juiceTag
+    }
+    
     func getLabel(on fruit: Fruit) -> UILabel {
         switch fruit {
             case .strawberry: return strawberryLabel
@@ -103,11 +114,11 @@ class ViewController: UIViewController, LabelUpdatable {
     }
     
     // MARK: - IBActions
-    @IBAction private func orderStrawberryBananaJuice(_ sender: UIButton) { orderJuice(of: .strawberryBanana) }
-    @IBAction private func orderMangoKiwiJuice(_ sender: UIButton) { orderJuice(of: .mangoKiwi) }
-    @IBAction private func orderStrawberryJuice(_ sender: UIButton) { orderJuice(of: .strawberry) }
-    @IBAction private func orderBananaJuice(_ sender: UIButton) { orderJuice(of: .banana) }
-    @IBAction private func orderPineappleJuice(_ sender: UIButton) { orderJuice(of: .pineapple) }
-    @IBAction private func orderKiwiJuice(_ sender: UIButton) { orderJuice(of: .kiwi) }
-    @IBAction private func orderMangoJuice(_ sender: UIButton) { orderJuice(of: .mango) }
+    @IBAction private func orderJuiceAction(_ sender: UIButton) {
+        guard let juiceName = Juice(rawValue: sender.tag) else {
+            return
+        }
+        orderJuice(of: juiceName)
+    }
+
 }
