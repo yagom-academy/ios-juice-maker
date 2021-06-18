@@ -14,7 +14,7 @@
 //    case mangoJuice = "망고쥬스 주문"
 //    case kiwiJuice = "키위쥬스 주문"
 //    case pineappleJuice = "파인애플쥬스 주문"
-//    
+//
 //    var description: String {
 //        switch self {
 //        case .strawberryJuice:
@@ -33,7 +33,7 @@
 //            return "망키"
 //        }
 //    }
-//    
+//
 //    var ingredients: [(Fruit, UInt)] {
 //        switch self {
 //        case .strawberryJuice:

@@ -13,16 +13,15 @@ enum Fruit: CaseIterable {
     case kiwi
     case mango
 }
-
 // 과일 타입
-class FruitStore: NSObject { // : ObservableObject?
+class FruitStore: NSObject {
     static let shared = FruitStore()
 
-    @objc dynamic internal var strawberry: UInt = 10
-    @objc dynamic internal var banana: UInt = 10
-    @objc dynamic internal var pineapple: UInt = 10
-    @objc dynamic internal var kiwi: UInt = 10
-    @objc dynamic internal var mango: UInt = 10
+    @objc dynamic var strawberry: UInt = 10
+    @objc dynamic var banana: UInt = 10
+    @objc dynamic var pineapple: UInt = 10
+    @objc dynamic var kiwi: UInt = 10
+    @objc dynamic var mango: UInt = 10
     
     subscript(_ fruit: Fruit) -> UInt {
         get {
@@ -55,10 +54,10 @@ class FruitStore: NSObject { // : ObservableObject?
         }
     }
     
-    internal func changeStock(_ fruit: Fruit, _ changingQuantity: UInt) {
+    func changeStock(_ fruit: Fruit, _ changingQuantity: UInt) {
         self[fruit] -= changingQuantity
     }
-    internal func changeCurrentStockToValue(_ fruit: Fruit, _ changedValue: UInt) {
+    func changeCurrentStockToValue(_ fruit: Fruit, _ changedValue: UInt) {
         self[fruit] = changedValue
     }
 }

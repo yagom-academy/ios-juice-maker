@@ -14,28 +14,45 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mangoLabel: UILabel!
     
     var juiceMaker = JuiceMaker()
-    var observation = [NSKeyValueObservation]()
+    var observation: [NSKeyValueObservation]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        observation = [
-            juiceMaker.fruitStore.observe(\.strawberry, options: [.new]) { _, _ in self.updateUILabel(.strawberry) },
-            juiceMaker.fruitStore.observe(\.banana, options: [.new]) { _, _ in self.updateUILabel(.banana) },
-            juiceMaker.fruitStore.observe(\.mango, options: [.new]) { _, _ in self.updateUILabel(.mango) },
-            juiceMaker.fruitStore.observe(\.kiwi, options: [.new]) { _, _ in self.updateUILabel(.kiwi) },
-            juiceMaker.fruitStore.observe(\.pineapple, options: [.new]) { _, _ in self.updateUILabel(.pineapple) }
-        ]
+        
     }
+    func test(_ first: FruitStore, _ second: NSKeyValueObservedChange<UInt> ) {
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        observation = [
+            juiceMaker.fruitStore.observe(\.strawberry,options: [.new]){ _, _ in self.updateUILabel(.strawberry) },
+            juiceMaker.fruitStore.observe(\.banana, options: [.new])    { _, _ in self.updateUILabel(.banana) },
+            juiceMaker.fruitStore.observe(\.mango, options: [.new])     { _, _ in self.updateUILabel(.mango) },
+            juiceMaker.fruitStore.observe(\.kiwi, options: [.new])      { _, _ in self.updateUILabel(.kiwi) },
+            juiceMaker.fruitStore.observe(\.pineapple, options: [.new]) { _, _ in self.updateUILabel(.pineapple) }
+//            juiceMaker.fruitStore.observe(\.pineapple, options: [.new], changeHandler: self.test(_:_:))
+        ]
         for fruit in Fruit.allCases {
             updateUILabel(fruit)
         }
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        observation = nil
+    }
     
-    @IBAction func orderJuiceAction(_ sender: UIButton) {
-        guard let titleLabel = sender.titleLabel else { print("버튼 타이틀 에러"); return }
-        guard let text = titleLabel.text, let juice = juiceMaker.menuOfJuice[text] else { print("쥬스 조회 에러"); return }
+    @IBAction func oderJuiceAction(_ sender: UIButton) {
+        guard let titleLabel = sender.titleLabel else {
+            print("버튼 타이틀 에러입니다")
+            return
+        }
+        guard let text = titleLabel.text, let juice = juiceMaker.menuOfJuice[text] else {
+            print("쥬스 조회 에러")
+            return
+        }
+        
         juiceMaker.makeJuice(juice) { getResult in
             switch getResult {
             case .success(let juiceName):
@@ -53,10 +70,10 @@ class MainViewController: UIViewController {
     func updateUILabel(_ fruit: Fruit) {
         switch fruit {
         case .strawberry:   strawberryLabel.text = String(juiceMaker.fruitStore[.strawberry])
-        case .banana:       bananaLabel.text = String(juiceMaker.fruitStore[.banana])
-        case .pineapple:    pineappleLabel.text = String(juiceMaker.fruitStore[.pineapple])
-        case .kiwi:         kiwiLabel.text = String(juiceMaker.fruitStore[.kiwi])
-        case .mango:        mangoLabel.text = String(juiceMaker.fruitStore[.mango])
+        case .banana:       bananaLabel.text     = String(juiceMaker.fruitStore[.banana])
+        case .pineapple:    pineappleLabel.text  = String(juiceMaker.fruitStore[.pineapple])
+        case .kiwi:         kiwiLabel.text       = String(juiceMaker.fruitStore[.kiwi])
+        case .mango:        mangoLabel.text      = String(juiceMaker.fruitStore[.mango])
         }
     }
     func alertMakingJuiceResult(_ juiceName: String? = nil) {
