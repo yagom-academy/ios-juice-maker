@@ -18,7 +18,6 @@ class ViewController: UIViewController, LabelUpdatable {
     
     // MARK: - Properties
     private var juiceMaker = JuiceMaker(fruitStore: FruitStore.shared)
-    var labelList = [Fruit: UILabel]()
     
     // MARK: - IBOutlets - UIButton
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
@@ -39,7 +38,6 @@ class ViewController: UIViewController, LabelUpdatable {
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        initLabelList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,12 +47,14 @@ class ViewController: UIViewController, LabelUpdatable {
     }
     
     // MARK: - Methods
-    private func initLabelList() {
-        labelList[.strawberry] = strawberryLabel
-        labelList[.banana] = bananaLabel
-        labelList[.pineapple] = pineappleLabel
-        labelList[.kiwi] = kiwiLabel
-        labelList[.mango] = mangoLabel
+    func getLabel(on fruit: Fruit) -> UILabel {
+        switch fruit {
+            case .strawberry: return strawberryLabel
+            case .banana: return bananaLabel
+            case .pineapple: return pineappleLabel
+            case .kiwi: return kiwiLabel
+            case .mango: return mangoLabel
+        }
     }
     
     private func showAlert(title: String?, message: String?) {

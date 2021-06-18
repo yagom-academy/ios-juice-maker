@@ -11,7 +11,6 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
     // MARK: - Properties
     private let stepperMaximumValue: Double = 30
     private let fruitStore: FruitStore = FruitStore.shared
-    var labelList = [Fruit: UILabel]()
     
     // MARK: - IBOutlets
     @IBOutlet weak var strawberryStepper: UIStepper!
@@ -30,7 +29,6 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
     override func viewDidLoad() {
         super.viewDidLoad()
         initStepperMaximumValue()
-        initLabelList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,12 +47,14 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
         mangoStepper.maximumValue = stepperMaximumValue
     }
     
-    private func initLabelList() {
-        labelList[.strawberry] = stawberryStockLabel
-        labelList[.banana] = bananaStockLabel
-        labelList[.pineapple] = pineappleStockLabel
-        labelList[.kiwi] = kiwiStockLabel
-        labelList[.mango] = mangoStockLabel
+    func getLabel(on fruit: Fruit) -> UILabel {
+        switch fruit {
+            case .strawberry: return stawberryStockLabel
+            case .banana: return bananaStockLabel
+            case .pineapple: return pineappleStockLabel
+            case .kiwi: return kiwiStockLabel
+            case .mango: return mangoStockLabel
+        }
     }
     
     private func initStepperValue() {
@@ -75,8 +75,9 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
     
     func updateLabelAndStock(of fruitName: Fruit, to senderValue: Double) {
         let changedValue = Int(senderValue)
+        let label = getLabel(on: fruitName)
         
-        guard let label = labelList[fruitName], changedValue >= 0 else {
+        guard changedValue >= 0 else {
             return
         }
         
