@@ -50,17 +50,22 @@ struct JuiceMaker {
         }
     }
     
+    private(set) var fruitStore: FruitStore
+    static let juiceMaker = JuiceMaker(fruitStore: FruitStore(initialStock: 10))
+    
     func make(_ juice: Juice) {
-        FruitStore.stock.decrease(fruits: juice.recipe)
+        fruitStore.decrease(fruits: juice.recipe)
     }
     
-    func hasFruit(_ juice: Juice) throws -> Bool {
+    func checkStockPresence (_ juice: JuiceMaker.Juice) throws -> Bool {
+        var hasFruitStock = true
         for recipe in juice.recipe {
-            guard let fruitStock: Int = FruitStore.stock.fruits[recipe.key], fruitStock >= recipe.value else
+            guard let fruitStock: Int = fruitStore.fruits[recipe.key] else
             {
-                throw JuiceMakerError.outOfStock
+                throw JuiceMakerError.invalidFruit
             }
+            hasFruitStock = hasFruitStock && fruitStock >= recipe.value
         }
-        return true
+        return hasFruitStock
     }
 }
