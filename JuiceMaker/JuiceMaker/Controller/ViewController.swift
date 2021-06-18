@@ -9,7 +9,6 @@ import UIKit
 let juiceMaker = JuiceMaker()
 class ViewController: UIViewController {
     
-    
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
     @IBOutlet private weak var pineappleStockLabel: UILabel!
@@ -26,39 +25,24 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("1 - viewDidLoad")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applyChangedStock(_:)), name: Notification.Name("changeFruitStock"), object: nil)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(showFruitLabel(_:)), name: Notification.Name("changeFruitStock"), object: nil)
-        print("1 - viewWillAppear")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("1 - viewDidAppear")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+
+    deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("changeFruitStock"), object: nil)
-        print("1 - viewWillDisappear")
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("1 - viewDidDisappear")
-        print("---------------------")
-    }
-    
-    
-    @objc private func showFruitLabel(_ notification: Notification) {
+    func showFruitLabel() {
         strawberryStockLabel.text = String(juiceMaker.getAmount(.strawberry))
         bananaStockLabel.text = String(juiceMaker.getAmount(.banana))
         pineappleStockLabel.text = String(juiceMaker.getAmount(.pineapple))
         kiwiStockLabel.text = String(juiceMaker.getAmount(.kiwi))
         mangoStockLabel.text = String(juiceMaker.getAmount(.mango))
+    }
+    
+    @objc func applyChangedStock(_ notification: Notification)  {
+        showFruitLabel()
     }
     
     private func succeededMakingJuiceAlert(_ message: JuiceMaker.JuiceType) {
@@ -68,6 +52,7 @@ class ViewController: UIViewController {
         let okAction = UIAlertAction(title: "확인" ,
                                      style: . default) { (action) in
             juiceMaker.makeJuice(order: message)
+            self.showFruitLabel()
 
         }
         alert.addAction(okAction)

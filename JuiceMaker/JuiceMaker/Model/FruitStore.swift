@@ -30,8 +30,7 @@ class FruitStore {
     }
     
     func stockMinus(stock: Int) {
-        NotificationCenter.default.post(name: Notification.Name("changeFruitStock"),
-                                        object: nil, userInfo: nil)
+        amount -= stock
     }
     
     func isStockLeft(_ requiredStock: Int) -> Bool {

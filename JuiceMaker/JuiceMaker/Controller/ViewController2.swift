@@ -22,31 +22,9 @@ class ViewController2: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("2 - viewDidLoad")
         setFruitStepper()
         showFruitLabel()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("2 - viewWillAppear")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("2 - viewDidAppear")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("2 - viewWillDisappear")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("2 - viewDidDisappear")
-    }
-    
     
     func setFruitStepper() {
         strawberryStepper.value = Double(juiceMaker.getAmount(.strawberry))
@@ -66,6 +44,8 @@ class ViewController2: UIViewController {
     
     @IBAction func closeBtn(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: Notification.Name("changeFruitStock"),
+                                        object: nil, userInfo: nil)
     }
     
     @IBAction func fruitStepper(_ sender: UIStepper) {
