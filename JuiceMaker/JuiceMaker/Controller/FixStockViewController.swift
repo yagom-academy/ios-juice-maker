@@ -19,36 +19,51 @@ class FixStockViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    var fruitStore = FruitStore()
+    var fruitStore: FruitStore?
     weak var delegate: FixStockViewControllerDelegate?
     
     @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
-        tryStepper(fruit: fruitStore.strawberry, sender: sender)
-        strawberryLabel.text = fruitStore.strawberry.stock.description
+        guard let fruit = fruitStore?.strawberry else {
+            return
+        }
+        tryStepper(fruit: fruit, sender: sender)
+        strawberryLabel.text = fruitStore?.strawberry.stock.description
     }
     @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
-        tryStepper(fruit: fruitStore.banana, sender: sender)
-        bananaLabel.text = fruitStore.banana.stock.description
+        guard let fruit = fruitStore?.banana else {
+            return
+        }
+        tryStepper(fruit: fruit, sender: sender)
+        bananaLabel.text = fruitStore?.banana.stock.description
     }
     @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
-        tryStepper(fruit: fruitStore.pineapple, sender: sender)
-        pineappleLabel.text = fruitStore.pineapple.stock.description
+        guard let fruit = fruitStore?.pineapple else {
+            return
+        }
+        tryStepper(fruit: fruit, sender: sender)
+        pineappleLabel.text = fruitStore?.pineapple.stock.description
     }
     @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
-        tryStepper(fruit: fruitStore.kiwi, sender: sender)
-        kiwiLabel.text = fruitStore.kiwi.stock.description
+        guard let fruit = fruitStore?.kiwi else {
+            return
+        }
+        tryStepper(fruit: fruit, sender: sender)
+        kiwiLabel.text = fruitStore?.kiwi.stock.description
     }
     @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
-        tryStepper(fruit: fruitStore.mango, sender: sender)
-        mangoLabel.text = fruitStore.mango.stock.description
+        guard let fruit = fruitStore?.mango else {
+            return
+        }
+        tryStepper(fruit: fruit, sender: sender)
+        mangoLabel.text = fruitStore?.mango.stock.description
     }
     
     private func tryStepper(fruit: Fruit, sender: UIStepper) {
         do {
             if sender.value < 0 {
-                try fruitStore.decreaseStock(fruit: fruit)
+                try fruitStore?.decreaseStock(fruit: fruit)
             } else {
-                try fruitStore.increaseStock(fruit: fruit)
+                try fruitStore?.increaseStock(fruit: fruit)
             }
             sender.value = 0
         } catch {
@@ -78,11 +93,11 @@ class FixStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryLabel.text = String(fruitStore.strawberry.stock)
-        bananaLabel.text = String(fruitStore.banana.stock)
-        pineappleLabel.text = String(fruitStore.pineapple.stock)
-        kiwiLabel.text = String(fruitStore.kiwi.stock)
-        mangoLabel.text = String(fruitStore.mango.stock)
+        strawberryLabel.text = String(fruitStore?.strawberry.stock ?? 0)
+        bananaLabel.text = String(fruitStore?.banana.stock ?? 0)
+        pineappleLabel.text = String(fruitStore?.pineapple.stock ?? 0)
+        kiwiLabel.text = String(fruitStore?.kiwi.stock ?? 0)
+        mangoLabel.text = String(fruitStore?.mango.stock ?? 0)
         
         setUpStepper(stepper: strawberryStepper)
         setUpStepper(stepper: bananaStepper)
@@ -90,11 +105,11 @@ class FixStockViewController: UIViewController {
         setUpStepper(stepper: pineappleStepper)
         setUpStepper(stepper: mangoStepper)
         
-        strawberryStepper.minimumValue -= Double(fruitStore.strawberry.stock)
-        bananaStepper.minimumValue -= Double(fruitStore.banana.stock)
-        pineappleStepper.minimumValue -= Double(fruitStore.pineapple.stock)
-        kiwiStepper.minimumValue -= Double(fruitStore.kiwi.stock)
-        mangoStepper.minimumValue -= Double(fruitStore.mango.stock)
+        strawberryStepper.minimumValue -= Double(fruitStore?.strawberry.stock ?? Int.min)
+        bananaStepper.minimumValue -= Double(fruitStore?.banana.stock ?? Int.min)
+        pineappleStepper.minimumValue -= Double(fruitStore?.pineapple.stock ?? Int.min)
+        kiwiStepper.minimumValue -= Double(fruitStore?.kiwi.stock ?? Int.min)
+        mangoStepper.minimumValue -= Double(fruitStore?.mango.stock ?? Int.min)
     }
     
     func setUpStepper(stepper: UIStepper) {
