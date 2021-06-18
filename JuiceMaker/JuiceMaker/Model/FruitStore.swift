@@ -8,26 +8,46 @@ import Foundation
 
 // 과일 타입
 class FruitStore {
-    var fruitStocks: Dictionary<Fruit, Int>
-    let emptyQuantity = 0
+    @objc dynamic var strawberry = 10
+    @objc dynamic var banana = 10
+    @objc dynamic var pineapple = 10
+    @objc dynamic var kiwi = 10
+    @objc dynamic var mango = 10
     
-    init() {
-        fruitStocks = [.strawberry:10, .banana:10, .pineapple:10, .kiwi:10, .mango:10]
-    }
-    
-    func currentStock(_ fruit: Fruit) -> Int {
-        guard let stock = fruitStocks[fruit] else {
-            print("재고에 존재하지 않는 과일")
-            return emptyQuantity
+    subscript(_ fruit: Fruit) -> Int {
+        get {
+            switch fruit {
+            case .strawberry:
+                return strawberry
+            case .banana:
+                return banana
+            case .pineapple:
+                return pineapple
+            case .kiwi:
+                return kiwi
+            case .mango:
+                return mango
+            }
         }
-        return stock
+        set {
+            switch fruit {
+            case .strawberry:
+                strawberry = newValue
+            case .banana:
+                banana = newValue
+            case .pineapple:
+                pineapple = newValue
+            case .kiwi:
+                kiwi = newValue
+            case .mango:
+                mango = newValue
+            }
+        }
+    }
+    func currentStock(_ fruit: Fruit) -> Int {
+        return self[fruit]
     }
     func changeStock(_ fruit: Fruit, _ changingQuantity: Int) {
-        guard let stock = fruitStocks[fruit] else {
-            print("재고에 존재하지 않는 과일")
-            return
-        }
-        fruitStocks.updateValue(stock - changingQuantity, forKey: fruit)
-        NotificationCenter.default.post(name: Notification.Name("updateUILabel"), object: nil, userInfo: ["과일종류":fruit])
+        self[fruit] = currentStock(fruit) - changingQuantity
     }
 }

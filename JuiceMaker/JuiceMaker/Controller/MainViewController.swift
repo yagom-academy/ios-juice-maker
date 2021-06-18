@@ -17,15 +17,14 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceSuccess(_:)),
                                                name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceFail),
                                                name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUILabel(_:)),
-                                               name: Notification.Name(rawValue: "updateUILabel"), object: nil)
+        
         for fruit in Fruit.allCases {
-            NotificationCenter.default.post(name: Notification.Name("updateUILabel"), object: nil, userInfo: ["과일종류":fruit])
+            
         }
     }
     
@@ -37,13 +36,7 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    @objc func updateUILabel(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else {
-            print("userInfo 에러"); return
-        }
-        guard let userInfoValue = userInfo["과일종류"], let fruit = userInfoValue as? Fruit else {
-            print("userInfoValue 에러"); return
-        }
+    func updateUILabel(_ fruit: Fruit) {
         let currentStock = String(juiceMaker.fruitStore.currentStock(fruit))
         switch fruit {
         case .strawberry:
