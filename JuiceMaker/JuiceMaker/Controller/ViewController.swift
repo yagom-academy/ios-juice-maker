@@ -43,6 +43,7 @@ class ViewController: UIViewController, LabelUpdatable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("ViewController viewWillAppear()")
         super.viewWillAppear(animated)
         updateLabelsText(of: juiceMaker.getFruitStore)
     }
@@ -83,6 +84,7 @@ class ViewController: UIViewController, LabelUpdatable {
             return
         }
         
+        stockManagerNC.modalPresentationStyle = .fullScreen // viewWillAppear() 호출 보장.
         self.present(stockManagerNC, animated: true)
     }
     

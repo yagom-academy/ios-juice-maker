@@ -64,13 +64,14 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
     func updateLabelAndStock(of fruitName: Fruit, to senderValue: Double) {
         let changedValue = Int(senderValue)
         
-        guard changedValue >= 0 else {
+        guard let label = labelList[fruitName], changedValue >= 0 else {
             return
         }
         
         fruitStore.updateStock(of: fruitName, count: UInt(changedValue))
-        stawberryStockLabel.text = changedValue.description
+        label.text = changedValue.description
     }
+    
     @IBAction func changeStrawberryStock(_ sender: UIStepper) {
         updateLabelAndStock(of: .strawberry, to: sender.value)
     }
