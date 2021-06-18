@@ -25,7 +25,7 @@ struct JuiceMaker {
     
     let fruitStore = FruitStore()
     
-    func defaultJuiceRecipe(juiceMenu: Menu) -> [FruitStore.Fruit: UInt]{
+    func juiceRecipe(juiceMenu: Menu) -> [FruitStore.Fruit: UInt]{
         switch juiceMenu {
         case .strawberry:
             return [.strawberry: 16]
@@ -44,40 +44,31 @@ struct JuiceMaker {
         }
     }
     
-    func isJuiceAvailable(menu: Menu) throws -> Bool {
-        var isIngredientRemain: Bool = true
-        let orderedJuiceRecipe = defaultJuiceRecipe(juiceMenu: menu)
-        let neededIngredient = Array(orderedJuiceRecipe.keys)
+    func isJuiceAvailable(menu: Menu) throws  {
+        let orderedJuiceRecipe = juiceRecipe(juiceMenu: menu)
+        let fruitsWeNeed = Array(orderedJuiceRecipe.keys)
+        let numberOfFruitKindWeNeed = orderedJuiceRecipe.count
         
-        for i in 0..<orderedJuiceRecipe.count {
-            guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[neededIngredient[i]],
-                  let currentRemainedFruitNumber = fruitStore.storage[neededIngredient[i]]
-            else {
-                print("invalidNumber from isJuiceAvailable()")
-                throw juiceMakerError.invalidNumber
-            }
+        for i in 0..<numberOfFruitKindWeNeed {
+            guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[fruitsWeNeed[i]],
+                  let currentFruitNumberInStorage = fruitStore.storage[fruitsWeNeed[i]]
+            else { throw juiceMakerError.invalidNumber }
             
-            if necessaryFruitNumberForMenu > currentRemainedFruitNumber {
-                isIngredientRemain = false
-                print("Out of stock from isJuiceAvailable()")
+            if necessaryFruitNumberForMenu > currentFruitNumberInStorage {
                 throw juiceMakerError.outOfStock
             }
         }
-        return isIngredientRemain
     }
-    
+
     func makeJuice(menu: Menu) throws {
-        let userMenuRecipe = defaultJuiceRecipe(juiceMenu: menu)
+        let recipe = juiceRecipe(juiceMenu: menu)
         
         do {
             try isJuiceAvailable(menu: menu)
-            for (fruit, count) in userMenuRecipe {
-                fruitStore.modifyStock(fruit: fruit,
-                                       changes: -Int(count))
-                
+            for (fruit, count) in recipe {
+                fruitStore.modifyStock(fruit: fruit, changes: -Int(count))
             }
         } catch juiceMakerError.outOfStock {
-            print("Out of stock from makeJuice()")
             throw juiceMakerError.outOfStock
         } catch juiceMakerError.invalidNumber {
             throw juiceMakerError.invalidNumber
