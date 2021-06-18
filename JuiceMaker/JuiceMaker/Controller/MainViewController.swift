@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pineappleLabel: UILabel!
 
     let juiceMaker = JuiceMaker()
+    var observations = [NSKeyValueObservation]()
     
     let strawberryJuice = Juice(name: "딸기쥬스", ingredients: [.strawberry:16])
     let bananaJuice = Juice(name: "바나나쥬스", ingredients: [.banana:2])
@@ -26,13 +27,31 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceSuccess(_:)),
-                                               name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceFail),
-                                               name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceSuccess(_:)),
+//                                               name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceFail),
+//                                               name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
+        
+        observations = [
+            juiceMaker.fruitStore.observe(\.strawberry, options: [.new]) { _, _ in
+                self.updateUILabel(.strawberry)
+            },
+            juiceMaker.fruitStore.observe(\.banana, options: [.new]) { _, _ in
+                self.updateUILabel(.banana)
+            },
+            juiceMaker.fruitStore.observe(\.pineapple, options: [.new]) { _, _ in
+                self.updateUILabel(.pineapple)
+            },
+            juiceMaker.fruitStore.observe(\.kiwi, options: [.new]) { _, _ in
+                self.updateUILabel(.kiwi)
+            },
+            juiceMaker.fruitStore.observe(\.mango, options: [.new]) { _, _ in
+                self.updateUILabel(.mango)
+            }
+        ]
         
         for fruit in Fruit.allCases {
-            
+            updateUILabel(fruit)
         }
     }
     
@@ -83,14 +102,16 @@ extension MainViewController {
             print("userInfoValue 에러"); return
         }
         let alert = UIAlertController(title: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "감사합니다.", style: .default) { _ in print("주문성공")}
+        let confirmAction = UIAlertAction(title: "감사합니다.", style: .default)
         alert.addAction(confirmAction)
         present(alert, animated: true, completion: nil)
     }
     @objc func alertMakingJuiceFail() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "예", style: .default){ _ in print("주문실패 - 예 선택")}
-        let cancelAction = UIAlertAction(title: "아니오", style: .default){ _ in print("주문실패 - 아니오 선택")}
+        let confirmAction = UIAlertAction(title: "예", style: .default){ _ in
+            
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)

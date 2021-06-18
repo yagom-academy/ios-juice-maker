@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A99B246226783EBC00F94FCC /* EnumTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B246126783EBC00F94FCC /* EnumTypes.swift */; };
 		B463F9C3267796BA0073F37A /* ModifiyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463F9C2267796BA0073F37A /* ModifiyViewController.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -20,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A99B246126783EBC00F94FCC /* EnumTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTypes.swift; sourceTree = "<group>"; };
 		B463F9C2267796BA0073F37A /* ModifiyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiyViewController.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +59,6 @@
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
-				A99B246126783EBC00F94FCC /* EnumTypes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,7 +175,6 @@
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				B463F9C3267796BA0073F37A /* ModifiyViewController.swift in Sources */,
-				A99B246226783EBC00F94FCC /* EnumTypes.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
