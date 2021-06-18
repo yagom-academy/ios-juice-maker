@@ -53,7 +53,7 @@ struct JuiceMaker {
     }
     
     func stockPlus(_ fruit: Fruits, stock: Int) {
-        self.fruitStore[fruit]?.stockPlus(stock: stock)
+        self.fruitStore[fruit]?.setAmount(stock: stock)
     }
     
     func makeJuice(order: JuiceType) {

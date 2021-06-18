@@ -26,9 +26,33 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("1 - viewDidLoad")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showFruitLabel(_:)), name: Notification.Name("changeFruitStock"), object: nil)
     }
     
-    private func showFruitLabel() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("1 - viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("1 - viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("1 - viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("1 - viewDidDisappear")
+    }
+    
+    
+    @objc private func showFruitLabel(_ notification: Notification) {
         strawberryStockLabel.text = String(juiceMaker.getAmount(.strawberry))
         bananaStockLabel.text = String(juiceMaker.getAmount(.banana))
         pineappleStockLabel.text = String(juiceMaker.getAmount(.pineapple))
@@ -43,7 +67,7 @@ class ViewController: UIViewController {
         let okAction = UIAlertAction(title: "확인" ,
                                      style: . default) { (action) in
             juiceMaker.makeJuice(order: message)
-            self.showFruitLabel()
+
         }
         alert.addAction(okAction)
         present(alert,

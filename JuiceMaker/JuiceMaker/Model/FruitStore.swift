@@ -23,12 +23,15 @@ class FruitStore {
         return amount
     }
     
-    func stockPlus(stock:Int) {
+    func setAmount(stock:Int) {
         amount = stock
+        NotificationCenter.default.post(name: Notification.Name("changeFruitStock"),
+                                        object: nil, userInfo: nil)
     }
     
     func stockMinus(stock: Int) {
-        amount -= stock
+        NotificationCenter.default.post(name: Notification.Name("changeFruitStock"),
+                                        object: nil, userInfo: nil)
     }
     
     func isStockLeft(_ requiredStock: Int) -> Bool {

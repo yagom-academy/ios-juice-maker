@@ -20,23 +20,40 @@ class ViewController2: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setFruitLabel()
+        print("2 - viewDidLoad")
+        setFruitStepper()
         showFruitLabel()
     }
     
-    func setFruitLabel() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("2 - viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("2 - viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("2 - viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("2 - viewDidDisappear")
+    }
+    
+    
+    func setFruitStepper() {
         strawberryStepper.value = Double(juiceMaker.getAmount(.strawberry))
         bananaStepper.value = Double(juiceMaker.getAmount(.banana))
         pineappleStepper.value = Double(juiceMaker.getAmount(.pineapple))
         kiwiStepper.value = Double(juiceMaker.getAmount(.kiwi))
         mangoStepper.value = Double(juiceMaker.getAmount(.mango))
-    }
-    
-    @IBAction func closeBtn(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     private func showFruitLabel() {
@@ -45,6 +62,10 @@ class ViewController2: UIViewController {
         pineappleStockLabel.text = String(juiceMaker.getAmount(.pineapple))
         kiwiStockLabel.text = String(juiceMaker.getAmount(.kiwi))
         mangoStockLabel.text = String(juiceMaker.getAmount(.mango))
+    }
+    
+    @IBAction func closeBtn(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func fruitStepper(_ sender: UIStepper) {
