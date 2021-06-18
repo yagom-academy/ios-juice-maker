@@ -439,15 +439,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaStepper" destination="O5s-2N-3iP" id="KFd-OU-aBR"/>
-                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="B6z-iU-xc4"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="w7y-3H-MOz"/>
                         <outlet property="kiwiStepper" destination="klA-59-Nu4" id="Bkw-ys-053"/>
-                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="nC5-Ir-Opl"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="eZA-pk-fWp"/>
                         <outlet property="mangoStepper" destination="xbn-6P-grO" id="fhm-3D-tsj"/>
-                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="rDL-pS-E9W"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="Dl6-wW-xrg"/>
                         <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="AVH-1r-ada"/>
-                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="4mG-y7-xQm"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="zdl-HJ-BYm"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="PKX-ri-Lkq"/>
-                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="TrS-TF-2Ur"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="PvN-yw-nPU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

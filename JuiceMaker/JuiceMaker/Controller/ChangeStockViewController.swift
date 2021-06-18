@@ -7,18 +7,38 @@
 
 import UIKit
 
-class ChangeStockViewController: ViewController {
+class ChangeStockViewController: UIViewController {
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
+    
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
     @IBOutlet weak var pineappleStepper: UIStepper!
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
+    let juiceMaker = JuiceMaker.shared
     var delegate: StockDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateStockLabels()
         setStepperInitialValue()
+    }
+    
+    func updateStockLabels() {
+        do {
+            strawberryStockLabel.text = try juiceMaker.returnStockString(of: .strawberry)
+            bananaStockLabel.text = try juiceMaker.returnStockString(of: .banana)
+            pineappleStockLabel.text = try juiceMaker.returnStockString(of: .pineapple)
+            kiwiStockLabel.text = try juiceMaker.returnStockString(of: .kiwi)
+            mangoStockLabel.text = try juiceMaker.returnStockString(of: .mango)
+        } catch {
+            return
+        }
     }
     
     func setStepperInitialValue() {
