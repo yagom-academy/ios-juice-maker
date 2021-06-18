@@ -26,7 +26,7 @@ class StockManagementViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showNumberOnLabel(fruits: fruitStore?.inventory ?? [:])
+        setUpNumberOnViews(by: fruitStore?.inventory ?? [:])
     }
 
 }
@@ -37,19 +37,28 @@ extension StockManagementViewController {
         label.text = String(number)
     }
     
-    private func showNumberOnLabel(fruits: [Fruit: Int]) {
+    private func setUp(number: Int, on stepper: UIStepper) {
+        stepper.value = Double(number)
+    }
+    
+    private func setUpNumberOnViews(by fruits: [Fruit: Int]) {
         for fruit in fruits {
             switch fruit.key {
             case .strawberry:
                 setUp(number: fruit.value, on: numberOfStrawberryLabel)
+                setUp(number: fruit.value, on: stockOfStrawberryStepper)
             case .banana:
                 setUp(number: fruit.value, on: numberOfBananaLabel)
+                setUp(number: fruit.value, on: stockOfBananaStepper)
             case .pineapple:
                 setUp(number: fruit.value, on: numberOfPineAppleLabel)
+                setUp(number: fruit.value, on: stockOfPineAppleStepper)
             case .kiwi:
                 setUp(number: fruit.value, on: numberOfKiwiLabel)
+                setUp(number: fruit.value, on: stockOfKiwiStepper)
             case .mango:
                 setUp(number: fruit.value, on: numberOfMangoLabel)
+                setUp(number: fruit.value, on: stockOfMangoStepper)
             }
         }
     }
