@@ -119,6 +119,13 @@ extension JuiceMakingViewController {
         let segueName = "segueToStockManagement"
         performSegue(withIdentifier: segueName, sender: sender)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let stockManagementViewController = (segue.destination as? UINavigationController)?.topViewController as? StockManagementViewController else {
+            return
+        }
+        stockManagementViewController.fruitStore = juiceMaker.fruitStore
+    }
 }
 
 //MARK:- NotificationCenter Observer Related

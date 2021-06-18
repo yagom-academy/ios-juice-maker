@@ -9,6 +9,8 @@ import UIKit
 
 class StockManagementViewController: UIViewController {
     
+    var fruitStore: FruitStore?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
