@@ -6,7 +6,7 @@
 
 import UIKit
 
-//MARK:- 저장 프로퍼티 및 라이프사이클
+//MARK:- Stored Property and LifeCycle
 class JuiceMakingViewController: UIViewController {
     @IBOutlet private var numberOfStrawberryLabel: UILabel!
     @IBOutlet private var numberOfBananaLabel: UILabel!
@@ -36,9 +36,8 @@ class JuiceMakingViewController: UIViewController {
     }
 }
 
-//MARK:- 레이블과 버튼 셋팅
+//MARK:- Label and Button Setting
 extension JuiceMakingViewController {
-    
     private func setUp(number: Int, on label: UILabel) {
         label.text = String(number)
     }
@@ -71,7 +70,7 @@ extension JuiceMakingViewController {
     }
 }
 
-//MARK:- 쥬스 주문 관련
+//MARK:- Juice Order Related
 extension JuiceMakingViewController {
     
     @objc private func orderJuice(_ sender: UIButton) {
@@ -114,7 +113,7 @@ extension JuiceMakingViewController {
     }
 }
 
-//MARK:- 화면이동 관련
+//MARK:- Screen Transition Related
 extension JuiceMakingViewController {
     private func transitionToStockManagement(_ sender: UIAlertAction) {
         let segueName = "segueToStockManagement"
@@ -122,12 +121,12 @@ extension JuiceMakingViewController {
     }
 }
 
-//MARK:- Notification 이름 정의
+//MARK:- Notification Name Definition
 extension Notification.Name {
     static let fruitsAmountDidChange = Notification.Name("fruitsAmountDidChange")
 }
 
-//MARK:- NotificationCenter Observer 관련
+//MARK:- NotificationCenter Observer Related
 extension JuiceMakingViewController {
     private func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeFruitsAmount(_:)), name: .fruitsAmountDidChange, object: nil)
