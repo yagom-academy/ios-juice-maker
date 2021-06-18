@@ -10,17 +10,17 @@ import UIKit
 class ViewController2: UIViewController {
     private var juiceMaker: JuiceMaker?
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
  
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class ViewController2: UIViewController {
         showFruitLabel()
     }
     
-    func setFruitStepper() {
+    private func setFruitStepper() {
         strawberryStepper.value = Double(juiceMaker?.getAmount(.strawberry) ?? 0)
         bananaStepper.value = Double(juiceMaker?.getAmount(.banana) ?? 0)
         pineappleStepper.value = Double(juiceMaker?.getAmount(.pineapple) ?? 0)
@@ -48,13 +48,13 @@ class ViewController2: UIViewController {
         self.juiceMaker = juiceMaker
     }
     
-    @IBAction func closeBtn(_ sender: UIBarButtonItem) {
+    @IBAction private func closeBtn(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
         NotificationCenter.default.post(name: Notification.Name("changeFruitStock"),
                                         object: nil, userInfo: nil)
     }
     
-    @IBAction func fruitStepper(_ sender: UIStepper) {
+    @IBAction private func fruitStepper(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
             juiceMaker?.stockPlus(.strawberry, stock: Int(sender.value))

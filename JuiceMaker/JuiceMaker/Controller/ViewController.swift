@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("changeFruitStock"), object: nil)
     }
     
-    func showFruitLabel() {
+    private func showFruitLabel() {
         strawberryStockLabel.text = String(juiceMaker.getAmount(.strawberry))
         bananaStockLabel.text = String(juiceMaker.getAmount(.banana))
         pineappleStockLabel.text = String(juiceMaker.getAmount(.pineapple))
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         mangoStockLabel.text = String(juiceMaker.getAmount(.mango))
     }
     
-    @objc func applyChangedStock(_ notification: Notification)  {
+    @objc private func applyChangedStock(_ notification: Notification) {
         showFruitLabel()
     }
     
@@ -54,7 +54,6 @@ class ViewController: UIViewController {
                                      style: . default) { (action) in
             self.juiceMaker.makeJuice(order: message)
             self.showFruitLabel()
-            
         }
         alert.addAction(okAction)
         present(alert,
@@ -118,8 +117,7 @@ class ViewController: UIViewController {
         self.present(mainVC, animated: true)
     }
     
-    @IBAction func changeViewBtn(_ sender: UIBarButtonItem) {
+    @IBAction private func changeViewBtn(_ sender: UIBarButtonItem) {
         changeView()
     }
-    
 }
