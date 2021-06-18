@@ -11,19 +11,19 @@ struct JuiceMaker {
     let fruitStore = FruitStore()
 
     
-    func makeJuice(_ juice: Juice) {
+    func makeJuice(_ juice: JuiceType) {
         do {
             try checkStock(juice.ingredients)
             
-            for (fruit, removingQuantity) in juice.ingredients {
+            for (fruit, removingQuantity) in juice. {
                 fruitStore.changeStock(fruit, removingQuantity)
             }
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil, userInfo: ["쥬스이름": juice.description])
+//            NotificationCenter.default.post(name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil, userInfo: ["쥬스이름": juice.description])
         } catch {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
         }
     }
-    func checkStock(_ ingredients: Dictionary<Fruit, Int>) throws {
+    func checkStock(_ ingredients: Array<Int>) throws {
         for (fruit, removingQuantity) in ingredients {
             if fruitStore.currentStock(fruit) < removingQuantity {
                 throw JuiceMakerError.outOfStock
