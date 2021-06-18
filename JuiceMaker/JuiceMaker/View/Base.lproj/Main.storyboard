@@ -258,7 +258,7 @@
             </objects>
             <point key="canvasLocation" x="179" y="20"/>
         </scene>
-        <!--Stock Management View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController id="Yu1-lM-nqp" customClass="StockManagementViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -401,7 +401,13 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="oHP-If-jKg">
+                            <connections>
+                                <action selector="backToJuiceMaking:" destination="Yu1-lM-nqp" id="1Qh-Xd-Ay3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="numberOfBananaLabel" destination="gKu-86-RhI" id="cpc-jp-gl4"/>
                         <outlet property="numberOfKiwiLabel" destination="ZDv-1m-HBY" id="Mhe-Oy-86F"/>

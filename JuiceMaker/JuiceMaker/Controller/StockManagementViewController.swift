@@ -7,7 +7,7 @@
 
 import UIKit
 
-//MARK:- Stored Property and LifeCycle
+//MARK:- Stored Property and LifeCycle, Screen Transition Related
 class StockManagementViewController: UIViewController {
     
     @IBOutlet private var numberOfStrawberryLabel: UILabel!
@@ -27,8 +27,12 @@ class StockManagementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNumberOnViews(by: fruitStore?.inventory ?? [:])
+        setUpTargetActionOnSteppers()
     }
 
+    @IBAction func backToJuiceMaking(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }
 
 //MARK:- Label and Stepper Setting
@@ -74,18 +78,23 @@ extension StockManagementViewController {
 
 //MARK:- Stepper Operation Related
 extension StockManagementViewController {
-    @objc func fruitsAmountDidChange(_ sender: UIStepper) {
+    @objc private func fruitsAmountDidChange(_ sender: UIStepper) {
         switch sender {
         case stockOfStrawberryStepper:
             fruitStore?.changeAmount(of: .strawberry, to: Int(sender.value))
+            setUp(number: Int(sender.value), on: numberOfStrawberryLabel)
         case stockOfBananaStepper:
             fruitStore?.changeAmount(of: .banana, to: Int(sender.value))
+            setUp(number: Int(sender.value), on: numberOfBananaLabel)
         case stockOfPineAppleStepper:
             fruitStore?.changeAmount(of: .pineapple, to: Int(sender.value))
+            setUp(number: Int(sender.value), on: numberOfPineAppleLabel)
         case stockOfKiwiStepper:
             fruitStore?.changeAmount(of: .kiwi, to: Int(sender.value))
+            setUp(number: Int(sender.value), on: numberOfKiwiLabel)
         case stockOfMangoStepper:
             fruitStore?.changeAmount(of: .mango, to: Int(sender.value))
+            setUp(number: Int(sender.value), on: numberOfMangoLabel)
         default:
             break
         }
