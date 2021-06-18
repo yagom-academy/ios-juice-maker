@@ -20,9 +20,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
     }
-    func test(_ first: FruitStore, _ second: NSKeyValueObservedChange<UInt> ) {
-        
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +29,6 @@ class MainViewController: UIViewController {
             juiceMaker.fruitStore.observe(\.mango, options: [.new])     { _, _ in self.updateUILabel(.mango) },
             juiceMaker.fruitStore.observe(\.kiwi, options: [.new])      { _, _ in self.updateUILabel(.kiwi) },
             juiceMaker.fruitStore.observe(\.pineapple, options: [.new]) { _, _ in self.updateUILabel(.pineapple) }
-//            juiceMaker.fruitStore.observe(\.pineapple, options: [.new], changeHandler: self.test(_:_:))
         ]
         for fruit in Fruit.allCases {
             updateUILabel(fruit)
