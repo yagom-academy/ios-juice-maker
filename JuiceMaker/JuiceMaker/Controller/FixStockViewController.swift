@@ -23,30 +23,38 @@ class FixStockViewController: UIViewController {
     weak var delegate: FixStockViewControllerDelegate?
     
     @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
+        tryStepper(fruit: fruitStore.strawberry, sender: sender)
+        strawberryLabel.text = fruitStore.strawberry.stock.description
+    }
+    @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
+        tryStepper(fruit: fruitStore.banana, sender: sender)
+        bananaLabel.text = fruitStore.banana.stock.description
+    }
+    @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
+        tryStepper(fruit: fruitStore.pineapple, sender: sender)
+        pineappleLabel.text = fruitStore.pineapple.stock.description
+    }
+    @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
+        tryStepper(fruit: fruitStore.kiwi, sender: sender)
+        kiwiLabel.text = fruitStore.kiwi.stock.description
+    }
+    @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
+        tryStepper(fruit: fruitStore.mango, sender: sender)
+        mangoLabel.text = fruitStore.mango.stock.description
+    }
+    
+    private func tryStepper(fruit: Fruit, sender: UIStepper) {
         do {
             if sender.value < 0 {
-                try fruitStore.decreaseStock(fruit: fruitStore.strawberry)
+                try fruitStore.decreaseStock(fruit: fruit)
             } else {
-                try fruitStore.increaseStock(fruit: fruitStore.strawberry)
+                try fruitStore.increaseStock(fruit: fruit)
             }
             sender.value = 0
         } catch {
             sender.value = 0
             showAlert(message: .unexpectedError)
         }
-        strawberryLabel.text = fruitStore.strawberry.stock.description
-    }
-    @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
-        bananaLabel.text = (fruitStore.banana.stock + Int(sender.value)).description
-    }
-        @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
-            pineappleLabel.text = (fruitStore.pineapple.stock + Int(sender.value)).description
-    }
-    @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
-        kiwiLabel.text = (fruitStore.kiwi.stock + Int(sender.value)).description
-    }
-    @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
-        mangoLabel.text = (fruitStore.mango.stock + Int(sender.value)).description
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
