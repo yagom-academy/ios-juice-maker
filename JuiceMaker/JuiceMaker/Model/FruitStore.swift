@@ -28,6 +28,11 @@ class FruitStore {
         return fruitStock
     }
     
+    func getDoubleValueOfStocks(of fruit: Fruit) throws -> Double {
+        let fruitStock = try getStocks(of: fruit)
+        return Double(fruitStock)
+    }
+    
     func updateStock(of fruit: Fruit, count: UInt) {
         self.fruitStocks[fruit] = count
     }

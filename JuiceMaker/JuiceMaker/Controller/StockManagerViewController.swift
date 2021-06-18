@@ -36,6 +36,7 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateLabelsText(of: fruitStore)
+        initStepperValue()
     }
     
     // MARK: - Methods
@@ -56,6 +57,17 @@ class StockManagerViewController: UIViewController, LabelUpdatable {
         labelList[.mango] = mangoStockLabel
     }
     
+    private func initStepperValue() {
+        do {
+            strawberryStepper.value = try fruitStore.getDoubleValueOfStocks(of: .strawberry)
+            bananaStepper.value = try fruitStore.getDoubleValueOfStocks(of: .banana)
+            pineappleStepper.value = try fruitStore.getDoubleValueOfStocks(of: .pineapple)
+            kiwiStepper.value = try fruitStore.getDoubleValueOfStocks(of: .kiwi)
+            mangoStepper.value = try fruitStore.getDoubleValueOfStocks(of: .mango)
+        } catch {
+            fatalError("알 수 없는 오류")
+        }
+    }
     // MARK: - IBActions
     @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
