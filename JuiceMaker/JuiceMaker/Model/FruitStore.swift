@@ -35,9 +35,18 @@ class FruitStore {
         
         if sumResult >= 0 {
             storage[fruit] = UInt(sumResult)
+            sendNotifications(of: UInt(sumResult))
             
         } else {
             storage[fruit] = 0
         }
+    }
+    
+    func sendNotifications(of fruitNumber: UInt) {
+        let userInfo: [Fruit : UInt] = storage
+        
+        NotificationCenter.default.post(name: NSNotification.Name("fruitNumberChanged"),
+                                        object: nil,
+                                        userInfo: userInfo)
     }
 }

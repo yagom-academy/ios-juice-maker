@@ -16,6 +16,8 @@ class JuiceMakingViewController: UIViewController {
         pinepappleStockLabel.text = makeStockNumberToString(.pineapple)
         kiwiStockLabel.text = makeStockNumberToString(.kiwi)
         mangoStockLabel.text = makeStockNumberToString(.mango)
+        
+        createObservers()
     }
     
     let juiceMaker: JuiceMaker = JuiceMaker()
@@ -52,6 +54,36 @@ class JuiceMakingViewController: UIViewController {
         return String(juiceMaker.fruitStore.storage[fruit] ?? 0)
     }
     
+    func createObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateFruitLabel(_:)),
+                                               name: NSNotification.Name("fruitNumberChanged"), object: nil)
+    }
+    
+    @objc func updateFruitLabel(_ notification: Notification) {
+        guard let fruitInformationFromFruitStore = notification.userInfo,
+              let fruitInformation = fruitInformationFromFruitStore as? [FruitStore.Fruit : UInt] else { return }
+        print(fruitInformation)
+        changeNumberOfUILabel(fruitInformation: fruitInformation)
+    }
+    
+    func changeNumberOfUILabel(fruitInformation: [FruitStore.Fruit : UInt]) {
+        for (key, value) in fruitInformation {
+            switch key {
+            case .strawberry:
+                strawberryStockLabel.text = String(value)
+            case .banana:
+                bananaStockLabel.text = String(value)
+            case .pineapple:
+                pinepappleStockLabel.text = String(value)
+            case .kiwi:
+                kiwiStockLabel.text = String(value)
+            case .mango:
+                mangoStockLabel.text = String(value)
+            }
+        }
+    }
+    
     func whenButtonsTapped(menu: JuiceMaker.Menu) {
         
         do {
@@ -81,7 +113,7 @@ class JuiceMakingViewController: UIViewController {
             outOfStockAlert.addAction(yes)
             outOfStockAlert.addAction(no)
             present(outOfStockAlert, animated: true, completion: nil)
-
+            
             
         } catch juiceMakerError.invalidNumber {
             print("Invalid number error")
