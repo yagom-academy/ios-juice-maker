@@ -121,11 +121,6 @@ extension JuiceMakingViewController {
     }
 }
 
-//MARK:- Notification Name Definition
-extension Notification.Name {
-    static let fruitsAmountDidChange = Notification.Name("fruitsAmountDidChange")
-}
-
 //MARK:- NotificationCenter Observer Related
 extension JuiceMakingViewController {
     private func registerObserver() {
