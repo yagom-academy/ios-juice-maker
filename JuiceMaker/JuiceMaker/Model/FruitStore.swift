@@ -15,6 +15,8 @@ enum Fruit: CaseIterable {
 }
 // 과일 타입
 class FruitStore: NSObject {
+    static let shared = FruitStore()
+    
     @objc dynamic var strawberry = 10
     @objc dynamic var banana = 10
     @objc dynamic var pineapple = 10

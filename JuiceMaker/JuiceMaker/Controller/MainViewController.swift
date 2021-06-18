@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
 //                                               name: Notification.Name(rawValue: "makeJuiceSuccess"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(alertMakingJuiceFail),
 //                                               name: Notification.Name(rawValue: "makeJuiceFail"), object: nil)
-        
+
         observations = [
             juiceMaker.fruitStore.observe(\.strawberry, options: [.new]) { _, _ in
                 self.updateUILabel(.strawberry)
@@ -49,7 +49,9 @@ class MainViewController: UIViewController {
                 self.updateUILabel(.mango)
             }
         ]
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         for fruit in Fruit.allCases {
             updateUILabel(fruit)
         }
@@ -62,7 +64,7 @@ class MainViewController: UIViewController {
         juiceMaker.makeJuice(bananaJuice)
     }
     @IBAction func mangoJuiceOrder(_ sender: Any) {
-        juiceMaker.makeJuice(pineappleJuice)
+        juiceMaker.makeJuice(mangoJuice)
     }
     @IBAction func kiwiJuiceOrder(_ sender: Any) {
         juiceMaker.makeJuice(kiwiJuice)
@@ -76,40 +78,43 @@ class MainViewController: UIViewController {
     @IBAction func mangoKiwiJuiceOrder(_ sender: Any) {
         juiceMaker.makeJuice(mangoKiwiJuice)
     }
+    @IBAction func moveModifyView(_ sender: Any) {
+        performSegue(withIdentifier: "showStocks", sender: nil)
+    }
 }
 
 extension MainViewController {
     func updateUILabel(_ fruit: Fruit) {
-        let currentStock = String(juiceMaker.fruitStore.currentStock(fruit))
         switch fruit {
         case .strawberry:
-            strawberryLabel.text = currentStock
+            strawberryLabel.text = String(juiceMaker.fruitStore.currentStock(fruit))
         case .banana:
-            bananaLabel.text = currentStock
+            bananaLabel.text = String(juiceMaker.fruitStore.currentStock(fruit))
         case .pineapple:
-            pineappleLabel.text = currentStock
+            pineappleLabel.text = String(juiceMaker.fruitStore.currentStock(fruit))
         case .kiwi:
-            kiwiLabel.text = currentStock
+            kiwiLabel.text = String(juiceMaker.fruitStore.currentStock(fruit))
         case .mango:
-            mangoLabel.text = currentStock
+            mangoLabel.text = String(juiceMaker.fruitStore.currentStock(fruit))
         }
     }
-    @objc func alertMakingJuiceSuccess(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else {
-            print("userInfo 에러"); return
-        }
-        guard let userInfoValue = userInfo["쥬스이름"], let juiceName = userInfoValue as? String else {
-            print("userInfoValue 에러"); return
-        }
+    func alertMakingJuiceSuccess(_ juiceName: String) {
+//        guard let userInfo = notification.userInfo else {
+//            print("userInfo 에러"); return
+//        }
+//        guard let userInfoValue = userInfo["쥬스이름"], let juiceName = userInfoValue as? String else {
+//            print("userInfoValue 에러"); return
+//        }
         let alert = UIAlertController(title: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "감사합니다.", style: .default)
         alert.addAction(confirmAction)
         present(alert, animated: true, completion: nil)
     }
-    @objc func alertMakingJuiceFail() {
+    func alertMakingJuiceFail() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "예", style: .default){ _ in
-            
+
+        let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
+            self.performSegue(withIdentifier: "showStocks", sender: nil)
         }
         let cancelAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(confirmAction)

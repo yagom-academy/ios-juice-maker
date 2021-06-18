@@ -16,7 +16,7 @@ struct Juice {
 }
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    let fruitStore = FruitStore.shared
 
     func makeJuice(_ juice: Juice) {
         do {
