@@ -56,7 +56,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var mangoStockLabel: UILabel!
 	
 	@IBAction func makeStrawNanaJuice(_ sender: UIButton) {
-		let currentMenu: JuiceMenu = .strawNanaJuice
+		let currentMenu: JuiceMenu =  .strawNanaJuice
 		
 		do {
 			try ViewController.juiceMaker.orderJuice(menu: currentMenu)
@@ -156,7 +156,7 @@ class ViewController: UIViewController {
 	}
 	
 	@IBAction func touchOnNextButton(){
-		goNextView()
+		
 	}
 	
 	func changeTextOn(label: UILabel, about fruit: Fruit) {
@@ -181,10 +181,10 @@ class ViewController: UIViewController {
 	}
 	
 	func goNextView(){
-		let nextViewControllerId = self.storyboard?.instantiateViewController(withIdentifier: "FruitStore")
+		let storeController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreNavigationController")
 		
-		if let nextViewController: UIViewController = nextViewControllerId {
-			self.navigationController?.pushViewController(nextViewController, animated: true)
+		if let storeNavigationController = storeController as? UINavigationController {
+			self.present(storeNavigationController, animated: true, completion: nil)
 		}
 	}
 }

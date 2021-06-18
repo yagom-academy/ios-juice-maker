@@ -51,7 +51,7 @@ class StoreController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     @IBAction func exitFuirtStore(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+		self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func changedStrawberryStock(_ sender: UIStepper) {
