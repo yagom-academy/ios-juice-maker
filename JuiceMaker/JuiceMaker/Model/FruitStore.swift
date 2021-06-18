@@ -35,7 +35,7 @@ extension FruitStore {
         guard let quantity = fruitStocks[fruit] else {
             return
         }
-        fruitStocks[fruit] = quantity + numbe
+        fruitStocks[fruit] = quantity + number
     }
     
     func consume(fruit: Fruit, number: UInt) {
