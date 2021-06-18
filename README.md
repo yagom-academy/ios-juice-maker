@@ -6,11 +6,9 @@
 
 ## Flow chart
 
-![image-20210618171914372](/Users/dasollpark/Library/Application Support/typora-user-images/image-20210618171914372.png)
+![flowchart1](./images/flowchart1.png)
 
-![image-20210618171930075](/Users/dasollpark/Library/Application Support/typora-user-images/image-20210618171930075.png)
-
-
+![flowchart2](./images/flowchart2.png)
 
 ## 기능구현
 
