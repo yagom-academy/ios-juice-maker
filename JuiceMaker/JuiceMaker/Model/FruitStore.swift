@@ -35,6 +35,7 @@ class FruitStore {
         
         if sumResult >= 0 {
             storage[fruit] = UInt(sumResult)
+            
         } else {
             storage[fruit] = 0
         }

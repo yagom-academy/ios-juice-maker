@@ -10,9 +10,14 @@ class JuiceMakingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        strawberryStockLabel.text = makeStockNumberToString(.strawberry)
+        bananaStockLabel.text = makeStockNumberToString(.banana)
+        pinepappleStockLabel.text = makeStockNumberToString(.pineapple)
+        kiwiStockLabel.text = makeStockNumberToString(.kiwi)
+        mangoStockLabel.text = makeStockNumberToString(.mango)
     }
+    
     let juiceMaker: JuiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
@@ -20,7 +25,6 @@ class JuiceMakingViewController: UIViewController {
     @IBOutlet weak var pinepappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
     
     @IBAction func orderStrawberryBananaJuiceButton(_ sender: Any) {
         whenButtonsTapped(menu: .strawberryBanana)
@@ -44,6 +48,9 @@ class JuiceMakingViewController: UIViewController {
         whenButtonsTapped(menu: .mango)
     }
     
+    func makeStockNumberToString(_ fruit: FruitStore.Fruit) -> String {
+        return String(juiceMaker.fruitStore.storage[fruit] ?? 0)
+    }
     
     func whenButtonsTapped(menu: JuiceMaker.Menu) {
         

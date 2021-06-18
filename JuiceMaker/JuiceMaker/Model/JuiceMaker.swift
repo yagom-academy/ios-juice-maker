@@ -47,11 +47,10 @@ struct JuiceMaker {
     func isJuiceAvailable(menu: Menu) throws  {
         let orderedJuiceRecipe = juiceRecipe(juiceMenu: menu)
         let fruitsWeNeed = Array(orderedJuiceRecipe.keys)
-        let numberOfFruitKindWeNeed = orderedJuiceRecipe.count
         
-        for i in 0..<numberOfFruitKindWeNeed {
-            guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[fruitsWeNeed[i]],
-                  let currentFruitNumberInStorage = fruitStore.storage[fruitsWeNeed[i]]
+        for fruit in fruitsWeNeed {
+            guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[fruit],
+                  let currentFruitNumberInStorage = fruitStore.storage[fruit]
             else { throw juiceMakerError.invalidNumber }
             
             if necessaryFruitNumberForMenu > currentFruitNumberInStorage {
