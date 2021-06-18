@@ -53,4 +53,32 @@ extension StockManagementViewController {
             }
         }
     }
+    
+    private func setUpTargetActionOnSteppers() {
+        stockOfStrawberryStepper.addTarget(self, action: #selector(fruitsAmountDidChange(_:)), for: .valueChanged)
+        stockOfBananaStepper.addTarget(self, action: #selector(fruitsAmountDidChange(_:)), for: .valueChanged)
+        stockOfPineAppleStepper.addTarget(self, action: #selector(fruitsAmountDidChange(_:)), for: .valueChanged)
+        stockOfKiwiStepper.addTarget(self, action: #selector(fruitsAmountDidChange(_:)), for: .valueChanged)
+        stockOfMangoStepper.addTarget(self, action: #selector(fruitsAmountDidChange(_:)), for: .valueChanged)
+    }
+}
+
+//MARK:- Stepper Operation Related
+extension StockManagementViewController {
+    @objc func fruitsAmountDidChange(_ sender: UIStepper) {
+        switch sender {
+        case stockOfStrawberryStepper:
+            fruitStore?.changeAmount(of: .strawberry, to: Int(sender.value))
+        case stockOfBananaStepper:
+            fruitStore?.changeAmount(of: .banana, to: Int(sender.value))
+        case stockOfPineAppleStepper:
+            fruitStore?.changeAmount(of: .pineapple, to: Int(sender.value))
+        case stockOfKiwiStepper:
+            fruitStore?.changeAmount(of: .kiwi, to: Int(sender.value))
+        case stockOfMangoStepper:
+            fruitStore?.changeAmount(of: .mango, to: Int(sender.value))
+        default:
+            break
+        }
+    }
 }

@@ -64,6 +64,7 @@ class FruitStore {
     
     func changeAmount(of fruit: Fruit, to number: Int) {
         inventory[fruit] = number
+        sendNotification(about: fruit, number: number)
     }
     
     private func checkIngredients(for recipes: [(requiredFruit: Fruit, requestedAmount: Int)]) throws -> [Int] {
