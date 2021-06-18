@@ -48,6 +48,6 @@ class FruitStore {
         return self[fruit]
     }
     func changeStock(_ fruit: Fruit, _ changingQuantity: Int) {
-        self[fruit] -= changingQuantity
+        self[fruit] = currentStock(fruit) - changingQuantity
     }
 }
