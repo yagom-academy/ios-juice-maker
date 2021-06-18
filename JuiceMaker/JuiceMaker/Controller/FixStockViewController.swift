@@ -53,19 +53,10 @@ class FixStockViewController: UIViewController {
             sender.value = 0
         } catch {
             sender.value = 0
-            showAlert(message: .unexpectedError)
         }
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
-        do {
-            try fruitStore.banana.stock = typeChange(of: bananaLabel.text)
-            try fruitStore.pineapple.stock = typeChange(of: pineappleLabel.text)
-            try fruitStore.kiwi.stock = typeChange(of: kiwiLabel.text)
-            try fruitStore.mango.stock = typeChange(of: mangoLabel.text)
-        } catch {
-            showAlert(message: .unexpectedError)
-        }
         delegate?.fixStockViewControllerDidTapCloseButton(self)
         dismiss(animated: true, completion: nil)
     }
