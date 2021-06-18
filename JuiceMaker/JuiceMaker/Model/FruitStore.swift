@@ -20,14 +20,8 @@ enum Fruit: String, CaseIterable {
     case mango = "망고"
 }
 
-let isChangedFruit = Notification.Name("isChangedFruit")
-
 class FruitStore {
-    var fruits: [Fruit: Int] {
-        didSet {
-            NotificationCenter.default.post(name: isChangedFruit, object: nil)
-        }
-    }
+    var fruits: [Fruit: Int]
     
     init() {
         var fruits = [Fruit: Int]()

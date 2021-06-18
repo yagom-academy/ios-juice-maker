@@ -14,6 +14,8 @@ class ChangeStockViewController: ViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
+    var delegate: StockDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setStepperInitialValue()
@@ -41,5 +43,6 @@ class ChangeStockViewController: ViewController {
     
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+        delegate?.stockDidChange(self)
     }
 }

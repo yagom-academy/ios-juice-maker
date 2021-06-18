@@ -12,19 +12,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
+    
     let juiceMaker = JuiceMaker.shared
     var successOrderAlert: UIAlertController?
     var outOfStockErrorAlert: UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabels), name: isChangedFruit, object: nil)
         updateStockLabels()
         successOrderAlert = createSuccessOrderAlert()
         outOfStockErrorAlert = createOutOfStockErrorAlert()
     }
     
-    @objc func updateStockLabels() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination.children.first as? ChangeStockViewController else {
+            return
+        }
+        vc.delegate = self
+    }
+    
+    func updateStockLabels() {
         do {
             strawberryStockLabel.text = try juiceMaker.returnStockString(of: .strawberry)
             bananaStockLabel.text = try juiceMaker.returnStockString(of: .banana)
@@ -43,6 +50,7 @@ class ViewController: UIViewController {
         }
         do {
             try juiceMaker.orderJuice(name: juice)
+            updateStockLabels()
             showSuccessOrderAlert(for: juiceName)
         } catch FruitStoreError.outOfStock {
             showOutOfStockErrorAlert()
@@ -81,5 +89,11 @@ extension ViewController {
     func showOutOfStockErrorAlert() {
         guard let alert = outOfStockErrorAlert else { return }
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension ViewController: StockDelegate {
+    func stockDidChange(_ vc: UIViewController) {
+        updateStockLabels()
     }
 }
