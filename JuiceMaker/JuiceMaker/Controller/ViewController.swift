@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("hi")
         guard let vc = segue.destination.children.first as? ChangeStockViewController else {
             return
         }
@@ -71,8 +72,10 @@ extension ViewController {
     func createOutOfStockErrorAlert() -> UIAlertController {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler : { (action) in
-            guard let changeStockVC = self.storyboard?.instantiateViewController(identifier: "changeStock") else { return }
-            self.present(changeStockVC, animated: true, completion: nil)
+            guard let controller = self.storyboard?.instantiateViewController(identifier: "controller") else { return }
+            guard let view = controller.children.first as? ChangeStockViewController else { return }
+            view.delegate = self
+            self.present(controller, animated: true, completion: nil)
         })
         let noAction = UIAlertAction(title: "아니오", style: .cancel, handler : nil)
         alert.addAction(noAction)
