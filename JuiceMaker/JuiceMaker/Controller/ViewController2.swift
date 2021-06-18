@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController2: UIViewController {
+    private var juiceMaker: JuiceMaker?
+    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -27,19 +29,23 @@ class ViewController2: UIViewController {
     }
     
     func setFruitStepper() {
-        strawberryStepper.value = Double(juiceMaker.getAmount(.strawberry))
-        bananaStepper.value = Double(juiceMaker.getAmount(.banana))
-        pineappleStepper.value = Double(juiceMaker.getAmount(.pineapple))
-        kiwiStepper.value = Double(juiceMaker.getAmount(.kiwi))
-        mangoStepper.value = Double(juiceMaker.getAmount(.mango))
+        strawberryStepper.value = Double(juiceMaker?.getAmount(.strawberry) ?? 0)
+        bananaStepper.value = Double(juiceMaker?.getAmount(.banana) ?? 0)
+        pineappleStepper.value = Double(juiceMaker?.getAmount(.pineapple) ?? 0)
+        kiwiStepper.value = Double(juiceMaker?.getAmount(.kiwi) ?? 0)
+        mangoStepper.value = Double(juiceMaker?.getAmount(.mango) ?? 0)
     }
     
     private func showFruitLabel() {
-        strawberryStockLabel.text = String(juiceMaker.getAmount(.strawberry))
-        bananaStockLabel.text = String(juiceMaker.getAmount(.banana))
-        pineappleStockLabel.text = String(juiceMaker.getAmount(.pineapple))
-        kiwiStockLabel.text = String(juiceMaker.getAmount(.kiwi))
-        mangoStockLabel.text = String(juiceMaker.getAmount(.mango))
+        strawberryStockLabel.text = String(juiceMaker?.getAmount(.strawberry) ?? 0)
+        bananaStockLabel.text = String(juiceMaker?.getAmount(.banana) ?? 0)
+        pineappleStockLabel.text = String(juiceMaker?.getAmount(.pineapple) ?? 0)
+        kiwiStockLabel.text = String(juiceMaker?.getAmount(.kiwi) ?? 0)
+        mangoStockLabel.text = String(juiceMaker?.getAmount(.mango) ?? 0)
+    }
+    
+    func updateJuiceMaker(juiceMaker: JuiceMaker) {
+        self.juiceMaker = juiceMaker
     }
     
     @IBAction func closeBtn(_ sender: UIBarButtonItem) {
@@ -51,19 +57,19 @@ class ViewController2: UIViewController {
     @IBAction func fruitStepper(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
-            juiceMaker.stockPlus(.strawberry, stock: Int(sender.value))
+            juiceMaker?.stockPlus(.strawberry, stock: Int(sender.value))
             showFruitLabel()
         case bananaStepper:
-            juiceMaker.stockPlus(.banana, stock: Int(sender.value))
+            juiceMaker?.stockPlus(.banana, stock: Int(sender.value))
             showFruitLabel()
         case pineappleStepper:
-            juiceMaker.stockPlus(.pineapple, stock: Int(sender.value))
+            juiceMaker?.stockPlus(.pineapple, stock: Int(sender.value))
             showFruitLabel()
         case kiwiStepper:
-            juiceMaker.stockPlus(.kiwi, stock: Int(sender.value))
+            juiceMaker?.stockPlus(.kiwi, stock: Int(sender.value))
             showFruitLabel()
         case mangoStepper:
-            juiceMaker.stockPlus(.mango, stock: Int(sender.value))
+            juiceMaker?.stockPlus(.mango, stock: Int(sender.value))
             showFruitLabel()
         default:
             return

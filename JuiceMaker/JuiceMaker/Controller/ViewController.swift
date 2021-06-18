@@ -6,8 +6,9 @@
 
 import UIKit
 
-let juiceMaker = JuiceMaker()
+
 class ViewController: UIViewController {
+    let juiceMaker = JuiceMaker()
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applyChangedStock(_:)), name: Notification.Name("changeFruitStock"), object: nil)
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("changeFruitStock"), object: nil)
     }
@@ -51,9 +52,9 @@ class ViewController: UIViewController {
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인" ,
                                      style: . default) { (action) in
-            juiceMaker.makeJuice(order: message)
+            self.juiceMaker.makeJuice(order: message)
             self.showFruitLabel()
-
+            
         }
         alert.addAction(okAction)
         present(alert,
@@ -107,12 +108,18 @@ class ViewController: UIViewController {
     }
     
     private func changeView() {
-        guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "AddStock") else {
+        guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "AddStock") as? UINavigationController else {
             return
         }
+        let second = mainVC.visibleViewController as? ViewController2
+        second?.updateJuiceMaker(juiceMaker: juiceMaker)
         mainVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         mainVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(mainVC, animated: true)
+    }
+    
+    @IBAction func changeViewBtn(_ sender: UIBarButtonItem) {
+        changeView()
     }
     
 }
