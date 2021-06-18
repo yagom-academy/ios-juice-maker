@@ -14,10 +14,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         orderButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         updateLabel()
     }
     
@@ -35,11 +31,10 @@ class MainViewController: UIViewController {
         do {
             if try juiceMaker.checkStockPresence (juice) {
                 juiceMaker.make(juice)
-                print(juiceMaker.fruitStore.fruits)
-                alert()
+                completeAlert(title: "\(juice.name) 나왔습니다!", message: "맛있게 드세요!")
                 updateLabel()
             } else {
-                print("재고가 모자라요.")
+                outOfStock(title: "재고가 모자라요. 재고를 수정할까요?")
             }
         } catch JuiceMakerError.invalidJuice {
             print(JuiceMakerError.invalidJuice.message)
@@ -47,18 +42,28 @@ class MainViewController: UIViewController {
             return
         }
     }
-    
-    @IBAction func changedStockButton(_ sender: Any) {
-        guard let presentModal = storyboard?.instantiateViewController(identifier: "stockChange") else { return }
-        present(presentModal, animated: true, completion: nil)
-    }
 }
 
 extension MainViewController {
-    func alert() {
-        let alertController = UIAlertController(title: "알림", message: "재고 부족", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "확인", style: .default)
-        alertController.addAction(alertAction)
+    func completeAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+            self.updateLabel()
+        }
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func outOfStock(title: String) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
+            self.performSegue(withIdentifier: "stockChange", sender: nil)
+        })
+        let cancleAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancleAction)
+        
         present(alertController, animated: true, completion: nil)
     }
 }

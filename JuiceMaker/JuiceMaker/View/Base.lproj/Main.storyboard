@@ -239,6 +239,7 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
                                 <action selector="changedStockButton:" destination="BYZ-38-t0r" id="m9g-eZ-VUr"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" identifier="stockChange" id="pTT-pX-GsP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
