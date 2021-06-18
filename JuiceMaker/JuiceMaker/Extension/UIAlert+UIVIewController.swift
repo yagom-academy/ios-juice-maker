@@ -45,22 +45,13 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 	
-	func refreshStockLabel(strawberryStockLabel: UILabel, bananaStockLabel: UILabel, pineappleStockLabel: UILabel, kiwiStockLabel: UILabel, mangoStockLabel: UILabel) {
+    func refreshStockLabel(fruitLabels: [UILabel]) {
 		let stocks = FruitStore.shared.fruitStocks
-		
-		for (fruit, quantity) in stocks {
-			switch fruit {
-			case .strawberry:
-				strawberryStockLabel.text = "\(quantity)"
-			case .banana:
-				bananaStockLabel.text = "\(quantity)"
-			case .pineapple:
-				pineappleStockLabel.text = "\(quantity)"
-			case .kiwi:
-				kiwiStockLabel.text = "\(quantity)"
-			case .mango:
-				mangoStockLabel.text = "\(quantity)"
-			}
-		}
+	
+        for fruitLabel in fruitLabels {
+            if let fruit = Fruit(rawValue: fruitLabel.tag), let quantity = stocks[fruit] {
+                fruitLabel.text = "\(quantity)"
+            }
+        }
 	}
 }

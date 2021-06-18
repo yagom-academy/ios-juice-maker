@@ -11,7 +11,8 @@ class JuiceOrderViewController: UIViewController {
 	//MARK:- Properties
 	
 	private let juiceMaker = JuiceMaker()
-	
+    private var fruitLabels = [UILabel]()
+    
 	//MARK:- IBOutlets
 	
 	@IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -55,24 +56,32 @@ class JuiceOrderViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setButtonTitles()
+        fruitLabels = [strawberryStockLabel, bananaStockLabel, kiwiStockLabel, pineappleStockLabel, mangoStockLabel]
+        setFruitLabelsTag()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(true)
-		refreshStockLabel(strawberryStockLabel: strawberryStockLabel, bananaStockLabel: bananaStockLabel, pineappleStockLabel: pineappleStockLabel, kiwiStockLabel: kiwiStockLabel, mangoStockLabel: mangoStockLabel)
+        super.viewWillAppear(animated)
+        refreshStockLabel(fruitLabels: fruitLabels)
 	}
 }
 
 //MARK:- Private Functions
 
 extension JuiceOrderViewController {
+    private func setFruitLabelsTag() {
+        for (index, fruitLabel) in fruitLabels.enumerated() {
+            fruitLabel.tag = index
+        }
+    }
+    
 	private func orderJuice(recipe: JuiceRecipe) {
 		guard juiceMaker.canMakeJuice(recipe: recipe) else {
 			showAlert(message: OrderResultMessage.outOfStock.rawValue, okAction: moveToAddStockView(), cancelAction: cancelAction)
 			return
 		}
 		juiceMaker.makeJuice(recipe: recipe)
-		refreshStockLabel(strawberryStockLabel: strawberryStockLabel, bananaStockLabel: bananaStockLabel, pineappleStockLabel: pineappleStockLabel, kiwiStockLabel: kiwiStockLabel, mangoStockLabel: mangoStockLabel)
+        refreshStockLabel(fruitLabels: fruitLabels)
 		showAlert(message: "\(recipe.rawValue)\(OrderResultMessage.orderSuccess.rawValue)", okAction: okAction, cancelAction: nil)
 	}
 	

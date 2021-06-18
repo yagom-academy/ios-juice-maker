@@ -7,14 +7,6 @@
 
 import UIKit
 
-enum FruitStepperTag: Int {
-    case strawberry = 100
-    case banana = 101
-    case kiwi = 102
-    case pineapple = 103
-    case mango = 104
-}
-
 class StockModifyViewController: UIViewController {
 	
 	//MARK:- Properties
@@ -73,7 +65,7 @@ class StockModifyViewController: UIViewController {
 		
         initializeFruitStepperDictionary()
         initializeStepperTag()
-		refreshStockLabel(strawberryStockLabel: strawberryStockLabel, bananaStockLabel: bananaStockLabel, pineappleStockLabel: pineappleStockLabel, kiwiStockLabel: kiwiStockLabel, mangoStockLabel: mangoStockLabel)
+		refreshStockLabel(fruitLabels: <#T##[UILabel]#>)
     }
 }
 

@@ -6,12 +6,12 @@
 
 import Foundation
 
-enum Fruit: CaseIterable {
-	case strawberry
-	case banana
-	case pineapple
-	case kiwi
-	case mango
+enum Fruit: Int, CaseIterable {
+    case strawberry = 0
+	case banana = 1
+	case kiwi = 2
+    case pineapple = 3
+	case mango = 4
 }
 	
 class FruitStore {
