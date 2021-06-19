@@ -126,7 +126,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderStrawberryBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xJL-YQ-bTu"/>
+                                                    <action selector="orderJuiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8ev-zi-no2"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
@@ -137,7 +137,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderMangoKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7WN-fj-aic"/>
+                                                    <action selector="orderJuiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tJg-0J-osl"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -153,7 +153,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderStrawberryJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bcd-dq-1U9"/>
+                                                    <action selector="orderJuiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kBt-KW-z1T"/>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-e6-NWs">
@@ -167,7 +167,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aoX-6e-f55"/>
+                                                            <action selector="orderJuiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uxs-oS-lgZ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -183,7 +183,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderPineappleJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eF5-O7-hct"/>
+                                                            <action selector="orderJuiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kzU-4P-2i1"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -194,7 +194,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aG7-N2-bww"/>
+                                                            <action selector="orderJuiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ap6-Gh-OcA"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -207,7 +207,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderMangoJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Si9-VN-DMu"/>
+                                                    <action selector="orderJuiceAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4VT-69-buG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="show" id="f97-SA-PdK"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="f97-SA-PdK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -282,7 +282,7 @@
         <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="StockManagerViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -308,6 +308,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="dek-aB-yXG"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -332,6 +335,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="imq-Ta-c9F"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -356,6 +362,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="kfQ-o6-kMS"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -380,6 +389,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="sF9-uV-tXZ"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -404,6 +416,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="8HK-MQ-1Zl"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -422,11 +437,29 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="jii-xU-sl5">
+                            <connections>
+                                <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" id="bmc-Kj-bNi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="N2S-yM-9iI"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="IG2-7y-p3l"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="Hg5-Vs-Y4P"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="nFG-QW-WeW"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="teb-Om-t7v"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="kon-ur-z8f"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="DiU-nd-3JX"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="S98-MJ-yqg"/>
+                        <outlet property="stawberryStockLabel" destination="0yV-kn-zaT" id="G7v-Zq-Pez"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="3Gv-Kb-5CW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1678" y="900"/>
+            <point key="canvasLocation" x="1600" y="900"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
@@ -445,7 +478,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1678" y="100"/>
+            <point key="canvasLocation" x="1589" y="185"/>
         </scene>
     </scenes>
     <resources>

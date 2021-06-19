@@ -6,106 +6,119 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    // MARK: - Properties
-    private var juiceMaker: JuiceMaker!
-    private var labelList = [Fruit: UILabel]()
-    
-    // MARK: - IBOutlets - UIButton
-    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
-    @IBOutlet weak var strawberryJuiceButton: UIButton!
-    @IBOutlet weak var bananaJuiceButton: UIButton!
-    @IBOutlet weak var pineappleJuiceButton: UIButton!
-    @IBOutlet weak var kiwiJuiceButton: UIButton!
-    @IBOutlet weak var mangoJuiceButton: UIButton!
-    
-    // MARK: - IBOutlets - UILabel
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
-    
-    // MARK: - Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let fruitStore = FruitStore()
-        juiceMaker = JuiceMaker(fruitStore: fruitStore)
-        initLabelList()
-        updateLabelsText(of: fruitStore)
-    }
-    
-    func initLabelList() {
-        labelList[.strawberry] = strawberryLabel
-        labelList[.banana] = bananaLabel
-        labelList[.pineapple] = pineappleLabel
-        labelList[.kiwi] = kiwiLabel
-        labelList[.mango] = mangoLabel
-    }
-    
-    func updateLabelsText(of fruitStore: FruitStore) {
-        do {
-            let fruitList = Fruit.makeFruitList()
-            for fruit in fruitList {
-                let fruitStock = try fruitStore.getStocks(of: fruit)
-                if let uiLabel = labelList[fruit] {
-                    uiLabel.text = "\(fruitStock)"
-                }
-            }
-        } catch {
-            fatalError("유효하지 않은 접근입니다.")
+class ViewController: UIViewController, LabelUpdatable {
+    // MARK: - Type
+    private enum Message {
+        static let outOfStock = "재료가 모자라요. 재고를 수정할까요?"
+        
+        static func completeMakingJuice(on juice: Juice) -> String {
+            "\(juice) 나왔습니다! 맛있게 드세요!"
         }
     }
     
-    func showAlert(title: String?, message: String?) {
+    // MARK: - Properties
+    private var juiceMaker = JuiceMaker(fruitStore: FruitStore.shared)
+    
+    // MARK: - IBOutlets - UIButton
+    @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceButton: UIButton!
+    @IBOutlet private weak var bananaJuiceButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceButton: UIButton!
+    @IBOutlet private weak var mangoJuiceButton: UIButton!
+    
+    // MARK: - IBOutlets - UILabel
+    @IBOutlet private weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var bananaLabel: UILabel!
+    @IBOutlet private weak var pineappleLabel: UILabel!
+    @IBOutlet private weak var kiwiLabel: UILabel!
+    @IBOutlet private weak var mangoLabel: UILabel!
+   
+    // MARK: - ViewLifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initButtonWithTag()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("ViewController viewWillAppear()")
+        super.viewWillAppear(animated)
+        updateLabelsText(of: juiceMaker.getFruitStore)
+    }
+    
+    // MARK: - Methods
+    func initButtonWithTag() {
+        strawberryBananaJuiceButton.tag = Juice.strawberryBanana.juiceTag
+        strawberryJuiceButton.tag = Juice.strawberry.juiceTag
+        bananaJuiceButton.tag = Juice.banana.juiceTag
+        kiwiJuiceButton.tag = Juice.kiwi.juiceTag
+        pineappleJuiceButton.tag = Juice.pineapple.juiceTag
+        mangoJuiceButton.tag = Juice.mango.juiceTag
+        mangoKiwiJuiceButton.tag = Juice.mangoKiwi.juiceTag
+    }
+    
+    func getLabel(on fruit: Fruit) -> UILabel {
+        switch fruit {
+            case .strawberry: return strawberryLabel
+            case .banana: return bananaLabel
+            case .pineapple: return pineappleLabel
+            case .kiwi: return kiwiLabel
+            case .mango: return mangoLabel
+        }
+    }
+    
+    private func showAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default)
+        let confirmAction = UIAlertAction(title: "확인", style: .default)
         
-        alert.addAction(okAction)
+        alert.addAction(confirmAction)
         present(alert, animated: true, completion: nil)
     }
     
-    func showConfirm(title: String?, message: String?, yesHandler: ((UIAlertAction) -> Void)? = nil) {
+    private func showConfirm(title: String?, message: String?, yesHandler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default, handler: yesHandler)
-        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+        let confirmAction = UIAlertAction(title: "예", style: .default, handler: yesHandler)
+        let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true)
     }
     
-    func moveToNavigationController(action: UIAlertAction) {
+    private func moveToNavigationController(action: UIAlertAction) {
         guard let stockManagerNC = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNC") else {
             return
         }
         
+        stockManagerNC.modalPresentationStyle = .fullScreen // viewWillAppear() 호출 보장.
         self.present(stockManagerNC, animated: true)
     }
     
-    func orderJuice(of juice: Juice) {
+    private func orderJuice(of juice: Juice) {
         do {
             try juiceMaker.makeJuice(juice: juice)
-            updateLabelsText(of: juiceMaker.getFruitStore())
-            showAlert(title: "주문 완료", message: JuiceMaker.Message.completeMakingJuice(on: juice))
+            updateLabelsText(of: juiceMaker.getFruitStore)
+            showAlert(title: "주문 완료", message: Message.completeMakingJuice(on: juice))
         } catch JuiceMakerError.outOfStock {
-            showConfirm(title: "재고부족", message: JuiceMaker.Message.outOfStock, yesHandler: moveToNavigationController)
+            showConfirm(title: "재고부족", message: Message.outOfStock, yesHandler: moveToNavigationController)
+        } catch JuiceMakerError.invaildAccess {
+            showAlert(title: "Error", message: "유효하지 않은 접근입니다.")
         } catch {
             fatalError("유효하지 않은 접근입니다.")
         }
     }
     
     // MARK: - IBActions
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) { orderJuice(of: .strawberryBanana) }
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) { orderJuice(of: .mangoKiwi) }
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) { orderJuice(of: .strawberry) }
-    @IBAction func orderBananaJuice(_ sender: UIButton) { orderJuice(of: .banana) }
-    @IBAction func orderPineappleJuice(_ sender: UIButton) { orderJuice(of: .pineapple) }
-    @IBAction func orderKiwiJuice(_ sender: UIButton) { orderJuice(of: .kiwi) }
-    @IBAction func orderMangoJuice(_ sender: UIButton) { orderJuice(of: .mango) }
+    @IBAction private func orderJuiceAction(_ sender: UIButton) {
+        guard let juiceName = Juice(rawValue: sender.tag) else {
+            return
+        }
+        orderJuice(of: juiceName)
+    }
+
 }

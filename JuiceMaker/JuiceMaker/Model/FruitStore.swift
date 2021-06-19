@@ -9,9 +9,10 @@ import Foundation
 typealias JuiceRecipe = (fruit: Fruit, count: UInt)
 
 class FruitStore {
-    private var fruitStocks: [Fruit: UInt] = [:]
+    var fruitStocks: [Fruit: UInt] = [:]
+    static let shared: FruitStore = FruitStore.init()
     
-    init(initialValue: UInt = 10) {
+    private init(initialValue: UInt = 10) {
         let fruitList = Fruit.makeFruitList()
         
         for fruit in fruitList {
@@ -27,20 +28,13 @@ class FruitStore {
         return fruitStock
     }
     
-    func addStock(of fruit: Fruit, count: UInt) throws {
+    func getDoubleValueOfStocks(of fruit: Fruit) throws -> Double {
         let fruitStock = try getStocks(of: fruit)
-        
-        fruitStocks[fruit] = fruitStock + count
+        return Double(fruitStock)
     }
-
-    func minusStock(of fruit: Fruit, count: UInt) throws {
-        let fruitStock = try getStocks(of: fruit)
-        
-        guard fruitStock >= count else {
-            throw JuiceMakerError.invaildStockCount
-        }
-        
-        fruitStocks[fruit] = fruitStock - count
+    
+    func updateStock(of fruit: Fruit, count: UInt) {
+        self.fruitStocks[fruit] = count
     }
     
     func useStocks(with juiceRecipes: [JuiceRecipe]) throws {
