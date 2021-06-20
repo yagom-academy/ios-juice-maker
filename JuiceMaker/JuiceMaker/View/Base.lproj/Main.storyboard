@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" id="Q5t-A8-h2Z"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" id="NwB-Ba-CVK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -272,16 +272,16 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="changeStock" id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="]" id="Yu1-lM-nqp" customClass="ChangeStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-vx-u60">
-                                <rect key="frame" x="60" y="55.666666666666657" width="806" height="213.99999999999997"/>
+                                <rect key="frame" x="60" y="73.333333333333314" width="806" height="214"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8wA-yN-4Dl">
                                         <rect key="frame" x="0.0" y="0.0" width="148.33333333333334" height="214"/>
@@ -299,8 +299,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" restorationIdentifier="딸기" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="w1g-d6-4Vk"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -323,8 +326,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="바나나" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="ERu-jB-Jdl"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -347,8 +353,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="파인애플" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="hE7-Vt-V3Y"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -371,8 +380,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="키위" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="kiZ-Mw-mdM"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -395,8 +407,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="망고" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="7iv-Yl-0DK"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -415,13 +430,24 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Xe1-0m-HlE">
+                            <connections>
+                                <action selector="touchUpCloseButton:" destination="Yu1-lM-nqp" id="fi8-pM-f8a"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="B6z-iU-xc4"/>
-                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="nC5-Ir-Opl"/>
-                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="rDL-pS-E9W"/>
-                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="4mG-y7-xQm"/>
-                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="TrS-TF-2Ur"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="KFd-OU-aBR"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="w7y-3H-MOz"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="Bkw-ys-053"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="eZA-pk-fWp"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="fhm-3D-tsj"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="Dl6-wW-xrg"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="AVH-1r-ada"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="zdl-HJ-BYm"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="PKX-ri-Lkq"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="PvN-yw-nPU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
@@ -431,7 +457,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="controller" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="44"/>
@@ -447,9 +473,6 @@
             <point key="canvasLocation" x="1637" y="21"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Q5t-A8-h2Z"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
