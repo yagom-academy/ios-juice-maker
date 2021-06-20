@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B9D7E0926734BE80021441B /* StockModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9D7E0826734BE80021441B /* StockModifyViewController.swift */; };
+		2BD49F8D267C777700F7114D /* UILabel+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD49F8C267C777700F7114D /* UILabel+UIViewController.swift */; };
 		49EDD60D2673361E0009FDC8 /* UIAlert+UIVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EDD60C2673361E0009FDC8 /* UIAlert+UIVIewController.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		2B9D7E0826734BE80021441B /* StockModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModifyViewController.swift; sourceTree = "<group>"; };
+		2BD49F8C267C777700F7114D /* UILabel+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+UIViewController.swift"; sourceTree = "<group>"; };
 		49EDD60C2673361E0009FDC8 /* UIAlert+UIVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlert+UIVIewController.swift"; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				49EDD60C2673361E0009FDC8 /* UIAlert+UIVIewController.swift */,
+				2BD49F8C267C777700F7114D /* UILabel+UIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				2B9D7E0926734BE80021441B /* StockModifyViewController.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
+				2BD49F8D267C777700F7114D /* UILabel+UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

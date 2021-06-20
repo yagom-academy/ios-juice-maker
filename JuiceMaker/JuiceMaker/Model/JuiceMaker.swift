@@ -8,6 +8,9 @@ import Foundation
 
 
 enum JuiceRecipe: String {
+	
+	//MARK:- Enum Cases
+	
     case strawberry = "딸기쥬스"
     case banana = "바나나쥬스"
     case kiwi = "키위쥬스"
@@ -16,26 +19,22 @@ enum JuiceRecipe: String {
     case mango = "망고쥬스"
     case mangoKiwi = "망키쥬스"
     
+	//MARK:- Computed Properties
+	
     var requiredIngredients: [Fruit: UInt] {
         switch self {
         case .strawberry:
             return [.strawberry: 16]
-            
         case .banana:
             return [.banana: 2]
-            
         case .kiwi:
             return [.kiwi: 3]
-            
         case .pineapple:
             return [.pineapple: 2]
-            
         case .ddalba:
             return [.strawberry: 10, .banana: 1]
-            
         case .mango:
             return [.mango: 3]
-            
         case .mangoKiwi:
             return [.mango: 2, .kiwi: 1]
         }
@@ -48,6 +47,8 @@ enum JuiceRecipe: String {
 
 struct JuiceMaker {
     
+	//MARK:- JuiceMaker Internal Functions
+	
     func canMakeJuice(recipe: JuiceRecipe) -> Bool {
         for (fruit, amount) in recipe.requiredIngredients {
             guard FruitStore.shared.hasEnoughFruitsStock(fruit: fruit, number: amount) else {

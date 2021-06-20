@@ -8,25 +8,31 @@
 import Foundation
 import UIKit
 
-enum Message: String {
+enum OrderResultMessage: String {
     case orderSuccess = " 나왔습니다! 맛있게 드세요!"
     case outOfStock = "재료가 모자라요. 재고를 수정할까요?"
 }
 
 extension UIViewController {
+	
+	//MARK:- Computed Properties
+	
     var okAction: UIAlertAction {
         return UIAlertAction(title: "네!", style: .default)
     }
+	
     var cancelAction: UIAlertAction {
         return UIAlertAction(title: "아니오", style: .default)
     }
     
-    func moveToAddStockView() -> UIAlertAction {
-        let moveToAddStockViewAction = UIAlertAction(title: "네", style: .default) { action in
-            guard let addStockViewController = self.storyboard?.instantiateViewController(identifier: "moveToSecondViewController") else { return }
+	//MARK:- Internal Functions
+	
+	func moveToAddStockView() -> UIAlertAction {
+        return UIAlertAction(title: "네", style: .default) { action in
+			guard let addStockViewController = self.storyboard?.instantiateViewController(identifier: "StockAddNavigationController") else { return }
+			addStockViewController.modalPresentationStyle = .fullScreen
             self.present(addStockViewController, animated: true, completion: nil)
         }
-        return moveToAddStockViewAction
     }
     
     func showAlert(message: String, okAction: UIAlertAction, cancelAction: UIAlertAction?) {
@@ -37,4 +43,5 @@ extension UIViewController {
         }
         present(alert, animated: true, completion: nil)
     }
+	
 }

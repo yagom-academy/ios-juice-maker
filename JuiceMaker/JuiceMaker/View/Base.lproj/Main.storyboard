@@ -12,7 +12,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="JuiceOrderViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vc" id="BYZ-38-t0r" customClass="JuiceOrderViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qas-vP-td6">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qas-vP-td6">
                                                 <rect key="frame" x="0.0" y="126.66666666666666" width="148.33333333333334" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -122,7 +122,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="312.66666666666669" height="72.666666666666671"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <state key="normal" title="딸바쥬스 주문">
+                                                <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -133,7 +133,7 @@
                                                 <rect key="frame" x="328.66666666666669" y="0.0" width="313.00000000000006" height="72.666666666666671"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <state key="normal" title="망키쥬스 주문">
+                                                <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -152,7 +152,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="148.33333333333334" height="72.666666666666671"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="딸기쥬스 주문">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -163,7 +163,7 @@
                                                         <rect key="frame" x="164.33333333333331" y="0.0" width="148.33333333333331" height="72.666666666666671"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="바나나쥬스 주문">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -179,7 +179,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="148.66666666666666" height="72.666666666666671"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="파인애플쥬스 주문">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -190,7 +190,7 @@
                                                         <rect key="frame" x="164.66666666666669" y="0.0" width="148.33333333333331" height="72.666666666666671"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="키위쥬스 주문">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -203,7 +203,7 @@
                                                 <rect key="frame" x="657.66666666666663" y="0.0" width="148.33333333333337" height="72.666666666666671"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <state key="normal" title="망고쥬스 주문">
+                                                <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -238,15 +238,22 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" id="XN7-Ig-AdG"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" modalPresentationStyle="fullScreen" id="XN7-Ig-AdG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="fXa-ds-yHK"/>
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="DJc-td-0Il"/>
+                        <outlet property="ddalbaJuiceButton" destination="hrc-2F-fzl" id="psm-XJ-pkz"/>
+                        <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="Rxu-1Q-tOX"/>
                         <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="vfD-34-SLa"/>
+                        <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="Mqk-Jb-GG0"/>
+                        <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="Fc5-jd-kuH"/>
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="qno-Zi-hwQ"/>
+                        <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="JrX-km-m3K"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="Qpc-Ys-jod"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="RR7-y2-Eyu"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="2tk-Ra-9fy"/>
                     </connections>
                 </viewController>
@@ -301,6 +308,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="QbI-Na-X7b"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -325,6 +335,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="X7h-6f-N0i"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -349,6 +362,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="kZU-ge-eve"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -373,6 +389,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="bOK-Cg-GhT"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -397,6 +416,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="08o-Qq-Mot"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -416,8 +438,25 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" id="tYJ-QL-0kp"/>
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="tYJ-QL-0kp">
+                            <connections>
+                                <action selector="touchUpCloseButton:" destination="Yu1-lM-nqp" id="27L-6K-p9b"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="AddStockViewCloseButton" destination="tYJ-QL-0kp" id="T3E-4Y-5Ct"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="7kh-Rx-KAV"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="z1C-kt-2Bs"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="usk-fP-vHi"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="lSk-0t-cRm"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="G7x-zu-Wyx"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="Zio-Q3-bYK"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="2Hb-af-f2g"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="XcX-n7-YV9"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="ZvP-wV-NBd"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="b2F-rJ-F16"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
@@ -426,7 +465,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController storyboardIdentifier="moveToSecondViewController" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StockAddNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="44"/>
