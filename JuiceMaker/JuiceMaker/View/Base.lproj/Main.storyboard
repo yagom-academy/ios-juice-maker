@@ -222,11 +222,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="numberOfBanana" destination="gvk-pA-Lw5" id="5g3-fu-7Om"/>
-                        <outlet property="numberOfKiwi" destination="FZq-de-TJG" id="o8W-mL-gYo"/>
-                        <outlet property="numberOfMango" destination="3Ce-SU-JeH" id="1XM-zq-GuO"/>
-                        <outlet property="numberOfPineApple" destination="ccQ-Dk-PuY" id="lmG-KI-cZq"/>
-                        <outlet property="numberOfStrawberry" destination="Qas-vP-td6" id="9q7-sv-hqR"/>
+                        <outlet property="numberOfBananaLabel" destination="gvk-pA-Lw5" id="X61-Va-ec6"/>
+                        <outlet property="numberOfKiwiLabel" destination="FZq-de-TJG" id="6Zu-Eh-gZa"/>
+                        <outlet property="numberOfMangoLabel" destination="3Ce-SU-JeH" id="3BK-I0-CZX"/>
+                        <outlet property="numberOfPineAppleLabel" destination="ccQ-Dk-PuY" id="mhx-mA-WoA"/>
+                        <outlet property="numberOfStrawberryLabel" destination="Qas-vP-td6" id="pff-o6-Jun"/>
                         <outlet property="orderBananaButton" destination="y2A-PH-DJY" id="1Xd-Sq-eI6"/>
                         <outlet property="orderMangoButton" destination="q6G-4X-bVm" id="GkB-Ym-CXV"/>
                         <outlet property="orderMangoKiwiButton" destination="ngP-kF-Yii" id="EOM-FC-Nx5"/>
@@ -258,7 +258,7 @@
             </objects>
             <point key="canvasLocation" x="179" y="20"/>
         </scene>
-        <!--Stock Management View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController id="Yu1-lM-nqp" customClass="StockManagementViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -401,7 +401,25 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="oHP-If-jKg">
+                            <connections>
+                                <action selector="backToJuiceMaking:" destination="Yu1-lM-nqp" id="1Qh-Xd-Ay3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="numberOfBananaLabel" destination="gKu-86-RhI" id="cpc-jp-gl4"/>
+                        <outlet property="numberOfKiwiLabel" destination="ZDv-1m-HBY" id="Mhe-Oy-86F"/>
+                        <outlet property="numberOfMangoLabel" destination="YJI-ER-LJR" id="d4U-ym-qjD"/>
+                        <outlet property="numberOfPineAppleLabel" destination="MpT-VW-hCb" id="KET-og-j8m"/>
+                        <outlet property="numberOfStrawberryLabel" destination="0yV-kn-zaT" id="0Sj-nV-6ST"/>
+                        <outlet property="stockOfBananaStepper" destination="O5s-2N-3iP" id="vZY-yZ-WQv"/>
+                        <outlet property="stockOfKiwiStepper" destination="klA-59-Nu4" id="D1N-i3-3RO"/>
+                        <outlet property="stockOfMangoStepper" destination="xbn-6P-grO" id="2T7-58-gX6"/>
+                        <outlet property="stockOfPineAppleStepper" destination="Rcr-xr-eqz" id="OJo-fh-aE5"/>
+                        <outlet property="stockOfStrawberryStepper" destination="ZQk-f4-zrz" id="P5g-KA-V1n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

@@ -6,23 +6,23 @@
 
 import UIKit
 
-//MARK:- 저장 프로퍼티 및 라이프사이클
+//MARK:- Stored Property and LifeCycle
 class JuiceMakingViewController: UIViewController {
-    @IBOutlet var numberOfStrawberry: UILabel!
-    @IBOutlet var numberOfBanana: UILabel!
-    @IBOutlet var numberOfPineApple: UILabel!
-    @IBOutlet var numberOfKiwi: UILabel!
-    @IBOutlet var numberOfMango: UILabel!
+    @IBOutlet private var numberOfStrawberryLabel: UILabel!
+    @IBOutlet private var numberOfBananaLabel: UILabel!
+    @IBOutlet private var numberOfPineAppleLabel: UILabel!
+    @IBOutlet private var numberOfKiwiLabel: UILabel!
+    @IBOutlet private var numberOfMangoLabel: UILabel!
     
-    @IBOutlet var orderStrawberryButton: UIButton!
-    @IBOutlet var orderBananaButton: UIButton!
-    @IBOutlet var orderPineAppleButton: UIButton!
-    @IBOutlet var orderkiwiButton: UIButton!
-    @IBOutlet var orderMangoButton: UIButton!
-    @IBOutlet var orderStrawberryBananaButton: UIButton!
-    @IBOutlet var orderMangoKiwiButton: UIButton!
+    @IBOutlet private var orderStrawberryButton: UIButton!
+    @IBOutlet private var orderBananaButton: UIButton!
+    @IBOutlet private var orderPineAppleButton: UIButton!
+    @IBOutlet private var orderkiwiButton: UIButton!
+    @IBOutlet private var orderMangoButton: UIButton!
+    @IBOutlet private var orderStrawberryBananaButton: UIButton!
+    @IBOutlet private var orderMangoKiwiButton: UIButton!
     
-    var juiceMaker = JuiceMaker(fruitStore: FruitStore())
+    private var juiceMaker = JuiceMaker(fruitStore: FruitStore())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,35 +32,34 @@ class JuiceMakingViewController: UIViewController {
     }
 
     deinit {
-        turnOffObserver()
+        removeObserver()
     }
 }
 
-//MARK:- 레이블과 버튼 셋팅
+//MARK:- Label and Button Setting
 extension JuiceMakingViewController {
-    
-    func setUp(number: Int, on label: UILabel) {
+    private func setUp(number: Int, on label: UILabel) {
         label.text = String(number)
     }
     
-    func showNumberOnLabel(fruits: [Fruit: Int]) {
+    private func showNumberOnLabel(fruits: [Fruit: Int]) {
         for fruit in fruits {
             switch fruit.key {
             case .strawberry:
-                setUp(number: fruit.value, on: numberOfStrawberry)
+                setUp(number: fruit.value, on: numberOfStrawberryLabel)
             case .banana:
-                setUp(number: fruit.value, on: numberOfBanana)
+                setUp(number: fruit.value, on: numberOfBananaLabel)
             case .pineapple:
-                setUp(number: fruit.value, on: numberOfPineApple)
+                setUp(number: fruit.value, on: numberOfPineAppleLabel)
             case .kiwi:
-                setUp(number: fruit.value, on: numberOfKiwi)
+                setUp(number: fruit.value, on: numberOfKiwiLabel)
             case .mango:
-                setUp(number: fruit.value, on: numberOfMango)
+                setUp(number: fruit.value, on: numberOfMangoLabel)
             }
         }
     }
     
-    func setUpTargetActionOnButtons() {
+    private func setUpTargetActionOnButtons() {
         orderStrawberryButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
         orderBananaButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
         orderPineAppleButton.addTarget(self, action: #selector(orderJuice(_:)), for: .touchUpInside)
@@ -71,10 +70,10 @@ extension JuiceMakingViewController {
     }
 }
 
-//MARK:- 쥬스 주문 관련
+//MARK:- Juice Order Related
 extension JuiceMakingViewController {
     
-    @objc func orderJuice(_ sender: UIButton) {
+    @objc private func orderJuice(_ sender: UIButton) {
         let result: JuiceMaker.JuiceMakingResult
         switch sender {
         case orderStrawberryButton:
@@ -96,10 +95,10 @@ extension JuiceMakingViewController {
             result = .failure(description: message)
         }
         
-        self.present(generateAlert(by: result), animated: true, completion: nil)
+        self.present(generateAlert(by: result), animated: true)
     }
  
-    func generateAlert(by result: JuiceMaker.JuiceMakingResult) -> UIAlertController {
+    private func generateAlert(by result: JuiceMaker.JuiceMakingResult) -> UIAlertController {
         let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         switch result {
         case .success(let message):
@@ -114,33 +113,35 @@ extension JuiceMakingViewController {
     }
 }
 
-//MARK:- 화면이동 관련
+//MARK:- Screen Transition Related
 extension JuiceMakingViewController {
-    func transitionToStockManagement(_ sender: UIAlertAction) {
+    private func transitionToStockManagement(_ sender: UIAlertAction) {
         let segueName = "segueToStockManagement"
         performSegue(withIdentifier: segueName, sender: sender)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let stockManagementViewController = (segue.destination as? UINavigationController)?.topViewController as? StockManagementViewController else {
+            return
+        }
+        stockManagementViewController.fruitStore = juiceMaker.fruitStore
+    }
 }
 
-//MARK:- Notification 이름 정의
-extension Notification.Name {
-    static let fruitsAmountDidChange = Notification.Name("fruitsAmountDidChange")
-}
-
-//MARK:- NotificationCenter Observer 관련
+//MARK:- NotificationCenter Observer Related
 extension JuiceMakingViewController {
-    func registerObserver() {
+    private func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeFruitsAmount(_:)), name: .fruitsAmountDidChange, object: nil)
     }
     
-    @objc func didChangeFruitsAmount(_ noti: Notification) {
+    @objc private func didChangeFruitsAmount(_ noti: Notification) {
         guard let userInfo = noti.userInfo, let fruitInfo = userInfo as? [Fruit: Int] else {
             return
         }
         self.showNumberOnLabel(fruits: fruitInfo)
     }
     
-    func turnOffObserver() {
+    private func removeObserver() {
         NotificationCenter.default.removeObserver(self, name: .fruitsAmountDidChange, object: nil)
     }
 }
