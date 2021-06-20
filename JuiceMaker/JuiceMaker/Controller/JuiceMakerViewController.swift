@@ -16,10 +16,10 @@ class JuiceMakerViewController: UIViewController {
     private let fruitStore = FruitStore.sharedInstance
     
     override func viewWillAppear(_ animated: Bool) {
-        settingAllLabelText()
+        configureAllLabelText()
     }
     
-    private func settingAllLabelText() {
+    private func configureAllLabelText() {
         strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
         bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
         pineappleStockLabel.text = String(fruitStore.stockAmount(fruit: .pineapple))

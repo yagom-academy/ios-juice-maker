@@ -24,7 +24,7 @@ class StockEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingAllLabelText()
+        configureAllLabelText()
         strawberryStepper.value = Double(fruitStore.stockAmount(fruit: .strawberry))
         bananaStepper.value = Double(fruitStore.stockAmount(fruit: .banana))
         pineappleStepper.value = Double(fruitStore.stockAmount(fruit: .pineapple))
@@ -32,7 +32,7 @@ class StockEditViewController: UIViewController {
         mangoStepper.value = Double(fruitStore.stockAmount(fruit: .mango))
     }
     
-    private func settingAllLabelText() {
+    private func configureAllLabelText() {
         strawberryStockLabel.text = String(fruitStore.stockAmount(fruit: .strawberry))
         bananaStockLabel.text = String(fruitStore.stockAmount(fruit: .banana))
         pineappleStockLabel.text = String(fruitStore.stockAmount(fruit: .pineapple))
