@@ -12,7 +12,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fruit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="show" id="jOL-EN-KcH"/>
+                                <segue destination="WwV-Td-3Bn" kind="show" id="7wJ-xP-rnO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -252,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="42"/>
+            <point key="canvasLocation" x="778" y="-90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
@@ -271,12 +271,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66L-FI-VI3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
+            <point key="canvasLocation" x="778" y="-852"/>
         </scene>
-        <!--View Controller-->
+        <!--Store Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FruitStore" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yu1-lM-nqp" customClass="StoreController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,6 +302,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changedStrawberryStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="3bc-SJ-ibI"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -326,6 +329,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changedBananaStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="nvh-Cy-Edg"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -350,6 +356,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changedPineappleStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="4Ia-VT-jsA"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -374,6 +383,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changedKiwiStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="27a-Im-kx1"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -398,6 +410,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changedMangoStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="4e7-xm-PV1"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -416,23 +431,39 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Ta9-oi-lCv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="mj5-I2-ecX">
+                                <rect key="frame" x="661" y="7" width="205" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="닫기"/>
+                                <connections>
+                                    <action selector="exitFuirtStore:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="8oD-BY-0Uo"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="8CW-UI-kL4"/>
-                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="Z2Z-3e-fhw"/>
-                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="Lq4-8T-r26"/>
-                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="fNx-eJ-fOe"/>
-                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="qga-iE-ocf"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="49Q-GT-4TP"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="PIo-Af-VeW"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="mAE-1g-jOc"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="c4S-kd-Dxb"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="bmu-Kf-Q6v"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="eDq-9k-OMf"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="IFx-Cl-Ety"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="oNi-Fg-lmj"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="4gL-aX-Lu8"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="m1O-MH-dJ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="1042"/>
+            <point key="canvasLocation" x="778" y="1527"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FruitStoreNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IQQ-EC-E6B"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
@@ -446,7 +477,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="-593"/>
+            <point key="canvasLocation" x="778" y="718"/>
         </scene>
     </scenes>
     <resources>
