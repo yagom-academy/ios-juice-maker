@@ -48,8 +48,12 @@ struct JuiceMaker {
         }
     }
     
-    func checkAmount(_ fruit: Fruits) -> Int {
+    func getAmount(_ fruit: Fruits) -> Int {
         return self.fruitStore[fruit]?.getAmount() ?? 0
+    }
+    
+    func stockPlus(_ fruit: Fruits, stock: Int) {
+        self.fruitStore[fruit]?.setAmount(stock: stock)
     }
     
     func makeJuice(order: JuiceType) {

@@ -6,6 +6,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     
@@ -25,14 +26,24 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applyChangedStock(_:)), name: Notification.Name("changeFruitStock"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("changeFruitStock"), object: nil)
     }
     
     private func showFruitLabel() {
-        strawberryStockLabel.text = String(juiceMaker.checkAmount(.strawberry))
-        bananaStockLabel.text = String(juiceMaker.checkAmount(.banana))
-        pineappleStockLabel.text = String(juiceMaker.checkAmount(.pineapple))
-        kiwiStockLabel.text = String(juiceMaker.checkAmount(.kiwi))
-        mangoStockLabel.text = String(juiceMaker.checkAmount(.mango))
+        strawberryStockLabel.text = String(juiceMaker.getAmount(.strawberry))
+        bananaStockLabel.text = String(juiceMaker.getAmount(.banana))
+        pineappleStockLabel.text = String(juiceMaker.getAmount(.pineapple))
+        kiwiStockLabel.text = String(juiceMaker.getAmount(.kiwi))
+        mangoStockLabel.text = String(juiceMaker.getAmount(.mango))
+    }
+    
+    @objc private func applyChangedStock(_ notification: Notification) {
+        showFruitLabel()
     }
     
     private func succeededMakingJuiceAlert(_ message: JuiceMaker.JuiceType) {
@@ -96,11 +107,17 @@ class ViewController: UIViewController {
     }
     
     private func changeView() {
-        guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "AddStock") else {
+        guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "AddStock") as? UINavigationController else {
             return
         }
+        let second = mainVC.visibleViewController as? ViewController2
+        second?.updateJuiceMaker(juiceMaker: juiceMaker)
         mainVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        mainVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(mainVC, animated: true)
     }
     
+    @IBAction private func changeViewBtn(_ sender: UIBarButtonItem) {
+        changeView()
+    }
 }

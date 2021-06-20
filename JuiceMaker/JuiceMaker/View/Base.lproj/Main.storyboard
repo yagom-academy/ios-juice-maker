@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" id="AE6-cD-DjU"/>
+                                <action selector="changeViewBtn:" destination="BYZ-38-t0r" id="uQb-68-4FO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="ViewController2" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -308,6 +308,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="fruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="5ic-WM-cbI"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -332,6 +335,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="fruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="hSB-ZN-a68"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -356,6 +362,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="fruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="gBk-85-FyJ"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -380,6 +389,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="fruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="38z-ak-bav"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -404,6 +416,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="fruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="pzo-nU-5y0"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -422,7 +437,25 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="9CV-lF-YTR">
+                            <connections>
+                                <action selector="closeBtn:" destination="Yu1-lM-nqp" id="PPV-Tj-RJP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="LZe-nB-OY1"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="fC4-WA-vjq"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="B1E-aQ-8RT"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="uZp-5d-Jt2"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="D74-OH-o7X"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="mV8-Dg-rzB"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="mpx-Tr-Evx"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="8RG-Wr-B4p"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="bpY-G8-GP4"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="4b2-6S-d5A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
