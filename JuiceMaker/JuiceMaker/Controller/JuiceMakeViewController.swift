@@ -32,6 +32,7 @@ class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(menu: .strawberry)
             self.present(makeJuiceSuccessAlert(menu: .strawberry), animated: true, completion: nil)
+            refreshFruitStock()
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
@@ -42,6 +43,7 @@ class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(menu: .banana)
             self.present(makeJuiceSuccessAlert(menu: .banana), animated: true, completion: nil)
+            refreshFruitStock()
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
@@ -52,6 +54,7 @@ class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(menu: .fineapple)
             self.present(makeJuiceSuccessAlert(menu: .fineapple), animated: true, completion: nil)
+            refreshFruitStock()
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
@@ -62,6 +65,7 @@ class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(menu: .strawberryBanana)
             self.present(makeJuiceSuccessAlert(menu: .strawberryBanana), animated: true, completion: nil)
+            refreshFruitStock()
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
@@ -72,6 +76,7 @@ class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(menu: .kiwi)
             self.present(makeJuiceSuccessAlert(menu: .kiwi), animated: true, completion: nil)
+            refreshFruitStock()
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
@@ -82,6 +87,7 @@ class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(menu: .mango)
             self.present(makeJuiceSuccessAlert(menu: .mango), animated: true, completion: nil)
+            refreshFruitStock()
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
@@ -92,6 +98,7 @@ class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(menu: .mangoKiwi)
             self.present(makeJuiceSuccessAlert(menu: .mangoKiwi), animated: true, completion: nil)
+            refreshFruitStock()
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
@@ -101,21 +108,6 @@ class JuiceMakeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshFruitStock()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveStockChangeNotification), name: .recieveStockChangeNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveMenuMadeNotification), name: .recieveOrderMenuNotification, object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    @objc private func didReceiveStockChangeNotification(_ notificiation: Notification) {
-        refreshFruitStock()
-    }
-    
-    @objc private func didReceiveMenuMadeNotification(_ notificiation: Notification) {
-        guard let menu: JuiceMaker.JuiceMenu = notificiation.userInfo?["menu"] as? JuiceMaker.JuiceMenu else { return }
-        self.present(makeJuiceSuccessAlert(menu: menu), animated: true, completion: nil)
     }
     
     private func refreshFruitStock(){

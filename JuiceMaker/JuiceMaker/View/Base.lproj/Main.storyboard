@@ -127,7 +127,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="clickStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tbx-YZ-5m4"/>
-                                                    <action selector="clickStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ITB-xg-Ri4"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
@@ -156,6 +155,9 @@
                                                         <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="clickStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v4i-QB-afg"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
                                                         <rect key="frame" x="164.33333333333331" y="0.0" width="148.33333333333331" height="72.666666666666671"/>

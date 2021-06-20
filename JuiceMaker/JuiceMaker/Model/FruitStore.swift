@@ -39,7 +39,6 @@ class FruitStore {
             guard let selectedFruitStock = fruitStock[fruit.key] else { return }
             fruitStock[fruit.key] = selectedFruitStock - fruit.value
         }
-        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["stock": fruitStock])
     }
     
     func isAllIngredientEnough(ingredients: [HandlingFruit: Int]) throws {
