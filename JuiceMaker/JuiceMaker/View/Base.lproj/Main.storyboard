@@ -12,7 +12,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="JuiceMakeViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,7 +126,8 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="clickOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n2j-sb-yLv"/>
+                                                    <action selector="clickStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tbx-YZ-5m4"/>
+                                                    <action selector="clickStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ITB-xg-Ri4"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
@@ -137,7 +138,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="clickOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e1p-24-g8N"/>
+                                                    <action selector="clickMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lmc-Zq-V0I"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -155,9 +156,6 @@
                                                         <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="clickOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hhb-35-9lt"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
                                                         <rect key="frame" x="164.33333333333331" y="0.0" width="148.33333333333331" height="72.666666666666671"/>
@@ -167,7 +165,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9qH-T4-91Q"/>
+                                                            <action selector="clickBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PxG-cr-JOy"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -183,7 +181,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t7y-Bs-hly"/>
+                                                            <action selector="clickFineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jQJ-rY-RKh"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -194,7 +192,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clickOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8am-ci-7Ol"/>
+                                                            <action selector="clickKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zaR-hF-A5o"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -207,7 +205,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="clickOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vVp-lu-tce"/>
+                                                    <action selector="clickMangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cU3-zc-I62"/>
                                                 </connections>
                                             </button>
                                         </subviews>
