@@ -8,8 +8,6 @@ import Foundation
 
 // 과일 타입
 class FruitStore {
-    private let defaultStock: UInt = 10
-
     enum Fruit {
         case strawberry
         case banana
@@ -17,23 +15,38 @@ class FruitStore {
         case kiwi
         case mango
     }
-
-    static var storage: [Fruit: UInt] = [.strawberry: FruitStore().defaultStock,
-                                         .banana: FruitStore().defaultStock,
-                                         .pineapple: FruitStore().defaultStock,
-                                         .kiwi: FruitStore().defaultStock,
-                                         .mango: FruitStore().defaultStock]
-
+    
+    let defaultStock: UInt = 10
+    var storage: [Fruit: UInt]
+    
+    init() {
+        storage = [.strawberry: defaultStock,
+                   .banana: defaultStock,
+                   .pineapple: defaultStock,
+                   .kiwi: defaultStock,
+                   .mango: defaultStock]
+    }
+    
     func modifyStock(fruit: Fruit, changes: Int) {
-        guard let currentStock = FruitStore.storage[fruit] else {
+        guard let currentStock = storage[fruit] else {
             return
         }
         let sumResult = changes + Int(currentStock)
-
+        
         if sumResult >= 0 {
-            FruitStore.storage[fruit] = UInt(sumResult)
+            storage[fruit] = UInt(sumResult)
+            sendNotifications()
+            
         } else {
-            FruitStore.storage[fruit] = 0
+            storage[fruit] = 0
         }
+    }
+    
+    func sendNotifications() {
+        let userInfo: [Fruit : UInt] = storage
+        
+        NotificationCenter.default.post(name: NSNotification.Name("fruitNumberChanged"),
+                                        object: nil,
+                                        userInfo: userInfo)
     }
 }

@@ -6,21 +6,26 @@
 
 import Foundation
 
+enum juiceMakerError: Error {
+    case outOfStock
+    case invalidNumber
+}
+
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    enum Menu {
-        case strawberry
-        case banana
-        case kiwi
-        case pineapple
-        case strawberryBanana
-        case mango
-        case mangoKiwi
+    enum Menu: String {
+        case strawberry = "딸기"
+        case banana = "바나나"
+        case kiwi = "키위"
+        case pineapple = "파인애플"
+        case strawberryBanana = "딸바"
+        case mango = "망고"
+        case mangoKiwi = "망키"
     }
     
     let fruitStore = FruitStore()
     
-    func defaultJuiceRecipe(juiceMenu: Menu) -> [FruitStore.Fruit: UInt]{
+    func juiceRecipe(juiceMenu: Menu) -> [FruitStore.Fruit: UInt]{
         switch juiceMenu {
         case .strawberry:
             return [.strawberry: 16]
@@ -39,35 +44,33 @@ struct JuiceMaker {
         }
     }
     
-    func isJuiceAvailable(menu: Menu) -> Bool {
-        var isIngredientRemain: Bool = true
-        let orderedJuiceRecipe = defaultJuiceRecipe(juiceMenu: menu)
-        let neededIngredient = Array(orderedJuiceRecipe.keys)
+    func isJuiceAvailable(menu: Menu) throws  {
+        let orderedJuiceRecipe = juiceRecipe(juiceMenu: menu)
+        let fruitsWeNeed = Array(orderedJuiceRecipe.keys)
         
-        for i in 0..<orderedJuiceRecipe.count {
-            guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[neededIngredient[i]],
-                  let currentRemainedFruitNumber = FruitStore.storage[neededIngredient[i]]
-            else {
-                return false
-            }
+        for fruit in fruitsWeNeed {
+            guard let necessaryFruitNumberForMenu = orderedJuiceRecipe[fruit],
+                  let currentFruitNumberInStorage = fruitStore.storage[fruit]
+            else { throw juiceMakerError.invalidNumber }
             
-            if necessaryFruitNumberForMenu > currentRemainedFruitNumber {
-                isIngredientRemain = false
+            if necessaryFruitNumberForMenu > currentFruitNumberInStorage {
+                throw juiceMakerError.outOfStock
             }
         }
-        return isIngredientRemain
     }
-    
-    func makeJuice(menu: Menu) {
-        let userMenuRecipe = defaultJuiceRecipe(juiceMenu: menu)
+
+    func makeJuice(menu: Menu) throws {
+        let recipe = juiceRecipe(juiceMenu: menu)
         
-        if isJuiceAvailable(menu: menu) {
-            for (fruit, count) in userMenuRecipe {
-                fruitStore.modifyStock(fruit: fruit,
-                                       changes: -Int(count))
+        do {
+            try isJuiceAvailable(menu: menu)
+            for (fruit, count) in recipe {
+                fruitStore.modifyStock(fruit: fruit, changes: -Int(count))
             }
-        } else {
-            print("재고 부족")
+        } catch juiceMakerError.outOfStock {
+            throw juiceMakerError.outOfStock
+        } catch juiceMakerError.invalidNumber {
+            throw juiceMakerError.invalidNumber
         }
     }
 }
