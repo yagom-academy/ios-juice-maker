@@ -46,6 +46,5 @@ struct JuiceMaker {
         let ingredients: [HandlingFruit: Int] = menu.recipe
         try store.isAllIngredientEnough(ingredients: ingredients)
         store.useFruitToMakeJuice(ingredients: ingredients)
-        NotificationCenter.default.post(name: .recieveOrderMenuNotification, object: nil, userInfo: ["menu": menu])
     }
 }

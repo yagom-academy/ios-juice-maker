@@ -6,10 +6,6 @@
 
 import UIKit
 
-extension Notification.Name {
-    static let recieveOrderMenuNotification = Notification.Name("DidRecieveOrderMenu")
-    static let recieveStockChangeNotification = Notification.Name("DidReceiveStockChange")
-}
 
 class JuiceMakeViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
@@ -28,6 +24,7 @@ class JuiceMakeViewController: UIViewController {
     @IBOutlet private weak var mangoJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     
+  
     @IBAction func clickStrawberryJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(menu: .strawberry)
@@ -105,9 +102,36 @@ class JuiceMakeViewController: UIViewController {
         }
     }
     
+    @IBAction func clickStockChangeButton(_ sender: UIBarButtonItem) {
+        guard let nextViewController = self.storyboard?.instantiateViewController(identifier: "StockManageViewController") else { return }
+        self.present(nextViewController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshFruitStock()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didReceiveStockChangeNotification), name: .recieveStockChangeNotification, object: nil)
+    }
+    
+    @objc func didReceiveStockChangeNotification(_ notification: Notification) {
+        guard let stockChangeInformation: (fruit: HandlingFruit, amount: Int) = notification.userInfo?["fruit"] as? (HandlingFruit, Int) else { return }
+        switch stockChangeInformation.fruit {
+        case .strawberry:
+            FruitStore.shared.changeFruitStock(fruit: .strawberry, amount: stockChangeInformation.amount)
+            strawberryStockLabel.text = "\(stockChangeInformation.amount)"
+        case .banana:
+            FruitStore.shared.changeFruitStock(fruit: .banana, amount: stockChangeInformation.amount)
+            bananaStockLabel.text = "\(stockChangeInformation.amount)"
+        case .fineapple:
+            FruitStore.shared.changeFruitStock(fruit: .fineapple, amount: stockChangeInformation.amount)
+            fineappleStockLabel.text = "\(stockChangeInformation.amount)"
+        case .kiwi:
+            FruitStore.shared.changeFruitStock(fruit: .kiwi, amount: stockChangeInformation.amount)
+            kiwiStockLabel.text = "\(stockChangeInformation.amount)"
+        case .mango:
+            FruitStore.shared.changeFruitStock(fruit: .mango, amount: stockChangeInformation.amount)
+            mangoStockLabel.text = "\(stockChangeInformation.amount)"
+        }
     }
     
     private func refreshFruitStock(){

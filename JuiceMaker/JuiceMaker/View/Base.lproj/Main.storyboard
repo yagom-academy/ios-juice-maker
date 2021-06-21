@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="wvV-7T-n8t"/>
+                                <action selector="clickStockChangeButton:" destination="BYZ-38-t0r" id="RSO-OV-MBB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -308,6 +308,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="27.333333333333329" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="strawberryStepperValueChange:" destination="Yu1-lM-nqp" eventType="valueChanged" id="epC-fh-1bk"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -332,6 +335,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="bananaStepperValueChange:" destination="Yu1-lM-nqp" eventType="valueChanged" id="6J6-Ed-WnI"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -356,6 +362,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="27.333333333333314" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="fineappleStepperValueChange:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Ia9-5U-9lN"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -380,6 +389,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="kiwiStepperValueChange:" destination="Yu1-lM-nqp" eventType="valueChanged" id="NdN-7P-cep"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -404,6 +416,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="27" y="182" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="mangoStepperValueChange:" destination="Yu1-lM-nqp" eventType="valueChanged" id="wCL-qN-AWc"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -429,6 +444,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="tKR-0J-jO2"/>
+                        <outlet property="bananaStockStepper" destination="O5s-2N-3iP" id="W4b-XK-vsi"/>
+                        <outlet property="fineappleStockLabel" destination="MpT-VW-hCb" id="eaj-Uf-jGI"/>
+                        <outlet property="fineappleStockStepper" destination="Rcr-xr-eqz" id="tAO-Tt-Y4b"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="sqg-Tv-aQ2"/>
+                        <outlet property="kiwiStockStepper" destination="klA-59-Nu4" id="qLk-Nr-UnT"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="Rad-X2-grw"/>
+                        <outlet property="mangoStockStepper" destination="xbn-6P-grO" id="j3B-oj-lQj"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="45J-gP-wqD"/>
+                        <outlet property="strawberryStockStepper" destination="ZQk-f4-zrz" id="6bE-9R-Sfr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
