@@ -12,7 +12,7 @@ class FruitStore {
     }
     
     private(set) var fruits = [Fruit: Int]()
-    
+
     init(initialStock: Int) {
         for fruit in Fruit.allCases {
             fruits[fruit] = initialStock
@@ -28,6 +28,7 @@ class FruitStore {
         for fruit in fruits {
             guard var fruits = self.fruits[fruit.key] else { return }
             fruits -= fruit.value
+            self.fruits.updateValue(fruits, forKey: fruit.key)
         }
     }
 }
