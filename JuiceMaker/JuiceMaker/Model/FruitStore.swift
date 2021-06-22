@@ -10,15 +10,15 @@ enum FruitStoreError: Error {
     case outOfStock
 }
 
-enum HandlingFruit: String, CaseIterable {
-    case strawberry
-    case banana
-    case fineapple
-    case kiwi
-    case mango
-}
-
 class FruitStore {
+    enum HandlingFruit: String, CaseIterable {
+        case strawberry
+        case banana
+        case fineapple
+        case kiwi
+        case mango
+    }
+    
     static let shared = FruitStore()
     
     private let defaultStock: Int = 10

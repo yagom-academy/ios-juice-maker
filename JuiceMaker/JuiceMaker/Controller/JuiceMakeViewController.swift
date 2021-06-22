@@ -119,7 +119,7 @@ class JuiceMakeViewController: UIViewController {
     }
     
     @objc func didReceiveStockChangeNotification(_ notification: Notification) {
-        guard let stockChangeInformation: (fruit: HandlingFruit, amount: Int) = notification.userInfo?["fruit"] as? (HandlingFruit, Int) else { return }
+        guard let stockChangeInformation: (fruit: FruitStore.HandlingFruit, amount: Int) = notification.userInfo?["fruit"] as? (FruitStore.HandlingFruit, Int) else { return }
         switch stockChangeInformation.fruit {
         case .strawberry:
             FruitStore.shared.changeFruitStock(fruit: .strawberry, amount: stockChangeInformation.amount)

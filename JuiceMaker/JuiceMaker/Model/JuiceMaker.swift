@@ -16,7 +16,7 @@ struct JuiceMaker {
         case mango = "망고쥬스"
         case mangoKiwi = "망키쥬스"
         
-        var recipe: [HandlingFruit: Int] {
+        var recipe: [FruitStore.HandlingFruit: Int] {
             switch self {
             case .strawberry:
                 return [.strawberry: 16]
@@ -43,7 +43,7 @@ struct JuiceMaker {
     private let store: FruitStore = FruitStore.shared
     
     func makeJuice(menu: JuiceMenu) throws {
-        let ingredients: [HandlingFruit: Int] = menu.recipe
+        let ingredients: [FruitStore.HandlingFruit: Int] = menu.recipe
         try store.isAllIngredientEnough(ingredients: ingredients)
         store.useFruitToMakeJuice(ingredients: ingredients)
     }

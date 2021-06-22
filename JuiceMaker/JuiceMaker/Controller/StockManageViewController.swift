@@ -27,27 +27,27 @@ class StockManageViewController: UIViewController {
     
     @IBAction private func strawberryStepperValueChange(_ sender: UIStepper) {
         strawberryStockLabel.text = Int(sender.value).description
-        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (HandlingFruit.strawberry, Int(sender.value))])
+        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (FruitStore.HandlingFruit.strawberry, Int(sender.value))])
     }
     
     @IBAction private func bananaStepperValueChange(_ sender: UIStepper) {
         bananaStockLabel.text = Int(sender.value).description
-        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (HandlingFruit.banana, Int(sender.value))])
+        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (FruitStore.HandlingFruit.banana, Int(sender.value))])
     }
     
     @IBAction private func fineappleStepperValueChange(_ sender: UIStepper) {
         fineappleStockLabel.text = Int(sender.value).description
-        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (HandlingFruit.fineapple, Int(sender.value))])
+        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (FruitStore.HandlingFruit.fineapple, Int(sender.value))])
     }
     
     @IBAction private func kiwiStepperValueChange(_ sender: UIStepper) {
         kiwiStockLabel.text = Int(sender.value).description
-        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (HandlingFruit.kiwi, Int(sender.value))])
+        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (FruitStore.HandlingFruit.kiwi, Int(sender.value))])
     }
     
     @IBAction private func mangoStepperValueChange(_ sender: UIStepper) {
         mangoStockLabel.text = Int(sender.value).description
-        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (HandlingFruit.mango, Int(sender.value))])
+        NotificationCenter.default.post(name: .recieveStockChangeNotification, object: nil, userInfo: ["fruit": (FruitStore.HandlingFruit.mango, Int(sender.value))])
     }
     
     override func viewDidLoad() {
