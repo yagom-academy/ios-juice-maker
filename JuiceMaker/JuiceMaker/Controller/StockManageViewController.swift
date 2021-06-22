@@ -52,10 +52,10 @@ class StockManageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshFruitStock()
+        initFruitStockLabels()
     }
     
-    private func refreshFruitStock(){
+    private func initFruitStockLabels(){
         let fruits = FruitStore.shared.fruitStock
         for (fruit, amount) in fruits {
             switch fruit {

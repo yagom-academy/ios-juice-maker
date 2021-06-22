@@ -6,7 +6,6 @@
 
 import UIKit
 
-
 class JuiceMakeViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
@@ -24,7 +23,6 @@ class JuiceMakeViewController: UIViewController {
     @IBOutlet private weak var mangoJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     
-  
     @IBAction func clickStrawberryJuiceButton(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(menu: .strawberry)
@@ -33,6 +31,7 @@ class JuiceMakeViewController: UIViewController {
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
+            print("Unexpected error: \(error).")
         }
     }
     
@@ -44,6 +43,7 @@ class JuiceMakeViewController: UIViewController {
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
+            print("Unexpected error: \(error).")
         }
     }
     
@@ -55,6 +55,7 @@ class JuiceMakeViewController: UIViewController {
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
+            print("Unexpected error: \(error).")
         }
     }
     
@@ -66,6 +67,7 @@ class JuiceMakeViewController: UIViewController {
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
+            print("Unexpected error: \(error).")
         }
     }
     
@@ -77,6 +79,7 @@ class JuiceMakeViewController: UIViewController {
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
+            print("Unexpected error: \(error).")
         }
     }
     
@@ -88,6 +91,7 @@ class JuiceMakeViewController: UIViewController {
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
+            print("Unexpected error: \(error).")
         }
     }
     
@@ -99,6 +103,7 @@ class JuiceMakeViewController: UIViewController {
         } catch FruitStoreError.outOfStock {
             self.present(makeJuiceFailAlert(), animated: true, completion: nil)
         } catch {
+            print("Unexpected error: \(error).")
         }
     }
     
