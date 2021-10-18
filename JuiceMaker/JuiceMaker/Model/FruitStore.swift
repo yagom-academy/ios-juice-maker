@@ -34,4 +34,11 @@ class FruitStore {
         }
         return false
     }
+    
+    func changeInventory(_ fruit: Fruit, by amount: Int) {
+        guard let remainingStock = inventory[fruit] else {
+            return
+        }
+        inventory[fruit] = remainingStock - amount
+    }
 }
