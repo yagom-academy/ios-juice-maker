@@ -19,8 +19,8 @@ struct JuiceMaker {
         case mangoKiwi
     }
     
-    let fruitStore = FruitStore()
-    let juiceRecipes: [Juice: Recipe] = [
+    private let fruitStore = FruitStore()
+    private let juiceRecipes: [Juice: Recipe] = [
         Juice.strawberry: [.strawberry: 16],
         Juice.banana: [.banana: 2],
         Juice.kiwi: [.kiwi: 3],
@@ -41,7 +41,7 @@ struct JuiceMaker {
         }
     }
     
-    func canMakeJuice(recipe: Recipe) -> Bool {
+    private func canMakeJuice(recipe: Recipe) -> Bool {
         return recipe.reduce(true) {
             let fruit = $1.key
             let count = $1.value
@@ -49,5 +49,3 @@ struct JuiceMaker {
         }
     }
 }
-
-
