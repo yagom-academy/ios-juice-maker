@@ -21,6 +21,7 @@ struct Fruit {
 
 // 과일 저장소 타입
 class FruitStore {
+    
     enum FruitStoreError: String, LocalizedError {
         case inValidFruitChoice = "유효하지 않은 선택입니다."
         case lackOfStock = "재료가 부족합니다."
@@ -37,4 +38,11 @@ class FruitStore {
         Fruit(name: .키위),
         Fruit(name: .망고)
     ]
+    
+    func findIndexFromInventory(with fruit: Fruit.FruitName) throws -> Int {
+        guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
+            throw FruitStoreError.inValidFruitChoice
+        }
+        return indexOfFruit
+    }
 }
