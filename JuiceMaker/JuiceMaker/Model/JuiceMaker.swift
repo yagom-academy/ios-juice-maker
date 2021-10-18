@@ -20,15 +20,14 @@ struct JuiceMaker {
     }
     
     let fruitStore = FruitStore()
-    
     let juiceRecipes: [Juice: Recipe] = [
-        .strawberry: [.strawberry: 16],
-        .banana: [.banana: 2],
-        .kiwi: [.kiwi: 3],
-        .pineapple: [.pineapple: 2],
-        .strawberryBanana: [.strawberry: 10, .banana: 1],
-        .mango: [.mango: 3],
-        .mangoKiwi: [.mango: 2, .kiwi: 1]
+        Juice.strawberry: [.strawberry: 16],
+        Juice.banana: [.banana: 2],
+        Juice.kiwi: [.kiwi: 3],
+        Juice.pineapple: [.pineapple: 2],
+        Juice.strawberryBanana: [.strawberry: 10, .banana: 1],
+        Juice.mango: [.mango: 3],
+        Juice.mangoKiwi: [.mango: 2, .kiwi: 1]
     ]
     
     func fruitsMixer(juice: Juice) throws {
@@ -40,8 +39,6 @@ struct JuiceMaker {
             try fruitStore.changeAmount(count: count, of: fruit, by: -)
             print("fruit: \(fruit) count: \(count)")
         }
-        
-        print("주스가 완성되었습니다")
     }
     
     func canMakeJuice(recipe: Recipe) -> Bool {
