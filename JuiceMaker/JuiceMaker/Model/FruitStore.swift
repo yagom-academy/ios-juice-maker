@@ -13,7 +13,7 @@ enum Fruit: String, CustomStringConvertible, CaseIterable {
     case kiwi = "키위"
     case mango = "망고"
     
-    var description: String{
+    var description: String {
         return rawValue
     }
 }
@@ -23,8 +23,15 @@ class FruitStore {
     var inventory: [Fruit:Int] = [:]
     
     init(fruits: [Fruit], amount: Int) {
-        for fruit in fruits{
+        for fruit in fruits {
             inventory[fruit] = amount
         }
+    }
+    
+    func isAvailable(fruit: Fruit, amount: Int) -> Bool {
+        if let remainingStock = inventory[fruit], remainingStock >= amount {
+            return true
+        }
+        return false
     }
 }
