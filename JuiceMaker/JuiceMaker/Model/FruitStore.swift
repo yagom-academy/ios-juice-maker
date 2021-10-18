@@ -31,10 +31,10 @@ class FruitStore {
         guard let oldFruitCount = fruitBasket[fruit] else {
             throw RequestError.fruitNotFound
         }
-        let newFruitCount = calculator(oldFruitCount, count)
-        guard newFruitCount >= 0 else {
+        guard count <= oldFruitCount else {
             throw RequestError.fruitStockOut
         }
+        let newFruitCount = calculator(oldFruitCount, count)
         fruitBasket[fruit] = newFruitCount
     }
 }
