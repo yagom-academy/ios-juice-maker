@@ -56,4 +56,24 @@ class FruitStore {
             print(error)
         }
     }
+    
+    func checkEnoughStock(from index: Int, for count: Int) throws {
+        guard inventory[index].count > count else {
+            throw FruitStoreError.lackOfStock
+        }
+    }
+    
+    func subtractStock(count: Int, from fruit: Fruit.FruitName) {
+         do {
+             let indexOfFruit = try findIndexFromInventory(with: fruit)
+             try checkEnoughStock(from: indexOfFruit, for: count)
+             inventory[indexOfFruit].count -= count
+         } catch FruitStoreError.inValidFruitChoice {
+             print(FruitStoreError.inValidFruitChoice.description)
+         } catch FruitStoreError.lackOfStock {
+             print(FruitStoreError.lackOfStock.description)
+         } catch {
+             print(error)
+         }
+     }
 }
