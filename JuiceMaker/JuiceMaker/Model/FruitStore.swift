@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawberry
     case banana
     case pineapple
@@ -15,5 +15,12 @@ enum Fruit {
 }
 
 class FruitStore {
+    static let defaultAmountPerFruit = 10
+    var inventory: [Fruit: Int] = [:]
     
+    init() {
+        for fruit in Fruit.allCases {
+            self.inventory[fruit] = FruitStore.defaultAmountPerFruit
+        }
+    }
 }
