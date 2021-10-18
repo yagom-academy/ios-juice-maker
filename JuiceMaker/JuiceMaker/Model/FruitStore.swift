@@ -37,6 +37,11 @@ class FruitStore {
         let newFruitCount = calculator(oldFruitCount, count)
         fruitBasket[fruit] = newFruitCount
     }
+    
+    func hasFruitStock(of fruit: Fruit, count fruitCountSubtracted: Int) -> Bool {
+        guard let currentFruitAmount = fruitBasket[fruit] else { return false }
+        return currentFruitAmount >= fruitCountSubtracted
+    }
 }
 
 
