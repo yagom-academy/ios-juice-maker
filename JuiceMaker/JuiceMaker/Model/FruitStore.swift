@@ -8,5 +8,24 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
+    struct FruitInformation {
+//        var price: Int
+        var count: Int
+    }
     
+    enum Fruit {
+        case 딸기 // rawValue String?
+        case 바나나
+        case 파인애플
+        case 키위
+        case 망고
+    }
+    
+    // 딕셔너리 (과일: 수량) - 수량 관리하는 메서드를 만들기 쉬울듯
+    var inventory: [Fruit: FruitInformation] = [
+        .딸기 : FruitInformation(count: 10),
+        .바나나 : FruitInformation(count: 10),
+        .파인애플 : FruitInformation(count: 10),
+        .키위 : FruitInformation(count: 10),
+        .망고 : FruitInformation(count: 10)]
 }
