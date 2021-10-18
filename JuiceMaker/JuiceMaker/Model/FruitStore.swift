@@ -25,4 +25,10 @@ class FruitStore {
             self.fruit = fruit
         }
     }
+    
+    var strawberries: FruitInventory = FruitInventory(fruit: .strawberry)
+    var bananas: FruitInventory = FruitInventory(fruit: .banana)
+    var pineapples: FruitInventory = FruitInventory(fruit: .pineapple)
+    var kiwis: FruitInventory = FruitInventory(fruit: .kiwi)
+    var mangoes: FruitInventory = FruitInventory(fruit: .mango)
 }
