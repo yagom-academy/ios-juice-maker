@@ -34,7 +34,11 @@ class FruitStore {
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
     
-    func changeFruitStorage(fruit: Fruit, to number: Int) {
+    func changeFruitStorage(fruit: Fruit) {
+        guard let number = try? inputStockToChange() else {
+            return
+        }
+        
         fruitStorage.keys.forEach{
             if $0 == fruit {
                 fruitStorage[$0] = number
@@ -54,8 +58,3 @@ class FruitStore {
         return stockToChange
     }
 }
-
-
-
-
-
