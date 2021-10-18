@@ -37,5 +37,14 @@ class FruitStore {
         .바나나 : FruitInformation(count: 10),
         .파인애플 : FruitInformation(count: 10),
         .키위 : FruitInformation(count: 10),
-        .망고 : FruitInformation(count: 10)]
+        .망고 : FruitInformation(count: 10)
+    ]
+    
+    func addInventory(count: Int, to fruit: Fruit) throws {
+          if var existingFruit = inventory[fruit] {
+              existingFruit.count += count
+          } else {
+              throw FruitStoreError.inValidFruitChoice
+          }
+    }
 }
