@@ -45,4 +45,15 @@ class FruitStore {
         }
         return indexOfFruit
     }
+    
+    func addInventory(count: Int, to fruit: Fruit.FruitName) {
+        do {
+            let indexOfFruit = try findIndexFromInventory(with: fruit)
+            inventory[indexOfFruit].count += count
+        } catch FruitStoreError.inValidFruitChoice {
+            print(FruitStoreError.inValidFruitChoice.description)
+        } catch {
+            print(error)
+        }
+    }
 }
