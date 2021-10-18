@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum Fruit: String, CustomStringConvertible {
+enum Fruit: String, CustomStringConvertible, CaseIterable {
     case strawberry = "딸기"
     case bananna = "바나나"
     case pineapple = "파인애플"
@@ -16,10 +16,15 @@ enum Fruit: String, CustomStringConvertible {
     var description: String{
         return rawValue
     }
-    
 }
 
 // 과일 저장소 타입
 class FruitStore {
+    var inventory: [Fruit:Int] = [:]
     
+    init(fruits: [Fruit], amount: Int) {
+        for fruit in fruits{
+            inventory[fruit] = amount
+        }
+    }
 }
