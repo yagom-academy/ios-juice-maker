@@ -8,6 +8,16 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
+    
+    enum FruitStoreError: String, LocalizedError {
+        case inValidFruitChoice = "유효하지 않은 선택입니다."
+        case lackOfStock = "재료가 부족합니다."
+        
+        var description: String {
+            return rawValue
+        }
+    }
+    
     struct FruitInformation {
 //        var price: Int
         var count: Int
