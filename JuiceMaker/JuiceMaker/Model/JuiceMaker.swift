@@ -36,6 +36,22 @@ enum Juice {
 }
 
 struct JuiceMaker {
+    let fruitStore = FruitStore()
     
+    func hasIngredients(`for` juice: Juice) -> Bool {
+        let recipe = juice.recipe
+        
+        for (fruit, amount) in recipe {
+            guard let number = fruitStore.inventory[fruit] else {
+                return false // TODO: 오류처리 예정
+            }
+            
+            guard number >= amount else {
+                return false
+            }
+        }
+        
+        return true
+    }
 }
 
