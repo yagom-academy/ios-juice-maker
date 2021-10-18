@@ -31,11 +31,11 @@ struct JuiceMaker {
     ]
     
     func fruitsMixer(juice: Juice) throws {
-        guard let recipe = juiceRecipes[juice] else { return }
-        guard canMakeJuice(recipe: recipe) else {
+        guard let juiceRecipe = juiceRecipes[juice] else { return }
+        guard canMakeJuice(recipe: juiceRecipe) else {
             throw RequestError.fruitStockOut
         }
-        try recipe.forEach { (fruit, count) in
+        try juiceRecipe.forEach { (fruit, count) in
             try fruitStore.changeAmount(count: count, of: fruit, by: -)
             print("fruit: \(fruit) count: \(count)")
         }
