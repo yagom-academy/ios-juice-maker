@@ -41,10 +41,10 @@ class FruitStore {
     ]
     
     func addInventory(count: Int, to fruit: Fruit) throws {
-          if var existingFruit = inventory[fruit] {
-              existingFruit.count += count
-          } else {
-              throw FruitStoreError.inValidFruitChoice
-          }
+        guard var item = inventory[fruit] else {
+            throw FruitStoreError.inValidFruitChoice
+        }
+        item.count += count
+        inventory[fruit] = item
     }
 }
