@@ -41,12 +41,12 @@ struct JuiceMaker {
     func hasIngredients(`for` juice: Juice) -> Bool {
         let recipe = juice.recipe
         
-        for (fruit, amount) in recipe {
-            guard let number = fruitStore.inventory[fruit] else {
+        for (fruit, demandingAmount) in recipe {
+            guard let leftAmount = fruitStore.inventory[fruit] else {
                 return false // TODO: 오류처리 예정
             }
             
-            guard number >= amount else {
+            guard leftAmount >= demandingAmount else {
                 return false
             }
         }
