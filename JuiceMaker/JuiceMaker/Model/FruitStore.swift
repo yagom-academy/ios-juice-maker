@@ -28,6 +28,10 @@ class FruitStore {
         mutating func addFruits(quantity: Int) {
             self.quantity += quantity
         }
+        
+        mutating func subtractFruits(quantity: Int) {
+            self.quantity -= quantity
+        }
     }
     
     var strawberries: FruitInventory = FruitInventory(fruit: .strawberry)
