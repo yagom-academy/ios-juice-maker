@@ -6,7 +6,14 @@
 
 import Foundation
 
-// 과일 저장소 타입
+enum Fruit {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
+
 class FruitStore {
     
 }
