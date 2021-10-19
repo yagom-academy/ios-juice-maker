@@ -36,7 +36,7 @@ enum Juice {
 }
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    let fruitStore: FruitStore
     
     func hasIngredients(`for` juice: Juice) -> Bool {
         let recipe = juice.recipe
