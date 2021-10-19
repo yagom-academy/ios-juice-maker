@@ -1,9 +1,3 @@
-//
-//  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
-
 import Foundation
 
 struct Juice {
@@ -21,7 +15,6 @@ struct Juice {
     }
 }
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     
     enum JuiceMakerError: LocalizedError {

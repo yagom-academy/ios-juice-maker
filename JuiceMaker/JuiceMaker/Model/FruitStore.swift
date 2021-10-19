@@ -1,9 +1,3 @@
-//
-//  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-//
-
 import Foundation
 
 struct Fruit {
@@ -11,7 +5,7 @@ struct Fruit {
     var count: Int = 10
     
     enum FruitName {
-        case strawberry // rawValue String?
+        case strawberry 
         case banana
         case pineapple
         case kiwi
@@ -19,7 +13,6 @@ struct Fruit {
     }
 }
 
-// 과일 저장소 타입
 class FruitStore {
     
     enum FruitStoreError: LocalizedError {
@@ -35,7 +28,7 @@ class FruitStore {
             }
         }
     }
-
+    
     var inventory: [Fruit] = [
         Fruit(name: .strawberry),
         Fruit(name: .banana),
@@ -69,16 +62,16 @@ class FruitStore {
     }
     
     func subtractStock(count: Int, from fruit: Fruit.FruitName) {
-         do {
-             let indexOfFruit = try findIndexFromInventory(with: fruit)
-             try checkEnoughStock(from: indexOfFruit, for: count)
-             inventory[indexOfFruit].count -= count
-         } catch FruitStoreError.inValidFruitChoice {
-             print(FruitStoreError.inValidFruitChoice.description)
-         } catch FruitStoreError.lackOfStock(let count) {
-             print(FruitStoreError.lackOfStock(stockNeeded: count).description)
-         } catch {
-             print(error)
-         }
-     }
+        do {
+            let indexOfFruit = try findIndexFromInventory(with: fruit)
+            try checkEnoughStock(from: indexOfFruit, for: count)
+            inventory[indexOfFruit].count -= count
+        } catch FruitStoreError.inValidFruitChoice {
+            print(FruitStoreError.inValidFruitChoice.description)
+        } catch FruitStoreError.lackOfStock(let count) {
+            print(FruitStoreError.lackOfStock(stockNeeded: count).description)
+        } catch {
+            print(error)
+        }
+    }
 }
