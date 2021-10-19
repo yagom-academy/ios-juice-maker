@@ -37,7 +37,6 @@ struct JuiceMaker {
         }
         try juiceRecipe.forEach { (fruit, count) in
             try fruitStore.subFruitStock(fruit: fruit, count: count)
-            print("fruit: \(fruit) count: \(count)")
         }
     }
     
