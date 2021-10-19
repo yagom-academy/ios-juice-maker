@@ -15,15 +15,16 @@ class FruitStore {
         case kiwi
         case mango
     }
+  
+    private var stock: [Fruit: Int]
     
-    private var stock: [Fruit: Int] = [
-        .strawberry: 10,
-        .banana: 10,
-        .pineapple: 10,
-        .kiwi: 10,
-        .mango: 10
-    ]
+    init(initialStockCount: Int = 10) {
+        let fruits = Fruit.allCases
+        let fruitsCount = Array(repeating: initialStockCount, count: fruits.count)
         
+        stock = Dictionary(uniqueKeysWithValues: zip(fruits, fruitsCount))
+    }
+    
     func checkEnoughStock(of fruit: Fruit, requiredAmount: Int) -> Bool {
         guard let fruitCounts = stock[fruit] else {
             return false
