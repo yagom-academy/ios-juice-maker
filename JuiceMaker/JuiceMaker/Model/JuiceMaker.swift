@@ -21,28 +21,27 @@ struct JuiceMaker {
             throw FruitStoreError.insufficientFruits(unavailabeFruits: unavailableFruits)
         }
         
-        for (fruit, amount) in juice.ingredients {
-            fruitStore.changeInventory(fruit, by: amount)
+        for ingredient in juice.ingredients {
+            fruitStore.changeInventory(ingredient.fruit, by: ingredient.amount)
         }
         return juice
     }
-  
-    func getUnavailableFruit(juice: JuiceRecipe) -> [Fruit:Int] {
-        let unavailableFruits = juice.ingredients.filter( {(fruit: Fruit, amount: Int) -> Bool in
-            return fruitStore.isAvailable(fruit: fruit, amount: amount) == false
+    
+    func getUnavailableFruit(juice: JuiceRecipe) -> [Ingredient] {
+        let unavailableFruits = juice.ingredients.filter( {(ingredient: Ingredient) -> Bool in
+            return fruitStore.isAvailable(fruit: ingredient.fruit, amount: ingredient.amount) == false
         })
         return unavailableFruits
     }
 }
 
-struct JuiceRecipe {
-    var ingredients: [Fruit : Int] = [:]
+struct Ingredient {
+    let fruit: Fruit
+    let amount: Int
+}
 
-    init(ingredientList: [(Fruit, Int)]) {
-        for (fruit, amount) in ingredientList {
-            ingredients[fruit] = amount
-        }
-    }
+struct JuiceRecipe {
+    let ingredients: [Ingredient]
 }
 
 enum JuiceMenu: String {
@@ -57,19 +56,19 @@ enum JuiceMenu: String {
     var recipe: JuiceRecipe {
         switch self {
         case .strawberryJuice:
-            return JuiceRecipe(ingredientList: [(Fruit.strawberry, 16)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .strawberry, amount: 16)])
         case .banannaJuice:
-            return JuiceRecipe(ingredientList: [(Fruit.bananna, 2)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .bananna, amount: 2)])
         case .kiwiJuice:
-            return JuiceRecipe(ingredientList: [(Fruit.kiwi, 3)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .kiwi, amount: 3)])
         case .pineappleJuice:
-            return JuiceRecipe(ingredientList: [(Fruit.pineapple, 2)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .pineapple, amount: 2)])
         case .strawberryBanannaJuice:
-            return JuiceRecipe(ingredientList: [(Fruit.strawberry, 10), (Fruit.bananna, 1)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .strawberry, amount: 10), Ingredient(fruit: .bananna, amount: 1)])
         case .mangoJuice:
-            return JuiceRecipe(ingredientList: [(Fruit.mango, 3)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .mango, amount: 3)])
         case .mangoKiwiJuice:
-            return JuiceRecipe(ingredientList: [(Fruit.mango, 2), (Fruit.kiwi, 1)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .mango, amount: 2), Ingredient(fruit: .kiwi, amount: 1)])
         }
     }
 }
