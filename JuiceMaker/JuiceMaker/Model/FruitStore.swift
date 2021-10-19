@@ -6,13 +6,12 @@
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore {
     enum Fruit: CaseIterable {
         case strawberry, banana, kiwi, pineapple, mango
     }
     
-    var inventory: Dictionary<Fruit, Int>
+    private var inventory: [Fruit: Int]
     
     init(defaultValue: Int = 10) {
         self.inventory = [:]
@@ -21,14 +20,14 @@ class FruitStore {
         }
     }
     
-    func increaseFruitStock(fruit: Fruit) {
+    func increaseFruitStock(of fruit: Fruit, by quantity: Int = 1) {
         guard let fruitStock = inventory[fruit] else {
             return
         }
-        inventory[fruit] = fruitStock + 1
+        inventory[fruit] = fruitStock + quantity
     }
     
-    func decreaseFruitStock(fruit: Fruit, quantity: Int = 1) throws {
+    func decreaseFruitStock(of fruit: Fruit, by quantity: Int = 1) throws {
         guard let fruitStock = inventory[fruit] else {
             throw FruitStoreError.unexpectedNil
         }
