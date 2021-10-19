@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    typealias Recipe = [FruitStore.Fruit: Int] 
+    fileprivate typealias Recipe = [FruitStore.Fruit: Int]
     
     let store: FruitStore = FruitStore()
     
@@ -21,7 +21,7 @@ struct JuiceMaker {
         case mangoJuice
         case mangoKiwiJuice
         
-        var recipe: Recipe {
+        fileprivate var recipe: Recipe {
             switch self {
             case .strawberryJuice:
                 return [.strawberry: 16]
@@ -41,7 +41,7 @@ struct JuiceMaker {
         }
     }
     
-    func canMakeJuice(requiredRecipe: Recipe) -> Bool {
+    private func canMakeJuice(requiredRecipe: Recipe) -> Bool {
         let availableRecipe = requiredRecipe.filter {
             store.checkEnoughStock(of: $0.key, requiredAmount: $0.value)
         }
