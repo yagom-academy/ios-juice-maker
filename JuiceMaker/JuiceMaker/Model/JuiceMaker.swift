@@ -33,5 +33,10 @@ struct JuiceMaker {
     
     let fruitStore = FruitStore()
     
+    func makeJuice(menu: JuiceMenu) throws {
+        try menu.recipe.forEach {
+            try fruitStore.decreaseFruitStock(fruit: $0.key, quantity: $0.value)
+        }
+    }
     
 }
