@@ -17,7 +17,7 @@ enum Fruit {
 class FruitStore {
     static let initialFruitsQuantity: Int = 10
     
-    struct FruitInventory {
+    class FruitInventory {
         let fruit: Fruit
         var quantity: Int = FruitStore.initialFruitsQuantity
         
@@ -25,18 +25,18 @@ class FruitStore {
             self.fruit = fruit
         }
         
-        mutating func addFruits(quantity: Int) {
+        func addFruits(quantity: Int) {
             self.quantity += quantity
         }
         
-        mutating func subtractFruits(quantity: Int) {
+        func subtractFruits(quantity: Int) {
             self.quantity -= quantity
         }
     }
     
-    var strawberries: FruitInventory = FruitInventory(fruit: .strawberry)
-    var bananas: FruitInventory = FruitInventory(fruit: .banana)
-    var pineapples: FruitInventory = FruitInventory(fruit: .pineapple)
-    var kiwis: FruitInventory = FruitInventory(fruit: .kiwi)
-    var mangoes: FruitInventory = FruitInventory(fruit: .mango)
+    let strawberries: FruitInventory = FruitInventory(fruit: .strawberry)
+    let bananas: FruitInventory = FruitInventory(fruit: .banana)
+    let pineapples: FruitInventory = FruitInventory(fruit: .pineapple)
+    let kiwis: FruitInventory = FruitInventory(fruit: .kiwi)
+    let mangoes: FruitInventory = FruitInventory(fruit: .mango)
 }
