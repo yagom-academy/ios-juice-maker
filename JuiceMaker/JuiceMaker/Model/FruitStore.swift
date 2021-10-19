@@ -18,7 +18,7 @@ class FruitStore {
     var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeysWithValues: zip(Fruit.allCases,
                                                                                      Array(repeating: 10, count: Fruit.allCases.count)))
         
-    func changeQuantity(fruit: Fruit, quantity: Int) {
+    func changeQuantity(of fruit: Fruit, quantity: Int) {
         fruitQuantity[fruit] = quantity
     }
 }
