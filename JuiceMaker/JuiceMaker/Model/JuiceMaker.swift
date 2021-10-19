@@ -6,6 +6,10 @@
 
 import Foundation
 
+enum JuiceMakerError: Error {
+    case fruitNotFound
+}
+
 enum Juice {
     case strawberry
     case banana
@@ -38,12 +42,12 @@ enum Juice {
 struct JuiceMaker {
     let fruitStore: FruitStore
     
-    func hasIngredients(`for` juice: Juice) -> Bool {
+    func hasIngredients(`for` juice: Juice) throws -> Bool {
         let recipe = juice.recipe
         
         for (fruit, demandingAmount) in recipe {
             guard let leftAmount = fruitStore.inventory[fruit] else {
-                return false // TODO: 오류처리 예정
+                throw JuiceMakerError.fruitNotFound
             }
             
             guard leftAmount >= demandingAmount else {
