@@ -6,7 +6,19 @@
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore {
+    enum Fruit: CaseIterable {
+        case strawberry
+        case banana
+        case pineapple
+        case kiwi
+        case mango
+    }
     
+    var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeysWithValues: zip(Fruit.allCases,
+                                                                                     Array(repeating: 10, count: Fruit.allCases.count)))
+        
+    func changeQuantity(fruit: Fruit, quantity: Int) {
+        fruitQuantity[fruit] = quantity
+    }
 }
