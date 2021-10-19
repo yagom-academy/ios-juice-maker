@@ -15,11 +15,6 @@ class FruitStore {
         case mango
     }
 
-    enum Errors: Error {
-        case noneOfInput
-        case invalidValue
-    }
-
     var defaultStock : Int
     var fruitStorage : Dictionary<Fruit, Int>
     let allFruits : Array<Fruit>
@@ -32,11 +27,24 @@ class FruitStore {
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
 
-    func useFruit(fruit: Fruit, amount: Int) throws {
+    func useFruit(which fruit: Fruit, on amount: Int) throws {
         guard var inventory = fruitStorage[fruit] else {
             throw Errors.invalidValue
         }
+        
+        guard inventory > amount else {
+            throw Errors.outOfStock
+        }
+    
         inventory -= amount
+        fruitStorage[fruit] = inventory
+    }
+    
+    func stockUpFruit(which fruit: Fruit, on amount: Int) throws {
+        guard var inventory = fruitStorage[fruit] else {
+            throw Errors.invalidValue
+        }
+        inventory += amount
         fruitStorage[fruit] = inventory
     }
 }

@@ -33,7 +33,7 @@ struct JuiceMaker {
 
     func makeJuice(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            try fruitstore.useFruit(fruit: fruit, amount: amount)
+            try fruitstore.useFruit(which: fruit, on: amount)
         }
     }
 }
