@@ -5,8 +5,8 @@
 //
 
 extension Dictionary {
-    init<T>(uniqueKeys: T, repeating: Value) where T: Collection, T.Element == Key {
-        self = Dictionary(uniqueKeysWithValues: zip(uniqueKeys, Array(repeating: repeating, count: uniqueKeys.count)))
+    init<T>(uniqueKeys: T, repeating value: Value) where T: Collection, T.Element == Key {
+        self = Dictionary(uniqueKeysWithValues: zip(uniqueKeys, Array(repeating: value, count: uniqueKeys.count)))
     }
 }
 
