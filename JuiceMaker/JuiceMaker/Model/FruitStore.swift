@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    enum Fruit {
+    enum Fruit: CaseIterable {
         case strawberry
         case banana
         case pineapple
@@ -16,29 +16,32 @@ class FruitStore {
         case mango
     }
     
-    var stock: [Fruit: Int] = [
+    private var stock: [Fruit: Int] = [
         .strawberry: 10,
         .banana: 10,
         .pineapple: 10,
         .kiwi: 10,
         .mango: 10
     ]
-    
+        
     func checkEnoughStock(of fruit: Fruit, requiredAmount: Int) -> Bool {
-        guard let fruitCounts = stock[fruit], fruitCounts >= requiredAmount else {
+        guard let fruitCounts = stock[fruit] else {
             return false
         }
         
-        return true
+        if fruitCounts >= requiredAmount {
+            return true
+        } else {
+            return false
+        }
     }
     
     func addStock(of fruit: Fruit, by amount: Int) {
         stock[fruit]? += amount
     }
     
-    func subtractStock(of fruit: Fruit, by amount: Int){
+    func subtractStock(of fruit: Fruit, by amount: Int) {
         guard checkEnoughStock(of: fruit, requiredAmount: amount) else {
-            print("재고 없음")
             return
         }
         

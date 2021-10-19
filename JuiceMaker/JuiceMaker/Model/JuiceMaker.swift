@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    typealias Recipe = [FruitStore.Fruit: Int]
+    typealias Recipe = [FruitStore.Fruit: Int] 
     
     let store: FruitStore = FruitStore()
     
@@ -42,7 +42,9 @@ struct JuiceMaker {
     }
     
     func canMakeJuice(requiredRecipe: Recipe) -> Bool {
-        let availableRecipe = requiredRecipe.filter { store.checkEnoughStock(of: $0.key, requiredAmount: $0.value) }
+        let availableRecipe = requiredRecipe.filter {
+            store.checkEnoughStock(of: $0.key, requiredAmount: $0.value)
+        }
         
         guard availableRecipe.count == requiredRecipe.count else {
             return false
