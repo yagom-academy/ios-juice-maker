@@ -8,35 +8,6 @@ import Foundation
 import UIKit
 
 struct JuiceMaker {
-    enum Juice {
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
-        
-        var recipe: [Fruit] {
-            switch self {
-            case .strawberryJuice:
-                return [Fruit(fruitName: .strawberry, count: 16)]
-            case .bananaJuice:
-                return [Fruit(fruitName: .banana, count: 2)]
-            case .kiwiJuice:
-                return [Fruit(fruitName: .kiwi, count: 3)]
-            case .pineappleJuice:
-                return [Fruit(fruitName: .pineapple, count: 2)]
-            case .strawberryBananaJuice:
-                return [Fruit(fruitName: .strawberry, count: 10), Fruit(fruitName: .banana, count: 1)]
-            case .mangoJuice:
-                return [Fruit(fruitName: .mango, count: 3)]
-            case .mangoKiwiJuice:
-                return [Fruit(fruitName: .mango, count: 2), Fruit(fruitName: .kiwi, count: 1)]
-            }
-        }
-    }
-    
     var fruitStore: FruitStore = FruitStore()
     
     func makeJuice(ingredient: Juice) -> Bool {
@@ -49,6 +20,33 @@ struct JuiceMaker {
         
         guard fruitStore.bringIngredients(ingredients: ingredient.recipe[0]) else {
             print("\(ingredient.recipe[0].name)주스가 만들어지지 못했습니다")
+            return false
+        }
+    
+        return true
+    }
+    
+    func makeJuice(mixedIngredients: Juice) -> Bool {
+        let haveEnoughIngredient1 = fruitStore.checkQuantity(requiredIngredient: mixedIngredients.recipe[0])
+        
+        guard haveEnoughIngredient1 else {
+            print("\(mixedIngredients.recipe[0].name)가 충분하지 않습니다")
+            return false
+        }
+        
+        let haveEnoughIngredient2 = fruitStore.checkQuantity(requiredIngredient: mixedIngredients.recipe[1])
+        
+        guard haveEnoughIngredient2 else {
+            print("\(mixedIngredients.recipe[1].name)가 충분하지 않습니다")
+            return false
+        }
+        
+        guard fruitStore.bringIngredients(ingredients: mixedIngredients.recipe[0]) else {
+            print("\(mixedIngredients.recipe[0].name)주스가 만들어지지 못했습니다")
+            return false
+        }
+        guard fruitStore.bringIngredients(ingredients: mixedIngredients.recipe[1]) else {
+            print("\(mixedIngredients.recipe[1].name)주스가 만들어지지 못했습니다")
             return false
         }
     
