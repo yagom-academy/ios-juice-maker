@@ -37,7 +37,13 @@ class FruitStore {
     }
     
     func addStock(of fruit: Fruit, by amount: Int) {
-        stock[fruit]? += amount
+        guard let currentStockCount = stock[fruit] else {
+            return
+        }
+        
+        let newStockCount = currentStockCount + amount
+        
+        stock.updateValue(newStockCount, forKey: fruit)
     }
     
     func subtractStock(of fruit: Fruit, by amount: Int) {
