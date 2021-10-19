@@ -4,10 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
-import UIKit
-
-
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
     

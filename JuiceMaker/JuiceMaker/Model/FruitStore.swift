@@ -4,9 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
-
 extension Dictionary {
     init<T>(uniqueKeys: T, repeating: Int) where T: Collection, T.Element == Key, Int == Value {
         self = Dictionary(uniqueKeysWithValues: zip(uniqueKeys, Array(repeating: repeating, count: uniqueKeys.count)))
