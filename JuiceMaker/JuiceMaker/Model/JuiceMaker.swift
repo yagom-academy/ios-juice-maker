@@ -53,16 +53,15 @@ struct JuiceMaker {
         return true
     }
     
-    func makeJuice(juice: Juice) {
+    func makeJuice(juice: Juice) throws {
         let recipe = juice.recipe
         
         guard canMakeJuice(requiredRecipe: recipe) else {
-            print("\(juice)를 만들 수 없습니다.")
-            return
+            throw JuiceMakeError.notEnoughStock
         }
         
         for (fruit, amount) in recipe {
-            store.subtractStock(of: fruit, by: amount)
+            try store.subtractStock(of: fruit, by: amount)
         }
     }
 }
