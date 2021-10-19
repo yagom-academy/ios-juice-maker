@@ -6,15 +6,16 @@
 
 import Foundation
 
+
+enum Fruit: CaseIterable {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
+
 class FruitStore {
-    enum Fruit: CaseIterable {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-    }
-    
     var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeysWithValues: zip(Fruit.allCases,
                                                                                      Array(repeating: 10, count: Fruit.allCases.count)))
         
