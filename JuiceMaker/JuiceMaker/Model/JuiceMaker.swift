@@ -10,6 +10,9 @@ import UIKit
 
 struct JuiceMaker {
     let fruitStore = FruitStore()
+    enum JuiceMakerError: Error {
+        case outOfStock
+    }
     
     enum JuiceMenu {
         var juiceRecipe: Dictionary<Fruit, Int> {
@@ -40,11 +43,11 @@ struct JuiceMaker {
         case mangoKiwiJuice
     }
     
-    func makeJuice(order: JuiceMenu) {
+    func makeJuice(order: JuiceMenu) throws {
         let recipes: [Fruit : Int] = order.juiceRecipe
         
         guard isRemaining(of: recipes) else {
-            return
+            throw JuiceMakerError.outOfStock
         }
         
         for recipe in recipes {
