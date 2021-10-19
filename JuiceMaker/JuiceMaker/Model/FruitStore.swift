@@ -35,6 +35,14 @@ class FruitStore {
     func addStock(of fruit: Fruit, by amount: Int) {
         stock[fruit]? += amount
     }
-
+    
+    func subtractStock(of fruit: Fruit, by amount: Int){
+        guard checkEnoughStock(of: fruit, requiredAmount: amount) else {
+            print("재고 없음")
+            return
+        }
+        
+        stock[fruit]? -= amount
+    }
 }
 
