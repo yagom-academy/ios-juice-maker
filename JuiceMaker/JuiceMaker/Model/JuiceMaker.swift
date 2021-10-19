@@ -8,9 +8,10 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var fruitStore: FruitStore
-    init(amount: Int) {
-        fruitStore = FruitStore(fruits: [.strawberry, .bananna, .pineapple, .kiwi, .mango], amount: amount)
+    private let fruitStore: FruitStore
+    
+    init(fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
     }
     
     func make(juice: Juice) -> Juice? {
