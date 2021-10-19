@@ -6,6 +6,8 @@
 
 import Foundation
 
+private let defaultFruitCount = 10
+
 class FruitStore {
     enum Fruit: CaseIterable {
         case strawberry
@@ -17,14 +19,22 @@ class FruitStore {
     
     private var fruitBasket: [Fruit: Int]
     
-    init(count: Int = 10) {
+    init(count: Int = defaultFruitCount) {
         let allFruits = Fruit.allCases
         let fruitscount = Array(repeating: count, count: allFruits.count)
         
         self.fruitBasket = Dictionary(uniqueKeysWithValues: zip(allFruits, fruitscount))
     }
     
-    func changeAmount(count: Int, of fruit: Fruit, by calculator: (Int, Int) -> Int) throws {
+    func addFruitStock(fruit: Fruit, count: Int) throws {
+        try changeAmount(count: count, of: fruit, by: +)
+    }
+    
+    func subFruitStock(fruit: Fruit, count: Int) throws {
+        try changeAmount(count: count, of: fruit, by: -)
+    }
+    
+    private func changeAmount(count: Int, of fruit: Fruit, by calculator: (Int, Int) -> Int) throws {
         guard count > 0 else {
             throw RequestError.wrongCount
         }

@@ -36,7 +36,7 @@ struct JuiceMaker {
             throw RequestError.fruitStockOut
         }
         try juiceRecipe.forEach { (fruit, count) in
-            try fruitStore.changeAmount(count: count, of: fruit, by: -)
+            try fruitStore.subFruitStock(fruit: fruit, count: count)
             print("fruit: \(fruit) count: \(count)")
         }
     }
