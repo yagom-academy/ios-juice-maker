@@ -21,4 +21,18 @@ class FruitStore {
         }
     }
     
+    func increaseFruitStock(fruit: Fruit) {
+        guard let fruitStock = inventory[fruit] else {
+            return
+        }
+        inventory[fruit] = fruitStock + 1
+    }
+    
+    func decreaseFruitStock(fruit: Fruit, quantity: Int = 1) {
+        guard let fruitStock = inventory[fruit] else {
+            return
+        }
+        inventory[fruit] = fruitStock - quantity
+    }
+    
 }
