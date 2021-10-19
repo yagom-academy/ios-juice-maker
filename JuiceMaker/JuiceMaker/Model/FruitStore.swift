@@ -63,7 +63,7 @@ class FruitStore {
     }
     
     func checkEnoughStock(from index: Int, for count: Int) throws {
-        guard inventory[index].count > count else {
+        guard inventory[index].count >= count else {
             throw FruitStoreError.lackOfStock(stockNeeded: count - inventory[index].count)
         }
     }
