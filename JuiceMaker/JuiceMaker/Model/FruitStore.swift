@@ -37,9 +37,9 @@ class FruitStore {
         }
     }
     
-    func addStock(of fruit: Fruit, by amount: Int) {
+    func addStock(of fruit: Fruit, by amount: Int) throws {
         guard let currentStockCount = stock[fruit] else {
-            return
+            throw JuiceMakeError.invaildKey
         }
         
         let newStockCount = currentStockCount + amount
@@ -47,13 +47,13 @@ class FruitStore {
         stock.updateValue(newStockCount, forKey: fruit)
     }
     
-    func subtractStock(of fruit: Fruit, by amount: Int) {
+    func subtractStock(of fruit: Fruit, by amount: Int) throws {
         guard checkEnoughStock(of: fruit, requiredAmount: amount) else {
-            return
+            throw JuiceMakeError.outOfStock
         }
         
         guard let currentStockCount = stock[fruit] else {
-            return
+            throw JuiceMakeError.invaildKey
         }
         
         let newStockCount = currentStockCount - amount
