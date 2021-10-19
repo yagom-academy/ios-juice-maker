@@ -14,18 +14,21 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func make(juice: Juice) -> Juice? {
-        guard checkFruit(juice: juice).count == 0 else {
-            return nil
+    func make(juice: Juice) throws -> Juice {
+        let unavailableFruits = getUnavailableFruit(juice: juice)
+        
+        guard unavailableFruits.count == 0 else {
+            throw FruitStoreError.insufficientFruits(unavailabeFruits: unavailableFruits)
         }
+        
         return juice
     }
-    
-    func checkFruit(juice: Juice) -> [Fruit:Int] {
-        let unAvailableFruits = juice.ingredients.filter( {(fruit: Fruit, amount: Int) -> Bool in
+  
+    func getUnavailableFruit(juice: Juice) -> [Fruit:Int] {
+        let unavailableFruits = juice.ingredients.filter( {(fruit: Fruit, amount: Int) -> Bool in
             return fruitStore.isAvailable(fruit: fruit, amount: amount) == false
         })
-        return unAvailableFruits
+        return unavailableFruits
     }
 }
 
@@ -40,3 +43,5 @@ struct Juice {
         }
     }
 }
+    
+
