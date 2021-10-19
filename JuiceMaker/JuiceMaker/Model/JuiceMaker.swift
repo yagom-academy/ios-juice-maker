@@ -21,6 +21,9 @@ struct JuiceMaker {
             throw FruitStoreError.insufficientFruits(unavailabeFruits: unavailableFruits)
         }
         
+        for (fruit, amount) in juice.ingredients {
+            fruitStore.changeInventory(fruit, by: amount)
+        }
         return juice
     }
   
