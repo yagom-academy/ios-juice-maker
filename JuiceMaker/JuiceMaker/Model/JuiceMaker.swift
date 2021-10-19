@@ -39,4 +39,24 @@ struct JuiceMaker {
         case mangoJuice
         case mangoKiwiJuice
     }
+    
+    func makeJuice(order: JuiceMenu) {
+        let recipes: [Fruit : Int] = order.juiceRecipe
+        
+        for recipe in recipes {
+            let count = recipe.value
+            
+            guard let fruitQuantity: Int = fruitStore.fruitQuantity[recipe.key], fruitQuantity - count >= 0 else {
+                print("재고가 없습니다.")
+                return
+            }
+        }
+        
+        for recipe in recipes {
+            let fruit = recipe.key
+            let count = recipe.value
+            
+            fruitStore.changeQuantity(of: fruit, quantity: count)
+        }
+    }
 }
