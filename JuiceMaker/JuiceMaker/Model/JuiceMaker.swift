@@ -24,6 +24,17 @@ struct Juice {
 // 쥬스 메이커 타입
 struct JuiceMaker {
     
+    enum JuiceMakerError: LocalizedError {
+        case inValidMenuChoice
+        
+        var description: String {
+            switch self {
+            case .inValidMenuChoice:
+                return "메뉴에 없습니다. 다시 선택해주세요."
+            }
+        }
+    }
+    
     var store = FruitStore()
     
     typealias ingredient = (fruit: Fruit.FruitName, count: Int)
@@ -48,7 +59,7 @@ struct JuiceMaker {
     
     mutating func findRecipe(of juiceName: Juice.JuiceName) throws -> [ingredient] {
         guard let foundRecipe = recipe[juiceName] else {
-            throw
+            throw JuiceMakerError.inValidMenuChoice
         }
         return foundRecipe
     }
@@ -63,8 +74,8 @@ struct JuiceMaker {
         do {
             let foundRecipe = try findRecipe(of: juiceName)
             blendIngredient(by: foundRecipe)
-        } catch {
-            
+        } catch JuiceMakerError.inValidMenuChoice {
+            print(JuiceMakerError.inValidMenuChoice.description)
         } catch {
             print(error)
         }
