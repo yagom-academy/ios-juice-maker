@@ -23,4 +23,24 @@ class FruitStore {
             self.inventory[fruit] = FruitStore.defaultAmountPerFruit
         }
     }
+    
+    func increase(_ fruit: Fruit, amount: Int) throws {
+        guard let leftAmount = self.inventory[fruit] else {
+            throw JuiceMakerError.fruitNotFound
+        }
+        
+        self.inventory[fruit] = leftAmount + amount
+    }
+    
+    func decrease(_ fruit: Fruit, amount: Int) throws {
+        guard let leftAmount = self.inventory[fruit] else {
+            throw JuiceMakerError.fruitNotFound
+        }
+        
+        guard leftAmount >= amount else {
+            throw JuiceMakerError.notEnoughFruit
+        }
+
+        self.inventory[fruit] = leftAmount - amount
+    }
 }

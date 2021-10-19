@@ -8,6 +8,7 @@ import Foundation
 
 enum JuiceMakerError: Error {
     case fruitNotFound
+    case notEnoughFruit
 }
 
 enum Juice {
