@@ -20,7 +20,7 @@ enum Juice {
     case strawberryBanana
     case mangoKiwi
     
-    var recipe: [(Fruit, Int)] {
+    fileprivate var recipe: [(Fruit, Int)] {
         switch self {
         case .strawberry:
             return [(.strawberry, 16)]
@@ -45,15 +45,9 @@ struct JuiceMaker {
     
     private func hasIngredients(`for` juice: Juice) throws {
         let recipe = juice.recipe
-        
+
         for (fruit, demandingAmount) in recipe {
-            guard let leftAmount = fruitStore.inventory[fruit] else {
-                throw JuiceMakerError.fruitNotFound
-            }
-            
-            guard leftAmount >= demandingAmount else {
-                throw JuiceMakerError.notEnoughFruit
-            }
+            try fruitStore.has(fruit, amount: demandingAmount)
         }
     }
     

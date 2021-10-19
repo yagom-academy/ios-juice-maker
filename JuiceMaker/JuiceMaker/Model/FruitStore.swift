@@ -43,4 +43,14 @@ class FruitStore {
 
         self.inventory[fruit] = leftAmount - amount
     }
+    
+    func has(_ fruit: Fruit, amount: Int) throws {
+        guard let leftAmount = self.inventory[fruit] else {
+            throw JuiceMakerError.fruitNotFound
+        }
+        
+        guard leftAmount >= amount else {
+            throw JuiceMakerError.notEnoughFruit
+        }
+    }
 }
