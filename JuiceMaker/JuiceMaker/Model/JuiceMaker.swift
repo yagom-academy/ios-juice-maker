@@ -10,6 +10,7 @@ import UIKit
 
 struct JuiceMaker {
     let fruitStore = FruitStore()
+    
     enum JuiceMakerError: Error {
         case outOfStock
     }
