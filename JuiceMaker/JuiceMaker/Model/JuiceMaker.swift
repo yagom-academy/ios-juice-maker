@@ -47,19 +47,15 @@ struct JuiceMaker {
             throw JuiceMakerError.outOfStock
         }
         
-        for recipe in recipes {
-            let fruit: Fruit = recipe.key
-            let count: Int = recipe.value
-            
+        for (fruit, count) in recipes {
             fruitStore.changeQuantity(of: fruit, count: count, by: -)
         }
     }
     
     private func isRemaining(of recipes: [Fruit : Int]) -> Bool {
-        for recipe in recipes {
-            let count: Int = recipe.value
+        for (fruit, count) in recipes {
             
-            guard let fruitQuantity: Int = fruitStore.fruitQuantity[recipe.key], fruitQuantity - count >= 0 else {
+            guard let fruitQuantity: Int = fruitStore.fruitQuantity[fruit], fruitQuantity >= count else {
                 return false
             }
         }
