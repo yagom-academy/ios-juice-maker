@@ -6,9 +6,10 @@
 
 import Foundation
 
-typealias Recipe = [FruitStore.Fruit: Int]
 
 struct JuiceMaker {
+    typealias Recipe = [FruitStore.Fruit: Int]
+
     enum Juice {
         case strawberry
         case banana
