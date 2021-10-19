@@ -11,13 +11,13 @@ struct Juice {
     var count: Int = 0
 
     enum JuiceName {
-        case 딸기쥬스
-        case 바나나쥬스
-        case 키위쥬스
-        case 파인애플쥬스
-        case 딸바쥬스
-        case 망고쥬스
-        case 망고키위쥬스
+        case strawberryJuice
+        case bananaJuice
+        case kiwiJuice
+        case pineappleJuice
+        case strawberryBananaJuice
+        case mangoJuice
+        case mangoKiwiJuice
     }
 }
 

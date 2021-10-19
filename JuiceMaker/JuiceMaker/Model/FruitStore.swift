@@ -11,11 +11,11 @@ struct Fruit {
     var count: Int = 10
     
     enum FruitName {
-        case 딸기 // rawValue String?
-        case 바나나
-        case 파인애플
-        case 키위
-        case 망고
+        case strawberry // rawValue String?
+        case banana
+        case pineapple
+        case kiwi
+        case mango
     }
 }
 
@@ -37,11 +37,11 @@ class FruitStore {
     }
 
     var inventory: [Fruit] = [
-        Fruit(name: .딸기),
-        Fruit(name: .바나나),
-        Fruit(name: .파인애플),
-        Fruit(name: .키위),
-        Fruit(name: .망고)
+        Fruit(name: .strawberry),
+        Fruit(name: .banana),
+        Fruit(name: .pineapple),
+        Fruit(name: .kiwi),
+        Fruit(name: .mango)
     ]
     
     func findIndexFromInventory(with fruit: Fruit.FruitName) throws -> Int {
