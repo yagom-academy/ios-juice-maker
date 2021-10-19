@@ -10,3 +10,15 @@ import Foundation
 struct JuiceMaker {
     
 }
+
+struct Juice {
+    var name: String
+    var ingredients: [Fruit : Int] = [:]
+    
+    init(name: String, ingredientList: [(Fruit, Int)]) {
+        self.name = name
+        for (fruit, amount) in ingredientList {
+            ingredients[fruit] = amount
+        }
+    }
+}
