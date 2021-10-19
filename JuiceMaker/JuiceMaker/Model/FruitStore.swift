@@ -7,6 +7,12 @@
 import Foundation
 
 
+extension Dictionary {
+    init<T>(uniqueKeys: T, repeating: Int) where T: Collection, T.Element == Key, Int == Value {
+        self = Dictionary(uniqueKeysWithValues: zip(uniqueKeys, Array(repeating: repeating, count: uniqueKeys.count)))
+    }
+}
+
 enum Fruit: CaseIterable {
     case strawberry
     case banana
@@ -16,8 +22,7 @@ enum Fruit: CaseIterable {
 }
 
 class FruitStore {
-    var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeysWithValues: zip(Fruit.allCases,
-                                                                                     Array(repeating: 10, count: Fruit.allCases.count)))
+    var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeys: Fruit.allCases, repeating: 10)
         
     func changeQuantity(of fruit: Fruit, quantity: Int) {
         fruitQuantity[fruit] = quantity
