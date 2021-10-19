@@ -31,4 +31,10 @@ class FruitStore {
         
         return true
     }
+    
+    func addStock(of fruit: Fruit, by amount: Int) {
+        stock[fruit]? += amount
+    }
+
 }
+
