@@ -9,7 +9,7 @@ import UIKit
 
 
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore()
+    private let fruitStore: FruitStore = FruitStore()
     
     enum JuiceMakerError: Error {
         case outOfStock
@@ -59,7 +59,7 @@ struct JuiceMaker {
         }
     }
     
-    func isRemaining(of recipes: [Fruit : Int]) -> Bool {
+    private func isRemaining(of recipes: [Fruit : Int]) -> Bool {
         for recipe in recipes {
             let count: Int = recipe.value
             
