@@ -28,11 +28,19 @@ class FruitStore {
         inventory[fruit] = fruitStock + 1
     }
     
-    func decreaseFruitStock(fruit: Fruit, quantity: Int = 1) {
+    func decreaseFruitStock(fruit: Fruit, quantity: Int = 1) throws {
         guard let fruitStock = inventory[fruit] else {
-            return
+            throw FruitStoreError.unexpectedNil
+        }
+        if fruitStock < quantity {
+            throw FruitStoreError.stockShortage
         }
         inventory[fruit] = fruitStock - quantity
     }
     
+}
+
+enum FruitStoreError: Error {
+    case stockShortage
+    case unexpectedNil
 }
