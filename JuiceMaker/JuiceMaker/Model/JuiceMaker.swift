@@ -43,7 +43,7 @@ enum Juice {
 struct JuiceMaker {
     let fruitStore: FruitStore
     
-    func hasIngredients(`for` juice: Juice) throws -> Bool {
+    func hasIngredients(`for` juice: Juice) throws {
         let recipe = juice.recipe
         
         for (fruit, demandingAmount) in recipe {
@@ -52,11 +52,26 @@ struct JuiceMaker {
             }
             
             guard leftAmount >= demandingAmount else {
-                return false
+                throw JuiceMakerError.notEnoughFruit
             }
         }
+    }
+    
+    func consumeIngredients(`for` juice: Juice) throws {
+        let recipe = juice.recipe
         
-        return true
+        for (fruit, demandingAmount) in recipe {
+            try self.fruitStore.decrease(fruit, amount: demandingAmount)
+        }
+    }
+    
+    func make(_ juice: Juice) {
+        do {
+            try self.hasIngredients(for: juice)
+            try consumeIngredients(for: juice)
+        } catch {
+            return // TODO: 에러 발생 시 어떻게 처리할지 STEP 2 에서 계속...
+        }
     }
 }
 
