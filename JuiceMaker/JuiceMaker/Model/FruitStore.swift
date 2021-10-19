@@ -7,6 +7,9 @@
 import Foundation
 
 // 과일 저장소 타입
+enum ErrorCase: Error {
+    case notEnoughStock
+}
 
 class FruitStore {
     enum Fruit: CaseIterable {
@@ -24,6 +27,10 @@ class FruitStore {
         for fruit in Fruit.allCases {
             stock[fruit] = initialStock
         }
+    }
+    
+    func decreaseStock(from juiceRecipe: Juice) throws {
+        
     }
 }
 

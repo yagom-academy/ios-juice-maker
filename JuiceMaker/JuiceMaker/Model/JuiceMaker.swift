@@ -7,28 +7,37 @@
 import Foundation
 
 // 쥬스 메이커 타입
+enum Juice {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoJuice
+    case mangoKiwiJuice
+    
+    func makeJuiceRecipe() -> [FruitStore.Fruit: Int] {
+        switch self {
+        case .strawberryJuice:
+            return [.strawberry: 16]
+        case .bananaJuice:
+            return [.banana: 2]
+        case .kiwiJuice:
+            return [.kiwi: 3]
+        case .pineappleJuice:
+            return [.pineapple: 2]
+        case .strawberryBananaJuice:
+            return [.strawberry: 10 , .banana: 1]
+        case .mangoJuice:
+            return [.mango: 3]
+        case .mangoKiwiJuice:
+            return [.mango: 2, .kiwi: 3]
+        }
+    }
+}
+
 struct JuiceMaker {
     let fruitStore: FruitStore
     
-    enum Juice {
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
-    }
-    
-    func makeJuiceRecipe() {
-        var juiceRecipe = [[FruitStore.Fruit: Int]]()
-        juiceRecipe.append([.strawberry: 16])
-        juiceRecipe.append([.banana: 2])
-        juiceRecipe.append([.kiwi: 3])
-        juiceRecipe.append([.pineapple: 2])
-        juiceRecipe.append([.strawberry: 10 , .banana: 1])
-        juiceRecipe.append([.mango: 3])
-        juiceRecipe.append([.mango: 2, .kiwi: 3])
-    }
 }
 
