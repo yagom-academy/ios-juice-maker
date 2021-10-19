@@ -23,6 +23,7 @@ struct Juice {
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
+    
     var store = FruitStore()
     
     typealias ingredient = (fruit: Fruit.FruitName, count: Int)
@@ -44,4 +45,28 @@ struct JuiceMaker {
         .mangoJuice: mangoJuiceRecipe,
         .mangoKiwiJuice: mangoKiwiJuiceRecipe
     ]
+    
+    mutating func findRecipe(of juiceName: Juice.JuiceName) throws -> [ingredient] {
+        guard let foundRecipe = recipe[juiceName] else {
+            throw
+        }
+        return foundRecipe
+    }
+    
+    func blendIngredient(by recipe: [ingredient]) {
+        for ingredient in recipe {
+            store.subtractStock(count: ingredient.count, from: ingredient.fruit)
+        }
+    }
+    
+    mutating func make(juiceName: Juice.JuiceName) {
+        do {
+            let foundRecipe = try findRecipe(of: juiceName)
+            blendIngredient(by: foundRecipe)
+        } catch {
+            
+        } catch {
+            print(error)
+        }
+    }
 }
