@@ -41,9 +41,9 @@ enum Juice {
 }
 
 struct JuiceMaker {
-    let fruitStore: FruitStore
+    private let fruitStore: FruitStore
     
-    func hasIngredients(`for` juice: Juice) throws {
+    private func hasIngredients(`for` juice: Juice) throws {
         let recipe = juice.recipe
         
         for (fruit, demandingAmount) in recipe {
@@ -57,7 +57,7 @@ struct JuiceMaker {
         }
     }
     
-    func consumeIngredients(`for` juice: Juice) throws {
+    private func consumeIngredients(`for` juice: Juice) throws {
         let recipe = juice.recipe
         
         for (fruit, demandingAmount) in recipe {
@@ -74,4 +74,3 @@ struct JuiceMaker {
         }
     }
 }
-
