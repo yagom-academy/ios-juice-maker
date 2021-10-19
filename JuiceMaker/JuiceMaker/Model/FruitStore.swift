@@ -22,12 +22,17 @@ struct Fruit {
 // 과일 저장소 타입
 class FruitStore {
     
-    enum FruitStoreError: String, LocalizedError {
-        case inValidFruitChoice = "유효하지 않은 선택입니다."
-        case lackOfStock = "재료가 부족합니다."
+    enum FruitStoreError: LocalizedError {
+        case inValidFruitChoice
+        case lackOfStock(stockNeeded: Int)
         
         var description: String {
-            return rawValue
+            switch self {
+            case .inValidFruitChoice:
+                return "유효하지 않은 선택입니다."
+            case .lackOfStock(let stockNeeded):
+                return "재료가 \(stockNeeded)개 부족합니다. 재고를 확인해주세요."
+            }
         }
     }
 
@@ -59,7 +64,7 @@ class FruitStore {
     
     func checkEnoughStock(from index: Int, for count: Int) throws {
         guard inventory[index].count > count else {
-            throw FruitStoreError.lackOfStock
+            throw FruitStoreError.lackOfStock(stockNeeded: count - inventory[index].count)
         }
     }
     
@@ -70,8 +75,8 @@ class FruitStore {
              inventory[indexOfFruit].count -= count
          } catch FruitStoreError.inValidFruitChoice {
              print(FruitStoreError.inValidFruitChoice.description)
-         } catch FruitStoreError.lackOfStock {
-             print(FruitStoreError.lackOfStock.description)
+         } catch FruitStoreError.lackOfStock(let count) {
+             print(FruitStoreError.lackOfStock(stockNeeded: count).description)
          } catch {
              print(error)
          }
