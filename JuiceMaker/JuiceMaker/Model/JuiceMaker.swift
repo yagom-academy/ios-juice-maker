@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 enum Juice {
     case strawberryJuice
     case bananaJuice
@@ -58,7 +57,6 @@ struct JuiceMaker {
             }
             
             try fruitStore.decreaseStock(from: fruit, by: amount)
-            
         }
     }
 }
