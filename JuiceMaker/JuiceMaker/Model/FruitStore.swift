@@ -7,14 +7,14 @@
 import Foundation
 
 class FruitStore {
-    let storedStrawberry: Fruit = Fruit(fruitName: .strawberry, count: 10)
-    let storedBanana: Fruit = Fruit(fruitName: .banana, count: 10)
-    let storedKiwi: Fruit = Fruit(fruitName: .kiwi, count: 10)
-    let storedPineapple: Fruit = Fruit(fruitName: .pineapple, count: 10)
-    let storedMango: Fruit = Fruit(fruitName: .mango, count: 10)
+    let storedStrawberry: Fruit = Fruit(name: .strawberry, quantity: 10)
+    let storedBanana: Fruit = Fruit(name: .banana, quantity: 10)
+    let storedKiwi: Fruit = Fruit(name: .kiwi, quantity: 10)
+    let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
+    let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
-    func searchStorage(fruitNmae: Fruit.FruitName) -> Fruit {
-        switch fruitNmae {
+    func searchStorage(of fruitName: Fruit.FruitName) -> Fruit {
+        switch fruitName {
         case .strawberry:
             return storedStrawberry
         case .banana:
@@ -28,11 +28,11 @@ class FruitStore {
         }
     }
 
-    func checkQuantity(requiredIngredient: Fruit) -> Bool {
+    func checkQuantity(_ requiredIngredient: Fruit) -> Bool {
         var isSatisfy: Bool
-        let storedFruit = searchStorage(fruitNmae: requiredIngredient.name)
+        let storedFruit = searchStorage(of: requiredIngredient.name)
         
-        if storedFruit.count < requiredIngredient.count {
+        if storedFruit.quantity < requiredIngredient.quantity {
             isSatisfy = false
         } else {
             isSatisfy = true
@@ -41,13 +41,13 @@ class FruitStore {
         return isSatisfy
     }
     
-    func bringIngredients(ingredients: Fruit) -> Bool {
+    func bringIngredients(_ requiredIngredients: Fruit) -> Bool {
         var isSuccess: Bool
-        let storedFruit: Fruit = searchStorage(fruitNmae: ingredients.name)
+        let storedFruit: Fruit = searchStorage(of: requiredIngredients.name)
         
-        storedFruit.count = storedFruit.count - ingredients.count
+        storedFruit.quantity = storedFruit.quantity - requiredIngredients.quantity
         
-        if storedFruit.count >= 0 {
+        if storedFruit.quantity >= 0 {
             isSuccess = true
         } else {
             isSuccess = false
@@ -56,13 +56,13 @@ class FruitStore {
         return isSuccess
     }
     
-    func updateQuantity(changingFruit: Fruit) -> Bool {
+    func updateQuantity(to requiredChange: Fruit) -> Bool {
         var isSuccess: Bool
-        let changedFruit: Fruit = searchStorage(fruitNmae: changingFruit.name)
+        let storedFruit: Fruit = searchStorage(of: requiredChange.name)
         
-        changedFruit.count = changedFruit.count + changingFruit.count
+        storedFruit.quantity = storedFruit.quantity + requiredChange.quantity
         
-        if changedFruit.count == changingFruit.count {
+        if storedFruit.quantity >= 0 {
             isSuccess = true
         } else {
             isSuccess = false

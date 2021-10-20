@@ -17,10 +17,10 @@ class Fruit {
     }
     
     let name: FruitName
-    var count: Int
+    var quantity: Int
     
-    init(fruitName: FruitName, count: Int) {
-        self.name = fruitName
-        self.count = count
+    init(name: FruitName, quantity: Int) {
+        self.name = name
+        self.quantity = quantity
     }
 }
