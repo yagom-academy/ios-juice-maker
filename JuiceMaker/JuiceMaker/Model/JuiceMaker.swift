@@ -20,19 +20,19 @@ struct JuiceMaker {
         var ingredient: [Fruit] {
             switch self {
             case .strawberryJuice:
-                return [Fruit(fruitName: .strawberry, quantity: 16)]
+                return [Fruit(name: .strawberry, quantity: 16)]
             case .bananaJuice:
-                return [Fruit(fruitName: .banana, quantity: 2)]
+                return [Fruit(name: .banana, quantity: 2)]
             case .kiwiJuice:
-                return [Fruit(fruitName: .kiwi, quantity: 3)]
+                return [Fruit(name: .kiwi, quantity: 3)]
             case .pineappleJuice:
-                return [Fruit(fruitName: .pineapple, quantity: 2)]
+                return [Fruit(name: .pineapple, quantity: 2)]
             case .mangoJuice:
-                return [Fruit(fruitName: .mango, quantity: 3)]
+                return [Fruit(name: .mango, quantity: 3)]
             case .strawberryBananaJuice:
-                return [Fruit(fruitName: .strawberry, quantity: 10), Fruit(fruitName: .banana, quantity: 1)]
+                return [Fruit(name: .strawberry, quantity: 10), Fruit(name: .banana, quantity: 1)]
             case .mangoKiwiJuice:
-                return [Fruit(fruitName: .mango, quantity: 2), Fruit(fruitName: .kiwi, quantity: 1)]
+                return [Fruit(name: .mango, quantity: 2), Fruit(name: .kiwi, quantity: 1)]
             }
         }
     }
