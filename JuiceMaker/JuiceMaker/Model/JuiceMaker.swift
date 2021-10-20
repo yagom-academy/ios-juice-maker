@@ -43,15 +43,15 @@ enum Juice {
 struct JuiceMaker {
     private let fruitStore: FruitStore
     
-    private func hasIngredients(`for` juice: Juice) throws {
+    private func hasIngredients(of juice: Juice) throws {
         let recipe = juice.recipe
 
         for (fruit, demandingAmount) in recipe {
-            try fruitStore.has(fruit, amount: demandingAmount)
+            try self.fruitStore.has(fruit, amount: demandingAmount)
         }
     }
     
-    private func consumeIngredients(`for` juice: Juice) throws {
+    private func consumeIngredients(of juice: Juice) throws {
         let recipe = juice.recipe
         
         for (fruit, demandingAmount) in recipe {
@@ -61,8 +61,8 @@ struct JuiceMaker {
     
     func make(_ juice: Juice) {
         do {
-            try self.hasIngredients(for: juice)
-            try consumeIngredients(for: juice)
+            try self.hasIngredients(of: juice)
+            try self.consumeIngredients(of: juice)
         } catch {
             return // TODO: 에러 발생 시 어떻게 처리할지 STEP 2 에서 계속...
         }
