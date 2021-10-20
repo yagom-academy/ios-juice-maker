@@ -47,6 +47,15 @@ class FruitStore {
         
         self.inventory = calculatedInventory
     }
+        
+    func convertToString(using fruits: [Fruit: Int]) -> String {
+        var resultString = ""
+        for (fruit, quantity) in fruits {
+            resultString += "과일 : \(fruit), 개수 : \(abs(quantity))\n"
+        }
+        
+        return resultString
+    }
 }
 
 
