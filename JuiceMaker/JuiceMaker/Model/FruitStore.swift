@@ -16,7 +16,7 @@ enum Fruit: CaseIterable {
 
 class FruitStore {
     private static let defaultAmountPerFruit = 10
-    private(set) var inventory: [Fruit: Int] = [:]
+    private var inventory: [Fruit: Int] = [:]
     
     init() {
         for fruit in Fruit.allCases {
