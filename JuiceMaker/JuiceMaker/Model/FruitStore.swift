@@ -41,10 +41,13 @@ class FruitStore {
         guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
             return
         }
-        guard numberOfFruit - difference >= 0 else {
-            throw InventoryManageError.outOfStock
-        }
+        try checkInventory(fruit: fruit, count: difference)
         fruitInventory[fruit] = numberOfFruit - difference
     }
     
+    func checkInventory(fruit: Fruits, count: Int) throws {
+        guard let numberOfFruit = fruitInventory[fruit], numberOfFruit >= count else {
+            throw InventoryManageError.outOfStock
+        }
+    }
 }
