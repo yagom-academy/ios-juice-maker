@@ -18,8 +18,8 @@ class FruitStore {
         }
     }
     
-    func isAvailable(fruit: Fruit, amount: Int) -> Bool {
-        if let remainingStock = inventory[fruit], remainingStock >= amount {
+    func isUnavailable(fruit: Fruit, amount: Int) -> Bool {
+        if let remainingStock = inventory[fruit], remainingStock < amount {
             return true
         }
         return false

@@ -29,7 +29,7 @@ struct JuiceMaker {
     
     func getUnavailableFruit(juice: JuiceRecipe) -> [Ingredient] {
         let unavailableFruits = juice.ingredients.filter( {(ingredient: Ingredient) -> Bool in
-            return fruitStore.isAvailable(fruit: ingredient.fruit, amount: ingredient.amount) == false
+            return fruitStore.isUnavailable(fruit: ingredient.fruit, amount: ingredient.amount)
         })
         return unavailableFruits
     }
