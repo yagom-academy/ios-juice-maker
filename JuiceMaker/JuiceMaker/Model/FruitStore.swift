@@ -59,4 +59,21 @@ class FruitStore {
             print(error)
         }
     }
+    
+    func consumeMixed(first: Fruit, firstAmount: Int, second: Fruit, secondAmount: Int) {
+        do {
+            try checkStock(name: first, count: firstAmount)
+            try checkStock(name: second, count: secondAmount)
+            if let firstInventory = stockOfFruit[first], let secondInventory = stockOfFruit[second] {
+                stockOfFruit[first] = firstInventory - firstAmount
+                stockOfFruit[second] = secondInventory - secondAmount
+            }
+        } catch JuiceMakerError.outOfStock {
+            print(JuiceMakerError.outOfStock.description)
+        } catch JuiceMakerError.invalidNumber {
+            print(JuiceMakerError.invalidNumber.description)
+        } catch {
+            print(error)
+        }
+    }
 }
