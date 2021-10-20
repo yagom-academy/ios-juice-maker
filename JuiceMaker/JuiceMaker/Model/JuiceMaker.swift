@@ -16,7 +16,7 @@ enum Juice {
     case mangoJuice
     case mangoKiwiJuice
     
-    func makeJuiceRecipe() -> [FruitStore.Fruit: Int] {
+    var recipes: [FruitStore.Fruit: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
