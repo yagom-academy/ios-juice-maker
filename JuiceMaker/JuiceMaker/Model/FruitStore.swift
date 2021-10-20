@@ -20,6 +20,7 @@ class FruitStore {
     
     let initialStock = 10
     var stock = [Fruit: Int]()
+//    let juiceMaker: JuiceMaker
 
     init() {
         for fruit in Fruit.allCases {
@@ -27,8 +28,14 @@ class FruitStore {
         }
     }
     
-    func decreaseStock(from juiceRecipe: Juice) throws {
+    func decreaseStock(from fruit: Fruit, by input: Int) throws {
+        let userInput = input
         
+        guard var currentStock = stock[fruit], currentStock > 0 else {
+            throw ErrorCase.notEnoughStock
+        }
+        
+        currentStock -= userInput
     }
 }
 

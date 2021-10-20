@@ -59,7 +59,7 @@ struct JuiceMaker {
             }
             
             leftStock -= amount
-            stock = amount
+            stock = leftStock
         }
         return stock
     }
