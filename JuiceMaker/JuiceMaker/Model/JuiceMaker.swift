@@ -4,13 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
-
-enum JuiceMakerError: Error {
-    case fruitNotFound
-    case notEnoughFruit
-}
-
 enum Juice {
     case strawberry
     case banana

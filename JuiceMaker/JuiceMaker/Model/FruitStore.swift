@@ -4,8 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
 enum Fruit: CaseIterable {
     case strawberry
     case banana
