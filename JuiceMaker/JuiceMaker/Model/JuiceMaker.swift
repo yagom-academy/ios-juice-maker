@@ -51,7 +51,7 @@ struct JuiceMaker {
         }
     }
     
-    func make(juice: Juice) throws {
+    private func make(juice: Juice) throws {
         let juiceRecipe = juice.recipe()
         
         for (fruit, count) in juiceRecipe {

@@ -20,7 +20,7 @@ class FruitStore {
         case outOfStock
     }
     
-    var fruitInventory: [Fruits: Int]
+    private var fruitInventory: [Fruits: Int]
     
     init() {
         let defaultStock = 10
@@ -45,7 +45,7 @@ class FruitStore {
         fruitInventory[fruit] = numberOfFruit - difference
     }
     
-    func checkInventory(fruit: Fruits, count: Int) throws {
+    private func checkInventory(fruit: Fruits, count: Int) throws {
         guard let numberOfFruit = fruitInventory[fruit], numberOfFruit >= count else {
             throw InventoryManageError.outOfStock
         }
