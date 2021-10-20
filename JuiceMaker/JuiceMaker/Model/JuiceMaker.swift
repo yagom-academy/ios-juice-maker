@@ -1,8 +1,8 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import Foundation
 
@@ -27,9 +27,9 @@ struct JuiceMaker {
         static let usageOfMixMango = 2
         static let usageOfMixKiwi = 1
     }
-    
-    let fruitStore = FruitStore()
-    
+
+    private let fruitStore = FruitStore()
+
     func makeFruitJuice(juice: Menu) {
         switch juice {
         case .strawberryJuice:

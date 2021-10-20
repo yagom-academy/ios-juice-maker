@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -29,7 +29,7 @@ class FruitStore {
         }
     }
     
-    var stockOfFruit: [Fruit: Int] = [:]
+    private var stockOfFruit: [Fruit: Int] = [:]
     
     init() {
         for fruit in Fruit.allCases {
@@ -37,7 +37,7 @@ class FruitStore {
         }
     }
     
-    func checkStock(name: Fruit, count: Int) throws {
+    private func checkStock(name: Fruit, count: Int) throws {
         guard count >= 0 else { throw JuiceMakerError.invalidNumber }
         guard let fruitAmount = stockOfFruit[name],
               fruitAmount >= count else { throw JuiceMakerError.outOfStock(name.stringValue) }
