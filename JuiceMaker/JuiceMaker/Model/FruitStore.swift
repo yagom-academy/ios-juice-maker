@@ -16,7 +16,7 @@ class FruitStore {
         case mango
     }
     
-    enum InventoryManageError: Error {
+    enum InventoryManageError: LocalizedError {
         case outOfStock
     }
     
