@@ -29,7 +29,7 @@ class FruitStore {
         }
     }
     
-    private var inventory: [Fruit] = [
+    private(set) var inventory: [Fruit] = [
         Fruit(name: .strawberry),
         Fruit(name: .banana),
         Fruit(name: .pineapple),

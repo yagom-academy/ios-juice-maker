@@ -1,8 +1,8 @@
 import Foundation
 
 struct Juice {
-    fileprivate var name: JuiceName
-    fileprivate var count: Int = 0
+    var name: JuiceName
+    var count: Int = 0
     
     enum JuiceName {
         case strawberryJuice
