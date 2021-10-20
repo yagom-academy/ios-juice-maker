@@ -13,14 +13,14 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func make(juice: JuiceRecipe) throws -> JuiceRecipe {
-        let unavailableFruits = getUnavailableFruits(juice: juice)
+    func make(juice: JuiceMenu) throws -> JuiceMenu {
+        let unavailableFruits = getUnavailableFruits(juice: juice.recipe)
         
         guard unavailableFruits.isEmpty else {
-            throw FruitStoreError.insufficientFruits(unavailabeFruits: unavailableFruits)
+            throw FruitStoreError.insufficientFruits(unavailableFruits: unavailableFruits)
         }
         
-        for ingredient in juice.ingredients {
+        for ingredient in juice.recipe.ingredients {
             fruitStore.decreaseStock(of: ingredient.fruit, by: ingredient.amount)
         }
         return juice
