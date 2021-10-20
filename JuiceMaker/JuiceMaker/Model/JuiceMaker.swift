@@ -37,7 +37,17 @@ struct JuiceMaker {
         }
     }
     
-    let fruitStorage = FruitStore()
+    let fruitStorage: FruitStore
     
+    func order(juice: Juice) throws {
+        try canMake(juice: juice)
+    }
     
+    func canMake(juice: Juice) throws {
+        let juiceRecipe = juice.recipe()
+        
+        for (fruit,fruitCount) in juiceRecipe {
+            try fruitStorage.checkInventory(fruit: fruit, count: fruitCount)
+        }
+    }
 }
