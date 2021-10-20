@@ -14,6 +14,11 @@ enum Fruit {
     case mango
 }
 
+enum FruitStoreError: Error {
+    case outOfStock
+    case invalidSelection
+}
+
 class FruitStore {
     static let initialFruitsQuantity: Int = 10
     
@@ -29,7 +34,11 @@ class FruitStore {
             self.quantity += quantity
         }
         
-        func subtractFruits(quantity: Int) {
+        func subtractFruits(quantity: Int) throws {
+            guard self.quantity < quantity else {
+                throw FruitStoreError.outOfStock
+            }
+            
             self.quantity -= quantity
         }
     }
