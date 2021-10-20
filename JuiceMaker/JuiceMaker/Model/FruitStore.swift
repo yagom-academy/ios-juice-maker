@@ -16,6 +16,10 @@ class FruitStore {
         case mango
     }
     
+    enum InventoryManageError: Error {
+        case outOfStock
+    }
+    
     var fruitInventory: [Fruits: Int]
     
     init() {
@@ -33,12 +37,12 @@ class FruitStore {
         fruitInventory[fruit] = numberOfFruit + difference
     }
     
-    func provideFruit(_ fruit: Fruits, of difference: Int) {
+    func provideFruit(_ fruit: Fruits, of difference: Int) throws {
         guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
             return
         }
         guard numberOfFruit - difference >= 0 else {
-            return 
+            throw InventoryManageError.outOfStock
         }
         fruitInventory[fruit] = numberOfFruit - difference
     }
