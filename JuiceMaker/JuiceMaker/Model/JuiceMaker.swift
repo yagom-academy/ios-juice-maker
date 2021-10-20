@@ -1,8 +1,8 @@
 import Foundation
 
 struct Juice {
-    var name: JuiceName
-    var count: Int = 0
+    fileprivate var name: JuiceName
+    fileprivate var count: Int = 0
     
     enum JuiceName {
         case strawberryJuice
@@ -17,7 +17,7 @@ struct Juice {
 
 struct JuiceMaker {
     
-    enum JuiceMakerError: LocalizedError {
+    private enum JuiceMakerError: LocalizedError {
         case inValidMenuChoice
         
         var description: String {
@@ -28,19 +28,19 @@ struct JuiceMaker {
         }
     }
     
-    var store = FruitStore()
+    private var store = FruitStore()
     
-    typealias ingredient = (fruit: Fruit.FruitName, count: Int)
+    private typealias ingredient = (fruit: Fruit.FruitName, count: Int)
     
-    let strawberryJuiceRecipe: [ingredient] = [(.strawberry, 16)]
-    let bananaJuiceRecipe: [ingredient] = [(.banana, 2)]
-    let kiwiJuiceRecipe: [ingredient] = [(.kiwi, 3)]
-    let pineappleJuiceRecipe: [ingredient] = [(.pineapple, 2)]
-    let strawberryBananaJuiceRecipe: [ingredient] = [(.strawberry, 10), (.banana, 1)]
-    let mangoJuiceRecipe: [ingredient] = [(.mango, 3)]
-    let mangoKiwiJuiceRecipe: [ingredient] = [(.mango, 2), (.kiwi, 1)]
+    private let strawberryJuiceRecipe: [ingredient] = [(.strawberry, 16)]
+    private let bananaJuiceRecipe: [ingredient] = [(.banana, 2)]
+    private let kiwiJuiceRecipe: [ingredient] = [(.kiwi, 3)]
+    private let pineappleJuiceRecipe: [ingredient] = [(.pineapple, 2)]
+    private let strawberryBananaJuiceRecipe: [ingredient] = [(.strawberry, 10), (.banana, 1)]
+    private let mangoJuiceRecipe: [ingredient] = [(.mango, 3)]
+    private let mangoKiwiJuiceRecipe: [ingredient] = [(.mango, 2), (.kiwi, 1)]
     
-    lazy var recipe: [Juice.JuiceName: [ingredient]] = [
+    private lazy var recipe: [Juice.JuiceName: [ingredient]] = [
         .strawberryJuice: strawberryJuiceRecipe,
         .bananaJuice: bananaJuiceRecipe,
         .kiwiJuice: kiwiJuiceRecipe,
@@ -50,14 +50,14 @@ struct JuiceMaker {
         .mangoKiwiJuice: mangoKiwiJuiceRecipe
     ]
     
-    mutating func findRecipe(of juiceName: Juice.JuiceName) throws -> [ingredient] {
+    private mutating func findRecipe(of juiceName: Juice.JuiceName) throws -> [ingredient] {
         guard let foundRecipe = recipe[juiceName] else {
             throw JuiceMakerError.inValidMenuChoice
         }
         return foundRecipe
     }
     
-    func blendIngredient(by recipe: [ingredient]) {
+    private func blendIngredient(by recipe: [ingredient]) {
         for ingredient in recipe {
             store.subtractStock(count: ingredient.count, from: ingredient.fruit)
         }

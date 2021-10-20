@@ -5,7 +5,7 @@ struct Fruit {
     var count: Int = 10
     
     enum FruitName {
-        case strawberry 
+        case strawberry
         case banana
         case pineapple
         case kiwi
@@ -15,7 +15,7 @@ struct Fruit {
 
 class FruitStore {
     
-    enum FruitStoreError: LocalizedError {
+    private enum FruitStoreError: LocalizedError {
         case inValidFruitChoice
         case lackOfStock(stockNeeded: Int)
         
@@ -29,7 +29,7 @@ class FruitStore {
         }
     }
     
-    var inventory: [Fruit] = [
+    private var inventory: [Fruit] = [
         Fruit(name: .strawberry),
         Fruit(name: .banana),
         Fruit(name: .pineapple),
@@ -37,7 +37,7 @@ class FruitStore {
         Fruit(name: .mango)
     ]
     
-    func findIndexFromInventory(with fruit: Fruit.FruitName) throws -> Int {
+    private func findIndexFromInventory(with fruit: Fruit.FruitName) throws -> Int {
         guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
             throw FruitStoreError.inValidFruitChoice
         }
@@ -55,7 +55,7 @@ class FruitStore {
         }
     }
     
-    func checkEnoughStock(from index: Int, for count: Int) throws {
+    private func checkEnoughStock(from index: Int, for count: Int) throws {
         guard inventory[index].count >= count else {
             throw FruitStoreError.lackOfStock(stockNeeded: count - inventory[index].count)
         }
