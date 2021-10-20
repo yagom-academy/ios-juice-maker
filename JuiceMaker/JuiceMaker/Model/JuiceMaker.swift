@@ -11,8 +11,8 @@ struct JuiceMaker {
         case outOfStock
     }
     
-    enum JuiceMenu {
-        var juiceRecipe: Dictionary<Fruit, Int> {
+    enum Menu {
+        var recipe: Dictionary<Fruit, Int> {
             switch self {
             case .strawberryJuice:
                 return [.strawberry: 16]
@@ -40,20 +40,20 @@ struct JuiceMaker {
         case mangoKiwiJuice
     }
     
-    func makeJuice(order: JuiceMenu) throws {
-        let recipes: [Fruit : Int] = order.juiceRecipe
+    func makeJuice(seletedJuice: Menu) throws {
+        let ingredients: [Fruit : Int] = seletedJuice.recipe
         
-        guard isRemaining(of: recipes) else {
+        guard isRemaining(of: ingredients) else {
             throw JuiceMakerError.outOfStock
         }
         
-        for (fruit, count) in recipes {
-            fruitStore.changeQuantity(of: fruit, count: count, by: -)
+        for (fruit, count) in ingredients {
+            fruitStore.changeQuantity(of: fruit, count: count, do: -)
         }
     }
     
-    private func isRemaining(of recipes: [Fruit : Int]) -> Bool {
-        for (fruit, count) in recipes {
+    private func isRemaining(of ingredients: [Fruit : Int]) -> Bool {
+        for (fruit, count) in ingredients {
             
             guard let fruitQuantity = fruitStore.fruitQuantity[fruit], fruitQuantity >= count else {
                 return false

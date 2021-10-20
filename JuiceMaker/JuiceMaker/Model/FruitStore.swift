@@ -21,7 +21,7 @@ enum Fruit: CaseIterable {
 class FruitStore {
     private(set) var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeys: Fruit.allCases, repeating: 10)
         
-    func changeQuantity(of fruit: Fruit, count: Int, by operation: (Int, Int) -> Int) {
+    func changeQuantity(of fruit: Fruit, count: Int, do operation: (Int, Int) -> Int) {
         guard let stock = fruitQuantity[fruit] else {
             return
         }
