@@ -39,5 +39,14 @@ enum Juice {
 struct JuiceMaker {
     let fruitStore: FruitStore
     
+    func checkStock(of juice: Juice) throws {
+        let recipe = juice.recipes
+        
+        for (fruit, amount) in recipe {
+            guard let leftStock = fruitStore.stock[fruit], leftStock >= amount else {
+                throw ErrorCase.notEnoughStock
+            }
+        }
+    }
 }
 
