@@ -6,9 +6,18 @@
 
 import Foundation
 
-enum JuiceMakerError: Error {
+enum JuiceMakerError: Error, CustomStringConvertible {
     case outOfStock
     case invalidNumber
+    
+    var description: String {
+        switch self {
+        case .outOfStock:
+            return "재고가 부족합니다"
+        case .invalidNumber:
+            return "유효하지 않은 숫자입니다"
+        }
+    }
 }
 
 class FruitStore {
@@ -16,38 +25,36 @@ class FruitStore {
         case strawberry, banana, pineapple, kiwi, mango
     }
     
-    var fruitInventory: [Fruit: Int] = [:]
+    var stockOfFruit: [Fruit: Int] = [:]
     
     init() {
         for fruit in Fruit.allCases {
-            fruitInventory[fruit] = 10
+            stockOfFruit[fruit] = 10
         }
     }
     
-    func check(fruit: Fruit, count: Int) throws {
+    func checkStock(name: Fruit, count: Int) throws {
         guard count >= 0 else { throw JuiceMakerError.invalidNumber }
-        guard let fruitAmount = fruitInventory[fruit],
+        guard let fruitAmount = stockOfFruit[name],
               fruitAmount >= count else { throw JuiceMakerError.outOfStock }
     }
     
-    func addFruitInventroy(fruit: Fruit, amount: Int) {
-        guard let inventory = fruitInventory[fruit] else {
-            return
+    func addFruit(name: Fruit, amount: Int) {
+        if let inventory = stockOfFruit[name] {
+            stockOfFruit[name] = inventory + amount
         }
-        fruitInventory[fruit] = inventory + amount
     }
     
-    func useFruitInventroy(fruit: Fruit, amount: Int) {
+    func consumeFruit(name: Fruit, amount: Int) {
         do {
-            try check(fruit: fruit, count: amount)
-            guard let inventory = fruitInventory[fruit] else {
-                return
+            try checkStock(name: name, count: amount)
+            if let inventory = stockOfFruit[name] {
+                stockOfFruit[name] = inventory - amount
             }
-            fruitInventory[fruit] = inventory - amount
         } catch JuiceMakerError.outOfStock {
-            print("재고가 부족합니다")
+            print(JuiceMakerError.outOfStock.description)
         } catch JuiceMakerError.invalidNumber {
-            print("유효하지 않은 숫자입니다")
+            print(JuiceMakerError.invalidNumber.description)
         } catch {
             print(error)
         }
