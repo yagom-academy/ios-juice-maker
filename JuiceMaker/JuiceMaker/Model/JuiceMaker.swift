@@ -14,10 +14,10 @@ struct JuiceMaker {
     }
     
     func make(juice: JuiceMenu) throws -> JuiceMenu {
-        let unavailableFruits = getUnavailableIngredients(of: juice.recipe)
+        let unavailableIngredients = getUnavailableIngredients(of: juice.recipe)
         
-        guard unavailableFruits.isEmpty else {
-            throw FruitStoreError.insufficientFruits(unavailableFruits: unavailableFruits)
+        guard unavailableIngredients.isEmpty else {
+            throw FruitStoreError.deficientStock(unavailableIngredients: unavailableIngredients)
         }
         
         for ingredient in juice.recipe.ingredients {
@@ -27,9 +27,9 @@ struct JuiceMaker {
     }
     
     private func getUnavailableIngredients(of juiceRecipe: JuiceRecipe) -> [Ingredient] {
-        let unavailableFruits = juiceRecipe.ingredients.filter( {(ingredient: Ingredient) -> Bool in
+        let unavailableIngredients = juiceRecipe.ingredients.filter( {(ingredient: Ingredient) -> Bool in
             return fruitStore.isUnavailable(fruit: ingredient.fruit, requiredAmount: ingredient.amount)
         })
-        return unavailableFruits
+        return unavailableIngredients
     }
 }

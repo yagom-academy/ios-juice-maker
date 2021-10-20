@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         var juice: JuiceMenu?
         do {
             juice = try juiceMaker.make(juice: testJuice)
-        } catch FruitStoreError.insufficientFruits(unavailableFruits: let unavailableFruits) {
-            print("\(unavailableFruits) 재료 부족")
+        } catch FruitStoreError.deficientStock(unavailableIngredients: let unavailableIngredients) {
+            print("\(unavailableIngredients) 재료 부족")
         } catch {
             print("알 수 없는 오류")
         }
