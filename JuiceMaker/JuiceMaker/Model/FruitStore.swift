@@ -15,8 +15,8 @@ enum Fruit: CaseIterable {
 }
 
 enum FruitStoreError: Error {
-    case outOfStock
-    case invalidSelection
+    case outOfStock(_ fruitNeeded: [Fruit: Int])
+    case noFruitExist
 }
 
 class FruitStore {
@@ -32,4 +32,21 @@ class FruitStore {
         
         return inventory
     }
+    
+    func updateInventory(of recipe: [Fruit: Int]) throws {
+        let calculatedInventory = self.inventory.merging(recipe) { (currentFruitQuantity, recipeFruitQuantity) in currentFruitQuantity - recipeFruitQuantity }
+        
+        guard self.inventory.count == calculatedInventory.count else {
+            throw FruitStoreError.noFruitExist
+        }
+        
+        let neededFruits = calculatedInventory.filter { (mergedQuantity) in mergedQuantity.value < 0 }
+        guard neededFruits.count == 0 else {
+            throw FruitStoreError.outOfStock(neededFruits)
+        }
+        
+        self.inventory = calculatedInventory
+    }
 }
+
+
