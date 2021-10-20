@@ -7,13 +7,13 @@
 import Foundation
 
 enum JuiceMakerError: Error, CustomStringConvertible {
-    case outOfStock
+    case outOfStock(String)
     case invalidNumber
     
     var description: String {
         switch self {
-        case .outOfStock:
-            return "재고가 부족합니다"
+        case .outOfStock(let fruit):
+            return "\(fruit)의 재고가 부족합니다"
         case .invalidNumber:
             return "유효하지 않은 숫자입니다"
         }
@@ -21,8 +21,12 @@ enum JuiceMakerError: Error, CustomStringConvertible {
 }
 
 class FruitStore {
-    enum Fruit: CaseIterable {
+    enum Fruit: String, CaseIterable {
         case strawberry, banana, pineapple, kiwi, mango
+        
+        var stringValue: String {
+            self.rawValue
+        }
     }
     
     var stockOfFruit: [Fruit: Int] = [:]
@@ -36,7 +40,7 @@ class FruitStore {
     func checkStock(name: Fruit, count: Int) throws {
         guard count >= 0 else { throw JuiceMakerError.invalidNumber }
         guard let fruitAmount = stockOfFruit[name],
-              fruitAmount >= count else { throw JuiceMakerError.outOfStock }
+              fruitAmount >= count else { throw JuiceMakerError.outOfStock(name.stringValue) }
     }
     
     func addFruit(name: Fruit, amount: Int) {
@@ -51,8 +55,8 @@ class FruitStore {
             if let stock = stockOfFruit[name] {
                 stockOfFruit[name] = stock - amount
             }
-        } catch JuiceMakerError.outOfStock {
-            print(JuiceMakerError.outOfStock.description)
+        } catch JuiceMakerError.outOfStock(let fruit) {
+            print(JuiceMakerError.outOfStock(fruit).description)
         } catch JuiceMakerError.invalidNumber {
             print(JuiceMakerError.invalidNumber.description)
         } catch {
@@ -68,8 +72,8 @@ class FruitStore {
                 stockOfFruit[first] = firstStock - firstAmount
                 stockOfFruit[second] = secondStock - secondAmount
             }
-        } catch JuiceMakerError.outOfStock {
-            print(JuiceMakerError.outOfStock.description)
+        } catch JuiceMakerError.outOfStock(let fruit) {
+            print(JuiceMakerError.outOfStock(fruit).description)
         } catch JuiceMakerError.invalidNumber {
             print(JuiceMakerError.invalidNumber.description)
         } catch {
