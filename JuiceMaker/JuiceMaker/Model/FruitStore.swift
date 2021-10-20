@@ -23,21 +23,21 @@ class FruitStore {
     var fruitInventory: [Fruits: Int]
     
     init() {
-        let defaultInventory = 10
+        let defaultStock = 10
         self.fruitInventory = [:]
         for fruit in Fruits.allCases {
-            fruitInventory[fruit] = defaultInventory
+            fruitInventory[fruit] = defaultStock
         }
     }
     
-    func bringFruit(_ fruit: Fruits, of difference: Int) {
+    func addFruit(_ fruit: Fruits, of difference: Int) {
         guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
             return
         }
         fruitInventory[fruit] = numberOfFruit + difference
     }
     
-    func provideFruit(_ fruit: Fruits, of difference: Int) throws {
+    func subtractFruit(_ fruit: Fruits, of difference: Int) throws {
         guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
             return
         }
