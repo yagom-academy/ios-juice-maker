@@ -37,7 +37,5 @@ struct JuiceMaker {
                 return [.mango: 2, .kiwi: 1]
             }
         }
-        
     }
-    
 }

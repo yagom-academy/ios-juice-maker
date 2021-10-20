@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawberry
     case banana
     case pineapple
@@ -21,31 +21,15 @@ enum FruitStoreError: Error {
 
 class FruitStore {
     static let initialFruitsQuantity: Int = 10
+    var inventory: [Fruit: Int] = initializeInventory()
     
-    class FruitInventory {
-        let fruit: Fruit
-        var quantity: Int = FruitStore.initialFruitsQuantity
+    static func initializeInventory() -> [Fruit: Int] {
+        var inventory: [Fruit: Int] = [:]
         
-        init(fruit: Fruit) {
-            self.fruit = fruit
+        for key in Fruit.allCases {
+            inventory[key] = FruitStore.initialFruitsQuantity
         }
         
-        func addFruits(quantity: Int) {
-            self.quantity += quantity
-        }
-        
-        func subtractFruits(quantity: Int) throws {
-            guard self.quantity < quantity else {
-                throw FruitStoreError.outOfStock
-            }
-            
-            self.quantity -= quantity
-        }
+        return inventory
     }
-    
-    let strawberries: FruitInventory = FruitInventory(fruit: .strawberry)
-    let bananas: FruitInventory = FruitInventory(fruit: .banana)
-    let pineapples: FruitInventory = FruitInventory(fruit: .pineapple)
-    let kiwis: FruitInventory = FruitInventory(fruit: .kiwi)
-    let mangoes: FruitInventory = FruitInventory(fruit: .mango)
 }
