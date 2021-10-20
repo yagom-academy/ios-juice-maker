@@ -4,20 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-extension Dictionary {
-    init<T>(uniqueKeys: T, repeating value: Value) where T: Collection, T.Element == Key {
-        self = Dictionary(uniqueKeysWithValues: zip(uniqueKeys, Array(repeating: value, count: uniqueKeys.count)))
-    }
-}
-
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
 class FruitStore {
     private(set) var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeys: Fruit.allCases, repeating: 10)
         
@@ -26,5 +12,11 @@ class FruitStore {
             return
         }
         fruitQuantity[fruit] = operation(stock, count)
+    }
+}
+
+extension Dictionary {
+    init<T>(uniqueKeys: T, repeating value: Value) where T: Collection, T.Element == Key {
+        self = Dictionary(uniqueKeysWithValues: zip(uniqueKeys, Array(repeating: value, count: uniqueKeys.count)))
     }
 }
