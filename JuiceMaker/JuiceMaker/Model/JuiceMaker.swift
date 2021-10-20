@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore: FruitStore
     
@@ -15,19 +14,19 @@ struct JuiceMaker {
     }
     
     func make(juice: JuiceRecipe) throws -> JuiceRecipe {
-        let unavailableFruits = getUnavailableFruit(juice: juice)
+        let unavailableFruits = getUnavailableFruits(juice: juice)
         
-        guard unavailableFruits.count == 0 else {
+        guard unavailableFruits.isEmpty else {
             throw FruitStoreError.insufficientFruits(unavailabeFruits: unavailableFruits)
         }
         
         for ingredient in juice.ingredients {
-            fruitStore.changeInventory(ingredient.fruit, by: ingredient.amount)
+            fruitStore.decreaseStock(of: ingredient.fruit, by: ingredient.amount)
         }
         return juice
     }
     
-    func getUnavailableFruit(juice: JuiceRecipe) -> [Ingredient] {
+    private func getUnavailableFruits(juice: JuiceRecipe) -> [Ingredient] {
         let unavailableFruits = juice.ingredients.filter( {(ingredient: Ingredient) -> Bool in
             return fruitStore.isUnavailable(fruit: ingredient.fruit, amount: ingredient.amount)
         })

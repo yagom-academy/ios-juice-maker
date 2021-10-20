@@ -5,9 +5,6 @@
 //
 
 import Foundation
-
-
-
 // 과일 저장소 타입
 class FruitStore {
     var inventory: [Fruit:Int] = [:]
@@ -25,7 +22,7 @@ class FruitStore {
         return false
     }
     
-    func changeInventory(_ fruit: Fruit, by amount: Int) {
+    func decreaseStock(of fruit: Fruit, by amount: Int) {
         guard let remainingStock = inventory[fruit] else {
             return
         }
