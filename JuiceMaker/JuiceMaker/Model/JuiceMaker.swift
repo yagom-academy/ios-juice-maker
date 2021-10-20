@@ -31,11 +31,9 @@ struct JuiceMaker {
         case .mangoJuice:
             fruitStore.consumeFruit(name: .mango, amount: 3)
         case .strawberryBananaJuice:
-            fruitStore.consumeFruit(name: .strawberry, amount: 10)
-            fruitStore.consumeFruit(name: .banana, amount: 1)
+            fruitStore.consumeTwoFruits(first: .strawberry, firstAmount: 10, second: .banana, secondAmount: 1)
         case .mangoKiwiJuice:
-            fruitStore.consumeFruit(name: .mango, amount: 2)
-            fruitStore.consumeFruit(name: .kiwi, amount: 1)
+            fruitStore.consumeTwoFruits(first: .mango, firstAmount: 2, second: .kiwi, secondAmount: 1)
         }
     }
 }
