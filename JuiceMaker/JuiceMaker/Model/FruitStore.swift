@@ -22,7 +22,7 @@ class FruitStore {
     private(set) var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeys: Fruit.allCases, repeating: 10)
         
     func changeQuantity(of fruit: Fruit, count: Int, by operation: (Int, Int) -> Int) {
-        guard let stock: Int = fruitQuantity[fruit] else {
+        guard let stock = fruitQuantity[fruit] else {
             return
         }
         fruitQuantity[fruit] = operation(stock, count)

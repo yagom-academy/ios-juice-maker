@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private let fruitStore: FruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     enum JuiceMakerError: Error {
         case outOfStock
@@ -55,7 +55,7 @@ struct JuiceMaker {
     private func isRemaining(of recipes: [Fruit : Int]) -> Bool {
         for (fruit, count) in recipes {
             
-            guard let fruitQuantity: Int = fruitStore.fruitQuantity[fruit], fruitQuantity >= count else {
+            guard let fruitQuantity = fruitStore.fruitQuantity[fruit], fruitQuantity >= count else {
                 return false
             }
         }
