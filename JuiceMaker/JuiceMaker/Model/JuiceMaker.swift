@@ -48,5 +48,20 @@ struct JuiceMaker {
             }
         }
     }
+    
+    func consumeStock(with juice: Juice) throws -> Int {
+        let recipe = juice.recipes
+        var stock: Int = 0
+        
+        for (fruit, amount) in recipe {
+            guard var leftStock = fruitStore.stock[fruit] else {
+                throw ErrorCase.noFruit
+            }
+            
+            leftStock -= amount
+            stock = amount
+        }
+        return stock
+    }
 }
 
