@@ -5,21 +5,14 @@
 //
 
 import Foundation
-// 과일 저장소 타입
+
 class FruitStore {
-    var inventory: [Fruit:Int] = [:]
+    private var inventory: [Fruit:Int] = [:]
     
-    init(fruits: [Fruit], amount: Int) {
-        for fruit in fruits {
+    init(fruitList: [Fruit], amount: Int) {
+        for fruit in fruitList {
             inventory[fruit] = amount
         }
-    }
-    
-    func isUnavailable(fruit: Fruit, amount: Int) -> Bool {
-        if let remainingStock = inventory[fruit], remainingStock < amount {
-            return true
-        }
-        return false
     }
     
     func decreaseStock(of fruit: Fruit, by amount: Int) {
@@ -27,5 +20,12 @@ class FruitStore {
             return
         }
         inventory[fruit] = remainingStock - amount
+    }
+    
+    func isUnavailable(fruit: Fruit, requiredAmount: Int) -> Bool {
+        if let remainingStock = inventory[fruit], remainingStock < requiredAmount {
+            return true
+        }
+        return false
     }
 }
