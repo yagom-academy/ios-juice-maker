@@ -27,9 +27,20 @@ class FruitStore {
     }
     
     func bringFruit(_ fruit: Fruits, of difference: Int) {
-        guard let numberOfFruit = fruitInventory[fruit], difference > 0 else {
+        guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
             return
         }
-        fruitInventory[fruit] = difference + numberOfFruit
+        fruitInventory[fruit] = numberOfFruit + difference
     }
+    
+    func provideFruit(_ fruit: Fruits, of difference: Int) {
+        guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
+            return
+        }
+        guard numberOfFruit - difference >= 0 else {
+            return 
+        }
+        fruitInventory[fruit] = numberOfFruit - difference
+    }
+    
 }
