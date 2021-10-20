@@ -1,8 +1,8 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import Foundation
 
@@ -49,19 +49,16 @@ struct JuiceMaker {
         }
     }
     
-    func consumeStock(with juice: Juice) throws -> Int {
+    func consumeStock(with juice: Juice) throws {
         let recipe = juice.recipes
-        var stock: Int = 0
         
         for (fruit, amount) in recipe {
-            guard var leftStock = fruitStore.stock[fruit] else {
-                throw ErrorCase.noFruit
+            guard let leftStock = fruitStore.stock[fruit], leftStock >= amount else {
+                throw ErrorCase.notEnoughStock
             }
             
-            leftStock -= amount
-            stock = leftStock
+            try fruitStore.decreaseStock(from: fruit, by: amount)
+            
         }
-        return stock
     }
 }
-
