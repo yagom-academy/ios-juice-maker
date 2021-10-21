@@ -6,39 +6,38 @@
 
 import Foundation
 
+fileprivate typealias Recipe = [FruitStore.Fruit: Int]
 
-struct JuiceMaker {
-    typealias Recipe = [FruitStore.Fruit: Int]
-
-    enum Juice {
-        case strawberry
-        case banana
-        case kiwi
-        case pineapple
-        case strawberryBanana
-        case mango
-        case mangoKiwi
-        
-        fileprivate var recipe: Recipe {
-            switch self {
-            case .strawberry:
-                return [.strawberry: 16]
-            case .banana:
-                return [.banana: 2]
-            case .kiwi:
-                return [.kiwi: 3]
-            case .pineapple:
-                return [.pineapple: 2]
-            case .strawberryBanana:
-                return [.strawberry: 10, .banana: 1]
-            case .mango:
-                return [.mango: 3]
-            case .mangoKiwi:
-                return [.mango: 2, .kiwi: 1]
-            }
+enum Juice {
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case strawberryBanana
+    case mango
+    case mangoKiwi
+    
+    fileprivate var recipe: Recipe {
+        switch self {
+        case .strawberry:
+            return [.strawberry: 16]
+        case .banana:
+            return [.banana: 2]
+        case .kiwi:
+            return [.kiwi: 3]
+        case .pineapple:
+            return [.pineapple: 2]
+        case .strawberryBanana:
+            return [.strawberry: 10, .banana: 1]
+        case .mango:
+            return [.mango: 3]
+        case .mangoKiwi:
+            return [.mango: 2, .kiwi: 1]
         }
     }
-    
+}
+
+struct JuiceMaker {
     private let fruitStore = FruitStore()
     
     func fruitsMixer(juice: Juice) throws {
