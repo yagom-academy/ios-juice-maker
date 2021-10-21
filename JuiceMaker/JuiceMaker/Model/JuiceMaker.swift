@@ -8,7 +8,11 @@ import Foundation
 
 struct JuiceMaker {
     
-    private let fruitStore = FruitStore()
+    private let fruitStore: FruitStorage
+    
+    init(store: FruitStorage) {
+        self.fruitStore = store
+    }
     
     func makeJuice(menu: JuiceMenu) throws {
         for (fruit, quantity) in menu.recipe {

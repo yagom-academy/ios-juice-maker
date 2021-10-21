@@ -6,8 +6,7 @@
 
 import Foundation
 
-
-class FruitStore {
+class FruitStore: FruitStorage {
     private var inventory: [Fruit: Int] = [:]
     
     init(defaultValue: Int = 10) {
@@ -24,5 +23,12 @@ class FruitStore {
             throw FruitStoreError.stockShortage
         }
         inventory[fruit] = calculate(fruitStock, quantity)
+    }
+    
+    func currentFruitStock(of fruit: Fruit) throws -> Int {
+        guard let currentStock = inventory[fruit] else {
+            throw FruitStoreError.stockDataMissing
+        }
+        return currentStock
     }
 }
