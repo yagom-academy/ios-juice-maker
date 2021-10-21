@@ -15,10 +15,6 @@ class FruitStore {
         case mango
     }
     
-    enum InventoryManageError: LocalizedError {
-        case outOfStock
-    }
-    
     private var fruitInventory: [Fruits: Int]
     
     init() {
