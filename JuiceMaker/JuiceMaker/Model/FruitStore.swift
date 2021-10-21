@@ -4,14 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
 class FruitStore {
     private static let defaultFruitAmount = 10
     private var inventory: [Fruit: Int] = [:]
