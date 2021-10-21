@@ -40,12 +40,12 @@ struct JuiceMaker {
         }
     }
     
-    private func canMakeJuice(requiredRecipe: Recipe) -> Bool {
-        let availableRecipe = requiredRecipe.filter {
-            store.checkEnoughStock(of: $0.key, requiredAmount: $0.value)
+    private func canMakeJuice(requiredFruits: Recipe) -> Bool {
+        let availableFruits = requiredFruits.filter { (fruit, amount) in
+            store.checkEnoughStock(of: fruit, requiredAmount: amount)
         }
         
-        guard availableRecipe.count == requiredRecipe.count else {
+        guard availableFruits.count == requiredFruits.count else {
             return false
         }
         
@@ -55,7 +55,7 @@ struct JuiceMaker {
     func makeJuice(juice: Juice) throws {
         let recipe = juice.recipe
         
-        guard canMakeJuice(requiredRecipe: recipe) else {
+        guard canMakeJuice(requiredFruits: recipe) else {
             throw JuiceMakeError.notEnoughStock
         }
         
