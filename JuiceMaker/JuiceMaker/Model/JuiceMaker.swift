@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    let fruitstore = FruitStore()
+    private let fruitstore = FruitStore()
 
     enum Juice {
         case strawberry
@@ -16,7 +16,7 @@ struct JuiceMaker {
         case mango
         case mangokiwi
 
-        var recipe : [FruitStore.Fruit:Int] {
+        fileprivate var recipe : [FruitStore.Fruit:Int] {
             switch self {
             case .strawberry: return [.strawberry: 16]
             case .banana: return [.banana: 2]
@@ -29,13 +29,13 @@ struct JuiceMaker {
         }
     }
 
-    func checkStock(juice: Juice) throws {
+    private func checkStock(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
             try fruitstore.checkEnoughFruit(which: fruit, on: amount)
         }
     }
 
-    func makeJuice(juice: Juice) {
+    private func makeJuice(juice: Juice) {
         do {
             try checkStock(juice: juice)
         } catch Errors.outOfStock {

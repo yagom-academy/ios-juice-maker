@@ -13,10 +13,10 @@ class FruitStore {
         case mango
     }
 
-    var defaultStock : Int
+    private var defaultStock : Int
     var fruitStorage : Dictionary<Fruit, Int>
-    let allFruits : Array<Fruit>
-    let stock : Array<Int>
+    private let allFruits : Array<Fruit>
+    private let stock : Array<Int>
 
     init() {
         defaultStock = 10
@@ -25,7 +25,7 @@ class FruitStore {
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
 
-    func checkEnoughFruit(which fruit: Fruit, on amount: Int) throws {
+    fileprivate func checkEnoughFruit(which fruit: Fruit, on amount: Int) throws {
         guard let inventory = fruitStorage[fruit] else {
             throw Errors.invalidValue
         }
