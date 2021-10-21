@@ -36,18 +36,14 @@ class FruitStore {
         fruitInventory[fruit] = numberOfFruit + difference
     }
     
-    func subtractFruit(_ fruit: Fruits, of difference: Int) throws {
+    func subtractFruit(_ fruit: Fruits, of difference: Int) {
         guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
             return
         }
-        guard hasStock(of: fruit, count: difference) else {
-            throw InventoryManageError.outOfStock
-        }
-        
         fruitInventory[fruit] = numberOfFruit - difference
     }
     
-    private func hasStock(of fruit: Fruits, count: Int) -> Bool {
+    func hasStock(of fruit: Fruits, count: Int) -> Bool {
         guard let numberOfFruit = fruitInventory[fruit] else {
             return false
         }

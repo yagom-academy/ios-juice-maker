@@ -17,26 +17,35 @@ struct JuiceMaker {
         case kiwiMangoJuice
     }
     
-    enum MakingJuiceError: LocalizedError {
-        case soldOut
-    }
-    
     let fruitStorage: FruitStore
     
-    func order(juice: Juice) throws {
-        do {
-            try make(juice: juice)
-        } catch FruitStore.InventoryManageError.outOfStock {
-            throw MakingJuiceError.soldOut
+    func order(juice: Juice) -> Juice? {
+        
+        if canMake(juice: juice) {
+            return make(juice: juice)
+        } else {
+            return nil
         }
     }
     
-    private func make(juice: Juice) throws {
+    func canMake(juice: Juice) -> Bool {
         let juiceRecipe = juice.recipe()
         
         for (fruit, count) in juiceRecipe {
-            try fruitStorage.subtractFruit(fruit, of: count)
+            if fruitStorage.hasStock(of: fruit, count: count) == false {
+                return false
+            }
         }
+        return true
+    }
+    
+    private func make(juice: Juice) -> Juice {
+        let juiceRecipe = juice.recipe()
+        
+        for (fruit, count) in juiceRecipe {
+            fruitStorage.subtractFruit(fruit, of: count)
+        }
+        return juice
     }
 }
 
