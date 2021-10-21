@@ -52,7 +52,7 @@ class FruitStore {
         }
         
         guard try checkEnoughStock(of: fruit, requiredAmount: amount) else {
-            return
+            throw JuiceMakeError.notEnoughStock
         }
         
         let newStockCount = currentStockCount - amount
