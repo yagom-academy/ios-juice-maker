@@ -44,7 +44,7 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func fruitsMixer(juice: Juice) throws {
+    func mixFruit(juice: Juice) throws {
         let juiceRecipe = juice.recipe
         guard canMakeJuice(recipe: juiceRecipe) else {
             throw RequestError.fruitStockOut
