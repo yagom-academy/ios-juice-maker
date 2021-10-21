@@ -24,9 +24,9 @@ class FruitStore {
         stock = Dictionary(uniqueKeysWithValues: zip(fruits, fruitsCount))
     }
     
-    func checkEnoughStock(of fruit: Fruit, requiredAmount: Int) -> Bool {
+    func checkEnoughStock(of fruit: Fruit, requiredAmount: Int) throws -> Bool {
         guard let fruitCounts = stock[fruit] else {
-            return false
+            throw JuiceMakeError.invaildKey
         }
         
         guard fruitCounts >= requiredAmount else {
@@ -51,8 +51,8 @@ class FruitStore {
             throw JuiceMakeError.invaildKey
         }
         
-        guard checkEnoughStock(of: fruit, requiredAmount: amount) else {
-            throw JuiceMakeError.notEnoughStock
+        guard try checkEnoughStock(of: fruit, requiredAmount: amount) else {
+            return
         }
         
         let newStockCount = currentStockCount - amount
