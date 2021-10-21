@@ -29,11 +29,11 @@ class FruitStore {
             return false
         }
         
-        if fruitCounts >= requiredAmount {
-            return true
-        } else {
+        guard fruitCounts >= requiredAmount else {
             return false
         }
+        
+        return true
     }
     
     func addStock(of fruit: Fruit, by amount: Int) throws {
