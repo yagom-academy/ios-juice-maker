@@ -21,4 +21,13 @@ class FruitStore {
             fruitStockList[fruit] = initialFruitStock
         }
     }
+    func addFruitStock(fruit: Fruit, plus number: Int) {
+        guard let fruitStock = fruitStockList[fruit] else { return }
+        fruitStockList[fruit] = fruitStock + number
+    }
+    func substractFruitStock(fruit: Fruit, minus number: Int) {
+        guard let fruitStock = fruitStockList[fruit],
+            fruitStock >= number else { return }
+        fruitStockList[fruit] = fruitStock - number
+    }
 }
