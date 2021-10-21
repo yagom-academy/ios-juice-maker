@@ -30,7 +30,7 @@ class FruitStore {
         try changeAmount(count: count, of: fruit, by: +)
     }
     
-    func subFruitStock(fruit: Fruit, count: Int) throws {
+    func subtractFruitStock(fruit: Fruit, count: Int) throws {
         try changeAmount(count: count, of: fruit, by: -)
     }
     

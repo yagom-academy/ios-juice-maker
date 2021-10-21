@@ -50,7 +50,7 @@ struct JuiceMaker {
             throw RequestError.fruitStockOut
         }
         try juiceRecipe.forEach { (fruit, count) in
-            try fruitStore.subFruitStock(fruit: fruit, count: count)
+            try fruitStore.subtractFruitStock(fruit: fruit, count: count)
         }
     }
     
