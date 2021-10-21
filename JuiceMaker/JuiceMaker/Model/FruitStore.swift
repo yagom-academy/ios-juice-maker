@@ -9,10 +9,14 @@ import Foundation
 class FruitStore: FruitStorage {
     private var inventory: [Fruit: Int] = [:]
     
-    init(defaultValue: Int = 10) {
-        Fruit.allCases.forEach {
-            inventory.updateValue(defaultValue, forKey: $0)
+    init(fruitQuantity: Int = 10) {
+        Fruit.allCases.forEach { fruit in
+            inventory.updateValue(fruitQuantity, forKey: fruit)
         }
+    }
+    
+    init(inventory: [Fruit: Int]) {
+        self.inventory = inventory
     }
     
     func changeFruitStock(of fruit: Fruit, by quantity: Int = 1, calculate: (Int, Int) -> Int) throws {
