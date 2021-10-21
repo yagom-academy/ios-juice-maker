@@ -15,7 +15,7 @@ enum Juice {
     case mangoJuice
     case mangoKiwiJuice
     
-    var recipes: [FruitStore.Fruit: Int] {
+    fileprivate var recipes: [FruitStore.Fruit: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
@@ -38,7 +38,7 @@ enum Juice {
 struct JuiceMaker {
     let fruitStore: FruitStore
     
-    func checkStock(of juice: Juice) throws {
+    private func checkStock(of juice: Juice) throws {
         let recipe = juice.recipes
         
         for (fruit, amount) in recipe {
@@ -48,7 +48,7 @@ struct JuiceMaker {
         }
     }
     
-    func consumeStock(with juice: Juice) throws {
+    private func consumeStock(with juice: Juice) throws {
         let recipe = juice.recipes
         
         for (fruit, amount) in recipe {

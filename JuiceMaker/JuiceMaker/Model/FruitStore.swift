@@ -18,7 +18,7 @@ class FruitStore {
         case mango
     }
     
-    let initialStock: Int
+    private let initialStock: Int
     var stock = [Fruit: Int]()
 
     init(initialStock: Int) {
