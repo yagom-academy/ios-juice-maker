@@ -23,14 +23,17 @@ enum FruitStoreError: Error {
 }
 
 class FruitStore {
-    static let initialFruitsQuantity: Int = 10
-    var inventory: [Fruit: Int] = initializeInventory()
+    var inventory: [Fruit: Int]
     
-    static func initializeInventory() -> [Fruit: Int] {
+    init(quantity: Int = 10) {
+        self.inventory = FruitStore.initializeInventory(quantity: quantity)
+    }
+    
+    static func initializeInventory(quantity: Int) -> [Fruit: Int] {
         var inventory: [Fruit: Int] = [:]
         
         for key in Fruit.allCases {
-            inventory[key] = FruitStore.initialFruitsQuantity
+            inventory[key] = quantity
         }
         
         return inventory
@@ -61,4 +64,5 @@ class FruitStore {
         
         return resultString
     }
+
 }
