@@ -39,18 +39,11 @@ struct JuiceMaker {
     let fruitStorage: FruitStore
     
     func order(juice: Juice) -> Juice? {
-        
-        if canMake(juice: juice) {
-            return make(juice: juice)
-        } else {
-            return nil
-        }
+        return canMake(juice: juice) ? make(juice: juice) : nil
     }
     
-    func canMake(juice: Juice) -> Bool {
-        let juiceRecipe = juice.recipe
-        
-        for (fruit, count) in juiceRecipe {
+    private func canMake(juice: Juice) -> Bool {
+        for (fruit, count) in juice.recipe {
             if fruitStorage.hasStock(of: fruit, count: count) == false {
                 return false
             }
@@ -59,15 +52,7 @@ struct JuiceMaker {
     }
     
     private func make(juice: Juice) -> Juice {
-        let juiceRecipe = juice.recipe
-        
-        for (fruit, count) in juiceRecipe {
-            fruitStorage.subtract(fruit: fruit, of: count)
-        }
+        juice.recipe.forEach { fruitStorage.subtract(fruit: $0, of: $1) }
         return juice
     }
-}
-
-private extension JuiceMaker.Juice {
-    
 }

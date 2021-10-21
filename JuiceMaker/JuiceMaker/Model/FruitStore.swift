@@ -19,9 +19,7 @@ class FruitStore {
     
     init(defaultStock: Int) {
         self.fruitInventory = [:]
-        for fruit in Fruits.allCases {
-            fruitInventory[fruit] = defaultStock
-        }
+        Fruits.allCases.forEach { fruitInventory[$0] = defaultStock }
     }
     
     convenience init() {
