@@ -17,12 +17,15 @@ class FruitStore {
     
     private var fruitInventory: [Fruits: Int]
     
-    init() {
-        let defaultStock = 10
+    init(defaultStock: Int) {
         self.fruitInventory = [:]
         for fruit in Fruits.allCases {
             fruitInventory[fruit] = defaultStock
         }
+    }
+    
+    convenience init() {
+        self.init(defaultStock: 10)
     }
     
     func addFruit(_ fruit: Fruits, of difference: Int) {
