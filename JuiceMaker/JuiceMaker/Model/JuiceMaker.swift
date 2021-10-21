@@ -72,7 +72,17 @@ struct JuiceMaker {
             print("\(mixedJuice)가 만들어지지 못했습니다")
             return false
         }
+        
+        return true
+    }
     
+    func updateStore(to requiredChange: Fruit) -> Bool {
+        guard fruitStore.updateQuantity(to: requiredChange) else {
+            print("재고 변경을 실패하였습니다.")
+            return false
+        }
+        
         return true
     }
 }
+
