@@ -33,6 +33,7 @@ struct JuiceMaker {
         for (fruit, amount) in juice.recipe {
             try fruitstore.checkEnoughFruit(which: fruit, on: amount)
         }
+        
     }
 
     private func makeJuice(juice: Juice) {

@@ -25,7 +25,7 @@ class FruitStore {
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
 
-    fileprivate func checkEnoughFruit(which fruit: Fruit, on amount: Int) throws {
+    func checkEnoughFruit(which fruit: Fruit, on amount: Int) throws {
         guard let inventory = fruitStorage[fruit] else {
             throw Errors.invalidValue
         }
