@@ -34,7 +34,7 @@ struct JuiceMaker {
     
     func makeJuice(menu: JuiceMenu) throws {
         for (fruit, quantity) in menu.recipe {
-            try fruitStore.decreaseFruitStock(of: fruit, by: quantity)
+            try fruitStore.changeFruitStock(of: fruit, by: quantity, calculate: -)
         }
     }
 }

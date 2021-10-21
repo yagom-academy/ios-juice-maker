@@ -20,23 +20,15 @@ class FruitStore {
         }
     }
     
-    func increaseFruitStock(of fruit: Fruit, by quantity: Int = 1) {
-        guard let fruitStock = inventory[fruit] else {
-            return
-        }
-        inventory[fruit] = fruitStock + quantity
-    }
-    
-    func decreaseFruitStock(of fruit: Fruit, by quantity: Int = 1) throws {
+    func changeFruitStock(of fruit: Fruit, by quantity: Int = 1, calculate: (Int, Int) -> Int) throws {
         guard let fruitStock = inventory[fruit] else {
             throw FruitStoreError.unexpectedNil
         }
-        if fruitStock < quantity {
+        if calculate(fruitStock, quantity) < 0 {
             throw FruitStoreError.stockShortage
         }
-        inventory[fruit] = fruitStock - quantity
+        inventory[fruit] = calculate(fruitStock, quantity)
     }
-    
 }
 
 enum FruitStoreError: Error {
