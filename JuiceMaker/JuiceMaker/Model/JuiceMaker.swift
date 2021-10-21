@@ -62,7 +62,7 @@ struct JuiceMaker {
         let juiceRecipe = juice.recipe
         
         for (fruit, count) in juiceRecipe {
-            fruitStorage.subtractFruit(fruit, of: count)
+            fruitStorage.subtract(fruit: fruit, of: count)
         }
         return juice
     }

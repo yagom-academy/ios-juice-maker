@@ -28,18 +28,18 @@ class FruitStore {
         self.init(defaultStock: 10)
     }
     
-    func addFruit(_ fruit: Fruits, of difference: Int) {
-        guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
+    func add(fruit: Fruits, of count: Int) {
+        guard let numberOfFruit = fruitInventory[fruit], count >= 0 else {
             return
         }
-        fruitInventory[fruit] = numberOfFruit + difference
+        fruitInventory[fruit] = numberOfFruit + count
     }
     
-    func subtractFruit(_ fruit: Fruits, of difference: Int) {
-        guard let numberOfFruit = fruitInventory[fruit], difference >= 0 else {
+    func subtract(fruit: Fruits, of count: Int) {
+        guard let numberOfFruit = fruitInventory[fruit], count >= 0 else {
             return
         }
-        fruitInventory[fruit] = numberOfFruit - difference
+        fruitInventory[fruit] = numberOfFruit - count
     }
     
     func hasStock(of fruit: Fruits, count: Int) -> Bool {
