@@ -18,10 +18,20 @@ class FruitStore {
         case mango
     }
     
-    let initialStock = 10
+    let initialStock: Int
     var stock = [Fruit: Int]()
 
-    init() {
+    init(initialStock: Int) {
+        self.initialStock = initialStock
+        
+        for fruit in Fruit.allCases {
+            stock[fruit] = initialStock
+        }
+    }
+    
+    convenience init() {
+        self.init(initialStock: 10)
+        
         for fruit in Fruit.allCases {
             stock[fruit] = initialStock
         }
