@@ -39,16 +39,22 @@ class FruitStore {
     func updateInventory(of recipe: [Fruit: Int]) throws {
         let calculatedInventory = self.inventory.merging(recipe) { (currentFruitQuantity, recipeFruitQuantity) in currentFruitQuantity - recipeFruitQuantity }
         
-        let neededFruits = calculatedInventory.filter { (mergedQuantity) in mergedQuantity.value < 0 }
-        guard neededFruits.count == 0 else {
-            throw FruitStoreError.outOfStock(neededFruits)
-        }
+        try checkOutOfStock(calculatedInventory)
         
         self.inventory = calculatedInventory
     }
         
+    func checkOutOfStock(_ calculatedInventory: [Fruit: Int]) throws {
+        let neededFruits = calculatedInventory.filter { (mergedQuantity) in mergedQuantity.value < 0 }
+        
+        guard neededFruits.count == 0 else {
+            throw FruitStoreError.outOfStock(neededFruits)
+        }
+    }
+    
     func convertToString(using fruits: [Fruit: Int]) -> String {
         var resultString = ""
+        
         for (fruit, quantity) in fruits {
             resultString += "과일 : \(fruit), 개수 : \(abs(quantity))\n"
         }
