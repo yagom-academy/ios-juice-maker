@@ -13,6 +13,16 @@ class FruitStore {
         }
         fruitQuantity[fruit] = operation(stock, count)
     }
+    
+    func isRemaining(of ingredients: [Fruit : Int]) -> Bool {
+        for (fruit, count) in ingredients {
+            
+            guard let fruitQuantity = fruitQuantity[fruit], fruitQuantity >= count else {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 extension Dictionary {

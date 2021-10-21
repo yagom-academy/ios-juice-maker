@@ -43,22 +43,12 @@ struct JuiceMaker {
     func makeJuice(seletedJuice: Menu) throws {
         let ingredients: [Fruit : Int] = seletedJuice.recipe
         
-        guard isRemaining(of: ingredients) else {
+        guard fruitStore.isRemaining(of: ingredients) else {
             throw JuiceMakerError.outOfStock
         }
         
         for (fruit, count) in ingredients {
             fruitStore.changeQuantity(of: fruit, count: count, do: -)
         }
-    }
-    
-    private func isRemaining(of ingredients: [Fruit : Int]) -> Bool {
-        for (fruit, count) in ingredients {
-            
-            guard let fruitQuantity = fruitStore.fruitQuantity[fruit], fruitQuantity >= count else {
-                return false
-            }
-        }
-        return true
     }
 }
