@@ -8,11 +8,9 @@ import Foundation
 
 
 class FruitStore {
-    
-    private var inventory: [Fruit: Int]
+    private var inventory: [Fruit: Int] = [:]
     
     init(defaultValue: Int = 10) {
-        self.inventory = [:]
         Fruit.allCases.forEach {
             inventory.updateValue(defaultValue, forKey: $0)
         }
