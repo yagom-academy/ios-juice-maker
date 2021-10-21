@@ -23,13 +23,13 @@ enum FruitStoreError: Error {
 }
 
 class FruitStore {
-    var stock: [Fruit: Int]
+    private var stock: [Fruit: Int]
     
     init(quantity: Int = 10) {
         self.stock = FruitStore.initializeInventory(quantity: quantity)
     }
     
-    static func initializeInventory(quantity: Int) -> [Fruit: Int] {
+    private static func initializeInventory(quantity: Int) -> [Fruit: Int] {
         var inventory: [Fruit: Int] = [:]
         
         for key in Fruit.allCases {
@@ -53,7 +53,7 @@ class FruitStore {
         }
     }
         
-    func checkOutOfStock(_ calculatedStock: [Fruit: Int]) throws {
+    private func checkOutOfStock(_ calculatedStock: [Fruit: Int]) throws {
         let neededFruits = calculatedStock.filter { (mergedQuantity) in mergedQuantity.value < 0 }
         
         guard neededFruits.count == 0 else {
