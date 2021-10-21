@@ -42,4 +42,12 @@ struct JuiceMaker {
             }
         }
     }
+    
+    func make(juice: Juice) throws {
+        let recipe = juice.recipe
+        
+        try self.fruitStore.updateInventory(of: recipe)
+        
+        print("\(juice)가 만들어졌습니다!")
+    }
 }
