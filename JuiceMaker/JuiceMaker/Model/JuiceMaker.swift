@@ -4,8 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
-
 struct JuiceMaker {
     let fruitstore = FruitStore()
 
@@ -31,10 +29,23 @@ struct JuiceMaker {
         }
     }
 
-    func makeJuice(juice: Juice) throws {
+    func checkStock(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            try fruitstore.useFruit(which: fruit, on: amount)
+            try fruitstore.checkEnoughFruit(which: fruit, on: amount)
+        }
+    }
+
+    func makeJuice(juice: Juice) {
+        do {
+            try checkStock(juice: juice)
+        } catch Errors.outOfStock {
+            print(Errors.outOfStock.Description)
+        } catch Errors.invalidValue {
+            print(Errors.invalidValue.Description)
+        } catch {
+            print(error)
         }
     }
 }
+
 

@@ -4,8 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
 class FruitStore {
     enum Fruit: CaseIterable {
         case strawberry
@@ -27,19 +25,22 @@ class FruitStore {
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
 
-    func useFruit(which fruit: Fruit, on amount: Int) throws {
-        guard var inventory = fruitStorage[fruit] else {
+    func checkEnoughFruit(which fruit: Fruit, on amount: Int) throws {
+        guard let inventory = fruitStorage[fruit] else {
             throw Errors.invalidValue
         }
-        
-        guard inventory > amount else {
+
+        guard inventory >= amount else {
             throw Errors.outOfStock
         }
-    
-        inventory -= amount
-        fruitStorage[fruit] = inventory
+
+        useFruit(fruit: fruit, amount: amount)
     }
-    
+
+    func useFruit(fruit: Fruit, amount: Int) {
+        fruitStorage[fruit]? -= amount
+    }
+
     func stockUpFruit(which fruit: Fruit, on amount: Int) throws {
         guard var inventory = fruitStorage[fruit] else {
             throw Errors.invalidValue
