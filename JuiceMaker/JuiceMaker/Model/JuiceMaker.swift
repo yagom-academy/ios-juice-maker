@@ -16,7 +16,7 @@ struct JuiceMaker {
         case strawberryBananaJuice
         case mangoKiwiJuice
     }
-    enum JuiceRecipe {
+    enum Recipe {
         static let usageOfStrawberry = 16
         static let usageOfBanana = 2
         static let usageOfPineapple = 2
@@ -33,21 +33,21 @@ struct JuiceMaker {
     func makeFruitJuice(juice: Menu) {
         switch juice {
         case .strawberryJuice:
-            fruitStore.consumeFruit(name: .strawberry, amount: JuiceRecipe.usageOfStrawberry)
+            fruitStore.consumeStock(of: .strawberry, amount: Recipe.usageOfStrawberry)
         case .bananaJuice:
-            fruitStore.consumeFruit(name: .banana, amount: JuiceRecipe.usageOfBanana)
+            fruitStore.consumeStock(of: .banana, amount: Recipe.usageOfBanana)
         case .pineappleJuice:
-            fruitStore.consumeFruit(name: .pineapple, amount: JuiceRecipe.usageOfPineapple)
+            fruitStore.consumeStock(of: .pineapple, amount: Recipe.usageOfPineapple)
         case .kiwiJuice:
-            fruitStore.consumeFruit(name: .kiwi, amount: JuiceRecipe.usageOfKiwi)
+            fruitStore.consumeStock(of: .kiwi, amount: Recipe.usageOfKiwi)
         case .mangoJuice:
-            fruitStore.consumeFruit(name: .mango, amount: JuiceRecipe.usageOfMango)
+            fruitStore.consumeStock(of: .mango, amount: Recipe.usageOfMango)
         case .strawberryBananaJuice:
-            fruitStore.consumeTwoFruits(first: .strawberry, firstAmount: JuiceRecipe.usageOfMixStrawberry,
-                                        second: .banana, secondAmount: JuiceRecipe.usageOfMixBanana)
+            fruitStore.consumeTwoKindsOfFruits(first: .strawberry, firstAmount: Recipe.usageOfMixStrawberry,
+                                        second: .banana, secondAmount: Recipe.usageOfMixBanana)
         case .mangoKiwiJuice:
-            fruitStore.consumeTwoFruits(first: .mango, firstAmount: JuiceRecipe.usageOfMixMango,
-                                        second: .kiwi, secondAmount: JuiceRecipe.usageOfMixKiwi)
+            fruitStore.consumeTwoKindsOfFruits(first: .mango, firstAmount: Recipe.usageOfMixMango,
+                                        second: .kiwi, secondAmount: Recipe.usageOfMixKiwi)
         }
     }
 }

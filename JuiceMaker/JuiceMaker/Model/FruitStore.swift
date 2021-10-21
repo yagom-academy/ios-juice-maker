@@ -12,7 +12,7 @@ enum JuiceMakerError: Error, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .outOfStock(let fruit):
+        case let .outOfStock(fruit):
             return "\(fruit)의 재고가 부족합니다"
         case .invalidNumber:
             return "유효하지 않은 숫자입니다"
@@ -37,25 +37,25 @@ class FruitStore {
         }
     }
     
-    private func checkStock(name: Fruit, count: Int) throws {
+    private func checkStock(of fruit: Fruit, count: Int) throws {
         guard count >= 0 else { throw JuiceMakerError.invalidNumber }
-        guard let fruitAmount = stockOfFruit[name],
-              fruitAmount >= count else { throw JuiceMakerError.outOfStock(name.stringValue) }
+        guard let fruitAmount = stockOfFruit[fruit],
+              fruitAmount >= count else { throw JuiceMakerError.outOfStock(fruit.stringValue) }
     }
-    
-    func addFruit(name: Fruit, amount: Int) {
-        if let inventory = stockOfFruit[name] {
-            stockOfFruit[name] = inventory + amount
+
+    func addStock(of fruit: Fruit, amount: Int) {
+        if let inventory = stockOfFruit[fruit] {
+            stockOfFruit[fruit] = inventory + amount
         }
     }
     
-    func consumeFruit(name: Fruit, amount: Int) {
+    func consumeStock(of fruit: Fruit, amount: Int) {
         do {
-            try checkStock(name: name, count: amount)
-            if let stock = stockOfFruit[name] {
-                stockOfFruit[name] = stock - amount
+            try checkStock(of: fruit, count: amount)
+            if let stock = stockOfFruit[fruit] {
+                stockOfFruit[fruit] = stock - amount
             }
-        } catch JuiceMakerError.outOfStock(let fruit) {
+        } catch let JuiceMakerError.outOfStock(fruit) {
             print(JuiceMakerError.outOfStock(fruit).description)
         } catch JuiceMakerError.invalidNumber {
             print(JuiceMakerError.invalidNumber.description)
@@ -64,15 +64,15 @@ class FruitStore {
         }
     }
     
-    func consumeTwoFruits(first: Fruit, firstAmount: Int, second: Fruit, secondAmount: Int) {
+    func consumeTwoKindsOfFruits(first: Fruit, firstAmount: Int, second: Fruit, secondAmount: Int) {
         do {
-            try checkStock(name: first, count: firstAmount)
-            try checkStock(name: second, count: secondAmount)
+            try checkStock(of: first, count: firstAmount)
+            try checkStock(of: second, count: secondAmount)
             if let firstStock = stockOfFruit[first], let secondStock = stockOfFruit[second] {
                 stockOfFruit[first] = firstStock - firstAmount
                 stockOfFruit[second] = secondStock - secondAmount
             }
-        } catch JuiceMakerError.outOfStock(let fruit) {
+        } catch let JuiceMakerError.outOfStock(fruit) {
             print(JuiceMakerError.outOfStock(fruit).description)
         } catch JuiceMakerError.invalidNumber {
             print(JuiceMakerError.invalidNumber.description)
