@@ -40,11 +40,11 @@ class FruitStore {
     }
     
     func updateStock(of recipe: [Fruit: Int]) throws {
-        let calculatedStock = self.stock.merging(recipe) { (currentFruitQuantity, recipeFruitQuantity) in currentFruitQuantity - recipeFruitQuantity }
+        let calculatedStock = stock.merging(recipe) { (currentFruitQuantity, recipeFruitQuantity) in currentFruitQuantity - recipeFruitQuantity }
         
         try checkOutOfStock(calculatedStock)
         
-        self.stock = calculatedStock
+        stock = calculatedStock
     }
     
     func add(fruit: Fruit, quantity: Int = 1) {
