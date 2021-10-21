@@ -23,10 +23,10 @@ enum FruitStoreError: Error {
 }
 
 class FruitStore {
-    var inventory: [Fruit: Int]
+    var stock: [Fruit: Int]
     
     init(quantity: Int = 10) {
-        self.inventory = FruitStore.initializeInventory(quantity: quantity)
+        self.stock = FruitStore.initializeInventory(quantity: quantity)
     }
     
     static func initializeInventory(quantity: Int) -> [Fruit: Int] {
@@ -39,16 +39,16 @@ class FruitStore {
         return inventory
     }
     
-    func updateInventory(of recipe: [Fruit: Int]) throws {
-        let calculatedInventory = self.inventory.merging(recipe) { (currentFruitQuantity, recipeFruitQuantity) in currentFruitQuantity - recipeFruitQuantity }
+    func updateStock(of recipe: [Fruit: Int]) throws {
+        let calculatedStock = self.stock.merging(recipe) { (currentFruitQuantity, recipeFruitQuantity) in currentFruitQuantity - recipeFruitQuantity }
         
-        try checkOutOfStock(calculatedInventory)
+        try checkOutOfStock(calculatedStock)
         
-        self.inventory = calculatedInventory
+        self.stock = calculatedStock
     }
         
-    func checkOutOfStock(_ calculatedInventory: [Fruit: Int]) throws {
-        let neededFruits = calculatedInventory.filter { (mergedQuantity) in mergedQuantity.value < 0 }
+    func checkOutOfStock(_ calculatedStock: [Fruit: Int]) throws {
+        let neededFruits = calculatedStock.filter { (mergedQuantity) in mergedQuantity.value < 0 }
         
         guard neededFruits.count == 0 else {
             throw FruitStoreError.outOfStock(neededFruits)
