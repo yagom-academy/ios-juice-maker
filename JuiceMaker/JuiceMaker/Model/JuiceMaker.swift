@@ -37,4 +37,11 @@ struct JuiceMaker {
             }
         }
     }
+    func orderJuice(for menu: Juice) {
+        guard fruitStore.isHaveEnoughStock(for: menu) else { return }
+        makeJuice(for: menu)
+    }
+    func makeJuice(for menu: Juice) {
+        
+    }
 }
