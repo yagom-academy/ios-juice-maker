@@ -5,29 +5,29 @@
 // 
 
 enum Juice {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-    case strawberryBanana
-    case mangoKiwi
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
     
     fileprivate var recipe: [(Fruit, Int)] {
         switch self {
-        case .strawberry:
+        case .strawberryJuice:
             return [(.strawberry, 16)]
-        case .banana:
+        case .bananaJuice:
             return [(.banana, 2)]
-        case .pineapple:
+        case .pineappleJuice:
             return [(.pineapple, 2)]
-        case .kiwi:
+        case .kiwiJuice:
             return [(.kiwi, 3)]
-        case .mango:
+        case .mangoJuice:
             return [(.mango, 3)]
-        case .strawberryBanana:
+        case .strawberryBananaJuice:
             return [(.strawberry, 10), (.banana, 1)]
-        case .mangoKiwi:
+        case .mangoKiwiJuice:
             return [(.mango, 2), (.kiwi, 1)]
         }
     }
