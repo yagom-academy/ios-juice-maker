@@ -42,6 +42,7 @@ struct JuiceMaker {
         makeJuice(for: menu)
     }
     func makeJuice(for menu: Juice) {
-        
+        for (fruitName, ingredient) in menu.recipe {
+            fruitStore.substractFruitStock(fruit: fruitName, minus: ingredient)
     }
 }
