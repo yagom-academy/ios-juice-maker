@@ -38,7 +38,11 @@ enum Juice {
 }
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore()
+    private let fruitStore: FruitStore
+    
+    init(fruitStore: FruitStore = FruitStore()) {
+        self.fruitStore = fruitStore
+    }
     
     func fruitsMixer(juice: Juice) throws {
         let juiceRecipe = juice.recipe
