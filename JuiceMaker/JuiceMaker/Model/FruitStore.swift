@@ -46,6 +46,12 @@ class FruitStore {
         
         self.stock = calculatedStock
     }
+    
+    func add(fruit: Fruit, quantity: Int = 1) {
+        if let fruitCount = stock[fruit] {
+            stock.updateValue(fruitCount + quantity, forKey: fruit)
+        }
+    }
         
     func checkOutOfStock(_ calculatedStock: [Fruit: Int]) throws {
         let neededFruits = calculatedStock.filter { (mergedQuantity) in mergedQuantity.value < 0 }
@@ -64,5 +70,4 @@ class FruitStore {
         
         return resultString
     }
-
 }
