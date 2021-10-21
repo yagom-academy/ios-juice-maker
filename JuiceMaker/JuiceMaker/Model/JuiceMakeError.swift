@@ -7,10 +7,12 @@
 
 import Foundation
 
-enum JuiceMakeError: Error, LocalizedError {
+enum JuiceMakeError: Error {
     case invaildKey
     case notEnoughStock
-    
+}
+
+extension JuiceMakeError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invaildKey:
