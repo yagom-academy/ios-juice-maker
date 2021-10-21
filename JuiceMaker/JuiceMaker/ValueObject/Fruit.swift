@@ -17,10 +17,14 @@ class Fruit {
     }
     
     let name: FruitName
-    var quantity: Int
+    private(set) var quantity: Int
     
     init(name: FruitName, quantity: Int) {
         self.name = name
         self.quantity = quantity
+    }
+    
+    func changeQuantity(to newQuantity: Int) {
+        self.quantity = newQuantity
     }
 }

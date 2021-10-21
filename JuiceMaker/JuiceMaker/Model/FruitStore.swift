@@ -7,13 +7,13 @@
 import Foundation
 
 class FruitStore {
-    let storedStrawberry: Fruit = Fruit(name: .strawberry, quantity: 10)
-    let storedBanana: Fruit = Fruit(name: .banana, quantity: 10)
-    let storedKiwi: Fruit = Fruit(name: .kiwi, quantity: 10)
-    let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
-    let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
+    private let storedStrawberry: Fruit = Fruit(name: .strawberry, quantity: 10)
+    private let storedBanana: Fruit = Fruit(name: .banana, quantity: 10)
+    private let storedKiwi: Fruit = Fruit(name: .kiwi, quantity: 10)
+    private let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
+    private let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
-    func searchStorage(of fruitName: Fruit.FruitName) -> Fruit {
+    private func searchStorage(of fruitName: Fruit.FruitName) -> Fruit {
         switch fruitName {
         case .strawberry:
             return storedStrawberry
@@ -45,7 +45,7 @@ class FruitStore {
         var isSuccess: Bool
         let storedFruit: Fruit = searchStorage(of: requiredIngredients.name)
         
-        storedFruit.quantity = storedFruit.quantity - requiredIngredients.quantity
+        storedFruit.changeQuantity(to: storedFruit.quantity - requiredIngredients.quantity)
         
         if storedFruit.quantity >= 0 {
             isSuccess = true
@@ -60,8 +60,8 @@ class FruitStore {
         var isSuccess: Bool
         let storedFruit: Fruit = searchStorage(of: requiredChange.name)
         
-        storedFruit.quantity = storedFruit.quantity + requiredChange.quantity
-        
+        storedFruit.changeQuantity(to: storedFruit.quantity + requiredChange.quantity)
+
         if storedFruit.quantity >= 0 {
             isSuccess = true
         } else {

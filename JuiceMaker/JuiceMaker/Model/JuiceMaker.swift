@@ -37,7 +37,7 @@ struct JuiceMaker {
         }
     }
     
-    var fruitStore: FruitStore = FruitStore()
+    private let fruitStore: FruitStore = FruitStore()
     
     func make(singleJuice: Menu) -> Bool {
         guard fruitStore.checkQuantity(singleJuice.ingredient[0]) else {
