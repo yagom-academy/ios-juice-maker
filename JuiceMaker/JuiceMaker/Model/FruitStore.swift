@@ -30,4 +30,11 @@ class FruitStore {
             fruitStock >= number else { return }
         fruitStockList[fruit] = fruitStock - number
     }
+    func isHaveEnoughStock(of fruit: Fruit, for juiceIngredient: Int) -> Bool {
+        guard let fruitStock = fruitStockList[fruit] else { return false }
+        if fruitStock >= juiceIngredient {
+            return true
+        }
+        return false
+    }
 }
