@@ -18,21 +18,31 @@ struct JuiceMaker {
         case strawberryBanana
         case mango
         case mangoKiwi
+        
+        fileprivate var recipe: Recipe {
+            switch self {
+            case .strawberry:
+                return [.strawberry: 16]
+            case .banana:
+                return [.banana: 2]
+            case .kiwi:
+                return [.kiwi: 3]
+            case .pineapple:
+                return [.pineapple: 2]
+            case .strawberryBanana:
+                return [.strawberry: 10, .banana: 1]
+            case .mango:
+                return [.mango: 3]
+            case .mangoKiwi:
+                return [.mango: 2, .kiwi: 1]
+            }
+        }
     }
     
     private let fruitStore = FruitStore()
-    private let juiceRecipes: [Juice: Recipe] = [
-        Juice.strawberry: [.strawberry: 16],
-        Juice.banana: [.banana: 2],
-        Juice.kiwi: [.kiwi: 3],
-        Juice.pineapple: [.pineapple: 2],
-        Juice.strawberryBanana: [.strawberry: 10, .banana: 1],
-        Juice.mango: [.mango: 3],
-        Juice.mangoKiwi: [.mango: 2, .kiwi: 1]
-    ]
     
     func fruitsMixer(juice: Juice) throws {
-        guard let juiceRecipe = juiceRecipes[juice] else { return }
+        let juiceRecipe = juice.recipe
         guard canMakeJuice(recipe: juiceRecipe) else {
             throw RequestError.fruitStockOut
         }
