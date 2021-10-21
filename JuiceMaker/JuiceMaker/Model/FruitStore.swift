@@ -18,7 +18,7 @@ class FruitStore {
     
     func changeFruitStock(of fruit: Fruit, by quantity: Int = 1, calculate: (Int, Int) -> Int) throws {
         guard let fruitStock = inventory[fruit] else {
-            throw FruitStoreError.unexpectedNil
+            throw FruitStoreError.stockDataMissing
         }
         if calculate(fruitStock, quantity) < 0 {
             throw FruitStoreError.stockShortage

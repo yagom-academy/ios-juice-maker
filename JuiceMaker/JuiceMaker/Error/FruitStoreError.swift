@@ -8,5 +8,5 @@
 
 enum FruitStoreError: Error {
     case stockShortage
-    case unexpectedNil
+    case stockDataMissing
 }
