@@ -6,10 +6,8 @@
 
 import Foundation
 
+
 class FruitStore {
-    enum Fruit: CaseIterable {
-        case strawberry, banana, kiwi, pineapple, mango
-    }
     
     private var inventory: [Fruit: Int]
     
@@ -29,9 +27,4 @@ class FruitStore {
         }
         inventory[fruit] = calculate(fruitStock, quantity)
     }
-}
-
-enum FruitStoreError: Error {
-    case stockShortage
-    case unexpectedNil
 }
