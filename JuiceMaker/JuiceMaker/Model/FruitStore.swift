@@ -17,14 +17,14 @@ class FruitStore {
     
     private enum FruitStoreError: LocalizedError {
         case invalidFruitChoice
-        case lackOfStock(stockNeeded: Int)
+        case lackOfStock(neededStock: Int)
         
         var description: String {
             switch self {
             case .invalidFruitChoice:
                 return "유효하지 않은 선택입니다."
-            case .lackOfStock(let stockNeeded):
-                return "재료가 \(stockNeeded)개 부족합니다. 재고를 확인해주세요."
+            case .lackOfStock(let neededStock):
+                return "재료가 \(neededStock)개 부족합니다. 재고를 확인해주세요."
             }
         }
     }
@@ -57,7 +57,7 @@ class FruitStore {
     
     private func checkEnoughStock(from index: Int, for count: Int) throws {
         guard inventory[index].count >= count else {
-            throw FruitStoreError.lackOfStock(stockNeeded: count - inventory[index].count)
+            throw FruitStoreError.lackOfStock(neededStock: count - inventory[index].count)
         }
     }
     
@@ -69,7 +69,7 @@ class FruitStore {
         } catch FruitStoreError.invalidFruitChoice {
             print(FruitStoreError.invalidFruitChoice.description)
         } catch FruitStoreError.lackOfStock(let count) {
-            print(FruitStoreError.lackOfStock(stockNeeded: count).description)
+            print(FruitStoreError.lackOfStock(neededStock: count).description)
         } catch {
             print(error)
         }
