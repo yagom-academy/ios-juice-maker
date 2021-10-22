@@ -1,6 +1,6 @@
 import Foundation
 
-enum FruitName {
+enum FruitName: CaseIterable {
     case strawberry
     case banana
     case pineapple
@@ -29,13 +29,13 @@ class FruitStore {
         }
     }
     
-    private(set) var inventory: [Fruit] = [
-        Fruit(name: .strawberry),
-        Fruit(name: .banana),
-        Fruit(name: .pineapple),
-        Fruit(name: .kiwi),
-        Fruit(name: .mango)
-    ]
+    private(set) var inventory: [Fruit] = []
+ 
+    func initializeInventory() {
+        for fruit in FruitName.allCases {
+            inventory.append(Fruit(name: fruit))
+        }
+    }
     
     private func findIndexFromInventory(with fruit: FruitName) throws -> Int {
         guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
@@ -73,5 +73,9 @@ class FruitStore {
         } catch {
             print(error)
         }
+    }
+    
+    init() {
+        initializeInventory()
     }
 }
