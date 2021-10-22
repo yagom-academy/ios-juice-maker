@@ -3,16 +3,7 @@
 //  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
-
 class FruitStore {
-    enum Fruit: CaseIterable {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-    }
-    
     private let initialStock: Int
     var stock = [Fruit: Int]()
 

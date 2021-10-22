@@ -15,7 +15,7 @@ enum Juice {
     case mangoJuice
     case mangoKiwiJuice
     
-    fileprivate var recipes: [FruitStore.Fruit: Int] {
+    fileprivate var recipes: [Fruit: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
