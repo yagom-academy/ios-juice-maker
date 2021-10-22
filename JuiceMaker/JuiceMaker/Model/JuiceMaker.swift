@@ -1,6 +1,6 @@
 import Foundation
 
-enum JuiceName {
+enum JuiceName: CaseIterable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -10,9 +10,30 @@ enum JuiceName {
     case mangoKiwiJuice
 }
 
+typealias ingredient = (fruit: FruitName, count: Int)
+
 struct Juice {
     let name: JuiceName
     var count: Int = 0
+    
+    var recipe: [ingredient] {
+        switch self.name {
+        case .strawberryJuice:
+            return [(.strawberry, 16)]
+        case .bananaJuice:
+            return [(.banana, 2)]
+        case .kiwiJuice:
+            return [(.kiwi, 3)]
+        case .pineappleJuice:
+            return [(.pineapple, 2)]
+        case .strawberryBananaJuice:
+            return [(.strawberry, 10), (.banana, 1)]
+        case .mangoJuice:
+            return [(.mango, 3)]
+        case .mangoKiwiJuice:
+            return [(.mango, 2), (.kiwi, 1)]
+        }
+    }
 }
 
 struct JuiceMaker {
@@ -30,25 +51,13 @@ struct JuiceMaker {
     
     private var store = FruitStore()
     
-    private typealias ingredient = (fruit: FruitName, count: Int)
+    private var recipe: [JuiceName: [ingredient]] = [:]
     
-    private let strawberryJuiceRecipe: [ingredient] = [(.strawberry, 16)]
-    private let bananaJuiceRecipe: [ingredient] = [(.banana, 2)]
-    private let kiwiJuiceRecipe: [ingredient] = [(.kiwi, 3)]
-    private let pineappleJuiceRecipe: [ingredient] = [(.pineapple, 2)]
-    private let strawberryBananaJuiceRecipe: [ingredient] = [(.strawberry, 10), (.banana, 1)]
-    private let mangoJuiceRecipe: [ingredient] = [(.mango, 3)]
-    private let mangoKiwiJuiceRecipe: [ingredient] = [(.mango, 2), (.kiwi, 1)]
-    
-    private lazy var recipe: [JuiceName: [ingredient]] = [
-        .strawberryJuice: strawberryJuiceRecipe,
-        .bananaJuice: bananaJuiceRecipe,
-        .kiwiJuice: kiwiJuiceRecipe,
-        .pineappleJuice: pineappleJuiceRecipe,
-        .strawberryBananaJuice: strawberryBananaJuiceRecipe,
-        .mangoJuice: mangoJuiceRecipe,
-        .mangoKiwiJuice: mangoKiwiJuiceRecipe
-    ]
+    mutating func initializeRecipe() {
+        for juice in JuiceName.allCases {
+            recipe[juice] = Juice(name: juice).recipe
+        }
+    }
     
     private mutating func findRecipe(of juiceName: JuiceName) throws -> [ingredient] {
         guard let foundRecipe = recipe[juiceName] else {
@@ -72,5 +81,9 @@ struct JuiceMaker {
         } catch {
             print(error)
         }
+    }
+    
+    init() {
+        initializeRecipe()
     }
 }
