@@ -8,6 +8,8 @@
     + [의문점](#1-2-의문점)
     + [Trouble Shooting](#1-3-Trouble-Shooting)
     + [배운 개념](#1-4-배운-개념)
+    + [PR 후 개선사항](#1-5-PR-후-개선사항)
+
 
 # 📝 동기화 메모장
 
@@ -200,3 +202,12 @@
     - 연산자 기호를 파라미터로 전달할 수 있다.
     `changeAmount(count: count, of: fruit, by: -)`
 - `Sequence`의 대한 개념
+
+## 1-5. PR 후 개선사항
+
+- `JuiceMaker` 내부에 있던 프로퍼티 `Recipe`를 `Juice` 내부로 이동 후 switch문으로 변경
+- enum `Juice`를 타입 외부로 이동
+    - `이유`  Juice를 외부로에서도 사용
+- `JuiceMaker` 기본값 프로퍼티를 제거하고 `initializer` 구현
+- `fruitMixer` 메서드 이름을 `mixFruit`으로 수정
+- `subFruitStock` 메서드명을 `subtractFruitStock` 으로 수정
