@@ -25,8 +25,8 @@ class FruitStore {
             stock[fruit] = remainingStock - amount
         }
         
-        func hasSufficientStock(of fruit: Fruit, requiredAmount: Int) -> Bool {
-            if let remainingStock = stock[fruit], remainingStock >= requiredAmount {
+        func hasSufficientStock(of ingredient: Ingredient) -> Bool {
+            if let remainingStock = stock[ingredient.fruit], remainingStock >= ingredient.amount {
                 return true
             }
             return false
@@ -45,9 +45,7 @@ class FruitStore {
     
     func canProvideIngredients(of juiceRecipe: JuiceRecipe) -> Bool {
         for ingredient in juiceRecipe.ingredients {
-            guard inventory.hasSufficientStock(of: ingredient.fruit, requiredAmount: ingredient.amount) else {
-                return false
-            }
+            guard inventory.hasSufficientStock(of: ingredient) else { return false }
         }
         return true
     }
