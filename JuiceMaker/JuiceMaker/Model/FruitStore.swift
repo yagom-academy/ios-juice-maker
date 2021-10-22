@@ -62,11 +62,7 @@ class FruitStore {
     }
     
     func convertToString(using fruits: [Fruit: Int]) -> String {
-        var resultString = ""
-        
-        for (fruit, quantity) in fruits {
-            resultString += "과일 : \(fruit), 개수 : \(abs(quantity))\n"
-        }
+        let resultString = fruits.map( {"과일: \($0), 개수: \(abs($1))\n"} ).reduce("") {$0 + $1}
         
         return resultString
     }
