@@ -27,17 +27,17 @@ class FruitStore {
     private var stock: [Fruit: Int]
     
     init(quantity: Int = FruitStore.initialFruitQuantity) {
-        self.stock = FruitStore.initializeInventory(quantity: quantity)
+        self.stock = FruitStore.initializeStock(quantity: quantity)
     }
     
-    private static func initializeInventory(quantity: Int) -> [Fruit: Int] {
-        var inventory: [Fruit: Int] = [:]
+    private static func initializeStock(quantity: Int) -> [Fruit: Int] {
+        var stock: [Fruit: Int] = [:]
         
         for key in Fruit.allCases {
-            inventory[key] = quantity
+            stock[key] = quantity
         }
         
-        return inventory
+        return stock
     }
     
     func updateStock(of recipe: [Fruit: Int]) throws {
