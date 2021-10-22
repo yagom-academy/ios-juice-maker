@@ -6,9 +6,36 @@
 
 import Foundation
 
+enum Fruit: CaseIterable {
+    case strawberry
+    case bananna
+    case pineapple
+    case kiwi
+    case mango
+}
+
 class FruitStore {
     private var inventory: Inventory
     
+    init(fruitList: [Fruit], amount: Int) {
+        inventory = Inventory(fruitList: fruitList, amount: amount)
+    }
+    
+    func reduceInventory(ingredientsOf recipe: JuiceRecipe) {
+        for ingredient in recipe.ingredients {
+            inventory.reduceStock(of: ingredient.fruit, by: ingredient.amount)
+        }
+    }
+    
+    func canProvideIngredients(of juiceRecipe: JuiceRecipe) -> Bool {
+        for ingredient in juiceRecipe.ingredients {
+            guard inventory.hasSufficientStock(of: ingredient) else { return false }
+        }
+        return true
+    }
+}
+
+extension FruitStore {
     private struct Inventory {
         private var stock: [Fruit:Int] = [:]
         
@@ -31,22 +58,5 @@ class FruitStore {
             }
             return false
         }
-    }
-    
-    init(fruitList: [Fruit], amount: Int) {
-        inventory = Inventory(fruitList: fruitList, amount: amount)
-    }
-    
-    func reduceInventory(ingredientsOf recipe: JuiceRecipe) {
-        for ingredient in recipe.ingredients {
-            inventory.reduceStock(of: ingredient.fruit, by: ingredient.amount)
-        }
-    }
-    
-    func canProvideIngredients(of juiceRecipe: JuiceRecipe) -> Bool {
-        for ingredient in juiceRecipe.ingredients {
-            guard inventory.hasSufficientStock(of: ingredient) else { return false }
-        }
-        return true
     }
 }

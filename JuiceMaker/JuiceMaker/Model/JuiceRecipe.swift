@@ -10,3 +10,8 @@ import Foundation
 struct JuiceRecipe {
     let ingredients: [Ingredient]
 }
+
+struct Ingredient {
+    let fruit: Fruit
+    let amount: Int
+}
