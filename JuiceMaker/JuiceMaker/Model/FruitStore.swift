@@ -1,16 +1,16 @@
 import Foundation
 
+enum FruitName {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
+
 struct Fruit {
     var name: FruitName
     var count: Int = 10
-    
-    enum FruitName {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-    }
 }
 
 class FruitStore {
@@ -37,14 +37,14 @@ class FruitStore {
         Fruit(name: .mango)
     ]
     
-    private func findIndexFromInventory(with fruit: Fruit.FruitName) throws -> Int {
+    private func findIndexFromInventory(with fruit: FruitName) throws -> Int {
         guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
             throw FruitStoreError.inValidFruitChoice
         }
         return indexOfFruit
     }
     
-    func addStock(count: Int, to fruit: Fruit.FruitName) {
+    func addStock(count: Int, to fruit: FruitName) {
         do {
             let indexOfFruit = try findIndexFromInventory(with: fruit)
             inventory[indexOfFruit].count += count
@@ -61,7 +61,7 @@ class FruitStore {
         }
     }
     
-    func subtractStock(count: Int, from fruit: Fruit.FruitName) {
+    func subtractStock(count: Int, from fruit: FruitName) {
         do {
             let indexOfFruit = try findIndexFromInventory(with: fruit)
             try checkEnoughStock(from: indexOfFruit, for: count)

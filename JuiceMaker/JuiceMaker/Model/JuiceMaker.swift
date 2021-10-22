@@ -1,18 +1,18 @@
 import Foundation
 
+enum JuiceName {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoJuice
+    case mangoKiwiJuice
+}
+
 struct Juice {
     var name: JuiceName
     var count: Int = 0
-    
-    enum JuiceName {
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
-    }
 }
 
 struct JuiceMaker {
@@ -30,7 +30,7 @@ struct JuiceMaker {
     
     private var store = FruitStore()
     
-    private typealias ingredient = (fruit: Fruit.FruitName, count: Int)
+    private typealias ingredient = (fruit: FruitName, count: Int)
     
     private let strawberryJuiceRecipe: [ingredient] = [(.strawberry, 16)]
     private let bananaJuiceRecipe: [ingredient] = [(.banana, 2)]
@@ -40,7 +40,7 @@ struct JuiceMaker {
     private let mangoJuiceRecipe: [ingredient] = [(.mango, 3)]
     private let mangoKiwiJuiceRecipe: [ingredient] = [(.mango, 2), (.kiwi, 1)]
     
-    private lazy var recipe: [Juice.JuiceName: [ingredient]] = [
+    private lazy var recipe: [JuiceName: [ingredient]] = [
         .strawberryJuice: strawberryJuiceRecipe,
         .bananaJuice: bananaJuiceRecipe,
         .kiwiJuice: kiwiJuiceRecipe,
@@ -50,7 +50,7 @@ struct JuiceMaker {
         .mangoKiwiJuice: mangoKiwiJuiceRecipe
     ]
     
-    private mutating func findRecipe(of juiceName: Juice.JuiceName) throws -> [ingredient] {
+    private mutating func findRecipe(of juiceName: JuiceName) throws -> [ingredient] {
         guard let foundRecipe = recipe[juiceName] else {
             throw JuiceMakerError.inValidMenuChoice
         }
@@ -63,7 +63,7 @@ struct JuiceMaker {
         }
     }
     
-    mutating func make(juiceName: Juice.JuiceName) {
+    mutating func make(juiceName: JuiceName) {
         do {
             let foundRecipe = try findRecipe(of: juiceName)
             blendIngredient(by: foundRecipe)
