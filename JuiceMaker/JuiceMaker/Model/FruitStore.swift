@@ -24,14 +24,18 @@ class FruitStore {
     }
     
     private func checkStock(of fruit: Fruit, count: Int) throws {
-        guard count >= 0 else { throw JuiceMakerError.invalidNumber }
+        guard count >= 0 else {
+            throw JuiceMakerError.invalidNumber
+        }
         guard let fruitAmount = stockOfFruit[fruit],
-              fruitAmount >= count else { throw JuiceMakerError.outOfStock(fruit.stringValue) }
+              fruitAmount >= count else {
+            throw JuiceMakerError.outOfStock(fruit.stringValue)
+        }
     }
 
     func addStock(of fruit: Fruit, amount: Int) {
-        if let inventory = stockOfFruit[fruit] {
-            stockOfFruit[fruit] = inventory + amount
+        if let stock = stockOfFruit[fruit] {
+            stockOfFruit[fruit] = stock + amount
         }
     }
     
@@ -54,7 +58,8 @@ class FruitStore {
         do {
             try checkStock(of: first, count: firstAmount)
             try checkStock(of: second, count: secondAmount)
-            if let firstStock = stockOfFruit[first], let secondStock = stockOfFruit[second] {
+            if let firstStock = stockOfFruit[first],
+                let secondStock = stockOfFruit[second] {
                 stockOfFruit[first] = firstStock - firstAmount
                 stockOfFruit[second] = secondStock - secondAmount
             }
