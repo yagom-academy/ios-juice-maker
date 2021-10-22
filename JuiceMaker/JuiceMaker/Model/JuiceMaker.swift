@@ -13,7 +13,7 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func make(juice: JuiceMenu) throws -> JuiceMenu {
+    func make(_ juice: JuiceMenu) throws -> JuiceMenu {
         guard hasAllIngredients(of: juice.recipe) else {
             throw FruitStoreError.deficientStock
         }
