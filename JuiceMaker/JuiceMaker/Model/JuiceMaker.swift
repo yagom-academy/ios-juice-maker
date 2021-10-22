@@ -18,18 +18,11 @@ struct JuiceMaker {
             throw FruitStoreError.deficientStock
         }
         
-        for ingredient in juice.recipe.ingredients {
-            fruitStore.decreaseStock(of: ingredient.fruit, by: ingredient.amount)
-        }
+        fruitStore.reduceInventory(ingredientsOf: juice.recipe)
         return juice
     }
     
     private func hasAllIngredients(of juiceRecipe: JuiceRecipe) -> Bool {
-        for ingredient in juiceRecipe.ingredients {
-            guard fruitStore.isAvailable(fruit: ingredient.fruit, requiredAmount: ingredient.amount) else {
-                return false
-            }
-        }
-        return true
+        return fruitStore.canProvideIngredients(of: juiceRecipe)
     }
 }

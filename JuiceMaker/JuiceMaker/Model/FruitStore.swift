@@ -7,25 +7,48 @@
 import Foundation
 
 class FruitStore {
-    private var inventory: [Fruit:Int] = [:]
+    private var inventory: Inventory
+    
+    private struct Inventory {
+        private var stock: [Fruit:Int] = [:]
+        
+        init(fruitList: [Fruit], amount: Int) {
+            for fruit in fruitList {
+                stock[fruit] = amount
+            }
+        }
+        
+        mutating func reduceStock(of fruit: Fruit, by amount: Int) {
+            guard let remainingStock = stock[fruit] else {
+                return
+            }
+            stock[fruit] = remainingStock - amount
+        }
+        
+        func hasSufficientStock(of fruit: Fruit, requiredAmount: Int) -> Bool {
+            if let remainingStock = stock[fruit], remainingStock >= requiredAmount {
+                return true
+            }
+            return false
+        }
+    }
     
     init(fruitList: [Fruit], amount: Int) {
-        for fruit in fruitList {
-            inventory[fruit] = amount
+        inventory = Inventory(fruitList: fruitList, amount: amount)
+    }
+    
+    func reduceInventory(ingredientsOf recipe: JuiceRecipe) {
+        for ingredient in recipe.ingredients {
+            inventory.reduceStock(of: ingredient.fruit, by: ingredient.amount)
         }
     }
     
-    func decreaseStock(of fruit: Fruit, by amount: Int) {
-        guard let remainingStock = inventory[fruit] else {
-            return
+    func canProvideIngredients(of juiceRecipe: JuiceRecipe) -> Bool {
+        for ingredient in juiceRecipe.ingredients {
+            guard inventory.hasSufficientStock(of: ingredient.fruit, requiredAmount: ingredient.amount) else {
+                return false
+            }
         }
-        inventory[fruit] = remainingStock - amount
-    }
-    
-    func isAvailable(fruit: Fruit, requiredAmount: Int) -> Bool {
-        if let remainingStock = inventory[fruit], remainingStock >= requiredAmount {
-            return true
-        }
-        return false
+        return true
     }
 }
