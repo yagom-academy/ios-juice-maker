@@ -39,7 +39,7 @@ class FruitStore {
         }
     }
     
-    func consumeStock(of fruit: Fruit, amount: Int) {
+    func subtractStock(of fruit: Fruit, amount: Int) {
         do {
             try checkStock(of: fruit, count: amount)
             if let stock = stockOfFruit[fruit] {
@@ -54,21 +54,11 @@ class FruitStore {
         }
     }
     
-    func consumeTwoKindsOfFruits(first: Fruit, firstAmount: Int, second: Fruit, secondAmount: Int) {
-        do {
-            try checkStock(of: first, count: firstAmount)
-            try checkStock(of: second, count: secondAmount)
-            if let firstStock = stockOfFruit[first],
-                let secondStock = stockOfFruit[second] {
-                stockOfFruit[first] = firstStock - firstAmount
-                stockOfFruit[second] = secondStock - secondAmount
-            }
-        } catch let JuiceMakerError.outOfStock(fruit) {
-            print(JuiceMakerError.outOfStock(fruit).description)
-        } catch JuiceMakerError.invalidNumber {
-            print(JuiceMakerError.invalidNumber.description)
-        } catch {
-            print(error)
+    func consumeFruits(firstFruit: Fruit, firstFruitAmount: Int, secondFruit: Fruit? = nil, secondFruitAmount: Int? = nil) {
+        subtractStock(of: firstFruit, amount: firstFruitAmount)
+        if let secondFruit = secondFruit,
+           let secondFruitAmount = secondFruitAmount {
+            subtractStock(of: secondFruit, amount: secondFruitAmount)
         }
     }
 }

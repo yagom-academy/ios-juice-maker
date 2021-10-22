@@ -33,21 +33,21 @@ struct JuiceMaker {
     func makeFruitJuice(juice: Menu) {
         switch juice {
         case .strawberryJuice:
-            fruitStore.consumeStock(of: .strawberry, amount: Recipe.usageOfStrawberry)
+            fruitStore.consumeFruits(firstFruit: .strawberry, firstFruitAmount: Recipe.usageOfStrawberry)
         case .bananaJuice:
-            fruitStore.consumeStock(of: .banana, amount: Recipe.usageOfBanana)
+            fruitStore.consumeFruits(firstFruit: .banana, firstFruitAmount: Recipe.usageOfBanana)
         case .pineappleJuice:
-            fruitStore.consumeStock(of: .pineapple, amount: Recipe.usageOfPineapple)
+            fruitStore.consumeFruits(firstFruit: .pineapple, firstFruitAmount: Recipe.usageOfPineapple)
         case .kiwiJuice:
-            fruitStore.consumeStock(of: .kiwi, amount: Recipe.usageOfKiwi)
+            fruitStore.consumeFruits(firstFruit: .kiwi, firstFruitAmount: Recipe.usageOfKiwi)
         case .mangoJuice:
-            fruitStore.consumeStock(of: .mango, amount: Recipe.usageOfMango)
+            fruitStore.consumeFruits(firstFruit: .mango, firstFruitAmount: Recipe.usageOfMango)
         case .strawberryBananaJuice:
-            fruitStore.consumeTwoKindsOfFruits(first: .strawberry, firstAmount: Recipe.usageOfMixStrawberry,
-                                        second: .banana, secondAmount: Recipe.usageOfMixBanana)
+            fruitStore.consumeFruits(firstFruit: .strawberry, firstFruitAmount: Recipe.usageOfMixStrawberry,
+                                     secondFruit: .banana, secondFruitAmount: Recipe.usageOfMixBanana)
         case .mangoKiwiJuice:
-            fruitStore.consumeTwoKindsOfFruits(first: .mango, firstAmount: Recipe.usageOfMixMango,
-                                        second: .kiwi, secondAmount: Recipe.usageOfMixKiwi)
+            fruitStore.consumeFruits(firstFruit: .mango, firstFruitAmount: Recipe.usageOfMixMango,
+                                     secondFruit: .kiwi, secondFruitAmount: Recipe.usageOfMixKiwi)
         }
     }
 }
