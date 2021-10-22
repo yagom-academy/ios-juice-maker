@@ -25,11 +25,11 @@ class FruitStore {
     }
     
     func checkEnoughStock(of fruit: Fruit, requiredAmount: Int) throws -> Bool {
-        guard let fruitCounts = stock[fruit] else {
+        guard let currentStockCount = stock[fruit] else {
             throw SystemError.invaildKey
         }
         
-        guard fruitCounts >= requiredAmount else {
+        guard currentStockCount >= requiredAmount else {
             return false
         }
         

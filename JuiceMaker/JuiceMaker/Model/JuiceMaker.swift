@@ -52,7 +52,7 @@ struct JuiceMaker {
         return true
     }
     
-    func makeJuice(juice: Juice) throws {
+    func make(juice: Juice) throws {
         let recipe = juice.recipe
         
         guard try canMakeJuice(requiredFruits: recipe) else {
