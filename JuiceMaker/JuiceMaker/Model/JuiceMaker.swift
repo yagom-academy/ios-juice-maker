@@ -11,7 +11,7 @@ enum JuiceName {
 }
 
 struct Juice {
-    var name: JuiceName
+    let name: JuiceName
     var count: Int = 0
 }
 

@@ -9,7 +9,7 @@ enum FruitName {
 }
 
 struct Fruit {
-    var name: FruitName
+    let name: FruitName
     var count: Int = 10
 }
 
