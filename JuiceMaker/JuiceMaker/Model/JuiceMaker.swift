@@ -8,9 +8,9 @@ import Foundation
 
 struct JuiceMaker {
     
-    private let fruitStore: FruitStorage
+    private let fruitStore: FruitStockManaging
     
-    init(store: FruitStorage) {
+    init(store: FruitStockManaging) {
         self.fruitStore = store
     }
     

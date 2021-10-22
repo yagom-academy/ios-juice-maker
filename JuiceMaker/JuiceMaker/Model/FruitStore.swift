@@ -6,7 +6,7 @@
 
 import Foundation
 
-class FruitStore: FruitStorage {
+class FruitStore: FruitStockManaging {
     private var inventory: [Fruit: Int] = [:]
     
     init(fruitQuantity: Int = 10) {

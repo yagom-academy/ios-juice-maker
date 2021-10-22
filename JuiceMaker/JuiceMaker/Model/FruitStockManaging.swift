@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol FruitStorage {
+protocol FruitStockManaging {
     func changeFruitStock(of fruit: Fruit, by quantity: Int, calculate: (Int, Int) -> Int) throws
     func currentFruitStock(of fruit: Fruit) throws -> Int
 }
