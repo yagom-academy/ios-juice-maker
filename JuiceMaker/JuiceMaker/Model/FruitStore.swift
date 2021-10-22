@@ -6,16 +6,31 @@
 
 class FruitStore {
     private(set) var fruitQuantity: Dictionary<Fruit, Int> = Dictionary(uniqueKeys: Fruit.allCases, repeating: 10)
-        
-    func changeQuantity(of fruit: Fruit, count: Int, do operation: (Int, Int) -> Int) {
+    
+    enum Operation {
+        case addition
+        case subtraction
+    }
+    
+    func changeQuantity(of fruit: Fruit, count: Int, by: Operation) {
         guard let stock = fruitQuantity[fruit] else {
             return
         }
+        
+        let operation: ((Int, Int) -> Int)
+        
+        switch by {
+        case .addition:
+            operation = { $0 + $1 }
+        case .subtraction:
+            operation = { $0 - $1 }
+        }
+        
         fruitQuantity[fruit] = operation(stock, count)
     }
     
-    func isRemaining(of ingredients: [Fruit : Int]) -> Bool {
-        for (fruit, count) in ingredients {
+    func isRemaining(of recipe: [Fruit : Int]) -> Bool {
+        for (fruit, count) in recipe {
             
             guard let fruitQuantity = fruitQuantity[fruit], fruitQuantity >= count else {
                 return false
