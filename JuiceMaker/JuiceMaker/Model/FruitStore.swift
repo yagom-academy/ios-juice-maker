@@ -3,9 +3,11 @@
 //  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
+
+import Darwin
 class FruitStore {
     private let initialStock: Int
-    var stock = [Fruit: Int]()
+    private var stock = [Fruit: Int]()
 
     init(initialStock: Int) {
         self.initialStock = initialStock
@@ -21,6 +23,13 @@ class FruitStore {
         for fruit in Fruit.allCases {
             stock[fruit] = initialStock
         }
+    }
+    
+    func takeOutStock(fruit: Fruit) throws -> Int {
+        guard let currentStock = stock[fruit] else {
+            throw StockError.noFruit
+        }
+        return currentStock
     }
     
     func decreaseStock(from fruit: Fruit, by input: Int) throws {

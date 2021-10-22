@@ -42,7 +42,7 @@ struct JuiceMaker {
         let recipe = juice.recipes
         
         for (fruit, amount) in recipe {
-            guard let leftStock = fruitStore.stock[fruit], leftStock >= amount else {
+            guard try fruitStore.takeOutStock(fruit: fruit) >= amount else {
                 throw StockError.notEnoughStock
             }
         }
@@ -52,7 +52,7 @@ struct JuiceMaker {
         let recipe = juice.recipes
         
         for (fruit, amount) in recipe {
-            guard let leftStock = fruitStore.stock[fruit], leftStock >= amount else {
+            guard try fruitStore.takeOutStock(fruit: fruit) >= amount else {
                 throw StockError.notEnoughStock
             }
             
