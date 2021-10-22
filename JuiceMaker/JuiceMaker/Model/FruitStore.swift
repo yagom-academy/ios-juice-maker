@@ -23,10 +23,11 @@ class FruitStore: FruitStorage {
         guard let fruitStock = inventory[fruit] else {
             throw FruitStoreError.stockDataMissing
         }
-        if calculate(fruitStock, quantity) < 0 {
+        let changedFruitStock = calculate(fruitStock, quantity)
+        if changedFruitStock < 0 {
             throw FruitStoreError.stockShortage
         }
-        inventory[fruit] = calculate(fruitStock, quantity)
+        inventory[fruit] = changedFruitStock
     }
     
     func currentFruitStock(of fruit: Fruit) throws -> Int {
