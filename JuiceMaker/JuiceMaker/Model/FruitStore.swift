@@ -4,11 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-enum ErrorCase: Error {
-    case notEnoughStock
-    case noFruit
-}
-
 class FruitStore {
     enum Fruit: CaseIterable {
         case strawberry
@@ -39,7 +34,7 @@ class FruitStore {
     
     func decreaseStock(from fruit: Fruit, by input: Int) throws {
         guard let currentStock = stock[fruit], currentStock > input else {
-            throw ErrorCase.notEnoughStock
+            throw StockError.notEnoughStock
         }
         
         stock[fruit] = currentStock - input
@@ -47,7 +42,7 @@ class FruitStore {
     
     func increasStock(from fruit: Fruit, by input: Int) throws {
         guard let currentStock = stock[fruit] else {
-            throw ErrorCase.noFruit
+            throw StockError.noFruit
         }
         
         stock[fruit] = currentStock + input
