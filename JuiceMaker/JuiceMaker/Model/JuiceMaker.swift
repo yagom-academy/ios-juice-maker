@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore()
+    private let fruitStore = FruitStore(initialStock: 10)
     
     enum JuiceMakerError: Error {
         case outOfStock
