@@ -8,7 +8,7 @@
 import Foundation
 
 class Fruit {
-    enum FruitName {
+    enum Name {
         case strawberry
         case banana
         case kiwi
@@ -16,10 +16,10 @@ class Fruit {
         case mango
     }
     
-    let name: FruitName
+    let name: Name
     private(set) var quantity: Int
     
-    init(name: FruitName, quantity: Int) {
+    init(name: Name, quantity: Int) {
         self.name = name
         self.quantity = quantity
     }

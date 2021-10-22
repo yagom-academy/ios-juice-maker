@@ -14,71 +14,88 @@ struct JuiceMaker {
         case kiwiJuice
         case pineappleJuice
         case mangoJuice
-        case strawberryBananaJuice
-        case mangoKiwiJuice
+        case ddalbaJuice
+        case mangKiJuice
         
-        var ingredient: [Fruit] {
+        enum FruitQuintity {
+            static let strawberryOfStrawberrJuice = 16
+            static let bananaOfBananaJuice = 2
+            static let kiwiOfKiwiJuice = 3
+            static let pineappleOfPineappleJuice = 2
+            static let mangoOfMangoJuice = 3
+            static let strawberryOfDdalbaJuice = 10
+            static let bananaOfDdalbaJuice = 1
+            static let mangoOfMangKiJuice = 2
+            static let KiwiOfMangKiJuice = 1
+        }
+        
+        var ingredients: [Fruit] {
             switch self {
             case .strawberryJuice:
-                return [Fruit(name: .strawberry, quantity: 16)]
+                return [Fruit(name: .strawberry,
+                              quantity: Menu.FruitQuintity.strawberryOfStrawberrJuice)]
             case .bananaJuice:
-                return [Fruit(name: .banana, quantity: 2)]
+                return [Fruit(name: .banana,
+                              quantity: Menu.FruitQuintity.bananaOfBananaJuice)]
             case .kiwiJuice:
-                return [Fruit(name: .kiwi, quantity: 3)]
+                return [Fruit(name: .kiwi,
+                              quantity: Menu.FruitQuintity.kiwiOfKiwiJuice)]
             case .pineappleJuice:
-                return [Fruit(name: .pineapple, quantity: 2)]
+                return [Fruit(name: .pineapple,
+                              quantity: Menu.FruitQuintity.pineappleOfPineappleJuice)]
             case .mangoJuice:
-                return [Fruit(name: .mango, quantity: 3)]
-            case .strawberryBananaJuice:
-                return [Fruit(name: .strawberry, quantity: 10), Fruit(name: .banana, quantity: 1)]
-            case .mangoKiwiJuice:
-                return [Fruit(name: .mango, quantity: 2), Fruit(name: .kiwi, quantity: 1)]
+                return [Fruit(name: .mango,
+                              quantity: Menu.FruitQuintity.mangoOfMangoJuice)]
+            case .ddalbaJuice:
+                return [Fruit(name: .strawberry,
+                              quantity: Menu.FruitQuintity.strawberryOfDdalbaJuice),
+                        Fruit(name: .banana,
+                              quantity: Menu.FruitQuintity.bananaOfDdalbaJuice)]
+            case .mangKiJuice:
+                return [Fruit(name: .mango,
+                              quantity: Menu.FruitQuintity.mangoOfMangKiJuice),
+                        Fruit(name: .kiwi,
+                              quantity: Menu.FruitQuintity.KiwiOfMangKiJuice)]
             }
         }
     }
     
-    private let fruitStore: FruitStore = FruitStore()
-    
-    func make(singleJuice: Menu) -> Bool {
-        guard fruitStore.checkQuantity(singleJuice.ingredient[0]) else {
-            print("\(singleJuice.ingredient[0].name)가 충분하지 않습니다")
-            return false
+    enum Message: CustomStringConvertible {
+        var description: String {
+            switch self {
+            case .makeSuccessMessage:
+                return "쥬스 나왔습니다! 맛있게 드세요!"
+            case .makeFailMessage:
+                return "재료가 모자라요. 재고를 수정할까요?"
+            case .updateFailMessage:
+                return "재고변경을 실해하였습니다."
+            }
         }
         
-        guard fruitStore.bringIngredients(singleJuice.ingredient[0]) else {
-            print("\(singleJuice)가 만들어지지 못했습니다")
-            return false
-        }
-    
-        return true
+        case makeSuccessMessage
+        case makeFailMessage
+        case updateFailMessage
     }
     
-    func make(mixedJuice: Menu) -> Bool {
-        guard fruitStore.checkQuantity(mixedJuice.ingredient[0]) else {
-            print("\(mixedJuice.ingredient[0].name)가 충분하지 않습니다")
-            return false
-        }
-                
-        guard fruitStore.checkQuantity(mixedJuice.ingredient[1]) else {
-            print("\(mixedJuice.ingredient[1].name)가 충분하지 않습니다")
-            return false
+    private let fruitStore: FruitStore = FruitStore()
+    
+    func make(juice: Menu) -> String {
+        var isSuccess: Bool = false
+        
+        for juice in juice.ingredients {
+            isSuccess = fruitStore.bring(requiredIngredients: juice)
         }
         
-        guard fruitStore.bringIngredients(mixedJuice.ingredient[0]) else {
-            print("\(mixedJuice)가 만들어지지 못했습니다")
-            return false
+        if isSuccess == true {
+            return Message.makeSuccessMessage.description
+        } else {
+            return Message.makeFailMessage.description
         }
-        guard fruitStore.bringIngredients(mixedJuice.ingredient[1]) else {
-            print("\(mixedJuice)가 만들어지지 못했습니다")
-            return false
-        }
-        
-        return true
     }
     
     func updateStore(to requiredChange: Fruit) -> Bool {
         guard fruitStore.updateQuantity(to: requiredChange) else {
-            print("재고 변경을 실패하였습니다.")
+            print(Message.updateFailMessage.description)
             return false
         }
         

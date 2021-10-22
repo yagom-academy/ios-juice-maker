@@ -13,7 +13,7 @@ class FruitStore {
     private let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
     private let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
-    private func searchStorage(of fruitName: Fruit.FruitName) -> Fruit {
+    private func searchFruit(of fruitName: Fruit.Name) -> Fruit {
         switch fruitName {
         case .strawberry:
             return storedStrawberry
@@ -28,11 +28,10 @@ class FruitStore {
         }
     }
 
-    func checkQuantity(_ requiredIngredient: Fruit) -> Bool {
+    func check(requiredIngredient: Fruit) -> Bool {
         var isSatisfy: Bool
-        let storedFruit = searchStorage(of: requiredIngredient.name)
         
-        if storedFruit.quantity < requiredIngredient.quantity {
+        if searchFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity {
             isSatisfy = false
         } else {
             isSatisfy = true
@@ -41,26 +40,26 @@ class FruitStore {
         return isSatisfy
     }
     
-    func bringIngredients(_ requiredIngredients: Fruit) -> Bool {
+    func bring(requiredIngredients: Fruit) -> Bool {
         var isSuccess: Bool
-        let storedFruit: Fruit = searchStorage(of: requiredIngredients.name)
+        let storedFruit: Fruit = searchFruit(of: requiredIngredients.name)
+        
+        guard check(requiredIngredient: requiredIngredients) else {
+            isSuccess = false
+            return isSuccess
+        }
         
         storedFruit.changeQuantity(to: storedFruit.quantity - requiredIngredients.quantity)
-        
-        if storedFruit.quantity >= 0 {
-            isSuccess = true
-        } else {
-            isSuccess = false
-        }
+        isSuccess = true
         
         return isSuccess
     }
     
     func updateQuantity(to requiredChange: Fruit) -> Bool {
         var isSuccess: Bool
-        let storedFruit: Fruit = searchStorage(of: requiredChange.name)
+        let storedFruit: Fruit = searchFruit(of: requiredChange.name)
         
-        storedFruit.changeQuantity(to: storedFruit.quantity + requiredChange.quantity)
+        storedFruit.changeQuantity(to: requiredChange.quantity)
 
         if storedFruit.quantity >= 0 {
             isSuccess = true
