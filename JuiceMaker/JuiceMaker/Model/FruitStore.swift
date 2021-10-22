@@ -23,9 +23,10 @@ enum FruitStoreError: Error {
 }
 
 class FruitStore {
+    private static let initialFruitQuantity = 10
     private var stock: [Fruit: Int]
     
-    init(quantity: Int = 10) {
+    init(quantity: Int = FruitStore.initialFruitQuantity) {
         self.stock = FruitStore.initializeInventory(quantity: quantity)
     }
     
