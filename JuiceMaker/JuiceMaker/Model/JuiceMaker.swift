@@ -48,7 +48,7 @@ struct JuiceMaker {
         }
         
         for (fruit, count) in recipe {
-            fruitStore.changeQuantity(of: fruit, count: count, do: -)
+            fruitStore.changeQuantity(of: fruit, count: count, by: .subtraction)
         }
     }
 }
