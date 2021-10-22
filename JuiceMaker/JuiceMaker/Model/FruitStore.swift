@@ -4,24 +4,23 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Darwin
+//import Darwin
 class FruitStore {
-    private let initialStock: Int
     private var stock = [Fruit: Int]()
 
-    init(initialStock: Int) {
-        self.initialStock = initialStock
-        
-        for fruit in Fruit.allCases {
-            stock[fruit] = initialStock
-        }
+    init(stockAmount: Int) {
+        fillStock(by: stockAmount)
     }
     
     convenience init() {
-        self.init(initialStock: 10)
+        self.init(stockAmount: 10)
         
+        fillStock(by: 10)
+    }
+    
+    func fillStock(by amount: Int) {
         for fruit in Fruit.allCases {
-            stock[fruit] = initialStock
+            stock[fruit] = amount
         }
     }
     

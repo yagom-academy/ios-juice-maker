@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 
 enum Juice {
     case strawberryJuice
