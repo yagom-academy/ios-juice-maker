@@ -6,7 +6,18 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     
+    private let fruitStore: FruitStockManaging
+    
+    init(store: FruitStockManaging) {
+        self.fruitStore = store
+    }
+    
+    func makeJuice(menu: JuiceMenu) throws {
+        for (fruit, quantity) in menu.recipe {
+            try fruitStore.changeFruitStock(of: fruit, by: quantity, calculate: -)
+        }
+    }
 }
+

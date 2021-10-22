@@ -6,7 +6,34 @@
 
 import Foundation
 
-// 과일 저장소 타입
-class FruitStore {
+class FruitStore: FruitStockManaging {
+    private var inventory: [Fruit: Int] = [:]
     
+    init(fruitQuantity: Int = 10) {
+        Fruit.allCases.forEach { fruit in
+            inventory.updateValue(fruitQuantity, forKey: fruit)
+        }
+    }
+    
+    init(inventory: [Fruit: Int]) {
+        self.inventory = inventory
+    }
+    
+    func changeFruitStock(of fruit: Fruit, by quantity: Int = 1, calculate: (Int, Int) -> Int) throws {
+        guard let fruitStock = inventory[fruit] else {
+            throw FruitStoreError.stockDataMissing
+        }
+        let changedFruitStock = calculate(fruitStock, quantity)
+        if changedFruitStock < 0 {
+            throw FruitStoreError.stockShortage
+        }
+        inventory[fruit] = changedFruitStock
+    }
+    
+    func currentFruitStock(of fruit: Fruit) throws -> Int {
+        guard let currentStock = inventory[fruit] else {
+            throw FruitStoreError.stockDataMissing
+        }
+        return currentStock
+    }
 }
