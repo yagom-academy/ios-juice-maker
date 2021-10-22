@@ -8,5 +8,5 @@
 import Foundation
 
 enum FruitStoreError: Error {
-    case deficientStock(unavailableIngredients: [Ingredient])
+    case deficientStock
 }
