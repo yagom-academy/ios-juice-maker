@@ -56,7 +56,7 @@ struct JuiceMaker {
         let recipe = juice.recipe
         
         guard try canMakeJuice(requiredFruits: recipe) else {
-            throw JuiceMakeError.notEnoughStock
+            throw ServiceError.notEnoughStock
         }
         
         for (fruit, amount) in recipe {

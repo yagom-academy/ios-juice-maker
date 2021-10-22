@@ -1,24 +1,21 @@
 //
-//  JuiceMakeError.swift
+//  SystemError.swift
 //  JuiceMaker
 //
-//  Created by Sunwoo on 2021/10/19.
+//  Created by 이승재 on 2021/10/22.
 //
 
 import Foundation
 
-enum JuiceMakeError: Error {
+enum SystemError: Error {
     case invaildKey
-    case notEnoughStock
 }
 
-extension JuiceMakeError: LocalizedError {
+extension SystemError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invaildKey:
             return "Dictionary의 Key가 유효하지 않습니다."
-        case .notEnoughStock:
-            return "재고가 부족합니다."
         }
     }
 }
