@@ -16,12 +16,12 @@ struct Fruit {
 class FruitStore {
     
     private enum FruitStoreError: LocalizedError {
-        case inValidFruitChoice
+        case invalidFruitChoice
         case lackOfStock(stockNeeded: Int)
         
         var description: String {
             switch self {
-            case .inValidFruitChoice:
+            case .invalidFruitChoice:
                 return "유효하지 않은 선택입니다."
             case .lackOfStock(let stockNeeded):
                 return "재료가 \(stockNeeded)개 부족합니다. 재고를 확인해주세요."
@@ -39,7 +39,7 @@ class FruitStore {
     
     private func findIndexFromInventory(with fruit: FruitName) throws -> Int {
         guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
-            throw FruitStoreError.inValidFruitChoice
+            throw FruitStoreError.invalidFruitChoice
         }
         return indexOfFruit
     }
@@ -48,8 +48,8 @@ class FruitStore {
         do {
             let indexOfFruit = try findIndexFromInventory(with: fruit)
             inventory[indexOfFruit].count += count
-        } catch FruitStoreError.inValidFruitChoice {
-            print(FruitStoreError.inValidFruitChoice.description)
+        } catch FruitStoreError.invalidFruitChoice {
+            print(FruitStoreError.invalidFruitChoice.description)
         } catch {
             print(error)
         }
@@ -66,8 +66,8 @@ class FruitStore {
             let indexOfFruit = try findIndexFromInventory(with: fruit)
             try checkEnoughStock(from: indexOfFruit, for: count)
             inventory[indexOfFruit].count -= count
-        } catch FruitStoreError.inValidFruitChoice {
-            print(FruitStoreError.inValidFruitChoice.description)
+        } catch FruitStoreError.invalidFruitChoice {
+            print(FruitStoreError.invalidFruitChoice.description)
         } catch FruitStoreError.lackOfStock(let count) {
             print(FruitStoreError.lackOfStock(stockNeeded: count).description)
         } catch {
