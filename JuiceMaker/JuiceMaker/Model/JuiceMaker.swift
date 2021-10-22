@@ -48,9 +48,7 @@ struct JuiceMaker {
     }
     
     func make(juice: Juice) throws {
-        let recipe = juice.recipe
-        
-        try self.fruitStore.updateStock(of: recipe)
+        try self.fruitStore.updateStock(of: juice.recipe)
         
         print("\(juice)가 만들어졌습니다!")
     }
