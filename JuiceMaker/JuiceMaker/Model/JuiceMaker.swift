@@ -4,9 +4,52 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
+    private let fruitStore = FruitStore(initialStock: 10)
     
+    enum JuiceMakerError: Error {
+        case outOfStock
+    }
+    
+    enum Menu {
+        var recipe: Dictionary<Fruit, Int> {
+            switch self {
+            case .strawberryJuice:
+                return [.strawberry: 16]
+            case .bananaJuice:
+                return [.banana: 2]
+            case .kiwiJuice:
+                return [.kiwi: 3]
+            case .pineappleJuice:
+                return [.pineapple: 2]
+            case .strawberryBananaJuice:
+                return [.strawberry: 10, .banana: 1]
+            case .mangoJuice:
+                return [.mango: 3]
+            case .mangoKiwiJuice:
+                return [.mango: 2, .kiwi: 1]
+            }
+        }
+        
+        case strawberryJuice
+        case bananaJuice
+        case kiwiJuice
+        case pineappleJuice
+        case strawberryBananaJuice
+        case mangoJuice
+        case mangoKiwiJuice
+    }
+    
+    func make(_ seletedJuice: Menu) throws {
+        let recipe: [Fruit : Int] = seletedJuice.recipe
+        
+        guard fruitStore.isRemaining(of: recipe) else {
+            throw JuiceMakerError.outOfStock
+        }
+        
+        for (fruit, count) in recipe {
+            fruitStore.changeQuantity(of: fruit, count: count, by: .subtraction)
+        }
+    }
 }
+
