@@ -8,12 +8,7 @@
 
 - Reviewer: 엘림 (@lina0322)
 
-<br>
-
 ---
-
-<br>
-
 
 
 ## 🔑 키워드
@@ -28,49 +23,45 @@
 - Control Flow
 - Protocol (CaseIterable)
 
-<br>
-
 ---
 
-<br>
 
 ## 🤔 고민한 부분
 <br>
 
 ### 타입 설계
-<br>
 
 **1. 과일 재고를 관리하는 변수 타입을 `Dictionary` 와 `Array with tuples` 중에 고민했습니다.**
 - 각 과일의 이름과 재고를 pair 로 관리하고 싶었습니다.
 
 - 튜플을 배열 안에 담아 쓰는 방법을 고민했으나, 과일 이름 중복도 피하고 순서(index) 또한 고려할 필요가 없으니, 딕셔너리가 적합할 것이라 생각했습니다.
 
-```swift
-private var inventory: [Fruit: Int] = [:]
-```
+    ```swift
+    private var inventory: [Fruit: Int] = [:]
+    ```
     
 
 
-**2. 초기화할 때 `CaseIterable` 프로토콜을 채택했습니다.****
+**2. 초기화할 때 `CaseIterable` 프로토콜을 채택했습니다.**
 
 - `FruitStore` 인스턴스를 생성할 때 5가지 과일 모두 10개씩 채워주는 과정이 필요했습니다.
 
 - `Fruit` 열거형에 `CaseIterable`프로토콜을 채택하여 `for문`으로 초기화했습니다.
 
-```swift
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
+    ```swift
+    enum Fruit: CaseIterable {
+        case strawberry
+        case banana
+        case pineapple
+        case kiwi
+        case mango
+    }
 
-// FruitStore 클래스 내의 init() 구문 안에서 for문 사용
-for fruit in Fruit.allCases {
-    self.inventory[fruit] = FruitStore.defaultFruitAmount
-}
-```
+    // FruitStore 클래스 내의 init() 구문 안에서 for문 사용
+    for fruit in Fruit.allCases {
+        self.inventory[fruit] = FruitStore.defaultFruitAmount
+    }
+    ```
   
 
 
@@ -91,7 +82,6 @@ juiceMaker.make(.bananaJuice)
 
 ### 파일 분리 vs Nested Type
 
-<br>
 
 - 열거형을 외부 파일로 분리할 것인가, 또는 타입 안에 Nested Type 으로 넣을 것인가를 고민했습니다.
 
@@ -103,17 +93,17 @@ juiceMaker.make(.bananaJuice)
 
 - 외부 파일에서도 쥬스의 종류(cases)를 볼 수는 있지만, `recipe` 는 볼 수 없도록 만들었습니다.
 
-```swift
-// JuiceMaker.swift
-struct JuiceMaker {
-    enum Juice {
-        case ...
-        
-        fileprivate var recipe: [(Fruit, Int)] {
-            switch self {
-                ...
+    ```swift
+    // JuiceMaker.swift
+    struct JuiceMaker {
+        enum Juice {
+            case ...
+            
+            fileprivate var recipe: [(Fruit, Int)] {
+                switch self {
+                    ...
+                }
             }
         }
     }
-}
-```
+    ```
