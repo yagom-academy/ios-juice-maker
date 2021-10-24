@@ -39,10 +39,8 @@ struct JuiceMaker {
     private func makeJuice(juice: Juice) {
         do {
             try checkStock(juice: juice)
-        } catch Errors.outOfStock {
-            print(Errors.outOfStock.Description)
-        } catch Errors.invalidValue {
-            print(Errors.invalidValue.Description)
+        } catch let error as Errors {
+            print(error.errorDescription)
         } catch {
             print(error)
         }

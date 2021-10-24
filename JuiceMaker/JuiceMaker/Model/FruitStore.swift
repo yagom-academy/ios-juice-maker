@@ -33,8 +33,6 @@ class FruitStore {
         guard inventory >= amount else {
             throw Errors.outOfStock
         }
-
-        useFruit(fruit: fruit, amount: amount)
     }
 
     func useFruit(fruit: Fruit, amount: Int) {
