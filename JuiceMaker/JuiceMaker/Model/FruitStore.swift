@@ -25,23 +25,28 @@ class FruitStore {
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
 
-    func checkEnoughFruit(which fruit: Fruit, on amount: Int) throws {
+    func hasEnoughFruit(which fruit: Fruit, on amount: Int) -> Bool {
         guard let inventory = fruitStorage[fruit] else {
-            throw Errors.invalidValue
+            return false
         }
 
         guard inventory >= amount else {
-            throw Errors.outOfStock
+            return false
         }
+        
+        return true
     }
 
     func useFruit(fruit: Fruit, amount: Int) {
-        fruitStorage[fruit]? -= amount
+        if var inventory = fruitStorage[fruit] {
+            inventory -= amount
+            fruitStorage[fruit] = inventory
+        }
     }
 
     func stockUpFruit(which fruit: Fruit, on amount: Int) throws {
         guard var inventory = fruitStorage[fruit] else {
-            throw Errors.invalidValue
+            throw FruitStockError.invalidValue
         }
         inventory += amount
         fruitStorage[fruit] = inventory

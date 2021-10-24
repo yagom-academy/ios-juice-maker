@@ -31,7 +31,9 @@ struct JuiceMaker {
 
     private func checkStock(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            try fruitstore.checkEnoughFruit(which: fruit, on: amount)
+            guard fruitstore.hasEnoughFruit(which: fruit, on: amount) == true else {
+                throw FruitStockError.outOfStock
+            }
         }
         
     }
@@ -39,8 +41,11 @@ struct JuiceMaker {
     private func makeJuice(juice: Juice) {
         do {
             try checkStock(juice: juice)
-        } catch let error as Errors {
-            print(error.errorDescription)
+            for (fruit, amount) in juice.recipe {
+                fruitstore.useFruit(fruit: fruit, amount: amount)
+            }
+        } catch let error as FruitStockError {
+            print(error.localizedDescription)
         } catch {
             print(error)
         }
