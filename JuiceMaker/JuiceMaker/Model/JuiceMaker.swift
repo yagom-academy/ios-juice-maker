@@ -1,12 +1,7 @@
-//
-//  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
 
 struct JuiceMaker {
     private let fruitstore = FruitStore()
-
+    
     enum Juice {
         case strawberry
         case banana
@@ -15,7 +10,7 @@ struct JuiceMaker {
         case strawberrybanana
         case mango
         case mangokiwi
-
+        
         fileprivate var recipe : [FruitStore.Fruit:Int] {
             switch self {
             case .strawberry: return [.strawberry: 16]
@@ -28,7 +23,7 @@ struct JuiceMaker {
             }
         }
     }
-
+    
     private func checkStock(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
             guard fruitstore.hasEnoughFruit(which: fruit, on: amount) == true else {
@@ -37,8 +32,8 @@ struct JuiceMaker {
         }
         
     }
-
-    private func makeJuice(juice: Juice) {
+    
+    func makeJuice(juice: Juice) {
         do {
             try checkStock(juice: juice)
             for (fruit, amount) in juice.recipe {
