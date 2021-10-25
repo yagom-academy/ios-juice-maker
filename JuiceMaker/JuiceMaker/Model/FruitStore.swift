@@ -19,6 +19,17 @@ class FruitStore: FruitStockManaging {
         self.inventory = inventory
     }
     
+    func checkFruitStock(of fruit: Fruit, by quantity: Int) throws -> Bool {
+        guard let fruitStock = inventory[fruit] else {
+            throw FruitStoreError.stockDataMissing
+        }
+        if fruitStock < quantity {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func changeFruitStock(of fruit: Fruit, by quantity: Int = 1, calculate: (Int, Int) -> Int) throws {
         guard let fruitStock = inventory[fruit] else {
             throw FruitStoreError.stockDataMissing
