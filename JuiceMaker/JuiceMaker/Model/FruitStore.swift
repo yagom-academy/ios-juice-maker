@@ -1,12 +1,14 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom.
+//  Created by yeha.
 //  Copyright © yagom academy. All rights reserved.
 //
 
 import Foundation
 
 class FruitStore {
+    typealias FruitStock = Int
+    
     enum Fruit: CaseIterable {
         case strawberry
         case banana
@@ -14,28 +16,29 @@ class FruitStore {
         case pineapple
         case mango
     }
-    var fruitStockList: [Fruit: Int] = [:]
+    var fruitStockList: [Fruit: FruitStock] = [:]
     
     init(initialFruitStock: Int = 10) {
-        for fruit in Fruit.allCases {
-            fruitStockList[fruit] = initialFruitStock
+        for fruitName in Fruit.allCases {
+            fruitStockList[fruitName] = initialFruitStock
         }
     }
-    func addFruitStock(fruit: Fruit, plus number: Int) {
-        guard let fruitStock = fruitStockList[fruit] else { return }
-        fruitStockList[fruit] = fruitStock + number
+    
+    func addFruitStock(fruitName: Fruit, plus number: Int) {
+        guard let fruitStock = fruitStockList[fruitName] else { return }
+        fruitStockList[fruitName] = fruitStock + number
     }
-    func substractFruitStock(fruit: Fruit, minus number: Int) {
-        guard let fruitStock = fruitStockList[fruit],
+    
+    func substractFruitStock(fruitName: Fruit, minus number: Int) {
+        guard let fruitStock = fruitStockList[fruitName],
             fruitStock >= number else { return }
-        fruitStockList[fruit] = fruitStock - number
+        fruitStockList[fruitName] = fruitStock - number
     }
+    
     func isHaveEnoughStock(for menu: JuiceMaker.Juice) -> Bool {
-        for (fruitName, ingredient) in menu.recipe {
-            guard let fruitStock = fruitStockList[fruitName] else { return false }
-            if fruitStock < ingredient {
-                return false
-            }
+        for (fruitName, juiceIngredient) in menu.recipe {
+            guard let fruitStock = fruitStockList[fruitName],
+                  fruitStock >= juiceIngredient else { return false }
         }
         return true
     }

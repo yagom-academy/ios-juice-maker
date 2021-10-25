@@ -1,14 +1,12 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by Quokkaaa.
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
 import Foundation
 
 struct JuiceMaker {
-    typealias JuiceIngredient = Int
-    
     var fruitStore = FruitStore()
     
     enum Juice {
@@ -20,7 +18,7 @@ struct JuiceMaker {
         case mangoJuice
         case mangoKiwiJuice
 
-        var recipe: [FruitStore.Fruit: JuiceIngredient] {
+        var recipe: [FruitStore.Fruit: Int] {
             switch self {
             case .strawberryJuice:
                 return [.strawberry: 16]
@@ -39,15 +37,12 @@ struct JuiceMaker {
             }
         }
     }
-    
     func orderJuice(for menu: Juice) {
         guard fruitStore.isHaveEnoughStock(for: menu) else { return }
         makeJuice(for: menu)
     }
-    
     func makeJuice(for menu: Juice) {
-        for (fruitName, juiceIngredient) in menu.recipe {
-            fruitStore.substractFruitStock(fruitName: fruitName, minus: juiceIngredient)
-        }
+        for (fruitName, ingredient) in menu.recipe {
+            fruitStore.substractFruitStock(fruit: fruitName, minus: ingredient)
     }
 }
