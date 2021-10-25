@@ -4,7 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-//import Darwin
 class FruitStore {
     private var stock = [Fruit: Int]()
 
@@ -24,11 +23,16 @@ class FruitStore {
         }
     }
     
-    func takeOutStock(fruit: Fruit) throws -> Int {
-        guard let currentStock = stock[fruit] else {
-            throw StockError.noExistFruit
+    func consumeStock(with juice: Juice) throws {
+        let recipes = juice.recipes
+        
+        for (fruit, amount) in recipes {
+            guard let currentStock = stock[fruit], currentStock >= amount else {
+                throw StockError.notEnoughStock
+            }
+            
+            try decreaseStock(from: fruit, by: amount)
         }
-        return currentStock
     }
     
     func decreaseStock(from fruit: Fruit, by input: Int) throws {
@@ -39,14 +43,9 @@ class FruitStore {
         stock[fruit] = currentStock - input
     }
     
-    func increasStock(from fruit: Fruit, by input: Int) throws {
-        guard let currentStock = stock[fruit] else {
-            throw StockError.noExistFruit
+    func increasStock(from fruit: Fruit, by input: Int) {
+        if let currentStock = stock[fruit] {
+            stock[fruit] = currentStock + input
         }
-        
-        stock[fruit] = currentStock + input
     }
 }
-
-
-

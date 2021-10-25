@@ -61,10 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
-				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
-				7851348227227D45006A9608 /* Error.swift */,
-				FBBCDA4C2722824A0044D6DF /* Fruit.swift */,
 				789B48F327229C5E008A12D1 /* Juice.swift */,
+				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+				FBBCDA4C2722824A0044D6DF /* Fruit.swift */,
+				7851348227227D45006A9608 /* Error.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
