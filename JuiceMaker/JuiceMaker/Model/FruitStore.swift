@@ -26,7 +26,7 @@ class FruitStore {
     
     func takeOutStock(fruit: Fruit) throws -> Int {
         guard let currentStock = stock[fruit] else {
-            throw StockError.noFruit
+            throw StockError.noExistFruit
         }
         return currentStock
     }
@@ -41,7 +41,7 @@ class FruitStore {
     
     func increasStock(from fruit: Fruit, by input: Int) throws {
         guard let currentStock = stock[fruit] else {
-            throw StockError.noFruit
+            throw StockError.noExistFruit
         }
         
         stock[fruit] = currentStock + input

@@ -7,5 +7,5 @@
 
 enum StockError: Error {
     case notEnoughStock
-    case noFruit
+    case noExistFruit
 }
