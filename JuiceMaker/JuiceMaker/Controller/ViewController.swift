@@ -30,7 +30,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func juiceOrderButtonDidTap(_ sender: UIButton) {
-        
+        do {
+            try makeJuice(sender: sender)
+            updateAllLables()
+        } catch {
+            
+        }
     }
     
     func updateAllLables() {
@@ -42,6 +47,27 @@ class ViewController: UIViewController {
             mangoStockLabel.text = String(try juiceMaker.currentFruitStock(of: .mango))
         } catch {
             
+        }
+    }
+    
+    func makeJuice(sender: UIButton) throws {
+        switch sender {
+        case strawberryBananaJuiceOrderButton:
+            try juiceMaker.makeJuice(menu: .strawberryBanana)
+        case mangoKiwiJuiceOrderButton:
+            try juiceMaker.makeJuice(menu: .mangoKiwi)
+        case strawberryJuiceOrderButton:
+            try juiceMaker.makeJuice(menu: .strawberry)
+        case bananaJuiceOrderButton:
+            try juiceMaker.makeJuice(menu: .banana)
+        case pineappleJuiceOrderButton:
+            try juiceMaker.makeJuice(menu: .pineapple)
+        case kiwiJuiceOrderButton:
+            try juiceMaker.makeJuice(menu: .kiwi)
+        case mangoJuiceOrderButton:
+            try juiceMaker.makeJuice(menu: .mango)
+        default:
+            throw JuiceOrderError.invalidJuiceOrder
         }
     }
 }

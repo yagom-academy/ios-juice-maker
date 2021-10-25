@@ -10,3 +10,4 @@ enum FruitStoreError: Error {
     case stockShortage
     case stockDataMissing
 }
+

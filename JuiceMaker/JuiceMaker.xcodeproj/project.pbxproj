@@ -19,6 +19,7 @@
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
 		E9784636272156B0003A7ED2 /* FruitStockManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9784635272156B0003A7ED2 /* FruitStockManaging.swift */; };
+		E99FD54827268AE600075BD4 /* JuiceOrderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FD54727268AE600075BD4 /* JuiceOrderError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
 		E9784635272156B0003A7ED2 /* FruitStockManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockManaging.swift; sourceTree = "<group>"; };
+		E99FD54727268AE600075BD4 /* JuiceOrderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceOrderError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				252F54D22721414900E3EC5C /* FruitStoreError.swift */,
+				E99FD54727268AE600075BD4 /* JuiceOrderError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				252F54D32721414900E3EC5C /* FruitStoreError.swift in Sources */,
 				252F54D7272141EB00E3EC5C /* JuiceMenu.swift in Sources */,
+				E99FD54827268AE600075BD4 /* JuiceOrderError.swift in Sources */,
 				E9784636272156B0003A7ED2 /* FruitStockManaging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
