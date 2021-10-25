@@ -42,6 +42,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
+        moveToStockModifyView()
     }
     
     func updateAllLables() {
@@ -94,7 +95,15 @@ class JuiceOrderViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "toStockModifyView" {
+            guard let stockModifyViewNavigationController = segue.destination as? UINavigationController else {
+                return
+            }
+            guard let stockModifyViewController = stockModifyViewNavigationController.visibleViewController as? StockModifyViewController else {
+                return
+            }
+            stockModifyViewController.juiceMaker = self.juiceMaker
+        }
     }
     
     func moveToStockModifyView() {
