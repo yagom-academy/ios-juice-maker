@@ -40,7 +40,7 @@ enum Juice {
 struct JuiceMaker {
     private let fruitStore: FruitStore
     
-    init(fruitStore: FruitStore = FruitStore()) {
+    init(fruitStore: FruitStore = FruitStore.shared) {
         self.fruitStore = fruitStore
     }
     

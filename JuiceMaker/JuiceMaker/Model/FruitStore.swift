@@ -9,6 +9,9 @@ import Foundation
 private let defaultFruitCount = 10
 
 class FruitStore {
+    
+    static let shared: FruitStore = FruitStore()
+    
     enum Fruit: CaseIterable {
         case strawberry
         case banana
