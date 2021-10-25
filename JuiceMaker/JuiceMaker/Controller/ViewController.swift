@@ -34,6 +34,8 @@ class ViewController: UIViewController {
             let juiceMenu = try matchJuiceMenu(with: sender)
             try juiceMaker.makeJuice(menu: juiceMenu)
             showSuccessAlert(juiceMenu: juiceMenu)
+        } catch FruitStoreError.stockShortage {
+            showFailureAlert()
         } catch {
             
         }
@@ -77,6 +79,19 @@ class ViewController: UIViewController {
         let okAction = UIAlertAction(title: "확인", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
+    }
+    
+    func showFailureAlert() {
+        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default) { _ in self.moveToStockModifyView() }
+        let noAction = UIAlertAction(title: "아니오", style: .default)
+        alert.addAction(okAction)
+        alert.addAction(noAction)
+        present(alert, animated: true)
+    }
+    
+    func moveToStockModifyView() {
+        
     }
 }
 
