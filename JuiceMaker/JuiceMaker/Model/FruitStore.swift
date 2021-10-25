@@ -7,7 +7,11 @@
 import Foundation
 
 class FruitStore: FruitStockManaging {
-    private var inventory: [Fruit: Int] = [:]
+    private var inventory: [Fruit: Int] = [:] {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name("FruitStockChanged"), object: self)
+        }
+    }
     
     init(fruitQuantity: Int = 10) {
         Fruit.allCases.forEach { fruit in

@@ -27,6 +27,8 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateAllLables()
+        NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: Notification.Name("FruitStockChanged"), object: nil)
+
     }
     
     @IBAction func juiceOrderButtonDidTap(_ sender: UIButton) {
@@ -39,6 +41,10 @@ class JuiceOrderViewController: UIViewController {
         } catch {
             
         }
+    }
+    
+    @objc func didFruitStockChange(_ notification: Notification) {
+        updateAllLables()
     }
     
     @IBAction func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
