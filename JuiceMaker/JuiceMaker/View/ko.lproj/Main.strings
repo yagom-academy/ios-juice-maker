@@ -1,0 +1,87 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0yV-kn-zaT"; */
+"0yV-kn-zaT.text" = "0";
+
+/* Class = "UILabel"; text = "🥭"; ObjectID = "2DA-4v-r9P"; */
+"2DA-4v-r9P.text" = "🥭";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "3Ce-SU-JeH"; */
+"3Ce-SU-JeH.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "파인애플쥬스 주문"; ObjectID = "BFb-ka-wGA"; */
+"BFb-ka-wGA.normalTitle" = "파인애플쥬스 주문";
+
+/* Class = "UIBarButtonItem"; title = "재고수정"; ObjectID = "C3q-Te-cNT"; */
+"C3q-Te-cNT.title" = "재고수정";
+
+/* Class = "UILabel"; text = "🥝"; ObjectID = "EHe-D1-1xN"; */
+"EHe-D1-1xN.text" = "🥝";
+
+/* Class = "UINavigationItem"; title = "맛있는 쥬스를 만들어 드려요!"; ObjectID = "Eal-fj-o4N"; */
+"Eal-fj-o4N.title" = "맛있는 쥬스를 만들어 드려요!";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "FZq-de-TJG"; */
+"FZq-de-TJG.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "MpT-VW-hCb"; */
+"MpT-VW-hCb.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Qas-vP-td6"; */
+"Qas-vP-td6.text" = "0";
+
+/* Class = "UILabel"; text = "🍍"; ObjectID = "Qkv-u6-h8e"; */
+"Qkv-u6-h8e.text" = "🍍";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "YJI-ER-LJR"; */
+"YJI-ER-LJR.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ZDv-1m-HBY"; */
+"ZDv-1m-HBY.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "딸기쥬스 주문"; ObjectID = "avd-o5-3JM"; */
+"avd-o5-3JM.normalTitle" = "딸기쥬스 주문";
+
+/* Class = "UILabel"; text = "🍌"; ObjectID = "bl7-p0-c43"; */
+"bl7-p0-c43.text" = "🍌";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "ccQ-Dk-PuY"; */
+"ccQ-Dk-PuY.text" = "0";
+
+/* Class = "UILabel"; text = "🍓"; ObjectID = "dCK-AJ-zGU"; */
+"dCK-AJ-zGU.text" = "🍓";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "gKu-86-RhI"; */
+"gKu-86-RhI.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "gvk-pA-Lw5"; */
+"gvk-pA-Lw5.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "딸바쥬스 주문"; ObjectID = "hrc-2F-fzl"; */
+"hrc-2F-fzl.normalTitle" = "딸바쥬스 주문";
+
+/* Class = "UILabel"; text = "🥝"; ObjectID = "kI4-bd-cgh"; */
+"kI4-bd-cgh.text" = "🥝";
+
+/* Class = "UILabel"; text = "🍓"; ObjectID = "mVl-JQ-6g7"; */
+"mVl-JQ-6g7.text" = "🍓";
+
+/* Class = "UIButton"; normalTitle = "망키쥬스 주문"; ObjectID = "ngP-kF-Yii"; */
+"ngP-kF-Yii.normalTitle" = "망키쥬스 주문";
+
+/* Class = "UIButton"; normalTitle = "망고쥬스 주문"; ObjectID = "q6G-4X-bVm"; */
+"q6G-4X-bVm.normalTitle" = "망고쥬스 주문";
+
+/* Class = "UILabel"; text = "🍍"; ObjectID = "rac-Ji-vZK"; */
+"rac-Ji-vZK.text" = "🍍";
+
+/* Class = "UILabel"; text = "🥭"; ObjectID = "w1F-9o-qJR"; */
+"w1F-9o-qJR.text" = "🥭";
+
+/* Class = "UIButton"; normalTitle = "키위쥬스 주문"; ObjectID = "wcW-7H-RXw"; */
+"wcW-7H-RXw.normalTitle" = "키위쥬스 주문";
+
+/* Class = "UIButton"; normalTitle = "바나나쥬스 주문"; ObjectID = "y2A-PH-DJY"; */
+"y2A-PH-DJY.normalTitle" = "바나나쥬스 주문";
+
+/* Class = "UILabel"; text = "🍌"; ObjectID = "y33-ND-gz2"; */
+"y33-ND-gz2.text" = "🍌";
