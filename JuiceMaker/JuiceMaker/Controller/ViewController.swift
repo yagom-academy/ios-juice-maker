@@ -31,8 +31,9 @@ class ViewController: UIViewController {
     
     @IBAction func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
-            try makeJuice(sender: sender)
-            updateAllLables()
+            let juiceMenu = try matchJuiceMenu(with: sender)
+            try juiceMaker.makeJuice(menu: juiceMenu)
+            showSuccessAlert(juiceMenu: juiceMenu)
         } catch {
             
         }
@@ -50,25 +51,32 @@ class ViewController: UIViewController {
         }
     }
     
-    func makeJuice(sender: UIButton) throws {
-        switch sender {
+    func matchJuiceMenu(with button: UIButton) throws -> JuiceMenu {
+        switch button {
         case strawberryBananaJuiceOrderButton:
-            try juiceMaker.makeJuice(menu: .strawberryBanana)
+            return .strawberryBanana
         case mangoKiwiJuiceOrderButton:
-            try juiceMaker.makeJuice(menu: .mangoKiwi)
+            return .mangoKiwi
         case strawberryJuiceOrderButton:
-            try juiceMaker.makeJuice(menu: .strawberry)
+            return .strawberry
         case bananaJuiceOrderButton:
-            try juiceMaker.makeJuice(menu: .banana)
+            return .banana
         case pineappleJuiceOrderButton:
-            try juiceMaker.makeJuice(menu: .pineapple)
+            return .pineapple
         case kiwiJuiceOrderButton:
-            try juiceMaker.makeJuice(menu: .kiwi)
+            return .kiwi
         case mangoJuiceOrderButton:
-            try juiceMaker.makeJuice(menu: .mango)
+            return .mango
         default:
             throw JuiceOrderError.invalidJuiceOrder
         }
+    }
+    
+    func showSuccessAlert(juiceMenu: JuiceMenu) {
+        let alert = UIAlertController(title: nil, message: "\(juiceMenu.rawValue) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
 
