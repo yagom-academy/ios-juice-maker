@@ -29,6 +29,13 @@ class FruitStore {
         self.fruitBasket = Dictionary(uniqueKeysWithValues: zip(allFruits, fruitscount))
     }
     
+    func stock(fruit: Fruit) throws -> Int {
+        guard let fruitStock = fruitBasket[fruit] else {
+            throw RequestError.fruitNotFound
+        }
+        return fruitStock
+    }
+    
     func addFruitStock(fruit: Fruit, count: Int) throws {
         try changeAmount(count: count, of: fruit, by: +)
     }
@@ -49,6 +56,8 @@ class FruitStore {
         }
         let newFruitCount = calculator(oldFruitCount, count)
         fruitBasket[fruit] = newFruitCount
+        
+        NotificationCenter.default.post(name: .changedFruitStockNotification, object: fruit)
     }
     
     func hasFruitStock(of fruit: Fruit, count fruitCountSubtracted: Int) -> Bool {
@@ -58,3 +67,6 @@ class FruitStore {
 }
 
 
+extension Notification.Name {
+    static let changedFruitStockNotification = Notification.Name("changeFruitStock")
+}
