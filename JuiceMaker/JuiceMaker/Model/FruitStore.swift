@@ -24,15 +24,9 @@ class FruitStore {
         }
     }
     
-    func addFruitStock(fruitName: Fruit, plus number: Int) {
-        guard let fruitStock = fruitStockList[fruitName] else { return }
-        fruitStockList[fruitName] = fruitStock + number
-    }
-    
-    func substractFruitStock(fruitName: Fruit, minus number: Int) {
-        guard let fruitStock = fruitStockList[fruitName],
-            fruitStock >= number else { return }
-        fruitStockList[fruitName] = fruitStock - number
+    func changeFruitStock(fruitName: Fruit, changingNumber: Int) {
+        guard let currentFruitStock = fruitStockList[fruitName] else { return }
+        fruitStockList[fruitName] = (currentFruitStock + changingNumber)
     }
     
     func isHaveEnoughStock(for menu: JuiceMaker.Juice) -> Bool {
