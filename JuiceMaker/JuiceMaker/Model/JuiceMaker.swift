@@ -83,7 +83,7 @@ struct JuiceMaker {
         var isSuccess: Bool = false
         
         for juice in juice.ingredients {
-            isSuccess = fruitStore.bring(requiredIngredients: juice)
+            isSuccess = fruitStore.useIngredients(of: juice)
         }
         
         if isSuccess == true {
