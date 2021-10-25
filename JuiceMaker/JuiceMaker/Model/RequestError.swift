@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RequestError: Error, LocalizedError {
+enum RequestError: Error {
     case wrongCount
     case fruitNotFound
     case fruitStockOut
