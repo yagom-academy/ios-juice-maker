@@ -19,5 +19,9 @@ struct JuiceMaker {
             try fruitStore.changeFruitStock(of: fruit, by: quantity, calculate: -)
         }
     }
+    
+    func currentFruitStock(of fruit: Fruit) throws -> Int {
+        return try fruitStore.currentFruitStock(of: fruit)
+    }
 }
 

@@ -22,9 +22,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
+    let juiceMaker = JuiceMaker(store: FruitStore())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        updateAllLables()
+    }
+    
+    @IBAction func juiceOrderButtonDidTap(_ sender: UIButton) {
+        
+    }
+    
+    func updateAllLables() {
+        do {
+            strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
+            bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))
+            pineappleStockLabel.text = String(try juiceMaker.currentFruitStock(of: .pineapple))
+            kiwiStockLabel.text = String(try juiceMaker.currentFruitStock(of: .kiwi))
+            mangoStockLabel.text = String(try juiceMaker.currentFruitStock(of: .mango))
+        } catch {
+            
+        }
     }
 }
 
