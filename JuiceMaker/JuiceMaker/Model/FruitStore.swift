@@ -18,7 +18,7 @@ class FruitStore {
     }
     var fruitStockList: [Fruit: FruitStock] = [:]
     
-    init(initialFruitStock: Int = 10) {
+    init(initialFruitStock: FruitStock = 10) {
         for fruitName in Fruit.allCases {
             fruitStockList[fruitName] = initialFruitStock
         }
