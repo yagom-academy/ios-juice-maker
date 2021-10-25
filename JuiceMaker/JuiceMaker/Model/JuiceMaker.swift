@@ -34,7 +34,7 @@ struct JuiceMaker {
         }
     }
     
-    private let fruitStore: FruitStore
+    private let fruitStore = FruitStore.shared
     
     private func hasIngredients(of juice: Juice) throws {
         let recipe = juice.recipe
