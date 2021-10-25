@@ -46,6 +46,7 @@ class ViewController: UIViewController {
         
         do {
             try juiceMaker.make(juice: orderedJuice)
+            presentMakeJuiceSuccessAlert(juice: orderedJuice)
         } catch ServiceError.notEnoughStock {
             presentNotEnoughStockAlert()
         } catch SystemError.invaildKey {
@@ -53,6 +54,16 @@ class ViewController: UIViewController {
         } catch {
             print(error)
         }
+        
+    }
+    
+    func presentMakeJuiceSuccessAlert(juice: JuiceMaker.Juice) {
+        let successAlert = UIAlertController(title: "\(juice) 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default)
+        
+        successAlert.addAction(confirmAction)
+        
+        self.present(successAlert, animated: true, completion: nil)
     }
     
     func presentNotEnoughStockAlert(){
@@ -65,7 +76,7 @@ class ViewController: UIViewController {
         
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
