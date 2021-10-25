@@ -130,7 +130,7 @@
                                                 <rect key="frame" x="296" y="0.0" width="280" height="66"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <state key="normal" title="딸바쥬스 주문">
+                                                <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -146,7 +146,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="딸바쥬스 주문">
+                                                        <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
@@ -217,6 +217,20 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="p8D-Fg-pbG"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="uUP-3P-vKu"/>
+                        <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="OQh-aF-dsQ"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="H8A-9B-kZ9"/>
+                        <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="Zzb-et-Nwc"/>
+                        <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="sIU-KP-yPD"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="fzE-7S-Kef"/>
+                        <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="ERy-nG-Zwh"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="Poz-HB-nmC"/>
+                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="dLq-UN-rco"/>
+                        <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="Vzs-4N-1PQ"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="r48-c2-J4r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
