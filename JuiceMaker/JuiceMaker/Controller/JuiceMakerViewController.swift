@@ -66,7 +66,7 @@ class JuiceMakerViewController: UIViewController {
         } catch let error as RequestError {
             showNotificationAlert(message: error.errorDescription)
         } catch {
-            showNotificationAlert(message: "잘못된 접근입니다.")
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
         }
     }
     
