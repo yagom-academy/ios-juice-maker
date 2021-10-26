@@ -5,6 +5,10 @@
 //
 
 import Foundation
+import UIKit
+
+let notificationCenter: NotificationCenter = .default
+let didChangedInventory = Notification.Name("changedInventory")
 
 class FruitStore {
     enum Fruits: String, CaseIterable {
@@ -37,6 +41,7 @@ class FruitStore {
             return
         }
         fruitInventory[fruit] = numberOfFruit + count
+        notificationCenter.post(name: didChangedInventory, object: nil)
     }
     
     func subtract(fruit: Fruits, of count: Int) {
@@ -44,6 +49,7 @@ class FruitStore {
             return
         }
         fruitInventory[fruit] = numberOfFruit - count
+        notificationCenter.post(name: didChangedInventory, object: nil)
     }
     
     func hasStock(of fruit: Fruits, count: Int) -> Bool {
