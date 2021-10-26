@@ -66,6 +66,22 @@ class ViewController: UIViewController {
         }
     }
     
+    func showJuiceWasMadeAlert(juice: JuiceMaker.Juice) {
+        let message = "\(juice.rawValue) 나왔습니다! 맛있게 드세요!"
+
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showNotEnoughFruitAlert() {
+        // "재료가 모자라요. 재고를 수정할까요?"
+        // 버튼 2개 보여주고, 동의하면 재고 수정 씬으로 이동시키기
+    }
+    
     func updateAmountLabels() {
         strawberryAmountLabel.text = String(fruitStore.inventory[.strawberry] ?? 0)
         bananaAmountLabel.text = String(fruitStore.inventory[.banana] ?? 0)
