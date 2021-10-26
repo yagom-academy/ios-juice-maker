@@ -7,7 +7,7 @@
 struct JuiceMaker {
     let fruitStore: FruitStore
     
-    func make(_ juice: Juice) {
+    func make(juice: Juice) {
         do {
           try fruitStore.consumeStock(with: juice)
         } catch {
