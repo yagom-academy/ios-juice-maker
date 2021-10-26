@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     let notificantionCenter: NotificationCenter = .default
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        guard let orderedJuice = takeJuiceOrder(from: sender) else {
+        guard let orderedJuice = try? takeJuiceOrder(from: sender) else {
             return
         }
         
@@ -36,13 +36,13 @@ class ViewController: UIViewController {
         } catch ServiceError.notEnoughStock {
             presentNotEnoughStockAlert()
         } catch SystemError.invaildKey {
-            print(SystemError.invaildKey.errorDescription)
+            print(SystemError.invaildKey.localizedDescription)
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
     }
     
-    func matchFruit(with label: UILabel) -> FruitStore.Fruit? {
+    func matchFruit(with label: UILabel) throws -> FruitStore.Fruit {
         switch label {
         case strawberryStockLabel:
             return .strawberry
@@ -55,12 +55,12 @@ class ViewController: UIViewController {
         case mangoStockLabel:
             return .mango
         default:
-            return nil
+            throw SystemError.invaildLabel
         }
     }
     
     func updateStockLabel(with label: UILabel) {
-        guard let fruit = matchFruit(with: label) else {
+        guard let fruit = try? matchFruit(with: label) else {
             return
         }
         
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func takeJuiceOrder(from button: UIButton) -> JuiceMaker.Juice? {
+    func takeJuiceOrder(from button: UIButton) throws -> JuiceMaker.Juice {
         switch button {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBananaJuice
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         case mangoJuiceOrderButton:
             return .mangoJuice
         default:
-            return nil
+            throw SystemError.invaildButton
         }
     }
     
