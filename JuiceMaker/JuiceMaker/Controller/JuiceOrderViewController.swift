@@ -38,8 +38,8 @@ class JuiceOrderViewController: UIViewController {
             showSuccessAlert(juiceMenu: juiceMenu)
         } catch FruitStoreError.stockShortage {
             showFailureAlert()
-        } catch {
-            
+        } catch let error {
+            showErrorAlert(error: error)
         }
     }
     
@@ -58,9 +58,16 @@ class JuiceOrderViewController: UIViewController {
             pineappleStockLabel.text = String(try juiceMaker.currentFruitStock(of: .pineapple))
             kiwiStockLabel.text = String(try juiceMaker.currentFruitStock(of: .kiwi))
             mangoStockLabel.text = String(try juiceMaker.currentFruitStock(of: .mango))
-        } catch {
-           
+        } catch let error {
+            showErrorAlert(error: error)
         }
+    }
+    
+    func showErrorAlert(error: Error) {
+        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
     func matchJuiceMenu(with button: UIButton) throws -> JuiceMenu {
@@ -92,7 +99,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func showFailureAlert() {
-        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { _ in self.moveToStockModifyView() }
         let noAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(okAction)
@@ -115,5 +122,7 @@ class JuiceOrderViewController: UIViewController {
     func moveToStockModifyView() {
         performSegue(withIdentifier: "toStockModifyView", sender: nil)
     }
+    
+    
 }
 
