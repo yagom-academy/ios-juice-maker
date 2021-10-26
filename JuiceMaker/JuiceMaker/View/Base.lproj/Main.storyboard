@@ -244,12 +244,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="otK-kA-J0r"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="82t-Nk-X6G"/>
                         <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="vPV-AA-ec1"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="0g8-zG-xJx"/>
                         <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="qbS-jo-VD6"/>
                         <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="YMo-T9-3Bg"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="lSU-cs-Rhf"/>
                         <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="1QN-AJ-1Sg"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="Xq2-I8-EvU"/>
                         <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="W4h-3d-DdI"/>
                         <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="1Ae-5s-EFj"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="ZXV-ZU-cBB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
