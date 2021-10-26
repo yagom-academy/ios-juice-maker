@@ -101,5 +101,9 @@ struct JuiceMaker {
         
         return true
     }
+    
+    func fetchStock() -> [Fruit.Name: Int] {
+        return fruitStore.fetchStock()
+    }
 }
 

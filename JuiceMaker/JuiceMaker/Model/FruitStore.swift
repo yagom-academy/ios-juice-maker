@@ -27,6 +27,17 @@ class FruitStore {
             return storedMango
         }
     }
+    
+    func fetchStock() -> [Fruit.Name: Int] {
+        var fruitStoreInventory = [Fruit.Name: Int]()
+        
+        for fruit in Fruit.Name.allCases {
+            fruitStoreInventory.updateValue(findStoredFruit(of: fruit).quantity,
+                                            forKey: findStoredFruit(of: fruit).name)
+        }
+
+        return fruitStoreInventory
+    }
 
     func checkStock(for requiredIngredient: Fruit) -> Bool {
         if findStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity {

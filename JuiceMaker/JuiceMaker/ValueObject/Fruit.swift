@@ -8,12 +8,12 @@
 import Foundation
 
 class Fruit {
-    enum Name {
-        case strawberry
-        case banana
-        case kiwi
-        case pineapple
-        case mango
+    enum Name: String, CaseIterable {
+        case strawberry = "딸기"
+        case banana = "바나나"
+        case kiwi = "키위"
+        case pineapple = "파인애플"
+        case mango = "망고"
     }
     
     let name: Name
