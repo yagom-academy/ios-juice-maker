@@ -6,9 +6,9 @@
 
 import Foundation
 
+typealias JuiceIngredient = Int
+
 struct JuiceMaker {
-    typealias JuiceIngredient = Int
-    
     var fruitStore = FruitStore()
     
     enum Juice {
@@ -20,7 +20,7 @@ struct JuiceMaker {
         case mangoJuice
         case mangoKiwiJuice
 
-        var recipe: [FruitStore.Fruit: JuiceIngredient] {
+        fileprivate var recipe: [FruitStore.Fruit: JuiceIngredient] {
             switch self {
             case .strawberryJuice:
                 return [.strawberry: 16]

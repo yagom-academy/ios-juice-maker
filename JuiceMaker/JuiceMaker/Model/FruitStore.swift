@@ -16,7 +16,7 @@ class FruitStore {
         case pineapple
         case mango
     }
-    var fruitStockList: [Fruit: FruitStock] = [:]
+    private var fruitStockList: [Fruit: FruitStock] = [:]
     
     init(initialFruitStock: FruitStock = 10) {
         for fruitName in Fruit.allCases {
@@ -35,7 +35,7 @@ class FruitStore {
         fruitStockList[fruitName] = (currentFruitStock + changingNumber)
     }
     
-    func isHaveEnoughStock(fruitName: Fruit, juiceIngredient: JuiceMaker.JuiceIngredient) throws {
+    func isHaveEnoughStock(fruitName: Fruit, juiceIngredient: JuiceIngredient) throws {
         guard let fruitStock = fruitStockList[fruitName] else {
             throw FruitStockError.fruitNotExist
         }
