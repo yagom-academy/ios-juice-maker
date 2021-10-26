@@ -35,14 +35,12 @@ class FruitStore {
         fruitStockList[fruitName] = (currentFruitStock + changingNumber)
     }
     
-    func isHaveEnoughStock(for menu: JuiceMaker.Juice) throws {
-        for (fruitName, juiceIngredient) in menu.recipe {
-            guard let fruitStock = fruitStockList[fruitName] else {
-                throw FruitStockError.fruitNotExist
-            }
-            guard fruitStock >= juiceIngredient else {
-                throw FruitStockError.outOfStock
-            }
+    func isHaveEnoughStock(fruitName: Fruit, juiceIngredient: JuiceMaker.JuiceIngredient) throws {
+        guard let fruitStock = fruitStockList[fruitName] else {
+            throw FruitStockError.fruitNotExist
+        }
+        guard fruitStock >= juiceIngredient else {
+            throw FruitStockError.outOfStock
         }
     }
 }

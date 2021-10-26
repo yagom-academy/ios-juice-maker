@@ -41,21 +41,18 @@ struct JuiceMaker {
     }
     
     func orderJuice(for menu: Juice) {
-        do {
-            try fruitStore.isHaveEnoughStock(for: menu)
-        } catch {
-            print("재고 없음")
-        }
-        makeJuice(for: menu)
-    }
-    
-    func makeJuice(for menu: Juice) {
+        var confirmedFruitStock = 0
+        let juiceIngredientCounter = menu.recipe.count
+        
         for (fruitName, juiceIngredient) in menu.recipe {
-            do {
-                try fruitStore.changeFruitStock(fruitName: fruitName, changingNumber: juiceIngredient)
-            } catch {
-            print("쥬스 만들기 실패")
+            guard (try? fruitStore.isHaveEnoughStock(fruitName: fruitName, juiceIngredient: juiceIngredient)) != nil else {
+                return
+            }
+            confirmedFruitStock += 1
+            guard confirmedFruitStock == juiceIngredientCounter, (try? fruitStore.changeFruitStock(fruitName: fruitName, changingNumber: -juiceIngredient)) != nil else {
+                continue
             }
         }
+        print("쥬스제조완료!")
     }
 }
