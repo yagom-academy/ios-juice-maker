@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func matchFruit(with label: UILabel) throws -> FruitStore.Fruit {
+    private func matchFruit(with label: UILabel) throws -> FruitStore.Fruit {
         switch label {
         case strawberryStockLabel:
             return .strawberry
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func takeJuiceOrder(from button: UIButton) throws -> JuiceMaker.Juice {
+    private func takeJuiceOrder(from button: UIButton) throws -> JuiceMaker.Juice {
         switch button {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBananaJuice
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func presentCompleteMakingJuiceAlert(juice: JuiceMaker.Juice) {
+    private func presentCompleteMakingJuiceAlert(juice: JuiceMaker.Juice) {
         let completeAlert = UIAlertController(title: "\(juice.description) 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default)
         
@@ -109,7 +109,7 @@ class ViewController: UIViewController {
         self.present(completeAlert, animated: true, completion: nil)
     }
     
-    func presentNotEnoughStockAlert() {
+    private func presentNotEnoughStockAlert() {
         let notEnoughStockAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { _ in
             self.performSegue(withIdentifier: "showModifyStock", sender: nil)
