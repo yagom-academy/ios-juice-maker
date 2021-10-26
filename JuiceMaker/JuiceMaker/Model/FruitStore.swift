@@ -17,12 +17,14 @@ class FruitStore {
     
     private var fruitInventory: [Fruits: Int]
     
-    init(defaultStock: Int) {
+    static let fruitStore = FruitStore()
+    
+    private init(defaultStock: Int) {
         self.fruitInventory = [:]
         Fruits.allCases.forEach { fruitInventory[$0] = defaultStock }
     }
     
-    convenience init() {
+    private convenience init() {
         self.init(defaultStock: 10)
     }
     
