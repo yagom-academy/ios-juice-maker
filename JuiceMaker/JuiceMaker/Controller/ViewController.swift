@@ -57,6 +57,26 @@ class ViewController: UIViewController {
         }
     }
     
+    func updateStockLabel(with label: UILabel) {
+        guard let fruit = matchFruit(with: label) else {
+            return
+        }
+        
+        guard let currentStockCount = juiceMaker.store.stock[fruit] else {
+            return
+        }
+        
+        label.text = String(currentStockCount)
+    }
+    
+    func updateAllStockLabels() {
+        let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+        
+        for stockLabel in stockLabels {
+            updateStockLabel(with: stockLabel)
+        }
+    }
+    
     func takeJuiceOrder(from button: UIButton) -> JuiceMaker.Juice? {
         switch button {
         case strawberryBananaJuiceOrderButton:
@@ -102,10 +122,10 @@ class ViewController: UIViewController {
     
 
     override func viewDidLoad() {
-        print(juiceMaker.store.stock)
+        updateAllStockLabels()
         super.viewDidLoad()
     }
-
+    
 
 }
 
