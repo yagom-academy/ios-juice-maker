@@ -14,6 +14,10 @@ class EditStockViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
