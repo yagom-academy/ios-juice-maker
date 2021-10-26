@@ -68,7 +68,9 @@ class ViewController: UIViewController {
     
     func presentNotEnoughStockAlert(){
         let notEnoughStockAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default)
+        let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { _ in
+            self.performSegue(withIdentifier: "showModifyStock", sender: nil)
+        }
         let cancelAction = UIAlertAction(title: "취소", style: .destructive)
         
         notEnoughStockAlert.addAction(modifyStockAction)
@@ -76,6 +78,7 @@ class ViewController: UIViewController {
         
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
