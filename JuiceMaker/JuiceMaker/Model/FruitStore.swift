@@ -58,6 +58,11 @@ extension FruitStore {
             } else {
                 stock[fruit] = amount
             }
+            
+            let changedAmount = [fruit:stock[fruit]]
+            NotificationCenter.default.post(name: Notification.Name.increaseStock,
+                                            object: nil,
+                                            userInfo: changedAmount as [AnyHashable : Any])
         }
         
         func hasSufficientStock(of ingredient: Ingredient) -> Bool {
