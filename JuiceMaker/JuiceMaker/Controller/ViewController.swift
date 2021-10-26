@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     func takeJuiceOrder(from button: UIButton) -> JuiceMaker.Juice? {
         switch button {
         case strawberryBananaJuiceOrderButton:
-            return .strawberryAndBananaJuice
+            return .strawberryBananaJuice
         case strawberryJuiceOrderButton:
             return .strawberryJuice
         case bananaJuiceOrderButton:

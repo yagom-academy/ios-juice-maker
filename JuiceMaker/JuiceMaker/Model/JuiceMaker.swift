@@ -16,7 +16,7 @@ struct JuiceMaker {
         case bananaJuice
         case kiwiJuice
         case pineappleJuice
-        case strawberryAndBananaJuice
+        case strawberryBananaJuice
         case mangoJuice
         case mangoKiwiJuice
         
@@ -30,7 +30,7 @@ struct JuiceMaker {
                 return [.kiwi: 3]
             case .pineappleJuice:
                 return [.pineapple: 2]
-            case .strawberryAndBananaJuice:
+            case .strawberryBananaJuice:
                 return [.strawberry: 10, .banana: 1]
             case .mangoJuice:
                 return [.mango: 3]
@@ -57,7 +57,7 @@ extension JuiceMaker.Juice: CustomStringConvertible {
             return "키위 쥬스"
         case .pineappleJuice:
             return "파인애플 쥬스"
-        case .strawberryAndBananaJuice:
+        case .strawberryBananaJuice:
             return "딸바 쥬스"
         case .mangoJuice:
             return "망고 쥬스"
