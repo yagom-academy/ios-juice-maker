@@ -23,6 +23,22 @@ class JuiceMakerViewController: UIViewController {
     func updateFruitCount() {
         let fruitCountList: [FruitStore.Fruits: Int] = FruitStore.shared.inventoryStatus
         
+        for fruitCountLabel in fruitCountLabels {
+            
+            guard let fruitID = fruitCountLabel.restorationIdentifier else {
+                return
+            }
+            
+            guard let kindOfFruit = FruitStore.Fruits(rawValue: fruitID) else {
+                return
+            }
+            
+            guard let fruitCount = fruitCountList[kindOfFruit] else {
+                return
+            }
+            
+            fruitCountLabel.text = String(fruitCount)
+        }
     }
     
     
