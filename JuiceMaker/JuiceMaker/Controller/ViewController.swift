@@ -40,6 +40,23 @@ class ViewController: UIViewController {
     
     }
     
+    func matchFruit(with label: UILabel) -> FruitStore.Fruit? {
+        switch label {
+        case strawberryStockLabel:
+            return .strawberry
+        case bananaStockLabel:
+            return .banana
+        case pineappleStockLabel:
+            return .pineapple
+        case kiwiStockLabel:
+            return .kiwi
+        case mangoStockLabel:
+            return .mango
+        default:
+            return nil
+        }
+    }
+    
     func takeJuiceOrder(from button: UIButton) -> JuiceMaker.Juice? {
         switch button {
         case strawberryBananaJuiceOrderButton:
@@ -85,6 +102,7 @@ class ViewController: UIViewController {
     
 
     override func viewDidLoad() {
+        print(juiceMaker.store.stock)
         super.viewDidLoad()
     }
 
