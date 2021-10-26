@@ -7,12 +7,12 @@
 import Foundation
 
 class FruitStore {
-    enum Fruits: CaseIterable {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
+    enum Fruits: String, CaseIterable {
+        case strawberry = "strawberry"
+        case banana = "banana"
+        case pineapple = "pineapple"
+        case kiwi = "kiwi"
+        case mango = "mango"
     }
     
     private var fruitInventory: [Fruits: Int]
