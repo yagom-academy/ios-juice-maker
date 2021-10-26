@@ -16,7 +16,6 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLabels()
@@ -24,50 +23,6 @@ class JuiceMakerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(fruitLabelChanged(notification:)), name: .changedFruitStockNotification, object: nil)
     }
     
-    func updateFruitLabels() {
-        currentStockLabelUpdate(fruit: .strawberry, label: strawberryStockLabel)
-        currentStockLabelUpdate(fruit: .banana, label: bananaStockLabel)
-        currentStockLabelUpdate(fruit: .pineapple, label: pineappleStockLabel)
-        currentStockLabelUpdate(fruit: .kiwi, label: kiwiStockLabel)
-        currentStockLabelUpdate(fruit: .mango, label: mangoStockLabel)
-    }
-    
-    
-    func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
-        do {
-            let stock = try FruitStore.shared.stock(fruit: fruit)
-            label.text = String(stock)
-        } catch let error as RequestError {
-            showNotificationAlert(message: error.errorDescription)
-        } catch {
-            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
-        }
-    }
-    
-    @objc func fruitLabelChanged(notification: Notification) {
-        // 수정된 과일과 과일의 재고갯수를 받아와서 label을 수정
-        guard let fruit = notification.object as? Fruit else {
-            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
-            return
-        }
-        currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
-    }
-    
-    func fruitlabel(of fruit: Fruit) -> UILabel {
-        switch fruit {
-        case .strawberry:
-            return strawberryStockLabel
-        case .banana:
-            return bananaStockLabel
-        case .pineapple:
-            return pineappleStockLabel
-        case .kiwi:
-            return kiwiStockLabel
-        case .mango:
-            return mangoStockLabel
-        }
-    }
-
     @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
         let buttonText = sender.titleLabel?.text
         let juice: Juice
@@ -101,6 +56,49 @@ class JuiceMakerViewController: UIViewController {
             showNotificationAlert(message: error.errorDescription)
         } catch {
             showNotificationAlert(message: "잘못된 접근입니다.")
+        }
+    }
+    
+    @objc func fruitLabelChanged(notification: Notification) {
+        // 수정된 과일과 과일의 재고갯수를 받아와서 label을 수정
+        guard let fruit = notification.object as? Fruit else {
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
+            return
+        }
+        currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
+    }
+    
+    func updateFruitLabels() {
+        currentStockLabelUpdate(fruit: .strawberry, label: strawberryStockLabel)
+        currentStockLabelUpdate(fruit: .banana, label: bananaStockLabel)
+        currentStockLabelUpdate(fruit: .pineapple, label: pineappleStockLabel)
+        currentStockLabelUpdate(fruit: .kiwi, label: kiwiStockLabel)
+        currentStockLabelUpdate(fruit: .mango, label: mangoStockLabel)
+    }
+    
+    func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
+        do {
+            let stock = try FruitStore.shared.stock(fruit: fruit)
+            label.text = String(stock)
+        } catch let error as RequestError {
+            showNotificationAlert(message: error.errorDescription)
+        } catch {
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
+        }
+    }
+    
+    func fruitlabel(of fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryStockLabel
+        case .banana:
+            return bananaStockLabel
+        case .pineapple:
+            return pineappleStockLabel
+        case .kiwi:
+            return kiwiStockLabel
+        case .mango:
+            return mangoStockLabel
         }
     }
     
