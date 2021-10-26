@@ -41,7 +41,7 @@ extension FruitStore {
         
         init(fruitList: [Fruit], amount: Int) {
             for fruit in fruitList {
-                stock[fruit] = amount
+                increaseStock(of: fruit, by: amount)
             }
         }
         
@@ -50,6 +50,14 @@ extension FruitStore {
                 return
             }
             stock[fruit] = remainingStock - amount
+        }
+        
+        mutating func increaseStock(of fruit: Fruit, by amount: Int) {
+            if let remainingStock = stock[fruit] {
+                stock[fruit] = remainingStock + amount
+            } else {
+                stock[fruit] = amount
+            }
         }
         
         func hasSufficientStock(of ingredient: Ingredient) -> Bool {
