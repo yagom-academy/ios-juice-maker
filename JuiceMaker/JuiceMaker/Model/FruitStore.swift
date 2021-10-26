@@ -43,7 +43,7 @@ class FruitStore {
         stock[fruit] = currentStock - input
     }
     
-    func increasStock(from fruit: Fruit, by input: Int) {
+    func increaseStock(from fruit: Fruit, by input: Int) {
         if let currentStock = stock[fruit] {
             stock[fruit] = currentStock + input
         }
