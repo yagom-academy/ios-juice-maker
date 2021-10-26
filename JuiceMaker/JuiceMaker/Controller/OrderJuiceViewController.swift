@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class OrderJuiceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
