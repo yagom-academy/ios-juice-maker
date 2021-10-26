@@ -27,37 +27,25 @@ class JuiceMakerViewController: UIViewController {
             return
         }
         
-        guard var juiceCase = JuiceMaker.Juice.allCases.filter({ $0 == juiceID }).first else {
+        guard let juiceCase = JuiceMaker.Juice.allCases.filter({ $0 == juiceID }).first else {
             return
         }
         
-        guard let juice = juiceMaker.order(juice: juiceCase) else {
-            // 주문 실패
-            failureAlertMessage()
+        guard let _ = juiceMaker.order(juice: juiceCase) else {
+            
+            AlertMessage(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?")
             return
         }
+        print(FruitStore.shared.inventoryStatus)
         
-        // 주문성공
-        successAlertMessage(juiceID)
+        AlertMessage(title: "주스 제조 완료", message: "\(juiceID) 제조가 완료되었습니다.")
     }
     
-    func failureAlertMessage() {
-        let alert = UIAlertController(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+    func AlertMessage(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let alertOk = UIAlertAction(title: "확인", style: .default, handler: { _ in
-            print("재고 수정 화면 이동")
-        })
-        let alertCancel = UIAlertAction(title: "취소", style: .cancel)
-        
-        alert.addAction(alertOk)
-        alert.addAction(alertCancel)
-    }
-    
-    func successAlertMessage(_ juiceID: String) {
-        let alert = UIAlertController(title: "주스 제조 완료", message: "\(juiceID) 제조가 완료되었습니다.", preferredStyle: .alert)
-        
-        let alertOk = UIAlertAction(title: "확인", style: .default)
-        let alertCancel = UIAlertAction(title: "취소", style: .cancel)
+        let alertOk = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let alertCancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         alert.addAction(alertOk)
         alert.addAction(alertCancel)
