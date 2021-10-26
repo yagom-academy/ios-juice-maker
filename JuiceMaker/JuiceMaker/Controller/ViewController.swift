@@ -55,8 +55,7 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice)
             updateAmountLabels()
-            
-            // 재고있음 alert
+            showJuiceWasMadeAlert(juice: juice)
         } catch JuiceMakerError.notEnoughFruit {
             // 재고없음 alert
         } catch JuiceMakerError.fruitNotFound {
@@ -67,7 +66,7 @@ class ViewController: UIViewController {
     }
     
     func showJuiceWasMadeAlert(juice: JuiceMaker.Juice) {
-        let message = "\(juice.rawValue) 나왔습니다! 맛있게 드세요!"
+        let message = "\(juice.rawValue) 나왔습니다!\n맛있게 드세요!"
 
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
