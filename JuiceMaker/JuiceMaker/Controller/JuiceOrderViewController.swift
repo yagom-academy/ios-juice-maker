@@ -7,7 +7,6 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -22,7 +21,7 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
-    let juiceMaker = JuiceMaker(store: FruitStore())
+    private let juiceMaker: JuiceMaking = JuiceMaker(store: FruitStore())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +40,13 @@ class JuiceOrderViewController: UIViewController {
             showErrorAlert(error: error)
         }
     }
+
+    @IBAction func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
+        moveToStockModifyView()
+    }
     
     @objc func didFruitStockChange(_ notification: Notification) {
         updateAllLabels()
-    }
-    
-    @IBAction func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
-        moveToStockModifyView()
     }
     
     func updateAllLabels() {
@@ -60,13 +59,6 @@ class JuiceOrderViewController: UIViewController {
         } catch let error {
             showErrorAlert(error: error)
         }
-    }
-    
-    func showErrorAlert(error: Error) {
-        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.ok.rawValue, style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
     }
     
     func matchJuiceMenu(with button: UIButton) throws -> JuiceMenu {
@@ -103,6 +95,13 @@ class JuiceOrderViewController: UIViewController {
         let noAction = UIAlertAction(title: AlertMessage.cancel.rawValue, style: .cancel)
         alert.addAction(okAction)
         alert.addAction(noAction)
+        present(alert, animated: true)
+    }
+    
+    func showErrorAlert(error: Error) {
+        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: AlertMessage.ok.rawValue, style: .default)
+        alert.addAction(okAction)
         present(alert, animated: true)
     }
     

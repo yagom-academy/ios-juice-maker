@@ -6,7 +6,7 @@
 
 import Foundation
 
-class FruitStore: FruitStockManaging {
+class FruitStore {
     private var inventory: [Fruit: Int] = [:] {
         didSet {
             NotificationCenter.default.post(name: .FruitStockChanged, object: self)
@@ -22,7 +22,9 @@ class FruitStore: FruitStockManaging {
     init(inventory: [Fruit: Int]) {
         self.inventory = inventory
     }
-    
+}
+
+extension FruitStore: FruitStockManaging {
     func checkFruitStock(of fruit: Fruit, by quantity: Int) throws -> Bool {
         guard let fruitStock = inventory[fruit] else {
             throw FruitStoreError.stockDataMissing

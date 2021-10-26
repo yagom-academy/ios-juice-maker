@@ -8,7 +8,7 @@
 import UIKit
 
 class StockModifyViewController: UIViewController {
-    var juiceMaker: JuiceMaker? = nil
+    var juiceMaker: JuiceMaking? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,5 +17,4 @@ class StockModifyViewController: UIViewController {
     @IBAction func modifyCompleteButtonDidTap(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

@@ -24,6 +24,7 @@
 		E9784636272156B0003A7ED2 /* FruitStockManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9784635272156B0003A7ED2 /* FruitStockManaging.swift */; };
 		E99FD54827268AE600075BD4 /* JuiceOrderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FD54727268AE600075BD4 /* JuiceOrderError.swift */; };
 		E99FD54B2726AE2D00075BD4 /* StockModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FD54A2726AE2D00075BD4 /* StockModifyViewController.swift */; };
+		E99FD5632727C60E00075BD4 /* JuiceMaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FD5622727C60E00075BD4 /* JuiceMaking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		E9784635272156B0003A7ED2 /* FruitStockManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockManaging.swift; sourceTree = "<group>"; };
 		E99FD54727268AE600075BD4 /* JuiceOrderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceOrderError.swift; sourceTree = "<group>"; };
 		E99FD54A2726AE2D00075BD4 /* StockModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModifyViewController.swift; sourceTree = "<group>"; };
+		E99FD5622727C60E00075BD4 /* JuiceMaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				E9784635272156B0003A7ED2 /* FruitStockManaging.swift */,
+				E99FD5622727C60E00075BD4 /* JuiceMaking.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				252F54D6272141EB00E3EC5C /* JuiceMenu.swift */,
@@ -215,6 +218,7 @@
 				C73DAF3B255D0CDD00020D38 /* JuiceOrderViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				E99FD5632727C60E00075BD4 /* JuiceMaking.swift in Sources */,
 				252F54D5272141DC00E3EC5C /* Fruit.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				252F54D32721414900E3EC5C /* FruitStoreError.swift in Sources */,
