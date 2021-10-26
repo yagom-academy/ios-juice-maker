@@ -422,7 +422,13 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" id="g4W-fY-l7r">
+                        <barButtonItem key="leftBarButtonItem" title="취소" id="RCh-z9-ck2">
+                            <connections>
+                                <action selector="touchUpCancelButton:" destination="Yu1-lM-nqp" id="3iP-V3-L1f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
