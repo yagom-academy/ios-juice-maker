@@ -7,6 +7,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let juiceMaker = JuiceMaker()
+    let fruitStore = FruitStore.shared
+    
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
     @IBOutlet weak var mangoAmountLabel: UILabel!
@@ -21,11 +24,37 @@ class ViewController: UIViewController {
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
-    let fruitStore = FruitStore.shared
+    @IBAction func orderButtonHandler(_ sender: UIButton) {
+        switch sender {
+        case strawberryJuiceButton:
+            order(.strawberryJuice)
+        case bananaJuiceButton:
+            order(.bananaJuice)
+        case pineappleJuiceButton:
+            order(.pineappleJuice)
+        case kiwiJuiceButton:
+            order(.kiwiJuice)
+        case mangoJuiceButton:
+            order(.mangoJuice)
+        case strawberryBananaJuiceButton:
+            order(.strawberryBananaJuice)
+        case mangoKiwiJuiceButton:
+            order(.mangoKiwiJuice)
+        default:
+            return
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateAmountLabels()
+    }
+    
+    func order(_ juice: JuiceMaker.Juice) {
+        juiceMaker.make(juice)
+        // 여기 do-try-catch 써서, 재고 부족 에러 올라오면 알러트 띄우도록.
+        // 성공하면, 레이블 업데이트 시키고, 또 알러트 띄우고.
         updateAmountLabels()
     }
     
