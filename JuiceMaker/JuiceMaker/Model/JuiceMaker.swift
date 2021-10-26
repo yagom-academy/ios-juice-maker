@@ -6,7 +6,7 @@
 
 import Foundation
 
-fileprivate typealias Recipe = [FruitStore.Fruit: Int]
+fileprivate typealias Recipe = [Fruit: Int]
 
 enum Juice: String, CustomStringConvertible {
     case strawberry = "딸기"

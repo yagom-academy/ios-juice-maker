@@ -33,7 +33,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     
-    func currentStockLabel(fruit: FruitStore.Fruit, label: UILabel) {
+    func currentStockLabel(fruit: Fruit, label: UILabel) {
         do {
             let stock = try FruitStore.shared.stock(fruit: fruit)
             label.text = String(stock)
@@ -46,14 +46,14 @@ class JuiceMakerViewController: UIViewController {
     
     @objc func updateFruitStock(notification: Notification) {
         // 수정된 과일과 과일의 재고갯수를 받아와서 label을 수정
-        guard let fruit = notification.object as? FruitStore.Fruit else {
+        guard let fruit = notification.object as? Fruit else {
             notificationAlert(message: "알 수 없는 에러가 발생했습니다.")
             return
         }
         currentStockLabel(fruit: fruit, label: fruitlabel(of: fruit))
     }
     
-    func fruitlabel(of fruit: FruitStore.Fruit) -> UILabel {
+    func fruitlabel(of fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
             return strawberryStock

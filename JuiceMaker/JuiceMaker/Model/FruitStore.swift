@@ -8,18 +8,16 @@ import Foundation
 
 private let defaultFruitCount = 10
 
+enum Fruit: CaseIterable {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
+
 class FruitStore {
-    
     static let shared: FruitStore = FruitStore()
-    
-    enum Fruit: CaseIterable {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-    }
-    
     private var fruitBasket: [Fruit: Int]
     
     init(count: Int = defaultFruitCount) {
