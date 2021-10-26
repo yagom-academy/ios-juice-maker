@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: orderedJuice)
             notificantionCenter.post(name: .completeMakingJuice, object: nil)
-            presentMakeJuiceSuccessAlert(juice: orderedJuice)
+            presentCompleteMakingJuiceAlert(juice: orderedJuice)
         } catch ServiceError.notEnoughStock {
             presentNotEnoughStockAlert()
         } catch SystemError.invaildKey {
@@ -100,13 +100,13 @@ class ViewController: UIViewController {
         }
     }
     
-    func presentMakeJuiceSuccessAlert(juice: JuiceMaker.Juice) {
-        let successAlert = UIAlertController(title: "\(juice.description) 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
+    func presentCompleteMakingJuiceAlert(juice: JuiceMaker.Juice) {
+        let completeAlert = UIAlertController(title: "\(juice.description) 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default)
         
-        successAlert.addAction(confirmAction)
+        completeAlert.addAction(confirmAction)
         
-        self.present(successAlert, animated: true, completion: nil)
+        self.present(completeAlert, animated: true, completion: nil)
     }
     
     func presentNotEnoughStockAlert() {
