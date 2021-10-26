@@ -13,7 +13,7 @@ class FruitStore {
     private let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
     private let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
-    private func findStoredFruit(of fruitName: Fruit.Name) -> Fruit {
+    private func returnStoredFruit(of fruitName: Fruit.Name) -> Fruit {
         switch fruitName {
         case .strawberry:
             return storedStrawberry
@@ -32,35 +32,29 @@ class FruitStore {
         var fruitStoreInventory = [Fruit.Name: Int]()
         
         for fruit in Fruit.Name.allCases {
-            fruitStoreInventory.updateValue(findStoredFruit(of: fruit).quantity,
-                                            forKey: findStoredFruit(of: fruit).name)
+            fruitStoreInventory.updateValue(returnStoredFruit(of: fruit).quantity,
+                                            forKey: returnStoredFruit(of: fruit).name)
         }
 
         return fruitStoreInventory
     }
 
     func checkStock(for requiredIngredient: Fruit) -> Bool {
-        if findStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity {
+        if returnStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity {
             return false
         } else {
             return true
         }
     }
     
-    func useIngredients(of requiredIngredients: Fruit) -> Bool {
-        let storedFruit: Fruit = findStoredFruit(of: requiredIngredients.name)
-        
-        guard checkStock(for: requiredIngredients) else {
-            return false
-        }
+    func useIngredients(of requiredIngredients: Fruit) {
+        let storedFruit: Fruit = returnStoredFruit(of: requiredIngredients.name)
         
         storedFruit.changeQuantity(to: storedFruit.quantity - requiredIngredients.quantity)
-        
-        return true
     }
     
     func updateQuantity(to requiredChange: Fruit) -> Bool {
-        let storedFruit: Fruit = findStoredFruit(of: requiredChange.name)
+        let storedFruit: Fruit = returnStoredFruit(of: requiredChange.name)
         
         storedFruit.changeQuantity(to: requiredChange.quantity)
 
