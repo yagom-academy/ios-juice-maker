@@ -20,6 +20,9 @@ class JuiceMakerViewController: UIViewController {
     }
 
     @IBAction func navigateToStockModificationVC(_ sender: UIBarButtonItem) {
+        let stockManagerVC = storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as! StockManagerViewController
+        let navigationController = UINavigationController(rootViewController: stockManagerVC)
+        present(navigationController, animated: true, completion: nil)
     }
     
     @IBAction func orderStrawberryBanannaJuice(_ sender: UIButton) {
