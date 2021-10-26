@@ -14,6 +14,10 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         updateFruitCount()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateFruitCount),
+                                               name: Notification.Name("changedInventory"),
+                                               object: nil)
     }
     
     @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue) {
@@ -53,6 +57,7 @@ class JuiceMakerViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @objc
     func updateFruitCount() {
         let fruitCountList: [FruitStore.Fruits: Int] = FruitStore.shared.inventoryStatus
         
