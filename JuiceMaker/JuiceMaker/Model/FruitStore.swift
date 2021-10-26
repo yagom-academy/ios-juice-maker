@@ -17,7 +17,11 @@ class FruitStore {
     
     private var fruitInventory: [Fruits: Int]
     
-    static let fruitStore = FruitStore()
+    var inventoryStatus: [Fruits: Int] {
+        return fruitInventory
+    }
+    
+    static let shared = FruitStore()
     
     private init(defaultStock: Int) {
         self.fruitInventory = [:]
@@ -48,4 +52,5 @@ class FruitStore {
         }
         return numberOfFruit >= count
     }
+    
 }
