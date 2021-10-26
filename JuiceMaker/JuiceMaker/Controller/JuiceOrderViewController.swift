@@ -26,9 +26,8 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateAllLables()
-        NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: Notification.Name("FruitStockChanged"), object: nil)
-
+        updateAllLabels()
+        NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
     }
     
     @IBAction func juiceOrderButtonDidTap(_ sender: UIButton) {
@@ -44,14 +43,14 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @objc func didFruitStockChange(_ notification: Notification) {
-        updateAllLables()
+        updateAllLabels()
     }
     
     @IBAction func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
         moveToStockModifyView()
     }
     
-    func updateAllLables() {
+    func updateAllLabels() {
         do {
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
             bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))
@@ -65,7 +64,7 @@ class JuiceOrderViewController: UIViewController {
     
     func showErrorAlert(error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default)
+        let okAction = UIAlertAction(title: AlertMessage.ok.rawValue, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
@@ -92,23 +91,23 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func showSuccessAlert(juiceMenu: JuiceMenu) {
-        let alert = UIAlertController(title: nil, message: "\(juiceMenu.rawValue) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default)
+        let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess.rawValue, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: AlertMessage.ok.rawValue, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
     func showFailureAlert() {
         let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default) { _ in self.moveToStockModifyView() }
-        let noAction = UIAlertAction(title: "아니오", style: .default)
+        let okAction = UIAlertAction(title: AlertMessage.modifyStock.rawValue, style: .default) { _ in self.moveToStockModifyView() }
+        let noAction = UIAlertAction(title: AlertMessage.cancel.rawValue, style: .cancel)
         alert.addAction(okAction)
         alert.addAction(noAction)
         present(alert, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toStockModifyView" {
+        if segue.identifier == SegueIdentifier.toStockModifyView.rawValue {
             guard let stockModifyViewNavigationController = segue.destination as? UINavigationController else {
                 return
             }
@@ -120,9 +119,6 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func moveToStockModifyView() {
-        performSegue(withIdentifier: "toStockModifyView", sender: nil)
+        performSegue(withIdentifier: SegueIdentifier.toStockModifyView.rawValue, sender: nil)
     }
-    
-    
 }
-

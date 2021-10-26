@@ -9,7 +9,7 @@ import Foundation
 class FruitStore: FruitStockManaging {
     private var inventory: [Fruit: Int] = [:] {
         didSet {
-            NotificationCenter.default.post(name: Notification.Name("FruitStockChanged"), object: self)
+            NotificationCenter.default.post(name: .FruitStockChanged, object: self)
         }
     }
     
