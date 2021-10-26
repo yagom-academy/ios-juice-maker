@@ -19,31 +19,9 @@ class ViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        var juice: JuiceMaker.Juice?
-        
-        switch sender {
-        case strawberryBananaJuiceOrderButton:
-            juice = .strawberryAndBananaJuice
-        case strawberryJuiceOrderButton:
-            juice = .strawberryJuice
-        case bananaJuiceOrderButton:
-            juice = .bananaJuice
-        case mangoKiwiJuiceOrderButton:
-            juice = .mangoKiwiJuice
-        case pineappleJuiceOrderButton:
-            juice = .pineappleJuice
-        case kiwiJuiceOrderButton:
-            juice = .kiwiJuice
-        case mangoJuiceOrderButton:
-            juice = .mangoJuice
-        default:
-            print("메뉴에 없어요")
-        }
-        
-        guard let orderedJuice = juice else {
+        guard let orderedJuice = takeJuiceOrder(from: sender) else {
             return
         }
-        
         do {
             try juiceMaker.make(juice: orderedJuice)
             presentMakeJuiceSuccessAlert(juice: orderedJuice)
@@ -54,7 +32,28 @@ class ViewController: UIViewController {
         } catch {
             print(error)
         }
-        
+    
+    }
+    
+    func takeJuiceOrder(from button: UIButton) -> JuiceMaker.Juice? {
+        switch button {
+        case strawberryBananaJuiceOrderButton:
+            return .strawberryAndBananaJuice
+        case strawberryJuiceOrderButton:
+            return .strawberryJuice
+        case bananaJuiceOrderButton:
+            return .bananaJuice
+        case mangoKiwiJuiceOrderButton:
+            return .mangoKiwiJuice
+        case pineappleJuiceOrderButton:
+            return .pineappleJuice
+        case kiwiJuiceOrderButton:
+            return .kiwiJuice
+        case mangoJuiceOrderButton:
+            return .mangoJuice
+        default:
+            return nil
+        }
     }
     
     func presentMakeJuiceSuccessAlert(juice: JuiceMaker.Juice) {
