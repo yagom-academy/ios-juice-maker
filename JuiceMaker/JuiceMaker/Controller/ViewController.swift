@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         guard let orderedJuice = takeJuiceOrder(from: sender) else {
             return
         }
+        
         do {
             try juiceMaker.make(juice: orderedJuice)
             notificantionCenter.post(name: .completeMakingJuice, object: nil)
@@ -39,7 +40,6 @@ class ViewController: UIViewController {
         } catch {
             print(error)
         }
-    
     }
     
     func matchFruit(with label: UILabel) -> FruitStore.Fruit? {
@@ -109,7 +109,7 @@ class ViewController: UIViewController {
         self.present(successAlert, animated: true, completion: nil)
     }
     
-    func presentNotEnoughStockAlert(){
+    func presentNotEnoughStockAlert() {
         let notEnoughStockAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { _ in
             self.performSegue(withIdentifier: "showModifyStock", sender: nil)
@@ -122,18 +122,14 @@ class ViewController: UIViewController {
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateAllStockLabels()
         notificantionCenter.addObserver(self, selector: #selector(updateAllStockLabels), name: .completeMakingJuice, object: nil)
     }
-
-
 }
 
 extension Notification.Name {
     static let completeMakingJuice = Notification.Name("completeMakingJuice")
 }
-
