@@ -19,38 +19,38 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        uploadStocks()
+        updateFruitLabels()
     
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStock(notification:)), name: .changedFruitStockNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fruitLabelChanged(notification:)), name: .changedFruitStockNotification, object: nil)
     }
     
-    func uploadStocks() {
-        currentStockLabel(fruit: .strawberry, label: strawberryStockLabel)
-        currentStockLabel(fruit: .banana, label: bananaStockLabel)
-        currentStockLabel(fruit: .pineapple, label: pineappleStockLabel)
-        currentStockLabel(fruit: .kiwi, label: kiwiStockLabel)
-        currentStockLabel(fruit: .mango, label: mangoStockLabel)
+    func updateFruitLabels() {
+        currentStockLabelUpdate(fruit: .strawberry, label: strawberryStockLabel)
+        currentStockLabelUpdate(fruit: .banana, label: bananaStockLabel)
+        currentStockLabelUpdate(fruit: .pineapple, label: pineappleStockLabel)
+        currentStockLabelUpdate(fruit: .kiwi, label: kiwiStockLabel)
+        currentStockLabelUpdate(fruit: .mango, label: mangoStockLabel)
     }
     
     
-    func currentStockLabel(fruit: Fruit, label: UILabel) {
+    func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
         do {
             let stock = try FruitStore.shared.stock(fruit: fruit)
             label.text = String(stock)
         } catch let error as RequestError {
-            notificationAlert(message: error.errorDescription)
+            showNotificationAlert(message: error.errorDescription)
         } catch {
-            notificationAlert(message: "알 수 없는 에러가 발생했습니다.")
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
         }
     }
     
-    @objc func updateFruitStock(notification: Notification) {
+    @objc func fruitLabelChanged(notification: Notification) {
         // 수정된 과일과 과일의 재고갯수를 받아와서 label을 수정
         guard let fruit = notification.object as? Fruit else {
-            notificationAlert(message: "알 수 없는 에러가 발생했습니다.")
+            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
             return
         }
-        currentStockLabel(fruit: fruit, label: fruitlabel(of: fruit))
+        currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
     }
     
     func fruitlabel(of fruit: Fruit) -> UILabel {
@@ -88,30 +88,30 @@ class JuiceMakerViewController: UIViewController {
         case "망고쥬스 주문":
             juice = .mango
         default:
-            notificationAlert(message: "잘못된 접근입니다.")
+            showNotificationAlert(message: "잘못된 접근입니다.")
             return
         }
         
         do {
             try juiceMaker.mixFruit(juice: juice)
-            notificationAlert(message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!")
+            showNotificationAlert(message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!")
         } catch RequestError.fruitStockOut {
-            outOfStockAlert()
+            showOutOfStockAlert()
         } catch let error as RequestError {
-            notificationAlert(message: error.errorDescription)
+            showNotificationAlert(message: error.errorDescription)
         } catch {
-            notificationAlert(message: "잘못된 접근입니다.")
+            showNotificationAlert(message: "잘못된 접근입니다.")
         }
     }
     
-    func notificationAlert(message: String, title: String = "OK") {
+    func showNotificationAlert(message: String, title: String = "OK") {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let cancel = UIAlertAction(title: title, style: .cancel, handler: nil)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
     
-    func outOfStockAlert() {
+    func showOutOfStockAlert() {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
