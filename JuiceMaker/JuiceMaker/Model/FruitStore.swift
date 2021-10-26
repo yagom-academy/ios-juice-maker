@@ -6,7 +6,7 @@
 
 class FruitStore {
     private static let defaultFruitAmount = 10
-    private var inventory: [Fruit: Int] = [:]
+    private(set) var inventory: [Fruit: Int] = [:]
     
     static let shared = FruitStore()
     
