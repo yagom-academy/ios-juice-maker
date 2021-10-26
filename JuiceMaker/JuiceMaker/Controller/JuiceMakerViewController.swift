@@ -71,7 +71,6 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @objc func fruitLabelChanged(notification: Notification) {
-        // 수정된 과일과 과일의 재고갯수를 받아와서 label을 수정
         guard let fruit = notification.object as? Fruit else {
             showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
             return
