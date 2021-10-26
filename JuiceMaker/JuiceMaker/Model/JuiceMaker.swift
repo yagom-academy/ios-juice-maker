@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    enum Juice {
+    enum Juice: Equatable, CaseIterable {
         case strawberryJuice
         case bananaJuice
         case kiwiJuice
@@ -15,6 +15,22 @@ struct JuiceMaker {
         case strawberryBananaJuice
         case mangoJuice
         case kiwiMangoJuice
+        
+        static func == (lhs: Self, rhs: String) -> Bool {
+            switch (lhs, rhs) {
+            case (.strawberryJuice, "strawberryJuice"),
+                 (.bananaJuice, "bananaJuice"),
+                 (.kiwiJuice, "kiwiJuice"),
+                 (.pineappleJuice, "pineappleJuice"),
+                 (.strawberryBananaJuice, "strawberryBananaJuice"),
+                 (.mangoJuice, "mangoJuice"),
+                 (.kiwiMangoJuice, "kiwiMangoJuice"):
+                return true
+                
+            default:
+                return false
+            }
+        }
         
         var recipe: [FruitStore.Fruits: Int] {
             switch self {
@@ -36,7 +52,11 @@ struct JuiceMaker {
         }
     }
     
-    let fruitStorage: FruitStore
+    private let fruitStorage: FruitStore
+    
+    init(fruitStorage: FruitStore) {
+        self.fruitStorage = fruitStorage
+    }
     
     func order(juice: Juice) -> Juice? {
         return canMake(juice: juice) ? make(juice: juice) : nil
