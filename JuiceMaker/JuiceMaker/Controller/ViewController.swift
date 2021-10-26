@@ -21,10 +21,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
+    let fruitStore = FruitStore.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let fruitStore = FruitStore.shared
+        updateAmountLabels()
+    }
+    
+    func updateAmountLabels() {
+        strawberryAmountLabel.text = String(fruitStore.inventory[.strawberry] ?? 0)
+        bananaAmountLabel.text = String(fruitStore.inventory[.banana] ?? 0)
+        mangoAmountLabel.text = String(fruitStore.inventory[.mango] ?? 0)
+        kiwiAmountLabel.text = String(fruitStore.inventory[.kiwi] ?? 0)
+        pineappleAmountLabel.text = String(fruitStore.inventory[.pineapple] ?? 0)
     }
 }
 
