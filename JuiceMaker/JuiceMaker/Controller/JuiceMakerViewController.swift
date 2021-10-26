@@ -16,6 +16,14 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var orderStrawberryBananaJuiceButton: UIButton!
+    @IBOutlet weak var orderMangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var orderStrawberryJuiceButton: UIButton!
+    @IBOutlet weak var orderBananaJuiceButton: UIButton!
+    @IBOutlet weak var orderPineappleJuiceButton: UIButton!
+    @IBOutlet weak var orderKiwiJuiceButton: UIButton!
+    @IBOutlet weak var orderMangoJuiceButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLabels()
@@ -24,29 +32,32 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
-        let buttonText = sender.titleLabel?.text
         let juice: Juice
         
-        switch buttonText {
-        case "딸바쥬스 주문":
+        switch sender {
+        case orderStrawberryBananaJuiceButton:
             juice = .strawberryBanana
-        case "망키쥬스 주문":
+        case orderMangoKiwiJuiceButton:
             juice = .mangoKiwi
-        case "딸기쥬스 주문":
+        case orderStrawberryJuiceButton:
             juice = .strawberry
-        case "바나나쥬스 주문":
+        case orderBananaJuiceButton:
             juice = .banana
-        case "파인애플쥬스 주문":
+        case orderPineappleJuiceButton:
             juice = .pineapple
-        case "키위쥬스 주문":
+        case orderKiwiJuiceButton:
             juice = .kiwi
-        case "망고쥬스 주문":
+        case orderMangoJuiceButton:
             juice = .mango
         default:
             showNotificationAlert(message: "잘못된 접근입니다.")
             return
         }
         
+        mixFruit(juice: juice)
+    }
+    
+    func mixFruit(juice: Juice) {
         do {
             try juiceMaker.mixFruit(juice: juice)
             showNotificationAlert(message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!")

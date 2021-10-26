@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -247,6 +247,13 @@
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="I4h-3W-xpD"/>
                         <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="yU2-Ay-SC3"/>
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="eXr-g0-l78"/>
+                        <outlet property="orderBananaJuiceButton" destination="y2A-PH-DJY" id="Z1P-yT-7Uy"/>
+                        <outlet property="orderKiwiJuiceButton" destination="wcW-7H-RXw" id="xo3-Gh-Fdj"/>
+                        <outlet property="orderMangoJuiceButton" destination="q6G-4X-bVm" id="9Js-Wt-Mbv"/>
+                        <outlet property="orderMangoKiwiJuiceButton" destination="ngP-kF-Yii" id="Alo-Pn-WkG"/>
+                        <outlet property="orderPineappleJuiceButton" destination="BFb-ka-wGA" id="uxg-V4-joj"/>
+                        <outlet property="orderStrawberryBananaJuiceButton" destination="hrc-2F-fzl" id="Bm2-Gr-yfn"/>
+                        <outlet property="orderStrawberryJuiceButton" destination="avd-o5-3JM" id="tiT-jE-21D"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="lFl-eM-TyK"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="wPb-it-h37"/>
                     </connections>
@@ -276,7 +283,7 @@
         <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="FruitStoreViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="Yu1-lM-nqp" customClass="FruitStoreViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -431,7 +438,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController storyboardIdentifier="FruitStoreView" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FruitStoreView" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="x5k-dG-c9Q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
