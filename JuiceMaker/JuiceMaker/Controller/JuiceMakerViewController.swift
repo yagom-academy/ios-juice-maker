@@ -14,8 +14,13 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet var currentKiwiStockLabel: UILabel!
     @IBOutlet var currentMangoStockLabel: UILabel!
     
+    var juiceMaker: JuiceMaker?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let fruitStore = FruitStore(fruitList: Fruit.allCases, amount: 10)
+        juiceMaker = JuiceMaker(fruitStore: fruitStore)
         // Do any additional setup after loading the view.
     }
 
