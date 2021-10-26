@@ -68,8 +68,8 @@ class ViewController: UIViewController {
     
     func presentNotEnoughStockAlert(){
         let notEnoughStockAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let modifyStockAction = UIAlertAction(title: "예", style: .default)
-        let cancelAction = UIAlertAction(title: "아니오", style: .destructive)
+        let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default)
+        let cancelAction = UIAlertAction(title: "취소", style: .destructive)
         
         notEnoughStockAlert.addAction(modifyStockAction)
         notEnoughStockAlert.addAction(cancelAction)
