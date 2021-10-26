@@ -10,11 +10,11 @@ class JuiceMakerViewController: UIViewController {
 
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -25,11 +25,11 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func uploadStocks() {
-        currentStockLabel(fruit: .strawberry, label: strawberryStock)
-        currentStockLabel(fruit: .banana, label: bananaStock)
-        currentStockLabel(fruit: .pineapple, label: pineappleStock)
-        currentStockLabel(fruit: .kiwi, label: kiwiStock)
-        currentStockLabel(fruit: .mango, label: mangoStock)
+        currentStockLabel(fruit: .strawberry, label: strawberryStockLabel)
+        currentStockLabel(fruit: .banana, label: bananaStockLabel)
+        currentStockLabel(fruit: .pineapple, label: pineappleStockLabel)
+        currentStockLabel(fruit: .kiwi, label: kiwiStockLabel)
+        currentStockLabel(fruit: .mango, label: mangoStockLabel)
     }
     
     
@@ -56,15 +56,15 @@ class JuiceMakerViewController: UIViewController {
     func fruitlabel(of fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
-            return strawberryStock
+            return strawberryStockLabel
         case .banana:
-            return bananaStock
+            return bananaStockLabel
         case .pineapple:
-            return pineappleStock
+            return pineappleStockLabel
         case .kiwi:
-            return kiwiStock
+            return kiwiStockLabel
         case .mango:
-            return mangoStock
+            return mangoStockLabel
         }
     }
 
