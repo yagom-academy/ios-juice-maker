@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
 
     @IBOutlet var currentStrawberryStockLabel: UILabel!
     @IBOutlet var currentBanannaStockLabel: UILabel!
@@ -19,6 +19,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func navigateToStockModificationVC(_ sender: UIBarButtonItem) {
+    }
+    
     @IBAction func orderStrawberryBanannaJuice(_ sender: UIButton) {
     }
     
