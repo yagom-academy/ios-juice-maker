@@ -52,12 +52,8 @@ struct JuiceMaker {
         }
     }
     
-    func make(_ juice: Juice) {
-        do {
-            try self.hasIngredients(of: juice)
-            try self.consumeIngredients(of: juice)
-        } catch {
-            return // TODO: 에러 발생 시 어떻게 처리할지 STEP 2 에서 계속...
-        }
+    func make(_ juice: Juice) throws {
+        try self.hasIngredients(of: juice)
+        try self.consumeIngredients(of: juice)
     }
 }
