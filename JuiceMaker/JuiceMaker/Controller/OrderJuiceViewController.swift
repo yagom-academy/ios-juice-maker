@@ -14,7 +14,7 @@ class OrderJuiceViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    var juiceMaker = JuiceMaker()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,19 @@ class OrderJuiceViewController: UIViewController {
         pineappleStockLabel.text = "\(juiceMaker.store.inventory[2].count)"
         kiwiStockLabel.text = "\(juiceMaker.store.inventory[3].count)"
         mangoStockLabel.text = "\(juiceMaker.store.inventory[4].count)"
+    }
+    
+    func makeJuice(juiceName: JuiceName) {
+        do {
+            try juiceMaker.make(juiceName: juiceName)
+            initializeLabel()
+            showSuccessAlert(message: "맛있게 드세요")
+        } catch FruitStore.FruitStoreError.lackOfStock(let count) { 
+            let description = FruitStore.FruitStoreError.lackOfStock(neededStock: count).description
+            showLackOfStockAlert(message: description)
+        } catch {
+            print(error)
+        }
     }
 
     func showSuccessAlert(message: String) {
