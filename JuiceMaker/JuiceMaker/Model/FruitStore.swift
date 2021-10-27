@@ -15,7 +15,7 @@ struct Fruit {
 
 class FruitStore {
     
-    private enum FruitStoreError: LocalizedError {
+    enum FruitStoreError: LocalizedError {
         case invalidFruitChoice
         case lackOfStock(neededStock: Int)
         

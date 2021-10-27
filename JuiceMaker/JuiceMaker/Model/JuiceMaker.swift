@@ -38,7 +38,7 @@ struct Juice {
 
 struct JuiceMaker {
     
-    private enum JuiceMakerError: LocalizedError {
+    enum JuiceMakerError: LocalizedError {
         case invalidMenuChoice
         
         var description: String {
@@ -49,7 +49,7 @@ struct JuiceMaker {
         }
     }
     
-    private(set) var store = FruitStore()
+    let store = FruitStore()
     
     private var recipe: [JuiceName: [ingredient]] = [:]
     
