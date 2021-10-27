@@ -10,8 +10,8 @@ import UIKit
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
     
-    func fetchStock() -> [Fruit.Name: Int] {
-        return fruitStore.fetchStock()
+    func fetchAllStock() -> [Fruit.Name: Int] {
+        return fruitStore.fetchAllStock()
     }
     
     func make(_ juice: JuiceMenu) -> Bool {

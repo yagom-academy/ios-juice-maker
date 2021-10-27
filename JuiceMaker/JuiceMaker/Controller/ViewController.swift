@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     func printStock() {
-        let fruitStoreInventory = juiceMaker.fetchStock()
+        let fruitStoreInventory = juiceMaker.fetchAllStock()
         strawberryQuantityLabel.text = String(fruitStoreInventory[.strawberry] ?? 0)
         bananaQuantityLabel.text = String(fruitStoreInventory[.banana] ?? 0)
         pineappleQuantityLabel.text = String(fruitStoreInventory[.pineapple] ?? 0)

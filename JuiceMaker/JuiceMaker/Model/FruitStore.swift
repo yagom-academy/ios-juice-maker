@@ -13,7 +13,7 @@ class FruitStore {
     private let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
     private let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
-    func fetchStock() -> [Fruit.Name: Int] {
+    func fetchAllStock() -> [Fruit.Name: Int] {
         var fruitStoreInventory = [Fruit.Name: Int]()
         
         for fruit in Fruit.Name.allCases {
