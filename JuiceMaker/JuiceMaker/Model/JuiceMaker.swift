@@ -6,14 +6,18 @@
 
 import Foundation
 
-enum JuiceMenu {
-    case strawberryJuice
-    case banannaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case strawberryBanannaJuice
-    case mangoJuice
-    case mangoKiwiJuice
+enum JuiceMenu: String, CustomStringConvertible {
+    case strawberryJuice = "딸기 쥬스"
+    case banannaJuice = "바나나 쥬스"
+    case kiwiJuice = "키위 쥬스"
+    case pineappleJuice = "파인애플 쥬스"
+    case strawberryBanannaJuice = "딸바 쥬스"
+    case mangoJuice = "망고 쥬스"
+    case mangoKiwiJuice = "망키 쥬스"
+    
+    var description: String {
+        return rawValue
+    }
 }
 
 struct JuiceMaker {
@@ -23,12 +27,13 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func make(_ juice: JuiceMenu) throws {
+    func make(_ juice: JuiceMenu) throws -> JuiceMenu {
         guard hasAllIngredients(of: juice.recipe) else {
             throw FruitStoreError.deficientStock
         }
         
         fruitStore.reduceInventory(ingredientsOf: juice.recipe)
+        return juice
     }
     
     private func hasAllIngredients(of juiceRecipe: JuiceRecipe) -> Bool {

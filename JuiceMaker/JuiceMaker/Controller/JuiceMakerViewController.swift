@@ -33,8 +33,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func order(juice: JuiceMenu) {
+        var orderedJuice: JuiceMenu?
         do {
-            try juiceMaker?.make(juice)
+            orderedJuice = try juiceMaker?.make(juice)
         } catch FruitStoreError.deficientStock {
             let failAlert = UIAlertController(title: "재료가 모자라요", message: "재고를 수정할까요?", preferredStyle: .alert)
             let ok = UIAlertAction(title: "확인", style: .default, handler:  { _ in
@@ -48,7 +49,10 @@ class JuiceMakerViewController: UIViewController {
         } catch {
             return
         }
-        let successAlert = UIAlertController(title: "쥬스 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
+        guard let orderedJuice = orderedJuice else {
+            return
+        }
+        let successAlert = UIAlertController(title: "\(orderedJuice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         successAlert.addAction(UIAlertAction(title: "잘 먹겠습니다🤤", style: .default, handler: nil))
         self.present(successAlert, animated: true, completion: nil)
     }
