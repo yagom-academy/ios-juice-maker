@@ -1,12 +1,51 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
-// 과일 저장소 타입
 class FruitStore {
+    private var stock = [Fruit: Int]()
+
+    init(stockAmount: Int) {
+        fillStock(by: stockAmount)
+    }
     
+    convenience init() {
+        self.init(stockAmount: 10)
+        
+        fillStock(by: 10)
+    }
+    
+    private func fillStock(by amount: Int) {
+        for fruit in Fruit.allCases {
+            stock[fruit] = amount
+        }
+    }
+    
+    func consumeStock(with juice: Juice) throws {
+        let recipes = juice.recipes
+        
+        for (fruit, amount) in recipes {
+            guard let currentStock = stock[fruit], currentStock >= amount else {
+                throw StockError.notEnoughStock
+            }
+            
+            try decreaseStock(from: fruit, by: amount)
+        }
+    }
+    
+    func decreaseStock(from fruit: Fruit, by input: Int) throws {
+        guard let currentStock = stock[fruit], currentStock > input else {
+            throw StockError.notEnoughStock
+        }
+        
+        stock[fruit] = currentStock - input
+    }
+    
+    func increaseStock(from fruit: Fruit, by input: Int) {
+        if let currentStock = stock[fruit] {
+            stock[fruit] = currentStock + input
+        }
+    }
 }
