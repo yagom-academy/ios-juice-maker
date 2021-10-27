@@ -8,12 +8,12 @@ import Foundation
 import UIKit
 
 class FruitStore {
-    enum Fruits: String, CaseIterable, CustomStringConvertible {
-        case strawberry = "strawberry"
-        case banana = "banana"
-        case pineapple = "pineapple"
-        case kiwi = "kiwi"
-        case mango = "mango"
+    enum Fruits: CaseIterable {
+        case strawberry
+        case banana
+        case pineapple
+        case kiwi
+        case mango
         
         static func findFruit(by fruitID: String) -> Fruits? {
             if fruitID.hasPrefix("strawberry") {
@@ -29,29 +29,9 @@ class FruitStore {
             }
             return nil
         }
-        
-        var description: String {
-            switch self {
-            case .strawberry:
-                return "strawberry"
-            case .banana:
-                return "banana"
-            case .pineapple:
-                return "pineapple"
-            case .kiwi:
-                return "kiwi"
-            case .mango:
-                return "mango"
-            }
-        }
     }
     
     private var fruitInventory: [Fruits: Int]
-    
-    var inventoryStatus: [Fruits: Int] {
-        
-        return fruitInventory
-    }
     
     func getFruitCount(by fruitID: String) -> Int? { 
         guard let fruit = Fruits.findFruit(by: fruitID) else {

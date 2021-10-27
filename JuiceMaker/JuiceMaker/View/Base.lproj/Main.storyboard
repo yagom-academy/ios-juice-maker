@@ -459,7 +459,7 @@
         <!--Modify Inventory Nav Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" customClass="ModifyInventoryNavController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ModifyInventory" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" customClass="ModifyInventoryNavController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Lfc-Py-KNB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">

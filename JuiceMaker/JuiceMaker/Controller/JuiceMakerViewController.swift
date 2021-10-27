@@ -8,11 +8,11 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
     
-    var juiceMaker = JuiceMaker(fruitStorage: FruitStore.shared)
+    let juiceMaker = JuiceMaker(fruitStorage: FruitStore.shared)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         updateFruitCount()
         NotificationCenter.default.addObserver(
             self,
@@ -21,9 +21,7 @@ class JuiceMakerViewController: UIViewController {
             object: nil)
     }
     
-    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue) { }
     
     @IBOutlet var fruitCountLabels: [UILabel]!
     
@@ -31,50 +29,48 @@ class JuiceMakerViewController: UIViewController {
         guard let juiceID = sender.restorationIdentifier else {
             return
         }
-        
+        // MARK: 변경 필요
         guard let juiceCase = JuiceMaker.Juice.allCases.filter({ $0 == juiceID }).first else {
             return
         }
-        
+        // MARK: 영어 -> 한글 변경
         guard let _ = juiceMaker.order(juice: juiceCase) else {
-            
-            AlertMessage(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?")
+            alertMessage(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?", handler:{ _ in self.presentModifyView() })
             return
         }
-        print(FruitStore.shared.inventoryStatus)
-        
-        AlertMessage(title: "주스 제조 완료", message: "\(juiceID) 제조가 완료되었습니다.")
+        alertMessage(title: "주스 제조 완료", message: "\(juiceID) 제조가 완료되었습니다.", handler: nil)
     }
     
-    func AlertMessage(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
+    func alertMessage(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let alertOk = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let alertOk = UIAlertAction(title: "확인", style: .default, handler: handler)
         let alertCancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         alert.addAction(alertOk)
         alert.addAction(alertCancel)
         
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     @objc
     func updateFruitCount() {
-        
         for fruitCountLabel in fruitCountLabels {
-            
             guard let fruitID = fruitCountLabel.restorationIdentifier else {
                 return
             }
-            
             guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
                 return
             }
-            
             fruitCountLabel.text = String(fruitCount)
         }
     }
     
+    func presentModifyView() {
+        let ModifyInventoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyInventory")
+        
+        present(ModifyInventoryVC, animated: true, completion: nil)
+    }
     
 }
 

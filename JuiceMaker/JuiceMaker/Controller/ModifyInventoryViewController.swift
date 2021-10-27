@@ -11,7 +11,7 @@ class ModifyInventoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         updateFruitCount()
         setStepperValue()
         NotificationCenter.default.addObserver(
@@ -27,36 +27,30 @@ class ModifyInventoryViewController: UIViewController {
     
     @objc
     func updateFruitCount() {
-        
         for fruitCountLabel in fruitCountLabels {
-            
             guard let fruitID = fruitCountLabel.restorationIdentifier else {
                 return
             }
-            
             guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
                 return
             }
-            
             fruitCountLabel.text = String(fruitCount)
         }
     }
     
     func setStepperValue() {
-        for stepper in fruitSteppers {
-            guard let fruitStepperID = stepper.restorationIdentifier else {
+        for fruitStepper in fruitSteppers {
+            guard let fruitStepperID = fruitStepper.restorationIdentifier else {
                 return
             }
-            
             guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
                 return
             }
-            stepper.value = Double(fruitCount)
+            fruitStepper.value = Double(fruitCount)
         }
     }
     
     @IBAction func clickStepper(_ sender: UIStepper) {
-        print(sender.stepValue)
         guard let fruitStepperID = sender.restorationIdentifier else {
             return
         }
@@ -67,17 +61,11 @@ class ModifyInventoryViewController: UIViewController {
             return
         }
         
-        print(sender.value)
-        print(previousFruitCount)
-        
         if previousFruitCount - Int(sender.value) > 0 {
             FruitStore.shared.subtract(fruit: fruit, of: Int(sender.stepValue))
         } else {
             FruitStore.shared.add(fruit: fruit, of: Int(sender.stepValue))
         }
-        
-        print(FruitStore.shared.inventoryStatus)
-        
     }
     
 }
