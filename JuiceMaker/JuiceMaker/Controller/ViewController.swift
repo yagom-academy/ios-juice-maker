@@ -99,7 +99,7 @@ class ViewController: UIViewController {
         let okAction: UIAlertAction = UIAlertAction(title: "수정하기",
                                                     style: .default,
                                                     handler: { (action) in
-                                                                   self.changeSceneOfManageStock()
+                                                                   self.changeSceneOfManageStockViewController()
                                                     })
         let cancelAction: UIAlertAction = UIAlertAction(title: "나중에 하기",
                                                         style: .default,
@@ -114,11 +114,11 @@ class ViewController: UIViewController {
                 completion: nil)
     }
     
-    func changeSceneOfManageStock() {
-        guard let manageStock = self.storyboard?.instantiateViewController(identifier: "manageStock") else {
+    func changeSceneOfManageStockViewController() {
+        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: "manageStock") else {
             return
         }
-        self.present(manageStock, animated: true)
+        self.present(manageStockViewController, animated: true)
     }
 }
 
