@@ -15,13 +15,13 @@ struct JuiceMaker {
     }
     
     func make(_ juice: JuiceMenu) -> Bool {
-        var validStock: Int = 0
+        var validStockToMake = 0
         
         for juice in juice.ingredients {
-            validStock = fruitStore.checkStock(for: juice) ? validStock + 1 : validStock + 0
+            validStockToMake = fruitStore.checkStock(for: juice) ? validStockToMake + 1 : validStockToMake + 0
         }
         
-        if validStock != juice.ingredients.count {
+        if validStockToMake != juice.ingredients.count {
             return false
         }
         
