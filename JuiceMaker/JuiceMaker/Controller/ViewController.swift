@@ -7,23 +7,6 @@
 import UIKit
 
 
-enum Message: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .makeSuccessMessage:
-            return " 나왔습니다! 맛있게 드세요!"
-        case .makeFailMessage:
-            return "재료가 모자라요. 재고를 수정할까요?"
-        case .updateFailMessage:
-            return "재고변경을 실패하였습니다."
-        }
-    }
-    
-    case makeSuccessMessage
-    case makeFailMessage
-    case updateFailMessage
-}
-
 class ViewController: UIViewController {
     
     enum Order: String {
@@ -95,7 +78,7 @@ class ViewController: UIViewController {
     
     func showSuccessAlert(menu: JuiceMenu) {
         let alert: UIAlertController = UIAlertController(title: nil,
-                                                         message: menu.rawValue + Message.makeSuccessMessage.description,
+                                                         message: menu.rawValue + AlertMessage.makeSuccessMessage.description,
                                                          preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "확인",
                                                     style: .default,
@@ -111,7 +94,7 @@ class ViewController: UIViewController {
     
     func showFailureAlert() {
         let alert: UIAlertController = UIAlertController(title: nil,
-                                                         message: Message.makeFailMessage.description,
+                                                         message: AlertMessage.makeFailMessage.description,
                                                          preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "수정하기",
                                                     style: .default,

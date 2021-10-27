@@ -34,7 +34,7 @@ struct JuiceMaker {
     
     func updateStore(to requiredChange: Fruit) -> Bool {
         guard fruitStore.updateQuantity(to: requiredChange) else {
-            print(Message.updateFailMessage.description)
+            print(AlertMessage.updateFailMessage.description)
             return false
         }
 
