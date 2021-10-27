@@ -24,7 +24,7 @@ class JuiceMakerViewController: UIViewController {
     
     private func addObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(changeStock),
+                                               selector: #selector(updateFruitStockLabel),
                                                name: Notification.Name.stockChanged,
                                                object: nil)
     }
@@ -34,7 +34,7 @@ class JuiceMakerViewController: UIViewController {
         juiceMaker = JuiceMaker(fruitStore: fruitStore)
     }
     
-    private func order(juice: JuiceMenu) {
+    private func order(_ juice: JuiceMenu) {
         do {
             try juiceMaker?.make(juice)
         } catch FruitStoreError.deficientStock {
@@ -48,15 +48,15 @@ class JuiceMakerViewController: UIViewController {
     
     private func presentFailAlert() {
         let failAlert = UIAlertController(title: "재료가 모자라요", message: "재고를 수정할까요?", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인",
-                               style: .default,
-                               handler:  { _ in
-                                self.navigateToStockModificationVC(nil)
-                               })
+        let ok = UIAlertAction(title: "확인", style: .default, handler: { _ in
+            self.presentStockManagerVC(nil)
+        })
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
         failAlert.addAction(ok)
         failAlert.addAction(cancel)
         failAlert.preferredAction = ok
+        
         self.present(failAlert, animated: true, completion: nil)
     }
     
@@ -67,28 +67,28 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @objc
-    private func changeStock(notification: Notification) {
+    private func updateFruitStockLabel(notification: Notification) {
         guard let fruit = notification.userInfo?.keys.first as? Fruit else {
             return
         }
         
-        if let changedAmount = notification.userInfo?[fruit] as? Int {
+        if let updatedAmount = notification.userInfo?[fruit] as? Int {
             switch fruit {
             case .strawberry:
-                self.currentStrawberryStockLabel.text = "\(changedAmount)"
+                self.currentStrawberryStockLabel.text = "\(updatedAmount)"
             case .bananna:
-                self.currentBanannaStockLabel.text = "\(changedAmount)"
+                self.currentBanannaStockLabel.text = "\(updatedAmount)"
             case .pineapple:
-                self.currentPineappleStockLabel.text = "\(changedAmount)"
+                self.currentPineappleStockLabel.text = "\(updatedAmount)"
             case .kiwi:
-                self.currentKiwiStockLabel.text = "\(changedAmount)"
+                self.currentKiwiStockLabel.text = "\(updatedAmount)"
             case .mango:
-                self.currentMangoStockLabel.text = "\(changedAmount)"
+                self.currentMangoStockLabel.text = "\(updatedAmount)"
             }
         }
     }
     
-    @IBAction func navigateToStockModificationVC(_ sender: Any?) {
+    @IBAction func presentStockManagerVC(_ sender: Any?) {
         let stockManagerVC = storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as! StockManagerViewController
         let navigationController = UINavigationController(rootViewController: stockManagerVC)
         present(navigationController, animated: true, completion: nil)
@@ -96,7 +96,7 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction func pressOrderButton(_ sender: UIButton) {
         let juice = JuiceMenu.allCases[sender.tag]
-        order(juice: juice)
+        order(juice)
     }
 }
 

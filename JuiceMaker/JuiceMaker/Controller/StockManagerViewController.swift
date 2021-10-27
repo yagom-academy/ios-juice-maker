@@ -16,14 +16,14 @@ class StockManagerViewController: UIViewController {
     
     private func setupNavigationBar() {
         self.title = "Stock Manager"
-        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(backToJuiceMaker))
-        let add = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToJuiceMaker))
+        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissStockManagerVC))
+        let add = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissStockManagerVC))
         self.navigationItem.leftBarButtonItem = cancel
         self.navigationItem.rightBarButtonItem = add
     }
     
     @objc
-    private func backToJuiceMaker() {
+    private func dismissStockManagerVC() {
         dismiss(animated: true, completion: nil)
     }
 }
