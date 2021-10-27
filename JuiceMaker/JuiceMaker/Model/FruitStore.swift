@@ -40,7 +40,7 @@ class FruitStore {
     }
     
     func checkStock(for requiredIngredient: Fruit) -> Bool {
-        returnStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity ? false : true
+        returnStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity
     }
     
     func consumeStock(of requiredIngredients: Fruit) {
@@ -55,6 +55,6 @@ class FruitStore {
         
         storedFruit.changeQuantity(to: requiredChange.quantity)
 
-        return storedFruit.quantity >= 0 ? true : false
+        return storedFruit.quantity >= 0
     }
 }
