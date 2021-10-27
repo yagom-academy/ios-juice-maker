@@ -25,7 +25,7 @@ class JuiceOrderViewController: UIViewController {
     }
 
     @IBAction func clickJuiceButton(_ sender: UIButton) {
-        var juice: JuiceMaker.Juice
+        var juice: Juices
         
         switch sender {
         case strawberryOrder: juice = .strawberry
@@ -42,10 +42,11 @@ class JuiceOrderViewController: UIViewController {
         welcomeJuice(juice: juice)
     }
     
-    func welcomeJuice(juice: JuiceMaker.Juice) {
+    func welcomeJuice(juice: Juices) {
         do {
             try juiceMaker.makeJuice(juice: juice)
             updateFruitsStock()
+            showSuccessAlert(juice: juice)
         }
         catch {
             print(error.localizedDescription)
@@ -58,6 +59,15 @@ class JuiceOrderViewController: UIViewController {
         kiwiStockLabel.text = String(fruitStore.fruitStorage[.kiwi] ?? .zero)
         mangoStockLabel.text = String(fruitStore.fruitStorage[.mango] ?? .zero)
         pineappleStockLabel.text = String(fruitStore.fruitStorage[.pineapple] ?? .zero)
+    }
+    
+    func showSuccessAlert(juice: Juices) {
+        
+        let alert = UIAlertController(title: nil, message: "\(juice)가 나왔습니다. 맛있게 드세요!😁", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
 }
