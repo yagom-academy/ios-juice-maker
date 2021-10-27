@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 
 class FruitStore {
-    enum Fruits: String, CaseIterable {
+    enum Fruits: String, CaseIterable, CustomStringConvertible {
         case strawberry = "strawberry"
         case banana = "banana"
         case pineapple = "pineapple"
@@ -27,15 +27,41 @@ class FruitStore {
             } else if fruitID.hasPrefix("mango") {
                 return .mango
             }
-            
             return nil
+        }
+        
+        var description: String {
+            switch self {
+            case .strawberry:
+                return "strawberry"
+            case .banana:
+                return "banana"
+            case .pineapple:
+                return "pineapple"
+            case .kiwi:
+                return "kiwi"
+            case .mango:
+                return "mango"
+            }
         }
     }
     
     private var fruitInventory: [Fruits: Int]
     
     var inventoryStatus: [Fruits: Int] {
+        
         return fruitInventory
+    }
+    
+    func noticefruitcount(fruitID: String) -> Int? { 
+        guard let fruit = Fruits.findFruit(fruitID: fruitID) else {
+            return nil
+        }
+        guard let fruitCount = fruitInventory[fruit] else {
+            return nil
+        }
+        
+        return fruitCount
     }
     
     static let shared = FruitStore()

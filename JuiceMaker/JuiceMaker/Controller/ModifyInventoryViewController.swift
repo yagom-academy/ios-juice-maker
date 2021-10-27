@@ -16,6 +16,7 @@ class ModifyInventoryViewController: UIViewController {
         navigationItem.backBarButtonItem = backBarButtton
         // Do any additional setup after loading the view.
         updateFruitCount()
+        setStepperValue()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFruitCount),
@@ -26,9 +27,10 @@ class ModifyInventoryViewController: UIViewController {
     
     @IBOutlet var fruitCountLabels: [UILabel]!
     
+    @IBOutlet var fruitSteppers: [UIStepper]!
+    
     @objc
     func updateFruitCount() {
-        let fruitCountList: [FruitStore.Fruits: Int] = FruitStore.shared.inventoryStatus
         
         for fruitCountLabel in fruitCountLabels {
             
@@ -36,15 +38,24 @@ class ModifyInventoryViewController: UIViewController {
                 return
             }
             
-            guard let kindOfFruit = FruitStore.Fruits(rawValue: fruitID) else {
-                return
-            }
-            
-            guard let fruitCount = fruitCountList[kindOfFruit] else {
+            guard let fruitCount = FruitStore.shared.noticefruitcount(fruitID: fruitID) else {
                 return
             }
             
             fruitCountLabel.text = String(fruitCount)
+        }
+    }
+    
+    func setStepperValue() {
+        for stepper in fruitSteppers {
+            guard let fruitStepperID = stepper.restorationIdentifier else {
+                return
+            }
+            
+            guard let fruitCount = FruitStore.shared.noticefruitcount(fruitID: fruitStepperID) else {
+                return
+            }
+            stepper.value = Double(fruitCount)
         }
     }
     
