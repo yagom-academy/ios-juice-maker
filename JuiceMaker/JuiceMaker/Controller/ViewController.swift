@@ -39,16 +39,28 @@ class ViewController: UIViewController {
             try juiceMaker.make(juice: juice)
             changeStockLabel()
             showMadeJuiceAlert(juice: order)
+        } catch FruitStoreError.outOfStock(let neededFruit) {
+            showFailedAlert(fruitAndQuantity: neededFruit)
         } catch {
             print(error)
         }
     }
     
     func showMadeJuiceAlert(juice: String) {
-        let alert = UIAlertController(title: "쥬스 완성", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "쥬스 완성", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let close = UIAlertAction(title: "닫기", style: .default)
         alert.addAction(close)
-        present(alert,animated: true,completion: nil)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showFailedAlert(fruitAndQuantity: [Fruit: Int]) {
+        let alert = UIAlertController(title: "재고 부족", message: "\(FruitStore.shared.convertToString(using: fruitAndQuantity))가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "재고 수정하기", style: .default)
+        let close = UIAlertAction(title: "아니오", style: .default)
+        
+        alert.addAction(ok)
+        alert.addAction(close)
+        present(alert, animated: true, completion: nil)
     }
 }
 
