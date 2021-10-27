@@ -24,24 +24,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
-    @IBAction func orderButtonHandler(_ sender: UIButton) {
-        switch sender {
+    @IBAction func juiceOrderButtonsHandler(_ button: UIButton) {
+        switch button {
         case strawberryJuiceButton:
-            order(.strawberryJuice)
+            orderJuice(.strawberryJuice)
         case bananaJuiceButton:
-            order(.bananaJuice)
+            orderJuice(.bananaJuice)
         case pineappleJuiceButton:
-            order(.pineappleJuice)
+            orderJuice(.pineappleJuice)
         case kiwiJuiceButton:
-            order(.kiwiJuice)
+            orderJuice(.kiwiJuice)
         case mangoJuiceButton:
-            order(.mangoJuice)
+            orderJuice(.mangoJuice)
         case strawberryBananaJuiceButton:
-            order(.strawberryBananaJuice)
+            orderJuice(.strawberryBananaJuice)
         case mangoKiwiJuiceButton:
-            order(.mangoKiwiJuice)
+            orderJuice(.mangoKiwiJuice)
         default:
-            return
+            fatalError("Undefined Button")
         }
     }
     
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            try updateAmountLabels()
+            try updateFruitAmountLabels()
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
@@ -57,10 +57,26 @@ class ViewController: UIViewController {
         }
     }
     
-    func order(_ juice: JuiceMaker.Juice) {
+    func updateFruitAmountLabels() throws {
+        guard let strawberryAmount = fruitStore.inventory[.strawberry],
+              let bananaAmount = fruitStore.inventory[.banana],
+              let mangoAmount = fruitStore.inventory[.mango],
+              let kiwiAmount = fruitStore.inventory[.kiwi],
+              let pineappleAmount = fruitStore.inventory[.pineapple] else {
+                  throw JuiceMakerError.fruitNotFound
+              }
+        
+        strawberryAmountLabel.text = String(strawberryAmount)
+        bananaAmountLabel.text = String(bananaAmount)
+        mangoAmountLabel.text = String(mangoAmount)
+        kiwiAmountLabel.text = String(kiwiAmount)
+        pineappleAmountLabel.text = String(pineappleAmount)
+    }
+    
+    func orderJuice(_ juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.make(juice)
-            try updateAmountLabels()
+            try updateFruitAmountLabels()
             showJuiceWasMadeAlert(juice: juice)
         } catch JuiceMakerError.notEnoughFruit {
             showNotEnoughFruitAlert()
@@ -81,33 +97,17 @@ class ViewController: UIViewController {
     }
     
     func showNotEnoughFruitAlert() {
-        let message = "재료가 모자라요. 재고를 수정할까요?"
+        let message = "재료가 모자라요.\n재고를 수정할까요?"
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let navigateAction = UIAlertAction(title: "재고 수정하기", style: .default) {
             (action) in
-            self.performSegue(withIdentifier: "SegueToEditAmountView", sender: self)
+            self.performSegue(withIdentifier: "SegueToEditAmountView", sender: nil)
         }
-        
+
         alert.addAction(cancelAction)
         alert.addAction(navigateAction)
         present(alert, animated: true, completion: nil)
-    }
-    
-    func updateAmountLabels() throws {
-        guard let strawberryAmount = fruitStore.inventory[.strawberry],
-              let bananaAmount = fruitStore.inventory[.banana],
-              let mangoAmount = fruitStore.inventory[.mango],
-              let kiwiAmount = fruitStore.inventory[.kiwi],
-              let pineappleAmount = fruitStore.inventory[.pineapple] else {
-                  throw JuiceMakerError.fruitNotFound
-              }
-        
-        strawberryAmountLabel.text = String(strawberryAmount)
-        bananaAmountLabel.text = String(bananaAmount)
-        mangoAmountLabel.text = String(mangoAmount)
-        kiwiAmountLabel.text = String(kiwiAmount)
-        pineappleAmountLabel.text = String(pineappleAmount)
     }
 }
 
