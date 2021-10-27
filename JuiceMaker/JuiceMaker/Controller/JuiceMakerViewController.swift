@@ -27,8 +27,12 @@ class JuiceMakerViewController: UIViewController {
     
     private func addObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(increaseStock),
+                                               selector: #selector(changeStock),
                                                name: Notification.Name.increaseStock,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeStock),
+                                               name: Notification.Name.decreaseStock,
                                                object: nil)
     }
     
@@ -58,7 +62,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @objc
-    private func increaseStock(notification: Notification) {
+    private func changeStock(notification: Notification) {
         guard let fruit = notification.userInfo?.keys.first as? Fruit else {
             return
         }
@@ -117,4 +121,5 @@ class JuiceMakerViewController: UIViewController {
 
 extension Notification.Name {
     static let increaseStock = Notification.Name(rawValue: "increaseStock")
+    static let decreaseStock = Notification.Name(rawValue: "decreaseStock")
 }

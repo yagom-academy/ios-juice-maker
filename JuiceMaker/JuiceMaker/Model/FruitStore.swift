@@ -50,6 +50,11 @@ extension FruitStore {
                 return
             }
             stock[fruit] = remainingStock - amount
+            
+            let changedAmount = [fruit:stock[fruit]]
+            NotificationCenter.default.post(name: Notification.Name.decreaseStock,
+                                            object: nil,
+                                            userInfo: changedAmount as [AnyHashable : Any])
         }
         
         mutating func increaseStock(of fruit: Fruit, by amount: Int) {
