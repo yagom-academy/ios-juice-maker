@@ -44,15 +44,15 @@ class FruitStore {
         return indexOfFruit
     }
     
-    func addStock(count: Int, to fruit: FruitName) {
-        do {
+    func addStock(count: Int, to fruit: FruitName) throws {
+//        do {
             let indexOfFruit = try findIndexFromInventory(with: fruit)
             inventory[indexOfFruit].count += count
-        } catch FruitStoreError.invalidFruitChoice {
-            print(FruitStoreError.invalidFruitChoice.description)
-        } catch {
-            print(error)
-        }
+//        } catch FruitStoreError.invalidFruitChoice {
+//            print(FruitStoreError.invalidFruitChoice.description)
+//        } catch {
+//            print(error)
+//        }
     }
     
     private func checkEnoughStock(from index: Int, for count: Int) throws {
@@ -61,18 +61,18 @@ class FruitStore {
         }
     }
     
-    func subtractStock(count: Int, from fruit: FruitName) {
-        do {
+    func subtractStock(count: Int, from fruit: FruitName) throws {
+//        do {
             let indexOfFruit = try findIndexFromInventory(with: fruit)
             try checkEnoughStock(from: indexOfFruit, for: count)
             inventory[indexOfFruit].count -= count
-        } catch FruitStoreError.invalidFruitChoice {
-            print(FruitStoreError.invalidFruitChoice.description)
-        } catch FruitStoreError.lackOfStock(let count) {
-            print(FruitStoreError.lackOfStock(neededStock: count).description)
-        } catch {
-            print(error)
-        }
+//        } catch FruitStoreError.invalidFruitChoice {
+//            print(FruitStoreError.invalidFruitChoice.description)
+//        } catch FruitStoreError.lackOfStock(let count) {
+//            print(FruitStoreError.lackOfStock(neededStock: count).description)
+//        } catch {
+//            print(error)
+//        }
     }
     
     init() {
