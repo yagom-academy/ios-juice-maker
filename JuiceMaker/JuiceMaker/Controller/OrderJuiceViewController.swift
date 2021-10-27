@@ -14,9 +14,17 @@ class OrderJuiceViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    let juiceMaker = JuiceMaker()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        strawberryStockLabel.text = "\(juiceMaker.store.inventory[0].count)"
+        bananaStockLabel.text = "\(juiceMaker.store.inventory[1].count)"
+        pineappleStockLabel.text = "\(juiceMaker.store.inventory[2].count)"
+        kiwiStockLabel.text = "\(juiceMaker.store.inventory[3].count)"
+        mangoStockLabel.text = "\(juiceMaker.store.inventory[4].count)"
     }
 
     func showSuccessAlert(message: String) {

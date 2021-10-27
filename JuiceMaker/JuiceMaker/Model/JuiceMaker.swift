@@ -49,7 +49,7 @@ struct JuiceMaker {
         }
     }
     
-    private var store = FruitStore()
+    private(set) var store = FruitStore()
     
     private var recipe: [JuiceName: [ingredient]] = [:]
     
