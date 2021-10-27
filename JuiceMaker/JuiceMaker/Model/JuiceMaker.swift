@@ -10,6 +10,10 @@ import UIKit
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
     
+    func fetchStock() -> [Fruit.Name: Int] {
+        return fruitStore.fetchStock()
+    }
+    
     func make(_ juice: JuiceMenu) -> Bool {
         var successPoint: Int = 0
         
@@ -37,8 +41,5 @@ struct JuiceMaker {
         return true
     }
     
-    func fetchStock() -> [Fruit.Name: Int] {
-        return fruitStore.fetchStock()
-    }
 }
 
