@@ -14,4 +14,8 @@ class FruitStorageViewController: UIViewController {
         
     }
 
+    @IBAction func completeModifyButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

@@ -48,8 +48,11 @@ class JuiceOrderViewController: UIViewController {
             updateFruitsStock()
             showSuccessAlert(juice: juice)
         }
+        catch FruitStockError.outOfStock {
+            showNotEnoughStock()
+        }
         catch {
-            print(error.localizedDescription)
+            print(error)
         }
     }
     
@@ -62,11 +65,21 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func showSuccessAlert(juice: Juices) {
-        
         let alert = UIAlertController(title: nil, message: "\(juice)가 나왔습니다. 맛있게 드세요!😁", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showNotEnoughStock() {
+        let alert = UIAlertController(title: nil, message: "재고가 모자라요, 재고를 수정할까요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "재고 수정하기", style: .default) { action in
+            self.performSegue(withIdentifier: "SegueFruitStorage", sender: nil)
+        }
+        let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancleAction)
         present(alert, animated: true, completion: nil)
     }
     
