@@ -8,7 +8,9 @@ import UIKit
 
 class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
-
+    private let fruitStore: FruitStore = FruitStore.shared
+    
+    
     @IBOutlet weak var strawberryBananaOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiOrder: UIButton!
     @IBOutlet weak var strawberryOrder: UIButton!
@@ -25,6 +27,7 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitStock(fruit: .strawberry)
     }
     
     @IBAction func clickJuiceButton(_ sender: UIButton) {
@@ -42,7 +45,20 @@ class JuiceOrderViewController: UIViewController {
             juice = .strawberry // temp
         }
         
+        welcomeJuice(juice: juice)
     }
     
+    func welcomeJuice(juice: JuiceMaker.Juice) {
+        do {
+            try juiceMaker.makeJuice(juice: juice)
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    func updateFruitStock(fruit: Fruits) {
+        strawberryStockLabel.text = String(fruitStore.fruitStorage[fruit]!)
+    }
 }
 

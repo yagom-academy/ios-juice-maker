@@ -252,7 +252,7 @@
                         <outlet property="mangoStockLabel" destination="ccQ-Dk-PuY" id="de4-77-NVa"/>
                         <outlet property="pineappleOrder" destination="q6G-4X-bVm" id="4Ku-Z2-cmI"/>
                         <outlet property="pineappleStockLabel" destination="3Ce-SU-JeH" id="ZDw-7N-mxN"/>
-                        <outlet property="stawberryBananaOrder" destination="hrc-2F-fzl" id="SVv-A5-E20"/>
+                        <outlet property="strawberryBananaOrderButton" destination="hrc-2F-fzl" id="iUS-IX-13b"/>
                         <outlet property="strawberryOrder" destination="avd-o5-3JM" id="dxO-F4-498"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="8HN-zo-Nu6"/>
                     </connections>
