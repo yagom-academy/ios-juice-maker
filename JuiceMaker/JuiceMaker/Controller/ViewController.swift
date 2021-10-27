@@ -28,5 +28,35 @@ class ViewController: UIViewController {
         kiwiStockLabel.text =  FruitStore.shared.showStock(of: .kiwi)
         mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
     }
+    
+    
+    @IBAction func touchUpOrderButton(_ sender: UIButton) {
+        let buttonTitle = sender.currentTitle
+        
+        switch buttonTitle {
+        case "딸바쥬스 주문":
+            print("딸바쥬스")
+        case "망키쥬스 주문":
+            print("망키쥬스")
+        case "바나나쥬스 주문":
+            print("바나나쥬스")
+        case "파인애플쥬스 주문":
+            print("파인애플쥬스")
+        case "키위쥬스 주문":
+            print("키위쥬스")
+        case "망고쥬스 주문":
+            print("망고쥬스")
+        case "딸기쥬스 주문":
+            print("딸기쥬스")
+        default:
+            return
+        }
+        
+        
+        
+        
+    }
+    
+    
 }
 
