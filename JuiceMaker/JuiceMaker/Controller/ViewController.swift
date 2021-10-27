@@ -9,6 +9,7 @@ import UIKit
 class ViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private let fruitStore = FruitStore.shared
+    private var feedbackGenerator: UINotificationFeedbackGenerator?
     
     @IBOutlet private weak var strawberryAmountLabel: UILabel!
     @IBOutlet private weak var bananaAmountLabel: UILabel!
@@ -55,6 +56,8 @@ class ViewController: UIViewController {
         } catch {
             fatalError("Undefined Error")
         }
+        
+        self.setupGenerator()
     }
     
     private func updateFruitAmountLabels() throws {
@@ -73,13 +76,20 @@ class ViewController: UIViewController {
         pineappleAmountLabel.text = String(pineappleAmount)
     }
     
+    private func setupGenerator() {
+        self.feedbackGenerator = UINotificationFeedbackGenerator()
+        self.feedbackGenerator?.prepare()
+    }
+    
     private func orderJuice(_ juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.make(juice)
             try updateFruitAmountLabels()
             showJuiceWasMadeAlert(juice: juice)
+            feedbackGenerator?.notificationOccurred(.success)
         } catch JuiceMakerError.notEnoughFruit {
             showNotEnoughFruitAlert()
+            feedbackGenerator?.notificationOccurred(.warning)
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
