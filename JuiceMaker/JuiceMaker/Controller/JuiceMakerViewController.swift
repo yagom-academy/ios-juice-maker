@@ -32,27 +32,39 @@ class JuiceMakerViewController: UIViewController {
                                                object: nil)
     }
     
-    func order(juice: JuiceMenu) {
+    private func order(juice: JuiceMenu) {
         var orderedJuice: JuiceMenu?
+        
         do {
             orderedJuice = try juiceMaker?.make(juice)
         } catch FruitStoreError.deficientStock {
-            let failAlert = UIAlertController(title: "재료가 모자라요", message: "재고를 수정할까요?", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "확인", style: .default, handler:  { _ in
-                self.navigateToStockModificationVC(nil)
-            })
-            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-            failAlert.addAction(ok)
-            failAlert.addAction(cancel)
-            failAlert.preferredAction = ok
-            self.present(failAlert, animated: true, completion: nil)
+            presentFailAlert()
         } catch {
             return
         }
+        
         guard let orderedJuice = orderedJuice else {
             return
         }
-        let successAlert = UIAlertController(title: "\(orderedJuice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
+        presentSuccessAlert(of: orderedJuice)
+    }
+    
+    private func presentFailAlert() {
+        let failAlert = UIAlertController(title: "재료가 모자라요", message: "재고를 수정할까요?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인",
+                               style: .default,
+                               handler:  { _ in
+                                self.navigateToStockModificationVC(nil)
+                               })
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        failAlert.addAction(ok)
+        failAlert.addAction(cancel)
+        failAlert.preferredAction = ok
+        self.present(failAlert, animated: true, completion: nil)
+    }
+    
+    private func presentSuccessAlert(of juice: JuiceMenu) {
+        let successAlert = UIAlertController(title: "\(juice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         successAlert.addAction(UIAlertAction(title: "잘 먹겠습니다🤤", style: .default, handler: nil))
         self.present(successAlert, animated: true, completion: nil)
     }
