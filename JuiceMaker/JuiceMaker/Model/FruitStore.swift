@@ -50,7 +50,7 @@ class FruitStore {
         storedFruit.changeQuantity(to: afterComsumeStock)
     }
     
-    func updateQuantity(to requiredChange: Fruit) -> Bool {
+    func updateStock(to requiredChange: Fruit) -> Bool {
         let storedFruit: Fruit = returnStoredFruit(of: requiredChange.name)
         
         storedFruit.changeQuantity(to: requiredChange.quantity)

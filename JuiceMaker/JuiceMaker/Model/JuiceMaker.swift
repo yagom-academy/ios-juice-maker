@@ -32,8 +32,8 @@ struct JuiceMaker {
         return true
     }
     
-    func updateStore(to requiredChange: Fruit) -> Bool {
-        guard fruitStore.updateQuantity(to: requiredChange) else {
+    func updateStock(to requiredChange: Fruit) -> Bool {
+        guard fruitStore.updateStock(to: requiredChange) else {
             print(AlertMessage.updateFailMessage.description)
             return false
         }
