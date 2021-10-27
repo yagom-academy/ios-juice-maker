@@ -17,7 +17,7 @@ enum JuiceMenu: String {
     case mangKiJuice = "망키쥬스"
     
     enum FruitQuantity {
-        static let strawberryOfStrawberrJuice = 16
+        static let strawberryOfStrawberryJuice = 16
         static let bananaOfBananaJuice = 2
         static let kiwiOfKiwiJuice = 3
         static let pineappleOfPineappleJuice = 2
@@ -25,14 +25,14 @@ enum JuiceMenu: String {
         static let strawberryOfDdalbaJuice = 10
         static let bananaOfDdalbaJuice = 1
         static let mangoOfMangKiJuice = 2
-        static let KiwiOfMangKiJuice = 1
+        static let kiwiOfMangKiJuice = 1
     }
     
     var ingredients: [Fruit] {
         switch self {
         case .strawberryJuice:
             return [Fruit(name: .strawberry,
-                          quantity: JuiceMenu.FruitQuantity.strawberryOfStrawberrJuice)]
+                          quantity: JuiceMenu.FruitQuantity.strawberryOfStrawberryJuice)]
         case .bananaJuice:
             return [Fruit(name: .banana,
                           quantity: JuiceMenu.FruitQuantity.bananaOfBananaJuice)]
@@ -54,7 +54,7 @@ enum JuiceMenu: String {
             return [Fruit(name: .mango,
                           quantity: JuiceMenu.FruitQuantity.mangoOfMangKiJuice),
                     Fruit(name: .kiwi,
-                          quantity: JuiceMenu.FruitQuantity.KiwiOfMangKiJuice)]
+                          quantity: JuiceMenu.FruitQuantity.kiwiOfMangKiJuice)]
         }
     }
 }
