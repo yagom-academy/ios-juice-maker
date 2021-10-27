@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     }
     
     private func presentCompleteMakingJuiceAlert(juice: JuiceMaker.Juice) {
-        let completeAlert = UIAlertController(title: "\(juice.description) 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
+        let completeAlert = UIAlertController(title: nil, message: "\(juice.description) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default)
         
         completeAlert.addAction(confirmAction)
@@ -110,14 +110,14 @@ class ViewController: UIViewController {
     }
     
     private func presentNotEnoughStockAlert() {
-        let notEnoughStockAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
+        let notEnoughStockAlert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { _ in
             self.performSegue(withIdentifier: "showModifyStock", sender: nil)
         }
-        let cancelAction = UIAlertAction(title: "취소", style: .destructive)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
-        notEnoughStockAlert.addAction(modifyStockAction)
         notEnoughStockAlert.addAction(cancelAction)
+        notEnoughStockAlert.addAction(modifyStockAction)
         
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
