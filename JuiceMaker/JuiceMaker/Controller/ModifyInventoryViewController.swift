@@ -11,9 +11,6 @@ class ModifyInventoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backBarButtton
         // Do any additional setup after loading the view.
         updateFruitCount()
         setStepperValue()
@@ -26,7 +23,6 @@ class ModifyInventoryViewController: UIViewController {
     }
     
     @IBOutlet var fruitCountLabels: [UILabel]!
-    
     @IBOutlet var fruitSteppers: [UIStepper]!
     
     @objc
@@ -38,7 +34,7 @@ class ModifyInventoryViewController: UIViewController {
                 return
             }
             
-            guard let fruitCount = FruitStore.shared.noticefruitcount(fruitID: fruitID) else {
+            guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
                 return
             }
             
@@ -52,32 +48,36 @@ class ModifyInventoryViewController: UIViewController {
                 return
             }
             
-            guard let fruitCount = FruitStore.shared.noticefruitcount(fruitID: fruitStepperID) else {
+            guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
                 return
             }
             stepper.value = Double(fruitCount)
         }
     }
     
-    var myProperty: Double = 0.0 {
-        didSet(oldVal) {
-            print("\(self.myProperty) 와 \(oldVal) = \(self.myProperty - oldVal)" )
-            
-            if self.myProperty - oldVal > 0 {
-                //add
-                print("add")
-            } else {
-                //substract
-                print("substract")
-            }
-        }
-    }
-    
     @IBAction func clickStepper(_ sender: UIStepper) {
-        print("value: ",sender.value)
-        print("stepValue: ",sender.stepValue)
+        print(sender.stepValue)
+        guard let fruitStepperID = sender.restorationIdentifier else {
+            return
+        }
+        guard let previousFruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
+            return
+        }
+        guard let fruit = FruitStore.Fruits.findFruit(by: fruitStepperID) else {
+            return
+        }
         
-        myProperty = sender.value
+        print(sender.value)
+        print(previousFruitCount)
+        
+        if previousFruitCount - Int(sender.value) > 0 {
+            FruitStore.shared.subtract(fruit: fruit, of: Int(sender.stepValue))
+        } else {
+            FruitStore.shared.add(fruit: fruit, of: Int(sender.stepValue))
+        }
+        
+        print(FruitStore.shared.inventoryStatus)
+        
     }
     
 }

@@ -327,8 +327,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="bananStepperInModify" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="bananaStepperInModify" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="clickStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="ooO-An-aHT"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -353,6 +356,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="pineappleStepperInModify" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="clickStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="dhC-2y-SHQ"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -377,6 +383,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="kiwiStepperInModify" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="clickStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="9hv-4s-Arm"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -401,6 +410,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="mangoStepperInModify" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="clickStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="zjh-iR-SEh"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>

@@ -67,7 +67,7 @@ class JuiceMakerViewController: UIViewController {
                 return
             }
             
-            guard let fruitCount = FruitStore.shared.noticefruitcount(fruitID: fruitID) else {
+            guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
                 return
             }
             

@@ -15,7 +15,7 @@ class FruitStore {
         case kiwi = "kiwi"
         case mango = "mango"
         
-        static func findFruit(fruitID: String) -> Fruits? {
+        static func findFruit(by fruitID: String) -> Fruits? {
             if fruitID.hasPrefix("strawberry") {
                 return .strawberry
             } else if fruitID.hasPrefix("banana") {
@@ -53,8 +53,8 @@ class FruitStore {
         return fruitInventory
     }
     
-    func noticefruitcount(fruitID: String) -> Int? { 
-        guard let fruit = Fruits.findFruit(fruitID: fruitID) else {
+    func getFruitCount(by fruitID: String) -> Int? { 
+        guard let fruit = Fruits.findFruit(by: fruitID) else {
             return nil
         }
         guard let fruitCount = fruitInventory[fruit] else {
