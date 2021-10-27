@@ -43,10 +43,11 @@ class FruitStore {
         returnStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity ? false : true
     }
     
-    func consumeIngredients(of requiredIngredients: Fruit) {
+    func consumeStock(of requiredIngredients: Fruit) {
         let storedFruit: Fruit = returnStoredFruit(of: requiredIngredients.name)
+        let afterComsumeStock = storedFruit.quantity - requiredIngredients.quantity
         
-        storedFruit.changeQuantity(to: storedFruit.quantity - requiredIngredients.quantity)
+        storedFruit.changeQuantity(to: afterComsumeStock)
     }
     
     func updateQuantity(to requiredChange: Fruit) -> Bool {
