@@ -15,7 +15,37 @@ class ModifyInventoryViewController: UIViewController {
         let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtton
         // Do any additional setup after loading the view.
+        updateFruitCount()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateFruitCount),
+            name: Notification.Name("changedInventory"),
+            object: nil
+        )
     }
     
-
+    
+    @IBOutlet var fruitCountLabels: [UILabel]!
+    
+    @objc
+    func updateFruitCount() {
+        let fruitCountList: [FruitStore.Fruits: Int] = FruitStore.shared.inventoryStatus
+        
+        for fruitCountLabel in fruitCountLabels {
+            
+            guard let fruitID = fruitCountLabel.restorationIdentifier else {
+                return
+            }
+            
+            guard let kindOfFruit = FruitStore.Fruits(rawValue: fruitID) else {
+                return
+            }
+            
+            guard let fruitCount = fruitCountList[kindOfFruit] else {
+                return
+            }
+            
+            fruitCountLabel.text = String(fruitCount)
+        }
+    }
 }
