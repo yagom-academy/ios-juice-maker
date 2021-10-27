@@ -38,10 +38,17 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: juice)
             changeStockLabel()
+            showMadeJuiceAlert(juice: order)
         } catch {
             print(error)
         }
     }
     
+    func showMadeJuiceAlert(juice: String) {
+        let alert = UIAlertController(title: "쥬스 완성", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
+        let close = UIAlertAction(title: "닫기", style: .default)
+        alert.addAction(close)
+        present(alert,animated: true,completion: nil)
+    }
 }
 
