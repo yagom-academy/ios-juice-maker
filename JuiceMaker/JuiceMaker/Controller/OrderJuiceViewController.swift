@@ -20,6 +20,10 @@ class OrderJuiceViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        initializeLabel()
+    }
+    
+    func initializeLabel() {
         strawberryStockLabel.text = "\(juiceMaker.store.inventory[0].count)"
         bananaStockLabel.text = "\(juiceMaker.store.inventory[1].count)"
         pineappleStockLabel.text = "\(juiceMaker.store.inventory[2].count)"
