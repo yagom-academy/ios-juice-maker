@@ -20,8 +20,8 @@ struct JuiceMaker {
             switch self {
             case .strawberry: return [.strawberry: 16]
             case .banana: return [.banana: 2]
-            case .kiwi: return [.pineapple: 2]
-            case .pineapple: return [.kiwi: 3]
+            case .kiwi: return [.kiwi: 3]
+            case .pineapple: return [.pineapple: 2]
             case .strawberrybanana: return [.strawberry: 10, .banana: 1]
             case .mango: return [.mango: 3]
             case .mangokiwi: return [.mango: 2,.kiwi: 1]
