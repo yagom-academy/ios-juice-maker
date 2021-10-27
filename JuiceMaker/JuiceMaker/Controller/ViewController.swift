@@ -7,24 +7,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
-    let fruitStore = FruitStore.shared
+    private let juiceMaker = JuiceMaker()
+    private let fruitStore = FruitStore.shared
     
-    @IBOutlet weak var strawberryAmountLabel: UILabel!
-    @IBOutlet weak var bananaAmountLabel: UILabel!
-    @IBOutlet weak var mangoAmountLabel: UILabel!
-    @IBOutlet weak var kiwiAmountLabel: UILabel!
-    @IBOutlet weak var pineappleAmountLabel: UILabel!
+    @IBOutlet private weak var strawberryAmountLabel: UILabel!
+    @IBOutlet private weak var bananaAmountLabel: UILabel!
+    @IBOutlet private weak var mangoAmountLabel: UILabel!
+    @IBOutlet private weak var kiwiAmountLabel: UILabel!
+    @IBOutlet private weak var pineappleAmountLabel: UILabel!
     
-    @IBOutlet weak var strawberryJuiceButton: UIButton!
-    @IBOutlet weak var bananaJuiceButton: UIButton!
-    @IBOutlet weak var pineappleJuiceButton: UIButton!
-    @IBOutlet weak var kiwiJuiceButton: UIButton!
-    @IBOutlet weak var mangoJuiceButton: UIButton!
-    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceButton: UIButton!
+    @IBOutlet private weak var bananaJuiceButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceButton: UIButton!
+    @IBOutlet private weak var mangoJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     
-    @IBAction func juiceOrderButtonsHandler(_ button: UIButton) {
+    @IBAction private func juiceOrderButtonsHandler(_ button: UIButton) {
         switch button {
         case strawberryJuiceButton:
             orderJuice(.strawberryJuice)
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateFruitAmountLabels() throws {
+    private func updateFruitAmountLabels() throws {
         guard let strawberryAmount = fruitStore.inventory[.strawberry],
               let bananaAmount = fruitStore.inventory[.banana],
               let mangoAmount = fruitStore.inventory[.mango],
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         pineappleAmountLabel.text = String(pineappleAmount)
     }
     
-    func orderJuice(_ juice: JuiceMaker.Juice) {
+    private func orderJuice(_ juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.make(juice)
             try updateFruitAmountLabels()
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showJuiceWasMadeAlert(juice: JuiceMaker.Juice) {
+    private func showJuiceWasMadeAlert(juice: JuiceMaker.Juice) {
         let message = "\(juice.rawValue) 나왔습니다!\n맛있게 드세요!"
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showNotEnoughFruitAlert() {
+    private func showNotEnoughFruitAlert() {
         let message = "재료가 모자라요.\n재고를 수정할까요?"
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
