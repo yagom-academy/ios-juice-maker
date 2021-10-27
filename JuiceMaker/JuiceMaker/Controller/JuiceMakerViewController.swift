@@ -19,10 +19,8 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserver()
-        
         let fruitStore = FruitStore(fruitList: Fruit.allCases, amount: 10)
         juiceMaker = JuiceMaker(fruitStore: fruitStore)
-        // Do any additional setup after loading the view.
     }
     
     private func addObserver() {
@@ -33,20 +31,15 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func order(juice: JuiceMenu) {
-        var orderedJuice: JuiceMenu?
-        
         do {
-            orderedJuice = try juiceMaker?.make(juice)
+            try juiceMaker?.make(juice)
         } catch FruitStoreError.deficientStock {
             presentFailAlert()
         } catch {
             return
         }
         
-        guard let orderedJuice = orderedJuice else {
-            return
-        }
-        presentSuccessAlert(of: orderedJuice)
+        presentSuccessAlert(of: juice)
     }
     
     private func presentFailAlert() {
