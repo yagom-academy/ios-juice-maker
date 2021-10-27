@@ -1,15 +1,9 @@
-//
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
 
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private let fruitStore: FruitStore = FruitStore.shared
-    
     
     @IBOutlet weak var strawberryBananaOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiOrder: UIButton!
@@ -27,9 +21,9 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStock(fruit: .strawberry)
+        updateFruitsStock()
     }
-    
+
     @IBAction func clickJuiceButton(_ sender: UIButton) {
         var juice: JuiceMaker.Juice
         
@@ -51,14 +45,20 @@ class JuiceOrderViewController: UIViewController {
     func welcomeJuice(juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.makeJuice(juice: juice)
+            updateFruitsStock()
         }
         catch {
-            print(error)
+            print(error.localizedDescription)
         }
     }
     
-    func updateFruitStock(fruit: Fruits) {
-        strawberryStockLabel.text = String(fruitStore.fruitStorage[fruit]!)
+    func updateFruitsStock() {
+        strawberryStockLabel.text = String(fruitStore.fruitStorage[.strawberry] ?? .zero)
+        bananaStockLabel.text = String(fruitStore.fruitStorage[.banana] ?? .zero)
+        kiwiStockLabel.text = String(fruitStore.fruitStorage[.kiwi] ?? .zero)
+        mangoStockLabel.text = String(fruitStore.fruitStorage[.mango] ?? .zero)
+        pineappleStockLabel.text = String(fruitStore.fruitStorage[.pineapple] ?? .zero)
     }
+    
 }
 
