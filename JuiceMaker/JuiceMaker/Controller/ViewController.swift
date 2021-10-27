@@ -48,13 +48,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateAmountLabels()
+        do {
+            try updateAmountLabels()
+        } catch JuiceMakerError.fruitNotFound {
+            fatalError("Fruit Not Found")
+        } catch {
+            fatalError("Undefined Error")
+        }
     }
     
     func order(_ juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.make(juice)
-            updateAmountLabels()
+            try updateAmountLabels()
             showJuiceWasMadeAlert(juice: juice)
         } catch JuiceMakerError.notEnoughFruit {
             showNotEnoughFruitAlert()
@@ -88,12 +94,20 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func updateAmountLabels() {
-        strawberryAmountLabel.text = String(fruitStore.inventory[.strawberry] ?? 0)
-        bananaAmountLabel.text = String(fruitStore.inventory[.banana] ?? 0)
-        mangoAmountLabel.text = String(fruitStore.inventory[.mango] ?? 0)
-        kiwiAmountLabel.text = String(fruitStore.inventory[.kiwi] ?? 0)
-        pineappleAmountLabel.text = String(fruitStore.inventory[.pineapple] ?? 0)
+    func updateAmountLabels() throws {
+        guard let strawberryAmount = fruitStore.inventory[.strawberry],
+              let bananaAmount = fruitStore.inventory[.banana],
+              let mangoAmount = fruitStore.inventory[.mango],
+              let kiwiAmount = fruitStore.inventory[.kiwi],
+              let pineappleAmount = fruitStore.inventory[.pineapple] else {
+                  throw JuiceMakerError.fruitNotFound
+              }
+        
+        strawberryAmountLabel.text = String(strawberryAmount)
+        bananaAmountLabel.text = String(bananaAmount)
+        mangoAmountLabel.text = String(mangoAmount)
+        kiwiAmountLabel.text = String(kiwiAmount)
+        pineappleAmountLabel.text = String(pineappleAmount)
     }
 }
 
