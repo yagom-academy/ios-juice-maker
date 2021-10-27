@@ -125,8 +125,13 @@
                                                 <state key="normal" title="딸바쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="orderStrawberryBanannaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nv3-AR-Nca"/>
+                                                    <action selector="pressOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U7e-G6-eyk"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
@@ -136,8 +141,13 @@
                                                 <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                        <integer key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="orderMangoKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="otH-vw-ghR"/>
+                                                    <action selector="pressOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eq2-fE-Snw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -155,8 +165,13 @@
                                                         <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="orderStrawberryJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BvV-43-oW2"/>
+                                                            <action selector="pressOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Md4-uz-qwM"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
@@ -166,8 +181,13 @@
                                                         <state key="normal" title="바나나쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="orderBanannaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KX4-uA-JBc"/>
+                                                            <action selector="pressOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JNI-BO-AkZ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -182,8 +202,13 @@
                                                         <state key="normal" title="파인애플쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                                <integer key="value" value="3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="orderPineappleJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yp3-IC-LUt"/>
+                                                            <action selector="pressOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ab5-9J-yPm"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -193,8 +218,13 @@
                                                         <state key="normal" title="키위쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                                <integer key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="orderKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MaI-46-jbC"/>
+                                                            <action selector="pressOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4MD-Wu-hcd"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -206,8 +236,13 @@
                                                 <state key="normal" title="망고쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="orderMangoJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hF4-cZ-iaC"/>
+                                                    <action selector="pressOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QUF-AP-cmq"/>
                                                 </connections>
                                             </button>
                                         </subviews>

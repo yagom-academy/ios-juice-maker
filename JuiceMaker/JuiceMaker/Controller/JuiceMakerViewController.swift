@@ -85,32 +85,25 @@ class JuiceMakerViewController: UIViewController {
         present(navigationController, animated: true, completion: nil)
     }
     
-    @IBAction func orderStrawberryBanannaJuice(_ sender: UIButton) {
-        order(juice: .strawberryBanannaJuice)
-    }
-    
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        order(juice: .strawberryJuice)
-    }
-    
-    @IBAction func orderBanannaJuice(_ sender: UIButton) {
-        order(juice: .banannaJuice)
-    }
-    
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        order(juice: .mangoKiwiJuice)
-    }
-    
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        order(juice: .pineappleJuice)
-    }
-    
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        order(juice: .kiwiJuice)
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
-        order(juice: .mangoJuice)
+    @IBAction func pressOrderButton(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            order(juice: .strawberryJuice)
+        case 1:
+            order(juice: .banannaJuice)
+        case 2:
+            order(juice: .kiwiJuice)
+        case 3:
+            order(juice: .pineappleJuice)
+        case 4:
+            order(juice: .strawberryBanannaJuice)
+        case 5:
+            order(juice: .mangoJuice)
+        case 6:
+            order(juice: .mangoKiwiJuice)
+        default:
+            return
+        }
     }
 }
 
