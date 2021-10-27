@@ -51,10 +51,7 @@ extension FruitStore {
             }
             stock[fruit] = remainingStock - amount
             
-            let changedAmount = [fruit:stock[fruit]]
-            NotificationCenter.default.post(name: Notification.Name.decreaseStock,
-                                            object: nil,
-                                            userInfo: changedAmount as [AnyHashable : Any])
+            postNotification(changed: fruit, by: stock[fruit])
         }
         
         mutating func increaseStock(of fruit: Fruit, by amount: Int) {
@@ -64,10 +61,7 @@ extension FruitStore {
                 stock[fruit] = amount
             }
             
-            let changedAmount = [fruit:stock[fruit]]
-            NotificationCenter.default.post(name: Notification.Name.increaseStock,
-                                            object: nil,
-                                            userInfo: changedAmount as [AnyHashable : Any])
+            postNotification(changed: fruit, by: stock[fruit])
         }
         
         func hasSufficientStock(of ingredient: Ingredient) -> Bool {
@@ -75,6 +69,13 @@ extension FruitStore {
                 return true
             }
             return false
+        }
+        
+        private func postNotification(changed fruit: Fruit, by amount: Int?) {
+            let changedStock = [fruit:amount]
+            NotificationCenter.default.post(name: Notification.Name.stockChanged,
+                                            object: nil,
+                                            userInfo: changedStock as [AnyHashable : Any])
         }
     }
 }
