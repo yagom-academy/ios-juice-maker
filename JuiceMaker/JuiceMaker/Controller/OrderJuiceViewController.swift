@@ -43,6 +43,29 @@ class OrderJuiceViewController: UIViewController {
             print(error)
         }
     }
+    
+    @IBAction func tapStrawberryBananaJuiceButton(_ sender: UIButton) {
+        makeJuice(juiceName: .strawberryBananaJuice)
+    }
+    @IBAction func tapMangoKiwiJuiceButton(_ sender: UIButton) {
+        makeJuice(juiceName: .mangoKiwiJuice)
+    }
+    @IBAction func tapStrawberryJuiceButton(_ sender: UIButton) {
+        makeJuice(juiceName: .strawberryJuice)
+    }
+    @IBAction func tapBananaJuiceButton(_ sender: UIButton) {
+        makeJuice(juiceName: .bananaJuice)
+    }
+    @IBAction func tapPineappleJuiceButton(_ sender: UIButton) {
+        makeJuice(juiceName: .pineappleJuice)
+    }
+    @IBAction func tapKiwiJuiceButton(_ sender: UIButton) {
+        makeJuice(juiceName: .kiwiJuice)
+    }
+    @IBAction func tapMangoJuiceButton(_ sender: UIButton) {
+        makeJuice(juiceName: .mangoJuice)
+    }
+    
 
     func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil,
