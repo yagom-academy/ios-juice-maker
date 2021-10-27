@@ -47,7 +47,7 @@ class FruitStore {
         }
     }
     
-    func useIngredients(of requiredIngredients: Fruit) {
+    func consumeIngredients(of requiredIngredients: Fruit) {
         let storedFruit: Fruit = returnStoredFruit(of: requiredIngredients.name)
         
         storedFruit.changeQuantity(to: storedFruit.quantity - requiredIngredients.quantity)

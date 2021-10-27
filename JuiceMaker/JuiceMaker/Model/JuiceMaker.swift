@@ -26,7 +26,7 @@ struct JuiceMaker {
         }
         
         for juice in juice.ingredients {
-            fruitStore.useIngredients(of: juice)
+            fruitStore.consumeIngredients(of: juice)
         }
         
         return true
