@@ -33,16 +33,10 @@ struct JuiceMaker {
         
     }
     
-    func makeJuice(juice: Juice) {
-        do {
-            try checkStock(juice: juice)
-            for (fruit, amount) in juice.recipe {
-                fruitstore.useFruit(fruit: fruit, amount: amount)
-            }
-        } catch let error as FruitStockError {
-            print(error.localizedDescription)
-        } catch {
-            print(error)
+    func makeJuice(juice: Juice) throws {
+        try checkStock(juice: juice)
+        for (fruit, amount) in juice.recipe {
+            fruitstore.useFruit(fruit: fruit, amount: amount)
         }
     }
 }
