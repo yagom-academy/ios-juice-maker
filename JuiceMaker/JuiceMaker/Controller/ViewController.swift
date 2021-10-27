@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    enum Order: String {
+    enum UserChoice: String {
         case orderStrawberryJuice = "딸기쥬스 주문"
         case orderBananaJuice = "바나나쥬스 주문"
         case orderKiwiJuice = "키위쥬스 주문"
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderJuice(_ sender: UIButton) {
         guard let selectedOrder = sender.titleLabel?.text,
-              let order: Order = Order(rawValue: selectedOrder) else {
+              let order: UserChoice = UserChoice(rawValue: selectedOrder) else {
             return
         }
         
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchMenu(of selectedOrder: Order) -> JuiceMenu {
+    func fetchMenu(of selectedOrder: UserChoice) -> JuiceMenu {
         switch selectedOrder {
         case .orderStrawberryJuice:
             return .strawberryJuice
