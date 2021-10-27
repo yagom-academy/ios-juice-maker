@@ -8,12 +8,6 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore: FruitStore
-    
-    init(fruitStore: FruitStore = FruitStore()) {
-        self.fruitStore = fruitStore
-    }
-    
     enum Juice: String, CustomStringConvertible {
         var description: String {
             return "\(self.rawValue)"
@@ -48,7 +42,7 @@ struct JuiceMaker {
     }
     
     func make(juice: Juice) throws {
-        try self.fruitStore.updateStock(of: juice.recipe)
+        try FruitStore.shared.updateStock(of: juice.recipe)
         
         print("\(juice)가 만들어졌습니다!")
     }

@@ -23,10 +23,12 @@ enum FruitStoreError: Error {
 }
 
 class FruitStore {
+    static let shared = FruitStore()
+    
     private static let initialFruitQuantity = 10
     private var stock: [Fruit: Int]
     
-    init(quantity: Int = FruitStore.initialFruitQuantity) {
+    private init(quantity: Int = FruitStore.initialFruitQuantity) {
         self.stock = FruitStore.initializeStock(quantity: quantity)
     }
     
@@ -38,6 +40,14 @@ class FruitStore {
         }
         
         return stock
+    }
+    
+    func showStock(of fruit: Fruit) -> String {
+        guard let fruitQuantity = stock[fruit] else {
+            return "0"
+        }
+        
+        return String(fruitQuantity)
     }
     
     func updateStock(of recipe: [Fruit: Int]) throws {
