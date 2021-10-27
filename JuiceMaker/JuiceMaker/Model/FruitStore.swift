@@ -17,7 +17,7 @@ class FruitStore {
         fillStock(by: 10)
     }
     
-    func fillStock(by amount: Int) {
+    private func fillStock(by amount: Int) {
         for fruit in Fruit.allCases {
             stock[fruit] = amount
         }
