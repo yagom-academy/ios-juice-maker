@@ -13,6 +13,17 @@ class FruitStore {
     private let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
     private let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
+    func fetchStock() -> [Fruit.Name: Int] {
+        var fruitStoreInventory = [Fruit.Name: Int]()
+        
+        for fruit in Fruit.Name.allCases {
+            fruitStoreInventory.updateValue(returnStoredFruit(of: fruit).quantity,
+                                            forKey: returnStoredFruit(of: fruit).name)
+        }
+
+        return fruitStoreInventory
+    }
+    
     private func returnStoredFruit(of fruitName: Fruit.Name) -> Fruit {
         switch fruitName {
         case .strawberry:
@@ -28,17 +39,6 @@ class FruitStore {
         }
     }
     
-    func fetchStock() -> [Fruit.Name: Int] {
-        var fruitStoreInventory = [Fruit.Name: Int]()
-        
-        for fruit in Fruit.Name.allCases {
-            fruitStoreInventory.updateValue(returnStoredFruit(of: fruit).quantity,
-                                            forKey: returnStoredFruit(of: fruit).name)
-        }
-
-        return fruitStoreInventory
-    }
-
     func checkStock(for requiredIngredient: Fruit) -> Bool {
         if returnStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity {
             return false
