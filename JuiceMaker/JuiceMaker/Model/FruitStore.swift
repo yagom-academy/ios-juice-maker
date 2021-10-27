@@ -55,10 +55,6 @@ class FruitStore {
         
         storedFruit.changeQuantity(to: requiredChange.quantity)
 
-        if storedFruit.quantity >= 0 {
-            return true
-        } else {
-            return false
-        }
+        return storedFruit.quantity >= 0 ? true : false
     }
 }
