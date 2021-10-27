@@ -35,7 +35,7 @@ class OrderJuiceViewController: UIViewController {
         do {
             try juiceMaker.make(juiceName: juiceName)
             initializeLabel()
-            showSuccessAlert(message: "맛있게 드세요")
+            showSuccessAlert(message: "\(juiceName.kor) 나왔습니다! 맛있게 드세요!")
         } catch FruitStore.FruitStoreError.lackOfStock(let count) { 
             let description = FruitStore.FruitStoreError.lackOfStock(neededStock: count).description
             showLackOfStockAlert(message: description)
