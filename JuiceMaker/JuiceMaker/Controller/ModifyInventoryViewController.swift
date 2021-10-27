@@ -24,7 +24,6 @@ class ModifyInventoryViewController: UIViewController {
         )
     }
     
-    
     @IBOutlet var fruitCountLabels: [UILabel]!
     
     @objc
@@ -48,4 +47,26 @@ class ModifyInventoryViewController: UIViewController {
             fruitCountLabel.text = String(fruitCount)
         }
     }
+    
+    var myProperty: Double = 0.0 {
+        didSet(oldVal) {
+            print("\(self.myProperty) 와 \(oldVal) = \(self.myProperty - oldVal)" )
+            
+            if self.myProperty - oldVal > 0 {
+                //add
+                print("add")
+            } else {
+                //substract
+                print("substract")
+            }
+        }
+    }
+    
+    @IBAction func clickStepper(_ sender: UIStepper) {
+        print("value: ",sender.value)
+        print("stepValue: ",sender.stepValue)
+        
+        myProperty = sender.value
+    }
+    
 }
