@@ -14,6 +14,22 @@ class FruitStore {
         case pineapple = "pineapple"
         case kiwi = "kiwi"
         case mango = "mango"
+        
+        static func findFruit(fruitID: String) -> Fruits? {
+            if fruitID.hasPrefix("strawberry") {
+                return .strawberry
+            } else if fruitID.hasPrefix("banana") {
+                return .banana
+            } else if fruitID.hasPrefix("pineapple") {
+                return .pineapple
+            } else if fruitID.hasPrefix("kiwi") {
+                return .kiwi
+            } else if fruitID.hasPrefix("mango") {
+                return .mango
+            }
+            
+            return nil
+        }
     }
     
     private var fruitInventory: [Fruits: Int]
