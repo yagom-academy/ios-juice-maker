@@ -24,8 +24,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
-//    @IBOutlet weak var editAmountViewController: ViewController!
-    
     @IBAction func orderButtonHandler(_ sender: UIButton) {
         switch sender {
         case strawberryJuiceButton:
@@ -69,9 +67,7 @@ class ViewController: UIViewController {
     
     func showJuiceWasMadeAlert(juice: JuiceMaker.Juice) {
         let message = "\(juice.rawValue) 나왔습니다!\n맛있게 드세요!"
-
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
         let okAction = UIAlertAction(title: "OK", style: .default)
         
         alert.addAction(okAction)
@@ -80,9 +76,7 @@ class ViewController: UIViewController {
     
     func showNotEnoughFruitAlert() {
         let message = "재료가 모자라요. 재고를 수정할까요?"
- 
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .default)
         let navigateAction = UIAlertAction(title: "재고 수정하기", style: .default) {
             (action) in
