@@ -19,8 +19,7 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserver()
-        let fruitStore = FruitStore(fruitList: Fruit.allCases, amount: 10)
-        juiceMaker = JuiceMaker(fruitStore: fruitStore)
+        initializeJuiceMaker()
     }
     
     private func addObserver() {
@@ -28,6 +27,11 @@ class JuiceMakerViewController: UIViewController {
                                                selector: #selector(changeStock),
                                                name: Notification.Name.stockChanged,
                                                object: nil)
+    }
+    
+    private func initializeJuiceMaker() {
+        let fruitStore = FruitStore(fruitList: Fruit.allCases, amount: 10)
+        juiceMaker = JuiceMaker(fruitStore: fruitStore)
     }
     
     private func order(juice: JuiceMenu) {
