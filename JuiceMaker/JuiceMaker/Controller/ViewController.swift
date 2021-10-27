@@ -7,6 +7,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let juiceMaker = JuiceMaker()
+    let notificationCenter: NotificationCenter = .default
+    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -20,9 +23,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
-    
-    let juiceMaker = JuiceMaker()
-    let notificationCenter: NotificationCenter = .default
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
         guard let orderedJuice = try? takeJuiceOrder(from: sender) else {
@@ -39,43 +39,6 @@ class ViewController: UIViewController {
             print(SystemError.invaildKey.localizedDescription)
         } catch {
             print(error.localizedDescription)
-        }
-    }
-    
-    private func matchFruit(with label: UILabel) throws -> FruitStore.Fruit {
-        switch label {
-        case strawberryStockLabel:
-            return .strawberry
-        case bananaStockLabel:
-            return .banana
-        case pineappleStockLabel:
-            return .pineapple
-        case kiwiStockLabel:
-            return .kiwi
-        case mangoStockLabel:
-            return .mango
-        default:
-            throw SystemError.invaildLabel
-        }
-    }
-    
-    func updateStockLabel(with label: UILabel) {
-        guard let fruit = try? matchFruit(with: label) else {
-            return
-        }
-        
-        guard let currentStockCount = juiceMaker.store.stock[fruit] else {
-            return
-        }
-        
-        label.text = String(currentStockCount)
-    }
-    
-    @objc func updateAllStockLabels() {
-        let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
-        
-        for stockLabel in stockLabels {
-            updateStockLabel(with: stockLabel)
         }
     }
     
@@ -122,6 +85,43 @@ class ViewController: UIViewController {
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
     
+    @objc func updateAllStockLabels() {
+        let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+        
+        for stockLabel in stockLabels {
+            updateStockLabel(with: stockLabel)
+        }
+    }
+    
+    func updateStockLabel(with label: UILabel) {
+        guard let fruit = try? matchFruit(with: label) else {
+            return
+        }
+        
+        guard let currentStockCount = juiceMaker.store.stock[fruit] else {
+            return
+        }
+        
+        label.text = String(currentStockCount)
+    }
+    
+    private func matchFruit(with label: UILabel) throws -> FruitStore.Fruit {
+        switch label {
+        case strawberryStockLabel:
+            return .strawberry
+        case bananaStockLabel:
+            return .banana
+        case pineappleStockLabel:
+            return .pineapple
+        case kiwiStockLabel:
+            return .kiwi
+        case mangoStockLabel:
+            return .mango
+        default:
+            throw SystemError.invaildLabel
+        }
+    }
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
