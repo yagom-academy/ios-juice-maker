@@ -36,13 +36,21 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker?.make(juice)
         } catch FruitStoreError.deficientStock {
-            print("재고가 부족해요 재고를 수정해주세요")
-            return
+            let failAlert = UIAlertController(title: "재료가 모자라요", message: "재고를 수정할까요?", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default, handler:  { _ in
+                self.navigateToStockModificationVC(nil)
+            })
+            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            failAlert.addAction(ok)
+            failAlert.addAction(cancel)
+            failAlert.preferredAction = ok
+            self.present(failAlert, animated: true, completion: nil)
         } catch {
-            print("알 수 없는 에러ㅜ")
             return
         }
-        print("쥬스 나갔습니다~")
+        let successAlert = UIAlertController(title: "쥬스 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
+        successAlert.addAction(UIAlertAction(title: "잘 먹겠습니다🤤", style: .default, handler: nil))
+        self.present(successAlert, animated: true, completion: nil)
     }
     
     @objc
@@ -68,7 +76,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction func navigateToStockModificationVC(_ sender: UIBarButtonItem) {
+    @IBAction func navigateToStockModificationVC(_ sender: Any?) {
         let stockManagerVC = storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as! StockManagerViewController
         let navigationController = UINavigationController(rootViewController: stockManagerVC)
         present(navigationController, animated: true, completion: nil)
