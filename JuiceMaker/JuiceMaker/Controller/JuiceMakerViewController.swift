@@ -15,7 +15,6 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet var currentMangoStockLabel: UILabel!
     
     var juiceMaker: JuiceMaker?
-    //    let notificationCenter: NotificationCenter = .default
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +30,19 @@ class JuiceMakerViewController: UIViewController {
                                                selector: #selector(increaseStock),
                                                name: Notification.Name.increaseStock,
                                                object: nil)
+    }
+    
+    func order(juice: JuiceMenu) {
+        do {
+            try juiceMaker?.make(juice)
+        } catch FruitStoreError.deficientStock {
+            print("재고가 부족해요 재고를 수정해주세요")
+            return
+        } catch {
+            print("알 수 없는 에러ㅜ")
+            return
+        }
+        print("쥬스 나갔습니다~")
     }
     
     @objc
@@ -63,24 +75,31 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryBanannaJuice(_ sender: UIButton) {
+        order(juice: .strawberryBanannaJuice)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
+        order(juice: .strawberryJuice)
     }
     
     @IBAction func orderBanannaJuice(_ sender: UIButton) {
+        order(juice: .banannaJuice)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
+        order(juice: .mangoKiwiJuice)
     }
     
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
+        order(juice: .pineappleJuice)
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
+        order(juice: .kiwiJuice)
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
+        order(juice: .mangoJuice)
     }
 }
 

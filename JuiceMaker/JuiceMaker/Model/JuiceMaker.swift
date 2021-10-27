@@ -23,13 +23,12 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func make(_ juice: JuiceMenu) throws -> JuiceMenu {
+    func make(_ juice: JuiceMenu) throws {
         guard hasAllIngredients(of: juice.recipe) else {
             throw FruitStoreError.deficientStock
         }
         
         fruitStore.reduceInventory(ingredientsOf: juice.recipe)
-        return juice
     }
     
     private func hasAllIngredients(of juiceRecipe: JuiceRecipe) -> Bool {
