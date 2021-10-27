@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
     let juiceMaker = JuiceMaker()
-    let notificantionCenter: NotificationCenter = .default
+    let notificationCenter: NotificationCenter = .default
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
         guard let orderedJuice = try? takeJuiceOrder(from: sender) else {
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         
         do {
             try juiceMaker.make(juice: orderedJuice)
-            notificantionCenter.post(name: .completeMakingJuice, object: nil)
+            notificationCenter.post(name: .completeMakingJuice, object: nil)
             presentCompleteMakingJuiceAlert(juice: orderedJuice)
         } catch ServiceError.notEnoughStock {
             presentNotEnoughStockAlert()
@@ -126,7 +126,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         updateAllStockLabels()
-        notificantionCenter.addObserver(self, selector: #selector(updateAllStockLabels), name: .completeMakingJuice, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(updateAllStockLabels), name: .completeMakingJuice, object: nil)
     }
 }
 
