@@ -24,6 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
+//    @IBOutlet weak var editAmountViewController: ViewController!
+    
     @IBAction func orderButtonHandler(_ sender: UIButton) {
         switch sender {
         case strawberryJuiceButton:
@@ -57,7 +59,7 @@ class ViewController: UIViewController {
             updateAmountLabels()
             showJuiceWasMadeAlert(juice: juice)
         } catch JuiceMakerError.notEnoughFruit {
-            // 재고없음 alert
+            showNotEnoughFruitAlert()
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
@@ -77,8 +79,19 @@ class ViewController: UIViewController {
     }
     
     func showNotEnoughFruitAlert() {
-        // "재료가 모자라요. 재고를 수정할까요?"
-        // 버튼 2개 보여주고, 동의하면 재고 수정 씬으로 이동시키기
+        let message = "재료가 모자라요. 재고를 수정할까요?"
+ 
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        let navigateAction = UIAlertAction(title: "재고 수정하기", style: .default) {
+            (action) in
+            self.performSegue(withIdentifier: "SegueToEditAmountView", sender: self)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(navigateAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func updateAmountLabels() {

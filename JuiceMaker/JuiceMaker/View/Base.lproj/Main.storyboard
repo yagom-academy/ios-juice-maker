@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="show" id="LGK-03-UAw"/>
+                                <segue destination="Yu1-lM-nqp" kind="show" identifier="SegueToEditAmountView" id="LGK-03-UAw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="896" y="45"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Amount View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="EditAmountViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -426,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="1717"/>
+            <point key="canvasLocation" x="893" y="1743"/>
         </scene>
     </scenes>
     <resources>

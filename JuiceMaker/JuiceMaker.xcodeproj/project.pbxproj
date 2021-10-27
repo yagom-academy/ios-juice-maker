@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60C298222728F96B00C3011D /* EditAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C298212728F96B00C3011D /* EditAmountViewController.swift */; };
 		C123AA112721617200296BE5 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C123AA102721617200296BE5 /* Fruit.swift */; };
 		C1ED7ED6271FF4EB003FA4AF /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ED7ED5271FF4EB003FA4AF /* JuiceMakerError.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60C298212728F96B00C3011D /* EditAmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAmountViewController.swift; sourceTree = "<group>"; };
 		C123AA102721617200296BE5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		C1ED7ED5271FF4EB003FA4AF /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				60C298212728F96B00C3011D /* EditAmountViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			files = (
 				C1ED7ED6271FF4EB003FA4AF /* JuiceMakerError.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
+				60C298222728F96B00C3011D /* EditAmountViewController.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C123AA112721617200296BE5 /* Fruit.swift in Sources */,
