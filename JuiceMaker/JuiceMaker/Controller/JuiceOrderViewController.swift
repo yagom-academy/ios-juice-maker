@@ -7,19 +7,19 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet private weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
     private let juiceMaker: JuiceMaking = JuiceMaker(store: FruitStore())
     
@@ -29,7 +29,7 @@ class JuiceOrderViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
     }
     
-    @IBAction func juiceOrderButtonDidTap(_ sender: UIButton) {
+    @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
             let juiceMenu = try matchJuiceMenu(with: sender)
             try juiceMaker.makeJuice(menu: juiceMenu)
@@ -41,11 +41,11 @@ class JuiceOrderViewController: UIViewController {
         }
     }
 
-    @IBAction func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
+    @IBAction private func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
         moveToStockModifyView()
     }
     
-    @objc func didFruitStockChange(_ notification: Notification) {
+    @objc private func didFruitStockChange(_ notification: Notification) {
         guard let fruit = notification.object as? Fruit else {
             showErrorAlert(error: FruitStoreError.invalidFruit)
             return
@@ -57,7 +57,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func updateLabel(fruit: Fruit) throws {
+    private func updateLabel(fruit: Fruit) throws {
         switch fruit {
         case .strawberry:
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
@@ -72,7 +72,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func initializeFruitStockLabels() {
+    private func initializeFruitStockLabels() {
         do {
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
             bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))
@@ -84,7 +84,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func matchJuiceMenu(with button: UIButton) throws -> JuiceMenu {
+    private func matchJuiceMenu(with button: UIButton) throws -> JuiceMenu {
         switch button {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBanana
@@ -105,14 +105,14 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func showSuccessAlert(juiceMenu: JuiceMenu) {
+    private func showSuccessAlert(juiceMenu: JuiceMenu) {
         let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess.korean, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
-    func showFailureAlert() {
+    private func showFailureAlert() {
         let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.modifyStock.korean, style: .default) { _ in self.moveToStockModifyView() }
         let noAction = UIAlertAction(title: AlertMessage.cancel.korean, style: .cancel)
@@ -121,7 +121,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func showErrorAlert(error: Error) {
+    private func showErrorAlert(error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
         alert.addAction(okAction)
@@ -140,7 +140,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func moveToStockModifyView() {
+    private func moveToStockModifyView() {
         performSegue(withIdentifier: StoryboardSegue.toStockModifyView.identifier, sender: nil)
     }
 }

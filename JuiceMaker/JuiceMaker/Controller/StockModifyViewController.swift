@@ -14,7 +14,7 @@ class StockModifyViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func modifyCompleteButtonDidTap(_ sender: UIBarButtonItem) {
+    @IBAction private func modifyCompleteButtonDidTap(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
 }
