@@ -28,11 +28,11 @@ class FruitStore {
         guard let currentFruitStock = fruitStockList[fruitName] else {
             throw FruitStockError.fruitNotExist
         }
-        guard (currentFruitStock + changingNumber) >= 0 else {
+        let fruitStock = (currentFruitStock + changingNumber)
+        guard fruitStock >= 0 else {
             throw FruitStockError.lessThanZero
         }
-        
-        fruitStockList[fruitName] = (currentFruitStock + changingNumber)
+        fruitStockList[fruitName] = fruitStock
     }
     
     func isHaveEnoughStock(fruitName: Fruit, juiceIngredient: JuiceIngredient) throws {
