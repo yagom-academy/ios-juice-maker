@@ -22,7 +22,7 @@ class OrderJuiceViewController: UIViewController {
     func refreshSelectedStockLabel(of fruit: FruitName) {
         switch fruit {
         case .strawberry:
-            strawberryStockLabel.text = "\(juiceMaker.store.inventory[0].count)" // Notification을 사용하려면 juiceMaker를 Structure Class로 바꿔줘야 함
+            strawberryStockLabel.text = "\(juiceMaker.store.inventory[0].count)"
         case .banana:
             bananaStockLabel.text = "\(juiceMaker.store.inventory[1].count)"
         case .pineapple:
