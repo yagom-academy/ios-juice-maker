@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let fruitStore = FruitStore()
+    let fruitStore = FruitStore.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
