@@ -55,13 +55,13 @@ struct Juice {
     }
 }
 
-struct JuiceMaker {
+class JuiceMaker {
     
     let store = FruitStore.shared
     
     private var recipe: [JuiceName: [ingredient]] = [:]
     
-    mutating func initializeRecipe() {
+    func initializeRecipe() {
         for juice in JuiceName.allCases {
             recipe[juice] = Juice(name: juice).recipe
         }
@@ -71,7 +71,7 @@ struct JuiceMaker {
         initializeRecipe()
     }
     
-    private mutating func findRecipe(of juiceName: JuiceName) throws -> [ingredient] {
+    private func findRecipe(of juiceName: JuiceName) throws -> [ingredient] {
         guard let foundRecipe = recipe[juiceName] else {
             throw JuiceMakerError.invalidMenuChoice
         }
@@ -84,7 +84,7 @@ struct JuiceMaker {
         }
     }
     
-    mutating func make(juiceName: JuiceName) throws {
+    func make(juiceName: JuiceName) throws {
         let foundRecipe = try findRecipe(of: juiceName)
         try blendIngredient(by: foundRecipe)
     }

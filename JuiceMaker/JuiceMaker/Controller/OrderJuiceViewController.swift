@@ -1,7 +1,7 @@
 import UIKit
 
 class OrderJuiceViewController: UIViewController {
-
+    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -9,12 +9,13 @@ class OrderJuiceViewController: UIViewController {
     @IBOutlet weak var mangoStockLabel: UILabel!
     
     var juiceMaker = JuiceMaker()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshStockLabel), name: .didChangeStock, object: nil)
-        initializeLabel()
-
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refreshStockLabel),
+                                               name: .didChangeStock,
+                                               object: nil)
         initializeLabel()
     }
     
@@ -40,11 +41,9 @@ class OrderJuiceViewController: UIViewController {
     }
     
     func initializeLabel() {
-        strawberryStockLabel.text = "\(juiceMaker.store.inventory[0].count)"
-        bananaStockLabel.text = "\(juiceMaker.store.inventory[1].count)"
-        pineappleStockLabel.text = "\(juiceMaker.store.inventory[2].count)"
-        kiwiStockLabel.text = "\(juiceMaker.store.inventory[3].count)"
-        mangoStockLabel.text = "\(juiceMaker.store.inventory[4].count)"
+        for fruit in FruitName.allCases {
+            refreshSelectedStockLabel(of: fruit)
+        }
     }
     
     func showSuccessAlert(message: String) {
@@ -114,6 +113,5 @@ class OrderJuiceViewController: UIViewController {
     @IBAction func tapMangoJuiceButton(_ sender: UIButton) {
         makeJuice(juiceName: .mangoJuice)
     }
-    
 }
 
