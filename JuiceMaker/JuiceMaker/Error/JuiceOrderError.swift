@@ -5,7 +5,7 @@
 //  Created by Jae-hoon Sim on 2021/10/25.
 //
 
-import  Foundation
+import Foundation
 
 enum JuiceOrderError: Error {
     case invalidJuiceOrder
