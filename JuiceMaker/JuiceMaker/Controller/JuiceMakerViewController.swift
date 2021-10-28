@@ -99,7 +99,7 @@ class JuiceMakerViewController: UIViewController {
     @objc private func updateAllStockLabels() {
         let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
         
-        for stockLabel in stockLabels {
+        stockLabels.forEach { stockLabel in
             updateStockLabel(with: stockLabel)
         }
     }
