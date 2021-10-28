@@ -114,9 +114,9 @@ class JuiceOrderViewController: UIViewController {
     private func showFailureAlert() {
         let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.modifyStock.korean, style: .default) { _ in self.moveToStockModifyView() }
-        let noAction = UIAlertAction(title: AlertMessage.cancel.korean, style: .cancel)
+        let cancelAction = UIAlertAction(title: AlertMessage.cancel.korean, style: .cancel)
         alert.addAction(okAction)
-        alert.addAction(noAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true)
     }
     
