@@ -21,7 +21,7 @@ class FruitStore {
     }
     
     func changeQuantity(of fruit: Fruit, count: Int, by: Operation) {
-        guard let stock = fruitStock[fruit] else {
+        guard let stock = fruitStock[fruit], stock >= 0 else {
             return
         }
         
