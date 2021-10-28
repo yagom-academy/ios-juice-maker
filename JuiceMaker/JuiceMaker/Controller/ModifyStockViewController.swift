@@ -16,5 +16,4 @@ class ModifyStockViewController: UIViewController {
     @IBAction func touchUpDismissButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
 }

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     let fruitStore = FruitStore.shared
     let juiceMaker = JuiceMaker()
     
@@ -36,12 +36,12 @@ class ViewController: UIViewController {
     
     func updateFruitStockLabel() throws {
         guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
-                let bananaStock = fruitStore.stock[Fruit.banana],
-                let pineappleStock = fruitStore.stock[Fruit.pineapple],
-                let kiwiStock = fruitStore.stock[Fruit.kiwi],
-                let mangoStock = fruitStore.stock[Fruit.mango] else {
-                    throw StockError.noExistFruit
-                }
+              let bananaStock = fruitStore.stock[Fruit.banana],
+              let pineappleStock = fruitStore.stock[Fruit.pineapple],
+              let kiwiStock = fruitStore.stock[Fruit.kiwi],
+              let mangoStock = fruitStore.stock[Fruit.mango] else {
+                  throw StockError.noExistFruit
+              }
         
         strawberryStockLabel.text = String(strawberryStock)
         bananaStockLabel.text = String(bananaStock)
