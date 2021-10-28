@@ -33,9 +33,9 @@ class JuiceOrderViewController: UIViewController {
     
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
-            let juiceMenu = try matchJuiceMenu(with: sender)
-            try juiceMaker?.makeJuice(menu: juiceMenu)
-            showSuccessAlert(juiceMenu: juiceMenu)
+            let juice = try juiceMenu(for: sender)
+            try juiceMaker?.makeJuice(menu: juice)
+            showSuccessAlert(juiceMenu: juice)
         } catch FruitStoreError.stockShortage {
             showFailureAlert()
         } catch let error {
@@ -93,7 +93,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func matchJuiceMenu(with button: UIButton) throws -> JuiceMenu {
+    private func juiceMenu(for button: UIButton) throws -> JuiceMenu {
         if button === strawberryBananaJuiceOrderButton {
             return .strawberryBanana
         } else if button === mangoKiwiJuiceOrderButton {
