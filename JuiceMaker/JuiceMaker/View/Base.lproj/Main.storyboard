@@ -239,7 +239,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" id="Bxx-rI-deZ"/>
+                                <action selector="pressStockModifyButton:" destination="BYZ-38-t0r" id="0Eo-rg-zdb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -422,10 +422,10 @@
             </objects>
             <point key="canvasLocation" x="1619" y="1112"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Stock Modify Nav Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StockModifyNavController" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" customClass="StockModifyNavController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
@@ -441,9 +441,6 @@
             <point key="canvasLocation" x="1619" y="25"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="wH1-3A-cBm"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

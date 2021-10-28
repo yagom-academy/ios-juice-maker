@@ -46,6 +46,15 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func pressStockModifyButton(_ sender: UIBarButtonItem) {
+        let stockModifyNavController = StockModifyNavController()
+        
+        let storyboard = UIStoryboard(name: stockModifyNavController.storybordName, bundle: nil)
+        let stockModifyNC = storyboard.instantiateViewController(identifier: stockModifyNavController.storybordID)
+        
+        present(stockModifyNC, animated: true, completion: nil)
+    }
+    
     func showMadeJuiceAlert(juice: String) {
         let alert = UIAlertController(title: "쥬스 완성", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let close = UIAlertAction(title: "닫기", style: .default)
