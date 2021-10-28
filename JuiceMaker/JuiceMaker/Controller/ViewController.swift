@@ -74,15 +74,16 @@ class ViewController: UIViewController {
     }
     
     func showAlert(isSuccess: Bool, message: String) {
+        let alert: UIAlertController
+        
         if isSuccess {
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
                 self.viewDidLoad()
             }
             alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+            alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
             let moveEditView = UIAlertAction(title: "재고수정하기", style: .default) {_ in
                 self.moveEditView()
             }
@@ -91,8 +92,8 @@ class ViewController: UIViewController {
             }
             alert.addAction(moveEditView)
             alert.addAction(closeAlert)
-            present(alert, animated: true, completion: nil)
         }
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func hitEditButton(_ sender: UIBarButtonItem) {
