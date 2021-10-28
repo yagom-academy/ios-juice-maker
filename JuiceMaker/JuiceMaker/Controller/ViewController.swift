@@ -80,10 +80,34 @@ class ViewController: UIViewController {
     func orderJuice(juice: Juice) {
         do {
             juiceMaker.make(juice: juice)
+            showExistStockAlert(message: "\(juice) 쥬스 나왔습니다. 맛있게 드세요!")
             try updateFruitStockLabel()
         } catch {
-            print("과일이 없습니다.")
+            showNoExistStockAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
+    }
+    
+    func showExistStockAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showNoExistStockAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default, handler: nil)
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(modifyStockAction)
+     
+        present(alert, animated: true, completion: nil)
     }
 }
 
