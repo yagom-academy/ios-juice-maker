@@ -32,7 +32,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
-        let orderedJuice = JuiceMenu.matchJuice(with: sender.tag)
+        guard let orderedJuice = JuiceMenu(rawValue: sender.tag) else {
+            return
+        }
         
         if juiceMaker.make(orderedJuice) {
             showSuccessAlert(menu: orderedJuice)
@@ -43,7 +45,7 @@ class ViewController: UIViewController {
     
     func showSuccessAlert(menu: JuiceMenu) {
         let alert: UIAlertController = UIAlertController(title: nil,
-                                                         message: menu.rawValue + AlertMessage.makeSuccessMessage.description,
+                                                         message: menu.koreanName + AlertMessage.makeSuccessMessage.description,
                                                          preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "확인",
                                                     style: .default,

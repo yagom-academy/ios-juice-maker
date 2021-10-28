@@ -7,29 +7,28 @@
 
 import Foundation
 
-enum JuiceMenu: String {
-    case strawberryJuice = "딸기쥬스"
-    case bananaJuice = "바나나쥬스"
-    case kiwiJuice = "키위쥬스"
-    case pineappleJuice = "파인애플쥬스"
-    case mangoJuice = "망고쥬스"
-    case ddalbaJuice = "딸바쥬스"
-    case mangKiJuice = "망키쥬스"
+enum JuiceMenu: Int {
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case ddalbaJuice
+    case mangKiJuice
     
-    static func matchJuice(with selectedNumber: Int) -> JuiceMenu {
-        switch selectedNumber {
-        case 0: return JuiceMenu.strawberryJuice
-        case 1: return JuiceMenu.bananaJuice
-        case 2: return JuiceMenu.pineappleJuice
-        case 3: return  JuiceMenu.kiwiJuice
-        case 4: return JuiceMenu.mangoJuice
-        case 5: return JuiceMenu.ddalbaJuice
-        case 6: return JuiceMenu.mangKiJuice
-        default: return JuiceMenu.strawberryJuice
+    var koreanName: String {
+        switch self {
+        case .bananaJuice: return "바나나쥬스"
+        case .ddalbaJuice: return "딸바쥬스"
+        case .kiwiJuice: return "키위쥬스"
+        case .mangKiJuice: return "망키쥬스"
+        case .mangoJuice: return "망고쥬스"
+        case .pineappleJuice: return "파인애플쥬스"
+        case .strawberryJuice: return "딸기쥬스"
         }
     }
     
-    enum FruitQuantity {
+    enum IngredientsQuantity {
         static let strawberryOfStrawberryJuice = 16
         static let bananaOfBananaJuice = 2
         static let kiwiOfKiwiJuice = 3
@@ -45,29 +44,29 @@ enum JuiceMenu: String {
         switch self {
         case .strawberryJuice:
             return [Fruit(name: .strawberry,
-                          quantity: JuiceMenu.FruitQuantity.strawberryOfStrawberryJuice)]
+                          quantity: JuiceMenu.IngredientsQuantity.strawberryOfStrawberryJuice)]
         case .bananaJuice:
             return [Fruit(name: .banana,
-                          quantity: JuiceMenu.FruitQuantity.bananaOfBananaJuice)]
+                          quantity: JuiceMenu.IngredientsQuantity.bananaOfBananaJuice)]
         case .kiwiJuice:
             return [Fruit(name: .kiwi,
-                          quantity: JuiceMenu.FruitQuantity.kiwiOfKiwiJuice)]
+                          quantity: JuiceMenu.IngredientsQuantity.kiwiOfKiwiJuice)]
         case .pineappleJuice:
             return [Fruit(name: .pineapple,
-                          quantity: JuiceMenu.FruitQuantity.pineappleOfPineappleJuice)]
+                          quantity: JuiceMenu.IngredientsQuantity.pineappleOfPineappleJuice)]
         case .mangoJuice:
             return [Fruit(name: .mango,
-                          quantity: JuiceMenu.FruitQuantity.mangoOfMangoJuice)]
+                          quantity: JuiceMenu.IngredientsQuantity.mangoOfMangoJuice)]
         case .ddalbaJuice:
             return [Fruit(name: .strawberry,
-                          quantity: JuiceMenu.FruitQuantity.strawberryOfDdalbaJuice),
+                          quantity: JuiceMenu.IngredientsQuantity.strawberryOfDdalbaJuice),
                     Fruit(name: .banana,
-                          quantity: JuiceMenu.FruitQuantity.bananaOfDdalbaJuice)]
+                          quantity: JuiceMenu.IngredientsQuantity.bananaOfDdalbaJuice)]
         case .mangKiJuice:
             return [Fruit(name: .mango,
-                          quantity: JuiceMenu.FruitQuantity.mangoOfMangKiJuice),
+                          quantity: JuiceMenu.IngredientsQuantity.mangoOfMangKiJuice),
                     Fruit(name: .kiwi,
-                          quantity: JuiceMenu.FruitQuantity.kiwiOfMangKiJuice)]
+                          quantity: JuiceMenu.IngredientsQuantity.kiwiOfMangKiJuice)]
         }
     }
 }
