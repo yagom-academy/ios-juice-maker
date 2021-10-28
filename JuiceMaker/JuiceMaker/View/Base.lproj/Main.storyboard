@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -131,7 +131,7 @@
                                                 <rect key="frame" x="296" y="0.0" width="280" height="66"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <state key="normal" title="딸바쥬스 주문">
+                                                <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -147,7 +147,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <state key="normal" title="딸바쥬스 주문">
+                                                        <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
@@ -216,8 +216,26 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <segue destination="Yu1-lM-nqp" kind="presentation" id="hTR-fx-mIZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="CqT-K5-53I"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="pvs-9E-IAH"/>
+                        <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="6Sj-AL-XLl"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="eNq-LZ-slf"/>
+                        <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="P1B-Ev-4Fu"/>
+                        <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="5Hh-nT-MNP"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="AM6-rl-2Hq"/>
+                        <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="wVt-Bx-Kc2"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="2fj-ib-E3V"/>
+                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="cwo-rh-n04"/>
+                        <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="2Er-H4-CqI"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="FCO-03-k7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -250,7 +268,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-vx-u60">
-                                <rect key="frame" x="60" y="63" width="724" height="195"/>
+                                <rect key="frame" x="60" y="50" width="724" height="195"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8wA-yN-4Dl">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="195"/>
@@ -388,25 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="901"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cAf-jL-tPK">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
-                        <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="wH1-3A-cBm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1637" y="21"/>
+            <point key="canvasLocation" x="1449" y="92"/>
         </scene>
     </scenes>
     <resources>

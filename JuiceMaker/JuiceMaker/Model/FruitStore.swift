@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var stock = [Fruit: Int]()
+    private(set) var stock = [Fruit: Int]()
 
     init(stockAmount: Int) {
         fillStock(by: stockAmount)
