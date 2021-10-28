@@ -22,15 +22,24 @@ class ViewController: UIViewController {
         changeStockLabel()
     }
     
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.viewDidLoad()
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func orderJuice(_ sender: UIButton) {
         let juice = switchMenuToUIButton(button: sender)
         let isSuccess: Bool = juiceMaker.make(juice)
         
         if isSuccess {
-            // TODO: 성공 알림 띄우기
+            showAlert(message: "\(juice) 나왔습니다! 맛있게 드세요!")
             changeStockLabel()
         } else {
-            // TODO: 실패 알림 띄우기
+            showAlert(message: "실패")
         }
     }
     
