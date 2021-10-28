@@ -8,7 +8,7 @@
 import UIKit
 
 class ModifyInventoryViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,44 +27,56 @@ class ModifyInventoryViewController: UIViewController {
     
     @objc
     func updateFruitCount() {
-        for fruitCountLabel in fruitCountLabels {
-            guard let fruitID = fruitCountLabel.restorationIdentifier else {
-                return
+        do {
+            for fruitCountLabel in fruitCountLabels {
+                guard let fruitID = fruitCountLabel.restorationIdentifier else {
+                    throw FruitError.notFoundID(self,"UILabel")
+                }
+                guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
+                    throw FruitError.notFoundFruitCount
+                }
+                fruitCountLabel.text = String(fruitCount)
             }
-            guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
-                return
-            }
-            fruitCountLabel.text = String(fruitCount)
+        } catch {
+            print("ERROR \(error): \(error.localizedDescription)")
         }
     }
     
     func setStepperValue() {
-        for fruitStepper in fruitSteppers {
-            guard let fruitStepperID = fruitStepper.restorationIdentifier else {
-                return
+        do {
+            for fruitStepper in fruitSteppers {
+                guard let fruitStepperID = fruitStepper.restorationIdentifier else {
+                    throw FruitError.notFoundID(self,"UIStepper")
+                }
+                guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
+                    throw FruitError.notFoundFruitCount
+                }
+                fruitStepper.value = Double(fruitCount)
             }
-            guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
-                return
-            }
-            fruitStepper.value = Double(fruitCount)
+        } catch {
+            print("ERROR \(error): \(error.localizedDescription)")
         }
     }
     
     @IBAction func clickStepper(_ sender: UIStepper) {
-        guard let fruitStepperID = sender.restorationIdentifier else {
-            return
-        }
-        guard let previousFruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
-            return
-        }
-        guard let fruit = FruitStore.Fruits.findFruit(by: fruitStepperID) else {
-            return
-        }
-        
-        if previousFruitCount - Int(sender.value) > 0 {
-            FruitStore.shared.subtract(fruit: fruit, of: Int(sender.stepValue))
-        } else {
-            FruitStore.shared.add(fruit: fruit, of: Int(sender.stepValue))
+        do {
+            guard let fruitStepperID = sender.restorationIdentifier else {
+                throw FruitError.notFoundID(self,"UIStepper")
+            }
+            guard let previousFruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
+                throw FruitError.notFoundFruitCount
+            }
+            guard let fruit = FruitStore.Fruits.findFruit(by: fruitStepperID) else {
+                throw FruitError.notFoundFruit
+            }
+            
+            if previousFruitCount - Int(sender.value) > 0 {
+                FruitStore.shared.subtract(fruit: fruit, of: Int(sender.stepValue))
+            } else {
+                FruitStore.shared.add(fruit: fruit, of: Int(sender.stepValue))
+            }
+        } catch {
+            print("ERROR \(error): \(error.localizedDescription)")
         }
     }
     

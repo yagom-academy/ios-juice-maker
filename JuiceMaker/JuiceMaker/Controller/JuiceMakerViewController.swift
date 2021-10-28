@@ -9,23 +9,6 @@ import UIKit
 class JuiceMakerViewController: UIViewController {
     
     let juiceMaker = JuiceMaker(fruitStorage: FruitStore.shared)
-    
-    enum JuiceMakerError: LocalizedError {
-        case notFoundID
-        case notFoundJuice
-        case notFoundFruitCount
-        
-        var errorDescription: String? {
-            switch self {
-            case .notFoundFruitCount:
-                return "과일의 갯수를 찾을 수 없습니다."
-            case .notFoundID:
-                return "스토리보드에서 UI요소에 ID가 지정되지 않았습니다."
-            case .notFoundJuice:
-                return "과일 ID에 해당하는 과일 케이스를 찾을 수 없습니다."
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +26,12 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet var fruitCountLabels: [UILabel]!
     
     @IBAction func clickOrderButton(_ sender: UIButton) {
-        
         do {
             guard let juiceID = sender.restorationIdentifier else {
-                throw JuiceMakerError.notFoundID
+                throw FruitError.notFoundID(self,"UIButton")
             }
             guard let orderedjuice = JuiceMaker.Juice.findJuice(juiceID: juiceID) else {
-                throw JuiceMakerError.notFoundJuice
+                throw FruitError.notFoundJuice
             }
             
             if let madejuice = juiceMaker.order(juice: orderedjuice) {
@@ -82,15 +64,15 @@ class JuiceMakerViewController: UIViewController {
         do {
             for fruitCountLabel in fruitCountLabels {
                 guard let fruitID = fruitCountLabel.restorationIdentifier else {
-                    throw JuiceMakerError.notFoundID
+                    throw FruitError.notFoundID(self,"UIlabel")
                 }
                 guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
-                    throw JuiceMakerError.notFoundFruitCount
+                    throw FruitError.notFoundFruitCount
                 }
                 fruitCountLabel.text = String(fruitCount)
             }
         } catch {
-            print("ERROR \(error): \(error.localizedDescription)")
+            print("ERROR : \(error.localizedDescription)")
         }
     }
     
