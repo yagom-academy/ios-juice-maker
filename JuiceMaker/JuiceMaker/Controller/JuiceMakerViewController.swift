@@ -6,6 +6,8 @@
 
 import UIKit
 
+
+
 class JuiceMakerViewController: UIViewController {
     
     @IBOutlet var currentStrawberryStockLabel: UILabel!
@@ -20,6 +22,17 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         addObserver()
         initializeJuiceMaker()
+    }
+    
+    @IBAction func pressOrderButton(_ sender: UIButton) {
+        let juice = JuiceMenu.allCases[sender.tag]
+        order(juice)
+    }
+    
+    @IBAction func presentStockManagerVC(_ sender: Any?) {
+        let stockManagerVC = storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as! StockManagerViewController
+        let navigationController = UINavigationController(rootViewController: stockManagerVC)
+        present(navigationController, animated: true, completion: nil)
     }
     
     private func addObserver() {
@@ -86,17 +99,6 @@ class JuiceMakerViewController: UIViewController {
                 self.currentMangoStockLabel.text = "\(updatedAmount)"
             }
         }
-    }
-    
-    @IBAction func presentStockManagerVC(_ sender: Any?) {
-        let stockManagerVC = storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as! StockManagerViewController
-        let navigationController = UINavigationController(rootViewController: stockManagerVC)
-        present(navigationController, animated: true, completion: nil)
-    }
-    
-    @IBAction func pressOrderButton(_ sender: UIButton) {
-        let juice = JuiceMenu.allCases[sender.tag]
-        order(juice)
     }
 }
 

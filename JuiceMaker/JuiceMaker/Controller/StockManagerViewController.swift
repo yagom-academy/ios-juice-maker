@@ -15,9 +15,10 @@ class StockManagerViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        self.title = "Stock Manager"
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissStockManagerVC))
         let add = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissStockManagerVC))
+        
+        self.title = "Stock Manager"
         self.navigationItem.leftBarButtonItem = cancel
         self.navigationItem.rightBarButtonItem = add
     }
