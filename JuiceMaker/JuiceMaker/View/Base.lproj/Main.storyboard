@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -128,7 +128,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jtt-aP-Y9s"/>
-                                                    <action selector="orderStrawberryBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mkc-ij-P3r"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
@@ -241,7 +240,6 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="orderStrawberryBananaJuice" destination="hrc-2F-fzl" id="SZ8-9g-pPl"/>
                         <outlet property="stockOfBanana" destination="gvk-pA-Lw5" id="cVp-wS-BJe"/>
                         <outlet property="stockOfKiwi" destination="FZq-de-TJG" id="j1n-Fx-IxG"/>
                         <outlet property="stockOfMango" destination="3Ce-SU-JeH" id="NIp-iy-Nea"/>

@@ -51,5 +51,9 @@ struct JuiceMaker {
             fruitStore.changeQuantity(of: fruit, count: count, by: .subtraction)
         }
     }
+    
+    func checkFruitStock() -> [Fruit: String] {
+        return fruitStore.fruitStock.mapValues { String($0) }
+    }
 }
 
