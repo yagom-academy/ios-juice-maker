@@ -82,7 +82,6 @@ class OrderJuiceViewController: UIViewController {
     func makeJuice(juiceName: JuiceName) {
         do {
             try juiceMaker.make(juiceName: juiceName)
-            initializeLabel()
             showSuccessAlert(message: "\(juiceName.kor) 나왔습니다! 맛있게 드세요!")
         } catch FruitStoreError.lackOfStock(let count) {
             let description = FruitStoreError.lackOfStock(neededStock: count).description
