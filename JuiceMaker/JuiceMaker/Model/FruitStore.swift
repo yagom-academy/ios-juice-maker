@@ -15,22 +15,32 @@ class FruitStore {
         }
     }
     
-    private func hasEnoughStock(of fruit: Fruit, count: Int) -> Bool {
-        guard let fruitAmount = stockOfFruit[fruit],
-              fruitAmount >= count else {
-                  return false
-              }
-        return true
+    private func postNotification(for fruit: Fruit, stock: Int, succeed: Bool) {
+        notificationCenter.post(name: Notification.Name.stockInformation,
+                                object: nil,
+                                userInfo: [NotificationKey.fruit: fruit,
+                                           NotificationKey.stock: stock,
+                                           NotificationKey.subtractResult: succeed])
+    }
+    
+    private func hasEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
+        if let fruitAmount = stockOfFruit[fruit], fruitAmount >= amount {
+            return true
+        } else {
+            postNotification(for: fruit, stock: amount, succeed: false)
+            return false
+        }
     }
     
     func subtractStock(of fruit: Fruit, amount: Int) {
-            if let stock = stockOfFruit[fruit] {
-                stockOfFruit[fruit] = stock - amount
-            }
+        if let stock = stockOfFruit[fruit] {
+            stockOfFruit[fruit] = stock - amount
+            postNotification(for: fruit, stock: amount, succeed: true)
+        }
     }
     
     func consumeFruits(firstFruit: Fruit, firstFruitAmount: Int, secondFruit: Fruit? = nil, secondFruitAmount: Int? = nil) {
-        guard hasEnoughStock(of: firstFruit, count: firstFruitAmount) else {
+        guard hasEnoughStock(of: firstFruit, amount: firstFruitAmount) else {
             return
         }
         
@@ -39,7 +49,7 @@ class FruitStore {
                subtractStock(of: firstFruit, amount: firstFruitAmount)
                return
         }
-        guard hasEnoughStock(of: secondFruit, count: secondFruitAmount) else {
+        guard hasEnoughStock(of: secondFruit, amount: secondFruitAmount) else {
             return
         }
         
