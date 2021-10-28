@@ -21,7 +21,7 @@ class JuiceMakerViewController: UIViewController {
             object: nil)
     }
     
-    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue) { }
+    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) { }
     
     @IBOutlet var fruitCountLabels: [UILabel]!
     

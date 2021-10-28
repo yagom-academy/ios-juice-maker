@@ -25,7 +25,7 @@ class ModifyInventoryViewController: UIViewController {
     @IBOutlet var fruitSteppers: [UIStepper]!
     
     @objc
-    func updateFruitCount() {
+    private func updateFruitCount() {
         do {
             for (fruit, count) in FruitStore.shared.fruitInventory {
                 guard let label = fruitCountLabels.filter({
