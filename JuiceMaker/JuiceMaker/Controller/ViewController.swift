@@ -22,25 +22,21 @@ class ViewController: UIViewController {
         changeStockLabel()
     }
     
-    func showAlert(isSuccess: Bool, message: String) {
-        if isSuccess {
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.viewDidLoad()
+    func changeStockLabel() {
+        let currentStock = juiceMaker.checkFruitStock()
+        for (fruit, stock) in currentStock {
+            switch fruit {
+            case .strawberry:
+                stockOfStrawberry.text = stock
+            case .banana:
+                stockOfBanana.text = stock
+            case .pineapple:
+                stockOfPineapple.text = stock
+            case .kiwi:
+                stockOfKiwi.text = stock
+            case .mango:
+                stockOfMango.text = stock
             }
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
-            let moveEditView = UIAlertAction(title: "재고수정하기", style: .default) {_ in
-                self.moveEditView()
-            }
-            let closeAlert = UIAlertAction(title: "닫기", style: .default) {_ in
-                self.viewDidLoad()
-            }
-            alert.addAction(moveEditView)
-            alert.addAction(closeAlert)
-            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -77,21 +73,25 @@ class ViewController: UIViewController {
         }
     }
     
-    func changeStockLabel() {
-        let currentStock = juiceMaker.checkFruitStock()
-        for (fruit, stock) in currentStock {
-            switch fruit {
-            case .strawberry:
-                stockOfStrawberry.text = stock
-            case .banana:
-                stockOfBanana.text = stock
-            case .pineapple:
-                stockOfPineapple.text = stock
-            case .kiwi:
-                stockOfKiwi.text = stock
-            case .mango:
-                stockOfMango.text = stock
+    func showAlert(isSuccess: Bool, message: String) {
+        if isSuccess {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.viewDidLoad()
             }
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+            let moveEditView = UIAlertAction(title: "재고수정하기", style: .default) {_ in
+                self.moveEditView()
+            }
+            let closeAlert = UIAlertAction(title: "닫기", style: .default) {_ in
+                self.viewDidLoad()
+            }
+            alert.addAction(moveEditView)
+            alert.addAction(closeAlert)
+            present(alert, animated: true, completion: nil)
         }
     }
     
