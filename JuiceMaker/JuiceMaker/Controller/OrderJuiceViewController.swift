@@ -12,7 +12,9 @@ class OrderJuiceViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshStockLabel), name: .didChangeStock, object: nil)
+        initializeLabel()
+
         initializeLabel()
     }
     
