@@ -18,7 +18,7 @@ class FruitStore {
     static let shared: FruitStore = FruitStore()
     
     private(set) var inventory: [Fruit] = []
- 
+    
     func initializeInventory() {
         for fruit in FruitName.allCases {
             inventory.append(Fruit(name: fruit))
@@ -37,14 +37,8 @@ class FruitStore {
     }
     
     func addStock(count: Int, to fruit: FruitName) throws {
-//        do {
-            let indexOfFruit = try findIndexFromInventory(with: fruit)
-            inventory[indexOfFruit].count += count
-//        } catch FruitStoreError.invalidFruitChoice {
-//            print(FruitStoreError.invalidFruitChoice.description)
-//        } catch {
-//            print(error)
-//        }
+        let indexOfFruit = try findIndexFromInventory(with: fruit)
+        inventory[indexOfFruit].count += count
     }
     
     private func checkEnoughStock(from index: Int, for count: Int) throws {
@@ -54,16 +48,8 @@ class FruitStore {
     }
     
     func subtractStock(count: Int, from fruit: FruitName) throws {
-//        do {
-            let indexOfFruit = try findIndexFromInventory(with: fruit)
-            try checkEnoughStock(from: indexOfFruit, for: count)
-            inventory[indexOfFruit].count -= count
-//        } catch FruitStoreError.invalidFruitChoice {
-//            print(FruitStoreError.invalidFruitChoice.description)
-//        } catch FruitStoreError.lackOfStock(let count) {
-//            print(FruitStoreError.lackOfStock(neededStock: count).description)
-//        } catch {
-//            print(error)
-//        }
+        let indexOfFruit = try findIndexFromInventory(with: fruit)
+        try checkEnoughStock(from: indexOfFruit, for: count)
+        inventory[indexOfFruit].count -= count
     }
 }

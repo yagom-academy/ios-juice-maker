@@ -1,10 +1,3 @@
-//
-//  Error.swift
-//  JuiceMaker
-//
-//  Created by Seul Mac on 2021/10/28.
-//
-
 import Foundation
 
 enum FruitStoreError: LocalizedError {

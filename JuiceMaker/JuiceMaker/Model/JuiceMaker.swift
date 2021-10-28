@@ -85,13 +85,7 @@ struct JuiceMaker {
     }
     
     mutating func make(juiceName: JuiceName) throws {
-//        do {
-            let foundRecipe = try findRecipe(of: juiceName)
-            try blendIngredient(by: foundRecipe)
-//        } catch JuiceMakerError.invalidMenuChoice {
-//            print(JuiceMakerError.invalidMenuChoice.description)
-//        } catch {
-//            print(error)
-//        }
+        let foundRecipe = try findRecipe(of: juiceName)
+        try blendIngredient(by: foundRecipe)
     }
 }
