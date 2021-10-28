@@ -20,11 +20,11 @@ enum JuiceMenu: String {
         switch selectedNumber {
         case 0: return JuiceMenu.strawberryJuice
         case 1: return JuiceMenu.bananaJuice
+        case 2: return JuiceMenu.pineappleJuice
         case 3: return  JuiceMenu.kiwiJuice
-        case 4: return JuiceMenu.pineappleJuice
-        case 5: return JuiceMenu.mangoJuice
-        case 6: return JuiceMenu.ddalbaJuice
-        case 7: return JuiceMenu.mangKiJuice
+        case 4: return JuiceMenu.mangoJuice
+        case 5: return JuiceMenu.ddalbaJuice
+        case 6: return JuiceMenu.mangKiJuice
         default: return JuiceMenu.strawberryJuice
         }
     }
