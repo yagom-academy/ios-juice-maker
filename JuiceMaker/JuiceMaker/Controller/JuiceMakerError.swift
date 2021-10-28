@@ -8,6 +8,7 @@
 import Foundation
 
 enum FruitError: LocalizedError {
+    case notFoundView(AnyObject,String)
     case notFoundID(AnyObject,String)
     case notFoundJuice
     case notFoundFruitCount(AnyObject, String)
@@ -20,10 +21,15 @@ enum FruitError: LocalizedError {
                    \(VC)
                    ID(\(viewID))에 해당하는 과일의 갯수를 찾을 수 없습니다.
                    """
-        case .notFoundID(let VC, let viewName):
+        case .notFoundView(let VC, let viewName):
             return """
                     \(VC)
-                    StoryBoard의 \(viewName) 속성 요소에 ID가 지정되지 않았습니다.
+                    StoryBoard의 \(viewName)을 찾을 수 없습니다.
+                   """
+        case .notFoundID(let VC, let viewID):
+            return """
+                    \(VC)
+                    StoryBoard의 \(viewID)을 찾을 수 없습니다.
                    """
         case .notFoundJuice:
             return "과일 ID에 해당하는 주스 케이스를 찾을 수 없습니다."

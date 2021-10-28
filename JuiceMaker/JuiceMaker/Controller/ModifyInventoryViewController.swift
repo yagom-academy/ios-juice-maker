@@ -28,36 +28,46 @@ class ModifyInventoryViewController: UIViewController {
     
     @objc
     func updateFruitCount() {
-        for (fruitName, count) in FruitStore.shared.fruitInventory {
-            guard let label = fruitCountLabels.filter({ compare(fruitName, $0.restorationIdentifier) }).first else {
-                return
+        do {
+            for (fruit, count) in FruitStore.shared.fruitInventory {
+                guard let label = fruitCountLabels.filter({
+                    compare(fruit,by: $0.restorationIdentifier) }).first else {
+                    throw FruitError.notFoundView(self, "Label")
+                }
+                guard let stepper = fruitSteppers.filter({
+                    compare(fruit,by: $0.restorationIdentifier) }).first else {
+                    throw FruitError.notFoundView(self, "Stepper")
+                }
+                label.text = String(count)
+                stepper.value = Double(count)
             }
-            guard let stepper = fruitSteppers.filter({ compare(fruitName, $0.restorationIdentifier) }).first else {
-                return
-            }
-            
-            label.text = String(count)
-            stepper.value = Double(count)
+        } catch {
+            print("ERROR : \(error.localizedDescription)")
         }
     }
     
     @IBAction func clickStepper(_ sender: UIStepper) {
-        guard let (fruitName, previousFruitCount) = FruitStore.shared.fruitInventory.filter({ compare($0.key, sender.restorationIdentifier) }).first else {
-            return
-        }
-        
-        if previousFruitCount - Int(sender.value) > 0 {
-            FruitStore.shared.subtract(fruit: fruitName, of: Int(sender.stepValue))
-        } else {
-            FruitStore.shared.add(fruit: fruitName, of: Int(sender.stepValue))
+        do {
+            guard let (fruit, previousFruitCount) = FruitStore.shared.fruitInventory.filter({
+                compare($0.key, by: sender.restorationIdentifier) }).first else {
+                throw FruitError.notFoundView(self, "Stepper")
+            }
+            
+            if previousFruitCount - Int(sender.value) > 0 {
+                FruitStore.shared.subtract(fruit: fruit, of: Int(sender.stepValue))
+            } else {
+                FruitStore.shared.add(fruit: fruit, of: Int(sender.stepValue))
+            }
+        } catch {
+            print("ERROR : \(error.localizedDescription)")
         }
     }
     
-    private func compare(_ lhs: Fruits, _ rhs: String?) -> Bool {
-        guard let id = rhs, let fruit = Fruits.findFruit(by: id) else {
+    private func compare(_ fruit: Fruits, by fruitID: String?) -> Bool {
+        guard let fruitID = fruitID, let foundfruit = Fruits.findFruit(by: fruitID) else {
             return false
         }
-        return lhs == fruit
+        return fruit == foundfruit
     }
     
 }
