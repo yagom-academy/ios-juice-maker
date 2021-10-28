@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore(initialStock: 10)
+    private let fruitStore = FruitStore(stock: 10)
 
     func make(_ seletedJuice: Menu) -> Bool {
         let recipe: [Fruit : Int] = seletedJuice.recipe

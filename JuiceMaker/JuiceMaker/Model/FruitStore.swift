@@ -12,9 +12,9 @@ class FruitStore {
         case subtraction
     }
     
-    init(initialStock: Int) {
+    init(stock: Int) {
         let uniqueKeys = Fruit.allCases
-        let values = Array(repeating: initialStock, count: uniqueKeys.count)
+        let values = Array(repeating: stock, count: uniqueKeys.count)
         let dict: [Fruit: Int] = Dictionary(uniqueKeysWithValues: zip(uniqueKeys, values))
         
         self.fruitStock = dict
