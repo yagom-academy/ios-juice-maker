@@ -57,7 +57,7 @@ struct Juice {
 
 struct JuiceMaker {
     
-    let store = FruitStore()
+    let store = FruitStore.shared
     
     private var recipe: [JuiceName: [ingredient]] = [:]
     

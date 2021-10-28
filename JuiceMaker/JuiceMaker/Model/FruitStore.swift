@@ -23,6 +23,8 @@ class FruitStore {
         }
     }
     
+    static let shared: FruitStore = FruitStore()
+    
     private func findIndexFromInventory(with fruit: FruitName) throws -> Int {
         guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
             throw FruitStoreError.invalidFruitChoice
@@ -61,7 +63,7 @@ class FruitStore {
 //        }
     }
     
-    init() {
+    private init() {
         initializeInventory()
     }
 }
