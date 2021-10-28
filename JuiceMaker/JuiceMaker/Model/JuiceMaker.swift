@@ -57,17 +57,6 @@ struct Juice {
 
 struct JuiceMaker {
     
-    enum JuiceMakerError: LocalizedError {
-        case invalidMenuChoice
-        
-        var description: String {
-            switch self {
-            case .invalidMenuChoice:
-                return "메뉴에 없습니다. 다시 선택해주세요."
-            }
-        }
-    }
-    
     let store = FruitStore()
     
     private var recipe: [JuiceName: [ingredient]] = [:]
