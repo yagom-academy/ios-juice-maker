@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    enum Juice: Equatable, CaseIterable {
+    enum Juice: CaseIterable, CustomStringConvertible {
         case strawberryJuice
         case bananaJuice
         case kiwiJuice
@@ -51,6 +51,25 @@ struct JuiceMaker {
                 return [.mango: 3]
             case .kiwiMangoJuice:
                 return [.mango: 2, .kiwi: 1]
+            }
+        }
+        
+        var description: String {
+            switch self {
+            case .strawberryJuice:
+                return "딸기 주스"
+            case .bananaJuice:
+                return "바나나 주스"
+            case .kiwiJuice:
+                return "키위 주스"
+            case .pineappleJuice:
+                return "파인애플 주스"
+            case .strawberryBananaJuice:
+                return "딸기바나나 주스"
+            case .mangoJuice:
+                return "망고 주스"
+            case .kiwiMangoJuice:
+                return "키위망고 주스"
             }
         }
     }

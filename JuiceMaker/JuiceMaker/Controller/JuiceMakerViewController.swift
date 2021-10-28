@@ -29,17 +29,14 @@ class JuiceMakerViewController: UIViewController {
         guard let juiceID = sender.restorationIdentifier else {
             return
         }
-        
-        guard let juice = JuiceMaker.Juice.findJuice(juiceID: juiceID) else {
+        guard let orderedjuice = JuiceMaker.Juice.findJuice(juiceID: juiceID) else {
             return
         }
-        
-        // MARK: 영어 -> 한글 변경
-        guard let _ = juiceMaker.order(juice: juice) else {
+        guard let madejuice = juiceMaker.order(juice: orderedjuice) else {
             alertMessage(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?", handler:{ _ in self.presentModifyView() })
             return
         }
-        alertMessage(title: "주스 제조 완료", message: "\(juiceID) 제조가 완료되었습니다.", handler: nil)
+        alertMessage(title: "주스 제조 완료", message: "\(madejuice) 제조가 완료되었습니다.", handler: nil)
     }
     
     func alertMessage(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
