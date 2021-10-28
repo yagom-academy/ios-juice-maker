@@ -36,7 +36,7 @@ class JuiceOrderViewController: UIViewController {
         case kiwiOrderButton: juice = .kiwi
         case pineappleOrderButton: juice = .pineapple
         default:
-            juice = .strawberry // temp
+            juice = .strawberry //temp
         }
         
         manageJuiceMaking(juice: juice)
@@ -50,6 +50,9 @@ class JuiceOrderViewController: UIViewController {
         }
         catch FruitStockError.outOfStock {
             showNotEnoughStock()
+        }
+        catch FruitStockError.invalidValue {
+            showSystemError()
         }
         catch {
             print(error)
@@ -80,6 +83,13 @@ class JuiceOrderViewController: UIViewController {
         let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
         alert.addAction(okAction)
         alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showSystemError() {
+        let alert = UIAlertController(title: nil, message: "SystemError", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+        alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
     
