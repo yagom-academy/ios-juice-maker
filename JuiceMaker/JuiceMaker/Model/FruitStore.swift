@@ -35,7 +35,7 @@ class FruitStore {
     func subtractStock(of fruit: Fruit, amount: Int) {
         if let stock = stockOfFruit[fruit] {
             stockOfFruit[fruit] = stock - amount
-            postNotification(for: fruit, stock: amount, succeed: true)
+            postNotification(for: fruit, stock: stock - amount, succeed: true)
         }
     }
     
