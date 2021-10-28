@@ -36,10 +36,30 @@ class ViewController: UIViewController {
                                        object: nil)
     }
     
+    func updateFruitLabel(for fruit: Fruit, stock: Int) {
+            switch fruit {
+            case .strawberry:
+                strawberryLabel.text = String(stock)
+            case .banana:
+                bananaLabel.text = String(stock)
+            case .pineapple:
+                pineappleLabel.text = String(stock)
+            case .kiwi:
+                kiwiLabel.text = String(stock)
+            case .mango:
+                mangoLabel.text = String(stock)
+            }
+        }
+    
     @objc func didReceiveNotification(_ notification: Notification) {
         if let fruit = notification.userInfo?[NotificationKey.fruit] as? Fruit,
            let stock = notification.userInfo?[NotificationKey.stock] as? Int,
            let orderComplete = notification.userInfo?[NotificationKey.orderComplete] as? Bool {
+            if orderComplete == true {
+                updateFruitLabel(for: fruit, stock: stock)
+            } else {
+                showOrderFailAlert(fruit: fruit)
+            }
         }
     }
 
@@ -70,6 +90,20 @@ class ViewController: UIViewController {
     @IBAction func orderMangoJuice(_ sender: UIButton) {
         juiceMaker.makeFruitJuice(juice: .mangoKiwiJuice)
     }
+    
+    func showOrderFailAlert(fruit: Fruit) {
+            let message = "\(fruit.description)의 재고가 부족합니다. 재고를 수정할까요?"
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+            let okAction = UIAlertAction(title: "넹!", style: .default) { _ in
+                let stockController = self.storyboard?.instantiateViewController(withIdentifier: "stockController")
+                self.present(stockController!, animated: true)
+            }
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
+        }
     
 }
 
