@@ -21,18 +21,20 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    private let juiceMaker: JuiceMaking = JuiceMaker(store: FruitStore())
+    
+    private var juiceMaker: JuiceMaking?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeFruitStockLabels()
         NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
+        juiceMaker = JuiceMaker(store: FruitStore())
+        initializeFruitStockLabels()
     }
     
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
             let juiceMenu = try matchJuiceMenu(with: sender)
-            try juiceMaker.makeJuice(menu: juiceMenu)
+            try juiceMaker?.makeJuice(menu: juiceMenu)
             showSuccessAlert(juiceMenu: juiceMenu)
         } catch FruitStoreError.stockShortage {
             showFailureAlert()
@@ -58,6 +60,9 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func updateLabel(fruit: Fruit) throws {
+        guard let juiceMaker = juiceMaker else {
+            throw FruitStoreError.stockDataMissing
+        }
         switch fruit {
         case .strawberry:
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
@@ -73,6 +78,10 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func initializeFruitStockLabels() {
+        guard let juiceMaker = juiceMaker else {
+            showErrorAlert(error: FruitStoreError.stockDataMissing)
+            return
+        }
         do {
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
             bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))
