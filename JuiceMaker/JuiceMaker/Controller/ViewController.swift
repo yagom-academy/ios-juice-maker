@@ -16,18 +16,42 @@ class ViewController: UIViewController {
     @IBOutlet var stockOfKiwi: UILabel!
     @IBOutlet var stockOfMango: UILabel!
     
-    @IBAction func orderJuice(_ sender: UIButton) {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let fruitStock: [Fruit: String] = juiceMaker.checkFruitStock()
-        changeStockLabel(to: fruitStock)
+        changeStockLabel()
     }
     
-    func changeStockLabel(to fruitStock: [Fruit: String]) {
-        for (fruit, stock) in fruitStock {
+    @IBAction func orderJuice(_ sender: UIButton) {
+        let juice = switchMenuToUIButton(button: sender)
+        try? juiceMaker.make(juice)
+        changeStockLabel()
+    }
+    
+    func switchMenuToUIButton(button: UIButton) -> Menu {
+        switch button.currentTitle {
+        case "딸바쥬스 주문":
+            return Menu.strawberryBananaJuice
+        case "망키쥬스 주문":
+            return Menu.mangoKiwiJuice
+        case "딸기쥬스 주문":
+            return Menu.strawberryJuice
+        case "바나나쥬스 주문":
+            return Menu.bananaJuice
+        case "파인애플쥬스 주문":
+            return Menu.pineappleJuice
+        case "키위쥬스 주문":
+            return Menu.kiwiJuice
+        case "망고쥬스 주문":
+            return Menu.mangoJuice
+        default:
+            fatalError("Non-Existent Button")
+        }
+    }
+    
+    func changeStockLabel() {
+        let currentStock = juiceMaker.checkFruitStock()
+        for (fruit, stock) in currentStock {
             switch fruit {
             case .strawberry:
                 stockOfStrawberry.text = stock
