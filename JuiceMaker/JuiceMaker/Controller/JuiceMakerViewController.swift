@@ -6,8 +6,6 @@
 
 import UIKit
 
-
-
 class JuiceMakerViewController: UIViewController {
     
     @IBOutlet var currentStrawberryStockLabel: UILabel!

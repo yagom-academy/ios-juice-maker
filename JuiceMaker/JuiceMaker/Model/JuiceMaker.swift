@@ -6,7 +6,6 @@
 
 import Foundation
 
-
 enum JuiceMenu: String, CustomStringConvertible, CaseIterable {
     case strawberryJuice = "딸기 쥬스"
     case banannaJuice = "바나나 쥬스"
