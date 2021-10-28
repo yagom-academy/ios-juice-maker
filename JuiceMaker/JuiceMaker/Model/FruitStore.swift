@@ -20,21 +20,21 @@ class FruitStore {
         self.fruitStock = dict
     }
     
-    func changeQuantity(of fruit: Fruit, count: Int, by: Operation) {
+    func changeQuantity(of fruit: Fruit, count: Int, by operation: Operation) {
         guard let stock = fruitStock[fruit], stock >= 0 else {
             return
         }
         
-        let operation: ((Int, Int) -> Int)
+        let calculator: ((Int, Int) -> Int)
         
-        switch by {
+        switch operation {
         case .addition:
-            operation = { $0 + $1 }
+            calculator = { $0 + $1 }
         case .subtraction:
-            operation = { $0 - $1 }
+            calculator = { $0 - $1 }
         }
         
-        fruitStock[fruit] = operation(stock, count)
+        fruitStock[fruit] = calculator(stock, count)
     }
     
     func isRemaining(of recipe: [Fruit : Int]) -> Bool {
