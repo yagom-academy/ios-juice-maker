@@ -43,6 +43,7 @@ class FruitStore {
     func addStock(count: Int, to fruit: FruitName) throws {
         let indexOfFruit = try findIndexFromInventory(with: fruit)
         inventory[indexOfFruit].count += count
+        NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
     }
     
     private func checkEnoughStock(from index: Int, for count: Int) throws {
@@ -55,5 +56,6 @@ class FruitStore {
         let indexOfFruit = try findIndexFromInventory(with: fruit)
         try checkEnoughStock(from: indexOfFruit, for: count)
         inventory[indexOfFruit].count -= count
+        NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
     }
 }
