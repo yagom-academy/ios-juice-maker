@@ -7,24 +7,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     let notificationCenter: NotificationCenter = .default
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet private weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+    @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {
         guard let orderedJuice = takeJuiceOrder(from: sender) else {
             return
         }
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
     
-    @objc func updateAllStockLabels() {
+    @objc private func updateAllStockLabels() {
         let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
         
         for stockLabel in stockLabels {
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateStockLabel(with label: UILabel) {
+    private func updateStockLabel(with label: UILabel) {
         guard let fruit = matchFruit(with: label) else {
             return
         }
