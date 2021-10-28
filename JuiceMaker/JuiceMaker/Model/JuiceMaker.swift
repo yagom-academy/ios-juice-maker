@@ -8,7 +8,7 @@ import Foundation
 
 fileprivate typealias Recipe = [Fruit: Int]
 
-enum Juice: String, CustomStringConvertible {
+enum Juice: String {
     case strawberry = "딸기"
     case banana = "바나나"
     case kiwi = "키위"
@@ -17,7 +17,7 @@ enum Juice: String, CustomStringConvertible {
     case mango = "망고"
     case mangoKiwi = "망키"
     
-    var description: String {
+    var name: String {
         return rawValue
     }
     

@@ -50,7 +50,7 @@ class JuiceMakerViewController: UIViewController {
         case orderMangoJuiceButton:
             juice = .mango
         default:
-            showNotificationAlert(message: Text.unknownError.description)
+            showNotificationAlert(message: Message.unknownError.description)
             return
         }
         
@@ -60,19 +60,19 @@ class JuiceMakerViewController: UIViewController {
     func mixFruit(juice: Juice) {
         do {
             try juiceMaker.mixFruit(juice: juice)
-            showNotificationAlert(message: Text.juiceFinish(juice: juice).description)
+            showNotificationAlert(message: Message.juiceFinish(juice: juice).description)
         } catch RequestError.fruitStockOut {
             showOutOfStockAlert()
         } catch let error as RequestError {
             showNotificationAlert(message: error.errorDescription)
         } catch {
-            showNotificationAlert(message: Text.unknownError.description)
+            showNotificationAlert(message: Message.unknownError.description)
         }
     }
     
     @objc func fruitLabelChanged(notification: Notification) {
         guard let fruit = notification.object as? Fruit else {
-            showNotificationAlert(message: Text.unknownError.description)
+            showNotificationAlert(message: Message.unknownError.description)
             return
         }
         currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
@@ -89,11 +89,11 @@ class JuiceMakerViewController: UIViewController {
     func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
         do {
             let stock = try FruitStore.shared.stock(fruit: fruit)
-            label.text = stock.description
+            label.Message = stock.description
         } catch let error as RequestError {
             showNotificationAlert(message: error.errorDescription)
         } catch {
-            showNotificationAlert(message: Text.unknownError.description)
+            showNotificationAlert(message: Message.unknownError.description)
         }
     }
     
@@ -112,7 +112,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func showNotificationAlert(message: String, title: String = Text.ok.description) {
+    func showNotificationAlert(message: String, title: String = Message.ok.description) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let cancel = UIAlertAction(title: title, style: .cancel, handler: nil)
         alert.addAction(cancel)
@@ -120,9 +120,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func showOutOfStockAlert() {
-        let alert = UIAlertController(title: nil, message: Text.outOfStock.description, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: Text.cancel.description, style: .cancel, handler: nil)
-        let okAction = UIAlertAction(title: Text.ok.description, style: .default) { _ in
+        let alert = UIAlertController(title: nil, message: Message.outOfStock.description, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: Message.cancel.description, style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: Message.ok.description, style: .default) { _ in
             guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreView") else { return }
             self.present(viewController, animated: true, completion: nil)
         }
