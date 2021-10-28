@@ -11,7 +11,7 @@ struct JuiceMaker {
         do {
           try fruitStore.consumeStock(with: juice)
         } catch {
-            print("재료가 모자라요. 재고를 수정할까요?")
+            print("")
         }
     }
 }

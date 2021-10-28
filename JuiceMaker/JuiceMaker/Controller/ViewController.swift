@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -50,7 +51,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func touchUpStrawberryBananaJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .strawberryJuice)
+        orderJuice(juice: .strawberryBananaJuice)
     }
     
     @IBAction func touchUpMangoKiwiJuiceOrder(_ sender: UIButton) {
@@ -79,7 +80,7 @@ class ViewController: UIViewController {
     
     func orderJuice(juice: Juice) {
         do {
-            juiceMaker.make(juice: juice)
+            try fruitStore.consumeStock(with: juice)
             showExistStockAlert(message: "\(juice) 쥬스 나왔습니다. 맛있게 드세요!")
             try updateFruitStockLabel()
         } catch {
@@ -89,7 +90,6 @@ class ViewController: UIViewController {
     
     func showExistStockAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
         let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
         
         alert.addAction(okAction)
@@ -99,9 +99,11 @@ class ViewController: UIViewController {
     
     func showNoExistStockAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
-        let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default, handler: nil)
-        
+        let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { (action) in
+            guard let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") else { return }
+            
+            self.present(nextViewController, animated: true, completion: nil)
+        }
         let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
         
         alert.addAction(cancelAction)

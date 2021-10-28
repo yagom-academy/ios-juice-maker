@@ -37,7 +37,7 @@ class FruitStore {
     }
     
     func decreaseStock(from fruit: Fruit, by input: Int) throws {
-        guard let currentStock = stock[fruit], currentStock > input else {
+        guard let currentStock = stock[fruit], currentStock >= input else {
             throw StockError.notEnoughStock
         }
         
