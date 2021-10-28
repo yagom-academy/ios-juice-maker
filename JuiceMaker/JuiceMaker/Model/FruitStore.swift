@@ -6,7 +6,6 @@
 
 import Foundation
 
-private let defaultFruitCount = 10
 
 enum Fruit: CaseIterable {
     case strawberry
@@ -16,11 +15,15 @@ enum Fruit: CaseIterable {
     case mango
 }
 
+private enum Const {
+    static let defaultFruitCount = 10
+}
+
 class FruitStore {
     static let shared: FruitStore = FruitStore()
     private var fruitBasket: [Fruit: Int]
     
-    init(count: Int = defaultFruitCount) {
+    init(count: Int = Const.defaultFruitCount) {
         let allFruits = Fruit.allCases
         let fruitscount = Array(repeating: count, count: allFruits.count)
         
