@@ -16,6 +16,19 @@ enum JuiceMenu: String {
     case ddalbaJuice = "딸바쥬스"
     case mangKiJuice = "망키쥬스"
     
+    static func matchJuice(with selectedNumber: Int) -> JuiceMenu {
+        switch selectedNumber {
+        case 0: return JuiceMenu.strawberryJuice
+        case 1: return JuiceMenu.bananaJuice
+        case 3: return  JuiceMenu.kiwiJuice
+        case 4: return JuiceMenu.pineappleJuice
+        case 5: return JuiceMenu.mangoJuice
+        case 6: return JuiceMenu.ddalbaJuice
+        case 7: return JuiceMenu.mangKiJuice
+        default: return JuiceMenu.strawberryJuice
+        }
+    }
+    
     enum FruitQuantity {
         static let strawberryOfStrawberryJuice = 16
         static let bananaOfBananaJuice = 2
