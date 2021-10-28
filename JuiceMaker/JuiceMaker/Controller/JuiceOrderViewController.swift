@@ -6,12 +6,12 @@ class JuiceOrderViewController: UIViewController {
     private let fruitStore: FruitStore = FruitStore.shared
     
     @IBOutlet weak var strawberryBananaOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiOrder: UIButton!
-    @IBOutlet weak var strawberryOrder: UIButton!
-    @IBOutlet weak var bananaOrder: UIButton!
-    @IBOutlet weak var mangoOrder: UIButton!
-    @IBOutlet weak var kiwiOrder: UIButton!
-    @IBOutlet weak var pineappleOrder: UIButton!
+    @IBOutlet weak var mangoKiwiOrderButton: UIButton!
+    @IBOutlet weak var strawberryOrderButton: UIButton!
+    @IBOutlet weak var bananaOrderButton: UIButton!
+    @IBOutlet weak var mangoOrderButton: UIButton!
+    @IBOutlet weak var kiwiOrderButton: UIButton!
+    @IBOutlet weak var pineappleOrderButton: UIButton!
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -28,21 +28,21 @@ class JuiceOrderViewController: UIViewController {
         var juice: Juices
         
         switch sender {
-        case strawberryOrder: juice = .strawberry
+        case strawberryOrderButton: juice = .strawberry
         case strawberryBananaOrderButton: juice = .strawberrybanana
-        case bananaOrder: juice = .banana
-        case mangoKiwiOrder: juice = .mangokiwi
-        case mangoOrder: juice = .mango
-        case kiwiOrder: juice = .kiwi
-        case pineappleOrder: juice = .pineapple
+        case bananaOrderButton: juice = .banana
+        case mangoKiwiOrderButton: juice = .mangokiwi
+        case mangoOrderButton: juice = .mango
+        case kiwiOrderButton: juice = .kiwi
+        case pineappleOrderButton: juice = .pineapple
         default:
             juice = .strawberry // temp
         }
         
-        welcomeJuice(juice: juice)
+        manageJuiceMaking(juice: juice)
     }
     
-    func welcomeJuice(juice: Juices) {
+    func manageJuiceMaking(juice: Juices) {
         do {
             try juiceMaker.makeJuice(juice: juice)
             updateFruitsStock()

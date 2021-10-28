@@ -243,17 +243,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaOrder" destination="y2A-PH-DJY" id="yJP-Xg-ST4"/>
+                        <outlet property="bananaOrderButton" destination="y2A-PH-DJY" id="2RC-rg-Zkx"/>
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="PFu-Pa-pPb"/>
-                        <outlet property="kiwiOrder" destination="wcW-7H-RXw" id="ub9-9k-zb4"/>
+                        <outlet property="kiwiOrderButton" destination="wcW-7H-RXw" id="ub9-9k-zb4"/>
                         <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="4v9-oW-N6r"/>
-                        <outlet property="mangoKiwiOrder" destination="ngP-kF-Yii" id="ylp-kR-bDB"/>
-                        <outlet property="mangoOrder" destination="BFb-ka-wGA" id="Oix-87-85e"/>
+                        <outlet property="mangoKiwiOrderButton" destination="ngP-kF-Yii" id="H1d-98-PtO"/>
+                        <outlet property="mangoOrderButton" destination="BFb-ka-wGA" id="Oix-87-85e"/>
                         <outlet property="mangoStockLabel" destination="ccQ-Dk-PuY" id="de4-77-NVa"/>
-                        <outlet property="pineappleOrder" destination="q6G-4X-bVm" id="4Ku-Z2-cmI"/>
+                        <outlet property="pineappleOrderButton" destination="q6G-4X-bVm" id="4Ku-Z2-cmI"/>
                         <outlet property="pineappleStockLabel" destination="3Ce-SU-JeH" id="ZDw-7N-mxN"/>
                         <outlet property="strawberryBananaOrderButton" destination="hrc-2F-fzl" id="iUS-IX-13b"/>
-                        <outlet property="strawberryOrder" destination="avd-o5-3JM" id="dxO-F4-498"/>
+                        <outlet property="strawberryOrderButton" destination="avd-o5-3JM" id="X4J-0c-IU4"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="8HN-zo-Nu6"/>
                     </connections>
                 </viewController>
