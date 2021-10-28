@@ -35,7 +35,7 @@ class JuiceMakerViewController: UIViewController {
     
     private func addObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateFruitStockLabel),
+                                               selector: #selector(handleStockChanges),
                                                name: Notification.Name.stockChanged,
                                                object: nil)
     }
@@ -63,7 +63,6 @@ class JuiceMakerViewController: UIViewController {
             self.presentStockManagerVC(nil)
         })
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
         failAlert.addAction(ok)
         failAlert.addAction(cancel)
         failAlert.preferredAction = ok
@@ -74,28 +73,35 @@ class JuiceMakerViewController: UIViewController {
     private func presentSuccessAlert(of juice: JuiceMenu) {
         let successAlert = UIAlertController(title: "\(juice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         successAlert.addAction(UIAlertAction(title: "잘 먹겠습니다🤤", style: .default, handler: nil))
+        
         self.present(successAlert, animated: true, completion: nil)
     }
     
     @objc
-    private func updateFruitStockLabel(notification: Notification) {
+    private func handleStockChanges(of notification: Notification) {
         guard let fruit = notification.userInfo?.keys.first as? Fruit else {
             return
         }
         
-        if let updatedAmount = notification.userInfo?[fruit] as? Int {
-            switch fruit {
-            case .strawberry:
-                self.currentStrawberryStockLabel.text = "\(updatedAmount)"
-            case .bananna:
-                self.currentBanannaStockLabel.text = "\(updatedAmount)"
-            case .pineapple:
-                self.currentPineappleStockLabel.text = "\(updatedAmount)"
-            case .kiwi:
-                self.currentKiwiStockLabel.text = "\(updatedAmount)"
-            case .mango:
-                self.currentMangoStockLabel.text = "\(updatedAmount)"
-            }
+        guard let updatedAmount = notification.userInfo?[fruit] as? Int else {
+            return
+        }
+        
+        updateStockLabel(of: fruit, by: updatedAmount)
+    }
+    
+    private func updateStockLabel(of fruit: Fruit, by updatedAmount: Int) {
+        switch fruit {
+        case .strawberry:
+            self.currentStrawberryStockLabel.text = "\(updatedAmount)"
+        case .bananna:
+            self.currentBanannaStockLabel.text = "\(updatedAmount)"
+        case .pineapple:
+            self.currentPineappleStockLabel.text = "\(updatedAmount)"
+        case .kiwi:
+            self.currentKiwiStockLabel.text = "\(updatedAmount)"
+        case .mango:
+            self.currentMangoStockLabel.text = "\(updatedAmount)"
         }
     }
 }
