@@ -432,7 +432,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 수정 화면" id="LM9-QO-LDi">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="xyh-TY-aRk">
+                        <barButtonItem key="leftBarButtonItem" title="닫기" id="xyh-TY-aRk">
                             <connections>
                                 <segue destination="A0n-J5-s12" kind="unwind" unwindAction="myUnwindActionWithUnwindSegue:" id="5jC-yJ-mOo"/>
                             </connections>

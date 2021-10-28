@@ -8,11 +8,8 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
     
-    let juiceMaker = JuiceMaker(fruitStorage: FruitStore.shared)
+    private let juiceMaker = JuiceMaker(fruitStorage: FruitStore.shared)
     
-    typealias Fruits = FruitStore.Fruits
-    typealias Juice = JuiceMaker.Juice
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +39,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func tryOrder(juice: Juice) {
+    private func tryOrder(juice: Juice) {
         if let madejuice = juiceMaker.order(juice: juice) {
             showAlert(title: "주스 제조 완료", message: "\(madejuice) 제조가 완료되었습니다.")
         } else {
@@ -52,7 +49,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func showAlert(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
+    private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let alertOk = UIAlertAction(title: "확인", style: .default, handler: handler)
@@ -65,13 +62,13 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @objc
-    func updateFruitCount() {
+    private func updateFruitCount() {
         do {
             for (fruit, fruitCount) in FruitStore.shared.fruitInventory {
                 guard let fruitCountLabel = fruitCountLabels.filter({
                     compare(fruit,by: $0.restorationIdentifier) }).first else {
                         throw FruitError.notFoundView(self, "Label")
-                }
+                    }
                 fruitCountLabel.text = String(fruitCount)
             }
         } catch {
@@ -79,7 +76,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func presentModifyView() {
+    private func presentModifyView() {
         let ModifyInventoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyInventory")
         
         present(ModifyInventoryVC, animated: true, completion: nil)
@@ -92,4 +89,3 @@ class JuiceMakerViewController: UIViewController {
         return fruit == foundfruit
     }
 }
-

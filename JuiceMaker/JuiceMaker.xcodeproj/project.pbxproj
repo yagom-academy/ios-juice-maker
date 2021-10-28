@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C17E04FB272799D10026A8AE /* ModifyInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17E04FA272799D10026A8AE /* ModifyInventoryViewController.swift */; };
+		C197D3F2272AAAAE00D0660A /* JuiceMakerEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197D3F1272AAAAE00D0660A /* JuiceMakerEnum.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		C17E04FA272799D10026A8AE /* ModifyInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInventoryViewController.swift; sourceTree = "<group>"; };
+		C197D3F1272AAAAE00D0660A /* JuiceMakerEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerEnum.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				C197D3F1272AAAAE00D0660A /* JuiceMakerEnum.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 			);
 			path = Model;
@@ -178,6 +181,7 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
+				C197D3F2272AAAAE00D0660A /* JuiceMakerEnum.swift in Sources */,
 				F34E7181272A6C4D009CCA21 /* JuiceMakerError.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C17E04FB272799D10026A8AE /* ModifyInventoryViewController.swift in Sources */,

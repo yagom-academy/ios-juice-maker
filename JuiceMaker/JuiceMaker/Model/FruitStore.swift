@@ -8,41 +8,8 @@ import Foundation
 import UIKit
 
 class FruitStore {
-    enum Fruits: String, CaseIterable {
-        case strawberry = "strawberry"
-        case banana = "banana"
-        case pineapple = "pineapple"
-        case kiwi = "kiwi"
-        case mango = "mango"
-        
-        static func findFruit(by fruitID: String) -> Fruits? {
-            if fruitID.hasPrefix("strawberry") {
-                return .strawberry
-            } else if fruitID.hasPrefix("banana") {
-                return .banana
-            } else if fruitID.hasPrefix("pineapple") {
-                return .pineapple
-            } else if fruitID.hasPrefix("kiwi") {
-                return .kiwi
-            } else if fruitID.hasPrefix("mango") {
-                return .mango
-            }
-            return nil
-        }
-    }
-    
+   
     private(set) var fruitInventory: [Fruits: Int]
-    
-    func getFruitCount(by fruitID: String) -> Int? { 
-        guard let fruit = Fruits.findFruit(by: fruitID) else {
-            return nil
-        }
-        guard let fruitCount = fruitInventory[fruit] else {
-            return nil
-        }
-        
-        return fruitCount
-    }
     
     static let shared = FruitStore()
     
@@ -77,5 +44,4 @@ class FruitStore {
         }
         return numberOfFruit >= count
     }
-    
 }

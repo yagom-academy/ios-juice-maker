@@ -9,8 +9,6 @@ import UIKit
 
 class ModifyInventoryViewController: UIViewController {
     
-    typealias Fruits = FruitStore.Fruits
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,5 +67,4 @@ class ModifyInventoryViewController: UIViewController {
         }
         return fruit == foundfruit
     }
-    
 }
