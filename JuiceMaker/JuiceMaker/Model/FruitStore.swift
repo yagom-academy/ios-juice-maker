@@ -20,7 +20,7 @@ class FruitStore {
                                 object: nil,
                                 userInfo: [NotificationKey.fruit: fruit,
                                            NotificationKey.stock: stock,
-                                           NotificationKey.subtractResult: succeed])
+                                           NotificationKey.orderComplete: succeed])
     }
     
     private func hasEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
@@ -43,16 +43,14 @@ class FruitStore {
         guard hasEnoughStock(of: firstFruit, amount: firstFruitAmount) else {
             return
         }
-        
         guard let secondFruit = secondFruit,
-           let secondFruitAmount = secondFruitAmount else {
+              let secondFruitAmount = secondFruitAmount else {
                subtractStock(of: firstFruit, amount: firstFruitAmount)
                return
         }
         guard hasEnoughStock(of: secondFruit, amount: secondFruitAmount) else {
             return
         }
-        
         subtractStock(of: firstFruit, amount: firstFruitAmount)
         subtractStock(of: secondFruit, amount: secondFruitAmount)
     }

@@ -17,5 +17,5 @@ extension Notification.Name {
 enum NotificationKey {
     case fruit
     case stock
-    case subtractResult
+    case orderComplete
 }
