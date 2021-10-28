@@ -23,9 +23,8 @@ class FruitStore {
     func fetchAllStock() -> [Fruit.Name: Int] {
         var fruitStoreInventory = [Fruit.Name: Int]()
         
-        for fruit in Fruit.Name.allCases {
-            fruitStoreInventory.updateValue(fetchStoredFruit(of: fruit).quantity,
-                                            forKey: fetchStoredFruit(of: fruit).name)
+        for fruit in stock {
+            fruitStoreInventory.updateValue(fruit.quantity, forKey: fruit.name)
         }
 
         return fruitStoreInventory
