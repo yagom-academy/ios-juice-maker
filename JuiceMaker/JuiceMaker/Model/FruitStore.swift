@@ -54,6 +54,7 @@ class FruitStore {
         let newStockCount = currentStockCount - amount
         
         stock.updateValue(newStockCount, forKey: fruit)
+        NotificationCenter.default.post(name: .fruitStockCountModified, object: nil)
     }
     
     private func checkAvailableFruits(of requiredFruits: [Fruit:Int]) throws -> Bool {

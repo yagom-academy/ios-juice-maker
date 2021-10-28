@@ -8,7 +8,6 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
-    let notificationCenter: NotificationCenter = .default
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -35,7 +34,6 @@ class JuiceMakerViewController: UIViewController {
         
         do {
             try juiceMaker.make(juice: orderedJuice)
-            notificationCenter.post(name: .completeMakingJuice, object: nil)
             presentCompleteMakingJuiceAlert(juice: orderedJuice)
         } catch ServiceError.notEnoughStock {
             presentNotEnoughStockAlert()
@@ -137,10 +135,10 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         
         updateAllStockLabels()
-        notificationCenter.addObserver(self, selector: #selector(updateAllStockLabels), name: .completeMakingJuice, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateAllStockLabels), name: .fruitStockCountModified, object: nil)
     }
 }
 
 extension Notification.Name {
-    static let completeMakingJuice = Notification.Name("completeMakingJuice")
+    static let fruitStockCountModified = Notification.Name("fruitStockCountModified")
 }
