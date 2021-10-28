@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Fruit: String, CaseIterable, CustomStringConvertible {
     var description: String {
@@ -24,9 +25,14 @@ enum FruitStoreError: Error {
 
 class FruitStore {
     static let shared = FruitStore()
-    
     private static let initialFruitQuantity = 10
-    private var stock: [Fruit: Int]
+    
+    let didChangeStock = Notification.Name("재고 수정 완료")
+    private var stock: [Fruit: Int] {
+        didSet {
+            NotificationCenter.default.post(name: didChangeStock, object: nil)
+        }
+    }
     
     private init(quantity: Int = FruitStore.initialFruitQuantity) {
         self.stock = FruitStore.initializeStock(quantity: quantity)

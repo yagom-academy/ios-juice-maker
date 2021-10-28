@@ -20,9 +20,16 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        initJuiceMakerViewController()
+    }
+    
+    func initJuiceMakerViewController() {
         changeStockLabel()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
     }
 
+    @objc
     func changeStockLabel() {
         strawberryStockLabel.text =  FruitStore.shared.showStock(of: .strawberry)
         bananaStockLabel.text =  FruitStore.shared.showStock(of: .banana)
@@ -37,7 +44,6 @@ class JuiceMakerViewController: UIViewController {
         let juice = Juice(rawValue: order)
         do {
             try juiceMaker.make(juice: juice)
-            changeStockLabel()
             showCompletedOrderAlert(of: order)
         } catch FruitStoreError.outOfStock(let neededFruit) {
             showFailedOrderAlert(fruitAndQuantity: neededFruit)
