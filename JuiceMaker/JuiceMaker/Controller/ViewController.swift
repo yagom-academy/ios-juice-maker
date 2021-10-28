@@ -22,13 +22,26 @@ class ViewController: UIViewController {
         changeStockLabel()
     }
     
-    func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            self.viewDidLoad()
+    func showAlert(isSuccess: Bool, message: String) {
+        if isSuccess {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.viewDidLoad()
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+            let moveEditView = UIAlertAction(title: "재고수정하기", style: .default) {_ in
+                self.moveEditView()
+            }
+            let closeAlert = UIAlertAction(title: "닫기", style: .cancel) {_ in
+                self.viewDidLoad()
+            }
+            alert.addAction(moveEditView)
+            alert.addAction(closeAlert)
+            present(alert, animated: true, completion: nil)
         }
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
@@ -36,10 +49,10 @@ class ViewController: UIViewController {
         let isSuccess: Bool = juiceMaker.make(juice)
         
         if isSuccess {
-            showAlert(message: "\(juice) 나왔습니다! 맛있게 드세요!")
+            showAlert(isSuccess: true, message: "\(juice) 나왔습니다! 맛있게 드세요!")
             changeStockLabel()
         } else {
-            showAlert(message: "실패")
+            showAlert(isSuccess: false, message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
