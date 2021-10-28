@@ -67,6 +67,10 @@ struct JuiceMaker {
         }
     }
     
+    init() {
+        initializeRecipe()
+    }
+    
     private mutating func findRecipe(of juiceName: JuiceName) throws -> [ingredient] {
         guard let foundRecipe = recipe[juiceName] else {
             throw JuiceMakerError.invalidMenuChoice
@@ -89,9 +93,5 @@ struct JuiceMaker {
 //        } catch {
 //            print(error)
 //        }
-    }
-    
-    init() {
-        initializeRecipe()
     }
 }

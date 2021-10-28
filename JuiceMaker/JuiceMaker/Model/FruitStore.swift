@@ -15,6 +15,8 @@ struct Fruit {
 
 class FruitStore {
     
+    static let shared: FruitStore = FruitStore()
+    
     private(set) var inventory: [Fruit] = []
  
     func initializeInventory() {
@@ -23,7 +25,9 @@ class FruitStore {
         }
     }
     
-    static let shared: FruitStore = FruitStore()
+    private init() {
+        initializeInventory()
+    }
     
     private func findIndexFromInventory(with fruit: FruitName) throws -> Int {
         guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
@@ -61,9 +65,5 @@ class FruitStore {
 //        } catch {
 //            print(error)
 //        }
-    }
-    
-    private init() {
-        initializeInventory()
     }
 }
