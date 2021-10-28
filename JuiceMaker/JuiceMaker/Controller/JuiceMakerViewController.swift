@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     let notificationCenter: NotificationCenter = .default
     
@@ -23,6 +23,10 @@ class ViewController: UIViewController {
     @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
+    
+    @IBAction func touchUpModifyStockButton(_ sender: UIBarButtonItem) {
+        presentModifyStockViewController()
+    }
     
     @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {
         guard let orderedJuice = takeJuiceOrder(from: sender) else {
@@ -75,7 +79,7 @@ class ViewController: UIViewController {
     private func presentNotEnoughStockAlert() {
         let notEnoughStockAlert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { _ in
-            self.performSegue(withIdentifier: "showModifyStock", sender: nil)
+            self.presentModifyStockViewController()
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
@@ -83,6 +87,13 @@ class ViewController: UIViewController {
         notEnoughStockAlert.addAction(modifyStockAction)
         
         self.present(notEnoughStockAlert, animated: true, completion: nil)
+    }
+    
+    private func presentModifyStockViewController() {
+        let modifyStockStoryboard = UIStoryboard(name: "ModifyStock", bundle: nil)
+        let modifyStockViewController = modifyStockStoryboard.instantiateViewController(identifier: "ModifyStockViewController")
+        
+        self.present(modifyStockViewController, animated: true, completion: nil)
     }
     
     @objc private func updateAllStockLabels() {
