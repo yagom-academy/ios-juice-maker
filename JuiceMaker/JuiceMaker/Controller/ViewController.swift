@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        guard let orderedJuice = try? takeJuiceOrder(from: sender) else {
+        guard let orderedJuice = takeJuiceOrder(from: sender) else {
             return
         }
         
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func takeJuiceOrder(from button: UIButton) throws -> JuiceMaker.Juice {
+    private func takeJuiceOrder(from button: UIButton) -> JuiceMaker.Juice? {
         switch button {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBananaJuice
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         case mangoJuiceOrderButton:
             return .mangoJuice
         default:
-            throw SystemError.invaildButton
+            return nil
         }
     }
     
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     }
     
     func updateStockLabel(with label: UILabel) {
-        guard let fruit = try? matchFruit(with: label) else {
+        guard let fruit = matchFruit(with: label) else {
             return
         }
         
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         label.text = String(currentStockCount)
     }
     
-    private func matchFruit(with label: UILabel) throws -> FruitStore.Fruit {
+    private func matchFruit(with label: UILabel) -> FruitStore.Fruit? {
         switch label {
         case strawberryStockLabel:
             return .strawberry
@@ -118,7 +118,7 @@ class ViewController: UIViewController {
         case mangoStockLabel:
             return .mango
         default:
-            throw SystemError.invaildLabel
+            return nil
         }
     }
  

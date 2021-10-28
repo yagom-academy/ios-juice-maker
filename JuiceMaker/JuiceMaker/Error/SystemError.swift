@@ -9,8 +9,6 @@ import Foundation
 
 enum SystemError: Error {
     case invaildKey
-    case invaildLabel
-    case invaildButton
 }
 
 extension SystemError: LocalizedError {
@@ -18,10 +16,6 @@ extension SystemError: LocalizedError {
         switch self {
         case .invaildKey:
             return "Dictionary의 Key가 유효하지 않습니다."
-        case .invaildLabel:
-            return "유효하지 않은 Label입니다."
-        case .invaildButton:
-            return "유효하지 않은 Button입니다."
         }
     }
 }
