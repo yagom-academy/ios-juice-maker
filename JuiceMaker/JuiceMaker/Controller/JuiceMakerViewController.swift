@@ -38,9 +38,9 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.make(juice: juice)
             changeStockLabel()
-            showMadeJuiceAlert(juice: order)
+            showCompletedOrderAlert(of: order)
         } catch FruitStoreError.outOfStock(let neededFruit) {
-            showFailedAlert(fruitAndQuantity: neededFruit)
+            showFailedOrderAlert(fruitAndQuantity: neededFruit)
         } catch {
             print(error)
         }
@@ -59,20 +59,25 @@ class JuiceMakerViewController: UIViewController {
         present(stockModifyNC, animated: true, completion: nil)
     }
     
-    func showMadeJuiceAlert(juice: String) {
-        let alert = UIAlertController(title: "쥬스 완성", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+    func showCompletedOrderAlert(of order: String) {
+        let message = "\(order) 나왔습니다! 맛있게 드세요!"
+        
+        let alert = UIAlertController(title: "쥬스 완성", message: message, preferredStyle: .alert)
         let close = UIAlertAction(title: "닫기", style: .default)
         alert.addAction(close)
+        
         present(alert, animated: true, completion: nil)
     }
     
-    func showFailedAlert(fruitAndQuantity: [Fruit: Int]) {
-        let alert = UIAlertController(title: "재고 부족", message: "\(DataFormatConverter().convert(using: fruitAndQuantity))가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+    func showFailedOrderAlert(fruitAndQuantity: [Fruit: Int]) {
+        let message = "\(DataFormatConverter().convert(using: fruitAndQuantity))가 모자라요. 재고를 수정할까요?"
+        
+        let alert = UIAlertController(title: "재고 부족", message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "재고 수정하기", style: .default)
         let close = UIAlertAction(title: "아니오", style: .default)
-        
         alert.addAction(ok)
         alert.addAction(close)
+        
         present(alert, animated: true, completion: nil)
     }
 }

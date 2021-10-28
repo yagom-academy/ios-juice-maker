@@ -10,11 +10,7 @@ enum JuiceMakerError: Error {
     case invalidSelection
 }
 
-enum Juice: String, CustomStringConvertible {
-    var description: String {
-        return "\(self.rawValue)"
-    }
-    
+enum Juice: String {
     case strawberryJuice = "딸기쥬스"
     case bananaJuice = "바나나쥬스"
     case kiwiJuice = "키위쥬스"
