@@ -50,7 +50,7 @@ class JuiceMakerViewController: UIViewController {
         case orderMangoJuiceButton:
             juice = .mango
         default:
-            showNotificationAlert(message: "잘못된 접근입니다.")
+            showNotificationAlert(message: Text.unknownError.description)
             return
         }
         
@@ -60,19 +60,19 @@ class JuiceMakerViewController: UIViewController {
     func mixFruit(juice: Juice) {
         do {
             try juiceMaker.mixFruit(juice: juice)
-            showNotificationAlert(message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!")
+            showNotificationAlert(message: Text.juiceFinish(juice: juice).description)
         } catch RequestError.fruitStockOut {
             showOutOfStockAlert()
         } catch let error as RequestError {
             showNotificationAlert(message: error.errorDescription)
         } catch {
-            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
+            showNotificationAlert(message: Text.unknownError.description)
         }
     }
     
     @objc func fruitLabelChanged(notification: Notification) {
         guard let fruit = notification.object as? Fruit else {
-            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
+            showNotificationAlert(message: Text.unknownError.description)
             return
         }
         currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
@@ -89,11 +89,11 @@ class JuiceMakerViewController: UIViewController {
     func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
         do {
             let stock = try FruitStore.shared.stock(fruit: fruit)
-            label.text = String(stock)
+            label.text = stock.description
         } catch let error as RequestError {
             showNotificationAlert(message: error.errorDescription)
         } catch {
-            showNotificationAlert(message: "알 수 없는 에러가 발생했습니다.")
+            showNotificationAlert(message: Text.unknownError.description)
         }
     }
     
@@ -112,7 +112,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func showNotificationAlert(message: String, title: String = "OK") {
+    func showNotificationAlert(message: String, title: String = Text.ok.description) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let cancel = UIAlertAction(title: title, style: .cancel, handler: nil)
         alert.addAction(cancel)
@@ -120,9 +120,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func showOutOfStockAlert() {
-        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+        let alert = UIAlertController(title: nil, message: Text.outOfStock.description, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: Text.cancel.description, style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: Text.ok.description, style: .default) { _ in
             guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreView") else { return }
             self.present(viewController, animated: true, completion: nil)
         }
