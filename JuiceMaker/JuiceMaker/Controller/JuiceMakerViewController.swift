@@ -122,14 +122,15 @@ class JuiceMakerViewController: UIViewController {
     func showOutOfStockAlert() {
         let alert = UIAlertController(title: nil, message: Message.outOfStock.description, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: Text.cancel.title, style: .cancel, handler: nil)
-        let okAction = UIAlertAction(title: Text.ok.title, style: .default) { _ in
-            guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreView") else { return }
-            self.present(viewController, animated: true, completion: nil)
-        }
+        let okAction = UIAlertAction(title: Text.ok.title, style: .default, handler: presentFruitStoreViewController)
         alert.addAction(cancelAction)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
     
+    private func presentFruitStoreViewController(_ action: UIAlertAction) {
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") else { return }
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
 
