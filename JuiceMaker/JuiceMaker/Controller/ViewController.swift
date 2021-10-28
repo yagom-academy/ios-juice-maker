@@ -81,4 +81,15 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func hitEditButton(_ sender: UIBarButtonItem) {
+        moveEditView()
+    }
+    
+    func moveEditView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let editViewController: EditViewController = storyboard.instantiateViewController(identifier: "EditViewController")
+        let navigationController = UINavigationController(rootViewController: editViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
 }
