@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import UIKit
 
 class FruitStore {
     private let storedStrawberry: Fruit = Fruit(name: .strawberry, quantity: 10)
@@ -13,50 +14,42 @@ class FruitStore {
     private let storedPineapple: Fruit = Fruit(name: .pineapple, quantity: 10)
     private let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
-    private func findStoredFruit(of fruitName: Fruit.Name) -> Fruit {
-        switch fruitName {
-        case .strawberry:
-            return storedStrawberry
-        case .banana:
-            return storedBanana
-        case .kiwi:
-            return storedKiwi
-        case .pineapple:
-            return storedPineapple
-        case .mango:
-            return storedMango
-        }
+    private var stock: [Fruit]
+    
+    init() {
+        stock = [storedStrawberry, storedBanana, storedKiwi, storedPineapple, storedMango]
     }
+    
+    func fetchAllStock() -> [Fruit.Name: Int] {
+        var fruitStoreInventory = [Fruit.Name: Int]()
+        
+        for fruit in stock {
+            fruitStoreInventory.updateValue(fruit.quantity, forKey: fruit.name)
+        }
 
+        return fruitStoreInventory
+    }
+    
+    private func fetchStoredFruit(of fruitName: Fruit.Name) -> Fruit {
+        stock.filter{$0.name == fruitName}[0]
+    }
+    
     func checkStock(for requiredIngredient: Fruit) -> Bool {
-        if findStoredFruit(of: requiredIngredient.name).quantity < requiredIngredient.quantity {
-            return false
-        } else {
-            return true
-        }
+        fetchStoredFruit(of: requiredIngredient.name).quantity >= requiredIngredient.quantity
     }
     
-    func useIngredients(of requiredIngredients: Fruit) -> Bool {
-        let storedFruit: Fruit = findStoredFruit(of: requiredIngredients.name)
+    func consumeStock(of requiredIngredients: Fruit) {
+        let storedFruit: Fruit = fetchStoredFruit(of: requiredIngredients.name)
+        let afterComsumeStock = storedFruit.quantity - requiredIngredients.quantity
         
-        guard checkStock(for: requiredIngredients) else {
-            return false
-        }
-        
-        storedFruit.changeQuantity(to: storedFruit.quantity - requiredIngredients.quantity)
-        
-        return true
+        storedFruit.changeQuantity(to: afterComsumeStock)
     }
     
-    func updateQuantity(to requiredChange: Fruit) -> Bool {
-        let storedFruit: Fruit = findStoredFruit(of: requiredChange.name)
+    func updateStock(to requiredChange: Fruit) -> Bool {
+        let storedFruit: Fruit = fetchStoredFruit(of: requiredChange.name)
         
         storedFruit.changeQuantity(to: requiredChange.quantity)
 
-        if storedFruit.quantity >= 0 {
-            return true
-        } else {
-            return false
-        }
+        return storedFruit.quantity >= 0
     }
 }
