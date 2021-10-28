@@ -23,6 +23,9 @@
 /* Class = "UILabel"; text = "0"; ObjectID = "FZq-de-TJG"; */
 "FZq-de-TJG.text" = "0";
 
+/* Class = "UINavigationItem"; title = "재고 추가"; ObjectID = "Go1-KF-fC4"; */
+"Go1-KF-fC4.title" = "재고 추가";
+
 /* Class = "UILabel"; text = "0"; ObjectID = "MpT-VW-hCb"; */
 "MpT-VW-hCb.text" = "0";
 

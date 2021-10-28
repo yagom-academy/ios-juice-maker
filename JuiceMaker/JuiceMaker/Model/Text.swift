@@ -5,27 +5,28 @@
 //  Created by 김진태 on 2021/10/28.
 //
 
-import Foundation
+import UIKit.UIButton
 
-enum Message: CustomStringConvertible {
-    case juiceFinish(juice: Juice)
-    case unknownError
-    case outOfStock
+enum Text {
     case cancel
     case ok
     
-    var description: String {
+    var title: String {
+        return localizedTitle(key: self.key)
+    }
+    
+    private var key: String {
         switch self {
-        case .juiceFinish(let juice):
-            return "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!"
-        case .unknownError:
-            return "알 수 없는 에러가 발생했습니다."
-        case .outOfStock:
-            return "재료가 모자라요. 재고를 수정할까요?"
         case .cancel:
             return "Cancel"
         case .ok:
             return "OK"
         }
+    }
+    
+    private func localizedTitle(key: String) -> String {
+        let bundle = Bundle.init(for: UIButton.self)
+        let title = bundle.localizedString(forKey: key, value: nil, table: nil)
+        return title
     }
 }
