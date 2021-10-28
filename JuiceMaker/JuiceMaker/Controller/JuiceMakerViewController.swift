@@ -28,7 +28,7 @@ class JuiceMakerViewController: UIViewController {
     @IBAction func clickOrderButton(_ sender: UIButton) {
         do {
             guard let juiceID = sender.restorationIdentifier else {
-                throw FruitError.notFoundID(self,"UIButton")
+                throw FruitError.notFoundID(self, "UIButton")
             }
             guard let orderedjuice = JuiceMaker.Juice.findJuice(juiceID: juiceID) else {
                 throw FruitError.notFoundJuice
@@ -43,7 +43,7 @@ class JuiceMakerViewController: UIViewController {
             }
             
         } catch {
-            print("ERROR \(error): \(error.localizedDescription)")
+            print("ERROR: \(error.localizedDescription)")
         }
     }
     
@@ -67,7 +67,7 @@ class JuiceMakerViewController: UIViewController {
                     throw FruitError.notFoundID(self,"UIlabel")
                 }
                 guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
-                    throw FruitError.notFoundFruitCount
+                    throw FruitError.notFoundFruitCount(self, fruitID)
                 }
                 fruitCountLabel.text = String(fruitCount)
             }

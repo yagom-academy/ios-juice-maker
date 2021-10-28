@@ -9,11 +9,12 @@ import UIKit
 
 class ModifyInventoryViewController: UIViewController {
     
+    typealias Fruits = FruitStore.Fruits
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateFruitCount()
-        setStepperValue()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFruitCount),
@@ -27,57 +28,36 @@ class ModifyInventoryViewController: UIViewController {
     
     @objc
     func updateFruitCount() {
-        do {
-            for fruitCountLabel in fruitCountLabels {
-                guard let fruitID = fruitCountLabel.restorationIdentifier else {
-                    throw FruitError.notFoundID(self,"UILabel")
-                }
-                guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitID) else {
-                    throw FruitError.notFoundFruitCount
-                }
-                fruitCountLabel.text = String(fruitCount)
+        for (fruitName, count) in FruitStore.shared.fruitInventory {
+            guard let label = fruitCountLabels.filter({ compare(fruitName, $0.restorationIdentifier) }).first else {
+                return
             }
-        } catch {
-            print("ERROR \(error): \(error.localizedDescription)")
-        }
-    }
-    
-    func setStepperValue() {
-        do {
-            for fruitStepper in fruitSteppers {
-                guard let fruitStepperID = fruitStepper.restorationIdentifier else {
-                    throw FruitError.notFoundID(self,"UIStepper")
-                }
-                guard let fruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
-                    throw FruitError.notFoundFruitCount
-                }
-                fruitStepper.value = Double(fruitCount)
+            guard let stepper = fruitSteppers.filter({ compare(fruitName, $0.restorationIdentifier) }).first else {
+                return
             }
-        } catch {
-            print("ERROR \(error): \(error.localizedDescription)")
+            
+            label.text = String(count)
+            stepper.value = Double(count)
         }
     }
     
     @IBAction func clickStepper(_ sender: UIStepper) {
-        do {
-            guard let fruitStepperID = sender.restorationIdentifier else {
-                throw FruitError.notFoundID(self,"UIStepper")
-            }
-            guard let previousFruitCount = FruitStore.shared.getFruitCount(by: fruitStepperID) else {
-                throw FruitError.notFoundFruitCount
-            }
-            guard let fruit = FruitStore.Fruits.findFruit(by: fruitStepperID) else {
-                throw FruitError.notFoundFruit
-            }
-            
-            if previousFruitCount - Int(sender.value) > 0 {
-                FruitStore.shared.subtract(fruit: fruit, of: Int(sender.stepValue))
-            } else {
-                FruitStore.shared.add(fruit: fruit, of: Int(sender.stepValue))
-            }
-        } catch {
-            print("ERROR \(error): \(error.localizedDescription)")
+        guard let (fruitName, previousFruitCount) = FruitStore.shared.fruitInventory.filter({ compare($0.key, sender.restorationIdentifier) }).first else {
+            return
         }
+        
+        if previousFruitCount - Int(sender.value) > 0 {
+            FruitStore.shared.subtract(fruit: fruitName, of: Int(sender.stepValue))
+        } else {
+            FruitStore.shared.add(fruit: fruitName, of: Int(sender.stepValue))
+        }
+    }
+    
+    private func compare(_ lhs: Fruits, _ rhs: String?) -> Bool {
+        guard let id = rhs, let fruit = Fruits.findFruit(by: id) else {
+            return false
+        }
+        return lhs == fruit
     }
     
 }
