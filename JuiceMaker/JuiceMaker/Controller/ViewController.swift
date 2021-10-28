@@ -24,8 +24,14 @@ class ViewController: UIViewController {
     
     @IBAction func orderJuice(_ sender: UIButton) {
         let juice = switchMenuToUIButton(button: sender)
-        try? juiceMaker.make(juice)
-        changeStockLabel()
+        let isSuccess: Bool = juiceMaker.make(juice)
+        
+        if isSuccess {
+            // TODO: 성공 알림 띄우기
+            changeStockLabel()
+        } else {
+            // TODO: 실패 알림 띄우기
+        }
     }
     
     func switchMenuToUIButton(button: UIButton) -> Menu {

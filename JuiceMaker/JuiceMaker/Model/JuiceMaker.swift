@@ -11,16 +11,17 @@ struct JuiceMaker {
         case outOfStock
     }
     
-    func make(_ seletedJuice: Menu) throws {
+    func make(_ seletedJuice: Menu) -> Bool {
         let recipe: [Fruit : Int] = seletedJuice.recipe
         
         guard fruitStore.isRemaining(of: recipe) else {
-            throw JuiceMakerError.outOfStock
+            return false
         }
         
         for (fruit, count) in recipe {
             fruitStore.changeQuantity(of: fruit, count: count, by: .subtraction)
         }
+        return true
     }
     
     func checkFruitStock() -> [Fruit: String] {
