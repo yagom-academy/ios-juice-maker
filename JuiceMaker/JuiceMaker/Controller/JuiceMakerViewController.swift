@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
 
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -46,11 +46,15 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func pressStockModifyButton(_ sender: UIBarButtonItem) {
+    @IBAction func tapStockModifyButton(_ sender: UIBarButtonItem) {
+        presentStockModifyView()
+    }
+    
+    func presentStockModifyView() {
         let stockModifyNavController = StockModifyNavController()
         
-        let storyboard = UIStoryboard(name: stockModifyNavController.storybordName, bundle: nil)
-        let stockModifyNC = storyboard.instantiateViewController(identifier: stockModifyNavController.storybordID)
+        let storyboard = UIStoryboard(name: stockModifyNavController.storyboardName, bundle: nil)
+        let stockModifyNC = storyboard.instantiateViewController(identifier: stockModifyNavController.storyboardID)
         
         present(stockModifyNC, animated: true, completion: nil)
     }
@@ -63,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     func showFailedAlert(fruitAndQuantity: [Fruit: Int]) {
-        let alert = UIAlertController(title: "재고 부족", message: "\(FruitStore.shared.convertToString(using: fruitAndQuantity))가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "재고 부족", message: "\(DataFormatConverter().convert(using: fruitAndQuantity))가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let ok = UIAlertAction(title: "재고 수정하기", style: .default)
         let close = UIAlertAction(title: "아니오", style: .default)
         

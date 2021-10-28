@@ -9,8 +9,8 @@ import UIKit
 
 class StockModifyNavController: UINavigationController {
     
-    let storybordName = "Main"
-    let storybordID = "StockModifyNavController"
+    let storyboardName = "Main"
+    let storyboardID = "StockModifyNavController"
 
     override func viewDidLoad() {
         super.viewDidLoad()

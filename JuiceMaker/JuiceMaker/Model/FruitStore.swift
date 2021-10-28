@@ -71,10 +71,4 @@ class FruitStore {
             throw FruitStoreError.outOfStock(neededFruits)
         }
     }
-    
-    func convertToString(using fruitAndQuantity: [Fruit: Int]) -> String {
-        let resultString = fruitAndQuantity.map( {"과일: \($0), 개수: \(abs($1))\n"} ).reduce("") {$0 + $1}
-        
-        return resultString
-    }
 }
