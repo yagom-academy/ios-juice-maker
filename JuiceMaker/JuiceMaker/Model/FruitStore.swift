@@ -25,11 +25,7 @@ extension FruitStore: FruitStockManaging {
         guard let fruitStock = inventory[fruit] else {
             throw FruitStoreError.stockDataMissing
         }
-        if fruitStock < quantity {
-            return false
-        } else {
-            return true
-        }
+        return fruitStock >= quantity
     }
     
     func changeFruitStock(of fruit: Fruit, by quantity: Int = 1, calculate: (Int, Int) -> Int) throws {
