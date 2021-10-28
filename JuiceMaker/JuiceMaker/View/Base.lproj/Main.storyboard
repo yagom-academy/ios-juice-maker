@@ -126,6 +126,9 @@
                                                 <state key="normal" title="딸바쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="touchUpStrawberryBananaJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t33-lc-QTq"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
                                                 <rect key="frame" x="296" y="0.0" width="280" height="66"/>
@@ -134,6 +137,9 @@
                                                 <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="touchUpMangoKiwiJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Nh-gb-I9f"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -150,6 +156,9 @@
                                                         <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="touchUpStrawberryJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2mh-Gu-llW"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
                                                         <rect key="frame" x="148" y="0.0" width="132" height="66.333333333333329"/>
@@ -158,6 +167,9 @@
                                                         <state key="normal" title="바나나쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="touchUpBananaJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qlg-s8-XZr"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -171,6 +183,9 @@
                                                         <state key="normal" title="파인애플쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="touchUpPineappleJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kpo-K9-cBc"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
                                                         <rect key="frame" x="148" y="0.0" width="132" height="66.333333333333329"/>
@@ -179,6 +194,9 @@
                                                         <state key="normal" title="키위쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="touchUpKiwiJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NYF-1P-iG2"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -189,6 +207,9 @@
                                                 <state key="normal" title="망고쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="touchUpMangoJuiceOrder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2QY-QP-xas"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -232,7 +253,7 @@
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="AM6-rl-2Hq"/>
                         <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="wVt-Bx-Kc2"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="2fj-ib-E3V"/>
-                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="cwo-rh-n04"/>
+                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="W81-7P-OAs"/>
                         <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="2Er-H4-CqI"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="FCO-03-k7D"/>
                     </connections>

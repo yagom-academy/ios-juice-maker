@@ -8,6 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
     let fruitStore = FruitStore.shared
+    let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,43 @@ class ViewController: UIViewController {
         pineappleStockLabel.text = String(pineappleStock)
         kiwiStockLabel.text = String(kiwiStock)
         mangoStockLabel.text = String(mangoStock)
+    }
+    
+    @IBAction func touchUpStrawberryBananaJuiceOrder(_ sender: UIButton) {
+        orderJuice(juice: .strawberryJuice)
+    }
+    
+    @IBAction func touchUpMangoKiwiJuiceOrder(_ sender: UIButton) {
+        orderJuice(juice: .mangoKiwiJuice)
+    }
+    
+    @IBAction func touchUpStrawberryJuiceOrder(_ sender: UIButton) {
+        orderJuice(juice: .strawberryJuice)
+    }
+    
+    @IBAction func touchUpBananaJuiceOrder(_ sender: UIButton) {
+        orderJuice(juice: .bananaJuice)
+    }
+    
+    @IBAction func touchUpPineappleJuiceOrder(_ sender: UIButton) {
+        orderJuice(juice: .pineappleJuice)
+    }
+    
+    @IBAction func touchUpKiwiJuiceOrder(_ sender: UIButton) {
+        orderJuice(juice: .kiwiJuice)
+    }
+    
+    @IBAction func touchUpMangoJuiceOrder(_ sender: UIButton) {
+        orderJuice(juice: .mangoJuice)
+    }
+    
+    func orderJuice(juice: Juice) {
+        do {
+            juiceMaker.make(juice: juice)
+            try updateFruitStockLabel()
+        } catch {
+            print("과일이 없습니다.")
+        }
     }
 }
 
