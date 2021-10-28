@@ -25,7 +25,7 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateAllLabels()
+        initializeFruitStockLabels()
         NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
     }
     
@@ -46,10 +46,33 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @objc func didFruitStockChange(_ notification: Notification) {
-        updateAllLabels()
+        guard let fruit = notification.object as? Fruit else {
+            showErrorAlert(error: FruitStoreError.invalidFruit)
+            return
+        }
+        do{
+            try updateLabel(fruit: fruit)
+        } catch let error {
+            showErrorAlert(error: error)
+        }
     }
     
-    func updateAllLabels() {
+    func updateLabel(fruit: Fruit) throws {
+        switch fruit {
+        case .strawberry:
+            strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
+        case .banana:
+            bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))
+        case .pineapple:
+            pineappleStockLabel.text = String(try juiceMaker.currentFruitStock(of: .pineapple))
+        case .kiwi:
+            kiwiStockLabel.text = String(try juiceMaker.currentFruitStock(of: .kiwi))
+        case .mango:
+            mangoStockLabel.text = String(try juiceMaker.currentFruitStock(of: .mango))
+        }
+    }
+    
+    func initializeFruitStockLabels() {
         do {
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
             bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))

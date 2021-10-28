@@ -7,11 +7,7 @@
 import Foundation
 
 class FruitStore {
-    private var inventory: [Fruit: Int] = [:] {
-        didSet {
-            NotificationCenter.default.post(name: .FruitStockChanged, object: self)
-        }
-    }
+    private var inventory: [Fruit: Int] = [:]
     
     init(fruitQuantity: Int = 10) {
         Fruit.allCases.forEach { fruit in
@@ -45,6 +41,7 @@ extension FruitStore: FruitStockManaging {
             throw FruitStoreError.stockShortage
         }
         inventory[fruit] = changedFruitStock
+        NotificationCenter.default.post(name: .FruitStockChanged, object: fruit)
     }
     
     func currentFruitStock(of fruit: Fruit) throws -> Int {
