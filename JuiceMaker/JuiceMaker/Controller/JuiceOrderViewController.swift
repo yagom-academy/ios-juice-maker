@@ -106,16 +106,16 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func showSuccessAlert(juiceMenu: JuiceMenu) {
-        let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess.rawValue, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.ok.rawValue, style: .default)
+        let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess.korean, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
     func showFailureAlert() {
         let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.modifyStock.rawValue, style: .default) { _ in self.moveToStockModifyView() }
-        let noAction = UIAlertAction(title: AlertMessage.cancel.rawValue, style: .cancel)
+        let okAction = UIAlertAction(title: AlertMessage.modifyStock.korean, style: .default) { _ in self.moveToStockModifyView() }
+        let noAction = UIAlertAction(title: AlertMessage.cancel.korean, style: .cancel)
         alert.addAction(okAction)
         alert.addAction(noAction)
         present(alert, animated: true)
@@ -123,13 +123,13 @@ class JuiceOrderViewController: UIViewController {
     
     func showErrorAlert(error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.ok.rawValue, style: .default)
+        let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueIdentifier.toStockModifyView.rawValue {
+        if segue.identifier == StoryboardSegue.toStockModifyView.identifier {
             guard let stockModifyViewNavigationController = segue.destination as? UINavigationController else {
                 return
             }
@@ -141,6 +141,6 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func moveToStockModifyView() {
-        performSegue(withIdentifier: SegueIdentifier.toStockModifyView.rawValue, sender: nil)
+        performSegue(withIdentifier: StoryboardSegue.toStockModifyView.identifier, sender: nil)
     }
 }

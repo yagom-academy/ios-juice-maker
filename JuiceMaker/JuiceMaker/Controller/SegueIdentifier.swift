@@ -7,6 +7,13 @@
 
 import Foundation
 
-enum SegueIdentifier: String {
+enum StoryboardSegue {
     case toStockModifyView
+    
+    var identifier: String {
+        switch self {
+        case .toStockModifyView:
+            return "toStockModifyView"
+        }
+    }
 }

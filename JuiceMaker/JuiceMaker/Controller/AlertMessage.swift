@@ -7,9 +7,22 @@
 
 import Foundation
 
-enum AlertMessage: String {
-    case ok = "확인"
-    case modifyStock = "재고수정"
-    case cancel = "취소"
-    case juiceMakeSuccess = "쥬스 나왔습니다! 맛있게 드세요!"
+enum AlertMessage {
+    case ok
+    case modifyStock
+    case cancel
+    case juiceMakeSuccess
+    
+    var korean: String {
+        switch self {
+        case .ok:
+            return "확인"
+        case .modifyStock:
+            return "재고수정"
+        case .cancel:
+            return "취소"
+        case .juiceMakeSuccess:
+            return "쥬스 나왔습니다! 맛있게 드세요!"
+        }
+    }
 }
