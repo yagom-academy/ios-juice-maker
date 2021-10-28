@@ -16,20 +16,23 @@ struct JuiceMaker {
         case mangoJuice
         case kiwiMangoJuice
         
-        static func == (lhs: Self, rhs: String) -> Bool {
-            switch (lhs, rhs) {
-            case (.strawberryJuice, "strawberryJuice"),
-                 (.bananaJuice, "bananaJuice"),
-                 (.kiwiJuice, "kiwiJuice"),
-                 (.pineappleJuice, "pineappleJuice"),
-                 (.strawberryBananaJuice, "strawberryBananaJuice"),
-                 (.mangoJuice, "mangoJuice"),
-                 (.kiwiMangoJuice, "kiwiMangoJuice"):
-                return true
-                
-            default:
-                return false
+        static func findJuice(juiceID: String) -> Juice? {
+            if juiceID.hasPrefix("strawberryJuice") {
+                return .strawberryJuice
+            } else if juiceID.hasPrefix("bananaJuice") {
+                return .bananaJuice
+            } else if juiceID.hasPrefix("kiwiJuice") {
+                return .kiwiJuice
+            } else if juiceID.hasPrefix("pineappleJuice") {
+                return .pineappleJuice
+            } else if juiceID.hasPrefix("strawberryBananaJuice") {
+                return .strawberryBananaJuice
+            } else if juiceID.hasPrefix("mangoJuice") {
+                return .mangoJuice
+            } else if juiceID.hasPrefix("kiwiMangoJuice") {
+                return .kiwiMangoJuice
             }
+            return nil
         }
         
         var recipe: [FruitStore.Fruits: Int] {

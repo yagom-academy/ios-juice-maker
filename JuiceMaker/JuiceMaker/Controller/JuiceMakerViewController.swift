@@ -29,12 +29,13 @@ class JuiceMakerViewController: UIViewController {
         guard let juiceID = sender.restorationIdentifier else {
             return
         }
-        // MARK: 변경 필요
-        guard let juiceCase = JuiceMaker.Juice.allCases.filter({ $0 == juiceID }).first else {
+        
+        guard let juice = JuiceMaker.Juice.findJuice(juiceID: juiceID) else {
             return
         }
+        
         // MARK: 영어 -> 한글 변경
-        guard let _ = juiceMaker.order(juice: juiceCase) else {
+        guard let _ = juiceMaker.order(juice: juice) else {
             alertMessage(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?", handler:{ _ in self.presentModifyView() })
             return
         }
