@@ -35,7 +35,7 @@ class ViewController: UIViewController {
             let moveEditView = UIAlertAction(title: "재고수정하기", style: .default) {_ in
                 self.moveEditView()
             }
-            let closeAlert = UIAlertAction(title: "닫기", style: .cancel) {_ in
+            let closeAlert = UIAlertAction(title: "닫기", style: .default) {_ in
                 self.viewDidLoad()
             }
             alert.addAction(moveEditView)
