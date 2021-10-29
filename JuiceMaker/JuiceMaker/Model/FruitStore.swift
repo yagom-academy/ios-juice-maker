@@ -23,7 +23,7 @@ class FruitStore {
     
     private(set) var inventory: [Fruit] = []
     
-    func initializeInventory() {
+    private func initializeInventory() {
         for fruit in FruitName.allCases {
             inventory.append(Fruit(name: fruit))
         }
