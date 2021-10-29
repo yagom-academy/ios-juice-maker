@@ -16,7 +16,7 @@ struct JuiceMaker {
         case bananaJuice
         case kiwiJuice
         case pineappleJuice
-        case strawberryAndBananaJuice
+        case strawberryBananaJuice
         case mangoJuice
         case mangoKiwiJuice
         
@@ -30,7 +30,7 @@ struct JuiceMaker {
                 return [.kiwi: 3]
             case .pineappleJuice:
                 return [.pineapple: 2]
-            case .strawberryAndBananaJuice:
+            case .strawberryBananaJuice:
                 return [.strawberry: 10, .banana: 1]
             case .mangoJuice:
                 return [.mango: 3]
@@ -43,5 +43,26 @@ struct JuiceMaker {
     func make(juice: Juice) throws {
         let neededFruits = juice.recipe
         try store.consumeFruits(of: neededFruits)
+    }
+}
+
+extension JuiceMaker.Juice: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기 쥬스"
+        case .bananaJuice:
+            return "바나나 쥬스"
+        case .kiwiJuice:
+            return "키위 쥬스"
+        case .pineappleJuice:
+            return "파인애플 쥬스"
+        case .strawberryBananaJuice:
+            return "딸바 쥬스"
+        case .mangoJuice:
+            return "망고 쥬스"
+        case .mangoKiwiJuice:
+            return "망키 쥬스"
+        }
     }
 }
