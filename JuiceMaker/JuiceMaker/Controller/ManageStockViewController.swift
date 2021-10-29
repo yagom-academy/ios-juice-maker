@@ -9,12 +9,25 @@ import UIKit
 
 class ManageStockViewController: UIViewController {
 
+    var deliverdAllStock = [String]()
+    
+    @IBOutlet weak var strawberryQuantityLabel: UILabel!
+    @IBOutlet weak var bananaQuantityLabel: UILabel!
+    @IBOutlet weak var pineappleQuantityLabel: UILabel!
+    @IBOutlet weak var kiwiQuantityLabel: UILabel!
+    @IBOutlet weak var mangoQuantityLabel: UILabel!
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .systemGray5
-        // Do any additional setup after loading the view.
+        
+        strawberryQuantityLabel.text = deliverdAllStock[0]
+        bananaQuantityLabel.text = deliverdAllStock[1]
+        pineappleQuantityLabel.text = deliverdAllStock[2]
+        kiwiQuantityLabel.text = deliverdAllStock[3]
+        mangoQuantityLabel.text = deliverdAllStock[4]
     }
     
     @IBAction func backButton(_ sender: UIButton) {

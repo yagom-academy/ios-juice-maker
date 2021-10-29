@@ -81,10 +81,28 @@ class JuiceMakerViewController: UIViewController {
                 completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.children.first is ManageStockViewController {
+            let vc = segue.destination.children.first as? ManageStockViewController
+            vc?.deliverdAllStock.append(strawberryQuantityLabel.text ?? "0")
+            vc?.deliverdAllStock.append(bananaQuantityLabel.text ?? "0")
+            vc?.deliverdAllStock.append(pineappleQuantityLabel.text ?? "0")
+            vc?.deliverdAllStock.append(kiwiQuantityLabel.text ?? "0")
+            vc?.deliverdAllStock.append(mangoQuantityLabel.text ?? "0")
+        }
+    }
+    
     func changeSceneOfManageStockViewController() {
         guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: "manageStockViewController") else {
             return
         }
+        
+        let vc = manageStockViewController.children.first as? ManageStockViewController
+        vc?.deliverdAllStock.append(strawberryQuantityLabel.text ?? "0")
+        vc?.deliverdAllStock.append(bananaQuantityLabel.text ?? "0")
+        vc?.deliverdAllStock.append(pineappleQuantityLabel.text ?? "0")
+        vc?.deliverdAllStock.append(kiwiQuantityLabel.text ?? "0")
+        vc?.deliverdAllStock.append(mangoQuantityLabel.text ?? "0")
         
         self.present(manageStockViewController, animated: true)
     }
