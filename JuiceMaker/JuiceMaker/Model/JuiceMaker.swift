@@ -55,20 +55,22 @@ struct Juice {
     }
 }
 
-class JuiceMaker {
+struct JuiceMaker {
     
     let store = FruitStore.shared
     
     private var recipe: [JuiceName: [ingredient]] = [:]
     
-    func initializeRecipe() {
+    private func initializeRecipe() -> [JuiceName: [ingredient]] {
+        var recipes: [JuiceName: [ingredient]] = [:]
         for juice in JuiceName.allCases {
-            recipe[juice] = Juice(name: juice).recipe
+            recipes[juice] = Juice(name: juice).recipe
         }
+        return recipes
     }
     
     init() {
-        initializeRecipe()
+        self.recipe = initializeRecipe()
     }
     
     private func findRecipe(of juiceName: JuiceName) throws -> [ingredient] {
