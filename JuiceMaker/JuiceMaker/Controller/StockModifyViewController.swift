@@ -9,6 +9,9 @@ import UIKit
 
 class StockModifyViewController: UIViewController {
     var juiceMaker: JuiceMaking? = nil
+    let stepperMaximumValue = 1.0
+    let stepperMinimumValue = -1.0
+    let stepperDefaultValue = 0.0
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -16,11 +19,93 @@ class StockModifyViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var strawberryStockStepper: UIStepper!
+    @IBOutlet weak var bananaStockStepper: UIStepper!
+    @IBOutlet weak var pineappleStockStepper: UIStepper!
+    @IBOutlet weak var kiwiStockStepper: UIStepper!
+    @IBOutlet weak var mangoStockStepper: UIStepper!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeFruitStockLabels()
+        initializeSteppers()
     }
     
+    @IBAction func stepperDidTap(_ sender: UIStepper) {
+        do {
+            let fruitToModify = try fruit(for: sender)
+            try modifyStock(of: fruitToModify, by: sender)
+//            try! updateLabel(fruit: fruitToModify)
+        } catch let error {
+            showErrorAlert(error: error)
+        }
+        resetValue(ofStepper: sender)
+    }
+    
+    func modifyStock(of fruitToModify: Fruit, by stepper: UIStepper) throws {
+        try juiceMaker?.changeFruitStock(of: fruitToModify, by: 1, calculate: calculation(for: stepper))
+    }
+    
+    func calculation(for stepper: UIStepper) throws -> (Int,Int) -> Int {
+        if stepper.value == stepperMaximumValue {
+            return (+)
+        } else if stepper.value == stepperMinimumValue {
+            return (-)
+        } else {
+            throw FruitStoreError.unexpectedStepperValue
+        }
+    }
+    
+    func initializeSteppers() {
+        strawberryStockStepper.minimumValue = stepperMinimumValue
+        bananaStockStepper.minimumValue = stepperMinimumValue
+        pineappleStockStepper.minimumValue = stepperMinimumValue
+        kiwiStockStepper.minimumValue = stepperMinimumValue
+        mangoStockStepper.minimumValue = stepperMinimumValue
+        strawberryStockStepper.maximumValue = stepperMaximumValue
+        bananaStockStepper.maximumValue = stepperMaximumValue
+        pineappleStockStepper.maximumValue = stepperMaximumValue
+        kiwiStockStepper.maximumValue = stepperMaximumValue
+        mangoStockStepper.maximumValue = stepperMaximumValue
+    }
+    
+    func resetValue(ofStepper stepper: UIStepper) {
+        stepper.value = stepperDefaultValue
+    }
+    
+    func fruit(for stepper: UIStepper) throws -> Fruit {
+        if stepper === strawberryStockStepper {
+            return .strawberry
+        } else if stepper === bananaStockStepper {
+            return .banana
+        } else if stepper === pineappleStockStepper {
+            return .pineapple
+        } else if stepper === kiwiStockStepper {
+            return .kiwi
+        } else if stepper === mangoStockStepper {
+            return .mango
+        } else {
+            throw FruitStoreError.invalidModification
+        }
+    }
+    private func updateLabel(fruit: Fruit) throws {
+        guard let juiceMaker = juiceMaker else {
+            throw FruitStoreError.stockDataMissing
+        }
+        switch fruit {
+        case .strawberry:
+            strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
+        case .banana:
+            bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))
+        case .pineapple:
+            pineappleStockLabel.text = String(try juiceMaker.currentFruitStock(of: .pineapple))
+        case .kiwi:
+            kiwiStockLabel.text = String(try juiceMaker.currentFruitStock(of: .kiwi))
+        case .mango:
+            mangoStockLabel.text = String(try juiceMaker.currentFruitStock(of: .mango))
+        }
+    }
     private func initializeFruitStockLabels() {
         guard let juiceMaker = juiceMaker else {
             showErrorAlert(error: FruitStoreError.stockDataMissing)

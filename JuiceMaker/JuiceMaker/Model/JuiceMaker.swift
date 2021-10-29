@@ -35,4 +35,7 @@ extension JuiceMaker: JuiceMaking {
     func currentFruitStock(of fruit: Fruit) throws -> Int {
         return try fruitStore.currentFruitStock(of: fruit)
     }
+    func changeFruitStock(of fruit: Fruit, by quantity: Int, calculate: (Int, Int) -> Int) throws {
+        try fruitStore.changeFruitStock(of: fruit, by: quantity, calculate: calculate)
+    }
 }

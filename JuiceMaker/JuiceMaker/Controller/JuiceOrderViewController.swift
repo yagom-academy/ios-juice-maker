@@ -21,7 +21,6 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    
     private var juiceMaker: JuiceMaking?
     
     override func viewDidLoad() {
