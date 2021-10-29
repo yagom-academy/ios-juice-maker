@@ -25,7 +25,7 @@ class FruitStore {
             fruitStockList[fruitName] = initialFruitStock
         }
     }
-
+    
     func changeFruitStock(fruitName: FruitStore.Fruit, changingNumber: Int) throws {
         guard let currentFruitStock = stock.fruitStockList[fruitName] else {
             throw FruitStockError.fruitNotExist
@@ -36,17 +36,16 @@ class FruitStore {
         }
         stock.fruitStockList[fruitName] = fruitStock
     }
-}
-
-func isHaveEnoughStock(fruitName: FruitStore.Fruit, juiceIngredient: JuiceIngredient) throws {
-    guard let fruitStock = stock.fruitStockList[fruitName] else {
-        throw FruitStockError.fruitNotExist
+    
+    func isHaveEnoughStock(fruitName: FruitStore.Fruit, juiceIngredient: JuiceIngredient) throws {
+        guard let fruitStock = stock.fruitStockList[fruitName] else {
+            throw FruitStockError.fruitNotExist
+        }
+        guard fruitStock >= juiceIngredient else {
+            throw FruitStockError.outOfStock
+        }
     }
-    guard fruitStock >= juiceIngredient else {
-        throw FruitStockError.outOfStock
-    }
 }
-
 
 enum FruitStockError: Error {
     case fruitNotExist
