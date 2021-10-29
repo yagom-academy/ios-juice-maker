@@ -13,6 +13,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var showStockKiwi: UILabel!
     @IBOutlet weak var showStockMango: UILabel!
     
+    @IBAction func strawberryBananaJuiceButton(_ sender: Any) {
+        order(juice: .strawberryBananaJuice)
+    }
+    @IBAction func strawberryJuiceButton(_ sender: Any) {
+        order(juice: .strawberryJuice)
+    }
+    @IBAction func bananaJuiceButton(_ sender: Any) {
+        order(juice: .bananaJuice)
+    }
+    @IBAction func mangoKiwiJuiceButton(_ sender: Any) {
+        order(juice: .mangoKiwiJuice)
+    }
+    @IBAction func pineappleJuiceButton(_ sender: Any) {
+        order(juice: .pineappleJuice)
+    }
+    @IBAction func kiwiJuiceButton(_ sender: Any) {
+        order(juice: .kiwiJuice)
+    }
+    @IBAction func mangoJuiceButton(_ sender: Any) {
+        order(juice: .mangoJuice)
+    }
+    
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
@@ -34,5 +56,11 @@ class ViewController: UIViewController {
         showStockPineapple.text = String(pineapple)
         showStockKiwi.text = String(kiwi)
         showStockMango.text = String(mango)
+    }
+
+        func order(juice: JuiceMaker.Juice) {
+        if juiceMaker.orderJuice(for: juice) {
+            showCurrentStock()
+        }
     }
 }
