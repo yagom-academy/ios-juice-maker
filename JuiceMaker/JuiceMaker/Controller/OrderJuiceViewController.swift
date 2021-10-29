@@ -59,7 +59,7 @@ class OrderJuiceViewController: UIViewController {
     }
     
     private func showLackOfStockAlert(message: String) {
-        guard let editStockViewController = self.storyboard?.instantiateViewController(identifier: "EditStockNavigation") else {
+        guard let editStockViewController = self.storyboard?.instantiateViewController(identifier: Storyboard.EditStockViewController.ID) else {
             return
         }
         
