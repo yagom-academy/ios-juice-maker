@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showInitialStock()
-        addObserver()
+        addObserverForStockUpdate()
     }
     
     func showInitialStock() {
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         mangoLabel.text = String(Fruit.initialValue)
     }
     
-    func addObserver() {
+    func addObserverForStockUpdate() {
         notificationCenter.addObserver(self,
                                        selector: #selector(didReceiveNotification),
                                        name: Notification.Name.stockInformation,
@@ -101,10 +101,10 @@ class ViewController: UIViewController {
     func showOrderSuccessAlert(for menu: JuiceMaker.Menu) {
         let message = "\(menu.description) 나왔습니다! 맛있게드세요!"
         let okAction = UIAlertAction(title: "확인", style: .default)
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let OrderSuccessAlert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
+        OrderSuccessAlert.addAction(okAction)
+        present(OrderSuccessAlert, animated: true, completion: nil)
     }
     
     func showOrderFailAlert(fruit: Fruit) {
@@ -115,10 +115,10 @@ class ViewController: UIViewController {
                 self.present(stockController, animated: true)
             }
         }
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let orderFailAlert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
+        orderFailAlert.addAction(okAction)
+        orderFailAlert.addAction(cancelAction)
+        present(orderFailAlert, animated: true, completion: nil)
     }
 }
