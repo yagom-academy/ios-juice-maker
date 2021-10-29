@@ -16,37 +16,42 @@ class FruitStore {
         case pineapple
         case mango
     }
-    private var fruitStockList: [Fruit: FruitStock] = [:]
+    var fruitStockList: [Fruit: FruitStock] = [:]
     
-    init(initialFruitStock: FruitStock = 10) {
+    static let shared: FruitStore = FruitStore()
+    
+    private init(initialFruitStock: FruitStock = 10) {
         for fruitName in Fruit.allCases {
             fruitStockList[fruitName] = initialFruitStock
         }
     }
 
-    func changeFruitStock(fruitName: Fruit, changingNumber: Int) throws {
-        guard let currentFruitStock = fruitStockList[fruitName] else {
+    func changeFruitStock(fruitName: FruitStore.Fruit, changingNumber: Int) throws {
+        guard let currentFruitStock = stock.fruitStockList[fruitName] else {
             throw FruitStockError.fruitNotExist
         }
         let fruitStock = (currentFruitStock + changingNumber)
         guard fruitStock >= 0 else {
             throw FruitStockError.lessThanZero
         }
-        fruitStockList[fruitName] = fruitStock
-    }
-    
-    func isHaveEnoughStock(fruitName: Fruit, juiceIngredient: JuiceIngredient) throws {
-        guard let fruitStock = fruitStockList[fruitName] else {
-            throw FruitStockError.fruitNotExist
-        }
-        guard fruitStock >= juiceIngredient else {
-            throw FruitStockError.outOfStock
-        }
+        stock.fruitStockList[fruitName] = fruitStock
     }
 }
+
+func isHaveEnoughStock(fruitName: FruitStore.Fruit, juiceIngredient: JuiceIngredient) throws {
+    guard let fruitStock = stock.fruitStockList[fruitName] else {
+        throw FruitStockError.fruitNotExist
+    }
+    guard fruitStock >= juiceIngredient else {
+        throw FruitStockError.outOfStock
+    }
+}
+
 
 enum FruitStockError: Error {
     case fruitNotExist
     case outOfStock
     case lessThanZero
 }
+
+let stock = FruitStore.shared
