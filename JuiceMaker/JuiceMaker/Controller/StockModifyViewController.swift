@@ -28,6 +28,7 @@ class StockModifyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
         initializeFruitStockLabels()
         initializeSteppers()
     }
@@ -41,6 +42,18 @@ class StockModifyViewController: UIViewController {
             showErrorAlert(error: error)
         }
         resetValue(ofStepper: sender)
+    }
+    
+    @objc private func didFruitStockChange(_ notification: Notification) {
+        guard let fruit = notification.object as? Fruit else {
+            showErrorAlert(error: FruitStoreError.invalidFruit)
+            return
+        }
+        do{
+            try updateLabel(fruit: fruit)
+        } catch let error {
+            showErrorAlert(error: error)
+        }
     }
     
     func modifyStock(of fruitToModify: Fruit, by stepper: UIStepper) throws {
@@ -89,6 +102,7 @@ class StockModifyViewController: UIViewController {
             throw FruitStoreError.invalidModification
         }
     }
+    
     private func updateLabel(fruit: Fruit) throws {
         guard let juiceMaker = juiceMaker else {
             throw FruitStoreError.stockDataMissing
@@ -106,6 +120,7 @@ class StockModifyViewController: UIViewController {
             mangoStockLabel.text = String(try juiceMaker.currentFruitStock(of: .mango))
         }
     }
+    
     private func initializeFruitStockLabels() {
         guard let juiceMaker = juiceMaker else {
             showErrorAlert(error: FruitStoreError.stockDataMissing)
