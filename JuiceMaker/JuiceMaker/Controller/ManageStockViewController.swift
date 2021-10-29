@@ -9,9 +9,11 @@ import UIKit
 
 class ManageStockViewController: UIViewController {
 
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.backgroundColor = .systemGray5
         // Do any additional setup after loading the view.
     }
     
