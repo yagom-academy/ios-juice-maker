@@ -79,7 +79,7 @@ class OrderJuiceViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func makeJuice(juiceName: JuiceName) {
+    func receiveJuiceOrder(juiceName: JuiceName) {
         do {
             try juiceMaker.make(juiceName: juiceName)
             showSuccessAlert(message: "\(juiceName.kor) 나왔습니다! 맛있게 드세요!")
@@ -92,25 +92,25 @@ class OrderJuiceViewController: UIViewController {
     }
     
     @IBAction func tapStrawberryBananaJuiceButton(_ sender: UIButton) {
-        makeJuice(juiceName: .strawberryBananaJuice)
+        receiveJuiceOrder(juiceName: .strawberryBananaJuice)
     }
     @IBAction func tapMangoKiwiJuiceButton(_ sender: UIButton) {
-        makeJuice(juiceName: .mangoKiwiJuice)
+        receiveJuiceOrder(juiceName: .mangoKiwiJuice)
     }
     @IBAction func tapStrawberryJuiceButton(_ sender: UIButton) {
-        makeJuice(juiceName: .strawberryJuice)
+        receiveJuiceOrder(juiceName: .strawberryJuice)
     }
     @IBAction func tapBananaJuiceButton(_ sender: UIButton) {
-        makeJuice(juiceName: .bananaJuice)
+        receiveJuiceOrder(juiceName: .bananaJuice)
     }
     @IBAction func tapPineappleJuiceButton(_ sender: UIButton) {
-        makeJuice(juiceName: .pineappleJuice)
+        receiveJuiceOrder(juiceName: .pineappleJuice)
     }
     @IBAction func tapKiwiJuiceButton(_ sender: UIButton) {
-        makeJuice(juiceName: .kiwiJuice)
+        receiveJuiceOrder(juiceName: .kiwiJuice)
     }
     @IBAction func tapMangoJuiceButton(_ sender: UIButton) {
-        makeJuice(juiceName: .mangoJuice)
+        receiveJuiceOrder(juiceName: .mangoJuice)
     }
 }
 
