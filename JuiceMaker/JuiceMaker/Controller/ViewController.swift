@@ -99,8 +99,8 @@ class ViewController: UIViewController {
     }
     
     func showOrderSuccessAlert(for menu: JuiceMaker.Menu) {
-        let message = "\(menu.description) 나왔습니다! 맛있게드세요!"
-        let okAction = UIAlertAction(title: "확인", style: .default)
+        let message = menu.description + AlertMessage.orderComplete
+        let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
         let OrderSuccessAlert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         OrderSuccessAlert.addAction(okAction)
@@ -108,9 +108,9 @@ class ViewController: UIViewController {
     }
     
     func showOrderFailAlert(fruit: Fruit) {
-        let message = "\(fruit.description)의 재고가 부족합니다. 재고를 수정할까요?"
-        let cancelAction = UIAlertAction(title:"취소", style: .cancel)
-        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+        let message = fruit.description + AlertMessage.outOfStock
+        let cancelAction = UIAlertAction(title:AlertMessage.cancel, style: .cancel)
+        let okAction = UIAlertAction(title: AlertMessage.ok, style: .default) { _ in
             if let stockController = self.storyboard?.instantiateViewController(withIdentifier: "StockUpdateController") {
                 self.present(stockController, animated: true)
             }
