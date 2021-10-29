@@ -423,6 +423,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaQuantityLabel" destination="gKu-86-RhI" id="FW1-mr-PKm"/>
+                        <outlet property="kiwiQuantityLabel" destination="ZDv-1m-HBY" id="LDS-eY-vww"/>
+                        <outlet property="mangoQuantityLabel" destination="YJI-ER-LJR" id="cIp-cM-vo8"/>
+                        <outlet property="pineappleQuantityLabel" destination="MpT-VW-hCb" id="uxW-jX-2I4"/>
+                        <outlet property="strawberryQuantityLabel" destination="0yV-kn-zaT" id="HgJ-PS-VR8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
