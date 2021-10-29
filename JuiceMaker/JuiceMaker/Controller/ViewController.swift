@@ -62,40 +62,40 @@ class ViewController: UIViewController {
             }
         }
     }
-
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeFruitJuice(juice: .strawberryBananaJuice)
-        showOrderSuccessAlert(for: .strawberryBananaJuice)
+    
+    @IBAction func tapJuiceOrderButton(_ sender: UIButton) {
+        do {
+            let menu = try switchTagNumberToMenu(tag: sender.tag)
+            makeJuice(for: menu)
+        } catch {
+            print(error)
+        }
     }
     
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        juiceMaker.makeFruitJuice(juice: .strawberryJuice)
-        showOrderSuccessAlert(for: .strawberryJuice)
+    func switchTagNumberToMenu(tag: Int) throws -> JuiceMaker.Menu {
+        switch tag {
+        case 0:
+            return JuiceMaker.Menu.strawberryJuice
+        case 1:
+            return JuiceMaker.Menu.bananaJuice
+        case 2:
+            return JuiceMaker.Menu.pineappleJuice
+        case 3:
+            return JuiceMaker.Menu.kiwiJuice
+        case 4:
+            return JuiceMaker.Menu.mangoJuice
+        case 5:
+            return JuiceMaker.Menu.strawberryBananaJuice
+        case 6:
+            return JuiceMaker.Menu.mangoKiwiJuice
+        default:
+            throw JuiceMakerError.invalidTagNumberForButton
+        }
     }
     
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeFruitJuice(juice: .bananaJuice)
-        showOrderSuccessAlert(for: .bananaJuice)
-    }
-    
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        juiceMaker.makeFruitJuice(juice: .pineappleJuice)
-        showOrderSuccessAlert(for: .pineappleJuice)
-    }
-    
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeFruitJuice(juice: .kiwiJuice)
-        showOrderSuccessAlert(for: .kiwiJuice)
-    }
-    
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeFruitJuice(juice: .mangoKiwiJuice)
-        showOrderSuccessAlert(for: .mangoKiwiJuice)
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
-        juiceMaker.makeFruitJuice(juice: .mangoJuice)
-        showOrderSuccessAlert(for: .mangoJuice)
+    func makeJuice(for menu: JuiceMaker.Menu) {
+        juiceMaker.makeFruitJuice(juice: menu)
+        showOrderSuccessAlert(for: menu)
     }
     
     func showOrderSuccessAlert(for menu: JuiceMaker.Menu) {
