@@ -82,9 +82,10 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func changeSceneOfManageStockViewController() {
-        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: "manageStock") else {
+        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: "manageStockViewController") else {
             return
         }
+        
         self.present(manageStockViewController, animated: true)
     }
 }
