@@ -8,7 +8,7 @@ class OrderJuiceViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    var juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class OrderJuiceViewController: UIViewController {
         initializeLabel()
     }
     
-    func refreshSelectedStockLabel(of fruit: FruitName) {
+    private func refreshSelectedStockLabel(of fruit: FruitName) {
         switch fruit {
         case .strawberry:
             strawberryStockLabel.text = "\(juiceMaker.store.inventory[0].count)"
@@ -34,19 +34,19 @@ class OrderJuiceViewController: UIViewController {
         }
     }
     
-    @objc func refreshStockLabel(_ notifacation: Notification) {
+    @objc private func refreshStockLabel(_ notifacation: Notification) {
         guard let changedFruit = notifacation.userInfo?["changedFruit"] as? FruitName else { return }
         
         refreshSelectedStockLabel(of: changedFruit)
     }
     
-    func initializeLabel() {
+    private func initializeLabel() {
         for fruit in FruitName.allCases {
             refreshSelectedStockLabel(of: fruit)
         }
     }
     
-    func showSuccessAlert(message: String) {
+    private func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
@@ -58,7 +58,7 @@ class OrderJuiceViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func showLackOfStockAlert(message: String) {
+    private func showLackOfStockAlert(message: String) {
         guard let editStockViewController = self.storyboard?.instantiateViewController(identifier: "EditStockNavigation") else {
             return
         }
@@ -79,7 +79,7 @@ class OrderJuiceViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func receiveJuiceOrder(juiceName: JuiceName) {
+    private func receiveJuiceOrder(juiceName: JuiceName) {
         do {
             try juiceMaker.make(juiceName: juiceName)
             showSuccessAlert(message: "\(juiceName.kor) 나왔습니다! 맛있게 드세요!")
