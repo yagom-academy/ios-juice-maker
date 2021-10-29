@@ -13,7 +13,7 @@ class ModifyStockViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func touchUpDismissButton(_ sender: Any) {
+    @IBAction private func touchUpDismissButton(_ sender: UIButton) { 
         dismiss(animated: true, completion: nil)
     }
 }

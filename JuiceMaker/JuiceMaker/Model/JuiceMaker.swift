@@ -5,8 +5,8 @@
 //
 
 struct JuiceMaker {
-    func tell(juice: Juice) -> String {
-        switch juice {
+    func tell(name: Juice) -> String { 
+        switch name {
         case .strawberryJuice:
             return "딸기"
         case .bananaJuice:

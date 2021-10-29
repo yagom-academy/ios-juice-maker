@@ -7,8 +7,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    let fruitStore = FruitStore.shared
-    let juiceMaker = JuiceMaker()
+    private let fruitStore = FruitStore.shared
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,21 +20,13 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    func updateFruitStockLabel() throws {
+    private func updateFruitStockLabel() throws {
         guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
               let bananaStock = fruitStore.stock[Fruit.banana],
               let pineappleStock = fruitStore.stock[Fruit.pineapple],
@@ -50,45 +42,45 @@ class MainViewController: UIViewController {
         mangoStockLabel.text = String(mangoStock)
     }
     
-    @IBAction func touchUpStrawberryBananaJuiceOrder(_ sender: UIButton) {
+    @IBAction private func touchUpStrawberryBananaJuiceOrder(_ sender: UIButton) {
         orderJuice(juice: .strawberryBananaJuice)
     }
     
-    @IBAction func touchUpMangoKiwiJuiceOrder(_ sender: UIButton) {
+    @IBAction private func touchUpMangoKiwiJuiceOrder(_ sender: UIButton) {
         orderJuice(juice: .mangoKiwiJuice)
     }
     
-    @IBAction func touchUpStrawberryJuiceOrder(_ sender: UIButton) {
+    @IBAction private func touchUpStrawberryJuiceOrder(_ sender: UIButton) {
         orderJuice(juice: .strawberryJuice)
     }
     
-    @IBAction func touchUpBananaJuiceOrder(_ sender: UIButton) {
+    @IBAction private func touchUpBananaJuiceOrder(_ sender: UIButton) {
         orderJuice(juice: .bananaJuice)
     }
     
-    @IBAction func touchUpPineappleJuiceOrder(_ sender: UIButton) {
+    @IBAction private func touchUpPineappleJuiceOrder(_ sender: UIButton) {
         orderJuice(juice: .pineappleJuice)
     }
     
-    @IBAction func touchUpKiwiJuiceOrder(_ sender: UIButton) {
+    @IBAction private func touchUpKiwiJuiceOrder(_ sender: UIButton) {
         orderJuice(juice: .kiwiJuice)
     }
     
-    @IBAction func touchUpMangoJuiceOrder(_ sender: UIButton) {
+    @IBAction private func touchUpMangoJuiceOrder(_ sender: UIButton) {
         orderJuice(juice: .mangoJuice)
     }
     
-    func orderJuice(juice: Juice) {
+    private func orderJuice(juice: Juice) {
         do {
             try fruitStore.consumeStock(with: juice)
-            showExistStockAlert(message: "\(juiceMaker.tell(juice: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
+            showExistStockAlert(message: "\(juiceMaker.tell(name: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
             try updateFruitStockLabel()
         } catch {
             showNoExistStockAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
-    func showExistStockAlert(message: String) {
+    private func showExistStockAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
         
@@ -97,7 +89,7 @@ class MainViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showNoExistStockAlert(message: String) {
+    private func showNoExistStockAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { (action) in
             guard let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") else { return }
