@@ -42,7 +42,7 @@ class JuiceOrderViewController: UIViewController {
         makeJuice(juice: juice)
     }
     
-    func makeJuice(juice: Juices) {
+    private func makeJuice(juice: Juices) {
         do {
             try juiceMaker.makeJuice(juice: juice)
             updateFruitsStock()
@@ -59,7 +59,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func updateFruitsStock() {
+    private func updateFruitsStock() {
         do {
             strawberryStockLabel.text = try getFruitStock(which: .strawberry)
             bananaStockLabel.text = try getFruitStock(which: .banana)
@@ -75,14 +75,14 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func getFruitStock(which fruit: Fruits) throws -> String {
+    private func getFruitStock(which fruit: Fruits) throws -> String {
         guard let stock = fruitStore.fruitStorage[fruit] else {
             throw FruitStockError.invalidValue
         }
         return String(stock)
     }
     
-    func showSuccessAlert(juice: Juices) {
+    private func showSuccessAlert(juice: Juices) {
         let alert = UIAlertController(title: nil, message: "\(juice)가 나왔습니다. 맛있게 드세요!😁", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
@@ -90,7 +90,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showNotEnoughStock() {
+    private func showNotEnoughStock() {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
@@ -100,7 +100,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showSystemError() {
+    private func showSystemError() {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
