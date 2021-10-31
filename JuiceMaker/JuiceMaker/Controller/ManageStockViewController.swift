@@ -53,7 +53,7 @@ class ManageStockViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func stepper(_ sender: UIStepper) {
+    @IBAction func touchUpFruitQuantityStepper(_ sender: UIStepper) {
         fetchLabel(sender.tag).text = String(Int(sender.value))
     }
     
