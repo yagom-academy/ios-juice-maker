@@ -28,12 +28,19 @@ class ManageStockViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .systemGray5
         
+        setFruitQuantityLable()
+        setFruitQuantityStepper()
+    }
+    
+    func setFruitQuantityLable() {
         strawberryQuantityLabel.text = deliverdAllStock[0]
         bananaQuantityLabel.text = deliverdAllStock[1]
         pineappleQuantityLabel.text = deliverdAllStock[2]
         kiwiQuantityLabel.text = deliverdAllStock[3]
         mangoQuantityLabel.text = deliverdAllStock[4]
-        
+    }
+    
+    func setFruitQuantityStepper() {
         strawberryQuantityStepper.value = Double(Int(strawberryQuantityLabel.text ?? "0") ?? 0)
         bananaQuantityStepper.value = Double(Int(bananaQuantityLabel.text ?? "0") ?? 0)
         pineappleQuantityStepper.value = Double(Int(pineappleQuantityLabel.text ?? "0") ?? 0)
