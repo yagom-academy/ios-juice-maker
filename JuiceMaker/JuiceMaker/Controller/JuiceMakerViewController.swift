@@ -23,10 +23,10 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        printStock()
+        setFruitQuantityLabel()
     }
     
-    func printStock() {
+    func setFruitQuantityLabel() {
         let fruitStoreInventory = juiceMaker.fetchAllStock()
         strawberryQuantityLabel.text = String(fruitStoreInventory[.strawberry] ?? 0)
         bananaQuantityLabel.text = String(fruitStoreInventory[.banana] ?? 0)
@@ -54,7 +54,7 @@ class JuiceMakerViewController: UIViewController {
         let okAction: UIAlertAction = UIAlertAction(title: "확인",
                                                     style: .default,
                                                     handler: { (action) in
-                                                                     self.printStock()
+                                                                     self.setFruitQuantityLabel()
                                                     })
         alert.addAction(okAction)
         
@@ -75,7 +75,7 @@ class JuiceMakerViewController: UIViewController {
         let cancelAction: UIAlertAction = UIAlertAction(title: "나중에 하기",
                                                         style: .default,
                                                         handler: { (action) in
-                                                                       self.printStock()
+                                                                       self.setFruitQuantityLabel()
                                                         })
         alert.addAction(okAction)
         alert.addAction(cancelAction)
