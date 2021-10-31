@@ -19,6 +19,10 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         printStock()
     }
     
@@ -89,6 +93,7 @@ class JuiceMakerViewController: UIViewController {
             vc?.deliverdAllStock.append(pineappleQuantityLabel.text ?? "0")
             vc?.deliverdAllStock.append(kiwiQuantityLabel.text ?? "0")
             vc?.deliverdAllStock.append(mangoQuantityLabel.text ?? "0")
+            vc?.juiceMaker = self.juiceMaker
         }
     }
     
@@ -103,6 +108,7 @@ class JuiceMakerViewController: UIViewController {
         vc?.deliverdAllStock.append(pineappleQuantityLabel.text ?? "0")
         vc?.deliverdAllStock.append(kiwiQuantityLabel.text ?? "0")
         vc?.deliverdAllStock.append(mangoQuantityLabel.text ?? "0")
+        vc?.juiceMaker = self.juiceMaker
         
         self.present(manageStockViewController, animated: true)
     }
