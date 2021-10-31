@@ -15,7 +15,7 @@ class FruitStore {
     private let storedMango: Fruit = Fruit(name: .mango, quantity: 10)
     
     private var stock: [Fruit]
-    
+    private var a = [1, 2]
     init() {
         stock = [storedStrawberry, storedBanana, storedKiwi, storedPineapple, storedMango]
     }
@@ -49,6 +49,8 @@ class FruitStore {
         let storedFruit: Fruit = fetchStoredFruit(of: requiredChange.name)
         
         storedFruit.changeQuantity(to: requiredChange.quantity)
+        
+        
 
         return storedFruit.quantity >= 0
     }

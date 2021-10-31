@@ -17,7 +17,11 @@ class ManageStockViewController: UIViewController {
     @IBOutlet weak var kiwiQuantityLabel: UILabel!
     @IBOutlet weak var mangoQuantityLabel: UILabel!
     
-    
+    @IBOutlet weak var strawberryQuantityStepper: UIStepper!
+    @IBOutlet weak var bananaQuantityStepper: UIStepper!
+    @IBOutlet weak var pineappleQuantityStepper: UIStepper!
+    @IBOutlet weak var kiwiQuantityStepper: UIStepper!
+    @IBOutlet weak var mangoQuantityStepper: UIStepper!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,20 +32,38 @@ class ManageStockViewController: UIViewController {
         pineappleQuantityLabel.text = deliverdAllStock[2]
         kiwiQuantityLabel.text = deliverdAllStock[3]
         mangoQuantityLabel.text = deliverdAllStock[4]
+        
+        strawberryQuantityStepper.value = Double(Int(strawberryQuantityLabel.text ?? "0") ?? 0)
+        bananaQuantityStepper.value = Double(Int(bananaQuantityLabel.text ?? "0") ?? 0)
+        pineappleQuantityStepper.value = Double(Int(pineappleQuantityLabel.text ?? "0") ?? 0)
+        kiwiQuantityStepper.value = Double(Int(kiwiQuantityLabel.text ?? "0") ?? 0)
+        mangoQuantityStepper.value = Double(Int(mangoQuantityLabel.text ?? "0") ?? 0)
     }
     
     @IBAction func backButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func stepper(_ sender: UIStepper) {
+        fetchLabel(sender.tag).text = String(Int(sender.value))
     }
-    */
-
+    
+    func fetchLabel (_ tag: Int) -> UILabel {
+        switch tag {
+        case 0:
+            return strawberryQuantityLabel
+        case 1:
+            return bananaQuantityLabel
+        case 2:
+            return pineappleQuantityLabel
+        case 3:
+            return kiwiQuantityLabel
+        case 4:
+            return mangoQuantityLabel
+        default:
+            return strawberryQuantityLabel
+        }
+    }
+    
 }
