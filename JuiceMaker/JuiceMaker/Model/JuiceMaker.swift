@@ -1,11 +1,7 @@
 
 struct JuiceMaker {
 
-    let fruitStore: FruitStore
-    
-    init() {
-        fruitStore = FruitStore.shared
-    }
+    private let fruitStore: FruitStore = FruitStore.shared
     
     private func checkStock(juice: Juices) throws {
         for (fruit, amount) in juice.recipe {
