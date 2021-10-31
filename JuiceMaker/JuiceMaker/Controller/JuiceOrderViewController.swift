@@ -23,7 +23,7 @@ class JuiceOrderViewController: UIViewController {
         super.viewDidLoad()
         updateFruitsStock()
     }
-
+    
     @IBAction func clickJuiceButton(_ sender: UIButton) {
         var juice: Juices
         
@@ -36,7 +36,7 @@ class JuiceOrderViewController: UIViewController {
         case kiwiOrderButton: juice = .kiwi
         case pineappleOrderButton: juice = .pineapple
         default:
-            return //temp
+            return
         }
         
         makeJuice(juice: juice)
@@ -60,16 +60,24 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func updateFruitsStock() {
-        strawberryStockLabel.text = getFruitStock(which: .strawberry)
-        bananaStockLabel.text = getFruitStock(which: .banana)
-        kiwiStockLabel.text = getFruitStock(which: .kiwi)
-        mangoStockLabel.text = getFruitStock(which: .mango)
-        pineappleStockLabel.text = getFruitStock(which: .pineapple)
+        do {
+            strawberryStockLabel.text = try getFruitStock(which: .strawberry)
+            bananaStockLabel.text = try getFruitStock(which: .banana)
+            kiwiStockLabel.text = try getFruitStock(which: .kiwi)
+            mangoStockLabel.text = try getFruitStock(which: .mango)
+            pineappleStockLabel.text = try getFruitStock(which: .pineapple)
+        }
+        catch FruitStockError.invalidValue {
+            showSystemError()
+        }
+        catch {
+            print(error)
+        }
     }
     
-    func getFruitStock(which fruit: Fruits) -> String {
+    func getFruitStock(which fruit: Fruits) throws -> String {
         guard let stock = fruitStore.fruitStorage[fruit] else {
-            return "" // 에러 처리
+            throw FruitStockError.invalidValue
         }
         return String(stock)
     }
@@ -85,23 +93,23 @@ class JuiceOrderViewController: UIViewController {
     func showNotEnoughStock() {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
-            let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
-            alert.addAction(okAction)
-            alert.addAction(cancleAction)
-            present(alert, animated: true, completion: nil)
-        }
-
-        func showSystemError() {
-            let message = FruitStockError.outOfStock.localizedDescription
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        }
-
-        private func presentFruitStoreViewController(_ action: UIAlertAction) {
-            guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
-            self.present(viewController, animated: true, completion: nil)
-        }
+        let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
+        let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showSystemError() {
+        let message = FruitStockError.outOfStock.localizedDescription
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func presentFruitStoreViewController(_ action: UIAlertAction) {
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
