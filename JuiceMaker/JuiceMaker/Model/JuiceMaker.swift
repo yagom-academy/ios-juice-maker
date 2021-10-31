@@ -33,8 +33,8 @@ struct JuiceMaker {
     }
     
     func updateStock(to requiredChange: [Fruit]) {
-        for a in requiredChange {
-            fruitStore.updateStock(to: a)
+        for fruit in requiredChange {
+            fruitStore.updateStock(to: fruit)
         }
     }
 }
