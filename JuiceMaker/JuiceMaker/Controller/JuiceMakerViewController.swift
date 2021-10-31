@@ -15,10 +15,15 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiQuantityLabel: UILabel!
     @IBOutlet weak var mangoQuantityLabel: UILabel!
     
+    @IBOutlet var oderButtons: [UIButton]!
+    
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for button in oderButtons {
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,22 +103,23 @@ class JuiceMakerViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination.children.first is ManageStockViewController {
-            let vc = segue.destination.children.first as? ManageStockViewController
-            vc?.deliverdAllStock = makeCurrentAllStock()
-            vc?.juiceMaker = self.juiceMaker
+            let manageStockViewController = segue.destination.children.first as? ManageStockViewController
+            manageStockViewController?.deliverdAllStock = makeCurrentAllStock()
+            manageStockViewController?.juiceMaker = self.juiceMaker
         }
     }
     
     func changeSceneOfManageStockViewController() {
-        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: "manageStockViewController") else {
+        guard let instantiatedViewController = self.storyboard?.instantiateViewController(identifier: "manageStockViewController") else {
             return
         }
         
-        let vc = manageStockViewController.children.first as? ManageStockViewController
-        vc?.deliverdAllStock = makeCurrentAllStock()
-        vc?.juiceMaker = self.juiceMaker
+        let manageStockViewController = instantiatedViewController.children.first as? ManageStockViewController
         
-        self.present(manageStockViewController, animated: true)
+        manageStockViewController?.deliverdAllStock = makeCurrentAllStock()
+        manageStockViewController?.juiceMaker = self.juiceMaker
+        
+        self.present(instantiatedViewController, animated: true)
     }
 }
 

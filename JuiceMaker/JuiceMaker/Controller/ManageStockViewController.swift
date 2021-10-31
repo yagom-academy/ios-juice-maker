@@ -82,5 +82,4 @@ class ManageStockViewController: UIViewController {
                                     Fruit(name: .mango, quantity: Int(mangoQuantityLabel.text ?? "0") ?? 0)]
         juiceMaker?.updateStock(to: updateArray)
     }
-    
 }

@@ -249,6 +249,11 @@
                         <outlet property="mangoQuantityLabel" destination="3Ce-SU-JeH" id="VCV-f7-Bda"/>
                         <outlet property="pineappleQuantityLabel" destination="ccQ-Dk-PuY" id="zX6-fe-Vkx"/>
                         <outlet property="strawberryQuantityLabel" destination="Qas-vP-td6" id="r1Y-Dn-iyp"/>
+                        <outletCollection property="oderButtons" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="dMv-Iq-2FG"/>
+                        <outletCollection property="oderButtons" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="FKm-Jc-QOb"/>
+                        <outletCollection property="oderButtons" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="jZY-DR-mhV"/>
+                        <outletCollection property="oderButtons" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="vxK-bE-D7I"/>
+                        <outletCollection property="oderButtons" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="N1W-Ze-k2X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
