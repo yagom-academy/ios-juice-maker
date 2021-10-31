@@ -10,7 +10,7 @@ enum FruitStockError: LocalizedError {
         case .invalidValue:
             return "시스템 에러"
         case .outOfStock:
-            return "재료가 소진되어 주스를 만들 수 없습니다."
+            return "재고가 모자라요, 재고를 수정할까요?"
         }
     }
 }

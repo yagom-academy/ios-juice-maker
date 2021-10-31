@@ -83,7 +83,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func showNotEnoughStock() {
-            let alert = UIAlertController(title: nil, message: "재고가 모자라요, 재고를 수정할까요?", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "\(FruitStockError.outOfStock)", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
             let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
             alert.addAction(okAction)
@@ -92,7 +92,7 @@ class JuiceOrderViewController: UIViewController {
         }
 
         func showSystemError() {
-            let alert = UIAlertController(title: nil, message: "SystemError", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "\(FruitStockError.invalidValue)", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
