@@ -85,15 +85,21 @@ class JuiceMakerViewController: UIViewController {
                 completion: nil)
     }
     
+    func makeCurrentAllStock() -> [String] {
+        var currentAllStock = [String]()
+        currentAllStock.append(strawberryQuantityLabel.text ?? "0")
+        currentAllStock.append(bananaQuantityLabel.text ?? "0")
+        currentAllStock.append(pineappleQuantityLabel.text ?? "0")
+        currentAllStock.append(kiwiQuantityLabel.text ?? "0")
+        currentAllStock.append(mangoQuantityLabel.text ?? "0")
+
+        return currentAllStock
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination.children.first is ManageStockViewController {
             let vc = segue.destination.children.first as? ManageStockViewController
-            vc?.deliverdAllStock.append(strawberryQuantityLabel.text ?? "0")
-            vc?.deliverdAllStock.append(bananaQuantityLabel.text ?? "0")
-            vc?.deliverdAllStock.append(pineappleQuantityLabel.text ?? "0")
-            vc?.deliverdAllStock.append(kiwiQuantityLabel.text ?? "0")
-            vc?.deliverdAllStock.append(mangoQuantityLabel.text ?? "0")
-            vc?.juiceMaker = self.juiceMaker
+            vc?.deliverdAllStock = makeCurrentAllStock()
         }
     }
     
@@ -103,11 +109,7 @@ class JuiceMakerViewController: UIViewController {
         }
         
         let vc = manageStockViewController.children.first as? ManageStockViewController
-        vc?.deliverdAllStock.append(strawberryQuantityLabel.text ?? "0")
-        vc?.deliverdAllStock.append(bananaQuantityLabel.text ?? "0")
-        vc?.deliverdAllStock.append(pineappleQuantityLabel.text ?? "0")
-        vc?.deliverdAllStock.append(kiwiQuantityLabel.text ?? "0")
-        vc?.deliverdAllStock.append(mangoQuantityLabel.text ?? "0")
+        vc?.deliverdAllStock = makeCurrentAllStock()
         vc?.juiceMaker = self.juiceMaker
         
         self.present(manageStockViewController, animated: true)
