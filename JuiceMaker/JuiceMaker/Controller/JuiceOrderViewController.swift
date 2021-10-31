@@ -60,11 +60,18 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func updateFruitsStock() {
-        strawberryStockLabel.text = String(fruitStore.fruitStorage[.strawberry] ?? .zero)
-        bananaStockLabel.text = String(fruitStore.fruitStorage[.banana] ?? .zero)
-        kiwiStockLabel.text = String(fruitStore.fruitStorage[.kiwi] ?? .zero)
-        mangoStockLabel.text = String(fruitStore.fruitStorage[.mango] ?? .zero)
-        pineappleStockLabel.text = String(fruitStore.fruitStorage[.pineapple] ?? .zero)
+        strawberryStockLabel.text = getFruitStock(which: .strawberry)
+        bananaStockLabel.text = getFruitStock(which: .banana)
+        kiwiStockLabel.text = getFruitStock(which: .kiwi)
+        mangoStockLabel.text = getFruitStock(which: .mango)
+        pineappleStockLabel.text = getFruitStock(which: .pineapple)
+    }
+    
+    func getFruitStock(which fruit: Fruits) -> String {
+        guard let stock = fruitStore.fruitStorage[fruit] else {
+            return "" // 에러 처리
+        }
+        return String(stock)
     }
     
     func showSuccessAlert(juice: Juices) {
