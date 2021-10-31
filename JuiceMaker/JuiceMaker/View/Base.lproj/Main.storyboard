@@ -434,7 +434,7 @@
                     <navigationItem key="navigationItem" title="재고 수정" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="Rgc-Uf-5MD">
                             <connections>
-                                <action selector="backButton:" destination="Yu1-lM-nqp" id="mFk-4g-nDc"/>
+                                <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" id="b2X-mH-14p"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

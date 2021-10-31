@@ -41,11 +41,10 @@ class ManageStockViewController: UIViewController {
         mangoQuantityStepper.value = Double(Int(mangoQuantityLabel.text ?? "0") ?? 0)
     }
     
-    @IBAction func backButton(_ sender: UIButton) {
+    @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
         updateStock()
         dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func stepper(_ sender: UIStepper) {
         fetchLabel(sender.tag).text = String(Int(sender.value))
