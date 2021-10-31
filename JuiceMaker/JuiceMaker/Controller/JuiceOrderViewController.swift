@@ -36,13 +36,13 @@ class JuiceOrderViewController: UIViewController {
         case kiwiOrderButton: juice = .kiwi
         case pineappleOrderButton: juice = .pineapple
         default:
-            juice = .strawberry //temp
+            return //temp
         }
         
-        manageJuiceMaking(juice: juice)
+        makeJuice(juice: juice)
     }
     
-    func manageJuiceMaking(juice: Juices) {
+    func makeJuice(juice: Juices) {
         do {
             try juiceMaker.makeJuice(juice: juice)
             updateFruitsStock()
@@ -83,7 +83,8 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func showNotEnoughStock() {
-        let alert = UIAlertController(title: nil, message: "\(FruitStockError.outOfStock)", preferredStyle: .alert)
+        let message = FruitStockError.outOfStock.localizedDescription
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
             let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
             alert.addAction(okAction)
@@ -92,7 +93,8 @@ class JuiceOrderViewController: UIViewController {
         }
 
         func showSystemError() {
-            let alert = UIAlertController(title: nil, message: "\(FruitStockError.invalidValue)", preferredStyle: .alert)
+            let message = FruitStockError.outOfStock.localizedDescription
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
