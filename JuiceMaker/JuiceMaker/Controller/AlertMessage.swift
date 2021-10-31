@@ -15,12 +15,9 @@ enum AlertMessage: CustomStringConvertible {
             return " 나왔습니다! 맛있게 드세요!"
         case .makeFailMessage:
             return "재료가 모자라요. 재고를 수정할까요?"
-        case .updateFailMessage:
-            return "재고변경을 실패하였습니다."
         }
     }
     
     case makeSuccessMessage
     case makeFailMessage
-    case updateFailMessage
 }
