@@ -100,6 +100,7 @@ class JuiceMakerViewController: UIViewController {
         if segue.destination.children.first is ManageStockViewController {
             let vc = segue.destination.children.first as? ManageStockViewController
             vc?.deliverdAllStock = makeCurrentAllStock()
+            vc?.juiceMaker = self.juiceMaker
         }
     }
     
