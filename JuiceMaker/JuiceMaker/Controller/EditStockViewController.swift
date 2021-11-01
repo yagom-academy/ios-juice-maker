@@ -20,6 +20,8 @@ class EditStockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initializeUIElements()
     }
     
     func initializeStockLabel(at indexOfFruit: Int) {
@@ -28,6 +30,13 @@ class EditStockViewController: UIViewController {
 
     func initializeStocktepper(at indexOfFruit: Int) {
         fruitstockSteppers[indexOfFruit].value = Double(store.inventory[indexOfFruit].count)
+    }
+    
+    func initializeUIElements() {
+        for indexOfFruit in 0..<fruitStockLabels.count {
+            initializeStockLabel(at: indexOfFruit)
+            initializeStocktepper(at: indexOfFruit)
+        }
     }
     
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
