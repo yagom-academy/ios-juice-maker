@@ -34,7 +34,14 @@ class StockModifyViewController: UIViewController {
         initializeSteppers()
     }
     
-    @IBAction func stepperDidTap(_ sender: UIStepper) {
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .FruitStockChanged, object: nil)
+    }
+}
+
+// MARK: - IBAction Method
+extension StockModifyViewController {
+    @IBAction private func stepperDidTap(_ sender: UIStepper) {
         do {
             let fruitToModify = try fruit(for: sender)
             try modifyStock(of: fruitToModify, by: sender)
@@ -45,33 +52,14 @@ class StockModifyViewController: UIViewController {
         resetValue(ofStepper: sender)
     }
     
-    @objc private func didFruitStockChange(_ notification: Notification) {
-        guard let fruit = notification.object as? Fruit else {
-            showErrorAlert(error: FruitStoreError.invalidFruit)
-            return
-        }
-        do{
-            try updateLabel(fruit: fruit)
-        } catch let error {
-            showErrorAlert(error: error)
-        }
+    @IBAction private func modifyCompleteButtonDidTap(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
-    
-    func modifyStock(of fruitToModify: Fruit, by stepper: UIStepper) throws {
-        try juiceMaker?.changeFruitStock(of: fruitToModify, by: 1, calculate: calculation(for: stepper))
-    }
-    
-    func calculation(for stepper: UIStepper) throws -> (Int,Int) -> Int {
-        if stepper.value == stepperMaximumValue {
-            return (+)
-        } else if stepper.value == stepperMinimumValue {
-            return (-)
-        } else {
-            throw FruitStoreError.unexpectedStepperValue
-        }
-    }
-    
-    func initializeSteppers() {
+}
+
+// MARK: - View Method
+extension StockModifyViewController {
+    private func initializeSteppers() {
         strawberryStockStepper.minimumValue = stepperMinimumValue
         bananaStockStepper.minimumValue = stepperMinimumValue
         pineappleStockStepper.minimumValue = stepperMinimumValue
@@ -82,27 +70,6 @@ class StockModifyViewController: UIViewController {
         pineappleStockStepper.maximumValue = stepperMaximumValue
         kiwiStockStepper.maximumValue = stepperMaximumValue
         mangoStockStepper.maximumValue = stepperMaximumValue
-    }
-    
-    func resetValue(ofStepper stepper: UIStepper) {
-        stepper.value = stepperDefaultValue
-    }
-    
-    func fruit(for stepper: UIStepper) throws -> Fruit {
-        switch stepper {
-        case strawberryStockStepper:
-            return .strawberry
-        case bananaStockStepper:
-            return .banana
-        case pineappleStockStepper:
-            return .pineapple
-        case kiwiStockStepper:
-            return .kiwi
-        case mangoStockStepper:
-            return .mango
-        default:
-            throw FruitStoreError.invalidModification
-        }
     }
     
     private func updateLabel(fruit: Fruit) throws {
@@ -138,19 +105,67 @@ class StockModifyViewController: UIViewController {
             showErrorAlert(error: error)
         }
     }
+    
+    func resetValue(ofStepper stepper: UIStepper) {
+        stepper.value = stepperDefaultValue
+    }
+}
 
+// MARK: - Model Method
+extension StockModifyViewController {
+    private func modifyStock(of fruitToModify: Fruit, by stepper: UIStepper) throws {
+        try juiceMaker?.changeFruitStock(of: fruitToModify, by: 1, calculate: calculation(for: stepper))
+    }
+    
+    private func calculation(for stepper: UIStepper) throws -> (Int,Int) -> Int {
+        if stepper.value == stepperMaximumValue {
+            return (+)
+        } else if stepper.value == stepperMinimumValue {
+            return (-)
+        } else {
+            throw FruitStoreError.unexpectedStepperValue
+        }
+    }
+    
+    private func fruit(for stepper: UIStepper) throws -> Fruit {
+        switch stepper {
+        case strawberryStockStepper:
+            return .strawberry
+        case bananaStockStepper:
+            return .banana
+        case pineappleStockStepper:
+            return .pineapple
+        case kiwiStockStepper:
+            return .kiwi
+        case mangoStockStepper:
+            return .mango
+        default:
+            throw FruitStoreError.invalidModification
+        }
+    }
+}
+
+// MARK: - NotificationCenter Method
+extension StockModifyViewController {
+    @objc private func didFruitStockChange(_ notification: Notification) {
+        guard let fruit = notification.object as? Fruit else {
+            showErrorAlert(error: FruitStoreError.invalidFruit)
+            return
+        }
+        do{
+            try updateLabel(fruit: fruit)
+        } catch let error {
+            showErrorAlert(error: error)
+        }
+    }
+}
+
+// MARK: - Alert Method
+extension StockModifyViewController {
     private func showErrorAlert(error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
-    }
-    
-    @IBAction private func modifyCompleteButtonDidTap(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .FruitStockChanged, object: nil)
     }
 }

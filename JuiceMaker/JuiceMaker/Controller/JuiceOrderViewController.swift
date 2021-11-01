@@ -30,6 +30,13 @@ class JuiceOrderViewController: UIViewController {
         updateAllLabels()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .FruitStockChanged, object: nil)
+    }
+}
+
+// MARK: - IBAction Method
+extension JuiceOrderViewController {
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
             let juice = try juiceMenu(for: sender)
@@ -45,19 +52,10 @@ class JuiceOrderViewController: UIViewController {
     @IBAction private func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
         moveToStockModifyView()
     }
-    
-    @objc private func didFruitStockChange(_ notification: Notification) {
-        guard let fruit = notification.object as? Fruit else {
-            showErrorAlert(error: FruitStoreError.invalidFruit)
-            return
-        }
-        do{
-            try updateLabel(fruit: fruit)
-        } catch let error {
-            showErrorAlert(error: error)
-        }
-    }
-    
+}
+
+// MARK: - View Method
+extension JuiceOrderViewController {
     private func updateLabel(fruit: Fruit) throws {
         switch fruit {
         case .strawberry:
@@ -102,7 +100,10 @@ class JuiceOrderViewController: UIViewController {
         kiwiJuiceOrderButton.titleLabel?.textAlignment = .center
         mangoJuiceOrderButton.titleLabel?.textAlignment = .center
     }
-    
+}
+
+// MARK: - Model Method
+extension JuiceOrderViewController {
     private func juiceMenu(for button: UIButton) throws -> JuiceMenu {
         switch button {
         case strawberryBananaJuiceOrderButton:
@@ -123,7 +124,25 @@ class JuiceOrderViewController: UIViewController {
             throw JuiceOrderError.invalidJuiceOrder
         }
     }
-    
+}
+
+// MARK: - NotificationCenter Method
+extension JuiceOrderViewController {
+    @objc private func didFruitStockChange(_ notification: Notification) {
+        guard let fruit = notification.object as? Fruit else {
+            showErrorAlert(error: FruitStoreError.invalidFruit)
+            return
+        }
+        do{
+            try updateLabel(fruit: fruit)
+        } catch let error {
+            showErrorAlert(error: error)
+        }
+    }
+}
+
+// MARK: - Alert Method
+extension JuiceOrderViewController {
     private func showSuccessAlert(juiceMenu: JuiceMenu) {
         let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess.korean, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
@@ -146,24 +165,20 @@ class JuiceOrderViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
+}
+
+// MARK: - View Transition Method
+extension JuiceOrderViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == StoryboardSegue.toStockModifyView.identifier {
-            guard let stockModifyViewNavigationController = segue.destination as? UINavigationController else {
-                return
-            }
-            guard let stockModifyViewController = stockModifyViewNavigationController.visibleViewController as? StockModifyViewController else {
-                return
-            }
-            stockModifyViewController.juiceMaker = self.juiceMaker
-        }
+        guard segue.identifier == StoryboardSegue.toStockModifyView.identifier,
+              let stockModifyViewNavigationController = segue.destination as? UINavigationController,
+              let stockModifyViewController = stockModifyViewNavigationController.visibleViewController as? StockModifyViewController else {
+                  return
+              }
+        stockModifyViewController.juiceMaker = self.juiceMaker
     }
     
     private func moveToStockModifyView() {
         performSegue(withIdentifier: StoryboardSegue.toStockModifyView.identifier, sender: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .FruitStockChanged, object: nil)
     }
 }
