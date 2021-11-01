@@ -22,6 +22,14 @@ class EditStockViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    func initializeStockLabel(at indexOfFruit: Int) {
+        fruitStockLabels[indexOfFruit].text = "\(store.inventory[indexOfFruit].count)"
+    }
+
+    func initializeStocktepper(at indexOfFruit: Int) {
+        fruitstockSteppers[indexOfFruit].value = Double(store.inventory[indexOfFruit].count)
+    }
+    
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
