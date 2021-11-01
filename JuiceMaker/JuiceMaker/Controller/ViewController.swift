@@ -52,14 +52,16 @@ class ViewController: UIViewController {
     }
     
     @objc func didReceiveNotification(_ notification: Notification) {
-        if let fruit = notification.userInfo?[NotificationKey.fruit] as? Fruit,
-           let stock = notification.userInfo?[NotificationKey.stock] as? Int,
-           let orderComplete = notification.userInfo?[NotificationKey.orderComplete] as? Bool {
-            if orderComplete == true {
+        let userInfo = notification.userInfo
+        
+        if let fruit = userInfo?[NotificationKey.fruit] as? Fruit,
+           let stock = userInfo?[NotificationKey.stock] as? Int,
+           let orderComplete = userInfo?[NotificationKey.orderComplete] as? Bool {
+            if orderComplete {
                 updateFruitLabel(for: fruit, stock: stock)
-            } else {
-                showOrderFailAlert(fruit: fruit)
+                return
             }
+            showOrderFailAlert(fruit: fruit)
         }
     }
     
