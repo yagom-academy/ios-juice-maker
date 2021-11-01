@@ -33,15 +33,18 @@ class FruitStore {
         initializeInventory()
     }
     
-    private func findIndexFromInventory(with fruit: FruitName) throws -> Int {
-        guard let indexOfFruit = inventory.firstIndex(where: { $0.name == fruit }) else {
-            throw FruitStoreError.invalidFruitChoice
+    func findIndexFromInventory(with fruit: FruitName) -> Int {
+        switch fruit {
+        case .strawberry: return 0
+        case .banana: return 1
+        case .kiwi: return 2
+        case .mango: return 3
+        case .pineapple: return 4
         }
-        return indexOfFruit
     }
     
-    func addStock(count: Int, to fruit: FruitName) throws {
-        let indexOfFruit = try findIndexFromInventory(with: fruit)
+    func addStock(count: Int, to fruit: FruitName) {
+        let indexOfFruit = findIndexFromInventory(with: fruit)
         inventory[indexOfFruit].count += count
         NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
     }
@@ -53,7 +56,7 @@ class FruitStore {
     }
     
     func subtractStock(count: Int, from fruit: FruitName) throws {
-        let indexOfFruit = try findIndexFromInventory(with: fruit)
+        let indexOfFruit = findIndexFromInventory(with: fruit)
         try checkEnoughStock(from: indexOfFruit, for: count)
         inventory[indexOfFruit].count -= count
         NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
