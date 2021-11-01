@@ -244,16 +244,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaQuantityLabel" destination="gvk-pA-Lw5" id="xB0-oY-gaV"/>
-                        <outlet property="kiwiQuantityLabel" destination="FZq-de-TJG" id="UH1-8Q-y6H"/>
-                        <outlet property="mangoQuantityLabel" destination="3Ce-SU-JeH" id="VCV-f7-Bda"/>
-                        <outlet property="pineappleQuantityLabel" destination="ccQ-Dk-PuY" id="zX6-fe-Vkx"/>
-                        <outlet property="strawberryQuantityLabel" destination="Qas-vP-td6" id="r1Y-Dn-iyp"/>
                         <outletCollection property="needToChangeButtonsFontSize" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="dMv-Iq-2FG"/>
                         <outletCollection property="needToChangeButtonsFontSize" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="FKm-Jc-QOb"/>
                         <outletCollection property="needToChangeButtonsFontSize" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="jZY-DR-mhV"/>
                         <outletCollection property="needToChangeButtonsFontSize" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="vxK-bE-D7I"/>
                         <outletCollection property="needToChangeButtonsFontSize" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="N1W-Ze-k2X"/>
+                        <outletCollection property="fruitQuatityLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="USg-5b-OWz"/>
+                        <outletCollection property="fruitQuatityLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="Miq-sv-74f"/>
+                        <outletCollection property="fruitQuatityLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="c6i-NV-87c"/>
+                        <outletCollection property="fruitQuatityLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="RiB-H9-Qdr"/>
+                        <outletCollection property="fruitQuatityLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="JJk-xZ-lyj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -8,12 +8,7 @@ import UIKit
 
 
 class JuiceMakerViewController: UIViewController {
-    
-    @IBOutlet weak var strawberryQuantityLabel: UILabel!
-    @IBOutlet weak var bananaQuantityLabel: UILabel!
-    @IBOutlet weak var pineappleQuantityLabel: UILabel!
-    @IBOutlet weak var kiwiQuantityLabel: UILabel!
-    @IBOutlet weak var mangoQuantityLabel: UILabel!
+    @IBOutlet var fruitQuatityLabels: [UILabel]!
     
     @IBOutlet var needToChangeButtonsFontSize: [UIButton]!
     
@@ -38,11 +33,12 @@ class JuiceMakerViewController: UIViewController {
     
     func setFruitQuantityLabel() {
         let fruitStoreInventory = juiceMaker.fetchAllStock()
-        strawberryQuantityLabel.text = String(fruitStoreInventory[.strawberry] ?? 0)
-        bananaQuantityLabel.text = String(fruitStoreInventory[.banana] ?? 0)
-        pineappleQuantityLabel.text = String(fruitStoreInventory[.pineapple] ?? 0)
-        kiwiQuantityLabel.text = String(fruitStoreInventory[.kiwi] ?? 0)
-        mangoQuantityLabel.text = String(fruitStoreInventory[.mango] ?? 0)
+        
+        fruitQuatityLabels[0].text = String(fruitStoreInventory[.strawberry] ?? 0)
+        fruitQuatityLabels[1].text = String(fruitStoreInventory[.banana] ?? 0)
+        fruitQuatityLabels[2].text = String(fruitStoreInventory[.pineapple] ?? 0)
+        fruitQuatityLabels[3].text = String(fruitStoreInventory[.kiwi] ?? 0)
+        fruitQuatityLabels[4].text = String(fruitStoreInventory[.mango] ?? 0)
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
@@ -97,11 +93,10 @@ class JuiceMakerViewController: UIViewController {
     
     func makeCurrentAllStock() -> [String] {
         var currentAllStock = [String]()
-        currentAllStock.append(strawberryQuantityLabel.text ?? "0")
-        currentAllStock.append(bananaQuantityLabel.text ?? "0")
-        currentAllStock.append(pineappleQuantityLabel.text ?? "0")
-        currentAllStock.append(kiwiQuantityLabel.text ?? "0")
-        currentAllStock.append(mangoQuantityLabel.text ?? "0")
+        
+        for index in 0...fruitQuatityLabels.count - 1 {
+            currentAllStock.append(fruitQuatityLabels[index].text ?? "0")
+        }
 
         return currentAllStock
     }
