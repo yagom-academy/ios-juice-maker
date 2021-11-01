@@ -41,7 +41,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
-        let juice = switchUIButtonToMenu(button: sender)
+        guard let juice = Menu(rawValue: sender.tag) else {
+            print("Non-Existent Button")
+            return
+        }
+        
         let isSuccess: Bool = juiceMaker.isCompletMaking(juice)
         
         if isSuccess {
@@ -49,27 +53,6 @@ class ViewController: UIViewController {
             updateStockLabel()
         } else {
             showAlert(isSuccess: false, message: "재료가 모자라요. 재고를 수정할까요?")
-        }
-    }
-    
-    func switchUIButtonToMenu(button: UIButton) -> Menu {
-        switch button.currentTitle {
-        case "딸바쥬스 주문":
-            return Menu.strawberryBananaJuice
-        case "망키쥬스 주문":
-            return Menu.mangoKiwiJuice
-        case "딸기쥬스 주문":
-            return Menu.strawberryJuice
-        case "바나나쥬스 주문":
-            return Menu.bananaJuice
-        case "파인애플쥬스 주문":
-            return Menu.pineappleJuice
-        case "키위쥬스 주문":
-            return Menu.kiwiJuice
-        case "망고쥬스 주문":
-            return Menu.mangoJuice
-        default:
-            fatalError("Non-Existent Button")
         }
     }
     

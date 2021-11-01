@@ -1,4 +1,4 @@
-enum Menu {
+enum Menu: Int {
     var recipe: Dictionary<Fruit, Int> {
         switch self {
         case .strawberryJuice:
@@ -18,13 +18,14 @@ enum Menu {
         }
     }
     
+    case strawberryBananaJuice
+    case mangoKiwiJuice
     case strawberryJuice
     case bananaJuice
-    case kiwiJuice
     case pineappleJuice
-    case strawberryBananaJuice
+    case kiwiJuice
     case mangoJuice
-    case mangoKiwiJuice
+    
 }
 
 
