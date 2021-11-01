@@ -23,9 +23,8 @@ class StockManagerViewController: UIViewController {
         navigationBarItem.title = "재고 수정"
         
         let width = self.view.frame.width
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 0))
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 32))
         navigationBar.isTranslucent = false
-        navigationBar.backgroundColor = .blue
         navigationBar.items = [navigationBarItem]
 
         self.view.addSubview(navigationBar)
