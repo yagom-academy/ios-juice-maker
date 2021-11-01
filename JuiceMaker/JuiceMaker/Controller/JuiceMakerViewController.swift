@@ -58,11 +58,11 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func presentFailAlert() {
-        let failAlert = UIAlertController(title: "재료가 모자라요", message: "재고를 수정할까요?", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default, handler: { _ in
+        let failAlert = UIAlertController(title: "\(AlertTitle.fail)", message: "\(AlertMessage.fail)", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: { _ in
             self.presentStockManagerVC(nil)
         })
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "\(AlertButtonTitle.cancel)", style: .cancel, handler: nil)
         failAlert.addAction(ok)
         failAlert.addAction(cancel)
         failAlert.preferredAction = ok
@@ -71,16 +71,16 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func presentErrorAlert() {
-        let errorAlert = UIAlertController(title: "오류가 발생했어요🥲", message: "다시 시도해주세요", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let errorAlert = UIAlertController(title: "\(AlertTitle.error)", message: "\(AlertMessage.error)", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: nil)
         errorAlert.addAction(ok)
         
         self.present(errorAlert, animated: true, completion: nil)
     }
     
     private func presentSuccessAlert(of juice: JuiceMenu) {
-        let successAlert = UIAlertController(title: "\(juice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
-        successAlert.addAction(UIAlertAction(title: "잘 먹겠습니다🤤", style: .default, handler: nil))
+        let successAlert = UIAlertController(title: "\(juice) \(AlertTitle.success)", message: "\(AlertMessage.success)", preferredStyle: .alert)
+        successAlert.addAction(UIAlertAction(title: "\(AlertButtonTitle.confirm)", style: .default, handler: nil))
         
         self.present(successAlert, animated: true, completion: nil)
     }
@@ -107,6 +107,36 @@ class JuiceMakerViewController: UIViewController {
             self.currentKiwiStockLabel.text = "\(updatedAmount)"
         case .mango:
             self.currentMangoStockLabel.text = "\(updatedAmount)"
+        }
+    }
+}
+
+extension JuiceMakerViewController {
+    enum AlertTitle: String, CustomStringConvertible {
+        case success = "나왔습니다"
+        case fail = "재료가 모자라요"
+        case error = "오류가 발생했어요🥲"
+    
+        var description: String {
+            rawValue
+        }
+    }
+    enum AlertMessage: String, CustomStringConvertible {
+        case success = "맛있게 드세요!"
+        case fail = "재고를 수정할까요?"
+        case error = "다시 시도해주세요"
+        
+        var description: String {
+            return rawValue
+        }
+    }
+    enum AlertButtonTitle: String, CustomStringConvertible {
+        case cancel = "취소"
+        case ok = "확인"
+        case confirm = "잘 먹겠습니다🤤"
+        
+        var description: String {
+            return rawValue
         }
     }
 }
