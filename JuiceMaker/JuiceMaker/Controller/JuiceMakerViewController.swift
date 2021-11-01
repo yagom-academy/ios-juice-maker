@@ -15,20 +15,24 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiQuantityLabel: UILabel!
     @IBOutlet weak var mangoQuantityLabel: UILabel!
     
-    @IBOutlet var oderButtons: [UIButton]!
+    @IBOutlet var needToChangeButtonsFontSize: [UIButton]!
     
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for button in oderButtons {
-            button.titleLabel?.adjustsFontSizeToFitWidth = true
-        }
+        setButtonFontSize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setFruitQuantityLabel()
+    }
+    
+    func setButtonFontSize() {
+        for button in needToChangeButtonsFontSize {
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+        }
     }
     
     func setFruitQuantityLabel() {
