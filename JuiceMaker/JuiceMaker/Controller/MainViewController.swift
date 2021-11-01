@@ -37,34 +37,34 @@ class MainViewController: UIViewController {
     }
     
     @IBAction private func touchUpStrawberryBananaJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .strawberryBananaJuice)
+        order(juice: .strawberryBananaJuice)
     }
     
     @IBAction private func touchUpMangoKiwiJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .mangoKiwiJuice)
+        order(juice: .mangoKiwiJuice)
     }
     
     @IBAction private func touchUpStrawberryJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .strawberryJuice)
+        order(juice: .strawberryJuice)
     }
     
     @IBAction private func touchUpBananaJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .bananaJuice)
+        order(juice: .bananaJuice)
     }
     
     @IBAction private func touchUpPineappleJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .pineappleJuice)
+        order(juice: .pineappleJuice)
     }
     
     @IBAction private func touchUpKiwiJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .kiwiJuice)
+        order(juice: .kiwiJuice)
     }
     
     @IBAction private func touchUpMangoJuiceOrder(_ sender: UIButton) {
-        orderJuice(juice: .mangoJuice)
+        order(juice: .mangoJuice)
     }
     
-    private func orderJuice(juice: Juice) {
+    private func order(juice: Juice) {
         do {
             try fruitStore.consumeStock(with: juice)
             showExistStockAlert(message: "\(juiceMaker.tell(name: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
