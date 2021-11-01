@@ -6,6 +6,9 @@
 
 struct JuiceMaker {
     private let fruitStore = FruitStore(stock: 10)
+    var stringOfFruitStock: [Fruit: String] {
+        return fruitStore.fruitStock.mapValues { String($0) }
+    }
 
     func make(_ seletedJuice: Menu) -> Bool {
         let recipe: [Fruit : Int] = seletedJuice.recipe
@@ -18,10 +21,6 @@ struct JuiceMaker {
             fruitStore.changeQuantity(of: fruit, count: count, by: .subtraction)
         }
         return true
-    }
-    
-    func checkFruitStock() -> [Fruit: String] {
-        return fruitStore.fruitStock.mapValues { String($0) }
     }
 }
 

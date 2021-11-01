@@ -19,11 +19,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeStockLabel()
+        updateStockLabel()
     }
     
-    func changeStockLabel() {
-        let currentStock = juiceMaker.checkFruitStock()
+    func updateStockLabel() {
+        let currentStock = juiceMaker.stringOfFruitStock
         for (fruit, stock) in currentStock {
             switch fruit {
             case .strawberry:
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         
         if isSuccess {
             showAlert(isSuccess: true, message: "\(juice) 나왔습니다! 맛있게 드세요!")
-            changeStockLabel()
+            updateStockLabel()
         } else {
             showAlert(isSuccess: false, message: "재료가 모자라요. 재고를 수정할까요?")
         }
