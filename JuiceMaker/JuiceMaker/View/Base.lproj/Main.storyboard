@@ -444,16 +444,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaQuantityLabel" destination="gKu-86-RhI" id="FW1-mr-PKm"/>
-                        <outlet property="bananaQuantityStepper" destination="O5s-2N-3iP" id="4Eb-Uw-FXU"/>
-                        <outlet property="kiwiQuantityLabel" destination="ZDv-1m-HBY" id="LDS-eY-vww"/>
-                        <outlet property="kiwiQuantityStepper" destination="klA-59-Nu4" id="bd4-4n-dWT"/>
-                        <outlet property="mangoQuantityLabel" destination="YJI-ER-LJR" id="cIp-cM-vo8"/>
-                        <outlet property="mangoQuantityStepper" destination="xbn-6P-grO" id="dUz-aY-mwK"/>
-                        <outlet property="pineappleQuantityLabel" destination="MpT-VW-hCb" id="uxW-jX-2I4"/>
-                        <outlet property="pineappleQuantityStepper" destination="Rcr-xr-eqz" id="Gj0-5X-RLd"/>
-                        <outlet property="strawberryQuantityLabel" destination="0yV-kn-zaT" id="HgJ-PS-VR8"/>
-                        <outlet property="strawberryQuantityStepper" destination="ZQk-f4-zrz" id="iiV-8E-V2l"/>
                         <outletCollection property="fruitQuantityLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="Rvd-Xd-4f9"/>
                         <outletCollection property="fruitQuantityLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="udU-Vj-WKc"/>
                         <outletCollection property="fruitQuantityLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="EeX-3m-lJj"/>

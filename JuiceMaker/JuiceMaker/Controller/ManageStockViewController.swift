@@ -12,18 +12,6 @@ class ManageStockViewController: UIViewController {
     var deliverdAllStock = [String]()
     var juiceMaker: JuiceMaker?
     
-    @IBOutlet weak var strawberryQuantityLabel: UILabel!
-    @IBOutlet weak var bananaQuantityLabel: UILabel!
-    @IBOutlet weak var pineappleQuantityLabel: UILabel!
-    @IBOutlet weak var kiwiQuantityLabel: UILabel!
-    @IBOutlet weak var mangoQuantityLabel: UILabel!
-    
-    @IBOutlet weak var strawberryQuantityStepper: UIStepper!
-    @IBOutlet weak var bananaQuantityStepper: UIStepper!
-    @IBOutlet weak var pineappleQuantityStepper: UIStepper!
-    @IBOutlet weak var kiwiQuantityStepper: UIStepper!
-    @IBOutlet weak var mangoQuantityStepper: UIStepper!
-    
     @IBOutlet var fruitQuantityLabels: [UILabel]!
     @IBOutlet var fruitQuantityStepper: [UIStepper]!
 
@@ -36,11 +24,9 @@ class ManageStockViewController: UIViewController {
     }
     
     func setFruitQuantityLable() {
-        strawberryQuantityLabel.text = deliverdAllStock[0]
-        bananaQuantityLabel.text = deliverdAllStock[1]
-        pineappleQuantityLabel.text = deliverdAllStock[2]
-        kiwiQuantityLabel.text = deliverdAllStock[3]
-        mangoQuantityLabel.text = deliverdAllStock[4]
+        for index in 0...fruitQuantityLabels.count - 1 {
+            fruitQuantityLabels[index].text = deliverdAllStock[index]
+        }
     }
     
     func setFruitQuantityStepper() {
@@ -65,11 +51,11 @@ class ManageStockViewController: UIViewController {
     }
     
     func updateStock() {
-        let updateArray: [Fruit] = [Fruit(name: .strawberry, quantity: Int(strawberryQuantityLabel.text ?? "0") ?? 0),
-                                    Fruit(name: .banana, quantity: Int(bananaQuantityLabel.text ?? "0") ?? 0),
-                                    Fruit(name: .pineapple, quantity: Int(pineappleQuantityLabel.text ?? "0") ?? 0),
-                                    Fruit(name: .kiwi, quantity: Int(kiwiQuantityLabel.text ?? "0") ?? 0),
-                                    Fruit(name: .mango, quantity: Int(mangoQuantityLabel.text ?? "0") ?? 0)]
+        let updateArray: [Fruit] = [Fruit(name: .strawberry, quantity: Int(fruitQuantityStepper[0].value)),
+                                    Fruit(name: .banana, quantity: Int(fruitQuantityStepper[1].value)),
+                                    Fruit(name: .pineapple, quantity: Int(fruitQuantityStepper[2].value)),
+                                    Fruit(name: .kiwi, quantity: Int(fruitQuantityStepper[3].value)),
+                                    Fruit(name: .mango, quantity: Int(fruitQuantityStepper[4].value))]
         juiceMaker?.updateStock(to: updateArray)
     }
 }
