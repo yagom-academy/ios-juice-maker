@@ -8,7 +8,7 @@
 import UIKit
 
 class StockModifyViewController: UIViewController {
-    var juiceMaker: JuiceMaking? = nil
+
     let stepperMaximumValue = 1.0
     let stepperMinimumValue = -1.0
     let stepperDefaultValue = 0.0
@@ -25,6 +25,7 @@ class StockModifyViewController: UIViewController {
     @IBOutlet weak var kiwiStockStepper: UIStepper!
     @IBOutlet weak var mangoStockStepper: UIStepper!
 
+    var juiceMaker: JuiceMaking?
     
     override func viewDidLoad() {
         super.viewDidLoad()

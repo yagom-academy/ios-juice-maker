@@ -21,19 +21,19 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    private var juiceMaker: JuiceMaking?
-    
+    private lazy var juiceMaker: JuiceMaking = JuiceMaker(store: FruitStore())
+
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
-        juiceMaker = JuiceMaker(store: FruitStore())
+        
         initializeFruitStockLabels()
     }
     
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
             let juice = try juiceMenu(for: sender)
-            try juiceMaker?.makeJuice(menu: juice)
+            try juiceMaker.makeJuice(menu: juice)
             showSuccessAlert(juiceMenu: juice)
         } catch FruitStoreError.stockShortage {
             showFailureAlert()
@@ -59,9 +59,6 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func updateLabel(fruit: Fruit) throws {
-        guard let juiceMaker = juiceMaker else {
-            throw FruitStoreError.stockDataMissing
-        }
         switch fruit {
         case .strawberry:
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
@@ -77,10 +74,6 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func initializeFruitStockLabels() {
-        guard let juiceMaker = juiceMaker else {
-            showErrorAlert(error: FruitStoreError.stockDataMissing)
-            return
-        }
         do {
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
             bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))
@@ -93,21 +86,22 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func juiceMenu(for button: UIButton) throws -> JuiceMenu {
-        if button === strawberryBananaJuiceOrderButton {
+        switch button {
+        case strawberryBananaJuiceOrderButton:
             return .strawberryBanana
-        } else if button === mangoKiwiJuiceOrderButton {
+        case mangoKiwiJuiceOrderButton:
             return .mangoKiwi
-        } else if button === strawberryJuiceOrderButton {
+        case strawberryJuiceOrderButton:
             return .strawberry
-        } else if button === bananaJuiceOrderButton {
+        case bananaJuiceOrderButton:
             return .banana
-        } else if button === pineappleJuiceOrderButton {
+        case pineappleJuiceOrderButton:
             return .pineapple
-        } else if button === kiwiJuiceOrderButton {
+        case kiwiJuiceOrderButton:
             return .kiwi
-        } else if button === mangoJuiceOrderButton {
+        case mangoKiwiJuiceOrderButton:
             return .mango
-        } else {
+        default:
             throw JuiceOrderError.invalidJuiceOrder
         }
     }
