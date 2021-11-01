@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ModifyStockViewController: UIViewController {
+class StockModificationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
