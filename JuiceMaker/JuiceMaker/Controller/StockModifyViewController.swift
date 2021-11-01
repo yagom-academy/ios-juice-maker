@@ -8,7 +8,7 @@
 import UIKit
 
 class StockModifyViewController: UIViewController {
-    var juiceMaker: JuiceMaking? = nil
+    var juiceMaker: JuiceMaking?
     
     override func viewDidLoad() {
         super.viewDidLoad()
