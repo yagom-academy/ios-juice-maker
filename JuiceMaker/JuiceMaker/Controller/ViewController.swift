@@ -67,31 +67,14 @@ class ViewController: UIViewController {
     
     @IBAction func tapJuiceOrderButton(_ sender: UIButton) {
         do {
-            let menu = try switchTagNumberToMenu(tag: sender.tag)
+            guard let menu = JuiceMaker.Menu(rawValue: sender.tag) else {
+                throw JuiceMakerError.invalidTagNumberForButton
+            }
             makeJuice(for: menu)
+        } catch JuiceMakerError.invalidTagNumberForButton {
+            print(JuiceMakerError.invalidTagNumberForButton.description)
         } catch {
             print(error)
-        }
-    }
-    
-    func switchTagNumberToMenu(tag: Int) throws -> JuiceMaker.Menu {
-        switch tag {
-        case 0:
-            return JuiceMaker.Menu.strawberryJuice
-        case 1:
-            return JuiceMaker.Menu.bananaJuice
-        case 2:
-            return JuiceMaker.Menu.pineappleJuice
-        case 3:
-            return JuiceMaker.Menu.kiwiJuice
-        case 4:
-            return JuiceMaker.Menu.mangoJuice
-        case 5:
-            return JuiceMaker.Menu.strawberryBananaJuice
-        case 6:
-            return JuiceMaker.Menu.mangoKiwiJuice
-        default:
-            throw JuiceMakerError.invalidTagNumberForButton
         }
     }
     

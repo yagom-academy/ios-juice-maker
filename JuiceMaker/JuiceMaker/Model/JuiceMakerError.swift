@@ -7,6 +7,13 @@
 
 import Foundation
 
-enum JuiceMakerError: Error {
+enum JuiceMakerError: Error, CustomStringConvertible {
     case invalidTagNumberForButton
+    
+    var description: String {
+        switch self {
+        case .invalidTagNumberForButton:
+            return "Invalid tag number for button"
+        }
+    }
 }

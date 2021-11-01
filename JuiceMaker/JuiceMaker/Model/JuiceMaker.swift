@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    enum Menu: Int, CaseIterable {
+    enum Menu: Int {
         case strawberryJuice = 0
         case bananaJuice
         case pineappleJuice
@@ -15,10 +15,6 @@ struct JuiceMaker {
         case mangoJuice
         case strawberryBananaJuice
         case mangoKiwiJuice
-        
-        var menuNumber: Int {
-            self.rawValue
-        }
         
         var description: String {
             switch self {
