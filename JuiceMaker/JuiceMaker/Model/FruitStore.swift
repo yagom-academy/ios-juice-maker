@@ -1,5 +1,9 @@
 import Foundation
 
+extension Notification.Name {
+    static let didChangeStock = Notification.Name("Stock Changed")
+}
+
 enum FruitName: CaseIterable {
     case strawberry
     case banana
@@ -15,26 +19,18 @@ struct Fruit {
 
 class FruitStore {
     
-    private enum FruitStoreError: LocalizedError {
-        case invalidFruitChoice
-        case lackOfStock(neededStock: Int)
-        
-        var description: String {
-            switch self {
-            case .invalidFruitChoice:
-                return "유효하지 않은 선택입니다."
-            case .lackOfStock(let neededStock):
-                return "재료가 \(neededStock)개 부족합니다. 재고를 확인해주세요."
-            }
-        }
-    }
+    static let shared: FruitStore = FruitStore()
     
     private(set) var inventory: [Fruit] = []
- 
-    func initializeInventory() {
+    
+    private func initializeInventory() {
         for fruit in FruitName.allCases {
             inventory.append(Fruit(name: fruit))
         }
+    }
+    
+    private init() {
+        initializeInventory()
     }
     
     private func findIndexFromInventory(with fruit: FruitName) throws -> Int {
@@ -44,15 +40,10 @@ class FruitStore {
         return indexOfFruit
     }
     
-    func addStock(count: Int, to fruit: FruitName) {
-        do {
-            let indexOfFruit = try findIndexFromInventory(with: fruit)
-            inventory[indexOfFruit].count += count
-        } catch FruitStoreError.invalidFruitChoice {
-            print(FruitStoreError.invalidFruitChoice.description)
-        } catch {
-            print(error)
-        }
+    func addStock(count: Int, to fruit: FruitName) throws {
+        let indexOfFruit = try findIndexFromInventory(with: fruit)
+        inventory[indexOfFruit].count += count
+        NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
     }
     
     private func checkEnoughStock(from index: Int, for count: Int) throws {
@@ -61,21 +52,10 @@ class FruitStore {
         }
     }
     
-    func subtractStock(count: Int, from fruit: FruitName) {
-        do {
-            let indexOfFruit = try findIndexFromInventory(with: fruit)
-            try checkEnoughStock(from: indexOfFruit, for: count)
-            inventory[indexOfFruit].count -= count
-        } catch FruitStoreError.invalidFruitChoice {
-            print(FruitStoreError.invalidFruitChoice.description)
-        } catch FruitStoreError.lackOfStock(let count) {
-            print(FruitStoreError.lackOfStock(neededStock: count).description)
-        } catch {
-            print(error)
-        }
-    }
-    
-    init() {
-        initializeInventory()
+    func subtractStock(count: Int, from fruit: FruitName) throws {
+        let indexOfFruit = try findIndexFromInventory(with: fruit)
+        try checkEnoughStock(from: indexOfFruit, for: count)
+        inventory[indexOfFruit].count -= count
+        NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
     }
 }
