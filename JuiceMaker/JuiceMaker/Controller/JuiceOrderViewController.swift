@@ -173,8 +173,9 @@ extension JuiceOrderViewController {
         guard segue.identifier == StoryboardSegue.toStockModifyView.identifier,
               let stockModifyViewNavigationController = segue.destination as? UINavigationController,
               let stockModifyViewController = stockModifyViewNavigationController.visibleViewController as? StockModifyViewController else {
-                  return
-              }
+            showErrorAlert(error: ViewTransitionError.viewTransitionFailed)
+            return
+        }
         stockModifyViewController.juiceMaker = self.juiceMaker
     }
     
