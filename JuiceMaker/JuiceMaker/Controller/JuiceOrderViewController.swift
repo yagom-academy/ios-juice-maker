@@ -27,7 +27,7 @@ class JuiceOrderViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
         customizeButtonSettings()
-        initializeFruitStockLabels()
+        updateAllLabels()
     }
     
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
@@ -73,7 +73,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func initializeFruitStockLabels() {
+    private func updateAllLabels() {
         do {
             strawberryStockLabel.text = String(try juiceMaker.currentFruitStock(of: .strawberry))
             bananaStockLabel.text = String(try juiceMaker.currentFruitStock(of: .banana))

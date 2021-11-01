@@ -89,17 +89,18 @@ class StockModifyViewController: UIViewController {
     }
     
     func fruit(for stepper: UIStepper) throws -> Fruit {
-        if stepper === strawberryStockStepper {
+        switch stepper {
+        case strawberryStockStepper:
             return .strawberry
-        } else if stepper === bananaStockStepper {
+        case bananaStockStepper:
             return .banana
-        } else if stepper === pineappleStockStepper {
+        case pineappleStockStepper:
             return .pineapple
-        } else if stepper === kiwiStockStepper {
+        case kiwiStockStepper:
             return .kiwi
-        } else if stepper === mangoStockStepper {
+        case mangoStockStepper:
             return .mango
-        } else {
+        default:
             throw FruitStoreError.invalidModification
         }
     }
