@@ -129,8 +129,21 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func presentFruitStoreViewController(_ action: UIAlertAction) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") else { return }
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? UINavigationController else { return }
         self.present(viewController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navigationController = segue.destination as? UINavigationController else { return }
+        
+        guard let nextViewController = navigationController.topViewController as? FruitStoreViewController else { return }
+        
+        nextViewController.loadViewIfNeeded()
+        nextViewController.strawberryStockLabel.text = strawberryStockLabel.text
+        nextViewController.bananaStockLabel.text = bananaStockLabel.text
+        nextViewController.pineappleStockLabel.text = pineappleStockLabel.text
+        nextViewController.kiwiStockLabel.text = kiwiStockLabel.text
+        nextViewController.mangoStockLabel.text = mangoStockLabel.text
     }
 }
 

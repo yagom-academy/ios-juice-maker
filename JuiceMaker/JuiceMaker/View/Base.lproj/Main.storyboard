@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -430,6 +430,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="Pep-pq-KTO"/>
+                        <outlet property="bananaStockStepper" destination="O5s-2N-3iP" id="RmJ-hZ-Bof"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="C9t-oJ-afO"/>
+                        <outlet property="kiwiStockStepper" destination="klA-59-Nu4" id="yXC-ba-kpY"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="LEc-71-gBc"/>
+                        <outlet property="mangoStockStepper" destination="xbn-6P-grO" id="bcs-8l-uIr"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="nmC-Yj-xz0"/>
+                        <outlet property="pineappleStockStepper" destination="Rcr-xr-eqz" id="2rv-0k-PDh"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="rI2-Sd-jam"/>
+                        <outlet property="strawberryStockStepper" destination="ZQk-f4-zrz" id="BC6-CO-4zD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
