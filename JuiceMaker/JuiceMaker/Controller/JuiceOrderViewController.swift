@@ -26,10 +26,10 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
-        
+        customizeButtonSettings()
         initializeFruitStockLabels()
     }
-    
+
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
             let juice = try juiceMenu(for: sender)
@@ -83,6 +83,24 @@ class JuiceOrderViewController: UIViewController {
         } catch let error {
             showErrorAlert(error: error)
         }
+    }
+    
+    private func customizeButtonSettings() {
+        strawberryBananaJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        mangoKiwiJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        strawberryJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        bananaJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        pineappleJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        kiwiJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        mangoJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        
+        strawberryBananaJuiceOrderButton.titleLabel?.textAlignment = .center
+        mangoKiwiJuiceOrderButton.titleLabel?.textAlignment = .center
+        strawberryJuiceOrderButton.titleLabel?.textAlignment = .center
+        bananaJuiceOrderButton.titleLabel?.textAlignment = .center
+        pineappleJuiceOrderButton.titleLabel?.textAlignment = .center
+        kiwiJuiceOrderButton.titleLabel?.textAlignment = .center
+        mangoJuiceOrderButton.titleLabel?.textAlignment = .center
     }
     
     private func juiceMenu(for button: UIButton) throws -> JuiceMenu {

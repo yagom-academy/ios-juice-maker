@@ -83,8 +83,8 @@
 			children = (
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
-				C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */,
 				E99FD54A2726AE2D00075BD4 /* StockModifyViewController.swift */,
+				C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */,
 				256731B22727BA6200737FF0 /* AlertMessage.swift */,
 				256731B42727C00F00737FF0 /* SegueIdentifier.swift */,
 			);
