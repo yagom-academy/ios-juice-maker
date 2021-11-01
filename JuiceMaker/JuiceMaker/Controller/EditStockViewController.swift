@@ -16,6 +16,8 @@ class EditStockViewController: UIViewController {
     @IBOutlet weak var mangoStockStepper: UIStepper!
     @IBOutlet var fruitstockSteppers: [UIStepper]!
     
+    let store = FruitStore.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
