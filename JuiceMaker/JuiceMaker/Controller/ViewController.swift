@@ -8,7 +8,7 @@ import UIKit
 
 
 class ViewController: UIViewController {
-    var juiceMaker = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
 
     @IBOutlet var stockOfStrawberryLabel: UILabel!
     @IBOutlet var stockOfBananaLabel: UILabel!
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         updateStockLabel()
     }
     
-    func updateStockLabel() {
+    private func updateStockLabel() {
         let currentStock = juiceMaker.stringOfFruitStock
         for (fruit, stock) in currentStock {
             switch fruit {
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func orderJuice(_ sender: UIButton) {
+    @IBAction private func orderJuice(_ sender: UIButton) {
         guard let juice = Menu(rawValue: sender.tag) else {
             print("Non-Existent Button")
             return
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showAlert(isSuccess: Bool, message: String) {
+    private func showAlert(isSuccess: Bool, message: String) {
         let alert: UIAlertController
         
         if isSuccess {
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         moveToEditViewController()
     }
     
-    func moveToEditViewController() {
+    private func moveToEditViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let editViewController: EditFruitStockViewController = storyboard.instantiateViewController(identifier: "EditViewController")
         let navigationController = UINavigationController(rootViewController: editViewController)
