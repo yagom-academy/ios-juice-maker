@@ -1,6 +1,6 @@
 import UIKit
 
-class EditViewController: UIViewController {
+class EditFruitStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = ""

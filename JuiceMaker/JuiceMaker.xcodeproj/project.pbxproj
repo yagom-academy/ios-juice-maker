@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A5C9013272A87BC00CC6B8B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C9012272A87BC00CC6B8B /* EditViewController.swift */; };
+		3A5C9013272A87BC00CC6B8B /* EditFruitStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C9012272A87BC00CC6B8B /* EditFruitStockViewController.swift */; };
 		4815CF9B271FBF5A0016412E /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4815CF9A271FBF5A0016412E /* Fruit.swift */; };
 		48B8E85D272A7996000BAB2B /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B8E85C272A7996000BAB2B /* Menu.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A5C9012272A87BC00CC6B8B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		3A5C9012272A87BC00CC6B8B /* EditFruitStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFruitStockViewController.swift; sourceTree = "<group>"; };
 		4815CF9A271FBF5A0016412E /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		48B8E85C272A7996000BAB2B /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
-				3A5C9012272A87BC00CC6B8B /* EditViewController.swift */,
+				3A5C9012272A87BC00CC6B8B /* EditFruitStockViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A5C9013272A87BC00CC6B8B /* EditViewController.swift in Sources */,
+				3A5C9013272A87BC00CC6B8B /* EditFruitStockViewController.swift in Sources */,
 				4815CF9B271FBF5A0016412E /* Fruit.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				48B8E85D272A7996000BAB2B /* Menu.swift in Sources */,
