@@ -15,12 +15,20 @@ class StockManagerViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+        let navigationBarItem = UINavigationItem()
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissStockManagerVC))
         let add = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissStockManagerVC))
+        navigationBarItem.leftBarButtonItem = cancel
+        navigationBarItem.rightBarButtonItem = add
+        navigationBarItem.title = "재고 수정"
         
-        self.title = "Stock Manager"
-        self.navigationItem.leftBarButtonItem = cancel
-        self.navigationItem.rightBarButtonItem = add
+        let width = self.view.frame.width
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 0))
+        navigationBar.isTranslucent = false
+        navigationBar.backgroundColor = .blue
+        navigationBar.items = [navigationBarItem]
+
+        self.view.addSubview(navigationBar)
     }
     
     @objc

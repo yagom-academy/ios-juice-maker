@@ -29,8 +29,8 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction func presentStockManagerVC(_ sender: Any?) {
         let stockManagerVC = storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as! StockManagerViewController
-        let navigationController = UINavigationController(rootViewController: stockManagerVC)
-        present(navigationController, animated: true, completion: nil)
+   
+        present(stockManagerVC, animated: true, completion: nil)
     }
     
     private func addObserver() {
