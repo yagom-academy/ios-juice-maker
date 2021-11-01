@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Fruit: String, CaseIterable, CustomStringConvertible {
     var description: String {
@@ -23,10 +24,17 @@ enum FruitStoreError: Error {
 }
 
 class FruitStore {
+    static let shared = FruitStore()
     private static let initialFruitQuantity = 10
-    private var stock: [Fruit: Int]
     
-    init(quantity: Int = FruitStore.initialFruitQuantity) {
+    let didChangeStock = Notification.Name("재고 수정 완료")
+    private var stock: [Fruit: Int] {
+        didSet {
+            NotificationCenter.default.post(name: didChangeStock, object: nil)
+        }
+    }
+    
+    private init(quantity: Int = FruitStore.initialFruitQuantity) {
         self.stock = FruitStore.initializeStock(quantity: quantity)
     }
     
@@ -38,6 +46,14 @@ class FruitStore {
         }
         
         return stock
+    }
+    
+    func showStock(of fruit: Fruit) -> String {
+        guard let fruitQuantity = stock[fruit] else {
+            return "0"
+        }
+        
+        return String(fruitQuantity)
     }
     
     func updateStock(of recipe: [Fruit: Int]) throws {
@@ -60,11 +76,5 @@ class FruitStore {
         guard neededFruits.count == 0 else {
             throw FruitStoreError.outOfStock(neededFruits)
         }
-    }
-    
-    func convertToString(using fruitAndQuantity: [Fruit: Int]) -> String {
-        let resultString = fruitAndQuantity.map( {"과일: \($0), 개수: \(abs($1))\n"} ).reduce("") {$0 + $1}
-        
-        return resultString
     }
 }
