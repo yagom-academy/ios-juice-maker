@@ -6,9 +6,11 @@
 
 class FruitStore {
     private static let defaultFruitAmount = 10
-    private var inventory: [Fruit: Int] = [:]
+    private(set) var inventory: [Fruit: Int] = [:]
     
-    init() {
+    static let shared = FruitStore()
+    
+    private init() {
         for fruit in Fruit.allCases {
             self.inventory[fruit] = FruitStore.defaultFruitAmount
         }

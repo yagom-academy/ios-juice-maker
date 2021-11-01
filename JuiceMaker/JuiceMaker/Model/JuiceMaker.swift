@@ -5,14 +5,14 @@
 // 
 
 struct JuiceMaker {
-    enum Juice {
-        case strawberryJuice
-        case bananaJuice
-        case pineappleJuice
-        case kiwiJuice
-        case mangoJuice
-        case strawberryBananaJuice
-        case mangoKiwiJuice
+    enum Juice: String {
+        case strawberryJuice = "딸기 쥬스"
+        case bananaJuice = "바나나 쥬스"
+        case pineappleJuice = "파인애플 쥬스"
+        case kiwiJuice = "키위 쥬스"
+        case mangoJuice = "망고 쥬스"
+        case strawberryBananaJuice = "딸바 쥬스"
+        case mangoKiwiJuice = "망키 쥬스"
         
         fileprivate var recipe: [(Fruit, Int)] {
             switch self {
@@ -34,7 +34,7 @@ struct JuiceMaker {
         }
     }
     
-    private let fruitStore: FruitStore
+    private let fruitStore = FruitStore.shared
     
     private func hasIngredients(of juice: Juice) throws {
         let recipe = juice.recipe
@@ -52,12 +52,8 @@ struct JuiceMaker {
         }
     }
     
-    func make(_ juice: Juice) {
-        do {
-            try self.hasIngredients(of: juice)
-            try self.consumeIngredients(of: juice)
-        } catch {
-            return // TODO: 에러 발생 시 어떻게 처리할지 STEP 2 에서 계속...
-        }
+    func make(_ juice: Juice) throws {
+        try self.hasIngredients(of: juice)
+        try self.consumeIngredients(of: juice)
     }
 }
