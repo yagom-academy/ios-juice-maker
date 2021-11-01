@@ -32,6 +32,23 @@ class FruitStoreViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func stepperTapped(_ sender: UIStepper) {
+        switch sender {
+        case strawberryStockStepper:
+            strawberryStockLabel.text = String(format: "%.0f", sender.value)
+        case bananaStockStepper:
+            bananaStockLabel.text = String(format: "%.0f", sender.value)
+        case pineappleStockStepper:
+            pineappleStockLabel.text = String(format: "%.0f", sender.value)
+        case kiwiStockStepper:
+            kiwiStockLabel.text = String(format: "%.0f", sender.value)
+        case mangoStockStepper:
+            mangoStockLabel.text = String(format: "%.0f", sender.value)
+        default:
+            showNotificationAlert(message: Message.unknownError.description)
+        }
+    }
+    
     func setUpFruitStepperValues() {
         currentStockStepperValueUpdate(fruit: .strawberry, stepper: strawberryStockStepper)
         currentStockStepperValueUpdate(fruit: .banana, stepper: bananaStockStepper)
@@ -55,5 +72,4 @@ class FruitStoreViewController: UIViewController {
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
-    
 }
