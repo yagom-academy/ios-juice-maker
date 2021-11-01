@@ -9,13 +9,18 @@ import UIKit
 
 class FruitStore {
    
-    private(set) var fruitInventory: [Fruits: Int]
+    var count: Int = 0
+    
+    private(set) var fruitInventory: [Fruits: Int] {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name("changedInventory"), object: nil)
+        }
+    }
     
     static let shared = FruitStore()
     
     private init(defaultStock: Int) {
-        self.fruitInventory = [:]
-        Fruits.allCases.forEach { fruitInventory[$0] = defaultStock }
+        fruitInventory = Dictionary(uniqueKeysWithValues: zip(Fruits.allCases, Fruits.allCases.map { _ in defaultStock }))
     }
     
     private convenience init() {
@@ -27,7 +32,6 @@ class FruitStore {
             return
         }
         fruitInventory[fruit] = numberOfFruit + count
-        NotificationCenter.default.post(name: Notification.Name("changedInventory"), object: nil)
     }
     
     func subtract(fruit: Fruits, of count: Int) {
@@ -35,7 +39,6 @@ class FruitStore {
             return
         }
         fruitInventory[fruit] = numberOfFruit - count
-        NotificationCenter.default.post(name: Notification.Name("changedInventory"), object: nil)
     }
     
     func hasStock(of fruit: Fruits, count: Int) -> Bool {
