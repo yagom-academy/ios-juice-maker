@@ -9,6 +9,10 @@ import UIKit
 
 class EditAmountViewController: UIViewController {
 
+    @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
