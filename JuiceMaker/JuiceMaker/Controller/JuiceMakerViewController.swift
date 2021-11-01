@@ -51,7 +51,7 @@ class JuiceMakerViewController: UIViewController {
         } catch FruitStoreError.deficientStock {
             presentFailAlert()
         } catch {
-            return
+            presentErrorAlert()
         }
         
         presentSuccessAlert(of: juice)
@@ -70,6 +70,14 @@ class JuiceMakerViewController: UIViewController {
         self.present(failAlert, animated: true, completion: nil)
     }
     
+    private func presentErrorAlert() {
+        let errorAlert = UIAlertController(title: "오류가 발생했어요🥲", message: "다시 시도해주세요", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+        errorAlert.addAction(ok)
+        
+        self.present(errorAlert, animated: true, completion: nil)
+    }
+    
     private func presentSuccessAlert(of juice: JuiceMenu) {
         let successAlert = UIAlertController(title: "\(juice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         successAlert.addAction(UIAlertAction(title: "잘 먹겠습니다🤤", style: .default, handler: nil))
@@ -79,13 +87,14 @@ class JuiceMakerViewController: UIViewController {
     
     @objc
     private func handleStockChanges(of notification: Notification) {
-        guard let fruit = notification.userInfo?.keys.first as? Fruit else {
+        let dic = notification.userInfo as? [Fruit:Int]
+        guard let fruit = dic?.keys.first, let updatedAmount = dic?[fruit] else {
             return
         }
         
-        guard let updatedAmount = notification.userInfo?[fruit] as? Int else {
-            return
-        }
+//        guard let updatedAmount = notification.userInfo?[fruit] as? Int else {
+//            return
+//        }
         
         updateStockLabel(of: fruit, by: updatedAmount)
     }
