@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
-        let juice = switchMenuToUIButton(button: sender)
+        let juice = switchUIButtonToMenu(button: sender)
         let isSuccess: Bool = juiceMaker.make(juice)
         
         if isSuccess {
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func switchMenuToUIButton(button: UIButton) -> Menu {
+    func switchUIButtonToMenu(button: UIButton) -> Menu {
         switch button.currentTitle {
         case "딸바쥬스 주문":
             return Menu.strawberryBananaJuice
