@@ -94,21 +94,22 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func juiceMenu(for button: UIButton) throws -> JuiceMenu {
-        if button === strawberryBananaJuiceOrderButton {
+        switch button {
+        case strawberryBananaJuiceOrderButton:
             return .strawberryBanana
-        } else if button === mangoKiwiJuiceOrderButton {
+        case mangoKiwiJuiceOrderButton:
             return .mangoKiwi
-        } else if button === strawberryJuiceOrderButton {
+        case strawberryJuiceOrderButton:
             return .strawberry
-        } else if button === bananaJuiceOrderButton {
+        case bananaJuiceOrderButton:
             return .banana
-        } else if button === pineappleJuiceOrderButton {
+        case pineappleJuiceOrderButton:
             return .pineapple
-        } else if button === kiwiJuiceOrderButton {
+        case kiwiJuiceOrderButton:
             return .kiwi
-        } else if button === mangoJuiceOrderButton {
+        case mangoKiwiJuiceOrderButton:
             return .mango
-        } else {
+        default:
             throw JuiceOrderError.invalidJuiceOrder
         }
     }
