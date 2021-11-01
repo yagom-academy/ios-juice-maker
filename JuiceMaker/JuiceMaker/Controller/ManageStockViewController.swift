@@ -61,24 +61,7 @@ class ManageStockViewController: UIViewController {
     }
     
     @IBAction func touchUpFruitQuantityStepper(_ sender: UIStepper) {
-        fetchLabel(sender.tag).text = String(Int(sender.value))
-    }
-    
-    func fetchLabel (_ tag: Int) -> UILabel {
-        switch tag {
-        case 0:
-            return strawberryQuantityLabel
-        case 1:
-            return bananaQuantityLabel
-        case 2:
-            return pineappleQuantityLabel
-        case 3:
-            return kiwiQuantityLabel
-        case 4:
-            return mangoQuantityLabel
-        default:
-            return strawberryQuantityLabel
-        }
+        fruitQuantityLabels[sender.tag].text = String(Int(sender.value))
     }
     
     func updateStock() {
