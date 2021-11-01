@@ -87,14 +87,10 @@ class JuiceMakerViewController: UIViewController {
     
     @objc
     private func handleStockChanges(of notification: Notification) {
-        let dic = notification.userInfo as? [Fruit:Int]
-        guard let fruit = dic?.keys.first, let updatedAmount = dic?[fruit] else {
+        let stockChangeData = notification.userInfo as? [Fruit:Int]
+        guard let fruit = stockChangeData?.keys.first, let updatedAmount = stockChangeData?[fruit] else {
             return
         }
-        
-//        guard let updatedAmount = notification.userInfo?[fruit] as? Int else {
-//            return
-//        }
         
         updateStockLabel(of: fruit, by: updatedAmount)
     }
