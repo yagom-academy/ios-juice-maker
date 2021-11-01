@@ -10,11 +10,11 @@ import UIKit
 class ViewController: UIViewController {
     var juiceMaker = JuiceMaker()
 
-    @IBOutlet var stockOfStrawberry: UILabel!
-    @IBOutlet var stockOfBanana: UILabel!
-    @IBOutlet var stockOfPineapple: UILabel!
-    @IBOutlet var stockOfKiwi: UILabel!
-    @IBOutlet var stockOfMango: UILabel!
+    @IBOutlet var stockOfStrawberryLabel: UILabel!
+    @IBOutlet var stockOfBananaLabel: UILabel!
+    @IBOutlet var stockOfPineappleLabel: UILabel!
+    @IBOutlet var stockOfKiwiLabel: UILabel!
+    @IBOutlet var stockOfMangoLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -27,15 +27,15 @@ class ViewController: UIViewController {
         for (fruit, stock) in currentStock {
             switch fruit {
             case .strawberry:
-                stockOfStrawberry.text = stock
+                stockOfStrawberryLabel.text = stock
             case .banana:
-                stockOfBanana.text = stock
+                stockOfBananaLabel.text = stock
             case .pineapple:
-                stockOfPineapple.text = stock
+                stockOfPineappleLabel.text = stock
             case .kiwi:
-                stockOfKiwi.text = stock
+                stockOfKiwiLabel.text = stock
             case .mango:
-                stockOfMango.text = stock
+                stockOfMangoLabel.text = stock
             }
         }
     }
