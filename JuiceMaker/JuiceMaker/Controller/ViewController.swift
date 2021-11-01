@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderJuice(_ sender: UIButton) {
         let juice = switchUIButtonToMenu(button: sender)
-        let isSuccess: Bool = juiceMaker.make(juice)
+        let isSuccess: Bool = juiceMaker.isCompletMaking(juice)
         
         if isSuccess {
             showAlert(isSuccess: true, message: "\(juice) 나왔습니다! 맛있게 드세요!")
