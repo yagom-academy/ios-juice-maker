@@ -39,6 +39,13 @@ class EditStockViewController: UIViewController {
         }
     }
     
+    func EditStock(changedStock: Int, fruit: FruitName) {
+        let indexOfFruit = store.findIndexFromInventory(with: fruit)
+        let currentStock = store.inventory[indexOfFruit].count
+        let stockDifference = changedStock - currentStock
+        store.addStock(count: stockDifference, to: fruit)
+    }
+    
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
