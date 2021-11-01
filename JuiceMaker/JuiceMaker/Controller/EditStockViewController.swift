@@ -39,11 +39,32 @@ class EditStockViewController: UIViewController {
         }
     }
     
-    func EditStock(changedStock: Int, fruit: FruitName) {
+    func editStock(changedStock: Int, fruit: FruitName) {
         let indexOfFruit = store.findIndexFromInventory(with: fruit)
         let currentStock = store.inventory[indexOfFruit].count
         let stockDifference = changedStock - currentStock
         store.addStock(count: stockDifference, to: fruit)
+    }
+    
+    @IBAction func strawberryStockStepperValueChanged(_ sender: UIStepper) {
+        strawberryStockLabel.text = Int(sender.value).description
+        editStock(changedStock: Int(sender.value), fruit: .strawberry)
+    }
+    @IBAction func bananaStockStepperValueChanged(_ sender: UIStepper) {
+        bananaStockLabel.text = Int(sender.value).description
+        editStock(changedStock: Int(sender.value), fruit: .banana)
+    }
+    @IBAction func pineappleStockStepperValueChanged(_ sender: UIStepper) {
+        pineappleStockLabel.text = Int(sender.value).description
+        editStock(changedStock: Int(sender.value), fruit: .pineapple)
+    }
+    @IBAction func kiwiStockStepperValueChanged(_ sender: UIStepper) {
+        kiwiStockLabel.text = Int(sender.value).description
+        editStock(changedStock: Int(sender.value), fruit: .kiwi)
+    }
+    @IBAction func mangoStockStepperValueChanged(_ sender: UIStepper) {
+        mangoStockLabel.text = Int(sender.value).description
+        editStock(changedStock: Int(sender.value), fruit: .mango)
     }
     
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
