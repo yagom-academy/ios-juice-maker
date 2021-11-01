@@ -6,7 +6,7 @@
 
 import Foundation
 
-class FruitStore: FruitStockManaging {
+class FruitStore {
     private var inventory: [Fruit: Int] = [:]
     
     init(fruitQuantity: Int = 10) {
@@ -18,6 +18,15 @@ class FruitStore: FruitStockManaging {
     init(inventory: [Fruit: Int]) {
         self.inventory = inventory
     }
+}
+
+extension FruitStore: FruitStockManaging {
+    func checkFruitStock(of fruit: Fruit, by quantity: Int) throws -> Bool {
+        guard let fruitStock = inventory[fruit] else {
+            throw FruitStoreError.stockDataMissing
+        }
+        return fruitStock >= quantity
+    }
     
     func changeFruitStock(of fruit: Fruit, by quantity: Int = 1, calculate: (Int, Int) -> Int) throws {
         guard let fruitStock = inventory[fruit] else {
@@ -28,6 +37,7 @@ class FruitStore: FruitStockManaging {
             throw FruitStoreError.stockShortage
         }
         inventory[fruit] = changedFruitStock
+        NotificationCenter.default.post(name: .FruitStockChanged, object: fruit)
     }
     
     func currentFruitStock(of fruit: Fruit) throws -> Int {
