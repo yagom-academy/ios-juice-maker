@@ -37,9 +37,9 @@ class FruitStore {
         switch fruit {
         case .strawberry: return 0
         case .banana: return 1
-        case .kiwi: return 2
-        case .mango: return 3
-        case .pineapple: return 4
+        case .pineapple: return 2
+        case .kiwi: return 3
+        case .mango: return 4
         }
     }
     
