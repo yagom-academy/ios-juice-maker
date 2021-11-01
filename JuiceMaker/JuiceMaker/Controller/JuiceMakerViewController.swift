@@ -22,17 +22,18 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setButtonFontSize()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setFruitQuantityLabel()
+        
     }
     
     func setButtonFontSize() {
         for button in needToChangeButtonsFontSize {
             button.titleLabel?.adjustsFontSizeToFitWidth = true
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setFruitQuantityLabel()
     }
     
     func setFruitQuantityLabel() {
