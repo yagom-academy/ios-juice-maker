@@ -23,6 +23,9 @@ class ManageStockViewController: UIViewController {
     @IBOutlet weak var pineappleQuantityStepper: UIStepper!
     @IBOutlet weak var kiwiQuantityStepper: UIStepper!
     @IBOutlet weak var mangoQuantityStepper: UIStepper!
+    
+    @IBOutlet var fruitQuantityLabels: [UILabel]!
+    @IBOutlet var fruitQuantityStepper: [UIStepper]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +44,15 @@ class ManageStockViewController: UIViewController {
     }
     
     func setFruitQuantityStepper() {
-        strawberryQuantityStepper.value = Double(Int(strawberryQuantityLabel.text ?? "0") ?? 0)
-        bananaQuantityStepper.value = Double(Int(bananaQuantityLabel.text ?? "0") ?? 0)
-        pineappleQuantityStepper.value = Double(Int(pineappleQuantityLabel.text ?? "0") ?? 0)
-        kiwiQuantityStepper.value = Double(Int(kiwiQuantityLabel.text ?? "0") ?? 0)
-        mangoQuantityStepper.value = Double(Int(mangoQuantityLabel.text ?? "0") ?? 0)
+        var labelTexts = [String]()
+        
+        for label in fruitQuantityLabels {
+            labelTexts.append(String(label.text ?? "0"))
+        }
+        
+        for index in 0...fruitQuantityLabels.count - 1 {
+            fruitQuantityStepper[index].value = Double(Int(labelTexts[index]) ?? 0)
+        }
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
