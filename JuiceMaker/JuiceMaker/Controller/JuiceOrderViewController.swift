@@ -29,7 +29,7 @@ class JuiceOrderViewController: UIViewController {
         customizeButtonSettings()
         initializeFruitStockLabels()
     }
-
+    
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
         do {
             let juice = try juiceMenu(for: sender)
@@ -161,5 +161,9 @@ class JuiceOrderViewController: UIViewController {
     
     private func moveToStockModifyView() {
         performSegue(withIdentifier: StoryboardSegue.toStockModifyView.identifier, sender: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .FruitStockChanged, object: nil)
     }
 }

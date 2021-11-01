@@ -148,4 +148,8 @@ class StockModifyViewController: UIViewController {
     @IBAction private func modifyCompleteButtonDidTap(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .FruitStockChanged, object: nil)
+    }
 }
