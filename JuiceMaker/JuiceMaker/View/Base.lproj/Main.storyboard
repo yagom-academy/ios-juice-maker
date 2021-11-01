@@ -431,7 +431,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="완료" id="CMs-vd-cPP">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="CMs-vd-cPP">
                             <connections>
                                 <action selector="tapDoneButton:" destination="Yu1-lM-nqp" id="AIq-Y9-LiN"/>
                             </connections>
