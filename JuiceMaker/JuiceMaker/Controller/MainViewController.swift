@@ -10,14 +10,8 @@ class MainViewController: UIViewController {
     private let fruitStore = FruitStore.shared
     private let juiceMaker = JuiceMaker()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        do {
-            try updateFruitStockLabel()
-        } catch {
-            print("없는 과일입니다.")
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        try! updateFruitStockLabel()
     }
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
