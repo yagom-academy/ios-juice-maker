@@ -14,11 +14,10 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         initJuiceMakerViewController()
     }
@@ -45,6 +44,8 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.make(juice: juice)
             showCompletedOrderAlert(of: order)
+        } catch JuiceMakerError.invalidSelection {
+            showInvalidOrderAlert()
         } catch FruitStoreError.outOfStock(let neededFruit) {
             showFailedOrderAlert(fruitAndQuantity: neededFruit)
         } catch {
@@ -63,6 +64,16 @@ class JuiceMakerViewController: UIViewController {
         let stockModifyNC = storyboard.instantiateViewController(identifier: stockModifyNavController.storyboardID)
         
         present(stockModifyNC, animated: true, completion: nil)
+    }
+    
+    func showInvalidOrderAlert() {
+        let message = "메뉴에 없는 주문입니다. 다시 확인해 주세요."
+        
+        let alert = UIAlertController(title: "주문 실패", message: message, preferredStyle: .alert)
+        let close = UIAlertAction(title: "닫기", style: .default)
+        alert.addAction(close)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     func showCompletedOrderAlert(of order: String) {
