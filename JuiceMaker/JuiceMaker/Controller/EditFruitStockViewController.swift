@@ -8,11 +8,11 @@ class EditFruitStockViewController: UIViewController {
     
     fileprivate func configureNavigationButton() {
         navigationItem.title = ""
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTrigger))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(hitDoneButton))
     }
     
     @objc
-    func doneButtonTrigger() {
+    func hitDoneButton() {
         self.dismiss(animated: true, completion: nil)
     }
 
