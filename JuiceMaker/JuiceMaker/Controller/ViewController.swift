@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         } else {
             alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
             let moveEditView = UIAlertAction(title: "재고수정하기", style: .default) {_ in
-                self.moveEditView()
+                self.moveToEditViewController()
             }
             let closeAlert = UIAlertAction(title: "닫기", style: .default) {_ in
                 self.viewDidLoad()
@@ -80,10 +80,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func hitEditButton(_ sender: UIBarButtonItem) {
-        moveEditView()
+        moveToEditViewController()
     }
     
-    func moveEditView() {
+    func moveToEditViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let editViewController: EditFruitStockViewController = storyboard.instantiateViewController(identifier: "EditViewController")
         let navigationController = UINavigationController(rootViewController: editViewController)
