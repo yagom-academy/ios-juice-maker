@@ -6,8 +6,8 @@
 
 import UIKit
 
+// MARK: - Properties and Lifecycle
 class JuiceMakerViewController: UIViewController {
-
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
@@ -31,7 +31,10 @@ class JuiceMakerViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(fruitLabelChanged(notification:)), name: .changedFruitStockNotification, object: nil)
     }
-    
+}
+
+// MARK: - Setup Label and Button
+extension JuiceMakerViewController {
     func buttonLabelFontSizeFix() {
         orderStrawberryBananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
         orderMangoKiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -50,6 +53,43 @@ class JuiceMakerViewController: UIViewController {
         orderMangoJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
+    func updateFruitLabels() {
+        currentStockLabelUpdate(fruit: .strawberry, label: strawberryStockLabel)
+        currentStockLabelUpdate(fruit: .banana, label: bananaStockLabel)
+        currentStockLabelUpdate(fruit: .pineapple, label: pineappleStockLabel)
+        currentStockLabelUpdate(fruit: .kiwi, label: kiwiStockLabel)
+        currentStockLabelUpdate(fruit: .mango, label: mangoStockLabel)
+    }
+    
+    func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
+        do {
+            let stock = try FruitStore.shared.stock(fruit: fruit)
+            label.text = stock.description
+        } catch let error as RequestError {
+            showNotificationAlert(message: error.errorDescription)
+        } catch {
+            showNotificationAlert(message: Message.unknownError.description)
+        }
+    }
+    
+    func fruitlabel(of fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryStockLabel
+        case .banana:
+            return bananaStockLabel
+        case .pineapple:
+            return pineappleStockLabel
+        case .kiwi:
+            return kiwiStockLabel
+        case .mango:
+            return mangoStockLabel
+        }
+    }
+}
+
+// MARK: - Order Juice
+extension JuiceMakerViewController {
     @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
         let juice: Juice
         
@@ -89,48 +129,6 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @objc func fruitLabelChanged(notification: Notification) {
-        guard let fruit = notification.object as? Fruit else {
-            showNotificationAlert(message: Message.unknownError.description)
-            return
-        }
-        currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
-    }
-    
-    func updateFruitLabels() {
-        currentStockLabelUpdate(fruit: .strawberry, label: strawberryStockLabel)
-        currentStockLabelUpdate(fruit: .banana, label: bananaStockLabel)
-        currentStockLabelUpdate(fruit: .pineapple, label: pineappleStockLabel)
-        currentStockLabelUpdate(fruit: .kiwi, label: kiwiStockLabel)
-        currentStockLabelUpdate(fruit: .mango, label: mangoStockLabel)
-    }
-    
-    func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
-        do {
-            let stock = try FruitStore.shared.stock(fruit: fruit)
-            label.text = stock.description
-        } catch let error as RequestError {
-            showNotificationAlert(message: error.errorDescription)
-        } catch {
-            showNotificationAlert(message: Message.unknownError.description)
-        }
-    }
-    
-    func fruitlabel(of fruit: Fruit) -> UILabel {
-        switch fruit {
-        case .strawberry:
-            return strawberryStockLabel
-        case .banana:
-            return bananaStockLabel
-        case .pineapple:
-            return pineappleStockLabel
-        case .kiwi:
-            return kiwiStockLabel
-        case .mango:
-            return mangoStockLabel
-        }
-    }
-    
     func showNotificationAlert(message: String, title: String = Text.ok.title) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let cancel = UIAlertAction(title: title, style: .cancel, handler: nil)
@@ -146,7 +144,10 @@ class JuiceMakerViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
+}
+
+// MARK: - Transition
+extension JuiceMakerViewController {
     private func presentFruitStoreViewController(_ action: UIAlertAction) {
         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? UINavigationController else { return }
         self.present(viewController, animated: true, completion: nil)
@@ -174,3 +175,13 @@ class JuiceMakerViewController: UIViewController {
     }
 }
 
+// MARK: - Notification
+extension JuiceMakerViewController {
+    @objc func fruitLabelChanged(notification: Notification) {
+        guard let fruit = notification.object as? Fruit else {
+            showNotificationAlert(message: Message.unknownError.description)
+            return
+        }
+        currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
+    }
+}
