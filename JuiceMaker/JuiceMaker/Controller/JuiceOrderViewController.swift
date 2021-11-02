@@ -6,7 +6,6 @@ class JuiceOrderViewController: UIViewController {
     private let fruitStore: FruitStore = FruitStore.shared
     var fruitLabels: [String?] = []
     
-    
     @IBOutlet weak var strawberryBananaOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiOrderButton: UIButton!
     @IBOutlet weak var strawberryOrderButton: UIButton!
@@ -127,11 +126,17 @@ class JuiceOrderViewController: UIViewController {
         }
         return currentStock
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.children.first is FruitStorageViewController {
+            let viewController = segue.destination.children.first as? FruitStorageViewController
+            viewController?.fruitStock = makeCurrentStock()
+        }
+    }
+
     private func presentFruitStoreViewController(_ action: UIAlertAction) {
         guard let navcontroller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
-        let viewcontroller = navcontroller.children.first as? FruitStorageViewController
-        viewcontroller?.fruitStock = makeCurrentStock()
+        let viewController = navcontroller.children.first as? FruitStorageViewController
+        viewController?.fruitStock = makeCurrentStock()
         
         self.present(navcontroller, animated: true, completion: nil)
     }
