@@ -69,6 +69,11 @@ class ModifyStockViewController: UIViewController {
     }
     
     @IBAction func touchUpCancelButton(_ sender: Any) {
+        guard let stock = modifiedStock else {
+            return
+        }
+        
+        NotificationCenter.default.post(name: .receiveModifiedStock, object: nil, userInfo: ["modifiedStock": stock])
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -142,15 +142,25 @@ class JuiceMakerViewController: UIViewController {
             return nil
         }
     }
+    
+    @objc func updateWithModifiedStock(notification: Notification) {
+        guard let modifiedStock = notification.userInfo?["modifiedStock"] as? Dictionary<FruitStore.Fruit, Int> else {
+            return
+        }
+        
+        juiceMaker.store.updateStock(newStock: modifiedStock)
+    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateAllStockLabels()
         NotificationCenter.default.addObserver(self, selector: #selector(updateAllStockLabels), name: .fruitStockCountModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWithModifiedStock), name: .receiveModifiedStock, object: nil)
     }
 }
 
 extension Notification.Name {
     static let fruitStockCountModified = Notification.Name("fruitStockCountModified")
+    static let receiveModifiedStock = Notification.Name("receiveModifiedStock")
 }
