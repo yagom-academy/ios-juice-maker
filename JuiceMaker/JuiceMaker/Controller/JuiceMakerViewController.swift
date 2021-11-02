@@ -150,9 +150,14 @@ class JuiceMakerViewController: UIViewController {
         juiceMaker.store.updateStock(newStock: modifiedStock)
     }
  
+    func adjustButtonTextLayout() {
+        pineappleJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        pineappleJuiceOrderButton.titleLabel?.textAlignment = .center
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        adjustButtonTextLayout()
         updateAllStockLabels()
         NotificationCenter.default.addObserver(self, selector: #selector(updateAllStockLabels), name: .fruitStockCountModified, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWithModifiedStock), name: .receiveModifiedStock, object: nil)
