@@ -32,7 +32,7 @@ class FruitStorageViewController: UIViewController {
     }
 
     func setDefaultStepperValue() {
-        for i in 0...fruitStock.count - 1 {
+        for i in 0..<fruitStock.count {
             stepperValue.append(Double(fruitStock[i]) ?? 0)
         }
         strawberryStepper.value = stepperValue[0]
@@ -40,13 +40,23 @@ class FruitStorageViewController: UIViewController {
         mangoStepper.value = stepperValue[2]
         kiwiStepper.value = stepperValue[3]
         pineappleStepper.value = stepperValue[4]
+        stepperValue = []
     }
     
     @IBAction func completeModifyButton(_ sender: UIButton) {
-        
+        transmitStepperValueToFruitStock()
+        //보내고 noti post -> 받고 그걸 label 변경하는 함수를 실행
         dismiss(animated: true, completion: nil)
     }
     
+    func transmitStepperValueToFruitStock() {
+        stepperValue.append(strawberryStepper.value)
+        stepperValue.append(bananaStepper.value)
+        stepperValue.append(mangoStepper.value)
+        stepperValue.append(kiwiStepper.value)
+        stepperValue.append(pineappleStepper.value)
+        FruitStore.shared.changeFruitStock(stepperValue: stepperValue)
+    }
     
     
     @IBAction func stepperTest(_ sender: UIStepper) {

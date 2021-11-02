@@ -1,11 +1,12 @@
+import Foundation
 
 final class FruitStore {
     private var defaultStock = 10
     var fruitStorage : Dictionary<Fruits, Int>
     static let shared: FruitStore = FruitStore()
+    let allFruits = Fruits.allCases
     
     private init() {
-        let allFruits = Fruits.allCases
         let stock = Array(repeating: defaultStock, count: allFruits.count)
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
@@ -25,11 +26,9 @@ final class FruitStore {
         }
     }
     
-    func stockUpFruit(which fruit: Fruits, on amount: Int) throws {
-        guard var inventory = fruitStorage[fruit] else {
-            throw FruitStockError.invalidValue
+    func changeFruitStock(stepperValue: [Double]) {
+        for index in 0..<stepperValue.count {
+            fruitStorage[allFruits[index]] = Int(stepperValue[index])
         }
-        inventory += amount
-        fruitStorage[fruit] = inventory
     }
 }
