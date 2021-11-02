@@ -18,7 +18,6 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initJuiceMakerViewController()
     }
     

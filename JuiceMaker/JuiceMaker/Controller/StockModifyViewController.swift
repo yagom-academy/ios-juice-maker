@@ -15,10 +15,15 @@ class StockModifyViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initJuiceMakerViewController()
-
     }
     
     func initJuiceMakerViewController() {
@@ -38,6 +43,26 @@ class StockModifyViewController: UIViewController {
     
     @IBAction func dismissButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
-        
     }
+
+    @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
+        FruitStore.shared.add(fruit: .strawberry)
+    }
+    
+    @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
+        FruitStore.shared.add(fruit: .banana)
+    }
+    
+    @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
+        FruitStore.shared.add(fruit: .pineapple)
+    }
+    
+    @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
+        FruitStore.shared.add(fruit: .kiwi)
+    }
+    
+    @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
+        FruitStore.shared.add(fruit: .mango)
+    }
+
 }
