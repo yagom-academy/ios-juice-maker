@@ -45,22 +45,24 @@ enum Juice: CaseIterable {
     case kiwiMangoJuice
     
     static func findJuice(juiceID: String) -> Juice? {
-        if juiceID.hasPrefix("strawberryJuice") {
+        switch juiceID {
+        case "strawberryJuice":
             return .strawberryJuice
-        } else if juiceID.hasPrefix("bananaJuice") {
+        case "bananaJuice":
             return .bananaJuice
-        } else if juiceID.hasPrefix("kiwiJuice") {
+        case "kiwiJuice":
             return .kiwiJuice
-        } else if juiceID.hasPrefix("pineappleJuice") {
+        case "pineappleJuice":
             return .pineappleJuice
-        } else if juiceID.hasPrefix("strawberryBananaJuice") {
+        case "strawberryBananaJuice":
             return .strawberryBananaJuice
-        } else if juiceID.hasPrefix("mangoJuice") {
+        case "mangoJuice":
             return .mangoJuice
-        } else if juiceID.hasPrefix("kiwiMangoJuice") {
+        case "kiwiMangoJuice":
             return .kiwiMangoJuice
+        default:
+            return nil
         }
-        return nil
     }
     
     var recipe: [Fruits: Int] {

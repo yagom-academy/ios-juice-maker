@@ -115,10 +115,10 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func compare(_ fruit: Fruits, by fruitID: String?) -> Bool {
-        guard let fruitID = fruitID, let foundfruit = Fruits.findFruit(by: fruitID) else {
+        guard let fruitID = fruitID else {
             return false
         }
-        return fruit == foundfruit
+        return fruit.descriptionEN == fruitID
     }
     
     deinit {
