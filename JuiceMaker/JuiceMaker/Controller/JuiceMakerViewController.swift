@@ -50,8 +50,10 @@ class JuiceMakerViewController: UIViewController {
             try juiceMaker?.make(juice)
         } catch FruitStoreError.deficientStock {
             presentFailAlert()
+            return
         } catch {
             presentErrorAlert()
+            return
         }
         
         presentSuccessAlert(of: juice)
