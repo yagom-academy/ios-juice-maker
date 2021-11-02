@@ -24,22 +24,22 @@ class EditStockViewController: UIViewController {
         initializeUIElements()
     }
     
-    func initializeStockLabel(at indexOfFruit: Int) {
+    private func initializeStockLabel(at indexOfFruit: Int) {
         fruitStockLabels[indexOfFruit].text = "\(store.inventory[indexOfFruit].count)"
     }
 
-    func initializeStocktepper(at indexOfFruit: Int) {
+    private func initializeStocktepper(at indexOfFruit: Int) {
         fruitstockSteppers[indexOfFruit].value = Double(store.inventory[indexOfFruit].count)
     }
     
-    func initializeUIElements() {
+    private func initializeUIElements() {
         for indexOfFruit in 0..<fruitStockLabels.count {
             initializeStockLabel(at: indexOfFruit)
             initializeStocktepper(at: indexOfFruit)
         }
     }
     
-    func editStock(changedStock: Int, fruit: FruitName) {
+    private func editStock(changedStock: Int, fruit: FruitName) {
         let currentStock = store.inventory[fruit.indexOfInventory].count
         let stockDifference = changedStock - currentStock
         store.addStock(count: stockDifference, to: fruit)
