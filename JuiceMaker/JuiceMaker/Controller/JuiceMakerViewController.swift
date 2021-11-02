@@ -134,12 +134,7 @@ class JuiceMakerViewController: UIViewController {
         
         guard let nextViewController = viewController.topViewController as? FruitStoreViewController else { return }
         
-        nextViewController.loadViewIfNeeded()
-        nextViewController.strawberryStockLabel.text = strawberryStockLabel.text
-        nextViewController.bananaStockLabel.text = bananaStockLabel.text
-        nextViewController.pineappleStockLabel.text = pineappleStockLabel.text
-        nextViewController.kiwiStockLabel.text = kiwiStockLabel.text
-        nextViewController.mangoStockLabel.text = mangoStockLabel.text
+        setupNextViewLabel(of: nextViewController)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -147,6 +142,10 @@ class JuiceMakerViewController: UIViewController {
         
         guard let nextViewController = navigationController.topViewController as? FruitStoreViewController else { return }
         
+        setupNextViewLabel(of: nextViewController)
+    }
+    
+    func setupNextViewLabel(of nextViewController: FruitStoreViewController) {
         nextViewController.loadViewIfNeeded()
         nextViewController.strawberryStockLabel.text = strawberryStockLabel.text
         nextViewController.bananaStockLabel.text = bananaStockLabel.text
