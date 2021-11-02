@@ -279,7 +279,7 @@
             </objects>
             <point key="canvasLocation" x="61" y="20"/>
         </scene>
-        <!--재고 수정-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController id="Yu1-lM-nqp" customClass="FruitStorageViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -437,8 +437,8 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="재고 수정" id="s2S-sA-aIl">
-                        <barButtonItem key="rightBarButtonItem" title="수정 완료" id="Ssw-n4-fDK">
+                    <navigationItem key="navigationItem" title="재고 추가" id="s2S-sA-aIl">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Ssw-n4-fDK">
                             <connections>
                                 <action selector="completeModifyButton:" destination="Yu1-lM-nqp" id="Rw5-iU-wXs"/>
                             </connections>

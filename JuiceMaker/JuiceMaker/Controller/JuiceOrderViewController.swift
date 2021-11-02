@@ -4,6 +4,8 @@ import UIKit
 class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private let fruitStore: FruitStore = FruitStore.shared
+    var fruitLabels: [String?] = []
+    
     
     @IBOutlet weak var strawberryBananaOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiOrderButton: UIButton!
@@ -24,6 +26,7 @@ class JuiceOrderViewController: UIViewController {
         updateFruitsStock()
     }
     
+   
     @IBAction func clickJuiceButton(_ sender: UIButton) {
         var juice: Juices
         
@@ -108,8 +111,28 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    private func makeCurrentStock() -> [String] {
+        fruitLabels = [
+            strawberryStockLabel.text,
+            bananaStockLabel.text,
+            mangoStockLabel.text,
+            kiwiStockLabel.text,
+            pineappleStockLabel.text
+        ]
+        
+        var currentStock: [String] = []
+        
+        fruitLabels.forEach { stock in
+            currentStock.append(stock ?? "0")
+        }
+        return currentStock
+    }
+    
     private func presentFruitStoreViewController(_ action: UIAlertAction) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
-        self.present(viewController, animated: true, completion: nil)
+        guard let navcontroller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
+        let viewcontroller = navcontroller.children.first as? FruitStorageViewController
+        viewcontroller?.fruitStock = makeCurrentStock()
+        
+        self.present(navcontroller, animated: true, completion: nil)
     }
 }
