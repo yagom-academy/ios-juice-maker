@@ -23,6 +23,7 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitsStock()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitsStock), name: .update, object: fruitStore)
     }
     
    
@@ -61,7 +62,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func updateFruitsStock() {
+    @objc private func updateFruitsStock() {
         do {
             strawberryStockLabel.text = String(try getFruitStock(which: .strawberry))
             bananaStockLabel.text = String(try getFruitStock(which: .banana))
@@ -140,4 +141,9 @@ class JuiceOrderViewController: UIViewController {
         
         self.present(navcontroller, animated: true, completion: nil)
     }
+}
+
+
+extension Notification.Name {
+    static let update = Notification.Name("update")
 }

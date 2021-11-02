@@ -4,6 +4,7 @@ import UIKit
 class FruitStorageViewController: UIViewController {
 
     var fruitStock: [String] = []
+    var stepperValue: [Double] = []
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -19,6 +20,7 @@ class FruitStorageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setFruitStockLabel()
+        setDefaultStepperValue()
     }
     
     func setFruitStockLabel() {
@@ -29,6 +31,17 @@ class FruitStorageViewController: UIViewController {
         pineappleStockLabel.text = fruitStock[4]
     }
 
+    func setDefaultStepperValue() {
+        for i in 0...fruitStock.count - 1 {
+            stepperValue.append(Double(fruitStock[i]) ?? 0)
+        }
+        strawberryStepper.value = stepperValue[0]
+        bananaStepper.value = stepperValue[1]
+        mangoStepper.value = stepperValue[2]
+        kiwiStepper.value = stepperValue[3]
+        pineappleStepper.value = stepperValue[4]
+    }
+    
     @IBAction func completeModifyButton(_ sender: UIButton) {
         
         dismiss(animated: true, completion: nil)
