@@ -96,14 +96,19 @@ class ViewController: UIViewController {
         let message = fruit.description + AlertMessage.outOfStock
         let cancelAction = UIAlertAction(title:AlertMessage.cancel, style: .cancel)
         let okAction = UIAlertAction(title: AlertMessage.ok, style: .default) { _ in
-            if let stockController = self.storyboard?.instantiateViewController(withIdentifier: "StockUpdateController") {
-                self.present(stockController, animated: true)
-            }
+            self.showStockUpdateView()
         }
         let orderFailAlert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         orderFailAlert.addAction(okAction)
         orderFailAlert.addAction(cancelAction)
         present(orderFailAlert, animated: true, completion: nil)
+    }
+    
+    private func showStockUpdateView() {
+        if let stockUpdateController = self.storyboard?.instantiateViewController(withIdentifier: "StockUpdateController") {
+            let navigationController = UINavigationController(rootViewController: stockUpdateController)
+            present(navigationController, animated: true)
+        }
     }
 }
