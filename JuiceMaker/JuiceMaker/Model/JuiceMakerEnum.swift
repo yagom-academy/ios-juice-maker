@@ -82,6 +82,11 @@ enum Juice: CaseIterable, CustomStringConvertible {
         }
     }
     
+    
+    var descriptionEN: String {
+        return String(describing: self)
+    }
+    
     var description: String {
         switch self {
         case .strawberryJuice:

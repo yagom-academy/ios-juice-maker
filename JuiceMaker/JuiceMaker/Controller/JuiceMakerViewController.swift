@@ -13,8 +13,7 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for index in (0...fruitEmojiLabels.count) {
-            
+        for index in fruitEmojiLabels.indices {
             let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
             let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
             
@@ -22,6 +21,12 @@ class JuiceMakerViewController: UIViewController {
             
             let fruitString: String = fruitArrange[index].description
             fruitCountLabels[index].fruitID = fruitString
+        }
+        
+        for (index, button) in juiceOrderButtons.enumerated() {
+            let juiceArrange: [Juice] = [.strawberryBananaJuice, .kiwiMangoJuice, .strawberryJuice, .bananaJuice, .pineappleJuice, .kiwiJuice, .mangoJuice]
+            button.setTitle("\(juiceArrange[index]) 주문", for: .normal)
+            button.juiceID = juiceArrange[index].descriptionEN
         }
     
         updateFruitCount()
@@ -41,9 +46,11 @@ class JuiceMakerViewController: UIViewController {
     
     @IBOutlet var fruitCountLabels: [FruitLabel]!
     
-    @IBAction func clickOrderButton(_ sender: UIButton) {
+    @IBOutlet var juiceOrderButtons: [JuiceButton]!
+    
+    @IBAction func clickOrderButton(_ sender: JuiceButton) {
         do {
-            guard let juiceID = sender.restorationIdentifier else {
+            guard let juiceID = sender.juiceID else {
                 throw FruitError.notFoundID(self, "UIButton")
             }
             guard let wantedJuice = Juice.findJuice(juiceID: juiceID) else {
@@ -81,7 +88,6 @@ class JuiceMakerViewController: UIViewController {
     private func updateFruitCount() {
         do {
             for (fruit, fruitCount) in FruitStore.shared.fruitInventory {
-                print(fruit)
                 guard let fruitCountLabel = fruitCountLabels.filter({
                     compare(fruit,by: $0.fruitID) }).first else {
                         throw FruitError.notFoundView(self, "Label")
@@ -103,7 +109,6 @@ class JuiceMakerViewController: UIViewController {
         guard let fruitID = fruitID, let foundfruit = Fruits.findFruit(by: fruitID) else {
             return false
         }
-        print("Fruits : \(fruit) count \(fruitID)")
         return fruit == foundfruit
     }
 }

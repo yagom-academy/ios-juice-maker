@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C16334A82730C403006BA223 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16334A72730C403006BA223 /* UILabel.swift */; };
+		C16334A82730C403006BA223 /* FruitUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16334A72730C403006BA223 /* FruitUI.swift */; };
 		C17E04FB272799D10026A8AE /* ModifyInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17E04FA272799D10026A8AE /* ModifyInventoryViewController.swift */; };
 		C197D3F2272AAAAE00D0660A /* JuiceMakerEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197D3F1272AAAAE00D0660A /* JuiceMakerEnum.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -23,7 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C16334A72730C403006BA223 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		C16334A72730C403006BA223 /* FruitUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitUI.swift; sourceTree = "<group>"; };
 		C17E04FA272799D10026A8AE /* ModifyInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInventoryViewController.swift; sourceTree = "<group>"; };
 		C197D3F1272AAAAE00D0660A /* JuiceMakerEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerEnum.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
-				C16334A72730C403006BA223 /* UILabel.swift */,
+				C16334A72730C403006BA223 /* FruitUI.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,7 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C16334A82730C403006BA223 /* UILabel.swift in Sources */,
+				C16334A82730C403006BA223 /* FruitUI.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
 				C197D3F2272AAAAE00D0660A /* JuiceMakerEnum.swift in Sources */,
