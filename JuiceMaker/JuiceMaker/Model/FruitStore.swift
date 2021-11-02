@@ -52,10 +52,10 @@ class FruitStore {
         guard let oldFruitCount = fruitBasket[fruit] else {
             throw RequestError.fruitNotFound
         }
-        guard count <= oldFruitCount else {
+        let newFruitCount = calculator(oldFruitCount, count)
+        guard newFruitCount >= 0 else {
             throw RequestError.fruitStockOut
         }
-        let newFruitCount = calculator(oldFruitCount, count)
         fruitBasket[fruit] = newFruitCount
         
         NotificationCenter.default.post(name: .changedFruitStockNotification, object: fruit)
