@@ -23,7 +23,7 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    @IBAction func touchUpModifyStockButton(_ sender: UIBarButtonItem) {
+    @IBAction private func touchUpModifyStockButton(_ sender: UIBarButtonItem) {
         presentModifyStockViewController()
     }
     
@@ -89,7 +89,6 @@ class JuiceMakerViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toModifyStockViewController" {
-            print("segue")
             guard let destinationNavigationController = segue.destination as? UINavigationController else {
                 return
             }
@@ -143,7 +142,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @objc func updateWithModifiedStock(notification: Notification) {
+    @objc private func updateWithModifiedStock(notification: Notification) {
         guard let modifiedStock = notification.userInfo?["modifiedStock"] as? Dictionary<FruitStore.Fruit, Int> else {
             return
         }
