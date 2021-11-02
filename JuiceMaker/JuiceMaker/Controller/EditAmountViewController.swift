@@ -25,24 +25,23 @@ class EditAmountViewController: UIViewController {
     @IBAction private func fruitAmountSteppersHandler(_ stepper: UIStepper) {
         switch stepper {
         case strawberryAmountStepper:
-            strawberryAmountLabel.text = String(Int(stepper.value))
+            editFruitAmount(fruit: .strawberry, from: stepper)
         case bananaAmountStepper:
-            bananaAmountLabel.text = String(Int(stepper.value))
+            editFruitAmount(fruit: .banana, from: stepper)
         case mangoAmountStepper:
-            mangoAmountLabel.text = String(Int(stepper.value))
+            editFruitAmount(fruit: .mango, from: stepper)
         case kiwiAmountStepper:
-            kiwiAmountLabel.text = String(Int(stepper.value))
+            editFruitAmount(fruit: .kiwi, from: stepper)
         case pineappleAmountStepper:
-            pineappleAmountLabel.text = String(Int(stepper.value))
+            editFruitAmount(fruit: .pineapple, from: stepper)
         default:
-            fatalError("Undefined Button")
+            fatalError("Undefined Error")
         }
     }
 
     @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true) {
-            notificationCenter.post(name: .didEditAmount, object: nil)
-        }
+        notificationCenter.post(name: .didEditAmount, object: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -50,7 +49,7 @@ class EditAmountViewController: UIViewController {
         
         do {
             try updateAllFruitAmountLabels()
-            try updateAllFruitAmountSteppers()
+            try initializeAllFruitAmountSteppers()
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
@@ -74,7 +73,7 @@ class EditAmountViewController: UIViewController {
         pineappleAmountLabel.text = String(pineappleAmount)
     }
     
-    private func updateAllFruitAmountSteppers() throws {
+    private func initializeAllFruitAmountSteppers() throws {
         guard let strawberryAmount = fruitStore.inventory[.strawberry],
               let bananaAmount = fruitStore.inventory[.banana],
               let mangoAmount = fruitStore.inventory[.mango],
@@ -88,5 +87,30 @@ class EditAmountViewController: UIViewController {
         mangoAmountStepper.value = Double(mangoAmount)
         kiwiAmountStepper.value = Double(kiwiAmount)
         pineappleAmountStepper.value = Double(pineappleAmount)
+    }
+    
+    private func updateFruitStoreInventory(fruit: Fruit, from stepper: UIStepper) throws {
+        let stepperValue = Int(stepper.value)
+        
+        guard let inventoryValue = fruitStore.inventory[fruit] else {
+            throw JuiceMakerError.fruitNotFound
+        }
+        
+        if stepperValue >= inventoryValue {
+            try fruitStore.increase(fruit, amount: stepperValue - inventoryValue)
+        } else {
+            try fruitStore.decrease(fruit, amount: inventoryValue - stepperValue)
+        }
+    }
+    
+    private func editFruitAmount(fruit: Fruit, from stepper: UIStepper) {
+        do {
+            try updateFruitStoreInventory(fruit: fruit, from: stepper)
+            try updateAllFruitAmountLabels()
+        } catch JuiceMakerError.fruitNotFound {
+            fatalError("Fruit Not Found")
+        } catch {
+            fatalError("Undefined Error")
+        }
     }
 }
