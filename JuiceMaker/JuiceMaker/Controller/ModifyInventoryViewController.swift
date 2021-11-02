@@ -50,12 +50,12 @@ class ModifyInventoryViewController: UIViewController {
         do {
             for (fruit, count) in FruitStore.shared.fruitInventory {
                 guard let label = fruitCountLabels.filter({
-                    compare(fruit,by: $0.fruitID) }).first else {
-                        throw FruitError.notFoundView(self, "Label")
+                    fruit.isSameKind(with: $0.fruitID) }).first else {
+                        throw StoryboardError.notFoundView(self, "Label")
                     }
                 guard let stepper = fruitSteppers.filter({
-                    compare(fruit,by: $0.fruitID) }).first else {
-                        throw FruitError.notFoundView(self, "Stepper")
+                    fruit.isSameKind(with: $0.fruitID) }).first else {
+                        throw StoryboardError.notFoundView(self, "Stepper")
                     }
                 label.text = String(count)
                 stepper.value = Double(count)
@@ -67,9 +67,9 @@ class ModifyInventoryViewController: UIViewController {
     
     @IBAction private func clickStepper(_ sender: FruitStepper) {
         do {
-            guard let (fruit, previousFruitCount) = FruitStore.shared.fruitInventory.filter({
-                compare($0.key, by: sender.fruitID) }).first else {
-                    throw FruitError.notFoundView(self, "Stepper")
+            guard let (fruit, previousFruitCount) = FruitStore.shared.fruitInventory.filter({ (fruit, count) in
+                fruit.isSameKind(with: sender.fruitID) }).first else {
+                    throw StoryboardError.notFoundView(self, "Stepper")
                 }
             
             if previousFruitCount - Int(sender.value) > 0 {
@@ -80,13 +80,6 @@ class ModifyInventoryViewController: UIViewController {
         } catch {
             print("ERROR : \(error.localizedDescription)")
         }
-    }
-    
-    private func compare(_ fruit: Fruits, by fruitID: String?) -> Bool {
-        guard let fruitID = fruitID else {
-            return false
-        }
-        return fruit.descriptionEN == fruitID
     }
     
     deinit {

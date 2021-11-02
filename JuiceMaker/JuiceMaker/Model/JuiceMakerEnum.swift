@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum Fruits: String, CaseIterable {
+enum Fruits: CaseIterable {
     case strawberry
     case banana
     case pineapple
@@ -17,6 +17,13 @@ enum Fruits: String, CaseIterable {
     
     var descriptionEN: String {
         return String(describing: self)
+    }
+    
+    func isSameKind(with fruitID: String?) -> Bool {
+        guard let fruitID = fruitID else {
+            return false
+        }
+        return self.descriptionEN == fruitID
     }
     
     static func findFruit(by fruitID: String) -> Fruits? {

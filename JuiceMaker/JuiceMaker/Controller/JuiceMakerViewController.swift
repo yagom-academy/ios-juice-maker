@@ -30,7 +30,7 @@ class JuiceMakerViewController: UIViewController {
     @IBAction private func clickOrderButton(_ sender: JuiceButton) {
         do {
             guard let juiceID = sender.juiceID else {
-                throw FruitError.notFoundID(self, "UIButton")
+                throw StoryboardError.notFoundID(self, "UIButton")
             }
             guard let wantedJuice = Juice.findJuice(juiceID: juiceID) else {
                 throw FruitError.notFoundJuice
@@ -98,8 +98,8 @@ class JuiceMakerViewController: UIViewController {
         do {
             for (fruit, fruitCount) in FruitStore.shared.fruitInventory {
                 guard let fruitCountLabel = fruitCountLabels.filter({
-                    compare(fruit,by: $0.fruitID) }).first else {
-                        throw FruitError.notFoundView(self, "Label")
+                    fruit.isSameKind(with: $0.fruitID) }).first else {
+                        throw StoryboardError.notFoundView(self, "Label")
                     }
                 fruitCountLabel.text = String(fruitCount)
             }
@@ -112,13 +112,6 @@ class JuiceMakerViewController: UIViewController {
         let ModifyInventoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyInventory")
         
         present(ModifyInventoryVC, animated: true, completion: nil)
-    }
-    
-    private func compare(_ fruit: Fruits, by fruitID: String?) -> Bool {
-        guard let fruitID = fruitID else {
-            return false
-        }
-        return fruit.descriptionEN == fruitID
     }
     
     deinit {
