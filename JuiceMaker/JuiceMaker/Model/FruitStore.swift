@@ -6,27 +6,35 @@
 
 import Foundation
 
-private let defaultFruitCount = 10
+
+enum Fruit: CaseIterable {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
+
+private enum Const {
+    static let defaultFruitCount = 10
+}
 
 class FruitStore {
-    
     static let shared: FruitStore = FruitStore()
-    
-    enum Fruit: CaseIterable {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-    }
-    
     private var fruitBasket: [Fruit: Int]
     
-    init(count: Int = defaultFruitCount) {
+    init(count: Int = Const.defaultFruitCount) {
         let allFruits = Fruit.allCases
         let fruitscount = Array(repeating: count, count: allFruits.count)
         
         self.fruitBasket = Dictionary(uniqueKeysWithValues: zip(allFruits, fruitscount))
+    }
+    
+    func stock(fruit: Fruit) throws -> Int {
+        guard let fruitStock = fruitBasket[fruit] else {
+            throw RequestError.fruitNotFound
+        }
+        return fruitStock
     }
     
     func addFruitStock(fruit: Fruit, count: Int) throws {
@@ -49,6 +57,8 @@ class FruitStore {
         }
         let newFruitCount = calculator(oldFruitCount, count)
         fruitBasket[fruit] = newFruitCount
+        
+        NotificationCenter.default.post(name: .changedFruitStockNotification, object: fruit)
     }
     
     func hasFruitStock(of fruit: Fruit, count fruitCountSubtracted: Int) -> Bool {
@@ -58,3 +68,6 @@ class FruitStore {
 }
 
 
+extension Notification.Name {
+    static let changedFruitStockNotification = Notification.Name("changeFruitStock")
+}
