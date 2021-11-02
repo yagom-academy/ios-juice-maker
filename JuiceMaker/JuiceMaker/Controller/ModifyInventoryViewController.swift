@@ -12,32 +12,31 @@ class ModifyInventoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setFruitLabels()
+        setFruitUI()
         updateFruitCount()
         registerNotificationCenter()
     }
     
-    @IBOutlet var fruitEmojiLabels: [UILabel]!
+    @IBOutlet private var fruitEmojiLabels: [UILabel]!
     
-    @IBOutlet var fruitCountLabels: [FruitLabel]!
+    @IBOutlet private var fruitCountLabels: [FruitLabel]!
     
-    @IBOutlet var fruitSteppers: [FruitStepper]!
+    @IBOutlet private var fruitSteppers: [FruitStepper]!
     
-    func setFruitLabels() {
+    private func setFruitUI() {
         for index in fruitEmojiLabels.indices {
             let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
             let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
             
             fruitEmojiLabels[index].text = fruitEmojiArrange[index]
             
-            let fruitString: String = fruitArrange[index].description
-            fruitCountLabels[index].fruitID = fruitString
-            
-            fruitSteppers[index].fruitID = fruitString
+            let fruitName = fruitArrange[index].descriptionEN
+            fruitCountLabels[index].fruitID = fruitName
+            fruitSteppers[index].fruitID = fruitName
         }
     }
     
-    func registerNotificationCenter() {
+    private func registerNotificationCenter() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFruitCount),
@@ -52,12 +51,12 @@ class ModifyInventoryViewController: UIViewController {
             for (fruit, count) in FruitStore.shared.fruitInventory {
                 guard let label = fruitCountLabels.filter({
                     compare(fruit,by: $0.fruitID) }).first else {
-                    throw FruitError.notFoundView(self, "Label")
-                }
+                        throw FruitError.notFoundView(self, "Label")
+                    }
                 guard let stepper = fruitSteppers.filter({
                     compare(fruit,by: $0.fruitID) }).first else {
-                    throw FruitError.notFoundView(self, "Stepper")
-                }
+                        throw FruitError.notFoundView(self, "Stepper")
+                    }
                 label.text = String(count)
                 stepper.value = Double(count)
             }
@@ -66,12 +65,12 @@ class ModifyInventoryViewController: UIViewController {
         }
     }
     
-    @IBAction func clickStepper(_ sender: UIStepper) {
+    @IBAction private func clickStepper(_ sender: FruitStepper) {
         do {
             guard let (fruit, previousFruitCount) = FruitStore.shared.fruitInventory.filter({
-                compare($0.key, by: sender.restorationIdentifier) }).first else {
-                throw FruitError.notFoundView(self, "Stepper")
-            }
+                compare($0.key, by: sender.fruitID) }).first else {
+                    throw FruitError.notFoundView(self, "Stepper")
+                }
             
             if previousFruitCount - Int(sender.value) > 0 {
                 FruitStore.shared.subtract(fruit: fruit, of: Int(sender.stepValue))

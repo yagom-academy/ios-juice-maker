@@ -15,7 +15,7 @@ enum Fruits: String, CaseIterable {
     case kiwi
     case mango
     
-    var description: String {
+    var descriptionEN: String {
         return String(describing: self)
     }
     

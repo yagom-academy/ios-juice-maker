@@ -19,17 +19,16 @@ class JuiceMakerViewController: UIViewController {
         registerNotificationCenter()
     }
     
-    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) { }
+    @IBAction private func unwindAction(unwindSegue: UIStoryboardSegue) { }
     
-    @IBOutlet var fruitEmojiLabels: [UILabel]!
+    @IBOutlet private var fruitEmojiLabels: [UILabel]!
     
-    @IBOutlet var fruitCountLabels: [FruitLabel]!
+    @IBOutlet private var fruitCountLabels: [FruitLabel]!
     
-    @IBOutlet var juiceOrderButtons: [JuiceButton]!
+    @IBOutlet private var juiceOrderButtons: [JuiceButton]!
     
-    @IBAction func clickOrderButton(_ sender: JuiceButton) {
+    @IBAction private func clickOrderButton(_ sender: JuiceButton) {
         do {
-            print(sender.juiceID)
             guard let juiceID = sender.juiceID else {
                 throw FruitError.notFoundID(self, "UIButton")
             }
@@ -42,27 +41,28 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func setFruitLabels() {
+    private func setFruitLabels() {
         for index in fruitEmojiLabels.indices {
             let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
             let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
             
             fruitEmojiLabels[index].text = fruitEmojiArrange[index]
             
-            let fruitString: String = fruitArrange[index].description
+            let fruitString = fruitArrange[index].descriptionEN
             fruitCountLabels[index].fruitID = fruitString
         }
     }
     
-    func setJuiceButtons() {
+    private func setJuiceButtons() {
         for (index, button) in juiceOrderButtons.enumerated() {
             let juiceArrange: [Juice] = [.strawberryBananaJuice, .kiwiMangoJuice, .strawberryJuice, .bananaJuice, .pineappleJuice, .kiwiJuice, .mangoJuice]
+            
             button.setTitle("\(juiceArrange[index].descriptionKR) 주문", for: .normal)
             button.juiceID = juiceArrange[index].descriptionEN
         }
     }
     
-    func registerNotificationCenter() {
+    private func registerNotificationCenter() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFruitCount),
