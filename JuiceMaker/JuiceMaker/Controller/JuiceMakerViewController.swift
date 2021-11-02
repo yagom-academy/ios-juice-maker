@@ -27,8 +27,27 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLabels()
-    
+        buttonLabelFontSizeFix()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(fruitLabelChanged(notification:)), name: .changedFruitStockNotification, object: nil)
+    }
+    
+    func buttonLabelFontSizeFix() {
+        orderStrawberryBananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        orderMangoKiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        orderStrawberryJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        orderBananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        orderPineappleJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        orderKiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        orderMangoJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        
+        orderStrawberryBananaJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderMangoKiwiJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderStrawberryJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderBananaJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderPineappleJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderKiwiJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderMangoJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
