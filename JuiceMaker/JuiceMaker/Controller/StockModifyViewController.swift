@@ -45,7 +45,8 @@ extension StockModifyViewController {
         do {
             let fruitToModify = try fruit(for: sender)
             try modifyStock(of: fruitToModify, by: sender)
-//            try! updateLabel(fruit: fruitToModify)
+        } catch FruitStoreError.stockShortage {
+            
         } catch let error {
             showErrorAlert(error: error)
         }
@@ -65,6 +66,7 @@ extension StockModifyViewController {
         pineappleStockStepper.minimumValue = stepperMinimumValue
         kiwiStockStepper.minimumValue = stepperMinimumValue
         mangoStockStepper.minimumValue = stepperMinimumValue
+        
         strawberryStockStepper.maximumValue = stepperMaximumValue
         bananaStockStepper.maximumValue = stepperMaximumValue
         pineappleStockStepper.maximumValue = stepperMaximumValue
