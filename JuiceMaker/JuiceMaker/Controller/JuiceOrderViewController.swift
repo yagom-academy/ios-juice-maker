@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private let fruitStore = FruitStore.shared
     private var feedbackGenerator = UINotificationFeedbackGenerator()
@@ -50,8 +50,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            try updateFruitAmountLabels()
-            notificationCenter.addObserver(self, selector: #selector(updateFruitAmountLabels), name: .didEditAmount, object: nil)
+            try updateAllFruitAmountLabels()
+            notificationCenter.addObserver(self, selector: #selector(updateAllFruitAmountLabels), name: .didEditAmount, object: nil)
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc private func updateFruitAmountLabels() throws {
+    @objc private func updateAllFruitAmountLabels() throws {
         guard let strawberryAmount = fruitStore.inventory[.strawberry],
               let bananaAmount = fruitStore.inventory[.banana],
               let mangoAmount = fruitStore.inventory[.mango],
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
     private func orderJuice(_ juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.make(juice)
-            try updateFruitAmountLabels()
+            try updateAllFruitAmountLabels()
             showJuiceWasMadeAlert(juice: juice)
             feedbackGenerator.notificationOccurred(.success)
         } catch JuiceMakerError.notEnoughFruit {

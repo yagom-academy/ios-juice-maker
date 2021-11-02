@@ -49,8 +49,8 @@ class EditAmountViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            try updateFruitAmountLabels()
-            try updateFruitAmountSteppers()
+            try updateAllFruitAmountLabels()
+            try updateAllFruitAmountSteppers()
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
@@ -58,7 +58,7 @@ class EditAmountViewController: UIViewController {
         }
     }
     
-    private func updateFruitAmountLabels() throws {
+    private func updateAllFruitAmountLabels() throws {
         guard let strawberryAmount = fruitStore.inventory[.strawberry],
               let bananaAmount = fruitStore.inventory[.banana],
               let mangoAmount = fruitStore.inventory[.mango],
@@ -74,7 +74,7 @@ class EditAmountViewController: UIViewController {
         pineappleAmountLabel.text = String(pineappleAmount)
     }
     
-    private func updateFruitAmountSteppers() throws {
+    private func updateAllFruitAmountSteppers() throws {
         guard let strawberryAmount = fruitStore.inventory[.strawberry],
               let bananaAmount = fruitStore.inventory[.banana],
               let mangoAmount = fruitStore.inventory[.mango],
