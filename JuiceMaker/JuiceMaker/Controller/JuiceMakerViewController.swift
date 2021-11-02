@@ -13,20 +13,31 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for index in (0...fruitEmojiLabels.count) {
+            
+            let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
+            let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
+            
+            fruitEmojiLabels[index].text = fruitEmojiArrange[index]
+            
+            let fruitString: String = fruitArrange[index].description
+            fruitCountLabels[index].fruitID = fruitString
+        }
+    
         updateFruitCount()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFruitCount),
             name: Notification.Name("changedInventory"),
             object: nil)
+    
         
-        
-        for (index, data) in Fruits.allCases.enumerated() {
-            fruitCountLabels[index].fruitID = data.description
-        }
     }
     
     @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) { }
+    
+    
+    @IBOutlet var fruitEmojiLabels: [UILabel]!
     
     @IBOutlet var fruitCountLabels: [FruitLabel]!
     
@@ -70,8 +81,9 @@ class JuiceMakerViewController: UIViewController {
     private func updateFruitCount() {
         do {
             for (fruit, fruitCount) in FruitStore.shared.fruitInventory {
+                print(fruit)
                 guard let fruitCountLabel = fruitCountLabels.filter({
-                    compare(fruit,by: $0.restorationIdentifier) }).first else {
+                    compare(fruit,by: $0.fruitID) }).first else {
                         throw FruitError.notFoundView(self, "Label")
                     }
                 fruitCountLabel.text = String(fruitCount)
@@ -91,6 +103,7 @@ class JuiceMakerViewController: UIViewController {
         guard let fruitID = fruitID, let foundfruit = Fruits.findFruit(by: fruitID) else {
             return false
         }
+        print("Fruits : \(fruit) count \(fruitID)")
         return fruit == foundfruit
     }
 }

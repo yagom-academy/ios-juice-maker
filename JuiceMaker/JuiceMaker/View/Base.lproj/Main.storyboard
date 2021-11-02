@@ -249,6 +249,11 @@
                         <outletCollection property="fruitCountLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="MGN-mg-o19"/>
                         <outletCollection property="fruitCountLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="4F8-sx-obc"/>
                         <outletCollection property="fruitCountLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="X4w-c7-QGj"/>
+                        <outletCollection property="fruitEmojiLabels" destination="mVl-JQ-6g7" collectionClass="NSMutableArray" id="l71-qw-cs2"/>
+                        <outletCollection property="fruitEmojiLabels" destination="bl7-p0-c43" collectionClass="NSMutableArray" id="Hx5-U7-E3r"/>
+                        <outletCollection property="fruitEmojiLabels" destination="Qkv-u6-h8e" collectionClass="NSMutableArray" id="P15-ux-08s"/>
+                        <outletCollection property="fruitEmojiLabels" destination="kI4-bd-cgh" collectionClass="NSMutableArray" id="Av4-Pg-Gb1"/>
+                        <outletCollection property="fruitEmojiLabels" destination="2DA-4v-r9P" collectionClass="NSMutableArray" id="F3g-fk-oOQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
