@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Properties and Lifecycle, Transition
 class FruitStoreViewController: UIViewController {
 
     var receivedText: String?
@@ -31,12 +32,11 @@ class FruitStoreViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    func fruitLabelText(value: Double) -> String {
-        return String(format: "%.0f", value)
-    }
-    
-    @IBAction func stepperTapped(_ sender: UIStepper) {
+}
+
+// MARK: - Label and Stepper Values Setting
+extension FruitStoreViewController {
+    @IBAction func  stepperTapped(_ sender: UIStepper) {
         switch sender {
         case strawberryStockStepper:
             strawberryStockLabel.text = fruitLabelText(value: sender.value)
@@ -58,6 +58,10 @@ class FruitStoreViewController: UIViewController {
         }
     }
     
+    func fruitLabelText(value: Double) -> String {
+        return String(format: "%.0f", value)
+    }
+    
     func setUpFruitStepperValues() {
         currentStockStepperValueUpdate(fruit: .strawberry, stepper: strawberryStockStepper)
         currentStockStepperValueUpdate(fruit: .banana, stepper: bananaStockStepper)
@@ -74,14 +78,10 @@ class FruitStoreViewController: UIViewController {
             showNotificationAlert(message: Message.unknownError.description)
         }
     }
-    
-    func showNotificationAlert(message: String, title: String = Text.ok.title) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: title, style: .cancel, handler: nil)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
-    }
-    
+}
+
+// MARK: Stepper Operation
+extension FruitStoreViewController {
     func fruitStockChange(fruit: Fruit, value: Double) {
         let oldStockValue: Int
         let newStockValue = Int(value)
@@ -111,5 +111,12 @@ class FruitStoreViewController: UIViewController {
         } catch {
             showNotificationAlert(message: Message.unknownError.description)
         }
+    }
+    
+    func showNotificationAlert(message: String, title: String = Text.ok.title) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: title, style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
 }
