@@ -39,10 +39,10 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
-        makeJuice(juice: juice)
+        make(juice: juice)
     }
     
-    private func makeJuice(juice: Juices) {
+    private func make(juice: Juices) {
         do {
             try juiceMaker.makeJuice(juice: juice)
             updateFruitsStock()
