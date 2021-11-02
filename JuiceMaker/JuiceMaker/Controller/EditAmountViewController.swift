@@ -92,6 +92,7 @@ class EditAmountViewController: UIViewController {
     private func updateFruitStoreInventory(fruit: Fruit, from stepper: UIStepper) throws {
         let stepperValue = Int(stepper.value)
         
+        
         guard let inventoryValue = fruitStore.inventory[fruit] else {
             throw JuiceMakerError.fruitNotFound
         }

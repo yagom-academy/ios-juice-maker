@@ -49,9 +49,14 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        applyAutoFontSizeToAllButtonLabels()
+        notificationCenter.addObserver(self,
+                                    selector: #selector(updateAllFruitAmountLabels),
+                                    name: .didEditAmount,
+                                    object: nil)
+        
         do {
             try updateAllFruitAmountLabels()
-            notificationCenter.addObserver(self, selector: #selector(updateAllFruitAmountLabels), name: .didEditAmount, object: nil)
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
@@ -112,6 +117,16 @@ class JuiceOrderViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(navigateAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func applyAutoFontSizeToAllButtonLabels() {
+        strawberryJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        bananaJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        pineappleJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        kiwiJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        mangoJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        strawberryBananaJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        mangoKiwiJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
 }
 
