@@ -12,21 +12,11 @@ enum Text {
     case ok
     
     var title: String {
-        return localizedTitle(key: self.key)
-    }
-    
-    private var key: String {
         switch self {
         case .cancel:
-            return "Cancel"
+            return "취소"
         case .ok:
-            return "OK"
+            return "확인"
         }
-    }
-    
-    private func localizedTitle(key: String) -> String {
-        let bundle = Bundle.init(for: UIButton.self)
-        let title = bundle.localizedString(forKey: key, value: nil, table: nil)
-        return title
     }
 }
