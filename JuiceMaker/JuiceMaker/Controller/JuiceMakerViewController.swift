@@ -27,10 +27,11 @@ class JuiceMakerViewController: UIViewController {
         order(juice)
     }
     
-    @IBAction func presentStockManagerVC(_ sender: Any?) {
-        let stockManagerVC = storyboard?.instantiateViewController(withIdentifier: "StockManagerVC") as! StockManagerViewController
-   
-        present(stockManagerVC, animated: true, completion: nil)
+    @IBAction func presentStockManagerViewController(_ sender: Any?) {
+        if let storyboard = storyboard {
+            let stockManagerViewController = storyboard.instantiateViewController(identifier: "StockManagerViewController")
+            present(stockManagerViewController, animated: true, completion: nil)
+        }
     }
     
     private func addObserver() {
@@ -62,7 +63,7 @@ class JuiceMakerViewController: UIViewController {
     private func presentFailAlert() {
         let failAlert = UIAlertController(title: "\(AlertTitle.fail)", message: "\(AlertMessage.fail)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: { _ in
-            self.presentStockManagerVC(nil)
+            self.presentStockManagerViewController(nil)
         })
         let cancel = UIAlertAction(title: "\(AlertButtonTitle.cancel)", style: .cancel, handler: nil)
         failAlert.addAction(ok)
