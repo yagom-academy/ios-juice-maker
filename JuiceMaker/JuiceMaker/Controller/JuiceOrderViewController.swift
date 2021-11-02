@@ -61,11 +61,11 @@ class JuiceOrderViewController: UIViewController {
     
     private func updateFruitsStock() {
         do {
-            strawberryStockLabel.text = try getFruitStock(which: .strawberry)
-            bananaStockLabel.text = try getFruitStock(which: .banana)
-            kiwiStockLabel.text = try getFruitStock(which: .kiwi)
-            mangoStockLabel.text = try getFruitStock(which: .mango)
-            pineappleStockLabel.text = try getFruitStock(which: .pineapple)
+            strawberryStockLabel.text = String(try getFruitStock(which: .strawberry))
+            bananaStockLabel.text = String(try getFruitStock(which: .banana))
+            kiwiStockLabel.text = String(try getFruitStock(which: .kiwi))
+            mangoStockLabel.text = String(try getFruitStock(which: .mango))
+            pineappleStockLabel.text = String(try getFruitStock(which: .pineapple))
         }
         catch FruitStockError.invalidValue {
             showSystemError()
@@ -75,11 +75,11 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func getFruitStock(which fruit: Fruits) throws -> String {
+    private func getFruitStock(which fruit: Fruits) throws -> Int {
         guard let stock = fruitStore.fruitStorage[fruit] else {
             throw FruitStockError.invalidValue
         }
-        return String(stock)
+        return stock
     }
     
     private func showSuccessAlert(juice: Juices) {
