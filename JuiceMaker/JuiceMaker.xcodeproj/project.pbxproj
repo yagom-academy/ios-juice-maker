@@ -64,8 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
-				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				A61D18F4271EADDA00E59487 /* ErrorHandling.swift */,
+				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				A66FCEB1272942FB0028EC87 /* Fruits.swift */,
 				A688059C27297C3A00045195 /* Juices.swift */,
 			);

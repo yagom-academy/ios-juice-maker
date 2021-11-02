@@ -308,6 +308,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperTest:" destination="Yu1-lM-nqp" eventType="valueChanged" id="uiY-KQ-1YA"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -332,6 +335,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperTest:" destination="Yu1-lM-nqp" eventType="valueChanged" id="tz1-JP-ph0"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -429,6 +435,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="7yU-fL-6I3"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="l4x-NQ-5mE"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="F11-ln-qPp"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="Fh4-Sf-60D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
