@@ -32,22 +32,26 @@ class FruitStoreViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func fruitLabelText(value: Double) -> String {
+        return String(format: "%.0f", value)
+    }
+    
     @IBAction func stepperTapped(_ sender: UIStepper) {
         switch sender {
         case strawberryStockStepper:
-            strawberryStockLabel.text = String(format: "%.0f", sender.value)
+            strawberryStockLabel.text = fruitLabelText(value: sender.value)
             fruitStockChange(fruit: .strawberry, value: sender.value)
         case bananaStockStepper:
-            bananaStockLabel.text = String(format: "%.0f", sender.value)
+            bananaStockLabel.text = fruitLabelText(value: sender.value)
             fruitStockChange(fruit: .banana, value: sender.value)
         case pineappleStockStepper:
-            pineappleStockLabel.text = String(format: "%.0f", sender.value)
+            pineappleStockLabel.text = fruitLabelText(value: sender.value)
             fruitStockChange(fruit: .pineapple, value: sender.value)
         case kiwiStockStepper:
-            kiwiStockLabel.text = String(format: "%.0f", sender.value)
+            kiwiStockLabel.text = fruitLabelText(value: sender.value)
             fruitStockChange(fruit: .kiwi, value: sender.value)
         case mangoStockStepper:
-            mangoStockLabel.text = String(format: "%.0f", sender.value)
+            mangoStockLabel.text = fruitLabelText(value: sender.value)
             fruitStockChange(fruit: .mango, value: sender.value)
         default:
             showNotificationAlert(message: Message.unknownError.description)
