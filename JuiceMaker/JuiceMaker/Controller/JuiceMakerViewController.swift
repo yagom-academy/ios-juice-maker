@@ -19,11 +19,16 @@ class JuiceMakerViewController: UIViewController {
             selector: #selector(updateFruitCount),
             name: Notification.Name("changedInventory"),
             object: nil)
+        
+        
+        for (index, data) in Fruits.allCases.enumerated() {
+            fruitCountLabels[index].fruitID = data.description
+        }
     }
     
     @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) { }
     
-    @IBOutlet var fruitCountLabels: [UILabel]!
+    @IBOutlet var fruitCountLabels: [FruitLabel]!
     
     @IBAction func clickOrderButton(_ sender: UIButton) {
         do {

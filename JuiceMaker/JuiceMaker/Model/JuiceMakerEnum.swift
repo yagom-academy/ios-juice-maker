@@ -6,13 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 enum Fruits: String, CaseIterable {
-    case strawberry = "strawberry"
-    case banana = "banana"
-    case pineapple = "pineapple"
-    case kiwi = "kiwi"
-    case mango = "mango"
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+    
+    var description: String {
+        return String(describing: self)
+    }
     
     static func findFruit(by fruitID: String) -> Fruits? {
         if fruitID.hasPrefix("strawberry") {
