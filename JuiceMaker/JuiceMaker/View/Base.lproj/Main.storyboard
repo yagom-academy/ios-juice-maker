@@ -239,7 +239,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" identifier="SegueToEditAmountView" id="LGK-03-UAw"/>
+                                <segue destination="PNp-2G-oVd" kind="presentation" identifier="SegueToEditAmountView" id="LGK-03-UAw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -270,6 +270,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wpg-nM-F9y">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -280,7 +281,7 @@
             </objects>
             <point key="canvasLocation" x="896" y="45"/>
         </scene>
-        <!--Edit Amount View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController id="Yu1-lM-nqp" customClass="EditAmountViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -289,7 +290,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-vx-u60">
-                                <rect key="frame" x="60" y="50" width="724" height="195"/>
+                                <rect key="frame" x="60" y="63" width="724" height="195"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8wA-yN-4Dl">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="195"/>
@@ -428,19 +429,6 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5h-cm-g7H">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="재고 추가" id="j2k-bC-cAw">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="vUY-Y9-zuN">
-                                            <connections>
-                                                <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" id="xt4-1P-X1m"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -451,7 +439,13 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="s1W-P1-PoS">
+                            <connections>
+                                <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" id="Npr-4W-PJd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bananaAmountLabel" destination="gKu-86-RhI" id="oVU-9C-cBF"/>
                         <outlet property="bananaAmountStepper" destination="O5s-2N-3iP" id="cZV-7z-Ize"/>
@@ -467,7 +461,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="1806"/>
+            <point key="canvasLocation" x="1565" y="900"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9By-Mr-uVW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PNp-2G-oVd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C84-mV-WVp">
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="RW0-6f-eqi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BZB-HY-tDT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1565" y="45"/>
         </scene>
     </scenes>
     <resources>
