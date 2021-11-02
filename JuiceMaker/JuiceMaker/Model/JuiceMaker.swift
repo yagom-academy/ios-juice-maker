@@ -80,14 +80,21 @@ struct JuiceMaker {
         return foundRecipe
     }
     
-    private func blendIngredient(by recipe: [ingredient]) throws {
+    private func checkIngredient(of recipe: [ingredient]) throws {
         for ingredient in recipe {
-            try store.subtractStock(count: ingredient.count, from: ingredient.fruit)
+            try store.checkEnoughStock(of: ingredient.fruit, for: ingredient.count)
+        }
+    }
+    
+    private func blendIngredient(by recipe: [ingredient]) {
+        for ingredient in recipe {
+            store.subtractStock(count: ingredient.count, from: ingredient.fruit)
         }
     }
     
     func make(juiceName: JuiceName) throws {
         let foundRecipe = try findRecipe(of: juiceName)
-        try blendIngredient(by: foundRecipe)
+        try checkIngredient(of: foundRecipe)
+        blendIngredient(by: foundRecipe)
     }
 }

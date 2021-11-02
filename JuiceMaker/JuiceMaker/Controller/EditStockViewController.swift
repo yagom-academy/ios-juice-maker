@@ -40,8 +40,7 @@ class EditStockViewController: UIViewController {
     }
     
     func editStock(changedStock: Int, fruit: FruitName) {
-        let indexOfFruit = store.findIndexFromInventory(with: fruit)
-        let currentStock = store.inventory[indexOfFruit].count
+        let currentStock = store.inventory[fruit.indexOfInventory].count
         let stockDifference = changedStock - currentStock
         store.addStock(count: stockDifference, to: fruit)
     }

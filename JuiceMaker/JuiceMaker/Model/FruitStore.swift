@@ -10,6 +10,16 @@ enum FruitName: CaseIterable {
     case pineapple
     case kiwi
     case mango
+    
+    var indexOfInventory: Int {
+        switch self {
+        case .strawberry: return 0
+        case .banana: return 1
+        case .pineapple: return 2
+        case .kiwi: return 3
+        case .mango: return 4
+        }
+    }
 }
 
 struct Fruit {
@@ -33,32 +43,19 @@ class FruitStore {
         initializeInventory()
     }
     
-    func findIndexFromInventory(with fruit: FruitName) -> Int {
-        switch fruit {
-        case .strawberry: return 0
-        case .banana: return 1
-        case .pineapple: return 2
-        case .kiwi: return 3
-        case .mango: return 4
-        }
-    }
-    
     func addStock(count: Int, to fruit: FruitName) {
-        let indexOfFruit = findIndexFromInventory(with: fruit)
-        inventory[indexOfFruit].count += count
+        inventory[fruit.indexOfInventory].count += count
         NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
     }
     
-    private func checkEnoughStock(from index: Int, for count: Int) throws {
-        guard inventory[index].count >= count else {
-            throw FruitStoreError.lackOfStock(neededStock: count - inventory[index].count)
+    func checkEnoughStock(of fruit: FruitName, for count: Int) throws {
+        guard inventory[fruit.indexOfInventory].count >= count else {
+            throw FruitStoreError.lackOfStock(neededStock: count - inventory[fruit.indexOfInventory].count)
         }
     }
     
-    func subtractStock(count: Int, from fruit: FruitName) throws {
-        let indexOfFruit = findIndexFromInventory(with: fruit)
-        try checkEnoughStock(from: indexOfFruit, for: count)
-        inventory[indexOfFruit].count -= count
+    func subtractStock(count: Int, from fruit: FruitName) {
+        inventory[fruit.indexOfInventory].count -= count
         NotificationCenter.default.post(name: .didChangeStock, object: nil, userInfo: ["changedFruit": fruit])
     }
 }
