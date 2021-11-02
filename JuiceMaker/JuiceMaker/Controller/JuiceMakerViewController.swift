@@ -151,17 +151,13 @@ extension JuiceMakerViewController {
     private func presentFruitStoreViewController(_ action: UIAlertAction) {
         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? UINavigationController else { return }
         self.present(viewController, animated: true, completion: nil)
-        
         guard let nextViewController = viewController.topViewController as? FruitStoreViewController else { return }
-        
         setupNextViewLabel(of: nextViewController)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let navigationController = segue.destination as? UINavigationController else { return }
-        
         guard let nextViewController = navigationController.topViewController as? FruitStoreViewController else { return }
-        
         setupNextViewLabel(of: nextViewController)
     }
     

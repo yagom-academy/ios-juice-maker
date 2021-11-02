@@ -9,8 +9,6 @@ import UIKit
 
 // MARK: - Properties and Lifecycle, Transition
 class FruitStoreViewController: UIViewController {
-
-    var receivedText: String?
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -26,7 +24,6 @@ class FruitStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpFruitStepperValues()
-        
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
@@ -91,7 +88,6 @@ extension FruitStoreViewController {
         } catch {
             showNotificationAlert(message: Message.unknownError.description)
         }
-        
     }
     
     func chooseCalculator(fruit: Fruit, oldStockValue: Int, newStockValue: Int) {
