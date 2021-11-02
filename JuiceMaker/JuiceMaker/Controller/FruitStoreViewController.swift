@@ -36,14 +36,19 @@ class FruitStoreViewController: UIViewController {
         switch sender {
         case strawberryStockStepper:
             strawberryStockLabel.text = String(format: "%.0f", sender.value)
+            fruitStockChange(fruit: .strawberry, value: sender.value)
         case bananaStockStepper:
             bananaStockLabel.text = String(format: "%.0f", sender.value)
+            fruitStockChange(fruit: .banana, value: sender.value)
         case pineappleStockStepper:
             pineappleStockLabel.text = String(format: "%.0f", sender.value)
+            fruitStockChange(fruit: .pineapple, value: sender.value)
         case kiwiStockStepper:
             kiwiStockLabel.text = String(format: "%.0f", sender.value)
+            fruitStockChange(fruit: .kiwi, value: sender.value)
         case mangoStockStepper:
             mangoStockLabel.text = String(format: "%.0f", sender.value)
+            fruitStockChange(fruit: .mango, value: sender.value)
         default:
             showNotificationAlert(message: Message.unknownError.description)
         }
@@ -71,5 +76,36 @@ class FruitStoreViewController: UIViewController {
         let cancel = UIAlertAction(title: title, style: .cancel, handler: nil)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func fruitStockChange(fruit: Fruit, value: Double) {
+        let oldStockValue: Int
+        let newStockValue = Int(value)
+        do {
+            oldStockValue = try FruitStore.shared.stock(fruit: fruit)
+            chooseCalculator(fruit: fruit, oldStockValue: oldStockValue, newStockValue: newStockValue)
+        } catch {
+            showNotificationAlert(message: Message.unknownError.description)
+        }
+        
+    }
+    
+    func chooseCalculator(fruit: Fruit, oldStockValue: Int, newStockValue: Int) {
+        switch oldStockValue < newStockValue {
+        case true:
+            let count = newStockValue - oldStockValue
+            calculateFruitStock(fruit: fruit, count: count, calculate: FruitStore.shared.addFruitStock)
+        case false:
+            let count = oldStockValue - newStockValue
+            calculateFruitStock(fruit: fruit, count: count, calculate: FruitStore.shared.subtractFruitStock)
+        }
+    }
+    
+    func calculateFruitStock(fruit: Fruit, count: Int, calculate: (Fruit, Int) throws -> Void ) {
+        do {
+            try calculate(fruit, count)
+        } catch {
+            showNotificationAlert(message: Message.unknownError.description)
+        }
     }
 }
