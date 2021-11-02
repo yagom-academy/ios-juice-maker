@@ -12,17 +12,27 @@ class ModifyInventoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 레이블 설정해주는거 (과일)
+        
+        // 카운트 설정
+        
+        // stepper FruitID
+        
         updateFruitCount()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateFruitCount),
-            name: Notification.Name("changedInventory"),
-            object: nil
-        )
+        registerNotificationCenter()
     }
     
     @IBOutlet var fruitCountLabels: [UILabel]!
     @IBOutlet var fruitSteppers: [UIStepper]!
+    
+    func registerNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateFruitCount),
+            name: NotificationCenterName.changedInventory,
+            object: nil
+        )
+    }
     
     @objc
     private func updateFruitCount() {
@@ -66,5 +76,13 @@ class ModifyInventoryViewController: UIViewController {
             return false
         }
         return fruit == foundfruit
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: NotificationCenterName.changedInventory,
+            object: nil
+        )
     }
 }
