@@ -74,3 +74,26 @@ guard와 if문 사이에서 고민이 되었을 때는 현재 빠른 종료가 �
 > 해결 방법: HIG - Alert 문서 확인
 > 
 > HIG 문서를 살펴보니 "취소" 버튼은 항상 왼쪽에 위치해야한다는 문구가 있어 취소 버튼을 왼쪽으로, 재고 수정 버튼을 오른쪽으로 배치했습니다.
+
+# STEP 3
+
+## 고민되었던 점 및 해결 방법
+
+### singleton에 대하여
+
+singleton을 사용할까 고민을 하다가 저번에 주셨던 리뷰에 singleton을 사용해야할 상황과 단점에 대해 고려하여 사용하라는 말이 떠올랐습니다. 현재는 작은 프로젝트이지만 singleton의 단점 중 결합도가 높아진다는 부분에, singleton 패턴을 지양하는 방법으로 구현해보았습니다. 
+ 이에 아래와 같이 인스턴스 프로퍼티(`stock`)를 전달하도록 구현했습니다.
+ 
+### 뷰 간 데이터 전달
+
+뷰 간의 데이터 전달을 위해 여러 방법을 찾아보았습니다. 그 중에서도 `NotificationCenter`를 활용하여 가장 간단 명료하게 구현할 수 있을 것 같아 채택했습니다. 
+
+처음에 modal을 `present`하는 메서드의 `completion`에 `post`를 해주고, `modifyStockViewController`의 `viewDidLoad`에서 addObserver를 해주었습니다. 그런데 `modifyStockViewController`를 띄웠을 때 label이 업데이트 되는 시간에 텀이 있었습니다. 이에 view life cycle을 활용해서 해결을 해보고자 `post`를 `JuiceMakerViewController`의 `viewWillDiasappear`에 적어주어 해결을 해보았습니다. 하지만 만약에 modal이 `page sheet` 형태로 구현된다면 해당 방법을 사용하지 못하기 때문에 고민을 해봤습니다. 결국에는 `segue`를 연결하여 `prepare`에서 `stock`을 넘겨주는 방식으로 해결해봤습니다. 
+
+### 스토리보드 분리에 따른 storyboard 
+
+storyboard를 `viewController` 별로 분리해서 진행해봤습니다. 앞서 이야기했던 부분과 같이 결국에는 `segue`를 사용하였는데, 이를 위해 storyboard reference를 사용하게 되었습니다. 
+
+> 4. 오토레이아웃
+
+작은 해상도의 기기에서는 `UIButton`의 텍스트가 일부 생략되는 경우가 있어 `.lineBreakMode`를 활용하여 두 줄로 표현되도록 구현하였습니다. 
