@@ -2,14 +2,14 @@ import Foundation
 
 enum FruitStoreError: LocalizedError {
     case invalidFruitChoice
-    case lackOfStock(neededStock: Int)
+    case lackOfStock(fruitName: String, neededStock: Int)
     
     var description: String {
         switch self {
         case .invalidFruitChoice:
             return "유효하지 않은 선택입니다."
-        case .lackOfStock(let neededStock):
-            return "재료가 \(neededStock)개 부족합니다. 재고를 확인해주세요."
+        case .lackOfStock(let fruitName, let neededStock):
+            return "\(fruitName)(이)가 \(neededStock)개 부족합니다. 재고를 확인해주세요."
         }
     }
 }
