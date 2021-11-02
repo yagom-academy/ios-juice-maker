@@ -87,11 +87,23 @@ class JuiceMakerViewController: UIViewController {
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toModifyStockViewController" {
+            print("segue")
+            guard let destinationNavigationController = segue.destination as? UINavigationController else {
+                return
+            }
+            
+            guard let modifyStockViewController = destinationNavigationController.topViewController as? ModifyStockViewController else {
+                return
+            }
+            
+            modifyStockViewController.modifiedStock = juiceMaker.store.stock
+        }
+    }
+    
     private func presentModifyStockViewController() {
-        let modifyStockStoryboard = UIStoryboard(name: "ModifyStock", bundle: nil)
-        let modifyStockViewController = modifyStockStoryboard.instantiateViewController(identifier: "ModifyStockViewController")
-        
-        self.present(modifyStockViewController, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "toModifyStockViewController", sender: nil)
     }
     
     @objc private func updateAllStockLabels() {
