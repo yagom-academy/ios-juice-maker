@@ -51,6 +51,7 @@ class ViewController: UIViewController {
         
         do {
             try updateFruitAmountLabels()
+            notificationCenter.addObserver(self, selector: #selector(updateFruitAmountLabels), name: .didEditAmount, object: nil)
         } catch JuiceMakerError.fruitNotFound {
             fatalError("Fruit Not Found")
         } catch {
@@ -58,7 +59,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateFruitAmountLabels() throws {
+    @objc private func updateFruitAmountLabels() throws {
         guard let strawberryAmount = fruitStore.inventory[.strawberry],
               let bananaAmount = fruitStore.inventory[.banana],
               let mangoAmount = fruitStore.inventory[.mango],
