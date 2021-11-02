@@ -12,18 +12,30 @@ class ModifyInventoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 레이블 설정해주는거 (과일)
-        
-        // 카운트 설정
-        
-        // stepper FruitID
-        
+        setFruitLabels()
         updateFruitCount()
         registerNotificationCenter()
     }
     
-    @IBOutlet var fruitCountLabels: [UILabel]!
-    @IBOutlet var fruitSteppers: [UIStepper]!
+    @IBOutlet var fruitEmojiLabels: [UILabel]!
+    
+    @IBOutlet var fruitCountLabels: [FruitLabel]!
+    
+    @IBOutlet var fruitSteppers: [FruitStepper]!
+    
+    func setFruitLabels() {
+        for index in fruitEmojiLabels.indices {
+            let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
+            let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
+            
+            fruitEmojiLabels[index].text = fruitEmojiArrange[index]
+            
+            let fruitString: String = fruitArrange[index].description
+            fruitCountLabels[index].fruitID = fruitString
+            
+            fruitSteppers[index].fruitID = fruitString
+        }
+    }
     
     func registerNotificationCenter() {
         NotificationCenter.default.addObserver(
@@ -39,11 +51,11 @@ class ModifyInventoryViewController: UIViewController {
         do {
             for (fruit, count) in FruitStore.shared.fruitInventory {
                 guard let label = fruitCountLabels.filter({
-                    compare(fruit,by: $0.restorationIdentifier) }).first else {
+                    compare(fruit,by: $0.fruitID) }).first else {
                     throw FruitError.notFoundView(self, "Label")
                 }
                 guard let stepper = fruitSteppers.filter({
-                    compare(fruit,by: $0.restorationIdentifier) }).first else {
+                    compare(fruit,by: $0.fruitID) }).first else {
                     throw FruitError.notFoundView(self, "Stepper")
                 }
                 label.text = String(count)

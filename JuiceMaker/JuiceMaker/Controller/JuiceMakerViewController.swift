@@ -29,6 +29,7 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction func clickOrderButton(_ sender: JuiceButton) {
         do {
+            print(sender.juiceID)
             guard let juiceID = sender.juiceID else {
                 throw FruitError.notFoundID(self, "UIButton")
             }
@@ -56,7 +57,7 @@ class JuiceMakerViewController: UIViewController {
     func setJuiceButtons() {
         for (index, button) in juiceOrderButtons.enumerated() {
             let juiceArrange: [Juice] = [.strawberryBananaJuice, .kiwiMangoJuice, .strawberryJuice, .bananaJuice, .pineappleJuice, .kiwiJuice, .mangoJuice]
-            button.setTitle("\(juiceArrange[index]) 주문", for: .normal)
+            button.setTitle("\(juiceArrange[index].descriptionKR) 주문", for: .normal)
             button.juiceID = juiceArrange[index].descriptionEN
         }
     }
@@ -70,8 +71,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func tryOrder(juice: Juice) {
+        print(juice)
         if let madejuice = juiceMaker.order(juice: juice) {
-            showAlert(title: "주스 제조 완료", message: "\(madejuice) 제조가 완료되었습니다.")
+            showAlert(title: "주스 제조 완료", message: "\(madejuice.descriptionKR) 제조가 완료되었습니다.")
         } else {
             showAlert(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?") { _ in
                 self.presentModifyView()

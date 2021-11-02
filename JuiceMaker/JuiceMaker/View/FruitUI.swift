@@ -11,6 +11,10 @@ class FruitLabel: UILabel {
     var fruitID: String?
 }
 
+class FruitStepper: UIStepper {
+    var fruitID: String?
+}
+
 class JuiceButton: UIButton {
     var juiceID: String?
 }

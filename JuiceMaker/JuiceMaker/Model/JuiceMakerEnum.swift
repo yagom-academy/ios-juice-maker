@@ -35,7 +35,7 @@ enum Fruits: String, CaseIterable {
     }
 }
 
-enum Juice: CaseIterable, CustomStringConvertible {
+enum Juice: CaseIterable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -86,7 +86,7 @@ enum Juice: CaseIterable, CustomStringConvertible {
         return String(describing: self)
     }
     
-    var description: String {
+    var descriptionKR: String {
         switch self {
         case .strawberryJuice:
             return "딸기 주스"
