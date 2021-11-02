@@ -158,6 +158,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="q0M-7r-EMq" id="RU5-2S-vp3"/>
+                        <outlet property="kiwiStockLabel" destination="bN3-zA-FGf" id="oUu-YB-nEl"/>
+                        <outlet property="mangoStockLabel" destination="yai-Ie-jjm" id="Jk0-M8-OJX"/>
+                        <outlet property="pineappleStockLabel" destination="2OX-ls-zle" id="fuf-O2-a6Q"/>
+                        <outlet property="strawberryStockLabel" destination="bDh-WN-iy7" id="zU5-RM-Eul"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbq-Lh-M1Z" sceneMemberID="firstResponder"/>
             </objects>
