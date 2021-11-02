@@ -13,34 +13,13 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for index in fruitEmojiLabels.indices {
-            let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
-            let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
-            
-            fruitEmojiLabels[index].text = fruitEmojiArrange[index]
-            
-            let fruitString: String = fruitArrange[index].description
-            fruitCountLabels[index].fruitID = fruitString
-        }
-        
-        for (index, button) in juiceOrderButtons.enumerated() {
-            let juiceArrange: [Juice] = [.strawberryBananaJuice, .kiwiMangoJuice, .strawberryJuice, .bananaJuice, .pineappleJuice, .kiwiJuice, .mangoJuice]
-            button.setTitle("\(juiceArrange[index]) 주문", for: .normal)
-            button.juiceID = juiceArrange[index].descriptionEN
-        }
-    
+        setFruitLabels()
+        setJuiceButtons()
         updateFruitCount()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateFruitCount),
-            name: Notification.Name("changedInventory"),
-            object: nil)
-    
-        
+        registerNotificationCenter()
     }
     
     @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) { }
-    
     
     @IBOutlet var fruitEmojiLabels: [UILabel]!
     
@@ -60,6 +39,34 @@ class JuiceMakerViewController: UIViewController {
         } catch {
             print("ERROR: \(error.localizedDescription)")
         }
+    }
+    
+    func setFruitLabels() {
+        for index in fruitEmojiLabels.indices {
+            let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
+            let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
+            
+            fruitEmojiLabels[index].text = fruitEmojiArrange[index]
+            
+            let fruitString: String = fruitArrange[index].description
+            fruitCountLabels[index].fruitID = fruitString
+        }
+    }
+    
+    func setJuiceButtons() {
+        for (index, button) in juiceOrderButtons.enumerated() {
+            let juiceArrange: [Juice] = [.strawberryBananaJuice, .kiwiMangoJuice, .strawberryJuice, .bananaJuice, .pineappleJuice, .kiwiJuice, .mangoJuice]
+            button.setTitle("\(juiceArrange[index]) 주문", for: .normal)
+            button.juiceID = juiceArrange[index].descriptionEN
+        }
+    }
+    
+    func registerNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateFruitCount),
+            name: Notification.Name("changedInventory"),
+            object: nil)
     }
     
     private func tryOrder(juice: Juice) {
@@ -110,5 +117,9 @@ class JuiceMakerViewController: UIViewController {
             return false
         }
         return fruit == foundfruit
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("changedInventory"), object: nil)
     }
 }
