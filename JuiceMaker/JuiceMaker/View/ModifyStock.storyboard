@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Modify Stock View Controller-->
+        <!--재고 추가-->
         <scene sceneID="ZNM-1J-Eiw">
             <objects>
                 <viewController id="8F4-8n-VuT" customClass="ModifyStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -151,8 +151,8 @@
                             <constraint firstItem="XMq-sk-5eg" firstAttribute="trailing" secondItem="q00-Oh-TzY" secondAttribute="trailing" constant="16" id="tM1-O3-iL7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RW5-Qq-2np">
-                        <barButtonItem key="leftBarButtonItem" title="취소" id="SVD-Dn-TDy">
+                    <navigationItem key="navigationItem" title="재고 추가" id="RW5-Qq-2np">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="SVD-Dn-TDy">
                             <connections>
                                 <action selector="touchUpCancelButton:" destination="8F4-8n-VuT" id="PXv-vk-CdS"/>
                             </connections>
