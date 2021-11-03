@@ -168,6 +168,4 @@ extension JuiceMakerViewController {
     }
 }
 
-extension Notification.Name {
-    static let stockChanged = Notification.Name(rawValue: "stockChanged")
-}
+
