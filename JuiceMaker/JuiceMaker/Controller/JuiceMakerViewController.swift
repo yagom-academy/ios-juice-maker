@@ -36,6 +36,10 @@ class JuiceMakerViewController: UIViewController {
         mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
     }
     
+    func currentStock() {
+        
+    }
+    
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         let order = sender.currentTitle?.components(separatedBy: " ").first ?? ""
         
@@ -57,11 +61,10 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func presentStockModifyView() {
-        let stockModifyNavController = StockModifyNavController()
-        
-        let storyboard = UIStoryboard(name: stockModifyNavController.storyboardName, bundle: nil)
-        let stockModifyNC = storyboard.instantiateViewController(identifier: stockModifyNavController.storyboardID)
-        
+        guard let stockModifyNC = storyboard?.instantiateViewController(withIdentifier: "StockModifyNavController") else { return }
+        let stockModifyVC = stockModifyNC.children.first as? StockModifyViewController
+        stockModifyVC?.loadViewIfNeeded()
+        stockModifyVC?.changeStockLabel()
         present(stockModifyNC, animated: true, completion: nil)
     }
     

@@ -27,8 +27,6 @@ class StockModifyViewController: UIViewController {
     }
     
     func initJuiceMakerViewController() {
-        changeStockLabel()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
     }
 
