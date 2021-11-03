@@ -10,7 +10,7 @@ struct JuiceMaker {
         return fruitStore.fruitStock.mapValues { String($0) }
     }
 
-    func isCompletMaking(_ seletedJuice: Menu) -> Bool {
+    func canMake(_ seletedJuice: Menu) -> Bool {
         let recipe: [Fruit : Int] = seletedJuice.recipe
         
         guard fruitStore.isRemaining(of: recipe) else {

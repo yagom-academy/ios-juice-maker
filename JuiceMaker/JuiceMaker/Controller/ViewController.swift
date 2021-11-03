@@ -46,7 +46,7 @@ class ViewController: UIViewController {
             return
         }
         
-        let isSuccess: Bool = juiceMaker.isCompletMaking(juice)
+        let isSuccess: Bool = juiceMaker.canMake(juice)
         
         if isSuccess {
             showAlert(isSuccess: true, message: "\(juice) 나왔습니다! 맛있게 드세요!")
