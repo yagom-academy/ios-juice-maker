@@ -9,6 +9,7 @@ import UIKit
 
 class EditAmountViewController: UIViewController {
     private let fruitStore = FruitStore.shared
+    private let feedbackGenerator = UISelectionFeedbackGenerator()
     
     @IBOutlet private weak var strawberryAmountLabel: UILabel!
     @IBOutlet private weak var bananaAmountLabel: UILabel!
@@ -37,6 +38,8 @@ class EditAmountViewController: UIViewController {
         default:
             showAppTerminatingAlert()
         }
+        
+        feedbackGenerator.selectionChanged()
     }
 
     @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {

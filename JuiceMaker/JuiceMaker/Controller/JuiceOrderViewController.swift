@@ -9,7 +9,7 @@ import UIKit
 class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private let fruitStore = FruitStore.shared
-    private var feedbackGenerator = UINotificationFeedbackGenerator()
+    private let feedbackGenerator = UINotificationFeedbackGenerator()
     
     @IBOutlet private weak var strawberryAmountLabel: UILabel!
     @IBOutlet private weak var bananaAmountLabel: UILabel!
