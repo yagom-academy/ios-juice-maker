@@ -42,7 +42,6 @@ class ViewController: UIViewController {
     
     @IBAction private func orderJuice(_ sender: UIButton) {
         guard let juice = Menu(rawValue: sender.tag) else {
-            print("Non-Existent Button")
             return
         }
         
