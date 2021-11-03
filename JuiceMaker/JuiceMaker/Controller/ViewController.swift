@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         order(juice: .mangoJuice)
     }
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
