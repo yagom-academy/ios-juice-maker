@@ -7,7 +7,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore()
     private let juiceMaker = JuiceMaker()
     
     override func viewWillAppear(_ animated: Bool) {
