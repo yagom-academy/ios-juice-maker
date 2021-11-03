@@ -2,11 +2,11 @@ import UIKit
 
 class OrderJuiceViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
     private let juiceMaker = JuiceMaker()
     
@@ -91,25 +91,25 @@ class OrderJuiceViewController: UIViewController {
         }
     }
     
-    @IBAction func tapStrawberryBananaJuiceButton(_ sender: UIButton) {
+    @IBAction private func tapStrawberryBananaJuiceButton(_ sender: UIButton) {
         receiveJuiceOrder(juiceName: .strawberryBananaJuice)
     }
-    @IBAction func tapMangoKiwiJuiceButton(_ sender: UIButton) {
+    @IBAction private func tapMangoKiwiJuiceButton(_ sender: UIButton) {
         receiveJuiceOrder(juiceName: .mangoKiwiJuice)
     }
-    @IBAction func tapStrawberryJuiceButton(_ sender: UIButton) {
+    @IBAction private func tapStrawberryJuiceButton(_ sender: UIButton) {
         receiveJuiceOrder(juiceName: .strawberryJuice)
     }
-    @IBAction func tapBananaJuiceButton(_ sender: UIButton) {
+    @IBAction private func tapBananaJuiceButton(_ sender: UIButton) {
         receiveJuiceOrder(juiceName: .bananaJuice)
     }
-    @IBAction func tapPineappleJuiceButton(_ sender: UIButton) {
+    @IBAction private func tapPineappleJuiceButton(_ sender: UIButton) {
         receiveJuiceOrder(juiceName: .pineappleJuice)
     }
-    @IBAction func tapKiwiJuiceButton(_ sender: UIButton) {
+    @IBAction private func tapKiwiJuiceButton(_ sender: UIButton) {
         receiveJuiceOrder(juiceName: .kiwiJuice)
     }
-    @IBAction func tapMangoJuiceButton(_ sender: UIButton) {
+    @IBAction private func tapMangoJuiceButton(_ sender: UIButton) {
         receiveJuiceOrder(juiceName: .mangoJuice)
     }
 }
