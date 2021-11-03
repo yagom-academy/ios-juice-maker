@@ -15,11 +15,29 @@ class StockUpdateController: UIViewController {
     @IBOutlet private weak var kiwiLabel: UILabel!
     @IBOutlet private weak var mangoLabel: UILabel!
     
+    var stockOfFruit: [Fruit: Int] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setStockOfFruitLabel()
     }
     
-    var stockOfFruit: [Fruit: Int] = [:]
+    func setStockOfFruitLabel() {
+        stockOfFruit.forEach({ (fruit, stock) in
+            switch fruit {
+            case .strawberry:
+                strawberryLabel.text = String(stock)
+            case .banana:
+                bananaLabel.text = String(stock)
+            case .pineapple:
+                pineappleLabel.text = String(stock)
+            case .kiwi:
+                kiwiLabel.text = String(stock)
+            case .mango:
+                mangoLabel.text = String(stock)
+            }
+        })
+    }
     
     @IBAction func tapExitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
