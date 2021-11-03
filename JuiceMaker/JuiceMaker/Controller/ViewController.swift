@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func hitOrderJuiceButton(_ sender: UIButton) {
-        guard let juice = Menu(rawValue: sender.tag) else {
+        guard let juice = Menu(rawValue: sender.currentTitle ?? "") else {
             return
         }
         

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -130,7 +130,7 @@
                                                     <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V5J-27-eO1"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
                                                 <rect key="frame" x="317" y="0.0" width="300.5" height="68"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -149,7 +149,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-e6-NWs">
                                                 <rect key="frame" x="0.0" y="0.0" width="301" height="68"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM">
                                                         <rect key="frame" x="0.0" y="0.0" width="142.5" height="68"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -160,7 +160,7 @@
                                                             <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MbB-NS-2l6"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
                                                         <rect key="frame" x="158.5" y="0.0" width="142.5" height="68"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -176,7 +176,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="f2d-aY-X4s">
                                                 <rect key="frame" x="317" y="0.0" width="300.5" height="68"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="68"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -187,7 +187,7 @@
                                                             <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eJT-WF-gpZ"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
                                                         <rect key="frame" x="158" y="0.0" width="142.5" height="68"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -200,7 +200,7 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
                                                 <rect key="frame" x="633.5" y="0.0" width="142.5" height="68"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
