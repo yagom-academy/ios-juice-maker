@@ -68,7 +68,7 @@ class MainViewController: UIViewController {
         do {
             try fruitStore.consumeStock(with: juice)
             showExistStockAlert(message: "\(juiceMaker.tell(name: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
-            try updateFruitStockLabel()
+            updateFruitStockLabel()
         } catch {
             showNoExistStockAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
