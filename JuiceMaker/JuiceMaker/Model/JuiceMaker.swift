@@ -12,23 +12,24 @@ struct JuiceMaker {
         let juiceIngredientCounter = menu.recipe.count
         
         for (fruitName, juiceIngredient) in menu.recipe {
-            guard (try? isHaveEnoughStock(fruitName: fruitName, juiceIngredient: Int)) != nil else {
+            guard isHaveEnoughStock(fruitName: fruitName, juiceIngredient: Int) else {
                 return false
             }
             confirmedFruitStock += 1
-            guard confirmedFruitStock == juiceIngredientCounter, (try? stock.changeFruitStock(fruitName: fruitName, changingNumber: -juiceIngredient)) != nil else {
+            guard confirmedFruitStock == juiceIngredientCounter, stock.changeFruitStock(fruitName: fruitName, changingNumber: -juiceIngredient) else {
                 continue
             }
         }
         return true
     }
     
-    func isHaveEnoughStock(fruitName: FruitStore.Fruit, juiceIngredient: Int) throws {
+    func isHaveEnoughStock(fruitName: FruitStore.Fruit, juiceIngredient: Int) -> Bool {
         guard let fruitStock = stock.fruitStockList[fruitName] else {
-            throw FruitStockError.fruitNotExist
+            return false
         }
         guard fruitStock >= juiceIngredient else {
-            throw FruitStockError.outOfStock
+            return false
         }
+        return true
     }
 }

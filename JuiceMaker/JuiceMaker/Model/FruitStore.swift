@@ -26,22 +26,17 @@ class FruitStore {
         }
     }
     
-    func changeFruitStock(fruitName: FruitStore.Fruit, changingNumber: Int) throws {
+    func changeFruitStock(fruitName: FruitStore.Fruit, changingNumber: Int) -> Bool {
         guard let currentFruitStock = stock.fruitStockList[fruitName] else {
-            throw FruitStockError.fruitNotExist
+            return false
         }
         let fruitStock = (currentFruitStock + changingNumber)
         guard fruitStock >= 0 else {
-            throw FruitStockError.lessThanZero
+            return false
         }
         stock.fruitStockList[fruitName] = fruitStock
+        return true
     }
-}
-
-enum FruitStockError: Error {
-    case fruitNotExist
-    case outOfStock
-    case lessThanZero
 }
 
 let stock = FruitStore.shared
