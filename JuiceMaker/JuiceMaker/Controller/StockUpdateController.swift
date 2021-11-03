@@ -8,6 +8,13 @@
 import UIKit
 
 class StockUpdateController: UIViewController {
+    
+    @IBOutlet private weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var bananaLabel: UILabel!
+    @IBOutlet private weak var pineappleLabel: UILabel!
+    @IBOutlet private weak var kiwiLabel: UILabel!
+    @IBOutlet private weak var mangoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

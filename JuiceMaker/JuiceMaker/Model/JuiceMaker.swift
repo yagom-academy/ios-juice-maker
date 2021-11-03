@@ -48,6 +48,10 @@ struct JuiceMaker {
     }
 
     private let fruitStore = FruitStore()
+    
+    var stockOfFruit: [Fruit: Int] {
+        return fruitStore.stockOfFruit
+    }
 
     func makeFruitJuice(juice: Menu) {
         switch juice {
