@@ -41,7 +41,7 @@ extension FruitStore {
         
         init(fruitList: [Fruit], amount: Int) {
             for fruit in fruitList {
-                stock[fruit] = amount
+                increaseStock(of: fruit, by: amount)
             }
         }
         
@@ -50,6 +50,18 @@ extension FruitStore {
                 return
             }
             stock[fruit] = remainingStock - amount
+            
+            postNotification(changed: fruit, by: stock[fruit])
+        }
+        
+        mutating func increaseStock(of fruit: Fruit, by amount: Int) {
+            if let remainingStock = stock[fruit] {
+                stock[fruit] = remainingStock + amount
+            } else {
+                stock[fruit] = amount
+            }
+            
+            postNotification(changed: fruit, by: stock[fruit])
         }
         
         func hasSufficientStock(of ingredient: Ingredient) -> Bool {
@@ -57,6 +69,13 @@ extension FruitStore {
                 return true
             }
             return false
+        }
+        
+        private func postNotification(changed fruit: Fruit, by amount: Int?) {
+            let changedStock = [fruit:amount]
+            NotificationCenter.default.post(name: Notification.Name.stockChanged,
+                                            object: nil,
+                                            userInfo: changedStock as [AnyHashable : Any])
         }
     }
 }
