@@ -36,15 +36,6 @@ class FruitStore {
         }
         stock.fruitStockList[fruitName] = fruitStock
     }
-    
-    func isHaveEnoughStock(fruitName: FruitStore.Fruit, juiceIngredient: JuiceIngredient) throws {
-        guard let fruitStock = stock.fruitStockList[fruitName] else {
-            throw FruitStockError.fruitNotExist
-        }
-        guard fruitStock >= juiceIngredient else {
-            throw FruitStockError.outOfStock
-        }
-    }
 }
 
 enum FruitStockError: Error {
