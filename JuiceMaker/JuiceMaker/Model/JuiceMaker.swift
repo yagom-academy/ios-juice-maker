@@ -5,51 +5,22 @@
 // 
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore(initialStock: 10)
-    
-    enum JuiceMakerError: Error {
-        case outOfStock
+    private let fruitStore = FruitStore(stock: 10)
+    var stringOfFruitStock: [Fruit: String] {
+        return fruitStore.fruitStock.mapValues { String($0) }
     }
-    
-    enum Menu {
-        var recipe: Dictionary<Fruit, Int> {
-            switch self {
-            case .strawberryJuice:
-                return [.strawberry: 16]
-            case .bananaJuice:
-                return [.banana: 2]
-            case .kiwiJuice:
-                return [.kiwi: 3]
-            case .pineappleJuice:
-                return [.pineapple: 2]
-            case .strawberryBananaJuice:
-                return [.strawberry: 10, .banana: 1]
-            case .mangoJuice:
-                return [.mango: 3]
-            case .mangoKiwiJuice:
-                return [.mango: 2, .kiwi: 1]
-            }
-        }
-        
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
-    }
-    
-    func make(_ seletedJuice: Menu) throws {
+
+    func canMake(_ seletedJuice: Menu) -> Bool {
         let recipe: [Fruit : Int] = seletedJuice.recipe
         
         guard fruitStore.isRemaining(of: recipe) else {
-            throw JuiceMakerError.outOfStock
+            return false
         }
         
         for (fruit, count) in recipe {
             fruitStore.changeQuantity(of: fruit, count: count, by: .subtraction)
         }
+        return true
     }
 }
 
