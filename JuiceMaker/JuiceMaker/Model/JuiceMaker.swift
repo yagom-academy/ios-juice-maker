@@ -7,29 +7,38 @@
 import Foundation
 
 struct JuiceMaker {
-    func orderJuice(for menu: Juice) -> Bool {
-        var confirmedFruitStock = 0
-        let juiceIngredientCounter = menu.recipe.count
-        
-        for (fruitName, juiceIngredient) in menu.recipe {
-            guard isHaveEnoughStock(fruitName: fruitName, juiceIngredient: Int) else {
+    let fruitStore = FruitStore()
+    
+    func order(for menu: Juice) -> Bool {
+        if readyToMake(juice: menu) {
+            make(juice: menu)
+        } else {
+            return false
+        }
+        return true
+    }
+    
+    private func readyToMake(juice: Juice) -> Bool {
+        for (fruit, juiceIngredient) in juice.recipe {
+            guard isHaveEnoughStock(of: fruit, for: juiceIngredient) else {
                 return false
-            }
-            confirmedFruitStock += 1
-            guard confirmedFruitStock == juiceIngredientCounter, stock.changeFruitStock(fruitName: fruitName, changingNumber: -juiceIngredient) else {
-                continue
             }
         }
         return true
     }
     
-    func isHaveEnoughStock(fruitName: FruitStore.Fruit, juiceIngredient: Int) -> Bool {
-        guard let fruitStock = stock.fruitStockList[fruitName] else {
-            return false
-        }
-        guard fruitStock >= juiceIngredient else {
-            return false
-        }
+    private func isHaveEnoughStock(of fruit: FruitStore.Fruit, for juiceIngredient: Int) -> Bool {
+        guard let currentStock = fruitStore.fruits[fruit],
+              juiceIngredient > 0,
+              currentStock - juiceIngredient >= 0 else {
+                  return false
+              }
         return true
+    }
+    
+    private func make(juice: Juice) {
+        for (fruit, juiceIngredient) in juice.recipe {
+            fruitStore.manageStock(of: fruit, amount: -juiceIngredient)
+        }
     }
 }
