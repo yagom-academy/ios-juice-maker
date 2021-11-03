@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var stock = [Fruit: Int]()
+    private(set) var stock = [Fruit: Int]()
 
     init(stockAmount: Int) {
         fillStock(by: stockAmount)
@@ -35,15 +35,15 @@ class FruitStore {
         }
     }
     
-    func decreaseStock(from fruit: Fruit, by input: Int) throws {
-        guard let currentStock = stock[fruit], currentStock > input else {
+    private func decreaseStock(from fruit: Fruit, by input: Int) throws {
+        guard let currentStock = stock[fruit], currentStock >= input else {
             throw StockError.notEnoughStock
         }
         
         stock[fruit] = currentStock - input
     }
     
-    func increaseStock(from fruit: Fruit, by input: Int) {
+    private func increaseStock(from fruit: Fruit, by input: Int) {
         if let currentStock = stock[fruit] {
             stock[fruit] = currentStock + input
         }

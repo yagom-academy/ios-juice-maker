@@ -5,13 +5,22 @@
 //
 
 struct JuiceMaker {
-    let fruitStore: FruitStore
-    
-    func make(juice: Juice) {
-        do {
-          try fruitStore.consumeStock(with: juice)
-        } catch {
-            print("재료가 모자라요. 재고를 수정할까요?")
+    func tell(name: Juice) -> String { 
+        switch name {
+        case .strawberryJuice:
+            return "딸기"
+        case .bananaJuice:
+            return "바나나"
+        case .kiwiJuice:
+            return "키위"
+        case .pineappleJuice:
+            return "파인애플"
+        case .strawberryBananaJuice:
+            return "딸바"
+        case .mangoJuice:
+            return "망고"
+        case .mangoKiwiJuice:
+            return "망키"
         }
     }
 }
