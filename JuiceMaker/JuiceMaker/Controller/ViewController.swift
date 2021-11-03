@@ -40,11 +40,35 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction private func hitOrderJuiceButton(_ sender: UIButton) {
-        guard let juice = Menu(rawValue: sender.currentTitle ?? "") else {
-            return
-        }
+    @IBAction private func hitStrawberryBananaJuiceButton(_ sender: UIButton) {
+        orderJuice(.strawberryBananaJuice)
+    }
+    
+    @IBAction private func hitMangoKiwiJuiceButton(_ sender: UIButton) {
+        orderJuice(.mangoKiwiJuice)
+    }
+    
+    @IBAction private func hitStrawberryJuiceButton(_ sender: UIButton) {
+        orderJuice(.strawberryJuice)
+    }
+    
+    @IBAction private func hitBananaJuiceButton(_ sender: UIButton) {
+        orderJuice(.bananaJuice)
+    }
+    
+    @IBAction private func hitPineappleJuiceButton(_ sender: UIButton) {
+        orderJuice(.pineappleJuice)
+    }
+    
+    @IBAction private func hitKiwiJuiceButton(_ sender: UIButton) {
+        orderJuice(.kiwiJuice)
+    }
+    
+    @IBAction private func hitMangoJuiceButton(_ sender: UIButton) {
+        orderJuice(.mangoJuice)
+    }
         
+    private func orderJuice(_ juice: Menu) {
         let isSuccess: Bool = juiceMaker.canMake(juice)
         
         if isSuccess {

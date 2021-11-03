@@ -1,4 +1,4 @@
-enum Menu: String {
+enum Menu {
     var recipe: Dictionary<Fruit, Int> {
         switch self {
         case .strawberryJuice:
@@ -18,13 +18,13 @@ enum Menu: String {
         }
     }
     
-    case strawberryBananaJuice = "딸바쥬스 주문"
-    case mangoKiwiJuice = "망키쥬스 주문"
-    case strawberryJuice = "딸기쥬스 주문"
-    case bananaJuice = "바나나쥬스 주문"
-    case pineappleJuice = "파인애플쥬스 주문"
-    case kiwiJuice = "키위쥬스 주문"
-    case mangoJuice = "망고쥬스 주문"
+    case strawberryBananaJuice
+    case mangoKiwiJuice
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
 }
 
 

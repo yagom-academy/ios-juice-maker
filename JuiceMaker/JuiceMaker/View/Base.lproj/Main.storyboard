@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -127,7 +127,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V5J-27-eO1"/>
+                                                    <action selector="hitStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Djj-7j-OBe"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
@@ -138,7 +138,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QIQ-Cp-k8a"/>
+                                                    <action selector="hitMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dGT-bf-B8O"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -157,7 +157,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MbB-NS-2l6"/>
+                                                            <action selector="hitStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VuW-4F-uQV"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
@@ -168,7 +168,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5eY-sD-3CN"/>
+                                                            <action selector="hitBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QyD-II-X9y"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -184,7 +184,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eJT-WF-gpZ"/>
+                                                            <action selector="hitPineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X0I-bv-ExZ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -195,7 +195,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZfM-Fl-bTT"/>
+                                                            <action selector="hitKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VfT-vE-2m6"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -208,7 +208,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="hitOrderJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D6F-OU-qWs"/>
+                                                    <action selector="hitMangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PmG-Ql-dfq"/>
                                                 </connections>
                                             </button>
                                         </subviews>
