@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
     override func viewWillAppear(_ animated: Bool) {
-        try! updateFruitStockLabel()
+        updateFruitStockLabel()
     }
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -20,13 +20,13 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    private func updateFruitStockLabel() throws {
+    private func updateFruitStockLabel() {
         guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
               let bananaStock = fruitStore.stock[Fruit.banana],
               let pineappleStock = fruitStore.stock[Fruit.pineapple],
               let kiwiStock = fruitStore.stock[Fruit.kiwi],
               let mangoStock = fruitStore.stock[Fruit.mango] else {
-                  throw StockError.noExistFruit
+                  return
               }
         
         strawberryStockLabel.text = String(strawberryStock)
