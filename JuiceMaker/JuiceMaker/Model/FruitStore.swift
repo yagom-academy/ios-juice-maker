@@ -7,7 +7,10 @@
 import Foundation
 
 class FruitStore {
-    typealias FruitStock = Int
+    typealias Inventory = [Fruit: Int]
+    
+    private(set) var fruits: Inventory = [:]
+    let defaultStock = 10
     
     enum Fruit: CaseIterable {
         case strawberry
@@ -16,27 +19,17 @@ class FruitStore {
         case pineapple
         case mango
     }
-    var fruitStockList: [Fruit: FruitStock] = [:]
     
-    static let shared: FruitStore = FruitStore()
-    
-    private init(initialFruitStock: FruitStock = 10) {
-        for fruitName in Fruit.allCases {
-            fruitStockList[fruitName] = initialFruitStock
+    init() {
+        for fruit in Fruit.allCases {
+            fruits[fruit] = defaultStock
         }
     }
     
-    func changeFruitStock(fruitName: FruitStore.Fruit, changingNumber: Int) -> Bool {
-        guard let currentFruitStock = stock.fruitStockList[fruitName] else {
-            return false
+    func manageStock(of fruit: FruitStore.Fruit, amount: Int) {
+        guard let currentStock = fruits[fruit] else {
+            return
         }
-        let fruitStock = (currentFruitStock + changingNumber)
-        guard fruitStock >= 0 else {
-            return false
-        }
-        stock.fruitStockList[fruitName] = fruitStock
-        return true
+        fruits.updateValue(currentStock + amount, forKey: fruit)
     }
 }
-
-let stock = FruitStore.shared
