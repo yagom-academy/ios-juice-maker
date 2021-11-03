@@ -13,7 +13,7 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet var currentKiwiStockLabel: UILabel!
     @IBOutlet var currentMangoStockLabel: UILabel!
     
-    var juiceMaker: JuiceMaker?
+    var juiceMaker: JuiceMaker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class JuiceMakerViewController: UIViewController {
     
     private func order(_ juice: JuiceMenu) {
         do {
-            try juiceMaker?.make(juice)
+            try juiceMaker.make(juice)
         } catch FruitStoreError.deficientStock {
             presentFailAlert()
             return
