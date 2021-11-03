@@ -9,7 +9,7 @@ import UIKit
 class JuiceMakerViewController: UIViewController {
     
     @IBOutlet var currentStrawberryStockLabel: UILabel!
-    @IBOutlet var currentBanannaStockLabel: UILabel!
+    @IBOutlet var currentBananaStockLabel: UILabel!
     @IBOutlet var currentPineappleStockLabel: UILabel!
     @IBOutlet var currentKiwiStockLabel: UILabel!
     @IBOutlet var currentMangoStockLabel: UILabel!
@@ -24,7 +24,7 @@ class JuiceMakerViewController: UIViewController {
     
 
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        order(.strawberryBanannaJuice)
+        order(.strawberryBananaJuice)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
@@ -32,7 +32,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
-        order(.banannaJuice)
+        order(.bananaJuice)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
@@ -127,7 +127,7 @@ class JuiceMakerViewController: UIViewController {
         case .strawberry:
             self.currentStrawberryStockLabel.text = "\(updatedAmount)"
         case .bananna:
-            self.currentBanannaStockLabel.text = "\(updatedAmount)"
+            self.currentBananaStockLabel.text = "\(updatedAmount)"
         case .pineapple:
             self.currentPineappleStockLabel.text = "\(updatedAmount)"
         case .kiwi:

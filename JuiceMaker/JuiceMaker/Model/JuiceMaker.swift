@@ -8,10 +8,10 @@ import Foundation
 
 enum JuiceMenu: String, CustomStringConvertible {
     case strawberryJuice = "딸기 쥬스"
-    case banannaJuice = "바나나 쥬스"
+    case bananaJuice = "바나나 쥬스"
     case kiwiJuice = "키위 쥬스"
     case pineappleJuice = "파인애플 쥬스"
-    case strawberryBanannaJuice = "딸바 쥬스"
+    case strawberryBananaJuice = "딸바 쥬스"
     case mangoJuice = "망고 쥬스"
     case mangoKiwiJuice = "망키 쥬스"
     
@@ -45,13 +45,13 @@ extension JuiceMenu {
         switch self {
         case .strawberryJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .strawberry, amount: 16)])
-        case .banannaJuice:
+        case .bananaJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .bananna, amount: 2)])
         case .kiwiJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .kiwi, amount: 3)])
         case .pineappleJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .pineapple, amount: 2)])
-        case .strawberryBanannaJuice:
+        case .strawberryBananaJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .strawberry, amount: 10), Ingredient(fruit: .bananna, amount: 1)])
         case .mangoJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .mango, amount: 3)])
