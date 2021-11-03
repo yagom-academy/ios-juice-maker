@@ -42,7 +42,7 @@ class JuiceOrderViewController: UIViewController {
         case mangoKiwiJuiceButton:
             orderJuice(.mangoKiwiJuice)
         default:
-            fatalError("Undefined Button")
+            showAppTerminatingAlert()
         }
     }
     
@@ -57,10 +57,8 @@ class JuiceOrderViewController: UIViewController {
         
         do {
             try updateAllFruitAmountLabels()
-        } catch JuiceMakerError.fruitNotFound {
-            fatalError("Fruit Not Found")
         } catch {
-            fatalError("Undefined Error")
+            showAppTerminatingAlert()
         }
     }
     
@@ -89,10 +87,8 @@ class JuiceOrderViewController: UIViewController {
         } catch JuiceMakerError.notEnoughFruit {
             showNotEnoughFruitAlert()
             feedbackGenerator.notificationOccurred(.warning)
-        } catch JuiceMakerError.fruitNotFound {
-            fatalError("Fruit Not Found")
         } catch {
-            fatalError("Undefined Error")
+            showAppTerminatingAlert()
         }
     }
     
@@ -117,6 +113,21 @@ class JuiceOrderViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(navigateAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func showAppTerminatingAlert() {
+        let title = "시스템 오류가 발생했습니다."
+        let message = "앱이 5초 뒤 종료됩니다...\n개발자에게 문의해주세요."
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let terminateAction = UIAlertAction(title: "지금 종료", style: .destructive) { _ in
+            exit(-1)
+        }
+        
+        alert.addAction(terminateAction)
+        present(alert, animated: true) {
+            sleep(5)
+            exit(-1)
+        }
     }
     
     private func applyAutoFontSizeToAllButtonLabels() {
