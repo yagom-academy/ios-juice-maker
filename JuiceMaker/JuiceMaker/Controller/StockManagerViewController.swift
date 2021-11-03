@@ -8,7 +8,7 @@
 import UIKit
 
 class StockManagerViewController: UIViewController {
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -26,7 +26,6 @@ class StockManagerViewController: UIViewController {
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 32))
         navigationBar.isTranslucent = false
         navigationBar.items = [navigationBarItem]
-
         self.view.addSubview(navigationBar)
     }
     

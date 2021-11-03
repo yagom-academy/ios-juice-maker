@@ -31,7 +31,6 @@ struct JuiceMaker {
         guard hasAllIngredients(of: juice.recipe) else {
             throw FruitStoreError.deficientStock
         }
-        
         fruitStore.reduceInventory(ingredientsOf: juice.recipe)
     }
     

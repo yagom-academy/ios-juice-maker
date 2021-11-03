@@ -50,7 +50,6 @@ extension FruitStore {
                 return
             }
             stock[fruit] = remainingStock - amount
-            
             postNotification(changed: fruit, by: stock[fruit])
         }
         
@@ -60,7 +59,6 @@ extension FruitStore {
             } else {
                 stock[fruit] = amount
             }
-            
             postNotification(changed: fruit, by: stock[fruit])
         }
         
@@ -73,9 +71,7 @@ extension FruitStore {
         
         private func postNotification(changed fruit: Fruit, by amount: Int?) {
             let changedStock = [fruit:amount]
-            NotificationCenter.default.post(name: Notification.Name.stockChanged,
-                                            object: nil,
-                                            userInfo: changedStock as [AnyHashable : Any])
+            NotificationCenter.default.post(name: Notification.Name.stockChanged, object: nil, userInfo: changedStock as [AnyHashable : Any])
         }
     }
 }
