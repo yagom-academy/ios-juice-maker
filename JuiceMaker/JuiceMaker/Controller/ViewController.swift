@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction private func orderJuice(_ sender: UIButton) {
+    @IBAction private func hitOrderJuiceButton(_ sender: UIButton) {
         guard let juice = Menu(rawValue: sender.tag) else {
             return
         }
