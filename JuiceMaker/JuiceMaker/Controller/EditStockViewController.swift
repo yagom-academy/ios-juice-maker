@@ -28,14 +28,14 @@ class EditStockViewController: UIViewController {
         fruitStockLabels[indexOfFruit].text = "\(store.inventory[indexOfFruit].count)"
     }
 
-    private func initializeStocktepper(at indexOfFruit: Int) {
+    private func initializeStockStepper(at indexOfFruit: Int) {
         fruitstockSteppers[indexOfFruit].value = Double(store.inventory[indexOfFruit].count)
     }
     
     private func initializeUIElements() {
         for indexOfFruit in 0..<fruitStockLabels.count {
             initializeStockLabel(at: indexOfFruit)
-            initializeStocktepper(at: indexOfFruit)
+            initializeStockStepper(at: indexOfFruit)
         }
     }
     
