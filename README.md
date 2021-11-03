@@ -50,6 +50,9 @@
    - addStock 및 subtractStock : 유효한 선택인지 확인하고, 유효하면 n개의 재고 수량을 변경함 (subtractStock 메서드에서 재고가 부족할 경우, 오류가 발생함)
    - make : 사용자가 원하는 종류의 쥬스를 레시피에 따라 제조함. 유효한 메뉴가 아니면 오류가 발생함
 
+### 키워드 
+   - Class/Structure/Enum, Access Control, Computed Property, LocalizedError, Dictionary/Array, Initializer
+
 ## STEP2
 ### 구현 내용
    - "쥬스 주문" View에서 "재고 수정" 버튼을 탭하면 "재고 추가" View로 이동
