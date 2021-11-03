@@ -243,7 +243,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="currentBanannaStockLabel" destination="gvk-pA-Lw5" id="xJd-d6-XTd"/>
+                        <outlet property="currentBananaStockLabel" destination="gvk-pA-Lw5" id="wBi-eg-qRx"/>
                         <outlet property="currentKiwiStockLabel" destination="FZq-de-TJG" id="Jph-Yk-3el"/>
                         <outlet property="currentMangoStockLabel" destination="3Ce-SU-JeH" id="7lY-sc-EjI"/>
                         <outlet property="currentPineappleStockLabel" destination="ccQ-Dk-PuY" id="gya-v1-7jM"/>
