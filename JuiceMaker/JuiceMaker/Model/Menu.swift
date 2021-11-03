@@ -25,7 +25,6 @@ enum Menu: String {
     case pineappleJuice = "파인애플쥬스 주문"
     case kiwiJuice = "키위쥬스 주문"
     case mangoJuice = "망고쥬스 주문"
-    
 }
 
 
