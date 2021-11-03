@@ -15,5 +15,4 @@ class EditFruitStockViewController: UIViewController {
     func hitDoneButton() {
         self.dismiss(animated: true, completion: nil)
     }
-
 }
