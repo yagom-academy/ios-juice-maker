@@ -22,9 +22,33 @@ class JuiceMakerViewController: UIViewController {
         initializeJuiceMaker()
     }
     
-    @IBAction func pressOrderButton(_ sender: UIButton) {
-        let juice = JuiceMenu.allCases[sender.tag]
-        order(juice)
+
+    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
+        order(.strawberryBanannaJuice)
+    }
+    
+    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
+        order(.strawberryJuice)
+    }
+    
+    @IBAction func orderBananaJuice(_ sender: UIButton) {
+        order(.banannaJuice)
+    }
+    
+    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
+        order(.mangoKiwiJuice)
+    }
+    
+    @IBAction func orderPineappleJuice(_ sender: UIButton) {
+        order(.pineappleJuice)
+    }
+    
+    @IBAction func orderKiwiJuice(_ sender: UIButton) {
+        order(.kiwiJuice)
+    }
+    
+    @IBAction func orderMangoJuice(_ sender: UIButton) {
+        order(.mangoJuice)
     }
     
     @IBAction func presentStockManagerViewController(_ sender: Any?) {
