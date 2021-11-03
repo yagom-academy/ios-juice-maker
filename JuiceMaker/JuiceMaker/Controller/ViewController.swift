@@ -78,6 +78,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func moveToStockUpdateView(_ sender: UIBarButtonItem) {
+        showStockUpdateView()
+    }
+    
     private func makeJuice(for menu: JuiceMaker.Menu) {
         juiceMaker.makeFruitJuice(juice: menu)
         showOrderSuccessAlert(for: menu)
@@ -106,7 +110,8 @@ class ViewController: UIViewController {
     }
     
     private func showStockUpdateView() {
-        if let stockUpdateController = self.storyboard?.instantiateViewController(withIdentifier: "StockUpdateController") {
+        if let stockUpdateController = self.storyboard?.instantiateViewController(withIdentifier: "StockUpdateController") as? StockUpdateController {
+            stockUpdateController.stockOfFruit = juiceMaker.stockOfFruit
             let navigationController = UINavigationController(rootViewController: stockUpdateController)
             present(navigationController, animated: true)
         }

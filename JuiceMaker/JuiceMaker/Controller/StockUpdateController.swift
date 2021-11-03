@@ -18,6 +18,9 @@ class StockUpdateController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    var stockOfFruit: [Fruit: Int] = [:]
+    
     @IBAction func tapExitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
