@@ -8,11 +8,11 @@ class EditFruitStockViewController: UIViewController {
     @IBOutlet private var stockOfPineappleLabel: UILabel!
     @IBOutlet private var stockOfKiwiLabel: UILabel!
     @IBOutlet private var stockOfMangoLabel: UILabel!
-    @IBOutlet private weak var strawberryStepper: UIStepper!
-    @IBOutlet private weak var bananaStepper: UIStepper!
-    @IBOutlet private weak var pineappleStepper: UIStepper!
-    @IBOutlet private weak var kiwiStepper: UIStepper!
-    @IBOutlet private weak var mangoStepper: UIStepper!
+    @IBOutlet private var strawberryStepper: UIStepper!
+    @IBOutlet private var bananaStepper: UIStepper!
+    @IBOutlet private var pineappleStepper: UIStepper!
+    @IBOutlet private var kiwiStepper: UIStepper!
+    @IBOutlet private var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
