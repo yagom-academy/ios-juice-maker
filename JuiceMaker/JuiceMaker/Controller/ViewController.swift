@@ -17,17 +17,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showInitialStock()
+        refreshStockLabel()
         addObserverForStockUpdate()
         addObserverForStockModified()
-    }
-    
-    private func showInitialStock() {
-        strawberryLabel.text = String(Fruit.initialValue)
-        bananaLabel.text = String(Fruit.initialValue)
-        pineappleLabel.text = String(Fruit.initialValue)
-        kiwiLabel.text = String(Fruit.initialValue)
-        mangoLabel.text = String(Fruit.initialValue)
     }
     
     private func addObserverForStockUpdate() {
@@ -39,15 +31,14 @@ class ViewController: UIViewController {
     
     private func addObserverForStockModified() {
         notificationCenter.addObserver(self,
-                                       selector: #selector(didReceiveStockModified),
+                                       selector: #selector(refreshStockLabel),
                                        name: Notification.Name.stockInformation,
                                        object: nil)
     }
     
-    @objc private func didReceiveStockModified(_ notification: Notification) {
-        let userInfo = notification.userInfo
-        
-        if let stockOfFruit = userInfo?[NotificationKey.stockOfFruit] as? [Fruit: Int] {
+    @objc private func refreshStockLabel() {
+        for (fruit, stock) in juiceMaker.stockOfFruit {
+            updateFruitLabel(for: fruit, stock: stock)
         }
     }
     

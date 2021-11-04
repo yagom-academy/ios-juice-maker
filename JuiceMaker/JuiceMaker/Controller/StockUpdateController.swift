@@ -26,6 +26,7 @@ class StockUpdateController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setStockOfFruitLabel()
+        setStock()
     }
     
     func setStockOfFruitLabel() {
@@ -65,6 +66,28 @@ class StockUpdateController: UIViewController {
             } catch {
                 print(error)
             }
+        }
+    
+    func setStock() {
+            stockOfFruit.forEach({ (fruit, stock) in
+                switch fruit {
+                case .strawberry:
+                    strawberryLabel.text = String(stock)
+                    strawberryStepper.value = Double(stock)
+                case .banana:
+                    bananaLabel.text = String(stock)
+                    bananaStepper.value = Double(stock)
+                case .pineapple:
+                    pineappleLabel.text = String(stock)
+                    pineappleStepper.value = Double(stock)
+                case .kiwi:
+                    kiwiLabel.text = String(stock)
+                    kiwiStepper.value = Double(stock)
+                case .mango:
+                    mangoLabel.text = String(stock)
+                    mangoStepper.value = Double(stock)
+                }
+            })
         }
     
     func updateFruitLabel(for fruit: Fruit, stock: Int) {
