@@ -37,19 +37,19 @@ extension FruitStoreViewController {
         switch sender {
         case strawberryStockStepper:
             strawberryStockLabel.text = fruitLabelText(value: sender.value)
-            fruitStockChange(fruit: .strawberry, value: sender.value)
+            changeFruitStock(fruit: .strawberry, value: sender.value)
         case bananaStockStepper:
             bananaStockLabel.text = fruitLabelText(value: sender.value)
-            fruitStockChange(fruit: .banana, value: sender.value)
+            changeFruitStock(fruit: .banana, value: sender.value)
         case pineappleStockStepper:
             pineappleStockLabel.text = fruitLabelText(value: sender.value)
-            fruitStockChange(fruit: .pineapple, value: sender.value)
+            changeFruitStock(fruit: .pineapple, value: sender.value)
         case kiwiStockStepper:
             kiwiStockLabel.text = fruitLabelText(value: sender.value)
-            fruitStockChange(fruit: .kiwi, value: sender.value)
+            changeFruitStock(fruit: .kiwi, value: sender.value)
         case mangoStockStepper:
             mangoStockLabel.text = fruitLabelText(value: sender.value)
-            fruitStockChange(fruit: .mango, value: sender.value)
+            changeFruitStock(fruit: .mango, value: sender.value)
         default:
             showNotificationAlert(message: Message.unknownError.description)
         }
@@ -60,14 +60,14 @@ extension FruitStoreViewController {
     }
     
     func setUpFruitStepperValues() {
-        currentStockStepperValueUpdate(fruit: .strawberry, stepper: strawberryStockStepper)
-        currentStockStepperValueUpdate(fruit: .banana, stepper: bananaStockStepper)
-        currentStockStepperValueUpdate(fruit: .pineapple, stepper: pineappleStockStepper)
-        currentStockStepperValueUpdate(fruit: .kiwi, stepper: kiwiStockStepper)
-        currentStockStepperValueUpdate(fruit: .mango, stepper: mangoStockStepper)
+        updateCurrentStockStepperValue(fruit: .strawberry, stepper: strawberryStockStepper)
+        updateCurrentStockStepperValue(fruit: .banana, stepper: bananaStockStepper)
+        updateCurrentStockStepperValue(fruit: .pineapple, stepper: pineappleStockStepper)
+        updateCurrentStockStepperValue(fruit: .kiwi, stepper: kiwiStockStepper)
+        updateCurrentStockStepperValue(fruit: .mango, stepper: mangoStockStepper)
     }
     
-    func currentStockStepperValueUpdate(fruit: Fruit, stepper: UIStepper) {
+    func updateCurrentStockStepperValue(fruit: Fruit, stepper: UIStepper) {
         do {
             let stock = try FruitStore.shared.stock(fruit: fruit)
             stepper.value = Double(stock)
@@ -79,7 +79,7 @@ extension FruitStoreViewController {
 
 // MARK: Stepper Operation
 extension FruitStoreViewController {
-    func fruitStockChange(fruit: Fruit, value: Double) {
+    func changeFruitStock(fruit: Fruit, value: Double) {
         let oldStockValue: Int
         let newStockValue = Int(value)
         do {

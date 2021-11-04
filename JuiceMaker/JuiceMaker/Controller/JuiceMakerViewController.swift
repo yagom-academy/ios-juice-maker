@@ -27,7 +27,7 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLabels()
-        buttonLabelFontSizeFix()
+        setUpbuttonLabelFontAttributes()
         
         NotificationCenter.default.addObserver(self, selector: #selector(fruitLabelChanged(notification:)), name: .changedFruitStockNotification, object: nil)
     }
@@ -35,7 +35,7 @@ class JuiceMakerViewController: UIViewController {
 
 // MARK: - Setup Label and Button
 extension JuiceMakerViewController {
-    func buttonLabelFontSizeFix() {
+    func setUpbuttonLabelFontAttributes() {
         orderStrawberryBananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
         orderMangoKiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
         orderStrawberryJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
