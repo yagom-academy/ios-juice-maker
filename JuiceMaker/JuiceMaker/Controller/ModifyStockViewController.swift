@@ -8,6 +8,7 @@
 import UIKit
 
 class ModifyStockViewController: UIViewController {
+    // MARK: Properties
     var modifiedStock: [FruitStore.Fruit:Int]?
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -22,38 +23,19 @@ class ModifyStockViewController: UIViewController {
     @IBOutlet private weak var kiwiStockStepper: UIStepper!
     @IBOutlet private weak var mangoStockStepper: UIStepper!
     
-    @IBAction private func touchUpCancelButton(_ sender: UIButton) {
-        guard let stock = modifiedStock else {
-            return
-        }
-        
-        NotificationCenter.default.post(name: .receiveModifiedStock, object: nil, userInfo: ["modifiedStock": stock])
-        self.dismiss(animated: true, completion: nil)
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateAllStockLabels()
+        initializeAllStepper()
     }
     
-    @IBAction private func stepperValueChanged(_ stepper: UIStepper) {
-        guard let (label, fruit) = matchStepperWithLabelAndFruit(stepper: stepper) else {
-            return
-        }
+    // MARK: Private methods
+    private func updateAllStockLabels() {
+        let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
         
-        modifiedStock?.updateValue(Int(stepper.value), forKey: fruit)
-        updateStockLabel(with: label)
-    }
-    
-    private func matchStepperWithLabelAndFruit(stepper: UIStepper) -> (label: UILabel, fruit: FruitStore.Fruit)? {
-        switch stepper {
-        case strawberryStockStepper:
-            return (strawberryStockLabel, .strawberry)
-        case bananaStockStepper:
-            return (bananaStockLabel, .banana)
-        case pineappleStockStepper:
-            return (pineappleStockLabel, .pineapple)
-        case kiwiStockStepper:
-            return (kiwiStockLabel, .kiwi)
-        case mangoStockStepper:
-            return (mangoStockLabel, .mango)
-        default:
-            return nil
+        stockLabels.forEach { stockLabel in
+            updateStockLabel(with: stockLabel)
         }
     }
     
@@ -86,14 +68,6 @@ class ModifyStockViewController: UIViewController {
         }
     }
     
-    private func updateAllStockLabels() {
-        let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
-        
-        stockLabels.forEach { stockLabel in
-            updateStockLabel(with: stockLabel)
-        }
-    }
-    
     private func initializeAllStepper() {
         let stockSteppers: [UIStepper]! = [strawberryStockStepper, bananaStockStepper, pineappleStockStepper, kiwiStockStepper, mangoStockStepper]
         
@@ -116,9 +90,41 @@ class ModifyStockViewController: UIViewController {
         stepper.autorepeat = true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        updateAllStockLabels()
-        initializeAllStepper()
+    private func matchStepperWithLabelAndFruit(stepper: UIStepper) -> (label: UILabel, fruit: FruitStore.Fruit)? {
+        switch stepper {
+        case strawberryStockStepper:
+            return (strawberryStockLabel, .strawberry)
+        case bananaStockStepper:
+            return (bananaStockLabel, .banana)
+        case pineappleStockStepper:
+            return (pineappleStockLabel, .pineapple)
+        case kiwiStockStepper:
+            return (kiwiStockLabel, .kiwi)
+        case mangoStockStepper:
+            return (mangoStockLabel, .mango)
+        default:
+            return nil
+        }
+    }
+}
+
+// MARK: - Actions
+extension ModifyStockViewController {
+    @IBAction private func touchUpCancelButton(_ sender: UIButton) {
+        guard let stock = modifiedStock else {
+            return
+        }
+        
+        NotificationCenter.default.post(name: .receiveModifiedStock, object: nil, userInfo: ["modifiedStock": stock])
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction private func stepperValueChanged(_ stepper: UIStepper) {
+        guard let (label, fruit) = matchStepperWithLabelAndFruit(stepper: stepper) else {
+            return
+        }
+        
+        modifiedStock?.updateValue(Int(stepper.value), forKey: fruit)
+        updateStockLabel(with: label)
     }
 }
