@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import UIKit
+
 class FruitStore {
     private(set) var stock = [Fruit: Int]()
 
@@ -35,17 +37,15 @@ class FruitStore {
         }
     }
     
+    func modifyStock(from fruit: Fruit, by input: UIStepper) {
+        stock[fruit] = Int(input.value)
+    }
+    
     private func decreaseStock(from fruit: Fruit, by input: Int) throws {
         guard let currentStock = stock[fruit], currentStock >= input else {
             throw StockError.notEnoughStock
         }
         
         stock[fruit] = currentStock - input
-    }
-    
-    private func increaseStock(from fruit: Fruit, by input: Int) {
-        if let currentStock = stock[fruit] {
-            stock[fruit] = currentStock + input
-        }
     }
 }

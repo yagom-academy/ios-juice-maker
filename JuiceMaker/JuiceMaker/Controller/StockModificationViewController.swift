@@ -37,4 +37,30 @@ class StockModificationViewController: UIViewController {
     @IBAction private func touchUpDismissButton(_ sender: UIButton) { 
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func touchUpStrawberryStepper(_ sender: UIStepper) {
+        strawberryStockLabel.text = Int(sender.value).description
+        fruitStore.modifyStock(from: .strawberry, by: sender)
+    }
+    
+    @IBAction func touchUpBananaStepper(_ sender: UIStepper) {
+        bananaStockLabel.text = Int(sender.value).description
+        fruitStore.modifyStock(from: .banana, by: sender)
+    }
+    
+    @IBAction func touchUpPineappleStepper(_ sender: UIStepper) {
+        pineappleStockLabel.text = Int(sender.value).description
+        fruitStore.modifyStock(from: .pineapple, by: sender)
+    }
+    
+    @IBAction func touchUpKiwiStepper(_ sender: UIStepper) {
+        kiwiStockLabel.text = Int(sender.value).description
+        fruitStore.modifyStock(from: .kiwi, by: sender)
+    }
+    
+    @IBAction func touchUpMangoStepper(_ sender: UIStepper) {
+        mangoStockLabel.text = Int(sender.value).description
+        fruitStore.modifyStock(from: .mango, by: sender)
+    }
+    
 }
