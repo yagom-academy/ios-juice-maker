@@ -433,11 +433,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="0G8-HJ-aVL"/>
                     <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="6wr-Oz-3jb"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="pPB-5W-fZX"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="6Yb-2m-wUP"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="HhO-Of-OWx"/>
                         <outlet property="stockOfBananaLabel" destination="gKu-86-RhI" id="JSw-Ji-cXx"/>
                         <outlet property="stockOfKiwiLabel" destination="ZDv-1m-HBY" id="qX6-Aa-97R"/>
                         <outlet property="stockOfMangoLabel" destination="YJI-ER-LJR" id="SWf-52-sdO"/>
                         <outlet property="stockOfPineappleLabel" destination="MpT-VW-hCb" id="QhW-Kf-0ga"/>
                         <outlet property="stockOfStrawberryLabel" destination="0yV-kn-zaT" id="ogg-zx-dRo"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="wFu-Z4-N5F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

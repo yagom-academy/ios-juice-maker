@@ -20,7 +20,7 @@ class FruitStore {
         self.fruitStock = dict
     }
     
-    func changeQuantity(of fruit: Fruit, count: Int, by operation: Operation) {
+    func changeQuantity(of fruit: Fruit, step: Int, by operation: Operation) {
         guard let stock = fruitStock[fruit], stock >= 0 else {
             return
         }
@@ -34,8 +34,16 @@ class FruitStore {
             calculator = { $0 - $1 }
         }
         
-        fruitStock[fruit] = calculator(stock, count)
+        fruitStock[fruit] = calculator(stock, step)
     }
+    
+    func changeQuantity(of fruit: Fruit, to count: Int) {
+        guard let stock = fruitStock[fruit], stock >= 0 else {
+            return
+        }
+        fruitStock[fruit] = count
+    }
+
     
     func isRemaining(of recipe: [Fruit : Int]) -> Bool {
         for (fruit, count) in recipe {
