@@ -12,3 +12,5 @@ enum Fruit: CaseIterable {
     case kiwi
     case mango
 }
+
+
