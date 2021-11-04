@@ -15,6 +15,12 @@ class StockUpdateController: UIViewController {
     @IBOutlet private weak var kiwiLabel: UILabel!
     @IBOutlet private weak var mangoLabel: UILabel!
     
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
     var stockOfFruit: [Fruit: Int] = [:]
     
     override func viewDidLoad() {
@@ -38,6 +44,14 @@ class StockUpdateController: UIViewController {
             }
         })
     }
+    
+    func updateModel() {
+            stockOfFruit[.strawberry] = Int(strawberryStepper.value)
+            stockOfFruit[.banana] = Int(bananaStepper.value)
+            stockOfFruit[.pineapple] = Int(pineappleStepper.value)
+            stockOfFruit[.kiwi] = Int(kiwiStepper.value)
+            stockOfFruit[.mango] = Int(mangoStepper.value)
+        }
     
     @IBAction func tapExitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
