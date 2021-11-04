@@ -5,6 +5,8 @@
 // 
 
 struct JuiceMaker {
+    private let fruitStore = FruitStore.shared
+    
     enum Juice: String {
         case strawberryJuice = "딸기 쥬스"
         case bananaJuice = "바나나 쥬스"
@@ -33,8 +35,6 @@ struct JuiceMaker {
             }
         }
     }
-    
-    private let fruitStore = FruitStore.shared
     
     private func hasIngredients(of juice: Juice) throws {
         let recipe = juice.recipe

@@ -2,7 +2,7 @@
 //  JuiceMakerError.swift
 //  JuiceMaker
 //
-//  Created by 유재호 on 2021/10/20.
+//  Created by 예거 on 2021/10/20.
 //
 
 enum JuiceMakerError: Error {

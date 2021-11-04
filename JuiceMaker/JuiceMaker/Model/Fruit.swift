@@ -2,7 +2,7 @@
 //  Fruit.swift
 //  JuiceMaker
 //
-//  Created by 유재호 on 2021/10/21.
+//  Created by 예거 on 2021/10/21.
 //
 
 enum Fruit: CaseIterable {
