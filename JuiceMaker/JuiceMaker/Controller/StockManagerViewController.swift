@@ -77,12 +77,13 @@ class StockManagerViewController: UIViewController {
         do {
             try update(fruitLabel, by: stepperValue)
         } catch StockManagerError.excessiveReduction {
+            AlertManager.presentExcessiveReductionAlert(on: self)
             return
         } catch {
+            AlertManager.presentErrorAlert(on: self)
             return
         }
         changeStock(of: fruit, by: stepperValue)
-        
     }
     
     private func changeStock(of fruit: Fruit, by amount: Int) {
@@ -117,7 +118,6 @@ class StockManagerViewController: UIViewController {
         }
         stockLabel.text = "\(originalValue + amount)"
     }
-    
     
     @objc
     private func dismissStockManagerVC() {

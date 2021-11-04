@@ -19,6 +19,7 @@
 		ED1077A72727A76200CE7981 /* StockManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1077A62727A76200CE7981 /* StockManagerViewController.swift */; };
 		ED9293FD2732721F004B319E /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9293FC2732721F004B319E /* Notification+Extensions.swift */; };
 		EDB6C827271FAC0000AC739A /* JuiceRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB6C826271FAC0000AC739A /* JuiceRecipe.swift */; };
+		EDE1D429273420EB00BFC439 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE1D428273420EB00BFC439 /* AlertManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		ED1077A62727A76200CE7981 /* StockManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockManagerViewController.swift; sourceTree = "<group>"; };
 		ED9293FC2732721F004B319E /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		EDB6C826271FAC0000AC739A /* JuiceRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRecipe.swift; sourceTree = "<group>"; };
+		EDE1D428273420EB00BFC439 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */,
 				ED1077A62727A76200CE7981 /* StockManagerViewController.swift */,
+				EDE1D428273420EB00BFC439 /* AlertManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
+				EDE1D429273420EB00BFC439 /* AlertManager.swift in Sources */,
 				ED1077A72727A76200CE7981 /* StockManagerViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				EDB6C827271FAC0000AC739A /* JuiceRecipe.swift in Sources */,

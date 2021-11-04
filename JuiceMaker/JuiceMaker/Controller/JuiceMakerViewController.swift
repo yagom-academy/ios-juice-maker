@@ -64,38 +64,13 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.make(juice)
         } catch FruitStoreError.deficientStock {
-            presentFailAlert()
+            AlertManager.presentFailAlert(on: self)
             return
         } catch {
-            presentErrorAlert()
+            AlertManager.presentErrorAlert(on: self)
             return
         }
-        presentSuccessAlert(of: juice)
-    }
-    
-    private func presentFailAlert() {
-        let failAlert = UIAlertController(title: "\(AlertTitle.fail)", message: "\(AlertMessage.fail)", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: { _ in
-            self.presentStockManagerViewController(nil)
-        })
-        let cancel = UIAlertAction(title: "\(AlertButtonTitle.cancel)", style: .cancel, handler: nil)
-        failAlert.addAction(ok)
-        failAlert.addAction(cancel)
-        failAlert.preferredAction = ok
-        self.present(failAlert, animated: true, completion: nil)
-    }
-    
-    private func presentErrorAlert() {
-        let errorAlert = UIAlertController(title: "\(AlertTitle.error)", message: "\(AlertMessage.error)", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: nil)
-        errorAlert.addAction(ok)
-        self.present(errorAlert, animated: true, completion: nil)
-    }
-    
-    private func presentSuccessAlert(of juice: JuiceMenu) {
-        let successAlert = UIAlertController(title: "\(juice) \(AlertTitle.success)", message: "\(AlertMessage.success)", preferredStyle: .alert)
-        successAlert.addAction(UIAlertAction(title: "\(AlertButtonTitle.confirm)", style: .default, handler: nil))
-        self.present(successAlert, animated: true, completion: nil)
+        AlertManager.presentSuccessAlert(of: juice, on: self)
     }
     
     @objc
@@ -119,36 +94,6 @@ class JuiceMakerViewController: UIViewController {
             self.currentKiwiStockLabel.text = "\(updatedAmount)"
         case .mango:
             self.currentMangoStockLabel.text = "\(updatedAmount)"
-        }
-    }
-}
-
-extension JuiceMakerViewController {
-    enum AlertTitle: String, CustomStringConvertible {
-        case success = "나왔습니다"
-        case fail = "재료가 모자라요"
-        case error = "오류가 발생했어요🥲"
-    
-        var description: String {
-            rawValue
-        }
-    }
-    enum AlertMessage: String, CustomStringConvertible {
-        case success = "맛있게 드세요!"
-        case fail = "재고를 수정할까요?"
-        case error = "다시 시도해주세요"
-        
-        var description: String {
-            return rawValue
-        }
-    }
-    enum AlertButtonTitle: String, CustomStringConvertible {
-        case cancel = "취소"
-        case ok = "확인"
-        case confirm = "잘 먹겠습니다🤤"
-        
-        var description: String {
-            return rawValue
         }
     }
 }
