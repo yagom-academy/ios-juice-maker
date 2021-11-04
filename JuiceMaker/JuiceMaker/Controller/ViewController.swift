@@ -9,11 +9,11 @@ import UIKit
 class ViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
 
-    @IBOutlet var stockOfStrawberryLabel: UILabel!
-    @IBOutlet var stockOfBananaLabel: UILabel!
-    @IBOutlet var stockOfPineappleLabel: UILabel!
-    @IBOutlet var stockOfKiwiLabel: UILabel!
-    @IBOutlet var stockOfMangoLabel: UILabel!
+    @IBOutlet private var stockOfStrawberryLabel: UILabel!
+    @IBOutlet private var stockOfBananaLabel: UILabel!
+    @IBOutlet private var stockOfPineappleLabel: UILabel!
+    @IBOutlet private var stockOfKiwiLabel: UILabel!
+    @IBOutlet private var stockOfMangoLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

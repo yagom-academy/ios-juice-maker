@@ -3,17 +3,17 @@ import UIKit
 class EditFruitStockViewController: UIViewController {
     private var fruitStore: FruitStore?
     
-    @IBOutlet var stockOfStrawberryLabel: UILabel!
-    @IBOutlet var stockOfBananaLabel: UILabel!
-    @IBOutlet var stockOfPineappleLabel: UILabel!
-    @IBOutlet var stockOfKiwiLabel: UILabel!
-    @IBOutlet var stockOfMangoLabel: UILabel!
+    @IBOutlet private var stockOfStrawberryLabel: UILabel!
+    @IBOutlet private var stockOfBananaLabel: UILabel!
+    @IBOutlet private var stockOfPineappleLabel: UILabel!
+    @IBOutlet private var stockOfKiwiLabel: UILabel!
+    @IBOutlet private var stockOfMangoLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class EditFruitStockViewController: UIViewController {
     }
     
     @objc
-    func hitDoneButton() {
+    private func hitDoneButton() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -61,27 +61,27 @@ class EditFruitStockViewController: UIViewController {
         }
     }
 
-    @IBAction func hitStrawberryStepper(_ sender: UIStepper) {
+    @IBAction private func hitStrawberryStepper(_ sender: UIStepper) {
         let value = Int(strawberryStepper.value)
         fruitStore?.changeQuantity(of: .strawberry, to: value)
         stockOfStrawberryLabel.text = String(value)
     }
-    @IBAction func hitBananaStepper(_ sender: UIStepper) {
+    @IBAction private func hitBananaStepper(_ sender: UIStepper) {
         let value = Int(bananaStepper.value)
         fruitStore?.changeQuantity(of: .banana, to: value)
         stockOfBananaLabel.text = String(value)
     }
-    @IBAction func hitPineappleStepper(_ sender: UIStepper) {
+    @IBAction private func hitPineappleStepper(_ sender: UIStepper) {
         let value = Int(pineappleStepper.value)
         fruitStore?.changeQuantity(of: .pineapple, to: value)
         stockOfPineappleLabel.text = String(value)
     }
-    @IBAction func hitKiwiStepper(_ sender: UIStepper) {
+    @IBAction private func hitKiwiStepper(_ sender: UIStepper) {
         let value = Int(kiwiStepper.value)
         fruitStore?.changeQuantity(of: .kiwi, to: value)
         stockOfKiwiLabel.text = String(value)
     }
-    @IBAction func hitMangoStepper(_ sender: UIStepper) {
+    @IBAction private func hitMangoStepper(_ sender: UIStepper) {
         let value = Int(mangoStepper.value)
         fruitStore?.changeQuantity(of: .mango, to: value)
         stockOfMangoLabel.text = String(value)
