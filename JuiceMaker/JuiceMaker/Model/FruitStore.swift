@@ -7,7 +7,11 @@
 import Foundation
 
 class FruitStore {
-    typealias FruitStock = Int
+    typealias JuiceIngredient = Int
+    typealias Inventory = [Fruit: JuiceIngredient]
+    
+    private(set) var fruits: Inventory = [:]
+    private let defaultStock = 10
     
     enum Fruit: CaseIterable {
         case strawberry
@@ -16,37 +20,17 @@ class FruitStore {
         case pineapple
         case mango
     }
-    private var fruitStockList: [Fruit: FruitStock] = [:]
     
-    init(initialFruitStock: FruitStock = 10) {
-        for fruitName in Fruit.allCases {
-            fruitStockList[fruitName] = initialFruitStock
+    init() {
+        for fruit in Fruit.allCases {
+            fruits[fruit] = defaultStock
         }
-    }
-
-    func changeFruitStock(fruitName: Fruit, changingNumber: Int) throws {
-        guard let currentFruitStock = fruitStockList[fruitName] else {
-            throw FruitStockError.fruitNotExist
-        }
-        guard (currentFruitStock + changingNumber) >= 0 else {
-            throw FruitStockError.lessThanZero
-        }
-        
-        fruitStockList[fruitName] = (currentFruitStock + changingNumber)
     }
     
-    func isHaveEnoughStock(fruitName: Fruit, juiceIngredient: JuiceIngredient) throws {
-        guard let fruitStock = fruitStockList[fruitName] else {
-            throw FruitStockError.fruitNotExist
+    func manageStock(of fruit: FruitStore.Fruit, amount: Int) {
+        guard let currentStock = fruits[fruit] else {
+            return
         }
-        guard fruitStock >= juiceIngredient else {
-            throw FruitStockError.outOfStock
-        }
+        fruits.updateValue(currentStock + amount, forKey: fruit)
     }
-}
-
-enum FruitStockError: Error {
-    case fruitNotExist
-    case outOfStock
-    case lessThanZero
 }

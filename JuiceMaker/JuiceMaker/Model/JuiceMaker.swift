@@ -6,53 +6,41 @@
 
 import Foundation
 
-typealias JuiceIngredient = Int
-
 struct JuiceMaker {
-    var fruitStore = FruitStore()
+    typealias JuiceIngredient = Int
     
-    enum Juice {
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
-
-        fileprivate var recipe: [FruitStore.Fruit: JuiceIngredient] {
-            switch self {
-            case .strawberryJuice:
-                return [.strawberry: 16]
-            case .bananaJuice:
-                return [.banana: 2]
-            case .kiwiJuice:
-                return [.kiwi: 3]
-            case .pineappleJuice:
-                return [.pineapple: 2]
-            case .strawberryBananaJuice:
-                return [.strawberry: 2, .banana: 1]
-            case .mangoJuice:
-                return [.mango: 3]
-            case .mangoKiwiJuice:
-                return [.mango: 2, .kiwi: 1]
-            }
+    let fruitStore = FruitStore()
+    
+    func order(for menu: Juice) -> Bool {
+        if isReadyToMake(juice: menu) {
+            make(juice: menu)
+        } else {
+            return false
         }
+        return true
     }
     
-    func orderJuice(for menu: Juice) {
-        var confirmedFruitStock = 0
-        let juiceIngredientCounter = menu.recipe.count
-        
-        for (fruitName, juiceIngredient) in menu.recipe {
-            guard (try? fruitStore.isHaveEnoughStock(fruitName: fruitName, juiceIngredient: juiceIngredient)) != nil else {
-                return
-            }
-            confirmedFruitStock += 1
-            guard confirmedFruitStock == juiceIngredientCounter, (try? fruitStore.changeFruitStock(fruitName: fruitName, changingNumber: -juiceIngredient)) != nil else {
-                continue
+    private func isReadyToMake(juice: Juice) -> Bool {
+        for (fruit, juiceIngredient) in juice.recipe {
+            guard isHaveEnoughStock(of: fruit, for: juiceIngredient) else {
+                return false
             }
         }
-        print("쥬스제조완료!")
+        return true
+    }
+    
+    private func isHaveEnoughStock(of fruit: FruitStore.Fruit, for juiceIngredient: JuiceIngredient) -> Bool {
+        guard let currentStock = fruitStore.fruits[fruit],
+              juiceIngredient > 0,
+              currentStock - juiceIngredient >= 0 else {
+                  return false
+              }
+        return true
+    }
+    
+    private func make(juice: Juice) {
+        for (fruit, juiceIngredient) in juice.recipe {
+            fruitStore.manageStock(of: fruit, amount: -juiceIngredient)
+        }
     }
 }
