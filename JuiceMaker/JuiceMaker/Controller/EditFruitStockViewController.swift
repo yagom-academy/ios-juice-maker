@@ -1,6 +1,8 @@
 import UIKit
 
 class EditFruitStockViewController: UIViewController {
+    private var juiceMaker: JuiceMaker?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationButton()
@@ -15,4 +17,11 @@ class EditFruitStockViewController: UIViewController {
     func hitDoneButton() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func configure(juiceMaker: JuiceMaker) {
+        self.juiceMaker = juiceMaker
+    }
 }
+
+
+

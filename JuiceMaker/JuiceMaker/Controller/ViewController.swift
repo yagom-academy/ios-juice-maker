@@ -109,6 +109,7 @@ class ViewController: UIViewController {
     private func moveToEditViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let editViewController: EditFruitStockViewController = storyboard.instantiateViewController(identifier: "EditViewController")
+        editViewController.configure(juiceMaker: juiceMaker)
         let navigationController = UINavigationController(rootViewController: editViewController)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true, completion: nil)
