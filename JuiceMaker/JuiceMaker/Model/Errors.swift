@@ -10,3 +10,7 @@ import Foundation
 enum FruitStoreError: Error {
     case deficientStock
 }
+
+enum StockManagerError: Error {
+    case excessiveReduction
+}
