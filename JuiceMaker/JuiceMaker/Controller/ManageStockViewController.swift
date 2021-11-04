@@ -55,7 +55,10 @@ class ManageStockViewController: UIViewController {
     }
     
     @IBAction func touchUpFruitQuantityStepper(_ sender: UIStepper) {
-        fruitQuantityLabels[sender.tag].text = String(Int(sender.value))
+        let changedFruitQuantityLabels = fruitQuantityLabels[sender.tag]
+        let stepperValue = Int(sender.value)
+
+        changedFruitQuantityLabels.text = String(stepperValue)
     }
     
     func updateStock() {
