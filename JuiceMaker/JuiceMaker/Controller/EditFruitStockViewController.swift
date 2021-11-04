@@ -53,4 +53,18 @@ class EditFruitStockViewController: UIViewController {
     func changeQuantity(of fruit: Fruit, by operation: FruitStore.Operation) {
         fruitStore?.changeQuantity(of: fruit, count: 1, by: operation)
     }
+    
+    
+    
+    @IBAction func hitStrawberryStepper(_ sender: UIStepper) {
+    }
+    @IBAction func hitBananaStepper(_ sender: UIStepper) {
+    }
+    @IBAction func hitPineappleStepper(_ sender: UIStepper) {
+    }
+    @IBAction func hitKiwiStepper(_ sender: UIStepper) {
+    }
+    @IBAction func hitMangoStepper(_ sender: UIStepper) {
+    }
+    
 }
