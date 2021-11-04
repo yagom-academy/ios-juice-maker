@@ -54,6 +54,3 @@ class EditFruitStockViewController: UIViewController {
         fruitStore?.changeQuantity(of: fruit, count: 1, by: operation)
     }
 }
-
-
-
