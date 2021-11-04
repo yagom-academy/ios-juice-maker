@@ -25,12 +25,11 @@ class ModifyInventoryViewController: UIViewController {
     
     private func setFruitUI() {
         for index in fruitEmojiLabels.indices {
-            let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
-            let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
+            let fruits: [(emoji: String, name: Fruits)] = [("🍓", .strawberry), ("🍌", .banana), ("🍍", .pineapple), ("🥝", .kiwi), ("🥭", .mango)]
             
-            fruitEmojiLabels[index].text = fruitEmojiArrange[index]
+            fruitEmojiLabels[index].text = fruits[index].emoji
             
-            let fruitName = fruitArrange[index].descriptionEN
+            let fruitName = fruits[index].name.descriptionEN
             fruitCountLabels[index].fruitID = fruitName
             fruitSteppers[index].fruitID = fruitName
         }

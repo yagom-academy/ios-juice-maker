@@ -43,12 +43,11 @@ class JuiceMakerViewController: UIViewController {
     
     private func setFruitLabels() {
         for index in fruitEmojiLabels.indices {
-            let fruitEmojiArrange = ["🍓","🍌","🍍","🥝","🥭"]
-            let fruitArrange:[Fruits] = [.strawberry,.banana,.pineapple,.kiwi,.mango]
+            let fruits: [(emoji: String, name: Fruits)] = [("🍓", .strawberry), ("🍌", .banana), ("🍍", .pineapple), ("🥝", .kiwi), ("🥭", .mango)]
             
-            fruitEmojiLabels[index].text = fruitEmojiArrange[index]
+            fruitEmojiLabels[index].text = fruits[index].emoji
             
-            let fruitString = fruitArrange[index].descriptionEN
+            let fruitString = fruits[index].name.descriptionEN
             fruitCountLabels[index].fruitID = fruitString
         }
     }
