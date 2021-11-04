@@ -40,34 +40,34 @@ struct AlertManager {
     }
     
     static func presentFailAlert(on viewController: JuiceMakerViewController) {
-        let failAlert = UIAlertController(title: "\(AlertTitle.fail)", message: "\(AlertMessage.fail)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\(AlertTitle.fail)", message: "\(AlertMessage.fail)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: { _ in
             viewController.presentStockManagerViewController(nil)
         })
         let cancel = UIAlertAction(title: "\(AlertButtonTitle.cancel)", style: .cancel, handler: nil)
-        failAlert.addAction(ok)
-        failAlert.addAction(cancel)
-        failAlert.preferredAction = ok
-        viewController.present(failAlert, animated: true, completion: nil)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        alert.preferredAction = ok
+        viewController.present(alert, animated: true, completion: nil)
     }
     
     static func presentErrorAlert(on viewController: UIViewController) {
-        let errorAlert = UIAlertController(title: "\(AlertTitle.error)", message: "\(AlertMessage.error)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\(AlertTitle.error)", message: "\(AlertMessage.error)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: nil)
-        errorAlert.addAction(ok)
-        viewController.present(errorAlert, animated: true, completion: nil)
+        alert.addAction(ok)
+        viewController.present(alert, animated: true, completion: nil)
     }
     
     static func presentSuccessAlert(of juice: JuiceMenu, on viewController: UIViewController) {
-        let successAlert = UIAlertController(title: "\(juice) \(AlertTitle.success)", message: "\(AlertMessage.success)", preferredStyle: .alert)
-        successAlert.addAction(UIAlertAction(title: "\(AlertButtonTitle.confirm)", style: .default, handler: nil))
-        viewController.present(successAlert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "\(juice) \(AlertTitle.success)", message: "\(AlertMessage.success)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "\(AlertButtonTitle.confirm)", style: .default, handler: nil))
+        viewController.present(alert, animated: true, completion: nil)
     }
     
     static func presentExcessiveReductionAlert(on viewController: UIViewController) {
-        let errorAlert = UIAlertController(title: "\(AlertTitle.excessiveReduction)", message: "\(AlertMessage.error)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\(AlertTitle.excessiveReduction)", message: "\(AlertMessage.error)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "\(AlertButtonTitle.ok)", style: .default, handler: nil)
-        errorAlert.addAction(ok)
-        viewController.present(errorAlert, animated: true, completion: nil)
+        alert.addAction(ok)
+        viewController.present(alert, animated: true, completion: nil)
     }
 }
