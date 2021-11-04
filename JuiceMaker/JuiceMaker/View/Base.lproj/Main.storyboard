@@ -415,6 +415,13 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentBananaStockLabel" destination="gKu-86-RhI" id="qLm-xO-Foz"/>
+                        <outlet property="currentKiwiStockLabel" destination="ZDv-1m-HBY" id="vUB-pl-FrC"/>
+                        <outlet property="currentMangoStockLabel" destination="YJI-ER-LJR" id="TGM-is-lkP"/>
+                        <outlet property="currentPineappleStockLabel" destination="MpT-VW-hCb" id="Ofp-FD-bl0"/>
+                        <outlet property="currentStrawberryStockLabel" destination="0yV-kn-zaT" id="PIk-Qa-OPm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

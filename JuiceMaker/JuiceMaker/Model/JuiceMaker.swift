@@ -37,6 +37,11 @@ struct JuiceMaker {
     private func hasAllIngredients(of juiceRecipe: JuiceRecipe) -> Bool {
         return fruitStore.canProvideIngredients(of: juiceRecipe)
     }
+    
+    func retrieveCurrentFruitStock() -> [Fruit:Int] {
+        return fruitStore.retrieveCurrentFruitStock()
+    }
+    
 }
 
 extension JuiceMenu {

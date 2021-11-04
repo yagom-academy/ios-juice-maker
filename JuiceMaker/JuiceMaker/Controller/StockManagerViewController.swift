@@ -9,6 +9,12 @@ import UIKit
 
 class StockManagerViewController: UIViewController {
    
+    @IBOutlet var currentStrawberryStockLabel: UILabel!
+    @IBOutlet var currentBananaStockLabel: UILabel!
+    @IBOutlet var currentPineappleStockLabel: UILabel!
+    @IBOutlet var currentKiwiStockLabel: UILabel!
+    @IBOutlet var currentMangoStockLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()

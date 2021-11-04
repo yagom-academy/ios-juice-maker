@@ -33,6 +33,10 @@ class FruitStore {
         }
         return true
     }
+    
+    func retrieveCurrentFruitStock() -> [Fruit:Int] {
+        return inventory.retrieveCurrentFruitStock()
+    }
 }
 
 extension FruitStore {
@@ -72,6 +76,10 @@ extension FruitStore {
         private func postNotification(changed fruit: Fruit, by amount: Int?) {
             let changedStock = [fruit:amount]
             NotificationCenter.default.post(name: Notification.Name.stockChanged, object: nil, userInfo: changedStock as [AnyHashable : Any])
+        }
+        
+        func retrieveCurrentFruitStock() -> [Fruit:Int] {
+            return stock
         }
     }
 }
