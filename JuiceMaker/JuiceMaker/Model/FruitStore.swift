@@ -23,6 +23,21 @@ class FruitStore {
                                            NotificationKey.orderComplete: succeed])
     }
     
+    private func addObserverForStockUpdate() {
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didReceiveUpdateNotification),
+                                       name: Notification.Name.stockInformation,
+                                       object: nil)
+    }
+    
+    @objc private func didReceiveUpdateNotification(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        
+        if let stockOfFruit = userInfo?[NotificationKey.stockOfFruit] as? [Fruit: Int] {
+            self.stockOfFruit = stockOfFruit
+        }
+    }
+    
     private func hasEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
         if let fruitAmount = stockOfFruit[fruit], fruitAmount >= amount {
             return true

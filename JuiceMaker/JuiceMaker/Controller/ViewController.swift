@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         showInitialStock()
         addObserverForStockUpdate()
+        addObserverForStockModified()
     }
     
     private func showInitialStock() {
@@ -34,6 +35,20 @@ class ViewController: UIViewController {
                                        selector: #selector(didReceiveNotification),
                                        name: Notification.Name.stockInformation,
                                        object: nil)
+    }
+    
+    private func addObserverForStockModified() {
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didReceiveStockModified),
+                                       name: Notification.Name.stockInformation,
+                                       object: nil)
+    }
+    
+    @objc private func didReceiveStockModified(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        
+        if let stockOfFruit = userInfo?[NotificationKey.stockOfFruit] as? [Fruit: Int] {
+        }
     }
     
     private func updateFruitLabel(for fruit: Fruit, stock: Int) {

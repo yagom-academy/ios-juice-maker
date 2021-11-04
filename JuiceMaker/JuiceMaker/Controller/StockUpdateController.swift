@@ -83,6 +83,10 @@ class StockUpdateController: UIViewController {
         }
 
     @IBAction func tapExitButton(_ sender: UIBarButtonItem) {
+        updateModel()
+        notificationCenter.post(name: Notification.Name.stockModified,
+                                object: nil,
+                                userInfo: [NotificationKey.stockOfFruit: self.stockOfFruit])
         dismiss(animated: true, completion: nil)
     }
 }

@@ -11,11 +11,12 @@ let notificationCenter = NotificationCenter.default
 
 extension Notification.Name {
     static let stockInformation = Notification.Name("stockInformation")
-    static let stockError = Notification.Name("stockError")
+    static let stockModified = Notification.Name("stockModified")
 }
 
 enum NotificationKey {
     case fruit
     case stock
     case orderComplete
+    case stockOfFruit
 }
