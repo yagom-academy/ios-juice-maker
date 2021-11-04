@@ -23,6 +23,7 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitsStock()
+        adjustFontSize()
         NotificationCenter.default.addObserver(self, selector: #selector(updateFruitsStock), name: .update, object: fruitStore)
     }
     
@@ -43,6 +44,14 @@ class JuiceOrderViewController: UIViewController {
         }
         
         make(juice: juice)
+    }
+    
+    func adjustFontSize() {
+        strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     private func make(juice: Juices) {
