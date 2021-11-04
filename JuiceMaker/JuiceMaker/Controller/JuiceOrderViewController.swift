@@ -4,7 +4,7 @@ import UIKit
 class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private let fruitStore: FruitStore = FruitStore.shared
-    var fruitLabels: [String?] = []
+    private var fruitLabels: [String?] = []
     
     @IBOutlet weak var strawberryBananaOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiOrderButton: UIButton!
@@ -46,7 +46,7 @@ class JuiceOrderViewController: UIViewController {
         make(juice: juice)
     }
     
-    func adjustFontSize() {
+    private func adjustFontSize() {
         strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
         bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
         mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -107,6 +107,7 @@ class JuiceOrderViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
         let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        
         alert.addAction(okAction)
         alert.addAction(cancleAction)
         present(alert, animated: true, completion: nil)
@@ -116,6 +117,7 @@ class JuiceOrderViewController: UIViewController {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+        
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
@@ -146,6 +148,7 @@ class JuiceOrderViewController: UIViewController {
 
     private func presentFruitStoreViewController(_ action: UIAlertAction) {
         guard let navcontroller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
+        
         let viewController = navcontroller.children.first as? FruitStorageViewController
         viewController?.fruitStock = makeCurrentStock()
         

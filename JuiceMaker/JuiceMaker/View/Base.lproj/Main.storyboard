@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
-    <device id="retina4_7" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,7 +13,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="JuiceOrderViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zaq-m5-IIF">
@@ -285,7 +283,7 @@
             <objects>
                 <viewController id="Yu1-lM-nqp" customClass="FruitStorageViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="D7X-vx-u60">
@@ -310,7 +308,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="10" y="155.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperTest:" destination="Yu1-lM-nqp" eventType="valueChanged" id="uiY-KQ-1YA"/>
+                                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="uiY-KQ-1YA"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -337,7 +335,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="10.5" y="155.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperTest:" destination="Yu1-lM-nqp" eventType="valueChanged" id="tz1-JP-ph0"/>
+                                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="tz1-JP-ph0"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -364,7 +362,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="10" y="155.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperTest:" destination="Yu1-lM-nqp" eventType="valueChanged" id="N16-zS-RqH"/>
+                                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="N16-zS-RqH"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -391,7 +389,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="10" y="155.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperTest:" destination="Yu1-lM-nqp" eventType="valueChanged" id="0ny-yO-fiC"/>
+                                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="0ny-yO-fiC"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -418,7 +416,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="10" y="155.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperTest:" destination="Yu1-lM-nqp" eventType="valueChanged" id="zGy-fe-HNJ"/>
+                                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="zGy-fe-HNJ"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>

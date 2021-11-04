@@ -17,6 +17,7 @@ class FruitStorageViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var pineappleStepper: UIStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setFruitStockLabel()
@@ -33,7 +34,7 @@ class FruitStorageViewController: UIViewController {
 
     func setDefaultStepperValue() {
         for i in 0..<fruitStock.count {
-            stepperValue.append(Double(fruitStock[i]) ?? 0)
+            stepperValue.append(Double(fruitStock[i]) ?? .zero)
         }
         strawberryStepper.value = stepperValue[0]
         bananaStepper.value = stepperValue[1]
@@ -58,7 +59,7 @@ class FruitStorageViewController: UIViewController {
     }
     
     
-    @IBAction func stepperTest(_ sender: UIStepper) {
+    @IBAction func touchUpStepper(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
             strawberryStockLabel.text = Int(strawberryStepper.value).description
