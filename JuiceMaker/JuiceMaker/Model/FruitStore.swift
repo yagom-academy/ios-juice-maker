@@ -8,7 +8,7 @@ import Foundation
 
 class FruitStore {
     
-    private(set) var fruitInventory: [Fruits: Int] = [:] {
+    private(set) var fruitInventory: [Fruits: Int] {
         didSet {
             NotificationCenter.default.post(name: .changedInventory, object: nil)
         }
