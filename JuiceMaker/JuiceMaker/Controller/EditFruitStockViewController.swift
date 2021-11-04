@@ -26,6 +26,20 @@ class EditFruitStockViewController: UIViewController {
         mangoStepper.value = Double(fruitStore?.fruitStock[.mango] ?? 0)
     }
     
+    fileprivate func configureNavigationButton() {
+        navigationItem.title = "재고 추가"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(hitDoneButton))
+    }
+    
+    @objc
+    func hitDoneButton() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func configure(fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
+    }
+    
     private func updateStockLabel() {
         let stringOfFruitStock: [Fruit: String]? = fruitStore?.fruitStock.mapValues { String($0) }
         guard let currentStock = stringOfFruitStock else {
@@ -46,21 +60,7 @@ class EditFruitStockViewController: UIViewController {
             }
         }
     }
-    
-    fileprivate func configureNavigationButton() {
-        navigationItem.title = "재고 추가"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(hitDoneButton))
-    }
-    
-    @objc
-    func hitDoneButton() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func configure(fruitStore: FruitStore) {
-        self.fruitStore = fruitStore
-    }
-    
+
     @IBAction func hitStrawberryStepper(_ sender: UIStepper) {
         let value = Int(strawberryStepper.value)
         fruitStore?.changeQuantity(of: .strawberry, to: value)
