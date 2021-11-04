@@ -49,10 +49,8 @@ class StockManagerViewController: UIViewController {
     
     private func setupNavigationBar() {
         let navigationBarItem = UINavigationItem()
-        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissStockManagerVC))
-        let add = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissStockManagerVC))
-        navigationBarItem.leftBarButtonItem = cancel
-        navigationBarItem.rightBarButtonItem = add
+        let cancel = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(dismissStockManagerVC))
+        navigationBarItem.rightBarButtonItem = cancel
         navigationBarItem.title = "재고 수정"
         
         let width = self.view.frame.width
@@ -67,5 +65,3 @@ class StockManagerViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
-
-
