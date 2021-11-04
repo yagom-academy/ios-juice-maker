@@ -19,14 +19,10 @@ class EditFruitStockViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationButton()
         updateStockLabel()
-        strawberryStepper.value = Double(fruitStore?.fruitStock[.strawberry] ?? 0)
-        bananaStepper.value = Double(fruitStore?.fruitStock[.banana] ?? 0)
-        pineappleStepper.value = Double(fruitStore?.fruitStock[.pineapple] ?? 0)
-        kiwiStepper.value = Double(fruitStore?.fruitStock[.kiwi] ?? 0)
-        mangoStepper.value = Double(fruitStore?.fruitStock[.mango] ?? 0)
+        updateStepperValue()
     }
     
-    fileprivate func configureNavigationButton() {
+    private func configureNavigationButton() {
         navigationItem.title = "재고 추가"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(hitDoneButton))
     }
@@ -59,6 +55,14 @@ class EditFruitStockViewController: UIViewController {
                 stockOfMangoLabel.text = stock
             }
         }
+    }
+    
+    private func updateStepperValue() {
+        strawberryStepper.value = Double(fruitStore?.fruitStock[.strawberry] ?? 0)
+        bananaStepper.value = Double(fruitStore?.fruitStock[.banana] ?? 0)
+        pineappleStepper.value = Double(fruitStore?.fruitStock[.pineapple] ?? 0)
+        kiwiStepper.value = Double(fruitStore?.fruitStock[.kiwi] ?? 0)
+        mangoStepper.value = Double(fruitStore?.fruitStock[.mango] ?? 0)
     }
 
     @IBAction private func hitStrawberryStepper(_ sender: UIStepper) {
