@@ -91,11 +91,10 @@ extension FruitStoreViewController {
     }
     
     func chooseCalculator(fruit: Fruit, oldStockValue: Int, newStockValue: Int) {
-        switch oldStockValue < newStockValue {
-        case true:
+        if oldStockValue < newStockValue {
             let count = newStockValue - oldStockValue
             calculateFruitStock(fruit: fruit, count: count, calculate: FruitStore.shared.addFruitStock)
-        case false:
+        } else {
             let count = oldStockValue - newStockValue
             calculateFruitStock(fruit: fruit, count: count, calculate: FruitStore.shared.subtractFruitStock)
         }
