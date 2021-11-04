@@ -15,11 +15,11 @@ class StockUpdateController: UIViewController {
     @IBOutlet private weak var kiwiLabel: UILabel!
     @IBOutlet private weak var mangoLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
     var stockOfFruit: [Fruit: Int] = [:]
     
@@ -28,7 +28,7 @@ class StockUpdateController: UIViewController {
         setStock()
     }
     
-    func updateFruitStock() {
+    private func updateFruitStock() {
         stockOfFruit[.strawberry] = Int(strawberryStepper.value)
         stockOfFruit[.banana] = Int(bananaStepper.value)
         stockOfFruit[.pineapple] = Int(pineappleStepper.value)
@@ -36,7 +36,7 @@ class StockUpdateController: UIViewController {
         stockOfFruit[.mango] = Int(mangoStepper.value)
     }
     
-    @IBAction func tapFruitStepper(_ sender: UIStepper) {
+    @IBAction private func tapFruitStepper(_ sender: UIStepper) {
         do {
             guard let fruit = Fruit(rawValue: sender.tag) else {
                 throw JuiceMakerError.invalidTagNumberForStepper
@@ -50,7 +50,7 @@ class StockUpdateController: UIViewController {
         }
     }
     
-    func setStock() {
+    private func setStock() {
         stockOfFruit.forEach({ (fruit, stock) in
             switch fruit {
             case .strawberry:
@@ -72,7 +72,7 @@ class StockUpdateController: UIViewController {
         })
     }
     
-    func updateFruitLabel(for fruit: Fruit, stock: Int) {
+    private func updateFruitLabel(for fruit: Fruit, stock: Int) {
         switch fruit {
         case .strawberry:
             strawberryLabel.text = String(stock)
@@ -86,8 +86,8 @@ class StockUpdateController: UIViewController {
             mangoLabel.text = String(stock)
         }
     }
-
-    @IBAction func tapExitButton(_ sender: UIBarButtonItem) {
+    
+    @IBAction private func tapExitButton(_ sender: UIBarButtonItem) {
         updateFruitStock()
         notificationCenter.post(name: Notification.Name.stockModified,
                                 object: nil,

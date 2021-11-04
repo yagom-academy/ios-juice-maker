@@ -61,9 +61,9 @@ class FruitStore {
         }
         guard let secondFruit = secondFruit,
               let secondFruitAmount = secondFruitAmount else {
-               subtractStock(of: firstFruit, amount: firstFruitAmount)
-               return
-        }
+                  subtractStock(of: firstFruit, amount: firstFruitAmount)
+                  return
+              }
         guard hasEnoughStock(of: secondFruit, amount: secondFruitAmount) else {
             return
         }

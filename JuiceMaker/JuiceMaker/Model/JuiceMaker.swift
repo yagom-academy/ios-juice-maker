@@ -46,13 +46,13 @@ struct JuiceMaker {
         static let usageOfMixMango = 2
         static let usageOfMixKiwi = 1
     }
-
+    
     private let fruitStore = FruitStore()
     
     var stockOfFruit: [Fruit: Int] {
         fruitStore.stockOfFruit
     }
-
+    
     func makeFruitJuice(juice: Menu) {
         switch juice {
         case .strawberryJuice:

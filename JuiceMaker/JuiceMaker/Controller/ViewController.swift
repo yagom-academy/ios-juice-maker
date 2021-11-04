@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func moveToStockUpdateView(_ sender: UIBarButtonItem) {
+    @IBAction private func moveToStockUpdateView(_ sender: UIBarButtonItem) {
         showStockUpdateView()
     }
     
