@@ -49,6 +49,10 @@ class EditFruitStockViewController: UIViewController {
     func configure(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
     }
+    
+    func changeQuantity(of fruit: Fruit, by operation: FruitStore.Operation) {
+        fruitStore?.changeQuantity(of: fruit, count: 1, by: operation)
+    }
 }
 
 
