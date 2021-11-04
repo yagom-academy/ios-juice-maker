@@ -1,7 +1,7 @@
 import UIKit
 
 class EditFruitStockViewController: UIViewController {
-    private var juiceMaker: JuiceMaker?
+    private var fruitStore: FruitStore?
     
     @IBOutlet var stockOfStrawberryLabel: UILabel!
     @IBOutlet var stockOfBananaLabel: UILabel!
@@ -16,7 +16,10 @@ class EditFruitStockViewController: UIViewController {
     }
     
     private func updateStockLabel() {
-        guard let currentStock = juiceMaker?.stringOfFruitStock else {
+        var stringOfFruitStock: [Fruit: String]? {
+            return fruitStore?.fruitStock.mapValues { String($0) }
+        }
+        guard let currentStock = stringOfFruitStock else {
             return
         }
         for (fruit, stock) in currentStock {
@@ -45,8 +48,8 @@ class EditFruitStockViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func configure(juiceMaker: JuiceMaker) {
-        self.juiceMaker = juiceMaker
+    func configure(fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
     }
 }
 

@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore(stock: 10)
+    let fruitStore = FruitStore(stock: 10)
     var stringOfFruitStock: [Fruit: String] {
         return fruitStore.fruitStock.mapValues { String($0) }
     }
