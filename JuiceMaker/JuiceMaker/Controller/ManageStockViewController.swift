@@ -13,7 +13,7 @@ class ManageStockViewController: UIViewController {
     var juiceMaker: JuiceMaker?
     
     @IBOutlet var fruitQuantityLabels: [UILabel]!
-    @IBOutlet var fruitQuantityStepper: [UIStepper]!
+    @IBOutlet var fruitQuantitySteppers: [UIStepper]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class ManageStockViewController: UIViewController {
         }
         
         for index in 0...fruitQuantityLabels.count - 1 {
-            fruitQuantityStepper[index].value = Double(Int(labelTexts[index]) ?? 0)
+            fruitQuantitySteppers[index].value = Double(Int(labelTexts[index]) ?? 0)
         }
     }
     
