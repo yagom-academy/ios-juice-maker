@@ -51,7 +51,7 @@ class JuiceOrderViewController: UIViewController {
         
         applyAutoFontSizeToAllButtonLabels()
         notificationCenter.addObserver(self,
-                                    selector: #selector(updateAllFruitAmountLabels),
+                                    selector: #selector(modalDismissCompletionHandler),
                                     name: .didEditAmount,
                                     object: nil)
         
@@ -62,7 +62,15 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    @objc private func updateAllFruitAmountLabels() throws {
+    @objc private func modalDismissCompletionHandler() {
+        do {
+            try updateAllFruitAmountLabels()
+        } catch {
+            showAppTerminatingAlert()
+        }
+    }
+    
+    private func updateAllFruitAmountLabels() throws {
         guard let strawberryAmount = fruitStore.inventory[.strawberry],
               let bananaAmount = fruitStore.inventory[.banana],
               let mangoAmount = fruitStore.inventory[.mango],
