@@ -28,6 +28,9 @@ class StockModifyViewController: UIViewController {
     
     func initStockModifyViewController() {
         NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
+        
+        changeStockLabel()
+        initializeStepper()
     }
 
     @objc
@@ -37,6 +40,14 @@ class StockModifyViewController: UIViewController {
         pineappleStockLabel.text =  FruitStore.shared.showStock(of: .pineapple)
         kiwiStockLabel.text =  FruitStore.shared.showStock(of: .kiwi)
         mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
+    }
+    
+    func initializeStepper() {
+        strawberryStepper.value = Double(FruitStore.shared.showStock(of: .strawberry)) ?? 0.0
+        bananaStepper.value = Double(FruitStore.shared.showStock(of: .banana)) ?? 0.0
+        pineappleStepper.value = Double(FruitStore.shared.showStock(of: .pineapple)) ?? 0.0
+        kiwiStepper.value = Double(FruitStore.shared.showStock(of: .kiwi)) ?? 0.0
+        mangoStepper.value = Double(FruitStore.shared.showStock(of: .mango)) ?? 0.0
     }
     
     @IBAction func dismissButton(_ sender: UIBarButtonItem) {

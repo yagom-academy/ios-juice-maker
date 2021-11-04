@@ -57,10 +57,11 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func presentStockModifyView() {
-        guard let stockModifyNC = storyboard?.instantiateViewController(withIdentifier: "StockModifyNavController") else { return }
-        let stockModifyVC = stockModifyNC.children.first as? StockModifyViewController
-        stockModifyVC?.loadViewIfNeeded()
-        stockModifyVC?.changeStockLabel()
+        let stockModifyNavController = StockModifyNavController()
+
+        let storyboard = UIStoryboard(name: stockModifyNavController.storyboardName, bundle: nil)
+        let stockModifyNC = storyboard.instantiateViewController(identifier: stockModifyNavController.storyboardID)
+            
         present(stockModifyNC, animated: true, completion: nil)
     }
     
