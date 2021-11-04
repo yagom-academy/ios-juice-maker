@@ -45,7 +45,6 @@ class FruitStorageViewController: UIViewController {
     
     @IBAction func completeModifyButton(_ sender: UIButton) {
         transmitStepperValueToFruitStock()
-        //보내고 noti post -> 받고 그걸 label 변경하는 함수를 실행
         dismiss(animated: true, completion: nil)
     }
     

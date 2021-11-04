@@ -15,7 +15,6 @@ final class FruitStore {
         guard let inventory = fruitStorage[fruit], inventory >= amount else {
             return false
         }
-        
         return true
     }
     
@@ -30,5 +29,6 @@ final class FruitStore {
         for index in 0..<stepperValue.count {
             fruitStorage[allFruits[index]] = Int(stepperValue[index])
         }
+        NotificationCenter.default.post(name: .update, object: self)
     }
 }

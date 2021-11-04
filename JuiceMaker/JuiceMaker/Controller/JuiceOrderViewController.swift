@@ -127,6 +127,7 @@ class JuiceOrderViewController: UIViewController {
         }
         return currentStock
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination.children.first is FruitStorageViewController {
             let viewController = segue.destination.children.first as? FruitStorageViewController
