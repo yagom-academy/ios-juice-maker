@@ -54,14 +54,14 @@ extension JuiceMakerViewController {
     }
     
     func updateFruitLabels() {
-        currentStockLabelUpdate(fruit: .strawberry, label: strawberryStockLabel)
-        currentStockLabelUpdate(fruit: .banana, label: bananaStockLabel)
-        currentStockLabelUpdate(fruit: .pineapple, label: pineappleStockLabel)
-        currentStockLabelUpdate(fruit: .kiwi, label: kiwiStockLabel)
-        currentStockLabelUpdate(fruit: .mango, label: mangoStockLabel)
+        updateCurrentStockLabel(fruit: .strawberry, label: strawberryStockLabel)
+        updateCurrentStockLabel(fruit: .banana, label: bananaStockLabel)
+        updateCurrentStockLabel(fruit: .pineapple, label: pineappleStockLabel)
+        updateCurrentStockLabel(fruit: .kiwi, label: kiwiStockLabel)
+        updateCurrentStockLabel(fruit: .mango, label: mangoStockLabel)
     }
     
-    func currentStockLabelUpdate(fruit: Fruit, label: UILabel) {
+    func updateCurrentStockLabel(fruit: Fruit, label: UILabel) {
         do {
             let stock = try FruitStore.shared.stock(fruit: fruit)
             label.text = stock.description
@@ -178,6 +178,6 @@ extension JuiceMakerViewController {
             showNotificationAlert(message: Message.unknownError.description)
             return
         }
-        currentStockLabelUpdate(fruit: fruit, label: fruitlabel(of: fruit))
+        updateCurrentStockLabel(fruit: fruit, label: fruitlabel(of: fruit))
     }
 }
