@@ -43,6 +43,12 @@ class StockModifyViewController: UIViewController {
     }
     
     func initializeStepper() {
+        strawberryStepper.restorationIdentifier = "딸기"
+        bananaStepper.restorationIdentifier = "바나나"
+        pineappleStepper.restorationIdentifier = "파인애플"
+        kiwiStepper.restorationIdentifier = "키위"
+        mangoStepper.restorationIdentifier = "망고"
+        
         strawberryStepper.value = Double(FruitStore.shared.showStock(of: .strawberry)) ?? 0.0
         bananaStepper.value = Double(FruitStore.shared.showStock(of: .banana)) ?? 0.0
         pineappleStepper.value = Double(FruitStore.shared.showStock(of: .pineapple)) ?? 0.0
@@ -54,24 +60,12 @@ class StockModifyViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.updateStock(fruit: .strawberry, quantity: Int(sender.value))
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        guard let stepperIdentifier = sender.restorationIdentifier,
+              let fruit = Fruit(rawValue: stepperIdentifier) else {
+                  return
+              }
+        let quantity = Int(sender.value)
+        FruitStore.shared.updateStock(fruit: fruit, quantity: quantity)
     }
-    
-    @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.updateStock(fruit: .banana, quantity: Int(sender.value))
-    }
-    
-    @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.updateStock(fruit: .pineapple, quantity: Int(sender.value))
-    }
-    
-    @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.updateStock(fruit: .kiwi, quantity: Int(sender.value))
-    }
-    
-    @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.updateStock(fruit: .mango, quantity: Int(sender.value))
-    }
-
 }
