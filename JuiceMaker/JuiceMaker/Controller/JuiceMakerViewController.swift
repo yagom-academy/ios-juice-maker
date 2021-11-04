@@ -10,7 +10,7 @@ import UIKit
 class JuiceMakerViewController: UIViewController {
     @IBOutlet var fruitQuatityLabels: [UILabel]!
     
-    @IBOutlet var needToChangeButtonsFontSize: [UIButton]!
+    @IBOutlet var needToChangeFontSizeButtons: [UIButton]!
     
     let juiceMaker = JuiceMaker()
     
@@ -21,7 +21,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func setButtonFontSize() {
-        for button in needToChangeButtonsFontSize {
+        for button in needToChangeFontSizeButtons {
             button.titleLabel?.adjustsFontSizeToFitWidth = true
         }
     }
