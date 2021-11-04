@@ -44,6 +44,7 @@ class ManageStockViewController: UIViewController {
             guard let labelTextsIndex = Int(labelTexts[index]) else {
                 return
             }
+            
             fruitQuantitySteppers[index].value = Double(labelTextsIndex)
         }
     }
