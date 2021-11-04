@@ -51,11 +51,17 @@ class ManageStockViewController: UIViewController {
     }
     
     func updateStock() {
-        let updateArray: [Fruit] = [Fruit(name: .strawberry, quantity: Int(fruitQuantityStepper[0].value)),
-                                    Fruit(name: .banana, quantity: Int(fruitQuantityStepper[1].value)),
-                                    Fruit(name: .pineapple, quantity: Int(fruitQuantityStepper[2].value)),
-                                    Fruit(name: .kiwi, quantity: Int(fruitQuantityStepper[3].value)),
-                                    Fruit(name: .mango, quantity: Int(fruitQuantityStepper[4].value))]
-        juiceMaker?.updateStock(to: updateArray)
+        var fruitNames = [Fruit.Name]()
+        for name in Fruit.Name.allCases {
+            fruitNames.append(name)
+        }
+        
+        var updatingFruitsQuantity = [Fruit]()
+        for index in 0...fruitQuantityLabels.count - 1 {
+            updatingFruitsQuantity.append(Fruit(name: fruitNames[index],
+                                   quantity: Int(fruitQuantityLabels[index].text ?? "0") ?? 0))
+        }
+
+        juiceMaker?.updateStock(to: updatingFruitsQuantity)
     }
 }
