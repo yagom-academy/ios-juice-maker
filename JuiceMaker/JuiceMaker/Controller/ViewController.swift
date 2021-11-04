@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     private func addObserverForStockModified() {
         notificationCenter.addObserver(self,
                                        selector: #selector(refreshStockLabel),
-                                       name: Notification.Name.stockInformation,
+                                       name: Notification.Name.stockModified,
                                        object: nil)
     }
     

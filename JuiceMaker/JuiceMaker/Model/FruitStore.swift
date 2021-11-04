@@ -13,6 +13,7 @@ class FruitStore {
         for fruit in Fruit.allCases {
             stockOfFruit[fruit] = Fruit.initialValue
         }
+        addObserverForStockUpdate()
     }
     
     private func postNotification(for fruit: Fruit, stock: Int, succeed: Bool) {
@@ -26,7 +27,7 @@ class FruitStore {
     private func addObserverForStockUpdate() {
         notificationCenter.addObserver(self,
                                        selector: #selector(didReceiveUpdateNotification),
-                                       name: Notification.Name.stockInformation,
+                                       name: Notification.Name.stockModified,
                                        object: nil)
     }
     
