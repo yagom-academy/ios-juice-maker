@@ -8,16 +8,43 @@
 import UIKit
 
 class StockManagerViewController: UIViewController {
-   
     @IBOutlet var currentStrawberryStockLabel: UILabel!
     @IBOutlet var currentBananaStockLabel: UILabel!
     @IBOutlet var currentPineappleStockLabel: UILabel!
     @IBOutlet var currentKiwiStockLabel: UILabel!
     @IBOutlet var currentMangoStockLabel: UILabel!
     
+    var juiceMaker: JuiceMaker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStockLabels()
         setupNavigationBar()
+    }
+    
+    private func setupStockLabels() {
+        let currentFruitStock = juiceMaker.retrieveCurrentFruitStock()
+        let fruits = currentFruitStock.keys
+        let amounts = currentFruitStock.values
+        
+        for (fruit, amount) in zip(fruits, amounts) {
+            updateStockLabel(of: fruit, by: amount)
+        }
+    }
+    
+    private func updateStockLabel(of fruit: Fruit, by amount: Int) {
+        switch fruit {
+        case .strawberry:
+            self.currentStrawberryStockLabel.text = "\(amount)"
+        case .bananna:
+            self.currentBananaStockLabel.text = "\(amount)"
+        case .pineapple:
+            self.currentPineappleStockLabel.text = "\(amount)"
+        case .kiwi:
+            self.currentKiwiStockLabel.text = "\(amount)"
+        case .mango:
+            self.currentMangoStockLabel.text = "\(amount)"
+        }
     }
     
     private func setupNavigationBar() {

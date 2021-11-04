@@ -45,7 +45,8 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction func presentStockManagerViewController(_ sender: Any?) {
         if let storyboard = storyboard {
-            let stockManagerViewController = storyboard.instantiateViewController(identifier: "StockManagerViewController")
+            let stockManagerViewController = storyboard.instantiateViewController(identifier: "StockManagerViewController") as StockManagerViewController
+            stockManagerViewController.juiceMaker = juiceMaker
             present(stockManagerViewController, animated: true, completion: nil)
         }
     }
