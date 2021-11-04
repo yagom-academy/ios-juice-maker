@@ -7,6 +7,7 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
+    // MARK: Properties
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -23,24 +24,55 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    @IBAction private func touchUpModifyStockButton(_ sender: UIBarButtonItem) {
-        presentModifyStockViewController()
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        adjustButtonTextLayout()
+        updateAllStockLabels()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateAllStockLabels), name: .fruitStockCountModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWithModifiedStock), name: .receiveModifiedStock, object: nil)
     }
     
-    @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {
-        guard let orderedJuice = takeJuiceOrder(from: sender) else {
+    // MARK: Private methods
+    private func adjustButtonTextLayout() {
+        pineappleJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+        pineappleJuiceOrderButton.titleLabel?.textAlignment = .center
+    }
+    
+    @objc private func updateAllStockLabels() {
+        let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+        
+        stockLabels.forEach { stockLabel in
+            updateStockLabel(with: stockLabel)
+        }
+    }
+    
+    private func updateStockLabel(with label: UILabel) {
+        guard let fruit = matchFruit(with: label) else {
             return
         }
         
-        do {
-            try juiceMaker.make(juice: orderedJuice)
-            presentCompleteMakingJuiceAlert(juice: orderedJuice)
-        } catch ServiceError.notEnoughStock {
-            presentNotEnoughStockAlert()
-        } catch SystemError.invaildKey {
-            print(SystemError.invaildKey.localizedDescription)
-        } catch {
-            print(error.localizedDescription)
+        guard let currentStockCount = juiceMaker.store.stock[fruit] else {
+            return
+        }
+        
+        label.text = String(currentStockCount)
+    }
+    
+    private func matchFruit(with label: UILabel) -> FruitStore.Fruit? {
+        switch label {
+        case strawberryStockLabel:
+            return .strawberry
+        case bananaStockLabel:
+            return .banana
+        case pineappleStockLabel:
+            return .pineapple
+        case kiwiStockLabel:
+            return .kiwi
+        case mangoStockLabel:
+            return .mango
+        default:
+            return nil
         }
     }
     
@@ -87,6 +119,19 @@ class JuiceMakerViewController: UIViewController {
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
     
+    private func presentModifyStockViewController() {
+        self.performSegue(withIdentifier: "toModifyStockViewController", sender: nil)
+    }
+    
+    @objc private func updateWithModifiedStock(notification: Notification) {
+        guard let modifiedStock = notification.userInfo?["modifiedStock"] as? Dictionary<FruitStore.Fruit, Int> else {
+            return
+        }
+        
+        juiceMaker.store.updateStock(newStock: modifiedStock)
+    }
+    
+    // MARK: Overridden Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toModifyStockViewController" {
             guard let destinationNavigationController = segue.destination as? UINavigationController else {
@@ -100,71 +145,33 @@ class JuiceMakerViewController: UIViewController {
             modifyStockViewController.modifiedStock = juiceMaker.store.stock
         }
     }
-    
-    private func presentModifyStockViewController() {
-        self.performSegue(withIdentifier: "toModifyStockViewController", sender: nil)
-    }
-    
-    @objc private func updateAllStockLabels() {
-        let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
-        
-        stockLabels.forEach { stockLabel in
-            updateStockLabel(with: stockLabel)
-        }
-    }
-    
-    private func updateStockLabel(with label: UILabel) {
-        guard let fruit = matchFruit(with: label) else {
-            return
-        }
-        
-        guard let currentStockCount = juiceMaker.store.stock[fruit] else {
-            return
-        }
-        
-        label.text = String(currentStockCount)
-    }
-    
-    private func matchFruit(with label: UILabel) -> FruitStore.Fruit? {
-        switch label {
-        case strawberryStockLabel:
-            return .strawberry
-        case bananaStockLabel:
-            return .banana
-        case pineappleStockLabel:
-            return .pineapple
-        case kiwiStockLabel:
-            return .kiwi
-        case mangoStockLabel:
-            return .mango
-        default:
-            return nil
-        }
-    }
-    
-    @objc private func updateWithModifiedStock(notification: Notification) {
-        guard let modifiedStock = notification.userInfo?["modifiedStock"] as? Dictionary<FruitStore.Fruit, Int> else {
-            return
-        }
-        
-        juiceMaker.store.updateStock(newStock: modifiedStock)
-    }
- 
-    func adjustButtonTextLayout() {
-        pineappleJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        pineappleJuiceOrderButton.titleLabel?.textAlignment = .center
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        adjustButtonTextLayout()
-        updateAllStockLabels()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateAllStockLabels), name: .fruitStockCountModified, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWithModifiedStock), name: .receiveModifiedStock, object: nil)
-    }
 }
 
 extension Notification.Name {
     static let fruitStockCountModified = Notification.Name("fruitStockCountModified")
     static let receiveModifiedStock = Notification.Name("receiveModifiedStock")
+}
+
+// MARK: - Actions
+extension JuiceMakerViewController {
+    @IBAction private func touchUpModifyStockButton(_ sender: UIBarButtonItem) {
+        presentModifyStockViewController()
+    }
+    
+    @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {
+        guard let orderedJuice = takeJuiceOrder(from: sender) else {
+            return
+        }
+        
+        do {
+            try juiceMaker.make(juice: orderedJuice)
+            presentCompleteMakingJuiceAlert(juice: orderedJuice)
+        } catch ServiceError.notEnoughStock {
+            presentNotEnoughStockAlert()
+        } catch SystemError.invaildKey {
+            print(SystemError.invaildKey.localizedDescription)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
