@@ -37,6 +37,14 @@ class FruitStore {
     func retrieveCurrentFruitStock() -> [Fruit:Int] {
         return inventory.retrieveCurrentFruitStock()
     }
+    
+    func increaseStock(of fruit: Fruit, by amount: Int) {
+        inventory.increaseStock(of: fruit, by: amount)
+    }
+    
+    func reduceStock(of fruit: Fruit, by amount: Int) {
+        inventory.reduceStock(of: fruit, by: amount)
+    }
 }
 
 extension FruitStore {

@@ -22,29 +22,55 @@ class StockManagerViewController: UIViewController {
         setupNavigationBar()
     }
     
+    @IBAction func changeStrawberryStock(_ sender: UIStepper) {
+        let stepperValue = Int(sender.value)
+        changeStock(of: .strawberry, by: stepperValue)
+        let fruitLabel = convertToUILabel(from: .strawberry)
+        update(fruitLabel, by: stepperValue)
+        sender.value = 0.0
+    }
+    @IBAction func changeBananaStock(_ sender: UIStepper) {
+        let stepperValue = Int(sender.value)
+        changeStock(of: .bananna, by: stepperValue)
+        let fruitLabel = convertToUILabel(from: .bananna)
+        update(fruitLabel, by: stepperValue)
+        sender.value = 0.0
+    }
+    @IBAction func changePineappleStock(_ sender: UIStepper) {
+        let stepperValue = Int(sender.value)
+        changeStock(of: .pineapple, by: stepperValue)
+        let fruitLabel = convertToUILabel(from: .pineapple)
+        update(fruitLabel, by: stepperValue)
+        sender.value = 0.0
+    }
+    @IBAction func changeKiwiStock(_ sender: UIStepper) {
+        let stepperValue = Int(sender.value)
+        changeStock(of: .kiwi, by: stepperValue)
+        let fruitLabel = convertToUILabel(from: .kiwi)
+        update(fruitLabel, by: stepperValue)
+        sender.value = 0.0
+    }
+    @IBAction func changeMangoStock(_ sender: UIStepper) {
+        let stepperValue = Int(sender.value)
+        changeStock(of: .mango, by: stepperValue)
+        let fruitLabel = convertToUILabel(from: .mango)
+        update(fruitLabel, by: stepperValue)
+        sender.value = 0.0
+    }
+    
     private func setupStockLabels() {
         let currentFruitStock = juiceMaker.retrieveCurrentFruitStock()
         let fruits = currentFruitStock.keys
         let amounts = currentFruitStock.values
         
         for (fruit, amount) in zip(fruits, amounts) {
-            updateStockLabel(of: fruit, by: amount)
+            setCurrentStockLabel(of: fruit, to: amount)
         }
     }
     
-    private func updateStockLabel(of fruit: Fruit, by amount: Int) {
-        switch fruit {
-        case .strawberry:
-            self.currentStrawberryStockLabel.text = "\(amount)"
-        case .bananna:
-            self.currentBananaStockLabel.text = "\(amount)"
-        case .pineapple:
-            self.currentPineappleStockLabel.text = "\(amount)"
-        case .kiwi:
-            self.currentKiwiStockLabel.text = "\(amount)"
-        case .mango:
-            self.currentMangoStockLabel.text = "\(amount)"
-        }
+    private func setCurrentStockLabel(of fruit: Fruit, to amount: Int) {
+        let stockLabel = convertToUILabel(from: fruit)
+        stockLabel.text = "\(amount)"
     }
     
     private func setupNavigationBar() {
@@ -58,6 +84,35 @@ class StockManagerViewController: UIViewController {
         navigationBar.isTranslucent = false
         navigationBar.items = [navigationBarItem]
         self.view.addSubview(navigationBar)
+    }
+    
+    private func changeStock(of fruit: Fruit, by amount: Int) {
+        if amount > 0 {
+            juiceMaker.increaseStock(of: fruit, by: amount)
+        } else if amount < 0 {
+            juiceMaker.reduceStock(of: fruit, by: -amount)
+        }
+    }
+    
+    private func convertToUILabel(from fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return self.currentStrawberryStockLabel
+        case .bananna:
+            return self.currentBananaStockLabel
+        case .pineapple:
+            return self.currentPineappleStockLabel
+        case .kiwi:
+            return self.currentKiwiStockLabel
+        case .mango:
+            return self.currentMangoStockLabel
+        }
+    }
+    
+    private func update(_ stockLabel: UILabel, by amount: Int) {
+        if let stockLabelText = stockLabel.text, let originalValue = Int(stockLabelText) {
+            stockLabel.text = "\(originalValue + amount)"
+        }
     }
     
     @objc

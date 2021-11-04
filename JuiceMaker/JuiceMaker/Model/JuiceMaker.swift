@@ -42,6 +42,13 @@ struct JuiceMaker {
         return fruitStore.retrieveCurrentFruitStock()
     }
     
+    func increaseStock(of fruit: Fruit, by amount: Int) {
+        fruitStore.increaseStock(of: fruit, by: amount)
+    }
+    
+    func reduceStock(of fruit: Fruit, by amount: Int) {
+        fruitStore.reduceStock(of: fruit, by: amount)
+    }
 }
 
 extension JuiceMenu {
