@@ -53,6 +53,35 @@ class StockUpdateController: UIViewController {
             stockOfFruit[.mango] = Int(mangoStepper.value)
         }
     
+    @IBAction func tapFruitStepper(_ sender: UIStepper) {
+            do {
+                guard let fruit = Fruit(rawValue: sender.tag) else {
+                    throw JuiceMakerError.invalidTagNumberForStepper
+                }
+                let stepperValue = Int(sender.value)
+                updateFruitLabel(for: fruit, stock: stepperValue)
+            } catch JuiceMakerError.invalidTagNumberForStepper {
+                print(JuiceMakerError.invalidTagNumberForStepper.description)
+            } catch {
+                print(error)
+            }
+        }
+    
+    func updateFruitLabel(for fruit: Fruit, stock: Int) {
+            switch fruit {
+            case .strawberry:
+                strawberryLabel.text = String(stock)
+            case .banana:
+                bananaLabel.text = String(stock)
+            case .pineapple:
+                pineappleLabel.text = String(stock)
+            case .kiwi:
+                kiwiLabel.text = String(stock)
+            case .mango:
+                mangoLabel.text = String(stock)
+            }
+        }
+
     @IBAction func tapExitButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }

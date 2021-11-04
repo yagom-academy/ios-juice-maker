@@ -7,13 +7,10 @@
 
 import Foundation
 
-enum Fruit: String, CaseIterable {
+enum Fruit: Int, CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
     static let initialValue = 10
     
-    var stringValue: String {
-        self.rawValue
-    }
     var description: String {
         switch self {
         case .strawberry:
