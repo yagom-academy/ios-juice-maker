@@ -49,11 +49,14 @@
 - `Access Control`
 - `MVC (Model-View-Controller)`
 - `Singleton`
-- `UILabel`, `UIButton`
+- `UILabel`, `UIButton`, `UIStepper`
 - `HIG`, `Modality`
 - `UIAlertController`, `UIAlertAction`
 - `NavigationViewController`, `bar`, `button`
 - `NotificationCenter`
+- `prepare()`
+- `Auto Layout`
+- `Dynamic Type`, `Content Priority`
 
 # Contributors
 
@@ -278,6 +281,9 @@
     ![](https://i.imgur.com/fqlvpGR.png)
     
 - 가로모드에서는 모달창을 위에서 아래로 내리는 제스처를 사용할 수 없다. (세로모드만 가능한 제스처)
+- 변수들을 따로 모아서 `enum`타입으로 구현하고 `static` 변수로 구현하여 별도로 관리하는 방법
+- `Bundle`을 활용하는 방법
+- `extension`으로 코드를 분리하여 가독성을 향상시키는 방법
 
 ## 2-5. PR 후 개선사항
 
@@ -287,6 +293,7 @@
 - Alert Action Button의 title을 `Bundle`을 활용하여 다국어를 지원하도록 개선
 - 전역변수로 선언되어있던 FruitStore init의 기본값을 `enum` 타입으로 구현하여 `static` 변수로 구현
 - Alert 메소드 내부에 있던 `handler` 클로저를 분리하여 가독성 개선
+- 오버스펙으로 구현된 부분 삭제
 
 # **STEP 3 : 재고 수정 기능구현**
 
