@@ -7,8 +7,8 @@ class EditFruitStockViewController: UIViewController {
     }
     
     fileprivate func configureNavigationButton() {
-        navigationItem.title = ""
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(hitDoneButton))
+        navigationItem.title = "재고 추가"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(hitDoneButton))
     }
     
     @objc
