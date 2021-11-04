@@ -147,11 +147,6 @@ class JuiceMakerViewController: UIViewController {
     }
 }
 
-extension Notification.Name {
-    static let fruitStockCountModified = Notification.Name("fruitStockCountModified")
-    static let receiveModifiedStock = Notification.Name("receiveModifiedStock")
-}
-
 // MARK: - Actions
 extension JuiceMakerViewController {
     @IBAction private func touchUpModifyStockButton(_ sender: UIBarButtonItem) {

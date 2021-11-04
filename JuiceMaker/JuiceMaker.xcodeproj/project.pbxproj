@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3310700B2733FF880016E8FB /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310700A2733FF880016E8FB /* Extension+Notification.swift */; };
 		33A723092722C05F00DE7269 /* SystemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A723082722C05F00DE7269 /* SystemError.swift */; };
 		53213579271EED9E0073EA48 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53213578271EED9E0073EA48 /* ServiceError.swift */; };
 		5321357B2726E2DD0073EA48 /* ModifyStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321357A2726E2DD0073EA48 /* ModifyStockViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3310700A2733FF880016E8FB /* Extension+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Notification.swift"; sourceTree = "<group>"; };
 		33A723082722C05F00DE7269 /* SystemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemError.swift; sourceTree = "<group>"; };
 		53213578271EED9E0073EA48 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		5321357A2726E2DD0073EA48 /* ModifyStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyStockViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		331070092733FF250016E8FB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3310700A2733FF880016E8FB /* Extension+Notification.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		33A723072722C04800DE7269 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				331070092733FF250016E8FB /* Extension */,
 				33A723072722C04800DE7269 /* Error */,
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
@@ -188,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3310700B2733FF880016E8FB /* Extension+Notification.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				53213579271EED9E0073EA48 /* ServiceError.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
