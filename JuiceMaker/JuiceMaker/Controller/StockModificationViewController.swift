@@ -8,10 +8,13 @@
 import UIKit
 
 class StockModificationViewController: UIViewController {
-    
     let fruitStore = FruitStore()
     
-    
+    var strawberryStock = ""
+    var bananaStock = ""
+    var pineappleStock = ""
+    var kiwiStock = ""
+    var mangoStock = ""
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -19,25 +22,16 @@ class StockModificationViewController: UIViewController {
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    private func updateFruitStockLabel() {
-        guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
-              let bananaStock = fruitStore.stock[Fruit.banana],
-              let pineappleStock = fruitStore.stock[Fruit.pineapple],
-              let kiwiStock = fruitStore.stock[Fruit.kiwi],
-              let mangoStock = fruitStore.stock[Fruit.mango] else {
-                  return
-              }
-        
-        strawberryStockLabel.text = String(strawberryStock)
-        bananaStockLabel.text = String(bananaStock)
-        pineappleStockLabel.text = String(pineappleStock)
-        kiwiStockLabel.text = String(kiwiStock)
-        mangoStockLabel.text = String(mangoStock)
+    func updateStock() {
+        strawberryStockLabel.text = strawberryStock
+        bananaStockLabel.text = bananaStock
+        pineappleStockLabel.text = pineappleStock
+        kiwiStockLabel.text = kiwiStock
+        mangoStockLabel.text = mangoStock
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        updateFruitStockLabel()
+        updateStock()
     }
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) { 

@@ -14,11 +14,11 @@ class MainViewController: UIViewController {
         updateFruitStockLabel()
     }
     
-    @IBOutlet private weak var strawberryStockLabel: UILabel!
-    @IBOutlet private weak var bananaStockLabel: UILabel!
-    @IBOutlet private weak var pineappleStockLabel: UILabel!
-    @IBOutlet private weak var kiwiStockLabel: UILabel!
-    @IBOutlet private weak var mangoStockLabel: UILabel!
+    @IBOutlet private(set) weak var strawberryStockLabel: UILabel!
+    @IBOutlet private(set) weak var bananaStockLabel: UILabel!
+    @IBOutlet private(set) weak var pineappleStockLabel: UILabel!
+    @IBOutlet private(set) weak var kiwiStockLabel: UILabel!
+    @IBOutlet private(set) weak var mangoStockLabel: UILabel!
     
     private func updateFruitStockLabel() {
         guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
@@ -96,6 +96,17 @@ class MainViewController: UIViewController {
         alert.addAction(modifyStockAction)
      
         present(alert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue" {
+            let destinationController = segue.destination as! StockModificationViewController
+            destinationController.strawberryStock = strawberryStockLabel.text ?? ""
+            destinationController.bananaStock = bananaStockLabel.text ?? ""
+            destinationController.kiwiStock = kiwiStockLabel.text ?? ""
+            destinationController.mangoStock = mangoStockLabel.text ?? ""
+            destinationController.pineappleStock = pineappleStockLabel.text ?? ""
+        }
     }
 }
 
