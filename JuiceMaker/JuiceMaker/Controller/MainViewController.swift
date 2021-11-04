@@ -88,6 +88,8 @@ class MainViewController: UIViewController {
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { (action) in
             guard let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") else { return }
             
+            self.performSegue(withIdentifier: "segue", sender: UIAlertAction.self)
+            
             self.present(nextViewController, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
@@ -108,5 +110,7 @@ class MainViewController: UIViewController {
             destinationController.pineappleStock = pineappleStockLabel.text ?? ""
         }
     }
+    
+    
 }
 
