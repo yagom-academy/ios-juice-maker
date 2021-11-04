@@ -40,7 +40,7 @@ class ModifyInventoryViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFruitCount),
-            name: NotificationCenterName.changedInventory,
+            name: .changedInventory,
             object: nil
         )
     }
@@ -85,7 +85,7 @@ class ModifyInventoryViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(
             self,
-            name: NotificationCenterName.changedInventory,
+            name: .changedInventory,
             object: nil
         )
     }

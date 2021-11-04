@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct NotificationCenterName {
-    static let changedInventory = Notification.Name("changedInventory")
+extension Notification.Name {
+    static var changedInventory: Notification.Name = Notification.Name("changedInventory")
 }

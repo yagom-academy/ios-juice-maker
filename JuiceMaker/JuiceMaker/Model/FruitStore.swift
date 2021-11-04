@@ -12,7 +12,7 @@ class FruitStore {
     
     private(set) var fruitInventory: [Fruits: Int] {
         didSet {
-            NotificationCenter.default.post(name: NotificationCenterName.changedInventory, object: nil)
+            NotificationCenter.default.post(name: .changedInventory, object: nil)
         }
     }
     

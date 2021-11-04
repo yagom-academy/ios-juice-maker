@@ -66,7 +66,7 @@ class JuiceMakerViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFruitCount),
-            name: NotificationCenterName.changedInventory,
+            name: .changedInventory,
             object: nil)
     }
     
@@ -117,7 +117,7 @@ class JuiceMakerViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(
             self,
-            name: NotificationCenterName.changedInventory,
+            name: .changedInventory,
             object: nil
         )
     }
