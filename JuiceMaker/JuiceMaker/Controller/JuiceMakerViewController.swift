@@ -7,11 +7,11 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
-    @IBOutlet var currentStrawberryStockLabel: UILabel!
-    @IBOutlet var currentBananaStockLabel: UILabel!
-    @IBOutlet var currentPineappleStockLabel: UILabel!
-    @IBOutlet var currentKiwiStockLabel: UILabel!
-    @IBOutlet var currentMangoStockLabel: UILabel!
+    @IBOutlet var strawberryStockLabel: UILabel!
+    @IBOutlet var bananaStockLabel: UILabel!
+    @IBOutlet var pineappleStockLabel: UILabel!
+    @IBOutlet var kiwiStockLabel: UILabel!
+    @IBOutlet var mangoStockLabel: UILabel!
     
     var juiceMaker: JuiceMaker!
     
@@ -85,15 +85,15 @@ class JuiceMakerViewController: UIViewController {
     private func updateStockLabel(of fruit: Fruit, by updatedAmount: Int) {
         switch fruit {
         case .strawberry:
-            self.currentStrawberryStockLabel.text = "\(updatedAmount)"
-        case .bananna:
-            self.currentBananaStockLabel.text = "\(updatedAmount)"
+            self.strawberryStockLabel.text = "\(updatedAmount)"
+        case .banana:
+            self.bananaStockLabel.text = "\(updatedAmount)"
         case .pineapple:
-            self.currentPineappleStockLabel.text = "\(updatedAmount)"
+            self.pineappleStockLabel.text = "\(updatedAmount)"
         case .kiwi:
-            self.currentKiwiStockLabel.text = "\(updatedAmount)"
+            self.kiwiStockLabel.text = "\(updatedAmount)"
         case .mango:
-            self.currentMangoStockLabel.text = "\(updatedAmount)"
+            self.mangoStockLabel.text = "\(updatedAmount)"
         }
     }
 }

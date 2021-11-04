@@ -57,13 +57,13 @@ extension JuiceMenu {
         case .strawberryJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .strawberry, amount: 16)])
         case .bananaJuice:
-            return JuiceRecipe(ingredients: [Ingredient(fruit: .bananna, amount: 2)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .banana, amount: 2)])
         case .kiwiJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .kiwi, amount: 3)])
         case .pineappleJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .pineapple, amount: 2)])
         case .strawberryBananaJuice:
-            return JuiceRecipe(ingredients: [Ingredient(fruit: .strawberry, amount: 10), Ingredient(fruit: .bananna, amount: 1)])
+            return JuiceRecipe(ingredients: [Ingredient(fruit: .strawberry, amount: 10), Ingredient(fruit: .banana, amount: 1)])
         case .mangoJuice:
             return JuiceRecipe(ingredients: [Ingredient(fruit: .mango, amount: 3)])
         case .mangoKiwiJuice:

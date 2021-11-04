@@ -8,11 +8,11 @@
 import UIKit
 
 class StockManagerViewController: UIViewController {
-    @IBOutlet var currentStrawberryStockLabel: UILabel!
-    @IBOutlet var currentBananaStockLabel: UILabel!
-    @IBOutlet var currentPineappleStockLabel: UILabel!
-    @IBOutlet var currentKiwiStockLabel: UILabel!
-    @IBOutlet var currentMangoStockLabel: UILabel!
+    @IBOutlet var strawberryStockLabel: UILabel!
+    @IBOutlet var bananaStockLabel: UILabel!
+    @IBOutlet var pineappleStockLabel: UILabel!
+    @IBOutlet var kiwiStockLabel: UILabel!
+    @IBOutlet var mangoStockLabel: UILabel!
     
     var juiceMaker: JuiceMaker!
     
@@ -24,23 +24,18 @@ class StockManagerViewController: UIViewController {
     
     @IBAction func changeStrawberryStock(_ sender: UIStepper) {
         applyChanges(from: sender, to: .strawberry)
-        sender.value = 0.0
     }
     @IBAction func changeBananaStock(_ sender: UIStepper) {
-        applyChanges(from: sender, to: .bananna)
-        sender.value = 0.0
+        applyChanges(from: sender, to: .banana)
     }
     @IBAction func changePineappleStock(_ sender: UIStepper) {
         applyChanges(from: sender, to: .pineapple)
-        sender.value = 0.0
     }
     @IBAction func changeKiwiStock(_ sender: UIStepper) {
         applyChanges(from: sender, to: .kiwi)
-        sender.value = 0.0
     }
     @IBAction func changeMangoStock(_ sender: UIStepper) {
         applyChanges(from: sender, to: .mango)
-        sender.value = 0.0
     }
     
     private func setupStockLabels() {
@@ -60,7 +55,7 @@ class StockManagerViewController: UIViewController {
     
     private func setupNavigationBar() {
         let navigationBarItem = UINavigationItem()
-        let cancel = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(dismissStockManagerVC))
+        let cancel = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(dismissStockManagerViewController))
         navigationBarItem.rightBarButtonItem = cancel
         navigationBarItem.title = "재고 수정"
         
@@ -84,6 +79,7 @@ class StockManagerViewController: UIViewController {
             return
         }
         changeStock(of: fruit, by: stepperValue)
+        stepper.value = 0.0
     }
     
     private func changeStock(of fruit: Fruit, by amount: Int) {
@@ -97,30 +93,31 @@ class StockManagerViewController: UIViewController {
     private func convertToUILabel(from fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
-            return self.currentStrawberryStockLabel
-        case .bananna:
-            return self.currentBananaStockLabel
+            return self.strawberryStockLabel
+        case .banana:
+            return self.bananaStockLabel
         case .pineapple:
-            return self.currentPineappleStockLabel
+            return self.pineappleStockLabel
         case .kiwi:
-            return self.currentKiwiStockLabel
+            return self.kiwiStockLabel
         case .mango:
-            return self.currentMangoStockLabel
+            return self.mangoStockLabel
         }
     }
     
     private func update(_ stockLabel: UILabel, by amount: Int) throws {
-        guard let stockLabelText = stockLabel.text, let originalValue = Int(stockLabelText) else {
+        guard let stockLabelText = stockLabel.text, let currentStockAmount = Int(stockLabelText) else {
             return
         }
-        guard originalValue + amount >= 0  else {
+        let newAmount = currentStockAmount + amount
+        guard newAmount >= 0 else {
             throw StockManagerError.excessiveReduction
         }
-        stockLabel.text = "\(originalValue + amount)"
+        stockLabel.text = "\(newAmount)"
     }
     
     @objc
-    private func dismissStockManagerVC() {
+    private func dismissStockManagerViewController() {
         dismiss(animated: true, completion: nil)
     }
 }

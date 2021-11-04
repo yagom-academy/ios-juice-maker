@@ -243,11 +243,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="currentBananaStockLabel" destination="gvk-pA-Lw5" id="wBi-eg-qRx"/>
-                        <outlet property="currentKiwiStockLabel" destination="FZq-de-TJG" id="Jph-Yk-3el"/>
-                        <outlet property="currentMangoStockLabel" destination="3Ce-SU-JeH" id="7lY-sc-EjI"/>
-                        <outlet property="currentPineappleStockLabel" destination="ccQ-Dk-PuY" id="gya-v1-7jM"/>
-                        <outlet property="currentStrawberryStockLabel" destination="Qas-vP-td6" id="gFB-YC-96m"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="DVB-HJ-NZM"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="rJc-fU-2Cl"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="GcU-n2-roa"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="QAi-sh-nl2"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="E4F-Xs-Ub3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -431,11 +431,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="currentBananaStockLabel" destination="gKu-86-RhI" id="qLm-xO-Foz"/>
-                        <outlet property="currentKiwiStockLabel" destination="ZDv-1m-HBY" id="vUB-pl-FrC"/>
-                        <outlet property="currentMangoStockLabel" destination="YJI-ER-LJR" id="TGM-is-lkP"/>
-                        <outlet property="currentPineappleStockLabel" destination="MpT-VW-hCb" id="Ofp-FD-bl0"/>
-                        <outlet property="currentStrawberryStockLabel" destination="0yV-kn-zaT" id="PIk-Qa-OPm"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="5h8-aY-tL9"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="oxv-kB-L4H"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="dkd-cn-mFr"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="IXj-r0-xoc"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="pcO-F8-Eyo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
