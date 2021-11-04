@@ -16,9 +16,7 @@ class EditFruitStockViewController: UIViewController {
     }
     
     private func updateStockLabel() {
-        var stringOfFruitStock: [Fruit: String]? {
-            return fruitStore?.fruitStock.mapValues { String($0) }
-        }
+        let stringOfFruitStock: [Fruit: String]? = fruitStore?.fruitStock.mapValues { String($0) }
         guard let currentStock = stringOfFruitStock else {
             return
         }
