@@ -8,13 +8,13 @@
 import UIKit
 
 class FruitLabel: UILabel {
-    var fruitID: String?
+    var kindOfFruit: Fruits?
 }
 
 class FruitStepper: UIStepper {
-    var fruitID: String?
+    var kindOfFruit: Fruits?
 }
 
 class JuiceButton: UIButton {
-    var juiceID: String?
+    var kindOfJuice: Juice?
 }

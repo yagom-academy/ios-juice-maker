@@ -18,28 +18,6 @@ enum Fruits: CaseIterable {
     var description: String {
         return String(describing: self)
     }
-    
-    func isSameKind(with fruitID: String?) -> Bool {
-        guard let fruitID = fruitID else {
-            return false
-        }
-        return self.description == fruitID
-    }
-    
-    static func findFruit(by fruitID: String) -> Fruits? {
-        if fruitID.hasPrefix("strawberry") {
-            return .strawberry
-        } else if fruitID.hasPrefix("banana") {
-            return .banana
-        } else if fruitID.hasPrefix("pineapple") {
-            return .pineapple
-        } else if fruitID.hasPrefix("kiwi") {
-            return .kiwi
-        } else if fruitID.hasPrefix("mango") {
-            return .mango
-        }
-        return nil
-    }
 }
 
 enum Juice: CaseIterable {
@@ -50,27 +28,6 @@ enum Juice: CaseIterable {
     case strawberryBananaJuice
     case mangoJuice
     case kiwiMangoJuice
-    
-    static func findJuice(juiceID: String) -> Juice? {
-        switch juiceID {
-        case "strawberryJuice":
-            return .strawberryJuice
-        case "bananaJuice":
-            return .bananaJuice
-        case "kiwiJuice":
-            return .kiwiJuice
-        case "pineappleJuice":
-            return .pineappleJuice
-        case "strawberryBananaJuice":
-            return .strawberryBananaJuice
-        case "mangoJuice":
-            return .mangoJuice
-        case "kiwiMangoJuice":
-            return .kiwiMangoJuice
-        default:
-            return nil
-        }
-    }
     
     var recipe: [Fruits: Int] {
         switch self {

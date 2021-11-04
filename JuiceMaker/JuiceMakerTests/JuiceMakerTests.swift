@@ -21,9 +21,6 @@ class JuiceMakerTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        var set = NSOrderedSet(array: [1, 2, 3])
-        XCTAssertEqual(set, [1, 2, 3])
-        
     }
 
     func testPerformanceExample() throws {

@@ -29,11 +29,8 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction private func clickOrderButton(_ sender: JuiceButton) {
         do {
-            guard let juiceID = sender.juiceID else {
+            guard let wantedJuice = sender.kindOfJuice else {
                 throw StoryboardError.notFoundID(self, "UIButton")
-            }
-            guard let wantedJuice = Juice.findJuice(juiceID: juiceID) else {
-                throw FruitError.notFoundJuice
             }
             tryOrder(juice: wantedJuice)
         } catch {
@@ -46,9 +43,7 @@ class JuiceMakerViewController: UIViewController {
             let fruits: [(emoji: String, name: Fruits)] = [("🍓", .strawberry), ("🍌", .banana), ("🍍", .pineapple), ("🥝", .kiwi), ("🥭", .mango)]
             
             fruitEmojiLabels[index].text = fruits[index].emoji
-            
-            let fruitString = fruits[index].name.description
-            fruitCountLabels[index].fruitID = fruitString
+            fruitCountLabels[index].kindOfFruit = fruits[index].name
         }
     }
     
@@ -57,7 +52,7 @@ class JuiceMakerViewController: UIViewController {
             let juiceArrange: [Juice] = [.strawberryBananaJuice, .kiwiMangoJuice, .strawberryJuice, .bananaJuice, .pineappleJuice, .kiwiJuice, .mangoJuice]
             
             button.setTitle("\(juiceArrange[index].translatedDescription) 주문", for: .normal)
-            button.juiceID = juiceArrange[index].description
+            button.kindOfJuice = juiceArrange[index]
         }
     }
     
@@ -70,7 +65,6 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func tryOrder(juice: Juice) {
-        print(juice)
         if let madejuice = juiceMaker.order(juice: juice) {
             showAlert(title: "주스 제조 완료", message: "\(madejuice.translatedDescription) 제조가 완료되었습니다.")
         } else {
@@ -97,7 +91,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             for (fruit, fruitCount) in FruitStore.shared.fruitInventory {
                 guard let fruitCountLabel = fruitCountLabels.filter({
-                    fruit.isSameKind(with: $0.fruitID) }).first else {
+                    fruit == $0.kindOfFruit }).first else {
                         throw StoryboardError.notFoundView(self, "Label")
                     }
                 fruitCountLabel.text = String(fruitCount)

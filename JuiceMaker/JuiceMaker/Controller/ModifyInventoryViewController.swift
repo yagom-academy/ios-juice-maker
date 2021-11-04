@@ -29,9 +29,9 @@ class ModifyInventoryViewController: UIViewController {
             
             fruitEmojiLabels[index].text = fruits[index].emoji
             
-            let fruitName = fruits[index].name.description
-            fruitCountLabels[index].fruitID = fruitName
-            fruitSteppers[index].fruitID = fruitName
+            let fruitName = fruits[index].name
+            fruitCountLabels[index].kindOfFruit = fruitName
+            fruitSteppers[index].kindOfFruit = fruitName
         }
     }
     
@@ -49,11 +49,11 @@ class ModifyInventoryViewController: UIViewController {
         do {
             for (fruit, count) in FruitStore.shared.fruitInventory {
                 guard let label = fruitCountLabels.filter({
-                    fruit.isSameKind(with: $0.fruitID) }).first else {
+                    fruit == $0.kindOfFruit }).first else {
                         throw StoryboardError.notFoundView(self, "Label")
                     }
                 guard let stepper = fruitSteppers.filter({
-                    fruit.isSameKind(with: $0.fruitID) }).first else {
+                    fruit == $0.kindOfFruit }).first else {
                         throw StoryboardError.notFoundView(self, "Stepper")
                     }
                 label.text = String(count)
@@ -67,7 +67,7 @@ class ModifyInventoryViewController: UIViewController {
     @IBAction private func clickStepper(_ sender: FruitStepper) {
         do {
             guard let (fruit, previousFruitCount) = FruitStore.shared.fruitInventory.filter({ (fruit, count) in
-                fruit.isSameKind(with: sender.fruitID) }).first else {
+                fruit == sender.kindOfFruit }).first else {
                     throw StoryboardError.notFoundView(self, "Stepper")
                 }
             
