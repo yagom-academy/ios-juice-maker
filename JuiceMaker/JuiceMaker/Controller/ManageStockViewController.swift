@@ -9,7 +9,7 @@ import UIKit
 
 class ManageStockViewController: UIViewController {
 
-    var deliverdAllStock = [String]()
+    var deliverdAllStock = ["0", "0", "0", "0", "0"]
     var juiceMaker: JuiceMaker?
     
     @IBOutlet var fruitQuantityLabels: [UILabel]!
