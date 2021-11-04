@@ -30,7 +30,7 @@ class JuiceMakerViewController: UIViewController {
     @IBAction private func clickOrderButton(_ sender: JuiceButton) {
         do {
             guard let wantedJuice = sender.kindOfJuice else {
-                throw StoryboardError.notFoundID(self, "UIButton")
+                throw StoryboardError.notFoundID(self, .button)
             }
             tryOrder(juice: wantedJuice)
         } catch {
@@ -92,7 +92,7 @@ class JuiceMakerViewController: UIViewController {
             for (fruit, fruitCount) in FruitStore.shared.fruitInventory {
                 guard let fruitCountLabel = fruitCountLabels.filter({
                     fruit == $0.kindOfFruit }).first else {
-                        throw StoryboardError.notFoundView(self, "Label")
+                        throw StoryboardError.notFoundView(self, .label)
                     }
                 fruitCountLabel.text = String(fruitCount)
             }

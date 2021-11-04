@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum FruitError: LocalizedError {
     case notFoundJuice
@@ -22,8 +23,8 @@ enum FruitError: LocalizedError {
 }
 
 enum StoryboardError: LocalizedError {
-    case notFoundView(AnyObject,String)
-    case notFoundID(AnyObject,String)
+    case notFoundView(AnyObject, UIViews)
+    case notFoundID(AnyObject, UIViews)
     
     var errorDescription: String? {
         switch self {
@@ -38,5 +39,13 @@ enum StoryboardError: LocalizedError {
                     StoryBoard의 \(viewID)을 찾을 수 없습니다.
                    """
         }
+    }
+}
+
+enum UIViews {
+    case button, label, stepper
+    
+    var description: String {
+        return String(describing: self)
     }
 }

@@ -50,11 +50,11 @@ class ModifyInventoryViewController: UIViewController {
             for (fruit, count) in FruitStore.shared.fruitInventory {
                 guard let label = fruitCountLabels.filter({
                     fruit == $0.kindOfFruit }).first else {
-                        throw StoryboardError.notFoundView(self, "Label")
+                        throw StoryboardError.notFoundView(self, .label)
                     }
                 guard let stepper = fruitSteppers.filter({
                     fruit == $0.kindOfFruit }).first else {
-                        throw StoryboardError.notFoundView(self, "Stepper")
+                        throw StoryboardError.notFoundView(self, .stepper)
                     }
                 label.text = String(count)
                 stepper.value = Double(count)
@@ -68,7 +68,7 @@ class ModifyInventoryViewController: UIViewController {
         do {
             guard let (fruit, previousFruitCount) = FruitStore.shared.fruitInventory.filter({ (fruit, count) in
                 fruit == sender.kindOfFruit }).first else {
-                    throw StoryboardError.notFoundView(self, "Stepper")
+                    throw StoryboardError.notFoundView(self, .stepper)
                 }
             
             if previousFruitCount - Int(sender.value) > 0 {
