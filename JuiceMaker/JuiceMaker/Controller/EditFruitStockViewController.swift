@@ -3,9 +3,36 @@ import UIKit
 class EditFruitStockViewController: UIViewController {
     private var juiceMaker: JuiceMaker?
     
+    @IBOutlet var stockOfStrawberryLabel: UILabel!
+    @IBOutlet var stockOfBananaLabel: UILabel!
+    @IBOutlet var stockOfPineappleLabel: UILabel!
+    @IBOutlet var stockOfKiwiLabel: UILabel!
+    @IBOutlet var stockOfMangoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationButton()
+        updateStockLabel()
+    }
+    
+    private func updateStockLabel() {
+        guard let currentStock = juiceMaker?.stringOfFruitStock else {
+            return
+        }
+        for (fruit, stock) in currentStock {
+            switch fruit {
+            case .strawberry:
+                stockOfStrawberryLabel.text = stock
+            case .banana:
+                stockOfBananaLabel.text = stock
+            case .pineapple:
+                stockOfPineappleLabel.text = stock
+            case .kiwi:
+                stockOfKiwiLabel.text = stock
+            case .mango:
+                stockOfMangoLabel.text = stock
+            }
+        }
     }
     
     fileprivate func configureNavigationButton() {

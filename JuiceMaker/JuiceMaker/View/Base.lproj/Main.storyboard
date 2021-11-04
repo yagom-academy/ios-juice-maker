@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -417,6 +417,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0G8-HJ-aVL"/>
+                    <connections>
+                        <outlet property="stockOfBananaLabel" destination="gKu-86-RhI" id="JSw-Ji-cXx"/>
+                        <outlet property="stockOfKiwiLabel" destination="ZDv-1m-HBY" id="qX6-Aa-97R"/>
+                        <outlet property="stockOfMangoLabel" destination="YJI-ER-LJR" id="SWf-52-sdO"/>
+                        <outlet property="stockOfPineappleLabel" destination="MpT-VW-hCb" id="QhW-Kf-0ga"/>
+                        <outlet property="stockOfStrawberryLabel" destination="0yV-kn-zaT" id="ogg-zx-dRo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
