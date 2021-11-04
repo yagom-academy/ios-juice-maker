@@ -7,16 +7,18 @@
 import Foundation
 
 class FruitStore {
-   
-    var count: Int = 0
     
-    private(set) var fruitInventory: [Fruits: Int] {
+    private(set) var fruitInventory: [Fruits: Int] = [:] {
         didSet {
             NotificationCenter.default.post(name: .changedInventory, object: nil)
         }
     }
     
-    static let shared = FruitStore()
+    static var shared = FruitStore() {
+        didSet {
+            NotificationCenter.default.post(name: .changedInventory, object: nil)
+        }
+    }
     
     private init(defaultStock: Int) {
         fruitInventory = Dictionary(uniqueKeysWithValues: zip(Fruits.allCases, Fruits.allCases.map { _ in defaultStock }))
@@ -24,6 +26,10 @@ class FruitStore {
     
     private convenience init() {
         self.init(defaultStock: 10)
+    }
+    
+    static func resetInventory(By defaultStock: Int) {
+        shared = FruitStore(defaultStock: defaultStock)
     }
     
     func add(fruit: Fruits, of count: Int) {
