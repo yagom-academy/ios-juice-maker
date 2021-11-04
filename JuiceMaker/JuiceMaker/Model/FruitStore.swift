@@ -7,23 +7,29 @@
 import Foundation
 
 class FruitStore {
-    enum Fruits: CaseIterable {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
+    
+    private(set) var fruitInventory: [Fruits: Int] {
+        didSet {
+            NotificationCenter.default.post(name: .changedInventory, object: nil)
+        }
     }
     
-    private var fruitInventory: [Fruits: Int]
-    
-    init(defaultStock: Int) {
-        self.fruitInventory = [:]
-        Fruits.allCases.forEach { fruitInventory[$0] = defaultStock }
+    static var shared = FruitStore() {
+        didSet {
+            NotificationCenter.default.post(name: .changedInventory, object: nil)
+        }
     }
     
-    convenience init() {
+    private init(defaultStock: Int) {
+        fruitInventory = Dictionary(uniqueKeysWithValues: zip(Fruits.allCases, Fruits.allCases.map { _ in defaultStock }))
+    }
+    
+    private convenience init() {
         self.init(defaultStock: 10)
+    }
+    
+    static func resetInventory(By defaultStock: Int) {
+        shared = FruitStore(defaultStock: defaultStock)
     }
     
     func add(fruit: Fruits, of count: Int) {
