@@ -36,10 +36,6 @@ class JuiceMakerViewController: UIViewController {
         mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
     }
     
-    func currentStock() {
-        
-    }
-    
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         let order = sender.currentTitle?.components(separatedBy: " ").first ?? ""
         

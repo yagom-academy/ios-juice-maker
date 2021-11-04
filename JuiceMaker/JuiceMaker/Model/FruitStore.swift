@@ -64,10 +64,8 @@ class FruitStore {
         stock = calculatedStock
     }
     
-    func add(fruit: Fruit, quantity: Int = 1) {
-        if let fruitCount = stock[fruit] {
-            stock.updateValue(fruitCount + quantity, forKey: fruit)
-        }
+    func updateStock(fruit: Fruit, quantity: Int) {
+        stock.updateValue(quantity, forKey: fruit)
     }
         
     private func checkOutOfStock(_ calculatedStock: [Fruit: Int]) throws {

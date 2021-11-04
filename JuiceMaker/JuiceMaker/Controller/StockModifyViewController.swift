@@ -23,10 +23,10 @@ class StockModifyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initJuiceMakerViewController()
+        initStockModifyViewController()
     }
     
-    func initJuiceMakerViewController() {
+    func initStockModifyViewController() {
         NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
     }
 
@@ -44,23 +44,23 @@ class StockModifyViewController: UIViewController {
     }
 
     @IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.add(fruit: .strawberry)
+        FruitStore.shared.updateStock(fruit: .strawberry, quantity: Int(sender.value))
     }
     
     @IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.add(fruit: .banana)
+        FruitStore.shared.updateStock(fruit: .banana, quantity: Int(sender.value))
     }
     
     @IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.add(fruit: .pineapple)
+        FruitStore.shared.updateStock(fruit: .pineapple, quantity: Int(sender.value))
     }
     
     @IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.add(fruit: .kiwi)
+        FruitStore.shared.updateStock(fruit: .kiwi, quantity: Int(sender.value))
     }
     
     @IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
-        FruitStore.shared.add(fruit: .mango)
+        FruitStore.shared.updateStock(fruit: .mango, quantity: Int(sender.value))
     }
 
 }
