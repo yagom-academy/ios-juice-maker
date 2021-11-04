@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Juice: String {
+enum Juice {
     typealias JuiceIngredient = Int
     
     case strawberryJuice

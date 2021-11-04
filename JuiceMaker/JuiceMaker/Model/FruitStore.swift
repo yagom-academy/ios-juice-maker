@@ -7,10 +7,11 @@
 import Foundation
 
 class FruitStore {
-    typealias Inventory = [Fruit: Int]
+    typealias JuiceIngredient = Int
+    typealias Inventory = [Fruit: JuiceIngredient]
     
     private(set) var fruits: Inventory = [:]
-    let defaultStock = 10
+    private let defaultStock = 10
     
     enum Fruit: CaseIterable {
         case strawberry
