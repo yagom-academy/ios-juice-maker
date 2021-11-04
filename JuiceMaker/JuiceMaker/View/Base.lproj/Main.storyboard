@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -244,10 +244,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="3ci-nn-pKM"/>
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="ek4-8Z-blD"/>
+                        <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="kwY-vz-Yok"/>
                         <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="HNi-8f-eq9"/>
+                        <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="KgX-nm-FFb"/>
+                        <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="w0b-Nj-uuf"/>
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="2h5-3A-Bpx"/>
+                        <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="nYq-eD-EcA"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="Joh-T7-tuM"/>
+                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="MKs-6r-T4E"/>
+                        <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="4AW-4J-ZaZ"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="VdA-IS-ZXe"/>
                     </connections>
                 </viewController>

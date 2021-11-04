@@ -14,15 +14,25 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initJuiceMakerViewController()
     }
     
     func initJuiceMakerViewController() {
         changeStockLabel()
+        adjustOrderButtonTitle()
         
         NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
     }
@@ -34,6 +44,16 @@ class JuiceMakerViewController: UIViewController {
         pineappleStockLabel.text =  FruitStore.shared.showStock(of: .pineapple)
         kiwiStockLabel.text =  FruitStore.shared.showStock(of: .kiwi)
         mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
+    }
+    
+    func adjustOrderButtonTitle() {
+        strawberryBananaJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        mangoKiwiJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        strawberryJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        bananaJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        pineappleJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        kiwiJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        mangoJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
