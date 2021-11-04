@@ -91,7 +91,7 @@ class JuiceMakerViewController: UIViewController {
                 completion: nil)
     }
     
-    func makeCurrentAllStock() -> [String] {
+    func currentAllStocks() -> [String] {
         var currentAllStock = [String]()
         
         for index in 0...fruitQuatityLabels.count - 1 {
@@ -104,7 +104,7 @@ class JuiceMakerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination.children.first is ManageStockViewController {
             let manageStockViewController = segue.destination.children.first as? ManageStockViewController
-            manageStockViewController?.deliverdAllStock = makeCurrentAllStock()
+            manageStockViewController?.deliverdAllStock = currentAllStocks()
             manageStockViewController?.juiceMaker = self.juiceMaker
         }
     }
@@ -116,7 +116,7 @@ class JuiceMakerViewController: UIViewController {
         
         let manageStockViewController = instantiatedViewController.children.first as? ManageStockViewController
         
-        manageStockViewController?.deliverdAllStock = makeCurrentAllStock()
+        manageStockViewController?.deliverdAllStock = currentAllStocks()
         manageStockViewController?.juiceMaker = self.juiceMaker
         
         self.present(instantiatedViewController, animated: true)
