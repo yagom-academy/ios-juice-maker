@@ -47,7 +47,7 @@ class JuiceMakerViewController: UIViewController {
             
             fruitEmojiLabels[index].text = fruits[index].emoji
             
-            let fruitString = fruits[index].name.descriptionEN
+            let fruitString = fruits[index].name.description
             fruitCountLabels[index].fruitID = fruitString
         }
     }
@@ -56,8 +56,8 @@ class JuiceMakerViewController: UIViewController {
         for (index, button) in juiceOrderButtons.enumerated() {
             let juiceArrange: [Juice] = [.strawberryBananaJuice, .kiwiMangoJuice, .strawberryJuice, .bananaJuice, .pineappleJuice, .kiwiJuice, .mangoJuice]
             
-            button.setTitle("\(juiceArrange[index].descriptionKR) 주문", for: .normal)
-            button.juiceID = juiceArrange[index].descriptionEN
+            button.setTitle("\(juiceArrange[index].translatedDescription) 주문", for: .normal)
+            button.juiceID = juiceArrange[index].description
         }
     }
     
@@ -72,7 +72,7 @@ class JuiceMakerViewController: UIViewController {
     private func tryOrder(juice: Juice) {
         print(juice)
         if let madejuice = juiceMaker.order(juice: juice) {
-            showAlert(title: "주스 제조 완료", message: "\(madejuice.descriptionKR) 제조가 완료되었습니다.")
+            showAlert(title: "주스 제조 완료", message: "\(madejuice.translatedDescription) 제조가 완료되었습니다.")
         } else {
             showAlert(title: "주스 제조 실패", message: "재료가 모자라요. 재고를 수정할까요?") { _ in
                 self.presentModifyView()

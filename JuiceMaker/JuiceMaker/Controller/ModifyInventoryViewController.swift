@@ -29,7 +29,7 @@ class ModifyInventoryViewController: UIViewController {
             
             fruitEmojiLabels[index].text = fruits[index].emoji
             
-            let fruitName = fruits[index].name.descriptionEN
+            let fruitName = fruits[index].name.description
             fruitCountLabels[index].fruitID = fruitName
             fruitSteppers[index].fruitID = fruitName
         }

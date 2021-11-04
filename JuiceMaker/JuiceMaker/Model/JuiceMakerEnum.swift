@@ -15,7 +15,7 @@ enum Fruits: CaseIterable {
     case kiwi
     case mango
     
-    var descriptionEN: String {
+    var description: String {
         return String(describing: self)
     }
     
@@ -23,7 +23,7 @@ enum Fruits: CaseIterable {
         guard let fruitID = fruitID else {
             return false
         }
-        return self.descriptionEN == fruitID
+        return self.description == fruitID
     }
     
     static func findFruit(by fruitID: String) -> Fruits? {
@@ -91,11 +91,11 @@ enum Juice: CaseIterable {
         }
     }
 
-    var descriptionEN: String {
+    var description: String {
         return String(describing: self)
     }
     
-    var descriptionKR: String {
+    var translatedDescription: String {
         switch self {
         case .strawberryJuice:
             return "딸기 주스"
