@@ -67,14 +67,14 @@ class MainViewController: UIViewController {
     private func order(juice: Juice) {
         do {
             try fruitStore.consumeStock(with: juice)
-            showSuccessfulOrderAlert(message: "\(juiceMaker.tell(name: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
+            showOrderSuccessAlert(message: "\(juiceMaker.tell(name: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
             updateFruitStockLabel()
         } catch {
             showNoExistStockAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
-    private func showSuccessfulOrderAlert(message: String) {
+    private func showOrderSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
         
