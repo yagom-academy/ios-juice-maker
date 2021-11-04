@@ -33,11 +33,18 @@ class ManageStockViewController: UIViewController {
         var labelTexts = [String]()
         
         for label in fruitQuantityLabels {
-            labelTexts.append(String(label.text ?? "0"))
+            guard let labelText = label.text else {
+                return
+            }
+            
+            labelTexts.append(labelText)
         }
         
         for index in 0...fruitQuantityLabels.count - 1 {
-            fruitQuantitySteppers[index].value = Double(Int(labelTexts[index]) ?? 0)
+            guard let labelTextsIndex = Int(labelTexts[index]) else {
+                return
+            }
+            fruitQuantitySteppers[index].value = Double(labelTextsIndex)
         }
     }
     
