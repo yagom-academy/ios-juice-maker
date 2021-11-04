@@ -25,28 +25,10 @@ class StockUpdateController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStockOfFruitLabel()
         setStock()
     }
     
-    func setStockOfFruitLabel() {
-        stockOfFruit.forEach({ (fruit, stock) in
-            switch fruit {
-            case .strawberry:
-                strawberryLabel.text = String(stock)
-            case .banana:
-                bananaLabel.text = String(stock)
-            case .pineapple:
-                pineappleLabel.text = String(stock)
-            case .kiwi:
-                kiwiLabel.text = String(stock)
-            case .mango:
-                mangoLabel.text = String(stock)
-            }
-        })
-    }
-    
-    func updateModel() {
+    func updateFruitStock() {
         stockOfFruit[.strawberry] = Int(strawberryStepper.value)
         stockOfFruit[.banana] = Int(bananaStepper.value)
         stockOfFruit[.pineapple] = Int(pineappleStepper.value)
@@ -106,7 +88,7 @@ class StockUpdateController: UIViewController {
     }
 
     @IBAction func tapExitButton(_ sender: UIBarButtonItem) {
-        updateModel()
+        updateFruitStock()
         notificationCenter.post(name: Notification.Name.stockModified,
                                 object: nil,
                                 userInfo: [NotificationKey.stockOfFruit: self.stockOfFruit])
