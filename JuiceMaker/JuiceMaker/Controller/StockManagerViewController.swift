@@ -23,38 +23,23 @@ class StockManagerViewController: UIViewController {
     }
     
     @IBAction func changeStrawberryStock(_ sender: UIStepper) {
-        let stepperValue = Int(sender.value)
-        changeStock(of: .strawberry, by: stepperValue)
-        let fruitLabel = convertToUILabel(from: .strawberry)
-        update(fruitLabel, by: stepperValue)
+        applyChanges(from: sender, to: .strawberry)
         sender.value = 0.0
     }
     @IBAction func changeBananaStock(_ sender: UIStepper) {
-        let stepperValue = Int(sender.value)
-        changeStock(of: .bananna, by: stepperValue)
-        let fruitLabel = convertToUILabel(from: .bananna)
-        update(fruitLabel, by: stepperValue)
+        applyChanges(from: sender, to: .bananna)
         sender.value = 0.0
     }
     @IBAction func changePineappleStock(_ sender: UIStepper) {
-        let stepperValue = Int(sender.value)
-        changeStock(of: .pineapple, by: stepperValue)
-        let fruitLabel = convertToUILabel(from: .pineapple)
-        update(fruitLabel, by: stepperValue)
+        applyChanges(from: sender, to: .pineapple)
         sender.value = 0.0
     }
     @IBAction func changeKiwiStock(_ sender: UIStepper) {
-        let stepperValue = Int(sender.value)
-        changeStock(of: .kiwi, by: stepperValue)
-        let fruitLabel = convertToUILabel(from: .kiwi)
-        update(fruitLabel, by: stepperValue)
+        applyChanges(from: sender, to: .kiwi)
         sender.value = 0.0
     }
     @IBAction func changeMangoStock(_ sender: UIStepper) {
-        let stepperValue = Int(sender.value)
-        changeStock(of: .mango, by: stepperValue)
-        let fruitLabel = convertToUILabel(from: .mango)
-        update(fruitLabel, by: stepperValue)
+        applyChanges(from: sender, to: .mango)
         sender.value = 0.0
     }
     
@@ -84,6 +69,13 @@ class StockManagerViewController: UIViewController {
         navigationBar.isTranslucent = false
         navigationBar.items = [navigationBarItem]
         self.view.addSubview(navigationBar)
+    }
+    
+    private func applyChanges(from stepper: UIStepper, to fruit: Fruit) {
+        let stepperValue = Int(stepper.value)
+        changeStock(of: fruit, by: stepperValue)
+        let fruitLabel = convertToUILabel(from: fruit)
+        update(fruitLabel, by: stepperValue)
     }
     
     private func changeStock(of fruit: Fruit, by amount: Int) {
