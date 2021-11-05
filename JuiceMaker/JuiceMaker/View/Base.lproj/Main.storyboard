@@ -244,10 +244,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaOrderButton" destination="y2A-PH-DJY" id="yQw-3S-KtD"/>
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="pvs-9E-IAH"/>
+                        <outlet property="kiwiOrderButton" destination="wcW-7H-RXw" id="d3l-Am-RVn"/>
                         <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="eNq-LZ-slf"/>
+                        <outlet property="mangoKiwiOrderButton" destination="ngP-kF-Yii" id="7yM-Bh-Hcy"/>
+                        <outlet property="mangoOrderButton" destination="q6G-4X-bVm" id="gw8-F2-2H5"/>
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="AM6-rl-2Hq"/>
+                        <outlet property="pineappleOrderButton" destination="BFb-ka-wGA" id="biu-qs-NEg"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="2fj-ib-E3V"/>
+                        <outlet property="strawberryBananaOrderButton" destination="hrc-2F-fzl" id="N9d-nK-rYJ"/>
+                        <outlet property="strawberryOrderButton" destination="avd-o5-3JM" id="mrn-Xe-jHr"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="FCO-03-k7D"/>
                     </connections>
                 </viewController>
@@ -428,7 +435,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vak-up-EAv">
-                                <rect key="frame" x="723.66666666666663" y="5" width="66.333333333333371" height="20"/>
+                                <rect key="frame" x="713.66666666666663" y="5" width="66.333333333333371" height="20"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="닫기">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -444,10 +451,10 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="centerY" secondItem="gcO-Xb-kNs" secondAttribute="centerY" multiplier="0.8" id="5ch-jk-vN4"/>
                             <constraint firstItem="vak-up-EAv" firstAttribute="top" secondItem="Wgd-rH-uzr" secondAttribute="top" id="6nP-yF-Ypp"/>
                             <constraint firstItem="D7X-vx-u60" firstAttribute="height" relation="greaterThanOrEqual" secondItem="tKV-4l-Vtc" secondAttribute="height" multiplier="50%" id="BqZ-BL-CNM"/>
-                            <constraint firstItem="vak-up-EAv" firstAttribute="leading" secondItem="Wgd-rH-uzr" secondAttribute="trailing" constant="270" id="Gd2-NH-jwi"/>
+                            <constraint firstItem="vak-up-EAv" firstAttribute="leading" secondItem="Wgd-rH-uzr" secondAttribute="trailing" priority="750" constant="260" id="Gd2-NH-jwi"/>
                             <constraint firstItem="Wgd-rH-uzr" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="J84-IM-AcO"/>
                             <constraint firstItem="D7X-vx-u60" firstAttribute="top" secondItem="Wgd-rH-uzr" secondAttribute="bottom" constant="25" id="VY5-nt-m6K"/>
-                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="vak-up-EAv" secondAttribute="trailing" constant="10" id="aWz-eg-HIo"/>
+                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="vak-up-EAv" secondAttribute="trailing" constant="20" id="aWz-eg-HIo"/>
                             <constraint firstItem="Wgd-rH-uzr" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" constant="5" id="dIH-tv-Fu5"/>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="D7X-vx-u60" secondAttribute="trailing" constant="16" id="gIn-hC-xs8"/>
                             <constraint firstItem="vak-up-EAv" firstAttribute="bottom" secondItem="Wgd-rH-uzr" secondAttribute="bottom" id="ofh-Nd-KL1"/>
