@@ -18,13 +18,13 @@ class MainViewController: UIViewController {
         adjustButtonFontSize()
     }
     
-    @IBOutlet weak var strawberryBananaOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiOrderButton: UIButton!
-    @IBOutlet weak var strawberryOrderButton: UIButton!
-    @IBOutlet weak var bananaOrderButton: UIButton!
-    @IBOutlet weak var pineappleOrderButton: UIButton!
-    @IBOutlet weak var kiwiOrderButton: UIButton!
-    @IBOutlet weak var mangoOrderButton: UIButton!
+    @IBOutlet private(set) weak var strawberryBananaOrderButton: UIButton!
+    @IBOutlet private(set) weak var mangoKiwiOrderButton: UIButton!
+    @IBOutlet private(set) weak var strawberryOrderButton: UIButton!
+    @IBOutlet private(set) weak var bananaOrderButton: UIButton!
+    @IBOutlet private(set) weak var pineappleOrderButton: UIButton!
+    @IBOutlet private(set) weak var kiwiOrderButton: UIButton!
+    @IBOutlet private(set) weak var mangoOrderButton: UIButton!
     
     @IBOutlet private(set) weak var strawberryStockLabel: UILabel!
     @IBOutlet private(set) weak var bananaStockLabel: UILabel!
@@ -123,7 +123,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func adjustButtonFontSize() {
+    private func adjustButtonFontSize() {
         if strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
             strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
             strawberryBananaOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
