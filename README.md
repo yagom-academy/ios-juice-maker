@@ -20,6 +20,7 @@
     + [의문점](#3-2-의문점)
     + [Trouble Shooting](#3-3-Trouble-Shooting)
     + [배운 개념](#3-4-배운-개념)
+    + [PR 후 개선사항](#3-5-PR-후-개선사항)
 
 
 # 📝 동기화 메모장
@@ -382,3 +383,9 @@
     guard let nextViewController = navigationController.topViewController as? FruitStoreViewController else { return }
     nextViewController.strawberryStockLabel.text = strawberryStockLabel.text
     ```
+## 3-5. PR 후 개선사항
+
+- 메소드명이 동사로 시작하도록 개선
+- `Singleton`을 제거
+- 화면간 데이터 전달 방식을 `NotificationCenter`를 활용하는 것으로 전체적인 수정
+- `extension`을 활용하여 코드를 간결화
