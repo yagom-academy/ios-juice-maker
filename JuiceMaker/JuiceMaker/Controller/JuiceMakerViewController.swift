@@ -36,21 +36,13 @@ class JuiceMakerViewController: UIViewController {
 // MARK: - Setup Label and Button
 extension JuiceMakerViewController {
     func setUpbuttonLabelFontAttributes() {
-        orderStrawberryBananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        orderMangoKiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        orderStrawberryJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        orderBananaJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        orderPineappleJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        orderKiwiJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        orderMangoJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        
-        orderStrawberryBananaJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        orderMangoKiwiJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        orderStrawberryJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        orderBananaJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        orderPineappleJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        orderKiwiJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        orderMangoJuiceButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderStrawberryBananaJuiceButton.setUpTitleLabelFontAttributes()
+        orderMangoKiwiJuiceButton.setUpTitleLabelFontAttributes()
+        orderStrawberryJuiceButton.setUpTitleLabelFontAttributes()
+        orderBananaJuiceButton.setUpTitleLabelFontAttributes()
+        orderPineappleJuiceButton.setUpTitleLabelFontAttributes()
+        orderKiwiJuiceButton.setUpTitleLabelFontAttributes()
+        orderMangoJuiceButton.setUpTitleLabelFontAttributes()
     }
     
     func updateFruitLabels() {
