@@ -109,7 +109,7 @@ class JuiceMakerViewController: UIViewController {
     private func presentNotEnoughStockAlert() {
         let notEnoughStockAlert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { _ in
-            self.presentModifyStockViewController()
+            self.presentModifyStockViewController(stock: self.juiceMaker.store.stock)
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
@@ -119,8 +119,14 @@ class JuiceMakerViewController: UIViewController {
         self.present(notEnoughStockAlert, animated: true, completion: nil)
     }
     
-    private func presentModifyStockViewController() {
-        self.performSegue(withIdentifier: "toModifyStockViewController", sender: nil)
+    private func presentModifyStockViewController(stock: [FruitStore.Fruit: Int]) {
+        let modifyStockStoryboard = UIStoryboard(name: "ModifyStock", bundle: nil)
+        let modifyStockViewController = modifyStockStoryboard.instantiateViewController(identifier: "ModifyStockViewController") { coder in
+            return ModifyStockViewController(coder: coder, receivedStock: stock)
+        }
+        
+        let modifyStockNavigationController = UINavigationController(rootViewController: modifyStockViewController)
+        self.present(modifyStockNavigationController, animated: true, completion: nil)
     }
     
     @objc private func updateWithModifiedStock(notification: Notification) {
@@ -130,27 +136,12 @@ class JuiceMakerViewController: UIViewController {
         
         juiceMaker.store.updateStock(newStock: modifiedStock)
     }
-    
-    // MARK: Overridden Methods
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toModifyStockViewController" {
-            guard let destinationNavigationController = segue.destination as? UINavigationController else {
-                return
-            }
-            
-            guard let modifyStockViewController = destinationNavigationController.topViewController as? ModifyStockViewController else {
-                return
-            }
-            
-            modifyStockViewController.modifiedStock = juiceMaker.store.stock
-        }
-    }
 }
 
 // MARK: - Actions
 extension JuiceMakerViewController {
     @IBAction private func touchUpModifyStockButton(_ sender: UIBarButtonItem) {
-        presentModifyStockViewController()
+        presentModifyStockViewController(stock: juiceMaker.store.stock)
     }
     
     @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {

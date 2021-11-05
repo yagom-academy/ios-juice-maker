@@ -255,20 +255,11 @@
                         <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="W4h-3d-DdI"/>
                         <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="1Ae-5s-EFj"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="ZXV-ZU-cBB"/>
-                        <segue destination="sKH-np-d1s" kind="presentation" identifier="toModifyStockViewController" id="pAy-IA-tNx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="762.72321428571422" y="92.753623188405811"/>
-        </scene>
-        <!--ModifyStockViewController-->
-        <scene sceneID="gk6-Zm-wjX">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ModifyStock" referencedIdentifier="ModifyStockViewController" id="sKH-np-d1s" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FsL-lr-3ut" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1287" y="92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">

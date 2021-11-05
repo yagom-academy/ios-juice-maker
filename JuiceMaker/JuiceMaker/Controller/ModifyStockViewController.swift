@@ -9,7 +9,7 @@ import UIKit
 
 class ModifyStockViewController: UIViewController {
     // MARK: Properties
-    var modifiedStock: [FruitStore.Fruit:Int]?
+    var modifiedStock: [FruitStore.Fruit:Int]
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -30,6 +30,15 @@ class ModifyStockViewController: UIViewController {
         initializeAllStepper()
     }
     
+    init?(coder: NSCoder, receivedStock: [FruitStore.Fruit:Int]) {
+        self.modifiedStock = receivedStock
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: Private methods
     private func updateAllStockLabels() {
         let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
@@ -44,7 +53,7 @@ class ModifyStockViewController: UIViewController {
             return
         }
         
-        guard let currentStockCount = modifiedStock?[fruit] else {
+        guard let currentStockCount = modifiedStock[fruit] else {
             return
         }
         
@@ -81,7 +90,7 @@ class ModifyStockViewController: UIViewController {
             return
         }
         
-        guard let currentStockCount = modifiedStock?[fruit] else {
+        guard let currentStockCount = modifiedStock[fruit] else {
             return
         }
         
@@ -111,11 +120,7 @@ class ModifyStockViewController: UIViewController {
 // MARK: - Actions
 extension ModifyStockViewController {
     @IBAction private func touchUpCancelButton(_ sender: UIButton) {
-        guard let stock = modifiedStock else {
-            return
-        }
-        
-        NotificationCenter.default.post(name: .receiveModifiedStock, object: nil, userInfo: ["modifiedStock": stock])
+        NotificationCenter.default.post(name: .receiveModifiedStock, object: nil, userInfo: ["modifiedStock": modifiedStock])
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -124,7 +129,7 @@ extension ModifyStockViewController {
             return
         }
         
-        modifiedStock?.updateValue(Int(stepper.value), forKey: fruit)
+        modifiedStock.updateValue(Int(stepper.value), forKey: fruit)
         updateStockLabel(with: label)
     }
 }
