@@ -114,9 +114,11 @@
     - 6. Auto Layout
       
         Auto Layout은 뷰 계층 구조에 있는 모든 뷰의 크기와 위치를 해당 뷰에 적용된 제약 조건 기반의 동적인 계산을 하는 것을 말한다.
-      
-        ![Imgur](https://i.imgur.com/9eh2nsu.png)
-      
+  
+       ![2021-11-05_1 57 57](https://user-images.githubusercontent.com/83689084/140465220-f47cc766-b6fd-4b26-931f-21ac9fb6e947.png).
+
+
+        
 
 ---
 
