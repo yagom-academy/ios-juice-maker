@@ -39,15 +39,7 @@ class JuiceOrderViewController: UIViewController {
 // MARK: - IBAction Method
 extension JuiceOrderViewController {
     @IBAction private func juiceOrderButtonDidTap(_ sender: UIButton) {
-        do {
-            let juice = try juiceMenu(for: sender)
-            try juiceMaker.makeJuice(menu: juice)
-            showSuccessAlert(juiceMenu: juice)
-        } catch FruitStoreError.stockShortage {
-            showFailureAlert()
-        } catch let error {
-            showErrorAlert(error: error)
-        }
+        orderJuice(button: sender)
     }
 
     @IBAction private func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
@@ -95,8 +87,6 @@ extension JuiceOrderViewController {
 // MARK: - Model Method
 extension JuiceOrderViewController {
     private func juiceMenu(for button: UIButton) throws -> JuiceMenu {
-        print(button.isEqual(strawberryJuiceOrderButton))
-        print(button == strawberryJuiceOrderButton)
         switch button {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBanana
@@ -110,10 +100,22 @@ extension JuiceOrderViewController {
             return .pineapple
         case kiwiJuiceOrderButton:
             return .kiwi
-        case mangoKiwiJuiceOrderButton:
+        case mangoJuiceOrderButton:
             return .mango
         default:
             throw JuiceOrderError.invalidJuiceOrder
+        }
+    }
+    
+    private func orderJuice(button: UIButton) {
+        do {
+            let juice = try juiceMenu(for: button)
+            try juiceMaker.makeJuice(menu: juice)
+            showSuccessAlert(juiceMenu: juice)
+        } catch FruitStoreError.stockShortage {
+            showFailureAlert()
+        } catch let error {
+            showErrorAlert(error: error)
         }
     }
 }
