@@ -9,24 +9,24 @@ import UIKit
 
 class StockModifyViewController: UIViewController {
 
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel!
+    @IBOutlet weak private var bananaStockLabel: UILabel!
+    @IBOutlet weak private var pineappleStockLabel: UILabel!
+    @IBOutlet weak private var kiwiStockLabel: UILabel!
+    @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initStockModifyViewController()
     }
     
-    func initStockModifyViewController() {
+    private func initStockModifyViewController() {
         NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
         
         changeStockLabel()
@@ -34,7 +34,7 @@ class StockModifyViewController: UIViewController {
     }
 
     @objc
-    func changeStockLabel() {
+    private func changeStockLabel() {
         strawberryStockLabel.text =  FruitStore.shared.showStock(of: .strawberry)
         bananaStockLabel.text =  FruitStore.shared.showStock(of: .banana)
         pineappleStockLabel.text =  FruitStore.shared.showStock(of: .pineapple)
@@ -42,7 +42,7 @@ class StockModifyViewController: UIViewController {
         mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
     }
     
-    func initializeStepper() {
+    private func initializeStepper() {
         strawberryStepper.restorationIdentifier = "딸기"
         bananaStepper.restorationIdentifier = "바나나"
         pineappleStepper.restorationIdentifier = "파인애플"
@@ -56,11 +56,11 @@ class StockModifyViewController: UIViewController {
         mangoStepper.value = Double(FruitStore.shared.showStock(of: .mango)) ?? 0.0
     }
     
-    @IBAction func dismissButton(_ sender: UIBarButtonItem) {
+    @IBAction private func dismissButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+    @IBAction private func stepperValueChanged(_ sender: UIStepper) {
         guard let stepperIdentifier = sender.restorationIdentifier,
               let fruit = Fruit(rawValue: stepperIdentifier) else {
                   return

@@ -8,19 +8,13 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
 
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet weak private var strawberryStockLabel: UILabel!
+    @IBOutlet weak private var bananaStockLabel: UILabel!
+    @IBOutlet weak private var pineappleStockLabel: UILabel!
+    @IBOutlet weak private var kiwiStockLabel: UILabel!
+    @IBOutlet weak private var mangoStockLabel: UILabel!
+        
+    @IBOutlet private var juiceOrderButtons: [UIButton]!
     
     private let juiceMaker = JuiceMaker()
     
@@ -30,7 +24,7 @@ class JuiceMakerViewController: UIViewController {
         initJuiceMakerViewController()
     }
     
-    func initJuiceMakerViewController() {
+    private func initJuiceMakerViewController() {
         changeStockLabel()
         adjustOrderButtonTitle()
         
@@ -38,7 +32,7 @@ class JuiceMakerViewController: UIViewController {
     }
 
     @objc
-    func changeStockLabel() {
+    private func changeStockLabel() {
         strawberryStockLabel.text =  FruitStore.shared.showStock(of: .strawberry)
         bananaStockLabel.text =  FruitStore.shared.showStock(of: .banana)
         pineappleStockLabel.text =  FruitStore.shared.showStock(of: .pineapple)
@@ -46,17 +40,13 @@ class JuiceMakerViewController: UIViewController {
         mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
     }
     
-    func adjustOrderButtonTitle() {
-        strawberryBananaJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        mangoKiwiJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        strawberryJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        bananaJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        pineappleJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        kiwiJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        mangoJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    private func adjustOrderButtonTitle() {
+        for button in juiceOrderButtons {
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+        }
     }
     
-    @IBAction func touchUpOrderButton(_ sender: UIButton) {
+    @IBAction private func touchUpOrderButton(_ sender: UIButton) {
         let order = sender.currentTitle?.components(separatedBy: " ").first ?? ""
         
         let juice = Juice(rawValue: order)
@@ -72,11 +62,11 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction func tapStockModifyButton(_ sender: UIBarButtonItem) {
+    @IBAction private func tapStockModifyButton(_ sender: UIBarButtonItem) {
         presentStockModifyView()
     }
     
-    func presentStockModifyView() {
+    private func presentStockModifyView() {
         let stockModifyNavController = StockModifyNavController()
 
         let storyboard = UIStoryboard(name: stockModifyNavController.storyboardName, bundle: nil)
@@ -85,7 +75,7 @@ class JuiceMakerViewController: UIViewController {
         present(stockModifyNC, animated: true, completion: nil)
     }
     
-    func showInvalidOrderAlert() {
+    private func showInvalidOrderAlert() {
         let message = "메뉴에 없는 주문입니다. 다시 확인해 주세요."
         
         let alert = UIAlertController(title: "주문 실패", message: message, preferredStyle: .alert)
@@ -95,7 +85,7 @@ class JuiceMakerViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showCompletedOrderAlert(of order: String) {
+    private func showCompletedOrderAlert(of order: String) {
         let message = "\(order) 나왔습니다! 맛있게 드세요!"
         
         let alert = UIAlertController(title: "쥬스 완성", message: message, preferredStyle: .alert)
@@ -105,7 +95,7 @@ class JuiceMakerViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showFailedOrderAlert(fruitAndQuantity: [Fruit: Int]) {
+    private func showFailedOrderAlert(fruitAndQuantity: [Fruit: Int]) {
         let message = "\(DataFormatConverter().convert(using: fruitAndQuantity))가 모자라요. 재고를 수정할까요?"
         
         let alert = UIAlertController(title: "재고 부족", message: message, preferredStyle: .alert)
