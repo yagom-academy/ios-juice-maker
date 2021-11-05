@@ -58,7 +58,7 @@
         위의 두 가지 기준을 근거로 클래스를 선택했다.
         
 	- **클래스와 구조체중에서 고민이 될때, 어떤 기준으로 판단을 할지에 대한 팁이 있는지 고민했다.**
-
+<br>
 
 ### 2. 딸기, 바나나, 파인애플, 키위, 망고 이외의 추가적인 과일 및 10이 아닌 다른 초기재고 설정에 대한 확장성에 대한 고민을 했다.
 
@@ -73,6 +73,7 @@ init(fruitList: [Fruit], amount: Int) {
 ```
 - `Fruit`이 담긴 배열과 초기 재고 값 `amount`  `initializer`로 받아서, `inventory` 를 초기화했다.
 
+<br>
 
 ### 3. 파일 관리에 대한 고민을 했다. 코드 전체에서 사용 되는 사용자 정의 타입은  전부 따로 파일을 만들어줬다.
 - [Swift Style Guide]([https://google.github.io/swift/#source-file-structure](https://google.github.io/swift/#source-file-structure)) 를 참고하여 파일 관리를 했다.
@@ -81,10 +82,12 @@ init(fruitList: [Fruit], amount: Int) {
     
 - 해당 글에서 관련된 타입들끼리는 하나의 파일에 정리를 하는 경우도 있다고 명시 되어있는데, 우리가 사용하는 타입들은 전부 연관되어 있어서 고민이 됐다.
 - **파일 관리에 대한 기준에 대한 궁금증이 생겼다.**
+<br>
 
 ### 4. `Error` 열거형이 `ViewController`에서도 사용이 되기때문에, `Error.swift` 파일을 따로 생성 후, 여기서 정의해주었다.
 - `Model`과 `Controller` 객체에서 공통으로 사용되는 에러형은 보통 어디에 정의하는지 궁금했다. 
 - 이것과 관련한 best practice도 있는지도 호기심이 생겼다.
+<br>
 
 ### 5. 메서드의 매개변수를 타입으로 묶는 기준에 대한 고민을 했다.
 - 선언
@@ -151,6 +154,7 @@ for ingredient in juiceRecipe.ingredients {
 `func decreaseStock(of fruit: Fruit, by amount: Int) {` 가 가독성이 조금 더 좋아보여서 고민이 되었다.
 
 **가독성에 따라서 타입을 사용하는 기준을 유연하게 적용해도 되는지, 아니면 하나의 기준으로 두 메서드를 같은 방법으로 통일 시켜야되는지 고민됐다.**
+<br>
 
 ## 트러블슈팅
 
@@ -166,6 +170,7 @@ private func getUnavailableIngredients(of juiceRecipe: JuiceRecipe) -> [Ingredie
 }
 ```
     
+<br>
 
 ## 배운 개념
 
@@ -189,33 +194,39 @@ Argument label이 생략 가능한 경우:  첫번째 인자가 문법구를 형
     
     property에 rawValue를 지정해줄 때, 정의부에서 rawValue를 지정해주는 것과 initializer에서 할당해주는 방법이 있다. 확장성을 고려했을 때 initializer에서 할당해주는 방법이 더 적절하다는 걸 배웠다.
     
+<br>
 
 ## PR 후 개선 사항
 
-### `1. FruitStore`의 `stock`을 관리해주는 `Inventory` 구조체를 Nested Type으로 구현했다.
+### 1. `FruitStore`의 `stock`을 관리해주는 `Inventory` 구조체를 Nested Type으로 구현했다.
 
 - 은닉화를 통해  `JuiceMaker` , `FruitStore` 와 `Inventory` 세 타입간의 의존성을 떨어뜨릴 수 있었다.
+<br>
 
 ### 2. 관련된 타입끼리 파일을 나누면서, 파일구조가 깔끔해지고 가독성도 좋아졌다.
 
+<br>
 
-# Step 2
+#  ✌️ Step 2
 
-## 고민했던 것
+## 🤔 고민했던 것 
+<br>
 
 ### 1. 화면간의 데이터를 공유하는 방법 비교
 
 1. **Delegate 패턴**
 2. **NotificationCenter**
 3. **Singleton 패턴**
+<br>
 
 ### 2. 동일한 메서드를 호출하는 여러개의 @IBAction을 하나의 @IBAction으로 정의하는 방식
 
 각 과일 쥬스 버튼에 대한 @IBAction이 따로 생성해주었다.
 그런데 @IBAction내에서 호출하는 `order`는 동일해서  7개의 메서드를 다 따로 만드는 것이 불필요하다고 판단했다. 여러개의 @IBAction을 하나의 @IBAction메서드로 정의하는데 `sender`의 `tag`속성을 활용해보았다.
 스토리보드의 각 버튼에 `tag`를 부여해서, 버튼을 식별할 수 있게 해줬다.
+<br>
 
-1. switch문을 활용해서 `tag`에 해당하는 과일쥬스를 만드는 `order` 호출
+### 3. switch문을 활용해서 `tag`에 해당하는 과일쥬스를 만드는 `order` 호출
 
 ```swift
 @IBAction func pressOrderButton(_ sender: UIButton) {
@@ -240,8 +251,9 @@ Argument label이 생략 가능한 경우:  첫번째 인자가 문법구를 형
     }
 
 ```
+<br>
 
-1. sender의 tag와 `JuiceMenu.allCases`의 index를 맞춰서 코드를 간소화
+### 4. sender의 tag와 `JuiceMenu.allCases`의 index를 맞춰서 코드를 간소화
 
  tag에 해당하는 index로 JuiceMenu 케이스를 반환한 다음, `order`의 파라미터로 넣어줬다.
 
@@ -257,17 +269,17 @@ Argument label이 생략 가능한 경우:  첫번째 인자가 문법구를 형
 
 <br>
 
-### 2. 화면 전환 방식: Modality vs Navigation
+### 5. 화면 전환 방식: Modality vs Navigation
 
 재고수정 화면으로 전환하는 방식으로 하나의 `NavigationController`를 사용할지, `Modality`를 사용할지 고민을 했다.
 우리가 생각한 각 방법의 특징은 아래와 같다.
 
-### Navigation
+#### Navigation
 
 - 뷰 컨트롤러 간의 계층구조가 생긴다.
 - 재고수정 버튼이 오른쪽 위에 있어서, 아래에서 위로 나타나는 Modal 화면보다, 오른쪽으로 넘어갔다가 왼쪽으로 돌아오는게 현 UI에서는 더 자연스러워 보일 것 같다.
 
-### Modality
+#### Modality
 
 - 여러개의 JuiceMaker가 하나의 FruitStore를 소유한다고 가정했을 때, 둘 사이에는 계층구조가 없으므로 Modal로 이동하는 것이 빠르고, 적절하다.
 - **JuiceMaker 에서 재고수정을 하고싶을때 임시적으로 StockManager 화면을 띄워서 빠르게 수정만 하는 사용자 경험 흐름이 적절해 보인다.**
@@ -275,7 +287,7 @@ Argument label이 생략 가능한 경우:  첫번째 인자가 문법구를 형
 
 <br>
 
-### 3. Extension 배치 위치에 대한 고민
+#### 6. Extension 배치 위치에 대한 고민
 
 Notification.Name에 대한 Extension을 JuiceMakerViewController.swift 파일의 가장 밑에 배치를 했다.
 
@@ -287,6 +299,7 @@ extension Notification.Name {
 ```
 
 Extension을 보통 어디에 배치를 하는지에 대한 궁금증이 생겼다.
+<br>
 
 ## 트러블슈팅
 
@@ -318,6 +331,7 @@ Extension을 보통 어디에 배치를 하는지에 대한 궁금증이 생겼�
 > 
 
 catch문에서 `return` 을 해주어 오류를 수정해주었다.
+<br>
 
 ## 배운 개념
 
@@ -346,6 +360,7 @@ catch문에서 `return` 을 해주어 오류를 수정해주었다.
     - `Singleton` 을 구현하는 방법, 그리고 프로젝트에서 사용했을때의 장단점에 대해서 학습했다.
 - **Implicitly Unwrapped Optional**
     - **forced unwrapping** 과의 차이점을 이해했고, 언제 쓰는것이 적합한지 배울 수 있었다.
+<br>
 
 ## PR 후 개선 사항
 
@@ -359,6 +374,7 @@ catch문에서 `return` 을 해주어 오류를 수정해주었다.
 - switch문을 타지않는다는 점
 
 을 고려하면 성능 상 차이는 없을 것으로 판단하여 각 버튼에 대한 @IBAction을 각각 만들었다.
+<br>
 
 ### 2. **Implicitly Unwrapped Optional** 을 적절히 활용해서, 불필요한 옵셔널 unwrapping을 없앨 수 있었다.
 
@@ -369,6 +385,7 @@ catch문에서 `return` 을 해주어 오류를 수정해주었다.
 
 - 앱 전체에서 공통적으로 사용되는 `Alert`를 `static` 으로 정의 해주어 재사용했다.
 - 뷰컨트롤러 파일의 크기도 많이 줄어들었고, `Alert` 관련된 일을 관리하는 것이 수월 해진다는 것을 체감할 수 있었다.
+<br>
 
 # Step 3
 
@@ -463,7 +480,7 @@ return juiceMaker.fruitStore.inventory.stock
 ```
 이런식으로 정보를 가져와야할지 고민을 했다.
 
-<Br>
+<br>
 
 ### 5. `return` 생략해도 되는지에 대한 고민
 
@@ -479,7 +496,7 @@ func retrieveCurrentFruitStock() -> [Fruit:Int] {
     stock
 }
 ```
-<Br>
+<br>
 
 ### 6. `NavigationBar` 를 갖고있는 모달을 표시할때, `NavigationController` 에 embed 하는게 적절한 방법인지에 대한 고민
 - 프로젝트 기본 코드를 제공받았을때, 재고 관리를 하는 화면이 `NavigationController` 에 embed 되어있었다.
@@ -487,7 +504,7 @@ func retrieveCurrentFruitStock() -> [Fruit:Int] {
 - 우리는 `NavigationController` 를 제거하고 `NavigationBar` 를 따로 코드로 구현해봤는데, 제대로 했는지도 모르겠고 조금 어려웠다.
 - 그런데! **HIG** 에 의하면 모달은 임시적으로 띄우는 화면인데, depth를 갖을 수 있는 `NavigationController` 에 embed 하는게 조금은 모순적이지 않나 라는 생각도 들었다.
 - **이것에 대한 best practice가 있는지에 대한 궁금증이 생겼다.**
-<Br>
+<br>
 
 ### 7. `Alert`의 문자열을 관리하는 더 좋은 방법에 대해 고민 
 `쥬스메뉴 나왔습니다`를 표시하는 alert를 만들 때, 버튼에 따라 다른 쥬스메뉴를 표시해주어야 했다. `AlertTitle` 열거형에 쥬스메뉴에 따른 문자열을 지정해주려면 케이스가 너무 많아지는 것 같아, 공통적인 부분인 `나왔습니다`만 열거형에 추가하고 `UIAlertController`의 `title`에서 매개변수로 받은 `juice`를 합치는 방식을 사용했다.
@@ -516,6 +533,6 @@ let successAlert = UIAlertController(title: "\(juice) \(AlertTitle.success)", me
 - **ViewController 간의 인스턴스를 전달하는 방법**
     - A 화면에서 B 화면으로 전환을 할때, B 화면에서 필요한 인스턴스를 전달하는 방법에 대해서 배웠다. 화면을 전환해주는 메서드내에서 전환될 뷰 컨트롤러의 프로퍼티에 직접 할당을 해주었다.
 - **UML**
-<Br>
+<br>
 
 ## PR 후 개선사항
