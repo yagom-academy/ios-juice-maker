@@ -45,7 +45,7 @@ extension StockModifyViewController {
     @IBAction private func stepperDidTap(_ sender: UIStepper) {
         do {
             let fruitToModify = try fruit(for: sender)
-            try modifyStock(of: fruitToModify, by: sender)
+            try modifyStock(of: fruitToModify, by: sender.value)
         } catch FruitStoreError.stockShortage {
             
         } catch let error {
@@ -109,14 +109,14 @@ extension StockModifyViewController {
 
 // MARK: - Model Method
 extension StockModifyViewController {
-    private func modifyStock(of fruitToModify: Fruit, by stepper: UIStepper) throws {
-        try juiceMaker?.changeFruitStock(of: fruitToModify, by: 1, calculate: calculation(for: stepper))
+    private func modifyStock(of fruitToModify: Fruit, by stepperValue: Double) throws {
+        try juiceMaker?.changeFruitStock(of: fruitToModify, by: 1, calculate: calculation(for: stepperValue))
     }
     
-    private func calculation(for stepper: UIStepper) throws -> (Int,Int) -> Int {
-        if stepper.value == stepperMaximumValue {
+    private func calculation(for stepperValue: Double) throws -> (Int,Int) -> Int {
+        if stepperValue > stepperDefaultValue {
             return (+)
-        } else if stepper.value == stepperMinimumValue {
+        } else if stepperValue < stepperDefaultValue {
             return (-)
         } else {
             throw FruitStoreError.unexpectedStepperValue
