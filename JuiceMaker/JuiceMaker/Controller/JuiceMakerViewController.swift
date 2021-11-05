@@ -54,22 +54,26 @@ extension JuiceMakerViewController {
     }
     
     func updateFruitLabels() {
-        updateCurrentStockLabel(fruit: .strawberry, label: strawberryStockLabel)
-        updateCurrentStockLabel(fruit: .banana, label: bananaStockLabel)
-        updateCurrentStockLabel(fruit: .pineapple, label: pineappleStockLabel)
-        updateCurrentStockLabel(fruit: .kiwi, label: kiwiStockLabel)
-        updateCurrentStockLabel(fruit: .mango, label: mangoStockLabel)
+        do {
+            let strawberryStock = try juiceMaker.fruitStore.stock(fruit: .strawberry)
+            let bananaStock = try juiceMaker.fruitStore.stock(fruit: .banana)
+            let pineappleStock = try juiceMaker.fruitStore.stock(fruit: .pineapple)
+            let kiwiStock = try juiceMaker.fruitStore.stock(fruit: .kiwi)
+            let mangoStock = try juiceMaker.fruitStore.stock(fruit: .mango)
+            
+            updateCurrentStockLabel(stock: strawberryStock, label: strawberryStockLabel)
+            updateCurrentStockLabel(stock: bananaStock, label: bananaStockLabel)
+            updateCurrentStockLabel(stock: pineappleStock, label: pineappleStockLabel)
+            updateCurrentStockLabel(stock: kiwiStock, label: kiwiStockLabel)
+            updateCurrentStockLabel(stock: mangoStock, label: mangoStockLabel)
+        } catch {
+            guard let requestError = error as? RequestError else { return }
+            showNotificationAlert(message: requestError.errorDescription)
+        }
     }
     
-    func updateCurrentStockLabel(fruit: Fruit, label: UILabel) {
-        do {
-            let stock = try FruitStore.shared.stock(fruit: fruit)
-            label.text = stock.description
-        } catch let error as RequestError {
-            showNotificationAlert(message: error.errorDescription)
-        } catch {
-            showNotificationAlert(message: Message.unknownError.description)
-        }
+    func updateCurrentStockLabel(stock: Int, label: UILabel) {
+        label.text = stock.description
     }
     
     func fruitlabel(of fruit: Fruit) -> UILabel {
@@ -174,10 +178,10 @@ extension JuiceMakerViewController {
 // MARK: - Notification
 extension JuiceMakerViewController {
     @objc func fruitLabelChanged(notification: Notification) {
-        guard let fruit = notification.object as? Fruit else {
+        guard let fruitStock = notification.object as? FruitStock else {
             showNotificationAlert(message: Message.unknownError.description)
             return
         }
-        updateCurrentStockLabel(fruit: fruit, label: fruitlabel(of: fruit))
+        updateCurrentStockLabel(stock: fruitStock.stock, label: fruitlabel(of: fruitStock.fruit))
     }
 }

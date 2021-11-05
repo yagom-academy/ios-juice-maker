@@ -6,6 +6,7 @@
 
 import Foundation
 
+typealias FruitStock = (fruit: Fruit, stock: Int)
 
 enum Fruit: CaseIterable {
     case strawberry
@@ -58,7 +59,9 @@ class FruitStore {
         }
         fruitBasket[fruit] = newFruitCount
         
-        NotificationCenter.default.post(name: .changedFruitStockNotification, object: fruit)
+        let fruitStock = (fruit: fruit, stock: newFruitCount)
+        
+        NotificationCenter.default.post(name: .changedFruitStockNotification, object: fruitStock)
     }
     
     func hasFruitStock(of fruit: Fruit, count fruitCountSubtracted: Int) -> Bool {
