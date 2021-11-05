@@ -9,22 +9,23 @@ import UIKit
 
 class StockModifyViewController: UIViewController {
 
-    let stepperMaximumValue = 1.0
-    let stepperMinimumValue = -1.0
-    let stepperDefaultValue = 0.0
+    private let stepperMaximumValue: Double = 2.0
+    private let stepperMinimumValue: Double = -2.0
+    private let stepperDefaultValue: Double = 0.0
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStockStepper: UIStepper!
-    @IBOutlet weak var bananaStockStepper: UIStepper!
-    @IBOutlet weak var pineappleStockStepper: UIStepper!
-    @IBOutlet weak var kiwiStockStepper: UIStepper!
-    @IBOutlet weak var mangoStockStepper: UIStepper!
-
+    @IBOutlet private  weak var strawberryStockStepper: UIStepper!
+    @IBOutlet private weak var bananaStockStepper: UIStepper!
+    @IBOutlet private weak var pineappleStockStepper: UIStepper!
+    @IBOutlet private weak var kiwiStockStepper: UIStepper!
+    @IBOutlet private weak var mangoStockStepper: UIStepper!
+    @IBOutlet private var fruitStockSteppers: [UIStepper]!
+    
     var juiceMaker: JuiceMaking?
     
     override func viewDidLoad() {
@@ -61,17 +62,10 @@ extension StockModifyViewController {
 // MARK: - View Method
 extension StockModifyViewController {
     private func initializeSteppers() {
-        strawberryStockStepper.minimumValue = stepperMinimumValue
-        bananaStockStepper.minimumValue = stepperMinimumValue
-        pineappleStockStepper.minimumValue = stepperMinimumValue
-        kiwiStockStepper.minimumValue = stepperMinimumValue
-        mangoStockStepper.minimumValue = stepperMinimumValue
-        
-        strawberryStockStepper.maximumValue = stepperMaximumValue
-        bananaStockStepper.maximumValue = stepperMaximumValue
-        pineappleStockStepper.maximumValue = stepperMaximumValue
-        kiwiStockStepper.maximumValue = stepperMaximumValue
-        mangoStockStepper.maximumValue = stepperMaximumValue
+        fruitStockSteppers.forEach { stepper in
+            stepper.minimumValue = stepperMinimumValue
+            stepper.maximumValue = stepperMaximumValue
+        }
     }
     
     private func updateLabel(fruit: Fruit) throws {
@@ -108,7 +102,7 @@ extension StockModifyViewController {
         }
     }
     
-    func resetValue(ofStepper stepper: UIStepper) {
+    private func resetValue(ofStepper stepper: UIStepper) {
         stepper.value = stepperDefaultValue
     }
 }

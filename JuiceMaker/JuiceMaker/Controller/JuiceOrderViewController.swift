@@ -20,7 +20,7 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
-    @IBOutlet var juiceOrderButtons: [UIButton]!
+    @IBOutlet private var juiceOrderButtons: [UIButton]!
     
     private lazy var juiceMaker: JuiceMaking = JuiceMaker(store: FruitStore())
 

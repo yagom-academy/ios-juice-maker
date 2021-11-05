@@ -463,6 +463,11 @@
                         <outlet property="mangoStockStepper" destination="xbn-6P-grO" id="M2D-JH-5Ed"/>
                         <outlet property="pineappleStockStepper" destination="Rcr-xr-eqz" id="qvA-cf-WBp"/>
                         <outlet property="strawberryStockStepper" destination="ZQk-f4-zrz" id="Nfs-H5-5z9"/>
+                        <outletCollection property="fruitStockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="gAo-PW-tda"/>
+                        <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="yTn-Z3-Jct"/>
+                        <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="GPP-e7-RRV"/>
+                        <outletCollection property="fruitStockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="OA0-PZ-Hq9"/>
+                        <outletCollection property="fruitStockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="w2V-pO-NS4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
