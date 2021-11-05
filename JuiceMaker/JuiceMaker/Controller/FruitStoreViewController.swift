@@ -28,7 +28,7 @@ class FruitStoreViewController: UIViewController {
         updateFruitLabels()
         updateFruitSteppers()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(fruitLabelChanged(notification:)), name: .changedFruitStockNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fruitStockChanged(notification:)), name: .changedFruitStockNotification, object: nil)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
@@ -149,7 +149,7 @@ extension FruitStoreViewController {
 
 // MARK: - Notification
 extension FruitStoreViewController {
-    @objc func fruitLabelChanged(notification: Notification) {
+    @objc func fruitStockChanged(notification: Notification) {
         guard let fruitStock = notification.object as? FruitStock else {
             showNotificationAlert(message: Message.unknownError.description)
             return
