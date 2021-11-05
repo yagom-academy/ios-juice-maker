@@ -8,21 +8,8 @@
 import Foundation
 
 enum AlertMessage {
-    case ok
-    case modifyStock
-    case cancel
-    case juiceMakeSuccess
-    
-    var korean: String {
-        switch self {
-        case .ok:
-            return "확인"
-        case .modifyStock:
-            return "재고수정"
-        case .cancel:
-            return "취소"
-        case .juiceMakeSuccess:
-            return "쥬스 나왔습니다! 맛있게 드세요!"
-        }
-    }
+    static let ok: String = "확인"
+    static let modifyStock: String = "재고수정"
+    static let cancel: String = "취소"
+    static let juiceMakeSuccess: String = "쥬스 나왔습니다! 맛있게 드세요!"
 }

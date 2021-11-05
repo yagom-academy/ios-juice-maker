@@ -105,6 +105,8 @@ extension JuiceOrderViewController {
 // MARK: - Model Method
 extension JuiceOrderViewController {
     private func juiceMenu(for button: UIButton) throws -> JuiceMenu {
+        print(button.isEqual(strawberryJuiceOrderButton))
+        print(button == strawberryJuiceOrderButton)
         switch button {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBanana
@@ -144,16 +146,16 @@ extension JuiceOrderViewController {
 // MARK: - Alert Method
 extension JuiceOrderViewController {
     private func showSuccessAlert(juiceMenu: JuiceMenu) {
-        let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess.korean, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
+        let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
     private func showFailureAlert() {
         let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.modifyStock.korean, style: .default) { _ in self.moveToStockModifyView() }
-        let cancelAction = UIAlertAction(title: AlertMessage.cancel.korean, style: .cancel)
+        let okAction = UIAlertAction(title: AlertMessage.modifyStock, style: .default) { _ in self.moveToStockModifyView() }
+        let cancelAction = UIAlertAction(title: AlertMessage.cancel, style: .cancel)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
@@ -161,7 +163,7 @@ extension JuiceOrderViewController {
     
     private func showErrorAlert(error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.ok.korean, style: .default)
+        let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }

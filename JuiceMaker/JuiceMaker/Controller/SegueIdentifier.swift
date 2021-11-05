@@ -8,12 +8,5 @@
 import Foundation
 
 enum StoryboardSegue {
-    case toStockModifyView
-    
-    var identifier: String {
-        switch self {
-        case .toStockModifyView:
-            return "toStockModifyView"
-        }
-    }
+    static let toStockModifyView: String = "toStockModifyView"
 }
