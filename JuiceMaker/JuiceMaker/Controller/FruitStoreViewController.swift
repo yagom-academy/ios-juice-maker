@@ -29,6 +29,11 @@ class FruitStoreViewController: UIViewController {
         updateFruitSteppers()
         
         NotificationCenter.default.addObserver(self, selector: #selector(fruitStockChanged(notification:)), name: .changedFruitStockNotification, object: nil)
+        print(NotificationCenter.default)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
