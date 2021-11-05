@@ -16,10 +16,26 @@ class StockUpdateController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setStock()
+        setInitialValueForLabel()
+        setInitialValueForStepper()
     }
     
-    private func updateFruitStock() {
+    private func setInitialValueForLabel() {
+        stockOfFruit.forEach({ (fruit, stock) in
+          updateFruitLabel(for: fruit, stock: stock)
+        })
+    }
+    
+    private func setInitialValueForStepper() {
+        for stepper in fruitSteppers {
+            if let fruit = Fruit(rawValue: stepper.tag),
+               let value = stockOfFruit[fruit] {
+                stepper.value = Double(value)
+            }
+        }
+    }
+    
+    private func updateFruitStockFromStepper() {
         for stepper in fruitSteppers {
             if let fruit = Fruit(rawValue: stepper.tag) {
                 stockOfFruit[fruit] = Int(stepper.value)
@@ -41,12 +57,6 @@ class StockUpdateController: UIViewController {
         }
     }
     
-    private func setStock() {
-        stockOfFruit.forEach({ (fruit, stock) in
-          updateFruitLabel(for: fruit, stock: stock)
-        })
-    }
-    
     private func updateFruitLabel(for fruit: Fruit, stock: Int) {
         for label in stockLabels {
             if label.tag == fruit.rawValue {
@@ -56,7 +66,7 @@ class StockUpdateController: UIViewController {
     }
     
     @IBAction private func tapExitButton(_ sender: UIBarButtonItem) {
-        updateFruitStock()
+        updateFruitStockFromStepper()
         notificationCenter.post(name: Notification.Name.stockModified,
                                 object: nil,
                                 userInfo: [NotificationKey.stockOfFruit: self.stockOfFruit])
