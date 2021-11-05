@@ -9,17 +9,8 @@ import UIKit
 
 class StockUpdateController: UIViewController {
     
-    @IBOutlet private weak var strawberryLabel: UILabel!
-    @IBOutlet private weak var bananaLabel: UILabel!
-    @IBOutlet private weak var pineappleLabel: UILabel!
-    @IBOutlet private weak var kiwiLabel: UILabel!
-    @IBOutlet private weak var mangoLabel: UILabel!
-    
-    @IBOutlet private weak var strawberryStepper: UIStepper!
-    @IBOutlet private weak var bananaStepper: UIStepper!
-    @IBOutlet private weak var pineappleStepper: UIStepper!
-    @IBOutlet private weak var kiwiStepper: UIStepper!
-    @IBOutlet private weak var mangoStepper: UIStepper!
+    @IBOutlet var stockLabels: [UILabel]!
+    @IBOutlet var fruitSteppers: [UIStepper]!
     
     var stockOfFruit: [Fruit: Int] = [:]
     
@@ -29,11 +20,11 @@ class StockUpdateController: UIViewController {
     }
     
     private func updateFruitStock() {
-        stockOfFruit[.strawberry] = Int(strawberryStepper.value)
-        stockOfFruit[.banana] = Int(bananaStepper.value)
-        stockOfFruit[.pineapple] = Int(pineappleStepper.value)
-        stockOfFruit[.kiwi] = Int(kiwiStepper.value)
-        stockOfFruit[.mango] = Int(mangoStepper.value)
+        for stepper in fruitSteppers {
+            if let fruit = Fruit(rawValue: stepper.tag) {
+                stockOfFruit[fruit] = Int(stepper.value)
+            }
+        }
     }
     
     @IBAction private func tapFruitStepper(_ sender: UIStepper) {
@@ -52,38 +43,15 @@ class StockUpdateController: UIViewController {
     
     private func setStock() {
         stockOfFruit.forEach({ (fruit, stock) in
-            switch fruit {
-            case .strawberry:
-                strawberryLabel.text = String(stock)
-                strawberryStepper.value = Double(stock)
-            case .banana:
-                bananaLabel.text = String(stock)
-                bananaStepper.value = Double(stock)
-            case .pineapple:
-                pineappleLabel.text = String(stock)
-                pineappleStepper.value = Double(stock)
-            case .kiwi:
-                kiwiLabel.text = String(stock)
-                kiwiStepper.value = Double(stock)
-            case .mango:
-                mangoLabel.text = String(stock)
-                mangoStepper.value = Double(stock)
-            }
+          updateFruitLabel(for: fruit, stock: stock)
         })
     }
     
     private func updateFruitLabel(for fruit: Fruit, stock: Int) {
-        switch fruit {
-        case .strawberry:
-            strawberryLabel.text = String(stock)
-        case .banana:
-            bananaLabel.text = String(stock)
-        case .pineapple:
-            pineappleLabel.text = String(stock)
-        case .kiwi:
-            kiwiLabel.text = String(stock)
-        case .mango:
-            mangoLabel.text = String(stock)
+        for label in stockLabels {
+            if label.tag == fruit.rawValue {
+                label.text = String(stock)
+            }
         }
     }
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -244,11 +244,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="3gw-El-xAU"/>
-                        <outlet property="kiwiLabel" destination="FZq-de-TJG" id="dMo-ib-bN5"/>
-                        <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="KxH-Ct-e2m"/>
-                        <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="LjI-in-jIS"/>
-                        <outlet property="strawberryLabel" destination="Qas-vP-td6" id="XUc-oN-O1A"/>
                         <outletCollection property="stockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="gq6-KV-87B"/>
                         <outletCollection property="stockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="qjZ-z3-dmI"/>
                         <outletCollection property="stockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="4mq-il-vWe"/>
@@ -325,7 +320,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
                                                 <rect key="frame" x="0.0" y="132" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -352,7 +347,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
                                                 <rect key="frame" x="0.0" y="132" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -379,7 +374,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
                                                 <rect key="frame" x="0.0" y="132" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -406,7 +401,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
                                                 <rect key="frame" x="0.0" y="132" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -444,16 +439,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="H5f-Jz-4HT"/>
-                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="6Di-SW-Bxx"/>
-                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="L2l-ru-CEM"/>
-                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="YaA-Pa-50F"/>
-                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="QeQ-dh-hfa"/>
-                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="Djv-bn-PkJ"/>
-                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="bvC-B3-EbB"/>
-                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="fzw-jc-Sqz"/>
-                        <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="oCt-t2-WeE"/>
-                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="1lt-3q-bWv"/>
+                        <outletCollection property="stockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="Yxx-Jd-M7O"/>
+                        <outletCollection property="stockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="oIK-w4-eMd"/>
+                        <outletCollection property="stockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="02h-x9-q9n"/>
+                        <outletCollection property="stockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="dMu-5s-mUK"/>
+                        <outletCollection property="stockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="BHC-df-duQ"/>
+                        <outletCollection property="fruitSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="lfO-dO-xKr"/>
+                        <outletCollection property="fruitSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="bb4-R6-zh1"/>
+                        <outletCollection property="fruitSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="BZr-b7-rq1"/>
+                        <outletCollection property="fruitSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="wc8-Kd-alc"/>
+                        <outletCollection property="fruitSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="8OE-6d-2Fc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
