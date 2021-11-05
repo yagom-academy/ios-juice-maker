@@ -165,9 +165,9 @@ extension StockModifyViewController {
 // MARK: - Alert Method
 extension StockModifyViewController {
     private func showErrorAlert(error: Error) {
-        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+        let alertController = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 }

@@ -43,7 +43,7 @@ extension JuiceOrderViewController {
     }
 
     @IBAction private func modifyStockButtonDidTap(_ sender: UIBarButtonItem) {
-        moveToStockModifyView()
+        presentStockModifyView()
     }
 }
 
@@ -138,26 +138,26 @@ extension JuiceOrderViewController {
 // MARK: - Alert Method
 extension JuiceOrderViewController {
     private func showSuccessAlert(juiceMenu: JuiceMenu) {
-        let alert = UIAlertController(title: nil, message: juiceMenu.rawValue + AlertMessage.juiceMakeSuccess, preferredStyle: .alert)
+        let alertController = UIAlertController(title: nil, message: juiceMenu.name + AlertMessage.juiceMakeSuccess, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
     
     private func showFailureAlert() {
-        let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
+        let alertController = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.modifyStock, style: .default) { _ in self.presentStockModifyView() }
         let cancelAction = UIAlertAction(title: AlertMessage.cancel, style: .cancel)
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
     
     private func showErrorAlert(error: Error) {
-        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+        let alertController = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 }
 
