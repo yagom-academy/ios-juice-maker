@@ -21,7 +21,6 @@ private enum Const {
 }
 
 class FruitStore {
-    static let shared: FruitStore = FruitStore()
     private var fruitBasket: [Fruit: Int]
     
     init(count: Int = Const.defaultFruitCount) {

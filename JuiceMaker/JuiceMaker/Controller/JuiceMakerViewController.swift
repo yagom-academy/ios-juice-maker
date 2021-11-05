@@ -156,23 +156,16 @@ extension JuiceMakerViewController {
         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? UINavigationController else { return }
         self.present(viewController, animated: true, completion: nil)
         guard let nextViewController = viewController.topViewController as? FruitStoreViewController else { return }
-        setupNextViewLabel(of: nextViewController)
+        nextViewController.juiceMaker = juiceMaker
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let navigationController = segue.destination as? UINavigationController else { return }
         guard let nextViewController = navigationController.topViewController as? FruitStoreViewController else { return }
-        setupNextViewLabel(of: nextViewController)
+        nextViewController.juiceMaker = juiceMaker
     }
     
-    func setupNextViewLabel(of nextViewController: FruitStoreViewController) {
-        nextViewController.loadViewIfNeeded()
-        nextViewController.strawberryStockLabel.text = strawberryStockLabel.text
-        nextViewController.bananaStockLabel.text = bananaStockLabel.text
-        nextViewController.pineappleStockLabel.text = pineappleStockLabel.text
-        nextViewController.kiwiStockLabel.text = kiwiStockLabel.text
-        nextViewController.mangoStockLabel.text = mangoStockLabel.text
-    }
+
 }
 
 // MARK: - Notification
