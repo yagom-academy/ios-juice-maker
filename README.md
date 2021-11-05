@@ -28,9 +28,9 @@
 
 - 세부
     - 1. Encapsulation and Information Hiding
-        
+      
         객체의 속성(data fields)과 행위(메서드, methods)를 하나로 묶고, 실제 구현 내용 일부를 외부에 감추어 은닉한다.
-        
+      
         ```swift
         class FruitStore {
                 private let storedStrawberry: Fruit = Fruit(name: .strawberry, quantity: 10)
@@ -52,11 +52,11 @@
         ...
         }
         ```
-        
+      
     - 2. Alert
-        
+      
         사용자가 앱 또는 시스템의 상태에 응답하도록 하려면 Alert을 사용한다.
-        
+      
         ```swift
         func showFailureAlert() {
                 let alert: UIAlertController = UIAlertController(title: nil,
@@ -80,27 +80,27 @@
                     completion: nil)
             }
         ```
-        
+      
     - 3. Modality
-        
+      
         Modality는 종료를 전제로 명시적 작업이 필요한 임시 모드에서 콘텐츠를 표시하는 디자인 기술이다.
-        
-        ![Imgur](https://i.imgur.com/HIRahHP.gifv)
-        
+      
+      ![1Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.45.44](../images/README/1Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.45.44.gif)
+      
     - 4. Stepper
-        
+      
         증가 및 감소 작업을 수행하는 컨트롤이다.
-        
-        ![Imgur](https://i.imgur.com/JyZYW3B.gifv)
-        
+      
+      ![2Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.08](../images/README/2Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.08.gif)
+      
     - 5. Pass Data Between Scenes Using Segues
-        
+      
         스토리보드를 사용하는 경우, *segues* 를 사용하여 뷰 컨트롤러 간에 데이터를 전달할 수 있다.
-        
+      
         - `prepare(for:sender:)`
-        
-        ![Imgur](https://i.imgur.com/3RDILHk.gifv)
-        
+      
+      ![3Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.38](../images/README/3Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.38.gif)
+      
         ```swift
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                 if segue.destination.children.first is ManageStockViewController {
@@ -110,13 +110,13 @@
                 }
             }
         ```
-        
+      
     - 6. Auto Layout
-        
+      
         Auto Layout은 뷰 계층 구조에 있는 모든 뷰의 크기와 위치를 해당 뷰에 적용된 제약 조건 기반의 동적인 계산을 하는 것을 말한다.
-        
+      
         ![Imgur](https://i.imgur.com/9eh2nsu.png)
-        
+      
 
 ---
 
