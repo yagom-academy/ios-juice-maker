@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet private weak var kiwiLabel: UILabel!
     @IBOutlet private weak var mangoLabel: UILabel!
     
+    @IBOutlet var stockLabels: [UILabel]!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateAllFruitLabel()
@@ -43,17 +46,10 @@ class ViewController: UIViewController {
     }
     
     private func updateFruitLabel(for fruit: Fruit, stock: Int) {
-        switch fruit {
-        case .strawberry:
-            strawberryLabel.text = String(stock)
-        case .banana:
-            bananaLabel.text = String(stock)
-        case .pineapple:
-            pineappleLabel.text = String(stock)
-        case .kiwi:
-            kiwiLabel.text = String(stock)
-        case .mango:
-            mangoLabel.text = String(stock)
+        for label in stockLabels {
+            if label.tag == fruit.rawValue {
+                label.text = String(stock)
+            }
         }
     }
     
