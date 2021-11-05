@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--재고 추가-->
+        <!--Modify Stock View Controller-->
         <scene sceneID="ZNM-1J-Eiw">
             <objects>
                 <viewController storyboardIdentifier="ModifyStockViewController" id="8F4-8n-VuT" customClass="ModifyStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q00-Oh-TzY">
-                                <rect key="frame" x="60" y="71.5" width="776" height="207"/>
+                                <rect key="frame" x="60" y="53.5" width="776" height="207"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AIh-Qb-z3F">
                                         <rect key="frame" x="0.0" y="0.0" width="142.5" height="207"/>
@@ -166,13 +166,7 @@
                             <constraint firstItem="XMq-sk-5eg" firstAttribute="trailing" secondItem="q00-Oh-TzY" secondAttribute="trailing" constant="16" id="tM1-O3-iL7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="재고 추가" id="RW5-Qq-2np">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" id="SVD-Dn-TDy">
-                            <connections>
-                                <action selector="touchUpCancelButton:" destination="8F4-8n-VuT" id="PXv-vk-CdS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="RW5-Qq-2np"/>
                     <connections>
                         <outlet property="bananaStockLabel" destination="q0M-7r-EMq" id="RU5-2S-vp3"/>
                         <outlet property="bananaStockStepper" destination="Nl2-Zf-rAj" id="eRa-rK-0zJ"/>
@@ -188,25 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbq-Lh-M1Z" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2546.376811594203" y="900.66964285714278"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="HtM-X8-Cy5">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hiH-Qg-UHO" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0zX-a7-CFb">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8F4-8n-VuT" kind="relationship" relationship="rootViewController" id="XqK-0M-0pb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sxa-rd-uEL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2546" y="-194"/>
+            <point key="canvasLocation" x="2563" y="481"/>
         </scene>
     </scenes>
     <resources>

@@ -26,6 +26,7 @@ class ModifyStockViewController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeNavigationBar()
         updateAllStockLabels()
         initializeAllStepper()
     }
@@ -40,6 +41,20 @@ class ModifyStockViewController: UIViewController {
     }
     
     // MARK: Private methods
+    
+    private func initializeNavigationBar() {
+        self.title = "재고 추가"
+                
+        let cancelButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(touchUpCancelButton))
+        
+        self.navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    @objc private func touchUpCancelButton(_ sender: UIButton) {
+        NotificationCenter.default.post(name: .receiveModifiedStock, object: nil, userInfo: ["modifiedStock": modifiedStock])
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     private func updateAllStockLabels() {
         let stockLabels: [UILabel]! = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
         
@@ -119,11 +134,6 @@ class ModifyStockViewController: UIViewController {
 
 // MARK: - Actions
 extension ModifyStockViewController {
-    @IBAction private func touchUpCancelButton(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .receiveModifiedStock, object: nil, userInfo: ["modifiedStock": modifiedStock])
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction private func stepperValueChanged(_ stepper: UIStepper) {
         guard let (label, fruit) = matchStepperWithLabelAndFruit(stepper: stepper) else {
             return
