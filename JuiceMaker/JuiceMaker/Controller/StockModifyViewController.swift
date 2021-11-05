@@ -110,14 +110,14 @@ extension StockModifyViewController {
 // MARK: - Model Method
 extension StockModifyViewController {
     private func modifyStock(of fruitToModify: Fruit, by stepperValue: Double) throws {
-        try juiceMaker?.changeFruitStock(of: fruitToModify, by: 1, calculate: calculation(for: stepperValue))
+        try juiceMaker?.changeFruitStock(of: fruitToModify, by: 1, isIncrement: isIncrement(of: stepperValue))
     }
     
-    private func calculation(for stepperValue: Double) throws -> (Int,Int) -> Int {
+    private func isIncrement(of stepperValue: Double) throws -> Bool {
         if stepperValue > stepperDefaultValue {
-            return (+)
+            return true
         } else if stepperValue < stepperDefaultValue {
-            return (-)
+            return false
         } else {
             throw FruitStoreError.unexpectedStepperValue
         }
