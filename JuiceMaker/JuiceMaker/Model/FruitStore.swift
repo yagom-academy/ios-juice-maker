@@ -7,12 +7,13 @@
 import Foundation
 
 class FruitStore {
-    private var stockOfFruit: [Fruit: Int] = [:]
+    private(set) var stockOfFruit: [Fruit: Int] = [:]
     
     init() {
         for fruit in Fruit.allCases {
             stockOfFruit[fruit] = Fruit.initialValue
         }
+        addObserverForStockUpdate()
     }
     
     private func postNotification(for fruit: Fruit, stock: Int, succeed: Bool) {
@@ -21,6 +22,21 @@ class FruitStore {
                                 userInfo: [NotificationKey.fruit: fruit,
                                            NotificationKey.stock: stock,
                                            NotificationKey.orderComplete: succeed])
+    }
+    
+    private func addObserverForStockUpdate() {
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didReceiveUpdateNotification),
+                                       name: Notification.Name.stockModified,
+                                       object: nil)
+    }
+    
+    @objc private func didReceiveUpdateNotification(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        
+        if let stockOfFruit = userInfo?[NotificationKey.stockOfFruit] as? [Fruit: Int] {
+            self.stockOfFruit = stockOfFruit
+        }
     }
     
     private func hasEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
@@ -45,9 +61,9 @@ class FruitStore {
         }
         guard let secondFruit = secondFruit,
               let secondFruitAmount = secondFruitAmount else {
-               subtractStock(of: firstFruit, amount: firstFruitAmount)
-               return
-        }
+                  subtractStock(of: firstFruit, amount: firstFruitAmount)
+                  return
+              }
         guard hasEnoughStock(of: secondFruit, amount: secondFruitAmount) else {
             return
         }
