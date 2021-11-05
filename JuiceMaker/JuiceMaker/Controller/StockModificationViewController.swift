@@ -8,7 +8,7 @@
 import UIKit
 
 class StockModificationViewController: UIViewController {
-    let fruitStore = FruitStore()
+    let fruitStore = FruitStore.shared
     
     var strawberryStock = ""
     var bananaStock = ""
@@ -48,6 +48,7 @@ class StockModificationViewController: UIViewController {
     @IBAction func touchUpStrawberryStepper(_ sender: UIStepper) {
         strawberryStockLabel.text = Int(sender.value).description
         fruitStore.modifyStock(from: .strawberry, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: strawberryStepper.value)
     }
     
     @IBAction func touchUpBananaStepper(_ sender: UIStepper) {

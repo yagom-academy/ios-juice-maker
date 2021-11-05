@@ -7,11 +7,14 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private let fruitStore = FruitStore()
+    private let fruitStore = FruitStore.shared
     private let juiceMaker = JuiceMaker()
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         updateFruitStockLabel()
+        notificationCenter.addObserver(self, selector: #selector(updateFruitStockLabel), name: .stockDataTransmission, object: nil)
     }
     
     @IBOutlet private(set) weak var strawberryStockLabel: UILabel!
@@ -20,7 +23,7 @@ class MainViewController: UIViewController {
     @IBOutlet private(set) weak var kiwiStockLabel: UILabel!
     @IBOutlet private(set) weak var mangoStockLabel: UILabel!
     
-    private func updateFruitStockLabel() {
+    @objc private func updateFruitStockLabel() {
         guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
               let bananaStock = fruitStore.stock[Fruit.banana],
               let pineappleStock = fruitStore.stock[Fruit.pineapple],
@@ -28,6 +31,7 @@ class MainViewController: UIViewController {
               let mangoStock = fruitStore.stock[Fruit.mango] else {
                   return
               }
+        print(strawberryStock)
         
         strawberryStockLabel.text = String(strawberryStock)
         bananaStockLabel.text = String(bananaStock)

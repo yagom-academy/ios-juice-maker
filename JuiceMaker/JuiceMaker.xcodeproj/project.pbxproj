@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7851348327227D45006A9608 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7851348227227D45006A9608 /* Error.swift */; };
+		786258BA2734F9D600A83A9F /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786258B92734F9D600A83A9F /* NotificationCenter.swift */; };
 		789B48F427229C5E008A12D1 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B48F327229C5E008A12D1 /* Juice.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		7851348227227D45006A9608 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		786258B92734F9D600A83A9F /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		789B48F327229C5E008A12D1 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,7 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* MainViewController.swift */,
 				DE8B97FB272AAF8400062B28 /* StockModificationViewController.swift */,
+				786258B92734F9D600A83A9F /* NotificationCenter.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				FBBCDA4D2722824A0044D6DF /* Fruit.swift in Sources */,
 				7851348327227D45006A9608 /* Error.swift in Sources */,
 				DE8B97FC272AAF8400062B28 /* StockModificationViewController.swift in Sources */,
+				786258BA2734F9D600A83A9F /* NotificationCenter.swift in Sources */,
 				789B48F427229C5E008A12D1 /* Juice.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
