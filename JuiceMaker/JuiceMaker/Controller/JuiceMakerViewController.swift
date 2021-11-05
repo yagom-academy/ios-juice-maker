@@ -99,7 +99,7 @@ class JuiceMakerViewController: UIViewController {
         let message = "\(DataFormatConverter().convert(using: fruitAndQuantity))가 모자라요. 재고를 수정할까요?"
         
         let alert = UIAlertController(title: "재고 부족", message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "재고 수정하기", style: .default) { _ in self.presentStockModifyView() }
+        let ok = UIAlertAction(title: "재고 수정하기", style: .default) { [weak self] _ in self?.presentStockModifyView() }
         let close = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(close)
         alert.addAction(ok)
