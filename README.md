@@ -1,5 +1,6 @@
 # 목차
 - [🍹 쥬스메이커](#---------)
+- [UML](#UML)
     * [키워드](#키워드)
 - [Contributors](#Contributors)
 - [Reviewers](#Reviewers)
@@ -22,7 +23,6 @@
     + [배운 개념](#3-4-배운-개념)
     + [PR 후 개선사항](#3-5-PR-후-개선사항)
 
-
 # 🍹 쥬스메이커
 
 1. 프로젝트 기간: 2021.10.18 - 2021.11.05
@@ -35,6 +35,9 @@
 3. 커밋 규칙
     - 단위 : 기능 단위로
     - Convention: Karma Style
+    
+# UML
+![](https://i.imgur.com/hpuA0yL.jpg)
 
 # 키워드
 
@@ -245,7 +248,7 @@
 - Singleton 패턴을 활용
 - 화면 이동시 이동 방식에 대한 고민
     - `이유` 네비게이션을 따라서 화면을 이동하는 방식이 적절하지 못하다고 생각했기 때문이다. `임시적`으로 화면에 들어가서 재고를 수정하는 용도의 View라는 생각이 들었다. 따라서 `Push` 보다는 `Present`가 적합하다고 생각했다.
-- [**Human Interface Guidelines**](https://developer.apple.com/design/human-interface-guidelines/)에 따른 Alert 버튼 구성
+- [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)에 따른 Alert 버튼 구성
     - `Yes`, `No`의 사용은 하지 말라고 되어있다.
     - 단순 수락시 `OK`, 취소는 `Cancel`
     - `Cancel` 버튼은 왼쪽에 위치해야 한다.
@@ -264,9 +267,22 @@
 
 ## 2-3. Trouble Shooting
 
-- `Navigation Controller`가 두개가 구현이 되어있었던 의문을 풀었다. `Navigation Bar`를 이용하기 위함이였다. 쥬스메이커 메인화면에서 재고수정하기 버튼을 터치하게 되면 화면 이동방식은 `modal`이 되어야 한다고 생각했다. 이유는 네비게이션을 따라서 화면을 이동하는 방식이 적절하지 못하다고 생각했기 때문이다. `임시적`으로 화면에 들어가서 재고를 수정하는 용도의 View라는 생각이 들었다. 따라서 메인 화면을 재고수정이 구현되어있는 `ViewController`가 아니라 재고수정 화면에 연결되어있는 `Navigation Controller`에 `Segue`를 연결해서 `modal`을 구현하고, `bar button`을 활용하여 Cancel 버튼을 구현해주었다.
-- 프로토콜(`LocalizedError`)을 사용자 정의 타입(`RequestError`)에 채택 후 프로토콜이 정의한 프로퍼티가 아니라 이름은 같지만 타입이 다른 프로퍼티를 구현해주었다. 이후 파라미터로 값을 전달하는 과정에서 타입이 정의한 프로퍼티가 아니라 프로토콜에서 기본 구현이 된 프로퍼티가 자꾸 전달되었는데 알고보니, **같은 이름**이지만 **타입이 다른** 두 프로퍼티가 공존하고 있을 때, 파라미터로 전달할 때에는 **타입이 일치**하는 프로퍼티가 들어갔다. 예를 들어 함수의 파라미터 후보로 `String`과 `String?` 두가지가 있고, 파라미터의 타입은 `String?` 이라면 컴파일러는 당연히 `String?`을 전달해주려고 할 것이다. 다만 최후의 후보가 `String` 뿐이라서 **String? 자리**에 `String`을 전달하는 경우 String을 `String?`으로 **포장**해줄 수는 있겠다. 당시에는 왜 **String을 전달**하고 있는데 왜 `nil`이 전달되는 것인지 이해가 가지 않았었는데, 그 의문을 질문을 통해서 해결하였다. 이후 `LocalizedError` 프로토콜을 사용할 이유가 없어져서 채택한 것을 없애주고 해결하였다.
-- 맨 처음 `Model`을 구현할 때 당시에는 `Fruit`을 밖에서 사용하지 않는다고 생각하여 `FruitStore` **내부**에 구현을 해주었었는데, `STEP 2`를 구현하다보니 외부에서도 쓰이는 상황을 마주했다. 그래서 내부로 다시 빼주는 작업을 하였고 앞으로 설계할 때 **정말 안에서만 쓰이는 타입**인지 잘 고민하고 중첩 타입을 사용해야겠다는 큰 깨달음을 얻었다.
+### 1. Navigation Controller가 두개로 구현되어있는 이유
+
+- `이유` `Navigation Bar`를 이용하기 위함이였다. 쥬스메이커 메인화면에서 재고수정하기 버튼을 터치하게 되면 화면 이동방식은 `modal`이 되어야 한다고 생각했다. 이유는 네비게이션을 따라서 화면을 이동하는 방식이 적절하지 못하다고 생각했기 때문이다. `임시적`으로 화면에 들어가서 재고를 수정하는 용도의 View라는 생각이 들었다. 
+`해결` 메인 화면을 재고수정이 구현되어있는 `ViewController`가 아니라 재고수정 화면에 연결되어있는 `Navigation Controller`에 `Segue`를 연결해서 `modal`을 구현하고, `bar button`을 활용하여 Cancel 버튼을 구현해주었다.
+
+### 2. 이름은 같지만 타입이 다른 타입
+
+- `상황`  프로토콜(`LocalizedError`)을 사용자 정의 타입(`RequestError`)에 채택 후 프로토콜이 정의한 프로퍼티가 아니라 이름은 같지만 타입이 다른 프로퍼티를 구현해주었다. 이후 파라미터로 값을 전달하는 과정에서 타입이 정의한 프로퍼티가 아니라 프로토콜에서 기본 구현이 된 프로퍼티가 전달되었다.
+`이유`  **같은 이름**이지만 **타입이 다른** 두 프로퍼티가 공존하고 있을 때, 파라미터로 전달할 때에는 **타입이 일치**하는 프로퍼티가 들어갔다.
+`해결`  예를 들어 함수의 파라미터 후보로 `String`과 `String?` 두가지가 있고, 파라미터의 타입은 `String?` 이라면 컴파일러는 당연히 `String?`을 전달해주려고 할 것이다. 다만 최후의 후보가 `String` 뿐이라서 **String? 자리**에 `String`을 전달하는 경우 String을 `String?`으로 **포장**해줄 수는 있겠다. 당시에는 왜 **String을 전달**하고 있는데 왜 `nil`이 전달되는 것인지 이해가 가지 않았었는데, 그 의문을 질문을 통해서 해결하였다. 이후 `LocalizedError` 프로토콜을 사용할 이유가 없어져서 채택한 것을 없애주고 해결하였다.
+
+### 3. 중첩타입의 활용
+
+- `상황` 맨 처음 `Model`을 구현할 때 당시에는 `Fruit`을 밖에서 사용하지 않는다고 생각하여 `FruitStore` **내부**에 구현을 해주었다.
+`이유` `STEP 2`를 구현하다보니 외부에서도 쓰이는 상황을 마주했다. 
+`해결` 내부로 다시 빼주는 작업을 하였고, 앞으로 설계할 때 **정말 안에서만 쓰이는 타입**인지 잘 고민하고 중첩 타입을 사용해야겠다는 큰 깨달음을 얻었다.
 
 ## 2-4. 배운 개념
 
@@ -302,17 +318,17 @@
 
 ## 3-1. 고민했던 것
 
-- 재고 수정 화면으로 전환시 재고 관련 Label들이 업데이트 되는 부분을 고민했습니다. 따로 재고수정 화면에서 재고를 조회하고 Label에 반영해주는 방법도 있겠지만 같은 일을 두번 반복하는 것이 좋지않아 보였고, JuiceMakerViewController의 Label의 값들을 다음 화면에다가 넘겨주면 좋겠다고 생각하여 `prepare`메소드를 이용하여 넘겨주는 방식을 선택했다.
+- 재고 수정 화면으로 전환시 재고 관련 Label들이 업데이트 되는 부분을 고민했다. 따로 재고수정 화면에서 재고를 조회하고 Label에 반영해주는 방법도 있겠지만 같은 일을 두번 반복하는 것이 좋지않아 보였고, JuiceMakerViewController의 Label의 값들을 다음 화면에다가 넘겨주면 좋겠다고 생각하여 `prepare`메소드를 이용하여 넘겨주는 방식을 선택했다.
 - Controller 내부 가독성을 어떻게 하면 향상 시킬 수 있는지 고민했다. `extension`을 이용하여 Controller를 분리해보았다. 실제로 가독성도 좋아지는 것 같은 효과[?]를 보았다.
 - 초기에는 Stepper가 터치될 때 (Event가 `Touch Up Inside`일 때) FruitStore의 과일 갯수 저장 프로퍼티 값이 바뀌도록 `IBAction Method` 메소드를 작성해 구현해보았다. 해당 방식으로 구현하면 Stepper의 값이 변화하지 않았을 때에도 `IBAction Method`를 사용하게 되어 메소드 내부에서 수동으로 값의 변화를 체크해야 했다. 자동으로 값의 변화를 체크해주는 방법을 애플에서 제공해주지 않을까 생각이 들었고 Event를 `Touch Up Inside`에서 `Value Changed`로 바꾸어주어 해당 방식을 선택했다.
 - `Label`과 `Button`이 **Dynamic Type** 크기에 따라 커지고 작아질 때마다 실시간으로 반영될 수 있도록 **`adjustsFontForContentSizeCategory`** 옵션을 true로 주었다.
-- `Label`과 `Button`이 **Dynamic Type** 크기에 따라 폰트 크기가 변화할 때마다 글씨가 잘리는 현상을 발견했습니다. 그래서 버튼 크기 너비에 맞게 크고 작아질 수 있도록 `AdjustsFontSizeToFitWidth` 옵션을 true로 주었다.
-- 
+- `Label`과 `Button`이 **Dynamic Type** 크기에 따라 폰트 크기가 변화할 때마다 글씨가 잘리는 현상을 발견했다. 그래서 버튼 크기 너비에 맞게 크고 작아질 수 있도록 `AdjustsFontSizeToFitWidth` 옵션을 true로 주었다.
 
 ## 3-2. 의문점
 
 - 화면 전환 시 Label을 넘겨줄 때 prepare 메소드 내부에서 loadViewIfNeeded 메소드를 이용하여 다음 View를 미리 load 해주고 있다. 이게 적절한 타이밍에 사용했다고 생각하긴 하는데, 정말 적절한건지 모르겠다.
-- present 메소드를 통해 특정 view controller를 띄어준 뒤 view controller의 view 프로퍼티에 접근하여 값을 수정하였을 때 UI가 반영되었다. present 메소드 사용 이전에 view controller의 UI 관련 값을 설정하고 present를 해주어야하는 줄 알았는데 그렇지 않아 의외였다.
+    - 해당 의문점은 리뷰어인 흰에게 조언을 구했고, View를 불러오기 전에 한번 더 load 하는 것이기 때문에 메모리적인 문제가 발생하여 적절하지 못하다는 리뷰를 받았다.
+- present 메소드를 통해 특정 ViewController를 띄어준 뒤 ViewController의 view 프로퍼티에 접근하여 값을 수정하였을 때 UI가 반영되었다. present 메소드 사용 이전에 ViewController의 UI 관련 값을 설정하고 present를 해주어야하는 줄 알았는데 그렇지 않아 의외였다.
 
 ## 3-3. Trouble Shooting
 
@@ -329,7 +345,8 @@
 
 - `상황` prepare 메소드를 이용하여 Label의 값들을 넘겨주는 기능을 추가하다가 다음 화면에서 정상적으로 값이 전달되지않아 Label.text 값이 nil인 것을 확인했다. View가 load가 되어있지 않아서 값을 전달하는게 불가능 했다.
 - `시도` 첫번째 방법으로 임시로 값을 담아둘 프로퍼티를 전환할 Controller에 구현해주고 넘겨주려고 했다. 하지만 해당 방법은 프로퍼티를 여러개 생성해야되서 코드 가독성 측면에서 떨어진다고 생각이 들었다.
-- `해결` 두번째 방법으로는 View를 미리 load할 수는 없을까 찾아보다가 `loadViewIfNeeded()` 메소드를 찾게되어 해당 메소드를 호출 후에 Label 값을 전달해주니 정상적으로 다음 화면에서 Label의 값이 적용되었다.
+- `시도` 두번째 방법으로는 View를 미리 load할 수는 없을까 찾아보다가 `loadViewIfNeeded()` 메소드를 찾게되어 해당 메소드를 호출 후에 Label 값을 전달해주니 정상적으로 다음 화면에서 Label의 값이 적용되었다.
+- `해결` 그러나 위의 방법은 View를 넘어가기전에 한번 더 `load`를 한다는 문제점과 두번째 ViewController의 속성값을 첫번째 ViewController에서 관리한다는 것이 문제가 되었다. 두번째 ViewController의 값들은 **해당 ViewController에서 관리**를 할 수 있도록 전반적으로 코드를 수정해주었고, 화면이 넘어가는 과정에서는 `JuiceMaker`의 **인스턴스**만 넘겨줄 수 있도록 로직을 수정하여 해결하였다.
 
 ### 3. button에 Dynamic Type 적용이 안되는 경우
 
@@ -349,13 +366,32 @@
             orderMangoJuiceButton.titleLabel?.adjustsFontForContentSizeCategory = true
     ```
     
-
+- `또 다른 해결 방법` 위와 같이 직접 설정해주어도 되지만 코드 간결화를 주고싶어서 extension을 활용하여 코드를 수정해보았다.
+    ```swift
+    // 개선 후 코드
+    extension UIButton {
+        func setUpTitleLabelFontAttributes() {
+            titleLabel?.adjustsFontForContentSizeCategory = true
+            titleLabel?.adjustsFontSizeToFitWidth = true
+        }
+    }
+    
+    func setUpbuttonLabelFontAttributes() {
+        orderStrawberryBananaJuiceButton.setUpTitleLabelFontAttributes()
+        orderMangoKiwiJuiceButton.setUpTitleLabelFontAttributes()
+        orderStrawberryJuiceButton.setUpTitleLabelFontAttributes()
+        orderBananaJuiceButton.setUpTitleLabelFontAttributes()
+        orderPineappleJuiceButton.setUpTitleLabelFontAttributes()
+        orderKiwiJuiceButton.setUpTitleLabelFontAttributes()
+        orderMangoJuiceButton.setUpTitleLabelFontAttributes()
+    }
+    ```
+    
 ### 4. NavigationViewController에 연결되어있는 ViewController를 가져오기
 
 - `상황` NavigationViewController를 생성해서 Label에 접근해서 값을 전달해주려고 했으나 접근할 수가 없었다.
 - `이유` NavigationViewController는 실제로는 뷰가 존재하지 않기 때문에 연결되어있는 ViewController를 가져와야 했다.
 - `해결` topViewController라는 프로퍼티를 이용하여 ViewController를 생성해주고, 타입캐스팅으로 FruitStoreViewController를 가져와서 Label에 접근하는데에 성공했다.
-    
     ```swift
     private func presentFruitStoreViewController(_ action: UIAlertAction) {
             guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? UINavigationController else { return }
@@ -364,8 +400,7 @@
             setupNextViewLabel(of: nextViewController)
         }
     ```
-    
-    
+
 ## 3-4. 배운 개념
 
 - 화면 사이의 데이터 공유하는 여러가지의 방법
@@ -383,6 +418,7 @@
     guard let nextViewController = navigationController.topViewController as? FruitStoreViewController else { return }
     nextViewController.strawberryStockLabel.text = strawberryStockLabel.text
     ```
+
 ## 3-5. PR 후 개선사항
 
 - 메소드명이 동사로 시작하도록 개선
