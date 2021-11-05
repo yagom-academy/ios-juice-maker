@@ -28,6 +28,13 @@ class StockModificationViewController: UIViewController {
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        updateStock()
+        updateStepperValue()
+    }
+    
     private func updateStock() {
         strawberryStockLabel.text = strawberryStock
         bananaStockLabel.text = bananaStock
@@ -36,11 +43,20 @@ class StockModificationViewController: UIViewController {
         mangoStockLabel.text = mangoStock
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func updateStepperValue() {
+        guard let strawberryAmount = Double(strawberryStockLabel.text ?? "0.0"),
+              let bananaAmount = Double(bananaStockLabel.text ?? "0.0"),
+              let pineappleAmount = Double(pineappleStockLabel.text ?? "0.0"),
+              let kiwiAmount = Double(kiwiStockLabel.text ?? "0.0"),
+              let mangoAmount = Double(mangoStockLabel.text ?? "0.0") else {
+                  return
+              }
         
-        updateStock()
-        updateStepperValue()
+        strawberryStepper.value = strawberryAmount
+        bananaStepper.value = bananaAmount
+        pineappleStepper.value = pineappleAmount
+        kiwiStepper.value = kiwiAmount
+        mangoStepper.value = mangoAmount
     }
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) { 
@@ -75,21 +91,5 @@ class StockModificationViewController: UIViewController {
         mangoStockLabel.text = Int(sender.value).description
         fruitStore.modifyStock(from: .mango, by: sender)
         notificationCenter.post(name: .stockDataTransmission, object: mangoStepper.value)
-    }
-    
-    private func updateStepperValue() {
-        guard let strawberryAmount = Double(strawberryStockLabel.text ?? "0.0"),
-              let bananaAmount = Double(bananaStockLabel.text ?? "0.0"),
-              let pineappleAmount = Double(pineappleStockLabel.text ?? "0.0"),
-              let kiwiAmount = Double(kiwiStockLabel.text ?? "0.0"),
-              let mangoAmount = Double(mangoStockLabel.text ?? "0.0") else {
-                  return
-              }
-        
-        strawberryStepper.value = strawberryAmount
-        bananaStepper.value = bananaAmount
-        pineappleStepper.value = pineappleAmount
-        kiwiStepper.value = kiwiAmount
-        mangoStepper.value = mangoAmount
     }
 }

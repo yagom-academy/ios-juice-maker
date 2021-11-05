@@ -13,9 +13,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        adjustButtonFontSize()
         updateFruitStockLabel()
         notificationCenter.addObserver(self, selector: #selector(updateFruitStockLabel), name: .stockDataTransmission, object: nil)
-        adjustButtonFontSize()
     }
     
     @IBOutlet private(set) weak var strawberryBananaOrderButton: UIButton!
@@ -31,6 +31,50 @@ class MainViewController: UIViewController {
     @IBOutlet private(set) weak var pineappleStockLabel: UILabel!
     @IBOutlet private(set) weak var kiwiStockLabel: UILabel!
     @IBOutlet private(set) weak var mangoStockLabel: UILabel!
+    
+    private func adjustButtonFontSize() {
+        if strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
+            strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            strawberryBananaOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+            strawberryBananaOrderButton.titleLabel?.textAlignment = .center
+        }
+        
+        if mangoKiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
+            mangoKiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            mangoKiwiOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+            mangoKiwiOrderButton.titleLabel?.textAlignment = .center
+        }
+        
+        if strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
+            strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            strawberryOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+            strawberryOrderButton.titleLabel?.textAlignment = .center
+        }
+        
+        if bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
+            bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            bananaOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+            bananaOrderButton.titleLabel?.textAlignment = .center
+        }
+        
+        if pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
+            pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            pineappleOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+            pineappleOrderButton.titleLabel?.textAlignment = .center
+        }
+        
+        if kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
+            kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            kiwiOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+            kiwiOrderButton.titleLabel?.textAlignment = .center
+        }
+        
+        if mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
+            mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            mangoOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
+            mangoOrderButton.titleLabel?.textAlignment = .center
+        }
+    }
     
     @objc private func updateFruitStockLabel() {
         guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
@@ -120,50 +164,6 @@ class MainViewController: UIViewController {
             destinationController.kiwiStock = kiwiStockLabel.text ?? ""
             destinationController.mangoStock = mangoStockLabel.text ?? ""
             destinationController.pineappleStock = pineappleStockLabel.text ?? ""
-        }
-    }
-    
-    private func adjustButtonFontSize() {
-        if strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            strawberryBananaOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            strawberryBananaOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if mangoKiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            mangoKiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            mangoKiwiOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            mangoKiwiOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            strawberryOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            strawberryOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            bananaOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            bananaOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            pineappleOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            pineappleOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            kiwiOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            kiwiOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            mangoOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            mangoOrderButton.titleLabel?.textAlignment = .center
         }
     }
 }
