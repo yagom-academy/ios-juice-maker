@@ -68,9 +68,14 @@ class ManageStockViewController: UIViewController {
         }
         
         var updatingFruitsQuantity = [Fruit]()
+        
         for index in 0...fruitQuantityLabels.count - 1 {
+            guard let fruitQuantityLabelText = fruitQuantityLabels[index].text else {
+                return
+            }
+            
             updatingFruitsQuantity.append(Fruit(name: fruitNames[index],
-                                   quantity: Int(fruitQuantityLabels[index].text ?? "0") ?? 0))
+                                   quantity: Int(fruitQuantityLabelText) ?? 0))
         }
 
         juiceMaker?.updateStock(to: updatingFruitsQuantity)
