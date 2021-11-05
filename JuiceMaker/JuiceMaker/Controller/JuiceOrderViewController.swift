@@ -20,13 +20,14 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet var juiceOrderButtons: [UIButton]!
     
     private lazy var juiceMaker: JuiceMaking = JuiceMaker(store: FruitStore())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didFruitStockChange(_:)), name: .FruitStockChanged, object: nil)
-        customizeButtonSettings()
+        setJuiceOrderButtons()
         updateAllLabels()
     }
     
@@ -83,22 +84,11 @@ extension JuiceOrderViewController {
         }
     }
     
-    private func customizeButtonSettings() {
-        strawberryBananaJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        mangoKiwiJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        strawberryJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        bananaJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        pineappleJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        kiwiJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        mangoJuiceOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-        
-        strawberryBananaJuiceOrderButton.titleLabel?.textAlignment = .center
-        mangoKiwiJuiceOrderButton.titleLabel?.textAlignment = .center
-        strawberryJuiceOrderButton.titleLabel?.textAlignment = .center
-        bananaJuiceOrderButton.titleLabel?.textAlignment = .center
-        pineappleJuiceOrderButton.titleLabel?.textAlignment = .center
-        kiwiJuiceOrderButton.titleLabel?.textAlignment = .center
-        mangoJuiceOrderButton.titleLabel?.textAlignment = .center
+    private func setJuiceOrderButtons() {
+        juiceOrderButtons.forEach { button in
+            button.titleLabel?.lineBreakMode = .byWordWrapping
+            button.titleLabel?.textAlignment = .center
+        }
     }
 }
 
@@ -172,7 +162,7 @@ extension JuiceOrderViewController {
 // MARK: - View Transition Method
 extension JuiceOrderViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == StoryboardSegue.toStockModifyView.identifier,
+        guard segue.identifier == StoryboardSegue.toStockModifyView,
               let stockModifyViewNavigationController = segue.destination as? UINavigationController,
               let stockModifyViewController = stockModifyViewNavigationController.visibleViewController as? StockModifyViewController else {
             showErrorAlert(error: ViewTransitionError.viewTransitionFailed)
@@ -182,6 +172,6 @@ extension JuiceOrderViewController {
     }
     
     private func moveToStockModifyView() {
-        performSegue(withIdentifier: StoryboardSegue.toStockModifyView.identifier, sender: nil)
+        performSegue(withIdentifier: StoryboardSegue.toStockModifyView, sender: nil)
     }
 }
