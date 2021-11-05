@@ -372,9 +372,9 @@ catch문에서 `return` 을 해주어 오류를 수정해주었다.
 
 # Step 3
 
-## 고민했던 것
+## 🤔 고민했던 것
 
-1. 메서드내 매개변수간 줄바꿈에 대한 기준
+### 1. 메서드내 매개변수간 줄바꿈에 대한 기준
 
 ```swift
 private func addObserver() {
@@ -383,12 +383,13 @@ private func addObserver() {
 ```
 
 `addObserver()` 와 같이 메서드내 매개변수의 인자값이 여러 개 일 경우, 
-
 **인자값의 길이에 상관없이** 매개변수간 줄바꿈에 대한 기준을 통일 해주어야할지에 대한 의문이 생겼다.
 
-1. @IBAction 메서드간 줄바꿈에 대한 일정한 기준이 있는지에 대한 고민
+<br>
+
+### 2. @IBAction 메서드간 줄바꿈에 대한 일정한 기준이 있는지에 대한 고민
     
-    ```swift
+```swift
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
          order(.strawberryBananaJuice)
     }
@@ -410,18 +411,20 @@ private func addObserver() {
             present(stockManagerViewController, animated: true, completion: nil)
         }
     }
-    ```
-    
-    - 줄바꿈을 어떠한 기준으로 나눠도 되는지에 대한 궁금증이 생겼다.
-    - 우리는 지금까지 가독성을 높이는 차원에서 줄바꿈을 활용해왔는데, 그건 어쩌면 다소 주관적인 기준이 될 수도 있겠다는 생각을 했다.
-    
-2. `JuiceMakerViewController` 에서 `StockManagerViewController` 으로 화면 전환을 할때, 데이터를 어떻게 전달할지에 대한 고민을 했다.
-    - 우리가 고민했던 최종 방법에는 두 가지가 있었다.
-        1. `JuiceMakerViewController` 의 `UILabel` 들에 있는 값들을 `Array` 또는 `Dictionary` 에 담아서 전달을 해서 `StockManagerViewController` 에서 바로 `UILabel` 로 표시를 할지
-        2. `JuiceMaker` 인스턴스를 전달을 해서, `JuiceMaker.fruitStore.inventory` 에 있는 값들을 꺼내서 `UILabel` 에 표시를 할지
-    - `JuiceMakerViewController` 에 있는 `UILabel` 값들을 그대로 `StockManagerViewController` 에 적용시키는것 보다, 모델에서 다시 정보를 가져와서 UI에 적용시키는것이 좋을지에 대한 고민을 했다.
-    
-3.  `JuiceMaker`에서 `FruitStore`의 `stock`을 어떻게 꺼내서 사용할지에 대한 고민
+```
+- 줄바꿈을 어떠한 기준으로 나눠도 되는지에 대한 궁금증이 생겼다.
+- 우리는 지금까지 가독성을 높이는 차원에서 줄바꿈을 활용해왔는데, 그건 어쩌면 다소 주관적인 기준이 될 수도 있겠다는 생각을 했다.
+<br>
+
+### 3. `JuiceMakerViewController` 에서 `StockManagerViewController` 으로 화면 전환을 할때, 데이터를 어떻게 전달할지에 대한 고민
+- 우리가 고민했던 최종 방법에는 두 가지가 있었다.
+
+ 1. `JuiceMakerViewController` 의 `UILabel` 들에 있는 값들을 `Array` 또는 `Dictionary` 에 담아서 전달을 해서 `StockManagerViewController` 에서 바로 `UILabel` 로 표시를 할지
+ 2. `JuiceMaker` 인스턴스를 전달을 해서, `JuiceMaker.fruitStore.inventory` 에 있는 값들을 꺼내서 `UILabel` 에 표시를 할지
+- `JuiceMakerViewController` 에 있는 `UILabel` 값들을 그대로 `StockManagerViewController` 에 적용시키는것 보다, 모델에서 다시 정보를 가져와서 UI에 적용시키는것이 좋을지에 대한 고민을 했다.
+<br>
+
+### 4.  `JuiceMaker`에서 `FruitStore`의 `stock`을 어떻게 꺼내서 사용할지에 대한 고민
 
 ```swift
 struct JuiceMaker {
@@ -458,13 +461,13 @@ extension FruitStore {
 ```swift
 return juiceMaker.fruitStore.inventory.stock
 ```
-
 이런식으로 정보를 가져와야할지 고민을 했다.
 
-1. `return` 생략해도 되는지
+<Br>
+
+### 5. `return` 생략해도 되는지에 대한 고민
 
 스위프트에서는 다음과 같은 코드에서 `return` 을 생략할 수 있는것으로 알고있는데,
-
 이럴때 생략하는 것이 가독성 또는 컨벤션에 위배되는 부분이 있는지 궁금했다.
 
 ```swift
@@ -476,21 +479,23 @@ func retrieveCurrentFruitStock() -> [Fruit:Int] {
     stock
 }
 ```
+<Br>
 
-1. `NavigationBar` 를 갖고있는 모달을 표시할때, `NavigationController` 에 embed 하는게 적절한 방법인지에 대한 고민을 했다.
-    - 프로젝트 기본 코드를 제공받았을때, 재고 관리를 하는 화면이 `NavigationController` 에 embed 되어있었다.
-        - 이렇게되면, 굳이 모달에서 추가적인 뷰간의 계층구조를 만들지않아도 `NavigationController` 에서 기본적으로 제공해주는 `NavigationBar` 가 있어서 UI를 구현하는게 훨씬 편하다는 장점이 있는것 같다.
-        - 우리는 `NavigationController` 를 제거하고 `NavigationBar` 를 따로 코드로 구현해봤는데, 제대로 했는지도 모르겠고 조금 어려웠다.
-    - 그런데! **HIG** 에 의하면 모달은 임시적으로 띄우는 화면인데, depth를 갖을 수 있는 `NavigationController` 에 embed 하는게 조금은 모순적이지 않나 라는 생각도 들었다.
-    - **이것에 대한 best practice가 있는지에 대한 궁금증이 생겼다.**
+### 6. `NavigationBar` 를 갖고있는 모달을 표시할때, `NavigationController` 에 embed 하는게 적절한 방법인지에 대한 고민
+- 프로젝트 기본 코드를 제공받았을때, 재고 관리를 하는 화면이 `NavigationController` 에 embed 되어있었다.
+- 이렇게되면, 굳이 모달에서 추가적인 뷰간의 계층구조를 만들지않아도 `NavigationController` 에서 기본적으로 제공해주는 `NavigationBar` 가 있어서 UI를 구현하는게 훨씬 편하다는 장점이 있는것 같다.
+- 우리는 `NavigationController` 를 제거하고 `NavigationBar` 를 따로 코드로 구현해봤는데, 제대로 했는지도 모르겠고 조금 어려웠다.
+- 그런데! **HIG** 에 의하면 모달은 임시적으로 띄우는 화면인데, depth를 갖을 수 있는 `NavigationController` 에 embed 하는게 조금은 모순적이지 않나 라는 생각도 들었다.
+- **이것에 대한 best practice가 있는지에 대한 궁금증이 생겼다.**
+<Br>
 
-1. `쥬스메뉴 나왔습니다`를 표시하는 alert를 만들 때, 버튼에 따라 다른 쥬스메뉴를 표시해주어야 했다. `AlertTitle` 열거형에 쥬스메뉴에 따른 문자열을 지정해주려면 케이스가 너무 많아지는 것 같아, 공통적인 부분인 `나왔습니다`만 열거형에 추가하고 `UIAlertController`의 `title`에서 매개변수로 받은 `juice`를 합치는 방식을 사용했다.
-
-`Alert`의 문자열을 관리하는 더 좋은 방법에 대해 고민을 해보았다. 
+### 7. `Alert`의 문자열을 관리하는 더 좋은 방법에 대해 고민 
+`쥬스메뉴 나왔습니다`를 표시하는 alert를 만들 때, 버튼에 따라 다른 쥬스메뉴를 표시해주어야 했다. `AlertTitle` 열거형에 쥬스메뉴에 따른 문자열을 지정해주려면 케이스가 너무 많아지는 것 같아, 공통적인 부분인 `나왔습니다`만 열거형에 추가하고 `UIAlertController`의 `title`에서 매개변수로 받은 `juice`를 합치는 방식을 사용했다.
 
 ```swift
 let successAlert = UIAlertController(title: "\(juice) \(AlertTitle.success)", message: "\(AlertMessage.success)", preferredStyle: .alert)
 ```
+<br>
 
 ## 트러블슈팅
 
@@ -498,6 +503,7 @@ let successAlert = UIAlertController(title: "\(juice) \(AlertTitle.success)", me
 
 - `Dictionary` 안에 있는 `key` 와 `value` 를 optional unwrapping 없이 꺼내기 위해, `zip` 을 활용해서 `for` 문으로 `(key, value)` 쌍을 하나씩 접근했다.
 1. `Fruit`와 `UILabel`을 매칭시키는 `switch`문이 중복적으로 사용되어 `UILabel` 을 리턴하는 메서드로 분리해주었다. 
+<br>
 
 ## 배운 개념
 
@@ -510,5 +516,6 @@ let successAlert = UIAlertController(title: "\(juice) \(AlertTitle.success)", me
 - **ViewController 간의 인스턴스를 전달하는 방법**
     - A 화면에서 B 화면으로 전환을 할때, B 화면에서 필요한 인스턴스를 전달하는 방법에 대해서 배웠다. 화면을 전환해주는 메서드내에서 전환될 뷰 컨트롤러의 프로퍼티에 직접 할당을 해주었다.
 - **UML**
+<Br>
 
 ## PR 후 개선사항
