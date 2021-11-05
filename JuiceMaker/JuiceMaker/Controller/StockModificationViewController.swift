@@ -16,6 +16,12 @@ class StockModificationViewController: UIViewController {
     var kiwiStock = ""
     var mangoStock = ""
     
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
+    
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
     @IBOutlet private weak var pineappleStockLabel: UILabel!
@@ -32,6 +38,7 @@ class StockModificationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         updateStock()
+        updateStepperValue()
     }
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) { 
@@ -63,4 +70,19 @@ class StockModificationViewController: UIViewController {
         fruitStore.modifyStock(from: .mango, by: sender)
     }
     
+    func updateStepperValue() {
+        guard let strawberryAmount = Double(strawberryStockLabel.text ?? "0.0"),
+              let bananaAmount = Double(bananaStockLabel.text ?? "0.0"),
+              let pineappleAmount = Double(pineappleStockLabel.text ?? "0.0"),
+              let kiwiAmount = Double(kiwiStockLabel.text ?? "0.0"),
+              let mangoAmount = Double(mangoStockLabel.text ?? "0.0") else {
+                  return
+              }
+        
+        strawberryStepper.value = strawberryAmount
+        bananaStepper.value = bananaAmount
+        pineappleStepper.value = pineappleAmount
+        kiwiStepper.value = kiwiAmount
+        mangoStepper.value = mangoAmount
+    }
 }
