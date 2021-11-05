@@ -17,12 +17,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshStockLabel()
-        addObserverForStockUpdate()
+        updateAllFruitLabel()
+        addObserverForStockConsumption()
         addObserverForStockModified()
     }
     
-    private func addObserverForStockUpdate() {
+    private func addObserverForStockConsumption() {
         notificationCenter.addObserver(self,
                                        selector: #selector(didReceiveNotification),
                                        name: Notification.Name.stockInformation,
@@ -31,12 +31,12 @@ class ViewController: UIViewController {
     
     private func addObserverForStockModified() {
         notificationCenter.addObserver(self,
-                                       selector: #selector(refreshStockLabel),
+                                       selector: #selector(updateAllFruitLabel),
                                        name: Notification.Name.stockModified,
                                        object: nil)
     }
     
-    @objc private func refreshStockLabel() {
+    @objc private func updateAllFruitLabel() {
         for (fruit, stock) in juiceMaker.stockOfFruit {
             updateFruitLabel(for: fruit, stock: stock)
         }
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
             guard let menu = JuiceMaker.Menu(rawValue: sender.tag) else {
                 throw JuiceMakerError.invalidTagNumberForButton
             }
-            makeJuice(for: menu)
+            orderJuice(for: menu)
         } catch JuiceMakerError.invalidTagNumberForButton {
             print(JuiceMakerError.invalidTagNumberForButton.description)
         } catch {
@@ -88,8 +88,8 @@ class ViewController: UIViewController {
         showStockUpdateView()
     }
     
-    private func makeJuice(for menu: JuiceMaker.Menu) {
-        juiceMaker.makeFruitJuice(juice: menu)
+    private func orderJuice(for menu: JuiceMaker.Menu) {
+        juiceMaker.orderFruitJuice(juice: menu)
         showOrderSuccessAlert(for: menu)
     }
     

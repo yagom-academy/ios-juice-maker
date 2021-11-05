@@ -53,7 +53,7 @@ struct JuiceMaker {
         fruitStore.stockOfFruit
     }
     
-    func makeFruitJuice(juice: Menu) {
+    func orderFruitJuice(juice: Menu) {
         switch juice {
         case .strawberryJuice:
             fruitStore.consumeFruits(firstFruit: .strawberry, firstFruitAmount: Recipe.usageOfStrawberry)
