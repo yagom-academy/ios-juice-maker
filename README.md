@@ -84,14 +84,14 @@
     - 3. Modality
       
         Modality는 종료를 전제로 명시적 작업이 필요한 임시 모드에서 콘텐츠를 표시하는 디자인 기술이다.
-      
-      ![1Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.45.44](../images/README/1Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.45.44.gif)
+        
+        ![1Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13 45 44](https://user-images.githubusercontent.com/83689084/140464881-97949888-e411-43e1-b875-fd51e5a238ad.gif)
       
     - 4. Stepper
       
         증가 및 감소 작업을 수행하는 컨트롤이다.
-      
-      ![2Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.08](../images/README/2Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.08.gif)
+        
+      ![2Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13 46 08](https://user-images.githubusercontent.com/83689084/140464899-8a508849-27a7-42bf-bbc8-92b4a62e7cc3.gif)
       
     - 5. Pass Data Between Scenes Using Segues
       
@@ -99,7 +99,7 @@
       
         - `prepare(for:sender:)`
       
-      ![3Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.38](../images/README/3Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13.46.38.gif)
+      ![3Simulator_Screen_Recording_-_iPhone_12_-_2021-11-05_at_13 46 38](https://user-images.githubusercontent.com/83689084/140464923-693742c6-1a5e-4b6a-ac2d-94a6d3475c31.gif)
       
         ```swift
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
