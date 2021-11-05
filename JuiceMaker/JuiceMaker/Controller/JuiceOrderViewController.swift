@@ -146,7 +146,7 @@ extension JuiceOrderViewController {
     
     private func showFailureAlert() {
         let alert = UIAlertController(title: nil, message: FruitStoreError.stockShortage.localizedDescription, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.modifyStock, style: .default) { _ in self.moveToStockModifyView() }
+        let okAction = UIAlertAction(title: AlertMessage.modifyStock, style: .default) { _ in self.presentStockModifyView() }
         let cancelAction = UIAlertAction(title: AlertMessage.cancel, style: .cancel)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
@@ -173,7 +173,7 @@ extension JuiceOrderViewController {
         stockModifyViewController.juiceMaker = self.juiceMaker
     }
     
-    private func moveToStockModifyView() {
+    private func presentStockModifyView() {
         performSegue(withIdentifier: StoryboardSegue.toStockModifyView, sender: nil)
     }
 }
