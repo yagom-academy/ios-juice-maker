@@ -40,7 +40,6 @@ class MainViewController: UIViewController {
               let mangoStock = fruitStore.stock[Fruit.mango] else {
                   return
               }
-        print(strawberryStock)
         
         strawberryStockLabel.text = String(strawberryStock)
         bananaStockLabel.text = String(bananaStock)

@@ -54,21 +54,25 @@ class StockModificationViewController: UIViewController {
     @IBAction func touchUpBananaStepper(_ sender: UIStepper) {
         bananaStockLabel.text = Int(sender.value).description
         fruitStore.modifyStock(from: .banana, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: bananaStepper.value)
     }
     
     @IBAction func touchUpPineappleStepper(_ sender: UIStepper) {
         pineappleStockLabel.text = Int(sender.value).description
         fruitStore.modifyStock(from: .pineapple, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: pineappleStepper.value)
     }
     
     @IBAction func touchUpKiwiStepper(_ sender: UIStepper) {
         kiwiStockLabel.text = Int(sender.value).description
         fruitStore.modifyStock(from: .kiwi, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: kiwiStepper.value)
     }
     
     @IBAction func touchUpMangoStepper(_ sender: UIStepper) {
         mangoStockLabel.text = Int(sender.value).description
         fruitStore.modifyStock(from: .mango, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: mangoStepper.value)
     }
     
     func updateStepperValue() {
