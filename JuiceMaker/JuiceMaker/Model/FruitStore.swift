@@ -45,11 +45,9 @@ class FruitStore {
         storedFruit.changeQuantity(to: afterComsumeStock)
     }
     
-    func updateStock(to requiredChange: Fruit) -> Bool {
+    func updateStock(to requiredChange: Fruit){
         let storedFruit: Fruit = fetchStoredFruit(of: requiredChange.name)
         
         storedFruit.changeQuantity(to: requiredChange.quantity)
-
-        return storedFruit.quantity >= 0
     }
 }

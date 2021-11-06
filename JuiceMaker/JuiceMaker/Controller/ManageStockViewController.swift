@@ -9,24 +9,75 @@ import UIKit
 
 class ManageStockViewController: UIViewController {
 
+    var deliverdAllStock = ["0", "0", "0", "0", "0"]
+    var juiceMaker: JuiceMaker?
+    
+    @IBOutlet var fruitQuantityLabels: [UILabel]!
+    @IBOutlet var fruitQuantitySteppers: [UIStepper]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.backgroundColor = .systemGray5
+        
+        setFruitQuantityLable()
+        setFruitQuantityStepper()
     }
     
-    @IBAction func backButton(_ sender: UIButton) {
+    func setFruitQuantityLable() {
+        for index in 0...fruitQuantityLabels.count - 1 {
+            fruitQuantityLabels[index].text = deliverdAllStock[index]
+        }
+    }
+    
+    func setFruitQuantityStepper() {
+        var labelTexts = [String]()
+        
+        for label in fruitQuantityLabels {
+            guard let labelText = label.text else {
+                return
+            }
+            
+            labelTexts.append(labelText)
+        }
+        
+        for index in 0...fruitQuantityLabels.count - 1 {
+            guard let labelTextsIndex = Int(labelTexts[index]) else {
+                return
+            }
+            
+            fruitQuantitySteppers[index].value = Double(labelTextsIndex)
+        }
+    }
+    
+    @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
+        updateStock()
         dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
+    @IBAction func touchUpFruitQuantityStepper(_ sender: UIStepper) {
+        let changedFruitQuantityLabels = fruitQuantityLabels[sender.tag]
+        let stepperValue = Int(sender.value)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        changedFruitQuantityLabels.text = String(stepperValue)
     }
-    */
+    
+    func updateStock() {
+        var fruitNames = [Fruit.Name]()
+        for name in Fruit.Name.allCases {
+            fruitNames.append(name)
+        }
+        
+        var updatingFruitsQuantity = [Fruit]()
+        
+        for index in 0...fruitQuantityLabels.count - 1 {
+            guard let fruitQuantityLabelText = fruitQuantityLabels[index].text else {
+                return
+            }
+            
+            updatingFruitsQuantity.append(Fruit(name: fruitNames[index],
+                                                quantity: Int(fruitQuantityLabelText) ?? 0))
+        }
 
+        juiceMaker?.updateStock(to: updatingFruitsQuantity)
+    }
 }

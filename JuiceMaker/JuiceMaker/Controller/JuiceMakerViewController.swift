@@ -8,27 +8,37 @@ import UIKit
 
 
 class JuiceMakerViewController: UIViewController {
+    @IBOutlet var fruitQuatityLabels: [UILabel]!
     
-    @IBOutlet weak var strawberryQuantityLabel: UILabel!
-    @IBOutlet weak var bananaQuantityLabel: UILabel!
-    @IBOutlet weak var pineappleQuantityLabel: UILabel!
-    @IBOutlet weak var kiwiQuantityLabel: UILabel!
-    @IBOutlet weak var mangoQuantityLabel: UILabel!
+    @IBOutlet var needToChangeFontSizeButtons: [UIButton]!
     
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        printStock()
+        setButtonFontSize()
+        
     }
     
-    func printStock() {
+    func setButtonFontSize() {
+        for button in needToChangeFontSizeButtons {
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setFruitQuantityLabel()
+    }
+    
+    func setFruitQuantityLabel() {
         let fruitStoreInventory = juiceMaker.fetchAllStock()
-        strawberryQuantityLabel.text = String(fruitStoreInventory[.strawberry] ?? 0)
-        bananaQuantityLabel.text = String(fruitStoreInventory[.banana] ?? 0)
-        pineappleQuantityLabel.text = String(fruitStoreInventory[.pineapple] ?? 0)
-        kiwiQuantityLabel.text = String(fruitStoreInventory[.kiwi] ?? 0)
-        mangoQuantityLabel.text = String(fruitStoreInventory[.mango] ?? 0)
+        
+        fruitQuatityLabels[0].text = String(fruitStoreInventory[.strawberry] ?? 0)
+        fruitQuatityLabels[1].text = String(fruitStoreInventory[.banana] ?? 0)
+        fruitQuatityLabels[2].text = String(fruitStoreInventory[.pineapple] ?? 0)
+        fruitQuatityLabels[3].text = String(fruitStoreInventory[.kiwi] ?? 0)
+        fruitQuatityLabels[4].text = String(fruitStoreInventory[.mango] ?? 0)
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
@@ -50,7 +60,7 @@ class JuiceMakerViewController: UIViewController {
         let okAction: UIAlertAction = UIAlertAction(title: "확인",
                                                     style: .default,
                                                     handler: { (action) in
-                                                                     self.printStock()
+                                                                     self.setFruitQuantityLabel()
                                                     })
         alert.addAction(okAction)
         
@@ -71,7 +81,7 @@ class JuiceMakerViewController: UIViewController {
         let cancelAction: UIAlertAction = UIAlertAction(title: "나중에 하기",
                                                         style: .default,
                                                         handler: { (action) in
-                                                                       self.printStock()
+                                                                       self.setFruitQuantityLabel()
                                                         })
         alert.addAction(okAction)
         alert.addAction(cancelAction)
@@ -81,11 +91,35 @@ class JuiceMakerViewController: UIViewController {
                 completion: nil)
     }
     
+    func currentAllStocks() -> [String] {
+        var currentAllStock = [String]()
+        
+        for index in 0...fruitQuatityLabels.count - 1 {
+            currentAllStock.append(fruitQuatityLabels[index].text ?? "0")
+        }
+
+        return currentAllStock
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.children.first is ManageStockViewController {
+            let manageStockViewController = segue.destination.children.first as? ManageStockViewController
+            manageStockViewController?.deliverdAllStock = currentAllStocks()
+            manageStockViewController?.juiceMaker = self.juiceMaker
+        }
+    }
+    
     func changeSceneOfManageStockViewController() {
-        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: "manageStock") else {
+        guard let instantiatedViewController = self.storyboard?.instantiateViewController(identifier: "manageStockViewController") else {
             return
         }
-        self.present(manageStockViewController, animated: true)
+        
+        let manageStockViewController = instantiatedViewController.children.first as? ManageStockViewController
+        
+        manageStockViewController?.deliverdAllStock = currentAllStocks()
+        manageStockViewController?.juiceMaker = self.juiceMaker
+        
+        self.present(instantiatedViewController, animated: true)
     }
 }
 

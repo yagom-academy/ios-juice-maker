@@ -40,33 +40,20 @@ enum JuiceMenu: Int {
         static let kiwiOfMangKiJuice = 1
     }
     
+    static let recipe = [JuiceMenu.strawberryJuice: [Fruit(name: .strawberry, quantity: JuiceMenu.IngredientsQuantity.strawberryOfStrawberryJuice)],
+                         JuiceMenu.bananaJuice: [Fruit(name: .banana, quantity: JuiceMenu.IngredientsQuantity.bananaOfBananaJuice)],
+                         JuiceMenu.kiwiJuice: [Fruit(name: .kiwi, quantity: JuiceMenu.IngredientsQuantity.kiwiOfKiwiJuice)],
+                         JuiceMenu.pineappleJuice: [Fruit(name: .pineapple, quantity: JuiceMenu.IngredientsQuantity.pineappleOfPineappleJuice)],
+                         JuiceMenu.mangoJuice: [Fruit(name: .mango, quantity: JuiceMenu.IngredientsQuantity.mangoOfMangoJuice)],
+                         JuiceMenu.ddalbaJuice: [Fruit(name: .strawberry, quantity: JuiceMenu.IngredientsQuantity.strawberryOfDdalbaJuice),
+                                                Fruit(name: .banana, quantity: JuiceMenu.IngredientsQuantity.bananaOfDdalbaJuice)],
+                         JuiceMenu.mangKiJuice: [Fruit(name: .mango, quantity: JuiceMenu.IngredientsQuantity.mangoOfMangKiJuice),
+                                                Fruit(name: .kiwi, quantity: JuiceMenu.IngredientsQuantity.kiwiOfMangKiJuice)]]
+
     var ingredients: [Fruit] {
-        switch self {
-        case .strawberryJuice:
-            return [Fruit(name: .strawberry,
-                          quantity: JuiceMenu.IngredientsQuantity.strawberryOfStrawberryJuice)]
-        case .bananaJuice:
-            return [Fruit(name: .banana,
-                          quantity: JuiceMenu.IngredientsQuantity.bananaOfBananaJuice)]
-        case .kiwiJuice:
-            return [Fruit(name: .kiwi,
-                          quantity: JuiceMenu.IngredientsQuantity.kiwiOfKiwiJuice)]
-        case .pineappleJuice:
-            return [Fruit(name: .pineapple,
-                          quantity: JuiceMenu.IngredientsQuantity.pineappleOfPineappleJuice)]
-        case .mangoJuice:
-            return [Fruit(name: .mango,
-                          quantity: JuiceMenu.IngredientsQuantity.mangoOfMangoJuice)]
-        case .ddalbaJuice:
-            return [Fruit(name: .strawberry,
-                          quantity: JuiceMenu.IngredientsQuantity.strawberryOfDdalbaJuice),
-                    Fruit(name: .banana,
-                          quantity: JuiceMenu.IngredientsQuantity.bananaOfDdalbaJuice)]
-        case .mangKiJuice:
-            return [Fruit(name: .mango,
-                          quantity: JuiceMenu.IngredientsQuantity.mangoOfMangKiJuice),
-                    Fruit(name: .kiwi,
-                          quantity: JuiceMenu.IngredientsQuantity.kiwiOfMangKiJuice)]
+        guard let ingredient = JuiceMenu.recipe[self] else {
+            return []
         }
+        return ingredient
     }
 }

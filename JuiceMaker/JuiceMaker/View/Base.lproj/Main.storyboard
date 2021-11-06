@@ -239,16 +239,21 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" id="Rpa-aU-0cH"/>
+                                <segue destination="WwV-Td-3Bn" kind="modal" id="ruG-1W-y9e"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaQuantityLabel" destination="gvk-pA-Lw5" id="xB0-oY-gaV"/>
-                        <outlet property="kiwiQuantityLabel" destination="FZq-de-TJG" id="UH1-8Q-y6H"/>
-                        <outlet property="mangoQuantityLabel" destination="3Ce-SU-JeH" id="VCV-f7-Bda"/>
-                        <outlet property="pineappleQuantityLabel" destination="ccQ-Dk-PuY" id="zX6-fe-Vkx"/>
-                        <outlet property="strawberryQuantityLabel" destination="Qas-vP-td6" id="r1Y-Dn-iyp"/>
+                        <outletCollection property="fruitQuatityLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="USg-5b-OWz"/>
+                        <outletCollection property="fruitQuatityLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="Miq-sv-74f"/>
+                        <outletCollection property="fruitQuatityLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="c6i-NV-87c"/>
+                        <outletCollection property="fruitQuatityLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="RiB-H9-Qdr"/>
+                        <outletCollection property="fruitQuatityLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="JJk-xZ-lyj"/>
+                        <outletCollection property="needToChangeFontSizeButtons" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="dZs-kA-BJZ"/>
+                        <outletCollection property="needToChangeFontSizeButtons" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="U55-wu-XRi"/>
+                        <outletCollection property="needToChangeFontSizeButtons" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="Usn-lz-EZW"/>
+                        <outletCollection property="needToChangeFontSizeButtons" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="fdp-9v-N45"/>
+                        <outletCollection property="needToChangeFontSizeButtons" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="jUj-bi-Gt8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -273,10 +278,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Manage Stock View Controller-->
+        <!--재고 수정-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="manageStock" id="Yu1-lM-nqp" customClass="ManageStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="ManageStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,6 +307,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitQuantityStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="vt5-Dk-iMM"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -324,8 +332,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitQuantityStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="gwD-b2-LjO"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -348,8 +359,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitQuantityStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Zcy-WU-C3V"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -372,8 +386,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitQuantityStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="xit-Pz-sAz"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -396,8 +413,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="19" y="163" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="touchUpFruitQuantityStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="PSq-1V-bfg"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -406,15 +426,6 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eq-sr-KCw">
-                                <rect key="frame" x="266" y="294" width="67" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="backButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="jHm-6I-tlE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -425,7 +436,25 @@
                             <constraint firstItem="D7X-vx-u60" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="qRC-6H-wIX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 수정" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Rgc-Uf-5MD">
+                            <connections>
+                                <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" id="b2X-mH-14p"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outletCollection property="fruitQuantityLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="Rvd-Xd-4f9"/>
+                        <outletCollection property="fruitQuantityLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="udU-Vj-WKc"/>
+                        <outletCollection property="fruitQuantityLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="EeX-3m-lJj"/>
+                        <outletCollection property="fruitQuantityLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="MZY-Ue-ulM"/>
+                        <outletCollection property="fruitQuantityLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="bsF-9T-gaZ"/>
+                        <outletCollection property="fruitQuantitySteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="36f-oP-kFn"/>
+                        <outletCollection property="fruitQuantitySteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="Grr-2o-6d3"/>
+                        <outletCollection property="fruitQuantitySteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="tQR-6h-me6"/>
+                        <outletCollection property="fruitQuantitySteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="QYi-iK-vG2"/>
+                        <outletCollection property="fruitQuantitySteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="tox-jU-irV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
@@ -434,8 +463,9 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="manageStockViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="1cS-uD-Uhp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
