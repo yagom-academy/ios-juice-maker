@@ -1,4 +1,4 @@
-# 쥬스 메이커
+# 🥤 쥬스 메이커
 
 > 쥬스팝니다. 매진되면 재고도 수정하고 다시 팝니다. 쥬스 사세요.
 
@@ -17,11 +17,11 @@
 
 #  🤝  Ground Rule
 
-### 팀원
+### 👨‍👦 팀원
 
 Jiseong (@yim2627)  July (@July911)
 
-### 시간
+### ⏰ 시간
 
 - 수요일, 주말은 가급적 휴식을 가진다.
 - 프로젝트 진행시 스크럼 진행한다.
@@ -29,7 +29,7 @@ Jiseong (@yim2627)  July (@July911)
 - 그 날의 목표를 달성할 때까지 프로젝트 진행한다.
 - 시간에 구애받지않고 목표치 달성으로 계획한다.
 
-### Commit Convention
+### 📒 Commit Convention
 
 [Commit Convention](https://www.conventionalcommits.org/en/v1.0.0/) 참고
 
@@ -45,13 +45,13 @@ Jiseong (@yim2627)  July (@July911)
 
 </br>
 
-# 코드 전체 흐름
+# 🌊 코드 전체 흐름
 
 <img width="100%" alt="image" src="https://user-images.githubusercontent.com/70251136/140609237-6f7e3272-bfa8-433d-be21-4339419d3978.png">
 
 </br>
 
-# 타입 별 기능
+# 🤹‍♀️ 타입 별 기능
 
 **Model 관련 타입**
 
@@ -73,9 +73,9 @@ Jiseong (@yim2627)  July (@July911)
 
 </br>
 
-# 구현 기능 및 코드
+# 📚 구현 기능 및 코드
 
-### 첫번째 뷰에서 두번쨰 뷰로 데이터 전달
+### 1️⃣ 첫번째 뷰에서 두번쨰 뷰로 데이터 전달
 
 **FruitStorageViewController -> JuiceOrderViewController**
 
@@ -113,7 +113,7 @@ Alert에서 “재고 수정” 을 선택하여 화면이 전환될 때와 네�
 
 ---
 
-### 두번쨰 뷰에서 첫번째 뷰로 데이터 전달
+### 2️⃣ 두번쨰 뷰에서 첫번째 뷰로 데이터 전달
 
 **FruitStorageViewController -> Model -> JuiceOrderViewController**
 
@@ -129,7 +129,7 @@ NotificationCenter.default.addObserver(self, selector: #selector(updateFruitsSto
 
 - ```changeFruitStock```이 ```fruitStorage```를 변경하면, NotificationCenter 가 ```updateFruitsStock```을 실행하며, ```JuiceOrderViewController``` 의 Label을 갱신
 
-### 과일 창고 - Singleton 활용
+### 🧖‍♀️ 과일 창고 - Singleton 활용
 
 ```swift
 class FruitStore {
@@ -147,7 +147,9 @@ FruitStore 의 ```shared``` property로 접근 가능
 
 </br>
 
-# Trouble Shooting
+# ☄️ Trouble Shooting
+
+### 화면간 데이터 전달 문제
 
 처음 화면간 데이터 전달을 구현 할 때는 Alert에서 “재고 수정” 을 선택하여 화면이 전환될 때 ```instantiateViewController()``` 메소드를 사용하여 Storyboard identifier를 통해 접근하였고, 위의 함수 ```makeCurrentStock()```을 사용하여, 데이터를 전달해주었습니다.
 
@@ -180,6 +182,16 @@ FruitStore 의 ```shared``` property로 접근 가능
 ```
 
 이로 인해 화면 전환시 두가지의 접근 방법이 모두 ```prepare()```를 호출하게 되었고, 이전에 구현했던 ```presentFruitStoreViewController()```가 필요하지 않아져서 가독성, 효율성을 증가시키는 결과를 가져왔습니다.
+
+---
+
+### UI와 Outlet 변수 연결 문제
+
+![image](https://user-images.githubusercontent.com/70251136/140610636-31bef545-1610-45f7-b45e-6d826847d656.png)
+
+버튼을 아울렛변수에 연결 후 변수의 이름을 뷰컨트롤러에서 따로 수정해주니, 에러가 발생하여 버튼과 변수의 연결을 끊고 다시 연결해주어 에러를 해결했습니다.
+
+이를 통해 버튼과 같은 것들과 변수, 함수를 연결후 이름만 바꿔주면 에러가 발생함을 알게되어, 연결 전에 처리를 해줘야함을 배웠습니다.
 
 
 
