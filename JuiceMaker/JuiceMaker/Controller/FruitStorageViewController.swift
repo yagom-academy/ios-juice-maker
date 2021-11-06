@@ -41,7 +41,7 @@ class FruitStorageViewController: UIViewController {
         mangoStepper.value = stepperValue[2]
         kiwiStepper.value = stepperValue[3]
         pineappleStepper.value = stepperValue[4]
-        stepperValue = []
+        stepperValue.removeAll()
     }
     
     @IBAction func completeModifyButton(_ sender: UIButton) {
