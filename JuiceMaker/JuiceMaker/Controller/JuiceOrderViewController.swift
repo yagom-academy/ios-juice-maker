@@ -4,7 +4,6 @@ import UIKit
 class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private let fruitStore: FruitStore = FruitStore.shared
-    private var fruitLabels: [String?] = []
     
     @IBOutlet weak var strawberryBananaOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiOrderButton: UIButton!
@@ -73,25 +72,16 @@ class JuiceOrderViewController: UIViewController {
     
     @objc private func updateFruitsStock() {
         do {
-            strawberryStockLabel.text = String(try getFruitStock(which: .strawberry))
-            bananaStockLabel.text = String(try getFruitStock(which: .banana))
-            kiwiStockLabel.text = String(try getFruitStock(which: .kiwi))
-            mangoStockLabel.text = String(try getFruitStock(which: .mango))
-            pineappleStockLabel.text = String(try getFruitStock(which: .pineapple))
-        }
-        catch FruitStockError.invalidValue {
+            strawberryStockLabel.text = String(try fruitStore.getFruitStock(which: .strawberry))
+            bananaStockLabel.text = String(try fruitStore.getFruitStock(which: .banana))
+            kiwiStockLabel.text = String(try fruitStore.getFruitStock(which: .kiwi))
+            mangoStockLabel.text = String(try fruitStore.getFruitStock(which: .mango))
+            pineappleStockLabel.text = String(try fruitStore.getFruitStock(which: .pineapple))
+        } catch FruitStockError.invalidValue {
             showSystemError()
-        }
-        catch {
+        } catch {
             print(error)
         }
-    }
-    
-    private func getFruitStock(which fruit: Fruits) throws -> Int {
-        guard let stock = fruitStore.fruitStorage[fruit] else {
-            throw FruitStockError.invalidValue
-        }
-        return stock
     }
     
     private func showSuccessAlert(juice: Juices) {
@@ -123,7 +113,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func makeCurrentStock() -> [String] {
-        fruitLabels = [
+        let fruitLabels = [
             strawberryStockLabel.text,
             bananaStockLabel.text,
             mangoStockLabel.text,

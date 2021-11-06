@@ -25,6 +25,13 @@ final class FruitStore {
         }
     }
     
+    func getFruitStock(which fruit: Fruits) throws -> Int {
+        guard let stock = fruitStorage[fruit] else {
+            throw FruitStockError.invalidValue
+        }
+        return stock
+    }
+    
     func changeFruitStock(stepperValue: [Double]) {
         for index in 0..<stepperValue.count {
             fruitStorage[allFruits[index]] = Int(stepperValue[index])
