@@ -36,14 +36,9 @@ class FruitStore {
         return true
     }
     
-    func addStock(of fruit: Fruit, by amount: Int) throws {
-        guard let currentStockCount = stock[fruit] else {
-            throw SystemError.invaildKey
-        }
-        
-        let newStockCount = currentStockCount + amount
-        
-        stock.updateValue(newStockCount, forKey: fruit)
+    func updateStock(newStock: [Fruit:Int]) {
+        self.stock = newStock
+        NotificationCenter.default.post(name: .fruitStockCountModified, object: nil)
     }
     
     func subtractStock(of fruit: Fruit, by amount: Int) throws {
