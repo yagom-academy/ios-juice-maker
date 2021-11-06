@@ -200,11 +200,15 @@ class FruitStore {
 ## **고민했던 부분**
 
 - 네비게이션 컨트롤러는 왜 주문 화면, 재고 수정 화면 둘 다 붙어 있는가?
+재고 수정 화면에 붙어 있는 네비게이션 컨트롤러를 모달 방식으로 띄우더라도 재고 수정 화면에서 하위 뎁스 뷰를 네비게이션 방식으로 띄우기 위함이다.
 
-네비게이션 바를 사용하기 위함이라고 생각했지만, 네비게이션바를 재고수정화면에 넣어줄수도 있다.  
+현재 프로젝트는 재고 수정 화면 네비게이션 컨트롤러에 연결된 뷰가 하나지만 추후에 기능이 추가될 경우 쉽게 하위 뎁스 뷰를 연결할 수 있는 확장성을 지니게 된다.
 
-또 네비게이션 바를 사용하지 않고 타이틀은 Label로, 닫기 버튼은 UIButton 등으로 구현할 수도 있다.
+네비게이션 바를 재고 수정 화면에 넣어줄 수 있지만 이 방식은 단순히 뷰에 네비게이션 바를 추가하는 방식이므로 하위 뎁스 뷰를 네비게이션 방식으로 띄워줄 수 없다. 
 
+H.I.G 문서에 따르면 모달로 띄운 화면에서 하위 뎁스 뷰를 불러오는 것을 지양하고 단일 경로일 경우 사용이 가능하다.
+
+iPhone 설정 앱 중 집중모드를 추가하는 모달창에서 위와 같은 방식을 사용하고 있다.
 
 <br/>
 
@@ -261,11 +265,10 @@ func presentStockModifyView() {
       let stockModifyNavController = StockModifyNavController() 
 			navigationController?.show(stockModifyNavController, sender: nil) 
  }
-```
+```  
+<br/>
 
----
-
-## 고민했던 부분
+- 과일의 수량을 각 Label에 반영하는 함수를 꼭 viewDidLoad에서 호출 해 주어야 하는가? 
 
 과일의 수량을 각 Label에 반영하는 `changeStockLabel()` 함수를 만듦
 
@@ -322,4 +325,328 @@ struct NotificationManager { /* ... */
 }
 /* ... */
 NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: NotificationManager.shared.didChangeStock, object: nil)
+```
+
+# STEP 3
+
+## **구현 내용**
+
+- FruitStore 클래스 추가 구현
+
+`updateStock(fruit:, quantity:)` : 기존 `add()` 함수를 과일의 종류와 수량을 변경하는 함수로 개선
+
+- JuiceMakerViewController 클래스 추가 구현
+
+`showFailedOrderAlert(fruitAndQuantity:)` : 재고 수정하기 버튼에 재고 수정화면을 모달로 띄우는 `presentStockModifyView()` 메서드를 클로저로 전달. 이때, 순환 참조를 방지하기 위해 `[weak self]` 키워드를 함께 사용
+
+- StockModifyViewController 클래스 설계
+
+`initStockModifyViewController()` : 과일의 재고를 과일별 Label에 표시해주고, 과일 재고의 변동 사항이 생겼다는 노티를 받기 위해 `addObserver`해줌. 또 과일의 재고를 수정할 수 있는 `Stepper` 의 초기 설정을 해줌.
+
+`@objc changeStockLabel()` : 과일 재고를 과일별 Label에 표시해주는 함수, 과일의 변동사항 생겼다는 노티를 받으면 동작함.
+
+`initializeStepper()` : 과일의 재고를 수정할 수 있는 `Stepper` 의 초기 설정을 해줌. `restorationIdentifier`을 지정해주고, `Stepper`의 `value`에 과일 개수를 넣어줌.
+
+`dismissButton(_ sender:)` : 모달 창을 닫는 버튼 이벤트
+
+`stepperValueChanged(_ sender:)` : `Stepper`의`restorationIdentifier`을 특정 과일의 `Stepper`를 특정하고, `FruitStore 클래스`의 `updateStock` 메소드를 이용해 과일의 수량을 변경함.
+
+- 오토 레이아웃
+
+`adjustsFontSizeToFitWidth` 을 사용하여 시뮬레이터마다 달라지는 버튼의 크기에 타이틀을 자동으로 맞추어 줌
+
+---
+
+## **고민했던 부분**
+
+### 코드 간소화
+
+스토리보드상에 같은 종류의 버튼이나 레이블이 여러개 있을 때, 그 view들을 각각 관리하는 것보다 한번에 관리해주고 싶었다.  
+
+IBOutlet의 경우, 여려 view들에 동일한 설정을 적용할 때 view들의 array를 만들어서 관리할 수 있고,
+
+IBAction의 경우, sender: 매개변수를 통해 여러 버튼을 연결하더라도 버튼의 identifier를 사용하여 특정 버튼을 식별 할 수 있다.
+
+1. **IBOutlet Collection을 사용하여 여러개의 IBOutlet를 하나로 통합**
+
+`adjustsFontSizeToFitWidth` 을 사용하여 시뮬레이터 마다 버튼의 크기가 달라져서 버튼의 타이틀이 생략되는 문제를 해결했다.
+
+`IBOutlet Collection`을 사용하지 않으면 View별로 IBOutlet를 만들어 줘야하지만 
+
+`IBOutlet Collection` 사용 시 여러 View를 관리할 수 있는 Array 하나만을 만들면 된다.
+
+여러 View(Button, Label 등)에 동일한 설정을 해주고 싶을 때 사용한다.
+
+- IBOutlet Collection 사용 전
+
+```swift
+@IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
+@IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
+@IBOutlet weak var strawberryJuiceOrderButton: UIButton!
+@IBOutlet weak var bananaJuiceOrderButton: UIButton!
+@IBOutlet weak var pineappleJuiceOrderButton: UIButton!
+@IBOutlet weak var kiwiJuiceOrderButton: UIButton!
+@IBOutlet weak var mangoJuiceOrderButton: UIButton!
+```
+
+```swift
+func adjustOrderButtonTitle() {
+    strawberryBananaJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    mangoKiwiJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    strawberryJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    bananaJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    pineappleJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    kiwiJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    mangoJuiceOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+}
+```
+
+- IBOutlet Collection 사용 후
+
+```swift
+@IBOutlet var juiceOrderButtons: [UIButton]!
+```
+
+```swift
+func adjustOrderButtonTitle() {
+    for button in juiceOrderButtons {
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+    }
+}
+```
+
+---
+
+2. **하나의 IBAction으로 여러 stepper 동시에 컨트롤하기**
+- identifier 사용 전
+
+```swift
+@IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
+    FruitStore.shared.updateStock(fruit: .strawberry, quantity: Int(sender.value))
+}
+    
+@IBAction func bananaStepperValueChanged(_ sender: UIStepper) {
+    FruitStore.shared.updateStock(fruit: .banana, quantity: Int(sender.value))
+}
+    
+@IBAction func pineappleStepperValueChanged(_ sender: UIStepper) {
+    FruitStore.shared.updateStock(fruit: .pineapple, quantity: Int(sender.value))
+}
+    
+@IBAction func kiwiStepperValueChanged(_ sender: UIStepper) {
+    FruitStore.shared.updateStock(fruit: .kiwi, quantity: Int(sender.value))
+}
+    
+@IBAction func mangoStepperValueChanged(_ sender: UIStepper) {
+    FruitStore.shared.updateStock(fruit: .mango, quantity: Int(sender.value))
+}
+```
+
+- identifier 사용 후
+
+```swift
+func initializeStepper() {
+    strawberryStepper.restorationIdentifier = "딸기"
+    bananaStepper.restorationIdentifier = "바나나"
+    pineappleStepper.restorationIdentifier = "파인애플"
+    kiwiStepper.restorationIdentifier = "키위"
+    mangoStepper.restorationIdentifier = "망고"
+        
+    strawberryStepper.value = Double(FruitStore.shared.showStock(of: .strawberry)) ?? 0.0
+    bananaStepper.value = Double(FruitStore.shared.showStock(of: .banana)) ?? 0.0
+    pineappleStepper.value = Double(FruitStore.shared.showStock(of: .pineapple)) ?? 0.0
+    kiwiStepper.value = Double(FruitStore.shared.showStock(of: .kiwi)) ?? 0.0
+    mangoStepper.value = Double(FruitStore.shared.showStock(of: .mango)) ?? 0.0
+}
+```
+
+```swift
+@IBAction func stepperValueChanged(_ sender: UIStepper) {
+    guard let stepperIdentifier = sender.restorationIdentifier,
+          let fruit = Fruit(rawValue: stepperIdentifier) else {
+              return
+          }
+    let quantity = Int(sender.value)
+    FruitStore.shared.updateStock(fruit: fruit, quantity: quantity)
+}
+```
+
+### **뷰컨트롤러간 데이터 전달 방법**
+
+재고수정 화면 진입시 현재 재고가 표시되도록 하고싶었습니다.
+
+시도해본 방법들은 다음과 같습니다.
+
+1. 재고수정화면의 viewDidLoad에서 stepper의 value와 label의 text를 현재 재고 값으로 설정(성공)
+2. 재고수정화면 초기화시 라벨과 스테퍼의 디폴트값을 10으로 설정(실패)
+3. VC1에서 VC2로 화면전환시 VC2의 라벨을 바꾸는 함수를 실행하여 변경하기(성공)
+4. segue 를 이용해 데이터 전달하기(성공)
+
+시도 1)
+
+재고 수정 화면 초기화 시 `changeStockLabel()`을 통해 라벨에 `FruitStore` 현재 재고 값을 넣어준다. (모델에서 → VC2로 정보 전달)
+
+stock을 변경시 FruitStore의 메서드인 add를 사용하여 Fruitstore.shared 에 접근한다. 
+
+이전에 구현해놓은 stock 변경시 노티를 보내는 노티피케이션을 VC2도 addObserver해서 
+
+VC1, VC2 동시에 주문하기 화면의 재고 변경된다. 
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    initStockModifyViewController()
+}
+    
+func initStockModifyViewController() {
+    NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
+        
+    changeStockLabel()
+    initializeStepper()
+}
+
+@objc
+func changeStockLabel() {
+    strawberryStockLabel.text =  FruitStore.shared.showStock(of: .strawberry)
+    bananaStockLabel.text =  FruitStore.shared.showStock(of: .banana)
+    pineappleStockLabel.text =  FruitStore.shared.showStock(of: .pineapple)
+    kiwiStockLabel.text =  FruitStore.shared.showStock(of: .kiwi)
+    mangoStockLabel.text =  FruitStore.shared.showStock(of: .mango)
+}
+    
+func initializeStepper() {
+    strawberryStepper.restorationIdentifier = "딸기"
+    bananaStepper.restorationIdentifier = "바나나"
+    pineappleStepper.restorationIdentifier = "파인애플"
+    kiwiStepper.restorationIdentifier = "키위"
+    mangoStepper.restorationIdentifier = "망고"
+        
+    strawberryStepper.value = Double(FruitStore.shared.showStock(of: .strawberry)) ?? 0.0
+    bananaStepper.value = Double(FruitStore.shared.showStock(of: .banana)) ?? 0.0
+    pineappleStepper.value = Double(FruitStore.shared.showStock(of: .pineapple)) ?? 0.0
+    kiwiStepper.value = Double(FruitStore.shared.showStock(of: .kiwi)) ?? 0.0
+    mangoStepper.value = Double(FruitStore.shared.showStock(of: .mango)) ?? 0.0
+}
+```
+
+시도2)
+
+재고수정화면 초기화시 라벨과 스테퍼의 디폴트값을 10으로 설정한다. (실패)
+
+```swift
+// 디폴트 값
+stepper.value = 10
+```
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    initializeStepper()
+    initializeStockLabel()
+    initJuiceMakerViewController()
+}
+
+func initJuiceMakerViewController() {
+    NotificationCenter.default.addObserver(self, selector: #selector(changeStockLabel), name: FruitStore.shared.didChangeStock, object: nil)
+}
+
+func initializeStepper() {
+    strawberryStepper.value = 10
+    bananaStepper.value = 10
+    pineappleStepper.value = 10
+    kiwiStepper.value = 10
+    mangoStepper.value = 10
+}
+    
+func initializeStockLabel() {
+    strawberryStockLabel.text = "10"
+    bananaStockLabel.text = "10"
+    pineappleStockLabel.text = "10"
+    kiwiStockLabel.text = "10"
+    mangoStockLabel.text = "10"
+}
+
+```
+
+문제점: 재고수정화면(VC2)을 초기화시 10으로 값이 설정되어서 이전 화면에서 재고가 10에서 변경되어도 뷰에 반영이 안된다. 
+
+(재고수정화면의 스테퍼에 초기값을 strawberryStepper.value = 10 으로 줬는데, 이전화면에서 쥬스를 만들어서 재고가 바뀐 경우에도 재고수정화면을 새로 로드하면 10이 할당되어서 실패했다.)
+
+→이때 VC1에서 재고 변경된걸 바로 VC2로 전달해서 VC2가 초기화될때마다 변경사항을 업데이트해주면 좋겠다는 생각을 했습니다.
+
+따라서 생각해본 방법들로는, 
+
+시도 3) VC1에서 VC2로 화면전환시 VC2의 라벨을 바꾸는 함수를 실행하여 변경한다. (성공)
+
+```swift
+//변경 전 코드: 그냥 화면 전환만 하기
+func presentStockModifyView() {
+    let stockModifyNavController = StockModifyNavController()
+        
+    let storyboard = UIStoryboard(name: stockModifyNavController.storyboardName, bundle: nil)
+    let stockModifyNC = storyboard.instantiateViewController(identifier: stockModifyNavController.storyboardID)
+        
+    present(stockModifyNC, animated: true, completion: nil)
+}
+```
+
+```swift
+//변경 후 코드: 화면 전환하며 VC2의 changeStockLabel() 함수 실행하여 현재재고 라벨에 업데이트
+func presentStockModifyView() {
+    guard let stockModifyNC = storyboard?.instantiateViewController(withIdentifier: "StockModifyNavController") else { return }
+    let stockModifyVC = stockModifyNC.children.first as? StockModifyViewController
+    stockModifyVC?.loadViewIfNeeded()
+    stockModifyVC?.changeStockLabel()
+    present(stockModifyNC, animated: true, completion: nil)
+}
+```
+
+화면 전환시에 전환하는 화면의 메서드를 실행하려고 했더니(`stockModifyVC?.changeStockLabel()`) VC2로 화면이 전환되어도 라벨이 안바뀌었다.
+
+그래서 `print(stockModifyVC?.isViewLoaded)` 로 저 시점에서 VC2가 로드되었는지 확인해보니 false 가 나왔다.
+
+따라서, 뷰를 로드해주는 메서드`.isViewLoaded` 를 사용하여 뷰를 먼저 로드한 후에 메서드를 실행해서 해결했다. 
+
+시도 4) segue 를 이용해 데이터 전달하기
+
+스토리보드에서 재고수정버튼을 재고수정화면(VC2)의 네비게이션컨트롤러와 연결 후에
+
+이 prepare메서드를 VC1에 추가해준다. 
+
+```swift
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.destination is StockModifyNavController {
+        let stockModifyNC = segue.destination as? StockModifyNavController
+        let stockModifyVC = stockModifyNC?.children.first as? StockModifyViewController
+        stockModifyVC?.loadViewIfNeeded()
+        stockModifyVC?.changeStockLabel()
+    }
+}
+```
+
+### **stepper의 -, + 어느 버튼을 누르든지 +1이 되는 현상** 
+
+```swift
+//개선 전 
+@IBAction func strawberryStepperValueChanged(_ sender: UIStepper) {
+    FruitStore.shared.add(fruit: .strawberry)
+}
+```
+
+stepper을 누르면 `FruitStore.shared.add(fruit: .strawberry)` 가 실행되면서 FruitStore의 재고가 변경되고, 재고가 변경되면 프로퍼티 옵져버가 노티피케이션을 보내서, `StockModifyViewController`의 `changeStockLabel()`을 실행해서 재고 라벨을 변경합니다.
+
+그러나 -,+ 버튼 어느것을 누르든지 +1이 되는 현상이 발생했습니다. 
+
+따라서 stepper을 누르면 stepper의 value를 바꾸고, 그 value를 과일 재고에 적용하는 방식으로 변경했습니다. 
+
+```swift
+//개선 후 
+@IBAction func stepperValueChanged(_ sender: UIStepper) {
+    guard let stepperIdentifier = sender.restorationIdentifier,
+          let fruit = Fruit(rawValue: stepperIdentifier) else {
+              return
+    }
+    let quantity = Int(sender.value)
+    FruitStore.shared.updateStock(fruit: fruit, quantity: quantity)
+}
 ```
