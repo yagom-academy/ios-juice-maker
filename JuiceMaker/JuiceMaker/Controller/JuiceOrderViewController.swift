@@ -95,7 +95,6 @@ class JuiceOrderViewController: UIViewController {
     private func showNotEnoughStock() {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: )
         let okAction = UIAlertAction(title: "재고 수정하기", style: .default) { [weak self] (action) in
             self?.performSegue(withIdentifier: FruitStorageViewController.identifier, sender: nil)
         }
