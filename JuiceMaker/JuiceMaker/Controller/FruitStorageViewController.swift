@@ -2,7 +2,8 @@
 import UIKit
 
 class FruitStorageViewController: UIViewController {
-
+    static let identifier = "FruitStorage"
+    
     var fruitStock: [String] = []
     var stepperValue: [Double] = []
     

@@ -95,7 +95,10 @@ class JuiceOrderViewController: UIViewController {
     private func showNotEnoughStock() {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
+//        let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: )
+        let okAction = UIAlertAction(title: "재고 수정하기", style: .default) { [weak self] (action) in
+            self?.performSegue(withIdentifier: FruitStorageViewController.identifier, sender: nil)
+        }
         let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
         
         alert.addAction(okAction)
@@ -135,17 +138,7 @@ class JuiceOrderViewController: UIViewController {
             viewController?.fruitStock = makeCurrentStock()
         }
     }
-
-    private func presentFruitStoreViewController(_ action: UIAlertAction) {
-        guard let navcontroller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
-        
-        let viewController = navcontroller.children.first as? FruitStorageViewController
-        viewController?.fruitStock = makeCurrentStock()
-        
-        self.present(navcontroller, animated: true, completion: nil)
-    }
 }
-
 
 extension Notification.Name {
     static let update = Notification.Name("update")
