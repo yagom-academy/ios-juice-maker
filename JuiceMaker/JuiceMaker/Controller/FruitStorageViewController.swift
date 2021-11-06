@@ -56,7 +56,7 @@ class FruitStorageViewController: UIViewController {
         stepperValue.append(mangoStepper.value)
         stepperValue.append(kiwiStepper.value)
         stepperValue.append(pineappleStepper.value)
-        FruitStore.shared.changeFruitStock(stepperValue: stepperValue)
+        FruitStore.shared.changeFruitStock(stepperValue)
     }
     
     

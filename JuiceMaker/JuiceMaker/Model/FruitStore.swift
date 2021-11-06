@@ -32,9 +32,9 @@ final class FruitStore {
         return stock
     }
     
-    func changeFruitStock(stepperValue: [Double]) {
-        for index in 0..<stepperValue.count {
-            fruitStorage[allFruits[index]] = Int(stepperValue[index])
+    func changeFruitStock(_ stocks: [Double]) {
+        for index in 0..<stocks.count {
+            fruitStorage[allFruits[index]] = Int(stocks[index])
         }
         NotificationCenter.default.post(name: .update, object: self)
     }
