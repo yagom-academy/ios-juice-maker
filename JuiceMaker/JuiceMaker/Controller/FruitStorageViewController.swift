@@ -24,7 +24,7 @@ class FruitStorageViewController: UIViewController {
         setDefaultStepperValue()
     }
     
-    func setFruitStockLabel() {
+    private func setFruitStockLabel() {
         strawberryStockLabel.text = fruitStock[0]
         bananaStockLabel.text = fruitStock[1]
         mangoStockLabel.text = fruitStock[2]
@@ -32,7 +32,7 @@ class FruitStorageViewController: UIViewController {
         pineappleStockLabel.text = fruitStock[4]
     }
 
-    func setDefaultStepperValue() {
+    private func setDefaultStepperValue() {
         for i in 0..<fruitStock.count {
             stepperValue.append(Double(fruitStock[i]) ?? .zero)
         }
@@ -49,7 +49,7 @@ class FruitStorageViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func transmitStepperValueToFruitStock() {
+    private func transmitStepperValueToFruitStock() {
         stepperValue.append(strawberryStepper.value)
         stepperValue.append(bananaStepper.value)
         stepperValue.append(mangoStepper.value)
