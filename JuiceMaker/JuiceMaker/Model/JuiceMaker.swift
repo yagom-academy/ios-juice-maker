@@ -5,6 +5,17 @@
 //
 
 struct JuiceMaker {
+    
+    let fruitStore = FruitStore.shared
+    
+    func make(juice: Juice) throws {
+        do {
+            try fruitStore.consumeStock(with: juice)
+        } catch {
+            throw StockError.notEnoughStock
+        }
+    }
+    
     func tell(name: Juice) -> String { 
         switch name {
         case .strawberryJuice:

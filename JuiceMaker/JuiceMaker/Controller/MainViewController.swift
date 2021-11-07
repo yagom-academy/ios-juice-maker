@@ -7,7 +7,6 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private let fruitStore = FruitStore.shared
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
@@ -77,11 +76,11 @@ class MainViewController: UIViewController {
     }
     
     @objc private func updateFruitStockLabel() {
-        guard let strawberryStock = fruitStore.stock[Fruit.strawberry],
-              let bananaStock = fruitStore.stock[Fruit.banana],
-              let pineappleStock = fruitStore.stock[Fruit.pineapple],
-              let kiwiStock = fruitStore.stock[Fruit.kiwi],
-              let mangoStock = fruitStore.stock[Fruit.mango] else {
+        guard let strawberryStock = juiceMaker.fruitStore.stock[Fruit.strawberry],
+              let bananaStock = juiceMaker.fruitStore.stock[Fruit.banana],
+              let pineappleStock = juiceMaker.fruitStore.stock[Fruit.pineapple],
+              let kiwiStock = juiceMaker.fruitStore.stock[Fruit.kiwi],
+              let mangoStock = juiceMaker.fruitStore.stock[Fruit.mango] else {
                   return
               }
         
@@ -122,7 +121,7 @@ class MainViewController: UIViewController {
     
     private func order(juice: Juice) {
         do {
-            try fruitStore.consumeStock(with: juice)
+            try juiceMaker.fruitStore.consumeStock(with: juice)
             showOrderSuccessAlert(message: "\(juiceMaker.tell(name: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
             updateFruitStockLabel()
         } catch {
