@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        adjustButtonFontSize()
+        adjustButtonTitleLabelSize()
         updateFruitStockLabel()
         addObserver()
     }
@@ -83,7 +83,7 @@ class MainViewController: UIViewController {
     
     private func order(juice: Juice) {
         do {
-            try juiceMaker.fruitStore.consumeStock(with: juice)
+            try juiceMaker.make(juice: juice)
             showOrderSuccessAlert(message: "\(juice.name) 쥬스 나왔습니다. 맛있게 드세요!")
             updateFruitStockLabel()
         } catch {
