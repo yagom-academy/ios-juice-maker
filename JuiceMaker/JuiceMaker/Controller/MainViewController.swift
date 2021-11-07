@@ -7,7 +7,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private let juiceMaker = JuiceMaker()
+    let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,6 @@ class MainViewController: UIViewController {
               let mangoStock = juiceMaker.fruitStore.stock[Fruit.mango] else {
                   return
               }
-        
         strawberryStockLabel.text = String(strawberryStock)
         bananaStockLabel.text = String(bananaStock)
         pineappleStockLabel.text = String(pineappleStock)
@@ -125,6 +124,7 @@ class MainViewController: UIViewController {
             destinationController.kiwiStock = kiwiStockLabel.text ?? ""
             destinationController.mangoStock = mangoStockLabel.text ?? ""
             destinationController.pineappleStock = pineappleStockLabel.text ?? ""
+            destinationController.juiceMaker = juiceMaker
         }
     }
 }

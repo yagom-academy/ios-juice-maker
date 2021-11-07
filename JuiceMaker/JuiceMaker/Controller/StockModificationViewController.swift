@@ -8,7 +8,7 @@
 import UIKit
 
 class StockModificationViewController: UIViewController {
-    private let fruitStore = FruitStore()
+    var juiceMaker = JuiceMaker()
     
     var strawberryStock = ""
     var bananaStock = ""
@@ -65,31 +65,31 @@ class StockModificationViewController: UIViewController {
     
     @IBAction private func touchUpStrawberryStepper(_ sender: UIStepper) {
         strawberryStockLabel.text = Int(sender.value).description
-        fruitStore.modifyStock(from: .strawberry, by: sender)
-        notificationCenter.post(name: .stockDataTransmission, object: strawberryStepper.value)
+        juiceMaker.fruitStore.modifyStock(from: .strawberry, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: nil, userInfo: juiceMaker.fruitStore.stock)
     }
     
     @IBAction private func touchUpBananaStepper(_ sender: UIStepper) {
         bananaStockLabel.text = Int(sender.value).description
-        fruitStore.modifyStock(from: .banana, by: sender)
-        notificationCenter.post(name: .stockDataTransmission, object: bananaStepper.value)
+        juiceMaker.fruitStore.modifyStock(from: .banana, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: nil)
     }
     
     @IBAction private func touchUpPineappleStepper(_ sender: UIStepper) {
         pineappleStockLabel.text = Int(sender.value).description
-        fruitStore.modifyStock(from: .pineapple, by: sender)
-        notificationCenter.post(name: .stockDataTransmission, object: pineappleStepper.value)
+        juiceMaker.fruitStore.modifyStock(from: .pineapple, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: nil)
     }
     
     @IBAction private func touchUpKiwiStepper(_ sender: UIStepper) {
         kiwiStockLabel.text = Int(sender.value).description
-        fruitStore.modifyStock(from: .kiwi, by: sender)
-        notificationCenter.post(name: .stockDataTransmission, object: kiwiStepper.value)
+        juiceMaker.fruitStore.modifyStock(from: .kiwi, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: nil)
     }
     
     @IBAction private func touchUpMangoStepper(_ sender: UIStepper) {
         mangoStockLabel.text = Int(sender.value).description
-        fruitStore.modifyStock(from: .mango, by: sender)
-        notificationCenter.post(name: .stockDataTransmission, object: mangoStepper.value)
+        juiceMaker.fruitStore.modifyStock(from: .mango, by: sender)
+        notificationCenter.post(name: .stockDataTransmission, object: nil)
     }
 }
