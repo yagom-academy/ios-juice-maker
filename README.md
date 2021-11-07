@@ -6,7 +6,13 @@
 
 **Index**
 
-- [Ground Rule] 
+- [Ground Rule](#GroundRule)
+- [코드 전체 흐름](#flow)
+- [타입 별 기능](#typefunction)
+- [구현 기능 및 코드](#implement)
+- [Trouble Shooting](#TroubleShooting)
+
+</br>
 
 ![JuiceMaker_gif1](https://user-images.githubusercontent.com/70251136/140608410-c4587a80-52b6-4b31-8d2a-e6c16e3d7a51.gif)
 
@@ -15,6 +21,9 @@
 
 </br>
 
+</br>
+
+<a name="GroundRule"></a>
 #  🤝  Ground Rule
 
 ### 👨‍👦 팀원
@@ -45,12 +54,14 @@ Jiseong (@yim2627)  July (@July911)
 
 </br>
 
+<a name="flow"></a>
 # 🌊 코드 전체 흐름
 
 <img width="100%" alt="image" src="https://user-images.githubusercontent.com/70251136/140609237-6f7e3272-bfa8-433d-be21-4339419d3978.png">
 
 </br>
 
+<a name="typefunction"></a>
 # 🤹‍♀️ 타입 별 기능
 
 **Model 관련 타입**
@@ -73,6 +84,7 @@ Jiseong (@yim2627)  July (@July911)
 
 </br>
 
+<a name="implement"></a>
 # 📚 구현 기능 및 코드
 
 ### 1️⃣ 첫번째 뷰에서 두번쨰 뷰로 데이터 전달
@@ -147,6 +159,7 @@ FruitStore 의 ```shared``` property로 접근 가능
 
 </br>
 
+<a name="TroubleShooting"></a>
 # ☄️ Trouble Shooting
 
 ### 화면간 데이터 전달 문제
