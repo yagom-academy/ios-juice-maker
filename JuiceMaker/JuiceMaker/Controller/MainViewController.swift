@@ -122,7 +122,7 @@ class MainViewController: UIViewController {
     private func order(juice: Juice) {
         do {
             try juiceMaker.fruitStore.consumeStock(with: juice)
-            showOrderSuccessAlert(message: "\(juiceMaker.tell(name: juice)) 쥬스 나왔습니다. 맛있게 드세요!")
+            showOrderSuccessAlert(message: "\(juice.name) 쥬스 나왔습니다. 맛있게 드세요!")
             updateFruitStockLabel()
         } catch {
             showNoExistStockAlert(message: "재료가 모자라요. 재고를 수정할까요?")
