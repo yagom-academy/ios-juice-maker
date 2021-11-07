@@ -17,13 +17,7 @@ class MainViewController: UIViewController {
         addObserver()
     }
     
-    @IBOutlet private(set) weak var strawberryBananaOrderButton: UIButton!
-    @IBOutlet private(set) weak var mangoKiwiOrderButton: UIButton!
-    @IBOutlet private(set) weak var strawberryOrderButton: UIButton!
-    @IBOutlet private(set) weak var bananaOrderButton: UIButton!
-    @IBOutlet private(set) weak var pineappleOrderButton: UIButton!
-    @IBOutlet private(set) weak var kiwiOrderButton: UIButton!
-    @IBOutlet private(set) weak var mangoOrderButton: UIButton!
+    @IBOutlet var orderButtons: [UIButton]!
     
     @IBOutlet private(set) weak var strawberryStockLabel: UILabel!
     @IBOutlet private(set) weak var bananaStockLabel: UILabel!
@@ -31,47 +25,11 @@ class MainViewController: UIViewController {
     @IBOutlet private(set) weak var kiwiStockLabel: UILabel!
     @IBOutlet private(set) weak var mangoStockLabel: UILabel!
     
-    private func adjustButtonFontSize() {
-        if strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            strawberryBananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            strawberryBananaOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            strawberryBananaOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if mangoKiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            mangoKiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            mangoKiwiOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            mangoKiwiOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            strawberryOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            strawberryOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            bananaOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            bananaOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            pineappleOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            pineappleOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            kiwiOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            kiwiOrderButton.titleLabel?.textAlignment = .center
-        }
-        
-        if mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth == false {
-            mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            mangoOrderButton.titleLabel?.lineBreakMode = .byWordWrapping
-            mangoOrderButton.titleLabel?.textAlignment = .center
+    private func adjustButtonTitleLabelSize() {
+        for button in orderButtons {
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.lineBreakMode = .byWordWrapping
+            button.titleLabel?.textAlignment = .center
         }
     }
     

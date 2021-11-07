@@ -244,18 +244,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaOrderButton" destination="y2A-PH-DJY" id="yQw-3S-KtD"/>
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="pvs-9E-IAH"/>
-                        <outlet property="kiwiOrderButton" destination="wcW-7H-RXw" id="d3l-Am-RVn"/>
                         <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="eNq-LZ-slf"/>
-                        <outlet property="mangoKiwiOrderButton" destination="ngP-kF-Yii" id="7yM-Bh-Hcy"/>
-                        <outlet property="mangoOrderButton" destination="q6G-4X-bVm" id="gw8-F2-2H5"/>
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="AM6-rl-2Hq"/>
-                        <outlet property="pineappleOrderButton" destination="BFb-ka-wGA" id="biu-qs-NEg"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="2fj-ib-E3V"/>
-                        <outlet property="strawberryBananaOrderButton" destination="hrc-2F-fzl" id="N9d-nK-rYJ"/>
-                        <outlet property="strawberryOrderButton" destination="avd-o5-3JM" id="mrn-Xe-jHr"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="FCO-03-k7D"/>
+                        <outletCollection property="orderButtons" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="v84-Aq-YoO"/>
+                        <outletCollection property="orderButtons" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="IK9-7F-N46"/>
+                        <outletCollection property="orderButtons" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="MRz-FN-kHd"/>
+                        <outletCollection property="orderButtons" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="qCx-Jx-Q4X"/>
+                        <outletCollection property="orderButtons" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="xLJ-FB-XKf"/>
+                        <outletCollection property="orderButtons" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="i6z-AG-EL1"/>
+                        <outletCollection property="orderButtons" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="wpm-F5-hbu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
