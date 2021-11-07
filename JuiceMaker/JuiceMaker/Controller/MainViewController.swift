@@ -105,7 +105,7 @@ class MainViewController: UIViewController {
         let modifyStockAction = UIAlertAction(title: "재고 수정", style: .default) { (action) in
             guard let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") else { return }
             
-            self.performSegue(withIdentifier: "segue", sender: UIAlertAction.self)
+            self.performSegue(withIdentifier: "modifyStock", sender: UIAlertAction.self)
             
             self.present(nextViewController, animated: true, completion: nil)
         }
@@ -118,7 +118,7 @@ class MainViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segue" {
+        if segue.identifier == "modifyStock" {
             let destinationController = segue.destination as! StockModificationViewController
             destinationController.strawberryStock = strawberryStockLabel.text ?? ""
             destinationController.bananaStock = bananaStockLabel.text ?? ""
