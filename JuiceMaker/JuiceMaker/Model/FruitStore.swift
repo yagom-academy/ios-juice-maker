@@ -6,15 +6,14 @@
 
 import UIKit
 
-class FruitStore {
-    static let shared = FruitStore()
+class FruitStore {    
     private(set) var stock = [Fruit: Int]()
 
-    private init(stockAmount: Int) {
+    init(stockAmount: Int) {
         fillStock(by: stockAmount)
     }
     
-    private convenience init() {
+    convenience init() {
         self.init(stockAmount: 10)
         
         fillStock(by: 10)

@@ -8,7 +8,7 @@
 import UIKit
 
 class StockModificationViewController: UIViewController {
-    private let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore()
     
     var strawberryStock = ""
     var bananaStock = ""
