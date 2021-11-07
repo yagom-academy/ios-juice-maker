@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
         
         adjustButtonFontSize()
         updateFruitStockLabel()
-        notificationCenter.addObserver(self, selector: #selector(updateFruitStockLabel), name: .stockDataTransmission, object: nil)
+        addObserver()
     }
     
     @IBOutlet private(set) weak var strawberryBananaOrderButton: UIButton!
@@ -89,6 +89,10 @@ class MainViewController: UIViewController {
         pineappleStockLabel.text = String(pineappleStock)
         kiwiStockLabel.text = String(kiwiStock)
         mangoStockLabel.text = String(mangoStock)
+    }
+    
+    private func addObserver() {
+        notificationCenter.addObserver(self, selector: #selector(updateFruitStockLabel), name: .stockDataTransmission, object: nil)
     }
     
     @IBAction private func touchUpStrawberryBananaJuiceOrder(_ sender: UIButton) {
