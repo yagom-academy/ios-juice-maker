@@ -1,11 +1,12 @@
+import Foundation
 
 final class FruitStore {
     private var defaultStock = 10
     var fruitStorage : Dictionary<Fruits, Int>
     static let shared: FruitStore = FruitStore()
+    let allFruits = Fruits.allCases
     
     private init() {
-        let allFruits = Fruits.allCases
         let stock = Array(repeating: defaultStock, count: allFruits.count)
         fruitStorage = Dictionary(uniqueKeysWithValues: zip(allFruits, stock))
     }
@@ -14,7 +15,6 @@ final class FruitStore {
         guard let inventory = fruitStorage[fruit], inventory >= amount else {
             return false
         }
-        
         return true
     }
     
@@ -25,11 +25,17 @@ final class FruitStore {
         }
     }
     
-    func stockUpFruit(which fruit: Fruits, on amount: Int) throws {
-        guard var inventory = fruitStorage[fruit] else {
+    func getFruitStock(which fruit: Fruits) throws -> Int {
+        guard let stock = fruitStorage[fruit] else {
             throw FruitStockError.invalidValue
         }
-        inventory += amount
-        fruitStorage[fruit] = inventory
+        return stock
+    }
+    
+    func changeFruitStock(_ stocks: [Double]) {
+        for index in 0..<stocks.count {
+            fruitStorage[allFruits[index]] = Int(stocks[index])
+        }
+        NotificationCenter.default.post(name: .update, object: self)
     }
 }

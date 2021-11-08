@@ -22,8 +22,11 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitsStock()
+        adjustFontSize()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitsStock), name: .update, object: fruitStore)
     }
     
+   
     @IBAction func clickJuiceButton(_ sender: UIButton) {
         var juice: Juices
         
@@ -40,6 +43,14 @@ class JuiceOrderViewController: UIViewController {
         }
         
         make(juice: juice)
+    }
+    
+    private func adjustFontSize() {
+        strawberryOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        bananaOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        mangoOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        kiwiOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        pineappleOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     private func make(juice: Juices) {
@@ -59,27 +70,18 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func updateFruitsStock() {
+    @objc private func updateFruitsStock() {
         do {
-            strawberryStockLabel.text = String(try getFruitStock(which: .strawberry))
-            bananaStockLabel.text = String(try getFruitStock(which: .banana))
-            kiwiStockLabel.text = String(try getFruitStock(which: .kiwi))
-            mangoStockLabel.text = String(try getFruitStock(which: .mango))
-            pineappleStockLabel.text = String(try getFruitStock(which: .pineapple))
-        }
-        catch FruitStockError.invalidValue {
+            strawberryStockLabel.text = String(try fruitStore.getFruitStock(which: .strawberry))
+            bananaStockLabel.text = String(try fruitStore.getFruitStock(which: .banana))
+            kiwiStockLabel.text = String(try fruitStore.getFruitStock(which: .kiwi))
+            mangoStockLabel.text = String(try fruitStore.getFruitStock(which: .mango))
+            pineappleStockLabel.text = String(try fruitStore.getFruitStock(which: .pineapple))
+        } catch FruitStockError.invalidValue {
             showSystemError()
-        }
-        catch {
+        } catch {
             print(error)
         }
-    }
-    
-    private func getFruitStock(which fruit: Fruits) throws -> Int {
-        guard let stock = fruitStore.fruitStorage[fruit] else {
-            throw FruitStockError.invalidValue
-        }
-        return stock
     }
     
     private func showSuccessAlert(juice: Juices) {
@@ -93,8 +95,11 @@ class JuiceOrderViewController: UIViewController {
     private func showNotEnoughStock() {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "재고 수정하기", style: .default, handler: presentFruitStoreViewController)
+        let okAction = UIAlertAction(title: "재고 수정하기", style: .default) { [weak self] (action) in
+            self?.performSegue(withIdentifier: FruitStorageViewController.identifier, sender: nil)
+        }
         let cancleAction = UIAlertAction(title: "닫기", style: .cancel, handler: nil)
+        
         alert.addAction(okAction)
         alert.addAction(cancleAction)
         present(alert, animated: true, completion: nil)
@@ -104,12 +109,36 @@ class JuiceOrderViewController: UIViewController {
         let message = FruitStockError.outOfStock.localizedDescription
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+        
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
     
-    private func presentFruitStoreViewController(_ action: UIAlertAction) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStock") else { return }
-        self.present(viewController, animated: true, completion: nil)
+    private func makeCurrentStock() -> [String] {
+        let fruitLabels = [
+            strawberryStockLabel.text,
+            bananaStockLabel.text,
+            mangoStockLabel.text,
+            kiwiStockLabel.text,
+            pineappleStockLabel.text
+        ]
+        
+        var currentStock: [String] = []
+        
+        fruitLabels.forEach { stock in
+            currentStock.append(stock ?? "0")
+        }
+        return currentStock
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination.children.first is FruitStorageViewController {
+            let viewController = segue.destination.children.first as? FruitStorageViewController
+            viewController?.fruitStock = makeCurrentStock()
+        }
+    }
+}
+
+extension Notification.Name {
+    static let update = Notification.Name("update")
 }

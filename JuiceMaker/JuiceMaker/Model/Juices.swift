@@ -3,6 +3,14 @@
 import Foundation
 
 enum Juices: CustomStringConvertible {
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case strawberrybanana
+    case mango
+    case mangokiwi
+    
     var description: String {
         switch self {
         case .strawberry: return "딸기쥬스"
@@ -14,14 +22,6 @@ enum Juices: CustomStringConvertible {
         case .strawberrybanana: return "딸바쥬스"
         }
     }
-    
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberrybanana
-    case mango
-    case mangokiwi
     
     var recipe : [Fruits:Int] {
         switch self {
