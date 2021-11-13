@@ -7,6 +7,7 @@ class OrderJuiceViewController: UIViewController {
     @IBOutlet private weak var pineappleStockLabel: UILabel!
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
+    @IBOutlet var fruitStockLabels: [UILabel]!
     
     private let juiceMaker = JuiceMaker()
     
@@ -20,18 +21,7 @@ class OrderJuiceViewController: UIViewController {
     }
     
     private func refreshSelectedStockLabel(of fruit: FruitName) {
-        switch fruit {
-        case .strawberry:
-            strawberryStockLabel.text = "\(juiceMaker.store.inventory[0].count)"
-        case .banana:
-            bananaStockLabel.text = "\(juiceMaker.store.inventory[1].count)"
-        case .pineapple:
-            pineappleStockLabel.text = "\(juiceMaker.store.inventory[2].count)"
-        case .kiwi:
-            kiwiStockLabel.text = "\(juiceMaker.store.inventory[3].count)"
-        case .mango:
-            mangoStockLabel.text = "\(juiceMaker.store.inventory[4].count)"
-        }
+        fruitStockLabels[fruit.indexOfInventory].text = "\(juiceMaker.store.inventory[fruit.indexOfInventory].count)"
     }
     
     @objc private func refreshStockLabel(_ notifacation: Notification) {

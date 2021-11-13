@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -376,6 +375,11 @@ IAo
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="9lt-1c-E7g"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="aIi-zU-1Sv"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="T3Q-xS-gFE"/>
+                        <outletCollection property="fruitStockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="N2B-6z-5zn"/>
+                        <outletCollection property="fruitStockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="HJl-1n-jrO"/>
+                        <outletCollection property="fruitStockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="gq1-6y-k7D"/>
+                        <outletCollection property="fruitStockLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="oho-XC-DLw"/>
+                        <outletCollection property="fruitStockLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="kAL-F2-asa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -581,11 +585,11 @@ IAo
                         <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="aQz-jC-H27"/>
                         <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="4Po-Yk-5ft"/>
                         <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="l4R-tn-HfW"/>
-                        <outletCollection property="fruitstockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="uUV-ai-PZC"/>
-                        <outletCollection property="fruitstockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="klI-31-gkH"/>
-                        <outletCollection property="fruitstockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="38x-FO-bpL"/>
-                        <outletCollection property="fruitstockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="0Ae-k3-S13"/>
-                        <outletCollection property="fruitstockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="rmI-Mg-l8Z"/>
+                        <outletCollection property="fruitStockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="uUV-ai-PZC"/>
+                        <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="klI-31-gkH"/>
+                        <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="38x-FO-bpL"/>
+                        <outletCollection property="fruitStockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="0Ae-k3-S13"/>
+                        <outletCollection property="fruitStockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="rmI-Mg-l8Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

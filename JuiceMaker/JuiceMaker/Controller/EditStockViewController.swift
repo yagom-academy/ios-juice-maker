@@ -14,7 +14,7 @@ class EditStockViewController: UIViewController {
     @IBOutlet private weak var pineappleStockStepper: UIStepper!
     @IBOutlet private weak var kiwiStockStepper: UIStepper!
     @IBOutlet private weak var mangoStockStepper: UIStepper!
-    @IBOutlet private var fruitstockSteppers: [UIStepper]!
+    @IBOutlet private var fruitStockSteppers: [UIStepper]!
     
     private let store = FruitStore.shared
 
@@ -29,7 +29,7 @@ class EditStockViewController: UIViewController {
     }
 
     private func initializeStockStepper(at indexOfFruit: Int) {
-        fruitstockSteppers[indexOfFruit].value = Double(store.inventory[indexOfFruit].count)
+        fruitStockSteppers[indexOfFruit].value = Double(store.inventory[indexOfFruit].count)
     }
     
     private func initializeUIElements() {
