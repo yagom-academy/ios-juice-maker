@@ -56,7 +56,7 @@ class OrderJuiceViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "재고 수정",
+        let okAction = UIAlertAction(title: "재고 수정⚒",
                                      style: .default) { (action) in
             self.present(editStockViewController, animated: true)
         }
