@@ -36,11 +36,11 @@ class OrderJuiceViewController: UIViewController {
         }
     }
     
-    private func showSuccessAlert(message: String) {
+    private func showSuccessAlert(message: String, btnTitle: String) {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
+        let okAction = UIAlertAction(title: "\(btnTitle) OK",
                                      style: .default,
                                      handler: nil)
         
@@ -72,7 +72,7 @@ class OrderJuiceViewController: UIViewController {
     private func receiveJuiceOrder(juiceName: JuiceName) {
         do {
             try juiceMaker.make(juiceName: juiceName)
-            showSuccessAlert(message: "\(juiceName.kor) 나왔습니다! 맛있게 드세요!")
+            showSuccessAlert(message: "\(juiceName.kor) 나왔습니다! 맛있게 드세요!", btnTitle: juiceName.imoji)
         } catch FruitStoreError.lackOfStock(let fruit, let count) {
             let description = FruitStoreError.lackOfStock(fruitName: fruit, neededStock: count).description
             showLackOfStockAlert(message: description)

@@ -30,6 +30,16 @@ enum FruitName: CaseIterable {
         case .mango: return "망고"
         }
     }
+    
+    var imoji: String {
+        switch self {
+        case .strawberry: return "🍓"
+        case .banana: return "🍌"
+        case .pineapple: return "🍍"
+        case .kiwi: return "🥝"
+        case .mango: return "🥭"
+        }
+    }
 }
 
 struct Fruit {
@@ -60,7 +70,7 @@ class FruitStore {
     
     func checkEnoughStock(of fruit: FruitName, for count: Int) throws {
         guard inventory[fruit.indexOfInventory].count >= count else {
-            throw FruitStoreError.lackOfStock(fruitName: fruit.kor, neededStock: count - inventory[fruit.indexOfInventory].count)
+            throw FruitStoreError.lackOfStock(fruitName: fruit, neededStock: count - inventory[fruit.indexOfInventory].count)
         }
     }
     
