@@ -44,11 +44,10 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func presentStockManagerViewController(_ sender: Any?) {
-        if let storyboard = storyboard {
-            let stockManagerViewController = storyboard.instantiateViewController(identifier: "StockManagerViewController") as StockManagerViewController
-            stockManagerViewController.juiceMaker = juiceMaker
-            present(stockManagerViewController, animated: true, completion: nil)
-        }
+        guard let storyboard = storyboard else { return }
+        let stockManagerViewController = storyboard.instantiateViewController(identifier: "StockManagerViewController") as StockManagerViewController
+        stockManagerViewController.juiceMaker = juiceMaker
+        present(stockManagerViewController, animated: true, completion: nil)
     }
     
     private func addObserver() {
