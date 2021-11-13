@@ -67,6 +67,7 @@ class StockManagerViewController: UIViewController {
     }
     
     private func applyChanges(from stepper: UIStepper, to fruit: Fruit) {
+        let stepperResetValue = 0.0
         let stepperValue = Int(stepper.value)
         let fruitLabel = convertToUILabel(from: fruit)
         do {
@@ -79,7 +80,7 @@ class StockManagerViewController: UIViewController {
             return
         }
         changeStock(of: fruit, by: stepperValue)
-        stepper.value = 0.0
+        stepper.value = stepperResetValue
     }
     
     private func changeStock(of fruit: Fruit, by amount: Int) {
