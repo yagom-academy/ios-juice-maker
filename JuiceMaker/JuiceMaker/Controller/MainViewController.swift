@@ -7,6 +7,10 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    @IBOutlet var accessibilityButtons: [UIButton]!
+    @IBOutlet var accessiblilityLabels: [UILabel]!
+    
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -19,6 +23,23 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for eachButton in accessibilityButtons {
+            eachButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        }
+        for eachLabel in accessiblilityLabels {
+            eachLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+            eachLabel.adjustsFontForContentSizeCategory = true
+        }
+        strawberryLabel.accessibilityLabel = "🍓 재고"
+        strawberryLabel.accessibilityValue = "\(strawberryLabel.text!) 개"
+        bananaLabel.accessibilityLabel = "🍌 재고"
+        bananaLabel.accessibilityValue = "\(bananaLabel.text!) 개"
+        pineappleLabel.accessibilityLabel = "🍍 재고"
+        pineappleLabel.accessibilityValue = "\(pineappleLabel.text!) 개"
+        kiwiLabel.accessibilityLabel = "🥝 재고"
+        kiwiLabel.accessibilityValue = "\(kiwiLabel.text!) 개"
+        mangoLabel.accessibilityLabel = "🥭 재고"
+        mangoLabel.accessibilityValue = "\(mangoLabel.text!) 개"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,11 +86,21 @@ class MainViewController: UIViewController {
     
     func updateUILabel(_ fruit: Fruit) {
         switch fruit {
-        case .strawberry:   strawberryLabel.text = String(juiceMaker.fruitStore[.strawberry])
-        case .banana:       bananaLabel.text     = String(juiceMaker.fruitStore[.banana])
-        case .pineapple:    pineappleLabel.text  = String(juiceMaker.fruitStore[.pineapple])
-        case .kiwi:         kiwiLabel.text       = String(juiceMaker.fruitStore[.kiwi])
-        case .mango:        mangoLabel.text      = String(juiceMaker.fruitStore[.mango])
+        case .strawberry:
+            strawberryLabel.text = String(juiceMaker.fruitStore[.strawberry])
+            strawberryLabel.accessibilityValue = "\(strawberryLabel.text!) 개"
+        case .banana:
+            bananaLabel.text     = String(juiceMaker.fruitStore[.banana])
+            bananaLabel.accessibilityValue = "\(bananaLabel.text!) 개"
+        case .pineapple:
+            pineappleLabel.text  = String(juiceMaker.fruitStore[.pineapple])
+            pineappleLabel.accessibilityValue = "\(pineappleLabel.text!) 개"
+        case .kiwi:
+            kiwiLabel.text       = String(juiceMaker.fruitStore[.kiwi])
+            kiwiLabel.accessibilityValue = "\(kiwiLabel.text!) 개"
+        case .mango:
+            mangoLabel.text      = String(juiceMaker.fruitStore[.mango])
+            mangoLabel.accessibilityValue = "\(mangoLabel.text!) 개"
         }
     }
     func alertMakingJuiceResult(_ juiceName: String? = nil) {

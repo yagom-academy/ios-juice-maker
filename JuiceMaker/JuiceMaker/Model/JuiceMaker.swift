@@ -28,7 +28,7 @@ struct JuiceMaker {
         "망키쥬스 주문": Juice(name: "망키", ingredients: [.mango: 2, .kiwi: 1])
     ]
 
-    func makeJuice(_ juice: Juice, _ completion: (Result<String, JuiceMakerError>) -> Void) {
+    func makeJuice(_ juice: Juice, _ completion: (Result<String, JuiceMakerError>) -> Void) {   
         do {
             try checkStock(juice.ingredients)
             for (fruit, removingQuantities) in juice.ingredients {
