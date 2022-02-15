@@ -37,7 +37,7 @@ class FruitStore: FruitStoreType {
         var fruitsOutOfStock: [Fruit] = []
         
         requests.forEach { fruit, needCount in
-            if let currentCount = store[fruit], currentCount <= needCount {
+            if !checkStock(of: fruit, willingAmount: needCount) {
                 fruitsOutOfStock.append(fruit)
             }
         }
@@ -51,5 +51,13 @@ class FruitStore: FruitStoreType {
                 store[fruit] = currentCount - needCount
             }
         }
+    }
+    
+    func checkStock(of fruit: Fruit, willingAmount: Int) -> Bool {
+        guard let currentCount = store[fruit], currentCount >= willingAmount else {
+            return false
+        }
+        
+        return true
     }
 }
