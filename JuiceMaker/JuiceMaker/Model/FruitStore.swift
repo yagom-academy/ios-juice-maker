@@ -14,17 +14,44 @@ enum Fruit {
     case 망고
 }
 
+enum FruitError: String, Error {
+    case outOfAmount
+    case noFruit
+}
+
+extension FruitError: LocalizedError {
+    var description: String {
+        switch self {
+        case .noFruit:
+            return "과일이 존재하지 않습니다."
+        case .outOfAmount:
+            return "재고가 부족합니다."
+        }
+    }
+}
+
 // 과일 저장소 타입
 class FruitStore {
     
     var store: [Fruit: Int] = [.딸기: 10, .바나나: 10, .파인애플: 10, .키위: 10, .망고: 10]
     
-    func changeAmountOfFruit(amount: Int, fruit: Fruit) -> Bool {
-        guard let fruitAmount = store[fruit] else { return false }
+    func changeAmountOfFruit(fruits: [(Fruit, Int)]) throws {
+        var temporaryResult: [(Fruit, Int)] = []
         
-        if fruitAmount + amount < 0 { return false }
+        try fruits.forEach { (fruit, amount) in
+            guard let fruitAmount = store[fruit] else { throw FruitError.noFruit }
+            if fruitAmount + amount < 0 { throw FruitError.outOfAmount }
+            temporaryResult.append((fruit, fruitAmount + amount))
+        }
         
-        store[fruit] = fruitAmount + amount
-        return true
+        if temporaryResult.count == fruits.count {
+            updateFruit(fruits: temporaryResult)
+        }
+    }
+    
+    private func updateFruit(fruits: [(Fruit, Int)]) {
+        fruits.forEach { (fruit, amount) in
+            store[fruit] = amount
+        }
     }
 }
