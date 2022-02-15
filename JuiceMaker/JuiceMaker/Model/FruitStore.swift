@@ -9,11 +9,15 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     
-    enum Fruit: Hashable {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
+    // MARK: - Properties
+    
+    var store: [Fruit: Int] = [:]
+    
+    // MARK: - Lifecycle
+    
+    init(initialStock: Int) {
+        Fruit.allCases.forEach {
+            store[$0] = initialStock
+        }
     }
 }
