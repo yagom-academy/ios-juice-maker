@@ -8,9 +8,9 @@
 import Foundation
 
 enum Fruit: Juicable {
-    case Strawberry
-    case Banana
-    case Pineapple
-    case Kiwi
-    case Mango
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
 }
