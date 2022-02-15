@@ -18,7 +18,7 @@ enum Juice {
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func makeJuice(juice: Juice) {
         switch juice {
@@ -39,7 +39,7 @@ struct JuiceMaker {
         }
     }
     
-    func validateMakeJuice(fruits: [(Fruit, Int)]) {
+    private func validateMakeJuice(fruits: [(Fruit, Int)]) {
         do {
             try fruitStore.changeAmountOfFruit(fruits: fruits)
         } catch let error as FruitError {
