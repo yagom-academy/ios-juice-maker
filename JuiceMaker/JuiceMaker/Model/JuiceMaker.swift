@@ -14,7 +14,7 @@ struct JuiceMaker: Makable {
         self.store = store
     }
     
-    func make(_ stuff: Stuff) throws -> Bool {
+    func make(into stuff: Stuff) throws -> Bool {
         guard let juice = Juice(rawValue: stuff.name) else {
             return false
         }
