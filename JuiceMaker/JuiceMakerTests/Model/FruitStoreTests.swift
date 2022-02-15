@@ -46,7 +46,7 @@ class FruitStoreTests: XCTestCase {
         let expected = Quantity(15)
         
         // when
-        sut.addStock(of: fruit, newStock)
+        sut.increaseStock(of: fruit, newStock)
         let actual = sut.getStock(of: fruit)
         
         // then

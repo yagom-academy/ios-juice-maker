@@ -22,7 +22,7 @@ struct FruitStore {
         return fruitStocks[fruit] ?? Quantity.ZERO
     }
     
-    mutating func addStock(of fruit: Fruit, _ quantity: Quantity) {
+    mutating func increaseStock(of fruit: Fruit, _ quantity: Quantity) {
         guard let stock = fruitStocks[fruit] else {
             fruitStocks[fruit] = quantity
             return
