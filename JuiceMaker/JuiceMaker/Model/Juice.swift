@@ -7,9 +7,15 @@
 
 import Foundation
 
-enum Juice: Stuff {
+enum Juice: String, Stuff {
     
-    case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangoKiwi
+    case strawberry = "strawberry"
+    case banana = "banana"
+    case kiwi = "kiwi"
+    case pineapple = "pineapple"
+    case strawberryBanana = "strawberryBanana"
+    case mango = "mango"
+    case mangoKiwi = "mangoKiwi"
     
     var ingredients: [FruitCounter] {
         var ingredients: [FruitCounter] = []
@@ -35,7 +41,7 @@ enum Juice: Stuff {
     }
     
     var name: String {
-        return String(describing: self)
+        return self.rawValue
     }
     
 }
