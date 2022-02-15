@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// 양, 개수의 정보와 그에대한 연산의 역할이 있는 타입
+///
+/// 원시값 Int에 대하여 양의 정수만 유지하기 위해 존재함
 struct Quantity: Equatable {
     
     private let quantity: Int

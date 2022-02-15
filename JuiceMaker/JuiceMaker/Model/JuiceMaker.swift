@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     
     private var fruitStore: FruitStore
@@ -15,6 +14,13 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
+    /// 쥬스 만들기.
+    ///
+    /// - Returns: Nothing. 성공했을 경우
+    ///
+    /// - Parameter of: 만들 쥬스
+    ///
+    /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
     mutating func make(of juice: Juice) throws {
         guard let neededFruits = Recipe.get(juice) else {
             throw JuiceMakerError.notExistRecipeError
@@ -23,6 +29,13 @@ struct JuiceMaker {
         try useStock(of: neededFruits)
     }
     
+    /// 쥬스를 만들 때 필요한 과일의 재고가 충분히 존재하는지 확인.
+    ///
+    /// - Returns: Nothing. 재고가 충분히 존재 할 경우
+    ///
+    /// - Parameter of: 필요한 과일과 갯수
+    ///
+    /// - Throws: `JuiceMakerError.soldOutError` 쥬스 만들 때 필요한 과일의 재고가 모자랄 경우
     private func validateStock(of neededFruits: [Recipe.NeededFruit]) throws {
         let outOfStocks = neededFruits.filter { neededFruit in
             let stock = fruitStore.getStock(of: neededFruit.fruit)
@@ -33,6 +46,11 @@ struct JuiceMaker {
         }
     }
     
+    /// 쥬스를 만들기 위해 과일 저장소에서 필요한 과일들의 재고 개수를 감소시킴
+    ///
+    /// - Returns: Nothing.
+    ///
+    /// - Parameter of: 필요한 과일과 갯수
     mutating private func useStock(of neededFruits: [Recipe.NeededFruit]) throws {
         try neededFruits.forEach { neededFruits in
             try fruitStore.decreaseStock(of: neededFruits.fruit, neededFruits.quantity)
@@ -43,18 +61,22 @@ struct JuiceMaker {
 
 extension JuiceMaker {
     
+    /// 과일 쥬스의 종류
     enum Juice {
         case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice
         case strawberryBananaJuice, mangoJuice, mangoKiwiJuice
     }
     
+    /// 과일 쥬스를 만들던 도중 발생할 수 있는 에러
     enum JuiceMakerError: Error {
         case soldOutError
         case notExistRecipeError
     }
     
+    /// 과일 쥬스를 만들 때 필요한 과일과 갯수의 정보를 알려주는 레시피 타입
     private struct Recipe {
         
+        /// 필요한 과일과 갯수의 정보를 갖고 있는 타입
         struct NeededFruit {
             let fruit: FruitStore.Fruit
             let quantity: Quantity
@@ -86,6 +108,11 @@ extension JuiceMaker {
             ],
         ]
         
+        /// 필요한 과일과 갯수를 얻기.
+        ///
+        /// - Returns: `[NeededFruit]?` 필요한 과일들과 그 갯수. 존재하지 않을 경우 nil
+        ///
+        /// - Parameter _: 필요한 과일들을 알고 싶은 쥬스의 종류
         static func get(_ juice: Juice) -> [NeededFruit]? {
             return recipe[juice]
         }
