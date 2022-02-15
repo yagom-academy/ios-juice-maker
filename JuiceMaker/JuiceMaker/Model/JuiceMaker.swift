@@ -10,12 +10,22 @@ struct JuiceMaker: Makable {
     
     private var store: Storable
     
-    func make(_ stuff: Stuff) {
+    init(store: Storable) {
+        self.store = store
+    }
+    
+    func make(_ stuff: Stuff) throws -> Bool {
         guard let juice = Juice(rawValue: stuff.name) else {
-            return
+            return false
+        }
+        for ingredient in juice.ingredients {
+            let _ = try store.isStock(ingredient.fruit, as: ingredient.count)
+        }
+        for ingredient in juice.ingredients {
+            let _ = try store.use(ingredient.fruit, to: ingredient.count)
         }
         
-        juice.ingredients.forEach { store.change($0.fruit, to: $0.count) }
+        return true
     }
     
 }

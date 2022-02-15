@@ -9,6 +9,8 @@ import Foundation
 
 protocol Storable {
     
-    func change(_ stuff: Stuff, to count: Int)
+    func change(_ stuff: Stuff, to count: Int) -> Int
+    func use(_ stuff: Stuff, to count: Int) throws -> Bool
+    func isStock(_ stuff: Stuff, as count: Int) throws -> Bool
     
 }

@@ -7,9 +7,18 @@
 
 import Foundation
 
-struct FruitCounter {
+class FruitCounter {
     
     let fruit: Fruit
-    let count: Int
+    private(set) var count: Int
+    
+    init(fruit: Fruit, count: Int) {
+        self.fruit = fruit
+        self.count = count
+    }
+    
+    func change(count: Int) {
+        self.count = count
+    }
     
 }
