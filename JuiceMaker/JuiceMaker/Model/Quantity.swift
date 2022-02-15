@@ -9,7 +9,7 @@ import Foundation
 
 struct Quantity: Equatable {
     
-    let quantity: Int
+    private let quantity: Int
     
     init(_ value: Int) {
         guard value > 0 else {
