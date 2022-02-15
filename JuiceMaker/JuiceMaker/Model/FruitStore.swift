@@ -13,7 +13,7 @@ protocol FruitStoreType {
 }
 
 /// A class that is in charge of managing count of fruits
-class FruitStore: FruitStoreType {
+final class FruitStore: FruitStoreType {
     
     // MARK: - Properties
     
