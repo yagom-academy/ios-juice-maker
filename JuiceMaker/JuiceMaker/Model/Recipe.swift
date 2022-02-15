@@ -8,5 +8,5 @@
 import Foundation
 
 struct Recipe {
-    var fruitList: [(fruit: Juicable, count: Int)]
+    var fruitList: [(fruit: Fruit, count: Int)]
 }
