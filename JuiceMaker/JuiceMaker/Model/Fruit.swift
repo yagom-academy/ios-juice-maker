@@ -50,16 +50,3 @@ struct Mango: Fruit {
     let description: String = "망고"
     var counter: Int = 0
 }
-
-enum FruitError: Error {
-    case negativeCount
-}
-
-extension FruitError: LocalizedError {
-    var negativeCount: String? {
-        switch self {
-        case .negativeCount:
-            return "과일의 개수는 음수가 될 수 없습니다."
-        }
-    }
-}
