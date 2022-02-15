@@ -43,6 +43,18 @@ struct JuiceMaker {
     }
     
     /// The fruit store is initialized at the beginning of `self`
-    let fruitStore: FruitStore = FruitStore(initialStock: 10)
+    var fruitStore: FruitStore
+    
+    // MARK: - Initialize
+    
+    init(fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
+    }
+    
+    /// Make a juice if the ingredients are enough at `FruitStore`
+    /// and delivers the whether making juice succeeded or failed
+    /// to the subject of invoking the method by `handler`.
+    func makeJuice(of juice: Juice, completion handler: ((JuiceMakerResult<FruitStoreError>) -> Void)) {
+    }
     
 }
