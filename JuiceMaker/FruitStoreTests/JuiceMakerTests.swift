@@ -14,7 +14,7 @@ class JuiceMakerTests: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = JuiceMaker(fruitStore: FruitStore())
+        sut = JuiceMaker()
     }
 
     override func tearDownWithError() throws {
@@ -24,10 +24,22 @@ class JuiceMakerTests: XCTestCase {
     
     func test_바나나쥬스를_주문하면_바나나의_수량이_필요개수만큼_소모된다() {
         let expected = 8
+
         sut?.make(.banana)
-        let banana = sut?.fruitStore.count(of: .banana)
+        let bananaCount = sut?.count(of: .banana)
         
-        XCTAssertEqual(banana, expected)
+        XCTAssertEqual(bananaCount, expected)
     }
 
+    func test_딸바쥬스를_주문하면_딸기와_바나나의_수량이_필요개수만큼_소모된다() {
+        let expectedStrawberryCount = 0
+        let expectedBananaCount = 9
+
+        sut?.make(.strawberryBanana)
+        let strawberryCount = sut?.count(of: .strawberry)
+        let bananaCount = sut?.count(of: .banana)
+
+        XCTAssertEqual(strawberryCount, expectedStrawberryCount)
+        XCTAssertEqual(bananaCount, expectedBananaCount)
+    }
 }

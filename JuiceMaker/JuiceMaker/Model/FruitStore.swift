@@ -13,6 +13,7 @@ protocol FruitStoreType {
     func count(of fruit: Fruit) -> Int
     func add(_ fruit: Fruit, amount: Int)
     func consume(_ fruit: Fruit, amount: Int)
+    func consume(ingredients: Fruits)
 }
 
 final class FruitStore: FruitStoreType {
@@ -32,6 +33,12 @@ final class FruitStore: FruitStoreType {
 
     func consume(_ fruit: Fruit, amount: Int = 1) {
         fruits[fruit]? -= amount
+    }
+
+    func consume(ingredients: Fruits) {
+        ingredients.forEach { fruit, amount in
+            fruits[fruit]? -= amount
+        }
     }
 }
 
