@@ -29,4 +29,15 @@ class FruitStoreTests: XCTestCase {
             XCTAssertEqual(sut?.count(of: fruit), expectedCount)
         }
     }
+    
+    func test_과일의_수량을_조정_할수_있다() throws {
+        let input = -1
+        let expectedCount = 9
+        
+        var strawberry = sut?.count(of: .strawberry)
+        
+        strawberry = strawberry! + input
+        
+        XCTAssertEqual(strawberry! , expectedCount)
+    }
 }
