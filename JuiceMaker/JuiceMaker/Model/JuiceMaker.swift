@@ -6,14 +6,11 @@
 
 import Foundation
 
-enum JuiceMakerResult<T: Error> {
-    case success
-    case fail(error: T)
-}
-
-// 쥬스 메이커 타입
+/// A structure that is in charge of making juice
 struct JuiceMaker {
     
+    /// A enum that handles available juice menu and their recipe
+    /// at the moment.
     enum Juice {
         case strawberryJuice
         case bananaJuice
@@ -43,6 +40,7 @@ struct JuiceMaker {
         }
     }
     
+    /// The fruit store is initialized at the beginning of `self`
     let fruitStore: FruitStore = FruitStore()
     
 }
