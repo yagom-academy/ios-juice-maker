@@ -11,10 +11,10 @@ struct FruitStore {
     
     private var fruitStocks: [Fruit: Quantity]
     
-    init() {
+    init(everyStock: Quantity = DEFAULT_FRUIT_QUANTITY) {
         let allFruits = Fruit.allCases
         fruitStocks = allFruits.reduce(into: [:], { partialResult, fruit in
-            partialResult[fruit] = FruitStore.DEFAULT_FRUIT_QUANTITY
+            partialResult[fruit] = everyStock
         })
     }
     

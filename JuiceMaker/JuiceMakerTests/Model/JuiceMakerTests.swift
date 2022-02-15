@@ -24,6 +24,7 @@ class JuiceMakerTests: XCTestCase {
     
     func test_쥬스를_만들_수_있다() {
         // given
+        sut = JuiceMaker(fruitStore: FruitStore(everyStock: Quantity(Int.max)))
         let juice = JuiceMaker.Juice.bananaJuice
         
         // when then
@@ -32,10 +33,13 @@ class JuiceMakerTests: XCTestCase {
     
     func test_쥬스의_재고가_없을_경우_실패한다() {
         // given
+        sut = JuiceMaker(fruitStore: FruitStore(everyStock: Quantity(0)))
         let juice = JuiceMaker.Juice.strawberryJuice
         
         // when then
-        XCTAssertThrowsError(try sut.make(of: juice))
+        XCTAssertThrowsError(try sut.make(of: juice)) { error in
+            XCTAssertEqual(error as! JuiceMaker.JuiceMakerError, JuiceMaker.JuiceMakerError.soldOutError)
+        }
     }
 
 }
