@@ -30,6 +30,18 @@ struct FruitStore {
         fruitStocks[fruit] = stock + quantity
     }
     
+    mutating func decreaseStock(of fruit: Fruit, _ quantity: Quantity) throws {
+        guard let stock = fruitStocks[fruit] else {
+            throw FruitStoreError.outOfStockError
+        }
+        do {
+            let result = try stock - quantity
+            fruitStocks[fruit] = result
+        } catch Quantity.QuantityError.minusResultError {
+            throw FruitStoreError.outOfStockError
+        }
+    }
+    
 }
 
 extension FruitStore {
@@ -38,6 +50,10 @@ extension FruitStore {
     
     enum Fruit: CaseIterable {
         case strawberry, banana, pineapple, kiwi, mango
+    }
+    
+    enum FruitStoreError: Error {
+        case outOfStockError
     }
     
 }

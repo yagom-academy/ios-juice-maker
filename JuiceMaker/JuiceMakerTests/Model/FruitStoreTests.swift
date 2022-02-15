@@ -11,17 +11,17 @@ import XCTest
 class FruitStoreTests: XCTestCase {
     
     private var sut: FruitStore!
-
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = FruitStore()
     }
-
+    
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         sut = nil
     }
-
+    
     func test_과일의_초기_재고는_10개이다() {
         // when
         let strawberryStock = sut.getStock(of: .strawberry)
@@ -51,6 +51,33 @@ class FruitStoreTests: XCTestCase {
         
         // then
         XCTAssertEqual(expected, actual)
+    }
+    
+    func test_과일의_재고를_성공적으로_감소시킬_수_있어야_한다() {
+        // given
+        let fruit = FruitStore.Fruit.strawberry
+        let toUse = Quantity(5)
+        let expected = Quantity(5)
+        
+        // when
+        do {
+            try sut.decreaseStock(of: fruit, toUse)
+            let actual = sut.getStock(of: fruit)
+            // then
+            XCTAssertEqual(expected, actual)
+        } catch {
+            // then
+            XCTFail()
+        }
+    }
+    
+    func test_과일의_재고를_현재의_재고보다_많이_감소시키려고_하면_에러가_발생한다() {
+        // given
+        let fruit = FruitStore.Fruit.strawberry
+        let toUse = sut.getStock(of: fruit) + Quantity(10)
+        
+        // when then
+        XCTAssertThrowsError(try sut.decreaseStock(of: fruit, toUse))
     }
     
 }
