@@ -10,7 +10,7 @@ struct JuiceMaker: Makable {
     
     private var store: Storable
     
-    func make(_ juice: Juice) {
+    func make(_ stuff: Stuff) {
         
     }
     
