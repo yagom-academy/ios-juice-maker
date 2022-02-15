@@ -21,16 +21,16 @@ class FruitStore {
         }
     }
     
-    func addStock(fruit: Fruit, count: Int) {
+    func addStock(to fruit: Fruit, count: Int) {
         if let currentCount = store[fruit] {
             store[fruit] = currentCount + count
         }
     }
     
-    func useStocks(for recipe: [Fruit: Int]) throws {
+    func useStocks(from requests: [Fruit: Int]) throws {
         var fruitsOutOfStock: [Fruit] = []
         
-        recipe.forEach { fruit, needCount in
+        requests.forEach { fruit, needCount in
             if let currentCount = store[fruit], currentCount < needCount {
                 fruitsOutOfStock.append(fruit)
             }
@@ -40,7 +40,7 @@ class FruitStore {
             throw FruitStoreError.outOfStock(fruitsOutOfStock)
         }
         
-        recipe.forEach { fruit, needCount in
+        requests.forEach { fruit, needCount in
             if let currentCount = store[fruit] {
                 store[fruit] = currentCount - needCount
             }
