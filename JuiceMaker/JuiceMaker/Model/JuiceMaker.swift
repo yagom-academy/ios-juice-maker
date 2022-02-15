@@ -10,3 +10,12 @@ import Foundation
 struct JuiceMaker {
     
 }
+
+extension JuiceMaker {
+    
+    enum Juice {
+        case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice
+        case strawberryBananaJuice, mangoJuice, mangoKiwiJuice
+    }
+    
+}
