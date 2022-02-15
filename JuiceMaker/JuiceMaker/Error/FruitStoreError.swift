@@ -8,7 +8,6 @@
 import Foundation
 
 enum FruitStoreError: Error {
-    
     case outOfStock([Fruit])
     case unkown
 }
