@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Juice {
+enum Juice: Stuff {
     
     case strawberry, banana, kiwi, pineapple, strawberryBanana, mango, mangoKiwi
     
@@ -32,6 +32,10 @@ enum Juice {
             ingredients.append(FruitCounter(fruit: .kiwi, count: 1))
         }
         return ingredients
+    }
+    
+    var name: Juice {
+        return self
     }
     
 }
