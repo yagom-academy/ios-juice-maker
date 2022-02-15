@@ -9,9 +9,11 @@ import Foundation
 struct JuiceMaker {
     
     private var fruitStore: FruitStore
+    private var recipe: Recipe
     
-    init(fruitStore: FruitStore = FruitStore()) {
+    init(fruitStore: FruitStore = FruitStore(), recipe: Recipe = Recipe()) {
         self.fruitStore = fruitStore
+        self.recipe = recipe
     }
     
     /// 쥬스 만들기.
@@ -24,7 +26,7 @@ struct JuiceMaker {
     ///
     /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
     mutating func make(of juice: Juice) throws {
-        guard let neededFruits = Recipe.get(juice) else {
+        guard let neededFruits = recipe.get(juice) else {
             throw JuiceMakerError.notExistRecipeError
         }
         try validateStock(of: neededFruits)
@@ -80,15 +82,9 @@ extension JuiceMaker {
     }
     
     /// 과일 쥬스를 만들 때 필요한 과일과 갯수의 정보를 알려주는 레시피 타입
-    private struct Recipe {
+    struct Recipe {
         
-        /// 필요한 과일과 갯수의 정보를 갖고 있는 타입
-        struct NeededFruit {
-            let fruit: FruitStore.Fruit
-            let quantity: Quantity
-        }
-        
-        private static let recipe: [Juice: [NeededFruit]] = [
+        private static let defaultRecipe: [Juice: [NeededFruit]] = [
             .strawberryJuice: [
                 NeededFruit(fruit: .strawberry, quantity: Quantity(16)),
             ],
@@ -114,12 +110,24 @@ extension JuiceMaker {
             ],
         ]
         
+        /// 필요한 과일과 갯수의 정보를 갖고 있는 타입
+        struct NeededFruit {
+            let fruit: FruitStore.Fruit
+            let quantity: Quantity
+        }
+        
+        private let recipe: [Juice: [NeededFruit]]
+        
+        init(recipe: [Juice: [NeededFruit]] = defaultRecipe) {
+            self.recipe = recipe
+        }
+        
         /// 필요한 과일과 갯수를 얻기.
         ///
         /// - Returns: `[NeededFruit]?` 필요한 과일들과 그 갯수. 존재하지 않을 경우 nil
         ///
         /// - Parameter _: 필요한 과일들을 알고 싶은 쥬스의 종류
-        static func get(_ juice: Juice) -> [NeededFruit]? {
+        func get(_ juice: Juice) -> [NeededFruit]? {
             return recipe[juice]
         }
     }
