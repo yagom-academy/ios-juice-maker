@@ -6,7 +6,12 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
-struct JuiceMaker {
+struct JuiceMaker: Makable {
+    
+    private var store: Storable
+    
+    func make(_ juice: Juice) {
+        
+    }
     
 }
