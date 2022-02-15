@@ -21,7 +21,7 @@ extension FruitStoreError: LocalizedError {
 
 /// 과일 저장소 타입
 struct FruitStore {
-    private var inventory = [FruitType: Int]()
+    private(set) var inventory = [FruitType: Int]()
     
     init(initialFruitCount: Int = 10) {
         FruitType.allCases.forEach { fruit in
@@ -29,28 +29,29 @@ struct FruitStore {
         }
     }
     
-    func updateInventory(of fruits: [FruitType: Int]) -> Result<Void, Error> {
-        let result = checkInventory(of: fruits)
-        
-        switch result {
+    mutating func use(of fruitTypes: [FruitType: Int]) -> Result<Void, FruitStoreError> {
+        let checkedInventory =  checkInventory(of: fruitTypes)
+        switch checkedInventory {
         case .success():
+            inventory = calculateUsableInventory(toSubtract: fruitTypes)
             return .success(Void())
         case .failure(let error):
             return .failure(error)
         }
     }
     
-    private func checkInventory(of fruits: [FruitType: Int]) -> Result<Void, FruitStoreError> {
-        let result = inventory
-            .merging(fruits, uniquingKeysWith: {
-                $0 + $1
-            })
+    private func checkInventory(of fruitTypes: [FruitType: Int]) -> Result<Void, FruitStoreError> {
+        let negativeFruitTypes = calculateUsableInventory(toSubtract: fruitTypes)
             .filter { $0.value < 0 }
-        
-        guard result.count < 0 else {
+        guard negativeFruitTypes.count < 1 else {
             return .failure(.notEnoughFruits)
         }
-        
         return .success(Void())
+    }
+    
+    private func calculateUsableInventory(toSubtract fruitTypes: [FruitType: Int]) -> [FruitType: Int] {
+        return inventory.merging(fruitTypes, uniquingKeysWith: {
+            $0 - $1
+        })
     }
 }
