@@ -21,37 +21,37 @@ class QuantityTests: XCTestCase {
     func test_양수로_생성이_가능하다() {
         // given
         let positive: Int = 1
-        let expected: Int = 1
+        let expected: Quantity = Quantity(1)
         
         // when
-        let quantity: Quantity = Quantity(positive)
+        let actual: Quantity = Quantity(positive)
         
         // then
-        XCTAssertEqual(quantity.quantity, expected)
+        XCTAssertEqual(actual, expected)
     }
     
     func test_0으로_생성이_가능하다() {
         // given
         let zero: Int = 0
-        let expected: Int = 0
+        let expected: Quantity = Quantity(0)
         
         // when
-        let quantity: Quantity = Quantity(zero)
+        let actual: Quantity = Quantity(zero)
         
         // then
-        XCTAssertEqual(quantity.quantity, expected)
+        XCTAssertEqual(actual, expected)
     }
     
     func test_음수로_생성_시도할_경우_0으로_초기화되어_생성된다() {
         // given
         let negative: Int = -1
-        let expected: Int = 0
+        let expected: Quantity = Quantity(0)
         
         // when
-        let quantity: Quantity = Quantity(negative)
+        let actual: Quantity = Quantity(negative)
         
         // then
-        XCTAssertEqual(quantity.quantity, expected)
+        XCTAssertEqual(actual, expected)
     }
     
     func test_더하기_연산자를_통한_연산이_가능하다() {
