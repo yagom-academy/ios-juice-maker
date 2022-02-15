@@ -7,6 +7,12 @@
 import Foundation
 
 // 과일 저장소 타입
-class FruitStore {
+struct FruitStore {
+    
+    enum Fruit {
+        case strawberry, banana, pineapple, kiwi, mango
+    }
+    
+    private let fruits: [Fruit: Int] = [:]
     
 }
