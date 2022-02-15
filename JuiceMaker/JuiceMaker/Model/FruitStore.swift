@@ -6,15 +6,15 @@
 
 import Foundation
 
-
 protocol FruitStoreType {
     var store: [Fruit: Int] { get }
     func addStock(to fruit: Fruit, count: Int)
     func useStocks(from requests: [Fruit: Int]) throws
 }
 
-// 과일 저장소 타입
+/// A class that is in charge of managing count of fruits
 class FruitStore: FruitStoreType {
+    
     // MARK: - Properties
     
     private(set) var store: [Fruit: Int] = [:]
@@ -28,11 +28,28 @@ class FruitStore: FruitStoreType {
     }
     
     func addStock(to fruit: Fruit, count: Int) {
-        
+        if let currentCount = store[fruit] {
+            store[fruit] = currentCount + count
+        }
     }
     
-    func useStocks(from requests: [Fruit : Int]) throws {
+    func useStocks(from requests: [Fruit: Int]) throws {
+        var fruitsOutOfStock: [Fruit] = []
         
+        requests.forEach { fruit, needCount in
+            if let currentCount = store[fruit], currentCount < needCount {
+                fruitsOutOfStock.append(fruit)
+            }
+        }
+        
+        if fruitsOutOfStock.count > 0 {
+            throw FruitStoreError.outOfStock(fruitsOutOfStock)
+        }
+        
+        requests.forEach { fruit, needCount in
+            if let currentCount = store[fruit] {
+                store[fruit] = currentCount - needCount
+            }
+        }
     }
-
 }
