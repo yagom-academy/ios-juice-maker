@@ -24,21 +24,21 @@ struct JuiceMaker {
     /// Make a juice if the ingredients are enough at `FruitStore`
     /// and delivers the whether making juice succeeded or failed
     /// to the subject of invoking the method by `handler`.
-    func makeJuice(of juice: Juice, completion handler: ((JuiceMakerResult<Error>) -> Void)) {
+    func makeJuice(of juice: Juice, result: ((JuiceMakerResult<Error>) -> Void)) {
         guard availableJuices.contains(juice) else {
-            handler(.fail(error: JuiceMakerError.notAvailable))
+            result(.fail(error: JuiceMakerError.notAvailable))
             return
         }
         
         do {
             try fruitStore.useStocks(from: juice.recipe)
-            handler(.success)
+            result(.success)
         }
         catch FruitStoreError.outOfStock(let outOfStockFruits) {
-            handler(.fail(error: FruitStoreError.outOfStock(outOfStockFruits)))
+            result(.fail(error: FruitStoreError.outOfStock(outOfStockFruits)))
         }
         catch {
-            handler(.fail(error: FruitStoreError.unkown))
+            result(.fail(error: FruitStoreError.unkown))
         }
     }
     
