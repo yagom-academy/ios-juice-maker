@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct FruitCounter {
+    
+    let fruit: Fruit
+    let count: Int
+    
+}
