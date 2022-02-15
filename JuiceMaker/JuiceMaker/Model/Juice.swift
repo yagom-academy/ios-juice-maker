@@ -34,8 +34,8 @@ enum Juice: Stuff {
         return ingredients
     }
     
-    var name: Juice {
-        return self
+    var name: String {
+        return String(describing: self)
     }
     
 }

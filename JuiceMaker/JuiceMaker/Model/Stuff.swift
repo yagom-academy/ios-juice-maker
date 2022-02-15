@@ -9,6 +9,6 @@ import Foundation
 
 protocol Stuff {
     
-    var name: Self { get }
+    var name: String { get }
     
 }
