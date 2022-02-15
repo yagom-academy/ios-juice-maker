@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore: Storable {
     
     private(set) var stocks: [FruitCounter]
