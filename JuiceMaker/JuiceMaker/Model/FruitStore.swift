@@ -53,7 +53,7 @@ final class FruitStore: FruitStoreType {
         }
     }
     
-    func checkStock(of fruit: Fruit, willingAmount: Int) -> Bool {
+    private func checkStock(of fruit: Fruit, willingAmount: Int) -> Bool {
         guard let currentCount = store[fruit], currentCount >= willingAmount else {
             return false
         }
