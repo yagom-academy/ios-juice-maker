@@ -64,7 +64,7 @@ struct JuiceMaker {
         }
         catch {
             guard let fruitStoreError: FruitStoreError = error as? FruitStoreError else {
-//                handler(.fail(error: FruitStoreError.outOfStock(of: [])))
+                handler(.fail(error: FruitStoreError.outOfStock([])))
                 return
             }
             handler(.fail(error: fruitStoreError))
