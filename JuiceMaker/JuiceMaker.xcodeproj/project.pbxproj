@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9011FBC027BBFC66002B0C57 /* JuiceMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011FBBF27BBFC66002B0C57 /* JuiceMakerTests.swift */; };
 		AAED942E27BAB2BF007F2A84 /* FruitStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED942D27BAB2BF007F2A84 /* FruitStoreTests.swift */; };
 		AAED943527BBF9CC007F2A84 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED943427BBF9CC007F2A84 /* Fruit.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9011FBBF27BBFC66002B0C57 /* JuiceMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerTests.swift; sourceTree = "<group>"; };
 		AAED942B27BAB2BF007F2A84 /* FruitStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FruitStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAED942D27BAB2BF007F2A84 /* FruitStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreTests.swift; sourceTree = "<group>"; };
 		AAED943427BBF9CC007F2A84 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				AAED942D27BAB2BF007F2A84 /* FruitStoreTests.swift */,
+				9011FBBF27BBFC66002B0C57 /* JuiceMakerTests.swift */,
 			);
 			path = FruitStoreTests;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAED942E27BAB2BF007F2A84 /* FruitStoreTests.swift in Sources */,
+				9011FBC027BBFC66002B0C57 /* JuiceMakerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
