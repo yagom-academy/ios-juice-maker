@@ -7,8 +7,12 @@
 
 import Foundation
 
-enum Fruit {
+enum Fruit: Stuff {
     
     case strawberry, banana, pineapple, kiwi, mango
+    
+    var name: Fruit {
+        return self
+    }
     
 }
