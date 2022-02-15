@@ -9,6 +9,8 @@ import Foundation
 /// A structure that is in charge of making juice
 struct JuiceMaker {
     
+    // MARK: - Nested Type
+    
     /// A enum that handles available juice menu and their recipe
     /// at the moment.
     enum Juice {
@@ -42,7 +44,31 @@ struct JuiceMaker {
         }
     }
     
-    /// The fruit store is initialized at the beginning of `self`
-    let fruitStore: FruitStore = FruitStore(initialStock: 10)
+    // MARK: - Property
+    
+    var fruitStore: FruitStoreType
+    
+    // MARK: - Initialize
+    
+    init(fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
+    }
+    
+    /// Make a juice if the ingredients are enough at `FruitStore`
+    /// and delivers the whether making juice succeeded or failed
+    /// to the subject of invoking the method by `handler`.
+    func makeJuice(of juice: Juice, completion handler: ((JuiceMakerResult<FruitStoreError>) -> Void)) {
+        do {
+            try fruitStore.useStocks(from: juice.recipe)
+            handler(.success)
+        }
+        catch {
+            guard let fruitStoreError: FruitStoreError = error as? FruitStoreError else {
+//                handler(.fail(error: FruitStoreError.outOfStock(of: [])))
+                return
+            }
+            handler(.fail(error: fruitStoreError))
+        }
+    }
     
 }

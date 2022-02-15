@@ -6,12 +6,18 @@
 
 import Foundation
 
+
+protocol FruitStoreType {
+    var store: [Fruit: Int] { get }
+    func addStock(to fruit: Fruit, count: Int)
+    func useStocks(from requests: [Fruit: Int]) throws
+}
+
 // 과일 저장소 타입
-class FruitStore {
-    
+class FruitStore: FruitStoreType {
     // MARK: - Properties
     
-    var store: [Fruit: Int] = [:]
+    private(set) var store: [Fruit: Int] = [:]
     
     // MARK: - Lifecycle
     
@@ -20,4 +26,13 @@ class FruitStore {
             store[$0] = initialStock
         }
     }
+    
+    func addStock(to fruit: Fruit, count: Int) {
+        
+    }
+    
+    func useStocks(from requests: [Fruit : Int]) throws {
+        
+    }
+
 }
