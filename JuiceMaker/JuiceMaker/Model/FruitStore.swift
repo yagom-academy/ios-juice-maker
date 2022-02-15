@@ -9,21 +9,27 @@ import Foundation
 // 과일 저장소 타입
 struct FruitStore {
     
-    enum Fruit: CaseIterable {
-        case strawberry, banana, pineapple, kiwi, mango
-    }
-    
-    private let stock: [Fruit: Int]
+    private let stock: [Fruit: Quantity]
     
     init() {
         let allFruits = Fruit.allCases
         stock = allFruits.reduce(into: [:], { partialResult, fruit in
-            partialResult[fruit] = 10
+            partialResult[fruit] = FruitStore.DEFAULT_FRUIT_QUANTITY
         })
     }
     
-    func getStock(of fruit: Fruit) -> Int {
-        return stock[fruit] ?? 0
+    func getStock(of fruit: Fruit) -> Quantity {
+        return stock[fruit] ?? Quantity.ZERO
+    }
+    
+}
+
+extension FruitStore {
+    
+    private static let DEFAULT_FRUIT_QUANTITY: Quantity = Quantity(10)
+    
+    enum Fruit: CaseIterable {
+        case strawberry, banana, pineapple, kiwi, mango
     }
     
 }

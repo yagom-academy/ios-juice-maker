@@ -29,7 +29,7 @@ class FruitStoreTests: XCTestCase {
         let pineappleStock = sut.getStock(of: .pineapple)
         let kiwiStock = sut.getStock(of: .kiwi)
         let mangoStock = sut.getStock(of: .mango)
-        let expectedStock = 10
+        let expectedStock = Quantity(10)
         
         // then
         XCTAssertEqual(strawberryStock, expectedStock)
