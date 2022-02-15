@@ -9,6 +9,6 @@ import Foundation
 
 protocol Makable {
     
-    func make(_ juice: Juice)
+    func make(_ stuff: Stuff)
     
 }
