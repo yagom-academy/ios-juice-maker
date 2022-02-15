@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum FruitStoreError: Error {
+    
+    case outOfStock([FruitStore.Fruit])
+}
