@@ -20,6 +20,8 @@ struct JuiceMaker {
         case mangoJuice
         case mangoKiwiJuice
         
+        /// A computed property to provide recipe
+        /// of a specific juice menu
         var recipe: [FruitStore.Fruit: Int] {
             switch self {
             case .strawberryJuice:
