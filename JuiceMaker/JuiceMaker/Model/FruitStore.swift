@@ -9,7 +9,7 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore: Storable {
     
-    func change(fruit: Fruit, count: Int) {
+    func change(_ fruit: Stuff, to count: Int) {
         
     }
     
