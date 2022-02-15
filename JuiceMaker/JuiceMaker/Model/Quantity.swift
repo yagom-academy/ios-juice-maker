@@ -31,6 +31,14 @@ struct Quantity: Equatable {
         return Quantity(result)
     }
     
+    static func > (first: Quantity, second: Quantity) -> Bool {
+        return first.quantity > second.quantity
+    }
+    
+    static func < (first: Quantity, second: Quantity) -> Bool {
+        return first.quantity < second.quantity
+    }
+
 }
 
 extension Quantity {

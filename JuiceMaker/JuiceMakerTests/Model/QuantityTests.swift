@@ -93,4 +93,16 @@ class QuantityTests: XCTestCase {
         XCTAssertThrowsError(try first - second)
     }
     
+    func test_크기비교_연산자를_통해_비교할_수_있다() {
+        // given
+        let bigger = Quantity(3)
+        let smaller = Quantity(1)
+        
+        // when then
+        XCTAssertTrue(bigger > smaller)
+        XCTAssertTrue(smaller < bigger)
+        XCTAssertFalse(bigger < smaller)
+        XCTAssertFalse(smaller > bigger)
+    }
+    
 }
