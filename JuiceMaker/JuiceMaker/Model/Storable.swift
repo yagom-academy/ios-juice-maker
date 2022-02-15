@@ -9,6 +9,6 @@ import Foundation
 
 protocol Storable {
     
-    func change(fruit: Fruit, count: Int)
+    func change(_ stuff: Stuff, to count: Int)
     
 }
