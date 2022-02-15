@@ -22,50 +22,18 @@ final class FruitStore {
         self.mango = Mango(counter: mangoCount)
     }
     
-    func increase<T: Fruit>(fruitType: T.Type, num: Int) {
+    func update<T: Fruit>(fruitType: T.Type, num: Int) {
         switch fruitType {
         case is Strawberry.Type:
-            strawberry.increase(num: num)
+            strawberry.update(num: num)
         case is Banana.Type:
-            banana.increase(num: num)
+            banana.update(num: num)
         case is Kiwi.Type:
-            kiwi.increase(num: num)
+            kiwi.update(num: num)
         case is Pineapple.Type:
-            pineapple.increase(num: num)
+            pineapple.update(num: num)
         case is Mango.Type:
-            mango.increase(num: num)
-        default:
-            return
-        }
-    }
-    
-    func decrease<T: Fruit>(fruitType: T.Type, num: Int) throws {
-        switch fruitType {
-        case is Strawberry.Type:
-            guard strawberry.counter - num >= 0 else {
-                throw FruitError.negativeCount
-            }
-            strawberry.decrease(num: num)
-        case is Banana.Type:
-            guard banana.counter - num >= 0 else {
-                throw FruitError.negativeCount
-            }
-            banana.decrease(num: num)
-        case is Kiwi.Type:
-            guard kiwi.counter - num >= 0 else {
-                throw FruitError.negativeCount
-            }
-            kiwi.decrease(num: num)
-        case is Pineapple.Type:
-            guard pineapple.counter - num >= 0 else {
-                throw FruitError.negativeCount
-            }
-            pineapple.decrease(num: num)
-        case is Mango.Type:
-            guard mango.counter - num >= 0 else {
-                throw FruitError.negativeCount
-            }
-            mango.decrease(num: num)
+            mango.update(num: num)
         default:
             return
         }
