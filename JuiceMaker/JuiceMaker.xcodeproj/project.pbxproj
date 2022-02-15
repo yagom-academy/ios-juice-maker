@@ -51,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				3C3674BE27BB764300BB27C9 /* FruitStoreError.swift */,
+				168C66D127BB75DE008C6845 /* JuiceMakerResult.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -70,7 +71,6 @@
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
-				168C66D127BB75DE008C6845 /* JuiceMakerResult.swift */,
 				3C3674C027BB786000BB27C9 /* Fruit.swift */,
 			);
 			path = Model;
