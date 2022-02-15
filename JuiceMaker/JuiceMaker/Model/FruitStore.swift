@@ -7,7 +7,7 @@
 import Foundation
 
 protocol FruitStorable {
-  func updateStock(of fruit: Fruit, stock: Stock)
+  func updateStock(of fruit: Fruit, quantity: Int)
   func stock(of fruit: Fruit) -> Stock?
 }
 
@@ -21,8 +21,9 @@ class FruitStore: FruitStorable {
     }
   }
   
-  func updateStock(of fruit: Fruit, stock: Stock) {
-    guard store[fruit] != nil else { return }
+  func updateStock(of fruit: Fruit, quantity: Int) {
+    guard store[fruit] != nil,
+    let stock = Stock(quantity) else { return }
     
     store[fruit] = stock
   }
