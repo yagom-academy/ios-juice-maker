@@ -9,7 +9,7 @@ import Foundation
 
 /// A enum that handles available juice menu and their recipe
 /// at the moment.
-enum Juice {
+enum Juice: CaseIterable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice

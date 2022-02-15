@@ -9,49 +9,16 @@ import Foundation
 /// A structure that is in charge of making juice
 struct JuiceMaker {
     
-    // MARK: - Nested Type
-    
-    /// A enum that handles available juice menu and their recipe
-    /// at the moment.
-    enum Juice {
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
-        
-        /// A computed property to provide recipe
-        /// of a specific juice menu
-        var recipe: [Fruit: Int] {
-            switch self {
-            case .strawberryJuice:
-                return [.strawberry: 16]
-            case .bananaJuice:
-                return [.banana: 2]
-            case .kiwiJuice:
-                return [.kiwi: 3]
-            case .pineappleJuice:
-                return [.pineapple: 2]
-            case .strawberryBananaJuice:
-                return [.strawberry: 10, .banana: 1]
-            case .mangoJuice:
-                return [.mango: 3]
-            case .mangoKiwiJuice:
-                return [.mango: 2, .kiwi: 1]
-            }
-        }
-    }
-    
     // MARK: - Property
     
     var fruitStore: FruitStoreType
+    var availableJuices: [Juice]
     
     // MARK: - Initialize
     
-    init(fruitStore: FruitStore) {
+    init(fruitStore: FruitStore, availableJuices: [Juice] = Juice.allCases) {
         self.fruitStore = fruitStore
+        self.availableJuices = availableJuices
     }
     
     /// Make a juice if the ingredients are enough at `FruitStore`
