@@ -12,7 +12,7 @@ struct Quantity: Equatable {
     let quantity: Int
     
     init(_ value: Int) {
-        guard value < 0 else {
+        guard value > 0 else {
             quantity = 0
             return
         }
