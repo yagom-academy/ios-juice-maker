@@ -62,12 +62,11 @@ struct JuiceMaker {
             try fruitStore.useStocks(from: juice.recipe)
             handler(.success)
         }
+        catch FruitStoreError.outOfStock(let outOfStockFruits) {
+            handler(.fail(error: FruitStoreError.outOfStock(outOfStockFruits)))
+        }
         catch {
-            guard let fruitStoreError: FruitStoreError = error as? FruitStoreError else {
-                handler(.fail(error: FruitStoreError.outOfStock([])))
-                return
-            }
-            handler(.fail(error: fruitStoreError))
+            handler(.fail(error: FruitStoreError.unkown))
         }
     }
     
