@@ -9,6 +9,6 @@ import Foundation
 
 protocol Makable {
     
-    func make(_ stuff: Stuff) throws -> Bool
+    func make(into stuff: Stuff) throws -> Bool
     
 }
