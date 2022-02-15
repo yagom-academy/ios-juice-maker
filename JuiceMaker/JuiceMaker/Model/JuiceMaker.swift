@@ -43,6 +43,6 @@ struct JuiceMaker {
     }
     
     /// The fruit store is initialized at the beginning of `self`
-    let fruitStore: FruitStore = FruitStore()
+    let fruitStore: FruitStore = FruitStore(initialStock: 10)
     
 }
