@@ -41,7 +41,6 @@ struct FruitStore {
             throw FruitStoreError.outOfStockError
         }
     }
-    
 }
 
 extension FruitStore {
@@ -55,5 +54,4 @@ extension FruitStore {
     enum FruitStoreError: Error {
         case outOfStockError
     }
-    
 }

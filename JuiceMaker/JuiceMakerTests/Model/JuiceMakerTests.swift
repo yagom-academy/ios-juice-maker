@@ -41,5 +41,4 @@ class JuiceMakerTests: XCTestCase {
             XCTAssertEqual(error as! JuiceMaker.JuiceMakerError, JuiceMaker.JuiceMakerError.soldOutError)
         }
     }
-
 }

@@ -104,5 +104,4 @@ class QuantityTests: XCTestCase {
         XCTAssertFalse(bigger < smaller)
         XCTAssertFalse(smaller > bigger)
     }
-    
 }

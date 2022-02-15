@@ -79,5 +79,4 @@ class FruitStoreTests: XCTestCase {
         // when then
         XCTAssertThrowsError(try sut.decreaseStock(of: fruit, toUse))
     }
-    
 }

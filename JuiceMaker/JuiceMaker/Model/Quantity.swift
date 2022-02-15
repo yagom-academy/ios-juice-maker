@@ -38,7 +38,6 @@ struct Quantity: Equatable {
     static func < (first: Quantity, second: Quantity) -> Bool {
         return first.quantity < second.quantity
     }
-
 }
 
 extension Quantity {
@@ -48,5 +47,4 @@ extension Quantity {
     enum QuantityError: Error {
         case minusResultError
     }
-    
 }

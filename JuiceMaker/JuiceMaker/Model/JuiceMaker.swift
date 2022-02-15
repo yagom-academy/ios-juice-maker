@@ -89,7 +89,5 @@ extension JuiceMaker {
         static func get(_ juice: Juice) -> [NeededFruit]? {
             return recipe[juice]
         }
-
     }
-    
 }
