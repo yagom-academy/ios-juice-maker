@@ -60,11 +60,18 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		16E7D72427BC6A15007EB0BF /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				168C66D127BB75DE008C6845 /* JuiceMakerResult.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
 		3C3674BD27BB761F00BB27C9 /* Error */ = {
 			isa = PBXGroup;
 			children = (
 				3C3674BE27BB764300BB27C9 /* FruitStoreError.swift */,
-				168C66D127BB75DE008C6845 /* JuiceMakerResult.swift */,
 				16144BDE27BBF5FB00F2DC0F /* JuiceMakerError.swift */,
 			);
 			path = Error;
@@ -118,6 +125,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				16E7D72427BC6A15007EB0BF /* Result */,
 				16144BD927BBE93A00F2DC0F /* AppDelegate */,
 				3C3674BD27BB761F00BB27C9 /* Error */,
 				C71CD66D266C7B470038B9CB /* Controller */,
