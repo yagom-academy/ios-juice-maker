@@ -6,6 +6,11 @@
 
 import Foundation
 
+enum JuiceMakerResult<T: Error> {
+    case success
+    case fail(error: T)
+}
+
 // 쥬스 메이커 타입
 struct JuiceMaker {
     
