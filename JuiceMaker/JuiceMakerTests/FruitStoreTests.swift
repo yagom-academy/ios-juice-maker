@@ -48,4 +48,32 @@ class FruitStoreTests: XCTestCase {
         // then
         XCTAssertEqual(expectation, result)
     }
+    
+    func test_decrease에_음수가_들어오면_재고에_변동이_없다() {
+        // given
+        let inputFruit: Fruit = .strawberry
+        let inputAmount: Int = -3
+        let expectation: Int = 10
+        
+        // when
+        fruitStore?.decrease(fruit: inputFruit, to: inputAmount)
+        let result: Int = fruitStore?.fruits[inputFruit] ?? 0
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
+    
+    func test_increase에_음수가_들어오면_재고에_변동이_없다() {
+        // given
+        let inputFruit: Fruit = .strawberry
+        let inputAmount: Int = -21
+        let expectation: Int = 10
+        
+        // when
+        fruitStore?.increase(fruit: inputFruit, to: inputAmount)
+        let result: Int = fruitStore?.fruits[inputFruit] ?? 0
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
 }

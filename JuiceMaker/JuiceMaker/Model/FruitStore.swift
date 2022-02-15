@@ -17,10 +17,16 @@ final class FruitStore {
     }
     
     func increase(fruit: Fruit, to amount: Int) {
+        guard amount >= 0 else {
+            return
+        }
         self.fruits[fruit, default: 0] += amount
     }
     
     func decrease(fruit: Fruit, to amount: Int) {
+        guard amount >= 0 else {
+            return
+        }
         self.fruits[fruit, default: 0] -= amount
     }
 }
