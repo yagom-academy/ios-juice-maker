@@ -34,4 +34,18 @@ class FruitStoreTests: XCTestCase {
         // then
         XCTAssertEqual(expectation, result)
     }
+    
+    func test_초기재고에서_딸기_6개를_빼면_4개가_나온다() {
+        // given
+        let inputFruit: Fruit = .strawberry
+        let inputAmount: Int = 6
+        let expectation: Int = 4
+        
+        // when
+        fruitStore?.decrease(fruit: inputFruit, to: inputAmount)
+        let result: Int = fruitStore?.fruits[inputFruit] ?? 0
+        
+        // then
+        XCTAssertEqual(expectation, result)
+    }
 }

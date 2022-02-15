@@ -8,7 +8,6 @@ import Foundation
 
 // 과일 저장소 타입
 final class FruitStore {
-    
     private(set) var fruits: [Fruit: Int] = [:]
     
     init(_ value: Int = 10) {
@@ -17,12 +16,11 @@ final class FruitStore {
         }
     }
     
-    // TODO: 각 과일의 수량 n개를 변경할 수 있어야 한다
     func increase(fruit: Fruit, to amount: Int) {
         self.fruits[fruit, default: 0] += amount
     }
     
     func decrease(fruit: Fruit, to amount: Int) {
-        
+        self.fruits[fruit, default: 0] -= amount
     }
 }
