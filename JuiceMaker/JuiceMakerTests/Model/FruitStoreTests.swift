@@ -39,4 +39,18 @@ class FruitStoreTests: XCTestCase {
         XCTAssertEqual(mangoStock, expectedStock)
     }
     
+    func test_과일의_재고를_추가할_수_있어야_한다() {
+        // given
+        let fruit = FruitStore.Fruit.strawberry
+        let newStock = Quantity(5)
+        let expected = Quantity(15)
+        
+        // when
+        sut.addStock(of: fruit, newStock)
+        let actual = sut.getStock(of: fruit)
+        
+        // then
+        XCTAssertEqual(expected, actual)
+    }
+    
 }

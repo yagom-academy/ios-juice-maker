@@ -9,7 +9,7 @@ import Foundation
 // 과일 저장소 타입
 struct FruitStore {
     
-    private let fruitStocks: [Fruit: Quantity]
+    private var fruitStocks: [Fruit: Quantity]
     
     init() {
         let allFruits = Fruit.allCases
@@ -22,7 +22,13 @@ struct FruitStore {
         return fruitStocks[fruit] ?? Quantity.ZERO
     }
     
-    
+    mutating func addStock(of fruit: Fruit, _ quantity: Quantity) {
+        guard let stock = fruitStocks[fruit] else {
+            fruitStocks[fruit] = quantity
+            return
+        }
+        fruitStocks[fruit] = stock + quantity
+    }
     
 }
 
