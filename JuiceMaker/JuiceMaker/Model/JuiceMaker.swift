@@ -22,26 +22,40 @@ struct JuiceMaker {
             }
             self.fruitStore.decrease(fruit: .strawberry, to: 16)
         case .bananaJuice:
-            break
+            guard self.fruitStore.fruits[.strawberry, default: 0] >= 2 else {
+                throw JuiceMakerError.outOfStock
+            }
+            self.fruitStore.decrease(fruit: .banana, to: 2)
         case .kiwiJuice:
-            break
+            guard self.fruitStore.fruits[.strawberry, default: 0] >= 3 else {
+                throw JuiceMakerError.outOfStock
+            }
+            self.fruitStore.decrease(fruit: .kiwi, to: 3)
         case .pineappleJuice:
-            break
+            guard self.fruitStore.fruits[.pineapple, default: 0] >= 2 else {
+                throw JuiceMakerError.outOfStock
+            }
+            self.fruitStore.decrease(fruit: .pineapple, to: 2)
         case .mangoJuice:
-            break
+            guard self.fruitStore.fruits[.mango, default: 0] >= 3 else {
+                throw JuiceMakerError.outOfStock
+            }
+            self.fruitStore.decrease(fruit: .mango, to: 3)
         case .strawberryBananaJuice:
-            break
+            guard self.fruitStore.fruits[.strawberry, default: 0] >= 10,
+                  self.fruitStore.fruits[.banana, default: 0] >= 1 else {
+                      throw JuiceMakerError.outOfStock
+                  }
+            self.fruitStore.decrease(fruit: .strawberry, to: 10)
+            self.fruitStore.decrease(fruit: .banana, to: 1)
         case .mangoKiwiJuice:
-            break
+            guard self.fruitStore.fruits[.mango, default: 0] >= 2,
+                  self.fruitStore.fruits[.kiwi, default: 0] >= 1 else {
+                      throw JuiceMakerError.outOfStock
+                  }
+            self.fruitStore.decrease(fruit: .mango, to: 2)
+            self.fruitStore.decrease(fruit: .kiwi, to: 1)
         }
     }
     
 }
-
-//딸기쥬스 : 딸기 16개 소모
-//바나나쥬스 : 바나나 2개 소모
-//키위쥬스 : 키위 3개 소모
-//파인애플 쥬스 : 파인애플 2개 소모
-//딸바쥬스 : 딸기 10개 + 바나나 1개 소모
-//망고 쥬스 : 망고 3개 소모
-//망고키위 쥬스 : 망고 2개 + 키위 1개 소모
