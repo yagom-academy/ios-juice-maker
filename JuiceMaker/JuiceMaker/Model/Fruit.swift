@@ -13,6 +13,10 @@ protocol Fruit {
 }
 
 extension Fruit {
+    mutating func update(num: Int) {
+        self.counter = num
+    }
+    
     mutating func increase(num: Int) {
         self.counter += num
     }
