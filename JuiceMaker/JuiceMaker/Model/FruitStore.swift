@@ -37,7 +37,7 @@ class FruitStore: FruitStoreType {
         var fruitsOutOfStock: [Fruit] = []
         
         requests.forEach { fruit, needCount in
-            if let currentCount = store[fruit], currentCount < needCount {
+            if let currentCount = store[fruit], currentCount <= needCount {
                 fruitsOutOfStock.append(fruit)
             }
         }
