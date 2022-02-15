@@ -22,16 +22,16 @@ struct FruitStore: Storable {
         self.stocks = stocks
     }
     
-    func use(_ stuff: Stuff, to count: Int) throws -> Bool {
-        guard let offset = stocks.firstIndex(where: { $0.name == stuff.name }) else {
-            return false
+    func use(_ stuff: Fruit, to count: Int) throws -> Int {
+        guard let offset = stocks.firstIndex(where: { $0.fruit == stuff }) else {
+            return -1
         }
-        let isValid = try isValidCount(stocks[offset], target: count)
+        let _ = try isValidCount(stocks[offset], target: count)
         let remainCount = stocks[offset].count - count
         
         stocks[offset].change(count: remainCount)
         
-        return isValid
+        return stocks[offset].count
     }
     
     /// 과일 재고를 변경한다
@@ -43,8 +43,8 @@ struct FruitStore: Storable {
     /// - Returns: 변경한 재고의 과일 갯수를 반환
     ///            해당 과일의 이름이 없는 경우 -1 반환
     ///
-    func change(_ stuff: Stuff, to count: Int) -> Int {
-        guard let offset = stocks.firstIndex(where: { $0.name == stuff.name }) else {
+    func change(_ stuff: Fruit, to count: Int) -> Int {
+        guard let offset = stocks.firstIndex(where: { $0.fruit == stuff }) else {
             return -1
         }
         stocks[offset].change(count: count)
@@ -63,15 +63,15 @@ struct FruitStore: Storable {
     /// - Returns: 재고가 필요한 과일만큼 가지고 있다면 true
     ///            만약 없다면 오류 반환
     ///
-    func isStock(_ stuff: Stuff, as count: Int) throws -> Bool {
-        guard let offset = stocks.firstIndex(where: { $0.name == stuff.name }) else {
+    func isStock(_ stuff: Fruit, as count: Int) throws -> Bool {
+        guard let offset = stocks.firstIndex(where: { $0.fruit == stuff }) else {
             return false
         }
         return try isValidCount(stocks[offset], target: count)
     }
     
     private func isValidCount(_ counter: FruitCounter, target: Int) throws -> Bool {
-        if counter.count == Int.zero {
+        if counter.isEmpty {
             throw StoreError.outOfStock
             
         } else if counter.count < target {

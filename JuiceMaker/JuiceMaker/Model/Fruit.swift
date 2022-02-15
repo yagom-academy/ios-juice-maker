@@ -7,16 +7,12 @@
 
 import Foundation
 
-enum Fruit: String, Stuff {
+enum Fruit {
     
-    case strawberry = "strawberry"
-    case banana = "banana"
-    case pineapple = "pineapple"
-    case kiwi = "kiwi"
-    case mango = "mango"
-    
-    var name: String {
-        return self.rawValue
-    }
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
     
 }

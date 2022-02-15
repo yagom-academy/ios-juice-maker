@@ -12,8 +12,8 @@ class FruitCounter {
     let fruit: Fruit
     private(set) var count: Int
     
-    var name: String {
-        fruit.name
+    var isEmpty: Bool {
+        count == Int.zero
     }
     
     init(fruit: Fruit, count: Int) {

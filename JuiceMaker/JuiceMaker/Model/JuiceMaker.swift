@@ -8,20 +8,19 @@ import Foundation
 
 struct JuiceMaker: Makable {
     
+    typealias Storable = FruitStore
+    
     private var store: Storable
     
     init(store: Storable) {
         self.store = store
     }
     
-    func make(into stuff: Stuff) throws -> Bool {
-        guard let juice = Juice(rawValue: stuff.name) else {
-            return false
-        }
-        for ingredient in juice.ingredients {
+    func make(into stuff: Juice) throws -> Bool {
+        for ingredient in stuff.ingredients {
             let _ = try store.isStock(ingredient.fruit, as: ingredient.count)
         }
-        for ingredient in juice.ingredients {
+        for ingredient in stuff.ingredients {
             let _ = try store.use(ingredient.fruit, to: ingredient.count)
         }
         
