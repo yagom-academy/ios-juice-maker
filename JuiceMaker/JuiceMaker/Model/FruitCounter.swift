@@ -12,6 +12,10 @@ class FruitCounter {
     let fruit: Fruit
     private(set) var count: Int
     
+    var name: String {
+        fruit.name
+    }
+    
     init(fruit: Fruit, count: Int) {
         self.fruit = fruit
         self.count = count

@@ -23,7 +23,7 @@ struct FruitStore: Storable {
     }
     
     func use(_ stuff: Stuff, to count: Int) throws -> Bool {
-        guard let offset = stocks.firstIndex(where: { $0.fruit.name == stuff.name }) else {
+        guard let offset = stocks.firstIndex(where: { $0.name == stuff.name }) else {
             return false
         }
         let isValid = try isValidCount(stocks[offset], target: count)
@@ -44,7 +44,7 @@ struct FruitStore: Storable {
     ///            해당 과일의 이름이 없는 경우 -1 반환
     ///
     func change(_ stuff: Stuff, to count: Int) -> Int {
-        guard let offset = stocks.firstIndex(where: { $0.fruit.name == stuff.name }) else {
+        guard let offset = stocks.firstIndex(where: { $0.name == stuff.name }) else {
             return -1
         }
         stocks[offset].change(count: count)
@@ -64,7 +64,7 @@ struct FruitStore: Storable {
     ///            만약 없다면 오류 반환
     ///
     func isStock(_ stuff: Stuff, as count: Int) throws -> Bool {
-        guard let offset = stocks.firstIndex(where: { $0.fruit.name == stuff.name }) else {
+        guard let offset = stocks.firstIndex(where: { $0.name == stuff.name }) else {
             return false
         }
         return try isValidCount(stocks[offset], target: count)
