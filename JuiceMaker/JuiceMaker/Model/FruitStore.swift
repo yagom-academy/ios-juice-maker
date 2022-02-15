@@ -6,7 +6,7 @@
 
 import Foundation
 
-// 과일 저장소 타입
+/// A class that is in charge of managing count of fruits
 class FruitStore {
     
     // MARK: - Properties
@@ -18,6 +18,32 @@ class FruitStore {
     init(initialStock: Int) {
         Fruit.allCases.forEach {
             store[$0] = initialStock
+        }
+    }
+    
+    func addStock(fruit: Fruit, count: Int) {
+        if let currentCount = store[fruit] {
+            store[fruit] = currentCount + count
+        }
+    }
+    
+    func useStocks(for recipe: [Fruit: Int]) throws {
+        var fruitsOutOfStock: [Fruit] = []
+        
+        recipe.forEach { fruit, needCount in
+            if let currentCount = store[fruit], currentCount < needCount {
+                fruitsOutOfStock.append(fruit)
+            }
+        }
+        
+        if fruitsOutOfStock.count > 0 {
+            throw FruitStoreError.outOfStock(fruitsOutOfStock)
+        }
+        
+        recipe.forEach { fruit, needCount in
+            if let currentCount = store[fruit] {
+                store[fruit] = currentCount - needCount
+            }
         }
     }
 }
