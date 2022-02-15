@@ -16,41 +16,28 @@ enum Fruit: CaseIterable {
 
 protocol FruitStoreType {
     func count(of fruit: Fruit) -> Int
-    func plusAmount(of fruit: Fruit) -> Int
-    func minusAmount(of fruit: Fruit) -> Int
+    func plusAmount(of fruit: Fruit)
+    func minusAmount(of fruit: Fruit)
 }
 
 /// 과일 저장소 타입
 final class FruitStore: FruitStoreType {
-    private var strawberry: Int = 10
-    private var banana: Int = 10
-    private var pineapple: Int = 10
-    private var kiwi: Int = 10
-    private var mango: Int = 10
+    private var fruitDictionary: [Fruit: Int] = [.strawberry: 10,
+                                                 .banana: 10,
+                                                 .pineapple: 10,
+                                                 .kiwi: 10,
+                                                 .mango: 10 ]
 
     func count(of fruit: Fruit) -> Int {
-        switch fruit {
-        case .strawberry:
-            return strawberry
-        case .banana:
-            return banana
-        case .pineapple:
-            return pineapple
-        case .kiwi:
-            return kiwi
-        case .mango:
-            return mango
-        }
+        return fruitDictionary[fruit] ?? 0
     }
     
-    func plusAmount(of fruit: Fruit) -> Int {
-        let plusCount: Int = count(of: fruit) + 1
-        return plusCount
+    func plusAmount(of fruit: Fruit) {
+        fruitDictionary[fruit] = fruitDictionary[fruit]! + 1
     }
     
-    func minusAmount(of fruit: Fruit) -> Int {
-        let minusCount: Int = count(of: fruit) - 1
-        return minusCount
+    func minusAmount(of fruit: Fruit){
+        fruitDictionary[fruit] = fruitDictionary[fruit]! - 1
     }
     
 }

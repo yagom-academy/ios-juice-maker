@@ -32,16 +32,15 @@ class FruitStoreTests: XCTestCase {
     
     func test_과일의_수량을_하나_증가_시킨다() throws {
         let expectedCount = 11
-        let strawberry = sut?.plusAmount(of: .strawberry)
+        sut?.plusAmount(of: .strawberry)
         
-        XCTAssertEqual(strawberry! , expectedCount)
+        XCTAssertEqual(sut?.count(of: .strawberry) , expectedCount)
     }
     
     func test_과일의_수량을_하나_감소_시킨다() throws {
         let expectedCount = 9
-        let strawberry = sut?.minusAmount(of: .strawberry)
+        sut?.minusAmount(of: .strawberry)
         
-        XCTAssertEqual(strawberry! , expectedCount)
+        XCTAssertEqual(sut?.count(of: .strawberry) , expectedCount)
     }
-    
 }
