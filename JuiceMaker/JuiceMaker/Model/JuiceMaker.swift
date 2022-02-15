@@ -24,8 +24,8 @@ final class JuiceMaker {
     lazy var pineappleJuiceMakerState: PineappleJuiceMakerState = {
         return PineappleJuiceMakerState(juiceMaker: self)
     }()
-    lazy var strawberryBananaJuiceMakerState: StrawberryJuiceMakerState = {
-        return StrawberryJuiceMakerState(juiceMaker: self)
+    lazy var strawberryBananaJuiceMakerState: StrawberryBananaJuiceMakerState = {
+        return StrawberryBananaJuiceMakerState(juiceMaker: self)
     }()
     lazy var mangoJuiceMakerState: MangoJuiceMakerState = {
         return MangoJuiceMakerState(juiceMaker: self)
