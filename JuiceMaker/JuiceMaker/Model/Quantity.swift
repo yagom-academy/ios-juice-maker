@@ -19,6 +19,10 @@ struct Quantity: Equatable {
         quantity = value
     }
     
+    static func + (first: Quantity, second: Quantity) -> Quantity {
+        return Quantity(first.quantity + second.quantity)
+    }
+    
 }
 
 extension Quantity {

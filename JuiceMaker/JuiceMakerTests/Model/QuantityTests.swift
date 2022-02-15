@@ -54,4 +54,17 @@ class QuantityTests: XCTestCase {
         XCTAssertEqual(quantity.quantity, expected)
     }
     
+    func test_더하기_연산자를_통한_연산이_가능하다() {
+        // given
+        let first: Quantity = Quantity(1)
+        let second: Quantity = Quantity(2)
+        let expected: Quantity = Quantity(3)
+        
+        // when
+        let actual = first + second
+        
+        // then
+        XCTAssertEqual(actual, expected)
+    }
+    
 }
