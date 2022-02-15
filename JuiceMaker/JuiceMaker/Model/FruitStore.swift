@@ -14,7 +14,7 @@ enum StoreError: Error {
     
 }
 
-class FruitStore: Storable {
+struct FruitStore: Storable {
     
     private(set) var stocks: [FruitCounter]
     
