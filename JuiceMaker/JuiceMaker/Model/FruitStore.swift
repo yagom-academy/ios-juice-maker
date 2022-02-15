@@ -9,18 +9,20 @@ import Foundation
 // 과일 저장소 타입
 struct FruitStore {
     
-    private let stock: [Fruit: Quantity]
+    private let fruitStocks: [Fruit: Quantity]
     
     init() {
         let allFruits = Fruit.allCases
-        stock = allFruits.reduce(into: [:], { partialResult, fruit in
+        fruitStocks = allFruits.reduce(into: [:], { partialResult, fruit in
             partialResult[fruit] = FruitStore.DEFAULT_FRUIT_QUANTITY
         })
     }
     
     func getStock(of fruit: Fruit) -> Quantity {
-        return stock[fruit] ?? Quantity.ZERO
+        return fruitStocks[fruit] ?? Quantity.ZERO
     }
+    
+    
     
 }
 
