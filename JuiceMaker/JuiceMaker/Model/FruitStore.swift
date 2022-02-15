@@ -22,6 +22,17 @@ struct FruitStore: Storable {
         self.stocks = stocks
     }
     
+    /// 과일 재고를 사용한다
+    ///
+    /// - Parameters:
+    ///     - stuff: 과일의 이름
+    ///     - count: 사용할 과일의 갯수
+    ///
+    /// - Throws: 해당 과일의 갯수가 부족하거나 0인 경우
+    ///
+    /// - Returns: 사용하고 남은 과일의 갯수를 반환
+    ///            해당 과일의 이름이 없는 경우 -1 반환
+    ///
     func use(_ stuff: Fruit, to count: Int) throws -> Int {
         guard let offset = stocks.firstIndex(where: { $0.fruit == stuff }) else {
             return -1
