@@ -17,7 +17,7 @@ struct JuiceMaker {
     func makeJuice(_ juice: Juice) throws {
         switch juice {
         case .strawberryJuice:
-            guard self.fruitStore.fruits[.strawberry, default: 0] > 16 else {
+            guard self.fruitStore.fruits[.strawberry, default: 0] >= 16 else {
                 throw JuiceMakerError.outOfStock
             }
             self.fruitStore.decrease(fruit: .strawberry, to: 16)

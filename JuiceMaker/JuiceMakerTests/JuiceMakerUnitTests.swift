@@ -9,17 +9,18 @@ import XCTest
 @testable import JuiceMaker
 
 class JuiceMakerUnitTests: XCTestCase {
-    
+    var fruitStore: FruitStore?
     var juiceMaker: JuiceMaker?
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        let fruitStore = FruitStore()
-        self.juiceMaker = JuiceMaker(fruitStore: fruitStore)
+        self.fruitStore = FruitStore()
+        self.juiceMaker = JuiceMaker(fruitStore: self.fruitStore ?? FruitStore())
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
+        self.fruitStore = nil
         self.juiceMaker = nil
     }
     
@@ -33,5 +34,17 @@ class JuiceMakerUnitTests: XCTestCase {
         }
     }
 
-
+    func test_makeJuice_딸기가_16개일_때_딸기쥬스를_제조하고_나면_재고가_0개가_된다() {
+        // given
+        let expectation: Int = 0
+        let inputJuice: Juice = .strawberryJuice
+        self.fruitStore?.increase(fruit: .strawberry, to: 6)
+        
+        // when
+        try? self.juiceMaker?.makeJuice(inputJuice)
+        let result: Int = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
+        
+        // then
+        XCTAssertEqual(result, expectation)
+    }
 }
