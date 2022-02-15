@@ -67,4 +67,30 @@ class QuantityTests: XCTestCase {
         XCTAssertEqual(actual, expected)
     }
     
+    func test_빼기_연산자를_통해_양수_결과값의_연산이_가능하다() {
+        // given
+        let first: Quantity = Quantity(3)
+        let second: Quantity = Quantity(1)
+        let expected: Quantity = Quantity(2)
+        
+        // when
+        do {
+            let actual = try first - second
+            // then
+            XCTAssertEqual(actual, expected)
+        } catch {
+            // then
+            XCTFail()
+        }
+    }
+    
+    func test_빼기_연산자를_통해_음수_결과값의_경우_오류가_발생한다() {
+        // given
+        let first: Quantity = Quantity(1)
+        let second: Quantity = Quantity(3)
+        
+        // when then
+        XCTAssertThrowsError(try first - second)
+    }
+    
 }

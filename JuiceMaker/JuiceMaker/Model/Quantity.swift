@@ -23,10 +23,22 @@ struct Quantity: Equatable {
         return Quantity(first.quantity + second.quantity)
     }
     
+    static func - (first: Quantity, second: Quantity) throws -> Quantity {
+        let result = first.quantity - second.quantity
+        guard result >= 0 else {
+            throw QuantityError.minusResultError
+        }
+        return Quantity(result)
+    }
+    
 }
 
 extension Quantity {
     
     static let ZERO: Quantity = Quantity(0)
+    
+    enum QuantityError: Error {
+        case minusResultError
+    }
     
 }
