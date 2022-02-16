@@ -277,7 +277,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EKn-5S-Ngh">
-                                <rect key="frame" x="64" y="110.33333333333333" width="684" height="154.66666666666669"/>
+                                <rect key="frame" x="64" y="115.66666666666667" width="684" height="154.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8FE-UH-pwZ">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="154.66666666666666"/>
@@ -390,9 +390,9 @@
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="EKn-5S-Ngh" firstAttribute="centerY" secondItem="gcO-Xb-kNs" secondAttribute="centerY" id="BMd-Mm-2x1"/>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="EKn-5S-Ngh" secondAttribute="trailing" constant="20" id="Moc-6J-YnL"/>
                             <constraint firstItem="EKn-5S-Ngh" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="20" id="NsA-eq-11G"/>
-                            <constraint firstItem="EKn-5S-Ngh" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="fEU-g0-czh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
