@@ -22,7 +22,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func order(_ sender: UIButton) {
-        print(sender.titleLabel?.text as Any)
+        Juice.allCases.forEach { fruit in
+            if sender.titleLabel?.text == fruit.order {
+                juiceMaker.make(of: fruit)
+            }
+        }
     }
 }
 
@@ -32,6 +36,6 @@ extension ViewController {
         bananaLabel.text = String(juiceMaker.quantity(of: .banana))
         pineappleLabel.text = String(juiceMaker.quantity(of: .pineapple))
         kiwiLabel.text = String(juiceMaker.quantity(of: .kiwi))
-        mangoLabel.text = String(juiceMaker.quantity(of: .mango)) 
+        mangoLabel.text = String(juiceMaker.quantity(of: .mango))
     }
 }

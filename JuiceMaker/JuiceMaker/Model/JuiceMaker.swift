@@ -14,6 +14,7 @@ struct JuiceMaker {
     func make(of juice: Juice) {
         do {
             try fruitStore.useFruit(of: juice)
+            print("\(juice)나왔습니다! 맛있게 드세요!")
         } catch let error as FruitStoreError {
             print(error.rawValue)
         } catch {
