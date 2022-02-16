@@ -42,3 +42,17 @@ extension Number: Equatable {
         return lhs.value == rhs.value
     }
 }
+
+extension Number: Comparable {
+    static func < (lhs: Number, rhs: Number) -> Bool {
+        return lhs.value < rhs.value
+    }
+}
+
+extension Number: ExpressibleByIntegerLiteral {
+    typealias IntegerLiteralType = Int
+    
+    init(integerLiteral value: Int) {
+        self.value = value
+    }
+}

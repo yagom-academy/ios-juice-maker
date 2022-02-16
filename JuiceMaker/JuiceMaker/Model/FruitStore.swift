@@ -8,30 +8,24 @@ import Foundation
 
 // 과일 저장소 타입
 final class FruitStore {
-    private(set) var fruits: [Fruit: Int] = [:]
+    private(set) var fruits: [Fruit: Number] = [:]
     
     init(_ value: Int = 10) {
         for fruit in Fruit.allCases {
-            self.fruits[fruit] = value
+            self.fruits[fruit] = Number(value)
         }
     }
     
-    func increase(fruit: Fruit, to amount: Int) {
-        guard amount >= 0 else {
-            return
-        }
-        self.fruits[fruit, default: 0] += amount
+    func increase(fruit: Fruit, to amount: Number) throws {
+        try self.fruits[fruit, default: Number()].increase(amount)
     }
     
-    func decrease(fruit: Fruit, to amount: Int) {
-        guard amount >= 0 else {
-            return
-        }
-        self.fruits[fruit, default: 0] -= amount
+    func decrease(fruit: Fruit, to amount: Number) throws {
+        try self.fruits[fruit, default: Number()].decrease(amount)
     }
     
-    func hasStock(of fruit: Fruit, to count: Int) -> Bool {
-        guard self.fruits[fruit, default: 0] >= count else {
+    func hasStock(of fruit: Fruit, to count: Number) -> Bool {
+        guard self.fruits[fruit, default: Number()] >= count else {
             return false
         }
         return true

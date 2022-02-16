@@ -36,13 +36,14 @@ class JuiceMakerUnitTests: XCTestCase {
 
     func test_makeJuice_딸기가_16개일_때_딸기쥬스를_제조하고_나면_재고가_0개가_된다() {
         // given
-        let expectation: Int = 0
+        let expectation: Number = 0
         let inputJuice: Juice = .strawberryJuice
-        self.fruitStore?.increase(fruit: .strawberry, to: 6)
+        let number: Number = 6
+        try? self.fruitStore?.increase(fruit: .strawberry, to: number)
         
         // when
         try? self.juiceMaker?.makeJuice(inputJuice)
-        let result: Int = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
+        let result: Number = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
         
         // then
         XCTAssertEqual(result, expectation)
@@ -50,14 +51,14 @@ class JuiceMakerUnitTests: XCTestCase {
     
     func test_makeJuice_딸바쥬스를_제조하고_나면_딸기재고_0개_바나나재고_9개가_된다() {
         // given
-        let expectationStrawberry: Int = 0
-        let expectationBanana: Int = 9
+        let expectationStrawberry: Number = 0
+        let expectationBanana: Number = 9
         let inputJuice: Juice = .strawberryBananaJuice
     
         // when
         try? self.juiceMaker?.makeJuice(inputJuice)
-        let resultStrawberry: Int = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
-        let resultBanana: Int = self.fruitStore?.fruits[.banana, default: 0] ?? 0
+        let resultStrawberry: Number = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
+        let resultBanana: Number = self.fruitStore?.fruits[.banana, default: 0] ?? 0
         
         // then
         XCTAssertEqual(resultStrawberry, expectationStrawberry)
@@ -67,7 +68,7 @@ class JuiceMakerUnitTests: XCTestCase {
     func test_makeJuice_망고재고가_부족할_때_망고키위쥬스를_만들면_에러가_발생한다() {
         // given
         let inputJuice: Juice = .mangoKiwiJuice
-        self.fruitStore?.decrease(fruit: .mango, to: 10)
+        try? self.fruitStore?.decrease(fruit: .mango, to: 10)
         
         // when
         XCTAssertThrowsError(try juiceMaker?.makeJuice(inputJuice), "makeJuice 재고 Error") { error in

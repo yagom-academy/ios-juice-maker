@@ -9,5 +9,5 @@ import Foundation
 
 struct Material {
     var fruit: Fruit
-    var count: Int
+    var count: Number
 }
