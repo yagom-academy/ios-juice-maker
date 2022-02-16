@@ -25,10 +25,10 @@ class FruitStoreTests: XCTestCase {
         let expectation = 5
         
         do {
-        try fruitStore.changeAmountOfFruit(fruits: [(Fruit.딸기, input)])
+            try fruitStore.changeAmountOfFruit(fruits: [(Fruit.strawberry, input)])
         } catch {}
         
-        if let result = fruitStore.store[.딸기] {
+        if let result = fruitStore.store[.strawberry] {
             XCTAssertEqual(expectation, result)
         }
     }
@@ -38,10 +38,10 @@ class FruitStoreTests: XCTestCase {
         let expectation = 5
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [(Fruit.딸기, input), (Fruit.바나나,input)])
+            try fruitStore.changeAmountOfFruit(fruits: [(Fruit.strawberry, input), (Fruit.banana,input)])
         } catch {}
         
-        if let strawberryAmount = fruitStore.store[.딸기], let bananaAmout = fruitStore.store[.바나나] {
+        if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
             XCTAssertEqual(expectation, strawberryAmount)
             XCTAssertEqual(expectation, bananaAmout)
         }
@@ -52,10 +52,10 @@ class FruitStoreTests: XCTestCase {
         let expectation = 10
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [(Fruit.딸기, input), (Fruit.바나나,input)])
+            try fruitStore.changeAmountOfFruit(fruits: [(Fruit.strawberry, input), (Fruit.banana,input)])
         } catch {}
         
-        if let strawberryAmount = fruitStore.store[.딸기], let bananaAmout = fruitStore.store[.바나나] {
+        if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
             XCTAssertEqual(expectation, strawberryAmount)
             XCTAssertEqual(expectation, bananaAmout)
         }
@@ -67,10 +67,10 @@ class FruitStoreTests: XCTestCase {
         let expectation = 10
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [(Fruit.딸기, strawberryInput), (Fruit.바나나, bananaInput)])
+            try fruitStore.changeAmountOfFruit(fruits: [(Fruit.strawberry, strawberryInput), (Fruit.banana, bananaInput)])
         } catch {}
         
-        if let strawberryAmount = fruitStore.store[.딸기], let bananaAmout = fruitStore.store[.바나나] {
+        if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
             XCTAssertEqual(expectation, strawberryAmount)
             XCTAssertEqual(expectation, bananaAmout)
         }
@@ -78,10 +78,10 @@ class FruitStoreTests: XCTestCase {
     
     func test_사용한_과일의_재고만_줄어든다() {
         let input = -5
-        let expectation: [Fruit: Int] = [.딸기: 5, .바나나: 10, .파인애플: 10, .키위: 10, .망고: 10]
+        let expectation: [Fruit: Int] = [.strawberry: 5, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
         
         do {
-        try fruitStore.changeAmountOfFruit(fruits: [(Fruit.딸기, input)])
+        try fruitStore.changeAmountOfFruit(fruits: [(Fruit.strawberry, input)])
         } catch {}
         
         XCTAssertEqual(expectation, fruitStore.store)
@@ -92,10 +92,10 @@ class FruitStoreTests: XCTestCase {
         let expectation = 15
         
         do {
-        try fruitStore.changeAmountOfFruit(fruits: [(Fruit.딸기, input)])
+        try fruitStore.changeAmountOfFruit(fruits: [(Fruit.strawberry, input)])
         } catch {}
         
-        if let result = fruitStore.store[.딸기] {
+        if let result = fruitStore.store[.strawberry] {
             XCTAssertEqual(expectation, result)
         }
     }
@@ -103,7 +103,7 @@ class FruitStoreTests: XCTestCase {
     func test_재고보다_많은양이_필요하면_에러가난다() {
         let input = -20
         
-        XCTAssertThrowsError(try fruitStore.changeAmountOfFruit(fruits: [(Fruit.딸기, input)]))
+        XCTAssertThrowsError(try fruitStore.changeAmountOfFruit(fruits: [(Fruit.strawberry, input)]))
     }
     
 }
