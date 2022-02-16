@@ -10,9 +10,7 @@ import UIKit
 extension OrderViewController {
     
     func setupRightBarButtonItem() {
-        print(#function)
         guard let rightBarButtonItem = self.navigationItem.rightBarButtonItem else {
-            print("nil")
             return
         }
         

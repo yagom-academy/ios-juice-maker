@@ -23,7 +23,6 @@ class OrderViewController: UIViewController {
     // MARK: - Initialize
 
     required init?(coder: NSCoder) {
-        print(#function)
         self.juiceMaker = JuiceMaker(fruitStore: FruitStore())
         super.init(coder: coder)
     }
