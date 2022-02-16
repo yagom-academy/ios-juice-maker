@@ -35,9 +35,9 @@ class "NeededFruit" as NeededFruit << (S, SkyBlue) struct >> {
   ~ quantity
 }
 
-JuiceMaker --+ Recipe
+JuiceMaker +-- Recipe
 JuiceMaker --> "1" Recipe
-Recipe --+ NeededFruit
+Recipe +-- NeededFruit
 
 
 class "Quantity" as Quantity << (S, SkyBlue) struct >> { 
