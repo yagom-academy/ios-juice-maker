@@ -17,6 +17,14 @@ struct JuiceMaker {
         self.juiceRecipes = recipes
         self.juiceRecipesMapper = JuiceRecipesMapper(jucieRecipeTypes: JuiceRecipeType.allCases, recipes: juiceRecipes.recipes)
     }
+
+    mutating func increase(fruit: Fruit) throws {
+         try fruitStore.increase(in: fruit)
+    }
+    
+    mutating func decrease(fruit: Fruit) throws {
+         try fruitStore.decrease(in: fruit)
+    }
     
     mutating func takeOrder(recipeType: JuiceRecipeType) throws -> String {
         guard let juiceRecipe = juiceRecipesMapper[recipeType] else {
