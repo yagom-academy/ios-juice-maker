@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4ADAF4727BD560700791D54 /* MakeJuiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF4627BD560700791D54 /* MakeJuiceViewModel.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4ADAF4627BD560700791D54 /* MakeJuiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeJuiceViewModel.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,11 +95,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B4ADAF4527BD55F300791D54 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B4ADAF4627BD560700791D54 /* MakeJuiceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* MakeJuice */ = {
 			isa = PBXGroup;
 			children = (
 				C71CD66F266C7B500038B9CB /* Model */,
 				B4ADAF3D27BD2D3700791D54 /* View */,
+				B4ADAF4527BD55F300791D54 /* ViewModel */,
 			);
 			path = MakeJuice;
 			sourceTree = "<group>";
@@ -270,6 +281,7 @@
 			files = (
 				FA73E3C427BC127A0092141A /* Quantity.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
+				B4ADAF4727BD560700791D54 /* MakeJuiceViewModel.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* MakeJuiceViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
