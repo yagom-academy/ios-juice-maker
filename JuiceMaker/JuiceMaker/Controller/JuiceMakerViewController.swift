@@ -18,6 +18,7 @@ final class JuiceMakerViewController: UIViewController {
         let updateStockViewController: UpdateStockViewController = .instantiate()
         updateStockViewController.modalPresentationStyle = .fullScreen
         updateStockViewController.modalTransitionStyle = .coverVertical
-        self.present(updateStockViewController, animated: true, completion: nil)
+        let navigationController: UINavigationController = UINavigationController(rootViewController: updateStockViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }

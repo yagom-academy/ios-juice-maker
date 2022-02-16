@@ -7,23 +7,28 @@
 
 import UIKit
 
-class UpdateStockViewController: UIViewController, StoryboardBindable {
+final class UpdateStockViewController: UIViewController, StoryboardBindable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupNavigationBar()
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// MARK: - Setup
+extension UpdateStockViewController {
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.barStyle = .default
+        self.navigationItem.title = "재고 추가"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기",
+                                                                 style: .done,
+                                                                 target: self,
+                                                                 action: #selector(back))
     }
-    */
 
+    @objc
+    private func back() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
