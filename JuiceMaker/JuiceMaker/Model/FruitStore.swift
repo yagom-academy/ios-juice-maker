@@ -33,7 +33,9 @@ extension FruitError: LocalizedError {
 // 과일 저장소 타입
 class FruitStore {
     
-    var store: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    var store: [Fruit: Int] = Fruit.allCases.reduce(into: [:]) { store, fruit in
+        store[fruit] = 10
+    }
     
     func changeAmountOfFruit(fruits: [(Fruit, Int)]) throws {
         var temporaryResult: [(Fruit, Int)] = []
