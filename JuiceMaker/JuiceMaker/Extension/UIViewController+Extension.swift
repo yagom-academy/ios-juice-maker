@@ -8,6 +8,12 @@
 import UIKit
 
 extension UIViewController {
+    static func instantiate(with storyboard: String) -> Self {
+        let id = String(describing: self)
+        let storyboard = UIStoryboard(name: storyboard, bundle: Bundle.main)
+        return storyboard.instantiateViewController(withIdentifier: id) as! Self
+    }
+    
     func makeAlert(title: String,
                    message: String,
                    okAction: ((UIAlertAction) -> Void)? = nil,
