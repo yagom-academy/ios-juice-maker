@@ -16,6 +16,11 @@ enum Juice {
     case mangoKiwiJuice
 }
 
+struct Recipe {
+    let fruit: Fruit
+    let amount: Int
+}
+
 // 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore = FruitStore()
@@ -23,23 +28,32 @@ struct JuiceMaker {
     func makeJuice(juice: Juice) -> String {
         switch juice {
         case .strawberryJuice:
-            return validateMakeJuice(fruits: [(Fruit.strawberry, -16)])
+            let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: -16)
+            return validateMakeJuice(fruits: [strawberryJuiceRecipe])
         case .bananaJuice:
-            return validateMakeJuice(fruits: [(Fruit.banana, -2)])
+            let bananaJuiceRecipe = Recipe(fruit: .banana, amount: -2)
+            return validateMakeJuice(fruits: [bananaJuiceRecipe])
         case .kiwiJuice:
-            return validateMakeJuice(fruits: [(Fruit.kiwi, -3)])
+            let kiwiJuiceRecipe = Recipe(fruit: .kiwi, amount: -3)
+            return validateMakeJuice(fruits: [kiwiJuiceRecipe])
         case .pineappleJuice:
-            return validateMakeJuice(fruits: [(Fruit.pineapple, -2)])
+            let pineappleJuiceRecipe = Recipe(fruit: .pineapple, amount: -2)
+            return validateMakeJuice(fruits: [pineappleJuiceRecipe])
         case .strawberryBananaJuice:
-            return validateMakeJuice(fruits: [(Fruit.strawberry, -10), (Fruit.banana, -1)])
+            let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: -10)
+            let bananaJuiceRecipe = Recipe(fruit: .banana, amount: -1)
+            return validateMakeJuice(fruits: [strawberryJuiceRecipe, bananaJuiceRecipe])
         case .mangoJuice:
-            return validateMakeJuice(fruits: [(Fruit.mango, -3)])
+            let mangoJuiceRecipe = Recipe(fruit: .mango, amount: -3)
+            return validateMakeJuice(fruits: [mangoJuiceRecipe])
         case .mangoKiwiJuice:
-            return validateMakeJuice(fruits: [(Fruit.mango, -2), (Fruit.kiwi, -1)])
+            let mangoJuiceRecipe = Recipe(fruit: .mango, amount: -2)
+            let kiwiJuiceRecipe = Recipe(fruit: .kiwi, amount: -1)
+            return validateMakeJuice(fruits: [mangoJuiceRecipe, kiwiJuiceRecipe])
         }
     }
     
-    private func validateMakeJuice(fruits: [(Fruit, Int)]) -> String {
+    private func validateMakeJuice(fruits: [Recipe]) -> String {
         do {
             try fruitStore.changeAmountOfFruit(fruits: fruits)
             return "성공"
