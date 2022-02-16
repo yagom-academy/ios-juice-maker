@@ -221,6 +221,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="pse-Yu-AQk"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="mtC-cM-Xlc"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="LPl-yr-Fsu"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="RGf-fv-YI7"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="0hK-Wl-Cdp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
