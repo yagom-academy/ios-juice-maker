@@ -45,4 +45,14 @@ class FruitStore {
         }
         return true
     }
+    
+    func needFruit(juice: Juice) -> [String] {
+        var needFruit = [String]()
+        juice.recipe.fruitList.forEach {
+            if let currentFruitCount = stock[$0.fruit], currentFruitCount < $0.count {
+                needFruit.append($0.fruit.name)
+            }
+        }
+        return needFruit
+    }
 }
