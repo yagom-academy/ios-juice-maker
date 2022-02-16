@@ -6,35 +6,11 @@
 
 import Foundation
 
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
-enum FruitError: String, Error {
-    case outOfStock
-    case nonExistentFruit
-}
-
-extension FruitError: LocalizedError {
-    var description: String {
-        switch self {
-        case .nonExistentFruit:
-            return "과일이 존재하지 않습니다."
-        case .outOfStock:
-            return "재고가 부족합니다."
-        }
-    }
-}
-
 // 과일 저장소 타입
 class FruitStore {
     
     var store: [Fruit: Int] = Fruit.allCases.reduce(into: [:]) { store, fruit in
-        store[fruit] = 10
+        store[fruit] = Fruit.initialCount
     }
     
     func changeAmountOfFruit(fruits: [Recipe]) throws {

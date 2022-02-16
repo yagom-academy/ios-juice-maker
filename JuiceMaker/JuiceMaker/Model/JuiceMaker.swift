@@ -6,26 +6,6 @@
 
 import Foundation
 
-enum Juice {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case strawberryBananaJuice
-    case mangoJuice
-    case mangoKiwiJuice
-}
-
-struct Recipe {
-    let fruit: Fruit
-    let amount: Int
-}
-
-struct JuiceResult {
-    let isSuccess: Bool
-    let message: String?
-}
-
 // 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore = FruitStore()
