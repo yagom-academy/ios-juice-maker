@@ -22,6 +22,11 @@ struct Quantity: Equatable {
         quantity = value
     }
     
+    // 양을 화면에 표기하기 위함
+    var text: String {
+        return "\(quantity)"
+    }
+    
     static func + (first: Quantity, second: Quantity) -> Quantity {
         return Quantity(first.quantity + second.quantity)
     }

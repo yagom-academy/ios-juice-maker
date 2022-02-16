@@ -36,7 +36,7 @@ class JuiceManufacturerTests: XCTestCase {
 
         // when then
         XCTAssertThrowsError(try sut.make(of: juice)) { error in
-            XCTAssertEqual(error as! JuiceMaker.JuiceMakerError, JuiceMaker.JuiceMakerError.soldOut)
+            XCTAssertEqual(error as? JuiceManufacturerError, JuiceManufacturerError.soldOut)
         }
     }
     

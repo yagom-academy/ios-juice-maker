@@ -7,6 +7,12 @@
 
 import Foundation
 
+/// 과일 쥬스를 만들던 도중 발생할 수 있는 에러
+enum JuiceManufacturerError: Error {
+    case soldOut
+    case notExistRecipe
+}
+
 /// 필요한 과일의 재고를 확인하여 주스를  만드는 역할을 수행
 struct JuiceManufacturer {
     
@@ -32,7 +38,7 @@ struct JuiceManufacturer {
     /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
     mutating func make(of juice: JuiceMaker.Juice) throws -> FruitStore {
         guard let neededFruits = recipe.recipe(of: juice) else {
-            throw JuiceMaker.JuiceMakerError.notExistRecipe
+            throw JuiceManufacturerError.notExistRecipe
         }
         try validateStock(of: neededFruits)
         try useStock(of: neededFruits)
@@ -54,7 +60,7 @@ struct JuiceManufacturer {
             return stock < neededFruit.quantity
         }
         if outOfStocks.count > 0 {
-            throw JuiceMaker.JuiceMakerError.soldOut
+            throw JuiceManufacturerError.soldOut
         }
     }
     

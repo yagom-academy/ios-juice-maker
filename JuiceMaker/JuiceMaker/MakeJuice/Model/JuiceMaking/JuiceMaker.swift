@@ -11,16 +11,39 @@ struct JuiceMaker {
     private var fruitStore: FruitStore
     private var recipe: Recipe
     
-    init(fruitStore: FruitStore = FruitStore(), recipe: Recipe = Recipe()) {
+    init(
+        fruitStore: FruitStore = FruitStore(),
+        recipe: Recipe = Recipe()
+    ) {
         self.fruitStore = fruitStore
         self.recipe = recipe
-
     }
     
     func stock(of fruit: FruitStore.Fruit) -> Quantity {
         return fruitStore.stock(of: fruit)
     }
     
+    /// JuiceManufacturer가 주스를 만들도록 요청
+    /// 성공하면 재고 업데이트, 실패하면 에러 반환
+    ///
+    /// - Returns: `[FruitStore.Fruit]` 주스 제조할 때 사용한 과일의 종류 반환. 성공했을 경우
+    ///
+    /// - Parameter _: 주문한 쥬스의 종류
+    mutating func order(_ juice: Juice) throws -> [FruitStore.Fruit] {
+        do {
+            var manufacturer = JuiceManufacturer(fruitStore, recipe)
+            let store = try manufacturer.make(of: juice)
+            fruitStore = store
+            
+            guard let fruits = recipe.fruitsNeeded(in: juice)
+            else { throw JuiceManufacturerError.notExistRecipe }
+            
+            return fruits
+            
+        } catch {
+            throw error
+        }
+    }
     
 }
 
@@ -32,11 +55,6 @@ extension JuiceMaker {
         case strawberryBananaJuice, mangoJuice, mangoKiwiJuice
     }
     
-    /// 과일 쥬스를 만들던 도중 발생할 수 있는 에러
-    enum JuiceMakerError: Error {
-        case soldOut
-        case notExistRecipe
-    }
     
     /// 과일 쥬스를 만들 때 필요한 과일과 갯수의 정보를 알려주는 레시피 타입
     struct Recipe {
@@ -86,6 +104,16 @@ extension JuiceMaker {
         /// - Parameter _: 필요한 과일들을 알고 싶은 쥬스의 종류
         func recipe(of juice: Juice) -> [NeededFruit]? {
             return recipe[juice]
+        }
+        
+        
+        /// 원하는 주스를 만들기 위해 필요한 과일의 종류 얻기
+        ///
+        /// - Returns: `[FruitStore.Fruit]?` 필요한 과일의 종류. 존재하지 않을 경우 nil
+        ///
+        /// - Parameter _: 필요한 과일들을 알고 싶은 쥬스의 종류
+        func fruitsNeeded(in juice: Juice) -> [FruitStore.Fruit]? {
+            return recipe(of: juice)?.map({$0.fruit})
         }
     }
 }
