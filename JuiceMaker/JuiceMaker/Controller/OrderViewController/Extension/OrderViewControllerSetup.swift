@@ -20,13 +20,4 @@ extension OrderViewController {
         self.navigationItem.rightBarButtonItem?.action = #selector(presentManageStockViewController)
     }
     
-    func addFruitStoreObserver() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didChangeStock),
-            name: .didChangeStock,
-            object: nil
-        )
-    }
-    
 }

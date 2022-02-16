@@ -39,7 +39,6 @@ class OrderViewController: UIViewController {
     /// Does one-time configuration
     private func configure() {
         self.setupRightBarButtonItem()
-        self.addFruitStoreObserver()
         self.didChangeStock()
     }
     

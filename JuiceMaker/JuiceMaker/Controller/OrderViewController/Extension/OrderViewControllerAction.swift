@@ -46,6 +46,7 @@ extension OrderViewController {
         self.juiceMaker.makeJuice(of: menu, result: { result in
             switch result {
             case .success:
+                self.didChangeStock()
                 let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .success, title: "\(menu.name) 나왔습니다! 맛있게 드세요!")
                 self.present(orderResultAlertController, animated: true, completion: nil)
             case .fail(let error):
@@ -78,7 +79,8 @@ extension OrderViewController {
     
     // MARK: - Fruit Stock Label Related
     
-    @objc func didChangeStock() {
+    /// Called in viewDidLoad() and orderJuice(menu:). It changes fruit count labels
+    func didChangeStock() {
         let stocks = self.juiceMaker.fruitStore.store
         
         stocks.forEach { fruit, currentCount in
@@ -89,6 +91,7 @@ extension OrderViewController {
         }
     }
     
+    /// Returns each fruit count label's reference according to the fruit type
     private func getCountLabel(of fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:

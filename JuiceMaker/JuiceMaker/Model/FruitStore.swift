@@ -29,12 +29,14 @@ final class FruitStore: FruitStoreType {
         }
     }
     
+    /// - Parameter count: Can be either positive or negative
     func addStock(to fruit: Fruit, count: Int) {
         if let currentCount = self.store[fruit] {
             self.store[fruit] = currentCount + count
         }
     }
     
+    /// Use stocks only if checkStock didn't throw error
     func useStocks(from requests: StoreDataType) throws {
         try checkStock(from: requests)
         
@@ -43,9 +45,10 @@ final class FruitStore: FruitStoreType {
                 self.store[fruit] = currentCount - needCount
             }
         }
-        NotificationCenter.default.post(name: .didChangeStock, object: nil)
     }
     
+    /// Check stock if number of any requested fruits over current stock
+    /// - Throws: FruitStoreError
     private func checkStock(from requests: StoreDataType) throws {
         var fruitsOutOfStock: [Fruit] = []
         
