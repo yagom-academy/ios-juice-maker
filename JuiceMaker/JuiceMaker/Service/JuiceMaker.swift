@@ -25,7 +25,7 @@ struct JuiceMaker {
         for material in recipe {
             try self.fruitStore.decrease(fruit: material.fruit, to: material.count)
         }
-        return "주스가 완성됐습니다"
+        return "\(juice.name) 나왔습니다! 맛있게 드세요!"
     }
     
     private func isAvailable(recipe: Recipe) -> Bool {

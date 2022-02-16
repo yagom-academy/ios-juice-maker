@@ -25,7 +25,7 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupFruitStock()
+        self.updateFruitStock()
     }
     
     @IBAction func presentUpdateStockScene() {
@@ -43,6 +43,7 @@ final class JuiceMakerViewController: UIViewController {
         
         do {
             let result: String = try self.juiceMaker.makeJuice(juice)
+            self.updateFruitStock()
             self.showSuccessAlert(message: result)
         } catch {
             self.showFailAlert()
@@ -79,11 +80,13 @@ final class JuiceMakerViewController: UIViewController {
 
 // MARK: - Setup
 extension JuiceMakerViewController {
-    private func setupFruitStock() {
-        self.strawberryStockLabel.text = "\(self.fruitStore.fruits[.strawberry, default: Number()])"
-        self.bananaStockLabel.text = "\(self.fruitStore.fruits[.banana, default: Number()])"
-        self.pineappleStockLabel.text = "\(self.fruitStore.fruits[.pineapple, default: Number()])"
-        self.kiwiStockLabel.text = "\(self.fruitStore.fruits[.kiwi, default: Number()])"
-        self.mangoStockLabel.text = "\(self.fruitStore.fruits[.mango, default: Number()])"
+    private func updateFruitStock() {
+        DispatchQueue.main.async {
+            self.strawberryStockLabel.text = "\(self.fruitStore.fruits[.strawberry, default: Number()])"
+            self.bananaStockLabel.text = "\(self.fruitStore.fruits[.banana, default: Number()])"
+            self.pineappleStockLabel.text = "\(self.fruitStore.fruits[.pineapple, default: Number()])"
+            self.kiwiStockLabel.text = "\(self.fruitStore.fruits[.kiwi, default: Number()])"
+            self.mangoStockLabel.text = "\(self.fruitStore.fruits[.mango, default: Number()])"
+        }
     }
 }
