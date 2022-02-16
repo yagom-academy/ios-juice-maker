@@ -22,7 +22,7 @@ struct FruitStore {
     /// - Returns: 남은 과일의 재고
     ///
     /// - Parameter of: 재고를 알고 싶은 과일
-    func getStock(of fruit: Fruit) -> Quantity {
+    func stock(of fruit: Fruit) -> Quantity {
         return fruitStocks[fruit] ?? Quantity.ZERO
     }
     

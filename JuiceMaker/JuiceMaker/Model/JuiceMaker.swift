@@ -26,7 +26,7 @@ struct JuiceMaker {
     ///
     /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
     mutating func make(of juice: Juice) throws {
-        guard let neededFruits = recipe.get(juice) else {
+        guard let neededFruits = recipe.recipe(of: juice) else {
             throw JuiceMakerError.notExistRecipe
         }
         try validateStock(of: neededFruits)
@@ -44,7 +44,7 @@ struct JuiceMaker {
     /// - Throws: `JuiceMakerError.soldOutError` 쥬스 만들 때 필요한 과일의 재고가 모자랄 경우
     private func validateStock(of neededFruits: [Recipe.NeededFruit]) throws {
         let outOfStocks = neededFruits.filter { neededFruit in
-            let stock = fruitStore.getStock(of: neededFruit.fruit)
+            let stock = fruitStore.stock(of: neededFruit.fruit)
             return stock < neededFruit.quantity
         }
         if outOfStocks.count > 0 {
@@ -127,7 +127,7 @@ extension JuiceMaker {
         /// - Returns: `[NeededFruit]?` 필요한 과일들과 그 갯수. 존재하지 않을 경우 nil
         ///
         /// - Parameter _: 필요한 과일들을 알고 싶은 쥬스의 종류
-        func get(_ juice: Juice) -> [NeededFruit]? {
+        func recipe(of juice: Juice) -> [NeededFruit]? {
             return recipe[juice]
         }
     }

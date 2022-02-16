@@ -24,11 +24,11 @@ class FruitStoreTests: XCTestCase {
     
     func test_과일의_초기_재고는_10개이다() {
         // when
-        let strawberryStock = sut.getStock(of: .strawberry)
-        let bananaStock = sut.getStock(of: .banana)
-        let pineappleStock = sut.getStock(of: .pineapple)
-        let kiwiStock = sut.getStock(of: .kiwi)
-        let mangoStock = sut.getStock(of: .mango)
+        let strawberryStock = sut.stock(of: .strawberry)
+        let bananaStock = sut.stock(of: .banana)
+        let pineappleStock = sut.stock(of: .pineapple)
+        let kiwiStock = sut.stock(of: .kiwi)
+        let mangoStock = sut.stock(of: .mango)
         let expectedStock = Quantity(10)
         
         // then
@@ -47,7 +47,7 @@ class FruitStoreTests: XCTestCase {
         
         // when
         sut.increaseStock(of: fruit, newStock)
-        let actual = sut.getStock(of: fruit)
+        let actual = sut.stock(of: fruit)
         
         // then
         XCTAssertEqual(expected, actual)
@@ -62,7 +62,7 @@ class FruitStoreTests: XCTestCase {
         // when
         do {
             try sut.decreaseStock(of: fruit, toUse)
-            let actual = sut.getStock(of: fruit)
+            let actual = sut.stock(of: fruit)
             // then
             XCTAssertEqual(expected, actual)
         } catch {
@@ -74,7 +74,7 @@ class FruitStoreTests: XCTestCase {
     func test_과일의_재고를_현재의_재고보다_많이_감소시키려고_하면_에러가_발생한다() {
         // given
         let fruit = FruitStore.Fruit.strawberry
-        let toUse = sut.getStock(of: fruit) + Quantity(10)
+        let toUse = sut.stock(of: fruit) + Quantity(10)
         
         // when then
         XCTAssertThrowsError(try sut.decreaseStock(of: fruit, toUse))
