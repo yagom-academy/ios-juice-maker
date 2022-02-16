@@ -17,7 +17,7 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var mangoCountLabel: UILabel!
     
     // MARK: - Property
-    
+
     var juiceMaker: JuiceMaker
     
     // MARK: - Initialize
@@ -36,6 +36,7 @@ class OrderViewController: UIViewController {
     
     // MARK: - Configure
     
+    /// Does one-time configuration
     private func configure() {
         self.setupRightBarButtonItem()
         self.addFruitStoreObserver()

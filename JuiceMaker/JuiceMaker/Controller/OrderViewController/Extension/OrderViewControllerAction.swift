@@ -41,8 +41,9 @@ extension OrderViewController {
     
     // MARK: - Helper Method of Ordering Juice Process
     
+    /// Invokes `juiceMaker.makeJuice(of:result:)`.
     private func orderJuice(menu: Juice) {
-        juiceMaker.makeJuice(of: menu, result: { result in
+        self.juiceMaker.makeJuice(of: menu, result: { result in
             switch result {
             case .success:
                 let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .success, title: "\(menu.name) 나왔습니다! 맛있게 드세요!")
@@ -59,6 +60,9 @@ extension OrderViewController {
         })
     }
     
+    /// Returns error description string by casting `error`.
+    /// Returns nil if `error` can't be casted into
+    ///`FruitStoreError` or `JuiceMakerError`.
     func parseErrorMessage(of error: Error) -> String? {
         var errorMessage: String?
         
@@ -102,6 +106,8 @@ extension OrderViewController {
     
     // MARK: - Presenting ManageStockViewController
     
+    /// Presents `UINavigationController` that has
+    /// `ManageStockView` as root view controller.
     @objc func presentManageStockViewController() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 

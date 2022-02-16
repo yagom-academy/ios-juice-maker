@@ -9,6 +9,8 @@ import UIKit
 
 extension OrderViewController {
     
+    /// Sets up `self.navigationItem.rightBarButtonItem`
+    /// and adds action to it.
     func setupRightBarButtonItem() {
         guard self.navigationItem.rightBarButtonItem != nil else {
             return
