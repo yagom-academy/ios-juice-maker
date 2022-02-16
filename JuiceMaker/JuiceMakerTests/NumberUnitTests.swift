@@ -15,7 +15,7 @@ class NumberUnitTests: XCTestCase {
     func test_Number_Number가_10일때_increase를_하면_11이된다() {
         // given
         var input: Number = Number()
-        let expectation: Number = Number(11)
+        let expectation: Number = 11
         
         // when
         input.increase()
@@ -26,9 +26,9 @@ class NumberUnitTests: XCTestCase {
     
     func test_Number_Number가_10일때_increase10를_하면_20이된다() {
         // given
-        let input: Number = Number(10)
+        let input: Number = 10
         var number: Number = Number()
-        let expectation: Number = Number(20)
+        let expectation: Number = 20
         
         // when
         try? number.increase(input)
@@ -39,7 +39,7 @@ class NumberUnitTests: XCTestCase {
     
     func test_Number_Number가_10일때_increaseMinus1를_하면_Error가_발생한다() {
         // given
-        let input: Number = Number(-1)
+        let input: Number = -1
         var number: Number = Number()
         let expectation: NumberError = .isNegativeValue
         
@@ -53,7 +53,7 @@ class NumberUnitTests: XCTestCase {
     func test_Number_Number가_10일때_decrease를_하면_9이된다() {
         // given
         var input: Number = Number()
-        let expectation: Number = Number(9)
+        let expectation: Number = 9
         
         // when
         input.decrease()
@@ -64,9 +64,9 @@ class NumberUnitTests: XCTestCase {
     
     func test_Number_Number가_10일때_decrease10를_하면_0이된다() {
         // given
-        let input: Number = Number(10)
+        let input: Number = 10
         var number: Number = Number()
-        let expectation: Number = Number(0)
+        let expectation: Number = 0
         
         // when
         try? number.decrease(input)
@@ -77,7 +77,7 @@ class NumberUnitTests: XCTestCase {
     
     func test_Number_Number가_10일때_decreaseMinus1를_하면_Error가_발생한다() {
         // given
-        let input: Number = Number(-1)
+        let input: Number = -1
         var number: Number = Number()
         let expectation: NumberError = .isNegativeValue
         
