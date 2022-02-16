@@ -222,12 +222,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="FruitStackView" destination="zaq-m5-IIF" id="QRA-SK-maq"/>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="TCk-UG-MBs"/>
+                        <outlet property="bananaOrderButton" destination="y2A-PH-DJY" id="bbt-XX-dEu"/>
                         <outlet property="kiwiLabel" destination="FZq-de-TJG" id="rwv-hq-qEX"/>
+                        <outlet property="kiwiOrderButton" destination="wcW-7H-RXw" id="3gK-cB-a8Y"/>
+                        <outlet property="mangoKiwiOrderButton" destination="ngP-kF-Yii" id="kF8-oa-R5i"/>
                         <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="vJ2-hE-cLF"/>
+                        <outlet property="mangoOrderButton" destination="q6G-4X-bVm" id="W6R-JV-XFZ"/>
                         <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="uf9-VL-eUb"/>
+                        <outlet property="pineappleOrderButton" destination="BFb-ka-wGA" id="aos-0T-AGi"/>
+                        <outlet property="strawberryBananOrderButton" destination="hrc-2F-fzl" id="POj-ER-yIi"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="w7p-en-eXi"/>
+                        <outlet property="strawberryOrderButton" destination="avd-o5-3JM" id="lGg-DM-fPQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

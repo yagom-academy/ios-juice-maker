@@ -14,6 +14,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
+    @IBOutlet weak var strawberryBananOrderButton: UIButton!
+    @IBOutlet weak var mangoKiwiOrderButton: UIButton!
+    @IBOutlet weak var strawberryOrderButton: UIButton!
+    @IBOutlet weak var bananaOrderButton: UIButton!
+    @IBOutlet weak var pineappleOrderButton: UIButton!
+    @IBOutlet weak var kiwiOrderButton: UIButton!
+    @IBOutlet weak var mangoOrderButton: UIButton!
+    
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
