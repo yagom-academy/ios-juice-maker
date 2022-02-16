@@ -28,6 +28,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureView()
     }
+
+    @IBAction func order(_ sender: UIButton) {
+        print(sender.titleLabel?.text as Any)
+    }
 }
 
 extension ViewController {
@@ -38,4 +42,5 @@ extension ViewController {
         kiwiLabel.text = String(juiceMaker.quantity(of: .kiwi))
         mangoLabel.text = String(juiceMaker.quantity(of: .mango))
     }
+    
 }
