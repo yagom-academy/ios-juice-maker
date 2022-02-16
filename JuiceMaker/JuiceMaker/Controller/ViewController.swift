@@ -16,20 +16,22 @@ class ViewController: UIViewController {
     
     let juiceMaker = JuiceMaker()
 
+    /// 주문 버튼을 클릭한다.
     @IBAction func tapOrderButton(_ sender: UIButton) {
         Juice.allCases.forEach { juice in
-            
             let order = sender.titleLabel?.text ?? ""
             checkMatch(order: order, juice: juice)
         }
     }
     
+    /// 주문한 메뉴와 주스 메뉴를 비교한다.
     private func checkMatch(order: String, juice: Juice) {
         if order == juice.name + " 주문" {
             orderMenu(of: juice)
         }
     }
     
+    // 주문한 주스를 만든다.
     private func orderMenu(of juice: Juice) {
         let result = juiceMaker.make(of: juice)
          
@@ -42,6 +44,7 @@ class ViewController: UIViewController {
          }
     }
     
+    /// 확인 알럿을 표시한다.
     private func showConfirmAlert(for message: String) {
         let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
         let defaultAction =  UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
@@ -49,6 +52,7 @@ class ViewController: UIViewController {
         self.present(alert, animated: false)
     }
     
+    /// 재고 부족 알럿을 표시한다.
     private func showNotEnoghAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: UIAlertController.Style.alert)
         let defaultAction =  UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
@@ -65,6 +69,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController {
+    /// 과일 수량을 표시한다.
     private func configureView() {
         strawberryLabel.text = String(juiceMaker.quantity(of: .strawberry))
         bananaLabel.text = String(juiceMaker.quantity(of: .banana))
