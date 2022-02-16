@@ -7,6 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -17,4 +18,5 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+
 }

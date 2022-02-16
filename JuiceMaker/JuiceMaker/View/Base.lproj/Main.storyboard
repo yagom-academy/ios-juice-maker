@@ -215,7 +215,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <action selector="tabEditStockButton:" destination="BYZ-38-t0r" id="pIr-S5-dPW"/>
+                                <segue destination="Yu1-lM-nqp" kind="presentation" id="5PJ-6H-nSW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="TCk-UG-MBs"/>
@@ -227,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="683" y="42"/>
+            <point key="canvasLocation" x="924" y="20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
@@ -245,7 +250,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66L-FI-VI3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
+            <point key="canvasLocation" x="247" y="20"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fkG-vv-hpE">
@@ -379,6 +384,9 @@
             <point key="canvasLocation" x="1637" y="21"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5PJ-6H-nSW"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
