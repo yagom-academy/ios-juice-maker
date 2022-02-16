@@ -67,9 +67,9 @@ class InitialViewController: UIViewController {
     
     private func presentModifyStockView() {
         let storyboard = UIStoryboard(name: StoryboadName.main, bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.modifyStock)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController)
         destinationVC.modalPresentationStyle = .fullScreen
-        present(destinationVC, animated: true, completion: nil)
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
     
 }
@@ -84,9 +84,8 @@ extension InitialViewController: UICollectionViewDataSource, UICollectionViewDel
         case orderButtonCollectionView:
             return Juice.allCases.count
         default:
-            break
+            return 0
         }
-        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -106,9 +105,8 @@ extension InitialViewController: UICollectionViewDataSource, UICollectionViewDel
             orderButtonCollectionViewCell.juiceLabel.text = "\(Juice.allCases[indexPath.item].name) 쥬스"
             return orderButtonCollectionViewCell
         default:
-            break
+            return UICollectionViewCell()
         }
-        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -128,9 +126,8 @@ extension InitialViewController: UICollectionViewDataSource, UICollectionViewDel
             let size = CGSize(width: (collectionView.frame.width-20)/2, height: collectionView.frame.height/3)
             return size
         default:
-            break
+            return CGSize.zero
         }
-        return CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -145,25 +142,5 @@ extension InitialViewController: UICollectionViewDataSource, UICollectionViewDel
             usedFruit.append(index)
         }
         fruitsStockCollectionView.reloadItems(at: usedFruit)
-    }
-}
-
-enum StoryboadName {
-    static let main = "main"
-}
-
-enum StoryboardID {
-    static let modifyStock = ""
-}
-
-enum AlertTitle {
-    
-    static let completeMakeJuice = "쥬스가 나왔습니다! 맛있게 드세요!"
-    static let faliMAkeJuice = "재료가 모자라요! 재고를 수정할까요?"
-    
-    enum action {
-        static let okay = "확인"
-        static let no = "아니오"
-        static let yes = "예"
     }
 }
