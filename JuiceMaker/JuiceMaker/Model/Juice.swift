@@ -14,9 +14,11 @@ enum Juice {
     case strawberryBanana
     case mango
     case mangoKiwi
-    
+}
+
+extension Juice {
     var ingredients: Fruits {
-        return IngredientsDirector.make(juice: self)
+        return IngredientsDirector.ingredients(for: self)
     }
 }
 
@@ -39,7 +41,7 @@ final class IngredientsBuilder {
 /// 지정된 쥬스를 만들기 위해 소진 될 재료를 생성하는 타입
 final class IngredientsDirector {
     /// 지정된 쥬스를 만들기 위해 소진 될 재료를 생성한다.
-    static func make(juice: Juice) -> Fruits {
+    static func ingredients(for juice: Juice) -> Fruits {
         var builder = IngredientsBuilder()
         
         switch juice {

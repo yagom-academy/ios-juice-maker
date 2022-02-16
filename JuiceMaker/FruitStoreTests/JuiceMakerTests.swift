@@ -37,7 +37,7 @@ class JuiceMakerTests: XCTestCase {
         sut?.setFruitAmount(for: .strawberry, to: initialFruitAmount)
         sut?.setFruitAmount(for: .banana, to: initialFruitAmount)
 
-        guard let result = sut?.make(expectedJuice) else {
+        guard let result = sut?.make(juice: expectedJuice) else {
             XCTFail("SUT 인스턴스가 존재하지 않습니다.")
             return
         }
@@ -56,7 +56,7 @@ class JuiceMakerTests: XCTestCase {
         let initialFruitCount = 0
         let expectedError: JuiceMakerError = .notEnoughIngredients
 
-        guard let result = sut?.make(.strawberryBanana) else {
+        guard let result = sut?.make(juice: .strawberryBanana) else {
             XCTFail("SUT 인스턴스가 존재하지 않습니다.")
             return
         }
