@@ -34,7 +34,7 @@ class StockViewModel: StockViewModelType {
   var kiwiStockObserbable: Observable<Int> { kiwiStockSubject }
   var mangoStockObserbable: Observable<Int> { mangoStockSubject }
   
-  init(_ fruitStore: FruitStorable) {
+  init(fruitStore: FruitStorable) {
     self.fruitStore = fruitStore
     
     initFruitStock()

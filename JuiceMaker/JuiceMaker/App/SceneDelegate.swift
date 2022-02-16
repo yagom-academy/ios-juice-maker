@@ -9,20 +9,18 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
+  var coordinator: MainCoordinator?
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-    guard let windowScene = (scene as? UIWindowScene),
-          let orderViewController = mainStoryBoard.instantiateViewController(withIdentifier: "OrderViewController") as? OrderViewController
-    else { return }
     
+    guard let windowScene = (scene as? UIWindowScene) else { return }
+    
+    let navigationController = UINavigationController()
     let fruitStore = FruitStore()
     let juiceMaker = JuiceMaker(fruitStore: fruitStore)
-    let orderViewModel = OrderViewModel(juiceMaker: juiceMaker)
-    
-    orderViewController.viewModel = orderViewModel
-    
-    let navigationController = UINavigationController(rootViewController: orderViewController)
+    coordinator = MainCoordinator(navigationController: navigationController, juiceMaker: juiceMaker, fruitStore: fruitStore)
+    coordinator?.start()
+   
     window = UIWindow(windowScene: windowScene)
     window?.rootViewController = navigationController
     window?.makeKeyAndVisible()

@@ -11,6 +11,7 @@ import RxSwift
 
 class OrderViewController: UIViewController {
   var viewModel: OrderViewModelType?
+  weak var coordinator: MainCoordinatable?
   var disposeBag = DisposeBag()
   
   @IBOutlet weak var changeStockBarButton: UIBarButtonItem!
@@ -83,7 +84,7 @@ class OrderViewController: UIViewController {
     
     changeStockBarButton.rx.tap
       .subscribe(with: self, onNext: { owner, _ in
-        owner.goToStock()
+        owner.showStock()
       })
       .disposed(by: disposeBag)
   }
@@ -128,7 +129,7 @@ class OrderViewController: UIViewController {
     )
     
     let confirmAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
-      self?.goToStock()
+      self?.showStock()
     }
     let cancelAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
     
@@ -138,10 +139,7 @@ class OrderViewController: UIViewController {
     self.present(alert, animated: true, completion: nil)
   }
   
-  private func goToStock() {
-    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    let stockViewController = mainStoryboard.instantiateViewController(withIdentifier: "StockViewController")
-    
-    self.present(stockViewController, animated: true, completion: nil)
+  private func showStock() {
+    coordinator?.showStockViewController(parentViewController: self)
   }
 }
