@@ -71,13 +71,13 @@ extension OrderViewController {
     @objc func presentManageStockViewController() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        guard let manageStockViewController: ManageStockViewController = mainStoryboard.instantiateViewController(withIdentifier: "ManageStockViewController") as? ManageStockViewController else {
+        guard let manageStockNavigationController: UINavigationController = mainStoryboard.instantiateViewController(withIdentifier: "ManageStockNavigation") as? UINavigationController else {
             return
         }
         
-        manageStockViewController.modalPresentationStyle = .fullScreen
+        manageStockNavigationController.modalPresentationStyle = .fullScreen
         
-        present(manageStockViewController, animated: true, completion: nil)
+        present(manageStockNavigationController, animated: true, completion: nil)
     }
     
 }
