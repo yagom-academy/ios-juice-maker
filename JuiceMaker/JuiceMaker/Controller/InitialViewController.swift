@@ -32,10 +32,13 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var orederStrawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var orederMangoKiwiJuiceButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLabel()
+    }
+    
+    @IBAction func showModifyStocksVC(_ sender: UIBarButtonItem) {
+        presentModifyStockView()
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
@@ -68,7 +71,6 @@ class InitialViewController: UIViewController {
         mangoStockLabel.text = "\(fruitStore.checkCount(stock: .mango))"
     }
     
-    
     private func tryMake(_ juice: Juice) {
         var result: Bool = false
         do {
@@ -94,11 +96,18 @@ class InitialViewController: UIViewController {
         let alert = UIAlertController(title: "재료가 모자라요! 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let cancleAlertActin = UIAlertAction(title: "취소", style: .cancel)
         let okayAlertAction = UIAlertAction(title: "예", style: .default) { _ in
-            //TODO: MOVE Modify Stock VC
+            self.presentModifyStockView()
         }
         alert.addAction(cancleAlertActin)
         alert.addAction(okayAlertAction)
         present(alert, animated: true)
+    }
+    
+    private func presentModifyStockView() {
+        let storyboard = UIStoryboard(name: "", bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "")
+        destinationVC.modalPresentationStyle = .fullScreen
+        present(destinationVC, animated: true, completion: nil)
     }
     
 }
