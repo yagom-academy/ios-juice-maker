@@ -20,6 +20,8 @@
 		D11B965327BBEE1C002A7652 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B965227BBEE1C002A7652 /* Stock.swift */; };
 		D11B965527BBF09E002A7652 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B965427BBF09E002A7652 /* Fruit.swift */; };
 		D11B965727BBF8E9002A7652 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B965627BBF8E9002A7652 /* Juice.swift */; };
+		D11B965B27BD1274002A7652 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B965A27BD1274002A7652 /* StockViewController.swift */; };
+		D11B965D27BD148D002A7652 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B965C27BD148D002A7652 /* StockViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		D11B965227BBEE1C002A7652 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		D11B965427BBF09E002A7652 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		D11B965627BBF8E9002A7652 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
+		D11B965A27BD1274002A7652 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
+		D11B965C27BD148D002A7652 /* StockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				0095E8C927BC805D0047291C /* OrderViewController.swift */,
+				D11B965A27BD1274002A7652 /* StockViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				00F3737427BC839000716DBF /* OrderViewModel.swift */,
+				D11B965C27BD148D002A7652 /* StockViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -206,12 +212,14 @@
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				D11B965327BBEE1C002A7652 /* Stock.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				D11B965D27BD148D002A7652 /* StockViewModel.swift in Sources */,
 				00F3737527BC839000716DBF /* OrderViewModel.swift in Sources */,
 				D11B965527BBF09E002A7652 /* Fruit.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				D11B965727BBF8E9002A7652 /* Juice.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				0095E8CA27BC805D0047291C /* OrderViewController.swift in Sources */,
+				D11B965B27BD1274002A7652 /* StockViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
