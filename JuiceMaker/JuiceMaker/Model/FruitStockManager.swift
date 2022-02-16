@@ -17,4 +17,8 @@ class FruitStockManager {
     func change(amount count: Int, about: Fruit) {
         stocks[about] = count
     }
+    
+    func count(stock fruit: Fruit) -> Int {
+        return stocks[fruit] ?? Int.zero
+    }
 }
