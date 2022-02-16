@@ -15,9 +15,9 @@ struct JuiceMaker {
             fruitStore.useFruit(juice: juice)
             return .success
         }
-        let outOfStockFruit = juice.recipe.fruitList.map {
-            $0.fruit
+        let needFruits = juice.recipe.fruitList.map {
+            $0.fruit.name
         }
-        return .fail(needFruits: outOfStockFruit)
+        return .fail(needFruits: needFruits)
     }
 }

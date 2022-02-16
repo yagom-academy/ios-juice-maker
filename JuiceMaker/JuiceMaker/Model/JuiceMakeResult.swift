@@ -9,7 +9,7 @@ import Foundation
 
 enum JuiceMakeResult {
     case success
-    case fail(needFruits: [Fruit])
+    case fail(needFruits: [String])
     
     var description: String {
         switch self {
