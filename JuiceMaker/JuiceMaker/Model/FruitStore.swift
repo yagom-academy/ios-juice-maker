@@ -36,4 +36,8 @@ class FruitStore {
             try reduceFruit(fruit: fruitInfo.fruit, count: fruitInfo.count)
         }
     }
+    
+    func quantity(of fruit: Fruit) -> Int {
+        return stock[fruit] ?? 0
+    }
 }

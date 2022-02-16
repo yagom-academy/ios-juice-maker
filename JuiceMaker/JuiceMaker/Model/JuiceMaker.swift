@@ -19,4 +19,8 @@ struct JuiceMaker {
             print(error)
         }
     }
+    
+    func quantity(of fruit: Fruit) -> Int {
+        return fruitStore.quantity(of: fruit)
+    }
 }
