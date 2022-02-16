@@ -11,7 +11,7 @@ enum JuiceMakerError: Error {
     case notAvailable
 }
 
-extension JuiceMakerError: LocalizedError {
+extension JuiceMakerError {
     var errorDescription: String? {
         switch self {
         case .notAvailable:
