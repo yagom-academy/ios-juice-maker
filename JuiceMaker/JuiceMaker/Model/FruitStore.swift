@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var stocks: [Fruit: Int]
+    private var stocks: [Fruit: Int]
     
     init(initalValue: Int = 10) {
         var stocks: [Fruit: Int] = [:]
@@ -34,7 +34,7 @@ class FruitStore {
         }
     }
     
-    func isCanMake(stocks: [Fruit: Int]) -> Bool {
+    private func isCanMake(stocks: [Fruit: Int]) -> Bool {
         return stocks.map { $0.value }.filter({ $0 < 0 }).count == 0
     }
 }
