@@ -10,7 +10,7 @@ struct FruitStore {
     
     private var fruitStocks: [Fruit: Quantity]
     
-    init(everyStock: Quantity = DEFAULT_FRUIT_QUANTITY) {
+    init(everyStock: Quantity = defaultFruitQuantity) {
         let allFruits = Fruit.allCases
         fruitStocks = allFruits.reduce(into: [:], { partialResult, fruit in
             partialResult[fruit] = everyStock
@@ -23,7 +23,7 @@ struct FruitStore {
     ///
     /// - Parameter of: 재고를 알고 싶은 과일
     func stock(of fruit: Fruit) -> Quantity {
-        return fruitStocks[fruit] ?? Quantity.ZERO
+        return fruitStocks[fruit] ?? Quantity.zero
     }
     
     /// 과일 재고 개수 늘리기.
@@ -63,7 +63,7 @@ struct FruitStore {
 
 extension FruitStore {
     
-    private static let DEFAULT_FRUIT_QUANTITY: Quantity = Quantity(10)
+    private static let defaultFruitQuantity: Quantity = Quantity(10)
     
     enum Fruit: CaseIterable {
         case strawberry, banana, pineapple, kiwi, mango
