@@ -17,4 +17,8 @@ class FruitStore {
         }
         self.stocks = stocks
     }
+    
+    func add(numberOf: Int, fruit: Fruit) {
+        stocks[fruit] = numberOf + (stocks[fruit] ?? 0)
+    }
 }
