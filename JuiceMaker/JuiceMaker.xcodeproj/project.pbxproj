@@ -125,12 +125,12 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				16E7D72427BC6A15007EB0BF /* Result */,
 				16144BD927BBE93A00F2DC0F /* AppDelegate */,
-				3C3674BD27BB761F00BB27C9 /* Error */,
-				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
+				C71CD66D266C7B470038B9CB /* Controller */,
+				16E7D72427BC6A15007EB0BF /* Result */,
+				3C3674BD27BB761F00BB27C9 /* Error */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
 			path = JuiceMaker;
