@@ -14,6 +14,8 @@ struct JuiceMaker {
     init(fruitStore: FruitStore = FruitStore(), recipe: Recipe = Recipe()) {
         self.fruitStore = fruitStore
         self.recipe = recipe
+    func stock(of fruit: FruitStore.Fruit) -> Quantity {
+        return fruitStore.stock(of: fruit)
     }
     
     /// 쥬스 만들기.

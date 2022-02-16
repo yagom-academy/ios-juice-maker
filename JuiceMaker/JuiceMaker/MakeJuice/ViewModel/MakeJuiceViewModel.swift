@@ -15,4 +15,8 @@ struct MakeJuiceViewModel {
         self.juiceMaker = juiceMaker
     }
     
+    func stock(of fruit: FruitStore.Fruit) -> Quantity {
+        return juiceMaker.stock(of: fruit)
+    }
+    
 }
