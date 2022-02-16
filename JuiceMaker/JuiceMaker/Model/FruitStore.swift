@@ -8,14 +8,16 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var stocks: [Fruit: Int]
+    var stocks: [Fruit: Int] = [:]
     
-    init(initalValue: Int = 10) {
-        var stocks: [Fruit: Int] = [:]
+    init(fruitType: [Fruit: Int] = [:]) {
         for fruit in Fruit.allCases {
-            stocks[fruit] = initalValue
+            stocks[fruit] = 10
         }
-        self.stocks = stocks
+        
+        for fruit in fruitType {
+            stocks[fruit.key] = fruit.value
+        }
     }
     
     func addFruit(numberOf: Int, fruit: Fruit) {
