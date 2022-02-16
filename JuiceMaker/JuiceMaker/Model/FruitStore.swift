@@ -15,7 +15,13 @@ final class FruitStore {
     private(set) var pineapple: Pineapple
     private(set) var mango: Mango
     
-    init(strawberryCount: Int, bananaCount: Int, kiwiCount: Int, pineappleCount: Int, mangoCount: Int) {
+    init(
+        strawberryCount: Int,
+        bananaCount: Int,
+        kiwiCount: Int,
+        pineappleCount: Int,
+        mangoCount: Int
+    ) {
         self.strawberry = Strawberry(counter: strawberryCount)
         self.banana = Banana(counter: bananaCount)
         self.kiwi = Kiwi(counter: kiwiCount)
