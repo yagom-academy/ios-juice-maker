@@ -17,13 +17,18 @@ struct JuiceMaker {
     func makeJuice(_ juice: Juice) throws {
         let recipe: Recipe = juice.recipe()
         
-        for material in recipe.materials where !self.fruitStore.isAvailable(fruit: material.fruit,
-                                                                            of: material.count) {
+        guard self.isAvailable(recipe: recipe) else {
             throw JuiceMakerError.outOfStock
         }
         
         for material in recipe.materials {
             self.fruitStore.decrease(fruit: material.fruit, to: material.count)
         }
+    }
+    
+    private func isAvailable(recipe: Recipe) -> Bool {
+        return recipe.materials
+            .map { self.fruitStore.hasStock(of: $0.fruit, to: $0.count) }
+            .allSatisfy { $0 == true }
     }
 }

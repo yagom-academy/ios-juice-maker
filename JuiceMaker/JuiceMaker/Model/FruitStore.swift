@@ -30,7 +30,7 @@ final class FruitStore {
         self.fruits[fruit, default: 0] -= amount
     }
     
-    func isAvailable(fruit: Fruit, of count: Int) -> Bool {
+    func hasStock(of fruit: Fruit, to count: Int) -> Bool {
         guard self.fruits[fruit, default: 0] >= count else {
             return false
         }
