@@ -36,6 +36,10 @@ extension OrderViewController {
     @IBAction func touchMangoJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .mangoJuice)
     }
+
+}
+
+extension OrderViewController {
     
     private func orderJuice(menu: Juice) {
         juiceMaker.makeJuice(of: menu, result: { result in
@@ -62,6 +66,22 @@ extension OrderViewController {
                 present(orderResultAlertController, animated: true, completion: nil)
             }
         })
+    }
+    
+}
+
+extension OrderViewController {
+    
+    @objc func presentManageStockViewController() {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let manageStockViewController: ManageStockViewController = mainStoryboard.instantiateViewController(withIdentifier: "ManageStockViewController") as? ManageStockViewController else {
+            return
+        }
+        
+        manageStockViewController.modalPresentationStyle = .fullScreen
+        
+        present(manageStockViewController, animated: true, completion: nil)
     }
     
 }
