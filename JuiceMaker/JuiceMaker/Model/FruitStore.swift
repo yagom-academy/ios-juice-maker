@@ -21,7 +21,7 @@ extension FruitStoreError: LocalizedError {
 
 /// 과일 저장소 타입
 class FruitStore {
-    private(set) var inventory = [FruitType: Int]()
+    private(set) var inventory = FruitsInventory()
     
     init(initialFruitCount: Int = 10) {
         FruitType.allCases.forEach { fruit in
@@ -29,11 +29,11 @@ class FruitStore {
         }
     }
     
-    func use(of fruitTypes: [FruitType: Int]) -> Result<Void, FruitStoreError> {
-        let checkedInventory =  checkInventory(of: fruitTypes)
+    func use(of fruitsInventory: FruitsInventory) -> Result<Void, FruitStoreError> {
+        let checkedInventory =  checkInventory(of: fruitsInventory)
         switch checkedInventory {
         case .success():
-            inventory = calculateUsableInventory(toSubtract: fruitTypes)
+            inventory = calculateUsableInventory(toSubtract: fruitsInventory)
             return .success(Void())
         case .failure(let error):
             return .failure(error)
@@ -47,8 +47,8 @@ class FruitStore {
         inventory[fruit] = count
     }
     
-    private func checkInventory(of fruitTypes: [FruitType: Int]) -> Result<Void, FruitStoreError> {
-        let negativeFruitTypes = calculateUsableInventory(toSubtract: fruitTypes)
+    private func checkInventory(of fruitsInventory: FruitsInventory) -> Result<Void, FruitStoreError> {
+        let negativeFruitTypes = calculateUsableInventory(toSubtract: fruitsInventory)
             .filter { $0.value < 0 }
         guard negativeFruitTypes.count < 1 else {
             return .failure(.notEnoughFruits)
@@ -56,8 +56,8 @@ class FruitStore {
         return .success(Void())
     }
     
-    private func calculateUsableInventory(toSubtract fruitTypes: [FruitType: Int]) -> [FruitType: Int] {
-        return inventory.merging(fruitTypes, uniquingKeysWith: {
+    private func calculateUsableInventory(toSubtract fruitsInventory: FruitsInventory) -> FruitsInventory {
+        return inventory.merging(fruitsInventory, uniquingKeysWith: {
             $0 - $1
         })
     }

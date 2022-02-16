@@ -63,7 +63,7 @@ class JuiceMakerTests: XCTestCase {
         let fruitStore = FruitStore(initialFruitCount: 10)
         var juiceMaker = JuiceMaker(fruitStore: fruitStore)
         let input = MockJuice(items: [.banana: 5])
-        let expected: [FruitType: Int] = [
+        let expected: FruitsInventory = [
             .strawberry: 10,
             .banana: 5,
             .pineapple: 10,

@@ -32,15 +32,15 @@ class FruitStoreTests: XCTestCase {
 
     func test_인벤토리보다_적은과일을_사용했을때_성공을_반환하는가() {
         // given
-        guard var fruitStore = fruitStore else {
+        guard let fruitStore = fruitStore else {
             XCTFail()
             return
         }
-        let input: [FruitType: Int] = [
+        let input: FruitsInventory = [
             .banana: 5,
             .strawberry: 5
         ]
-        let expected: [FruitType: Int] = [
+        let expected: FruitsInventory = [
             .strawberry: 5,
             .banana: 5,
             .pineapple: 10,
@@ -62,11 +62,11 @@ class FruitStoreTests: XCTestCase {
     
     func test_인벤토리보다_많은과일을_사용했을때_실패을_반환하는가() {
         // given
-        guard var fruitStore = fruitStore else {
+        guard let fruitStore = fruitStore else {
             XCTFail()
             return
         }
-        let input: [FruitType: Int] = [
+        let input: FruitsInventory = [
             .banana: 5,
             .strawberry: 15
         ]
@@ -86,13 +86,13 @@ class FruitStoreTests: XCTestCase {
 
     func test_changeFruitCount메서드가_정상작동하는가() {
         // given
-        guard var fruitStore = fruitStore else {
+        guard let fruitStore = fruitStore else {
             XCTFail()
             return
         }
         let inputFruit = FruitType.banana
         let inputFruitCount = 5
-        let expected: [FruitType: Int] = [
+        let expected: FruitsInventory = [
             .strawberry: 10,
             .banana: 5,
             .pineapple: 10,
