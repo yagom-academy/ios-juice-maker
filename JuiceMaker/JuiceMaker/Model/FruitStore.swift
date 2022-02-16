@@ -18,7 +18,7 @@ class FruitStore {
         self.stocks = stocks
     }
     
-    func add(numberOf: Int, fruit: Fruit) {
+    func addFruit(numberOf: Int, fruit: Fruit) {
         stocks[fruit] = numberOf + (stocks[fruit] ?? 0)
     }
     
@@ -29,10 +29,12 @@ class FruitStore {
             stocks[useStock.key] = (stocks[useStock.key] ?? 0) - useStock.value
         }
         
-        let isCanMake = stocks.map { $0.value }.filter({ $0 < 0 }).count == 0
-        
-        if isCanMake {
+        if isCanMake(stocks: stocks) {
             self.stocks = stocks
         }
+    }
+    
+    func isCanMake(stocks: [Fruit: Int]) -> Bool {
+        return stocks.map { $0.value }.filter({ $0 < 0 }).count == 0
     }
 }
