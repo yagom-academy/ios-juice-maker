@@ -112,12 +112,12 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		16255D5827BCFD2900FC1C98 /* Common */ = {
+		16255D5827BCFD2900FC1C98 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				16255D5927BCFD4000FC1C98 /* Alert.swift */,
 			);
-			path = Common;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		16E7D72427BC6A15007EB0BF /* Result */ = {
@@ -199,7 +199,7 @@
 				C71CD66D266C7B470038B9CB /* Controller */,
 				16E7D72427BC6A15007EB0BF /* Result */,
 				3C3674BD27BB761F00BB27C9 /* Error */,
-				16255D5827BCFD2900FC1C98 /* Common */,
+				16255D5827BCFD2900FC1C98 /* Utility */,
 				3C3674C227BCDB9000BB27C9 /* Extension */,
 			);
 			path = JuiceMaker;
