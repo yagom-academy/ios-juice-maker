@@ -23,20 +23,15 @@ class FruitStoreTests: XCTestCase {
     }
     
     func test_과일의_초기_재고는_10개이다() {
+        // given
+        let fruit = FruitStore.Fruit.strawberry
+        let expected = Quantity(10)
+
         // when
-        let strawberryStock = sut.stock(of: .strawberry)
-        let bananaStock = sut.stock(of: .banana)
-        let pineappleStock = sut.stock(of: .pineapple)
-        let kiwiStock = sut.stock(of: .kiwi)
-        let mangoStock = sut.stock(of: .mango)
-        let expectedStock = Quantity(10)
+        let actual = sut.stock(of: fruit)
         
         // then
-        XCTAssertEqual(strawberryStock, expectedStock)
-        XCTAssertEqual(bananaStock, expectedStock)
-        XCTAssertEqual(pineappleStock, expectedStock)
-        XCTAssertEqual(kiwiStock, expectedStock)
-        XCTAssertEqual(mangoStock, expectedStock)
+        XCTAssertEqual(expected, actual)
     }
     
     func test_과일의_재고를_추가할_수_있어야_한다() {
