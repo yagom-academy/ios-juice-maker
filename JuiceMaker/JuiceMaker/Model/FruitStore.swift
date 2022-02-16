@@ -7,18 +7,24 @@
 import Foundation
 
 struct FruitStore {
-    private var fruits: [Fruit: Int]
+    private var inventory: [Fruit: Int]
+    
+    init(value: Int = 10) {
+        inventory = Fruit.allCases.reduce(into: [:]) { stock, fruit in
+            stock[fruit] = value
+        }
+    }
     
     mutating func increase(in fruit: Fruit) throws {
-        guard let value = fruits[fruit] else {
+        guard let value = inventory[fruit] else {
             throw JuiceMakerError.notFindFruit
         }
         
-        self.fruits[fruit] = value + 1
+        self.inventory[fruit] = value + 1
     }
     
     mutating func decrease(in fruit: Fruit) throws {
-        guard let value = fruits[fruit] else {
+        guard let value = inventory[fruit] else {
             throw JuiceMakerError.notFindFruit
         }
         
@@ -26,7 +32,7 @@ struct FruitStore {
             throw JuiceMakerError.notDecrease
         }
         
-        self.fruits[fruit] = value - 1
+        self.inventory[fruit] = value - 1
     }
     
     mutating func takeOrder(of ingredients: [Ingredient]) throws {
@@ -44,7 +50,7 @@ struct FruitStore {
         let fruit = ingredient.fruit
         let number = ingredient.number
         
-        guard let value = fruits[fruit], value - number >= 0 else {
+        guard let value = inventory[fruit], value - number >= 0 else {
             throw JuiceMakerError.notEnough
         }
     }
@@ -59,10 +65,10 @@ struct FruitStore {
         let fruit = ingredient.fruit
         let number = ingredient.number
         
-        guard let value = fruits[fruit] else {
+        guard let value = inventory[fruit] else {
             throw JuiceMakerError.notFindFruit
         }
         
-        self.fruits[fruit] = value - number
+        self.inventory[fruit] = value - number
     }
 }
