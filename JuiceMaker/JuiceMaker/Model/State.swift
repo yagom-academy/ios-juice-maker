@@ -28,8 +28,7 @@ struct StrawberryJuiceMakerState: State {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Strawberry.self, num: 16)
-        let menuName = "\(Strawberry.name) 쥬스"
-        return menuName
+        return "\(Strawberry.name) 쥬스"
     }
 }
 
@@ -41,8 +40,7 @@ struct BananaJuiceMakerState: State {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Banana.self, num: 2)
-        let menuName = "\(Banana.name) 쥬스"
-        return menuName
+        return "\(Banana.name) 쥬스"
     }
 }
 
@@ -54,8 +52,7 @@ struct KiwiJuiceMakerState: State {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Kiwi.self, num: 3)
-        let menuName = "\(Kiwi.name) 쥬스"
-        return menuName
+        return "\(Kiwi.name) 쥬스"
     }
 }
 
@@ -67,8 +64,7 @@ struct PineappleJuiceMakerState: State {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Pineapple.self, num: 2)
-        let menuName = "\(Pineapple.name) 쥬스"
-        return menuName
+        return "\(Pineapple.name) 쥬스"
     }
 }
 
@@ -82,8 +78,7 @@ struct StrawberryBananaJuiceMakerState: State {
         }
         juiceMaker.fruitStore.decrease(fruitType: Strawberry.self, num: 10)
         juiceMaker.fruitStore.decrease(fruitType: Banana.self, num: 1)
-        let menuName = "\(Strawberry.name.first ?? " ")\(Banana.name.first ?? " ") 쥬스"
-        return menuName
+        return "\(Strawberry.name.first ?? " ")\(Banana.name.first ?? " ") 쥬스"
     }
 }
 
@@ -95,8 +90,7 @@ struct MangoJuiceMakerState: State {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Mango.self, num: 3)
-        let menuName = "\(Mango.name) 쥬스"
-        return menuName
+        return "\(Mango.name) 쥬스"
     }
 }
 
@@ -110,7 +104,6 @@ struct MangoKiwiJuiceMakerState: State {
         }
         juiceMaker.fruitStore.decrease(fruitType: Mango.self, num: 2)
         juiceMaker.fruitStore.decrease(fruitType: Kiwi.self, num: 1)
-        let menuName = "\(Mango.name.first ?? " ")\(Kiwi.name.first ?? " ") 쥬스"
-        return menuName
+        return "\(Mango.name.first ?? " ")\(Kiwi.name.first ?? " ") 쥬스"
     }
 }
