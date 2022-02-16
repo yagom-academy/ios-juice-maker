@@ -41,8 +41,14 @@ class FruitStore {
         var temporaryResult: [(Fruit, Int)] = []
         
         try fruits.forEach { (fruit, amount) in
-            guard let fruitAmount = store[fruit] else { throw FruitError.nonExistentFruit }
-            if fruitAmount + amount < 0 { throw FruitError.outOfAmount }
+            guard let fruitAmount = store[fruit] else {
+                throw FruitError.nonExistentFruit
+            }
+            
+            if fruitAmount + amount < 0 {
+                throw FruitError.outOfAmount
+            }
+            
             temporaryResult.append((fruit, fruitAmount + amount))
         }
         
