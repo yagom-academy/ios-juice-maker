@@ -15,7 +15,7 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func makeJuice(_ juice: Juice) throws {
+    func makeJuice(_ juice: Juice) throws -> String {
         let recipe: Recipe = juice.recipe
         
         guard self.isAvailable(recipe: recipe) else {
@@ -25,6 +25,7 @@ struct JuiceMaker {
         for material in recipe {
             try self.fruitStore.decrease(fruit: material.fruit, to: material.count)
         }
+        return "주스가 완성됐습니다"
     }
     
     private func isAvailable(recipe: Recipe) -> Bool {
