@@ -80,6 +80,12 @@ class OrderViewController: UIViewController {
         owner.viewModel?.order(juice: .mangoKiwi)
       })
       .disposed(by: disposeBag)
+    
+    changeStockBarButton.rx.tap
+      .subscribe(with: self, onNext: { owner, _ in
+        owner.goToStock()
+      })
+      .disposed(by: disposeBag)
   }
   
   // MARK: - bind
@@ -121,8 +127,8 @@ class OrderViewController: UIViewController {
       preferredStyle: .alert
     )
     
-    let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
-      // TODO - 재고수정화면으로 이동
+    let confirmAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
+      self?.goToStock()
     }
     let cancelAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
     
@@ -130,5 +136,12 @@ class OrderViewController: UIViewController {
     alert.addAction(cancelAction)
     
     self.present(alert, animated: true, completion: nil)
+  }
+  
+  private func goToStock() {
+    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    let stockViewController = mainStoryboard.instantiateViewController(withIdentifier: "StockViewController")
+    
+    self.present(stockViewController, animated: true, completion: nil)
   }
 }
