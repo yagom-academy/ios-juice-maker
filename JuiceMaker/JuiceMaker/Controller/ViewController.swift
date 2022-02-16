@@ -21,12 +21,30 @@ class ViewController: UIViewController {
         configureView()
     }
 
-    @IBAction func order(_ sender: UIButton) {
-        Juice.allCases.forEach { fruit in
-            if sender.titleLabel?.text == fruit.order {
-                juiceMaker.make(of: fruit)
-            }
+    @IBAction func tapOrderButton(_ sender: UIButton) {
+        Juice.allCases.forEach { juice in
+            
+            let order = sender.titleLabel?.text ?? ""
+            checkMatch(order: order, juice: juice)
         }
+    }
+    
+    func checkMatch(order: String, juice: Juice) {
+        if order == juice.name + " 주문" {
+            orderMenu(of: juice)
+        }
+    }
+    
+    func orderMenu(of juice: Juice) {
+        let result = juiceMaker.make(of: juice)
+         
+         switch result {
+         case .success(let data):
+             print(data)
+             configureView()
+         case .failure(let data):
+             print(data)
+         }
     }
 }
 
