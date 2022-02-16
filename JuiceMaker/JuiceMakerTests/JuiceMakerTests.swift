@@ -26,4 +26,14 @@ class JuiceMakerTests: XCTestCase {
         let bananaResult: Bool = fruitStore.stocks[.banana] == bananaExpectedNumber
         XCTAssertTrue(strawberryResult && bananaResult)
     }
+    
+    func test_딸기수량이_부족한데_주스를_만들면_false() {
+        fruitStore.useFruit(fruits: [.strawberry: 16])
+        
+        guard let strawberryCount = fruitStore.stocks[.strawberry] else {
+            return
+        }
+        let isStrawberryIsExist: Bool = strawberryCount > 0
+        XCTAssertFalse(isStrawberryIsExist)
+    }
 }
