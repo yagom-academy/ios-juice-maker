@@ -24,11 +24,12 @@ struct StrawberryJuiceMakerState: State {
     var juiceMaker: JuiceMaker
     
     func order() throws -> String? {
-        guard juiceMaker.fruitStore.strawberry.counter >= 16 else {
+        if juiceMaker.fruitStore.strawberry.counter < 16 {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Strawberry.self, num: 16)
-        return "딸기 쥬스"
+        let menuName = "\(Strawberry.name) 쥬스"
+        return menuName
     }
 }
 
@@ -36,11 +37,12 @@ struct BananaJuiceMakerState: State {
     var juiceMaker: JuiceMaker
     
     func order() throws -> String? {
-        guard juiceMaker.fruitStore.banana.counter >= 2 else {
+        if juiceMaker.fruitStore.banana.counter < 2 {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Banana.self, num: 2)
-        return "바나나 쥬스"
+        let menuName = "\(Banana.name) 쥬스"
+        return menuName
     }
 }
 
@@ -48,11 +50,12 @@ struct KiwiJuiceMakerState: State {
     var juiceMaker: JuiceMaker
     
     func order() throws -> String? {
-        guard juiceMaker.fruitStore.kiwi.counter >= 3 else {
+        if juiceMaker.fruitStore.kiwi.counter < 3 {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Kiwi.self, num: 3)
-        return "키위 쥬스"
+        let menuName = "\(Kiwi.name) 쥬스"
+        return menuName
     }
 }
 
@@ -60,11 +63,12 @@ struct PineappleJuiceMakerState: State {
     var juiceMaker: JuiceMaker
     
     func order() throws -> String? {
-        guard juiceMaker.fruitStore.pineapple.counter >= 2 else {
+        if juiceMaker.fruitStore.pineapple.counter < 2 {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Pineapple.self, num: 2)
-        return "파인애플 쥬스"
+        let menuName = "\(Pineapple.name) 쥬스"
+        return menuName
     }
 }
 
@@ -72,13 +76,14 @@ struct StrawberryBananaJuiceMakerState: State {
     var juiceMaker: JuiceMaker
     
     func order() throws -> String? {
-        guard juiceMaker.fruitStore.strawberry.counter >= 10,
-              juiceMaker.fruitStore.banana.counter >= 1 else {
+        if juiceMaker.fruitStore.strawberry.counter < 10 ||
+              juiceMaker.fruitStore.banana.counter < 1 {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Strawberry.self, num: 10)
         juiceMaker.fruitStore.decrease(fruitType: Banana.self, num: 1)
-        return "딸바 쥬스"
+        let menuName = "\(Strawberry.name.first ?? " ")\(Banana.name.first ?? " ") 쥬스"
+        return menuName
     }
 }
 
@@ -86,11 +91,12 @@ struct MangoJuiceMakerState: State {
     var juiceMaker: JuiceMaker
     
     func order() throws -> String? {
-        guard juiceMaker.fruitStore.mango.counter >= 3 else {
+        if juiceMaker.fruitStore.mango.counter < 3 {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Mango.self, num: 3)
-        return "망고 쥬스"
+        let menuName = "\(Mango.name) 쥬스"
+        return menuName
     }
 }
 
@@ -98,28 +104,13 @@ struct MangoKiwiJuiceMakerState: State {
     var juiceMaker: JuiceMaker
     
     func order() throws -> String? {
-        guard juiceMaker.fruitStore.mango.counter >= 2,
-              juiceMaker.fruitStore.kiwi.counter >= 1 else {
+        if juiceMaker.fruitStore.mango.counter < 2 ||
+              juiceMaker.fruitStore.kiwi.counter < 1 {
             throw JuiceMakerStateError.outOfStock
         }
         juiceMaker.fruitStore.decrease(fruitType: Mango.self, num: 2)
         juiceMaker.fruitStore.decrease(fruitType: Kiwi.self, num: 1)
-        return "망키 쥬스"
-    }
-}
-
-enum JuiceMakerStateError: Error {
-    case noState
-    case outOfStock
-}
-
-extension JuiceMakerStateError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .noState:
-            return "현재 입력 받은 상태가 없어요. 어떤 주스를 제조할지 알려주세요!"
-        case .outOfStock:
-            return "재고가 모자라요. 재고를 수정할까요?"
-        }
+        let menuName = "\(Mango.name.first ?? " ")\(Kiwi.name.first ?? " ") 쥬스"
+        return menuName
     }
 }
