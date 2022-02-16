@@ -35,9 +35,9 @@ struct FruitStore {
         self.inventory[fruit] = value - 1
     }
     
-    mutating func takeOrder(of ingredients: [Ingredient]) throws {
+    mutating func makeDrink(of ingredients: [Ingredient]) throws {
         try checkStock(of: ingredients)
-        try makeJuice(of: ingredients)
+        try startMakingJuice(of: ingredients)
     }
     
     private func checkStock(of ingredients: [Ingredient]) throws {
@@ -55,7 +55,7 @@ struct FruitStore {
         }
     }
     
-    mutating private func makeJuice(of ingredients: [Ingredient]) throws {
+    mutating private func startMakingJuice(of ingredients: [Ingredient]) throws {
         try ingredients.forEach { ingredient in
             try use(ingredient)
         }

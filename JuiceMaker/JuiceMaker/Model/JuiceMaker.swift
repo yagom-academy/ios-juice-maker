@@ -8,7 +8,7 @@ import Foundation
 
 struct JuiceMaker {
     
-    private let fruitStore: FruitStore
+    private var fruitStore: FruitStore
     private let juiceRecipes: JuiceRecipes
     private let juiceRecipesMapper: JuiceRecipesMapper
     
@@ -17,4 +17,13 @@ struct JuiceMaker {
         self.juiceRecipes = recipes
         self.juiceRecipesMapper = JuiceRecipesMapper(jucieRecipeTypes: JuiceRecipeType.allCases, recipes: juiceRecipes.recipes)
     }
+    
+    mutating func takeOrder(recipeType: JuiceRecipeType) throws -> String {
+        guard let juiceRecipe = juiceRecipesMapper[recipeType] else {
+            throw JuiceMakerError.notFindReceipe
+        }
+        try fruitStore.makeDrink(of: juiceRecipe.ingredients)
+        return juiceRecipe.name
+    }
+    
 }
