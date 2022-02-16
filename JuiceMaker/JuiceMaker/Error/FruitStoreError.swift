@@ -12,7 +12,7 @@ enum FruitStoreError: Error {
     case unkown
 }
 
-extension FruitStoreError: LocalizedError {
+extension FruitStoreError {
     var errorDescription: String? {
         switch self {
         case .outOfStock(let outOfStockFruits):
