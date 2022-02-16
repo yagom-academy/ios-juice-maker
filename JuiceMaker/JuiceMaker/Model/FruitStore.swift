@@ -6,10 +6,12 @@
 
 import Foundation
 
+typealias StoreDataType = [Fruit: Int]
+
 protocol FruitStoreType {
-    var store: [Fruit: Int] { get }
+    var store: StoreDataType { get }
     func addStock(to fruit: Fruit, count: Int)
-    func useStocks(from requests: [Fruit: Int]) throws
+    func useStocks(from requests: StoreDataType) throws
 }
 
 /// A class that is in charge of managing count of fruits
@@ -17,37 +19,41 @@ final class FruitStore: FruitStoreType {
     
     // MARK: - Property
     
-    private(set) var store: [Fruit: Int] = [:]
+    private(set) var store: StoreDataType = [:]
     
     // MARK: - Initialize
     
     init(initialStock: Int = 10) {
         Fruit.allCases.forEach {
-            store[$0] = initialStock
+            self.store[$0] = initialStock
         }
     }
     
+    /// - Parameter count: Can be either positive or negative
     func addStock(to fruit: Fruit, count: Int) {
-        if let currentCount = store[fruit] {
-            store[fruit] = currentCount + count
+        if let currentCount = self.store[fruit] {
+            self.store[fruit] = currentCount + count
         }
     }
     
-    func useStocks(from requests: [Fruit: Int]) throws {
+    /// Use stocks only if checkStock didn't throw error
+    func useStocks(from requests: StoreDataType) throws {
         try checkStock(from: requests)
         
         requests.forEach { fruit, needCount in
-            if let currentCount = store[fruit] {
-                store[fruit] = currentCount - needCount
+            if let currentCount = self.store[fruit] {
+                self.store[fruit] = currentCount - needCount
             }
         }
     }
     
-    private func checkStock(from requests: [Fruit: Int]) throws {
+    /// Check stock if number of any requested fruits over current stock
+    /// - Throws: FruitStoreError
+    private func checkStock(from requests: StoreDataType) throws {
         var fruitsOutOfStock: [Fruit] = []
         
         requests.forEach { fruit, needCount in
-            if let currentCount = store[fruit], currentCount < needCount {
+            if let currentCount = self.store[fruit], currentCount < needCount {
                 fruitsOutOfStock.append(fruit)
             }
         }
