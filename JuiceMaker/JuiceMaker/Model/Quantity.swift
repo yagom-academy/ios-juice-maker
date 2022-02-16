@@ -45,7 +45,7 @@ struct Quantity: Equatable {
 
 extension Quantity {
     
-    static let ZERO: Quantity = Quantity(0)
+    static let zero: Quantity = Quantity(0)
     
     enum QuantityError: Error {
         case minusResult

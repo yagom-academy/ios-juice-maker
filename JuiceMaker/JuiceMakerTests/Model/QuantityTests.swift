@@ -9,14 +9,6 @@ import XCTest
 @testable import JuiceMaker
 
 class QuantityTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-    }
-
-    override func tearDownWithError() throws {
-        try super.setUpWithError()
-    }
     
     func test_양수로_생성이_가능하다() {
         // given
