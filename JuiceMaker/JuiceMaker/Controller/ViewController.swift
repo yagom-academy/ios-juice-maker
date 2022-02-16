@@ -44,6 +44,13 @@ class ViewController: UIViewController {
          }
     }
     
+    /// 모달을 표시한다.
+    private func presentModal() {
+        guard let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "modalViewController") else {return}
+        modalViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        self.present(modalViewController, animated: true)
+    }
+    
     /// 확인 알럿을 표시한다.
     private func showConfirmAlert(for message: String) {
         let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
@@ -51,12 +58,14 @@ class ViewController: UIViewController {
         alert.addAction(defaultAction)
         self.present(alert, animated: false)
     }
-    
+
     /// 재고 부족 알럿을 표시한다.
     private func showNotEnoghAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: UIAlertController.Style.alert)
-        let defaultAction =  UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
-        let cancleAction =  UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel)
+        let defaultAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { _ in
+            self.presentModal()
+        }
+        let cancleAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel)
         alert.addAction(defaultAction)
         alert.addAction(cancleAction)
         self.present(alert, animated: false)

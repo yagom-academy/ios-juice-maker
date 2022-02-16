@@ -19,6 +19,7 @@
 		E52D141627BBF3B400F6566D /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D141527BBF3B400F6566D /* Recipe.swift */; };
 		E52D141827BBF48200F6566D /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D141727BBF48200F6566D /* Juice.swift */; };
 		E8CEBFB127BD6D02009CD8DE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CEBFB027BD6D02009CD8DE /* Result.swift */; };
+		E8CEBFB527BD85AA009CD8DE /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CEBFB427BD85AA009CD8DE /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		E52D141527BBF3B400F6566D /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		E52D141727BBF48200F6566D /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		E8CEBFB027BD6D02009CD8DE /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		E8CEBFB427BD85AA009CD8DE /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				E8CEBFB427BD85AA009CD8DE /* ModalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				E52D141827BBF48200F6566D /* Juice.swift in Sources */,
 				E52D141427BBF2AF00F6566D /* Fruit.swift in Sources */,
+				E8CEBFB527BD85AA009CD8DE /* ModalViewController.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				E52D141627BBF3B400F6566D /* Recipe.swift in Sources */,
