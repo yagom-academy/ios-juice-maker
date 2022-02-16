@@ -14,58 +14,13 @@ struct JuiceMaker {
     init(fruitStore: FruitStore = FruitStore(), recipe: Recipe = Recipe()) {
         self.fruitStore = fruitStore
         self.recipe = recipe
+
+    }
+    
     func stock(of fruit: FruitStore.Fruit) -> Quantity {
         return fruitStore.stock(of: fruit)
     }
     
-    /// 쥬스 만들기.
-    ///
-    /// O(N)의 시간 복잡도를 갖고 있음. 이때 N은 쥬스를 만들 때 필요한 과일의 종류 갯수임.
-    ///
-    /// - Returns: Nothing. 성공했을 경우
-    ///
-    /// - Parameter of: 만들 쥬스
-    ///
-    /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
-    mutating func make(of juice: Juice) throws {
-        guard let neededFruits = recipe.recipe(of: juice) else {
-            throw JuiceMakerError.notExistRecipe
-        }
-        try validateStock(of: neededFruits)
-        try useStock(of: neededFruits)
-    }
-    
-    /// 쥬스를 만들 때 필요한 과일의 재고가 충분히 존재하는지 확인.
-    ///
-    /// O(N)의 시간 복잡도를 갖고 있음. 이때 N은 쥬스를 만들 때 필요한 과일의 종류 갯수임.
-    ///
-    /// - Returns: Nothing. 재고가 충분히 존재 할 경우
-    ///
-    /// - Parameter of: 필요한 과일과 갯수
-    ///
-    /// - Throws: `JuiceMakerError.soldOutError` 쥬스 만들 때 필요한 과일의 재고가 모자랄 경우
-    private func validateStock(of neededFruits: [Recipe.NeededFruit]) throws {
-        let outOfStocks = neededFruits.filter { neededFruit in
-            let stock = fruitStore.stock(of: neededFruit.fruit)
-            return stock < neededFruit.quantity
-        }
-        if outOfStocks.count > 0 {
-            throw JuiceMakerError.soldOut
-        }
-    }
-    
-    /// 쥬스를 만들기 위해 과일 저장소에서 필요한 과일들의 재고 갯수를 감소시킴.
-    ///
-    /// O(N)의 시간 복잡도를 갖고 있음. 이때 N은 쥬스를 만들 때 필요한 과일의 종류 갯수임.
-    ///
-    /// - Returns: Nothing.
-    ///
-    /// - Parameter of: 필요한 과일과 갯수
-    mutating private func useStock(of neededFruits: [Recipe.NeededFruit]) throws {
-        try neededFruits.forEach { neededFruits in
-            try fruitStore.decreaseStock(of: neededFruits.fruit, neededFruits.quantity)
-        }
-    }
     
 }
 
