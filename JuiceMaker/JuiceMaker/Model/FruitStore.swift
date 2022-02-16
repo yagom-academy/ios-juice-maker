@@ -40,6 +40,13 @@ struct FruitStore {
         }
     }
     
+    mutating func changeFruitCount(of fruit: FruitType, count: Int) {
+        guard count > 0 else {
+            return
+        }
+        inventory[fruit] = count
+    }
+    
     private func checkInventory(of fruitTypes: [FruitType: Int]) -> Result<Void, FruitStoreError> {
         let negativeFruitTypes = calculateUsableInventory(toSubtract: fruitTypes)
             .filter { $0.value < 0 }

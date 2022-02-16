@@ -84,4 +84,26 @@ class FruitStoreTests: XCTestCase {
         }
     }
 
+    func test_changeFruitCount메서드가_정상작동하는가() {
+        // given
+        guard var fruitStore = fruitStore else {
+            XCTFail()
+            return
+        }
+        let inputFruit = FruitType.banana
+        let inputFruitCount = 5
+        let expected: [FruitType: Int] = [
+            .strawberry: 10,
+            .banana: 5,
+            .pineapple: 10,
+            .kiwi: 10,
+            .mango: 10
+        ]
+               
+        // when
+        fruitStore.changeFruitCount(of: inputFruit, count: inputFruitCount)
+ 
+        // then
+        XCTAssertEqual(fruitStore.inventory, expected)
+    }
 }
