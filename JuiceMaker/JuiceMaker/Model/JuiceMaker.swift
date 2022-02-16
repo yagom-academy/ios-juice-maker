@@ -20,32 +20,33 @@ enum Juice {
 struct JuiceMaker {
     private let fruitStore = FruitStore()
     
-    func makeJuice(juice: Juice) {
+    func makeJuice(juice: Juice) -> String {
         switch juice {
         case .딸기쥬스:
-            validateMakeJuice(fruits: [(Fruit.딸기, -16)])
+            return validateMakeJuice(fruits: [(Fruit.딸기, -16)])
         case .바나나쥬스:
-            validateMakeJuice(fruits: [(Fruit.바나나, -2)])
+            return validateMakeJuice(fruits: [(Fruit.바나나, -2)])
         case .키위쥬스:
-            validateMakeJuice(fruits: [(Fruit.키위, -3)])
+            return validateMakeJuice(fruits: [(Fruit.키위, -3)])
         case .파인애플쥬스:
-            validateMakeJuice(fruits: [(Fruit.파인애플, -2)])
+            return validateMakeJuice(fruits: [(Fruit.파인애플, -2)])
         case .딸바쥬스:
-            validateMakeJuice(fruits: [(Fruit.딸기, -10), (Fruit.바나나, -1)])
+            return validateMakeJuice(fruits: [(Fruit.딸기, -10), (Fruit.바나나, -1)])
         case .망고쥬스:
-            validateMakeJuice(fruits: [(Fruit.망고, -3)])
+            return validateMakeJuice(fruits: [(Fruit.망고, -3)])
         case .망고키위쥬스:
-            validateMakeJuice(fruits: [(Fruit.망고, -2), (Fruit.키위, -1)])
+            return validateMakeJuice(fruits: [(Fruit.망고, -2), (Fruit.키위, -1)])
         }
     }
     
-    private func validateMakeJuice(fruits: [(Fruit, Int)]) {
+    private func validateMakeJuice(fruits: [(Fruit, Int)]) -> String {
         do {
             try fruitStore.changeAmountOfFruit(fruits: fruits)
+            return "성공"
         } catch let error as FruitError {
-            print(error.description)
+            return error.description
         } catch {
-            print(error.localizedDescription)
+            return error.localizedDescription
         }
     }
 }
