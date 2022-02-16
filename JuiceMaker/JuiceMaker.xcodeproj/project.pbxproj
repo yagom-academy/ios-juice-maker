@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3718AC8427BC9AB2001D3216 /* StoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718AC8327BC9AB2001D3216 /* StoreError.swift */; };
+		3718AC8627BCA5E7001D3216 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718AC8527BCA5E7001D3216 /* Ingredient.swift */; };
 		378EC52227BB636B0036E29E /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52127BB636B0036E29E /* Fruit.swift */; };
-		378EC52427BB64BF0036E29E /* FruitCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52327BB64BF0036E29E /* FruitCounter.swift */; };
+		378EC52427BB64BF0036E29E /* FruitStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52327BB64BF0036E29E /* FruitStockManager.swift */; };
 		378EC52627BB66650036E29E /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52527BB66650036E29E /* Storable.swift */; };
 		378EC52827BB67E60036E29E /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52727BB67E60036E29E /* Juice.swift */; };
 		378EC52A27BB6A1A0036E29E /* Makable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52927BB6A1A0036E29E /* Makable.swift */; };
@@ -23,8 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3718AC8327BC9AB2001D3216 /* StoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreError.swift; sourceTree = "<group>"; };
+		3718AC8527BCA5E7001D3216 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		378EC52127BB636B0036E29E /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
-		378EC52327BB64BF0036E29E /* FruitCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitCounter.swift; sourceTree = "<group>"; };
+		378EC52327BB64BF0036E29E /* FruitStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockManager.swift; sourceTree = "<group>"; };
 		378EC52527BB66650036E29E /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
 		378EC52727BB67E60036E29E /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		378EC52927BB6A1A0036E29E /* Makable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Makable.swift; sourceTree = "<group>"; };
@@ -67,10 +71,12 @@
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				378EC52127BB636B0036E29E /* Fruit.swift */,
-				378EC52327BB64BF0036E29E /* FruitCounter.swift */,
+				378EC52327BB64BF0036E29E /* FruitStockManager.swift */,
 				378EC52527BB66650036E29E /* Storable.swift */,
 				378EC52727BB67E60036E29E /* Juice.swift */,
 				378EC52927BB6A1A0036E29E /* Makable.swift */,
+				3718AC8327BC9AB2001D3216 /* StoreError.swift */,
+				3718AC8527BCA5E7001D3216 /* Ingredient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +188,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3718AC8427BC9AB2001D3216 /* StoreError.swift in Sources */,
+				3718AC8627BCA5E7001D3216 /* Ingredient.swift in Sources */,
 				378EC52227BB636B0036E29E /* Fruit.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
@@ -191,7 +199,7 @@
 				378EC52627BB66650036E29E /* Storable.swift in Sources */,
 				378EC52A27BB6A1A0036E29E /* Makable.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
-				378EC52427BB64BF0036E29E /* FruitCounter.swift in Sources */,
+				378EC52427BB64BF0036E29E /* FruitStockManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

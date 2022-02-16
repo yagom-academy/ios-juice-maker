@@ -9,35 +9,54 @@ import Foundation
 
 enum Juice {
     
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoJuice
+    case mangoKiwiJuice
     
-    var ingredients: [FruitCounter] {
-        var ingredients: [FruitCounter] = []
+    var ingredients: [Ingredient<Fruit>] {
+        var ingredients: [Ingredient<Fruit>] = []
         switch self {
-        case .strawberry:
-            ingredients.append(FruitCounter(fruit: .strawberry, count: 16))
-        case .banana:
-            ingredients.append(FruitCounter(fruit: .banana, count: 2))
-        case .kiwi:
-            ingredients.append(FruitCounter(fruit: .kiwi, count: 3))
-        case .pineapple:
-            ingredients.append(FruitCounter(fruit: .pineapple, count: 2))
-        case .strawberryBanana:
-            ingredients.append(FruitCounter(fruit: .strawberry, count: 10))
-            ingredients.append(FruitCounter(fruit: .banana, count: 1))
-        case .mango:
-            ingredients.append(FruitCounter(fruit: .mango, count: 3))
-        case .mangoKiwi:
-            ingredients.append(FruitCounter(fruit: .mango, count: 2))
-            ingredients.append(FruitCounter(fruit: .kiwi, count: 1))
+        case .strawberryJuice:
+            ingredients.append(Ingredient(name: .strawberry, count: 16))
+        case .bananaJuice:
+            ingredients.append(Ingredient(name: .banana, count: 2))
+        case .kiwiJuice:
+            ingredients.append(Ingredient(name: .kiwi, count: 3))
+        case .pineappleJuice:
+            ingredients.append(Ingredient(name: .pineapple, count: 2))
+        case .strawberryBananaJuice:
+            ingredients.append(Ingredient(name: .strawberry, count: 10))
+            ingredients.append(Ingredient(name: .banana, count: 1))
+        case .mangoJuice:
+            ingredients.append(Ingredient(name: .mango, count: 3))
+        case .mangoKiwiJuice:
+            ingredients.append(Ingredient(name: .mango, count: 2))
+            ingredients.append(Ingredient(name: .kiwi, count: 1))
         }
         return ingredients
+    }
+    
+    var name: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기"
+        case .bananaJuice:
+            return "바나나"
+        case .kiwiJuice:
+            return "키위"
+        case .pineappleJuice:
+            return "파인애플"
+        case .strawberryBananaJuice:
+            return "딸기 바나나"
+        case .mangoJuice:
+            return "망고"
+        case .mangoKiwiJuice:
+            return "망고 키위"
+        }
     }
     
 }

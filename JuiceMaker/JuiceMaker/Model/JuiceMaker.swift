@@ -8,11 +8,9 @@ import Foundation
 
 struct JuiceMaker: Makable {
     
-    typealias Storable = FruitStore
+    private var store: FruitStorable
     
-    private var store: Storable
-    
-    init(store: Storable) {
+    init(store: FruitStorable) {
         self.store = store
     }
     
@@ -25,12 +23,12 @@ struct JuiceMaker: Makable {
     ///
     /// - Returns: 주스를 다 만든 경우 true 반환
     ///
-    func make(into stuff: Juice) throws -> Bool {
-        for ingredient in stuff.ingredients {
-            let _ = try store.isStock(ingredient.fruit, as: ingredient.count)
+    func make(into juice: Juice) throws -> Bool {
+        for ingredient in juice.ingredients {
+            let _ = try store.checkStock(ingredient.name, as: ingredient.count)
         }
-        for ingredient in stuff.ingredients {
-            let _ = try store.use(ingredient.fruit, to: ingredient.count)
+        for ingredient in juice.ingredients {
+            let _ = try store.use(ingredient.name, to: ingredient.count)
         }
         
         return true
