@@ -11,6 +11,8 @@
 		AAED942E27BAB2BF007F2A84 /* FruitStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED942D27BAB2BF007F2A84 /* FruitStoreTests.swift */; };
 		AAED943527BBF9CC007F2A84 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED943427BBF9CC007F2A84 /* Fruit.swift */; };
 		AAED943727BC082F007F2A84 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED943627BC082F007F2A84 /* Juice.swift */; };
+		AAED943B27BD319E007F2A84 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED943A27BD319E007F2A84 /* Array+Extensions.swift */; };
+		AAED943D27BD31A8007F2A84 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED943C27BD31A8007F2A84 /* Dictionary+Extensions.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -37,6 +39,8 @@
 		AAED942D27BAB2BF007F2A84 /* FruitStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreTests.swift; sourceTree = "<group>"; };
 		AAED943427BBF9CC007F2A84 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		AAED943627BC082F007F2A84 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
+		AAED943A27BD319E007F2A84 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		AAED943C27BD31A8007F2A84 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,23 @@
 				9011FBBF27BBFC66002B0C57 /* JuiceMakerTests.swift */,
 			);
 			path = FruitStoreTests;
+			sourceTree = "<group>";
+		};
+		AAED943827BD3180007F2A84 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AAED943927BD318E007F2A84 /* Extensions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AAED943927BD318E007F2A84 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AAED943A27BD319E007F2A84 /* Array+Extensions.swift */,
+				AAED943C27BD31A8007F2A84 /* Dictionary+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
@@ -128,6 +149,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				AAED943827BD3180007F2A84 /* Utilities */,
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
@@ -247,7 +269,9 @@
 			files = (
 				AAED943527BBF9CC007F2A84 /* Fruit.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
+				AAED943D27BD31A8007F2A84 /* Dictionary+Extensions.swift in Sources */,
 				AAED943727BC082F007F2A84 /* Juice.swift in Sources */,
+				AAED943B27BD319E007F2A84 /* Array+Extensions.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

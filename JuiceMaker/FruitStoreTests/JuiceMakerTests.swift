@@ -14,32 +14,60 @@ class JuiceMakerTests: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = JuiceMaker()
+        let fruitStore: FruitStoreType = FruitStore(initialValue: 0)
+        sut = JuiceMaker(fruitStore: fruitStore)
     }
 
     override func tearDownWithError() throws {
         sut = nil
         try super.tearDownWithError()
     }
-    
-    func test_바나나쥬스를_주문하면_바나나의_수량이_필요개수만큼_소모된다() {
-        let expected = 8
 
-        sut?.make(.banana)
-        let bananaCount = sut?.count(of: .banana)
-        
-        XCTAssertEqual(bananaCount, expected)
+    func test_juiceMaker를_통해_fruitStore의_과일_개수를_설정할_수_있다() {
+        sut?.setFruitAmount(for: .pineapple, to: 3)
+
+        XCTAssertEqual(sut?.count(of: .pineapple), 3)
     }
-
-    func test_딸바쥬스를_주문하면_딸기와_바나나의_수량이_필요개수만큼_소모된다() {
+    
+    func test_쥬스를_주문하면_과일의_수량이_필요개수만큼_소모된다() {
+        let initialFruitAmount = 10
         let expectedStrawberryCount = 0
         let expectedBananaCount = 9
+        let expectedJuice: Juice = .strawberryBanana
+        sut?.setFruitAmount(for: .strawberry, to: initialFruitAmount)
+        sut?.setFruitAmount(for: .banana, to: initialFruitAmount)
 
-        sut?.make(.strawberryBanana)
-        let strawberryCount = sut?.count(of: .strawberry)
-        let bananaCount = sut?.count(of: .banana)
+        guard let result = sut?.make(expectedJuice) else {
+            XCTFail("SUT 인스턴스가 존재하지 않습니다.")
+            return
+        }
 
-        XCTAssertEqual(strawberryCount, expectedStrawberryCount)
-        XCTAssertEqual(bananaCount, expectedBananaCount)
+        switch result {
+        case .success(let juice):
+            XCTAssertEqual(juice, expectedJuice)
+            XCTAssertEqual(sut?.count(of: .strawberry), expectedStrawberryCount)
+            XCTAssertEqual(sut?.count(of: .banana), expectedBananaCount)
+        case .failure(let error):
+            XCTFail("에러 발생 Error: \(error)")
+        }
+    }
+
+    func test_쥬스_주문_시_과일_수량이_필요량_보다_모자라면_주문에_실패한다() {
+        let initialFruitCount = 0
+        let expectedError: JuiceMakerError = .notEnoughIngredients
+
+        guard let result = sut?.make(.strawberryBanana) else {
+            XCTFail("SUT 인스턴스가 존재하지 않습니다.")
+            return
+        }
+
+        switch result {
+        case .success(_):
+            XCTFail("쥬스 주문이 의도치 않게 성공하였습니다.")
+        case .failure(let error):
+            XCTAssertEqual(sut?.count(of: .strawberry), initialFruitCount)
+            XCTAssertEqual(sut?.count(of: .banana), initialFruitCount)
+            XCTAssertEqual(error as JuiceMakerError, expectedError)
+        }
     }
 }
