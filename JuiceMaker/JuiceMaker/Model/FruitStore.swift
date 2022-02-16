@@ -22,7 +22,7 @@ struct FruitStore: FruitStorable {
     /// - Throws: 해당 과일의 갯수가 부족하거나 0인 경우
     func use(_ fruit: Fruit, to count: Int) throws {
         let _ = try checkStock(fruit, as: count)
-        let stock = try validCount(name: fruit)
+        let stock = checkCount(stock: fruit)
         let remainCount = stock - count
         
         manager.change(amount: remainCount, about: fruit)
@@ -47,7 +47,7 @@ struct FruitStore: FruitStorable {
     ///
     /// - Returns: 재고가 필요한 과일만큼 가지고 있다면 true
     func checkStock(_ fruit: Fruit, as count: Int) throws -> Bool {
-        let stock = try validCount(name: fruit)
+        let stock = checkCount(stock: fruit)
         
         if stock == Int.zero {
             throw StoreError.outOfStock
@@ -58,10 +58,13 @@ struct FruitStore: FruitStorable {
         return true
     }
     
-    private func validCount(name: Fruit) throws -> Int {
-        guard let stock = manager.stocks[name] else {
-            throw StoreError.notExistStuff(name: String(describing: name))
-        }
-        return stock
+    /// 과일의 재고 갯수를 확인한다
+    ///
+    /// - Parameters:
+    ///     - fruit: 과일 열거형 타입
+    ///
+    /// - Returns: 재고 갯수
+    func checkCount(stock fruit: Fruit) -> Int {
+        return manager.count(stock: fruit)
     }
 }

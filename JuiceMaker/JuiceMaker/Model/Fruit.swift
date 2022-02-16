@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawberry
     case banana
     case pineapple
@@ -26,6 +26,21 @@ enum Fruit {
             return "키위"
         case .mango:
             return "망고"
+        }
+    }
+    
+    var emoji: String {
+        switch self {
+        case .strawberry:
+            return "🍓"
+        case .banana:
+            return "🍌"
+        case .pineapple:
+            return "🍍"
+        case .kiwi:
+            return "🥝"
+        case .mango:
+            return "🥭"
         }
     }
 }
