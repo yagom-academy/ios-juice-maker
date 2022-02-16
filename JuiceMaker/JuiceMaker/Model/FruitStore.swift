@@ -15,13 +15,13 @@ protocol FruitStoreType {
 /// A class that is in charge of managing count of fruits
 final class FruitStore: FruitStoreType {
     
-    // MARK: - Properties
+    // MARK: - Property
     
     private(set) var store: [Fruit: Int] = [:]
     
-    // MARK: - Lifecycle
+    // MARK: - Initialize
     
-    init(initialStock: Int) {
+    init(initialStock: Int = 10) {
         Fruit.allCases.forEach {
             store[$0] = initialStock
         }
@@ -34,17 +34,7 @@ final class FruitStore: FruitStoreType {
     }
     
     func useStocks(from requests: [Fruit: Int]) throws {
-        var fruitsOutOfStock: [Fruit] = []
-        
-        requests.forEach { fruit, needCount in
-            if !checkStock(of: fruit, willingAmount: needCount) {
-                fruitsOutOfStock.append(fruit)
-            }
-        }
-        
-        if fruitsOutOfStock.count > 0 {
-            throw FruitStoreError.outOfStock(fruitsOutOfStock)
-        }
+        try checkStock(from: requests)
         
         requests.forEach { fruit, needCount in
             if let currentCount = store[fruit] {
@@ -53,11 +43,17 @@ final class FruitStore: FruitStoreType {
         }
     }
     
-    private func checkStock(of fruit: Fruit, willingAmount: Int) -> Bool {
-        guard let currentCount = store[fruit], currentCount >= willingAmount else {
-            return false
+    private func checkStock(from requests: [Fruit: Int]) throws {
+        var fruitsOutOfStock: [Fruit] = []
+        
+        requests.forEach { fruit, needCount in
+            if let currentCount = store[fruit], currentCount < needCount {
+                fruitsOutOfStock.append(fruit)
+            }
         }
         
-        return true
+        if !fruitsOutOfStock.isEmpty {
+            throw FruitStoreError.outOfStock(fruitsOutOfStock)
+        }
     }
 }
