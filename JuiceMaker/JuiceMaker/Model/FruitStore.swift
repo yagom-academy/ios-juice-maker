@@ -20,7 +20,7 @@ extension FruitStoreError: LocalizedError {
 }
 
 /// 과일 저장소 타입
-struct FruitStore {
+class FruitStore {
     private(set) var inventory = [FruitType: Int]()
     
     init(initialFruitCount: Int = 10) {
@@ -29,7 +29,7 @@ struct FruitStore {
         }
     }
     
-    mutating func use(of fruitTypes: [FruitType: Int]) -> Result<Void, FruitStoreError> {
+    func use(of fruitTypes: [FruitType: Int]) -> Result<Void, FruitStoreError> {
         let checkedInventory =  checkInventory(of: fruitTypes)
         switch checkedInventory {
         case .success():
@@ -40,7 +40,7 @@ struct FruitStore {
         }
     }
     
-    mutating func changeFruitCount(of fruit: FruitType, count: Int) {
+    func changeFruitCount(of fruit: FruitType, count: Int) {
         guard count > 0 else {
             return
         }
