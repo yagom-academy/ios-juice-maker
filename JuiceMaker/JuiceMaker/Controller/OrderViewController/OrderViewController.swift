@@ -31,46 +31,15 @@ class OrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        commonInit()
+    }
+    
+    // MARK: - Common Initialize
+    
+    private func commonInit() {
         self.setupRightBarButtonItem()
         self.addFruitStoreObserver()
     }
     
 }
 
-extension OrderViewController {
-    
-    private func addFruitStoreObserver() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didChangeStock),
-            name: .didChangeStock,
-            object: nil
-        )
-    }
-    
-    @objc private func didChangeStock() {
-        let stocks = self.juiceMaker.fruitStore.store
-        
-        stocks.forEach { fruit, currentCount in
-            let label = self.getCountLabel(of: fruit)
-            DispatchQueue.main.async {
-                label.text = "\(currentCount)"
-            }
-        }
-    }
-    
-    private func getCountLabel(of fruit: Fruit) -> UILabel {
-        switch fruit {
-        case .strawberry:
-            return self.strawberryCountLabel
-        case .banana:
-            return self.bananaCountLabel
-        case .pineapple:
-            return self.pineappleCountLabel
-        case .kiwi:
-            return self.kiwiCountLabel
-        case .mango:
-            return self.mangoCountLabel
-        }
-    }
-}
