@@ -5,6 +5,7 @@
 //  Created by Derrick, Ryan-Son on 2022/02/16.
 //
 
+/// 쥬스 종류
 enum Juice {
     case strawberry
     case banana
@@ -13,35 +14,34 @@ enum Juice {
     case strawberryBanana
     case mango
     case mangoKiwi
-
+    
     var ingredients: Fruits {
         return IngredientsDirector.make(juice: self)
     }
 }
 
-/// [빌더 패턴]
-/// 어떤 재료를 소진하는가를 위한 클래스
+/// 소진 될 재료를 생성하는 타입
 final class IngredientsBuilder {
     private var ingredients: Fruits = [:]
-
-    /// 소진될 재료가 선택 될 시 완료를 위한 함수
+    
+    /// 생성한 재료를 반환합니다.
     func build() -> Fruits {
         return ingredients
     }
     
-    /// 소진될 재료의 이름, 개수를 추가 하기 위한 함수
+    /// 소진될 재료의 이름, 개수를 추가 합니다.
     func with(ingredient: Fruit, amount: Int) -> IngredientsBuilder {
         ingredients.updateValue(amount, forKey: ingredient)
         return self
     }
 }
 
-/// [빌더 패턴]
+/// 지정된 쥬스를 만들기 위해 소진 될 재료를 생성하는 타입
 final class IngredientsDirector {
-    /// 쥬스가 만들어 질 경우 소진되는 재료들을 빌드 하는 함수
+    /// 지정된 쥬스를 만들기 위해 소진 될 재료를 생성한다.
     static func make(juice: Juice) -> Fruits {
         var builder = IngredientsBuilder()
-
+        
         switch juice {
         case .strawberry:
             builder = builder.with(ingredient: .strawberry, amount: 16)
@@ -62,7 +62,7 @@ final class IngredientsDirector {
                 .with(ingredient: .mango, amount: 2)
                 .with(ingredient: .kiwi, amount: 1)
         }
-
+        
         return builder.build()
     }
 }
