@@ -14,7 +14,7 @@ enum JuiceMakerStateError: Error {
 }
 
 extension JuiceMakerStateError: LocalizedError {
-    private var errorDescription: String {
+    var errorDescription: String? {
         switch self {
         case .unknown:
             return "알 수 없는 에러입니다."
