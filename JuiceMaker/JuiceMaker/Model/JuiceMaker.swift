@@ -21,11 +21,16 @@ struct Recipe {
     let amount: Int
 }
 
+struct JuiceResult {
+    let isSuccess: Bool
+    let message: String?
+}
+
 // 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore = FruitStore()
     
-    func makeJuice(juice: Juice) -> String {
+    func makeJuice(type juice: Juice) -> JuiceResult {
         switch juice {
         case .strawberryJuice:
             let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: -16)
@@ -53,14 +58,14 @@ struct JuiceMaker {
         }
     }
     
-    private func validateMakeJuice(fruits: [Recipe]) -> String {
+    private func validateMakeJuice(fruits: [Recipe]) -> JuiceResult {
         do {
             try fruitStore.changeAmountOfFruit(fruits: fruits)
-            return "성공"
+            return JuiceResult(isSuccess: true, message: nil)
         } catch let error as FruitError {
-            return error.description
+            return JuiceResult(isSuccess: false, message: error.description)
         } catch {
-            return error.localizedDescription
+            return JuiceResult(isSuccess: false, message: error.localizedDescription)
         }
     }
 }
