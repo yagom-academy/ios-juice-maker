@@ -61,12 +61,14 @@ extension OrderViewController {
     
     func parseErrorMessage(of error: Error) -> String? {
         var errorMessage: String?
+        
         if let fruitStoreError: FruitStoreError = error as? FruitStoreError {
             errorMessage = fruitStoreError.errorDescription
         }
         else if let juiceMakerError: JuiceMakerError = error as? JuiceMakerError {
             errorMessage = juiceMakerError.errorDescription
         }
+        
         return errorMessage
     }
     
@@ -102,14 +104,11 @@ extension OrderViewController {
     
     @objc func presentManageStockViewController() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let manageStockNavigationController: UINavigationController = mainStoryboard.instantiateViewController(withIdentifier: "ManageStockNavigation") as? UINavigationController else {
-            return
+
+        if let manageStockNavigationController: UINavigationController = mainStoryboard.instantiateViewController(withIdentifier: "ManageStockNavigation") as? UINavigationController {
+            manageStockNavigationController.modalPresentationStyle = .fullScreen
+            present(manageStockNavigationController, animated: true, completion: nil)
         }
-        
-        manageStockNavigationController.modalPresentationStyle = .fullScreen
-        
-        present(manageStockNavigationController, animated: true, completion: nil)
     }
     
 }
