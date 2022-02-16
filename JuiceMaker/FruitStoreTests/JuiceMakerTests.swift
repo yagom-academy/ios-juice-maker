@@ -23,7 +23,7 @@ class JuiceMakerTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func test_juiceMaker를_통해_fruitStore의_과일_개수를_설정할_수_있다() {
+    func test_과일_재고를_설정한다() {
         sut?.setAmount(for: .pineapple, to: 3)
 
         XCTAssertEqual(sut?.count(of: .pineapple), 3)

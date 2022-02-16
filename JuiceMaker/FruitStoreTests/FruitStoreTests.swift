@@ -22,14 +22,23 @@ class FruitStoreTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func test_add를_통해_지정한_수만큼_과일_수량을_추가할_수_있다() throws {
+    func test_과일의_잔여_수량을_반환한다() {
+        let expected = 0
+
+        for fruit in Fruit.allCases {
+            let counted = sut?.count(of: fruit)
+            XCTAssertEqual(counted, expected)
+        }
+    }
+
+    func test_지정한_수만큼_과일_수량을_설정한다() {
         let expectedCount = 1
-        sut?.setAmount(for: .strawberry, to: 1)
+        sut?.setAmount(for: .strawberry, to: expectedCount)
         
         XCTAssertEqual(sut?.count(of: .strawberry) , expectedCount)
     }
     
-    func test_consume을_통해_지정한_수만큼_과일_수량을_감소시킬_수_있다() throws {
+    func test_지정한_수만큼_과일_수량을_감소시킨다() {
         let initialFruitCount = 10
         let expectedStrawberryCount = 7
         let expectedMangoCount = 8
@@ -46,16 +55,16 @@ class FruitStoreTests: XCTestCase {
         XCTAssertEqual(sut?.count(of: .kiwi), expectedKiwiCount)
     }
 
-    func test_과일_종류_배열을_초기값을_가진_딕셔너리_형태로_변환할_수_있다() {
+    func test_과일_종류_배열을_초기값을_가진_딕셔너리_형태로_변환한다() {
         let initialValue = 10
         var expected: Fruits = [:]
         Fruit.allCases.forEach { fruit in
             expected[fruit] = initialValue
         }
         
-        let result = Fruit.allCases.toFruits(with: initialValue)
+        let converted = Fruit.allCases.toFruits(with: initialValue)
 
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(converted, expected)
     }
     
     func test_과일의_재고가_필요량보다_적은경우_false를_반환한다() {
