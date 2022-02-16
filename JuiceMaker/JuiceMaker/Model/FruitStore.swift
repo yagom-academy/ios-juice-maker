@@ -27,7 +27,7 @@ class FruitStore {
     }
     
     /// 과일을 소진한다.
-    private func reduceFruit(fruit: Fruit, count: Int) throws {
+    private func reduce(of fruit: Fruit, count: Int) throws {
         guard let currentFruitCount = stock[fruit], currentFruitCount >= count else {
             throw FruitStoreError.notEnoughFruit
         }
@@ -35,9 +35,9 @@ class FruitStore {
     }
     
     /// 레시피의 과일을 사용한다.
-    func useFruit(juice: Juice) throws {
+    func useFruit(of juice: Juice) throws {
         for fruitInfo in juice.recipe.fruitList {
-            try reduceFruit(fruit: fruitInfo.fruit, count: fruitInfo.count)
+            try reduce(of: fruitInfo.fruit, count: fruitInfo.count)
         }
     }
     
