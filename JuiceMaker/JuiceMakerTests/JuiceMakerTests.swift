@@ -17,4 +17,13 @@ class JuiceMakerTests: XCTestCase {
         let result = fruitStore.stocks[Fruit.banana]
         XCTAssertEqual(result, expectedNumber)
     }
+    
+    func test_딸기10개_바나나1개를_사용하면_딸기0개_바나나9개가_된다() {
+        let strawberryExpectedNumber = 0
+        let bananaExpectedNumber = 9
+        fruitStore.useFruit(fruits: [.strawberry: 10, .banana: 1])
+        let strawberryResult: Bool = fruitStore.stocks[.strawberry] == strawberryExpectedNumber
+        let bananaResult: Bool = fruitStore.stocks[.banana] == bananaExpectedNumber
+        XCTAssertTrue(strawberryResult && bananaResult)
+    }
 }
