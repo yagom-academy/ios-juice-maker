@@ -23,8 +23,16 @@ class FruitStore {
     }
     
     func useFruit(fruits: [Fruit: Int]) {
+        var stocks = self.stocks
+        
         for useStock in fruits {
             stocks[useStock.key] = (stocks[useStock.key] ?? 0) - useStock.value
+        }
+        
+        let isCanMake = stocks.map { $0.value }.filter({ $0 < 0 }).count == 0
+        
+        if isCanMake {
+            self.stocks = stocks
         }
     }
 }
