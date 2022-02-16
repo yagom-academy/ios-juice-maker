@@ -7,7 +7,15 @@
 import UIKit
 
 class OrderViewController: UIViewController {
-
+    
+    // MARK: - IBOutlet
+    
+    @IBOutlet weak var strawberryCountLabel: UILabel!
+    @IBOutlet weak var bananaCountLabel: UILabel!
+    @IBOutlet weak var pineappleCountLabel: UILabel!
+    @IBOutlet weak var kiwiCountLabel: UILabel!
+    @IBOutlet weak var mangoCountLabel: UILabel!
+    
     // MARK: - Property
     
     var juiceMaker: JuiceMaker
@@ -24,7 +32,5 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
-}
+}ㅇ
 
