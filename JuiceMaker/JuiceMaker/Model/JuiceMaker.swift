@@ -10,11 +10,13 @@ import Foundation
 struct JuiceMaker {
     private var fruitStore: FruitStore = FruitStore()
     
-    func makeJuice(juice: Juice) -> JuiceMakeResult {
-        if fruitStore.canMakeJuice(juice: juice) {
-            fruitStore.useFruit(juice: juice)
-            return .success
+    func makeJuice(juice: Juice) {
+        do {
+            try fruitStore.useFruit(juice: juice)
+        } catch let error as FruitStoreError {
+            print(error.rawValue)
+        } catch {
+            print(error)
         }
-        return .notEnoughFruit
     }
 }

@@ -24,35 +24,16 @@ class FruitStore {
         }
     }
     
-    private func reduceFruit(fruit: Fruit, count: Int) throws -> Void {
+    private func reduceFruit(fruit: Fruit, count: Int) throws {
         guard let currentFruitCount = stock[fruit], currentFruitCount >= count else {
             throw FruitStoreError.notEnoughFruit
         }
         stock[fruit] = currentFruitCount - count
     }
     
-    func useFruit(juice: Juice) {
-        juice.recipe.fruitList.forEach { fruitInfo in
-            do {
-                try reduceFruit(fruit: fruitInfo.fruit, count: fruitInfo.count)
-            } catch let error as FruitStoreError {
-                print(error.rawValue)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func canMakeJuice(juice: Juice) -> Bool {
+    func useFruit(juice: Juice) throws {
         for fruitInfo in juice.recipe.fruitList {
-            guard let currentFruitCount = stock[fruitInfo.fruit] else {
-                return false
-            }
-            
-            if currentFruitCount < fruitInfo.count {
-                return false
-            }
+            try reduceFruit(fruit: fruitInfo.fruit, count: fruitInfo.count)
         }
-        return true
     }
 }
