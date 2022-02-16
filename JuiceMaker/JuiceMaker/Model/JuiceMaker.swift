@@ -27,7 +27,7 @@ struct JuiceMaker {
     /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
     mutating func make(of juice: Juice) throws {
         guard let neededFruits = recipe.get(juice) else {
-            throw JuiceMakerError.notExistRecipeError
+            throw JuiceMakerError.notExistRecipe
         }
         try validateStock(of: neededFruits)
         try useStock(of: neededFruits)
@@ -48,7 +48,7 @@ struct JuiceMaker {
             return stock < neededFruit.quantity
         }
         if outOfStocks.count > 0 {
-            throw JuiceMakerError.soldOutError
+            throw JuiceMakerError.soldOut
         }
     }
     
@@ -77,8 +77,8 @@ extension JuiceMaker {
     
     /// 과일 쥬스를 만들던 도중 발생할 수 있는 에러
     enum JuiceMakerError: Error {
-        case soldOutError
-        case notExistRecipeError
+        case soldOut
+        case notExistRecipe
     }
     
     /// 과일 쥬스를 만들 때 필요한 과일과 갯수의 정보를 알려주는 레시피 타입

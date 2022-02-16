@@ -50,13 +50,13 @@ struct FruitStore {
     /// - Throws: `FruitStoreError.outOfStockError` 재고가 충분치 않은데도 불구하고 줄이기의 요청이 들어올 경우
     mutating func decreaseStock(of fruit: Fruit, _ quantity: Quantity) throws {
         guard let stock = fruitStocks[fruit] else {
-            throw FruitStoreError.outOfStockError
+            throw FruitStoreError.outOfStock
         }
         do {
             let result = try stock - quantity
             fruitStocks[fruit] = result
-        } catch Quantity.QuantityError.minusResultError {
-            throw FruitStoreError.outOfStockError
+        } catch Quantity.QuantityError.minusResult {
+            throw FruitStoreError.outOfStock
         }
     }
 }
@@ -70,6 +70,6 @@ extension FruitStore {
     }
     
     enum FruitStoreError: Error {
-        case outOfStockError
+        case outOfStock
     }
 }
