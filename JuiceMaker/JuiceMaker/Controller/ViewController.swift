@@ -39,12 +39,28 @@ class ViewController: UIViewController {
         let result = juiceMaker.make(of: juice)
          
          switch result {
-         case .success(let data):
-             print(data)
+         case .success(let message):
              configureView()
-         case .failure(let data):
-             print(data)
+             showConfirmAlert(for: message)
+         case .failure:
+             showNotEnoghAlert()
          }
+    }
+    
+    func showConfirmAlert(for message: String) {
+        let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
+        let defaultAction =  UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: false)
+    }
+    
+    func showNotEnoghAlert() {
+        let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: UIAlertController.Style.alert)
+        let defaultAction =  UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
+        let cancleAction =  UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel)
+        alert.addAction(defaultAction)
+        alert.addAction(cancleAction)
+        self.present(alert, animated: false)
     }
 }
 
