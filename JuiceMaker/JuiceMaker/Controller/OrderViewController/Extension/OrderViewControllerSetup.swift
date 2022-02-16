@@ -10,12 +10,12 @@ import UIKit
 extension OrderViewController {
     
     func setupRightBarButtonItem() {
-        guard let rightBarButtonItem = self.navigationItem.rightBarButtonItem else {
+        guard self.navigationItem.rightBarButtonItem != nil else {
             return
         }
         
-        rightBarButtonItem.target = self
-        rightBarButtonItem.action = #selector(presentManageStockViewController)
+        self.navigationItem.rightBarButtonItem?.target = self
+        self.navigationItem.rightBarButtonItem?.action = #selector(presentManageStockViewController)
     }
     
     func addFruitStoreObserver() {
