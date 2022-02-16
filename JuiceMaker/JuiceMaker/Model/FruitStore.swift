@@ -6,7 +6,14 @@
 
 import Foundation
 
-struct FruitStore {
+protocol Store {
+    mutating func increase(in fruit: Fruit) throws
+    mutating func decrease(in fruit: Fruit) throws
+    mutating func makeDrink(of ingredients: [Ingredient]) throws
+}
+
+struct FruitStore: Store {
+
     private var inventory: [Fruit: Int]
     
     init(value: Int = 10) {
