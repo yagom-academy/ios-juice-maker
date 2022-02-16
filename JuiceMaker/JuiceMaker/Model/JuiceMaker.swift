@@ -10,7 +10,7 @@ import Foundation
 struct JuiceMaker {
     let fruitStore: FruitStore = FruitStore()
     
-    func makeJuice(juice: Juice) {
-        fruitStore.useFruit(fruits: juice.ingredient)
+    func makeJuice(juice: Juice) -> Bool {
+        return fruitStore.useFruit(fruits: juice.ingredient)
     }
 }
