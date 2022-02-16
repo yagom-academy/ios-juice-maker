@@ -19,6 +19,7 @@ enum Juice {
 
 extension Juice {
   typealias Ingredient = (Fruit, Int)
+  
   var ingredients: [Ingredient] {
     switch self {
     case .strawberry:
@@ -35,6 +36,25 @@ extension Juice {
       return [(.mango, 3)]
     case .mangoKiwi:
       return [(.mango, 2), (.kiwi, 1)]
+    }
+  }
+  
+  var name: String {
+    switch self {
+    case .strawberry:
+      return "딸기"
+    case .banana:
+      return "바나나"
+    case .kiwi:
+      return "키위"
+    case .pineapple:
+      return "파인애플"
+    case .strawberryBanana:
+      return "딸바"
+    case .mango:
+      return "망고"
+    case .mangoKiwi:
+      return "망키"
     }
   }
 }
