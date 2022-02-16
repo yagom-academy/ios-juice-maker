@@ -39,6 +39,7 @@ class OrderViewController: UIViewController {
     private func configure() {
         self.setupRightBarButtonItem()
         self.addFruitStoreObserver()
+        self.didChangeStock()
     }
     
 }
