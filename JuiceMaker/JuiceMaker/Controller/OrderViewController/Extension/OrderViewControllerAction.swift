@@ -9,6 +9,8 @@ import UIKit
 
 extension OrderViewController {
     
+    // MARK: - Button Action
+    
     @IBAction func touchStrawberryBananaJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .strawberryBananaJuice)
     }
@@ -36,10 +38,8 @@ extension OrderViewController {
     @IBAction func touchMangoJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .mangoJuice)
     }
-
-}
-
-extension OrderViewController {
+    
+    // MARK: - Helper Method of Ordering Juice Process
     
     private func orderJuice(menu: Juice) {
         juiceMaker.makeJuice(of: menu, result: { result in
@@ -64,9 +64,35 @@ extension OrderViewController {
         })
     }
     
-}
-
-extension OrderViewController {
+    // MARK: - Fruit Stock Label Related
+    
+    @objc func didChangeStock() {
+        let stocks = self.juiceMaker.fruitStore.store
+        
+        stocks.forEach { fruit, currentCount in
+            let label = self.getCountLabel(of: fruit)
+            DispatchQueue.main.async {
+                label.text = "\(currentCount)"
+            }
+        }
+    }
+    
+    private func getCountLabel(of fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return self.strawberryCountLabel
+        case .banana:
+            return self.bananaCountLabel
+        case .pineapple:
+            return self.pineappleCountLabel
+        case .kiwi:
+            return self.kiwiCountLabel
+        case .mango:
+            return self.mangoCountLabel
+        }
+    }
+    
+    // MARK: - Presenting ManageStockViewController
     
     @objc func presentManageStockViewController() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -78,31 +104,6 @@ extension OrderViewController {
         manageStockNavigationController.modalPresentationStyle = .fullScreen
         
         present(manageStockNavigationController, animated: true, completion: nil)
-    }
-    
-}
-
-struct Alert {
-    
-    enum AlertType {
-        case success
-        case error
-    }
-    
-    static func makeAlert(of type: AlertType, title: String? = nil, message: String? = nil, actionHandler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
-        let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        switch type {
-        case .success:
-            let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
-        case .error:
-            let yesAction: UIAlertAction = UIAlertAction(title: "예", style: .default, handler: actionHandler)
-            alertController.addAction(yesAction)
-            let noAction: UIAlertAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-            alertController.addAction(noAction)
-        }
-        
-        return alertController
     }
     
 }

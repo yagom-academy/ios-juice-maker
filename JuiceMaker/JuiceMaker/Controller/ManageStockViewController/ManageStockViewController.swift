@@ -13,12 +13,12 @@ class ManageStockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.commonInit()
+        self.configure()
     }
     
-    // MARK: - Common Initialize
+    // MARK: - Configure
     
-    private func commonInit() {
+    private func configure() {
         self.title = "재고 추가"
         self.setupBarItem()
     }
