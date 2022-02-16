@@ -16,13 +16,13 @@ enum Fruit: CaseIterable {
 
 enum FruitError: String, Error {
     case outOfAmount
-    case noFruit
+    case nonExistentFruit
 }
 
 extension FruitError: LocalizedError {
     var description: String {
         switch self {
-        case .noFruit:
+        case .nonExistentFruit:
             return "과일이 존재하지 않습니다."
         case .outOfAmount:
             return "재고가 부족합니다."
@@ -39,7 +39,7 @@ class FruitStore {
         var temporaryResult: [(Fruit, Int)] = []
         
         try fruits.forEach { (fruit, amount) in
-            guard let fruitAmount = store[fruit] else { throw FruitError.noFruit }
+            guard let fruitAmount = store[fruit] else { throw FruitError.nonExistentFruit }
             if fruitAmount + amount < 0 { throw FruitError.outOfAmount }
             temporaryResult.append((fruit, fruitAmount + amount))
         }
