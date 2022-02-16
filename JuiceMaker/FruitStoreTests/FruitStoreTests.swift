@@ -55,4 +55,16 @@ class FruitStoreTests: XCTestCase {
 
         XCTAssertEqual(result, expected)
     }
+    
+    func test_과일의_재고가_필요량보다_적은경우_false를_반환한다() {
+        let hasIngredients = sut?.hasIngredients(for: .strawberry)
+        
+        XCTAssertEqual(hasIngredients, false)
+    }
+    
+    func test_과일의_재고가_필요량을_충족할_경우_true를_반환한다() {
+        let hasIngredients = sut?.hasIngredients(for: .mango)
+        
+        XCTAssertEqual(hasIngredients, true)
+    }
 }

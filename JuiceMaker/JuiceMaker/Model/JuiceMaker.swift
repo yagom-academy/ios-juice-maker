@@ -6,7 +6,7 @@
 
 /// 쥬스 메이커 타입
 protocol JuiceMakerType {
-    func make(_ juice: Juice)
+    func make(_ juice: Juice) -> Juice?
     func count(of fruit: Fruit) -> Int
 }
 
@@ -21,8 +21,13 @@ struct JuiceMaker: JuiceMakerType {
     
     /// 과일쥬스를 만들기 위한 함수
     /// - juice : 쥬스 이름
-    func make(_ juice: Juice) {
+    func make(_ juice: Juice) -> Juice? {
+        // fruitStore.hasIngredients(for juice)
+        guard fruitStore.hasIngredients(for: juice) else {
+            return nil
+        }
         fruitStore.consume(ingredients: juice.ingredients)
+        return juice
     }
     
     /// 쥬스를 만든 후 소진된 과일의 수량 파악을 위한 함수

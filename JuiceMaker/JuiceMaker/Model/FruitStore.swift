@@ -15,6 +15,7 @@ protocol FruitStoreType {
     func add(_ fruit: Fruit, amount: Int)
     func consume(_ fruit: Fruit, amount: Int)
     func consume(ingredients: Fruits)
+    func hasIngredients(for juice: Juice) -> Bool
 }
 
 /// 과일을 위한 기능  클래스
@@ -39,7 +40,7 @@ final class FruitStore: FruitStoreType {
         fruits[fruit]? += amount
     }
 
-    /// [테스트] 과일의 재고가 소진 될 수 있도록 초기값을 설정
+    /// 과일의 재고가 소진 될 수 있도록 초기값을 설정
     /// - fruit : 과일 이름
     /// - amount : 수량
     func consume(_ fruit: Fruit, amount: Int = 1) {
@@ -53,6 +54,17 @@ final class FruitStore: FruitStoreType {
         ingredients.forEach { fruit, amount in
             fruits[fruit]? -= amount
         }
+    }
+    
+    func hasIngredients(for juice: Juice) -> Bool {
+        for (key, value) in juice.ingredients {
+            if (fruits[key]! - value) >= 0 {
+                continue
+            } else {
+                return false
+            }
+        }
+        return true
     }
 }
 
