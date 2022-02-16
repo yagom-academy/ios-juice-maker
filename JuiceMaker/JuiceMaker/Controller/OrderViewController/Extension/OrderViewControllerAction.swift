@@ -48,20 +48,26 @@ extension OrderViewController {
                 let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .success, title: "\(menu.name) 나왔습니다! 맛있게 드세요!")
                 self.present(orderResultAlertController, animated: true, completion: nil)
             case .fail(let error):
-                var errorMessage: String?
-                if let fruitStoreError: FruitStoreError = error as? FruitStoreError {
-                    errorMessage = fruitStoreError.errorDescription
-                }
-                else if let juiceMakerError: JuiceMakerError = error as? JuiceMakerError {
-                    errorMessage = juiceMakerError.errorDescription
-                }
+                let errorMessage: String? = parseErrorMessage(of: error)
                 
                 let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .error, title: "재료가 모자라요. 재고를 수정할까요?", message: errorMessage) { action in
                     self.presentManageStockViewController()
                 }
+                
                 self.present(orderResultAlertController, animated: true, completion: nil)
             }
         })
+    }
+    
+    func parseErrorMessage(of error: Error) -> String? {
+        var errorMessage: String?
+        if let fruitStoreError: FruitStoreError = error as? FruitStoreError {
+            errorMessage = fruitStoreError.errorDescription
+        }
+        else if let juiceMakerError: JuiceMakerError = error as? JuiceMakerError {
+            errorMessage = juiceMakerError.errorDescription
+        }
+        return errorMessage
     }
     
     // MARK: - Fruit Stock Label Related
