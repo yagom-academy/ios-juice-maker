@@ -29,6 +29,17 @@ struct FruitStore {
         self.fruits[fruit] = value - 1
     }
     
+    mutating func takeOrder(of ingredients: [Ingredient]) throws {
+        try checkStock(of: ingredients)
+        try makeJuice(of: ingredients)
+    }
+    
+    private func checkStock(of ingredients: [Ingredient]) throws {
+        try ingredients.forEach { ingredient in
+            try isEnough(of: ingredient)
+        }
+    }
+    
     private func isEnough(of ingredient: Ingredient) throws {
         let fruit = ingredient.fruit
         let number = ingredient.number
@@ -38,9 +49,20 @@ struct FruitStore {
         }
     }
     
-    func takeOrder(of ingredients: [Ingredient]) throws {
+    mutating private func makeJuice(of ingredients: [Ingredient]) throws {
         try ingredients.forEach { ingredient in
-            try isEnough(of: ingredient)
+            try use(ingredient)
         }
+    }
+    
+    mutating private func use(_ ingredient: Ingredient) throws {
+        let fruit = ingredient.fruit
+        let number = ingredient.number
+        
+        guard let value = fruits[fruit] else {
+            throw JuiceMakerError.notFindFruit
+        }
+        
+        self.fruits[fruit] = value - number
     }
 }
