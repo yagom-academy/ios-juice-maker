@@ -24,7 +24,7 @@ class JuiceMakerTests: XCTestCase {
     
     func test_쥬스를_만들_수_있다() {
         // given
-        sut = JuiceMaker(fruitStore: FruitStore(everyStock: Quantity(Int.max)))
+        sut = JuiceMaker(fruitStore: FruitStore(everyStock: Quantity(.max)))
         let juice = JuiceMaker.Juice.bananaJuice
         
         // when then
