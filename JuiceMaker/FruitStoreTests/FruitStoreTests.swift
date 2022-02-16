@@ -46,7 +46,7 @@ class FruitStoreTests: XCTestCase {
         XCTAssertEqual(sut?.count(of: .kiwi), expectedKiwiCount)
     }
 
-    func test_과일_종류_배열을_초기값을_가진_배열_형태로_변환할_수_있다() {
+    func test_과일_종류_배열을_초기값을_가진_딕셔너리_형태로_변환할_수_있다() {
         let initialValue = 10
         var expected: Fruits = [:]
         Fruit.allCases.forEach { fruit in

@@ -30,8 +30,9 @@ final class IngredientsBuilder {
     }
     
     /// 소진될 재료의 이름, 개수를 추가 하기 위한 함수
-    func add(ingredients: Fruits) {
-        self.ingredients = ingredients
+    func with(ingredient: Fruit, amount: Int) -> IngredientsBuilder {
+        ingredients.updateValue(amount, forKey: ingredient)
+        return self
     }
 }
 
@@ -39,23 +40,27 @@ final class IngredientsBuilder {
 final class IngredientsDirector {
     /// 쥬스가 만들어 질 경우 소진되는 재료들을 빌드 하는 함수
     static func make(juice: Juice) -> Fruits {
-        let builder = IngredientsBuilder()
+        var builder = IngredientsBuilder()
 
         switch juice {
         case .strawberry:
-            builder.add(ingredients: [.strawberry: 16])
+            builder = builder.with(ingredient: .strawberry, amount: 16)
         case .banana:
-            builder.add(ingredients: [.banana: 2])
+            builder = builder.with(ingredient: .banana, amount: 2)
         case .kiwi:
-            builder.add(ingredients: [.kiwi: 3])
+            builder = builder.with(ingredient: .kiwi, amount: 3)
         case .pineapple:
-            builder.add(ingredients: [.pineapple: 2])
+            builder = builder.with(ingredient: .pineapple, amount: 2)
         case .strawberryBanana:
-            builder.add(ingredients: [.strawberry: 10, .banana: 1])
+            builder = builder
+                .with(ingredient: .strawberry, amount: 10)
+                .with(ingredient: .banana, amount: 1)
         case .mango:
-            builder.add(ingredients: [.mango: 3])
+            builder = builder.with(ingredient: .mango, amount: 3)
         case .mangoKiwi:
-            builder.add(ingredients: [.mango: 2, .kiwi: 1])
+            builder = builder
+                .with(ingredient: .mango, amount: 2)
+                .with(ingredient: .kiwi, amount: 1)
         }
 
         return builder.build()
