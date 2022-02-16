@@ -8,7 +8,6 @@
 import Foundation
 
 enum Juice {
-    
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -58,5 +57,4 @@ enum Juice {
             return "망고 키위"
         }
     }
-    
 }

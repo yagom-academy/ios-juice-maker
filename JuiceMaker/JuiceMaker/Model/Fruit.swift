@@ -8,7 +8,6 @@
 import Foundation
 
 enum Fruit {
-    
     case strawberry
     case banana
     case pineapple
@@ -29,5 +28,4 @@ enum Fruit {
             return "망고"
         }
     }
-    
 }

@@ -8,9 +8,7 @@
 import Foundation
 
 protocol Makable {
-    
     associatedtype Stuff
     
     func make(into stuff: Stuff) throws -> Bool
-    
 }

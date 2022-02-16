@@ -8,8 +8,6 @@
 import Foundation
 
 struct Ingredient<T> {
-    
     let name: T
     let count: Int
-    
 }

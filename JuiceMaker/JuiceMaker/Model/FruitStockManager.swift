@@ -8,7 +8,6 @@
 import Foundation
 
 class FruitStockManager {
-    
     private(set) var stocks: [Fruit:Int] = [:]
     
     init(stocks: [Fruit:Int]) {
@@ -18,5 +17,4 @@ class FruitStockManager {
     func change(amount count: Int, about: Fruit) {
         stocks[about] = count
     }
-    
 }
