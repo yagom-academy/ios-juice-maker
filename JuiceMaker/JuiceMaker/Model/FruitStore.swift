@@ -21,4 +21,10 @@ class FruitStore {
     func add(numberOf: Int, fruit: Fruit) {
         stocks[fruit] = numberOf + (stocks[fruit] ?? 0)
     }
+    
+    func useFruit(fruits: [Fruit: Int]) {
+        for useStock in fruits {
+            stocks[useStock.key] = (stocks[useStock.key] ?? 0) - useStock.value
+        }
+    }
 }
