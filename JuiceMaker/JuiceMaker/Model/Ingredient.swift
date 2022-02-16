@@ -8,8 +8,8 @@
 import Foundation
 
 struct Ingredient {
-    private let fruit: Fruit
-    private let number: Int
+    let fruit: Fruit
+    let number: Int
     
     init(fruit: Fruit, number: Int) {
         self.fruit = fruit

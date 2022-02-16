@@ -24,4 +24,19 @@ struct FruitStore {
         
         self.fruits[fruit] = value - 1
     }
+    
+    private func isEnough(of ingredient: Ingredient) throws {
+        let fruit = ingredient.fruit
+        let number = ingredient.number
+        
+        guard let value = fruits[fruit], value - number >= 0 else {
+            throw
+        }
+    }
+    
+    func takeOrder(of ingredients: [Ingredient]) throws {
+        try ingredients.forEach { ingredient in
+            try isEnough(of: ingredient)
+        }
+    }
 }
