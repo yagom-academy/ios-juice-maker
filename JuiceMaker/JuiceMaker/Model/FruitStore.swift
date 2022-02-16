@@ -9,17 +9,21 @@ import Foundation
 struct FruitStore {
     private var fruits: [Fruit: Int]
     
-    mutating func increase(in fruit: Fruit) {
+    mutating func increase(in fruit: Fruit) throws {
         guard let value = fruits[fruit] else {
-            return
+            throw JuiceMakerError.notFindFruit
         }
         
         self.fruits[fruit] = value + 1
     }
     
-    mutating func decrease(in fruit: Fruit) {
-        guard let value = fruits[fruit], value > 0 else {
-            return
+    mutating func decrease(in fruit: Fruit) throws {
+        guard let value = fruits[fruit] else {
+            throw JuiceMakerError.notFindFruit
+        }
+        
+        guard value > 0 else {
+            throw JuiceMakerError.notDecrease
         }
         
         self.fruits[fruit] = value - 1
@@ -30,7 +34,7 @@ struct FruitStore {
         let number = ingredient.number
         
         guard let value = fruits[fruit], value - number >= 0 else {
-            throw
+            throw JuiceMakerError.notEnough
         }
     }
     
