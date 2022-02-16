@@ -31,12 +31,12 @@ class OrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        commonInit()
+        configure()
     }
     
-    // MARK: - Common Initialize
+    // MARK: - Configure
     
-    private func commonInit() {
+    private func configure() {
         self.setupRightBarButtonItem()
         self.addFruitStoreObserver()
     }
