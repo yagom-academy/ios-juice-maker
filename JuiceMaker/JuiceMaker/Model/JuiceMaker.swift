@@ -23,7 +23,7 @@ struct JuiceMaker {
             throw JuiceMakerError.notFindReceipe
         }
         try fruitStore.makeDrink(of: juiceRecipe.ingredients)
-        return juiceRecipe.name
+        return juiceRecipe.name.description
     }
     
 }
