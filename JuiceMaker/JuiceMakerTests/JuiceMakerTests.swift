@@ -22,7 +22,7 @@ class JuiceMakerTests: XCTestCase {
     
     func test_과일재고가_부족한_경우_실패한다() {
         let input = Juice.strawberryJuice
-        let expectation = FruitError.outOfAmount.description
+        let expectation = FruitError.outOfStock.description
         let result = juiceMaker.makeJuice(juice: input)
         
         XCTAssertEqual(expectation, result)
