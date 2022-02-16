@@ -9,9 +9,10 @@ import XCTest
 @testable import JuiceMaker
 
 class JuiceMakerTests: XCTestCase {
+    /// FruitStore의 Fruit 재고는 모두 10개로 초기화 되어 있다고 가졍한다.
     let fruitStore: FruitStore = FruitStore()
     
-    func test_바나나가_하나_추가되면_11() {
+    func test_바나나가_1개가_추가되면_바나나가_11개가_된다() {
         let expectedNumber = 11
         fruitStore.addFruit(numberOf: 1, fruit: Fruit.banana)
         let result = fruitStore.stocks[Fruit.banana]
@@ -29,13 +30,17 @@ class JuiceMakerTests: XCTestCase {
         XCTAssertTrue(strawberryResult && bananaResult)
     }
     
-    func test_딸기수량이_부족한데_주스를_만들면_안됨() {
-        fruitStore.useFruit(fruits: [.strawberry: 16])
-        
-        guard let strawberryCount = fruitStore.stocks[.strawberry] else {
+    func test_딸기수량이_10인데_딸기_16개를_사용하려하면_주스를_만들지_않음() {
+        guard let beforeOrderStrawberryCount = fruitStore.stocks[.strawberry] else {
             return
         }
-        let isStrawberryIsExist: Bool = strawberryCount > 0
-        XCTAssertTrue(isStrawberryIsExist)
+        
+        fruitStore.useFruit(fruits: [.strawberry: 16])
+        
+        guard let AfterOrderStrawberryCount = fruitStore.stocks[.strawberry] else {
+            return
+        }
+        
+        XCTAssertEqual(beforeOrderStrawberryCount, AfterOrderStrawberryCount)
     }
 }
