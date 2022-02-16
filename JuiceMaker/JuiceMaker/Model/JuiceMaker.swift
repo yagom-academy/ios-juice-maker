@@ -7,13 +7,13 @@
 import Foundation
 
 enum Juice {
-    case 딸기쥬스
-    case 바나나쥬스
-    case 키위쥬스
-    case 파인애플쥬스
-    case 딸바쥬스
-    case 망고쥬스
-    case 망고키위쥬스
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoJuice
+    case mangoKiwiJuice
 }
 
 // 쥬스 메이커 타입
@@ -22,19 +22,19 @@ struct JuiceMaker {
     
     func makeJuice(juice: Juice) -> String {
         switch juice {
-        case .딸기쥬스:
+        case .strawberryJuice:
             return validateMakeJuice(fruits: [(Fruit.strawberry, -16)])
-        case .바나나쥬스:
+        case .bananaJuice:
             return validateMakeJuice(fruits: [(Fruit.banana, -2)])
-        case .키위쥬스:
+        case .kiwiJuice:
             return validateMakeJuice(fruits: [(Fruit.kiwi, -3)])
-        case .파인애플쥬스:
+        case .pineappleJuice:
             return validateMakeJuice(fruits: [(Fruit.pineapple, -2)])
-        case .딸바쥬스:
+        case .strawberryBananaJuice:
             return validateMakeJuice(fruits: [(Fruit.strawberry, -10), (Fruit.banana, -1)])
-        case .망고쥬스:
+        case .mangoJuice:
             return validateMakeJuice(fruits: [(Fruit.mango, -3)])
-        case .망고키위쥬스:
+        case .mangoKiwiJuice:
             return validateMakeJuice(fruits: [(Fruit.mango, -2), (Fruit.kiwi, -1)])
         }
     }
