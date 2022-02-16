@@ -15,6 +15,9 @@ struct JuiceMaker {
             fruitStore.useFruit(juice: juice)
             return .success
         }
-        return .fail(needFruits: []) //TODO: 부족한 과일 종류 전달 필요함
+        let outOfStockFruit = juice.recipe.fruitList.map {
+            $0.fruit
+        }
+        return .fail(needFruits: outOfStockFruit)
     }
 }
