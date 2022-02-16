@@ -45,10 +45,8 @@ extension OrderViewController {
         juiceMaker.makeJuice(of: menu, result: { result in
             switch result {
             case .success:
-                let orderResultAlertController: UIAlertController = UIAlertController(title: "\(menu.name) 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
-                let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                orderResultAlertController.addAction(okAction)
-                present(orderResultAlertController, animated: true, completion: nil)
+                let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .success, title: "\(menu.name) 나왔습니다! 맛있게 드세요!")
+                self.present(orderResultAlertController, animated: true, completion: nil)
             case .fail(let error):
                 var errorMessage: String?
                 if let fruitStoreError: FruitStoreError = error as? FruitStoreError {
@@ -58,12 +56,10 @@ extension OrderViewController {
                     errorMessage = juiceMakerError.errorDescription
                 }
                 
-                let orderResultAlertController: UIAlertController = UIAlertController(title: "재고가 모자라요. 재고를 수정할까요?", message: errorMessage, preferredStyle: .alert)
-                let yesAction: UIAlertAction = UIAlertAction(title: "예", style: .default, handler: nil)
-                orderResultAlertController.addAction(yesAction)
-                let noAction: UIAlertAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-                orderResultAlertController.addAction(noAction)
-                present(orderResultAlertController, animated: true, completion: nil)
+                let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .error, title: "재료가 모자라요. 재고를 수정할까요?", message: errorMessage) { action in
+                    self.presentManageStockViewController()
+                }
+                self.present(orderResultAlertController, animated: true, completion: nil)
             }
         })
     }
@@ -82,6 +78,31 @@ extension OrderViewController {
         manageStockViewController.modalPresentationStyle = .fullScreen
         
         present(manageStockViewController, animated: true, completion: nil)
+    }
+    
+}
+
+struct Alert {
+    
+    enum AlertType {
+        case success
+        case error
+    }
+    
+    static func makeAlert(of type: AlertType, title: String? = nil, message: String? = nil, actionHandler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
+        let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        switch type {
+        case .success:
+            let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+        case .error:
+            let yesAction: UIAlertAction = UIAlertAction(title: "예", style: .default, handler: actionHandler)
+            alertController.addAction(yesAction)
+            let noAction: UIAlertAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+            alertController.addAction(noAction)
+        }
+        
+        return alertController
     }
     
 }
