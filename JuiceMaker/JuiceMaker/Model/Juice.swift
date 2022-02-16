@@ -20,7 +20,7 @@ enum Juice: CaseIterable {
     
     /// A computed property to provide recipe
     /// of a specific juice menu
-    var recipe: [Fruit: Int] {
+    var recipe: StoreDataType {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
