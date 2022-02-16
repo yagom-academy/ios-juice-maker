@@ -2,7 +2,7 @@
 //  JuiceMakerTests.swift
 //  JuiceMakerTests
 //
-//  Created by 최다빈 on 2022/02/16.
+//  Created by 추니 & Davy.
 //
 
 import XCTest
