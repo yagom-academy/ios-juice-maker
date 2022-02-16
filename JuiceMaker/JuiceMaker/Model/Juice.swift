@@ -37,22 +37,22 @@ enum Juice: CaseIterable {
         }
     }
     
-    var order: String {
+    var name: String {
         switch self {
         case .strawberryJuice:
-            return "딸기쥬스 주문"
+            return "딸기쥬스"
         case .bananaJuice:
-            return "바나나쥬스 주문"
+            return "바나나쥬스"
         case .pineappleJuice:
-            return "파인애플 쥬스 주문"
+            return "파인애플쥬스"
         case .kiwiJuice:
-            return "키위쥬스 주문"
+            return "키위쥬스"
         case .mangoJuice:
-            return "망고쥬스 주문"
+            return "망고쥬스"
         case .strawberryBananaJuice:
-            return "딸바쥬스 주문"
+            return "딸바쥬스"
         case .mangoKiwiJuice:
-            return "망키쥬스 주문"
+            return "망키쥬스"
         }
     }
 }
