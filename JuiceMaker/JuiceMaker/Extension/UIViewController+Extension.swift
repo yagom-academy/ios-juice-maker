@@ -15,7 +15,7 @@ extension UIViewController {
     }
     
     func makeAlert(title: String,
-                   message: String,
+                   message: String? = nil,
                    okAction: ((UIAlertAction) -> Void)? = nil,
                    completion : (() -> Void)? = nil) {
         let alertViewController = UIAlertController(title: title,
@@ -27,7 +27,7 @@ extension UIViewController {
     }
 
     func makeRequestAlert(title: String,
-                          message: String,
+                          message: String? = nil,
                           okAction: ((UIAlertAction) -> Void)?,
                           cancelAction: ((UIAlertAction) -> Void)? = nil,
                           completion : (() -> Void)? = nil) {
