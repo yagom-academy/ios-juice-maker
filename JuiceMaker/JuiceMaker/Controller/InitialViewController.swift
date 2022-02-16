@@ -86,29 +86,49 @@ class InitialViewController: UIViewController {
     }
     
     private func showCompleteMakeAlert(about juice: String) {
-        let alert = UIAlertController(title: "\(juice)쥬스가 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
-        let okayAlertAction = UIAlertAction(title: "확인", style: .default)
+        let alert = UIAlertController(title: "\(juice)\(AlertTitle.completeMakeJuice)", message: nil, preferredStyle: .alert)
+        let okayAlertAction = UIAlertAction(title: AlertTitle.action.okay, style: .default)
         alert.addAction(okayAlertAction)
         present(alert, animated: true)
     }
     
     private func showFailedMakeAlert(about juice: String) {
-        let alert = UIAlertController(title: "재료가 모자라요! 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let cancleAlertActin = UIAlertAction(title: "취소", style: .cancel)
-        let okayAlertAction = UIAlertAction(title: "예", style: .default) { _ in
+        let alert = UIAlertController(title: AlertTitle.faliMAkeJuice, message: nil, preferredStyle: .alert)
+        let declineAlertActin = UIAlertAction(title: AlertTitle.action.no, style: .cancel)
+        let okayAlertAction = UIAlertAction(title: AlertTitle.action.yes, style: .default) { _ in
             self.presentModifyStockView()
         }
-        alert.addAction(cancleAlertActin)
+        alert.addAction(declineAlertActin)
         alert.addAction(okayAlertAction)
         present(alert, animated: true)
     }
     
     private func presentModifyStockView() {
-        let storyboard = UIStoryboard(name: "", bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "")
+        let storyboard = UIStoryboard(name: StoryboadName.main, bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.modifyStock)
         destinationVC.modalPresentationStyle = .fullScreen
         present(destinationVC, animated: true, completion: nil)
     }
     
 }
 
+
+enum StoryboadName {
+    static let main = "main"
+}
+
+enum StoryboardID {
+    static let modifyStock = ""
+}
+
+enum AlertTitle {
+    
+    static let completeMakeJuice = "쥬스가 나왔습니다! 맛있게 드세요!"
+    static let faliMAkeJuice = "재료가 모자라요! 재고를 수정할까요?"
+    
+    enum action {
+        static let okay = "확인"
+        static let no = "아니오"
+        static let yes = "예"
+    }
+}
