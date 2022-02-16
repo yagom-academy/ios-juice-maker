@@ -11,9 +11,25 @@ typealias Fruits = [Fruit: Int]
 
 /// 과일 저장소 타입
 protocol FruitStoreType {
+    /// 지정한 과일의 개수를 반환합니다.
+    /// - Parameters:
+    ///   - fruit : 과일 이름
     func count(of fruit: Fruit) -> Int
+
+    /// 지정한 과일을 지정한 개수로 설정합니다.
+    /// - Parameters:
+    ///   - fruit : 과일 이름
+    ///   - amount : 수량
     func setAmount(for fruit: Fruit, to amount: Int)
+
+    /// 필요한 재료의 수량만큼 재고를 소모합니다.
+    /// - Parameters:
+    ///   - ingredients : 과일 이름, 개수
     func consume(ingredients: Fruits)
+
+    /// 지정한 쥬스를 만들기에 재고가 충분한지 확인합니다.
+    /// - Parameters:
+    ///   - juice: 쥬스 종류
     func hasIngredients(for juice: Juice) -> Bool
 }
 
@@ -21,41 +37,33 @@ protocol FruitStoreType {
 final class FruitStore: FruitStoreType {
     private var fruits: Fruits
 
-    /// - Default Value : 10
     init(initialValue: Int = 10) {
         self.fruits = Fruit.allCases.toFruits(with: initialValue)
     }
 
-    /// 과일의 개수를 파악하기 위한 함수
-    /// - fruit : 과일 이름
     func count(of fruit: Fruit) -> Int {
         return fruits[fruit] ?? 0
     }
 
-    /// 과일의 개수를 늘리기 위한 함수
-    /// - fruit : 과일 이름
-    /// - amount : 수량
     func setAmount(for fruit: Fruit, to amount: Int) {
         fruits.updateValue(amount, forKey: fruit)
     }
 
-    /// 과일의 재고가 소진 될 경우 수량을 줄이기 위한 함수
-    /// - ingredients : 과일 이름, 개수
-    /// (소진되는 재료 or 재료들 : 개수)
     func consume(ingredients: Fruits) {
         for (fruit, amount) in ingredients {
             consume(fruit, amount: amount)
         }
     }
 
-    /// 과일의 재고가 소진 될 수 있도록 초기값을 설정
-    /// - fruit : 과일 이름
-    /// - amount : 수량
+    /// 지정한 과일의 재고를 지정한 개수만큼 소진합니다.
+    /// - Parameters:
+    ///   - fruit : 과일 이름
+    ///   - amount : 수량
     private func consume(_ fruit: Fruit, amount: Int) {
         let existingValueForFruit = fruits[fruit] ?? 0
         fruits.updateValue(existingValueForFruit - amount, forKey: fruit)
     }
-    
+
     func hasIngredients(for juice: Juice) -> Bool {
         let subtracted = fruits - juice.ingredients
 
@@ -69,7 +77,8 @@ final class FruitStore: FruitStoreType {
 
 extension Array where Element == Fruit {
     /// 과일들의 초기값을 생성하기 위한 함수
-    /// - initialValue : 과일 개수
+    /// - Parameters :
+    ///   - initialValue : 과일 개수
     func toFruits(with initialValue: Int) -> Fruits {
         return self.toDictionary(with: initialValue)
     }

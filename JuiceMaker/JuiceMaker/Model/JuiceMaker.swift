@@ -10,23 +10,34 @@ enum JuiceMakerError: Error {
 
 /// 쥬스 메이커 타입
 protocol JuiceMakerType {
-    func make(_ juice: Juice) -> Result<Juice, JuiceMakerError>
+
+    /// 과일쥬스를 만듭니다.
+    /// - Parameters :
+    ///   - juice : 쥬스 이름
+    /// - Returns : 쥬스 제조 결과
+    func make(juice: Juice) -> Result<Juice, JuiceMakerError>
+
+    /// 지정한 과일의 재고를 반환합니다.
+    ///
+    /// - Parameters :
+    ///   - fruit : 과일 이름
+    ///
+    /// - Returns : 과일 재고
     func count(of fruit: Fruit) -> Int
+
+    
     func setFruitAmount(for fruit: Fruit, to amount: Int)
 }
 
-/// 쥬스 매이커를 위한 기능 
 struct JuiceMaker: JuiceMakerType {
     private let fruitStore : FruitStoreType
-    
-    /// 쥬스를 만들기 위해 과일 클래스를 상속
+
     init(fruitStore: FruitStoreType = FruitStore()) {
         self.fruitStore = fruitStore
     }
 
-    /// 과일쥬스를 만들기 위한 함수
-    /// - juice : 쥬스 이름
-    func make(_ juice: Juice) -> Result<Juice, JuiceMakerError> {
+
+    func make(juice: Juice) -> Result<Juice, JuiceMakerError> {
         guard fruitStore.hasIngredients(for: juice) else {
             return .failure(.notEnoughIngredients)
         }
@@ -34,8 +45,7 @@ struct JuiceMaker: JuiceMakerType {
         return .success(juice)
     }
 
-    /// 쥬스를 만든 후 소진된 과일의 수량 파악을 위한 함수
-    /// - fruit : 과일 이름
+
     func count(of fruit: Fruit) -> Int {
         return fruitStore.count(of: fruit)
     }
