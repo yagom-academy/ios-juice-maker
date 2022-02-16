@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum FruitStoreError: Error {
+enum FruitStoreError {
     case notEnoughFruits
 }
 
