@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 레시피 타입
 struct Recipe {
     var fruitList: [(fruit: Fruit, count: Int)]
 }

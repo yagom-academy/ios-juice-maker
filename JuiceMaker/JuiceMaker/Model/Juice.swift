@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 쥬스 종류
 enum Juice {
     case strawberryJuice
     case bananaJuice
@@ -16,6 +17,7 @@ enum Juice {
     case mangoJuice
     case mangoKiwiJuice
     
+    /// 쥬스의 레시피
     var recipe: Recipe {
         switch self {
         case .strawberryJuice:

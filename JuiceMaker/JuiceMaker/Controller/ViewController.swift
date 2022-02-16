@@ -14,14 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    @IBOutlet weak var FruitStackView: UIStackView!
-    
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
-        configureView()
-        
         super.viewDidLoad()
+        configureView()
     }
 }
 

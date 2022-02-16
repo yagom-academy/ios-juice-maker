@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 과일의 종류
 enum Fruit: CaseIterable {
     case strawberry
     case banana
@@ -14,6 +15,7 @@ enum Fruit: CaseIterable {
     case kiwi
     case mango
     
+    /// 과일의 이름
     var name: String {
         switch self {
         case .strawberry:
