@@ -24,13 +24,16 @@ class OrderViewController: UIViewController {
 
     required init?(coder: NSCoder) {
         print(#function)
-        juiceMaker = JuiceMaker(fruitStore: FruitStore())
+        self.juiceMaker = JuiceMaker(fruitStore: FruitStore())
         super.init(coder: coder)
     }
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRightBarButtonItem()
     }
+    
 }
 
