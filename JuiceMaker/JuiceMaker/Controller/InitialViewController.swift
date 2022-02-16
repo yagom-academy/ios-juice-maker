@@ -18,57 +18,19 @@ class InitialViewController: UIViewController {
     
     private lazy var juiceMaker = JuiceMaker(store: fruitStore)
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    @IBOutlet weak var orederStrawberryJuiceButton: UIButton!
-    @IBOutlet weak var orederBananaJuiceButton: UIButton!
-    @IBOutlet weak var orederPineappleJuiceButton: UIButton!
-    @IBOutlet weak var orederKiwiJuiceButton: UIButton!
-    @IBOutlet weak var orederMangoJuiceButton: UIButton!
-    @IBOutlet weak var orederStrawberryBananaJuiceButton: UIButton!
-    @IBOutlet weak var orederMangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var fruitsStockCollectionView: UICollectionView!
+    @IBOutlet weak var orderButtonCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitLabel()
+        fruitsStockCollectionView.dataSource = self
+        fruitsStockCollectionView.delegate = self
+        orderButtonCollectionView.dataSource = self
+        orderButtonCollectionView.delegate = self
     }
     
     @IBAction func showModifyStocksVC(_ sender: UIBarButtonItem) {
         presentModifyStockView()
-    }
-    
-    @IBAction func orderJuice(_ sender: UIButton) {
-        switch sender {
-        case orederStrawberryJuiceButton:
-            tryMake(.strawberryJuice)
-        case orederBananaJuiceButton:
-            tryMake(.bananaJuice)
-        case orederPineappleJuiceButton:
-            tryMake(.pineappleJuice)
-        case orederKiwiJuiceButton:
-            tryMake(.kiwiJuice)
-        case orederMangoJuiceButton:
-            tryMake(.mangoJuice)
-        case orederStrawberryBananaJuiceButton:
-            tryMake(.strawberryBananaJuice)
-        case orederMangoKiwiJuiceButton:
-            tryMake(.strawberryBananaJuice)
-        default:
-            break
-        }
-        updateFruitLabel()
-    }
-
-    private func updateFruitLabel() {
-        strawberryStockLabel.text = "\(fruitStore.checkCount(stock: .strawberry))"
-        bananaStockLabel.text = "\(fruitStore.checkCount(stock: .banana))"
-        pineappleStockLabel.text = "\(fruitStore.checkCount(stock: .pineapple))"
-        kiwiStockLabel.text = "\(fruitStore.checkCount(stock: .kiwi))"
-        mangoStockLabel.text = "\(fruitStore.checkCount(stock: .mango))"
     }
     
     private func tryMake(_ juice: Juice) {
@@ -112,6 +74,79 @@ class InitialViewController: UIViewController {
     
 }
 
+//MARK: Collection view
+extension InitialViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case fruitsStockCollectionView:
+            return Fruit.allCases.count
+        case orderButtonCollectionView:
+            return Juice.allCases.count
+        default:
+            break
+        }
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView {
+        case fruitsStockCollectionView:
+            guard let fruitStockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: FruitStockCollectionViewCell.reuseIdentifier, for: indexPath) as? FruitStockCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            let fruit = Fruit.allCases[indexPath.item]
+            fruitStockCollectionViewCell.fruitEmojiLabel.text = fruit.emoji
+            fruitStockCollectionViewCell.fruitStockLabel.text = "\(fruitStore.checkCount(stock: fruit))"
+            return fruitStockCollectionViewCell
+        case orderButtonCollectionView:
+            guard let orderButtonCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderButtonCollectionViewCell.reuseIdentifier, for: indexPath) as? OrderButtonCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            orderButtonCollectionViewCell.juiceLabel.text = "\(Juice.allCases[indexPath.item].name) 쥬스"
+            return orderButtonCollectionViewCell
+        default:
+            break
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView {
+        case fruitsStockCollectionView:
+            let size = CGSize(width: (collectionView.frame.width-10)/5, height: collectionView.frame.height)
+            return size
+        case orderButtonCollectionView:
+            let size = CGSize(width: (collectionView.frame.width-20)/2, height: collectionView.frame.height/3)
+            return size
+        default:
+            break
+        }
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard collectionView == orderButtonCollectionView else {
+            return
+        }
+        tryMake(Juice.allCases[indexPath.item])
+        let ingredients = Juice.allCases[indexPath.item].ingredients
+        var usedFruit = [IndexPath]()
+        for ingredient in ingredients {
+            let index = IndexPath(item: Fruit.allCases.firstIndex(of: ingredient.name)!, section: 0)
+            usedFruit.append(index)
+        }
+        fruitsStockCollectionView.reloadItems(at: usedFruit)
+    }
+}
 
 enum StoryboadName {
     static let main = "main"
