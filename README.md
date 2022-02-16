@@ -5,7 +5,6 @@
 <div align=center><img src="https://user-images.githubusercontent.com/69520548/154102765-a86f769d-8329-47ca-a362-9465c7d0f7ad.png" width="800" height="400"></div>
 
 ---
-<br>
 
 ## [제약사항]
 - 코드에 느낌표(!)를 사용하지 않기
@@ -20,7 +19,6 @@
 <br>
 
 ---
-<br>
 
 ## [STEP1] 쥬스 메이커 타입 정의
 
