@@ -15,15 +15,15 @@ struct JuiceMaker {
     }
     
     func makeJuice(_ juice: Juice) throws {
-        let recipe: [(fruit: Fruit, count: Int)] = juice.recipe()
+        let recipe: Recipe = juice.recipe()
         
-        for item in recipe where !self.fruitStore.isAvailable(fruit: item.fruit,
-                                                              of: item.count) {
+        for material in recipe.materials where !self.fruitStore.isAvailable(fruit: material.fruit,
+                                                                            of: material.count) {
             throw JuiceMakerError.outOfStock
         }
         
-        for item in recipe {
-            self.fruitStore.decrease(fruit: item.fruit, to: item.count)
+        for material in recipe.materials {
+            self.fruitStore.decrease(fruit: material.fruit, to: material.count)
         }
     }
 }

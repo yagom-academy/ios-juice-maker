@@ -16,28 +16,38 @@ enum Juice {
     case strawberryBananaJuice
     case mangoKiwiJuice
     
-    func recipe() -> [(fruit: Fruit, count: Int)] {
+    func recipe() -> Recipe {
         switch self {
         case .strawberryJuice:
-            return [(fruit: Fruit.strawberry, count: 16)]
+            return Recipe(materials: [
+                Material(fruit: .strawberry, count: 16)
+            ])
         case .bananaJuice:
-            return [(fruit: Fruit.banana, count: 2)]
+            return Recipe(materials: [
+                Material(fruit: .banana, count: 2)
+            ])
         case .kiwiJuice:
-            return [(fruit: Fruit.kiwi, count: 3)]
+            return Recipe(materials: [
+                Material(fruit: .kiwi, count: 3)
+            ])
         case .pineappleJuice:
-            return [(fruit: Fruit.pineapple, count: 2)]
+            return Recipe(materials: [
+                Material(fruit: .pineapple, count: 2)
+            ])
         case .mangoJuice:
-            return [(fruit: Fruit.mango, count: 3)]
+            return Recipe(materials: [
+                Material(fruit: .mango, count: 3)
+            ])
         case .strawberryBananaJuice:
-            return [
-                (fruit: Fruit.strawberry, count: 10),
-                (fruit: Fruit.banana, count: 1)
-            ]
+            return Recipe(materials: [
+                Material(fruit: .strawberry, count: 10),
+                Material(fruit: .banana, count: 1)
+            ])
         case .mangoKiwiJuice:
-            return [
-                (fruit: Fruit.mango, count: 2),
-                (fruit: Fruit.kiwi, count: 1)
-            ]
+            return Recipe(materials: [
+                Material(fruit: .mango, count: 2),
+                Material(fruit: .kiwi, count: 1)
+            ])
         }
     }
 }
