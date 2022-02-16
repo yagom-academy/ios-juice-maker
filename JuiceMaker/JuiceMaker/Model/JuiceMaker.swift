@@ -15,7 +15,6 @@ struct JuiceMaker {
             fruitStore.useFruit(juice: juice)
             return .success
         }
-        let needFruitsList = fruitStore.needFruit(juice: juice)
-        return .fail(needFruits: needFruitsList)
+        return .notEnoughFruit
     }
 }

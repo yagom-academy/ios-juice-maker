@@ -9,14 +9,14 @@ import Foundation
 
 enum JuiceMakeResult {
     case success
-    case fail(needFruits: [String])
+    case notEnoughFruit
     
     var description: String {
         switch self {
         case .success:
             return "쥬스 만들기 성공"
-        case .fail(let needFruits):
-            return "과일 \(needFruits) 부족"
+        case .notEnoughFruit:
+            return "과일이 부족합니다."
         }
     }
 }
