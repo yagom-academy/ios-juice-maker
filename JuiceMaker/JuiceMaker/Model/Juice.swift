@@ -2,7 +2,7 @@
 //  Juice.swift
 //  JuiceMaker
 //
-//  Created by Ryan-Son on 2022/02/16.
+//  Created by Derrick, Ryan-Son on 2022/02/16.
 //
 
 enum Juice {
@@ -19,19 +19,25 @@ enum Juice {
     }
 }
 
+/// [빌더 패턴]
+/// 어떤 재료를 소진하는가를 위한 클래스
 final class IngredientsBuilder {
     private var ingredients: Fruits = [:]
 
+    /// 소진될 재료가 선택 될 시 완료를 위한 함수
     func build() -> Fruits {
         return ingredients
     }
-
+    
+    /// 소진될 재료의 이름, 개수를 추가 하기 위한 함수
     func add(ingredients: Fruits) {
         self.ingredients = ingredients
     }
 }
 
+/// [빌더 패턴]
 final class IngredientsDirector {
+    /// 쥬스가 만들어 질 경우 소진되는 재료들을 빌드 하는 함수
     static func make(juice: Juice) -> Fruits {
         let builder = IngredientsBuilder()
 
