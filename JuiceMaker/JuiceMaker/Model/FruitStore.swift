@@ -6,12 +6,12 @@
 
 import Foundation
 
-enum Fruit {
-    case 딸기
-    case 바나나
-    case 파인애플
-    case 키위
-    case 망고
+enum Fruit: CaseIterable {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
 }
 
 enum FruitError: String, Error {
@@ -33,7 +33,7 @@ extension FruitError: LocalizedError {
 // 과일 저장소 타입
 class FruitStore {
     
-    var store: [Fruit: Int] = [.딸기: 10, .바나나: 10, .파인애플: 10, .키위: 10, .망고: 10]
+    var store: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     func changeAmountOfFruit(fruits: [(Fruit, Int)]) throws {
         var temporaryResult: [(Fruit, Int)] = []

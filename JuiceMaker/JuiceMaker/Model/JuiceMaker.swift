@@ -23,19 +23,19 @@ struct JuiceMaker {
     func makeJuice(juice: Juice) -> String {
         switch juice {
         case .딸기쥬스:
-            return validateMakeJuice(fruits: [(Fruit.딸기, -16)])
+            return validateMakeJuice(fruits: [(Fruit.strawberry, -16)])
         case .바나나쥬스:
-            return validateMakeJuice(fruits: [(Fruit.바나나, -2)])
+            return validateMakeJuice(fruits: [(Fruit.banana, -2)])
         case .키위쥬스:
-            return validateMakeJuice(fruits: [(Fruit.키위, -3)])
+            return validateMakeJuice(fruits: [(Fruit.kiwi, -3)])
         case .파인애플쥬스:
-            return validateMakeJuice(fruits: [(Fruit.파인애플, -2)])
+            return validateMakeJuice(fruits: [(Fruit.pineapple, -2)])
         case .딸바쥬스:
-            return validateMakeJuice(fruits: [(Fruit.딸기, -10), (Fruit.바나나, -1)])
+            return validateMakeJuice(fruits: [(Fruit.strawberry, -10), (Fruit.banana, -1)])
         case .망고쥬스:
-            return validateMakeJuice(fruits: [(Fruit.망고, -3)])
+            return validateMakeJuice(fruits: [(Fruit.mango, -3)])
         case .망고키위쥬스:
-            return validateMakeJuice(fruits: [(Fruit.망고, -2), (Fruit.키위, -1)])
+            return validateMakeJuice(fruits: [(Fruit.mango, -2), (Fruit.kiwi, -1)])
         }
     }
     
