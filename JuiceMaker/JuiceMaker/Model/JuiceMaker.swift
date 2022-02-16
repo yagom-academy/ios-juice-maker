@@ -11,14 +11,14 @@ struct JuiceMaker {
     private var fruitStore: FruitStore = FruitStore()
     
     /// 쥬스를 만든다.
-    func make(of juice: Juice) {
+    func make(of juice: Juice) -> Result<String, Error> {
         do {
             try fruitStore.useFruit(of: juice)
-            print("\(juice)나왔습니다! 맛있게 드세요!")
+            return Result.success("\(juice.name) 나왔습니다! 맛있게 드세요!")
         } catch let error as FruitStoreError {
-            print(error.rawValue)
+            return Result.failure(error)
         } catch {
-            print(error)
+            return Result.failure(error)
         }
     }
     
