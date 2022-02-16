@@ -10,8 +10,8 @@ import Foundation
 struct JuiceRecipesMapper {
     private let mapping: [JuiceRecipeType: JuiceRecipe]
     
-    init(jucieType: [JuiceRecipeType], recipes: [JuiceRecipe]) {
-        self.mapping = Dictionary(uniqueKeysWithValues: zip(jucieType, recipes))
+    init(jucieRecipeTypes: [JuiceRecipeType], recipes: [JuiceRecipe]) {
+        self.mapping = Dictionary(uniqueKeysWithValues: zip(jucieRecipeTypes, recipes))
     }
     
     subscript(recipeType: JuiceRecipeType) -> JuiceRecipe? {

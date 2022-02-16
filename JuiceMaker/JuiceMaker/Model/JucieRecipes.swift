@@ -7,11 +7,7 @@
 
 import Foundation
 
-protocol Recipes {
-    var recipes: [JuiceRecipe] { get }
-}
-
-struct JucieRecipes: Recipes {
+struct JuiceRecipes {
     let recipes: [JuiceRecipe]
     
     init(recipes: [JuiceRecipe]) {
