@@ -1,0 +1,51 @@
+@startuml
+' STYLE START
+
+skinparam shadowing false
+' STYLE END
+
+
+class "JuiceMaker" as JuiceMaker << (S, SkyBlue) struct >> { 
+  -fruitStore : FruitStore
+  -recipe : Recipe
+  ~init(fruitStore:recipe:)
+  ~make(of:)
+  -validateStock(of:)
+  -useStock(of:) 
+}
+
+JuiceMaker --> "1" FruitStore
+
+class "FruitStore" as FruitStore << (S, SkyBlue) struct >> { 
+  -fruitStocks : [Fruit: Quantity]
+  ~init(everyStock:)
+  ~stock(of:)
+  ~increaseStock(of:_:)
+  ~decreaseStock(of:_:) 
+}
+
+class "Recipe" as Recipe << (S, SkyBlue) struct >> {
+  - recipe: [Juice: [NeededFruit]]
+  ~init(recipe:)
+  ~recipe(of:)
+}
+
+class "NeededFruit" as NeededFruit << (S, SkyBlue) struct >> {
+  ~ fruit
+  ~ quantity
+}
+
+JuiceMaker --+ Recipe
+JuiceMaker --> "1" Recipe
+Recipe --+ NeededFruit
+
+
+class "Quantity" as Quantity << (S, SkyBlue) struct >> { 
+  -quantity : Int
+  ~init(_:)
+  ~{static} +(_:_:)
+  ~{static} -(_:_:)
+  ~{static} >(_:_:)
+  ~{static} <(_:_:) 
+}
+@enduml
