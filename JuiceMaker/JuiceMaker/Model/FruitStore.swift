@@ -20,7 +20,7 @@ extension FruitStoreError: LocalizedError {
 }
 
 /// 과일 저장소 타입
-class FruitStore {
+final class FruitStore {
     private(set) var inventory = FruitsInventory()
     
     init(initialFruitCount: Int = 10) {
