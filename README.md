@@ -48,6 +48,7 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 
 ## Step 2 : 초기화면 기능구현
 ### UML
+![JuiceMaker-UML](https://user-images.githubusercontent.com/52317025/154278822-a2d07cef-72f7-493b-91a1-2ea82bd12f7c.png)
 ### 요구사항 분석
 - 초기 화면 (*OrderViewController*)
     - 사용자는 초기화면에서 과일들의 재고를 확인할 수 있다.
