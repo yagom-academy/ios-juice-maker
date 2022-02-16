@@ -24,7 +24,7 @@ class JuiceMakerTests: XCTestCase {
     }
 
     func test_juiceMaker를_통해_fruitStore의_과일_개수를_설정할_수_있다() {
-        sut?.setFruitAmount(for: .pineapple, to: 3)
+        sut?.setAmount(for: .pineapple, to: 3)
 
         XCTAssertEqual(sut?.count(of: .pineapple), 3)
     }
@@ -34,8 +34,8 @@ class JuiceMakerTests: XCTestCase {
         let expectedStrawberryCount = 0
         let expectedBananaCount = 9
         let expectedJuice: Juice = .strawberryBanana
-        sut?.setFruitAmount(for: .strawberry, to: initialFruitAmount)
-        sut?.setFruitAmount(for: .banana, to: initialFruitAmount)
+        sut?.setAmount(for: .strawberry, to: initialFruitAmount)
+        sut?.setAmount(for: .banana, to: initialFruitAmount)
 
         guard let result = sut?.make(juice: expectedJuice) else {
             XCTFail("SUT 인스턴스가 존재하지 않습니다.")

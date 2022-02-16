@@ -18,7 +18,7 @@ protocol JuiceMakerType {
     func count(of fruit: Fruit) -> Int
     
     /// 지정한 과일의 재고를 해당 개수로 설정합니다.
-    func setFruitAmount(for fruit: Fruit, to amount: Int)
+    func setAmount(for fruit: Fruit, to amount: Int)
 }
 
 struct JuiceMaker: JuiceMakerType {
@@ -40,7 +40,7 @@ struct JuiceMaker: JuiceMakerType {
         return fruitStore.count(of: fruit)
     }
     
-    func setFruitAmount(for fruit: Fruit, to amount: Int) {
+    func setAmount(for fruit: Fruit, to amount: Int) {
         fruitStore.setAmount(for: fruit, to: amount)
     }
 }
