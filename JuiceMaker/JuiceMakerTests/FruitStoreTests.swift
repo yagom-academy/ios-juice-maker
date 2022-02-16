@@ -31,6 +31,8 @@ class FruitStoreTests: XCTestCase {
         
         if let result = fruitStore.store[.strawberry] {
             XCTAssertEqual(expectation, result)
+        } else {
+            XCTAssertNil(fruitStore.store[.strawberry])
         }
     }
     
@@ -47,7 +49,11 @@ class FruitStoreTests: XCTestCase {
         if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
             XCTAssertEqual(expectation, strawberryAmount)
             XCTAssertEqual(expectation, bananaAmout)
+        } else {
+            XCTAssertNil(fruitStore.store[.strawberry])
+            XCTAssertNil(fruitStore.store[.banana])
         }
+        
     }
     
     func test_두가지_재료가_필요한_주스를_만들때_실패하면_재고가_유지된다() {
@@ -63,6 +69,9 @@ class FruitStoreTests: XCTestCase {
         if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
             XCTAssertEqual(expectation, strawberryAmount)
             XCTAssertEqual(expectation, bananaAmout)
+        } else {
+            XCTAssertNil(fruitStore.store[.strawberry])
+            XCTAssertNil(fruitStore.store[.banana])
         }
     }
     
@@ -80,6 +89,9 @@ class FruitStoreTests: XCTestCase {
         if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
             XCTAssertEqual(expectation, strawberryAmount)
             XCTAssertEqual(expectation, bananaAmout)
+        } else {
+            XCTAssertNil(fruitStore.store[.strawberry])
+            XCTAssertNil(fruitStore.store[.banana])
         }
     }
     
@@ -106,6 +118,8 @@ class FruitStoreTests: XCTestCase {
         
         if let result = fruitStore.store[.strawberry] {
             XCTAssertEqual(expectation, result)
+        } else {
+            XCTAssertNil(fruitStore.store[.strawberry])
         }
     }
     
