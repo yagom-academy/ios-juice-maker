@@ -18,7 +18,15 @@ class StockModifyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initObservers()
         initConfigrations()
+    }
+    
+    func initObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeStore),
+                                               name: .sendFruitStoreData,
+                                               object: nil)
     }
     
     func initConfigrations() {
@@ -31,12 +39,31 @@ class StockModifyViewController: UIViewController {
     }
     
     func changeStockCount(count: Int, indexPath: IndexPath) {
-        store?.change(Fruit.allCases[indexPath.item], to: count)
-        stockModifyCollectionView.reloadData()
+        guard let stockModifyCell = stockModifyCollectionView.cellForItem(at: indexPath) as? StockModifyCollectionViewCell,
+              let store = store else {
+            return
+        }
+        let fruit = Fruit.allCases[indexPath.item]
+        
+        store.change(fruit, to: count)
+        stockModifyCell.countLabel.text = String(store.checkCount(stock: fruit))
+    }
+    
+    @objc func changeStore(_ notification: Notification) {
+        guard let store = notification.userInfo?["fruitStore"] as? FruitStorable else {
+            return
+        }
+        self.store = store
     }
     
     @IBAction func confirmButtonTouched(_ sender: Any) {
         self.dismiss(animated: true)
+        guard let store = store else {
+            return
+        }
+        NotificationCenter.default.post(name: .sendFruitStoreData,
+                                        object: self,
+                                        userInfo: ["fruitStore":store])
     }
 }
 
