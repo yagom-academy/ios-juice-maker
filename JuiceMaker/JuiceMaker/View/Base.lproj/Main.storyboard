@@ -272,7 +272,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Modify Stocks View Controller-->
+        <!--재고 수정-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="ModifyStocksViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yu1-lM-nqp" customClass="ModifyStocksViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -420,7 +420,9 @@
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="bottom" secondItem="HMg-sK-32k" secondAttribute="bottom" constant="20" id="pvl-bT-IGX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 수정" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="RFd-5K-wfj"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="p99-zV-rbR"/>
                     </connections>
