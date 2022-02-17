@@ -37,16 +37,15 @@ struct MakeJuiceViewModel {
     /// 제조 성공 시 화면에 보여질 재고를 인덱스별로 업데이트 합니다.
     ///
     /// - Parameter _: 주문한 쥬스의 종류
-    mutating func order(_ juice: JuiceMaker.Juice) {
+    mutating func order(_ juice: JuiceMaker.Juice) throws {
         
         do {
             let sortOfFruits = try juiceMaker.order(juice)
-            displayingStocks.value = self.stockToUpdate(with: sortOfFruits)
+            let stocks = self.stockToUpdate(with: sortOfFruits)
+            displayingStocks.value = stocks
             
         } catch {
-            if error as? JuiceManufacturerError == .soldOut {
-                print("재고 소진")
-            }
+            throw error
         }
     }
     

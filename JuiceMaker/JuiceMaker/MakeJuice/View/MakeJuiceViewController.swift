@@ -23,6 +23,7 @@ class MakeJuiceViewController: UIViewController {
             stocks.forEach { (index: Int, quantity: Quantity) in
                 self?.quantityLabels[index].text = "\(quantity.text)"
             }
+            
         }
         
         orderButtons.enumerated().forEach({ (index, button) in
@@ -31,10 +32,21 @@ class MakeJuiceViewController: UIViewController {
         })
     }
 
+    
     @objc
     private func didTap(sender: UIButton) {
         let juice = JuiceMaker.Juice(index: sender.tag)
-        viewModel.order(juice)
+        do {
+            try viewModel.order(juice)
+            let alert = CompleteMakingAlert()
+            self.present(alert.alertController(), animated: true, completion: nil)
+        }
+        catch {
+            if error as? JuiceManufacturerError == .soldOut {
+                let alert = SoldOutAlert()
+                self.present(alert.alertController(), animated: true, completion: nil)
+            }
+        }
+        
     }
 }
-
