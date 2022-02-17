@@ -38,6 +38,7 @@ class ModifyStocksViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         patchData()
+        navigationItem.hidesBackButton = true
     }
     
     // MARK: - func
@@ -83,7 +84,7 @@ class ModifyStocksViewController: UIViewController {
             return
         }
 
-        previousViewController.juiceMaker = juiceMaker        
+        previousViewController.juiceMaker = juiceMaker
         navigationController?.popViewController(animated: true)
     }
     
