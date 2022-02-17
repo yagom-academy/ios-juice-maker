@@ -12,7 +12,7 @@ struct JuiceMaker {
     
     func makeJuice(juice: Juice) {
         do {
-            try fruitStore.useFruit(juice: juice)
+            try fruitStore.useFruit(of: juice)
         } catch let error as FruitStoreError {
             print(error.rawValue)
         } catch {
