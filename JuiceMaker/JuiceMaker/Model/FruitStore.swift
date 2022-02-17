@@ -13,7 +13,7 @@ class FruitStore {
         store[fruit] = Fruit.initialCount
     }
     
-    func changeAmountOfFruit(fruits: [Recipe]) throws {
+    func changeAmountOfFruit(_ fruits: [Recipe]) throws {
         var temporaryResult: [Recipe] = []
         
         try fruits.forEach {
@@ -30,11 +30,11 @@ class FruitStore {
         }
         
         if temporaryResult.count == fruits.count {
-            updateFruit(fruits: temporaryResult)
+            updateFruit(temporaryResult)
         }
     }
     
-    private func updateFruit(fruits: [Recipe]) {
+    private func updateFruit(_ fruits: [Recipe]) {
         fruits.forEach {
             store[$0.fruit] = $0.amount
         }

@@ -18,33 +18,33 @@ struct JuiceMaker {
         switch juice {
         case .strawberryJuice:
             let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: -16)
-            return validateMakeJuice(fruits: [strawberryJuiceRecipe])
+            return validateMakeJuice([strawberryJuiceRecipe])
         case .bananaJuice:
             let bananaJuiceRecipe = Recipe(fruit: .banana, amount: -2)
-            return validateMakeJuice(fruits: [bananaJuiceRecipe])
+            return validateMakeJuice([bananaJuiceRecipe])
         case .kiwiJuice:
             let kiwiJuiceRecipe = Recipe(fruit: .kiwi, amount: -3)
-            return validateMakeJuice(fruits: [kiwiJuiceRecipe])
+            return validateMakeJuice([kiwiJuiceRecipe])
         case .pineappleJuice:
             let pineappleJuiceRecipe = Recipe(fruit: .pineapple, amount: -2)
-            return validateMakeJuice(fruits: [pineappleJuiceRecipe])
+            return validateMakeJuice([pineappleJuiceRecipe])
         case .strawberryBananaJuice:
             let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: -10)
             let bananaJuiceRecipe = Recipe(fruit: .banana, amount: -1)
-            return validateMakeJuice(fruits: [strawberryJuiceRecipe, bananaJuiceRecipe])
+            return validateMakeJuice([strawberryJuiceRecipe, bananaJuiceRecipe])
         case .mangoJuice:
             let mangoJuiceRecipe = Recipe(fruit: .mango, amount: -3)
-            return validateMakeJuice(fruits: [mangoJuiceRecipe])
+            return validateMakeJuice([mangoJuiceRecipe])
         case .mangoKiwiJuice:
             let mangoJuiceRecipe = Recipe(fruit: .mango, amount: -2)
             let kiwiJuiceRecipe = Recipe(fruit: .kiwi, amount: -1)
-            return validateMakeJuice(fruits: [mangoJuiceRecipe, kiwiJuiceRecipe])
+            return validateMakeJuice([mangoJuiceRecipe, kiwiJuiceRecipe])
         }
     }
     
-    private func validateMakeJuice(fruits: [Recipe]) -> JuiceResult {
+    private func validateMakeJuice(_ fruits: [Recipe]) -> JuiceResult {
         do {
-            try fruitStore.changeAmountOfFruit(fruits: fruits)
+            try fruitStore.changeAmountOfFruit(fruits)
             return JuiceResult(isSuccess: true, message: nil)
         } catch let error as FruitError {
             return JuiceResult(isSuccess: false, message: error.description)
