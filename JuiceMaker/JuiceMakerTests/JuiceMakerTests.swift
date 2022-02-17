@@ -36,11 +36,11 @@ class JuiceMakerTests: XCTestCase {
         }
         
         fruitStore.useFruit(fruits: [.strawberry: 16])
-        
         guard let AfterOrderStrawberryCount = fruitStore.stocks[.strawberry] else {
             return
         }
         
         XCTAssertEqual(beforeOrderStrawberryCount, AfterOrderStrawberryCount)
+        
     }
 }
