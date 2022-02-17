@@ -8,27 +8,31 @@ import Foundation
 
 protocol FruitStorable {
   func updateStock(of fruit: Fruit, quantity: Int)
-  func stock(of fruit: Fruit) -> Stock?
+  func stock(of fruit: Fruit) -> Int?
 }
 
 // 과일 저장소 타입
 class FruitStore: FruitStorable {
-  var store: [Fruit: Stock] = [:]
+  private var store: [Fruit: Int] = [.strawberry: 10 ,
+                               .banana: 10,
+                               .pineapple: 10,
+                               .mango: 10,
+                               .kiwi: 10]
   
-  init() {
+  init(qauntity: Int) {
     Fruit.allCases.forEach {
-      store[$0] = Stock(10)
+      store[$0] = qauntity
     }
   }
   
   func updateStock(of fruit: Fruit, quantity: Int) {
     guard store[fruit] != nil,
-    let stock = Stock(quantity) else { return }
+          quantity >= 0 else { return }
     
-    store[fruit] = stock
+    store[fruit] = quantity
   }
   
-  func stock(of fruit: Fruit) -> Stock? {
+  func stock(of fruit: Fruit) -> Int? {
     return store[fruit]
   }
 }
