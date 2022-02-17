@@ -86,4 +86,9 @@ extension ManageStockViewController {
         }
     }
     
+    private func updateCountLabel(of fruit: Fruit, to count: Int) {
+        let label: UILabel = getCountLabel(of: fruit)
+        label.text = "\(count)"
+    }
+    
 }
