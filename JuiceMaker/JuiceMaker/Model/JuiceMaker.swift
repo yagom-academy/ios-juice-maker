@@ -24,13 +24,8 @@ class JuiceMaker {
     }
     
     func order() throws -> String? {
-        do {
-            let orderedMenu = try state?.order()
-            let resultMessage = "\(orderedMenu ?? "쥬스") 나왔습니다! 맛있게 드세요!"
-            return resultMessage
-        } catch let error {
-            throw error
-        }
+        let orderedMenu = try state?.order()
+        return "\(orderedMenu ?? "쥬스") 나왔습니다! 맛있게 드세요!"
     }
     
     func setState(state: State?) {
