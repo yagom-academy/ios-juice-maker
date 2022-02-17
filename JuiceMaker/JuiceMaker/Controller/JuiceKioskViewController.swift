@@ -44,7 +44,7 @@ final class JuiceKioskViewController: UIViewController {
     private func orderJuice(of juice: Juice) {
         let makeJuice = juiceMaker.makeJuice(juice: juice)
         if makeJuice {
-            self.makeAlert(title: "쥬스 제조 후 *** 쥬스 나왔습니다! 맛있게 드세요",
+            self.makeAlert(title: "쥬스 제조 후 \(juice.name) 쥬스 나왔습니다! 맛있게 드세요",
                            completion:  {
                 self.viewWillAppear(false)
             })
