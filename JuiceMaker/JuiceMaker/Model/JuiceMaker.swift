@@ -10,7 +10,12 @@ import Foundation
 struct JuiceMaker {
     let fruitStore: FruitStore = FruitStore()
     
-    func makeJuice(juice: Juice) -> Bool {
-        return fruitStore.useFruit(fruits: juice.ingredient)
+    func makeJuice(juice: Juice) throws -> String {
+        do {
+            try fruitStore.useFruit(fruits: juice.ingredient)
+            return "쥬스 제조 후 \(juice.name) 쥬스 나왔습니다! 맛있게 드세요!"
+        } catch {
+            throw error
+        }
     }
 }

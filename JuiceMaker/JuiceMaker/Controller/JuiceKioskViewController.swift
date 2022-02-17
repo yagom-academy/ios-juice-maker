@@ -42,18 +42,17 @@ final class JuiceKioskViewController: UIViewController {
     }
     
     private func orderJuice(of juice: Juice) {
-        let makeJuice = juiceMaker.makeJuice(juice: juice)
-        if makeJuice {
-            self.makeAlert(title: "쥬스 제조 후 \(juice.name) 쥬스 나왔습니다! 맛있게 드세요",
+        do {
+            let answer = try juiceMaker.makeJuice(juice: juice)
+            self.makeAlert(title: answer,
                            completion:  {
-                self.viewWillAppear(false)
+                self.patchData()
             })
-        } else {
-            self.makeRequestAlert(title: "재료가 모자라요. 재고를 수정할까요?",
+        }
+        catch {
+            self.makeRequestAlert(title: error.localizedDescription,
                                   okAction: {_ in
                 self.gotoModifyViewContoller()
-            }, completion: {
-                
             })
         }
     }
