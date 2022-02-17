@@ -7,22 +7,17 @@
 import UIKit
 
 class InitialViewController: UIViewController {
-   
-    private var fruitStore = FruitStore(manager: FruitStockManager(stocks: [
-            .strawberry:10,
-            .banana:10,
-            .mango:10,
-            .pineapple:10,
-            .kiwi:10])
-    )
+    // MARK: - Property
+    @IBOutlet private weak var fruitsStockCollectionView: UICollectionView!
+    @IBOutlet private weak var orderButtonCollectionView: UICollectionView!
     
-    private lazy var juiceMaker = JuiceMaker(store: fruitStore)
-    
-    @IBOutlet weak var fruitsStockCollectionView: UICollectionView!
-    @IBOutlet weak var orderButtonCollectionView: UICollectionView!
+    // MARK: Life Cycle
+    private var fruitStore: FruitStorable?
+    private var juiceMaker: JuiceMaker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initConfigrations()
         observeFruitStoreData()
         fruitsStockCollectionView.dataSource = self
         fruitsStockCollectionView.delegate = self
@@ -30,11 +25,22 @@ class InitialViewController: UIViewController {
         orderButtonCollectionView.delegate = self
     }
     
-    @IBAction func showModifyStocksVC(_ sender: UIBarButtonItem) {
-        presentModifyStockView()
+    // MARK: Initialization
+    func initConfigrations() {
+        let storeManager = FruitStockManager(stocks: [.strawberry: 10,
+                                                      .pineapple: 10,
+                                                      .mango: 10,
+                                                      .kiwi: 10,
+                                                      .banana: 10])
+        fruitStore = FruitStore(manager: storeManager)
+        juiceMaker = JuiceMaker(store: FruitStore(manager: storeManager))
     }
     
+    // MARK: Method
     private func tryMake(_ juice: Juice) {
+        guard let juiceMaker = juiceMaker else {
+            return
+        }
         var result: Bool = false
         do {
             result = try juiceMaker.make(into: juice)
@@ -48,17 +54,25 @@ class InitialViewController: UIViewController {
         }
     }
     
+    // MARK: Alert
     private func showCompleteMakeAlert(about juice: String) {
-        let alert = UIAlertController(title: "\(juice)\(AlertTitle.completeMakeJuice)", message: nil, preferredStyle: .alert)
-        let okayAlertAction = UIAlertAction(title: AlertTitle.action.okay, style: .default)
+        let alert = UIAlertController(title: "\(juice)\(AlertTitle.completeMakeJuice)",
+                                      message: nil,
+                                      preferredStyle: .alert)
+        let okayAlertAction = UIAlertAction(title: AlertTitle.action.okay,
+                                            style: .default)
         alert.addAction(okayAlertAction)
         present(alert, animated: true)
     }
     
     private func showFailedMakeAlert(about juice: String) {
-        let alert = UIAlertController(title: AlertTitle.faliMAkeJuice, message: nil, preferredStyle: .alert)
-        let declineAlertActin = UIAlertAction(title: AlertTitle.action.no, style: .cancel)
-        let okayAlertAction = UIAlertAction(title: AlertTitle.action.yes, style: .default) { _ in
+        let alert = UIAlertController(title: AlertTitle.faliMAkeJuice,
+                                      message: nil,
+                                      preferredStyle: .alert)
+        let declineAlertActin = UIAlertAction(title: AlertTitle.action.no,
+                                              style: .cancel)
+        let okayAlertAction = UIAlertAction(title: AlertTitle.action.yes,
+                                            style: .default) { _ in
             self.presentModifyStockView()
         }
         alert.addAction(declineAlertActin)
@@ -68,12 +82,16 @@ class InitialViewController: UIViewController {
     
     private func presentModifyStockView() {
         let storyboard = UIStoryboard(name: StoryboadName.main, bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController) as! TestViewController
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController)
         destinationVC.modalPresentationStyle = .fullScreen
-        destinationVC.fruitStore = fruitStore
+        //destinationVC.method
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
+    //MARK: Action
+    @IBAction private func showModifyStocksVC(_ sender: UIBarButtonItem) {
+        presentModifyStockView()
+    }
 }
 
 //MARK: Collection view
@@ -86,14 +104,15 @@ extension InitialViewController: UICollectionViewDataSource, UICollectionViewDel
         case orderButtonCollectionView:
             return Juice.allCases.count
         default:
-            return 0
+            return Int.zero
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case fruitsStockCollectionView:
-            guard let fruitStockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: FruitStockCollectionViewCell.reuseIdentifier, for: indexPath) as? FruitStockCollectionViewCell else {
+            guard let fruitStore = fruitStore ,
+                  let fruitStockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: FruitStockCollectionViewCell.reuseIdentifier, for: indexPath) as? FruitStockCollectionViewCell else {
                 return UICollectionViewCell()
             }
             let fruit = Fruit.allCases[indexPath.item]
@@ -158,7 +177,7 @@ extension InitialViewController {
     }
     
     @objc private func updateFruitStore(_ notification: Notification) {
-        guard let store = notification.userInfo?[NotificationUserInfo.fruitStore] as? FruitStore else {
+        guard let store = notification.userInfo?[NotificationUserInfo.fruitStore] as? FruitStorable else {
             return
         }
         fruitStore = store

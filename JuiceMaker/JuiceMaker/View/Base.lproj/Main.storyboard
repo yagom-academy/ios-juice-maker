@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vTQ-Nc-97O">
-                                <rect key="frame" x="44" y="32" width="780" height="164.66666666666666"/>
+                                <rect key="frame" x="50" y="32" width="744" height="164.66666666666666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v8G-uY-eih">
                                     <size key="itemSize" width="128" height="128"/>
@@ -62,14 +62,14 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="fruitEmojiLabel" destination="mVl-JQ-6g7" id="Rli-vm-WB6"/>
-                                            <outlet property="fruitStockLabel" destination="Qas-vP-td6" id="9xa-IY-SD0"/>
+                                            <outlet property="fruitEmojiLabel" destination="mVl-JQ-6g7" id="eF9-cF-dNU"/>
+                                            <outlet property="fruitStockLabel" destination="Qas-vP-td6" id="Hxi-t2-fBa"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="02l-Zf-TMT">
-                                <rect key="frame" x="44" y="204.66666666666663" width="780" height="164.33333333333337"/>
+                                <rect key="frame" x="50" y="204.66666666666663" width="744" height="164.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bWy-15-Nqh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -99,7 +99,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="juiceLabel" destination="hUi-ql-Kdq" id="aXc-RE-Ixy"/>
+                                            <outlet property="juiceLabel" destination="hUi-ql-Kdq" id="eoC-CL-Ycs"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -109,19 +109,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="02l-Zf-TMT" firstAttribute="height" secondItem="vTQ-Nc-97O" secondAttribute="height" id="8rb-zF-95c"/>
-                            <constraint firstItem="vTQ-Nc-97O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AfK-T1-NEs"/>
+                            <constraint firstItem="vTQ-Nc-97O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="AfK-T1-NEs"/>
                             <constraint firstItem="vTQ-Nc-97O" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NBh-6R-HR3"/>
-                            <constraint firstAttribute="trailing" secondItem="vTQ-Nc-97O" secondAttribute="trailing" constant="20" id="RQv-8I-tnN"/>
-                            <constraint firstAttribute="trailing" secondItem="02l-Zf-TMT" secondAttribute="trailing" constant="20" id="RoO-Qg-LWs"/>
+                            <constraint firstAttribute="trailing" secondItem="vTQ-Nc-97O" secondAttribute="trailing" constant="50" id="RQv-8I-tnN"/>
+                            <constraint firstAttribute="trailing" secondItem="02l-Zf-TMT" secondAttribute="trailing" constant="50" id="RoO-Qg-LWs"/>
                             <constraint firstItem="02l-Zf-TMT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="U2j-4n-EXQ"/>
-                            <constraint firstItem="02l-Zf-TMT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="a76-IX-QqO"/>
+                            <constraint firstItem="02l-Zf-TMT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="a76-IX-QqO"/>
                             <constraint firstItem="02l-Zf-TMT" firstAttribute="top" secondItem="vTQ-Nc-97O" secondAttribute="bottom" constant="8" symbolic="YES" id="u4B-gq-uFa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <action selector="goModifyStocksVC:" destination="BYZ-38-t0r" id="s6m-vX-R1m"/>
+                                <action selector="showModifyStocksVC:" destination="BYZ-38-t0r" id="Ses-4g-cuV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
