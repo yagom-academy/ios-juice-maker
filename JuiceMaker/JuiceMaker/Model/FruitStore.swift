@@ -12,15 +12,30 @@ typealias Fruits = [Fruit: Int]
 /// 과일 저장소 타입
 protocol FruitStoreType {
     /// 지정한 과일의 개수를 반환합니다.
+    ///
+    /// - Parameters:
+    ///     - fruit : 과일 이름
     func count(of fruit: Fruit) -> Int
     
     /// 지정한 과일을 지정한 개수로 설정합니다.
+    ///
+    /// - Parameters:
+    ///     - fruit : 과일 이름
+    ///     - amount : 과일 수량
     func setAmount(for fruit: Fruit, to amount: Int)
     
     /// 필요한 재료의 수량만큼 재고를 소모합니다.
+    ///
+    /// - Parameters:
+    ///     - ingredients :  과일 이름, 수량
     func consume(ingredients: Fruits)
     
     /// 지정한 쥬스를 만들기에 재고가 충분한지 확인합니다.
+    ///
+    /// - Parameters:
+    ///     - juice :  쥬스 이름
+    ///
+    /// - Returns:필요 재료의 수량 유무에 따라 true or false
     func hasIngredients(for juice: Juice) -> Bool
 }
 

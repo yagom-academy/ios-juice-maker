@@ -17,6 +17,7 @@ enum Juice {
 }
 
 extension Juice {
+    /// 쥬스 종류에 따라 소진될 재료와 수량을 가집니다.
     var ingredients: Fruits {
         return IngredientsDirector.ingredients(for: self)
     }
@@ -27,11 +28,19 @@ final class IngredientsBuilder {
     private var ingredients: Fruits = [:]
     
     /// 생성한 재료를 반환합니다.
+    ///
+    /// - Returns: 재료 반환
     func build() -> Fruits {
         return ingredients
     }
     
     /// 소진될 재료의 이름, 개수를 추가 합니다.
+    ///
+    /// - Parameters:
+    ///     - ingredient : 소진될 재료 이름
+    ///     - amount : 소진될 재료의 수량
+    ///
+    ///  - Returns: self
     func with(ingredient: Fruit, amount: Int) -> IngredientsBuilder {
         ingredients.updateValue(amount, forKey: ingredient)
         return self
@@ -41,6 +50,11 @@ final class IngredientsBuilder {
 /// 지정된 쥬스를 만들기 위해 소진 될 재료를 생성하는 타입
 final class IngredientsDirector {
     /// 지정된 쥬스를 만들기 위해 소진 될 재료를 생성한다.
+    ///
+    /// - Parameters:
+    ///     - juice : 쥬스 이름
+    ///
+    ///  - Returns: 소진될 재료 이름, 수량
     static func ingredients(for juice: Juice) -> Fruits {
         var builder = IngredientsBuilder()
         
