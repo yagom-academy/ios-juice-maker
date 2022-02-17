@@ -11,11 +11,11 @@
 		73B6685227BBE7CE005CF6E3 /* FruitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6685127BBE7CE005CF6E3 /* FruitType.swift */; };
 		73B6686127BC026A005CF6E3 /* FruitStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6685927BBFEE3005CF6E3 /* FruitStoreTests.swift */; };
 		73B6686327BD18D3005CF6E3 /* JuiceRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6686227BD18D3005CF6E3 /* JuiceRecipes.swift */; };
-		73B6686727BD37CE005CF6E3 /* FruitsInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6686627BD37CE005CF6E3 /* FruitsInventory.swift */; };
+		73B6687F27BE9991005CF6E3 /* UIButton+NumberOfLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6687E27BE9991005CF6E3 /* UIButton+NumberOfLines.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
-		C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* ViewController.swift */; };
+		C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */; };
 		C73DAF3E255D0CDD00020D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3C255D0CDD00020D38 /* Main.storyboard */; };
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
@@ -38,12 +38,12 @@
 		73B6685727BBFEE3005CF6E3 /* JuiceMakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JuiceMakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B6685927BBFEE3005CF6E3 /* FruitStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreTests.swift; sourceTree = "<group>"; };
 		73B6686227BD18D3005CF6E3 /* JuiceRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRecipes.swift; sourceTree = "<group>"; };
-		73B6686627BD37CE005CF6E3 /* FruitsInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsInventory.swift; sourceTree = "<group>"; };
+		73B6687E27BE9991005CF6E3 /* UIButton+NumberOfLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+NumberOfLines.swift"; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C73DAF3A255D0CDD00020D38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerViewController.swift; sourceTree = "<group>"; };
 		C73DAF3D255D0CDD00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C73DAF3F255D0CDE00020D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,12 +78,37 @@
 			path = JuiceMakerTests;
 			sourceTree = "<group>";
 		};
-		C71CD66D266C7B470038B9CB /* Controller */ = {
+		73B6687D27BE959A005CF6E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
-				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
+				C73DAF44255D0CDF00020D38 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		73B6688027BE99A0005CF6E3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				73B6688127BE99A9005CF6E3 /* UIButton */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		73B6688127BE99A9005CF6E3 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				73B6687E27BE9991005CF6E3 /* UIButton+NumberOfLines.swift */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		C71CD66D266C7B470038B9CB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -91,7 +116,6 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				73B6686627BD37CE005CF6E3 /* FruitsInventory.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				73B6685127BBE7CE005CF6E3 /* FruitType.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
@@ -104,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
-				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -131,10 +154,11 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				73B6687D27BE959A005CF6E3 /* Supporting Files */,
+				73B6688027BE99A0005CF6E3 /* Extension */,
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
-				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
 			path = JuiceMaker;
 			sourceTree = "<group>";
@@ -250,11 +274,11 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				73B6686327BD18D3005CF6E3 /* JuiceRecipes.swift in Sources */,
-				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
-				73B6686727BD37CE005CF6E3 /* FruitsInventory.swift in Sources */,
+				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				73B6685227BBE7CE005CF6E3 /* FruitType.swift in Sources */,
+				73B6687F27BE9991005CF6E3 /* UIButton+NumberOfLines.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,7 +475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JuiceMaker/Info.plist;
+				INFOPLIST_FILE = "JuiceMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,7 +493,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = JuiceMaker/Info.plist;
+				INFOPLIST_FILE = "JuiceMaker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
