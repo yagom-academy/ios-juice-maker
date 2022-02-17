@@ -60,8 +60,7 @@ final class StockManagementViewController: UIViewController {
         mangoStepper.value = Double(fruitStore.mango.counter)
     }
     
-    @objc
-    private func touchUpCloseRightBarButton() {
+    @objc private func touchUpCloseRightBarButton() {
         self.dismiss(animated: true, completion: {[weak self] in
             self?.delegate?.touchUpCloseButton()
         })
