@@ -170,8 +170,10 @@ extension OrderViewController {
     @objc func presentManageStockViewController() {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        if let manageStockNavigationController: UINavigationController = mainStoryboard.instantiateViewController(withIdentifier: "ManageStockNavigation") as? UINavigationController {
+        if let manageStockNavigationController: UINavigationController = mainStoryboard.instantiateViewController(withIdentifier: "ManageStockNavigation") as? UINavigationController,
+           let manageStockViewController: ManageStockViewController = manageStockNavigationController.viewControllers[0] as? ManageStockViewController {
             manageStockNavigationController.modalPresentationStyle = .fullScreen
+            manageStockViewController.fruitStore = self.juiceMaker.fruitStore
             present(manageStockNavigationController, animated: true, completion: nil)
         }
     }
