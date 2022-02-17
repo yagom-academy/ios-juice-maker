@@ -9,10 +9,12 @@ import UIKit
 
 class ModifyStocksViewController: UIViewController {
 
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
 
