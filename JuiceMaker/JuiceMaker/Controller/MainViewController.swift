@@ -15,10 +15,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mangoStock: UILabel!
     
     let fruitStore = FruitStore()
+    var juiceMaker: JuiceMaker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        juiceMaker = JuiceMaker(fruitStore: fruitStore)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +34,30 @@ class MainViewController: UIViewController {
         pineappleStock.text = "\(fruitStore.store[.pineapple] ?? 0)"
         kiwiStock.text = "\(fruitStore.store[.kiwi] ?? 0)"
         mangoStock.text = "\(fruitStore.store[.mango] ?? 0)"
+    }
+    
+    private func showSuccessAlert(juice: Juice) {
+        let alert = UIAlertController(title: nil, message: "\(juice.name)나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
+            self?.configureUI()
+        }
+        alert.addAction(yesAction)
+        self.present(alert, animated: true)
+    }
+    
+    private func showFailAlert() {
+        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
+            guard let stockManageViewController = self?.storyboard?.instantiateViewController(withIdentifier: "stockManage") else {
+                return
+            }
+            self?.navigationController?.pushViewController(stockManageViewController, animated: true)
+        }
+        let noAction = UIAlertAction(title: "아니요", style: .destructive)
+        alert.addAction(noAction)
+        alert.addAction(yesAction)
+        
+        self.present(alert, animated: true)
     }
 
     
