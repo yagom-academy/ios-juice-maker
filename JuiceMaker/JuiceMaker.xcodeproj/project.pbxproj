@@ -65,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		377381BC27BE8C7800A60D92 /* InitialViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3A255D0CDD00020D38 /* InitialViewController.swift */,
+			);
+			path = InitialViewController;
+			sourceTree = "<group>";
+		};
 		37C13FA527BE11E700A56555 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,7 +93,7 @@
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C73DAF3A255D0CDD00020D38 /* InitialViewController.swift */,
+				377381BC27BE8C7800A60D92 /* InitialViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

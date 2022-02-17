@@ -8,13 +8,15 @@ import UIKit
 
 class InitialViewController: UIViewController {
     // MARK: - Property
+    // MARK: - IBOutlet
     @IBOutlet private weak var fruitsStockCollectionView: UICollectionView!
     @IBOutlet private weak var orderButtonCollectionView: UICollectionView!
     
-    // MARK: Life Cycle
+    // MARK: Model
     private var fruitStore: FruitStorable?
     private var juiceMaker: JuiceMaker?
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initConfigrations()
@@ -26,14 +28,14 @@ class InitialViewController: UIViewController {
         orderButtonCollectionView.delegate = self
     }
     
-    // MARK: Initialization
+    // MARK: - Initialization
     func initConfigrations() {
         let storeManager = FruitStockManager(stocks: Stock.initValue)
         fruitStore = FruitStore(manager: storeManager)
         juiceMaker = JuiceMaker(store: FruitStore(manager: storeManager))
     }
     
-    // MARK: Method
+    // MARK: - Method
     private func makeJuice(_ juice: Juice) {
         do {
             let _ = try juiceMaker?.make(into: juice)
@@ -70,13 +72,14 @@ class InitialViewController: UIViewController {
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
-    //MARK: Action
+    //MARK: IBAction
     @IBAction private func showModifyStocksVC(_ sender: UIBarButtonItem) {
         presentModifyStockView()
     }
 }
 
-//MARK: Collection view
+// MARK: - Collection view
+// MARK: - Collection view delegate
 extension InitialViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView == orderButtonCollectionView else {
@@ -87,6 +90,7 @@ extension InitialViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: Collection view Data source
 extension InitialViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -134,6 +138,7 @@ extension InitialViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: Collection view delegate flow layout
 extension InitialViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(InitialCollectionViewLayoutConstant.minimumLineSpacing)
@@ -158,7 +163,7 @@ extension InitialViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: Notification center
+// MARK: - Notification center
 extension InitialViewController {
     private func observeFruitStoreData() {
         NotificationCenter.default.addObserver(self,
