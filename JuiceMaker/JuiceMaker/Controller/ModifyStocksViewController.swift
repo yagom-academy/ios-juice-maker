@@ -44,7 +44,7 @@ class ModifyStocksViewController: UIViewController {
     
     private func patchData() {
         for fruitLabel in fruitsLabels {
-            guard let fruitCount = juiceMaker?.fruitStore.stocks[fruitLabel.key] else {
+            guard let fruitCount = juiceMaker?.getFruitCount(fruit: fruitLabel.key) else {
                 return
             }
             fruitLabel.value.text = "\(fruitCount)"

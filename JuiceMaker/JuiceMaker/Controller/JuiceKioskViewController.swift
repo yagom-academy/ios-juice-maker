@@ -34,9 +34,7 @@ final class JuiceKioskViewController: UIViewController {
     
     private func patchData() {
         for fruitLabel in fruitsLabels {
-            guard let fruitCount = juiceMaker.fruitStore.stocks[fruitLabel.key] else {
-                return
-            }
+            let fruitCount = juiceMaker.getFruitCount(fruit: fruitLabel.key)
             fruitLabel.value.text = "\(fruitCount)"
         }
     }
