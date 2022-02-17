@@ -55,11 +55,13 @@ extension ManageStockViewController {
 extension ManageStockViewController {
     
     @objc private func touchDismissButton() {
-        guard let presentingViewController: UIViewController = presentingViewController else {
+        guard let presentingViewController: OrderViewController = presentingViewController as? OrderViewController else {
             return
         }
         
-        presentingViewController.dismiss(animated: true, completion: nil)
+        presentingViewController.dismiss(animated: true) {
+            presentingViewController.didChangeStock()
+        }
     }
     
 }
