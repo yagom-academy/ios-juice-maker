@@ -67,6 +67,7 @@ final class JuiceKioskViewController: UIViewController {
     
    private func gotoModifyViewContoller() {
         let vc = ModifyStocksViewController.instantiate(with: "Main")
+       vc.juiceMaker = juiceMaker
         navigationController?.pushViewController(vc, animated: true)
     }
     

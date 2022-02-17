@@ -428,6 +428,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaCountLabel" destination="gKu-86-RhI" id="JGP-La-bYi"/>
+                        <outlet property="kiwiCountLabel" destination="ZDv-1m-HBY" id="MwV-rA-Y0n"/>
+                        <outlet property="mangoCountLabel" destination="YJI-ER-LJR" id="kKx-Xr-Dps"/>
+                        <outlet property="pineappleCountLabel" destination="MpT-VW-hCb" id="RKg-7j-obR"/>
+                        <outlet property="strawberryCountLabel" destination="0yV-kn-zaT" id="0NN-3Z-QFn"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="p99-zV-rbR"/>
                     </connections>
                 </viewController>
