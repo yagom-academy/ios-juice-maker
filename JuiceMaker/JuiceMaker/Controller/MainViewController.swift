@@ -7,22 +7,22 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
     
-    @IBOutlet weak var strawberryOrderButton: UIButton!
-    @IBOutlet weak var bananaOrderButton: UIButton!
-    @IBOutlet weak var pineappleOrderButton: UIButton!
-    @IBOutlet weak var kiwiOrderButton: UIButton!
-    @IBOutlet weak var mangoOrderButton: UIButton!
-    @IBOutlet weak var strawberryBananaOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiOrderButton: UIButton!
+    @IBOutlet private weak var strawberryStock: UILabel!
+    @IBOutlet private weak var bananaStock: UILabel!
+    @IBOutlet private weak var pineappleStock: UILabel!
+    @IBOutlet private weak var kiwiStock: UILabel!
+    @IBOutlet private weak var mangoStock: UILabel!
     
-    var fruiteStore: FruitStore = {
+    @IBOutlet private weak var strawberryOrderButton: UIButton!
+    @IBOutlet private weak var bananaOrderButton: UIButton!
+    @IBOutlet private weak var pineappleOrderButton: UIButton!
+    @IBOutlet private weak var kiwiOrderButton: UIButton!
+    @IBOutlet private weak var mangoOrderButton: UIButton!
+    @IBOutlet private weak var strawberryBananaOrderButton: UIButton!
+    @IBOutlet private weak var mangoKiwiOrderButton: UIButton!
+    
+    private var fruiteStore: FruitStore = {
         return FruitStore(
             strawberryCount: 18,
             bananaCount: 10,
@@ -32,11 +32,11 @@ class MainViewController: UIViewController {
         )
     }()
     
-    lazy var singleJuiceMaker: SingleFruitJuiceMaker = {
+    private lazy var singleJuiceMaker: SingleFruitJuiceMaker = {
         SingleFruitJuiceMaker(fruitStore: fruiteStore)
     }()
     
-    lazy var mixedFruitJuiceMaker: MixedFruitJuiceMaker = {
+    private lazy var mixedFruitJuiceMaker: MixedFruitJuiceMaker = {
         MixedFruitJuiceMaker(fruitStore: fruiteStore)
     }()
     
@@ -48,27 +48,27 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    @objc func order(_ sender: UIButton) {
+    @objc private func order(_ sender: UIButton) {
         do {
             let message = try getJuiceMaker(uiButton: sender).order()
             setCount()
-            showAlert(message: message ?? "")
+            showBasicAlert(message: message ?? "")
         } catch {
             catchOrderError(error: error)
         }
     }
     
-    func catchOrderError(error: Error) {
+    private func catchOrderError(error: Error) {
         if let error = error as? JuiceMakerStateError,
            error == JuiceMakerStateError.outOfStock {
-            return showAlert(message: error.localizedDescription) { alert in
-                // show modal
+            return showActionAlert(message: error.localizedDescription) { _ in
+                self.showModalStockManagementView()
             }
         }
-        showAlert(message: error.localizedDescription)
+        showBasicAlert(message: error.localizedDescription)
     }
     
-    func getJuiceMaker(uiButton: UIButton) -> JuiceMaker {
+    private func getJuiceMaker(uiButton: UIButton) -> JuiceMaker {
         switch uiButton {
         case strawberryOrderButton:
             singleJuiceMaker.setState(state: singleJuiceMaker.strawberryJuiceMakerState)
@@ -98,7 +98,7 @@ extension MainViewController {
 }
 
 extension MainViewController {
-    func setCount() {
+    private func setCount() {
         strawberryStock.text = "\(fruiteStore.strawberry.counter)"
         bananaStock.text = "\(fruiteStore.banana.counter)"
         pineappleStock.text = "\(fruiteStore.pineapple.counter)"
@@ -106,7 +106,7 @@ extension MainViewController {
         mangoStock.text = "\(fruiteStore.mango.counter)"
     }
     
-    func addTargetButton() {
+    private func addTargetButton() {
         [
             strawberryOrderButton,
             bananaOrderButton,
@@ -119,5 +119,18 @@ extension MainViewController {
             .forEach {
                 $0.addTarget(self, action: #selector(order), for: .touchUpInside)
             }
+    }
+    
+    private func showModalStockManagementView() {
+        guard let stockManagementVC = self.storyboard?
+                .instantiateViewController(
+                    withIdentifier: "StockManagementViewController"
+                ) as? StockManagementViewController else {
+                    return
+                }
+        let uiNavigationVC = UINavigationController(rootViewController: stockManagementVC)
+        uiNavigationVC.modalTransitionStyle = .coverVertical
+        uiNavigationVC.modalPresentationStyle = .fullScreen
+        self.present(uiNavigationVC, animated: true, completion: nil)
     }
 }
