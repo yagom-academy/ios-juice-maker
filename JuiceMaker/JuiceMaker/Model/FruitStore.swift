@@ -54,4 +54,8 @@ class FruitStore {
     func quantity(of fruit: Fruit) -> Int {
         return stock[fruit] ?? 0
     }
+    
+    func updateQuantity(of fruit: Fruit, quantity: Int) {
+        stock[fruit] = quantity
+    }
 }

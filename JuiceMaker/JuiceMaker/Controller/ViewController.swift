@@ -50,6 +50,7 @@ class ViewController: UIViewController {
     private func presentModal() {
         guard let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "modalViewController") as? ModalViewController else {return}
         modalViewController.juiceMaker = juiceMaker
+        modalViewController.delegate = self
         
         let navigaionViewController = UINavigationController(rootViewController: modalViewController)
         
@@ -92,5 +93,11 @@ extension ViewController {
         pineappleLabel.text = String(juiceMaker.quantity(of: .pineapple))
         kiwiLabel.text = String(juiceMaker.quantity(of: .kiwi))
         mangoLabel.text = String(juiceMaker.quantity(of: .mango))
+    }
+}
+
+extension ViewController: ModalViewDelegate {
+    func finishModal() {
+        configureView()
     }
 }

@@ -298,6 +298,9 @@
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                         <rect key="frame" x="22.666666666666742" y="120.66666666666669" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="tappedStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Wht-Tu-jW5"/>
+                                        </connections>
                                     </stepper>
                                 </subviews>
                             </stackView>
@@ -319,6 +322,9 @@
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                         <rect key="frame" x="22.666666666666686" y="120.66666666666669" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="tappedStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="HFV-d3-Aqv"/>
+                                        </connections>
                                     </stepper>
                                 </subviews>
                             </stackView>
@@ -340,6 +346,9 @@
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                         <rect key="frame" x="22.333333333333314" y="112.66666666666669" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="tappedStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="A9S-JE-QCo"/>
+                                        </connections>
                                     </stepper>
                                 </subviews>
                             </stackView>
@@ -361,6 +370,9 @@
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                         <rect key="frame" x="22.666666666666671" y="118.66666666666669" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="tappedStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="KkJ-JJ-iae"/>
+                                        </connections>
                                     </stepper>
                                 </subviews>
                             </stackView>
@@ -382,6 +394,9 @@
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                         <rect key="frame" x="22.666666666666686" y="120.66666666666669" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="tappedStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="szx-nd-HQM"/>
+                                        </connections>
                                     </stepper>
                                 </subviews>
                             </stackView>
@@ -415,10 +430,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="gKu-86-RhI" id="Xln-Hn-WFj"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="L0K-ol-B4O"/>
                         <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="i6U-yJ-c4I"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="D1Y-qd-u36"/>
                         <outlet property="mangoLabel" destination="YJI-ER-LJR" id="l7l-5I-lJy"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="Li3-9P-2Lg"/>
                         <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="dav-bv-cZK"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="Q9E-Ve-rGf"/>
                         <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="fPU-u5-ReG"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="xUj-lL-nnn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

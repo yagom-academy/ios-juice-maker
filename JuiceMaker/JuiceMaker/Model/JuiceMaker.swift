@@ -20,4 +20,8 @@ struct JuiceMaker {
     func quantity(of fruit: Fruit) -> Int {
         return fruitStore.quantity(of: fruit)
     }
+    
+    func updateQuantity(of fruit: Fruit, quantity: Int) {
+        fruitStore.updateQuantity(of: fruit, quantity: quantity)
+    }
 }
