@@ -39,6 +39,7 @@ class ManageStockViewController: UIViewController {
     private func configure() {
         self.title = "재고 추가"
         self.setupBarItem()
+        self.setupCountLabels()
     }
 
 }
@@ -54,6 +55,17 @@ extension ManageStockViewController {
         self.navigationItem.rightBarButtonItem = dismissButton
     }
     
+    func setupCountLabels() {
+        guard let fruitStore: FruitStoreType = self.fruitStore else {
+            self.touchDismissButton()
+            return
+        }
+        
+        fruitStore.store.forEach { fruit, currentCount in
+            self.updateCountLabel(of: fruit, to: currentCount)
+        }
+    }
+    
 }
 
 // MARK: - Extension For Actions
@@ -61,12 +73,16 @@ extension ManageStockViewController {
 extension ManageStockViewController {
     
     @objc private func touchDismissButton() {
-        guard let presentingViewController: OrderViewController = presentingViewController as? OrderViewController else {
+        guard let presentingViewController: UINavigationController = presentingViewController as? UINavigationController else {
             return
         }
         
         presentingViewController.dismiss(animated: true) {
-            presentingViewController.didChangeStock()
+            guard let orderViewController: OrderViewController = presentingViewController.viewControllers[0] as? OrderViewController else {
+                return
+            }
+            
+            orderViewController.didChangeStock()
         }
     }
     
@@ -87,7 +103,7 @@ extension ManageStockViewController {
     }
     
     private func updateCountLabel(of fruit: Fruit, to count: Int) {
-        let label: UILabel = getCountLabel(of: fruit)
+        let label: UILabel = self.getCountLabel(of: fruit)
         label.text = "\(count)"
     }
     
