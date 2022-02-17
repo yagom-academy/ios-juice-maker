@@ -24,18 +24,17 @@ class FruitStore {
         stocks[fruit] = numberOf + (stocks[fruit] ?? 0)
     }
     
-    func useFruit(fruits: [Fruit: Int]) -> Bool {
+    func useFruit(fruits: [Fruit: Int]) throws {
         var usedStocks = self.stocks
         
         for useStock in fruits {
             usedStocks[useStock.key] = (usedStocks[useStock.key] ?? 0) - useStock.value
         }
         
-        let isCanMake = isCanMake(stocks: usedStocks)
-        if isCanMake {
-            self.stocks = usedStocks
+        guard isCanMake(stocks: usedStocks) else {
+            throw JuiceMakerError.outOfStock
         }
-        return isCanMake
+        self.stocks = usedStocks
     }
     
     private func isCanMake(stocks: [Fruit: Int]) -> Bool {
