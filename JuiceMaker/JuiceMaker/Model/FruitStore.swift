@@ -31,7 +31,7 @@ class FruitStore {
             usedStocks[useStock.key] = (usedStocks[useStock.key] ?? 0) - useStock.value
         }
         
-        let isCanMake = isCanMake(stocks: stocks)
+        let isCanMake = isCanMake(stocks: usedStocks)
         if isCanMake {
             self.stocks = usedStocks
         }
