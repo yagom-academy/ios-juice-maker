@@ -2,7 +2,7 @@
 
 ### 🌸 STEP1 - UML
 
-![step1-UML](https://user-images.githubusercontent.com/39825738/154270669-c61f5ef9-c4b5-4c49-942a-a4658f7c5585.png)
+![step1-UML](https://user-images.githubusercontent.com/39825738/154426606-df609c5e-a88f-4c7e-8c29-a06e9891501a.png)
 
 ---
 #### 고려했던 부분
