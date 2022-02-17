@@ -10,7 +10,7 @@ typealias StoreDataType = [Fruit: Int]
 
 protocol FruitStoreType {
     var store: StoreDataType { get }
-    func addStock(to fruit: Fruit, count: Int)
+    func changeStock(of fruit: Fruit, to count: Int) throws
     func useStocks(from requests: StoreDataType) throws
 }
 
@@ -29,11 +29,13 @@ final class FruitStore: FruitStoreType {
         }
     }
     
-    /// - Parameter count: Can be either positive or negative
-    func addStock(to fruit: Fruit, count: Int) {
-        if let currentCount = self.store[fruit] {
-            self.store[fruit] = currentCount + count
+    /// - Parameter count: Can be positive or zero, not negative
+    func changeStock(of fruit: Fruit, to count: Int) throws {
+        guard count >= 0
+        else {
+            throw FruitStoreError.invalidStockChange
         }
+        self.store[fruit] = count
     }
     
     /// Use stocks only if checkStock didn't throw error
