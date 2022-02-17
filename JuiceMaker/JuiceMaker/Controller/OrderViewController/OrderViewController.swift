@@ -136,7 +136,7 @@ extension OrderViewController {
     // MARK: - Fruit Stock Label Related
     
     /// Called in viewDidLoad() and orderJuice(menu:). It changes fruit count labels
-    private func didChangeStock() {
+    func didChangeStock() {
         let stocks = self.juiceMaker.fruitStore.store
         
         stocks.forEach { fruit, currentCount in
