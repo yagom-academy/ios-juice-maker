@@ -54,6 +54,14 @@ class InitialViewController: UIViewController {
         }
     }
     
+    private func presentModifyStockView() {
+        let storyboard = UIStoryboard(name: StoryboadName.main, bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController)
+        destinationVC.modalPresentationStyle = .fullScreen
+        //TODO: Step3 - destinationVC에서 fruitStore를 받을 메소드 추가
+        navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
     // MARK: Alert
     private func showCompleteMakeAlert(about juice: String) {
         let alert = UIAlertController(title: "\(juice)\(AlertTitle.completeMakeJuice)",
@@ -78,14 +86,6 @@ class InitialViewController: UIViewController {
         alert.addAction(declineAlertActin)
         alert.addAction(okayAlertAction)
         present(alert, animated: true)
-    }
-    
-    private func presentModifyStockView() {
-        let storyboard = UIStoryboard(name: StoryboadName.main, bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController)
-        destinationVC.modalPresentationStyle = .fullScreen
-        //destinationVC.method
-        navigationController?.pushViewController(destinationVC, animated: true)
     }
     
     //MARK: Action
