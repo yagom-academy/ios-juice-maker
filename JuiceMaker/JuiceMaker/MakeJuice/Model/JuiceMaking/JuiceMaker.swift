@@ -53,6 +53,20 @@ extension JuiceMaker {
     enum Juice {
         case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice
         case strawberryBananaJuice, mangoJuice, mangoKiwiJuice
+        case unknowned
+        
+        init(index: Int) {
+            switch index {
+            case 0: self = .strawberryBananaJuice
+            case 1: self = .mangoKiwiJuice
+            case 2: self = .strawberryJuice
+            case 3: self = .bananaJuice
+            case 4: self = .pineappleJuice
+            case 5: self = .kiwiJuice
+            case 6: self = .mangoJuice
+            default: self = .unknowned
+            }
+        }
     }
     
     
@@ -67,7 +81,7 @@ extension JuiceMaker {
                 NeededFruit(fruit: .banana, quantity: Quantity(2)),
             ],
             .kiwiJuice: [
-                NeededFruit(fruit: .banana, quantity: Quantity(3)),
+                NeededFruit(fruit: .kiwi, quantity: Quantity(3)),
             ],
             .pineappleJuice: [
                 NeededFruit(fruit: .pineapple, quantity: Quantity(2)),

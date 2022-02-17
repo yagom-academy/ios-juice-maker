@@ -43,7 +43,7 @@ class MakeJuiceViewModelTests: XCTestCase {
         let juice = JuiceMaker.Juice.bananaJuice
         
         // when
-        viewModel.order(juice: juice)
+        viewModel.order(juice)
         
         let stocks = viewModel.displayingStocks.value.first?.1
         let expected = Quantity(8)

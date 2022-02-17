@@ -223,6 +223,12 @@
                         <outletCollection property="quantityLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="dfh-KZ-ZGZ"/>
                         <outletCollection property="quantityLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="Rao-Yz-taT"/>
                         <outletCollection property="orderButtons" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="vMo-1q-69v"/>
+                        <outletCollection property="orderButtons" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="tAo-Lp-IaY"/>
+                        <outletCollection property="orderButtons" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="ioQ-fe-X3r"/>
+                        <outletCollection property="orderButtons" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="YoZ-sI-Ntx"/>
+                        <outletCollection property="orderButtons" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="12b-c1-OUd"/>
+                        <outletCollection property="orderButtons" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="C6I-mi-Uri"/>
+                        <outletCollection property="orderButtons" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="IKR-Vp-mPe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
