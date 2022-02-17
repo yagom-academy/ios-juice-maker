@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum FruitStoreError {
     case notEnoughFruits
@@ -26,6 +27,11 @@ final class FruitStore {
     
     private(set) var inventory = FruitsInventory()
     
+    private lazy var inventorySubject = BehaviorSubject<FruitsInventory>(value: inventory)
+    var inventoryObservable: Observable<FruitsInventory> {
+        inventorySubject.asObserver()
+    }
+    
     init(initialFruitCount: Int = 10) {
         FruitType.allCases.forEach { fruit in
             inventory[fruit] = initialFruitCount
@@ -37,6 +43,7 @@ final class FruitStore {
         switch checkedInventory {
         case .success():
             inventory = calculateUsableInventory(toSubtract: fruitsInventory)
+            inventorySubject.onNext(inventory)
             return .success(Void())
         case .failure(let error):
             return .failure(error)
@@ -48,6 +55,8 @@ final class FruitStore {
             return
         }
         inventory[fruit] = count
+        
+        inventorySubject.onNext(inventory)
     }
     
     private func checkInventory(of fruitsInventory: FruitsInventory) -> Result<Void, FruitStoreError> {

@@ -12,8 +12,11 @@ import RxCocoa
 class JuiceMakerViewController: UIViewController {
 
     // MARK: - Properties
-    private var juiceMaker = JuiceMaker()
+    
     private let disposeBag = DisposeBag()
+    private var fruitStore = FruitStore()
+    private lazy var juiceMaker = JuiceMaker(fruitStore: fruitStore)
+    
     
     // MARK: - Interface Builder Links
     
@@ -66,10 +69,15 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
+
+    
     
     // MARK: - Binding
     
     private func bindingUI() {
+        
+        // MARK: - Input
+        
         bindTapStrawberryJuiceOrderButton()
         bindTapBananaJuiceOrderButton()
         bindTapPineappleJuiceOrderButton()
@@ -77,6 +85,20 @@ class JuiceMakerViewController: UIViewController {
         bindTapMangoJuiceOrderButton()
         bindTapStrawberryBananaJuiceOrderButton()
         bindTapMangoKiwiJuiceJuiceOrderButton()
+        
+
+        // MARK: - Output
+        
+        bindInventory()
+    }
+    
+    private func bindInventory() {
+        self.fruitStore.inventoryObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { it in
+                self.strawberryCountLabel.text = String(describing: it[.strawberry] ?? 0)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindTapStrawberryJuiceOrderButton() {
