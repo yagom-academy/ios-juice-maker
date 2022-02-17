@@ -10,7 +10,7 @@ import XCTest
 
 class FruitStoreTests: XCTestCase {
 
-    private var sut: FruitStoreType?
+    private var sut: FruitStorable?
 
     override func setUpWithError() throws {
         try super.setUpWithError()

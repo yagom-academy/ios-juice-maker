@@ -10,7 +10,7 @@ enum JuiceMakerError: Error {
 }
 
 /// 쥬스 메이커 타입
-protocol JuiceMakerType {
+protocol JuiceMakeable {
     
     /// 과일쥬스를 만듭니다.
     ///
@@ -36,10 +36,10 @@ protocol JuiceMakerType {
     func setAmount(for fruit: Fruit, to amount: Int)
 }
 
-struct JuiceMaker: JuiceMakerType {
-    private let fruitStore : FruitStoreType
+struct JuiceMaker: JuiceMakeable {
+    private let fruitStore : FruitStorable
     
-    init(fruitStore: FruitStoreType = FruitStore()) {
+    init(fruitStore: FruitStorable = FruitStore()) {
         self.fruitStore = fruitStore
     }
     

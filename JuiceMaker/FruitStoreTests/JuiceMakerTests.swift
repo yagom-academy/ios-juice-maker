@@ -10,11 +10,11 @@ import XCTest
 
 class JuiceMakerTests: XCTestCase {
     
-    private var sut: JuiceMaker?
+    private var sut: JuiceMakeable?
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        let fruitStore: FruitStoreType = FruitStore(initialValue: 0)
+        let fruitStore: FruitStorable = FruitStore(initialValue: 0)
         sut = JuiceMaker(fruitStore: fruitStore)
     }
 

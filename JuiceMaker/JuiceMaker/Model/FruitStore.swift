@@ -10,7 +10,7 @@ import Foundation
 typealias Fruits = [Fruit: Int]
 
 /// 과일 저장소 타입
-protocol FruitStoreType {
+protocol FruitStorable {
     /// 지정한 과일의 개수를 반환합니다.
     ///
     /// - Parameters:
@@ -40,7 +40,7 @@ protocol FruitStoreType {
 }
 
 /// 과일을 위한 기능  클래스
-final class FruitStore: FruitStoreType {
+final class FruitStore: FruitStorable {
     private var fruits: Fruits
     
     init(initialValue: Int = 10) {
