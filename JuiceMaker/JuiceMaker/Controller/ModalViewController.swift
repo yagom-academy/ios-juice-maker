@@ -11,5 +11,9 @@ class ModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
 }
 
