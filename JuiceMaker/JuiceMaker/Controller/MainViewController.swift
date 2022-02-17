@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
         mangoStock.text = "\(fruitStore.store[.mango] ?? 0)"
     }
     
-    private func showSuccessAlert(juice: Juice) {
+    private func showSuccessAlert(_ juice: Juice) {
         let alert = UIAlertController(title: nil, message: "\(juice.name)나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
             self?.configureUI()
@@ -60,26 +60,43 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
+    private func orderJuice(type juice: Juice) {
+        guard let result = juiceMaker?.makeJuice(type: juice) else {
+            return
+        }
+        if result.isSuccess {
+            self.showSuccessAlert(juice)
+        } else {
+            self.showFailAlert()
+        }
+    }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: Any) {
+        orderJuice(type: .strawberryBananaJuice)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: Any) {
+        orderJuice(type: .mangoKiwiJuice)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: Any) {
+        orderJuice(type: .strawberryJuice)
     }
     
     @IBAction func orderBananaJuice(_ sender: Any) {
+        orderJuice(type: .bananaJuice)
     }
     
     @IBAction func orderPineappleJuice(_ sender: Any) {
+        orderJuice(type: .pineappleJuice)
     }
     
     @IBAction func orderKiwiJuice(_ sender: Any) {
+        orderJuice(type: .kiwiJuice)
     }
     
     @IBAction func orderMangoJuice(_ sender: Any) {
+        orderJuice(type: .mangoJuice)
     }
 }
 
