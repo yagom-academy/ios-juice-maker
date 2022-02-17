@@ -10,7 +10,7 @@ import UIKit
 extension ManageStockViewController {
     
     func setupBarItem() {
-        let dismissButton: UIBarButtonItem = UIBarButtonItem(title: "닫기", image: nil, primaryAction: nil, menu: nil)
+        let dismissButton: UIBarButtonItem = UIBarButtonItem(title: "닫기")
         dismissButton.target = self
         dismissButton.action = #selector(touchDismissButton)
         self.navigationItem.rightBarButtonItem = dismissButton
