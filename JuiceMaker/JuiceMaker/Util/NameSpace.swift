@@ -26,3 +26,9 @@ enum AlertTitle {
         static let yes = "예"
     }
 }
+
+enum NotificationUserInfo {
+    
+    static let fruitStore = "fruitStore"
+    
+}

@@ -7,13 +7,13 @@
 import UIKit
 
 class InitialViewController: UIViewController {
-    
-    var fruitStore = FruitStore(manager: FruitStockManager(stocks: [
-        .strawberry:10,
-        .banana:10,
-        .mango:10,
-        .pineapple:10,
-        .kiwi:10])
+   
+    private var fruitStore = FruitStore(manager: FruitStockManager(stocks: [
+            .strawberry:10,
+            .banana:10,
+            .mango:10,
+            .pineapple:10,
+            .kiwi:10])
     )
     
     private lazy var juiceMaker = JuiceMaker(store: fruitStore)
@@ -23,6 +23,7 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        observeFruitStoreData()
         fruitsStockCollectionView.dataSource = self
         fruitsStockCollectionView.delegate = self
         orderButtonCollectionView.dataSource = self
@@ -67,8 +68,9 @@ class InitialViewController: UIViewController {
     
     private func presentModifyStockView() {
         let storyboard = UIStoryboard(name: StoryboadName.main, bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController) as! TestViewController
         destinationVC.modalPresentationStyle = .fullScreen
+        destinationVC.fruitStore = fruitStore
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
@@ -143,4 +145,23 @@ extension InitialViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         fruitsStockCollectionView.reloadItems(at: usedFruit)
     }
+}
+
+//MARK: Notification center
+extension InitialViewController {
+    
+    private func observeFruitStoreData() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateFruitStore(_:)),
+                                               name: .sendFruitStoreData,
+                                               object: nil)
+    }
+    
+    @objc private func updateFruitStore(_ notification: Notification) {
+        guard let store = notification.userInfo?[NotificationUserInfo.fruitStore] as? FruitStore else {
+            return
+        }
+        fruitStore = store
+    }
+    
 }
