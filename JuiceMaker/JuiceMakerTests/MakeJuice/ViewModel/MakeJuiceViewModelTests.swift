@@ -37,4 +37,18 @@ class MakeJuiceViewModelTests: XCTestCase {
         
     }
 
+    func test_바나나주스를_주문하면_바나나의_재고가_8개가_된다() {
+        
+        // given
+        let juice = JuiceMaker.Juice.bananaJuice
+        
+        // when
+        viewModel.order(juice: juice)
+        
+        let stocks = viewModel.displayingStocks.value.first?.1
+        let expected = Quantity(8)
+        
+        // then
+        XCTAssertEqual(stocks, expected)
+    }
 }
