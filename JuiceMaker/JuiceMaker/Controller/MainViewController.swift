@@ -45,6 +45,10 @@ class MainViewController: UIViewController {
         setCount()
         addTargetButton()
     }
+    
+    @IBAction func touchUpStockManagementButon(_ sender: UIBarButtonItem) {
+        showModalStockManagementView()
+    }
 }
 
 extension MainViewController {
@@ -122,15 +126,20 @@ extension MainViewController {
     }
     
     private func showModalStockManagementView() {
-        guard let stockManagementVC = self.storyboard?
-                .instantiateViewController(
+        guard let stockManagementVC = self.storyboard?.instantiateViewController(
                     withIdentifier: "StockManagementViewController"
                 ) as? StockManagementViewController else {
                     return
                 }
+        stockManagementVC.fruitStore = fruiteStore
+        stockManagementVC.delegate = self
         let uiNavigationVC = UINavigationController(rootViewController: stockManagementVC)
-        uiNavigationVC.modalTransitionStyle = .coverVertical
-        uiNavigationVC.modalPresentationStyle = .fullScreen
         self.present(uiNavigationVC, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController: StockManagementVCDelegate {
+    func touchUpCloseButton() {
+        setCount()
     }
 }
