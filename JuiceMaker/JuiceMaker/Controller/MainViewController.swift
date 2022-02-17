@@ -1,12 +1,12 @@
 //
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  MainViewController - ViewController.swift
+//  Created by 추니 & Davy.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
