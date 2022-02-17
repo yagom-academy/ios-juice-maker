@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore()
+    private let fruitStore: FruitStore = FruitStore()
     
     func makeJuice(juice: Juice) throws -> String {
         do {
@@ -17,5 +17,9 @@ struct JuiceMaker {
         } catch {
             throw error
         }
+    }
+    
+    func getFruitCount(fruit: Fruit) -> Int {
+        return fruitStore.getFruitCount(fruit: fruit)
     }
 }

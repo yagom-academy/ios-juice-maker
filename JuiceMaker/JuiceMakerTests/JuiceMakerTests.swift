@@ -15,7 +15,7 @@ class JuiceMakerTests: XCTestCase {
     func test_바나나가_1개가_추가되면_바나나가_11개가_된다() {
         let expectedNumber = 11
         fruitStore.addFruit(numberOf: 1, fruit: Fruit.banana)
-        let result = fruitStore.stocks[Fruit.banana]
+        let result = fruitStore.getFruitCount(fruit: Fruit.banana)
         XCTAssertEqual(result, expectedNumber)
     }
     
@@ -24,31 +24,20 @@ class JuiceMakerTests: XCTestCase {
         
         let strawberryExpectedNumber = 0
         let bananaExpectedNumber = 9
-        do {
-            let _ = try juiceMaker.makeJuice(juice: .strawberryBananaJuice)
-            let strawberryResult: Bool = juiceMaker.fruitStore.stocks[.strawberry] == strawberryExpectedNumber
-            let bananaResult: Bool = juiceMaker.fruitStore.stocks[.banana] == bananaExpectedNumber
-            XCTAssertTrue(strawberryResult && bananaResult)
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
+        juiceMaker.makeJuice(juice: .strawberryBananaJuice)
+        let strawberryResult: Bool = juiceMaker.getFruitCount(fruit: .strawberry) == strawberryExpectedNumber
+        let bananaResult: Bool = juiceMaker.getFruitCount(fruit: .banana) == bananaExpectedNumber
+        XCTAssertTrue(strawberryResult && bananaResult)
     }
     
     func test_딸기수량이_10인데_딸기_16개를_사용하려하면_주스를_만들지_않음() {
-        guard let beforeOrderStrawberryCount = fruitStore.stocks[.strawberry] else {
-            return
-        }
+        let beforeOrderStrawberryCount = fruitStore.getFruitCount(fruit: .strawberry)
+
+        fruitStore.useFruit(fruits: [.strawberry: 16])
         
-        do {
-            try fruitStore.useFruit(fruits: [.strawberry: 16])
-            XCTFail("딸기수량보다 많은데 사용하였습니다.")
-        } catch JuiceMakerError.outOfStock {
-            guard let AfterOrderStrawberryCount = fruitStore.stocks[.strawberry] else {
-                return
-            }
-            XCTAssertEqual(beforeOrderStrawberryCount, AfterOrderStrawberryCount)
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
+        let AfterOrderStrawberryCount = fruitStore.getFruitCount(fruit: .strawberry)
+        
+        XCTAssertEqual(beforeOrderStrawberryCount, AfterOrderStrawberryCount)
+        
     }
 }

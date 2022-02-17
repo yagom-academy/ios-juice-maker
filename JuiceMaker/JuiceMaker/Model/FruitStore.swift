@@ -10,7 +10,7 @@ typealias Fruits = [Fruit: Int]
 
 // 과일 저장소 타입
 class FruitStore {
-    var stocks: Fruits = [:]
+    private var stocks: [Fruit:Int] = [:]
     
     init(fruitType: Fruits = [:]) {
         for fruit in Fruit.allCases {
@@ -33,13 +33,18 @@ class FruitStore {
             usedStocks[useStock.key] = (usedStocks[useStock.key] ?? 0) - useStock.value
         }
         
-        guard isCanMake(stocks: usedStocks) else {
-            throw JuiceMakerError.outOfStock
+        let isCanMake = isCanMake(stocks: usedStocks)
+        if isCanMake {
+            self.stocks = usedStocks
         }
         self.stocks = usedStocks
     }
     
     private func isCanMake(stocks: Fruits) -> Bool {
         return stocks.map { $0.value }.filter({ $0 < 0 }).count == 0
+    }
+    
+    func getFruitCount(fruit: Fruit) -> Int {
+        return stocks[fruit] ?? 0
     }
 }
