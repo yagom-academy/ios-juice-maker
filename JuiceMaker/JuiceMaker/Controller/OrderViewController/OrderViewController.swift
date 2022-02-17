@@ -133,36 +133,6 @@ extension OrderViewController {
         return errorMessage
     }
     
-    private func showAlert(
-        alertTitle: String = "",
-        message: String? = nil,
-        okActionTitle: String = "OK",
-        okActionHandler: ((UIAlertAction) -> Void)? = nil,
-        cancelActionTitle: String? = nil,
-        cancelActionHandlert: ((UIAlertAction) -> Void)? = nil
-    ) {
-        let alertController: UIAlertController = UIAlertController(
-            title: alertTitle,
-            message: message,
-            preferredStyle: .alert)
-        
-        let okAction: UIAlertAction = UIAlertAction(
-            title: okActionTitle,
-            style: .default,
-            handler: okActionHandler)
-        alertController.addAction(okAction)
-        
-        if let cancelActionTitle = cancelActionTitle {
-            let noAction: UIAlertAction = UIAlertAction(
-                title: cancelActionTitle,
-                style: .destructive,
-                handler: cancelActionHandlert)
-            alertController.addAction(noAction)
-        }
-        
-        self.present(alertController, animated: true)
-    }
-    
     // MARK: - Fruit Stock Label Related
     
     /// Called in viewDidLoad() and orderJuice(menu:). It changes fruit count labels
