@@ -20,18 +20,10 @@ class StockModifyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initObservers()
         initConfigrations()
     }
     
     // MARK: Initialization
-    func initObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(changeStore),
-                                               name: .sendFruitStoreData,
-                                               object: nil)
-    }
-    
     func initConfigrations() {
         let storeManager = FruitStockManager(stocks: [.strawberry: 10,
                                              .pineapple: 10,
@@ -51,13 +43,6 @@ class StockModifyViewController: UIViewController {
         
         store.change(fruit, to: count)
         stockModifyCell.countLabel.text = String(store.checkCount(stock: fruit))
-    }
-    
-    @objc func changeStore(_ notification: Notification) {
-        guard let store = notification.userInfo?["fruitStore"] as? FruitStorable else {
-            return
-        }
-        self.store = store
     }
     
     // MARK: IBAction
