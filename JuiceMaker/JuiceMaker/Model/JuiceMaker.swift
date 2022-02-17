@@ -32,7 +32,3 @@ struct JuiceMaker: JuiceMakable {
     }
   }
 }
-
-enum JuiceMakerError: Error {
-  case notEnoughStock
-}
