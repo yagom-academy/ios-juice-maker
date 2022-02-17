@@ -104,6 +104,27 @@ class OrderViewController: UIViewController {
         }
       )
       .disposed(by: disposeBag)
+    
+    viewModel?.strawberryStockObservable
+      .bind(to: strawberryStockLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    viewModel?.bananaStockObservable
+      .bind(to: bananaStockLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    viewModel?.pineappleStockObservable
+      .bind(to: pineappleStockLabel.rx.text)
+      .disposed(by: disposeBag)
+    
+    viewModel?.kiwiStockObservable
+      .bind(to: kiwiStockLabel.rx.text)
+      .disposed(by: disposeBag)
+
+    viewModel?.mangoStockObservable
+      .bind(to: mangoStockLabel.rx.text)
+      .disposed(by: disposeBag)
+
   }
   
   private func showSuccessAlert(_ juice: Juice) {

@@ -16,9 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           let orderViewController = mainStoryBoard.instantiateViewController(withIdentifier: "OrderViewController") as? OrderViewController
     else { return }
     
-    let fruitStore = FruitStore()
+    let fruitStore = FruitStore(qauntity: 10)
     let juiceMaker = JuiceMaker(fruitStore: fruitStore)
-    let orderViewModel = OrderViewModel(juiceMaker: juiceMaker)
+    let orderViewModel = OrderViewModel(juiceMaker: juiceMaker, fruitStore: fruitStore)
     
     orderViewController.viewModel = orderViewModel
     
