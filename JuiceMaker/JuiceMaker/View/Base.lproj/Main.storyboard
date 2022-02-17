@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" id="Ljy-gy-TCg"/>
+                                <action selector="tapUpdateQuantityButton:" destination="BYZ-38-t0r" id="p1N-zf-7Bx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -413,6 +413,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="Xln-Hn-WFj"/>
+                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="i6U-yJ-c4I"/>
+                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="l7l-5I-lJy"/>
+                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="dav-bv-cZK"/>
+                        <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="fPU-u5-ReG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

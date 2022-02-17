@@ -24,6 +24,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func tapUpdateQuantityButton(_ sender: Any) {
+        self.presentModal()
+    }
+    
     /// 주문한 메뉴와 주스 메뉴를 비교한다.
     private func checkMatch(order: String, juice: Juice) {
         if order == juice.name + " 주문" {
@@ -44,9 +48,14 @@ class ViewController: UIViewController {
     
     /// 모달을 표시한다.
     private func presentModal() {
-        guard let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "modalViewController") else {return}
-        modalViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-        self.present(modalViewController, animated: true)
+        guard let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "modalViewController") as? ModalViewController else {return}
+        modalViewController.juiceMaker = juiceMaker
+        
+        let navigaionViewController = UINavigationController(rootViewController: modalViewController)
+        
+        navigaionViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        
+        self.present(navigaionViewController, animated: true)
     }
     
     /// 확인 알럿을 표시한다.
