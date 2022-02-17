@@ -6,11 +6,13 @@
 
 import Foundation
 
+typealias Fruits = [Fruit: Int]
+
 // 과일 저장소 타입
 class FruitStore {
-    var stocks: [Fruit:Int] = [:]
+    var stocks: Fruits = [:]
     
-    init(fruitType: [Fruit: Int] = [:]) {
+    init(fruitType: Fruits = [:]) {
         for fruit in Fruit.allCases {
             stocks[fruit] = 10
         }
@@ -24,7 +26,7 @@ class FruitStore {
         stocks[fruit] = numberOf + (stocks[fruit] ?? 0)
     }
     
-    func useFruit(fruits: [Fruit: Int]) throws {
+    func useFruit(fruits: Fruits) throws {
         var usedStocks = self.stocks
         
         for useStock in fruits {
@@ -37,7 +39,7 @@ class FruitStore {
         self.stocks = usedStocks
     }
     
-    private func isCanMake(stocks: [Fruit: Int]) -> Bool {
+    private func isCanMake(stocks: Fruits) -> Bool {
         return stocks.map { $0.value }.filter({ $0 < 0 }).count == 0
     }
 }
