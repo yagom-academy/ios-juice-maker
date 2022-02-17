@@ -50,8 +50,16 @@ class ManageStockViewController: UIViewController {
             return
         }
         let updatedCount = Int(sender.value)
-        fruitStore.changeStock(of: fruit, to: updatedCount)
-        self.updateCountLabel(of: fruit, to: updatedCount)
+        
+        do {
+            try fruitStore.changeStock(of: fruit, to: updatedCount)
+            self.updateCountLabel(of: fruit, to: updatedCount)
+        }
+        catch {
+            let errorMessage: String? = self.parseErrorMessage(of: error)
+            self.showAlert(alertTitle: "재고를 수정할 수 없습니다", message: errorMessage)
+            sender.value = 0
+        }
     }
 }
 
@@ -151,6 +159,16 @@ extension ManageStockViewController {
         DispatchQueue.main.async {
             label.text = "\(count)"
         }
+    }
+    
+    private func parseErrorMessage(of error: Error) -> String? {
+        var errorMessage: String?
+        
+        if let fruitStoreError: FruitStoreError = error as? FruitStoreError {
+            errorMessage = fruitStoreError.errorDescription
+        }
+        
+        return errorMessage
     }
     
 }
