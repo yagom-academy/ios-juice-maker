@@ -70,4 +70,20 @@ extension ManageStockViewController {
         }
     }
     
+    /// Returns each fruit count label's reference according to the fruit type
+    private func getCountLabel(of fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return self.strawberryCountLabel
+        case .banana:
+            return self.bananaCountLabel
+        case .pineapple:
+            return self.pineappleCountLabel
+        case .kiwi:
+            return self.kiwiCountLabel
+        case .mango:
+            return self.mangoCountLabel
+        }
+    }
+    
 }
