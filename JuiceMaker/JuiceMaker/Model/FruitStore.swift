@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var stocks: [Fruit:Int] = [:]
+    private var stocks: [Fruit:Int] = [:]
     
     init(fruitType: [Fruit: Int] = [:]) {
         for fruit in Fruit.allCases {
@@ -40,5 +40,9 @@ class FruitStore {
     
     private func isCanMake(stocks: [Fruit: Int]) -> Bool {
         return stocks.map { $0.value }.filter({ $0 < 0 }).count == 0
+    }
+    
+    func getFruitCount(fruit: Fruit) -> Int {
+        return stocks[fruit] ?? 0
     }
 }
