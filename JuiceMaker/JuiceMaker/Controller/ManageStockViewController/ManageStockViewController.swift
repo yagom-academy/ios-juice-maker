@@ -17,6 +17,12 @@ class ManageStockViewController: UIViewController {
     @IBOutlet private weak var kiwiCountLabel: UILabel!
     @IBOutlet private weak var mangoCountLabel: UILabel!
     
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
+    
     // MARK: - Property
     
     var fruitStore: FruitStoreType?
