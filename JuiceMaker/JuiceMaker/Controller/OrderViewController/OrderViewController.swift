@@ -140,7 +140,7 @@ extension OrderViewController {
         let stocks = self.juiceMaker.fruitStore.store
         
         stocks.forEach { fruit, currentCount in
-            let label = self.getCountLabel(of: fruit)
+            let label = self.getCountLabel(for: fruit)
             DispatchQueue.main.async {
                 label.text = "\(currentCount)"
             }
@@ -148,7 +148,7 @@ extension OrderViewController {
     }
     
     /// Returns each fruit count label's reference according to the fruit type
-    private func getCountLabel(of fruit: Fruit) -> UILabel {
+    private func getCountLabel(for fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
             return self.strawberryCountLabel
