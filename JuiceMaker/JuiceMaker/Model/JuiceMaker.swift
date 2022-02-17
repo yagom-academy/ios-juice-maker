@@ -12,7 +12,7 @@ protocol JuiceMakable {
 
 // 쥬스 메이커 타입
 struct JuiceMaker: JuiceMakable {
-  var fruitStore: FruitStorable
+  private var fruitStore: FruitStorable
   
   init(fruitStore: FruitStorable) {
     self.fruitStore = fruitStore

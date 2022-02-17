@@ -13,7 +13,7 @@ protocol FruitStorable {
 
 // 과일 저장소 타입
 class FruitStore: FruitStorable {
-  var store: [Fruit: Int] = [.strawberry: 10 ,
+  private var store: [Fruit: Int] = [.strawberry: 10 ,
                                .banana: 10,
                                .pineapple: 10,
                                .mango: 10,
