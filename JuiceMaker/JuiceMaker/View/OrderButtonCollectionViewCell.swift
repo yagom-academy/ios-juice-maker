@@ -8,9 +8,9 @@
 import UIKit
 
 class OrderButtonCollectionViewCell: UICollectionViewCell {
-    
-    static let reuseIdentifier = "OrderButtonCollectionViewCellReuseID"
-    
     @IBOutlet weak var juiceLabel: UILabel!
     
+    func update(name: String) {
+        juiceLabel.text = name
+    }
 }

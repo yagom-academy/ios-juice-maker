@@ -8,9 +8,9 @@
 import Foundation
 
 enum StoreError: Error {
-    case notExistStuff(name: String)
-    case outOfStock
+    case outOfStock(name: String)
     case notEnoughStock(name: String, stock: Int)
+    case notExistStuff(name: String)
 }
 
 extension StoreError: LocalizedError {

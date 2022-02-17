@@ -50,7 +50,7 @@ struct FruitStore: FruitStorable {
         let stock = checkCount(stock: fruit)
         
         if stock == Int.zero {
-            throw StoreError.outOfStock
+            throw StoreError.outOfStock(name: fruit.name)
             
         } else if stock < count {
             throw StoreError.notEnoughStock(name: fruit.name, stock: stock)
