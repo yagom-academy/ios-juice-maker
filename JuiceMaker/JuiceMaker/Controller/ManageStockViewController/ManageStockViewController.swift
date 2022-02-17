@@ -9,6 +9,10 @@ import UIKit
 
 class ManageStockViewController: UIViewController {
     
+    // MARK: - Property
+    
+    var fruitStore: FruitStoreType?
+    
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
