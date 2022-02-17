@@ -18,7 +18,7 @@ class FruitStore {
         self.initFruitStore()
     }
     
-    func initFruitStore(initCount: Int = 10) {
+    private func initFruitStore(initCount: Int = 10) {
         Fruit.allCases.forEach { fruit in
             stock[fruit] = initCount
         }
@@ -30,7 +30,7 @@ class FruitStore {
         }
     }
     
-    func checkEnough(for needFruit: FruitInfo) throws {
+    private func checkEnough(for needFruit: FruitInfo) throws {
         guard let storeFruitQuntity = stock[needFruit.fruit], storeFruitQuntity >= needFruit.count else {
             throw FruitStoreError.notEnoughFruit
         }
