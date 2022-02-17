@@ -33,15 +33,13 @@ class ViewController: UIViewController {
     
     // 주문한 주스를 만든다.
     private func orderMenu(of juice: Juice) {
-        let result = juiceMaker.make(of: juice)
-         
-         switch result {
-         case .success(let message):
-             configureView()
-             showConfirmAlert(for: message)
-         case .failure:
-             showNotEnoghAlert()
-         }
+        do {
+            let message = try juiceMaker.make(of: juice)
+            configureView()
+            showConfirmAlert(for: message)
+        } catch {
+            showNotEnoghAlert()
+        }
     }
     
     /// 모달을 표시한다.
