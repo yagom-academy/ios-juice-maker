@@ -21,6 +21,9 @@ extension FruitStoreError: LocalizedError {
 
 /// 과일 저장소 타입
 final class FruitStore {
+    
+    typealias FruitsInventory = [FruitType: Int]
+    
     private(set) var inventory = FruitsInventory()
     
     init(initialFruitCount: Int = 10) {

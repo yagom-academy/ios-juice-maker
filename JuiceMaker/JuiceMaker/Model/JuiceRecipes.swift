@@ -7,49 +7,51 @@
 
 import Foundation
 
+typealias FruitItems = [FruitType: Int]
+
 protocol RecipeProtocol {
-    var items: FruitsInventory { get }
+    var items: FruitItems { get }
 }
 
 struct StrawberryJuice: RecipeProtocol {
-    var items: FruitsInventory = [
+    var items: FruitItems = [
         .strawberry: 16
     ]
 }
 
 struct BananaJuice: RecipeProtocol {
-    var items: FruitsInventory = [
+    var items: FruitItems = [
         .banana: 2
     ]
 }
 
 struct PineappleJuice: RecipeProtocol {
-    var items: FruitsInventory = [
+    var items: FruitItems = [
         .pineapple: 2
     ]
 }
 
 struct KiwiJuice: RecipeProtocol {
-    var items: FruitsInventory = [
+    var items: FruitItems = [
         .kiwi: 3
     ]
 }
 
 struct MangoJuice: RecipeProtocol {
-    var items: FruitsInventory = [
+    var items: FruitItems = [
         .mango: 3
     ]
 }
 
 struct StrawberryBananaJuice: RecipeProtocol {
-    var items: FruitsInventory = [
+    var items: FruitItems = [
         .strawberry: 10,
         .banana: 1
     ]
 }
 
 struct MangoKiwiJuice: RecipeProtocol {
-    var items: FruitsInventory = [
+    var items: FruitItems = [
         .mango: 2,
         .kiwi: 1
     ]
