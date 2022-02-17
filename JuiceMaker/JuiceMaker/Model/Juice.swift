@@ -21,19 +21,19 @@ enum Juice: CaseIterable {
     var recipe: Recipe {
         switch self {
         case .strawberryJuice:
-            return Recipe(fruitList: [(.strawberry, 16)])
+            return Recipe(fruitList: [FruitInfo(fruit: .strawberry, quantity: 16)])
         case .bananaJuice:
-            return Recipe(fruitList: [(.banana, 2)])
+            return Recipe(fruitList: [FruitInfo(fruit: .banana, quantity: 2)])
         case .pineappleJuice:
-            return Recipe(fruitList: [(.pineapple, 2)])
+            return Recipe(fruitList: [FruitInfo(fruit: .pineapple, quantity: 2)])
         case .kiwiJuice:
-            return Recipe(fruitList: [(.kiwi, 3)])
+            return Recipe(fruitList: [FruitInfo(fruit: .kiwi, quantity: 3)])
         case .mangoJuice:
-            return Recipe(fruitList: [(.mango, 3)])
+            return Recipe(fruitList: [FruitInfo(fruit: .mango, quantity: 3)])
         case .strawberryBananaJuice:
-            return Recipe(fruitList: [(.strawberry, 10), (.banana, 1)])
+            return Recipe(fruitList: [FruitInfo(fruit: .strawberry, quantity: 10), FruitInfo(fruit: .banana, quantity: 1)])
         case .mangoKiwiJuice:
-            return Recipe(fruitList: [(.mango, 2), (.kiwi, 1)])
+            return Recipe(fruitList: [FruitInfo(fruit: .mango, quantity: 2), FruitInfo(fruit: .kiwi, quantity: 1)])
         }
     }
     

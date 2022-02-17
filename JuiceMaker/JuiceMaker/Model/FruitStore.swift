@@ -27,14 +27,14 @@ class FruitStore {
     }
     
     /// 과일을 소진한다.
-    private func reduce(of needFruit: (fruit: Fruit, quantity: Int)) {
+    private func reduce(of needFruit: FruitInfo) {
         if let storeFruitQuntity = stock[needFruit.fruit]  {
             stock[needFruit.fruit] = storeFruitQuntity - needFruit.quantity
         }
     }
     
     /// 사용해야할 과일이 매장재고에 있는지 검사한다.
-    func checkEnough(for needFruit: (fruit: Fruit, quantity: Int)) throws {
+    func checkEnough(for needFruit: FruitInfo) throws {
         guard let storeFruitQuntity = stock[needFruit.fruit], storeFruitQuntity >= needFruit.quantity else {
             throw FruitStoreError.notEnoughFruit
         }

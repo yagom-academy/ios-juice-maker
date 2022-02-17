@@ -9,5 +9,10 @@ import Foundation
 
 /// 레시피 타입
 struct Recipe {
-    var fruitList: [(fruit: Fruit, quantity: Int)]
+    var fruitList: [FruitInfo]
+}
+
+struct FruitInfo {
+    var fruit: Fruit
+    var quantity: Int
 }
