@@ -10,7 +10,7 @@ import XCTest
 
 class JuiceMakerTests: XCTestCase {
 
-    let juiceMaker = JuiceMaker()
+    let juiceMaker = JuiceMaker(fruitStore: FruitStore())
     
     func test_과일재고가_있는_경우_원하는_쥬스가_만들어진다() {
         let input = Juice.kiwiJuice

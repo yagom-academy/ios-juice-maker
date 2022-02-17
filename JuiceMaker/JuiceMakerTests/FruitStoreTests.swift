@@ -26,7 +26,7 @@ class FruitStoreTests: XCTestCase {
         let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: input)
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [strawberryJuiceRecipe])
+            try fruitStore.changeAmountOfFruit([strawberryJuiceRecipe])
         } catch {}
         
         if let result = fruitStore.store[.strawberry] {
@@ -43,7 +43,7 @@ class FruitStoreTests: XCTestCase {
         let bananaJuiceRecipe = Recipe(fruit: .banana, amount: input)
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [strawberryJuiceRecipe, bananaJuiceRecipe])
+            try fruitStore.changeAmountOfFruit([strawberryJuiceRecipe, bananaJuiceRecipe])
         } catch {}
         
         if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
@@ -63,7 +63,7 @@ class FruitStoreTests: XCTestCase {
         let bananaJuiceRecipe = Recipe(fruit: .banana, amount: input)
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [strawberryJuiceRecipe, bananaJuiceRecipe])
+            try fruitStore.changeAmountOfFruit([strawberryJuiceRecipe, bananaJuiceRecipe])
         } catch {}
         
         if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
@@ -83,7 +83,7 @@ class FruitStoreTests: XCTestCase {
         let bananaJuiceRecipe = Recipe(fruit: .banana, amount: bananaInput)
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [strawberryJuiceRecipe, bananaJuiceRecipe])
+            try fruitStore.changeAmountOfFruit([strawberryJuiceRecipe, bananaJuiceRecipe])
         } catch {}
         
         if let strawberryAmount = fruitStore.store[.strawberry], let bananaAmout = fruitStore.store[.banana] {
@@ -101,7 +101,7 @@ class FruitStoreTests: XCTestCase {
         let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: input)
         
         do {
-        try fruitStore.changeAmountOfFruit(fruits: [strawberryJuiceRecipe])
+        try fruitStore.changeAmountOfFruit([strawberryJuiceRecipe])
         } catch {}
         
         XCTAssertEqual(expectation, fruitStore.store)
@@ -113,7 +113,7 @@ class FruitStoreTests: XCTestCase {
         let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: input)
         
         do {
-            try fruitStore.changeAmountOfFruit(fruits: [strawberryJuiceRecipe])
+            try fruitStore.changeAmountOfFruit([strawberryJuiceRecipe])
         } catch {}
         
         if let result = fruitStore.store[.strawberry] {
@@ -127,7 +127,7 @@ class FruitStoreTests: XCTestCase {
         let input = -20
         let strawberryJuiceRecipe = Recipe(fruit: .strawberry, amount: input)
         
-        XCTAssertThrowsError(try fruitStore.changeAmountOfFruit(fruits: [strawberryJuiceRecipe]))
+        XCTAssertThrowsError(try fruitStore.changeAmountOfFruit([strawberryJuiceRecipe]))
     }
     
 }
