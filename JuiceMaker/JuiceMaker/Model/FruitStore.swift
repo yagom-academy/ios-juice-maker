@@ -36,9 +36,17 @@ class FruitStore {
     
     /// 레시피의 과일을 사용한다.
     func useFruit(of juice: Juice) throws {
-        for fruitInfo in juice.recipe.fruitList {
-            try reduce(of: fruitInfo.fruit, count: fruitInfo.count)
+        for storeStock in juice.recipe.fruitList {
+            try check(for: storeStock)
         }
+    }
+    
+    /// 사용해야할 과일이 매장재고에 있는지 검사한다.
+    func check(for storeStock: (fruit: Fruit, count: Int)) throws {
+        guard let currentFruitCount = stock[storeStock.fruit], currentFruitCount >= storeStock.count else {
+            throw FruitStoreError.notEnoughFruit
+        }
+        try reduce(of: storeStock.fruit, count: storeStock.count)
     }
     
     /// 과일의 개수를 가져온다.
