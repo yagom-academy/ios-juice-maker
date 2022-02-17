@@ -10,8 +10,6 @@
 		16144BDC27BBF2AF00F2DC0F /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16144BDB27BBF2AF00F2DC0F /* Juice.swift */; };
 		16144BDF27BBF5FB00F2DC0F /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16144BDE27BBF5FB00F2DC0F /* JuiceMakerError.swift */; };
 		16255D4D27BCCF4A00FC1C98 /* ManageStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16255D4C27BCCF4A00FC1C98 /* ManageStockViewController.swift */; };
-		16255D5527BCED2500FC1C98 /* ManageStockViewControllerSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16255D5427BCED2500FC1C98 /* ManageStockViewControllerSetup.swift */; };
-		16255D5727BCF6A000FC1C98 /* ManageStockViewControllerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16255D5627BCF6A000FC1C98 /* ManageStockViewControllerAction.swift */; };
 		168C66D227BB75DE008C6845 /* JuiceMakerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168C66D127BB75DE008C6845 /* JuiceMakerResult.swift */; };
 		16F0636327BDFBD700308ADE /* UIViewController+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F0636227BDFBD700308ADE /* UIViewController+Additional.swift */; };
 		3C3674BF27BB764300BB27C9 /* FruitStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3674BE27BB764300BB27C9 /* FruitStoreError.swift */; };
@@ -30,8 +28,6 @@
 		16144BDB27BBF2AF00F2DC0F /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		16144BDE27BBF5FB00F2DC0F /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		16255D4C27BCCF4A00FC1C98 /* ManageStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStockViewController.swift; sourceTree = "<group>"; };
-		16255D5427BCED2500FC1C98 /* ManageStockViewControllerSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStockViewControllerSetup.swift; sourceTree = "<group>"; };
-		16255D5627BCF6A000FC1C98 /* ManageStockViewControllerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStockViewControllerAction.swift; sourceTree = "<group>"; };
 		168C66D127BB75DE008C6845 /* JuiceMakerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerResult.swift; sourceTree = "<group>"; };
 		16F0636227BDFBD700308ADE /* UIViewController+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additional.swift"; sourceTree = "<group>"; };
 		3C3674BE27BB764300BB27C9 /* FruitStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreError.swift; sourceTree = "<group>"; };
@@ -81,19 +77,9 @@
 		16255D4B27BCCF1400FC1C98 /* ManageStockViewController */ = {
 			isa = PBXGroup;
 			children = (
-				16255D4E27BCCF5700FC1C98 /* Extension */,
 				16255D4C27BCCF4A00FC1C98 /* ManageStockViewController.swift */,
 			);
 			path = ManageStockViewController;
-			sourceTree = "<group>";
-		};
-		16255D4E27BCCF5700FC1C98 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				16255D5427BCED2500FC1C98 /* ManageStockViewControllerSetup.swift */,
-				16255D5627BCF6A000FC1C98 /* ManageStockViewControllerAction.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		16E7D72427BC6A15007EB0BF /* Result */ = {
@@ -250,7 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16255D5527BCED2500FC1C98 /* ManageStockViewControllerSetup.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* OrderViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
@@ -258,7 +243,6 @@
 				16144BDC27BBF2AF00F2DC0F /* Juice.swift in Sources */,
 				168C66D227BB75DE008C6845 /* JuiceMakerResult.swift in Sources */,
 				3C3674C127BB786000BB27C9 /* Fruit.swift in Sources */,
-				16255D5727BCF6A000FC1C98 /* ManageStockViewControllerAction.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				16255D4D27BCCF4A00FC1C98 /* ManageStockViewController.swift in Sources */,
 				16F0636327BDFBD700308ADE /* UIViewController+Additional.swift in Sources */,

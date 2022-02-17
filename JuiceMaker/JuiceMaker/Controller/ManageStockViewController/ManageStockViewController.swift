@@ -24,3 +24,30 @@ class ManageStockViewController: UIViewController {
     }
 
 }
+
+// MARK: - Extension For Setup Funcs
+
+extension ManageStockViewController {
+    
+    func setupBarItem() {
+        let dismissButton: UIBarButtonItem = UIBarButtonItem(title: "닫기")
+        dismissButton.target = self
+        dismissButton.action = #selector(touchDismissButton)
+        self.navigationItem.rightBarButtonItem = dismissButton
+    }
+    
+}
+
+// MARK: - Extension For Actions
+
+extension ManageStockViewController {
+    
+    @objc private func touchDismissButton() {
+        guard let presentingViewController: UIViewController = presentingViewController else {
+            return
+        }
+        
+        presentingViewController.dismiss(animated: true, completion: nil)
+    }
+    
+}
