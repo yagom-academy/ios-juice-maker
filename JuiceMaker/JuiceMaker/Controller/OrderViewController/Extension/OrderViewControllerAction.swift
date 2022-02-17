@@ -11,31 +11,31 @@ extension OrderViewController {
     
     // MARK: - Button Action
     
-    @IBAction func touchStrawberryBananaJuiceOrderButton(_ sender: Any) {
+    @IBAction private func touchStrawberryBananaJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .strawberryBananaJuice)
     }
     
-    @IBAction func touchMangoKiwiJuiceOrderButton(_ sender: Any) {
+    @IBAction private func touchMangoKiwiJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .mangoKiwiJuice)
     }
     
-    @IBAction func touchStrawberryJuiceOrderButton(_ sender: Any) {
+    @IBAction private func touchStrawberryJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .strawberryJuice)
     }
     
-    @IBAction func touchBananaJuiceOrderButton(_ sender: Any) {
+    @IBAction private func touchBananaJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .bananaJuice)
     }
     
-    @IBAction func touchPinappleJuiceOrderButton(_ sender: Any) {
+    @IBAction private func touchPinappleJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .pineappleJuice)
     }
     
-    @IBAction func touchKiwiJuiceOrderButton(_ sender: Any) {
+    @IBAction private func touchKiwiJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .kiwiJuice)
     }
     
-    @IBAction func touchMangoJuiceOrderButton(_ sender: Any) {
+    @IBAction private func touchMangoJuiceOrderButton(_ sender: Any) {
         orderJuice(menu: .mangoJuice)
     }
     
@@ -64,7 +64,7 @@ extension OrderViewController {
     /// Returns error description string by casting `error`.
     /// Returns nil if `error` can't be casted into
     ///`FruitStoreError` or `JuiceMakerError`.
-    func parseErrorMessage(of error: Error) -> String? {
+    private func parseErrorMessage(of error: Error) -> String? {
         var errorMessage: String?
         
         if let fruitStoreError: FruitStoreError = error as? FruitStoreError {
