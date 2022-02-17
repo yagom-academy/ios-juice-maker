@@ -77,6 +77,8 @@ extension OrderViewController {
         return errorMessage
     }
     
+    private func showAlert(
+    
     // MARK: - Fruit Stock Label Related
     
     /// Called in viewDidLoad() and orderJuice(menu:). It changes fruit count labels

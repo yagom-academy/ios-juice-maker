@@ -14,7 +14,11 @@ struct Alert {
         case error
     }
     
-    static func makeAlert(of type: AlertType, title: String? = nil, message: String? = nil, actionHandler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
+    static func makeAlert(of type: AlertType,
+                          title: String? = nil,
+                          message: String? = nil,
+                          actionHandler: ((UIAlertAction) -> Void)? = nil
+    ) -> UIAlertController {
         let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         switch type {
         case .success:
