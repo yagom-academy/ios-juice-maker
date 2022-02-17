@@ -34,10 +34,7 @@ final class JuiceKioskViewController: UIViewController {
     
     private func patchData() {
         for fruitLabel in fruitsLabels {
-            guard let fruitCount = juiceMaker.fruitStore.stocks[fruitLabel.key] else {
-                return
-            }
-            fruitLabel.value.text = "\(fruitCount)"
+            fruitLabel.value.text = "\(juiceMaker.getFruitCount(fruit: fruitLabel.key))"
         }
     }
     
@@ -52,17 +49,15 @@ final class JuiceKioskViewController: UIViewController {
     }
     
     private func answerWhenMaked(of answer: String) {
-        self.makeAlert(title: answer,
-                       completion:  {
+        self.makeAlert(title: answer)  {
             self.patchData()
-        })
+        }
     }
     
     private func answerWhenOrderError(of error: Error) {
-        self.makeRequestAlert(title: error.localizedDescription,
-                              okAction: {_ in
+        self.makeRequestAlert(title: error.localizedDescription) { _ in
             self.gotoModifyViewContoller()
-        })
+        }
     }
     
    private func gotoModifyViewContoller() {
