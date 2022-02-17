@@ -23,7 +23,18 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        configureUI()
     }
+    
+    private func configureUI() {
+        strawberryStock.text = "\(fruitStore.store[.strawberry] ?? 0)"
+        bananaStock.text = "\(fruitStore.store[.banana] ?? 0)"
+        pineappleStock.text = "\(fruitStore.store[.pineapple] ?? 0)"
+        kiwiStock.text = "\(fruitStore.store[.kiwi] ?? 0)"
+        mangoStock.text = "\(fruitStore.store[.mango] ?? 0)"
+    }
+
     
     @IBAction func orderStrawberryBananaJuice(_ sender: Any) {
     }
