@@ -48,14 +48,14 @@ class ManageStockViewController: UIViewController {
 
 extension ManageStockViewController {
     
-    func setupBarItem() {
+    private func setupBarItem() {
         let dismissButton: UIBarButtonItem = UIBarButtonItem(title: "닫기")
         dismissButton.target = self
         dismissButton.action = #selector(touchDismissButton)
         self.navigationItem.rightBarButtonItem = dismissButton
     }
     
-    func setupCountLabels() {
+    private func setupCountLabels() {
         guard let fruitStore: FruitStoreType = self.fruitStore else {
             self.touchDismissButton()
             return
