@@ -421,7 +421,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 수정" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" id="RFd-5K-wfj"/>
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="RFd-5K-wfj">
+                            <connections>
+                                <action selector="closeButtonTap:" destination="Yu1-lM-nqp" id="vZc-eB-dA2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="p99-zV-rbR"/>
