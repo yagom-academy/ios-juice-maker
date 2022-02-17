@@ -21,7 +21,7 @@ struct JuiceMaker: JuiceMakable {
   func make(juice: Juice) throws {
     let ingredients = juice.ingredients
     try ingredients.forEach { (fruit, quantity) in
-      let originQuantity = fruitStore.stock(of: fruit)?.quantity ?? 0
+      let originQuantity = fruitStore.stock(of: fruit) ?? 0
       let updatedStock = originQuantity - quantity
       
       guard updatedStock >= 0 else {

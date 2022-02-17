@@ -14,20 +14,3 @@ enum Fruit: CaseIterable {
   case kiwi
   case mango
 }
-
-extension Fruit {
-  var emoji: String {
-    switch self {
-    case .strawberry:
-      return "🍓"
-    case .banana:
-      return "🍌"
-    case .pineapple:
-      return "🍍"
-    case .kiwi:
-      return "🥝"
-    case .mango:
-      return"🥭"
-    }
-  }
-}
