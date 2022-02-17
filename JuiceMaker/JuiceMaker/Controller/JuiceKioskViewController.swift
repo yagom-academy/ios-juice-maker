@@ -9,7 +9,7 @@ import UIKit
 
 final class JuiceKioskViewController: UIViewController {
     // MARK: - Property
-    private let juiceMaker = JuiceMaker()
+    var juiceMaker = JuiceMaker()
     private var fruitsLabels: [Fruit: UILabel] = [:]
     
     // MARK: - LifeCycle

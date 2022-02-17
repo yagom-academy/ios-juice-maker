@@ -76,6 +76,14 @@ class ModifyStocksViewController: UIViewController {
     
     // MARK: - Action
     @IBAction func closeButtonTap(_ sender: Any) {
+        let number: Int! = self.navigationController?.viewControllers.count
+        let previousViewController = self.navigationController?.viewControllers[number - 2] as! JuiceKioskViewController
+        
+        guard let juiceMaker = juiceMaker else {
+            return
+        }
+
+        previousViewController.juiceMaker = juiceMaker        
         navigationController?.popViewController(animated: true)
     }
     
