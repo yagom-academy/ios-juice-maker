@@ -20,7 +20,7 @@ class FruitStore {
     }
     
     /// 과일의 개수를 10으로 초기화한다.
-    func initFruitStore(initCount: Int = 10) {
+    private func initFruitStore(initCount: Int = 10) {
         Fruit.allCases.forEach { fruit in
             stock[fruit] = initCount
         }
