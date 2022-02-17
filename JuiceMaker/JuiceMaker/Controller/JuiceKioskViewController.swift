@@ -49,14 +49,14 @@ final class JuiceKioskViewController: UIViewController {
     }
     
     private func answerWhenMaked(of answer: String) {
-        self.makeAlert(title: answer)  {
-            self.patchData()
+        self.makeAlert(title: answer)  { [weak self] in
+            self?.patchData()
         }
     }
     
     private func answerWhenOrderError(of error: Error) {
-        self.makeRequestAlert(title: error.localizedDescription) { _ in
-            self.gotoModifyViewContoller()
+        self.makeRequestAlert(title: error.localizedDescription) { [weak self] _ in
+            self?.gotoModifyViewContoller()
         }
     }
     
