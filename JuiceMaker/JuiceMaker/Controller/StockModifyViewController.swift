@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 
 class StockModifyViewController: UIViewController {
+    // MARK: - Property
     @IBOutlet weak var stockModifyCollectionView: UICollectionView!
     
     private var store: FruitStorable?
     
     private let stockModifyCollectionViewCell = "StockModifyCollectionViewCell"
     
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +24,7 @@ class StockModifyViewController: UIViewController {
         initConfigrations()
     }
     
+    // MARK: Initialization
     func initObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(changeStore),
@@ -38,6 +41,7 @@ class StockModifyViewController: UIViewController {
         self.store = FruitStore(manager: storeManager)
     }
     
+    // MARK: Method
     func changeStockCount(count: Int, indexPath: IndexPath) {
         guard let stockModifyCell = stockModifyCollectionView.cellForItem(at: indexPath) as? StockModifyCollectionViewCell,
               let store = store else {
@@ -56,6 +60,7 @@ class StockModifyViewController: UIViewController {
         self.store = store
     }
     
+    // MARK: IBAction
     @IBAction func confirmButtonTouched(_ sender: Any) {
         self.dismiss(animated: true)
         guard let store = store else {
@@ -68,6 +73,7 @@ class StockModifyViewController: UIViewController {
 }
 
 extension StockModifyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    // MARK: Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Fruit.count
     }
