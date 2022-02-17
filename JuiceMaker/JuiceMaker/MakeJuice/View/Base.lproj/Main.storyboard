@@ -216,6 +216,14 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
+                    <connections>
+                        <outletCollection property="quantityLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="USw-Ua-eJP"/>
+                        <outletCollection property="quantityLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="uO5-ah-bwH"/>
+                        <outletCollection property="quantityLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="1cL-Eq-Ayu"/>
+                        <outletCollection property="quantityLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="dfh-KZ-ZGZ"/>
+                        <outletCollection property="quantityLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="Rao-Yz-taT"/>
+                        <outletCollection property="orderButtons" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="vMo-1q-69v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
