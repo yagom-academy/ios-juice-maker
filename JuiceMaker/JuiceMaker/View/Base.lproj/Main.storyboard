@@ -396,6 +396,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="bananaCountLabel" destination="gKu-86-RhI" id="t2y-FH-wKP"/>
+                        <outlet property="kiwiCountLabel" destination="ZDv-1m-HBY" id="Sk4-QH-FMO"/>
+                        <outlet property="mangoCountLabel" destination="YJI-ER-LJR" id="kyh-pM-bCz"/>
+                        <outlet property="pineappleCountLabel" destination="MpT-VW-hCb" id="3hE-b3-mNV"/>
+                        <outlet property="strawberryCountLabel" destination="0yV-kn-zaT" id="xhE-U9-zre"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

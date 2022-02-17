@@ -9,6 +9,14 @@ import UIKit
 
 class ManageStockViewController: UIViewController {
     
+    // MARK: - Outlet
+    
+    @IBOutlet private weak var strawberryCountLabel: UILabel!
+    @IBOutlet private weak var bananaCountLabel: UILabel!
+    @IBOutlet private weak var pineappleCountLabel: UILabel!
+    @IBOutlet private weak var kiwiCountLabel: UILabel!
+    @IBOutlet private weak var mangoCountLabel: UILabel!
+    
     // MARK: - Property
     
     var fruitStore: FruitStoreType?
