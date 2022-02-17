@@ -10,7 +10,6 @@ import UIKit
 class ModifyStocksViewController: UIViewController {
 
     // MARK: - Outlet Property
-    
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
     @IBOutlet weak var pineappleStepper: UIStepper!
@@ -70,6 +69,8 @@ class ModifyStocksViewController: UIViewController {
     private func setSteppersOptions() {
         for fruitStepper in fruitsSteppers {
             fruitStepper.value.minimumValue = 0
+            
+            fruitStepper.value.value =  Double((juiceMaker?.getFruitCount(fruit: fruitStepper.key))!)
         }
     }
     
@@ -79,18 +80,27 @@ class ModifyStocksViewController: UIViewController {
     }
     
     @IBAction func strawberryStepperTap(_ sender: UIStepper) {
-        print(sender.value.description)
+        strawberryCountLabel.text = "\(Int(sender.value).description)"
+        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .strawberry)
     }
     
     @IBAction func bananaStepperTap(_ sender: UIStepper) {
+        bananaCountLabel.text = "\(Int(sender.value).description)"
+        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .banana)
     }
     
     @IBAction func pineappleStepperTap(_ sender: UIStepper) {
+        pineappleCountLabel.text = "\(Int(sender.value).description)"
+        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .pineapple)
     }
     
     @IBAction func kiwiStepperTap(_ sender: UIStepper) {
+        kiwiCountLabel.text = "\(Int(sender.value).description)"
+        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .kiwi)
     }
     
     @IBAction func mangoStepperTap(_ sender: UIStepper) {
+        mangoCountLabel.text = "\(Int(sender.value).description)"
+        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .mango)
     }
 }

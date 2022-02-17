@@ -22,4 +22,8 @@ struct JuiceMaker {
     func getFruitCount(fruit: Fruit) -> Int {
         return fruitStore.getFruitCount(fruit: fruit)
     }
+    
+    func setFruitCountPlusOrMinusOne(numberOf: Int, fruit: Fruit) {
+        fruitStore.setFruitCountPlusOrMinusOne(numberOf: numberOf, fruit: fruit)
+    }
 }

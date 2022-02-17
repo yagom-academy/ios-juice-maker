@@ -47,4 +47,8 @@ class FruitStore {
     func getFruitCount(fruit: Fruit) -> Int {
         return stocks[fruit] ?? 0
     }
+    
+    func setFruitCountPlusOrMinusOne(numberOf: Int, fruit: Fruit) {
+        stocks[fruit] = numberOf
+    }
 }
