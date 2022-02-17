@@ -103,16 +103,16 @@ extension OrderViewController {
             switch result {
             case .success:
                 self.didChangeStock()
-                let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .success, title: "\(menu.name) 나왔습니다! 맛있게 드세요!")
-                self.present(orderResultAlertController, animated: true, completion: nil)
+                self.showAlert(alertTitle: "\(menu.name) 나왔습니다! 맛있게 드세요!")
             case .fail(let error):
                 let errorMessage: String? = parseErrorMessage(of: error)
-                
-                let orderResultAlertController: UIAlertController = Alert.makeAlert(of: .error, title: "재료가 모자라요. 재고를 수정할까요?", message: errorMessage) { action in
-                    self.presentManageStockViewController()
-                }
-                
-                self.present(orderResultAlertController, animated: true, completion: nil)
+                self.showAlert(
+                    alertTitle: "재료가 모자라요. 재고를 수정할까요?",
+                    message: errorMessage,
+                    okActionTitle: "예",
+                    okActionHandler: { _ in self.presentManageStockViewController() },
+                    cancelActionTitle: "아니오"
+                )
             }
         })
     }
@@ -131,6 +131,36 @@ extension OrderViewController {
         }
         
         return errorMessage
+    }
+    
+    private func showAlert(
+        alertTitle: String = "",
+        message: String? = nil,
+        okActionTitle: String = "OK",
+        okActionHandler: ((UIAlertAction) -> Void)? = nil,
+        cancelActionTitle: String? = nil,
+        cancelActionHandlert: ((UIAlertAction) -> Void)? = nil
+    ) {
+        let alertController: UIAlertController = UIAlertController(
+            title: alertTitle,
+            message: message,
+            preferredStyle: .alert)
+        
+        let okAction: UIAlertAction = UIAlertAction(
+            title: okActionTitle,
+            style: .default,
+            handler: okActionHandler)
+        alertController.addAction(okAction)
+        
+        if let cancelActionTitle = cancelActionTitle {
+            let noAction: UIAlertAction = UIAlertAction(
+                title: cancelActionTitle,
+                style: .destructive,
+                handler: cancelActionHandlert)
+            alertController.addAction(noAction)
+        }
+        
+        self.present(alertController, animated: true)
     }
     
     // MARK: - Fruit Stock Label Related
