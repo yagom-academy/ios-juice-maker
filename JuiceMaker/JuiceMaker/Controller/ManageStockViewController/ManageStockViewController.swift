@@ -67,7 +67,8 @@ extension ManageStockViewController {
     }
     
     private func configureCountLabels() {
-        guard let fruitStore: FruitStoreType = self.fruitStore else {
+        guard let fruitStore: FruitStoreType = self.fruitStore
+        else {
             self.touchDismissButton()
             return
         }
@@ -78,7 +79,8 @@ extension ManageStockViewController {
     }
     
     private func configureSteppers() {
-        guard let fruitStore: FruitStoreType = self.fruitStore else {
+        guard let fruitStore: FruitStoreType = self.fruitStore
+        else {
             self.touchDismissButton()
             return
         }
@@ -100,7 +102,8 @@ extension ManageStockViewController {
 extension ManageStockViewController {
     
     @objc private func touchDismissButton() {
-        guard let presentingViewController: UINavigationController = presentingViewController as? UINavigationController else {
+        guard let presentingViewController: UINavigationController = presentingViewController as? UINavigationController
+        else {
             return
         }
         
