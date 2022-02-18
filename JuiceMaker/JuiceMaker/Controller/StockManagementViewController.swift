@@ -98,23 +98,7 @@ final class StockManagementViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func valueChangedStrawberryStepper(_ sender: UIStepper) {
-        valueChangedStepper(sender: sender)
-    }
-    
-    @IBAction func valueChangedBananaStepper(_ sender: UIStepper) {
-        valueChangedStepper(sender: sender)
-    }
-    
-    @IBAction func valueChangedPineappleStepper(_ sender: UIStepper) {
-        valueChangedStepper(sender: sender)
-    }
-    
-    @IBAction func valueChangedKiwiStepper(_ sender: UIStepper) {
-        valueChangedStepper(sender: sender)
-    }
-    
-    @IBAction func valueChangedMangoStepper(_ sender: UIStepper) {
+    @IBAction func valueChangedStepper(_ sender: UIStepper) {
         valueChangedStepper(sender: sender)
     }
 }
