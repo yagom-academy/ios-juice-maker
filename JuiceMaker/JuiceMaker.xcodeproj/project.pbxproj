@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3718AC8427BC9AB2001D3216 /* StoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718AC8327BC9AB2001D3216 /* StoreError.swift */; };
 		3718AC8627BCA5E7001D3216 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718AC8527BCA5E7001D3216 /* Ingredient.swift */; };
-		37844B6827BE43D200EF84F6 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37844B6727BE43D200EF84F6 /* UIAlertController+Extension.swift */; };
+		37844B6827BE43D200EF84F6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37844B6727BE43D200EF84F6 /* UIViewController+Extension.swift */; };
 		378EC52227BB636B0036E29E /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52127BB636B0036E29E /* Fruit.swift */; };
 		378EC52427BB64BF0036E29E /* FruitStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52327BB64BF0036E29E /* FruitStockManager.swift */; };
 		378EC52627BB66650036E29E /* FruitStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52527BB66650036E29E /* FruitStorable.swift */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		3718AC8327BC9AB2001D3216 /* StoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreError.swift; sourceTree = "<group>"; };
 		3718AC8527BCA5E7001D3216 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
-		37844B6727BE43D200EF84F6 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
+		37844B6727BE43D200EF84F6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		378EC52127BB636B0036E29E /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		378EC52327BB64BF0036E29E /* FruitStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockManager.swift; sourceTree = "<group>"; };
 		378EC52527BB66650036E29E /* FruitStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStorable.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 		37C13FA527BE11E700A56555 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				37844B6727BE43D200EF84F6 /* UIAlertController+Extension.swift */,
+				37844B6727BE43D200EF84F6 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 				C73DAF3B255D0CDD00020D38 /* JuiceOrderViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				7F5DE16427BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift in Sources */,
-				37844B6827BE43D200EF84F6 /* UIAlertController+Extension.swift in Sources */,
+				37844B6827BE43D200EF84F6 /* UIViewController+Extension.swift in Sources */,
 				378EC52827BB67E60036E29E /* Juice.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				37D67D0127BF4DF7001AE82D /* CollectionViewNameSpace.swift in Sources */,

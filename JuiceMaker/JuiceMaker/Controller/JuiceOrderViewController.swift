@@ -45,11 +45,11 @@ class JuiceOrderViewController: UIViewController {
     private func makeJuice(_ juice: Juice) {
         do {
             let _ = try juiceMaker?.make(into: juice)
-            showCompletedMakeAlert(about: juice.name)
+            showAlert(method: .submit, title: formatCompletedTitle(juice: juice.name))
         } catch StoreError.outOfStock(let name) {
-            showNotCompletedMakeAlert(about: name)
+            showNotCompletedMakeAlert(about: formatNotCompletedTitle(juice: name))
         } catch StoreError.notEnoughStock(let name, let stock) {
-            showNotCompletedMakeAlert(about: name, count: stock)
+            showNotCompletedMakeAlert(about: formatNotCompletedTitle(juice: name, count: stock))
         } catch StoreError.notExistStuff(let name) {
             assertionFailure(String(format: StoreErrorNameSpace.notExistStuff, name))
         } catch {
@@ -57,28 +57,32 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func showCompletedMakeAlert(about juice: String) {
-        let alert = UIAlertController.makeSuceesJuiceAlert(juice: juice)
-        present(alert, animated: true)
-    }
-    
-    private func showNotCompletedMakeAlert(about juice: String, count: Int? = nil) {
-        let alert = UIAlertController.makeFailJuiceAlert(juice: juice,
-                                                         count: count) { _ in
+    private func showNotCompletedMakeAlert(about title: String, count: Int? = nil) {
+        showAlert(method: .suggest, title: title) { _ in
             self.presentModifyStockView()
         }
-        present(alert, animated: true)
+    }
+    
+    private func formatCompletedTitle(juice: String) -> String {
+        return String(format: AlertNameSpace.completeMakeJuice, juice)
+    }
+    
+    private func formatNotCompletedTitle(juice: String, count: Int? = nil) -> String {
+        guard let count = count else {
+            return String(format: AlertNameSpace.outOfStock, juice)
+        }
+        return String(format: AlertNameSpace.notEnoughStock, juice, count)
     }
     
     private func presentModifyStockView() {
         let storyboard = UIStoryboard(name: StoryboardNameSpace.mainStoryboardName, bundle: nil)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardNameSpace.stockModifyViewControllerID)
         destinationVC.modalPresentationStyle = .fullScreen
-        //TODO: Step3 - destinationVC에서 fruitStore를 받을 메소드 추가
+        // TODO: Step3 - destinationVC에서 fruitStore를 받을 메소드 추가
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
-    //MARK: IBAction
+    // MARK: IBAction
     @IBAction private func showModifyStockVC(_ sender: UIBarButtonItem) {
         presentModifyStockView()
     }

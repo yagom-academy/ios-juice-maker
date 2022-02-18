@@ -10,7 +10,7 @@ import Foundation
 enum AlertNameSpace {
     static let completeMakeJuice = "%@가 나왔습니다! 맛있게 드세요!"
     static let notEnoughStock = "%@의 갯수가 %d개 밖에 없어요 재고를 수정할까요?"
-    static let notOfStock = "%@가 없어요. 재고를 수정할까요?"
+    static let outOfStock = "%@가 없어요. 재고를 수정할까요?"
     
     enum Action {
         static let submit = "확인"
