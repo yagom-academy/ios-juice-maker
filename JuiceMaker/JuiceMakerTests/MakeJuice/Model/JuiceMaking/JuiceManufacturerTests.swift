@@ -9,7 +9,6 @@ import XCTest
 @testable import JuiceMaker
 
 class JuiceManufacturerTests: XCTestCase {
-
     func test_재고가_10개씩일때_바나나쥬스를_만들면_바나나_8개를_반환한다() {
         
         // given
@@ -39,5 +38,4 @@ class JuiceManufacturerTests: XCTestCase {
             XCTAssertEqual(error as? JuiceManufacturerError, JuiceManufacturerError.soldOut)
         }
     }
-    
 }

@@ -9,7 +9,6 @@ import XCTest
 @testable import JuiceMaker
 
 class MakeJuiceViewModelTests: XCTestCase {
-
     var viewModel: MakeJuiceViewModel!
     
     override func setUpWithError() throws {
@@ -43,7 +42,7 @@ class MakeJuiceViewModelTests: XCTestCase {
         let juice = JuiceMaker.Juice.bananaJuice
         
         // when
-        viewModel.order(juice)
+        try? viewModel.order(juice)
         
         let stocks = viewModel.displayingStocks.value.first?.1
         let expected = Quantity(8)

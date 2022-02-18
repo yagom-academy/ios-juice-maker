@@ -11,7 +11,6 @@ import Foundation
 ///
 /// 원시값 Int에 대하여 양의 정수만 유지하기 위해 존재함
 struct Quantity: Equatable {
-    
     private let quantity: Int
     
     init(_ value: Int) {
@@ -49,7 +48,6 @@ struct Quantity: Equatable {
 }
 
 extension Quantity {
-    
     static let zero: Quantity = Quantity(0)
     
     enum QuantityError: Error {

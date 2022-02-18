@@ -7,11 +7,8 @@
 import UIKit
 
 class MakeJuiceViewController: UIViewController {
-
     @IBOutlet var quantityLabels: [UILabel]!
-    
     @IBOutlet var orderButtons: [UIButton]!
-    
     
     // 뷰에서 이루어질 비즈니스 로직을 담당할 뷰모델 생성
     private var viewModel = MakeJuiceViewModel(juiceMaker: JuiceMaker())
@@ -47,6 +44,5 @@ class MakeJuiceViewController: UIViewController {
                 self.present(alert.alertController(), animated: true, completion: nil)
             }
         }
-        
     }
 }

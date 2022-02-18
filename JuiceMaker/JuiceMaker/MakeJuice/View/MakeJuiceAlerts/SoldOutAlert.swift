@@ -30,6 +30,4 @@ struct SoldOutAlert: UIAlertShowable {
             
         )
     }
-    
-    
 }

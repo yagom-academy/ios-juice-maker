@@ -7,7 +7,6 @@
 import Foundation
 
 struct JuiceMaker {
-    
     private var fruitStore: FruitStore
     private var recipe: Recipe
     
@@ -44,11 +43,9 @@ struct JuiceMaker {
             throw error
         }
     }
-    
 }
 
 extension JuiceMaker {
-    
     /// 과일 쥬스의 종류
     enum Juice {
         case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice

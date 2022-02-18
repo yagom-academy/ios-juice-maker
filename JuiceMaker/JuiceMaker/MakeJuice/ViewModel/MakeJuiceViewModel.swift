@@ -8,7 +8,6 @@
 import Foundation
 
 struct MakeJuiceViewModel {
-    
     private var displayingFruits: [FruitStore.Fruit]
     private var juiceMaker: JuiceMaker
     var displayingStocks: JMObservable<[(Int, Quantity)]>
@@ -74,11 +73,9 @@ struct MakeJuiceViewModel {
             return (fruitIndex, stock(of: fruit))
         })
     }
-    
 }
 
 extension MakeJuiceViewModel {
-    
     private static let defaultFruits: [FruitStore.Fruit] = [
         .strawberry,
         .banana,
@@ -86,5 +83,4 @@ extension MakeJuiceViewModel {
         .kiwi,
         .mango
     ]
-    
 }

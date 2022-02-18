@@ -15,7 +15,6 @@ enum JuiceManufacturerError: Error {
 
 /// 필요한 과일의 재고를 확인하여 주스를  만드는 역할을 수행
 struct JuiceManufacturer {
-    
     private var fruitStore: FruitStore
     private let recipe: JuiceMaker.Recipe
     
@@ -76,5 +75,4 @@ struct JuiceManufacturer {
             try fruitStore.decreaseStock(of: neededFruits.fruit, neededFruits.quantity)
         }
     }
-    
 }

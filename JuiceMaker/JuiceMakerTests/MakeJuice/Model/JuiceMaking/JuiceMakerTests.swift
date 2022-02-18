@@ -9,7 +9,6 @@ import XCTest
 @testable import JuiceMaker
 
 class JuiceMakerTests: XCTestCase {
-    
     func test_재고가_10개씩일때_바나나쥬스를_주문하면_바나나_재고가_8개된다() {
         
         // given

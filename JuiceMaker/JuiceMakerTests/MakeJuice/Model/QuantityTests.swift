@@ -9,7 +9,6 @@ import XCTest
 @testable import JuiceMaker
 
 class QuantityTests: XCTestCase {
-    
     func test_양수로_생성이_가능하다() {
         // given
         let positive: Int = 1

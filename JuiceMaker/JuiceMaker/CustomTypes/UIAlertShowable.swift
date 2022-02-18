@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol UIAlertShowable {
     var alertInfo: Alert { get }
     func alertController() -> UIAlertController
@@ -51,6 +50,5 @@ extension UIAlertShowable {
         }
         
         return alertController
-        
     }
 }
