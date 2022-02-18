@@ -51,9 +51,12 @@ class ViewController: UIViewController {
         do {
             let message = try juiceMaker.make(of: juice)
             configureView()
-            showConfirmAlert(for: message)
-        } catch {
+            showMessageAlert(for: message)
+        } catch is FruitStoreError {
             showNotEnoghAlert()
+        } catch {
+            let message = "다시 시도해주세요."
+            showMessageAlert(for: message)
         }
     }
     
@@ -65,7 +68,7 @@ class ViewController: UIViewController {
     }
     
     /// 확인 알럿을 표시한다.
-    private func showConfirmAlert(for message: String) {
+    private func showMessageAlert(for message: String) {
         let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertController.Style.alert)
         let defaultAction =  UIAlertAction(title: "확인", style: UIAlertAction.Style.default)
         alert.addAction(defaultAction)
