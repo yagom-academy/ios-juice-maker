@@ -9,11 +9,9 @@ import Foundation
 struct JuiceMaker {
     
     private var fruitStore: Store
-    private let juiceRecipes: JuiceRecipes
     
-    init(fruitStore: Store = FruitStore(), recipes: JuiceRecipes = JuiceRecipes()) {
+    init(fruitStore: Store = FruitStore()) {
         self.fruitStore = fruitStore
-        self.juiceRecipes = recipes
     }
     
     mutating func takeOrder(recipeType: JuiceRecipeType) throws -> String {
