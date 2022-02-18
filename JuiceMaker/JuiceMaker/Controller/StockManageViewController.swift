@@ -19,6 +19,7 @@ class StockManageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNavigationBar()
     }
 
     private func configureUI() {
@@ -29,4 +30,13 @@ class StockManageViewController: UIViewController {
         mangoStock.text = "\(fruitStore?.store[.mango] ?? 0)"
     }
 
+    private func configureNavigationBar() {
+        self.title = "재고 추가"
+        let navigationItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(tapCloseButton))
+        self.navigationItem.rightBarButtonItem  = navigationItem
+    }
+    
+    @objc private func tapCloseButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
