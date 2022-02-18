@@ -60,11 +60,10 @@ final class JuiceKioskViewController: UIViewController {
         }
     }
     
-   private func gotoModifyViewContoller() {
+    private func gotoModifyViewContoller() {
         let vc = ModifyStocksViewController.instantiate(with: "Main")
         navigationController?.pushViewController(vc, animated: true)
     }
-    
     
     // MARK: - Action
     @IBAction private func modifyButtonTap(_ sender: Any) {
