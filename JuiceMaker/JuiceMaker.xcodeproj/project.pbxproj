@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04F31A2E5ABE32C137F32C79 /* Pods_JuiceMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69F6473C286D75DA4C3BE81 /* Pods_JuiceMaker.framework */; };
+		0896909927BF554000B2D3D8 /* JuiceMakerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0896909827BF554000B2D3D8 /* JuiceMakerMessage.swift */; };
 		08A08DD927BD25930018CFFE /* JuiceMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A08DD827BD25930018CFFE /* JuiceMakerTests.swift */; };
 		08B3246627BEA8AD00F05D28 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B3246527BEA8AD00F05D28 /* AlertFactory.swift */; };
 		4790E0128F341BDE7AF5EF8A /* Pods_JuiceMakerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC00B8291773F498D6F4A228 /* Pods_JuiceMakerTests.framework */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0896909827BF554000B2D3D8 /* JuiceMakerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerMessage.swift; sourceTree = "<group>"; };
 		08A08DD827BD25930018CFFE /* JuiceMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerTests.swift; sourceTree = "<group>"; };
 		08B3246527BEA8AD00F05D28 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		65E265AF8F4B2848971D0080 /* Pods-JuiceMakerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JuiceMakerTests.release.xcconfig"; path = "Target Support Files/Pods-JuiceMakerTests/Pods-JuiceMakerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				73B6685127BBE7CE005CF6E3 /* FruitType.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				73B6686227BD18D3005CF6E3 /* JuiceRecipes.swift */,
+				0896909827BF554000B2D3D8 /* JuiceMakerMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				73B6687F27BE9991005CF6E3 /* UIButton+NumberOfLines.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				08B3246627BEA8AD00F05D28 /* AlertFactory.swift in Sources */,
+				0896909927BF554000B2D3D8 /* JuiceMakerMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

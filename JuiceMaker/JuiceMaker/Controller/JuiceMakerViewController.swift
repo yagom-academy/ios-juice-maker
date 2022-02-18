@@ -50,18 +50,27 @@ class JuiceMakerViewController: UIViewController {
         
         switch result {
         case .success():
-            let okAction = UIAlertAction(title: "예", style: .default)
+            let okAction = UIAlertAction(
+                title: JuiceMakerMessage.ok.description,
+                style: .default
+            )
             let alert = AlertFactory.create(
-                message: " 쥬스 나왔습니다! 맛있게 드세요!",
+                message: JuiceMakerMessage.makeSuccess(juiceName: "").description,
                 preferredStyle: .alert,
                 actions: okAction
             )
             present(alert, animated: true)
         case.failure(_):
-            let noAction = UIAlertAction(title: "아니오", style: .cancel)
-            let okAction = UIAlertAction(title: "예", style: .default)
+            let noAction = UIAlertAction(
+                title: JuiceMakerMessage.no.description,
+                style: .cancel
+            )
+            let okAction = UIAlertAction(
+                title: JuiceMakerMessage.ok.description,
+                style: .default
+            )
             let alert = AlertFactory.create(
-                message: "재료가 모자라요. 재고를 수정할까요?",
+                message: JuiceMakerMessage.makeFail.description,
                 preferredStyle: .alert,
                 actions: noAction, okAction
             )
