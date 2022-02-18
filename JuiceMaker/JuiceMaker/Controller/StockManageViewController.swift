@@ -37,6 +37,6 @@ class StockManageViewController: UIViewController {
     }
     
     @objc private func tapCloseButton() {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 }

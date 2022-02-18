@@ -73,7 +73,8 @@ class MainViewController: UIViewController {
             return
         }
         stockManageViewController.fruitStore = self.fruitStore
-        self.navigationController?.pushViewController(stockManageViewController, animated: true)
+        let navigationController = UINavigationController(rootViewController: stockManageViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: Any) {
