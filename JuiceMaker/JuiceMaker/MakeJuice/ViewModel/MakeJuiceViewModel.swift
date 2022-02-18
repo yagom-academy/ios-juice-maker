@@ -31,7 +31,7 @@ struct MakeJuiceViewModel {
     ///
     /// - Parameter _: 주문한 쥬스의 종류
     mutating func order(_ juice: JuiceMaker.Juice) throws {
-        let sortOfFruits = try juiceMaker.order(juice)
+        let sortOfFruits = try juiceMaker.make(of: juice)
         let stocks = self.stockToUpdate(with: sortOfFruits)
         displayingStocks.value = stocks
     }

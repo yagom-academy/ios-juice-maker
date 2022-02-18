@@ -22,25 +22,69 @@ struct JuiceMaker {
         return fruitStore.stock(of: fruit)
     }
     
-    /// JuiceManufacturer가 주스를 만들도록 요청
-    /// 성공하면 재고 업데이트, 실패하면 에러 반환
+    /// 쥬스 만들기.
     ///
-    /// - Returns: `[FruitStore.Fruit]` 주스 제조할 때 사용한 과일의 종류 반환. 성공했을 경우
+    /// O(N)의 시간 복잡도를 갖고 있음. 이때 N은 쥬스를 만들 때 필요한 과일의 종류 갯수임.
     ///
-    /// - Parameter _: 주문한 쥬스의 종류
-    mutating func order(_ juice: Juice) throws -> [FruitStore.Fruit] {
-        var manufacturer = JuiceManufacturer(fruitStore, recipe)
-        let store = try manufacturer.make(of: juice)
-        fruitStore = store
+    /// - Returns: 주스를 만들고 나서의 재고. 성공했을 경우
+    ///
+    /// - Parameter of: 만들 쥬스
+    ///
+    /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
+    mutating func make(of juice: JuiceMaker.Juice) throws -> [FruitStore.Fruit] {
+        guard let neededFruits = recipe.recipe(of: juice) else {
+            throw JuiceMakerError.notExistRecipe
+        }
+        try validateStock(of: neededFruits)
+        try useStock(of: neededFruits)
         
         guard let fruits = recipe.fruitsNeeded(in: juice)
-        else { throw JuiceManufacturerError.notExistRecipe }
+        else { throw JuiceMakerError.notExistRecipe }
         
         return fruits
+    }
+    
+    /// 쥬스를 만들 때 필요한 과일의 재고가 충분히 존재하는지 확인.
+    ///
+    /// O(N)의 시간 복잡도를 갖고 있음. 이때 N은 쥬스를 만들 때 필요한 과일의 종류 갯수임.
+    ///
+    /// - Returns: Nothing. 재고가 충분히 존재 할 경우
+    ///
+    /// - Parameter of: 필요한 과일과 갯수
+    ///
+    /// - Throws: `JuiceMakerError.soldOutError` 쥬스 만들 때 필요한 과일의 재고가 모자랄 경우
+    private func validateStock(of neededFruits: [JuiceMaker.Recipe.NeededFruit]) throws {
+        let outOfStocks = neededFruits.filter { neededFruit in
+            let stock = fruitStore.stock(of: neededFruit.fruit)
+            return stock < neededFruit.quantity
+        }
+        if outOfStocks.count > 0 {
+            throw JuiceMakerError.soldOut
+        }
+    }
+    
+    /// 쥬스를 만들기 위해 과일 저장소에서 필요한 과일들의 재고 갯수를 감소시킴.
+    ///
+    /// O(N)의 시간 복잡도를 갖고 있음. 이때 N은 쥬스를 만들 때 필요한 과일의 종류 갯수임.
+    ///
+    /// - Returns: Nothing.
+    ///
+    /// - Parameter of: 필요한 과일과 갯수
+    mutating private func useStock(of neededFruits: [JuiceMaker.Recipe.NeededFruit]) throws {
+        try neededFruits.forEach { neededFruits in
+            try fruitStore.decreaseStock(of: neededFruits.fruit, neededFruits.quantity)
+        }
     }
 }
 
 extension JuiceMaker {
+    
+    /// 과일 쥬스를 만들던 도중 발생할 수 있는 에러
+    enum JuiceMakerError: Error {
+        case soldOut
+        case notExistRecipe
+    }
+    
     /// 과일 쥬스의 종류
     enum Juice {
         case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice
