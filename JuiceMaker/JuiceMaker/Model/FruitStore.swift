@@ -8,7 +8,7 @@ import Foundation
 
 protocol Store {
     mutating func checkStock(of ingredients: [Ingredient]) -> Bool
-    mutating func makeDrink(of ingredients: [Ingredient]) throws
+    mutating func makeDrink(of ingredients: [Ingredient])
 }
 
 struct FruitStore: Store {
@@ -21,8 +21,8 @@ struct FruitStore: Store {
         }
     }
     
-    mutating func makeDrink(of ingredients: [Ingredient]) throws {
-        try startMakingJuice(of: ingredients)
+    mutating func makeDrink(of ingredients: [Ingredient]) {
+        startMakingJuice(of: ingredients)
     }
     
     mutating func checkStock(of ingredients: [Ingredient]) -> Bool {
@@ -44,23 +44,12 @@ struct FruitStore: Store {
         return true
     }
     
-    mutating private func startMakingJuice(of ingredients: [Ingredient]) throws {
-        try ingredients.forEach { ingredient in
-            try use(ingredient)
+    mutating private func startMakingJuice(of ingredients: [Ingredient]) {
+        ingredients.forEach { ingredient in
+            makeJuice(in: ingredient.fruit, number: ingredient.number)
         }
     }
-    
-    mutating private func use(_ ingredient: Ingredient) throws {
-        let fruit = ingredient.fruit
-        let number = ingredient.number
-        
-        guard let value = inventory[fruit] else {
-            throw JuiceMakerError.notFindFruit
-        }
-        
-        self.inventory[fruit] = value - number
-    }
-    
+
     mutating private func makeJuice(in fruit: Fruit, number: Int)  {
         guard let value = inventory[fruit] else {
             return
