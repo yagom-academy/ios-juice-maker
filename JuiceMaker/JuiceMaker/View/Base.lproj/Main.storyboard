@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -260,14 +260,14 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaCountLabel" destination="bl7-p0-c43" id="G7g-Rf-poG"/>
+                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="Bnz-eu-qh6"/>
                         <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="sCS-a8-rtu"/>
-                        <outlet property="kiwiCountLabel" destination="kI4-bd-cgh" id="yYE-Cc-Zt2"/>
+                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="a8p-0N-JnZ"/>
                         <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="RCS-lj-8pZ"/>
-                        <outlet property="mangoCountLabel" destination="2DA-4v-r9P" id="dQY-sw-yf9"/>
+                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="fPJ-kc-htm"/>
                         <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="7og-nc-imD"/>
                         <outlet property="mangoKiwiJuiceJuiceOrderButton" destination="ngP-kF-Yii" id="bOb-m0-sOM"/>
-                        <outlet property="pineappleCountLabel" destination="Qkv-u6-h8e" id="2ou-IO-dFm"/>
+                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="9ne-7u-sLQ"/>
                         <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="e3j-jr-d5f"/>
                         <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="WuX-Kb-uXW"/>
                         <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="xha-hP-yiC"/>

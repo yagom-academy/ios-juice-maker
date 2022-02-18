@@ -97,6 +97,10 @@ class JuiceMakerViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { it in
                 self.strawberryCountLabel.text = String(describing: it[.strawberry] ?? 0)
+                self.bananaCountLabel.text = String(describing: it[.banana] ?? 0)
+                self.pineappleCountLabel.text = String(describing: it[.pineapple] ?? 0)
+                self.kiwiCountLabel.text = String(describing: it[.kiwi] ?? 0)
+                self.mangoCountLabel.text = String(describing: it[.mango] ?? 0)
             })
             .disposed(by: disposeBag)
     }
