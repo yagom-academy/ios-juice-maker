@@ -31,4 +31,12 @@ struct JuiceMaker: Makable {
         
         return true
     }
+    
+    func checkStock(_ fruit: Fruit, as count: Int) throws -> Bool {
+        return try store.checkStock(fruit, as: count)
+    }
+    
+    func checkCount(stock fruit: Fruit) -> Int {
+        return store.checkCount(stock: fruit)
+    }
 }
