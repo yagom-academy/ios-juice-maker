@@ -8,20 +8,6 @@
 import UIKit
 
 class ModifyStocksViewController: UIViewController {
-
-    // MARK: - Outlet Property
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
-    
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
-    
     // MARK: - Property
     var juiceMaker: JuiceMaker?
     private var fruitsLabels: [Fruit: UILabel] = [:]
@@ -69,10 +55,14 @@ class ModifyStocksViewController: UIViewController {
     
     private func setSteppersOptions() {
         for fruitStepper in fruitsSteppers {
-            fruitStepper.value.minimumValue = 0
-            
-            fruitStepper.value.value =  Double((juiceMaker?.getFruitCount(fruit: fruitStepper.key))!)
+            setStepperOptions(for: fruitStepper.key, on: fruitStepper.value)
         }
+    }
+    
+    private func setStepperOptions(for fruit: Fruit, on stepper: UIStepper) {
+        guard let juiceMaker = juiceMaker else { return }
+        stepper.minimumValue = 0
+        stepper.value =  Double(juiceMaker.getFruitCount(fruit: fruit))
     }
     
     // MARK: - Action
@@ -104,4 +94,17 @@ class ModifyStocksViewController: UIViewController {
         mangoCountLabel.text = "\(Int(sender.value).description)"
         juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .mango)
     }
+    
+    // MARK: - Outlet Property
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
+    @IBOutlet weak var strawberryCountLabel: UILabel!
+    @IBOutlet weak var bananaCountLabel: UILabel!
+    @IBOutlet weak var pineappleCountLabel: UILabel!
+    @IBOutlet weak var kiwiCountLabel: UILabel!
+    @IBOutlet weak var mangoCountLabel: UILabel!
 }
