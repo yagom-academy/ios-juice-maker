@@ -17,6 +17,7 @@ protocol OrderViewModelType {
   var mangoStockObservable: Observable<String> { get }
   
   func order(juice: Juice)
+  func loadFruitStock()
 }
 
 class OrderViewModel: OrderViewModelType {
@@ -50,7 +51,7 @@ class OrderViewModel: OrderViewModelType {
     loadFruitStock()
   }
   
-  private func loadFruitStock() {
+  func loadFruitStock() {
     guard let strawberryStock = fruitStore.stock(of: .strawberry),
           let bananaStock = fruitStore.stock(of: .banana),
           let pineappleStock = fruitStore.stock(of: .pineapple),

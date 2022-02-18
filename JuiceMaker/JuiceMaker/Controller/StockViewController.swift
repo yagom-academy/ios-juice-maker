@@ -9,9 +9,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol StockViewDelegate {
+  func stockViewDidDismissed()
+}
+
 class StockViewController: UIViewController {
   var viewModel: StockViewModelType?
+  weak var coordinator: MainCoordinatable?
   let disposeBag = DisposeBag()
+  var delegate: StockViewDelegate?
   
   @IBOutlet weak var closeButton: UIButton!
   @IBOutlet weak var strawberryStockLabel: UILabel!
@@ -41,7 +47,8 @@ class StockViewController: UIViewController {
   private func subscribeUI() {
     closeButton.rx.tap
       .subscribe(with: self, onNext: { owner, _ in
-        owner.dismiss(animated: true, completion: nil)
+        owner.dismiss(animated: true)
+        owner.delegate?.stockViewDidDismissed()
       })
       .disposed(by: disposeBag)
     
@@ -104,7 +111,6 @@ class StockViewController: UIViewController {
         owner.viewModel?.increaseStock(fruit: .mango)
       })
       .disposed(by: disposeBag)
-    
   }
   
   private func bind() {
@@ -132,7 +138,5 @@ class StockViewController: UIViewController {
       .map { "\($0)" }
       .bind(to: mangoStockLabel.rx.text)
       .disposed(by: disposeBag)
-    
   }
-  
 }

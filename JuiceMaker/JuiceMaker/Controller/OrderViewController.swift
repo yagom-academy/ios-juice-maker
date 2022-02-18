@@ -164,3 +164,11 @@ class OrderViewController: UIViewController {
     coordinator?.showStockViewController(parentViewController: self)
   }
 }
+
+// MARK: - StockViewDelegate
+
+extension OrderViewController: StockViewDelegate {
+  func stockViewDidDismissed() {
+    viewModel?.loadFruitStock()
+  }
+}

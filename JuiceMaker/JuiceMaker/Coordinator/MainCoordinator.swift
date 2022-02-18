@@ -33,9 +33,13 @@ class MainCoordinator: Coordinator, MainCoordinatable {
   }
   
   func showStockViewController(parentViewController: UIViewController) {
-    guard let stockViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StockViewController") as? StockViewController else { return }
+    guard let stockViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StockViewController") as? StockViewController,
+          let orderViewController = parentViewController as? OrderViewController
+    else { return }
     let stockViewModel = StockViewModel(fruitStore: fruitStore)
     
+    stockViewController.delegate = orderViewController
+    stockViewController.coordinator = self
     stockViewController.viewModel = stockViewModel
     parentViewController.present(stockViewController, animated: true)
   }
