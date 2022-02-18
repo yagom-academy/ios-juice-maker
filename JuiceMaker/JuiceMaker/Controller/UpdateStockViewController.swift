@@ -15,18 +15,25 @@ final class UpdateStockViewController: UIViewController, StoryboardBindable {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
+    @IBOutlet weak var strawberryStockStepper: UIStepper!
+    @IBOutlet weak var bananaStockStepper: UIStepper!
+    @IBOutlet weak var pineappleStockStepper: UIStepper!
+    @IBOutlet weak var kiwiStockStepper: UIStepper!
+    @IBOutlet weak var mangoStockStepper: UIStepper!
+
     var fruitStore: FruitStore?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
+        self.setupStepper()
+        self.setupFruitStock()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.updateFruitStock()
+    @IBAction func chageStockSteppers(_ sender: UIStepper) {
+        print(sender.value)
     }
+    
 }
 
 // MARK: - Setup
@@ -40,7 +47,18 @@ extension UpdateStockViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func updateFruitStock() {
+    private func setupStepper() {
+        guard let fruitStore: FruitStore = self.fruitStore else {
+            return
+        }
+        self.strawberryStockStepper.value = Double(fruitStore.fruits[.strawberry]?.value ?? 0)
+        self.bananaStockStepper.value = Double(fruitStore.fruits[.banana]?.value ?? 0)
+        self.pineappleStockStepper.value = Double(fruitStore.fruits[.pineapple]?.value ?? 0)
+        self.kiwiStockStepper.value = Double(fruitStore.fruits[.kiwi]?.value ?? 0)
+        self.mangoStockStepper.value = Double(fruitStore.fruits[.mango]?.value ?? 0)
+    }
+    
+    private func setupFruitStock() {
         guard let fruitStore: FruitStore = self.fruitStore else {
             return
         }

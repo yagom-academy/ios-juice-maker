@@ -301,6 +301,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="16.666666666666671" y="118.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="QYN-Ji-L8E"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -320,8 +323,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="16.333333333333314" y="112.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="d3P-O1-4OT"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -341,8 +347,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="16.666666666666686" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="xPv-tX-1LK"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -362,8 +371,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="16.666666666666686" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="E7U-RE-ZR5"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -383,8 +395,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="16.666666666666742" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="BqF-u5-Fzy"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -417,10 +432,15 @@
                     <connections>
                         <outlet property="navigationBar" destination="Coy-kk-rPu" id="Yva-w7-sR0"/>
                         <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="9Qn-pE-Ckz"/>
+                        <outlet property="bananaStockStepper" destination="O5s-2N-3iP" id="dj5-Ip-A7F"/>
                         <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="Ou5-8W-fLL"/>
+                        <outlet property="kiwiStockStepper" destination="klA-59-Nu4" id="yI3-1b-a7w"/>
                         <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="m8H-MQ-rBM"/>
+                        <outlet property="mangoStockStepper" destination="xbn-6P-grO" id="YqK-6d-NEc"/>
                         <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="C4N-jk-Yay"/>
+                        <outlet property="pineappleStockStepper" destination="Rcr-xr-eqz" id="zjl-OG-vyJ"/>
                         <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="I9F-lx-xFc"/>
+                        <outlet property="strawberryStockStepper" destination="ZQk-f4-zrz" id="Ehj-kE-AG6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
