@@ -16,6 +16,7 @@
 		73B6686127BC026A005CF6E3 /* FruitStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6685927BBFEE3005CF6E3 /* FruitStoreTests.swift */; };
 		73B6686327BD18D3005CF6E3 /* JuiceRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6686227BD18D3005CF6E3 /* JuiceRecipes.swift */; };
 		73B6687F27BE9991005CF6E3 /* UIButton+NumberOfLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6687E27BE9991005CF6E3 /* UIButton+NumberOfLines.swift */; };
+		73B6688627C00295005CF6E3 /* FruitInventoryManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6688527C00295005CF6E3 /* FruitInventoryManageViewController.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 		73B6685927BBFEE3005CF6E3 /* FruitStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreTests.swift; sourceTree = "<group>"; };
 		73B6686227BD18D3005CF6E3 /* JuiceRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceRecipes.swift; sourceTree = "<group>"; };
 		73B6687E27BE9991005CF6E3 /* UIButton+NumberOfLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+NumberOfLines.swift"; sourceTree = "<group>"; };
+		73B6688527C00295005CF6E3 /* FruitInventoryManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitInventoryManageViewController.swift; sourceTree = "<group>"; };
 		A6B408B97420C7D953644A43 /* Pods-JuiceMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JuiceMaker.release.xcconfig"; path = "Target Support Files/Pods-JuiceMaker/Pods-JuiceMaker.release.xcconfig"; sourceTree = "<group>"; };
 		BAD0339ABCDD4161A039229E /* Pods-JuiceMakerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JuiceMakerTests.debug.xcconfig"; path = "Target Support Files/Pods-JuiceMakerTests/Pods-JuiceMakerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */,
+				73B6688527C00295005CF6E3 /* FruitInventoryManageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				73B6685227BBE7CE005CF6E3 /* FruitType.swift in Sources */,
 				73B6687F27BE9991005CF6E3 /* UIButton+NumberOfLines.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
+				73B6688627C00295005CF6E3 /* FruitInventoryManageViewController.swift in Sources */,
 				08B3246627BEA8AD00F05D28 /* AlertFactory.swift in Sources */,
 				0896909927BF554000B2D3D8 /* JuiceMakerMessage.swift in Sources */,
 			);

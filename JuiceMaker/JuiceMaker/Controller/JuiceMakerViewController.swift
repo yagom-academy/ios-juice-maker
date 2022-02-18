@@ -41,7 +41,7 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         bindingUI()
     }
-    
+ 
     
     // MARK: - Methods
     
@@ -77,8 +77,6 @@ class JuiceMakerViewController: UIViewController {
             present(alert, animated: true)
         }
     }
-    
-
     
     
     // MARK: - Binding
