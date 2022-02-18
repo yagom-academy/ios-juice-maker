@@ -100,19 +100,9 @@ class JuiceMakerViewController: UIViewController {
         
         bindInventory()
     }
+   
     
-    private func bindInventory() {
-        self.fruitStore.inventoryObservable
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { it in
-                self.strawberryCountLabel.text = String(describing: it[.strawberry] ?? 0)
-                self.bananaCountLabel.text = String(describing: it[.banana] ?? 0)
-                self.pineappleCountLabel.text = String(describing: it[.pineapple] ?? 0)
-                self.kiwiCountLabel.text = String(describing: it[.kiwi] ?? 0)
-                self.mangoCountLabel.text = String(describing: it[.mango] ?? 0)
-            })
-            .disposed(by: disposeBag)
-    }
+    // MARK: - Input
     
     private func bindTapStrawberryJuiceOrderButton() {
         strawberryJuiceOrderButton.rx.tap
@@ -187,6 +177,25 @@ class JuiceMakerViewController: UIViewController {
                 guard let `self` = self else { return }
                 let juice = MangoKiwiJuice()
                 self.order(juice: juice)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    
+    // MARK: - Output
+    
+    private func bindInventory() {
+        self.fruitStore.inventoryObservable
+            .map {
+                $0.mapValues { "\($0)" }
+            }
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { it in
+                self.strawberryCountLabel.text = it[.strawberry]
+                self.bananaCountLabel.text = it[.banana]
+                self.pineappleCountLabel.text = it[.pineapple]
+                self.kiwiCountLabel.text = it[.kiwi]
+                self.mangoCountLabel.text = it[.mango]
             })
             .disposed(by: disposeBag)
     }
