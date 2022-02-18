@@ -45,18 +45,16 @@ class ModifyStocksViewController: UIViewController {
     }
     
     private func patchData() {
-        for fruitLabel in fruitsLabels {
-            guard let fruitCount = juiceMaker?.getFruitCount(fruit: fruitLabel.key) else {
+        for (fruit, label) in fruitsLabels {
+            guard let fruitCount = juiceMaker?.getFruitCount(fruit: fruit) else {
                 return
             }
-            fruitLabel.value.text = "\(fruitCount)"
+            label.text = "\(fruitCount)"
         }
     }
     
     private func setSteppersOptions() {
-        for fruitStepper in fruitsSteppers {
-            let stepper = fruitStepper.key
-            let fruit = fruitStepper.value
+        for (stepper, fruit) in fruitsSteppers {
             setStepperOptions(for: fruit, on: stepper)
             stepper.addTarget(self, action: #selector(stepperTap), for: .valueChanged)
         }
