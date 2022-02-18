@@ -37,12 +37,12 @@ class MakeJuiceViewController: UIViewController {
             try viewModel.order(juice)
             let alert = CompleteMakingAlert()
             self.present(alert.alertController(), animated: true, completion: nil)
+        } catch JuiceManufacturerError.soldOut {
+            let alert = SoldOutAlert()
+            self.present(alert.alertController(), animated: true, completion: nil)
+        } catch {
+            
         }
-        catch {
-            if error as? JuiceManufacturerError == .soldOut {
-                let alert = SoldOutAlert()
-                self.present(alert.alertController(), animated: true, completion: nil)
-            }
-        }
+        
     }
 }

@@ -37,15 +37,9 @@ struct MakeJuiceViewModel {
     ///
     /// - Parameter _: 주문한 쥬스의 종류
     mutating func order(_ juice: JuiceMaker.Juice) throws {
-        
-        do {
-            let sortOfFruits = try juiceMaker.order(juice)
-            let stocks = self.stockToUpdate(with: sortOfFruits)
-            displayingStocks.value = stocks
-            
-        } catch {
-            throw error
-        }
+        let sortOfFruits = try juiceMaker.order(juice)
+        let stocks = self.stockToUpdate(with: sortOfFruits)
+        displayingStocks.value = stocks
     }
     
     /// 화면에 보여지는 과일 배열 중 특정 과일의 인덱스를 반환

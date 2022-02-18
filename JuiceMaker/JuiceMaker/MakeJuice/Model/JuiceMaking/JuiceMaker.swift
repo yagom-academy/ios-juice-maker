@@ -29,19 +29,14 @@ struct JuiceMaker {
     ///
     /// - Parameter _: 주문한 쥬스의 종류
     mutating func order(_ juice: Juice) throws -> [FruitStore.Fruit] {
-        do {
-            var manufacturer = JuiceManufacturer(fruitStore, recipe)
-            let store = try manufacturer.make(of: juice)
-            fruitStore = store
-            
-            guard let fruits = recipe.fruitsNeeded(in: juice)
-            else { throw JuiceManufacturerError.notExistRecipe }
-            
-            return fruits
-            
-        } catch {
-            throw error
-        }
+        var manufacturer = JuiceManufacturer(fruitStore, recipe)
+        let store = try manufacturer.make(of: juice)
+        fruitStore = store
+        
+        guard let fruits = recipe.fruitsNeeded(in: juice)
+        else { throw JuiceManufacturerError.notExistRecipe }
+        
+        return fruits
     }
 }
 
