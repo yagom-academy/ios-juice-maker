@@ -40,21 +40,21 @@ final class JuiceKioskViewController: UIViewController {
     
     private func orderJuice(of juice: Juice) {
         do {
-            let answer = try juiceMaker.makeJuice(juice: juice)
-            answerWhenMaked(of: answer)
+            let message = try juiceMaker.makeJuice(juice: juice)
+            successOrderJuice(message)
         }
         catch {
-            answerWhenOrderError(of: error)
+            failOrderJuice(error)
         }
     }
     
-    private func answerWhenMaked(of answer: String) {
-        self.makeAlert(title: answer)  { [weak self] in
+    private func successOrderJuice(_ message: String) {
+        self.makeAlert(title: message)  { [weak self] in
             self?.patchData()
         }
     }
     
-    private func answerWhenOrderError(of error: Error) {
+    private func failOrderJuice(_ error: Error) {
         self.makeRequestAlert(title: error.localizedDescription) { [weak self] _ in
             self?.gotoModifyViewContoller()
         }
