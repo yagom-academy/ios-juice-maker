@@ -22,9 +22,12 @@ extension FruitStoreError: LocalizedError {
 /// 과일 저장소 타입
 final class FruitStore {
     
-    typealias FruitsInventory = [FruitType: Int]
+    // MARK: - Private Properties
     
-    private(set) var inventory = FruitsInventory()
+    private(set) var inventory = FruitItems()
+    
+    
+    // MARK: - Init
     
     init(initialFruitCount: Int = 10) {
         FruitType.allCases.forEach { fruit in
@@ -32,11 +35,14 @@ final class FruitStore {
         }
     }
     
-    func use(of fruitsInventory: FruitsInventory) -> Result<Void, FruitStoreError> {
-        let checkedInventory =  checkInventory(of: fruitsInventory)
+    
+    // MARK: - Internal Methods
+    
+    func use(of fruits: FruitItems) -> Result<Void, FruitStoreError> {
+        let checkedInventory =  checkInventory(of: fruits)
         switch checkedInventory {
         case .success():
-            inventory = calculateUsableInventory(toSubtract: fruitsInventory)
+            inventory = calculateUsableInventory(toSubtract: fruits)
             return .success(Void())
         case .failure(let error):
             return .failure(error)
@@ -50,8 +56,11 @@ final class FruitStore {
         inventory[fruit] = count
     }
     
-    private func checkInventory(of fruitsInventory: FruitsInventory) -> Result<Void, FruitStoreError> {
-        let negativeFruitTypes = calculateUsableInventory(toSubtract: fruitsInventory)
+    
+    // MARK: - Private Methods
+    
+    private func checkInventory(of fruits: FruitItems) -> Result<Void, FruitStoreError> {
+        let negativeFruitTypes = calculateUsableInventory(toSubtract: fruits)
             .filter { $0.value < 0 }
         guard negativeFruitTypes.count < 1 else {
             return .failure(.notEnoughFruits)
@@ -59,8 +68,8 @@ final class FruitStore {
         return .success(Void())
     }
     
-    private func calculateUsableInventory(toSubtract fruitsInventory: FruitsInventory) -> FruitsInventory {
-        return inventory.merging(fruitsInventory, uniquingKeysWith: {
+    private func calculateUsableInventory(toSubtract fruits: FruitItems) -> FruitItems {
+        return inventory.merging(fruits, uniquingKeysWith: {
             $0 - $1
         })
     }

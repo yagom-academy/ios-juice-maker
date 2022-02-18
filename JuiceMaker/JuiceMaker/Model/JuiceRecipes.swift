@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias FruitItems = [FruitType: Int]
-
 protocol RecipeProtocol {
     var items: FruitItems { get }
 }
