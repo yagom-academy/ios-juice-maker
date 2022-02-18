@@ -26,7 +26,6 @@ final class JuiceMakerViewController: UIViewController, StoryboardBindable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("⛔️viewWillAppear⛔️")
         self.updateFruitStock()
     }
     

@@ -21,6 +21,7 @@ final class UpdateStockViewController: UIViewController, StoryboardBindable {
     @IBOutlet weak var kiwiStockStepper: UIStepper!
     @IBOutlet weak var mangoStockStepper: UIStepper!
 
+    // MARK: - Properties
     var fruitStore: FruitStore?
     
     override func viewDidLoad() {
@@ -36,7 +37,22 @@ final class UpdateStockViewController: UIViewController, StoryboardBindable {
         }
         let changedStock: Number = Number(Int(sender.value))
         self.fruitStore?.changeFruitStock(fruit: fruit, to: changedStock)
-        self.setupFruitStock()
+        self.updateUI(fruit: fruit, to: changedStock)
+    }
+    
+    func updateUI(fruit: Fruit, to amount: Number) {
+        switch fruit {
+        case .strawberry:
+            self.strawberryStockLabel.text = "\(amount)"
+        case .banana:
+            self.bananaStockLabel.text = "\(amount)"
+        case .kiwi:
+            self.kiwiStockLabel.text = "\(amount)"
+        case .pineapple:
+            self.pineappleStockLabel.text = "\(amount)"
+        case .mango:
+            self.mangoStockLabel.text = "\(amount)"
+        }
     }
     
 }
