@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C1A154627BAC79C0030A867 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A154527BAC79C0030A867 /* Fruit.swift */; };
 		1C1A154C27BADAB60030A867 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1A154B27BADAB60030A867 /* State.swift */; };
+		1C2A5DED27BF637D00D65003 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A5DEC27BF637D00D65003 /* Constants.swift */; };
 		1C7B846527BCA5F7001546B2 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B846427BCA5F7001546B2 /* JuiceMakerError.swift */; };
 		21D3336227BE7D6C008267D5 /* StockManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3336127BE7D6C008267D5 /* StockManagementViewController.swift */; };
 		21F4A25A27BD21270022CCCC /* UIViewContollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4A25927BD21270022CCCC /* UIViewContollerExtension.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		1C1A154527BAC79C0030A867 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		1C1A154B27BADAB60030A867 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		1C2A5DEC27BF637D00D65003 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1C7B846427BCA5F7001546B2 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		21D3336127BE7D6C008267D5 /* StockManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\bStockManagementViewController.swift"; sourceTree = "<group>"; };
 		21F4A25927BD21270022CCCC /* UIViewContollerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewContollerExtension.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C2A5DEB27BF636F00D65003 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				1C2A5DEC27BF637D00D65003 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		1C7B846227BCA31A001546B2 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				1C7B846327BCA5D6001546B2 /* Error */,
+				1C2A5DEB27BF636F00D65003 /* Constants */,
 				C71CD671266C7B570038B9CB /* View */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
@@ -207,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1A154627BAC79C0030A867 /* Fruit.swift in Sources */,
+				1C2A5DED27BF637D00D65003 /* Constants.swift in Sources */,
 				21F4A25A27BD21270022CCCC /* UIViewContollerExtension.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* MainViewController.swift in Sources */,
