@@ -128,8 +128,9 @@ extension JuiceOrderViewController: UICollectionViewDataSource {
             return cell
         }
         let fruit = Fruit.allCases[indexPath.item]
+        let count = juiceMaker.checkCount(stock: fruit)
         
-        fruitStockCollectionViewCell.update(emoji: fruit.emoji, stockCount: juiceMaker.checkCount(stock: fruit))
+        fruitStockCollectionViewCell.update(fruitImageName: fruit.imageName, stockCount: count)
         
         return fruitStockCollectionViewCell
     }

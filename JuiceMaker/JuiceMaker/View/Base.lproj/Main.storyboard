@@ -29,23 +29,20 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FruitStockCollectionViewCell" id="cmS-mS-x93" userLabel="Fruit Stock Collection View Cell" customClass="FruitStockCollectionViewCell" customModule="JuiceMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="144" height="130.33333333333334"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3yk-8A-hGf">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="144" height="130.33333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tcB-i6-XX4">
-                                                    <rect key="frame" x="26" y="6" width="75" height="114.66666666666667"/>
+                                                    <rect key="frame" x="26" y="6" width="91" height="117"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mVl-JQ-6g7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="83.666666666666671"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="70"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wsG-fM-7jM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="91" height="86"/>
+                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qas-vP-td6">
-                                                            <rect key="frame" x="0.0" y="91.666666666666671" width="75" height="23"/>
+                                                            <rect key="frame" x="0.0" y="94" width="91" height="23"/>
                                                             <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
@@ -62,7 +59,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="fruitEmojiLabel" destination="mVl-JQ-6g7" id="eF9-cF-dNU"/>
+                                            <outlet property="fruitImageView" destination="wsG-fM-7jM" id="sXE-Ll-R1W"/>
                                             <outlet property="fruitStockLabel" destination="Qas-vP-td6" id="Hxi-t2-fBa"/>
                                         </connections>
                                     </collectionViewCell>

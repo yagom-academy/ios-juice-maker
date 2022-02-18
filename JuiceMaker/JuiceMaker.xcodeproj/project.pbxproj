@@ -20,6 +20,7 @@
 		37D67D0327BF4E0D001AE82D /* AlertNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0227BF4E0D001AE82D /* AlertNameSpace.swift */; };
 		37D67D0527BF4E1E001AE82D /* NotificationNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0427BF4E1E001AE82D /* NotificationNameSpace.swift */; };
 		37D67D0727BF4EF8001AE82D /* StoreErrorNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0627BF4EF8001AE82D /* StoreErrorNameSpace.swift */; };
+		37D67D0B27BF750D001AE82D /* AssetNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0A27BF750D001AE82D /* AssetNameSpace.swift */; };
 		7F5DE16427BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16327BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift */; };
 		7F5DE16627BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16527BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift */; };
 		7F5DE16A27BDB89700A6F7C0 /* NameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */; };
@@ -47,6 +48,7 @@
 		37D67D0227BF4E0D001AE82D /* AlertNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNameSpace.swift; sourceTree = "<group>"; };
 		37D67D0427BF4E1E001AE82D /* NotificationNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameSpace.swift; sourceTree = "<group>"; };
 		37D67D0627BF4EF8001AE82D /* StoreErrorNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreErrorNameSpace.swift; sourceTree = "<group>"; };
+		37D67D0A27BF750D001AE82D /* AssetNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetNameSpace.swift; sourceTree = "<group>"; };
 		7F5DE16327BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F5DE16527BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpace.swift; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		37D67D0C27BF7582001AE82D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		7F5DE16827BDB87800A6F7C0 /* NameSpace */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 				37D67D0227BF4E0D001AE82D /* AlertNameSpace.swift */,
 				37D67D0427BF4E1E001AE82D /* NotificationNameSpace.swift */,
 				37D67D0627BF4EF8001AE82D /* StoreErrorNameSpace.swift */,
+				37D67D0A27BF750D001AE82D /* AssetNameSpace.swift */,
 			);
 			path = NameSpace;
 			sourceTree = "<group>";
@@ -125,7 +136,6 @@
 				7F5DE16527BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
-				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +159,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				37D67D0C27BF7582001AE82D /* Resource */,
 				37C13FA527BE11E700A56555 /* Extension */,
 				7F5DE16827BDB87800A6F7C0 /* NameSpace */,
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
@@ -231,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D67D0B27BF750D001AE82D /* AssetNameSpace.swift in Sources */,
 				3718AC8427BC9AB2001D3216 /* StoreError.swift in Sources */,
 				37D67D0727BF4EF8001AE82D /* StoreErrorNameSpace.swift in Sources */,
 				37D67D0327BF4E0D001AE82D /* AlertNameSpace.swift in Sources */,
