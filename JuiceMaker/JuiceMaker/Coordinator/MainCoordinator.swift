@@ -24,7 +24,7 @@ class MainCoordinator: Coordinator, MainCoordinatable {
   }
   
   func start() {
-    guard let orderViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderViewController") as? OrderViewController else { return }
+    guard let orderViewController = UIStoryboard.viewController(withIdentifier: "OrderViewController") as? OrderViewController else { return }
     let orderViewModel = OrderViewModel(juiceMaker: juiceMaker, fruitStore: fruitStore)
     
     orderViewController.coordinator = self
@@ -33,7 +33,7 @@ class MainCoordinator: Coordinator, MainCoordinatable {
   }
   
   func showStockViewController(parentViewController: UIViewController) {
-    guard let stockViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StockViewController") as? StockViewController,
+    guard let stockViewController = UIStoryboard.viewController(withIdentifier: "StockViewController") as? StockViewController,
           let orderViewController = parentViewController as? OrderViewController
     else { return }
     let stockViewModel = StockViewModel(fruitStore: fruitStore)
