@@ -22,7 +22,10 @@ struct JuiceMaker {
         guard let juiceRecipe = juiceRecipesMapper[recipeType] else {
             throw JuiceMakerError.notFindReceipe
         }
-        try fruitStore.makeDrink(of: juiceRecipe.ingredients)
+        if !fruitStore.checkStock(of: juiceRecipe.ingredients) {
+            throw JuiceMakerError.notEnough
+        }
+        fruitStore.makeDrink(of: juiceRecipe.ingredients)
         return juiceRecipe.name.description
     }
     
