@@ -45,17 +45,17 @@ class JuiceMakerViewController: UIViewController {
     
     // MARK: - Methods
     
-    private func order(juice: RecipeProtocol) {
+    private func order(juice: JuiceProtocol) {
         let result = self.juiceMaker.make(with: juice)
         
         switch result {
-        case .success():
+        case .success(let juice):
             let okAction = UIAlertAction(
                 title: JuiceMakerMessage.ok.description,
                 style: .default
             )
             let alert = AlertFactory.create(
-                message: JuiceMakerMessage.makeSuccess(juiceName: "").description,
+                message: JuiceMakerMessage.makeSuccess(juiceName: juice.name).description,
                 preferredStyle: .alert,
                 actions: okAction
             )

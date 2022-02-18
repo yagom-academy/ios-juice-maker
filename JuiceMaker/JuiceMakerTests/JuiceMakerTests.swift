@@ -14,7 +14,7 @@ private extension XCTestCase {
     }
 }
 
-struct MockJuice: RecipeProtocol {
+struct MockJuice: JuiceProtocol {
     var items: [FruitType : Int]
 }
 

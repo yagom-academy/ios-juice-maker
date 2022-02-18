@@ -14,11 +14,11 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    mutating func make(with recipe: RecipeProtocol) -> Result<Void, Error> {
+    mutating func make(with recipe: JuiceProtocol) -> Result<JuiceProtocol, Error> {
         let result = fruitStore.use(of: recipe.items)
         switch result {
         case .success():
-            return .success(Void())
+            return .success(recipe)
         case .failure(let error):
             return .failure(error)
         }
