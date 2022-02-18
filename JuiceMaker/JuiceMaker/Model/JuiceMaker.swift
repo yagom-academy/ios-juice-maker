@@ -19,7 +19,7 @@ struct JuiceMaker {
         if !fruitStore.checkStock(of: ingredients) {
             throw JuiceMakerError.notEnough
         }
-        fruitStore.makeDrink(of: ingredients)
+        fruitStore.startMakingJuice(of: ingredients)
         return recipeType.name
     }
 }
