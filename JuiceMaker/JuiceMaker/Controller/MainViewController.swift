@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCount()
+        updateFruitStockLabel()
         addTargetButton()
     }
     
@@ -55,7 +55,7 @@ extension MainViewController {
     @objc private func order(_ sender: UIButton) {
         do {
             let message = try getJuiceMaker(uiButton: sender).order()
-            setCount()
+            updateFruitStockLabel()
             showBasicAlert(message: message ?? "")
         } catch {
             catchOrderError(error: error)
@@ -65,9 +65,11 @@ extension MainViewController {
     private func catchOrderError(error: Error) {
         if let error = error as? JuiceMakerStateError,
            error == JuiceMakerStateError.outOfStock {
-            return showActionAlert(message: error.localizedDescription) { _ in
-                self.showModalStockManagementView()
-            }
+            return showActionAlert(
+                message: error.localizedDescription,
+                okActionHandler: { _ in self.showModalStockManagementView() },
+                cancelActionHandler: nil
+            )
         }
         showBasicAlert(message: error.localizedDescription)
     }
@@ -102,7 +104,7 @@ extension MainViewController {
 }
 
 extension MainViewController {
-    private func setCount() {
+    private func updateFruitStockLabel() {
         strawberryStock.text = "\(fruiteStore.strawberry.counter)"
         bananaStock.text = "\(fruiteStore.banana.counter)"
         pineappleStock.text = "\(fruiteStore.pineapple.counter)"
@@ -140,6 +142,6 @@ extension MainViewController {
 
 extension MainViewController: StockManagementVCDelegate {
     func touchUpCloseButton() {
-        setCount()
+        updateFruitStockLabel()
     }
 }
