@@ -8,7 +8,7 @@ import Foundation
 
 /// 과일 저장소 에러 
 enum FruitStoreError: String, Error {
-    case notEnoughFruit = "과일이 부족합니다."
+    case notEnoughFruit
 }
 
 /// 과일 저장소 타입
