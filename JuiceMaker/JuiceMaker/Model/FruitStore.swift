@@ -33,9 +33,8 @@ class FruitStore {
             usedStocks[useStock.key] = (usedStocks[useStock.key] ?? 0) - useStock.value
         }
         
-        let isCanMake = isCanMake(stocks: usedStocks)
-        if isCanMake {
-            self.stocks = usedStocks
+        guard isCanMake(stocks: usedStocks) else {
+            throw JuiceMakerError.outOfStock
         }
         self.stocks = usedStocks
     }

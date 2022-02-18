@@ -24,20 +24,31 @@ class JuiceMakerTests: XCTestCase {
         
         let strawberryExpectedNumber = 0
         let bananaExpectedNumber = 9
-        juiceMaker.makeJuice(juice: .strawberryBananaJuice)
-        let strawberryResult: Bool = juiceMaker.getFruitCount(fruit: .strawberry) == strawberryExpectedNumber
-        let bananaResult: Bool = juiceMaker.getFruitCount(fruit: .banana) == bananaExpectedNumber
-        XCTAssertTrue(strawberryResult && bananaResult)
+        do {
+            let _ = try juiceMaker.makeJuice(juice: .strawberryBananaJuice)
+            let strawberryResult: Bool = juiceMaker.fruitStore.stocks[.strawberry] == strawberryExpectedNumber
+            let bananaResult: Bool = juiceMaker.fruitStore.stocks[.banana] == bananaExpectedNumber
+            XCTAssertTrue(strawberryResult && bananaResult)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
     }
     
     func test_딸기수량이_10인데_딸기_16개를_사용하려하면_주스를_만들지_않음() {
-        let beforeOrderStrawberryCount = fruitStore.getFruitCount(fruit: .strawberry)
-
-        fruitStore.useFruit(fruits: [.strawberry: 16])
+        guard let beforeOrderStrawberryCount = fruitStore.stocks[.strawberry] else {
+            return
+        }
         
-        let AfterOrderStrawberryCount = fruitStore.getFruitCount(fruit: .strawberry)
-        
-        XCTAssertEqual(beforeOrderStrawberryCount, AfterOrderStrawberryCount)
-        
+        do {
+            try fruitStore.useFruit(fruits: [.strawberry: 16])
+            XCTFail("딸기수량보다 많은데 사용하였습니다.")
+        } catch JuiceMakerError.outOfStock {
+            guard let AfterOrderStrawberryCount = fruitStore.stocks[.strawberry] else {
+                return
+            }
+            XCTAssertEqual(beforeOrderStrawberryCount, AfterOrderStrawberryCount)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
     }
 }

@@ -17,7 +17,7 @@ extension UIViewController {
     func makeAlert(title: String,
                    message: String? = nil,
                    okAction: ((UIAlertAction) -> Void)? = nil,
-                   completion : (() -> Void)? = nil) {
+                   completion : (() -> Void)?) {
         let alertViewController = UIAlertController(title: title,
                                                     message: message,
                                                     preferredStyle: .alert)
