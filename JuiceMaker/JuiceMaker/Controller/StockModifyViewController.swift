@@ -51,7 +51,7 @@ class StockModifyViewController: UIViewController {
         guard let store = store else {
             return
         }
-        NotificationCenter.default.post(name: .sendFruitStoreData,
+        NotificationCenter.default.post(name: NotificationNameSpace.sendFruitStoreDataNotificationName,
                                         object: self,
                                         userInfo: ["fruitStore":store])
     }
