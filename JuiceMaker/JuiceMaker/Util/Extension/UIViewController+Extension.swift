@@ -11,7 +11,9 @@ extension UIViewController {
     static func instantiate(with storyboard: String) -> Self {
         let id = String(describing: self)
         let storyboard = UIStoryboard(name: storyboard, bundle: Bundle.main)
-        return storyboard.instantiateViewController(withIdentifier: id) as! Self
+        return storyboard.instantiateViewController(identifier: id) { (coder) -> Self? in
+            return Self(coder: coder)
+        }
     }
     
     func makeAlert(title: String,
@@ -25,7 +27,7 @@ extension UIViewController {
         alertViewController.addAction(okAction)
         self.present(alertViewController, animated: true, completion: completion)
     }
-
+    
     func makeRequestAlert(title: String,
                           message: String? = nil,
                           okAction: ((UIAlertAction) -> Void)?,
@@ -33,16 +35,16 @@ extension UIViewController {
                           completion : (() -> Void)? = nil) {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
-
+        
         let alertViewController = UIAlertController(title: title, message: message,
                                                     preferredStyle: .alert)
-
+        
         let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: cancelAction)
         alertViewController.addAction(cancelAction)
         
         let okAction = UIAlertAction(title: "확인", style: .default, handler: okAction)
         alertViewController.addAction(okAction)
-
+        
         self.present(alertViewController, animated: true, completion: completion)
     }
 }
