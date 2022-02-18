@@ -11,7 +11,7 @@ class ModifyStocksViewController: UIViewController {
     // MARK: - Property
     var juiceMaker: JuiceMaker?
     private var fruitsLabels: [Fruit: UILabel] = [:]
-    private var fruitsSteppers: [Fruit: UIStepper] = [:]
+    private var fruitsSteppers: [UIStepper: Fruit] = [:]
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -37,11 +37,11 @@ class ModifyStocksViewController: UIViewController {
     }
     
     private func setFruitSteppers() {
-        fruitsSteppers = [.strawberry: strawberryStepper,
-                          .banana: bananaStepper,
-                          .pineapple: pineappleStepper,
-                          .kiwi: kiwiStepper,
-                          .mango: mangoStepper]
+        fruitsSteppers = [strawberryStepper: .strawberry,
+                              bananaStepper: .banana,
+                           pineappleStepper: .pineapple,
+                                kiwiStepper: .kiwi,
+                               mangoStepper: .mango]
     }
     
     private func patchData() {
@@ -55,7 +55,10 @@ class ModifyStocksViewController: UIViewController {
     
     private func setSteppersOptions() {
         for fruitStepper in fruitsSteppers {
-            setStepperOptions(for: fruitStepper.key, on: fruitStepper.value)
+            let stepper = fruitStepper.key
+            let fruit = fruitStepper.value
+            setStepperOptions(for: fruit, on: stepper)
+            stepper.addTarget(self, action: #selector(stepperTap), for: .valueChanged)
         }
     }
     
@@ -66,33 +69,18 @@ class ModifyStocksViewController: UIViewController {
     }
     
     // MARK: - Action
+    @objc func stepperTap(_ sender: UIStepper) {
+        guard let fruit: Fruit = fruitsSteppers[sender] else {
+            makeAlert(title: "Stepper의 매칭이 안되어 있어요. 개발자에게 문의해주세요", completion: nil)
+            return
+        }
+        let stepperValue = Int(sender.value)
+        fruitsLabels[fruit]?.text = stepperValue.description
+        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: stepperValue, fruit: fruit)
+    }
+    
     @IBAction func closeButtonTap(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func strawberryStepperTap(_ sender: UIStepper) {
-        strawberryCountLabel.text = "\(Int(sender.value).description)"
-        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .strawberry)
-    }
-    
-    @IBAction func bananaStepperTap(_ sender: UIStepper) {
-        bananaCountLabel.text = "\(Int(sender.value).description)"
-        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .banana)
-    }
-    
-    @IBAction func pineappleStepperTap(_ sender: UIStepper) {
-        pineappleCountLabel.text = "\(Int(sender.value).description)"
-        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .pineapple)
-    }
-    
-    @IBAction func kiwiStepperTap(_ sender: UIStepper) {
-        kiwiCountLabel.text = "\(Int(sender.value).description)"
-        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .kiwi)
-    }
-    
-    @IBAction func mangoStepperTap(_ sender: UIStepper) {
-        mangoCountLabel.text = "\(Int(sender.value).description)"
-        juiceMaker?.setFruitCountPlusOrMinusOne(numberOf: Int(sender.value), fruit: .mango)
     }
     
     // MARK: - Outlet Property
