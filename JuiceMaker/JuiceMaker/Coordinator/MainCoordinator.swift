@@ -25,7 +25,7 @@ class MainCoordinator: Coordinator, MainCoordinatable {
   
   func start() {
     guard let orderViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderViewController") as? OrderViewController else { return }
-    let orderViewModel = OrderViewModel(juiceMaker: juiceMaker)
+    let orderViewModel = OrderViewModel(juiceMaker: juiceMaker, fruitStore: fruitStore)
     
     orderViewController.coordinator = self
     orderViewController.viewModel = orderViewModel

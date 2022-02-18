@@ -47,24 +47,24 @@ class StockViewModel: StockViewModelType {
           let kiwiStock = fruitStore.stock(of: .kiwi),
           let mangoStock = fruitStore.stock(of: .mango) else { return }
     
-    strawberryStockSubject.onNext(strawberryStock.quantity)
-    bananaStockSubject.onNext(bananaStock.quantity)
-    pineappleStockSubject.onNext(pineappleStock.quantity)
-    kiwiStockSubject.onNext(kiwiStock.quantity)
-    mangoStockSubject.onNext(mangoStock.quantity)
+    strawberryStockSubject.onNext(strawberryStock)
+    bananaStockSubject.onNext(bananaStock)
+    pineappleStockSubject.onNext(pineappleStock)
+    kiwiStockSubject.onNext(kiwiStock)
+    mangoStockSubject.onNext(mangoStock)
   }
   
   func increaseStock(fruit: Fruit) {
     guard let stock = fruitStore.stock(of: fruit) else { return }
     
-    updateStock(fruit: fruit, quantity: stock.quantity + 1)
+    updateStock(fruit: fruit, quantity: stock + 1)
   }
   
   func decreaseStock(fruit: Fruit) {
     guard let stock = fruitStore.stock(of: fruit),
-          stock.quantity - 1 >= 0 else { return }
+          stock - 1 >= 0 else { return }
     
-    updateStock(fruit: fruit, quantity: stock.quantity - 1)
+    updateStock(fruit: fruit, quantity: stock - 1)
   }
   
   private func updateStock(fruit: Fruit, quantity: Int) {
