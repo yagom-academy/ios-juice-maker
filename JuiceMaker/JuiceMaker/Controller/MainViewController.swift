@@ -74,6 +74,7 @@ class MainViewController: UIViewController {
         }
         stockManageViewController.fruitStore = self.fruitStore
         let navigationController = UINavigationController(rootViewController: stockManageViewController)
+        navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true, completion: nil)
     }
     

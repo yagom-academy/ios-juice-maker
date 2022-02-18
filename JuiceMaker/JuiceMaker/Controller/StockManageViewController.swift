@@ -16,6 +16,38 @@ class StockManageViewController: UIViewController {
     @IBOutlet weak var pineappleStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
     
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
+    
+    
+    @IBAction func updateStock(_ sender: UIStepper) {
+        var fruit = Fruit.strawberry
+        
+        switch sender.tag {
+        case 0:
+            fruit = .strawberry
+        case 1:
+            fruit = .banana
+        case 2:
+            fruit = .pineapple
+        case 3:
+            fruit = .kiwi
+        case 4:
+            fruit = .mango
+        default:
+            break
+        }
+        
+        let amount = Int(sender.value)
+        let recipe = Recipe(fruit: fruit, amount: amount)
+        fruitStore?.updateAmountOfFruit(recipe)
+        configureUI()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -28,6 +60,11 @@ class StockManageViewController: UIViewController {
         pineappleStock.text = "\(fruitStore?.store[.pineapple] ?? 0)"
         kiwiStock.text = "\(fruitStore?.store[.kiwi] ?? 0)"
         mangoStock.text = "\(fruitStore?.store[.mango] ?? 0)"
+        strawberryStepper.value = Double(fruitStore?.store[.strawberry] ?? 0)
+        bananaStepper.value = Double(fruitStore?.store[.banana] ?? 0)
+        pineappleStepper.value = Double(fruitStore?.store[.pineapple] ?? 0)
+        kiwiStepper.value = Double(fruitStore?.store[.kiwi] ?? 0)
+        mangoStepper.value = Double(fruitStore?.store[.mango] ?? 0)
     }
 
     private func configureNavigationBar() {
