@@ -10,7 +10,7 @@ import UIKit
 final class JuiceKioskViewController: UIViewController {
     // MARK: - Property
     private let juiceMaker = JuiceMaker()
-    private var fruitsLabels: [Fruit: UILabel] = [:]
+    private var fruitTypeOnLabels: [UILabel: Fruit] = [:]
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -25,16 +25,16 @@ final class JuiceKioskViewController: UIViewController {
     
     // MARK: - func
     private func setFruitLabels() {
-        fruitsLabels = [.strawberry: strawberryCountLabel,
-                        .banana: bananaCountLabel,
-                        .pineapple: pineappleCountLabel,
-                        .kiwi: kiwiCountLabel,
-                        .mango: mangoCountLabel]
+        fruitTypeOnLabels = [strawberryCountLabel: .strawberry,
+                        bananaCountLabel: .banana,
+                        pineappleCountLabel: .pineapple,
+                        kiwiCountLabel: .kiwi,
+                        mangoCountLabel: .mango]
     }
     
     private func patchData() {
-        for fruitLabel in fruitsLabels {
-            fruitLabel.value.text = "\(juiceMaker.getFruitCount(fruit: fruitLabel.key))"
+        for (label, fruit) in fruitTypeOnLabels {
+            label.text = "\(juiceMaker.getFruitCount(fruit: fruit))"
         }
     }
     
