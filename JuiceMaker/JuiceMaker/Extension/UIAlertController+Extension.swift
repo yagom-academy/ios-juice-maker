@@ -5,7 +5,6 @@
 //  Created by Oh Donggeon on 2022/02/17.
 //
 
-import Foundation
 import UIKit
 
 extension UIAlertController {

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class InitialViewController: UIViewController {
+class JuiceOrderViewController: UIViewController {
     // MARK: - Property
     // MARK: - IBOutlet
     @IBOutlet private weak var fruitsStockCollectionView: UICollectionView!
@@ -19,31 +19,37 @@ class InitialViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        initConfigrations()
-        observeFruitStoreData()
         
-        fruitsStockCollectionView.dataSource = self
-        fruitsStockCollectionView.delegate = self
-        orderButtonCollectionView.dataSource = self
-        orderButtonCollectionView.delegate = self
+        initJuiceMaker()
+        initCollectionView()
+        observeFruitStoreData()
     }
     
     // MARK: - Initialization
-    func initConfigrations() {
+    func initJuiceMaker() {
         let storeManager = FruitStockManager(stocks: Stock.initValue)
-        fruitStore = FruitStore(manager: storeManager)
-        juiceMaker = JuiceMaker(store: FruitStore(manager: storeManager))
+        let fruitStore = FruitStore(manager: storeManager)
+        
+        self.fruitStore = fruitStore
+        self.juiceMaker = JuiceMaker(store: fruitStore)
+    }
+    
+    func initCollectionView() {
+        fruitsStockCollectionView.delegate = self
+        fruitsStockCollectionView.dataSource = self
+        orderButtonCollectionView.delegate = self
+        orderButtonCollectionView.dataSource = self
     }
     
     // MARK: - Method
     private func makeJuice(_ juice: Juice) {
         do {
             let _ = try juiceMaker?.make(into: juice)
-            showCompleteMakeAlert(about: juice.name)
+            showCompletedMakeAlert(about: juice.name)
         } catch StoreError.outOfStock(let name) {
-            showFailedMakeAlert(about: name)
+            showNotCompletedMakeAlert(about: name)
         } catch StoreError.notEnoughStock(let name, let stock) {
-            showFailedMakeAlert(about: name, count: stock)
+            showNotCompletedMakeAlert(about: name, count: stock)
         } catch StoreError.notExistStuff(let name) {
             assertionFailure(String(format: StoreErrorDescription.notExistStuff, name))
         } catch {
@@ -51,12 +57,12 @@ class InitialViewController: UIViewController {
         }
     }
     
-    private func showCompleteMakeAlert(about juice: String) {
+    private func showCompletedMakeAlert(about juice: String) {
         let alert = UIAlertController.makeSuceesJuiceAlert(juice: juice)
         present(alert, animated: true)
     }
     
-    private func showFailedMakeAlert(about juice: String, count: Int? = nil) {
+    private func showNotCompletedMakeAlert(about juice: String, count: Int? = nil) {
         let alert = UIAlertController.makeFailJuiceAlert(juice: juice,
                                                          count: count) { _ in
             self.presentModifyStockView()
@@ -73,14 +79,14 @@ class InitialViewController: UIViewController {
     }
     
     //MARK: IBAction
-    @IBAction private func showModifyStocksVC(_ sender: UIBarButtonItem) {
+    @IBAction private func showModifyStockVC(_ sender: UIBarButtonItem) {
         presentModifyStockView()
     }
 }
 
 // MARK: - Collection view
 // MARK: - Collection view delegate
-extension InitialViewController: UICollectionViewDelegate {
+extension JuiceOrderViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView == orderButtonCollectionView else {
             return
@@ -91,7 +97,7 @@ extension InitialViewController: UICollectionViewDelegate {
 }
 
 // MARK: Collection view Data source
-extension InitialViewController: UICollectionViewDataSource {
+extension JuiceOrderViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case fruitsStockCollectionView:
@@ -118,12 +124,12 @@ extension InitialViewController: UICollectionViewDataSource {
     
     func updateFruitStockCell(cell: UICollectionViewCell, indexPath: IndexPath) -> UICollectionViewCell {
         guard let fruitStockCollectionViewCell = cell as? FruitStockCollectionViewCell,
-              let fruitStore = fruitStore else {
+              let juiceMaker = juiceMaker else {
             return cell
         }
         let fruit = Fruit.allCases[indexPath.item]
         
-        fruitStockCollectionViewCell.update(emoji: fruit.emoji, stockCount: fruitStore.checkCount(stock: fruit))
+        fruitStockCollectionViewCell.update(emoji: fruit.emoji, stockCount: juiceMaker.checkCount(stock: fruit))
         
         return fruitStockCollectionViewCell
     }
@@ -139,7 +145,7 @@ extension InitialViewController: UICollectionViewDataSource {
 }
 
 // MARK: Collection view delegate flow layout
-extension InitialViewController: UICollectionViewDelegateFlowLayout {
+extension JuiceOrderViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(InitialCollectionViewLayoutConstant.minimumLineSpacing)
     }
@@ -164,7 +170,7 @@ extension InitialViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - Notification center
-extension InitialViewController {
+extension JuiceOrderViewController {
     private func observeFruitStoreData() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateFruitStore),
