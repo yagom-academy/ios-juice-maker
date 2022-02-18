@@ -217,6 +217,7 @@
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="manageStocksButton" destination="C3q-Te-cNT" id="Sou-e2-zwX"/>
                         <outletCollection property="quantityLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="USw-Ua-eJP"/>
                         <outletCollection property="quantityLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="uO5-ah-bwH"/>
                         <outletCollection property="quantityLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="1cL-Eq-Ayu"/>
@@ -253,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="912" y="20"/>
         </scene>
-        <!--Modify Stocks View Controller-->
+        <!--Manage Stocks View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="ModifyStocksViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManageStocksViewController" id="Yu1-lM-nqp" customClass="ManageStocksViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

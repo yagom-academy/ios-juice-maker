@@ -10,6 +10,8 @@
 		9B7B356E27BE403E00F9FA8B /* UIAlertShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7B356D27BE403E00F9FA8B /* UIAlertShowable.swift */; };
 		9B7B357127BE4BAF00F9FA8B /* CompleteMakingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7B357027BE4BAF00F9FA8B /* CompleteMakingAlert.swift */; };
 		9B7B357327BE4BD400F9FA8B /* SoldOutAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7B357227BE4BD400F9FA8B /* SoldOutAlert.swift */; };
+		B4091F5227C0029600B37671 /* UIBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4091F5127C0029600B37671 /* UIBarButton.swift */; };
+		B4091F5527C003CD00B37671 /* ManageStocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4091F5427C003CD00B37671 /* ManageStocksViewController.swift */; };
 		B4ADAF4727BD560700791D54 /* MakeJuiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF4627BD560700791D54 /* MakeJuiceViewModel.swift */; };
 		B4ADAF4A27BD644900791D54 /* MakeJuiceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF4927BD644900791D54 /* MakeJuiceViewModelTests.swift */; };
 		B4ADAF5027BD6F8C00791D54 /* JuiceManufacturerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF4F27BD6F8C00791D54 /* JuiceManufacturerTests.swift */; };
@@ -42,6 +44,8 @@
 		9B7B356D27BE403E00F9FA8B /* UIAlertShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertShowable.swift; sourceTree = "<group>"; };
 		9B7B357027BE4BAF00F9FA8B /* CompleteMakingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteMakingAlert.swift; sourceTree = "<group>"; };
 		9B7B357227BE4BD400F9FA8B /* SoldOutAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldOutAlert.swift; sourceTree = "<group>"; };
+		B4091F5127C0029600B37671 /* UIBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButton.swift; sourceTree = "<group>"; };
+		B4091F5427C003CD00B37671 /* ManageStocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStocksViewController.swift; sourceTree = "<group>"; };
 		B4ADAF4627BD560700791D54 /* MakeJuiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeJuiceViewModel.swift; sourceTree = "<group>"; };
 		B4ADAF4927BD644900791D54 /* MakeJuiceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeJuiceViewModelTests.swift; sourceTree = "<group>"; };
 		B4ADAF4F27BD6F8C00791D54 /* JuiceManufacturerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceManufacturerTests.swift; sourceTree = "<group>"; };
@@ -88,6 +92,22 @@
 				9B7B357227BE4BD400F9FA8B /* SoldOutAlert.swift */,
 			);
 			path = MakeJuiceAlerts;
+			sourceTree = "<group>";
+		};
+		B4091F5027C0027300B37671 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4091F5127C0029600B37671 /* UIBarButton.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B4091F5327C003AD00B37671 /* ManageStocks */ = {
+			isa = PBXGroup;
+			children = (
+				B4091F5427C003CD00B37671 /* ManageStocksViewController.swift */,
+			);
+			path = ManageStocks;
 			sourceTree = "<group>";
 		};
 		B4ADAF3B27BD29CE00791D54 /* MainDelegate */ = {
@@ -203,9 +223,11 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				B4091F5027C0027300B37671 /* Extensions */,
 				B4ADAF5127BDCEFB00791D54 /* CustomTypes */,
 				B4ADAF3B27BD29CE00791D54 /* MainDelegate */,
 				C71CD66D266C7B470038B9CB /* MakeJuice */,
+				B4091F5327C003AD00B37671 /* ManageStocks */,
 				C71CD671266C7B570038B9CB /* Support Files */,
 			);
 			path = JuiceMaker;
@@ -336,6 +358,8 @@
 				B4ADAF4727BD560700791D54 /* MakeJuiceViewModel.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* MakeJuiceViewController.swift in Sources */,
 				B4ADAF5327BDCF1600791D54 /* JMObservable.swift in Sources */,
+				B4091F5527C003CD00B37671 /* ManageStocksViewController.swift in Sources */,
+				B4091F5227C0029600B37671 /* UIBarButton.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,

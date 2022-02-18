@@ -9,6 +9,7 @@ import UIKit
 class MakeJuiceViewController: UIViewController {
     @IBOutlet var quantityLabels: [UILabel]!
     @IBOutlet var orderButtons: [UIButton]!
+    @IBOutlet weak var manageStocksButton: UIBarButtonItem!
     
     // 뷰에서 이루어질 비즈니스 로직을 담당할 뷰모델 생성
     private var viewModel = MakeJuiceViewModel(juiceMaker: JuiceMaker())
@@ -27,8 +28,12 @@ class MakeJuiceViewController: UIViewController {
             button.tag = index
             button.addTarget(self, action: #selector(didTap(sender:)), for: .touchUpInside)
         })
+        
+        manageStocksButton.addTarget(
+            target: self,
+            action: #selector(didTapManageStocksButton)
+        )
     }
-
     
     @objc
     private func didTap(sender: UIButton) {
@@ -43,6 +48,15 @@ class MakeJuiceViewController: UIViewController {
         } catch {
             
         }
+    }
+    
+    @objc
+    private func didTapManageStocksButton() {
+        guard let manageStocksViewController = self.storyboard?.instantiateViewController(
+            identifier: "ManageStocksViewController"
+        ) else { return }
         
+        let navigation = UINavigationController(rootViewController: manageStocksViewController)
+        self.present(navigation, animated: true, completion: nil)
     }
 }
