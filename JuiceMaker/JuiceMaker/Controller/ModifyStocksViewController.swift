@@ -62,7 +62,7 @@ class ModifyStocksViewController: UIViewController {
     private func setStepperOptions(for fruit: Fruit, on stepper: UIStepper) {
         guard let juiceMaker = juiceMaker else { return }
         stepper.minimumValue = 0
-        stepper.value =  Double(juiceMaker.getFruitCount(fruit: fruit))
+        stepper.value = Double(juiceMaker.getFruitCount(fruit: fruit))
     }
     
     // MARK: - Action
