@@ -416,6 +416,11 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
                         <outlet property="navigationBar" destination="Coy-kk-rPu" id="Yva-w7-sR0"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="9Qn-pE-Ckz"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="Ou5-8W-fLL"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="m8H-MQ-rBM"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="C4N-jk-Yay"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="I9F-lx-xFc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
