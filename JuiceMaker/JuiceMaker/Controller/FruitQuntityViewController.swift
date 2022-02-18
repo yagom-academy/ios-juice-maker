@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ModalViewController: UIViewController {
+class FruitQuntityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
