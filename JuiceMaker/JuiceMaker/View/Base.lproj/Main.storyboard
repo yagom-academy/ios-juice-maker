@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vTQ-Nc-97O">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vTQ-Nc-97O" userLabel="Fruit Stock Collection View">
                                 <rect key="frame" x="50" y="44" width="796" height="170.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v8G-uY-eih">
@@ -69,6 +69,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="wPg-cj-dKw"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="BFb-TV-YEW"/>
+                                </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="02l-Zf-TMT">
                                 <rect key="frame" x="50" y="222.5" width="796" height="170.5"/>
@@ -105,6 +109,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="wsx-ir-EO2"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JbZ-yK-0qX"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -128,13 +136,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="fruitsStockCollectionView" destination="vTQ-Nc-97O" id="wWY-2B-zTw"/>
+                        <outlet property="fruitStockCollectionView" destination="vTQ-Nc-97O" id="L5s-rV-Tp1"/>
                         <outlet property="orderButtonCollectionView" destination="02l-Zf-TMT" id="eON-3X-LX4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762.08530805687201" y="92.307692307692307"/>
+            <point key="canvasLocation" x="674" y="91"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
@@ -163,39 +171,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x6u-Rs-z1u">
-                                <rect key="frame" x="44" y="44" width="808" height="349"/>
+                                <rect key="frame" x="44" y="0.0" width="808" height="393"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dno-e4-Gke">
-                                    <size key="itemSize" width="202" height="262"/>
+                                    <size key="itemSize" width="164" height="232"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="StockModifyCollectionViewCell" id="Qkj-TC-KVO" customClass="StockModifyCollectionViewCell" customModule="JuiceMaker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="43.5" width="202" height="262"/>
+                                        <rect key="frame" x="0.0" y="80.5" width="164" height="232"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GiA-K8-VWy">
-                                            <rect key="frame" x="0.0" y="0.0" width="202" height="262"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="164" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dE0-tT-7TT">
-                                                    <rect key="frame" x="54" y="40" width="94" height="182"/>
+                                                    <rect key="frame" x="35" y="33" width="94" height="166.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="🍓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTO-NQ-T52" userLabel="Stock Label">
-                                                            <rect key="frame" x="4" y="0.0" width="86" height="95.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="80"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Htq-ap-WOj">
+                                                            <rect key="frame" x="7" y="0.0" width="80" height="80"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="Htq-ap-WOj" secondAttribute="height" multiplier="1:1" id="0Gm-53-zeh"/>
+                                                                <constraint firstAttribute="width" constant="80" id="ze6-uV-WFy"/>
+                                                            </constraints>
+                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cl-Dc-Eoe" userLabel="Count Label">
-                                                            <rect key="frame" x="37" y="103.5" width="20" height="38.5"/>
+                                                            <rect key="frame" x="37" y="88" width="20" height="38.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XeB-ka-J8j" userLabel="Count Stepper">
-                                                            <rect key="frame" x="0.0" y="150" width="94" height="32"/>
+                                                            <rect key="frame" x="0.0" y="134.5" width="94" height="32"/>
                                                             <connections>
                                                                 <action selector="stepperValueChanged:" destination="Qkj-TC-KVO" eventType="valueChanged" id="jPQ-Qr-71h"/>
                                                             </connections>
@@ -212,11 +221,11 @@
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dE0-tT-7TT" secondAttribute="trailing" constant="20" id="u9i-Cf-vOB"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="202" height="262"/>
+                                        <size key="customSize" width="164" height="232"/>
                                         <connections>
-                                            <outlet property="countLabel" destination="0Cl-Dc-Eoe" id="eM2-wD-80Q"/>
-                                            <outlet property="countStepper" destination="XeB-ka-J8j" id="7Ye-mG-2nF"/>
-                                            <outlet property="stockLabel" destination="pTO-NQ-T52" id="azW-97-wj1"/>
+                                            <outlet property="fruitImageView" destination="Htq-ap-WOj" id="h3f-8n-naa"/>
+                                            <outlet property="stockCountLabel" destination="0Cl-Dc-Eoe" id="eM2-wD-80Q"/>
+                                            <outlet property="stockCountStepper" destination="XeB-ka-J8j" id="7Ye-mG-2nF"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -236,9 +245,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고수정" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="확인" id="l3H-xG-cyO" userLabel="Confirm Button">
+                        <barButtonItem key="rightBarButtonItem" title="확인" id="l3H-xG-cyO" userLabel="Submit Button">
                             <connections>
-                                <action selector="confirmButtonTouched:" destination="Yu1-lM-nqp" id="KEM-JK-F4r"/>
+                                <action selector="submitButtonTouched:" destination="Yu1-lM-nqp" id="hDG-uk-o6o"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -248,26 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1635.9375" y="900.00000000000011"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cAf-jL-tPK">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="8Rm-af-Y2Y"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="wH1-3A-cBm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1637" y="21"/>
+            <point key="canvasLocation" x="1332" y="90"/>
         </scene>
     </scenes>
     <resources>

@@ -10,50 +10,36 @@ import UIKit
 
 class StockModifyViewController: UIViewController {
     // MARK: - Property
-    @IBOutlet weak var stockModifyCollectionView: UICollectionView!
+    @IBOutlet private weak var stockModifyCollectionView: UICollectionView!
     
-    private var store: FruitStorable?
-    
-    private let stockModifyCollectionViewCell = "StockModifyCollectionViewCell"
-    
-    // MARK: Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        initConfigrations()
-    }
-    
-    // MARK: Initialization
-    func initConfigrations() {
-        let storeManager = FruitStockManager(stocks: [.strawberry: 10,
-                                             .pineapple: 10,
-                                             .mango: 10,
-                                             .kiwi: 10,
-                                             .banana: 10])
-        self.store = FruitStore(manager: storeManager)
-    }
+    private var fruitStore: FruitStorable?
     
     // MARK: Method
+    func receiveFruitStore(fruitStore: FruitStorable) {
+        self.fruitStore = fruitStore
+    }
+    
     func changeStockCount(count: Int, indexPath: IndexPath) {
         guard let stockModifyCell = stockModifyCollectionView.cellForItem(at: indexPath) as? StockModifyCollectionViewCell,
-              let store = store else {
+              let fruitStore = fruitStore else {
             return
         }
         let fruit = Fruit.allCases[indexPath.item]
+        fruitStore.change(fruit, to: count)
         
-        store.change(fruit, to: count)
-        stockModifyCell.countLabel.text = String(store.checkCount(stock: fruit))
+        let count = fruitStore.checkCount(stock: fruit)
+        stockModifyCell.update(count: count)
     }
     
     // MARK: IBAction
-    @IBAction func confirmButtonTouched(_ sender: Any) {
-        self.dismiss(animated: true)
-        guard let store = store else {
+    @IBAction func submitButtonTouched(_ sender: Any) {
+        guard let fruitStore = fruitStore else {
             return
         }
         NotificationCenter.default.post(name: NotificationNameSpace.sendFruitStoreDataNotificationName,
                                         object: self,
-                                        userInfo: ["fruitStore":store])
+                                        userInfo: [NotificationNameSpace.UserInfo.fruitStore:fruitStore])
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -64,15 +50,15 @@ extension StockModifyViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: stockModifyCollectionViewCell,
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewNameSpace.stockModifyCellResuableID,
                                                       for: indexPath)
         guard let stockModifyCell = cell as? StockModifyCollectionViewCell,
-              let store = store else {
+              let fruitStore = fruitStore else {
             return cell
         }
-        stockModifyCell.update(emoji: Fruit.emoji(offset: indexPath.item),
-                               count: store.checkCount(stock: Fruit.allCases[indexPath.item])) {
-            self.changeStockCount(count: stockModifyCell.value, indexPath: indexPath)
+        stockModifyCell.update(fruitImageAssetName: Fruit.emoji(offset: indexPath.item),
+                               count: fruitStore.checkCount(stock: Fruit.allCases[indexPath.item])) { [weak self] in
+            self?.changeStockCount(count: stockModifyCell.fruitCount, indexPath: indexPath)
         }
         return stockModifyCell
     }
