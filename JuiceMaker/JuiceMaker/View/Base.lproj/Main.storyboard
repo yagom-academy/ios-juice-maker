@@ -236,11 +236,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
-                            <connections>
-                                <segue destination="Yu1-lM-nqp" kind="push" id="6IE-W3-SMh"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaStock" destination="gvk-pA-Lw5" id="uXL-35-FNX"/>
@@ -380,10 +376,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="bananaStock" destination="gKu-86-RhI" id="d5a-qc-wWP"/>
+                        <outlet property="kiwiStock" destination="ZDv-1m-HBY" id="Pun-or-vjR"/>
+                        <outlet property="mangoStock" destination="YJI-ER-LJR" id="bDs-S9-hJY"/>
+                        <outlet property="pineappleStock" destination="MpT-VW-hCb" id="5nr-bj-GGY"/>
+                        <outlet property="strawberryStock" destination="0yV-kn-zaT" id="tBX-tn-XsK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1616" y="92"/>
+            <point key="canvasLocation" x="1462" y="92"/>
         </scene>
     </scenes>
     <resources>
