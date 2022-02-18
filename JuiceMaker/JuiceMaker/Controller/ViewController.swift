@@ -14,13 +14,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
+    @IBOutlet weak var straberryBananaOrderButton: UIButton!
+    @IBOutlet weak var mangoKiwiOrderButton: UIButton!
+    @IBOutlet weak var strawberryOrderButton: UIButton!
+    @IBOutlet weak var bananaOrderButton: UIButton!
+    @IBOutlet weak var pineappleOrderButton: UIButton!
+    @IBOutlet weak var kiwiOrderButton: UIButton!
+    @IBOutlet weak var mangoOrderButton: UIButton!
+    
     let juiceMaker = JuiceMaker()
 
     /// 주문 버튼을 클릭한다.
     @IBAction func tapOrderButton(_ sender: UIButton) {
-        Juice.allCases.forEach { juice in
-            let order = sender.titleLabel?.text ?? ""
-            checkMatch(order: order, juice: juice)
+        switch sender {
+        case straberryBananaOrderButton:
+            orderMenu(of: .strawberryBananaJuice)
+        case mangoKiwiOrderButton:
+            orderMenu(of: .mangoKiwiJuice)
+        case strawberryOrderButton:
+            orderMenu(of: .strawberryJuice)
+        case bananaOrderButton:
+            orderMenu(of: .bananaJuice)
+        case pineappleOrderButton:
+            orderMenu(of: .bananaJuice)
+        case kiwiOrderButton:
+            orderMenu(of: .kiwiJuice)
+        case mangoOrderButton:
+            orderMenu(of: .mangoJuice)
+        default:
+            break
         }
     }
     
