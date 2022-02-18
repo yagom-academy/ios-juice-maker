@@ -16,6 +16,10 @@ final class FruitStore {
         }
     }
     
+    func changeFruitStock(fruit: Fruit, to amount: Number) {
+        self.fruits[fruit, default: Number()] = amount
+    }
+    
     func increase(fruit: Fruit, to amount: Number) throws {
         try self.fruits[fruit]?.increase(amount)
     }
