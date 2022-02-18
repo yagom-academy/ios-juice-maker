@@ -18,7 +18,7 @@ class MakeJuiceViewController: UIViewController {
 
         viewModel.displayingStocks.bind { [weak self] stocks in
             stocks.forEach { (index: Int, quantity: Quantity) in
-                self?.quantityLabels[index].text = "\(quantity.text)"
+                self?.quantityLabels[index].text = "\(quantity)"
             }
             
         }
