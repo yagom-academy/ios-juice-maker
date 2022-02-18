@@ -51,9 +51,9 @@ class JuiceOrderViewController: UIViewController {
         } catch StoreError.notEnoughStock(let name, let stock) {
             showNotCompletedMakeAlert(about: name, count: stock)
         } catch StoreError.notExistStuff(let name) {
-            assertionFailure(String(format: StoreErrorDescription.notExistStuff, name))
+            assertionFailure(String(format: StoreErrorNameSpace.notExistStuff, name))
         } catch {
-            assertionFailure(StoreErrorDescription.unknownError)
+            assertionFailure(StoreErrorNameSpace.unknownError)
         }
     }
     
@@ -71,8 +71,8 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func presentModifyStockView() {
-        let storyboard = UIStoryboard(name: StoryboardName.main, bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardID.stockModifyViewController)
+        let storyboard = UIStoryboard(name: StoryboardNameSpace.mainStoryboardName, bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardNameSpace.stockModifyViewControllerID)
         destinationVC.modalPresentationStyle = .fullScreen
         //TODO: Step3 - destinationVC에서 fruitStore를 받을 메소드 추가
         navigationController?.pushViewController(destinationVC, animated: true)
@@ -112,10 +112,10 @@ extension JuiceOrderViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case fruitsStockCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewID.fruitStockCell, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewNameSpace.fruitStockCellResuableID, for: indexPath)
             return updateFruitStockCell(cell: cell, indexPath: indexPath)
         case orderButtonCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewID.orderButtonCell, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewNameSpace.orderButtonCellResuableID, for: indexPath)
             return updateOrderButtonCell(cell: cell, indexPath: indexPath)
         default:
             return UICollectionViewCell()
@@ -147,21 +147,21 @@ extension JuiceOrderViewController: UICollectionViewDataSource {
 // MARK: Collection view delegate flow layout
 extension JuiceOrderViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(InitialCollectionViewLayoutConstant.minimumLineSpacing)
+        return CGFloat(JuiceOrderCollectionViewLayoutConstant.minimumLineSpacing)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(InitialCollectionViewLayoutConstant.minimumInteritemSpacing)
+        return CGFloat(JuiceOrderCollectionViewLayoutConstant.minimumInteritemSpacing)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case fruitsStockCollectionView:
             return CGSize(width:
-                            InitialCollectionViewLayoutConstant.calcFruitStockCellReduceConstant(collectionView.frame.width),
+                            JuiceOrderCollectionViewLayoutConstant.calcFruitStockCellReduceConstant(collectionView.frame.width),
                           height: collectionView.frame.height)
         case orderButtonCollectionView:
-            let constant = InitialCollectionViewLayoutConstant.calcOrderButtonCellReduceConstant(collectionView.frame.width, height: collectionView.frame.height)
+            let constant = JuiceOrderCollectionViewLayoutConstant.calcOrderButtonCellReduceConstant(collectionView.frame.width, height: collectionView.frame.height)
             return CGSize(width: constant.width, height: constant.height)
         default:
             return CGSize.zero
@@ -174,12 +174,12 @@ extension JuiceOrderViewController {
     private func observeFruitStoreData() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateFruitStore),
-                                               name: .sendFruitStoreData,
+                                               name: NotificationNameSpace.sendFruitStoreDataNotificationName,
                                                object: nil)
     }
     
     @objc private func updateFruitStore(_ notification: Notification) {
-        guard let store = notification.userInfo?[NotificationUserInfo.fruitStore] as? FruitStorable else {
+        guard let store = notification.userInfo?[NotificationNameSpace.UserInfo.fruitStore] as? FruitStorable else {
             return
         }
         fruitStore = store

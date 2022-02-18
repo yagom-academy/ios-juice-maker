@@ -28,7 +28,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FruitStockCollectionViewCellReuseID" id="cmS-mS-x93" customClass="FruitStockCollectionViewCell" customModule="JuiceMaker" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FruitStockCollectionViewCell" id="cmS-mS-x93" userLabel="Fruit Stock Collection View Cell" customClass="FruitStockCollectionViewCell" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3yk-8A-hGf">
@@ -78,7 +78,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OrderButtonCollectionViewCellReuseID" id="UJF-SD-TJ7" customClass="OrderButtonCollectionViewCell" customModule="JuiceMaker" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OrderButtonCollectionViewCell" id="UJF-SD-TJ7" userLabel="Order Button Collection View Cell" customClass="OrderButtonCollectionViewCell" customModule="JuiceMaker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WUF-w5-J1m">
@@ -155,7 +155,7 @@
         <!--View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StockModifyViewController" id="Yu1-lM-nqp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -15,10 +15,14 @@
 		378EC52627BB66650036E29E /* FruitStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52527BB66650036E29E /* FruitStorable.swift */; };
 		378EC52827BB67E60036E29E /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52727BB67E60036E29E /* Juice.swift */; };
 		378EC52A27BB6A1A0036E29E /* Makable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52927BB6A1A0036E29E /* Makable.swift */; };
+		37D67CFF27BF4DDA001AE82D /* StoryboardNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67CFE27BF4DDA001AE82D /* StoryboardNameSpace.swift */; };
+		37D67D0127BF4DF7001AE82D /* CollectionViewNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0027BF4DF7001AE82D /* CollectionViewNameSpace.swift */; };
+		37D67D0327BF4E0D001AE82D /* AlertNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0227BF4E0D001AE82D /* AlertNameSpace.swift */; };
+		37D67D0527BF4E1E001AE82D /* NotificationNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0427BF4E1E001AE82D /* NotificationNameSpace.swift */; };
+		37D67D0727BF4EF8001AE82D /* StoreErrorNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0627BF4EF8001AE82D /* StoreErrorNameSpace.swift */; };
 		7F5DE16427BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16327BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift */; };
 		7F5DE16627BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16527BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift */; };
 		7F5DE16A27BDB89700A6F7C0 /* NameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */; };
-		7FEFFA1A27BDE46C00F7D392 /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEFFA1927BDE46C00F7D392 /* NotificationCenter+Extension.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -38,10 +42,14 @@
 		378EC52527BB66650036E29E /* FruitStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStorable.swift; sourceTree = "<group>"; };
 		378EC52727BB67E60036E29E /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		378EC52927BB6A1A0036E29E /* Makable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Makable.swift; sourceTree = "<group>"; };
+		37D67CFE27BF4DDA001AE82D /* StoryboardNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardNameSpace.swift; sourceTree = "<group>"; };
+		37D67D0027BF4DF7001AE82D /* CollectionViewNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewNameSpace.swift; sourceTree = "<group>"; };
+		37D67D0227BF4E0D001AE82D /* AlertNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNameSpace.swift; sourceTree = "<group>"; };
+		37D67D0427BF4E1E001AE82D /* NotificationNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameSpace.swift; sourceTree = "<group>"; };
+		37D67D0627BF4EF8001AE82D /* StoreErrorNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreErrorNameSpace.swift; sourceTree = "<group>"; };
 		7F5DE16327BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F5DE16527BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpace.swift; sourceTree = "<group>"; };
-		7FEFFA1927BDE46C00F7D392 /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +76,6 @@
 		37C13FA527BE11E700A56555 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				7FEFFA1927BDE46C00F7D392 /* NotificationCenter+Extension.swift */,
 				37844B6727BE43D200EF84F6 /* UIAlertController+Extension.swift */,
 			);
 			path = Extension;
@@ -78,6 +85,11 @@
 			isa = PBXGroup;
 			children = (
 				7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */,
+				37D67CFE27BF4DDA001AE82D /* StoryboardNameSpace.swift */,
+				37D67D0027BF4DF7001AE82D /* CollectionViewNameSpace.swift */,
+				37D67D0227BF4E0D001AE82D /* AlertNameSpace.swift */,
+				37D67D0427BF4E1E001AE82D /* NotificationNameSpace.swift */,
+				37D67D0627BF4EF8001AE82D /* StoreErrorNameSpace.swift */,
 			);
 			path = NameSpace;
 			sourceTree = "<group>";
@@ -220,7 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3718AC8427BC9AB2001D3216 /* StoreError.swift in Sources */,
-				7FEFFA1A27BDE46C00F7D392 /* NotificationCenter+Extension.swift in Sources */,
+				37D67D0727BF4EF8001AE82D /* StoreErrorNameSpace.swift in Sources */,
+				37D67D0327BF4E0D001AE82D /* AlertNameSpace.swift in Sources */,
+				37D67D0527BF4E1E001AE82D /* NotificationNameSpace.swift in Sources */,
 				3718AC8627BCA5E7001D3216 /* Ingredient.swift in Sources */,
 				378EC52227BB636B0036E29E /* Fruit.swift in Sources */,
 				7F5DE16A27BDB89700A6F7C0 /* NameSpace.swift in Sources */,
@@ -232,7 +246,9 @@
 				37844B6827BE43D200EF84F6 /* UIAlertController+Extension.swift in Sources */,
 				378EC52827BB67E60036E29E /* Juice.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				37D67D0127BF4DF7001AE82D /* CollectionViewNameSpace.swift in Sources */,
 				378EC52627BB66650036E29E /* FruitStorable.swift in Sources */,
+				37D67CFF27BF4DDA001AE82D /* StoryboardNameSpace.swift in Sources */,
 				378EC52A27BB6A1A0036E29E /* Makable.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				378EC52427BB64BF0036E29E /* FruitStockManager.swift in Sources */,

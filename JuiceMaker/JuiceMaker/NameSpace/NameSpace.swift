@@ -7,40 +7,6 @@
 
 import Foundation
 
-enum StoryboardName {
-    static let main = "Main"
-}
-
-enum StoryboardID {
-    static let stockModifyViewController = "stockModifyViewControllerID"
-}
-
-enum CollectionViewID {
-    static let fruitStockCell = "FruitStockCollectionViewCellReuseID"
-    static let orderButtonCell = "OrderButtonCollectionViewCellReuseID"
-}
-
-enum StoreErrorDescription {
-    static let notExistStuff = "%@이 존재하지 않습니다"
-    static let unknownError = "알 수 없는 에러"
-}
-
-enum AlertTitle {
-    static let completeMakeJuice = "%@가 나왔습니다! 맛있게 드세요!"
-    static let notEnoughJuice = "%@의 갯수가 %d개 밖에 없어요 재고를 수정할까요?"
-    static let faliMakeJuice = "%@가 없어요. 재고를 수정할까요?"
-    
-    enum action {
-        static let submit = "확인"
-        static let no = "아니오"
-        static let yes = "예"
-    }
-}
-
-enum NotificationUserInfo {
-    static let fruitStore = "fruitStore"
-}
-
 enum Stock {
     static var initValue: [Fruit:Int] {
         [.strawberry: 10,
@@ -51,7 +17,7 @@ enum Stock {
     }
 }
 
-enum InitialCollectionViewLayoutConstant {
+enum JuiceOrderCollectionViewLayoutConstant {
     typealias Size = (width: Double, height: Double)
     
     static let minimumLineSpacing = 10
