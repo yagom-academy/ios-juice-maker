@@ -42,8 +42,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCount()
+        updateFruitStockLabel()
         addTargetButton()
+    }
+    
+    @IBAction func touchUpStockManagementButon(_ sender: UIBarButtonItem) {
+        showModalStockManagementView()
     }
 }
 
@@ -51,7 +55,7 @@ extension MainViewController {
     @objc private func order(_ sender: UIButton) {
         do {
             let message = try getJuiceMaker(uiButton: sender).order()
-            setCount()
+            updateFruitStockLabel()
             showBasicAlert(message: message ?? "")
         } catch {
             catchOrderError(error: error)
@@ -61,9 +65,11 @@ extension MainViewController {
     private func catchOrderError(error: Error) {
         if let error = error as? JuiceMakerStateError,
            error == JuiceMakerStateError.outOfStock {
-            return showActionAlert(message: error.localizedDescription) { _ in
-                self.showModalStockManagementView()
-            }
+            return showActionAlert(
+                message: error.localizedDescription,
+                okActionHandler: { _ in self.showModalStockManagementView() },
+                cancelActionHandler: nil
+            )
         }
         showBasicAlert(message: error.localizedDescription)
     }
@@ -98,7 +104,7 @@ extension MainViewController {
 }
 
 extension MainViewController {
-    private func setCount() {
+    private func updateFruitStockLabel() {
         strawberryStock.text = "\(fruiteStore.strawberry.counter)"
         bananaStock.text = "\(fruiteStore.banana.counter)"
         pineappleStock.text = "\(fruiteStore.pineapple.counter)"
@@ -122,15 +128,20 @@ extension MainViewController {
     }
     
     private func showModalStockManagementView() {
-        guard let stockManagementVC = self.storyboard?
-                .instantiateViewController(
+        guard let stockManagementVC = self.storyboard?.instantiateViewController(
                     withIdentifier: "StockManagementViewController"
                 ) as? StockManagementViewController else {
                     return
                 }
+        stockManagementVC.fruitStore = fruiteStore
+        stockManagementVC.delegate = self
         let uiNavigationVC = UINavigationController(rootViewController: stockManagementVC)
-        uiNavigationVC.modalTransitionStyle = .coverVertical
-        uiNavigationVC.modalPresentationStyle = .fullScreen
         self.present(uiNavigationVC, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController: StockManagementVCDelegate {
+    func touchUpCloseButton() {
+        updateFruitStockLabel()
     }
 }
