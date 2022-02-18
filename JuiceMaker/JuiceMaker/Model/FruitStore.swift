@@ -23,27 +23,49 @@ extension FruitStoreError: LocalizedError {
 /// 과일 저장소 타입
 final class FruitStore {
     
+    // MARK: - Define
+    
     typealias FruitsInventory = [FruitType: Int]
     
-    private(set) var inventory = FruitsInventory()
     
-    private lazy var inventorySubject = BehaviorSubject<FruitsInventory>(value: inventory)
+    // MARK: - Internal Properties
+    
     var inventoryObservable: Observable<FruitsInventory> {
         inventorySubject.asObserver()
     }
+
     
-    init(initialFruitCount: Int = 10) {
-        FruitType.allCases.forEach { fruit in
-            inventory[fruit] = initialFruitCount
+    // MARK: - Private Properites
+    
+    private(set) var inventory = FruitsInventory() {
+        didSet {
+            inventorySubject.onNext(inventory)
         }
     }
+    private lazy var inventorySubject = BehaviorSubject<FruitsInventory>(value: inventory)
+
+    
+    // MARK: - Init
+    
+    init(initialFruitCount: Int = 10) {
+        inventory = Dictionary(
+            uniqueKeysWithValues: zip(
+                FruitType.allCases,
+                FruitType.allCases.map{ _ in
+                    initialFruitCount
+                }
+            )
+        )
+    }
+    
+    
+    // MARK: - Internal Methods
     
     func use(of fruitsInventory: FruitsInventory) -> Result<Void, FruitStoreError> {
         let checkedInventory =  checkInventory(of: fruitsInventory)
         switch checkedInventory {
         case .success():
             inventory = calculateUsableInventory(toSubtract: fruitsInventory)
-            inventorySubject.onNext(inventory)
             return .success(Void())
         case .failure(let error):
             return .failure(error)
@@ -55,9 +77,9 @@ final class FruitStore {
             return
         }
         inventory[fruit] = count
-        
-        inventorySubject.onNext(inventory)
     }
+    
+    // MARK: - Private Methods
     
     private func checkInventory(of fruitsInventory: FruitsInventory) -> Result<Void, FruitStoreError> {
         let negativeFruitTypes = calculateUsableInventory(toSubtract: fruitsInventory)
@@ -73,4 +95,13 @@ final class FruitStore {
             $0 - $1
         })
     }
+    
+    private func itself<T>(_ value: T) -> T {
+        return value
+    }
+}
+
+
+extension FruitStore {
+    
 }

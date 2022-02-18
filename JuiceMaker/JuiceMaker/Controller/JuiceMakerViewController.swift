@@ -185,7 +185,7 @@ class JuiceMakerViewController: UIViewController {
     // MARK: - Output
     
     private func bindInventory() {
-        self.fruitStore.inventoryObservable
+        fruitStore.inventoryObservable
             .map {
                 $0.mapValues { "\($0)" }
             }
