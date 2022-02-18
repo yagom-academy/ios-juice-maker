@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceOrderViewController: UIViewController {
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension JuiceOrderViewController {
     /// 과일 수량을 표시한다.
     private func configureView() {
         strawberryLabel.text = String(juiceMaker.quantity(of: .strawberry))
