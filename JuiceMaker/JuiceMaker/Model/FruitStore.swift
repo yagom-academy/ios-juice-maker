@@ -1,12 +1,13 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
 import Foundation
 
 protocol Store {
+    mutating func checkStock(of ingredients: [Ingredient]) -> Bool
     mutating func makeDrink(of ingredients: [Ingredient]) throws
 }
 
@@ -21,23 +22,26 @@ struct FruitStore: Store {
     }
     
     mutating func makeDrink(of ingredients: [Ingredient]) throws {
-        try checkStock(of: ingredients)
         try startMakingJuice(of: ingredients)
     }
     
-    private func checkStock(of ingredients: [Ingredient]) throws {
-        try ingredients.forEach { ingredient in
-            try isEnough(of: ingredient)
+    mutating func checkStock(of ingredients: [Ingredient]) -> Bool {
+        for ingredient in ingredients where !hasStock(of: ingredient) {
+            return false
         }
+        
+        return true
     }
     
-    private func isEnough(of ingredient: Ingredient) throws {
+    private func hasStock(of ingredient: Ingredient) -> Bool {
         let fruit = ingredient.fruit
         let number = ingredient.number
-        
+
         guard let value = inventory[fruit], value - number >= 0 else {
-            throw JuiceMakerError.notEnough
+            return false
         }
+        
+        return true
     }
     
     mutating private func startMakingJuice(of ingredients: [Ingredient]) throws {
@@ -52,6 +56,14 @@ struct FruitStore: Store {
         
         guard let value = inventory[fruit] else {
             throw JuiceMakerError.notFindFruit
+        }
+        
+        self.inventory[fruit] = value - number
+    }
+    
+    mutating private func makeJuice(in fruit: Fruit, number: Int)  {
+        guard let value = inventory[fruit] else {
+            return
         }
         
         self.inventory[fruit] = value - number
