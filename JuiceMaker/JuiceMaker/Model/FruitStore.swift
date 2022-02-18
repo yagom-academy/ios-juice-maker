@@ -7,8 +7,6 @@
 import Foundation
 
 protocol Store {
-    mutating func increase(in fruit: Fruit) throws
-    mutating func decrease(in fruit: Fruit) throws
     mutating func makeDrink(of ingredients: [Ingredient]) throws
 }
 
@@ -20,26 +18,6 @@ struct FruitStore: Store {
         inventory = Fruit.allCases.reduce(into: [:]) { stock, fruit in
             stock[fruit] = value
         }
-    }
-    
-    mutating func increase(in fruit: Fruit) throws {
-        guard let value = inventory[fruit] else {
-            throw JuiceMakerError.notFindFruit
-        }
-        
-        self.inventory[fruit] = value + 1
-    }
-    
-    mutating func decrease(in fruit: Fruit) throws {
-        guard let value = inventory[fruit] else {
-            throw JuiceMakerError.notFindFruit
-        }
-        
-        guard value > 0 else {
-            throw JuiceMakerError.notDecrease
-        }
-        
-        self.inventory[fruit] = value - 1
     }
     
     mutating func makeDrink(of ingredients: [Ingredient]) throws {
