@@ -48,10 +48,7 @@ class MainViewController: UIViewController {
     private func showFailAlert() {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
-            guard let stockManageViewController = self?.storyboard?.instantiateViewController(withIdentifier: "stockManage") else {
-                return
-            }
-            self?.navigationController?.pushViewController(stockManageViewController, animated: true)
+            self?.pushToStockManageViewController()
         }
         let noAction = UIAlertAction(title: "아니요", style: .destructive)
         alert.addAction(noAction)
@@ -69,6 +66,14 @@ class MainViewController: UIViewController {
         } else {
             self.showFailAlert()
         }
+    }
+    
+    private func pushToStockManageViewController() {
+        guard let stockManageViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockManage") as? StockManageViewController else {
+            return
+        }
+        stockManageViewController.fruitStore = self.fruitStore
+        self.navigationController?.pushViewController(stockManageViewController, animated: true)
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: Any) {
@@ -97,6 +102,10 @@ class MainViewController: UIViewController {
     
     @IBAction func orderMangoJuice(_ sender: Any) {
         orderJuice(type: .mangoJuice)
+    }
+    
+    @IBAction func tapStockUpdateButton(_ sender: Any) {
+        pushToStockManageViewController()
     }
 }
 
