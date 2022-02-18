@@ -46,13 +46,6 @@ class ViewController: UIViewController {
         }
     }
     
-    /// 주문한 메뉴와 주스 메뉴를 비교한다.
-    private func checkMatch(order: String, juice: Juice) {
-        if order == juice.name + " 주문" {
-            orderMenu(of: juice)
-        }
-    }
-    
     // 주문한 주스를 만든다.
     private func orderMenu(of juice: Juice) {
         do {
