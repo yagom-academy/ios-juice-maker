@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,10 @@
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
+		D11B964F27BBEC17002A7652 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D11B964E27BBEC17002A7652 /* RxCocoa */; };
+		D11B965527BBF09E002A7652 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B965427BBF09E002A7652 /* Fruit.swift */; };
+		D11B965727BBF8E9002A7652 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B965627BBF8E9002A7652 /* Juice.swift */; };
+		D11B967B27BE8C93002A7652 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B967A27BE8C93002A7652 /* JuiceMakerError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,9 @@
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
+		D11B965427BBF09E002A7652 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		D11B965627BBF8E9002A7652 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
+		D11B967A27BE8C93002A7652 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D11B964F27BBEC17002A7652 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +64,9 @@
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+				D11B965427BBF09E002A7652 /* Fruit.swift */,
+				D11B965627BBF8E9002A7652 /* Juice.swift */,
+				D11B967A27BE8C93002A7652 /* JuiceMakerError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -92,9 +103,17 @@
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
+				D11B965027BBECB1002A7652 /* ViewModel */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
 			path = JuiceMaker;
+			sourceTree = "<group>";
+		};
+		D11B965027BBECB1002A7652 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,6 +132,9 @@
 			dependencies = (
 			);
 			name = JuiceMaker;
+			packageProductDependencies = (
+				D11B964E27BBEC17002A7652 /* RxCocoa */,
+			);
 			productName = JuiceMaker;
 			productReference = C73DAF33255D0CDD00020D38 /* JuiceMaker.app */;
 			productType = "com.apple.product-type.application";
@@ -140,6 +162,9 @@
 				Base,
 			);
 			mainGroup = C73DAF2A255D0CDC00020D38;
+			packageReferences = (
+				D11B964D27BBEC17002A7652 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = C73DAF34255D0CDD00020D38 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -169,8 +194,11 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
+				D11B967B27BE8C93002A7652 /* JuiceMakerError.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				D11B965527BBF09E002A7652 /* Fruit.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				D11B965727BBF8E9002A7652 /* Juice.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +399,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D11B964D27BBEC17002A7652 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D11B964E27BBEC17002A7652 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D11B964D27BBEC17002A7652 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C73DAF2B255D0CDC00020D38 /* Project object */;
 }
