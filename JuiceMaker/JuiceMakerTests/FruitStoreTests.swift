@@ -36,11 +36,11 @@ class FruitStoreTests: XCTestCase {
             XCTFail()
             return
         }
-        let input: FruitsInventory = [
+        let input: FruitItems = [
             .banana: 5,
             .strawberry: 5
         ]
-        let expected: FruitsInventory = [
+        let expected: FruitItems = [
             .strawberry: 5,
             .banana: 5,
             .pineapple: 10,
@@ -66,7 +66,7 @@ class FruitStoreTests: XCTestCase {
             XCTFail()
             return
         }
-        let input: FruitsInventory = [
+        let input: FruitItems = [
             .banana: 5,
             .strawberry: 15
         ]
@@ -92,7 +92,7 @@ class FruitStoreTests: XCTestCase {
         }
         let inputFruit = FruitType.banana
         let inputFruitCount = 5
-        let expected: FruitsInventory = [
+        let expected: FruitItems = [
             .strawberry: 10,
             .banana: 5,
             .pineapple: 10,

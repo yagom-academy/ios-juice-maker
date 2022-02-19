@@ -15,6 +15,7 @@ private extension XCTestCase {
 }
 
 struct MockJuice: JuiceProtocol {
+    var name: String
     var items: [FruitType : Int]
 }
 
@@ -26,14 +27,14 @@ class JuiceMakerTests: XCTestCase {
         // given
         let fruitStore = FruitStore(initialFruitCount: 10)
         var juiceMaker = JuiceMaker(fruitStore: fruitStore)
-        let input = MockJuice(items: [.banana: 5])
+        let input = MockJuice(name: "Banana", items: [.banana: 5])
         
         // when
         let writeResult = juiceMaker.make(with: input)
  
         // then
         switch writeResult {
-        case .success():
+        case .success(_):
             XCTSuccess()
         case .failure(let error):
             XCTFail(error.localizedDescription)
@@ -44,14 +45,14 @@ class JuiceMakerTests: XCTestCase {
         // given
         let fruitStore = FruitStore(initialFruitCount: 10)
         var juiceMaker = JuiceMaker(fruitStore: fruitStore)
-        let input = MockJuice(items: [.banana: 15])
+        let input = MockJuice(name: "Banana", items: [.banana: 15])
         
         // when
         let writeResult = juiceMaker.make(with: input)
  
         // then
         switch writeResult {
-        case .success():
+        case .success(_):
             XCTFail()
         case .failure(_):
             XCTSuccess()
@@ -62,8 +63,8 @@ class JuiceMakerTests: XCTestCase {
         // given
         let fruitStore = FruitStore(initialFruitCount: 10)
         var juiceMaker = JuiceMaker(fruitStore: fruitStore)
-        let input = MockJuice(items: [.banana: 5])
-        let expected: FruitsInventory = [
+        let input = MockJuice(name: "Banana", items: [.banana: 5])
+        let expected: FruitItems = [
             .strawberry: 10,
             .banana: 5,
             .pineapple: 10,
@@ -76,7 +77,7 @@ class JuiceMakerTests: XCTestCase {
         
         // then
         switch writeResult {
-        case .success():
+        case .success(_):
             XCTAssertEqual(fruitStore.inventory, expected)
         case .failure(_):
             XCTFail()
