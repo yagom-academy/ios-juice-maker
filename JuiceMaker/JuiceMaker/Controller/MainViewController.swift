@@ -78,32 +78,14 @@ class MainViewController: UIViewController {
         self.present(navigationController, animated: true, completion: nil)
     }
     
-    @IBAction func orderStrawberryBananaJuice(_ sender: Any) {
-        orderJuice(type: .strawberryBananaJuice)
-    }
-    
-    @IBAction func orderMangoKiwiJuice(_ sender: Any) {
-        orderJuice(type: .mangoKiwiJuice)
-    }
-    
-    @IBAction func orderStrawberryJuice(_ sender: Any) {
-        orderJuice(type: .strawberryJuice)
-    }
-    
-    @IBAction func orderBananaJuice(_ sender: Any) {
-        orderJuice(type: .bananaJuice)
-    }
-    
-    @IBAction func orderPineappleJuice(_ sender: Any) {
-        orderJuice(type: .pineappleJuice)
-    }
-    
-    @IBAction func orderKiwiJuice(_ sender: Any) {
-        orderJuice(type: .kiwiJuice)
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: Any) {
-        orderJuice(type: .mangoJuice)
+    @IBAction func tapOrderButton(_ sender: UIButton) {
+        guard let buttonTitle = sender.titleLabel?.text else {
+            return
+        }
+        
+        let juiceName = buttonTitle.replacingOccurrences(of: " 주문", with: "")
+        let juice = juiceName.convertJuiceType()
+        orderJuice(type: juice)
     }
     
     @IBAction func tapStockUpdateButton(_ sender: Any) {
