@@ -50,11 +50,11 @@ class JuiceOrderViewController: UIViewController {
     private func makeJuice(_ juice: Juice) {
         do {
             let _ = try juiceMaker?.make(into: juice)
-            showCompletedMakeAlert(about: formatCompletedTitle(juice: juice.name))
+            presentCompletedMakeAlert(juice: juice.name)
         } catch StoreError.outOfStock(let name) {
-            showNotCompletedMakeAlert(about: formatNotCompletedTitle(juice: name))
+            presentNotCompletedMakeAlert(juice: name)
         } catch StoreError.notEnoughStock(let name, let stock) {
-            showNotCompletedMakeAlert(about: formatNotCompletedTitle(juice: name, count: stock))
+            presentNotCompletedMakeAlert(juice: name, count: stock)
         } catch StoreError.notExistStuff(let name) {
             assertionFailure(String(format: StoreErrorNameSpace.notExistStuff, name))
         } catch {
@@ -62,15 +62,15 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func showCompletedMakeAlert(about: String) {
-        let formatedCompletedTitle = formatCompletedTitle(juice: AlertNameSpace.completeMakeJuice)
+    private func presentCompletedMakeAlert(juice: String) {
+        let formatedCompletedTitle = formatCompletedTitle(juice: juice)
         let submitAlertAction = UIAlertAction(title: AlertNameSpace.Action.OK, style: .default)
         
         presentAlert(title: formatedCompletedTitle, actions: [submitAlertAction])
     }
     
-    private func showNotCompletedMakeAlert(about title: String, count: Int? = nil) {
-        let formatedNotCompletedTitle = formatNotCompletedTitle(juice: title, count: count)
+    private func presentNotCompletedMakeAlert(juice: String, count: Int? = nil) {
+        let formatedNotCompletedTitle = formatNotCompletedTitle(juice: juice, count: count)
         let noAlertAction = UIAlertAction(title: AlertNameSpace.Action.no, style: .cancel)
         let yesAlertAction = UIAlertAction(title: AlertNameSpace.Action.yes, style: .default) { _ in
             self.presentModifyStockView()
