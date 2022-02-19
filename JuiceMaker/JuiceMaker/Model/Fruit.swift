@@ -14,6 +14,18 @@ enum Fruit: CaseIterable {
     case kiwi
     case mango
     
+    static var count: Int {
+        return allCases.count
+    }
+    
+    static func emoji(offset: Int) -> String {
+        return allCases[offset].imageName
+    }
+    
+    static func name(offset: Int) -> String {
+        return allCases[offset].name
+    }
+    
     var name: String {
         switch self {
         case .strawberry:
@@ -29,18 +41,18 @@ enum Fruit: CaseIterable {
         }
     }
     
-    var emoji: String {
+    var imageName: String {
         switch self {
         case .strawberry:
-            return "🍓"
+            return AssetNameSpace.strawberry
         case .banana:
-            return "🍌"
+            return AssetNameSpace.banana
         case .pineapple:
-            return "🍍"
+            return AssetNameSpace.pineapple
         case .kiwi:
-            return "🥝"
+            return AssetNameSpace.kiwi
         case .mango:
-            return "🥭"
+            return AssetNameSpace.mango
         }
     }
 }

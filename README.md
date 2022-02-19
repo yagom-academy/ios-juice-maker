@@ -19,3 +19,30 @@
 ### 클래스 다이어그램
 
 <img src="https://user-images.githubusercontent.com/18098363/154088400-1a2aa047-2d3b-41bb-a28b-8fd6232a04de.jpg" />
+
+### Daily Scrum
+<details> <summary>1주차 Daily Scrum</summary>
+
+- [화요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/데일리스크럼-1주차-화요일)
+
+- [수요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/데일리스크럼-1주차-수요일)
+
+- [목요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/데일리스크럼-1주차-목요일)
+
+- [금요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/데일리스크럼-1주차-금요일)
+
+</details>
+
+### 작업 내역
+
+<details> <summary>1주차 작업 내역</summary>
+
+ - [화요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/작업내역-1주차-화요일)
+
+ - [수요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/작업내역-1주차-수요일)
+
+ - [목요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/작업내역-1주차-목요일)
+
+ - [금요일](https://github.com/DonggeonOh/ios-juice-maker/wiki/작업내역-1주차-금요일)
+
+</details>
