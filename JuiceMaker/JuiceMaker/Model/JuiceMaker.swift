@@ -14,7 +14,7 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
 
-    mutating func make(with recipe: JuiceProtocol) -> Result<JuiceProtocol, Error> {
+    func make(with recipe: JuiceProtocol) -> Result<JuiceProtocol, Error> {
         return fruitStore.use(of: recipe.items)
             .map{ _ in recipe }
             .mapError { $0 }
