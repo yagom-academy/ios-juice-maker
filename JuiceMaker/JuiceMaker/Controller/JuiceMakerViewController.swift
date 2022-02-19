@@ -81,12 +81,10 @@ final class JuiceMakerViewController: UIViewController {
 // MARK: - Setup
 extension JuiceMakerViewController {
     private func updateFruitStock() {
-        DispatchQueue.main.async {
-            self.strawberryStockLabel.text = "\(self.fruitStore.fruits[.strawberry, default: Number()])"
-            self.bananaStockLabel.text = "\(self.fruitStore.fruits[.banana, default: Number()])"
-            self.pineappleStockLabel.text = "\(self.fruitStore.fruits[.pineapple, default: Number()])"
-            self.kiwiStockLabel.text = "\(self.fruitStore.fruits[.kiwi, default: Number()])"
-            self.mangoStockLabel.text = "\(self.fruitStore.fruits[.mango, default: Number()])"
-        }
+        self.strawberryStockLabel.text = "\(self.fruitStore.fruits[.strawberry, default: Number()])"
+        self.bananaStockLabel.text = "\(self.fruitStore.fruits[.banana, default: Number()])"
+        self.pineappleStockLabel.text = "\(self.fruitStore.fruits[.pineapple, default: Number()])"
+        self.kiwiStockLabel.text = "\(self.fruitStore.fruits[.kiwi, default: Number()])"
+        self.mangoStockLabel.text = "\(self.fruitStore.fruits[.mango, default: Number()])"
     }
 }
