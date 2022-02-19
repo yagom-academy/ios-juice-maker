@@ -13,12 +13,14 @@
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
-		C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* ViewController.swift */; };
 		C73DAF3E255D0CDD00020D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3C255D0CDD00020D38 /* Main.storyboard */; };
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
 		FF3FE73627BC9C0F0050B83D /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3FE73527BC9C0F0050B83D /* Fruit.swift */; };
+		FF3FE73927BD16110050B83D /* JuiceKioskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3FE73827BD16110050B83D /* JuiceKioskViewController.swift */; };
+		FF3FE73B27BD18B80050B83D /* ModifyStocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3FE73A27BD18B80050B83D /* ModifyStocksViewController.swift */; };
+		FFF281CB27BDF29A00C8B27C /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF281CA27BDF29A00C8B27C /* JuiceMakerError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +42,15 @@
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C73DAF3A255D0CDD00020D38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C73DAF3D255D0CDD00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C73DAF3F255D0CDE00020D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
 		FF3FE73527BC9C0F0050B83D /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		FF3FE73827BD16110050B83D /* JuiceKioskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceKioskViewController.swift; sourceTree = "<group>"; };
+		FF3FE73A27BD18B80050B83D /* ModifyStocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyStocksViewController.swift; sourceTree = "<group>"; };
+		FFF281CA27BDF29A00C8B27C /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +92,8 @@
 			children = (
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
-				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				FF3FE73827BD16110050B83D /* JuiceKioskViewController.swift */,
+				FF3FE73A27BD18B80050B83D /* ModifyStocksViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,8 +138,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				15F7061127BD158700E7096D /* Extension */,
-				FF3FE73427BC9C010050B83D /* Enum */,
+				FFF281C827BDF26D00C8B27C /* Util */,
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
@@ -150,6 +154,24 @@
 				1505706627BC9F7B002C65E0 /* Juice.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		FFF281C827BDF26D00C8B27C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FFF281C927BDF28A00C8B27C /* Error */,
+				15F7061127BD158700E7096D /* Extension */,
+				FF3FE73427BC9C010050B83D /* Enum */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		FFF281C927BDF28A00C8B27C /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				FFF281CA27BDF29A00C8B27C /* JuiceMakerError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,11 +284,13 @@
 			files = (
 				15F7061327BD15AE00E7096D /* UIViewController+Extension.swift in Sources */,
 				FF3FE73627BC9C0F0050B83D /* Fruit.swift in Sources */,
+				FF3FE73927BD16110050B83D /* JuiceKioskViewController.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				1505706727BC9F7B002C65E0 /* Juice.swift in Sources */,
-				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
+				FFF281CB27BDF29A00C8B27C /* JuiceMakerError.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				FF3FE73B27BD18B80050B83D /* ModifyStocksViewController.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

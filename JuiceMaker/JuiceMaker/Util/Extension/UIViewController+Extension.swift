@@ -8,10 +8,16 @@
 import UIKit
 
 extension UIViewController {
+    static func instantiate(with storyboard: String) -> Self {
+        let id = String(describing: self)
+        let storyboard = UIStoryboard(name: storyboard, bundle: Bundle.main)
+        return storyboard.instantiateViewController(withIdentifier: id) as! Self
+    }
+    
     func makeAlert(title: String,
-                   message: String,
+                   message: String? = nil,
                    okAction: ((UIAlertAction) -> Void)? = nil,
-                   completion : (() -> Void)? = nil) {
+                   completion : (() -> Void)?) {
         let alertViewController = UIAlertController(title: title,
                                                     message: message,
                                                     preferredStyle: .alert)
@@ -21,7 +27,7 @@ extension UIViewController {
     }
 
     func makeRequestAlert(title: String,
-                          message: String,
+                          message: String? = nil,
                           okAction: ((UIAlertAction) -> Void)?,
                           cancelAction: ((UIAlertAction) -> Void)? = nil,
                           completion : (() -> Void)? = nil) {
