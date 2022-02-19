@@ -23,7 +23,7 @@ struct JuiceMaker {
         }
         
         for material in recipe {
-            try self.fruitStore.decrease(fruit: material.fruit, to: material.count)
+            try self.fruitStore.decrease(product: material.fruit, to: material.count)
         }
         return juice
     }
