@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Juice: Int {
+enum Juice: Int, Drinkable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice

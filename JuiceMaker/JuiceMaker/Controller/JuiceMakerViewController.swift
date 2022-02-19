@@ -17,7 +17,7 @@ final class JuiceMakerViewController: UIViewController {
     
     // MARK: - Properties
     private let fruitStore: FruitStore = FruitStore()
-    private lazy var juiceMaker: JuiceMaker = JuiceMaker(fruitStore: self.fruitStore)
+    private lazy var juiceMaker: MakerType = JuiceMaker(fruitStore: self.fruitStore)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +36,12 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
-        guard let juice: Juice = Juice(rawValue: sender.tag) else {
+        guard let juice: Drinkable = Juice(rawValue: sender.tag) else {
             return
         }
         
         do {
-            let juice: Juice = try self.juiceMaker.makeJuice(juice)
+            let juice: Drinkable = try self.juiceMaker.makeDrink(juice)
             self.updateFruitStock()
             self.showSuccessAlert(for: juice)
         } catch JuiceMakerError.outOfStock {
@@ -51,9 +51,9 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func showSuccessAlert(for juice: Juice) {
+    private func showSuccessAlert(for drink: Drinkable) {
         let alert: UIAlertController = UIAlertController(title: "제조 완료",
-                                                         message: "\(juice.name) 나왔습니다! 맛있게 드세요!",
+                                                         message: "\(drink.name) 나왔습니다! 맛있게 드세요!",
                                                          preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "확인",
                                                     style: .default,
