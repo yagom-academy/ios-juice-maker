@@ -42,7 +42,7 @@ class JuiceMakerUnitTests: XCTestCase {
         try? self.fruitStore?.increase(fruit: .strawberry, to: number)
         
         // when
-        try? self.juiceMaker?.makeJuice(inputJuice)
+        _ = try? self.juiceMaker?.makeJuice(inputJuice)
         let result: Number = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
         
         // then
@@ -56,7 +56,7 @@ class JuiceMakerUnitTests: XCTestCase {
         let inputJuice: Juice = .strawberryBananaJuice
     
         // when
-        try? self.juiceMaker?.makeJuice(inputJuice)
+        _ = try? self.juiceMaker?.makeJuice(inputJuice)
         let resultStrawberry: Number = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
         let resultBanana: Number = self.fruitStore?.fruits[.banana, default: 0] ?? 0
         
