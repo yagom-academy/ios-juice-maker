@@ -31,6 +31,7 @@ final class JuiceMakerViewController: UIViewController, StoryboardBindable {
     
     @IBAction func presentUpdateStockScene() {
         let updateStockViewController: UpdateStockViewController = .instantiate()
+        updateStockViewController.fruitStore = self.fruitStore
         updateStockViewController.modalPresentationStyle = .fullScreen
         updateStockViewController.modalTransitionStyle = .coverVertical
         self.present(updateStockViewController, animated: true, completion: nil)
