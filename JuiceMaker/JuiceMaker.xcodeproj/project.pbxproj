@@ -12,6 +12,7 @@
 		3718AC9027BCE738001D3216 /* StockModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718AC8F27BCE738001D3216 /* StockModifyViewController.swift */; };
 		3718AC9927BCF4B3001D3216 /* StockModifyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718AC9827BCF4B3001D3216 /* StockModifyCollectionViewCell.swift */; };
 		372EACBD27BFEE8A008C02AF /* JuiceOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */; };
+		375FF9A027C0AB2F000B278C /* StockNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375FF99F27C0AB2F000B278C /* StockNameSpace.swift */; };
 		37844B6827BE43D200EF84F6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37844B6727BE43D200EF84F6 /* UIViewController+Extension.swift */; };
 		378EC52227BB636B0036E29E /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52127BB636B0036E29E /* Fruit.swift */; };
 		378EC52427BB64BF0036E29E /* FruitStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC52327BB64BF0036E29E /* FruitStockManager.swift */; };
@@ -26,7 +27,6 @@
 		37D67D0B27BF750D001AE82D /* AssetNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D67D0A27BF750D001AE82D /* AssetNameSpace.swift */; };
 		7F5DE16427BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16327BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift */; };
 		7F5DE16627BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16527BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift */; };
-		7F5DE16A27BDB89700A6F7C0 /* NameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -41,6 +41,7 @@
 		3718AC8527BCA5E7001D3216 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		3718AC8F27BCE738001D3216 /* StockModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModifyViewController.swift; sourceTree = "<group>"; };
 		3718AC9827BCF4B3001D3216 /* StockModifyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModifyCollectionViewCell.swift; sourceTree = "<group>"; };
+		375FF99F27C0AB2F000B278C /* StockNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockNameSpace.swift; sourceTree = "<group>"; };
 		37844B6727BE43D200EF84F6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		378EC52127BB636B0036E29E /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		378EC52327BB64BF0036E29E /* FruitStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockManager.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		37D67D0A27BF750D001AE82D /* AssetNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetNameSpace.swift; sourceTree = "<group>"; };
 		7F5DE16327BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F5DE16527BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderButtonCollectionViewCell.swift; sourceTree = "<group>"; };
-		7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpace.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,13 +98,13 @@
 		7F5DE16827BDB87800A6F7C0 /* NameSpace */ = {
 			isa = PBXGroup;
 			children = (
-				7F5DE16927BDB89700A6F7C0 /* NameSpace.swift */,
 				37D67CFE27BF4DDA001AE82D /* StoryboardNameSpace.swift */,
 				37D67D0027BF4DF7001AE82D /* CollectionViewNameSpace.swift */,
 				37D67D0227BF4E0D001AE82D /* AlertNameSpace.swift */,
 				37D67D0427BF4E1E001AE82D /* NotificationNameSpace.swift */,
 				37D67D0627BF4EF8001AE82D /* StoreErrorNameSpace.swift */,
 				37D67D0A27BF750D001AE82D /* AssetNameSpace.swift */,
+				375FF99F27C0AB2F000B278C /* StockNameSpace.swift */,
 			);
 			path = NameSpace;
 			sourceTree = "<group>";
@@ -256,9 +256,9 @@
 				37D67D0527BF4E1E001AE82D /* NotificationNameSpace.swift in Sources */,
 				3718AC8627BCA5E7001D3216 /* Ingredient.swift in Sources */,
 				378EC52227BB636B0036E29E /* Fruit.swift in Sources */,
-				7F5DE16A27BDB89700A6F7C0 /* NameSpace.swift in Sources */,
 				7F5DE16627BDB3B400A6F7C0 /* OrderButtonCollectionViewCell.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
+				375FF9A027C0AB2F000B278C /* StockNameSpace.swift in Sources */,
 				3718AC9927BCF4B3001D3216 /* StockModifyCollectionViewCell.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				7F5DE16427BDB3A100A6F7C0 /* FruitStockCollectionViewCell.swift in Sources */,
