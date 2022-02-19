@@ -21,7 +21,7 @@ class StockModifyViewController: UIViewController {
     
     private func changeStockCount(count: Int, indexPath: IndexPath) {
         guard let stockModifyCell = stockModifyCollectionView.cellForItem(at: indexPath) as? StockModifyCollectionViewCell,
-              let fruitStore = fruitStore else {
+              var fruitStore = fruitStore else {
             return
         }
         let fruit = Fruit.allCases[indexPath.item]
@@ -39,6 +39,8 @@ class StockModifyViewController: UIViewController {
         NotificationCenter.default.post(name: NotificationNameSpace.sendFruitStoreDataNotificationName,
                                         object: self,
                                         userInfo: [NotificationNameSpace.UserInfo.fruitStore:fruitStore])
+        
+        print(fruitStore.checkCount(stock: .banana))
         self.navigationController?.popViewController(animated: true)
     }
 }

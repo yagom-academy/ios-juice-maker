@@ -13,7 +13,6 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var orderButtonCollectionView: UICollectionView!
     
     // MARK: Model
-    private var fruitStore: FruitStorable?
     private var juiceMaker: JuiceMaker?
     
     // MARK: - Life Cycle
@@ -35,7 +34,6 @@ class JuiceOrderViewController: UIViewController {
         let storeManager = FruitStockManager(stocks: StockNameSpace.initValue)
         let fruitStore = FruitStore(manager: storeManager)
         
-        self.fruitStore = fruitStore
         self.juiceMaker = JuiceMaker(store: fruitStore)
     }
     
@@ -92,7 +90,7 @@ class JuiceOrderViewController: UIViewController {
     private func presentModifyStockView() {
         let storyboard = UIStoryboard(name: StoryboardNameSpace.mainStoryboardName, bundle: nil)
         guard let stockModifyVC = storyboard.instantiateViewController(withIdentifier: StoryboardNameSpace.stockModifyViewControllerID) as? StockModifyViewController,
-              let fruitStore = fruitStore else {
+              let fruitStore = juiceMaker?.store else {
             return
         }
         stockModifyVC.modalPresentationStyle = .fullScreen
@@ -105,7 +103,7 @@ class JuiceOrderViewController: UIViewController {
         guard let store = notification.userInfo?[NotificationNameSpace.UserInfo.fruitStore] as? FruitStorable else {
             return
         }
-        fruitStore = store
+        juiceMaker?.changeStore(to: store)
     }
     
     // MARK: IBAction

@@ -7,7 +7,7 @@
 import Foundation
 
 struct FruitStore: FruitStorable {
-    private(set) var manager: FruitStockManager
+    private var manager: FruitStockManager
     
     init(manager: FruitStockManager) {
         self.manager = manager
@@ -20,7 +20,7 @@ struct FruitStore: FruitStorable {
     ///     - count: 사용할 과일의 갯수
     ///
     /// - Throws: 해당 과일의 갯수가 부족하거나 0인 경우
-    func use(_ fruit: Fruit, to count: Int) throws {
+    mutating func use(_ fruit: Fruit, to count: Int) throws {
         let _ = try checkStock(fruit, as: count)
         let stock = checkCount(stock: fruit)
         let remainCount = stock - count
@@ -33,7 +33,7 @@ struct FruitStore: FruitStorable {
     /// - Parameters:
     ///     - fruit: 과일의 이름
     ///     - count: 재고를 변경할 과일의 갯수
-    func change(_ fruit: Fruit, to count: Int) {
+    mutating func change(_ fruit: Fruit, to count: Int) {
         manager.change(amount: count, about: fruit)
     }
     

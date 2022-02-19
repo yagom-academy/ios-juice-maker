@@ -8,8 +8,26 @@
 import Foundation
 
 protocol FruitStorable {
-    func use(_ fruit: Fruit, to count: Int) throws
-    func change(_ fruit: Fruit, to count: Int)
+    mutating func use(_ fruit: Fruit, to count: Int) throws
+    mutating func change(_ fruit: Fruit, to count: Int)
     func checkStock(_ fruit: Fruit, as count: Int) throws -> Bool
     func checkCount(stock fruit: Fruit) -> Int
+}
+
+class Test: FruitStorable {
+    func use(_ fruit: Fruit, to count: Int) throws {
+        
+    }
+    
+    func change(_ fruit: Fruit, to count: Int) {
+        
+    }
+    
+    func checkStock(_ fruit: Fruit, as count: Int) throws -> Bool {
+        return true
+    }
+    
+    func checkCount(stock fruit: Fruit) -> Int {
+        return 0
+    }
 }

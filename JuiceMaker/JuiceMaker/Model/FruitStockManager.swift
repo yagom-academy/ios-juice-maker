@@ -7,14 +7,14 @@
 
 import Foundation
 
-class FruitStockManager {
-    private(set) var stocks: [Fruit:Int] = [:]
+struct FruitStockManager {
+    private var stocks: [Fruit:Int] = [:]
     
     init(stocks: [Fruit:Int]) {
         self.stocks = stocks
     }
     
-    func change(amount count: Int, about: Fruit) {
+    mutating func change(amount count: Int, about: Fruit) {
         stocks[about] = count
     }
     
