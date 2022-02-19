@@ -13,14 +13,10 @@ struct JuiceMaker {
     init(fruitStore: FruitStore = FruitStore()) {
         self.fruitStore = fruitStore
     }
-    
+
     mutating func make(with recipe: JuiceProtocol) -> Result<JuiceProtocol, Error> {
-        let result = fruitStore.use(of: recipe.items)
-        switch result {
-        case .success():
-            return .success(recipe)
-        case .failure(let error):
-            return .failure(error)
-        }
+        return fruitStore.use(of: recipe.items)
+            .map{ _ in recipe }
+            .mapError { $0 }
     }
 }
