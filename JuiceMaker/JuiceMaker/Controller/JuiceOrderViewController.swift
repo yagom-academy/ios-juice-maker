@@ -46,6 +46,10 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
+    @IBAction func tapUpdateQuantityButton(_ sender: Any) {
+        self.presentModal()
+    }
+    
     // 주문한 주스를 만든다.
     private func orderMenu(of juice: Juice) {
         do {
@@ -62,9 +66,15 @@ class JuiceOrderViewController: UIViewController {
     
     /// 모달을 표시한다.
     private func presentModal() {
-        guard let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "modalViewController") else {return}
-        modalViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-        self.present(modalViewController, animated: true)
+        guard let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "modalViewController") as? FruitQuntityViewController else {return}
+        modalViewController.juiceMaker = juiceMaker
+        modalViewController.delegate = self
+        
+        let navigaionViewController = UINavigationController(rootViewController: modalViewController)
+        
+        navigaionViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        
+        self.present(navigaionViewController, animated: true)
     }
     
     /// 확인 알럿을 표시한다.
@@ -101,5 +111,11 @@ extension JuiceOrderViewController {
         pineappleLabel.text = String(juiceMaker.quantity(of: .pineapple))
         kiwiLabel.text = String(juiceMaker.quantity(of: .kiwi))
         mangoLabel.text = String(juiceMaker.quantity(of: .mango))
+    }
+}
+
+extension JuiceOrderViewController: FruitQuntityViewDelegate {
+    func finishModal() {
+        configureView()
     }
 }
