@@ -8,7 +8,7 @@
 import Foundation
 
 /// 값을 관찰하여 값이 변경되면 미리 지정한 listener에 따라 작업을 수행
-class JMObservable<T> {
+class Observable<T> {
     private var listener: ((T) -> Void)?
     
     var value: T {
