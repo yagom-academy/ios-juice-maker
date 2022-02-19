@@ -44,7 +44,7 @@ class StockManageViewController: UIViewController {
         
         let amount = Int(sender.value)
         let recipe = Recipe(fruit: fruit, amount: amount)
-        fruitStore?.updateAmountOfFruit(recipe)
+        fruitStore?.updateFruit([recipe])
         configureUI()
     }
     

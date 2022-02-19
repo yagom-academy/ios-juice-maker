@@ -33,12 +33,8 @@ class FruitStore {
             updateFruit(temporaryResult)
         }
     }
-    
-    func updateAmountOfFruit(_ fruit: Recipe) {
-        store[fruit.fruit] = fruit.amount
-    }
-    
-    private func updateFruit(_ fruits: [Recipe]) {
+
+    func updateFruit(_ fruits: [Recipe]) {
         fruits.forEach {
             store[$0.fruit] = $0.amount
         }
