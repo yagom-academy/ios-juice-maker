@@ -57,7 +57,7 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    private func orderJuice(type juice: Juice) {
+    private func order(_ juice: Juice) {
         guard let result = juiceMaker?.makeJuice(type: juice) else {
             return
         }
@@ -85,7 +85,7 @@ class MainViewController: UIViewController {
         
         let juiceName = buttonTitle.replacingOccurrences(of: " 주문", with: "")
         let juice = juiceName.convertJuiceType()
-        orderJuice(type: juice)
+        order(juice)
     }
     
     @IBAction func tapStockUpdateButton(_ sender: Any) {

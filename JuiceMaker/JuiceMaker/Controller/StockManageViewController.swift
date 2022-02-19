@@ -22,8 +22,6 @@ class StockManageViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    
-    
     @IBAction func updateStock(_ sender: UIStepper) {
         var fruit = Fruit.strawberry
         
@@ -43,8 +41,8 @@ class StockManageViewController: UIViewController {
         }
         
         let amount = Int(sender.value)
-        let recipe = Recipe(fruit: fruit, amount: amount)
-        fruitStore?.updateFruit([recipe])
+        let updateInformation = FruitAmountInformation(fruit: fruit, amount: amount)
+        fruitStore?.updateFruit([updateInformation])
         configureUI()
     }
     
