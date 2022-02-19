@@ -28,7 +28,7 @@ class FruitStoreTests: XCTestCase {
         let expectation: Number = 14
         
         // when
-        try? fruitStore?.increase(product: inputFruit, to: inputAmount)
+        try? fruitStore?.increase(fruit: inputFruit, to: inputAmount)
         let result: Number = fruitStore?.fruits[inputFruit] ?? Number()
         
         // then
@@ -42,7 +42,7 @@ class FruitStoreTests: XCTestCase {
         let expectation: Number = 4
         
         // when
-        try? fruitStore?.decrease(product: inputFruit, to: inputAmount)
+        try? fruitStore?.decrease(fruit: inputFruit, to: inputAmount)
         let result: Number = fruitStore?.fruits[inputFruit] ?? Number()
         
         // then
@@ -56,7 +56,7 @@ class FruitStoreTests: XCTestCase {
         let expectation: NumberError = .isNegativeValue
         
         // when
-        XCTAssertThrowsError(try fruitStore?.decrease(product: inputFruit, to: inputAmount), "Number increse Error") { error in
+        XCTAssertThrowsError(try fruitStore?.decrease(fruit: inputFruit, to: inputAmount), "Number increse Error") { error in
             // then
             XCTAssertEqual(expectation, error as? NumberError)
         }
@@ -69,7 +69,7 @@ class FruitStoreTests: XCTestCase {
         let expectation: NumberError = .isNegativeValue
         
         // when
-        XCTAssertThrowsError(try fruitStore?.increase(product: inputFruit, to: inputAmount), "Number decrese Error") { error in
+        XCTAssertThrowsError(try fruitStore?.increase(fruit: inputFruit, to: inputAmount), "Number decrese Error") { error in
             // then
             XCTAssertEqual(expectation, error as? NumberError)
         }
