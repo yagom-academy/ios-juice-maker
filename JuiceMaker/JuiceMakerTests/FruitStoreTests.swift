@@ -90,4 +90,21 @@ class FruitStoreTests: XCTestCase {
         // then
         XCTAssertTrue(result)
     }
+    
+    func test_changeStock_초기재고에서_망고의_재고를_3개로_바꿀_수_있다() {
+        // given
+        let inputFruit: Fruit = .mango
+        let inputAmount: Number = 3
+        let expectation: Number = 3
+        
+        // when
+        self.fruitStore?.changeFruitStock(fruit: inputFruit, to: inputAmount)
+        guard let result: Number = self.fruitStore?.fruits[inputFruit, default: 0] else {
+            XCTFail("fruitStore is Nil")
+            return
+        }
+        
+        // then
+        XCTAssertEqual(result, expectation)
+    }
 }

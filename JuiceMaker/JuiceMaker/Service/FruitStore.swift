@@ -17,7 +17,7 @@ final class FruitStore {
     }
     
     func changeFruitStock(fruit: Fruit, to amount: Number) {
-        self.fruits[fruit, default: 0] = amount
+        self.fruits[fruit] = amount
     }
     
     func increase(fruit: Fruit, to amount: Number) throws {
