@@ -375,11 +375,32 @@
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stepper>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Coy-kk-rPu">
+                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem title="재고 수정" id="bMj-Ja-x4Y">
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="GAz-9W-GR4">
+                                            <connections>
+                                                <action selector="back" destination="Yu1-lM-nqp" id="C2R-Bw-hsp"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Coy-kk-rPu" firstAttribute="top" secondItem="tKV-4l-Vtc" secondAttribute="top" id="1sl-Yu-lzO"/>
+                            <constraint firstAttribute="trailing" secondItem="Coy-kk-rPu" secondAttribute="trailing" id="VVb-dR-gbg"/>
+                            <constraint firstItem="Coy-kk-rPu" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="uSO-ye-90r"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="Coy-kk-rPu" id="Yva-w7-sR0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

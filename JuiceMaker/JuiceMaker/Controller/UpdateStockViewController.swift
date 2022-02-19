@@ -8,7 +8,8 @@
 import UIKit
 
 final class UpdateStockViewController: UIViewController, StoryboardBindable {
-
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,16 +20,11 @@ final class UpdateStockViewController: UIViewController, StoryboardBindable {
 // MARK: - Setup
 extension UpdateStockViewController {
     private func setupNavigationBar() {
-        self.navigationController?.navigationBar.barStyle = .default
-        self.navigationItem.title = "재고 추가"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기",
-                                                                 style: .done,
-                                                                 target: self,
-                                                                 action: #selector(back))
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.backgroundColor = .clear
     }
 
-    @objc
-    private func back() {
+    @IBAction func back() {
         self.dismiss(animated: true, completion: nil)
     }
 }
