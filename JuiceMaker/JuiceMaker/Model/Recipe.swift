@@ -7,11 +7,12 @@
 
 import Foundation
 
+/// 레시피 타입
 struct Recipe {
     var fruitList: [FruitInfo]
 }
 
 struct FruitInfo {
     var fruit: Fruit
-    var count: Int
+    var quantity: Int
 }

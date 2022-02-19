@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 과일의 종류
 enum Fruit: CaseIterable {
     case strawberry
     case banana
