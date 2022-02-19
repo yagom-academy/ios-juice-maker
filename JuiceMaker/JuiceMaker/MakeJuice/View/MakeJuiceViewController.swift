@@ -16,19 +16,27 @@ class MakeJuiceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        bindLabel()
+        targetOrderButtons()
+        targetManageStockButton()
+    }
+    
+    private func bindLabel() {
         viewModel.displayingStocks.bind { [weak self] stocks in
             stocks.forEach { (index: Int, quantity: Quantity) in
                 self?.quantityLabels[index].text = "\(quantity)"
             }
-            
         }
-        
+    }
+    
+    private func targetOrderButtons() {
         orderButtons.enumerated().forEach({ (index, button) in
             button.tag = index
             button.addTarget(self, action: #selector(didTap(sender:)), for: .touchUpInside)
         })
-        
+    }
+    
+    private func targetManageStockButton() {
         manageStocksButton.addTarget(
             target: self,
             action: #selector(didTapManageStocksButton)
