@@ -10,19 +10,19 @@ import UIKit
 class StockManageViewController: UIViewController {
     var fruitStore: FruitStore?
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet private weak var strawberryStock: UILabel!
+    @IBOutlet private weak var bananaStock: UILabel!
+    @IBOutlet private weak var kiwiStock: UILabel!
+    @IBOutlet private weak var pineappleStock: UILabel!
+    @IBOutlet private weak var mangoStock: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
-    @IBAction func updateStock(_ sender: UIStepper) {
+    @IBAction private func updateStock(_ sender: UIStepper) {
         var fruit = Fruit.strawberry
         
         switch sender.tag {

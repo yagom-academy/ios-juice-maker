@@ -8,14 +8,14 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet private weak var strawberryStock: UILabel!
+    @IBOutlet private weak var bananaStock: UILabel!
+    @IBOutlet private weak var pineappleStock: UILabel!
+    @IBOutlet private weak var kiwiStock: UILabel!
+    @IBOutlet private weak var mangoStock: UILabel!
     
-    let fruitStore = FruitStore()
-    var juiceMaker: JuiceMaker?
+    private let fruitStore = FruitStore()
+    private var juiceMaker: JuiceMaker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
         self.present(navigationController, animated: true, completion: nil)
     }
     
-    @IBAction func tapOrderButton(_ sender: UIButton) {
+    @IBAction private func tapOrderButton(_ sender: UIButton) {
         guard let buttonTitle = sender.titleLabel?.text else {
             return
         }
@@ -88,7 +88,7 @@ class MainViewController: UIViewController {
         order(juice)
     }
     
-    @IBAction func tapStockUpdateButton(_ sender: Any) {
+    @IBAction private func tapStockUpdateButton(_ sender: Any) {
         pushToStockManageViewController()
     }
 }
