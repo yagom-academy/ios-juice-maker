@@ -10,7 +10,7 @@ import UIKit
 final class JuiceKioskViewController: UIViewController {
     // MARK: - Property
     private let juiceMaker = JuiceMaker()
-    private var fruitTypeOnLabels: [UILabel: Fruit] = [:]
+    private var fruitTypeOnLabels: [Fruit: UILabel] = [:]
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -25,42 +25,42 @@ final class JuiceKioskViewController: UIViewController {
     
     // MARK: - func
     private func setFruitLabels() {
-        fruitTypeOnLabels = [strawberryCountLabel: .strawberry,
-                        bananaCountLabel: .banana,
-                        pineappleCountLabel: .pineapple,
-                        kiwiCountLabel: .kiwi,
-                        mangoCountLabel: .mango]
+        fruitTypeOnLabels = [.strawberry: strawberryCountLabel,
+                        .banana: bananaCountLabel,
+                        .pineapple: pineappleCountLabel,
+                        .kiwi: kiwiCountLabel,
+                        .mango: mangoCountLabel]
     }
     
     private func patchData() {
-        for (label, fruit) in fruitTypeOnLabels {
+        for (fruit, label) in fruitTypeOnLabels {
             label.text = "\(juiceMaker.getFruitCount(fruit: fruit))"
         }
     }
     
     private func orderJuice(of juice: Juice) {
         do {
-            let answer = try juiceMaker.makeJuice(juice: juice)
-            answerWhenMaked(of: answer)
+            let message = try juiceMaker.makeJuice(juice: juice)
+            successOrderJuice(message)
         }
         catch {
-            answerWhenOrderError(of: error)
+            failOrderJuice(error)
         }
     }
     
-    private func answerWhenMaked(of answer: String) {
-        self.makeAlert(title: answer)  { [weak self] in
+    private func successOrderJuice(_ message: String) {
+        self.makeAlert(title: message)  { [weak self] in
             self?.patchData()
         }
     }
     
-    private func answerWhenOrderError(of error: Error) {
+    private func failOrderJuice(_ error: Error) {
         self.makeRequestAlert(title: error.localizedDescription) { [weak self] _ in
             self?.gotoModifyViewContoller()
         }
     }
     
-    private func gotoModifyViewContoller() {
+    private func presentModifyViewContoller() {
         let vc = ModifyStocksViewController.instantiate(with: "Main")
         vc.juiceMaker = juiceMaker
         navigationController?.pushViewController(vc, animated: true)
