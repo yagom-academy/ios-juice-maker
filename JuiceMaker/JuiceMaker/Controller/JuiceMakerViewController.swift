@@ -41,7 +41,17 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         bindingUI()
     }
+    
+    
+    // MARK: - Router
  
+    private func presentFruitInventoryManageViewController() {
+        performSegue(
+            withIdentifier: "presentFruitInventoryManageViewController",
+            sender: nil
+        )
+    }
+    
     
     // MARK: - Methods
     
@@ -67,7 +77,10 @@ class JuiceMakerViewController: UIViewController {
             )
             let okAction = UIAlertAction(
                 title: JuiceMakerMessage.ok.description,
-                style: .default
+                style: .default,
+                handler: { [weak self] _ in
+                    self?.presentFruitInventoryManageViewController()
+                }
             )
             let alert = AlertFactory.create(
                 message: JuiceMakerMessage.makeFail.description,
