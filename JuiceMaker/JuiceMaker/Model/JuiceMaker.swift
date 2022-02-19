@@ -6,7 +6,20 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     
+    private var fruitStore: Store
+    
+    init(fruitStore: Store = FruitStore()) {
+        self.fruitStore = fruitStore
+    }
+    
+    mutating func takeOrder(recipeType: JuiceRecipeType) throws -> String {
+        let ingredients = recipeType.recipe.ingredients
+        if !fruitStore.checkStock(of: ingredients) {
+            throw JuiceMakerError.notEnough
+        }
+        fruitStore.startMakingJuice(of: ingredients)
+        return recipeType.name
+    }
 }
