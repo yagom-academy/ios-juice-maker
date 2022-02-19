@@ -7,16 +7,18 @@
 import Foundation
 
 // 쥬스 메이커 타입
-struct JuiceMaker {
+struct JuiceMaker: MakerType {
+
     typealias Recipe = [Material]
+    
     private let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
     }
     
-    func makeJuice(_ juice: Juice) throws {
-        let recipe: Recipe = juice.recipe
+    func makeDrink(_ drink: Drinkable) throws -> Drinkable {
+        let recipe: Recipe = drink.recipe
         
         guard self.isAvailable(recipe: recipe) else {
             throw JuiceMakerError.outOfStock
@@ -25,6 +27,7 @@ struct JuiceMaker {
         for material in recipe {
             try self.fruitStore.decrease(fruit: material.fruit, to: material.count)
         }
+        return drink
     }
     
     private func isAvailable(recipe: Recipe) -> Bool {

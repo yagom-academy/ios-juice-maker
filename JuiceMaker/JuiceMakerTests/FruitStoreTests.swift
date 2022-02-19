@@ -15,7 +15,7 @@ class FruitStoreTests: XCTestCase {
         try super.setUpWithError()
         fruitStore = FruitStore()
     }
-
+    
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         fruitStore = nil
@@ -28,7 +28,7 @@ class FruitStoreTests: XCTestCase {
         let expectation: Number = 14
         
         // when
-        try? fruitStore?.increase(fruit: inputFruit, to: inputAmount)
+        try? fruitStore?.increase(product: inputFruit, to: inputAmount)
         let result: Number = fruitStore?.fruits[inputFruit] ?? Number()
         
         // then
@@ -42,7 +42,7 @@ class FruitStoreTests: XCTestCase {
         let expectation: Number = 4
         
         // when
-        try? fruitStore?.decrease(fruit: inputFruit, to: inputAmount)
+        try? fruitStore?.decrease(product: inputFruit, to: inputAmount)
         let result: Number = fruitStore?.fruits[inputFruit] ?? Number()
         
         // then
@@ -54,9 +54,9 @@ class FruitStoreTests: XCTestCase {
         let inputFruit: Fruit = .strawberry
         let inputAmount: Number = -3
         let expectation: NumberError = .isNegativeValue
-  
+        
         // when
-        XCTAssertThrowsError(try fruitStore?.decrease(fruit: inputFruit, to: inputAmount), "Number increse Error") { error in
+        XCTAssertThrowsError(try fruitStore?.decrease(product: inputFruit, to: inputAmount), "Number increse Error") { error in
             // then
             XCTAssertEqual(expectation, error as? NumberError)
         }
@@ -69,10 +69,25 @@ class FruitStoreTests: XCTestCase {
         let expectation: NumberError = .isNegativeValue
         
         // when
-        XCTAssertThrowsError(try fruitStore?.increase(fruit: inputFruit, to: inputAmount), "Number decrese Error") { error in
+        XCTAssertThrowsError(try fruitStore?.increase(product: inputFruit, to: inputAmount), "Number decrese Error") { error in
             // then
             XCTAssertEqual(expectation, error as? NumberError)
         }
         
+    }
+    
+    func test_hasStock_초기재고에서_키위의_재고가_7개_이상_있다() {
+        // given
+        let inputFruit: Fruit = .kiwi
+        let inputAmount: Number = 7
+        
+        // when
+        guard let result: Bool = fruitStore?.hasStock(of: inputFruit, to: inputAmount) else {
+            XCTFail("fruitStore is Nil")
+            return
+        }
+        
+        // then
+        XCTAssertTrue(result)
     }
 }

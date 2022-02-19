@@ -56,3 +56,9 @@ extension Number: ExpressibleByIntegerLiteral {
         self.value = value
     }
 }
+
+extension Number: CustomStringConvertible {
+    var description: String {
+        return "\(self.value)"
+    }
+}

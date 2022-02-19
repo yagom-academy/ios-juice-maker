@@ -39,10 +39,10 @@ class JuiceMakerUnitTests: XCTestCase {
         let expectation: Number = 0
         let inputJuice: Juice = .strawberryJuice
         let number: Number = 6
-        try? self.fruitStore?.increase(fruit: .strawberry, to: number)
+        try? self.fruitStore?.increase(product: .strawberry, to: number)
         
         // when
-        try? self.juiceMaker?.makeJuice(inputJuice)
+        _ = try? self.juiceMaker?.makeJuice(inputJuice)
         let result: Number = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
         
         // then
@@ -56,7 +56,7 @@ class JuiceMakerUnitTests: XCTestCase {
         let inputJuice: Juice = .strawberryBananaJuice
     
         // when
-        try? self.juiceMaker?.makeJuice(inputJuice)
+        _ = try? self.juiceMaker?.makeJuice(inputJuice)
         let resultStrawberry: Number = self.fruitStore?.fruits[.strawberry, default: 0] ?? 0
         let resultBanana: Number = self.fruitStore?.fruits[.banana, default: 0] ?? 0
         
@@ -68,7 +68,7 @@ class JuiceMakerUnitTests: XCTestCase {
     func test_makeJuice_망고재고가_부족할_때_망고키위쥬스를_만들면_에러가_발생한다() {
         // given
         let inputJuice: Juice = .mangoKiwiJuice
-        try? self.fruitStore?.decrease(fruit: .mango, to: 10)
+        try? self.fruitStore?.decrease(product: .mango, to: 10)
         
         // when
         XCTAssertThrowsError(try juiceMaker?.makeJuice(inputJuice), "makeJuice 재고 Error") { error in
