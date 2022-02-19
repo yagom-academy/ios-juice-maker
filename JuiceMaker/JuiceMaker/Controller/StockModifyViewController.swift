@@ -20,14 +20,15 @@ class StockModifyViewController: UIViewController {
     }
     
     private func changeStockCount(count: Int, indexPath: IndexPath) {
-        guard let stockModifyCell = stockModifyCollectionView.cellForItem(at: indexPath) as? StockModifyCollectionViewCell,
-              var fruitStore = fruitStore else {
+        guard let stockModifyCell = stockModifyCollectionView.cellForItem(at: indexPath) as? StockModifyCollectionViewCell else {
             return
         }
         let fruit = Fruit.allCases[indexPath.item]
-        fruitStore.change(fruit, to: count)
+        fruitStore?.change(fruit, to: count)
         
-        let count = fruitStore.checkCount(stock: fruit)
+        guard let count = fruitStore?.checkCount(stock: fruit) else {
+            return
+        }
         stockModifyCell.update(count: count)
     }
     
