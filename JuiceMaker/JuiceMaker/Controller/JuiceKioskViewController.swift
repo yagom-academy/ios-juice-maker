@@ -56,7 +56,7 @@ final class JuiceKioskViewController: UIViewController {
     
     private func failOrderJuice(_ error: Error) {
         self.makeRequestAlert(title: error.localizedDescription) { [weak self] _ in
-            self?.gotoModifyViewContoller()
+            self?.presentModifyViewContoller()
         }
     }
     
@@ -68,7 +68,7 @@ final class JuiceKioskViewController: UIViewController {
     
     // MARK: - Action
     @IBAction private func modifyButtonTap(_ sender: Any) {
-        gotoModifyViewContoller()
+        presentModifyViewContoller()
     }
     
     @IBAction private func orderStrawBananaberryJuiceButtonTap(_ sender: UIButton) {
