@@ -8,18 +8,14 @@
 import UIKit
 
 class StockModifyCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var fruitImageView: UIImageView!
-    @IBOutlet weak var stockCountLabel: UILabel!
-    @IBOutlet weak var stockCountStepper: UIStepper!
+    @IBOutlet private weak var fruitImageView: UIImageView!
+    @IBOutlet private weak var stockCountLabel: UILabel!
+    @IBOutlet private weak var stockCountStepper: UIStepper!
     
     var stepperHandler: (() -> Void)?
     
     var fruitCount: Int {
         Int(stockCountStepper.value)
-    }
-    
-    @IBAction func stepperValueChanged(_ sender: Any) {
-        stepperHandler?()
     }
     
     func update(count: Int) {
@@ -31,5 +27,9 @@ class StockModifyCollectionViewCell: UICollectionViewCell {
         stockCountLabel.text = String(count)
         stockCountStepper.value = Double(count)
         self.stepperHandler = handler
+    }
+    
+    @IBAction private func stepperValueChanged(_ sender: Any) {
+        stepperHandler?()
     }
 }

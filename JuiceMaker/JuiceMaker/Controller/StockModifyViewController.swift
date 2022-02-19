@@ -19,7 +19,7 @@ class StockModifyViewController: UIViewController {
         self.fruitStore = fruitStore
     }
     
-    func changeStockCount(count: Int, indexPath: IndexPath) {
+    private func changeStockCount(count: Int, indexPath: IndexPath) {
         guard let stockModifyCell = stockModifyCollectionView.cellForItem(at: indexPath) as? StockModifyCollectionViewCell,
               let fruitStore = fruitStore else {
             return
@@ -32,7 +32,7 @@ class StockModifyViewController: UIViewController {
     }
     
     // MARK: IBAction
-    @IBAction func submitButtonTouched(_ sender: Any) {
+    @IBAction private func submitButtonTouched(_ sender: Any) {
         guard let fruitStore = fruitStore else {
             return
         }
