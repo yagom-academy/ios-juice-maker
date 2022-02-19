@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController, StoryboardBindable {
     // MARK: - Views
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -16,8 +16,9 @@ final class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoStockLabel: UILabel!
     
     // MARK: - Properties
-    private let fruitStore: FruitStore = FruitStore()
-    private lazy var juiceMaker: MakerType = JuiceMaker(fruitStore: self.fruitStore)
+    
+    var fruitStore: FruitStore?
+    var juiceMaker: MakerType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,9 @@ final class JuiceMakerViewController: UIViewController {
         }
         
         do {
-            let juice: Drinkable = try self.juiceMaker.makeDrink(juice)
+            guard let juice: Drinkable = try self.juiceMaker?.makeDrink(juice) else {
+                return
+            }
             self.updateFruitStock()
             self.showSuccessAlert(for: juice)
         } catch JuiceMakerError.outOfStock {
@@ -82,10 +85,13 @@ final class JuiceMakerViewController: UIViewController {
 // MARK: - Setup
 extension JuiceMakerViewController {
     private func updateFruitStock() {
-        self.strawberryStockLabel.text = "\(self.fruitStore.fruits[.strawberry, default: Number()])"
-        self.bananaStockLabel.text = "\(self.fruitStore.fruits[.banana, default: Number()])"
-        self.pineappleStockLabel.text = "\(self.fruitStore.fruits[.pineapple, default: Number()])"
-        self.kiwiStockLabel.text = "\(self.fruitStore.fruits[.kiwi, default: Number()])"
-        self.mangoStockLabel.text = "\(self.fruitStore.fruits[.mango, default: Number()])"
+        guard let fruitStore = self.fruitStore else {
+            return
+        }
+        self.strawberryStockLabel.text = "\(fruitStore.fruits[.strawberry, default: Number()])"
+        self.bananaStockLabel.text = "\(fruitStore.fruits[.banana, default: Number()])"
+        self.pineappleStockLabel.text = "\(fruitStore.fruits[.pineapple, default: Number()])"
+        self.kiwiStockLabel.text = "\(fruitStore.fruits[.kiwi, default: Number()])"
+        self.mangoStockLabel.text = "\(fruitStore.fruits[.mango, default: Number()])"
     }
 }
