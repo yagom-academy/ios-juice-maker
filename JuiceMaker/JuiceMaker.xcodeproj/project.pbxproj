@@ -15,7 +15,7 @@
 		B4ADAF4727BD560700791D54 /* MakeJuiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF4627BD560700791D54 /* MakeJuiceViewModel.swift */; };
 		B4ADAF4A27BD644900791D54 /* MakeJuiceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF4927BD644900791D54 /* MakeJuiceViewModelTests.swift */; };
 		B4ADAF5027BD6F8C00791D54 /* JuiceManufacturerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF4F27BD6F8C00791D54 /* JuiceManufacturerTests.swift */; };
-		B4ADAF5327BDCF1600791D54 /* JMObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF5227BDCF1600791D54 /* JMObservable.swift */; };
+		B4ADAF5327BDCF1600791D54 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADAF5227BDCF1600791D54 /* Observable.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -24,6 +24,7 @@
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
+		FA421E1527C0B687008721FC /* DefaultAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA421E1427C0B687008721FC /* DefaultAlert.swift */; };
 		FA5821B727BC2C240070EA33 /* JuiceMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5821B627BC2C240070EA33 /* JuiceMakerTests.swift */; };
 		FA73E3C227BBF7430092141A /* FruitStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73E3C127BBF7430092141A /* FruitStoreTests.swift */; };
 		FA73E3C427BC127A0092141A /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73E3C327BC127A0092141A /* Quantity.swift */; };
@@ -49,7 +50,7 @@
 		B4ADAF4627BD560700791D54 /* MakeJuiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeJuiceViewModel.swift; sourceTree = "<group>"; };
 		B4ADAF4927BD644900791D54 /* MakeJuiceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeJuiceViewModelTests.swift; sourceTree = "<group>"; };
 		B4ADAF4F27BD6F8C00791D54 /* JuiceManufacturerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceManufacturerTests.swift; sourceTree = "<group>"; };
-		B4ADAF5227BDCF1600791D54 /* JMObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JMObservable.swift; sourceTree = "<group>"; };
+		B4ADAF5227BDCF1600791D54 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
+		FA421E1427C0B687008721FC /* DefaultAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlert.swift; sourceTree = "<group>"; };
 		FA5821B627BC2C240070EA33 /* JuiceMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerTests.swift; sourceTree = "<group>"; };
 		FA73E3B727BBF5A60092141A /* JuiceMakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JuiceMakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA73E3C127BBF7430092141A /* FruitStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreTests.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				9B7B357027BE4BAF00F9FA8B /* CompleteMakingAlert.swift */,
 				9B7B357227BE4BD400F9FA8B /* SoldOutAlert.swift */,
+				FA421E1427C0B687008721FC /* DefaultAlert.swift */,
 			);
 			path = MakeJuiceAlerts;
 			sourceTree = "<group>";
@@ -166,7 +169,7 @@
 		B4ADAF5127BDCEFB00791D54 /* CustomTypes */ = {
 			isa = PBXGroup;
 			children = (
-				B4ADAF5227BDCF1600791D54 /* JMObservable.swift */,
+				B4ADAF5227BDCF1600791D54 /* Observable.swift */,
 				9B7B356D27BE403E00F9FA8B /* UIAlertShowable.swift */,
 			);
 			path = CustomTypes;
@@ -357,8 +360,9 @@
 				9B7B357327BE4BD400F9FA8B /* SoldOutAlert.swift in Sources */,
 				B4ADAF4727BD560700791D54 /* MakeJuiceViewModel.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* MakeJuiceViewController.swift in Sources */,
-				B4ADAF5327BDCF1600791D54 /* JMObservable.swift in Sources */,
+				B4ADAF5327BDCF1600791D54 /* Observable.swift in Sources */,
 				B4091F5527C003CD00B37671 /* ManageStocksViewController.swift in Sources */,
+				FA421E1527C0B687008721FC /* DefaultAlert.swift in Sources */,
 				B4091F5227C0029600B37671 /* UIBarButton.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

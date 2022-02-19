@@ -10,7 +10,7 @@ import Foundation
 struct MakeJuiceViewModel {
     private var displayingFruits: [FruitStore.Fruit]
     private var juiceMaker: JuiceMaker
-    var displayingStocks: JMObservable<[(Int, Quantity)]>
+    var displayingStocks: Observable<[(Int, Quantity)]>
     
     init(
         displayingFruits: [FruitStore.Fruit] = defaultFruits,
@@ -19,7 +19,7 @@ struct MakeJuiceViewModel {
     ) {
         self.displayingFruits = displayingFruits
         self.juiceMaker = juiceMaker
-        self.displayingStocks = JMObservable(stocksByIndex)
+        self.displayingStocks = Observable(stocksByIndex)
         
         if stocksByIndex.isEmpty {
             self.displayingStocks.value = stockToUpdate(with: displayingFruits)
