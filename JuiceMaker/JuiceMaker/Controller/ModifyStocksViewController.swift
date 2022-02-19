@@ -24,10 +24,29 @@ class ModifyStocksViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         patchData()
-        navigationItem.hidesBackButton = true
+        configUI()
     }
     
     // MARK: - func
+    private func configUI() {
+        setNavigationItem()
+        setSteppersSize()
+    }
+    
+    private func setNavigationItem() {
+        navigationItem.hidesBackButton = true
+    }
+    
+    private func setSteppersSize() {
+        let labelWidth = strawberryCountLabel.frame.size.width
+        let stepperWidth = strawberryStepper.frame.size.width
+        let stepperRelativeSize = labelWidth / ((labelWidth - stepperWidth) / 2 + stepperWidth)
+        
+        for (stepper, fruit) in fruitsSteppers {
+            stepper.transform  = stepper.transform.scaledBy(x: stepperRelativeSize, y: stepperRelativeSize)
+        }
+    }
+    
     private func setFruitLabels() {
         fruitsLabels = [.strawberry: strawberryCountLabel,
                         .banana: bananaCountLabel,
