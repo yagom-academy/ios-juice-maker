@@ -41,7 +41,6 @@ class StockModifyViewController: UIViewController {
                                         object: self,
                                         userInfo: [NotificationNameSpace.UserInfo.fruitStore:fruitStore])
         
-        print(fruitStore.checkCount(stock: .banana))
         self.navigationController?.popViewController(animated: true)
     }
 }
