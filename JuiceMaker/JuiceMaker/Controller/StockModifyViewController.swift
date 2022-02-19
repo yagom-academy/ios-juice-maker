@@ -28,7 +28,8 @@ class StockModifyViewController: UIViewController {
         fruitStore.change(fruit, to: count)
         
         let count = fruitStore.checkCount(stock: fruit)
-        stockModifyCell.update(count: count)
+//        stockModifyCell.update(count: count)
+        stockModifyCollectionView.reloadData()
     }
     
     // MARK: IBAction
