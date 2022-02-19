@@ -60,35 +60,48 @@ class JuiceMakerViewController: UIViewController {
         
         switch result {
         case .success(let juice):
-            let okAction = UIAlertAction(
-                title: JuiceMakerMessage.ok.description,
-                style: .default
-            )
-            let alert = AlertFactory.create(
-                message: JuiceMakerMessage.makeSuccess(juiceName: juice.name).description,
-                preferredStyle: .alert,
-                actions: okAction
-            )
-            present(alert, animated: true)
-        case.failure(_):
-            let noAction = UIAlertAction(
-                title: JuiceMakerMessage.no.description,
-                style: .cancel
-            )
-            let okAction = UIAlertAction(
-                title: JuiceMakerMessage.ok.description,
-                style: .default,
-                handler: { [weak self] _ in
-                    self?.presentFruitInventoryManageViewController()
-                }
-            )
-            let alert = AlertFactory.create(
-                message: JuiceMakerMessage.makeFail.description,
-                preferredStyle: .alert,
-                actions: noAction, okAction
-            )
-            present(alert, animated: true)
+            showMakeSuccessAlert(juiceName: juice.name)
+        case .failure(_):
+            showMakeFailAlert(changeInventoryActionCompletion: { [weak self] _ in
+                self?.presentFruitInventoryManageViewController()
+            })
         }
+    }
+    
+    
+    // MARK: - Alerts
+    
+    private func showMakeSuccessAlert(juiceName: String) {
+        let okAction = UIAlertAction(
+            title: JuiceMakerMessage.ok.description,
+            style: .default
+        )
+        let alert = AlertFactory.create(
+            message: JuiceMakerMessage.makeSuccess(juiceName: juiceName).description,
+            preferredStyle: .alert,
+            actions: okAction
+        )
+        present(alert, animated: true)
+    }
+    
+    private func showMakeFailAlert(
+        changeInventoryActionCompletion: @escaping (UIAlertAction) -> Void
+    ) {
+        let noAction = UIAlertAction(
+            title: JuiceMakerMessage.no.description,
+            style: .cancel
+        )
+        let okAction = UIAlertAction(
+            title: JuiceMakerMessage.ok.description,
+            style: .default,
+            handler: changeInventoryActionCompletion
+        )
+        let alert = AlertFactory.create(
+            message: JuiceMakerMessage.makeFail.description,
+            preferredStyle: .alert,
+            actions: noAction, okAction
+        )
+        present(alert, animated: true)
     }
     
     
