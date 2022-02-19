@@ -54,7 +54,8 @@ class MakeJuiceViewController: UIViewController {
             let alert = SoldOutAlert()
             self.present(alert.alertController(), animated: true, completion: nil)
         } catch {
-            
+            let alert = DefaultAlert()
+            self.present(alert.alertController(), animated: true, completion: nil)
         }
     }
     
