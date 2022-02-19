@@ -158,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				872B5D5F27BB692800AE7A7B /* Fruit.swift */,
-				872B5D6027BB692800AE7A7B /* Juice.swift */,
 				87DC08F427BCBB9A005C6572 /* Material.swift */,
+				872B5D6027BB692800AE7A7B /* Juice.swift */,
 				032104A727BCC4D4001772F4 /* Number.swift */,
 			);
 			path = Model;

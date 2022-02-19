@@ -41,17 +41,19 @@ final class JuiceMakerViewController: UIViewController {
         }
         
         do {
-            let result: String = try self.juiceMaker.makeJuice(juice)
+            let juice: Juice = try self.juiceMaker.makeJuice(juice)
             self.updateFruitStock()
-            self.showSuccessAlert(message: result)
+            self.showSuccessAlert(for: juice)
+        } catch JuiceMakerError.outOfStock {
+            self.showFailAlert(error: .outOfStock)
         } catch {
-            self.showFailAlert()
+            self.showFailAlert(error: .unknown)
         }
     }
     
-    private func showSuccessAlert(message: String) {
+    private func showSuccessAlert(for juice: Juice) {
         let alert: UIAlertController = UIAlertController(title: "제조 완료",
-                                                         message: message,
+                                                         message: "\(juice.name) 나왔습니다! 맛있게 드세요!",
                                                          preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "확인",
                                                     style: .default,
@@ -60,9 +62,9 @@ final class JuiceMakerViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func showFailAlert() {
+    private func showFailAlert(error: JuiceMakerError) {
         let alert: UIAlertController = UIAlertController(title: "제조 실패",
-                                                         message: "재료가 모자라요. 재고를 수정할까요?",
+                                                         message: error.localizedDescription,
                                                          preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "예",
                                                     style: .default) { _ in
