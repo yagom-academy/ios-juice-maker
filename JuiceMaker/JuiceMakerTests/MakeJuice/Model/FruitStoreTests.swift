@@ -9,7 +9,6 @@ import XCTest
 @testable import JuiceMaker
 
 class FruitStoreTests: XCTestCase {
-    
     private var sut: FruitStore!
     
     override func setUpWithError() throws {

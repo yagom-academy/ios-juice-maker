@@ -10,8 +10,7 @@ import Foundation
 /// 양, 개수의 정보와 그에대한 연산의 역할이 있는 타입
 ///
 /// 원시값 Int에 대하여 양의 정수만 유지하기 위해 존재함
-struct Quantity: Equatable {
-    
+struct Quantity: Equatable, CustomStringConvertible {
     private let quantity: Int
     
     init(_ value: Int) {
@@ -20,6 +19,10 @@ struct Quantity: Equatable {
             return
         }
         quantity = value
+    }
+    
+    public var description: String {
+        return "\(quantity)"
     }
     
     static func + (first: Quantity, second: Quantity) -> Quantity {
@@ -44,7 +47,6 @@ struct Quantity: Equatable {
 }
 
 extension Quantity {
-    
     static let zero: Quantity = Quantity(0)
     
     enum QuantityError: Error {

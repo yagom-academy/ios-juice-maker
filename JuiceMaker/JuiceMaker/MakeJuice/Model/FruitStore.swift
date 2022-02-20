@@ -7,7 +7,6 @@
 import Foundation
 
 struct FruitStore {
-    
     private var fruitStocks: [Fruit: Quantity]
     
     init(everyStock: Quantity = defaultFruitQuantity) {
@@ -62,7 +61,6 @@ struct FruitStore {
 }
 
 extension FruitStore {
-    
     private static let defaultFruitQuantity: Quantity = Quantity(10)
     
     enum Fruit: CaseIterable {

@@ -7,30 +7,41 @@
 import Foundation
 
 struct JuiceMaker {
-    
     private var fruitStore: FruitStore
     private var recipe: Recipe
     
-    init(fruitStore: FruitStore = FruitStore(), recipe: Recipe = Recipe()) {
+    init(
+        fruitStore: FruitStore = FruitStore(),
+        recipe: Recipe = Recipe()
+    ) {
         self.fruitStore = fruitStore
         self.recipe = recipe
+    }
+    
+    func stock(of fruit: FruitStore.Fruit) -> Quantity {
+        return fruitStore.stock(of: fruit)
     }
     
     /// 쥬스 만들기.
     ///
     /// O(N)의 시간 복잡도를 갖고 있음. 이때 N은 쥬스를 만들 때 필요한 과일의 종류 갯수임.
     ///
-    /// - Returns: Nothing. 성공했을 경우
+    /// - Returns: 주스를 만들고 나서의 재고. 성공했을 경우
     ///
     /// - Parameter of: 만들 쥬스
     ///
     /// - Throws: `JuiceMakerError`타입의 에러. 쥬스 만들기에 실패 했을 경우
-    mutating func make(of juice: Juice) throws {
+    mutating func make(of juice: JuiceMaker.Juice) throws -> [FruitStore.Fruit] {
         guard let neededFruits = recipe.recipe(of: juice) else {
             throw JuiceMakerError.notExistRecipe
         }
         try validateStock(of: neededFruits)
         try useStock(of: neededFruits)
+        
+        guard let fruits = recipe.fruitsNeeded(in: juice)
+        else { throw JuiceMakerError.notExistRecipe }
+        
+        return fruits
     }
     
     /// 쥬스를 만들 때 필요한 과일의 재고가 충분히 존재하는지 확인.
@@ -42,7 +53,7 @@ struct JuiceMaker {
     /// - Parameter of: 필요한 과일과 갯수
     ///
     /// - Throws: `JuiceMakerError.soldOutError` 쥬스 만들 때 필요한 과일의 재고가 모자랄 경우
-    private func validateStock(of neededFruits: [Recipe.NeededFruit]) throws {
+    private func validateStock(of neededFruits: [JuiceMaker.Recipe.NeededFruit]) throws {
         let outOfStocks = neededFruits.filter { neededFruit in
             let stock = fruitStore.stock(of: neededFruit.fruit)
             return stock < neededFruit.quantity
@@ -59,27 +70,41 @@ struct JuiceMaker {
     /// - Returns: Nothing.
     ///
     /// - Parameter of: 필요한 과일과 갯수
-    mutating private func useStock(of neededFruits: [Recipe.NeededFruit]) throws {
+    mutating private func useStock(of neededFruits: [JuiceMaker.Recipe.NeededFruit]) throws {
         try neededFruits.forEach { neededFruits in
             try fruitStore.decreaseStock(of: neededFruits.fruit, neededFruits.quantity)
         }
     }
-    
 }
 
 extension JuiceMaker {
-    
-    /// 과일 쥬스의 종류
-    enum Juice {
-        case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice
-        case strawberryBananaJuice, mangoJuice, mangoKiwiJuice
-    }
     
     /// 과일 쥬스를 만들던 도중 발생할 수 있는 에러
     enum JuiceMakerError: Error {
         case soldOut
         case notExistRecipe
     }
+    
+    /// 과일 쥬스의 종류
+    enum Juice {
+        case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice
+        case strawberryBananaJuice, mangoJuice, mangoKiwiJuice
+        case unknowned
+        
+        init(index: Int) {
+            switch index {
+            case 0: self = .strawberryBananaJuice
+            case 1: self = .mangoKiwiJuice
+            case 2: self = .strawberryJuice
+            case 3: self = .bananaJuice
+            case 4: self = .pineappleJuice
+            case 5: self = .kiwiJuice
+            case 6: self = .mangoJuice
+            default: self = .unknowned
+            }
+        }
+    }
+    
     
     /// 과일 쥬스를 만들 때 필요한 과일과 갯수의 정보를 알려주는 레시피 타입
     struct Recipe {
@@ -92,7 +117,7 @@ extension JuiceMaker {
                 NeededFruit(fruit: .banana, quantity: Quantity(2)),
             ],
             .kiwiJuice: [
-                NeededFruit(fruit: .banana, quantity: Quantity(3)),
+                NeededFruit(fruit: .kiwi, quantity: Quantity(3)),
             ],
             .pineappleJuice: [
                 NeededFruit(fruit: .pineapple, quantity: Quantity(2)),
@@ -129,6 +154,16 @@ extension JuiceMaker {
         /// - Parameter _: 필요한 과일들을 알고 싶은 쥬스의 종류
         func recipe(of juice: Juice) -> [NeededFruit]? {
             return recipe[juice]
+        }
+        
+        
+        /// 원하는 주스를 만들기 위해 필요한 과일의 종류 얻기
+        ///
+        /// - Returns: `[FruitStore.Fruit]?` 필요한 과일의 종류. 존재하지 않을 경우 nil
+        ///
+        /// - Parameter _: 필요한 과일들을 알고 싶은 쥬스의 종류
+        func fruitsNeeded(in juice: Juice) -> [FruitStore.Fruit]? {
+            return recipe(of: juice)?.map({$0.fruit})
         }
     }
 }
