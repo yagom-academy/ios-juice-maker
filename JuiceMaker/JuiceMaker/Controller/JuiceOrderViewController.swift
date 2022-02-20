@@ -66,11 +66,11 @@ class JuiceOrderViewController: UIViewController {
     
     /// 모달을 표시한다.
     private func presentModal() {
-        guard let modalViewController = self.storyboard?.instantiateViewController(withIdentifier: "modalViewController") as? FruitQuntityViewController else {return}
-        modalViewController.juiceMaker = juiceMaker
-        modalViewController.delegate = self
+        guard let fruitQuntityViewController = self.storyboard?.instantiateViewController(withIdentifier: "fruitQuntityViewController") as? FruitQuntityViewController else {return}
+        fruitQuntityViewController.juiceMaker = juiceMaker
+        fruitQuntityViewController.delegate = self
         
-        let navigaionViewController = UINavigationController(rootViewController: modalViewController)
+        let navigaionViewController = UINavigationController(rootViewController: fruitQuntityViewController)
         
         navigaionViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         

@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="247" y="20"/>
         </scene>
-        <!--Fruit Quntity View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="modalViewController" id="Yu1-lM-nqp" customClass="FruitQuntityViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fruitQuntityViewController" id="Yu1-lM-nqp" customClass="FruitQuntityViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="modalView" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
