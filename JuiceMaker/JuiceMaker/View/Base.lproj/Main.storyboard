@@ -405,9 +405,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Coy-kk-rPu">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Coy-kk-rPu">
                                 <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" systemColor="systemBackgroundColor"/>
                                 <items>
                                     <navigationItem title="재고 수정" id="bMj-Ja-x4Y">
@@ -423,6 +422,9 @@
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Coy-kk-rPu" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="CeO-Q1-LVv"/>
+                            <constraint firstAttribute="trailing" secondItem="Coy-kk-rPu" secondAttribute="trailing" id="FlB-3X-Srd"/>
+                            <constraint firstItem="Coy-kk-rPu" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" id="GNn-zq-FrV"/>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="bottom" secondItem="PBA-XE-Qga" secondAttribute="bottom" constant="20" id="Mtf-Ct-sFe"/>
                             <constraint firstItem="PBA-XE-Qga" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="20" id="Xt9-H2-InE"/>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="PBA-XE-Qga" secondAttribute="trailing" constant="20" id="gwY-W2-uFK"/>
