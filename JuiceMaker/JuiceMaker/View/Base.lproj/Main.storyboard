@@ -299,10 +299,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666671" y="118.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="QYN-Ji-L8E"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="68T-iz-qRa"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -323,10 +323,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.333333333333314" y="112.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="d3P-O1-4OT"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="n2s-CS-gap"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -347,10 +347,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666686" y="120.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="xPv-tX-1LK"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="LuT-5U-MZc"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -371,10 +371,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666686" y="120.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="E7U-RE-ZR5"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="rX9-w6-7jq"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -395,10 +395,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666742" y="120.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="chageStockSteppers:" destination="Yu1-lM-nqp" eventType="valueChanged" id="BqF-u5-Fzy"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="knl-th-cap"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>

@@ -31,8 +31,8 @@ final class UpdateStockViewController: UIViewController, StoryboardBindable {
         self.setupFruitStock()
     }
     
-    @IBAction func chageStockSteppers(_ sender: UIStepper) {
-        guard let fruit: Fruit = .init(rawValue: sender.tag) else {
+    @IBAction func changeStock(_ sender: FruitStepper) {
+        guard let fruit: Fruit = sender.fruit else {
             return
         }
         let changedStock: Number = Number(Int(sender.value))
