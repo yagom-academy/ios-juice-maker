@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker: Makable {
-    private var store: FruitStorable
+    private(set) var store: FruitStorable
     
     init(store: FruitStorable) {
         self.store = store
@@ -21,7 +21,7 @@ struct JuiceMaker: Makable {
     /// - Throws: 과일의 갯수가 부족하거나 0 인 경우
     ///
     /// - Returns: 주스를 다 만든 경우 true 반환
-    func make(into juice: Juice) throws -> Bool {
+    mutating func make(into juice: Juice) throws -> Bool {
         for ingredient in juice.ingredients {
             let _ = try store.checkStock(ingredient.name, as: ingredient.count)
         }
@@ -30,6 +30,10 @@ struct JuiceMaker: Makable {
         }
         
         return true
+    }
+    
+    mutating func changeStore(to store: FruitStorable) {
+        self.store = store
     }
     
     func checkStock(_ fruit: Fruit, as count: Int) throws -> Bool {

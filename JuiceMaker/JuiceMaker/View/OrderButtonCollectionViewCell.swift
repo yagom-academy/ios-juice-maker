@@ -8,7 +8,7 @@
 import UIKit
 
 class OrderButtonCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var juiceLabel: UILabel!
+    @IBOutlet private weak var juiceLabel: UILabel!
     
     func update(name: String) {
         juiceLabel.text = name

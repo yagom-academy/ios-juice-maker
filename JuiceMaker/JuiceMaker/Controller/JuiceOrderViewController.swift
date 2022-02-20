@@ -9,47 +9,50 @@ import UIKit
 class JuiceOrderViewController: UIViewController {
     // MARK: - Property
     // MARK: - IBOutlet
-    @IBOutlet private weak var fruitsStockCollectionView: UICollectionView!
+    @IBOutlet private weak var fruitStockCollectionView: UICollectionView!
     @IBOutlet private weak var orderButtonCollectionView: UICollectionView!
     
     // MARK: Model
-    private var fruitStore: FruitStorable?
     private var juiceMaker: JuiceMaker?
     
     // MARK: - Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fruitStockCollectionView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initJuiceMaker()
-        initCollectionView()
-        observeFruitStoreData()
+        addObservers()
     }
     
     // MARK: - Initialization
-    func initJuiceMaker() {
-        let storeManager = FruitStockManager(stocks: Stock.initValue)
+    private func initJuiceMaker() {
+        let storeManager = FruitStockManager(stocks: StockNameSpace.initValue)
         let fruitStore = FruitStore(manager: storeManager)
         
-        self.fruitStore = fruitStore
         self.juiceMaker = JuiceMaker(store: fruitStore)
     }
     
-    func initCollectionView() {
-        fruitsStockCollectionView.delegate = self
-        fruitsStockCollectionView.dataSource = self
-        orderButtonCollectionView.delegate = self
-        orderButtonCollectionView.dataSource = self
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateFruitStore),
+                                               name: NotificationNameSpace.sendFruitStoreDataNotificationName,
+                                               object: nil)
     }
     
     // MARK: - Method
     private func makeJuice(_ juice: Juice) {
         do {
             let _ = try juiceMaker?.make(into: juice)
-            showAlert(method: .submit, title: formatCompletedTitle(juice: juice.name))
+            presentCompletedMakeAlert(juice: juice.name)
         } catch StoreError.outOfStock(let name) {
-            showNotCompletedMakeAlert(about: formatNotCompletedTitle(juice: name))
+            presentNotCompletedMakeAlert(juice: name)
         } catch StoreError.notEnoughStock(let name, let stock) {
-            showNotCompletedMakeAlert(about: formatNotCompletedTitle(juice: name, count: stock))
+            presentNotCompletedMakeAlert(juice: name, count: stock)
         } catch StoreError.notExistStuff(let name) {
             assertionFailure(String(format: StoreErrorNameSpace.notExistStuff, name))
         } catch {
@@ -57,10 +60,20 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func showNotCompletedMakeAlert(about title: String, count: Int? = nil) {
-        showAlert(method: .suggest, title: title) { _ in
+    private func presentCompletedMakeAlert(juice: String) {
+        let formatedCompletedTitle = formatCompletedTitle(juice: juice)
+        let submitAlertAction = UIAlertAction(title: AlertNameSpace.Action.OK, style: .default)
+        
+        presentAlert(title: formatedCompletedTitle, actions: [submitAlertAction])
+    }
+    
+    private func presentNotCompletedMakeAlert(juice: String, count: Int? = nil) {
+        let formatedNotCompletedTitle = formatNotCompletedTitle(juice: juice, count: count)
+        let noAlertAction = UIAlertAction(title: AlertNameSpace.Action.no, style: .cancel)
+        let yesAlertAction = UIAlertAction(title: AlertNameSpace.Action.yes, style: .default) { _ in
             self.presentModifyStockView()
         }
+        presentAlert(title: formatedNotCompletedTitle, actions: [noAlertAction, yesAlertAction])
     }
     
     private func formatCompletedTitle(juice: String) -> String {
@@ -76,10 +89,21 @@ class JuiceOrderViewController: UIViewController {
     
     private func presentModifyStockView() {
         let storyboard = UIStoryboard(name: StoryboardNameSpace.mainStoryboardName, bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: StoryboardNameSpace.stockModifyViewControllerID)
-        destinationVC.modalPresentationStyle = .fullScreen
-        // TODO: Step3 - destinationVC에서 fruitStore를 받을 메소드 추가
-        navigationController?.pushViewController(destinationVC, animated: true)
+        guard let stockModifyVC = storyboard.instantiateViewController(withIdentifier: StoryboardNameSpace.stockModifyViewControllerID) as? StockModifyViewController,
+              let fruitStore = juiceMaker?.store else {
+            return
+        }
+        stockModifyVC.modalPresentationStyle = .fullScreen
+        stockModifyVC.receiveFruitStore(fruitStore: fruitStore)
+        
+        navigationController?.pushViewController(stockModifyVC, animated: true)
+    }
+    
+    @objc private func updateFruitStore(_ notification: Notification) {
+        guard let store = notification.userInfo?[NotificationNameSpace.UserInfo.fruitStore] as? FruitStorable else {
+            return
+        }
+        juiceMaker?.changeStore(to: store)
     }
     
     // MARK: IBAction
@@ -96,7 +120,7 @@ extension JuiceOrderViewController: UICollectionViewDelegate {
             return
         }
         makeJuice(Juice.allCases[indexPath.item])
-        fruitsStockCollectionView.reloadData()
+        fruitStockCollectionView.reloadData()
     }
 }
 
@@ -104,7 +128,7 @@ extension JuiceOrderViewController: UICollectionViewDelegate {
 extension JuiceOrderViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
-        case fruitsStockCollectionView:
+        case fruitStockCollectionView:
             return Fruit.allCases.count
         case orderButtonCollectionView:
             return Juice.allCases.count
@@ -115,7 +139,7 @@ extension JuiceOrderViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
-        case fruitsStockCollectionView:
+        case fruitStockCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewNameSpace.fruitStockCellResuableID, for: indexPath)
             return updateFruitStockCell(cell: cell, indexPath: indexPath)
         case orderButtonCollectionView:
@@ -126,7 +150,7 @@ extension JuiceOrderViewController: UICollectionViewDataSource {
         }
     }
     
-    func updateFruitStockCell(cell: UICollectionViewCell, indexPath: IndexPath) -> UICollectionViewCell {
+    private func updateFruitStockCell(cell: UICollectionViewCell, indexPath: IndexPath) -> UICollectionViewCell {
         guard let fruitStockCollectionViewCell = cell as? FruitStockCollectionViewCell,
               let juiceMaker = juiceMaker else {
             return cell
@@ -134,12 +158,12 @@ extension JuiceOrderViewController: UICollectionViewDataSource {
         let fruit = Fruit.allCases[indexPath.item]
         let count = juiceMaker.checkCount(stock: fruit)
         
-        fruitStockCollectionViewCell.update(fruitImageName: fruit.imageName, stockCount: count)
+        fruitStockCollectionViewCell.update(fruitImageAssetName: fruit.imageName, count: count)
         
         return fruitStockCollectionViewCell
     }
     
-    func updateOrderButtonCell(cell: UICollectionViewCell, indexPath: IndexPath) -> UICollectionViewCell {
+    private func updateOrderButtonCell(cell: UICollectionViewCell, indexPath: IndexPath) -> UICollectionViewCell {
         guard let orderButtonCollectionViewCell = cell as? OrderButtonCollectionViewCell else {
             return cell
         }
@@ -152,41 +176,24 @@ extension JuiceOrderViewController: UICollectionViewDataSource {
 // MARK: Collection view delegate flow layout
 extension JuiceOrderViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(JuiceOrderCollectionViewLayoutConstant.minimumLineSpacing)
+        return CGFloat(CollectionViewNameSpace.minimumLineSpacing)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(JuiceOrderCollectionViewLayoutConstant.minimumInteritemSpacing)
+        return CGFloat(CollectionViewNameSpace.minimumInteritemSpacing)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
-        case fruitsStockCollectionView:
+        case fruitStockCollectionView:
             return CGSize(width:
-                            JuiceOrderCollectionViewLayoutConstant.calcFruitStockCellReduceConstant(collectionView.frame.width),
+                            CollectionViewNameSpace.calcFruitStockCellReduceConstant(collectionView.frame.width),
                           height: collectionView.frame.height)
         case orderButtonCollectionView:
-            let constant = JuiceOrderCollectionViewLayoutConstant.calcOrderButtonCellReduceConstant(collectionView.frame.width, height: collectionView.frame.height)
+            let constant = CollectionViewNameSpace.calcOrderButtonCellReduceConstant(collectionView.frame.width, height: collectionView.frame.height)
             return CGSize(width: constant.width, height: constant.height)
         default:
             return CGSize.zero
         }
-    }
-}
-
-// MARK: - Notification center
-extension JuiceOrderViewController {
-    private func observeFruitStoreData() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateFruitStore),
-                                               name: NotificationNameSpace.sendFruitStoreDataNotificationName,
-                                               object: nil)
-    }
-    
-    @objc private func updateFruitStore(_ notification: Notification) {
-        guard let store = notification.userInfo?[NotificationNameSpace.UserInfo.fruitStore] as? FruitStorable else {
-            return
-        }
-        fruitStore = store
     }
 }

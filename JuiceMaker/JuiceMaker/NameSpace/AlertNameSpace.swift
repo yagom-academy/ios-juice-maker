@@ -13,7 +13,7 @@ enum AlertNameSpace {
     static let outOfStock = "%@가 없어요. 재고를 수정할까요?"
     
     enum Action {
-        static let submit = "확인"
+        static let OK = "확인"
         static let no = "아니오"
         static let yes = "예"
     }

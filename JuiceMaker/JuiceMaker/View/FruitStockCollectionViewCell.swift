@@ -8,11 +8,11 @@
 import UIKit
 
 class FruitStockCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var fruitImageView: UIImageView!
-    @IBOutlet weak var fruitStockLabel: UILabel!
+    @IBOutlet private weak var fruitImageView: UIImageView!
+    @IBOutlet private weak var fruitStockLabel: UILabel!
     
-    func update(fruitImageName name: String, stockCount: Int) {
-        fruitImageView.image = UIImage(named: name)
-        fruitStockLabel.text = String(stockCount)
+    func update(fruitImageAssetName: String, count: Int) {
+        fruitImageView.image = UIImage(named: fruitImageAssetName)
+        fruitStockLabel.text = String(count)
     }
 }
