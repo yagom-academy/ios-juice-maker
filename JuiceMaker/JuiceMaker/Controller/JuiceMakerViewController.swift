@@ -37,8 +37,8 @@ final class JuiceMakerViewController: UIViewController, StoryboardBindable {
         self.present(updateStockViewController, animated: true, completion: nil)
     }
     
-    @IBAction func orderJuice(_ sender: UIButton) {
-        guard let juice: Drinkable = Juice(rawValue: sender.tag) else {
+    @IBAction func orderJuice(_ sender: JuiceButton) {
+        guard let juice: Drinkable = sender.juice else {
             return
         }
         

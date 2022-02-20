@@ -119,7 +119,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zzl-05-bVq">
                                         <rect key="frame" x="0.0" y="0.0" width="724" height="66"/>
                                         <subviews>
-                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-2F-fzl">
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-2F-fzl" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="66"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -127,14 +127,14 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MUp-Bd-Awv"/>
+                                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JyD-QD-Hgc"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
                                                 <rect key="frame" x="296" y="0.0" width="132" height="66"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="444" y="0.0" width="280" height="66"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -142,7 +142,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qEb-bZ-kk3"/>
+                                                    <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVU-7K-Iom"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -153,7 +153,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-e6-NWs">
                                                 <rect key="frame" x="0.0" y="0.0" width="724" height="66.333333333333329"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -161,10 +161,10 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bs5-SH-3kJ"/>
+                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3RE-Nx-o7p"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="148" y="0.0" width="132" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -172,10 +172,10 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iNO-wi-uUH"/>
+                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Hy-pR-fAA"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="296" y="0.0" width="132" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -183,10 +183,10 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gPB-wx-1Gg"/>
+                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rnK-xT-3zJ"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="444" y="0.0" width="132" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -194,10 +194,10 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KjU-0I-7tR"/>
+                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qnz-zc-2bm"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm" customClass="JuiceButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="592" y="0.0" width="132" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -205,7 +205,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pQx-Wi-8Z4"/>
+                                                            <action selector="orderJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zsk-SC-13w"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -302,7 +302,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666671" y="118.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="68T-iz-qRa"/>
+                                                    <action selector="changeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="bbu-dn-LTT"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -326,7 +326,7 @@
                                             <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.333333333333314" y="112.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="n2s-CS-gap"/>
+                                                    <action selector="changeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="aUb-A8-SlN"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -350,7 +350,7 @@
                                             <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666686" y="120.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="LuT-5U-MZc"/>
+                                                    <action selector="changeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="LfS-9o-dOV"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -374,7 +374,7 @@
                                             <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666686" y="120.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="rX9-w6-7jq"/>
+                                                    <action selector="changeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="yHb-Gy-Pdj"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -398,7 +398,7 @@
                                             <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="16.666666666666742" y="120.66666666666669" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="knl-th-cap"/>
+                                                    <action selector="changeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="i9R-lQ-75a"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
