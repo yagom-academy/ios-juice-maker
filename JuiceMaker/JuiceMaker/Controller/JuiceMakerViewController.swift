@@ -24,7 +24,10 @@ final class JuiceMakerViewController: BaseViewController, StoryboardBindable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.updateFruitStock()
+        guard let fruitStore = self.fruitStore else {
+            return
+        }
+        self.updateFruitStock(fruitStore)
     }
     
     @IBAction func presentUpdateStockScene() {
@@ -35,7 +38,8 @@ final class JuiceMakerViewController: BaseViewController, StoryboardBindable {
     }
     
     @IBAction func orderJuice(_ sender: JuiceButton) {
-        guard let juice: Drinkable = sender.juice else {
+        guard let juice: Drinkable = sender.juice,
+              let fruitStore = self.fruitStore else {
             return
         }
         
@@ -43,7 +47,7 @@ final class JuiceMakerViewController: BaseViewController, StoryboardBindable {
             guard let juice: Drinkable = try self.juiceMaker?.makeDrink(juice) else {
                 return
             }
-            self.updateFruitStock()
+            self.updateFruitStock(fruitStore)
             self.showSuccessAlert(for: juice)
         } catch JuiceMakerError.outOfStock {
             self.showFailAlert(error: .outOfStock)
@@ -82,10 +86,7 @@ final class JuiceMakerViewController: BaseViewController, StoryboardBindable {
 
 // MARK: - Setup
 extension JuiceMakerViewController {
-    private func updateFruitStock() {
-        guard let fruitStore = self.fruitStore else {
-            return
-        }
+    private func updateFruitStock(_ fruitStore: FruitStore) {
         self.strawberryStockLabel.text = "\(fruitStore.fruits[.strawberry, default: Number()])"
         self.bananaStockLabel.text = "\(fruitStore.fruits[.banana, default: Number()])"
         self.pineappleStockLabel.text = "\(fruitStore.fruits[.pineapple, default: Number()])"

@@ -23,9 +23,12 @@ final class UpdateStockViewController: BaseViewController, StoryboardBindable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let fruitStore: FruitStore = self.fruitStore else {
+            return
+        }
         self.setupNavigationBar()
-        self.setupStepper()
-        self.setupFruitStock()
+        self.setupStepper(fruitStore)
+        self.setupFruitStock(fruitStore)
     }
     
     @IBAction func changeStock(_ sender: FruitStepper) {
@@ -65,10 +68,7 @@ extension UpdateStockViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func setupStepper() {
-        guard let fruitStore: FruitStore = self.fruitStore else {
-            return
-        }
+    private func setupStepper(_ fruitStore: FruitStore) {
         self.strawberryStockStepper.value = Double(fruitStore.fruits[.strawberry]?.value ?? 0)
         self.bananaStockStepper.value = Double(fruitStore.fruits[.banana]?.value ?? 0)
         self.pineappleStockStepper.value = Double(fruitStore.fruits[.pineapple]?.value ?? 0)
@@ -76,10 +76,7 @@ extension UpdateStockViewController {
         self.mangoStockStepper.value = Double(fruitStore.fruits[.mango]?.value ?? 0)
     }
     
-    private func setupFruitStock() {
-        guard let fruitStore: FruitStore = self.fruitStore else {
-            return
-        }
+    private func setupFruitStock(_ fruitStore: FruitStore) {
         self.strawberryStockLabel.text = "\(fruitStore.fruits[.strawberry, default: Number()])"
         self.bananaStockLabel.text = "\(fruitStore.fruits[.banana, default: Number()])"
         self.pineappleStockLabel.text = "\(fruitStore.fruits[.pineapple, default: Number()])"
