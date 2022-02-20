@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class UpdateStockViewController: UIViewController, StoryboardBindable {
+final class UpdateStockViewController: BaseViewController, StoryboardBindable {
     // MARK: - Views
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var strawberryStockLabel: UILabel!
@@ -20,9 +20,6 @@ final class UpdateStockViewController: UIViewController, StoryboardBindable {
     @IBOutlet weak var pineappleStockStepper: UIStepper!
     @IBOutlet weak var kiwiStockStepper: UIStepper!
     @IBOutlet weak var mangoStockStepper: UIStepper!
-
-    // MARK: - Properties
-    var fruitStore: FruitStore?
     
     override func viewDidLoad() {
         super.viewDidLoad()

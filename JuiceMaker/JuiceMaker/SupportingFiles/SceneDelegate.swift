@@ -13,8 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let fruitStore: FruitStore = FruitStore()
         let juiceMaker: MakerType = JuiceMaker(fruitStore: fruitStore)
-        let juiceMakerViewController: JuiceMakerViewController = JuiceMakerViewController.instantiate()
-        juiceMakerViewController.fruitStore = fruitStore
+        let juiceMakerViewController: JuiceMakerViewController = JuiceMakerViewController.instantiate(fruitStore)
         juiceMakerViewController.juiceMaker = juiceMaker
         let navigationViewController = UINavigationController(rootViewController: juiceMakerViewController)
         

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController, StoryboardBindable {
+final class JuiceMakerViewController: BaseViewController, StoryboardBindable {
     // MARK: - Views
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -16,8 +16,6 @@ final class JuiceMakerViewController: UIViewController, StoryboardBindable {
     @IBOutlet weak var mangoStockLabel: UILabel!
     
     // MARK: - Properties
-    
-    var fruitStore: FruitStore?
     var juiceMaker: MakerType?
     
     override func viewDidLoad() {
@@ -30,8 +28,7 @@ final class JuiceMakerViewController: UIViewController, StoryboardBindable {
     }
     
     @IBAction func presentUpdateStockScene() {
-        let updateStockViewController: UpdateStockViewController = .instantiate()
-        updateStockViewController.fruitStore = self.fruitStore
+        let updateStockViewController: UpdateStockViewController = .instantiate(self.fruitStore)
         updateStockViewController.modalPresentationStyle = .fullScreen
         updateStockViewController.modalTransitionStyle = .coverVertical
         self.present(updateStockViewController, animated: true, completion: nil)
