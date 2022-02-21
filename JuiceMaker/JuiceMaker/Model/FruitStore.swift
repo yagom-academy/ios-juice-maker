@@ -24,4 +24,7 @@ class FruitStore {
                                    .kiwi: 10,
                                    .mango: 10]
     
+    func changeInventory(fruit: Fruit, fruitNumber: Int) {
+        inventory[fruit] = fruitNumber
+    }
 }

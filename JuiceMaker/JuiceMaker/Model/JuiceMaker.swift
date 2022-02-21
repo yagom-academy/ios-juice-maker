@@ -7,6 +7,16 @@
 import Foundation
 
 // 쥬스 메이커 타입
-struct JuiceMaker {
+class JuiceMaker: FruitStore {
+    
+    struct Juice {
+        let juiceName: String
+        let recipe: [Fruit: Int]
+        
+        init(name: String, recipe: [Fruit: Int]) {
+            self.juiceName = name
+            self.recipe = recipe
+        }
+    }
     
 }
