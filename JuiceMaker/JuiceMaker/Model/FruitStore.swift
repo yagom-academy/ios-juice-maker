@@ -17,12 +17,19 @@ class FruitStore {
         case mango
     }
     
-    let defaultInventory: Int = 10
-    var inventory: [Fruit: Int] = [.strawberry: 10,
-                                   .banana: 10,
-                                   .pineapple: 10,
-                                   .kiwi: 10,
-                                   .mango: 10]
+    let defaultInventory: Int
+    var inventory: [Fruit: Int]
+
+    init() {
+        defaultInventory = 10
+        inventory = [.strawberry: defaultInventory,
+                     .banana: defaultInventory,
+                     .pineapple: defaultInventory,
+                     .kiwi: defaultInventory,
+                     .mango: defaultInventory]
+
+    }
+    
     
     func changeInventory(fruit: Fruit, fruitNumber: Int) {
         inventory[fruit] = fruitNumber

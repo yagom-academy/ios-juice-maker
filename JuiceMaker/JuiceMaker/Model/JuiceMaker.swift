@@ -6,10 +6,14 @@
 
 import Foundation
 
+
+
 // 쥬스 메이커 타입
-class JuiceMaker: FruitStore {
+struct JuiceMaker {
+    var myFruitStore: FruitStore = FruitStore()
+       
     
-    enum Recipe {
+    enum Juice {
         case strawberryJuice
         case bananaJuice
         case pineappleJuice
@@ -18,7 +22,7 @@ class JuiceMaker: FruitStore {
         case strawberryAndBananaJuice
         case mangoAndKiwiJuice
         
-        func getRecipe() -> [(Fruit, Int)] {
+        var recipe: [(FruitStore.Fruit, Int)] {
             switch self {
             case .strawberryJuice:
                 return [(FruitStore.Fruit.strawberry, 16)]
@@ -39,22 +43,13 @@ class JuiceMaker: FruitStore {
         }
     }
     
-    struct Juice {
-        let juiceName: String
-        let recipe: [(Fruit, Int)]
-        
-        init(name: String, recipe: [(Fruit, Int)] ) {
-            self.juiceName = name
-            self.recipe = recipe
+    func makeJuice(_ juice: Juice) {
+        for index in 0..<juice.recipe.count {
+            let (needFruit, number) = juice.recipe[index]
+            guard let nowInventory = myFruitStore.inventory[needFruit] else { return }
+            myFruitStore.inventory.updateValue(nowInventory - number, forKey: needFruit)
         }
     }
-    
-    let strawberryJuice = Juice(name: "딸기주스", recipe: Recipe.strawberryJuice.getRecipe())
-    let bananaJuice = Juice(name: "바나나주스", recipe: Recipe.bananaJuice.getRecipe())
-    let pineappleJuice = Juice(name: "파인애플주스", recipe: Recipe.pineappleJuice.getRecipe())
-    let kiwiJuice = Juice(name: "키위주스", recipe: Recipe.kiwiJuice.getRecipe())
-    let mangoJuice = Juice(name: "망고주스", recipe: Recipe.mangoJuice.getRecipe())
-    let strawberryAndBananaJuice = Juice(name: "딸바주스", recipe: Recipe.strawberryAndBananaJuice.getRecipe())
-    let mangoAndKiwiJuice = Juice(name: "망고키위주스", recipe: Recipe.mangoAndKiwiJuice.getRecipe())
-    
 }
+
+
