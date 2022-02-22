@@ -6,16 +6,17 @@
 
 // 과일 저장소 타입
 class FruitStore {
-    
     var fruits = [Fruit: Int]()
     
     init() {
+        let initialStock = 10
+        
         fruits = [
-            .strawberry: 10,
-            .banana: 10,
-            .pineapple: 10,
-            .kiwi: 10,
-            .mango: 10
+            .strawberry: initialStock,
+            .banana: initialStock,
+            .pineapple: initialStock,
+            .kiwi: initialStock,
+            .mango: initialStock
         ]
     }
     
