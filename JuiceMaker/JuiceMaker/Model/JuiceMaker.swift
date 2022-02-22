@@ -11,7 +11,6 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     var myFruitStore: FruitStore = FruitStore()
-       
     
     enum Juice {
         case strawberryJuice
@@ -40,6 +39,17 @@ struct JuiceMaker {
                 return [(FruitStore.Fruit.mango, 2), (FruitStore.Fruit.kiwi, 1)]
                 
             }
+        }
+    }
+    
+    func checkInventory(_ juice: Juice,_ numberOfFruitType: Int) -> Bool {
+        let (fruit, neededNumber) = juice.recipe[numberOfFruitType]
+        let stockNumber: Int = myFruitStore.inventory[fruit] ?? 0
+        
+        if stockNumber >= neededNumber {
+            return true
+        } else {
+            return false
         }
     }
     
