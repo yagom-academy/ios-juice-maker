@@ -37,5 +37,15 @@ class FruitStore {
         if stock < amount {
             throw JuiceMakingError.notEnoughStock
         }
+        self.fruitStock[fruit] = stock - amount
+    }
+    
+    func addFruit(fruit: Fruit, amount: Int) throws {
+        guard let stock = self.fruitStock[fruit] else {
+            throw JuiceMakingError.noOption
+        }
+        self.fruitStock[fruit] = stock + amount
+    
     }
 }
+
