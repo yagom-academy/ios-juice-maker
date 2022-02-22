@@ -14,6 +14,12 @@ class FruitStore {
                                  FruitType.kiwi: 10,
                                  FruitType.mango: 10]
     
+//    init(initialQuantity: Int) {
+//        for key in fruitList.keys {
+//            fruitList[key] = initialQuantity
+//        }
+//    }
+    
     func updateQuantity(_ fruit: FruitType, _ quantity: Int) {
         guard var updatedFruitList = fruitList[fruit] else { return }
         updatedFruitList += quantity
