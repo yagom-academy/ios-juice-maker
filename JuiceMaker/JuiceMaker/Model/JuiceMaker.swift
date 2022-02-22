@@ -8,11 +8,14 @@
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func makeJuice(checkJuice: Juice) {
+    func makeJuice(fruitJuice: Juice) {
+        let recipe = fruitJuice.recipe
+        
         do {
-            try fruitStore.canMakeJuice(recipe: checkJuice.recipe)
-            for (fruit, number) in checkJuice.recipe {
-                fruitStore.changeFruitStock(fruit: fruit, number: number)
+            try fruitStore.canMakeJuice(recipe: recipe)
+            
+            for (fruit, amount) in recipe {
+                fruitStore.changeFruitStock(fruit: fruit, amount: amount)
             }
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다")
