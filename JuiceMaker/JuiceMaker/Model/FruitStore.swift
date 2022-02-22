@@ -45,7 +45,22 @@ class FruitStore {
             throw JuiceMakingError.noOption
         }
         self.fruitStock[fruit] = stock + amount
+    }
     
+    func addNewFruit(_ fruit: Fruit) throws {
+        if let _ = self.fruitStock[fruit] {
+            throw JuiceMakingError.duplicatedFruit
+        } else {
+            self.fruitStock[fruit] = 10
+        }
+    }
+    
+    func removeFruit(_ fruit: Fruit) throws {
+        if let _ = self.fruitStock[fruit] {
+            self.fruitStock.removeValue(forKey: fruit)
+        } else {
+            throw JuiceMakingError.noOption
+        }
     }
 }
 
