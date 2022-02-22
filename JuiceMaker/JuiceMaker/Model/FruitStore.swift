@@ -6,9 +6,8 @@
 
 import Foundation
 
-// 과일 저장소 타입
 final class FruitStore {
-    private var storage: [Fruit: Int] = [:]
+    var storage: [Fruit: Int] = [:]
     
     init() {
         self.storage = Fruit.setDefaultFruits()
