@@ -14,7 +14,6 @@ struct JuiceMaker {
         do {
             try fruitStore.canMakeJuice(recipe: recipe)
             deleteStockFromRecipeRequired(recipe: recipe)
-            
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다")
         } catch {

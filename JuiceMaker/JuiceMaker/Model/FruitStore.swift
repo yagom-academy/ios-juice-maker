@@ -11,13 +11,9 @@ class FruitStore {
     init() {
         let initialStock = 10
         
-        fruits = [
-            .strawberry: initialStock,
-            .banana: initialStock,
-            .pineapple: initialStock,
-            .kiwi: initialStock,
-            .mango: initialStock
-        ]
+        for fruit in Fruit.allCases {
+            fruits[fruit] = initialStock
+        }
     }
     
     func canMakeJuice(recipe: [Fruit: Int]) throws {
