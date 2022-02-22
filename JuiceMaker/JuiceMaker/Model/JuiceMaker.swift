@@ -42,6 +42,14 @@ struct JuiceMaker {
         }
     }
     
+    func orderJuice(_ juice: Juice) {
+        if checkAllInventory(juice) {
+            makeJuice(juice)
+        } else {
+            print("과일의 재고가 부족합니다.")
+        }
+    }
+    
     func checkAllInventory(_ juice: Juice) -> Bool {
             let howMany = juice.recipe.count
             var isItOkay: [Bool] = []
