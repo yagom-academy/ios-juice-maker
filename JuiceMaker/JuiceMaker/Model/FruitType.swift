@@ -29,13 +29,3 @@ enum FruitType {
         }
     }
 }
-
-enum Juice {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case strawberryBananaJuice
-    case mangoJuice
-    case mangoKiwiJuice
-}

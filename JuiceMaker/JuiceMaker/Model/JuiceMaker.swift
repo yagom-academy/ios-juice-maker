@@ -32,7 +32,6 @@ struct JuiceMaker {
     
     func makeStrawberryJuice() {
         guard var strawberryQuantity = FruitStore.fruitList[.strawberry], strawberryQuantity >= 16 else { return }
-        guard strawberryQuantity >= 16 else { return }
         strawberryQuantity -= 16
     }
     
