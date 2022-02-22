@@ -10,8 +10,10 @@ struct JuiceMaker {
     
     func makeJuice(checkJuice: Juice) {
         do {
-            try fruitStore.function1(recipe: checkJuice.recipe)
-            fruitStore.function2(recipe: checkJuice.recipe)
+            try fruitStore.canMakeJuice(recipe: checkJuice.recipe)
+            for (fruit, number) in checkJuice.recipe {
+                fruitStore.changeFruitStock(fruit: fruit, number: number)
+            }
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다")
         } catch {
