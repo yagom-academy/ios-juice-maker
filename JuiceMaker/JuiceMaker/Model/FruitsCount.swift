@@ -8,8 +8,10 @@
 import Foundation
 
 class FruitsCount {
-    var count: Int
+    private var fruitinventory: [FruitsTypes: Int] = [:]
     init() {
-        count = 10
+        for fruit in FruitsTypes.allCases {
+            fruitinventory[fruit] = 10
+        }
     }
 }
