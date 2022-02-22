@@ -6,31 +6,20 @@
 
 import Foundation
 
+
 class FruitStore {
-    
-    enum Fruit {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-    }
-    
-    private let defaultInventory: Int
-    var inventory: [Fruit: Int]
+    private let defaultStock: Int = 10
+    var stock: [Fruit: Int]
 
     init() {
-        defaultInventory = 10
-        inventory = [.strawberry: defaultInventory,
-                     .banana: defaultInventory,
-                     .pineapple: defaultInventory,
-                     .kiwi: defaultInventory,
-                     .mango: defaultInventory]
-
+        stock = [.strawberry: defaultStock,
+                     .banana: defaultStock,
+                     .pineapple: defaultStock,
+                     .kiwi: defaultStock,
+                     .mango: defaultStock]
     }
     
-    
-    func changeInventory(fruit: Fruit, fruitNumber: Int) {
-        inventory[fruit] = fruitNumber
+    func updateStock(of fruit: Fruit, to numberOfFruit: Int) {
+        stock[fruit] = numberOfFruit
     }
 }
