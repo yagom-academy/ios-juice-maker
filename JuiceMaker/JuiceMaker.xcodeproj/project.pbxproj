@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64CDFB7E27C46F25005D9D13 /* FruitsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CDFB7D27C46F25005D9D13 /* FruitsType.swift */; };
+		64CDFB8027C47374005D9D13 /* FruitsInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CDFB7F27C47374005D9D13 /* FruitsInventory.swift */; };
 		7FF7FECC27C470A300B06218 /* FruitsCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7FECB27C470A300B06218 /* FruitsCount.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		64CDFB7D27C46F25005D9D13 /* FruitsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsType.swift; sourceTree = "<group>"; };
+		64CDFB7F27C47374005D9D13 /* FruitsInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsInventory.swift; sourceTree = "<group>"; };
 		7FF7FECB27C470A300B06218 /* FruitsCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsCount.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +63,7 @@
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				64CDFB7D27C46F25005D9D13 /* FruitsType.swift */,
+				64CDFB7F27C47374005D9D13 /* FruitsInventory.swift */,
 				7FF7FECB27C470A300B06218 /* FruitsCount.swift */,
 			);
 			path = Model;
@@ -176,6 +179,7 @@
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				64CDFB8027C47374005D9D13 /* FruitsInventory.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				64CDFB7E27C46F25005D9D13 /* FruitsType.swift in Sources */,
 				7FF7FECC27C470A300B06218 /* FruitsCount.swift in Sources */,
