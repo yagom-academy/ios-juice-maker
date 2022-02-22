@@ -14,7 +14,18 @@ final class FruitStore {
         self.storage = Fruit.setDefaultFruits()
     }
     
-    private func hasEnoughStock(of fruit: Fruit, amount: Int) throws -> Bool {
+    func consume(fruit: Fruit, amount: Int) throws {
+        if !hasEnoughStock(of: fruit, amount: amount) {
+            throw JuiceMakerError.notEnoughFruitAmount(fruit: fruit.rawValue)
+        }
+        
+        guard let oldAmount = storage[fruit] else {
+            return
+        }
+        storage.updateValue(oldAmount - amount, forKey: fruit)
+    }
+    
+    private func hasEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
         guard let remainingAmount = storage[fruit] else {
             return false
         }
@@ -24,26 +35,5 @@ final class FruitStore {
         }
         
         return true
-    }
-    
-    func consume(menu: Juice.Menu) {
-        let temp = Juice.recipe(menu: menu)
-        
-        do {
-            try temp.forEach {
-                if try !hasEnoughStock(of: $0.fruit, amount: $0.amount) {
-                    return
-                }
-            }
-        } catch {
-            
-        }
-        
-        for fruit2 in temp {
-            guard let fruitAmount = storage[fruit2.fruit] else {
-                return
-            }
-            storage.updateValue(fruitAmount - fruit2.amount, forKey: fruit2.fruit)
-        }
     }
 }
