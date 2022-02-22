@@ -4,28 +4,38 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
+enum JuiceMenu {
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case strawberryBanana
+    case mango
+    case mangoKiwi
+}
 
 final class FruitStore {
-    var storage: [Fruit: Int] = [:]
-    
+    private var stocks: [Fruit: Int] = [:]
+
     init() {
-        self.storage = Fruit.setDefaultFruits()
+        self.stocks = Fruit.initializeDefaultFruits()
     }
     
     func consume(fruit: Fruit, amount: Int) throws {
-        if !hasEnoughStock(of: fruit, amount: amount) {
+        if hasEnoughStock(of: fruit, amount: amount) == false {
             throw JuiceMakerError.notEnoughFruitAmount(fruit: fruit.rawValue)
         }
         
-        guard let oldAmount = storage[fruit] else {
-            return
+        guard let oldAmount = stocks[fruit] else {
+            throw JuiceMakerError.notFoundFruit
         }
-        storage.updateValue(oldAmount - amount, forKey: fruit)
+        
+        let newAmount = oldAmount - amount
+        stocks.updateValue(newAmount, forKey: fruit)
     }
     
     private func hasEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
-        guard let remainingAmount = storage[fruit] else {
+        guard let remainingAmount = stocks[fruit] else {
             return false
         }
         

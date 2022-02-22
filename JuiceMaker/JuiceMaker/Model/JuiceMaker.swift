@@ -4,37 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-struct Juice {
-    enum Menu {
-        case strawberry
-        case banana
-        case kiwi
-        case pineapple
-        case strawberryBanana
-        case mango
-        case mangoKiwi
-    }
-    
-    static func recipe(menu: Menu) -> JuiceMakerOption.Recipe {
-        switch menu {
-        case .strawberry:
-            return JuiceMakerOption.strawberryJuiceRecipe
-        case .banana:
-            return JuiceMakerOption.bananaJuiceRecipe
-        case .kiwi:
-            return JuiceMakerOption.kiwiJuiceRecipe
-        case .pineapple:
-            return JuiceMakerOption.pineappleJuiceRecipe
-        case .strawberryBanana:
-            return JuiceMakerOption.strawberryBananaJuiceRecipe
-        case .mango:
-            return JuiceMakerOption.mangoJuiceRecipe
-        case .mangoKiwi:
-            return JuiceMakerOption.mangoKiwiJuiceRecipe
-        }
-    }
-}
-
 struct JuiceMaker {
     private let fruitStore: FruitStore
     
@@ -42,23 +11,38 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func takeOrder() {
-        let menu = Juice.Menu.banana
-        
+    func takeOrder(of juice: JuiceMenu) {
         do {
-            try produceJuice(menu: menu)
-        } catch JuiceMakerError.notFoundFruit {
-            
-        } catch {
-            print(error)
+            try produce(juice: juice)
+        } catch (let error) {
+            JuiceMakerError.printOutput(of: error)
         }
     }
     
-    private func produceJuice(menu: Juice.Menu) throws {
-        let order = Juice.recipe(menu: menu)
-        
-        try order.forEach {
-            try fruitStore.consume(fruit: $0, amount: $1)
+    private func produce(juice: JuiceMenu) throws {
+        let recipe = findRecipe(of: juice)
+
+        for (fruit, requiredAmount) in recipe {
+            try fruitStore.consume(fruit: fruit, amount: requiredAmount)
+        }
+    }
+    
+    private func findRecipe(of juice: JuiceMenu) -> Constant.Recipe {
+        switch juice {
+        case .strawberry:
+            return Constant.strawberryJuiceRecipe
+        case .banana:
+            return Constant.bananaJuiceRecipe
+        case .kiwi:
+            return Constant.kiwiJuiceRecipe
+        case .pineapple:
+            return Constant.pineappleJuiceRecipe
+        case .strawberryBanana:
+            return Constant.strawberryBananaJuiceRecipe
+        case .mango:
+            return Constant.mangoJuiceRecipe
+        case .mangoKiwi:
+            return Constant.mangoKiwiJuiceRecipe
         }
     }
 }

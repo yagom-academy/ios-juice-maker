@@ -10,7 +10,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let fruitStore = FruitStore()
+        let juiceMaker = JuiceMaker(fruitStore: fruitStore)
+        
     }
 
 
