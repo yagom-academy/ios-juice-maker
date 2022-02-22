@@ -23,5 +23,6 @@ class FruitStore {
         guard let currentStock = fruits[fruit] else { return }
         fruits.updateValue(currentStock - amount, forKey: fruit)
     }
+    
 }
 
