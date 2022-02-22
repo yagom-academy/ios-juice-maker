@@ -1,12 +1,11 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by safari and Red. 
 //  Copyright © yagom academy. All rights reserved.
 //
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore {
     
     enum Fruit {
@@ -17,7 +16,7 @@ class FruitStore {
         case mango
     }
     
-    let defaultInventory: Int
+    private let defaultInventory: Int
     var inventory: [Fruit: Int]
 
     init() {

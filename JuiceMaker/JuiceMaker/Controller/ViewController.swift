@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by safari and Red.
 //  Copyright © yagom academy. All rights reserved.
 // 
 

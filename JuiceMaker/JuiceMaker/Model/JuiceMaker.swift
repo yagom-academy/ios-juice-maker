@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by safari and Red. 
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -10,7 +10,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var myFruitStore: FruitStore = FruitStore()
+    private var myFruitStore: FruitStore = FruitStore()
     
     enum Juice {
         case strawberryJuice
@@ -50,7 +50,7 @@ struct JuiceMaker {
         }
     }
     
-    func checkAllInventory(_ juice: Juice) -> Bool {
+    private func checkAllInventory(_ juice: Juice) -> Bool {
             let howMany = juice.recipe.count
             var isItOkay: [Bool] = []
             for index in Int.zero..<howMany {
@@ -59,7 +59,7 @@ struct JuiceMaker {
             return isItOkay.allSatisfy{ $0 == true }
         }
     
-    func checkOneInventory(_ juice: Juice,_ numberOfFruitType: Int) -> Bool {
+    private func checkOneInventory(_ juice: Juice,_ numberOfFruitType: Int) -> Bool {
         let (fruit, neededNumber) = juice.recipe[numberOfFruitType]
         let stockNumber: Int = myFruitStore.inventory[fruit] ?? Int.zero
         
@@ -70,12 +70,12 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(_ juice: Juice) {
+    private func makeJuice(_ juice: Juice) {
         for index in Int.zero..<juice.recipe.count {
             let (needFruit, number) = juice.recipe[index]
             let nowInventory = myFruitStore.inventory[needFruit] ?? Int.zero
             myFruitStore.inventory.updateValue(nowInventory - number, forKey: needFruit)
-//            print("\(juice) 나왔습니다.")
+            print("\(juice) 나왔습니다.")
         }
     }
 }
