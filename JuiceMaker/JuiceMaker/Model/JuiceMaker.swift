@@ -8,27 +8,55 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    func selectMenu(_ juice: Recipe) -> Dictionary<FruitType, Int> {
-        checkStockStatus()
+    var fruitStore = FruitStore()
+    
+    func selectMenu(_ juice: Juice) {
+
         switch juice {
-        case strawberryJuice:
-            Recipe.makeStrawberryJuice()
-        case bananaJuice:
-            Recipe.makeBananaJuice()
-        case kiwiJuice:
-            Recipe.makeKiwiJuice()
-        case pineappleJuice:
-            Recipe.makePineappleJuice()
-        case strawberryBananaJuice:
-            Recipe.makeStrawberryBananaJuice()
-        case mangoJuice:
-            Recipe.makeMangoJuice()
-        case mangoKiwiJuice:
-            Recipe.makeMangoKiwiJuice()
+        case .strawberryJuice:
+            makeStrawberryJuice()
+        case .bananaJuice:
+            makeBananaJuice()
+        case .kiwiJuice:
+            makeKiwiJuice()
+        case .pineappleJuice:
+            makePineappleJuice()
+        case .strawberryBananaJuice:
+            makeStrawberryBananaJuice()
+        case .mangoJuice:
+            makeMangoJuice()
+        case .mangoKiwiJuice:
+            makeMangoKiwiJuice()
         }
     }
     
-    func checkStockStatus() {
+    func makeStrawberryJuice() {
+        guard var strawberryQuantity = FruitStore.fruitList[.strawberry], strawberryQuantity >= 16 else { return }
+        guard strawberryQuantity >= 16 else { return }
+        strawberryQuantity -= 16
+    }
+    
+    func makeBananaJuice() {
+        
+    }
+    
+    func makeKiwiJuice() {
+        
+    }
+    
+    func makePineappleJuice() {
+        
+    }
+    
+    func makeStrawberryBananaJuice() {
+       
+    }
+    
+    func makeMangoJuice() {
+        
+    }
+    
+    func makeMangoKiwiJuice() {
         
     }
 }
