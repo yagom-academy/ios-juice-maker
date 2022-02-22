@@ -6,7 +6,7 @@
 ## 목차
 
 - [프로젝트 소개](#프로젝트-소개)
-- [순서도](#순서도)
+- [UML](#UML)
 - [키워드](#키워드)
 - [STEP 1](#step-1)
     + [고민한점](#고민한점)
@@ -19,7 +19,8 @@
 [![swift](https://img.shields.io/badge/swift-5.0-orange)]()
 [![xcode](https://img.shields.io/badge/Xcode-13.0-blue)]()
 
-## 순서도
+## UML
+![Class Diagram](https://user-images.githubusercontent.com/88810018/155158003-471cfd4a-393d-4024-a3aa-aa66c5e77d1f.png)
 
 ## 키워드
 
