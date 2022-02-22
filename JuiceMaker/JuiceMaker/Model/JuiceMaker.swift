@@ -15,22 +15,22 @@ struct Juice {
         case mangoKiwi
     }
     
-    static func recipe(menu: Menu) -> [(fruit: Fruit, amount: Int)] {
+    static func recipe(menu: Menu) -> JuiceMakerOption.Recipe {
         switch menu {
         case .strawberry:
-            return [(Fruit.strawberry, 16)]
+            return JuiceMakerOption.strawberryJuiceRecipe
         case .banana:
-            return [(Fruit.banana, 2)]
+            return JuiceMakerOption.bananaJuiceRecipe
         case .kiwi:
-            return [(Fruit.kiwi, 3)]
+            return JuiceMakerOption.kiwiJuiceRecipe
         case .pineapple:
-            return [(Fruit.pineapple, 2)]
+            return JuiceMakerOption.pineappleJuiceRecipe
         case .strawberryBanana:
-            return [(Fruit.strawberry, 10), (Fruit.banana, 1)]
+            return JuiceMakerOption.strawberryBananaJuiceRecipe
         case .mango:
-            return [(Fruit.mango, 3)]
+            return JuiceMakerOption.mangoJuiceRecipe
         case .mangoKiwi:
-            return [(Fruit.mango, 2), (Fruit.kiwi, 1)]
+            return JuiceMakerOption.mangoKiwiJuiceRecipe
         }
     }
 }
