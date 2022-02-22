@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore {
     static var fruitList: Dictionary = [FruitType.strawberry: 10,
                                         FruitType.banana: 10,

@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
@@ -14,48 +13,32 @@ struct JuiceMaker {
 
         switch juice {
         case .strawberryJuice:
-            makeStrawberryJuice()
+            makeJuice(Juice.strawberryJuice.recipe)
         case .bananaJuice:
-            makeBananaJuice()
+            makeJuice(Juice.bananaJuice.recipe)
         case .kiwiJuice:
-            makeKiwiJuice()
+            makeJuice(Juice.kiwiJuice.recipe)
         case .pineappleJuice:
-            makePineappleJuice()
+            makeJuice(Juice.pineappleJuice.recipe)
         case .strawberryBananaJuice:
-            makeStrawberryBananaJuice()
+            makeJuice(Juice.strawberryBananaJuice.recipe)
         case .mangoJuice:
-            makeMangoJuice()
+            makeJuice(Juice.mangoJuice.recipe)
         case .mangoKiwiJuice:
-            makeMangoKiwiJuice()
+            makeJuice(Juice.mangoKiwiJuice.recipe)
         }
     }
     
-    func makeStrawberryJuice() {
-        guard var strawberryQuantity = FruitStore.fruitList[.strawberry], strawberryQuantity >= 16 else { return }
-        strawberryQuantity -= 16
-    }
-    
-    func makeBananaJuice() {
-        
-    }
-    
-    func makeKiwiJuice() {
-        
-    }
-    
-    func makePineappleJuice() {
-        
-    }
-    
-    func makeStrawberryBananaJuice() {
-       
-    }
-    
-    func makeMangoJuice() {
-        
-    }
-    
-    func makeMangoKiwiJuice() {
-        
+    func makeJuice(_ recipe: [FruitType: Int]) {
+        for (fruit, _ ) in FruitStore.fruitList {
+            guard let fruitStock = FruitStore.fruitList[fruit] else {
+                return
+            }
+            guard let requiredQuantity = recipe[fruit] else {
+                return
+            }
+            guard fruitStock >= requiredQuantity else { return }
+            FruitStore.fruitList[fruit] = fruitStock - requiredQuantity
+        }
     }
 }
