@@ -8,6 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 class JuiceMaker: FruitStore {
+    
     enum FruitNumber: Int {
         case strawberry = 0
         case banana = 1
@@ -18,8 +19,8 @@ class JuiceMaker: FruitStore {
     
     func makeJuice(JuiceName: String, firstIngredientCounts: Int, secondIngredientCounts: Int, firstIngredient: FruitNumber, secondIngredient: FruitNumber?) {
         fruitLists[firstIngredient.rawValue].count -= firstIngredientCounts
-        if let fruitName2 = secondIngredient {
-            fruitLists[fruitName2.rawValue].count -= secondIngredientCounts
+        if let secondIngredient = secondIngredient {
+            fruitLists[secondIngredient.rawValue].count -= secondIngredientCounts
         }
     }
 }
