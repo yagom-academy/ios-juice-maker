@@ -20,6 +20,7 @@ enum JuiceMakingError: Error {
     case notAllowedFruit
     case noOption
     case duplicatedFruit
+    case noRecipe
 }
 
 
