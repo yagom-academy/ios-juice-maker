@@ -71,13 +71,14 @@ struct JuiceMaker {
     }
     
     private func makeJuice(_ juice: Juice) {
-        for index in Int.zero..<juice.recipe.count {
-            let (needFruit, number) = juice.recipe[index]
-            let nowInventory = myFruitStore.inventory[needFruit] ?? Int.zero
-            myFruitStore.inventory.updateValue(nowInventory - number, forKey: needFruit)
-            print("\(juice) 나왔습니다.")
+            for index in Int.zero..<juice.recipe.count {
+                let (needFruit, number) = juice.recipe[index]
+                let nowInventory = myFruitStore.inventory[needFruit] ?? Int.zero
+                myFruitStore.changeInventory(fruit: needFruit, fruitNumber: nowInventory - number)
+                print("\(juice) 나왔습니다.")
+                print(myFruitStore.inventory[needFruit])
+            }
         }
-    }
 }
 
 
