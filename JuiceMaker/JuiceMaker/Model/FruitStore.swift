@@ -7,10 +7,10 @@
 import Foundation
 
 class FruitStore {
-    static var fruitList: Dictionary = [FruitType.strawberry: 10,
-                                        FruitType.banana: 10,
-                                        FruitType.pineapple: 10,
-                                        FruitType.kiwi: 10,
-                                        FruitType.mango: 10]
+    static let defaultQuantity = 10
+    static var fruitInventory: Dictionary = [Fruit.strawberry: defaultQuantity,
+                                             Fruit.banana: defaultQuantity,
+                                             Fruit.pineapple: defaultQuantity,
+                                             Fruit.kiwi: defaultQuantity,
+                                             Fruit.mango: defaultQuantity]
 }
-

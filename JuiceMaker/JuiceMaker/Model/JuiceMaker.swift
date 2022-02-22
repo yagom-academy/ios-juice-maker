@@ -10,35 +10,44 @@ struct JuiceMaker {
     var fruitStore = FruitStore()
     
     func selectMenu(_ juice: Juice) {
-
         switch juice {
         case .strawberryJuice:
-            makeJuice(Juice.strawberryJuice.recipe)
+            checkOder(Juice.strawberryJuice.recipe)
         case .bananaJuice:
-            makeJuice(Juice.bananaJuice.recipe)
+            checkOder(Juice.bananaJuice.recipe)
         case .kiwiJuice:
-            makeJuice(Juice.kiwiJuice.recipe)
+            checkOder(Juice.kiwiJuice.recipe)
         case .pineappleJuice:
-            makeJuice(Juice.pineappleJuice.recipe)
+            checkOder(Juice.pineappleJuice.recipe)
         case .strawberryBananaJuice:
-            makeJuice(Juice.strawberryBananaJuice.recipe)
+            checkOder(Juice.strawberryBananaJuice.recipe)
         case .mangoJuice:
-            makeJuice(Juice.mangoJuice.recipe)
+            checkOder(Juice.mangoJuice.recipe)
         case .mangoKiwiJuice:
-            makeJuice(Juice.mangoKiwiJuice.recipe)
+            checkOder(Juice.mangoKiwiJuice.recipe)
         }
     }
     
-    func makeJuice(_ recipe: [FruitType: Int]) {
-        for (fruit, _ ) in FruitStore.fruitList {
-            guard let fruitStock = FruitStore.fruitList[fruit] else {
-                return
+    func checkOder(_ recipe: [Fruit: Int]) {
+        do {
+            try makeJuice(by: recipe)
+        } catch let error as ErrorHandling {
+            print(error.description)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func makeJuice(by recipe: [Fruit: Int]) throws {
+        for (fruit, _ ) in FruitStore.fruitInventory {
+            guard let fruitStock = FruitStore.fruitInventory[fruit] else {
+                throw ErrorHandling.wrongFormat
             }
             guard let requiredQuantity = recipe[fruit] else {
-                return
+                continue
             }
-            guard fruitStock >= requiredQuantity else { return }
-            FruitStore.fruitList[fruit] = fruitStock - requiredQuantity
+            guard fruitStock >= requiredQuantity else { throw ErrorHandling.outOfStock }
+            FruitStore.fruitInventory[fruit] = fruitStock - requiredQuantity
         }
     }
 }
