@@ -20,14 +20,13 @@ class FruitStore {
         return self.name
     }
     
-    func isEnoughStock(fruit: Fruit, amount: Int) throws -> Bool {
+    func checkStock(fruit: Fruit, amount: Int) throws {
         guard let stock = self.fruitStock[fruit] else {
             throw JuiceMakingError.noOption
         }
         if stock < amount {
-            return false
+            throw JuiceMakingError.notEnoughStock
         }
-        return true
     }
     
     func useFruit(fruit: Fruit, amount: Int) throws {
