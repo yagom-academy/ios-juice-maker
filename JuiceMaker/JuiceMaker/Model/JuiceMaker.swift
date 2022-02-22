@@ -15,7 +15,7 @@ struct Juice {
         case mangoKiwi
     }
     
-    func recipe(menu: Menu) -> [(Fruit, Int)] {
+    static func recipe(menu: Menu) -> [(fruit: Fruit, amount: Int)] {
         switch menu {
         case .strawberry:
             return [(Fruit.strawberry, 16)]
