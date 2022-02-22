@@ -10,38 +10,25 @@ struct JuiceMaker {
         func recipe() -> [[Fruit:Int]] {
             switch self {
             case .strawberryJuice:
-                return [[Fruit.strawberry : 16]]
+                return [[.strawberry : 16]]
             case .bananaJuice:
-                return [[Fruit.banana : 2]]
+                return [[.banana : 2]]
             case .kiwiJuice:
-                return [[Fruit.kiwi : 3]]
+                return [[.kiwi : 3]]
             case .pineappleJuice:
-                return [[Fruit.pineapple : 2]]
+                return [[.pineapple : 2]]
             case .strawberryBananaJuice:
-                return [[Fruit.strawberry : 10], [Fruit.banana : 1]]
+                return [[.strawberry : 10], [.banana : 1]]
             case .mangoJuice:
-                return [[Fruit.mango : 3]]
+                return [[.mango : 3]]
             case .mangoKiwiJuice:
-                return [[Fruit.mango : 2], [Fruit.kiwi : 1]]
+                return [[.mango : 2], [.kiwi : 1]]
             }
         }
     }
-    
-    // 재고가 충분한지 확인하는 함수
-//    func aaa(juice: Juice) -> Bool {
-//        let recipe: [(Fruit, Int)] = Juice.recipe(Juice.strawberryBananaJuice)()  // [(딸기, 10), (바나나, 1)]
-//        for ingredient in recipe {
-//            guard let currentStock = fruitStore.fruits[ingredient.0] else { return false }
-//            if currentStock < ingredient.1 {
-//                return false
-//            }
-//        }
-//        return true
-//    }
-    
     // 재고가 충분한지 확인하는 함수
     func hasEnoughFruitStock(juice: Juice) -> Bool {
-        let recipe: [[Fruit : Int]] = Juice.recipe(Juice.strawberryBananaJuice)()  // [[딸기, 10], [바나나, 1]]
+        let recipe: [[Fruit : Int]] = Juice.recipe(juice)()  // [[딸기, 10], [바나나, 1]]
         for ingredient in recipe {
             guard let fruit = ingredient.keys.first else { return false }
             guard let amount = ingredient[fruit] else { return false }
@@ -62,7 +49,7 @@ struct JuiceMaker {
     }
     
     func consumeFruitStock(juice: Juice) {
-        let recipe: [[Fruit : Int]] = Juice.recipe(Juice.strawberryBananaJuice)()
+        let recipe: [[Fruit : Int]] = Juice.recipe(juice)()
         for ingredient in recipe {
             guard let fruit = ingredient.keys.first else { return }
             guard let amount = ingredient[fruit] else { return }
