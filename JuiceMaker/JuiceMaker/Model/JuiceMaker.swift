@@ -42,7 +42,16 @@ struct JuiceMaker {
         }
     }
     
-    func checkInventory(_ juice: Juice,_ numberOfFruitType: Int) -> Bool {
+    func checkAllInventory(_ juice: Juice) -> Bool {
+            let howMany = juice.recipe.count
+            var isItOkay: [Bool] = []
+            for index in 0...howMany - 1{
+                isItOkay.append(checkOneInventory(juice, index))
+            }
+            return isItOkay.allSatisfy{ $0 == true }
+        }
+    
+    func checkOneInventory(_ juice: Juice,_ numberOfFruitType: Int) -> Bool {
         let (fruit, neededNumber) = juice.recipe[numberOfFruitType]
         let stockNumber: Int = myFruitStore.inventory[fruit] ?? 0
         
