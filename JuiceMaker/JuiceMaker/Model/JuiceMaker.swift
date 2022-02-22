@@ -42,8 +42,7 @@ struct JuiceMaker {
     // 재고가 충분한지 확인하는 함수
     func hasEnoughFruitStock(juice: Juice) -> Bool {
         let recipe: [[Fruit : Int]] = Juice.recipe(Juice.strawberryBananaJuice)()  // [[딸기, 10], [바나나, 1]]
-        for index in 0..<recipe.count {
-            let ingredient = recipe[index]
+        for ingredient in recipe {
             guard let fruit = ingredient.keys.first else { return false }
             guard let amount = ingredient[fruit] else { return false }
             guard let currentStock = fruitStore.fruits[fruit] else { return false }
@@ -55,19 +54,19 @@ struct JuiceMaker {
     }
     
     // 주스를 만드는 함수
-    func makeJuice(juice: Juice) {
+    func makeJuice(juice: Juice) throws {
         if !hasEnoughFruitStock(juice: juice) {
-            return
+            throw JuiceError.notEnoughStock
         }
-        let recipe: [[Fruit : Int]] = Juice.recipe(Juice.strawberryBananaJuice)()
-        for index in 0..<recipe.count {
-            let ingredient = recipe[index]
-            guard let fruit = ingredient.keys.first else { return }
-            guard let amount = ingredient[fruit] else { return }
-            
-            fruitStore.decreaseStock(fruit: fruit, amount: amount)
-        }
-        
+        consumeFruitStock(juice: juice)
     }
     
+    func consumeFruitStock(juice: Juice) {
+        let recipe: [[Fruit : Int]] = Juice.recipe(Juice.strawberryBananaJuice)()
+        for ingredient in recipe {
+            guard let fruit = ingredient.keys.first else { return }
+            guard let amount = ingredient[fruit] else { return }
+            fruitStore.decreaseStock(fruit: fruit, amount: amount)
+        }
+    }
 }
