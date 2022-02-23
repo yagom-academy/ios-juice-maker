@@ -12,20 +12,19 @@ class FruitStore {
     var fruits = [Fruits: Int]()
     
     init() {
-        let defaultValue = 10
-        Fruits.allCases.forEach{ fruits[$0] = defaultValue }
+        let defaultStock = 10
+        Fruits.allCases.forEach{ fruits[$0] = defaultStock }
     }
     
     func checkStock(juice: Juice) throws {
         for (recipieKey, recipieValue) in juice.recipie {
-            for (listKey, listValue) in fruits {
-                if recipieKey == listKey  {
-                    guard recipieValue <= listValue else { throw
-                        MakingError.outOfStock
-                    }
-                    fruits[recipieKey] = listValue - recipieValue
-                }
+            guard let stock = fruits[recipieKey] else {
+                throw MakingError.invalidSelection
             }
+            guard recipieValue <= stock else {
+                throw MakingError.outOfStock
+            }
+            fruits[recipieKey] = stock - recipieValue
         }
     }
 }
