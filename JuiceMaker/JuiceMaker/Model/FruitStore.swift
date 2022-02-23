@@ -8,25 +8,24 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var fruitsList: [Fruits : Int] = [
-        .strawberry : 10,
-        .banana : 10,
-        .pineapple : 10,
-        .kiwi : 10,
-        .mango : 10
-    ]
+    
+    var fruits = [Fruits: Int]()
+    
+    init() {
+        let defaultValue = 10
+        self.fruits.keys.forEach{ self.fruits[$0] = defaultValue }
+    }
     
     func checkStock(juice: Juice) throws {
         for (recipieKey, recipieValue) in juice.recipie {
-            for (listKey, listValue) in fruitsList {
+            for (listKey, listValue) in fruits {
                 if recipieKey == listKey  {
                     guard recipieValue <= listValue else { throw
                         MakingError.outOfStock
                     }
-                    fruitsList[recipieKey] = listValue - recipieValue
+                    fruits[recipieKey] = listValue - recipieValue
                 }
             }
         }
     }
-    
 }
