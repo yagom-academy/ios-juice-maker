@@ -30,7 +30,7 @@ class FruitStore {
         }
     }
     
-    func changeFruitStockCount(by fruit: Fruit, count: Int) {
+    func changeFruitQuantity(by fruit: Fruit, count: Int) {
         self.fruits.updateValue(count, forKey: fruit)
     }
 }
