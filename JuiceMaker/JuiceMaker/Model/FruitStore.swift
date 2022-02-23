@@ -15,8 +15,7 @@ class FruitStore {
         case kiwi
         case mango
     }
-    
-    var fruits: [Fruit: Int] = [:]
+    private var fruits: [Fruit: Int] = [:]
      
     init(defaultCount: Int = 10) {
         Fruit.allCases.forEach { (fruit: Fruit) in
@@ -25,29 +24,26 @@ class FruitStore {
     }
     
     func isReadyToMakeJuice(for juice: Juice) -> Bool {
-        var hasReady = false
+        var isReady = false
         for fruit in juice.recipe.keys {
-            hasReady =  isHaveEnoughStock(for: juice, fruit: fruit)
+            isReady = isHaveEnoughStock(for: juice, fruit: fruit)
         }
-        return hasReady
+        return isReady
     }
     
     func isHaveEnoughStock(for juice: Juice, fruit: Fruit) -> Bool {
-        guard let currentFruitStock = self.fruits[fruit],
-              let needFruitStock = juice.recipe[fruit],
-                  currentFruitStock > needFruitStock else {
-            return false
-        }
+        guard let currentFruitQuantity = self.fruits[fruit],
+              let needFruitQuantity = juice.recipe[fruit],
+              currentFruitQuantity >= needFruitQuantity else {
+                  return false
+              }
         return true
     }
     
-    func checkCurrentFruitStock() {
-        self.fruits.forEach { (fruit: Fruit, count: Int) in
-            print("과일명: \(fruit), 남은 개수: \(count)")
-        }
-    }
-    
     func changeFruitQuantity(by fruit: Fruit, count: Int) {
-        self.fruits.updateValue(count, forKey: fruit)
+        if var currentFruitQuantity = self.fruits[fruit] {
+            currentFruitQuantity += count
+            self.fruits.updateValue(currentFruitQuantity, forKey: fruit)
+        }
     }
 }

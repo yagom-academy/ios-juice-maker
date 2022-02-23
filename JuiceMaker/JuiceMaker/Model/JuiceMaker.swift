@@ -1,16 +1,14 @@
-//
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//  Created by yagom.
+//  Copyright © yagom academy. All rights reserved
 
 import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    private var fruitStore: FruitStore
+    private var fruitStore = FruitStore()
     
-    func subtractFruitQuantity(by juice: Juice) {
+    func subtractFruitQuantity(for juice: Juice) {
         switch juice {
         case .strawberryJuice:
             self.fruitStore.changeFruitQuantity(by: .strawberry, count: -16)
