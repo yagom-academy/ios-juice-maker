@@ -26,8 +26,8 @@ struct JuiceMaker {
       for (fruit, amount) in juice.recipe {
         try self.fruitStore.changeNotCheckStock(of: fruit, by: -amount)
       }
-    } catch is MakeJuiceError {
-      
+    } catch let error as MakeJuiceError {
+      print(error.rawValue)
     } catch {
       print(error.localizedDescription)
     }
