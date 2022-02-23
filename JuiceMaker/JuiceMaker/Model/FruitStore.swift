@@ -21,7 +21,7 @@ final class FruitStore {
     }
   }
   
-  func addStock(of fruit: Fruit, by amount: Int) {
+  func changeStock(of fruit: Fruit, by amount: Int) {
     guard let item = self.stock[fruit] else {
       return
     }
@@ -30,4 +30,13 @@ final class FruitStore {
     }
     self.stock[fruit] = item + amount
   }
+  
+  /* 질문사항
+  func changeStock2(of fruit: Fruit, by amount: Int) {
+    guard let item = self.stock[fruit] else {
+      return
+    }
+    self.stock[fruit] = item + amount
+  }
+  */
 }
