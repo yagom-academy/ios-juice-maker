@@ -21,6 +21,7 @@ class FruitStore {
             guard let stock = fruits[fruit], stock >= fruitCount else {
                 throw JuiceMakerError.outOfStock
             }
+            fruits[fruit] = stock - fruitCount
         }
     }
 }
