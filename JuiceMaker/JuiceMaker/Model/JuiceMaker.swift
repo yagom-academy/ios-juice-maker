@@ -13,7 +13,7 @@ struct JuiceMaker {
     func makeJuice(fruitJuice: FruitsTypes) {
         let recipe = fruitJuice.recipe
         do  {
-            try fruitStore.makeJuice(recipe: recipe)
+            try fruitStore.countFruit(recipe: recipe)
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다")
         } catch {}
