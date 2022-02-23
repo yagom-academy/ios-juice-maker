@@ -8,20 +8,37 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruits: [Fruit: Int] = [:]
-    
-    init(defaultCount: Int = 10) {
-        Fruit.allCases.forEach { (fruit: Fruit) in
-            self.fruits[fruit] = defaultCount
-        }
-    }
-    
     enum Fruit: CaseIterable {
         case strawberry
         case banana
         case pineapple
         case kiwi
         case mango
+    }
+    
+    var fruits: [Fruit: Int] = [:]
+     
+    init(defaultCount: Int = 10) {
+        Fruit.allCases.forEach { (fruit: Fruit) in
+            self.fruits[fruit] = defaultCount
+        }
+    }
+    
+    func isReadyToMakeJuice(for juice: Juice) -> Bool {
+        var hasReady = false
+        for fruit in juice.recipe.keys {
+            hasReady =  isHaveEnoughStock(for: juice, fruit: fruit)
+        }
+        return hasReady
+    }
+    
+    func isHaveEnoughStock(for juice: Juice, fruit: Fruit) -> Bool {
+        guard let currentFruitStock = self.fruits[fruit],
+              let needFruitStock = juice.recipe[fruit],
+                  currentFruitStock > needFruitStock else {
+            return false
+        }
+        return true
     }
     
     func checkCurrentFruitStock() {

@@ -10,18 +10,8 @@ import Foundation
 struct JuiceMaker {
     private var fruitStore: FruitStore
     
-    enum Recipe: CaseIterable {
-        case strawberryJuice
-        case bananaJuice
-        case pineappleJuice
-        case kiwiJuice
-        case mangoJuice
-        case strawberryBananaJuice
-        case mangoKiwiJuice
-    }
-    
-    func deductFruitQuantity(by recipe: Recipe) {
-        switch recipe {
+    func subtractFruitQuantity(by juice: Juice) {
+        switch juice {
         case .strawberryJuice:
             self.fruitStore.changeFruitQuantity(by: .strawberry, count: -16)
         case .bananaJuice:
