@@ -31,7 +31,7 @@ class FruitStore {
         return isReady
     }
     
-    func isHaveEnoughStock(for juice: Juice, fruit: Fruit) -> Bool {
+    private func isHaveEnoughStock(for juice: Juice, fruit: Fruit) -> Bool {
         guard let currentFruitQuantity = self.fruits[fruit],
               let needFruitQuantity = juice.recipe[fruit],
               currentFruitQuantity >= needFruitQuantity else {

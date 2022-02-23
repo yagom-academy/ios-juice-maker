@@ -17,7 +17,7 @@ struct JuiceMaker {
         }
     }
     
-    func subtractFruitQuantity(for juice: Juice) {
+    private func subtractFruitQuantity(for juice: Juice) {
         switch juice {
         case .strawberryJuice:
             self.fruitStore.changeFruitQuantity(by: .strawberry, count: -16)
