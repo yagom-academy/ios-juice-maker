@@ -8,11 +8,10 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var recipe: Dictionary<Juice,Dictionary<Fruit,Int>>
-    var fruitStore: FruitStore
+    private var recipe: Dictionary<Juice,Dictionary<Fruit,Int>> = Juice.defaultJuiceRecipe
+    private let fruitStore: FruitStore
     
-    init(recipe: Dictionary<Juice,Dictionary<Fruit,Int>>, fruitStore: FruitStore) {
-        self.recipe = recipe
+    init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
     }
     
@@ -23,7 +22,7 @@ struct JuiceMaker {
         return juiceRecipe
     }
     
-    func make(juice: Juice) -> Juice? {
+    func makeJuice(_ juice: Juice) -> Juice? {
         do {
             let juiceRecipe = try getAJuiceRecipe(juice: juice)
             for (fruit,amount) in juiceRecipe {
@@ -34,14 +33,17 @@ struct JuiceMaker {
             }
             return juice
         } catch JuiceMakingError.notEnoughStock {
-            print("재고가 부족합니다.")
+            print(ErrorMessage.notEnoughStock)
             return nil
         } catch JuiceMakingError.notRegisteredFruit {
-            print("존재하지 않는 과일입니다.")
+            print(ErrorMessage.notRegisteredFruit)
+            return nil
+        } catch JuiceMakingError.noRecipe {
+            print(ErrorMessage.noRecipe)
             return nil
         }
         catch {
-            print("알 수 없는 에러가 났습니다.")
+            print(ErrorMessage.unkown)
             return nil
         }
     }
