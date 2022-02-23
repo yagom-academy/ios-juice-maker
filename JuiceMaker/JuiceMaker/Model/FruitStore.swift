@@ -13,7 +13,7 @@ class FruitStore {
     
     init() {
         let defaultValue = 10
-        self.fruits.keys.forEach{ self.fruits[$0] = defaultValue }
+        Fruits.allCases.forEach{ fruits[$0] = defaultValue }
     }
     
     func checkStock(juice: Juice) throws {

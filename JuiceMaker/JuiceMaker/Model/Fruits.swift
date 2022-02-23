@@ -4,7 +4,7 @@
 //
 //  Created by Doogie & Malrang.
 //
-enum Fruits {
+enum Fruits: CaseIterable {
     case strawberry
     case banana
     case pineapple
