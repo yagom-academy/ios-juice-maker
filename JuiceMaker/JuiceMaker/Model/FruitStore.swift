@@ -15,4 +15,20 @@ class FruitStore {
         .kiwi : 10,
         .mango : 10
     ]
+    
+    func checkStock(ingredient: Juice, fruit: Fruits) throws {
+            guard let toMake = ingredient.recipie[fruit] else {
+                throw MakingError.invalidSelection
+            }
+            guard var stock = fruitsList[fruit] else {
+                throw MakingError.invalidSelection
+            }
+            guard stock < toMake else {
+                throw MakingError.outOfStock
+            }
+
+            stock -= toMake
+            fruitsList[fruit] = stock
+        }
+    
 }
