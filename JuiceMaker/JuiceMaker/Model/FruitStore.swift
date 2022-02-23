@@ -6,18 +6,28 @@
 
 import Foundation
 
-class FruitStore {
-  private(set) var fruits = [Fruit: Int]()
+final class FruitStore {
+  private(set) var stock = [Fruit: Int]()
   
   init() {
+    self.configureStock()
+  }
+  
+  private func configureStock() {
     let defaultCount = 10
     
     for fruit in Fruit.allCases {
-      fruits[fruit] = defaultCount
+      stock[fruit] = defaultCount
     }
   }
   
-  func change(_ fruit: Fruit, quantity: Int) {
-    fruits[fruit] = quantity
+  func addStock(of fruit: Fruit, by amount: Int) {
+    guard let item = self.stock[fruit] else {
+      return
+    }
+    guard item + amount >= 0 else {
+      return
+    }
+    self.stock[fruit] = item + amount
   }
 }
