@@ -1,10 +1,12 @@
 import Foundation
 
-enum Fruit: CaseIterable {
-    case strawberry, banana, pineapple, kiwi, mango
-}
+
 // 과일 저장소 타입
 class FruitStore {
+    enum Fruit: CaseIterable {
+        case strawberry, banana, pineapple, kiwi, mango
+    }
+    
     let defaultStock = 10
     var fruits: [Fruit: Int] = [:]
     
@@ -23,6 +25,5 @@ class FruitStore {
         guard let currentStock = fruits[fruit] else { return }
         fruits.updateValue(currentStock - amount, forKey: fruit)
     }
-    
 }
 

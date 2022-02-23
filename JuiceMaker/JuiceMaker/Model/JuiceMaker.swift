@@ -2,9 +2,8 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    typealias JuiceRecipe = [[Fruit:Int]]
     var fruitStore: FruitStore = FruitStore()
-    
+    typealias JuiceRecipe = [[FruitStore.Fruit:Int]]
     enum Juice {
         case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice, strawberryBananaJuice, mangoJuice, mangoKiwiJuice
         
