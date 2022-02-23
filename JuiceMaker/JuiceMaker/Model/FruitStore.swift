@@ -16,19 +16,17 @@ class FruitStore {
         .mango : 10
     ]
     
-    func checkStock(ingredient: Juice, fruit: Fruits) throws {
-            guard let toMake = ingredient.recipie[fruit] else {
-                throw MakingError.invalidSelection
+    func checkStock(juice: Juice) throws {
+        for (recipieKey, recipieValue) in juice.recipie {
+            for (listKey, listValue) in fruitsList {
+                if recipieKey == listKey  {
+                    guard recipieValue <= listValue else { throw
+                        MakingError.outOfStock
+                    }
+                    fruitsList[recipieKey] = listValue - recipieValue
+                }
             }
-            guard var stock = fruitsList[fruit] else {
-                throw MakingError.invalidSelection
-            }
-            guard stock < toMake else {
-                throw MakingError.outOfStock
-            }
-
-            stock -= toMake
-            fruitsList[fruit] = stock
         }
+    }
     
 }
