@@ -13,10 +13,18 @@ struct JuiceMaker {
     func makeJuice(juice: Juice) {
         do {
             try store.checkStock(juice: juice)
-        } catch MakingError.outOfStock {
+        } catch FruitStoreError.outOfStock {
             print("재고 없음!")
-        } catch MakingError.invalidSelection {
+        } catch FruitStoreError.invalidSelection {
             print("선택된 과일이 없습니다.")
+        } catch {}
+    }
+    
+    func manageStock(fruit: Fruits, amount: Int, calculationType: CalculationType) {
+        do {
+            try store.calculateStock(fruit: fruit, amount: amount, calculationType: calculationType)
+        } catch FruitStoreError.outOfRange {
+            print("현재 재고가 \(amount)개 미만입니다.")
         } catch {}
     }
 }

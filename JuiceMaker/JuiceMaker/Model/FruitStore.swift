@@ -9,22 +9,36 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     
-    var fruits = [Fruits: Int]()
+    var fruitList = [Fruits: Int]()
     
     init() {
         let defaultStock = 10
-        Fruits.allCases.forEach{ fruits[$0] = defaultStock }
+        Fruits.allCases.forEach{ fruitList[$0] = defaultStock }
     }
     
     func checkStock(juice: Juice) throws {
-        for (recipieKey, recipieValue) in juice.recipie {
-            guard let stock = fruits[recipieKey] else {
-                throw MakingError.invalidSelection
+        for (ingredent, amount) in juice.recipie {
+            guard let stock = fruitList[ingredent] else {
+                throw FruitStoreError.invalidSelection
             }
-            guard recipieValue <= stock else {
-                throw MakingError.outOfStock
+            guard amount <= stock else {
+                throw FruitStoreError.outOfStock
             }
-            fruits[recipieKey] = stock - recipieValue
+            fruitList[ingredent] = stock - amount
+        }
+    }
+
+    func calculateStock(fruit: Fruits, amount: Int, calculationType: CalculationType) throws {
+        guard let stock = fruitList[fruit] else {
+            throw FruitStoreError.invalidSelection
+        }
+        if calculationType == .plus {
+            fruitList[fruit] = stock + amount
+        } else {
+            guard stock >= amount else {
+                throw FruitStoreError.outOfRange
+            }
+            fruitList[fruit] = stock - amount
         }
     }
 }

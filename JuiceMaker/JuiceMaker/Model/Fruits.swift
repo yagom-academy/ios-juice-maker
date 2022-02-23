@@ -11,3 +11,8 @@ enum Fruits: CaseIterable {
     case kiwi
     case mango
 }
+
+enum CalculationType {
+    case plus
+    case minus
+}

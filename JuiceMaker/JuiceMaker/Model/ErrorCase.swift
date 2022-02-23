@@ -4,7 +4,8 @@
 //
 //  Created by Doogie & Malrang.
 //
-enum MakingError: Error {
+enum FruitStoreError: Error {
     case invalidSelection
     case outOfStock
+    case outOfRange
 }
