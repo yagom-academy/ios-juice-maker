@@ -22,27 +22,26 @@ final class FruitStore {
     }
     
     func consume(fruit: Fruit, amount: Int) throws {
-        if hasEnoughStock(of: fruit, amount: amount) == false {
-            throw JuiceMakerError.notEnoughFruitAmount(fruit: fruit.rawValue)
-        }
-        
-        guard let oldAmount = stocks[fruit] else {
-            throw JuiceMakerError.notFoundFruit
-        }
-        
+        try hasEnoughStock(of: fruit, amount: amount)
+
+        let oldAmount = try hasStock(of: fruit)
         let newAmount = oldAmount - amount
         stocks.updateValue(newAmount, forKey: fruit)
     }
     
-    private func hasEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
-        guard let remainingAmount = stocks[fruit] else {
-            return false
-        }
+    private func hasEnoughStock(of fruit: Fruit, amount: Int) throws {
+        let remainingAmount = try hasStock(of: fruit)
         
         guard remainingAmount >= amount else {
-            return false
+            throw JuiceMakerError.notEnoughFruitAmount(fruit: fruit.rawValue)
+        }
+    }
+    
+    private func hasStock(of fruit: Fruit) throws -> Int {
+        guard let remainingAmount = stocks[fruit] else {
+            throw JuiceMakerError.notFoundFruit
         }
         
-        return true
+        return remainingAmount
     }
 }
