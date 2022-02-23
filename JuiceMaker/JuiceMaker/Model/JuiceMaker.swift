@@ -36,7 +36,7 @@ struct JuiceMaker {
         } catch JuiceMakingError.notEnoughStock {
             print("재고가 부족합니다.")
             return nil
-        } catch JuiceMakingError.noOption {
+        } catch JuiceMakingError.notRegisteredFruit {
             print("존재하지 않는 과일입니다.")
             return nil
         }

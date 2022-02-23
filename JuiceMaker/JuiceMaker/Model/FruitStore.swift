@@ -22,7 +22,7 @@ class FruitStore {
     
     func checkStock(fruit: Fruit, amount: Int) throws {
         guard let stock = self.fruitStock[fruit] else {
-            throw JuiceMakingError.noOption
+            throw JuiceMakingError.notRegisteredFruit
         }
         if stock < amount {
             throw JuiceMakingError.notEnoughStock
@@ -31,7 +31,7 @@ class FruitStore {
     
     func useFruit(fruit: Fruit, amount: Int) throws {
         guard let stock = self.fruitStock[fruit] else {
-            throw JuiceMakingError.noOption
+            throw JuiceMakingError.notRegisteredFruit
         }
         if stock < amount {
             throw JuiceMakingError.notEnoughStock
@@ -41,7 +41,7 @@ class FruitStore {
     
     func addFruit(fruit: Fruit, amount: Int) throws {
         guard let stock = self.fruitStock[fruit] else {
-            throw JuiceMakingError.noOption
+            throw JuiceMakingError.notRegisteredFruit
         }
         self.fruitStock[fruit] = stock + amount
     }
@@ -58,7 +58,7 @@ class FruitStore {
         if let _ = self.fruitStock[fruit] {
             self.fruitStock.removeValue(forKey: fruit)
         } else {
-            throw JuiceMakingError.noOption
+            throw JuiceMakingError.notRegisteredFruit
         }
     }
 }

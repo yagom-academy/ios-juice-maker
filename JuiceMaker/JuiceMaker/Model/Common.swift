@@ -12,13 +12,12 @@ enum Fruit {
 }
 
 enum Juice {
-    case strawberryJuice, bananaJuice, pineappleJuice, kiwiJuice, mangoJuice
+    case strawberryTaste, bananaTaste, kiwiTaste, pineappleTaste, strawberryBannaTaste, mangoTaste, mangoKiwiTaste
 }
 
 enum JuiceMakingError: Error {
     case notEnoughStock
-    case notAllowedFruit
-    case noOption
+    case notRegisteredFruit
     case duplicatedFruit
     case noRecipe
 }
