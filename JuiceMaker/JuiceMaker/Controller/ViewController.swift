@@ -9,6 +9,8 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        let juiceMaker = JuiceMaker()
+        juiceMaker.makeJuice(.strawberryBananaJuice)
     }
 }
 

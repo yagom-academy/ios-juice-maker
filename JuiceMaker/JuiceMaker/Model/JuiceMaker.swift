@@ -8,6 +8,15 @@ import Foundation
 struct JuiceMaker {
     private var fruitStore = FruitStore()
     
+    func makeJuice(_ juice: Juice) {
+        if self.fruitStore.isReadyToMakeJuice(for: juice) {
+            subtractFruitQuantity(for: juice)
+            print("주문하신 \(juice)가 나왔어용~")
+        } else {
+            print("준비안됨")
+        }
+    }
+    
     func subtractFruitQuantity(for juice: Juice) {
         switch juice {
         case .strawberryJuice:
