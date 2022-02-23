@@ -30,7 +30,7 @@ struct JuiceMaker {
                 try self.fruitStore.checkStock(fruit: fruit, amount: amount)
             }
             for (fruit,amount) in juiceRecipe {
-                try self.fruitStore.useFruit(fruit: fruit, amount: amount)
+                try self.fruitStore.consumeStock(fruit: fruit, amount: amount)
             }
             return juice
         } catch JuiceMakingError.notEnoughStock {

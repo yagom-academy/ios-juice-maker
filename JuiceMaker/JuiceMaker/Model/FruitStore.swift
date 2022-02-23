@@ -29,7 +29,7 @@ class FruitStore {
         }
     }
     
-    func useFruit(fruit: Fruit, amount: Int) throws {
+    func consumeStock(fruit: Fruit, amount: Int) throws {
         guard let stock = self.fruitStock[fruit] else {
             throw JuiceMakingError.notRegisteredFruit
         }
@@ -39,7 +39,7 @@ class FruitStore {
         self.fruitStock[fruit] = stock - amount
     }
     
-    func addFruit(fruit: Fruit, amount: Int) throws {
+    func addStock(fruit: Fruit, amount: Int) throws {
         guard let stock = self.fruitStock[fruit] else {
             throw JuiceMakingError.notRegisteredFruit
         }
