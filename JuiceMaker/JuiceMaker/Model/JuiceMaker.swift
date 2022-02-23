@@ -22,9 +22,14 @@ struct JuiceMaker {
     guard self.canMake(juice) else {
       return
     }
-    
-    for (fruit, amount) in juice.recipe {
-      self.fruitStore.changeStock(of: fruit, by: -amount)
+    do {
+      for (fruit, amount) in juice.recipe {
+        try self.fruitStore.changeNotCheckStock(of: fruit, by: -amount)
+      }
+    } catch is MakeJuiceError {
+      
+    } catch {
+      print(error.localizedDescription)
     }
   }
 }

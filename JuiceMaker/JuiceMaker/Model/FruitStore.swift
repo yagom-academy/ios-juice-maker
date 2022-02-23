@@ -21,22 +21,20 @@ final class FruitStore {
     }
   }
   
-  func changeStock(of fruit: Fruit, by amount: Int) {
+  func changeStock(of fruit: Fruit, by amount: Int) throws {
     guard let item = self.stock[fruit] else {
-      return
+      throw MakeJuiceError.notExistFruit
     }
     guard item + amount >= 0 else {
-      return
+      throw MakeJuiceError.outOfStock
     }
     self.stock[fruit] = item + amount
   }
   
-  /* 질문사항
-  func changeStock2(of fruit: Fruit, by amount: Int) {
+  func changeNotCheckStock(of fruit: Fruit, by amount: Int) throws {
     guard let item = self.stock[fruit] else {
-      return
+      throw MakeJuiceError.notExistFruit
     }
     self.stock[fruit] = item + amount
   }
-  */
 }
