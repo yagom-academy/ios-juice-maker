@@ -16,6 +16,8 @@ struct JuiceMaker {
             try fruitStore.countFruit(recipe: recipe)
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다")
-        } catch {}
+        } catch {
+            print("예상치 못한 에러 발생")
+        }
     }
 }
