@@ -16,11 +16,10 @@ class FruitStore {
         }
     }
     
-    func checkStock(fruit: Fruit, amount: Int) -> Bool {
+    func checkStock(fruit: Fruit, amount: Int) throws {
         guard let stock = fruitStock[fruit], stock >= amount else {
-            return false
+            throw JuiceMakerError.outOfStock
         }
-        return true
     }
     
     func changeStock(fruit: Fruit, amount: Int) {
