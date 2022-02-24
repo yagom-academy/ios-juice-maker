@@ -10,7 +10,19 @@ struct JuiceMaker {
     
     func makeJuice(fruitJuice: Juice) {
         let recipe = fruitJuice.recipe
-        deleteStockFromRecipeRequired(recipe: recipe)
+        if canMake(juice: fruitJuice) {
+            deleteStockFromRecipeRequired(recipe: recipe)
+        }
+    }
+    
+    func canMake(juice: Juice) -> Bool {
+        let recipe = juice.recipe
+        for (fruit, amount) in recipe {
+            if fruitStore.haveEnough(fruit: fruit, amount: amount) == false {
+                return false
+            }
+        }
+        return true
     }
     
     func deleteStockFromRecipeRequired(recipe: [Fruit: Int]) {
