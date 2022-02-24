@@ -7,7 +7,7 @@
 import Foundation
 
 final class FruitStore {
-  private(set) var stock = [Fruit: Int]()
+  private var stock = [Fruit: Int]()
   
   init() {
     self.configureStock()
@@ -17,24 +17,24 @@ final class FruitStore {
     let defaultCount = 10
     
     for fruit in Fruit.allCases {
-      stock[fruit] = defaultCount
+      self.stock[fruit] = defaultCount
     }
   }
   
-  func changeStock(of fruit: Fruit, by amount: Int) throws {
+  func checkStock(of fruit: Fruit, in amount: Int) -> Result<Int, MakeJuiceError> {
     guard let item = self.stock[fruit] else {
-      throw MakeJuiceError.notExistFruit
+      return .failure(.notExistFruit)
     }
     guard item + amount >= 0 else {
-      throw MakeJuiceError.outOfStock
+      return .failure(.outOfStock)
     }
-    self.stock[fruit] = item + amount
+    return .success(item)
   }
   
-  func changeNotCheckStock(of fruit: Fruit, by amount: Int) throws {
-    guard let item = self.stock[fruit] else {
-      throw MakeJuiceError.notExistFruit
+  func changeStock(of fruit: Fruit, in amount: Int, by operation: (Int, Int) -> Int) {
+    guard let item = try? self.checkStock(of: fruit, in: amount).get() else {
+      return
     }
-    self.stock[fruit] = item + amount
+    self.stock[fruit] = operation(item, amount)
   }
 }

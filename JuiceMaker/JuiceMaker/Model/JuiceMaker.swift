@@ -11,7 +11,7 @@ struct JuiceMaker {
 
   private func canMake(_ juice: Juice) -> Bool {
     for (fruit, amount) in juice.recipe {
-      guard let item = self.fruitStore.stock[fruit], item >= amount else {
+      guard let _ = try? self.fruitStore.checkStock(of: fruit, in: amount).get() else {
         return false
       }
     }
@@ -22,14 +22,8 @@ struct JuiceMaker {
     guard self.canMake(juice) else {
       return
     }
-    do {
-      for (fruit, amount) in juice.recipe {
-        try self.fruitStore.changeNotCheckStock(of: fruit, by: -amount)
-      }
-    } catch let error as MakeJuiceError {
-      print(error.rawValue)
-    } catch {
-      print(error.localizedDescription)
+    for (fruit, amount) in juice.recipe {
+      self.fruitStore.changeStock(of: fruit, in: amount, by: -)
     }
   }
 }
