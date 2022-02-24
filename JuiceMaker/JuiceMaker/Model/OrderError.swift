@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum ErrorHandling: Error {
+enum OrderError: Error {
     case outOfStock
     case wrongFormat
 }
 
-extension ErrorHandling: LocalizedError {
+extension OrderError: LocalizedError {
     var description: String {
         switch self {
         case .outOfStock:

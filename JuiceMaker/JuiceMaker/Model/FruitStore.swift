@@ -11,6 +11,6 @@ class FruitStore {
     
     init() {
         let defaultQuantity = 10
-        Fruit.allCases.forEach{ self.fruitInventory[$0] = defaultQuantity }
+        Fruit.allCases.forEach{ fruitInventory[$0] = defaultQuantity }
     }
 }

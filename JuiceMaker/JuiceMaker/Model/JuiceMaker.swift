@@ -10,28 +10,13 @@ struct JuiceMaker {
     var fruitStore = FruitStore()
     
     func selectMenu(_ juice: Juice) {
-        switch juice {
-        case .strawberryJuice:
-            checkOrder(Juice.strawberryJuice.recipe)
-        case .bananaJuice:
-            checkOrder(Juice.bananaJuice.recipe)
-        case .kiwiJuice:
-            checkOrder(Juice.kiwiJuice.recipe)
-        case .pineappleJuice:
-            checkOrder(Juice.pineappleJuice.recipe)
-        case .strawberryBananaJuice:
-            checkOrder(Juice.strawberryBananaJuice.recipe)
-        case .mangoJuice:
-            checkOrder(Juice.mangoJuice.recipe)
-        case .mangoKiwiJuice:
-            checkOrder(Juice.mangoKiwiJuice.recipe)
-        }
+        order(juice.recipe)
     }
     
-    func checkOrder(_ recipe: [Fruit: Int]) {
+    func order(_ recipe: [Fruit: Int]) {
         do {
             try makeJuice(by: recipe)
-        } catch let error as ErrorHandling {
+        } catch let error as OrderError {
             print(error.description)
         } catch {
             print(error)
@@ -41,12 +26,12 @@ struct JuiceMaker {
     func makeJuice(by recipe: [Fruit: Int]) throws {
         for (fruit, _ ) in fruitStore.fruitInventory {
             guard let fruitStock = fruitStore.fruitInventory[fruit] else {
-                throw ErrorHandling.wrongFormat
+                throw OrderError.wrongFormat
             }
             guard let requiredQuantity = recipe[fruit] else {
                 continue
             }
-            guard fruitStock >= requiredQuantity else { throw ErrorHandling.outOfStock }
+            guard fruitStock >= requiredQuantity else { throw OrderError.outOfStock }
             fruitStore.fruitInventory[fruit] = fruitStock - requiredQuantity
         }
     }
