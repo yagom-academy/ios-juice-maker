@@ -58,16 +58,6 @@ struct JuiceMaker {
         }
     }
     
-    private func checkOneStock(of juice: Juice, with listOfIngredient: Int) -> Bool {
-        let (neededFruit, neededStock) = juice.recipe[listOfIngredient]
-        let inStock: Int = fruitStore.stock[neededFruit] ?? Int.zero
-        if inStock >= neededStock {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     private func makeJuice(_ juice: Juice) {
         for list in Int.zero..<juice.recipe.count {
             let (neededFruit, neededStock) = juice.recipe[list]
