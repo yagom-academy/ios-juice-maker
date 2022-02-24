@@ -32,7 +32,11 @@ struct JuiceMaker {
             }
             return juice
         } catch {
-            JuiceMakingError.printErrorMessage(error: error as? JuiceMakingError ?? JuiceMakingError.unkownError)
+            if let juiceMakingError = error as? JuiceMakingError {
+                JuiceMakingError.printErrorMessage(error: juiceMakingError)
+            } else {
+                JuiceMakingError.printErrorMessage(error: JuiceMakingError.unkownError)
+            }
             return nil
         }
     }

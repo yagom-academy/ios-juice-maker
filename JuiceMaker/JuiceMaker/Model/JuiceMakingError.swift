@@ -20,14 +20,14 @@ enum JuiceMakingError: Error {
     static let unkownErrorMessage = "알 수 없는 오류가 발생했습니다."
     
     static func printErrorMessage(error: JuiceMakingError) {
-        if error == JuiceMakingError.notEnoughStock {
+        switch error {
+        case JuiceMakingError.notEnoughStock:
             print(JuiceMakingError.notEnoughStockErrorMessage)
-        } else if error == JuiceMakingError.notRegisteredFruit {
+        case JuiceMakingError.notRegisteredFruit:
             print(JuiceMakingError.notRegisteredFruitErrorMessage)
-            
-        } else if error == JuiceMakingError.noRecipe {
+        case JuiceMakingError.noRecipe:
             print(JuiceMakingError.noRecipeErrorMessage)
-        } else {
+        default:
             print(JuiceMakingError.unkownErrorMessage)
         }
     }
