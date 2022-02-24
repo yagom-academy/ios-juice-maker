@@ -22,16 +22,15 @@ struct JuiceMaker {
             print(error)
         }
     }
-    
+
     func makeJuice(by recipe: [Fruit: Int]) throws {
-        for (fruit, _ ) in fruitStore.fruitInventory {
+        for (fruit, requiredQuantity) in recipe {
             guard let fruitStock = fruitStore.fruitInventory[fruit] else {
                 throw OrderError.wrongFormat
             }
-            guard let requiredQuantity = recipe[fruit] else {
-                continue
+            guard fruitStock >= requiredQuantity else {
+                throw OrderError.outOfStock
             }
-            guard fruitStock >= requiredQuantity else { throw OrderError.outOfStock }
             fruitStore.fruitInventory[fruit] = fruitStock - requiredQuantity
         }
     }
