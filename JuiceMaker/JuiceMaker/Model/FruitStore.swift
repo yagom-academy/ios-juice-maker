@@ -7,10 +7,10 @@
 import Foundation
 
 class FruitStore {
-    static let defaultQuantity = 10
-    static var fruitInventory: Dictionary = [Fruit.strawberry: defaultQuantity,
-                                             Fruit.banana: defaultQuantity,
-                                             Fruit.pineapple: defaultQuantity,
-                                             Fruit.kiwi: defaultQuantity,
-                                             Fruit.mango: defaultQuantity]
+    var fruitInventory: [Fruit: Int] = [:]
+    
+    init() {
+        let defaultQuantity = 10
+        Fruit.allCases.forEach{ self.fruitInventory[$0] = defaultQuantity }
+    }
 }
