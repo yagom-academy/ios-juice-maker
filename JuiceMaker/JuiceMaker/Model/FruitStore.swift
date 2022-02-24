@@ -2,7 +2,6 @@
 //  JuiceMaker - FruitStore.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-//
 
 import Foundation
 
@@ -22,15 +21,15 @@ class FruitStore {
         }
     }
     
-    func isMakeReady(for juice: Juice) throws -> Bool {
+    func makeReady(for juice: Juice) throws -> Bool {
         var isReady = false
         for fruit in juice.recipe.keys {
-            isReady = try isHaveEnoughStock(for: juice, fruit: fruit)
+            isReady = try checkEnoughStock(for: juice, fruit: fruit)
         }
         return isReady
     }
     
-    private func isHaveEnoughStock(for juice: Juice, fruit: Fruit) throws -> Bool {
+    private func checkEnoughStock(for juice: Juice, fruit: Fruit) throws -> Bool {
         guard let currentFruitQuantity = fruitsStock[fruit],
               let needFruitQuantity = juice.recipe[fruit],
               currentFruitQuantity >= needFruitQuantity else {

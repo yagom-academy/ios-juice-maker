@@ -12,7 +12,6 @@ class ViewController: UIViewController {
         let juiceMaker = JuiceMaker()
         juiceMaker.makeJuice(.strawberryBanana)
         juiceMaker.makeJuice(.strawberry)
-
     }
 }
 
