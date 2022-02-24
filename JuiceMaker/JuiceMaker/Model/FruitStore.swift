@@ -6,27 +6,27 @@
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruits = [Fruit: Int]()
+    private var fruitStock = [Fruit: Int]()
     
     init() {
         let initialStock = 10
         
         for fruit in Fruit.allCases {
-            fruits[fruit] = initialStock
+            fruitStock[fruit] = initialStock
         }
     }
     
-    func haveEnough(fruit: Fruit, amount: Int) -> Bool {
-        guard let stock = fruits[fruit], stock >= amount else {
+    func checkStock(fruit: Fruit, amount: Int) -> Bool {
+        guard let stock = fruitStock[fruit], stock >= amount else {
             return false
         }
         return true
     }
     
-    func changeFruitStock(fruit: Fruit, amount: Int) {
-        guard let stock = fruits[fruit] else {
+    func changeStock(fruit: Fruit, amount: Int) {
+        guard let stock = fruitStock[fruit] else {
             return
         }
-        fruits[fruit] = stock - amount
+        fruitStock[fruit] = stock - amount
     }
 }
