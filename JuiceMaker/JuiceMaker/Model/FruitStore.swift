@@ -1,6 +1,5 @@
 import Foundation
 
-// 과일 저장소 타입
 enum FruitType: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
 }

@@ -39,14 +39,14 @@ struct JuiceMaker {
             let fruit = ingredient.key
             let amount = ingredient.value
             guard let currentStock = fruitStore.fruits[fruit] else { return false }
-            if currentStock < amount {
+            guard currentStock >= amount else {
                 return false
             }
         }
         return true
     }
     
-    func consumeFruitStock(recipe: JuiceRecipe) {
+    private func consumeFruitStock(recipe: JuiceRecipe) {
         for ingredient in recipe {
             let fruit = ingredient.key
             let amount = ingredient.value
