@@ -1,27 +1,27 @@
 import Foundation
 
-
 // 과일 저장소 타입
+enum FruitType: CaseIterable {
+    case strawberry, banana, pineapple, kiwi, mango
+}
+
 class FruitStore {
-    enum Fruit: CaseIterable {
-        case strawberry, banana, pineapple, kiwi, mango
-    }
     
-    let defaultStock = 10
-    var fruits: [Fruit: Int] = [:]
+    let defaultNumberOfStock = 10
+    var fruits: [FruitType: Int] = [:]
     
     init() {
-        for fruit in Fruit.allCases {
-            fruits[fruit] = defaultStock
+        for fruit in FruitType.allCases {
+            fruits[fruit] = defaultNumberOfStock
         }
     }
     
-    func increaseStock(fruit: Fruit, amount: Int) {
+    func increaseStock(fruit: FruitType, amount: Int) {
         guard let currentStock = fruits[fruit] else { return }
         fruits.updateValue(currentStock + amount, forKey: fruit)
     }
     
-    func decreaseStock(fruit: Fruit, amount: Int) {
+    func decreaseStock(fruit: FruitType, amount: Int) {
         guard let currentStock = fruits[fruit] else { return }
         fruits.updateValue(currentStock - amount, forKey: fruit)
     }
