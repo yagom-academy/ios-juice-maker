@@ -7,10 +7,9 @@
 import Foundation
 
 class FruitStore {
-    private let defaultStock: Int = 10
     private(set) var stock: [Fruit: Int]
 
-    init() {
+    init(defaultStock: Int = 10) {
         stock = [.strawberry: defaultStock,
                      .banana: defaultStock,
                      .pineapple: defaultStock,

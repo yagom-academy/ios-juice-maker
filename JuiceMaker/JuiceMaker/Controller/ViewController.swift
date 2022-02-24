@@ -19,8 +19,6 @@ class ViewController: UIViewController {
         juiceMaker.takeOrder(.mangoJuice)
         juiceMaker.takeOrder(.mangoJuice)
     }
-
-
 }
 
 

@@ -64,7 +64,7 @@ struct JuiceMaker {
             print("\(juice) 나왔습니다.")
         }
     }
-        
+    
 }
 
 
