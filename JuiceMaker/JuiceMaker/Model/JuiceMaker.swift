@@ -4,37 +4,37 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
-    private var fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func makeJuice(_ juice: Juice) {
-        if self.fruitStore.isReadyToMakeJuice(for: juice) {
-            subtractFruitQuantity(for: juice)
-            print("주문하신 \(juice)가 나왔어용~")
-        } else {
-            print("준비안됨")
+        do {
+            _ = try fruitStore.isMakeReady(for: juice)
+                subtractFruitQuantity(for: juice)
+                print("주문하신 \(juice)가 나왔어용~")
+            } catch (let fruit) {
+                print("\(fruit)의 재고가 불충분합니다.")
         }
     }
     
     private func subtractFruitQuantity(for juice: Juice) {
         switch juice {
-        case .strawberryJuice:
-            self.fruitStore.changeFruitQuantity(by: .strawberry, count: -16)
-        case .bananaJuice:
-            self.fruitStore.changeFruitQuantity(by: .banana, count: -2)
-        case .pineappleJuice:
-            self.fruitStore.changeFruitQuantity(by: .pineapple, count: -2)
-        case .kiwiJuice:
-            self.fruitStore.changeFruitQuantity(by: .kiwi, count: -3)
-        case .mangoJuice:
-            self.fruitStore.changeFruitQuantity(by: .mango, count: -3)
-        case .strawberryBananaJuice:
-            self.fruitStore.changeFruitQuantity(by: .strawberry, count: -10)
-            self.fruitStore.changeFruitQuantity(by: .banana, count: -1)
-        case .mangoKiwiJuice:
-            self.fruitStore.changeFruitQuantity(by: .mango, count: -2)
-            self.fruitStore.changeFruitQuantity(by: .kiwi, count: -1)
+        case .strawberry:
+            fruitStore.changeFruitQuantity(by: .strawberry, count: juice.recipe[.strawberry] ?? 0)
+        case .banana:
+            fruitStore.changeFruitQuantity(by: .banana, count: juice.recipe[.banana] ?? 0)
+        case .pineapple:
+            fruitStore.changeFruitQuantity(by: .pineapple, count: juice.recipe[.pineapple] ?? 0)
+        case .kiwi:
+            fruitStore.changeFruitQuantity(by: .kiwi, count: juice.recipe[.kiwi] ?? 0)
+        case .mango:
+            fruitStore.changeFruitQuantity(by: .mango, count: juice.recipe[.mango] ?? 0)
+        case .strawberryBanana:
+            fruitStore.changeFruitQuantity(by: .strawberry, count: juice.recipe[.strawberry] ?? 0)
+            fruitStore.changeFruitQuantity(by: .banana, count: juice.recipe[.banana] ?? 0)
+        case .mangoKiwi:
+            fruitStore.changeFruitQuantity(by: .mango, count: juice.recipe[.mango] ?? 0)
+            fruitStore.changeFruitQuantity(by: .kiwi, count: juice.recipe[.kiwi] ?? 0)
         }
     }
 }

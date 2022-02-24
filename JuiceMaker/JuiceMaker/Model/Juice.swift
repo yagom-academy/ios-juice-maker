@@ -6,29 +6,31 @@
 //
 
 enum Juice: CaseIterable {
-    case strawberryJuice
-    case bananaJuice
-    case pineappleJuice
-    case kiwiJuice
-    case mangoJuice
-    case strawberryBananaJuice
-    case mangoKiwiJuice
+    typealias Fruit = FruitStore.Fruit
     
-    var recipe: [FruitStore.Fruit: Int] {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+    case strawberryBanana
+    case mangoKiwi
+    
+    var recipe: [Fruit: Int] {
         switch self {
-        case .strawberryJuice:
+        case .strawberry:
             return [.strawberry: 16]
-        case .bananaJuice:
+        case .banana:
             return [.banana: 2]
-        case .pineappleJuice:
+        case .pineapple:
             return [.pineapple: 2]
-        case .kiwiJuice:
+        case .kiwi:
             return [.kiwi: 3]
-        case .mangoJuice:
+        case .mango:
             return [.mango: 3]
-        case .strawberryBananaJuice:
+        case .strawberryBanana:
             return [.strawberry: 10, .banana: 1]
-        case .mangoKiwiJuice:
+        case .mangoKiwi:
             return [.mango: 2, .kiwi: 1]
         }
     }
