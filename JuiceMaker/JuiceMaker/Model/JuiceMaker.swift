@@ -62,7 +62,7 @@ struct JuiceMaker {
         for list in Int.zero..<juice.recipe.count {
             let (neededFruit, neededStock) = juice.recipe[list]
             let inStock = fruitStore.stock[neededFruit] ?? Int.zero
-            fruitStore.updateStock(of: neededFruit, to: inStock - neededStock)
+            fruitStore.changeStock(of: neededFruit, to: inStock - neededStock)
             print("\(juice) 나왔습니다.")
         }
     }

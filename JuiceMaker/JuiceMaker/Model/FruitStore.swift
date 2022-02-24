@@ -21,17 +21,14 @@ class FruitStore {
     func checkOneStock(recipe: (Fruit, Int)) -> Bool {
         let (neededFruit, neededStock) = recipe
         let inStock: Int = stock[neededFruit] ?? Int.zero
-        if inStock >= neededStock {
-            return true
-        } else {
-            return false
-        }
+        return inStock >= neededStock ? true : false
     }
     
-    func updateStock(of fruit: Fruit, to numberOfFruit: Int) {
-        stock[fruit] = numberOfFruit
+    func changeStock(of fruit: Fruit, to numberOfFruit: Int) {
+        guard var inStock: Int = stock[fruit] else { return }
+        inStock += numberOfFruit
+        stock[fruit] = inStock
     }
-    
 }
 
 
