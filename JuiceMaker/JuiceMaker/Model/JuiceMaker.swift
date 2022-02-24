@@ -8,9 +8,17 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore()
     
-    func make(fruitJuice: Juice) {
+    func make(fruitJuice: Juice) throws {
         let recipe = fruitJuice.recipe
+        
+        try checkEnoughStock(recipe: recipe)
         deleteStockFrom(recipe: recipe)
+    }
+    
+    func checkEnoughStock(recipe: [Fruit: Int]) throws {
+        for (fruit, amount) in recipe {
+            try fruitStore.checkStock(fruit: fruit, amount: amount)
+        }
     }
     
     func deleteStockFrom(recipe: [Fruit: Int]) {
