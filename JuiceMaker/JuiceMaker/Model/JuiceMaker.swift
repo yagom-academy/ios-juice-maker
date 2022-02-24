@@ -49,12 +49,13 @@ struct JuiceMaker {
     
     private func checkAllStock(of juice: Juice) -> Bool {
         let countOfIngredient = juice.recipe.count
+        var checkList: [Bool] = []
         for count in Int.zero..<countOfIngredient {
-            guard checkOneStock(of: juice, with: count) else {
-                return false
-            }
+            checkList.append(checkOneStock(of: juice, with: count))
         }
-        return true
+        return checkList.allSatisfy{ (check: Bool) -> Bool in
+            return check == true
+        }
     }
     
     private func checkOneStock(of juice: Juice, with listOfIngredient: Int) -> Bool {
