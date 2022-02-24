@@ -15,7 +15,6 @@ class FruitStore {
             fruits[fruitQuantity] = stockCount
         }
     }
-    // 함수명: 재고 - 주스에 필요한 과일 수, fruitCount: 주스에 필요한 과일 수
     func consumeFruit(recipe: [JuiceTypes: Int]) throws {
         for (fruit, fruitCount) in recipe {
             guard let stock = fruits[fruit], stock >= fruitCount else {
