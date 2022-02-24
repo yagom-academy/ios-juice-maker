@@ -10,10 +10,10 @@ import Foundation
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func makeJuice(fruitJuice: FruitsTypes) {
+    func makeJuice(fruitJuice: JuiceTypes) {
         let recipe = fruitJuice.recipe
         do  {
-            try fruitStore.countFruit(recipe: recipe)
+            try fruitStore.consumeFruit(recipe: recipe)
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다")
         } catch {

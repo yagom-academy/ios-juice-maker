@@ -8,15 +8,15 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var fruits: [FruitsTypes: Int] = [:]
+    var fruits: [JuiceTypes: Int] = [:]
     init() {
-        let initialStock = 10
-        for fruitQuantity in FruitsTypes.allCases {
-            fruits[fruitQuantity] = initialStock
+        let stockCount = 10
+        for fruitQuantity in JuiceTypes.allCases {
+            fruits[fruitQuantity] = stockCount
         }
     }
-    
-    func countFruit(recipe: [FruitsTypes: Int]) throws {
+    // 함수명: 재고 - 주스에 필요한 과일 수, fruitCount: 주스에 필요한 과일 수
+    func consumeFruit(recipe: [JuiceTypes: Int]) throws {
         for (fruit, fruitCount) in recipe {
             guard let stock = fruits[fruit], stock >= fruitCount else {
                 throw JuiceMakerError.outOfStock
