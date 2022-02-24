@@ -40,34 +40,31 @@ struct JuiceMaker {
     }
     
     func takeOrder(_ juice: Juice) {
-        if checkAllStock(of: juice) {
-            makeJuice(juice)
+        if ensureStock(of: juice) {
+            make(juice)
         } else {
             print("과일의 재고가 부족합니다.")
         }
     }
     
-    private func checkAllStock(of juice: Juice) -> Bool {
-        let countOfIngredient = juice.recipe.count
+    private func ensureStock(of juice: Juice) -> Bool {
         var checkList: [Bool] = []
-        for count in Int.zero..<countOfIngredient {
-            checkList.append(checkOneStock(of: juice, with: count))
+        for ingredient in juice.recipe {
+            checkList.append(fruitStore.isEnoughStock(of: ingredient))
         }
         return checkList.allSatisfy{ (check: Bool) -> Bool in
             return check == true
         }
     }
     
-    private func makeJuice(_ juice: Juice) {
-        for list in Int.zero..<juice.recipe.count {
-            let (neededFruit, neededStock) = juice.recipe[list]
-            let inStock = fruitStore.stock[neededFruit] ?? Int.zero
-            fruitStore.changeStock(of: neededFruit, to: inStock - neededStock)
+    private func make(_ juice: Juice) {
+        for ingredient in juice.recipe {
+            let (neededFruit, neededStock) = ingredient
+            fruitStore.changeStock(of: neededFruit, to: -neededStock)
             print("\(juice) 나왔습니다.")
         }
     }
-    
-    
+        
 }
 
 

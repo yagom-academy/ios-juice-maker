@@ -18,8 +18,8 @@ class FruitStore {
                      .mango: defaultStock]
     }
     
-    func checkOneStock(recipe: (Fruit, Int)) -> Bool {
-        let (neededFruit, neededStock) = recipe
+    func isEnoughStock(of fruit: (Fruit, Int)) -> Bool {
+        let (neededFruit, neededStock) = fruit
         let inStock: Int = stock[neededFruit] ?? Int.zero
         return inStock >= neededStock ? true : false
     }
