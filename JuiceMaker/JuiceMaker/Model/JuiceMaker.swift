@@ -1,7 +1,7 @@
 import Foundation
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func makeJuice(by order: Juice) {
         let juiceRecipe = order.recipe
