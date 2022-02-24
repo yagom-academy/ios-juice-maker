@@ -9,7 +9,7 @@ import Foundation
 
 class FruitStore {
     private let defaultStock: Int = 10
-    var stock: [Fruit: Int]
+    private(set) var stock: [Fruit: Int]
 
     init() {
         stock = [.strawberry: defaultStock,
@@ -22,4 +22,6 @@ class FruitStore {
     func updateStock(of fruit: Fruit, to numberOfFruit: Int) {
         stock[fruit] = numberOfFruit
     }
+    
+    
 }
