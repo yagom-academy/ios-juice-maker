@@ -25,8 +25,33 @@
 ## 키워드
 
 ## [STEP 1]
-### 고민한 점
-### 배운 개념
+### 고민한점
+- 각각 과일의 재고량을 저장하는 fruitInventory 프로퍼티가 존재한다. 그리고 Juice가 요구하는 과일, 수량이 recipe에서 [Fruit: Int]로 선언되어있다. (필요로 하는 과일 종류가 2가지인 경우가 있어서) Juice를 선택하면 선택된 Juice에 따라 recipe가 필요로하는 과일들과 수량을 제공하고 자동으로 fruitInventory을 차감시키려고 했다. 이 때 어떻게 한 메서드만을 이용하여 선택된 다른 Juice마다 fruitInventory에 변화를 줄지에 대한 고민을 정말 오랜시간 했다.
+- Dictionary타입의 타입 프로퍼티를 선언했는데, 이때 타입 프로퍼티의 Initialization에 대한 고민
+- JuiceMaker 구조체의 makeJuice() 메서드의 for문 내부에서 value를 사용하지 않는데도 인수를 (key, value) 튜플로 받는 이유가 무엇일까?
+```swift
+    func makeJuice(by recipe: [Fruit: Int]) throws {
+        for (fruit, _ ) in FruitStore.fruitInventory {
+            guard let fruitStock = FruitStore.fruitInventory[fruit] else {
+                throw ErrorHandling.wrongFormat
+            }
+            guard let requiredQuantity = recipe[fruit] else {
+                continue
+            }
+            guard fruitStock >= requiredQuantity else { throw ErrorHandling.outOfStock }
+            FruitStore.fruitInventory[fruit] = fruitStock - requiredQuantity
+        }
+    }
+```
+- 에러 핸들링하는 메서드의 경우 네이밍을 true/false를 나타내는 bool타입으로 지어도 될지 궁금하다.
+- 에러 핸들링을 위한 enum 타입의 이름을 ErrorHandling으로 지었는데, 너무 범용적으로 사용되는 이름이라는 생각을 했다.
+- JuiceMaker가 struct고 FruitStore가 class인 이유에 대한 고민 (+ 어느 때에 struct와 class를 구분해서 사용하는 것일까?)
+
+### 배운개념
+- MVC
+- Result 타입
+- LocalizedError 프로토콜
+
 ---
 
 ## 📜 팀 그라운드 룰
