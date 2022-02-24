@@ -21,8 +21,9 @@ class FruitStore {
         fruits.updateValue(currentStock + amount, forKey: fruit)
     }
     
-    func decreaseStock(fruit: FruitType, amount: Int) {
+    func decreaseStock(fruit: FruitType, amount: Int) throws {
         guard let currentStock = fruits[fruit] else { return }
+        guard currentStock >= amount else { throw ErrorType.notEnoughStock }
         fruits.updateValue(currentStock - amount, forKey: fruit)
     }
 }

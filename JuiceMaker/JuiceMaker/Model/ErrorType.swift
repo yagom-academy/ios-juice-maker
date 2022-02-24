@@ -1,5 +1,5 @@
 import Foundation
 
-enum JuiceError: Error {
+enum ErrorType: Error {
     case notEnoughStock
 }

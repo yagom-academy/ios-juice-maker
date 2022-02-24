@@ -29,7 +29,7 @@ struct JuiceMaker {
     func makeJuice(juice: JuiceType) throws {
         let recipe: JuiceRecipe = JuiceType.recipe(juice)()
         if !hasEnoughFruitStock(recipe: recipe) {
-            throw JuiceError.notEnoughStock
+            throw ErrorType.notEnoughStock
         }
         consumeFruitStock(recipe: recipe)
     }
@@ -50,7 +50,12 @@ struct JuiceMaker {
         for ingredient in recipe {
             let fruit = ingredient.key
             let amount = ingredient.value
-            fruitStore.decreaseStock(fruit: fruit, amount: amount)
+            
+            do {
+                try fruitStore.decreaseStock(fruit: fruit, amount: amount)
+            } catch {
+                print("재고 없음")
+            }
         }
     }
 }
