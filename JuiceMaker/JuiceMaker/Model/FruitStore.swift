@@ -24,6 +24,13 @@ class FruitStore {
         }
     }
     
+    func haveEnough(fruit: Fruit, amount: Int) -> Bool {
+        guard let stock = fruits[fruit], stock >= amount else {
+            return false
+        }
+        return true
+    }
+    
     func changeFruitStock(fruit: Fruit, amount: Int) {
         guard let stock = fruits[fruit] else {
             return
