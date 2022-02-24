@@ -23,5 +23,4 @@ class FruitStore {
         stock[fruit] = numberOfFruit
     }
     
-    
 }

@@ -39,7 +39,7 @@ struct JuiceMaker {
         }
     }
     
-    func orderJuice(_ juice: Juice) {
+    func takeOrder(_ juice: Juice) {
         if checkAllStock(of: juice) {
             makeJuice(juice)
         } else {
@@ -48,9 +48,9 @@ struct JuiceMaker {
     }
     
     private func checkAllStock(of juice: Juice) -> Bool {
-        let listOfIngredient = juice.recipe.count
-        for list in Int.zero..<listOfIngredient {
-            guard checkOneStock(of: juice, with: list) else {
+        let countOfIngredient = juice.recipe.count
+        for count in Int.zero..<countOfIngredient {
+            guard checkOneStock(of: juice, with: count) else {
                 return false
             }
         }
