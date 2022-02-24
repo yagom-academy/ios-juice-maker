@@ -12,7 +12,7 @@ enum Fruit: String, CaseIterable {
     case kiwi = "키위"
     case mango = "망고"
     
-    static func initializeDefaultFruits(amount: Int = Constant.defaultFruitAmount) -> [Fruit : Int] {
+    static func configureDefaultFruits(amount: Int = Constant.defaultFruitAmount) -> [Fruit : Int] {
         var fruits: [Fruit : Int] = [:]
         
         allCases.forEach { fruit in

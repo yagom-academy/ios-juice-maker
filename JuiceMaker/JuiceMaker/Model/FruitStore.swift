@@ -4,40 +4,34 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-enum JuiceMenu {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
-}
-
 final class FruitStore {
-    private var stocks: [Fruit: Int] = [:]
+    private var stocks: [Fruit: Int]
 
-    init() {
-        self.stocks = Fruit.initializeDefaultFruits()
+    init(stocks: [Fruit : Int]) {
+        self.stocks = stocks
     }
     
     func consume(fruit: Fruit, amount: Int) throws {
-        try hasEnoughStock(of: fruit, amount: amount)
-
-        let oldAmount = try hasStock(of: fruit)
+        let oldAmount = try checkStock(of: fruit)
         let newAmount = oldAmount - amount
         stocks.updateValue(newAmount, forKey: fruit)
     }
     
-    private func hasEnoughStock(of fruit: Fruit, amount: Int) throws {
-        let remainingAmount = try hasStock(of: fruit)
+    func checkEnoughStocks(recipe: Constant.CustomType.Recipe) throws {
+        for (fruit, requiredAmount) in recipe {
+            try checkEnoughStock(of: fruit, amount: requiredAmount)
+        }
+    }
+    
+    private func checkEnoughStock(of fruit: Fruit, amount: Int) throws {
+        let remainingAmount = try checkStock(of: fruit)
         
         guard remainingAmount >= amount else {
             throw JuiceMakerError.notEnoughFruitAmount(fruit: fruit.rawValue)
         }
     }
     
-    private func hasStock(of fruit: Fruit) throws -> Int {
+    private func checkStock(of fruit: Fruit) throws -> Int {
         guard let remainingAmount = stocks[fruit] else {
             throw JuiceMakerError.notFoundFruit
         }

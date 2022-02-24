@@ -2,16 +2,26 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 struct JuiceMaker {
+    enum Menu {
+        case strawberry
+        case banana
+        case kiwi
+        case pineapple
+        case strawberryBanana
+        case mango
+        case mangoKiwi
+    }
+    
     private let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
     }
     
-    func takeOrder(of juice: JuiceMenu) {
+    func takeOrder(of juice: Menu) {
         do {
             try produce(juice: juice)
         } catch (let error) {
@@ -19,30 +29,32 @@ struct JuiceMaker {
         }
     }
     
-    private func produce(juice: JuiceMenu) throws {
+    private func produce(juice: Menu) throws {
         let recipe = findRecipe(of: juice)
 
+        try fruitStore.checkEnoughStocks(recipe: recipe)
+        
         for (fruit, requiredAmount) in recipe {
             try fruitStore.consume(fruit: fruit, amount: requiredAmount)
         }
     }
     
-    private func findRecipe(of juice: JuiceMenu) -> Constant.Recipe {
+    private func findRecipe(of juice: Menu) -> Constant.CustomType.Recipe {
         switch juice {
         case .strawberry:
-            return Constant.strawberryJuiceRecipe
+            return Constant.Recipes.strawberryJuice
         case .banana:
-            return Constant.bananaJuiceRecipe
+            return Constant.Recipes.bananaJuice
         case .kiwi:
-            return Constant.kiwiJuiceRecipe
+            return Constant.Recipes.kiwiJuice
         case .pineapple:
-            return Constant.pineappleJuiceRecipe
+            return Constant.Recipes.pineappleJuice
         case .strawberryBanana:
-            return Constant.strawberryBananaJuiceRecipe
+            return Constant.Recipes.strawberryBananaJuice
         case .mango:
-            return Constant.mangoJuiceRecipe
+            return Constant.Recipes.mangoJuice
         case .mangoKiwi:
-            return Constant.mangoKiwiJuiceRecipe
+            return Constant.Recipes.mangoKiwiJuice
         }
     }
 }
