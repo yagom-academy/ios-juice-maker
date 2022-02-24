@@ -6,7 +6,7 @@
 
 // 과일 저장소 타입
 class FruitStore {
-    var fruits = [Fruit: Int]()
+    private var fruits = [Fruit: Int]()
     
     init() {
         let initialStock = 10
