@@ -10,15 +10,7 @@ struct JuiceMaker {
     
     func makeJuice(fruitJuice: Juice) {
         let recipe = fruitJuice.recipe
-        
-        do {
-            try fruitStore.canMakeJuice(recipe: recipe)
-            deleteStockFromRecipeRequired(recipe: recipe)
-        } catch JuiceMakerError.outOfStock {
-            print("재고가 없습니다")
-        } catch {
-            print("알 수 없는 오류입니다")
-        }
+        deleteStockFromRecipeRequired(recipe: recipe)
     }
     
     func deleteStockFromRecipeRequired(recipe: [Fruit: Int]) {

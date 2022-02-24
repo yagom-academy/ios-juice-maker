@@ -16,14 +16,6 @@ class FruitStore {
         }
     }
     
-    func canMakeJuice(recipe: [Fruit: Int]) throws {
-        for (fruit, amount) in recipe {
-            guard let stock = fruits[fruit], stock >= amount else {
-                throw JuiceMakerError.outOfStock
-            }
-        }
-    }
-    
     func haveEnough(fruit: Fruit, amount: Int) -> Bool {
         guard let stock = fruits[fruit], stock >= amount else {
             return false
