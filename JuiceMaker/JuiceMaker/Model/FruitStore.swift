@@ -1,23 +1,16 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by Vayne, 우롱차. 
 //  Copyright © yagom academy. All rights reserved.
 //
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore {
-    private let name: String
     private var fruitStock: Dictionary<Fruit, Int>
     
-    init(name: String, fruitStock: Dictionary<Fruit, Int>) {
-        self.name = name
+    init(fruitStock: Dictionary<Fruit, Int>) {
         self.fruitStock = fruitStock
-    }
-    
-    func getName() -> String {
-        return self.name
     }
     
     func checkStock(fruit: Fruit, amount: Int) throws {

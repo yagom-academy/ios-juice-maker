@@ -1,12 +1,11 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by Vayne, 우롱차.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     private var recipe: Dictionary<Juice,Dictionary<Fruit,Int>> = Juice.defaultJuiceRecipe
     private let fruitStore: FruitStore
@@ -32,18 +31,8 @@ struct JuiceMaker {
                 try self.fruitStore.consumeStock(fruit: fruit, amount: amount)
             }
             return juice
-        } catch JuiceMakingError.notEnoughStock {
-            print(ErrorMessage.notEnoughStock)
-            return nil
-        } catch JuiceMakingError.notRegisteredFruit {
-            print(ErrorMessage.notRegisteredFruit)
-            return nil
-        } catch JuiceMakingError.noRecipe {
-            print(ErrorMessage.noRecipe)
-            return nil
-        }
-        catch {
-            print(ErrorMessage.unkown)
+        } catch {
+            JuiceMakingError.printErrorMessage(error: error as? JuiceMakingError ?? JuiceMakingError.unkownError)
             return nil
         }
     }
