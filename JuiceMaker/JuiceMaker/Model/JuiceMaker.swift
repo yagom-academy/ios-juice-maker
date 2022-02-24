@@ -21,7 +21,7 @@ struct JuiceMaker {
         }
     }
     
-    func deleteStockFrom(recipe: [Fruit: Int]) {
+    private func deleteStockFrom(recipe: [Fruit: Int]) {
         for (fruit, amount) in recipe {
             fruitStore.changeStock(fruit: fruit, amount: amount)
         }
