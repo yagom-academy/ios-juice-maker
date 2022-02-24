@@ -7,19 +7,19 @@
 import Foundation
 
 class FruitStore {
-    var fruitInventory: [Fruit: Int] = [:]
+    var inventory: [Fruit: Int] = [:]
     
     init() {
         let defaultQuantity = 10
-        Fruit.allCases.forEach{ fruitInventory[$0] = defaultQuantity }
+        Fruit.allCases.forEach{ inventory[$0] = defaultQuantity }
     }
     
-    func changeFruitStock(by inputFruitQuantity: [Fruit: Int], buttonType: ButtonType) {
+    func updateStock(by inputQuantity: [Fruit: Int], button: Button) {
         do {
-            if buttonType == .add {
-                try addFruitStock(by: inputFruitQuantity)
+            if button == .plus {
+                try increaseStock(by: inputQuantity)
             } else {
-                try reduceFruitStock(by: inputFruitQuantity)
+                try decreaseStock(by: inputQuantity)
             }
         } catch let error as OrderError {
             print(error.description)
@@ -28,24 +28,24 @@ class FruitStore {
         }
     }
     
-    func addFruitStock(by inputFruitQuantity: [Fruit: Int]) throws {
-        for (fruit, quantity) in inputFruitQuantity {
-            guard let fruitStock = fruitInventory[fruit] else {
-                throw OrderError.wrongFormat
+    func increaseStock(by inputQuantity: [Fruit: Int]) throws {
+        for (fruit, quantity) in inputQuantity {
+            guard let fruitStock = inventory[fruit] else {
+                throw OrderError.unknownError
             }
-            fruitInventory[fruit] = fruitStock + quantity
+            inventory[fruit] = fruitStock + quantity
         }
     }
     
-    func reduceFruitStock(by inputFruitQuantity: [Fruit: Int]) throws {
-        for (fruit, quantity) in inputFruitQuantity {
-            guard let fruitStock = fruitInventory[fruit] else {
-                throw OrderError.wrongFormat
+    func decreaseStock(by inputQuantity: [Fruit: Int]) throws {
+        for (fruit, quantity) in inputQuantity {
+            guard let fruitStock = inventory[fruit] else {
+                throw OrderError.unknownError
             }
             guard fruitStock >= quantity else {
                 throw OrderError.outOfStock
             }
-            fruitInventory[fruit] = fruitStock - quantity
+            inventory[fruit] = fruitStock - quantity
         }
     }
 }

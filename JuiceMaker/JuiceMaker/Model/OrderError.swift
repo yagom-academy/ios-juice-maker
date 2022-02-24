@@ -9,7 +9,7 @@ import Foundation
 
 enum OrderError: Error {
     case outOfStock
-    case wrongFormat
+    case unknownError
 }
 
 extension OrderError: LocalizedError {
@@ -17,8 +17,8 @@ extension OrderError: LocalizedError {
         switch self {
         case .outOfStock:
             return "재고가 부족합니다."
-        case .wrongFormat:
-            return "잘못된 입력입니다."
+        case .unknownError:
+            return "알 수 없는 에러입니다. 다시 시도하세요."
         }
     }
 }

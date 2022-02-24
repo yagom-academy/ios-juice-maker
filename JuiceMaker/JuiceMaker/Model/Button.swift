@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ButtonType {
-    case add
-    case reduce
+enum Button {
+    case plus
+    case minus
 }
