@@ -15,7 +15,7 @@ struct JuiceMaker {
         deleteStockFrom(recipe: recipe)
     }
     
-    func checkEnoughStock(recipe: [Fruit: Int]) throws {
+    private func checkEnoughStock(recipe: [Fruit: Int]) throws {
         for (fruit, amount) in recipe {
             try fruitStore.checkStock(fruit: fruit, amount: amount)
         }
