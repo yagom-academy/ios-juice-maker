@@ -28,34 +28,26 @@ struct JuiceMaker {
     
     func makeJuice(juice: JuiceType) throws {
         let recipe: JuiceRecipe = JuiceType.recipe(juice)()
-        if !hasEnoughFruitStock(recipe: recipe) {
-            throw ErrorType.notEnoughStock
-        }
-        consumeFruitStock(recipe: recipe)
+        let amounts = try requiredNumberOfFruits(recipe: recipe)
+        try consumeFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: amounts)
     }
     
-    private func hasEnoughFruitStock(recipe: JuiceRecipe) -> Bool {
-        for ingredient in recipe {
-            let fruit = ingredient.key
-            let amount = ingredient.value
-            guard let currentStock = fruitStore.fruits[fruit] else { return false }
-            guard currentStock >= amount else {
-                return false
+    private func requiredNumberOfFruits(recipe: JuiceRecipe) throws -> [Int] {
+        var amountFromRecipe:[Int] = []
+        
+        try recipe.forEach({
+            guard let currentStock = fruitStore.fruits[$0.key] else { return }
+            guard currentStock >= $0.value else {
+                throw ErrorType.notEnoughStock
             }
-        }
-        return true
+            amountFromRecipe.append($0.value)
+        })
+        return amountFromRecipe
     }
     
-    private func consumeFruitStock(recipe: JuiceRecipe) {
-        for ingredient in recipe {
-            let fruit = ingredient.key
-            let amount = ingredient.value
-            
-            do {
-                try fruitStore.decreaseStock(fruit: fruit, amount: amount)
-            } catch {
-                print("재고 없음")
-            }
+    private func consumeFruitStock(fruitTypes: [FruitType], amounts: [Int]) throws {
+        for index in 0..<amounts.count {
+            try fruitStore.decreaseStock(fruit: fruitTypes[index], amount: amounts[index])
         }
     }
 }
