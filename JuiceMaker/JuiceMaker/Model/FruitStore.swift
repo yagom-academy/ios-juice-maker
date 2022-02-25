@@ -16,7 +16,7 @@ final class FruitStore {
                 let remainingAmount = currentAmount - requiredAmount
                 inventory[fruit] = remainingAmount
             } else {
-                throw JuiceMakeError.outOfStock
+                throw JuiceMakingError.outOfStock
             }
         }
     }
