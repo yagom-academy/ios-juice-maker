@@ -12,7 +12,7 @@ class FruitStore {
     }
     
     func minusStock(menu: Menu) throws {
-        for (ingredent, amount) in menu.recipie {
+        for (ingredent, amount) in menu.recipe {
             guard let stock = fruitList[ingredent] else {
                 throw FruitStoreError.invalidSelection
             }

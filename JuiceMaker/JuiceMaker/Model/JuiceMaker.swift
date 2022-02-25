@@ -12,11 +12,13 @@ struct JuiceMaker {
             print("재고 없음!")
         } catch FruitStoreError.invalidSelection {
             print("선택된 과일이 없습니다.")
-        } catch {}
+        } catch {
+            print("알 수 없는 오류 발생.")
+        }
     }
     
     func checkStock(menu: Menu) throws {
-        for (ingredent, amount) in menu.recipie {
+        for (ingredent, amount) in menu.recipe {
             guard let stock = store.fruitList[ingredent] else {
                 throw FruitStoreError.invalidSelection
             }
@@ -32,7 +34,9 @@ struct JuiceMaker {
             try store.calculateStock(fruit: fruit, amount: amount, calculationType: calculationType)
         } catch FruitStoreError.outOfStock {
             print("현재 재고가 \(amount)개 미만입니다.")
-        } catch {}
+        } catch {
+            print("알 수 없는 오류 발생.")
+        }
     }
 }
 

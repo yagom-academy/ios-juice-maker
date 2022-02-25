@@ -5,17 +5,17 @@
 //  Created by Doogie & Malrang.
 //
 enum Menu {
-    case strawBerryJuice
+    case strawberryJuice
     case bananaJuice
     case kiwiJuice
     case pineappleJuice
     case ddalBaJuice
     case mangoJuice
     case mangKiJuice
-    var recipie: [Fruits : Int] {
+    var recipe: [Fruits : Int] {
         get {
             switch self {
-            case .strawBerryJuice:
+            case .strawberryJuice:
                 return [.strawberry : 16]
             case .bananaJuice:
                 return [.banana : 2]
