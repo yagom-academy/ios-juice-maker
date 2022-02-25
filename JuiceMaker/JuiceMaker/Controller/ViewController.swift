@@ -25,16 +25,41 @@ class ViewController: UIViewController {
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
         takeOrder(sender: sender)
+        configureLabels()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureLabel(label: strawberryAmountLabel, fruit: .strawberry)
-        configureLabel(label: bananaAmountLabel, fruit: .banana)
-        configureLabel(label: pineappleAmountLabel, fruit: .pineapple)
-        configureLabel(label: kiwiAmountLabel, fruit: .kiwi)
-        configureLabel(label: mangoAmountLabel, fruit: .mango)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureLabels()
+    }
+    
+    private func configureLabels() {
+        let labels: [UILabel] = [strawberryAmountLabel, bananaAmountLabel, pineappleAmountLabel, kiwiAmountLabel, mangoAmountLabel]
+        
+        for label in labels {
+            matchLabels(label: label)
+        }
+    }
+    
+    private func matchLabels(label: UILabel) {
+        switch label {
+        case strawberryAmountLabel:
+            configureLabel(label: label, fruit: .strawberry)
+        case bananaAmountLabel:
+            configureLabel(label: label, fruit: .banana)
+        case pineappleAmountLabel:
+            configureLabel(label: label, fruit: .pineapple)
+        case kiwiAmountLabel:
+            configureLabel(label: label, fruit: .kiwi)
+        case mangoAmountLabel:
+            configureLabel(label: label, fruit: .mango)
+        default:
+            return
+        }
     }
     
     private func configureLabel(label: UILabel, fruit: Fruit) {
