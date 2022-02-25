@@ -22,7 +22,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
-        
+    
+    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+        takeOrder(sender: sender)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,11 +37,32 @@ class ViewController: UIViewController {
         configureLabel(label: mangoAmountLabel, fruit: .mango)
     }
     
-    func configureLabel(label: UILabel, fruit: Fruit) {
+    private func configureLabel(label: UILabel, fruit: Fruit) {
         let defaultStocks = juiceMaker.fruitStore.stocks
         
         if let amount = defaultStocks[fruit] {
             label.text = String(amount)
+        }
+    }
+    
+    private func takeOrder(sender: UIButton) {
+        switch sender {
+        case strawberryBananaJuiceOrderButton:
+            juiceMaker.takeOrder(of: .strawberryBanana)
+        case mangoKiwiJuiceOrderButton:
+            juiceMaker.takeOrder(of: .mangoKiwi)
+        case strawberryJucieOrderButton:
+            juiceMaker.takeOrder(of: .strawberry)
+        case bananaJuiceOrderButton:
+            juiceMaker.takeOrder(of: .banana)
+        case pineappleJuiceOrderButton:
+            juiceMaker.takeOrder(of: .pineapple)
+        case kiwiJuiceOrderButton:
+            juiceMaker.takeOrder(of: .kiwi)
+        case mangoJuiceOrderButton:
+            juiceMaker.takeOrder(of: .mango)
+        default:
+            print()
         }
     }
 }
