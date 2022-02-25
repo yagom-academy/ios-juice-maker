@@ -99,3 +99,20 @@ print("Invalid Selection.")
 `buyFavoriteSnack` 에서 던져진 error 가 `VendingMachineError.invalidSelection` 일 경우 `print("Invalid Selection.")`를 실행 하라는 뜻으로 해석 할수 있다.
 
 ## PR 후 개선사항
+- 기존 재료 비교 함수
+```swift
+func checkStock(menu: Menu) throws {
+        for (ingredent, amount) in menu.recipie {
+            guard let stock = fruitList[ingredent] else {
+                throw FruitStoreError.invalidSelection
+            }
+            guard amount <= stock else {
+                throw FruitStoreError.outOfStock
+            }
+            fruitList[ingredent] = stock - amount
+        }
+    }
+```
+위 함수에서 재료가 두개인 쥬스의 경우 첫 번째 재료는 재고가 있어 차감이 진행되었는데 두 번째 재료는 재료가 없어 음료를 만들지 못했음에도 첫 번째 재료는 차감된 그대로 방치되는 상황 발생.
+
+.... 개선중
