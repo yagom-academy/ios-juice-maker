@@ -3,12 +3,7 @@
 //  Created by Doogie & Malrang. 
 //  Copyright © yagom academy. All rights reserved.
 //
-
-import Foundation
-
-// 과일 저장소 타입
 class FruitStore {
-    
     var fruitList = [Fruits: Int]()
     
     init() {
@@ -36,7 +31,7 @@ class FruitStore {
             fruitList[fruit] = stock + amount
         } else {
             guard stock >= amount else {
-                throw FruitStoreError.outOfRange
+                throw FruitStoreError.outOfStock
             }
             fruitList[fruit] = stock - amount
         }

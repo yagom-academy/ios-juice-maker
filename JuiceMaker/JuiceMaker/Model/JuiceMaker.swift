@@ -3,10 +3,6 @@
 //  Created by Doogie & Malrang. 
 //  Copyright © yagom academy. All rights reserved.
 // 
-
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
     let store = FruitStore()
     
@@ -23,7 +19,7 @@ struct JuiceMaker {
     func manageStock(fruit: Fruits, amount: Int, calculationType: CalculationType) {
         do {
             try store.calculateStock(fruit: fruit, amount: amount, calculationType: calculationType)
-        } catch FruitStoreError.outOfRange {
+        } catch FruitStoreError.outOfStock {
             print("현재 재고가 \(amount)개 미만입니다.")
         } catch {}
     }

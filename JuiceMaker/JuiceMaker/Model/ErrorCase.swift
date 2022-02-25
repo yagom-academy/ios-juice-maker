@@ -7,5 +7,4 @@
 enum FruitStoreError: Error {
     case invalidSelection
     case outOfStock
-    case outOfRange
 }
