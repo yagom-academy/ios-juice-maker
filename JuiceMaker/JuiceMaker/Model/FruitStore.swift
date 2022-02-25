@@ -21,18 +21,22 @@ final class FruitStore {
     }
   }
   
-  func checkStock(of fruit: Fruit, in amount: Int) -> Result<Int, MakeJuiceError> {
+  func checkStock(
+    of fruit: Fruit,
+    in amount: Int,
+    by operation: (Int, Int) -> Int
+  ) -> Result<Int, MakeJuiceError> {
     guard let item = self.stock[fruit] else {
       return .failure(.notExistFruit)
     }
-    guard item + amount >= 0 else {
+    guard operation(item, amount) >= 0 else {
       return .failure(.outOfStock)
     }
     return .success(item)
   }
   
   func changeStock(of fruit: Fruit, in amount: Int, by operation: (Int, Int) -> Int) {
-    guard let item = try? self.checkStock(of: fruit, in: amount).get() else {
+    guard let item = self.stock[fruit] else {
       return
     }
     self.stock[fruit] = operation(item, amount)
