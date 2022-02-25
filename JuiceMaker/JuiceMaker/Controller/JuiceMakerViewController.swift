@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {   
+class JuiceMakerViewController: UIViewController {   
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryAmountLabel: UILabel!
@@ -25,11 +25,13 @@ class ViewController: UIViewController {
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
         let order = takeOrder(sender: sender)
+        
         do {
             try juiceMaker.produce(juice: order)
             configureLabels()
-        } catch (let error) {
-            JuiceMakerError.printOutput(of: error)
+            alert(menu: order)
+        } catch {
+            alertError()
         }
     }
     
@@ -94,6 +96,30 @@ class ViewController: UIViewController {
         default:
             return .strawberry
         }
+    }
+    
+    private func alert(menu: JuiceMaker.Menu) {
+        let message = menu.rawValue + "쥬스 나왔습니다! 맛있게 드세요!"
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(okButton)
+        self.present(alert, animated: false)
+    }
+    
+    private func alertError() {
+        let message = "재료가 모자라요. 재고를 수정할까요?"
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "확인", style: .default) {_ in
+            guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
+                return
+            }
+            nextVC.modalTransitionStyle = .coverVertical
+            self.present(nextVC, animated: true)
+        }
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(okButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: false)
     }
 }
 
