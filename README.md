@@ -114,5 +114,22 @@ func checkStock(menu: Menu) throws {
     }
 ```
 위 함수에서 재료가 두개인 쥬스의 경우 첫 번째 재료는 재고가 있어 차감이 진행되었는데 두 번째 재료는 재료가 없어 음료를 만들지 못했음에도 첫 번째 재료는 차감된 그대로 방치되는 상황 발생.
-
-.... 개선중
+- 변경후 함수
+```swift
+    func checkStock(menu: Menu) throws {
+        for (ingredent, amount) in menu.recipe {
+            guard let stock = store.fruitList[ingredent] else {
+                throw FruitStoreError.invalidSelection
+            }
+            guard amount <= stock else {
+                throw FruitStoreError.outOfStock
+            }
+        }
+        
+        for (ingredent, amount) in menu.recipe {
+            try store.calculateStock(fruit: ingredent, amount: amount, calculationType: .minus)
+        }
+    }
+```
+위의 함수에서 반복문으로 Menu 에 들어가는 재료가 모자라진 않는지 확인한후
+두번째 반복문에서 재고를 관리하는 calculateStock() 메서드를 재사용 하여 재고를 차감하도록 수정함
