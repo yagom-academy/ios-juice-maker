@@ -15,11 +15,7 @@ struct JuiceMaker {
         case mangoKiwi
     }
     
-    private let fruitStore: FruitStore
-    
-    init(fruitStore: FruitStore) {
-        self.fruitStore = fruitStore
-    }
+    let fruitStore: FruitStore = FruitStore()
     
     func takeOrder(of juice: Menu) {
         do {
