@@ -20,7 +20,7 @@
 [![xcode](https://img.shields.io/badge/Xcode-13.0-blue)]()
 
 ## UML
-![Class Diagram](https://user-images.githubusercontent.com/88810018/155158003-471cfd4a-393d-4024-a3aa-aa66c5e77d1f.png)
+<img width="3328" alt="UML" src="https://user-images.githubusercontent.com/88810018/155649179-341204e7-b6aa-410a-8fbc-bc6fabebf76a.png">
 
 ## 키워드
 
