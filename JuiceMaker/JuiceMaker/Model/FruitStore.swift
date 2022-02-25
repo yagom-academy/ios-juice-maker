@@ -4,20 +4,17 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 class FruitStore {
-    private var fruitList = [Fruits: Int]()
+    var fruitList = [Fruits: Int]()
     
     init() {
         let defaultStock = 10
         Fruits.allCases.forEach{ self.fruitList[$0] = defaultStock }
     }
     
-    func checkStock(menu: Menu) throws {
+    func minusStock(menu: Menu) throws {
         for (ingredent, amount) in menu.recipie {
             guard let stock = fruitList[ingredent] else {
                 throw FruitStoreError.invalidSelection
-            }
-            guard amount <= stock else {
-                throw FruitStoreError.outOfStock
             }
             fruitList[ingredent] = stock - amount
         }

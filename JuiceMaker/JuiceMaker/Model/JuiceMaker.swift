@@ -5,15 +5,26 @@
 // 
 struct JuiceMaker {
     let store = FruitStore()
-    
     func makeJuice(menu: Menu) {
         do {
-            try store.checkStock(menu: menu)
+            try checkStock(menu: menu)
         } catch FruitStoreError.outOfStock {
             print("재고 없음!")
         } catch FruitStoreError.invalidSelection {
             print("선택된 과일이 없습니다.")
         } catch {}
+    }
+    
+    func checkStock(menu: Menu) throws {
+        for (ingredent, amount) in menu.recipie {
+            guard let stock = store.fruitList[ingredent] else {
+                throw FruitStoreError.invalidSelection
+            }
+            guard amount <= stock else {
+                throw FruitStoreError.outOfStock
+            }
+        }
+        try store.minusStock(menu: menu)
     }
     
     func manageStock(fruit: Fruits, amount: Int, calculationType: CalculationType) {
@@ -24,3 +35,4 @@ struct JuiceMaker {
         } catch {}
     }
 }
+
