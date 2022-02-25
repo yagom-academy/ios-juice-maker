@@ -5,6 +5,7 @@
 // 
 struct JuiceMaker {
     let store = FruitStore()
+    
     func makeJuice(menu: Menu) {
         do {
             try checkStock(menu: menu)
@@ -26,7 +27,10 @@ struct JuiceMaker {
                 throw FruitStoreError.outOfStock
             }
         }
-        try store.minusStock(menu: menu)
+        
+        for (ingredent, amount) in menu.recipe {
+            try store.calculateStock(fruit: ingredent, amount: amount, calculationType: .minus)
+        }
     }
     
     func manageStock(fruit: Fruits, amount: Int, calculationType: CalculationType) {

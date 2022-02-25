@@ -11,15 +11,6 @@ class FruitStore {
         Fruits.allCases.forEach{ self.fruitList[$0] = defaultStock }
     }
     
-    func minusStock(menu: Menu) throws {
-        for (ingredent, amount) in menu.recipe {
-            guard let stock = fruitList[ingredent] else {
-                throw FruitStoreError.invalidSelection
-            }
-            fruitList[ingredent] = stock - amount
-        }
-    }
-    
     func calculateStock(fruit: Fruits, amount: Int, calculationType: CalculationType) throws {
         guard let stock = fruitList[fruit] else {
             throw FruitStoreError.invalidSelection
