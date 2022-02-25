@@ -26,6 +26,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }    
+        configureLabel(label: strawberryAmountLabel, fruit: .strawberry)
+        configureLabel(label: bananaAmountLabel, fruit: .banana)
+        configureLabel(label: pineappleAmountLabel, fruit: .pineapple)
+        configureLabel(label: kiwiAmountLabel, fruit: .kiwi)
+        configureLabel(label: mangoAmountLabel, fruit: .mango)
+    }
+    
+    func configureLabel(label: UILabel, fruit: Fruit) {
+        let defaultStocks = juiceMaker.fruitStore.stocks
+        
+        if let amount = defaultStocks[fruit] {
+            label.text = String(amount)
+        }
+    }
 }
 
