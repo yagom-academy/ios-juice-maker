@@ -24,8 +24,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        takeOrder(sender: sender)
-        configureLabels()
+        let order = takeOrder(sender: sender)
+        do {
+            try juiceMaker.produce(juice: order)
+            configureLabels()
+        } catch (let error) {
+            JuiceMakerError.printOutput(of: error)
+        }
     }
     
     override func viewDidLoad() {
@@ -70,24 +75,24 @@ class ViewController: UIViewController {
         }
     }
     
-    private func takeOrder(sender: UIButton) {
+    private func takeOrder(sender: UIButton) -> JuiceMaker.Menu {
         switch sender {
         case strawberryBananaJuiceOrderButton:
-            juiceMaker.takeOrder(of: .strawberryBanana)
+            return .strawberryBanana
         case mangoKiwiJuiceOrderButton:
-            juiceMaker.takeOrder(of: .mangoKiwi)
+            return .mangoKiwi
         case strawberryJucieOrderButton:
-            juiceMaker.takeOrder(of: .strawberry)
+            return .strawberry
         case bananaJuiceOrderButton:
-            juiceMaker.takeOrder(of: .banana)
+            return .banana
         case pineappleJuiceOrderButton:
-            juiceMaker.takeOrder(of: .pineapple)
+            return .pineapple
         case kiwiJuiceOrderButton:
-            juiceMaker.takeOrder(of: .kiwi)
+            return .kiwi
         case mangoJuiceOrderButton:
-            juiceMaker.takeOrder(of: .mango)
+            return .mango
         default:
-            print()
+            return .strawberry
         }
     }
 }

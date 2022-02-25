@@ -17,15 +17,7 @@ struct JuiceMaker {
     
     let fruitStore: FruitStore = FruitStore()
     
-    func takeOrder(of juice: Menu) {
-        do {
-            try produce(juice: juice)
-        } catch (let error) {
-            JuiceMakerError.printOutput(of: error)
-        }
-    }
-    
-    private func produce(juice: Menu) throws {
+    func produce(juice: Menu) throws {
         let recipe = findRecipe(of: juice)
 
         try fruitStore.checkEnoughStocks(recipe: recipe)
