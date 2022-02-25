@@ -4,7 +4,7 @@
 //
 //  Created by Doogie & Malrang.
 //
-enum Juice {
+enum Menu {
     case strawBerryJuice
     case bananaJuice
     case kiwiJuice

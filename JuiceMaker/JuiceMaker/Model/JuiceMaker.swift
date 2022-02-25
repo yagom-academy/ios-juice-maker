@@ -6,9 +6,9 @@
 struct JuiceMaker {
     let store = FruitStore()
     
-    func makeJuice(juice: Juice) {
+    func makeJuice(menu: Menu) {
         do {
-            try store.checkStock(juice: juice)
+            try store.checkStock(menu: menu)
         } catch FruitStoreError.outOfStock {
             print("재고 없음!")
         } catch FruitStoreError.invalidSelection {
