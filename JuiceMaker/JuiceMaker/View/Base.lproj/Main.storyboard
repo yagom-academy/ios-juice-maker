@@ -215,8 +215,26 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <segue destination="WwV-Td-3Bn" kind="modal" modalPresentationStyle="pageSheet" modalTransitionStyle="coverVertical" id="8ih-V2-HTa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaAmountLabel" destination="gvk-pA-Lw5" id="l3k-7q-u08"/>
+                        <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="G0Z-a9-ZbI"/>
+                        <outlet property="kiwiAmountLabel" destination="FZq-de-TJG" id="e2T-v9-DSq"/>
+                        <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="evI-7C-ppU"/>
+                        <outlet property="mangoAmountLabel" destination="3Ce-SU-JeH" id="FiC-fi-fyc"/>
+                        <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="npJ-8C-v32"/>
+                        <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="XJZ-wu-O8b"/>
+                        <outlet property="pineappleAmountLabel" destination="ccQ-Dk-PuY" id="1Vl-dn-UTZ"/>
+                        <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="L0O-3R-TCU"/>
+                        <outlet property="strawberryAmountLabel" destination="Qas-vP-td6" id="GwL-Pm-feY"/>
+                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="7fZ-sG-lY5"/>
+                        <outlet property="strawberryJucieOrderButton" destination="avd-o5-3JM" id="PwR-pB-CSR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -358,6 +376,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="vrn-81-cg2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
