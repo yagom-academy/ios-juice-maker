@@ -6,7 +6,32 @@
 
 import Foundation
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
+    private var fruitStore = FruitStore()
     
+    func selectMenu(_ juice: Juice) {
+        order(juice.recipe)
+    }
+    
+    func order(_ recipe: [Fruit: Int]) {
+        do {
+            try makeJuice(by: recipe)
+        } catch let error as OrderError {
+            print(error.description)
+        } catch {
+            print(error)
+        }
+    }
+
+    func makeJuice(by recipe: [Fruit: Int]) throws {
+        for (fruit, requiredQuantity) in recipe {
+            guard let fruitStock = fruitStore.inventory[fruit] else {
+                throw OrderError.unknownError
+            }
+            guard fruitStock >= requiredQuantity else {
+                throw OrderError.outOfStock
+            }
+            fruitStore.inventory[fruit] = fruitStock - requiredQuantity
+        }
+    }
 }
