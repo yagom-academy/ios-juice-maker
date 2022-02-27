@@ -10,7 +10,7 @@ struct JuiceMaker {
         case pineappleJuice = "파인애플쥬스"
         case strawberryBananaJuice = "딸바쥬스"
         case mangoJuice = "망고쥬스"
-        case mangoKiwiJuice = "망고키위쥬스"
+        case mangoKiwiJuice = "망키쥬스"
         
         func recipe() -> JuiceRecipe {
             switch self {
@@ -32,10 +32,15 @@ struct JuiceMaker {
         }
     }
     
+    func test(juice: JuiceType) {
+        print("hello")
+    }
+    
     func makeJuice(juice: JuiceType) throws {
         let recipe: JuiceRecipe = JuiceType.recipe(juice)()
         try checkEnoughFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
         try consumeFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
+        print("\(juice.rawValue) 제조완료")
     }
     
     private func checkEnoughFruitStock(fruitTypes: [FruitType], amounts: [Int]) throws {

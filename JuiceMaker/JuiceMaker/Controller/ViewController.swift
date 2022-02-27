@@ -8,6 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var juiceMaker = JuiceMaker()
     @IBOutlet weak var stockOfStrawberry: UILabel!
     @IBOutlet weak var stockOfBanana: UILabel!
     @IBOutlet weak var stockOfPineapple: UILabel!
@@ -17,7 +18,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        var juiceMaker = JuiceMaker()
         
         stockOfStrawberry.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? 0)
         stockOfBanana.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? 0)
@@ -35,7 +35,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var orderMangoButton: UIButton!
     
     @IBAction func orderJuiceAction(_ sender: UIButton) {
-        print(sender.currentTitle!.components(separatedBy: " ")[0])
+        let juiceName: String = sender.currentTitle!.components(separatedBy: " ")[0]
+        do { try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceName)!) }
+        catch {
+            print("재고없음")
+        }
     }
     
     
