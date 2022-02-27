@@ -31,6 +31,17 @@ struct JuiceMaker {
         try consumeFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
     }
     
+    private func haveEnoughFruitStock(fruitTypes: [FruitType], amounts: [Int]) -> Bool {
+        for index in 0..<amounts.count {
+            guard let currentStock = fruitStore.fruits[fruitTypes[index]] else { return
+             false }
+            if currentStock < amounts[index] {
+                return false
+            }
+        }
+        return true
+    }
+    
     private func consumeFruitStock(fruitTypes: [FruitType], amounts: [Int]) throws {
         for index in 0..<amounts.count {
             try fruitStore.decreaseStock(fruit: fruitTypes[index], amount: amounts[index])
