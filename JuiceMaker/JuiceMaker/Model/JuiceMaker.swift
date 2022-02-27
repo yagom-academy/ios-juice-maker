@@ -2,7 +2,7 @@ import Foundation
 
 struct JuiceMaker {
     typealias JuiceRecipe = [FruitType:Int]
-    private let fruitStore: FruitStore = FruitStore()
+    private(set) var fruitStore: FruitStore = FruitStore()
     enum JuiceType: String {
         case strawberryJuice = "딸기쥬스"
         case bananaJuice = "바나나쥬스"
