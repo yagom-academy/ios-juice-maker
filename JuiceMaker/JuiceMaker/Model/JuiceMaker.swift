@@ -9,8 +9,8 @@ struct JuiceMaker {
         do {
             try fruitStore.decreaseFruitStock(by: juiceRecipe)
             print("\(order)가 완성되었습니다")
-        } catch let error {
-            print("\(error.localizedDescription)")
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

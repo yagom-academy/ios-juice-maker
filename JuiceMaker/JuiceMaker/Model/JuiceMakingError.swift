@@ -3,6 +3,7 @@ import Foundation
 enum JuiceMakingError: Error {
     case outOfStock
 }
+
 extension JuiceMakingError: LocalizedError {
     var errorDescription: String? {
         switch self {

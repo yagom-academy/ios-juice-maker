@@ -12,12 +12,11 @@ final class FruitStore {
     
     func decreaseFruitStock(by ingredient: [Fruit: Int]) throws {
         for (fruit, requiredAmount) in ingredient {
-            if let currentAmount = inventory[fruit], currentAmount >= requiredAmount {
-                let remainingAmount = currentAmount - requiredAmount
-                inventory[fruit] = remainingAmount
-            } else {
+            guard let currentAmount = inventory[fruit], currentAmount >= requiredAmount else {
                 throw JuiceMakingError.outOfStock
             }
+            let remainingAmount = currentAmount - requiredAmount
+            inventory[fruit] = remainingAmount
         }
     }
 }
