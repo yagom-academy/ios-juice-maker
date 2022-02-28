@@ -39,11 +39,12 @@ struct JuiceMaker {
         }
     }
     
-    func takeOrder(_ juice: Juice) {
+    func takeOrder(_ juice: Juice) -> String {
         if ensureStock(of: juice) {
             make(juice)
+            return "\(juice) 나왔습니다! 맛있게 드세요!"
         } else {
-            print("과일의 재고가 부족합니다.")
+            return "재료가 모자라요. 재고를 수정할까요?"
         }
     }
     
@@ -61,8 +62,9 @@ struct JuiceMaker {
         for ingredient in juice.recipe {
             let (neededFruit, neededStock) = ingredient
             fruitStore.changeStock(of: neededFruit, to: -neededStock)
-            print("\(juice) 나왔습니다.")
+            
         }
+        print("\(juice) 나왔습니다.")
     }
 }
 
