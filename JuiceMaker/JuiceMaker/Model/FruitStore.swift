@@ -27,7 +27,7 @@ final class FruitStore {
         let remainingAmount = try checkStock(of: fruit)
         
         guard remainingAmount >= amount else {
-            throw JuiceMakerError.notEnoughFruitAmount(fruit: fruit.rawValue)
+            throw JuiceMakerError.notEnoughFruitAmount
         }
     }
     

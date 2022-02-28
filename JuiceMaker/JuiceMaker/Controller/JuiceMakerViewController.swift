@@ -30,8 +30,8 @@ class JuiceMakerViewController: UIViewController {
             try juiceMaker?.produce(juice: order)
             try configureLabels()
             alert(menu: order)
-        } catch {
-            alertError()
+        } catch (let error) {
+            alertError(error: error)
         }
     }
     
@@ -46,25 +46,25 @@ class JuiceMakerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         do {
             try configureLabels()
-        } catch {
-            // alertError(error)
+        } catch (let error) {
+            alertError(error: error)
         }
     }
     
     private func configureLabels() throws {
-        let labels: [UILabel] = [strawberryAmountLabel, bananaAmountLabel, pineappleAmountLabel, kiwiAmountLabel, mangoAmountLabel]
+        let amountLabels: [UILabel] = [strawberryAmountLabel, bananaAmountLabel, pineappleAmountLabel, kiwiAmountLabel, mangoAmountLabel]
         let fruits: [Fruit] = Fruit.allCases
-        var currentIndex = labels.startIndex
+        var currentIndex = amountLabels.startIndex
         
-        try fruits.forEach { fruit in
-            let currentLabel = labels[currentIndex]
+        for fruit in fruits {
+            let currentLabel = amountLabels[currentIndex]
             
             guard let fruitAmount = fruitStore?.stocks[fruit] else {
                 throw JuiceMakerError.notFoundFruit
             }
-
+            
             currentLabel.text = String(fruitAmount)
-            currentIndex = labels.index(after: currentIndex)
+            currentIndex = amountLabels.index(after: currentIndex)
         }
     }
     
@@ -94,27 +94,27 @@ class JuiceMakerViewController: UIViewController {
         showAlert(title: message, confirmTitle: "확인")
     }
     
-    private func alertError() {
-        let message = "재료가 모자라요. 재고를 수정할까요?"
-        showAlert(title: message, confirmTitle: "확인", cancelTitle: "취소", confirmHandler: presentModifyingStockViewController)
+    private func alertError(error: Error) {
+        let error = error as? JuiceMakerError
+        showAlert(title: error?.errorDescription, confirmTitle: "확인", cancelTitle: "취소", confirmHandler: presentModifyingStockViewController)
     }
     
     private func presentModifyingStockViewController() {
-        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
+        guard let modifyingStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
             return
         }
-        nextVC.modalTransitionStyle = .coverVertical
-        self.present(nextVC, animated: true)
+        modifyingStockViewController.modalTransitionStyle = .coverVertical
+        self.present(modifyingStockViewController, animated: true)
     }
 }
 
 extension UIViewController {
     func showAlert(title: String?,
-               confirmTitle: String?,
-               message: String? = nil,
-               cancelTitle: String? = nil,
-               confirmHandler: (() -> Void)? = nil,
-               cancelHandler: (() -> Void)? = nil) {
+                   confirmTitle: String?,
+                   message: String? = nil,
+                   cancelTitle: String? = nil,
+                   confirmHandler: (() -> Void)? = nil,
+                   cancelHandler: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if let cancelTitle = cancelTitle {
