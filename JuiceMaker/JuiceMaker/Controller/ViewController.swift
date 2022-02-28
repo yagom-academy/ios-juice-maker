@@ -34,39 +34,66 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
+    func order(_ juice: Juice) {
+        do {
+            try juiceMaker.makeJuice(by: juice.recipe)
+            alertOrderCompletion(juice)
+        } catch OrderError.outOfStock {
+            alertOutOfStock()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func alertOrderCompletion(_ juice: Juice) {
+        let alert = UIAlertController(title: "주문완료", message: "\(juice.hangeulName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertOutOfStock() {
+        let alert = UIAlertController(title: "재고부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func strawberryBananaJuiceOrderButtonClicked(_ sender: UIButton) {
-        juiceMaker.selectMenu(.strawberryBananaJuice)
+        order(.strawberryBananaJuice)
         showCurrentStock()
     }
     
     @IBAction func mangoKiwiJuiceOrderButtonClicked(_ sender: UIButton) {
-        juiceMaker.selectMenu(.mangoKiwiJuice)
+        order(.mangoKiwiJuice)
         showCurrentStock()
     }
     
     @IBAction func strawberryJuiceOrderButtonClicked(_ sender: UIButton) {
-        juiceMaker.selectMenu(.strawberryJuice)
+        order(.strawberryJuice)
         showCurrentStock()
     }
     
     @IBAction func bananaJuiceOrderButtonClicked(_ sender: UIButton) {
-        juiceMaker.selectMenu(.bananaJuice)
+        order(.bananaJuice)
         showCurrentStock()
     }
     
     @IBAction func pineappleJuiceOrderButtonClicked(_ sender: UIButton) {
-        juiceMaker.selectMenu(.pineappleJuice)
+        order(.pineappleJuice)
         showCurrentStock()
     }
     
     @IBAction func kiwiJuiceOrderButtonClicked(_ sender: UIButton) {
-        juiceMaker.selectMenu(.kiwiJuice)
+        order(.kiwiJuice)
         showCurrentStock()
     }
     
     @IBAction func mangoJuiceOrderButtonClicked(_ sender: UIButton) {
-        juiceMaker.selectMenu(.mangoJuice)
+        order(.mangoJuice)
         showCurrentStock()
     }
 }

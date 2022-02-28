@@ -8,20 +8,6 @@ import Foundation
 
 struct JuiceMaker {
     var fruitStore = FruitStore.shared
-    
-    func selectMenu(_ juice: Juice) {
-        order(juice.recipe)
-    }
-    
-    func order(_ recipe: [Fruit: Int]) {
-        do {
-            try makeJuice(by: recipe)
-        } catch let error as OrderError {
-            print(error.description)
-        } catch {
-            print(error)
-        }
-    }
 
     func makeJuice(by recipe: [Fruit: Int]) throws {
         for (fruit, requiredQuantity) in recipe {
