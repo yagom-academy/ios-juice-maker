@@ -244,17 +244,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="whi-wR-m0c"/>
-                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="jAJ-oW-MEj"/>
                         <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="cWL-qq-ufa"/>
-                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="kjC-OW-Nh1"/>
                         <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="LkE-Wu-Y9g"/>
                         <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="T7h-vC-V5R"/>
-                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="Dge-xE-5KQ"/>
                         <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="tMi-PQ-ktT"/>
-                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="8jS-YA-A6r"/>
                         <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="PZp-EX-RD1"/>
                         <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="KpL-DY-0cp"/>
-                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="IZe-gK-BdU"/>
+                        <outletCollection property="stockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="gvZ-sL-ggm"/>
+                        <outletCollection property="stockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="DxM-PP-FhD"/>
+                        <outletCollection property="stockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="lfM-xN-rrF"/>
+                        <outletCollection property="stockLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="Ja5-mw-rYt"/>
+                        <outletCollection property="stockLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="JZK-0s-rTa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -388,16 +388,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ZNZ-0X-Pxr">
-                            <connections>
-                                <action selector="cancelButtonClicked:" destination="tbW-Ms-xo0" id="JtZ-4e-7Dq"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="w0y-Zb-mdh"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
-                <exit id="tbW-Ms-xo0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="762" y="1194"/>
         </scene>
@@ -421,7 +416,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wH1-3A-cBm"/>
+        <segue reference="9Gk-vG-xtf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">

@@ -7,12 +7,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let juiceMaker = JuiceMaker()
+    
 
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var stockLabels: [UILabel]!
     
     @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
@@ -22,10 +20,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
-    let juiceMaker = JuiceMaker()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        showCurrentStock()
+    }
+
+    func showCurrentStock() {
+        juiceMaker.fruitStore.inventory.keys.forEach {
+            switch $0 {
+            case .strawberry:
+                stockLabels[0].text = String(juiceMaker.fruitStore.inventory[.strawberry] ?? 0)
+            case .banana:
+                stockLabels[1].text = String(juiceMaker.fruitStore.inventory[.banana] ?? 0)
+            case .pineapple:
+                stockLabels[2].text = String(juiceMaker.fruitStore.inventory[.pineapple] ?? 0)
+            case .kiwi:
+                stockLabels[3].text = String(juiceMaker.fruitStore.inventory[.kiwi] ?? 0)
+            default:
+                stockLabels[4].text = String(juiceMaker.fruitStore.inventory[.mango] ?? 0)
+            }
+        }
     }
 
     @IBAction func strawberryBananaJuiceOrderButtonClicked(_ sender: UIButton) {
