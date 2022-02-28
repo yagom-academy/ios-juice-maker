@@ -28,7 +28,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             let order = try takeOrder(sender: sender)
             try juiceMaker?.produce(juice: order)
-            configureLabels()
+            try configureLabels()
             alert(menu: order)
         } catch {
             alertError()
@@ -44,17 +44,26 @@ class JuiceMakerViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        configureLabels()
+        do {
+            try configureLabels()
+        } catch {
+            // alertError(error)
+        }
     }
     
-    private func configureLabels() {
+    private func configureLabels() throws {
         let labels: [UILabel] = [strawberryAmountLabel, bananaAmountLabel, pineappleAmountLabel, kiwiAmountLabel, mangoAmountLabel]
         let fruits: [Fruit] = Fruit.allCases
         var currentIndex = labels.startIndex
         
-        fruits.forEach { fruit in
+        try fruits.forEach { fruit in
             let currentLabel = labels[currentIndex]
-            // currentLabel.text = String(fruit.rawValue)
+            
+            guard let fruitAmount = fruitStore?.stocks[fruit] else {
+                throw JuiceMakerError.notFoundFruit
+            }
+
+            currentLabel.text = String(fruitAmount)
             currentIndex = labels.index(after: currentIndex)
         }
     }
