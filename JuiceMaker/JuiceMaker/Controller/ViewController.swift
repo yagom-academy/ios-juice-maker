@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var magoLabel: UILabel!
     
+    @IBAction func orderButton(_ sender: UIButton) {
+        print(sender.tag)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         strawberryLabel.text = String(fruitStore.getStock(of: .strawberry))
