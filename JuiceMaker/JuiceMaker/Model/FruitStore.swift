@@ -7,7 +7,7 @@
 final class FruitStore {
     private(set) var stocks: [Fruit: Int]
 
-    init(stocks: [Fruit : Int] = Fruit.configureDefaultFruits()) {
+    init(stocks: [Fruit : Int]) {
         self.stocks = stocks
     }
     

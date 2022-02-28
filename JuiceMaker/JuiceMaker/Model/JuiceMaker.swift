@@ -15,7 +15,11 @@ struct JuiceMaker {
         case mangoKiwi = "망키"
     }
     
-    let fruitStore: FruitStore = FruitStore()
+    private let fruitStore: FruitStore
+    
+    init(fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
+    }
     
     func produce(juice: Menu) throws {
         let recipe = findRecipe(of: juice)

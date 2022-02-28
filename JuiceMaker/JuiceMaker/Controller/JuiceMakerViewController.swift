@@ -7,7 +7,8 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {   
-    private let juiceMaker = JuiceMaker()
+    private var fruitStore: FruitStore?
+    private var juiceMaker: JuiceMaker?
     
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
@@ -26,12 +27,20 @@ class JuiceMakerViewController: UIViewController {
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
         do {
             let order = try takeOrder(sender: sender)
-            try juiceMaker.produce(juice: order)
+            try juiceMaker?.produce(juice: order)
             configureLabels()
             alert(menu: order)
         } catch {
             alertError()
         }
+    }
+    
+    static func instance(juiceMaker: JuiceMaker, fruitStore: FruitStore) -> JuiceMakerViewController {
+        let storyborad = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyborad.instantiateViewController(withIdentifier: "JuiceMakerViewController") as! JuiceMakerViewController
+        viewController.juiceMaker = juiceMaker
+        viewController.fruitStore = fruitStore
+        return viewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +109,7 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if let cancelTitle = cancelTitle {
-            let cancelButton = UIAlertAction(title: cancelTitle, style: .cancel, handler: { _ in cancelHandler?()
+            let cancelButton = UIAlertAction(title: cancelTitle, style: .destructive, handler: { _ in cancelHandler?()
             })
             alert.addAction(cancelButton)
         }
