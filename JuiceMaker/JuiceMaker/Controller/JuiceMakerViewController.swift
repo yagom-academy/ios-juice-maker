@@ -24,20 +24,14 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        let order = takeOrder(sender: sender)
-        
         do {
+            let order = try takeOrder(sender: sender)
             try juiceMaker.produce(juice: order)
             configureLabels()
             alert(menu: order)
         } catch {
             alertError()
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +50,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func takeOrder(sender: UIButton) -> JuiceMaker.Menu {
+    private func takeOrder(sender: UIButton) throws -> JuiceMaker.Menu {
         switch sender {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBanana
@@ -73,7 +67,7 @@ class JuiceMakerViewController: UIViewController {
         case mangoJuiceOrderButton:
             return .mango
         default:
-            return .strawberry
+            throw JuiceMakerError.notFoundMenu
         }
     }
     

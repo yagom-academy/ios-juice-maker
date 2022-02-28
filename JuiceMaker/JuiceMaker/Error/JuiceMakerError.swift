@@ -9,6 +9,7 @@ import Foundation
 
 enum JuiceMakerError: Error {
     case notFoundFruit
+    case notFoundMenu
     case notEnoughFruitAmount(fruit: String)
     
     static func printOutput(of error: Error) {
@@ -24,6 +25,8 @@ extension JuiceMakerError: LocalizedError {
         switch self {
         case .notFoundFruit:
             return "과일을 찾을 수 없습니다."
+        case .notFoundMenu:
+            return "메뉴를 찾을 수 없습니다."
         case .notEnoughFruitAmount(let fruit):
             return "\(fruit)의 양이 부족합니다. 다시 주문해주세요."
         }
