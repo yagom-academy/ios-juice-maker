@@ -6,15 +6,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     let juiceMaker = JuiceMaker()
     @IBOutlet var stockLabels: [UILabel]!
-    
     @IBOutlet var juiceOrderButtons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showCurrentStock()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         showCurrentStock()
     }
 
@@ -55,7 +59,9 @@ class ViewController: UIViewController {
     
     func alertOutOfStock() {
         let alert = UIAlertController(title: "재고부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let defaultAction = UIAlertAction(title: "예", style: .default) { action in
+            self.performSegue(withIdentifier: "showSegue", sender: self)
+        }
         let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
