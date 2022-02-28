@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         }
         juiceMaker.takeOrder(juice)
         updateFruitLable()
-        
+        showAlert()
     }
     
     func updateFruitLable() {
@@ -47,6 +47,13 @@ class ViewController: UIViewController {
         pineappleLabel.text = String(fruitStore.getStock(of: .pineapple))
         kiwiLabel.text = String(fruitStore.getStock(of: .kiwi))
         magoLabel.text = String(fruitStore.getStock(of: .mango))
+    }
+    
+    func showAlert() {
+        let alertCountroll = UIAlertController(title: "알림", message: "*** 주스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil )
+        alertCountroll.addAction(okAction)
+        present(alertCountroll, animated: false, completion: nil)
     }
     
     override func viewDidLoad() {
