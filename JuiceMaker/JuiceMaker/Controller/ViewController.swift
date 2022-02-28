@@ -7,6 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var fruitStore = FruitStore.fruitStore
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -16,6 +17,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        strawberryLabel.text = String(fruitStore.getStock(of: .strawberry))
+        bananaLabel.text = String(fruitStore.getStock(of: .banana))
+        pineappleLabel.text = String(fruitStore.getStock(of: .pineapple))
+        kiwiLabel.text = String(fruitStore.getStock(of: .kiwi))
+        magoLabel.text = String(fruitStore.getStock(of: .mango))
+       
         // Do any additional setup after loading the view.
     }
 }
