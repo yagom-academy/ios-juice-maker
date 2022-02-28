@@ -8,6 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var fruitStore = FruitStore.fruitStore
+    var juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -35,7 +36,8 @@ class ViewController: UIViewController {
         default:
             return
         }
-        print(juice)
+        juiceMaker.takeOrder(juice)
+        
     }
     
     override func viewDidLoad() {
