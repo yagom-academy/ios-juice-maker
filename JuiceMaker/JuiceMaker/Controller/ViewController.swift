@@ -37,16 +37,21 @@ class ViewController: UIViewController {
             return
         }
         juiceMaker.takeOrder(juice)
+        updateFruitLable()
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func updateFruitLable() {
         strawberryLabel.text = String(fruitStore.getStock(of: .strawberry))
         bananaLabel.text = String(fruitStore.getStock(of: .banana))
         pineappleLabel.text = String(fruitStore.getStock(of: .pineapple))
         kiwiLabel.text = String(fruitStore.getStock(of: .kiwi))
         magoLabel.text = String(fruitStore.getStock(of: .mango))
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateFruitLable()
        
         // Do any additional setup after loading the view.
     }
