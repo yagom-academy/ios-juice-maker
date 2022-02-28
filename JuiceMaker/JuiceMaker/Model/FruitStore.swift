@@ -28,6 +28,10 @@ class FruitStore {
         inStock += numberOfFruit
         stock[fruit] = inStock
     }
+    
+    func getStock(of fruit: Fruit) -> Int {
+        return stock[fruit] ?? 0
+    }
 }
 
 
