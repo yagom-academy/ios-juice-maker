@@ -45,7 +45,7 @@ class JuiceMakerViewController: UIViewController {
         
         fruits.forEach { fruit in
             let currentLabel = labels[currentIndex]
-            currentLabel.text = String(fruit.rawValue)
+            // currentLabel.text = String(fruit.rawValue)
             currentIndex = labels.index(after: currentIndex)
         }
     }
@@ -73,25 +73,44 @@ class JuiceMakerViewController: UIViewController {
     
     private func alert(menu: JuiceMaker.Menu) {
         let message = menu.rawValue + "쥬스 나왔습니다! 맛있게 드세요!"
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(okButton)
-        self.present(alert, animated: false)
+        showAlert(title: message, confirmTitle: "확인")
     }
     
     private func alertError() {
         let message = "재료가 모자라요. 재고를 수정할까요?"
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "확인", style: .default) {_ in
-            guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
-                return
-            }
-            nextVC.modalTransitionStyle = .coverVertical
-            self.present(nextVC, animated: true)
+        showAlert(title: message, confirmTitle: "확인", cancelTitle: "취소", confirmHandler: presentModifyingStockViewController)
+    }
+    
+    private func presentModifyingStockViewController() {
+        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
+            return
         }
-        let cancelButton = UIAlertAction(title: "취소", style: .cancel)
-        alert.addAction(okButton)
-        alert.addAction(cancelButton)
+        nextVC.modalTransitionStyle = .coverVertical
+        self.present(nextVC, animated: true)
+    }
+}
+
+extension UIViewController {
+    func showAlert(title: String?,
+               confirmTitle: String?,
+               message: String? = nil,
+               cancelTitle: String? = nil,
+               confirmHandler: (() -> Void)? = nil,
+               cancelHandler: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        if let cancelTitle = cancelTitle {
+            let cancelButton = UIAlertAction(title: cancelTitle, style: .cancel, handler: { _ in cancelHandler?()
+            })
+            alert.addAction(cancelButton)
+        }
+        
+        let confirmButton = UIAlertAction(title: confirmTitle, style: .default, handler: { _ in
+            confirmHandler?()
+        })
+        
+        alert.addAction(confirmButton)
+        
         self.present(alert, animated: false)
     }
 }
