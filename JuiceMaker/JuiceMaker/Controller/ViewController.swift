@@ -16,7 +16,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var magoLabel: UILabel!
     
     @IBAction func orderButton(_ sender: UIButton) {
-        print(sender.tag)
+        var juice: JuiceMaker.Juice
+        switch sender.tag {
+        case 0:
+            juice = .strawberryJuice
+        case 1:
+            juice = .bananaJuice
+        case 2:
+            juice = .pineappleJuice
+        case 3:
+            juice = .kiwiJuice
+        case 4:
+            juice = .mangoJuice
+        case 5:
+            juice = .strawberryAndBananaJuice
+        case 6:
+            juice = .mangoAndKiwiJuice
+        default:
+            return
+        }
+        print(juice)
     }
     
     override func viewDidLoad() {
