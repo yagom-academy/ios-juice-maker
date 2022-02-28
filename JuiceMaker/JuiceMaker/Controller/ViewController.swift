@@ -7,12 +7,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet var fruitLabelCollection: [UILabel]!
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        showFruitsStock()
+    }
+    
+    private func showFruitsStock() {
+        var index:Int = .zero
+        for fruit in Fruit.allCases {
+            guard let stock = FruitStore.shared.inventory[fruit] else {
+                return
+            }
+            fruitLabelCollection[index].text = String(stock)
+            index += 1
+        }
     }
     
     @IBAction func makeStrawberryBananaJuiceButton(_ sender: UIButton) {
