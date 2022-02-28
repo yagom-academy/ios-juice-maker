@@ -7,7 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var fruitStore = FruitStore()
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!

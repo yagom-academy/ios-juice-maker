@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    private var fruitStore: FruitStore = FruitStore()
+    private var fruitStore = FruitStore.fruitStore
     
     enum Juice {
         case strawberryJuice
