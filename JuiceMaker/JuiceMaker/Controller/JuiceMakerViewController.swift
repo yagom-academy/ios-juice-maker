@@ -46,34 +46,13 @@ class JuiceMakerViewController: UIViewController {
     
     private func configureLabels() {
         let labels: [UILabel] = [strawberryAmountLabel, bananaAmountLabel, pineappleAmountLabel, kiwiAmountLabel, mangoAmountLabel]
+        let fruits: [Fruit] = Fruit.allCases
+        var currentIndex = labels.startIndex
         
-        for label in labels {
-            matchLabels(label: label)
-        }
-    }
-    
-    private func matchLabels(label: UILabel) {
-        switch label {
-        case strawberryAmountLabel:
-            configureLabel(label: label, fruit: .strawberry)
-        case bananaAmountLabel:
-            configureLabel(label: label, fruit: .banana)
-        case pineappleAmountLabel:
-            configureLabel(label: label, fruit: .pineapple)
-        case kiwiAmountLabel:
-            configureLabel(label: label, fruit: .kiwi)
-        case mangoAmountLabel:
-            configureLabel(label: label, fruit: .mango)
-        default:
-            return
-        }
-    }
-    
-    private func configureLabel(label: UILabel, fruit: Fruit) {
-        let defaultStocks = juiceMaker.fruitStore.stocks
-        
-        if let amount = defaultStocks[fruit] {
-            label.text = String(amount)
+        fruits.forEach { fruit in
+            let currentLabel = labels[currentIndex]
+            currentLabel.text = String(fruit.rawValue)
+            currentIndex = labels.index(after: currentIndex)
         }
     }
     
