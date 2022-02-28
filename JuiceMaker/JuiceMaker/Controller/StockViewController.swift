@@ -9,14 +9,14 @@ import UIKit
 
 class StockViewController: UIViewController {
 
-    @IBOutlet var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-    @IBAction func cancelButtonClicked(_ sender: UIBarButtonItem) {
-//        self.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-    }
     
+    @IBAction func cancelButtonClicked(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
 }

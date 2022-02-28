@@ -23,7 +23,7 @@ class FruitStore {
                 try decreaseStock(by: inputQuantity)
             }
         } catch let error as OrderError {
-//            print(error.description)
+            print(error)
         } catch {
             print(error)
         }

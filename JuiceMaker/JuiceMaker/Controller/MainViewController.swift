@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     @IBOutlet var stockLabels: [UILabel]!
     @IBOutlet var juiceOrderButtons: [UIButton]!
+    @IBOutlet weak var stockManagerButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,13 +60,20 @@ class MainViewController: UIViewController {
     
     func alertOutOfStock() {
         let alert = UIAlertController(title: "재고부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        
         let defaultAction = UIAlertAction(title: "예", style: .default) { action in
-            self.performSegue(withIdentifier: "showSegue", sender: self)
+            self.performSegue(withIdentifier: "StockViewController", sender: self)
         }
+        
         let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func stockManagerButtonClicked(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "StockViewController", sender: self)
     }
     
     @IBAction func strawberryBananaJuiceOrderButtonClicked(_ sender: UIButton) {
