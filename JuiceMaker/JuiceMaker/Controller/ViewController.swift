@@ -7,18 +7,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
     
-
+    let juiceMaker = JuiceMaker()
     @IBOutlet var stockLabels: [UILabel]!
     
-    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet var juiceOrderButtons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,25 +36,38 @@ class ViewController: UIViewController {
     }
 
     @IBAction func strawberryBananaJuiceOrderButtonClicked(_ sender: UIButton) {
+        juiceMaker.selectMenu(.strawberryBananaJuice)
+        showCurrentStock()
     }
     
     @IBAction func mangoKiwiJuiceOrderButtonClicked(_ sender: UIButton) {
+        juiceMaker.selectMenu(.mangoKiwiJuice)
+        showCurrentStock()
     }
     
     @IBAction func strawberryJuiceOrderButtonClicked(_ sender: UIButton) {
+        juiceMaker.selectMenu(.strawberryJuice)
+        showCurrentStock()
     }
     
     @IBAction func bananaJuiceOrderButtonClicked(_ sender: UIButton) {
+        juiceMaker.selectMenu(.bananaJuice)
+        showCurrentStock()
     }
     
     @IBAction func pineappleJuiceOrderButtonClicked(_ sender: UIButton) {
+        juiceMaker.selectMenu(.pineappleJuice)
+        showCurrentStock()
     }
     
     @IBAction func kiwiJuiceOrderButtonClicked(_ sender: UIButton) {
+        juiceMaker.selectMenu(.kiwiJuice)
+        showCurrentStock()
     }
     
     @IBAction func mangoJuiceOrderButtonClicked(_ sender: UIButton) {
+        juiceMaker.selectMenu(.mangoJuice)
+        showCurrentStock()
     }
-    
 }
 

@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    var fruitStore = FruitStore()
+    var fruitStore = FruitStore.shared
     
     func selectMenu(_ juice: Juice) {
         order(juice.recipe)

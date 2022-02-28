@@ -243,18 +243,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="whi-wR-m0c"/>
-                        <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="cWL-qq-ufa"/>
-                        <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="LkE-Wu-Y9g"/>
-                        <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="T7h-vC-V5R"/>
-                        <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="tMi-PQ-ktT"/>
-                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="PZp-EX-RD1"/>
-                        <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="KpL-DY-0cp"/>
                         <outletCollection property="stockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="gvZ-sL-ggm"/>
                         <outletCollection property="stockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="DxM-PP-FhD"/>
                         <outletCollection property="stockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="lfM-xN-rrF"/>
                         <outletCollection property="stockLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="Ja5-mw-rYt"/>
                         <outletCollection property="stockLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="JZK-0s-rTa"/>
+                        <outletCollection property="juiceOrderButtons" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="roa-Ky-N4a"/>
+                        <outletCollection property="juiceOrderButtons" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="4tE-0j-Fpg"/>
+                        <outletCollection property="juiceOrderButtons" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="9rb-2O-Kgv"/>
+                        <outletCollection property="juiceOrderButtons" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="Uac-6p-3fN"/>
+                        <outletCollection property="juiceOrderButtons" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="qwK-Qq-qXb"/>
+                        <outletCollection property="juiceOrderButtons" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="rc9-3c-48l"/>
+                        <outletCollection property="juiceOrderButtons" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="ak0-L5-f1r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -388,17 +388,23 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="w0y-Zb-mdh"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="w0y-Zb-mdh">
+                            <connections>
+                                <action selector="doneButtonClicked:" destination="xsE-V0-uFf" id="O7j-dd-8TL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
+                <exit id="xsE-V0-uFf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="762" y="1194"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
@@ -410,13 +416,12 @@
                         <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="wH1-3A-cBm"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="19" y="1194"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9Gk-vG-xtf"/>
+        <segue reference="wH1-3A-cBm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
