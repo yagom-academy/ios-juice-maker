@@ -32,15 +32,5 @@ struct JuiceMaker {
             try store.calculateStock(fruit: ingredent, amount: amount, calculationType: .minus)
         }
     }
-    
-    func manageStock(fruit: Fruits, amount: Int, calculationType: CalculationType) {
-        do {
-            try store.calculateStock(fruit: fruit, amount: amount, calculationType: calculationType)
-        } catch FruitStoreError.outOfStock {
-            print("현재 재고가 \(amount)개 미만입니다.")
-        } catch {
-            print("알 수 없는 오류 발생.")
-        }
-    }
 }
 
