@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AlertMessage {
+enum AlertMessages {
     static let completeOrder = "나왔습니다! 맛있게 드세요! "
     static let ok = "확인"
     static let cancel = "취소"

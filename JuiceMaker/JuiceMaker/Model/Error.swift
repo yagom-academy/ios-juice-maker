@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum JuiceMakerError: Error {
     case outOfStock
 }

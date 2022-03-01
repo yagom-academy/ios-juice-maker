@@ -8,11 +8,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var strawberryCount: UILabel!
-    @IBOutlet weak var bananaCount: UILabel!
-    @IBOutlet weak var pineappleCount: UILabel!
-    @IBOutlet weak var kiwiCount: UILabel!
-    @IBOutlet weak var mangoCount: UILabel!
+    @IBOutlet weak var strawberryCountLabel: UILabel!
+    @IBOutlet weak var bananaCountLabel: UILabel!
+    @IBOutlet weak var pineappleCountLabel: UILabel!
+    @IBOutlet weak var kiwiCountLabel: UILabel!
+    @IBOutlet weak var mangoCountLabel: UILabel!
     
     @IBOutlet weak var strawberrybananaButton: UIButton!
     @IBOutlet weak var strawberryButton: UIButton!
@@ -25,131 +25,129 @@ class ViewController: UIViewController {
     var fruitStore = FruitStore()
     
     // MARK: 재고수정 버튼 눌렀을 시 화면 전환
-    @IBAction func navpush(_ sender: Any) {
-        guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondVC") else { return }
-        self.navigationController?.pushViewController(pushVC, animated: true)
+    @IBAction func changeViewControllerTapped(_ sender: Any) {
+        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
+        self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     
-    @IBAction func orderStrawberryBananaJuice(_ sender: Any) {
+    @IBAction func orderStrawberryBananaJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .strawberryBanana)
     }
-    @IBAction func orderStrawberryJuice(_ sender: Any) {
+    @IBAction func orderStrawberryJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .strawberry)
     }
-    @IBAction func orderMangoKiwiJuice(_ sender: Any) {
+    @IBAction func orderMangoKiwiJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .mangoKiwi)
     }
-    @IBAction func orderBananaJuice(_ sender: Any) {
+    @IBAction func orderBananaJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .banana)
     }
     
-    @IBAction func orderPineappleJuice(_ sender: Any) {
+    @IBAction func orderPineappleJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .pineapple)
     }
     
-    @IBAction func orderKiwiJuice(_ sender: Any) {
+    @IBAction func orderKiwiJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .kiwi)
     }
     
-    @IBAction func orderMangoJuice(_ sender: Any) {
+    @IBAction func orderMangoJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .mango)
     }
     
     func orderJuices(fruitJuice: JuiceTypes) {
-        var juiceSet = Dictionary<JuiceTypes, Int>()
+        var juicesStock = Dictionary<JuiceTypes, Int>()
         let orderJuice = JuiceMaker()
-        juiceSet = orderJuice.makeJuice(fruitJuice: fruitJuice, fruitStore: fruitStore)
-        if juiceSet.isEmpty {
-            showAlertMessage()
+        juicesStock = orderJuice.makeJuice(fruitJuice: fruitJuice, fruitStore: fruitStore)
+        if juicesStock.isEmpty {
+            showWithoutStockAlertMessage()
         } else {
-            updateLabel(juice: juiceSet, juices: fruitJuice)
-            showConfirmAlert(juiceTypes: fruitJuice)
+            updateFruitsLabel(juice: juicesStock, juices: fruitJuice)
+            showJuiceAlertMessage(juiceMenu: fruitJuice)
         }
     }
     
-    func updateLabel(juice: [JuiceTypes:Int], juices: JuiceTypes) {
+    func updateFruitsLabel(juice: [JuiceTypes:Int], juices: JuiceTypes) {
         let errorNumber = 0
         switch juices {
         case .strawberryBanana:
-            strawberryCount.text = String(juice[.strawberry] ?? errorNumber)
-            bananaCount.text = String(juice[.banana] ?? errorNumber)
+            strawberryCountLabel.text = String(juice[.strawberry] ?? errorNumber)
+            bananaCountLabel.text = String(juice[.banana] ?? errorNumber)
         case .mangoKiwi:
-            mangoCount.text = String(juice[.mango] ?? errorNumber)
-            kiwiCount.text = String(juice[.kiwi] ?? errorNumber)
+            mangoCountLabel.text = String(juice[.mango] ?? errorNumber)
+            kiwiCountLabel.text = String(juice[.kiwi] ?? errorNumber)
         case .strawberry:
-            strawberryCount.text = String(juice[.strawberry] ?? errorNumber)
+            strawberryCountLabel.text = String(juice[.strawberry] ?? errorNumber)
         case .banana:
-            bananaCount.text = String(juice[.banana] ?? errorNumber)
+            bananaCountLabel.text = String(juice[.banana] ?? errorNumber)
         case .pineapple:
-            pineappleCount.text = String(juice[.pineapple] ?? errorNumber)
+            pineappleCountLabel.text = String(juice[.pineapple] ?? errorNumber)
         case .kiwi:
-            kiwiCount.text = String(juice[.kiwi] ?? errorNumber)
+            kiwiCountLabel.text = String(juice[.kiwi] ?? errorNumber)
         case .mango:
-            mangoCount.text = String(juice[.mango] ?? errorNumber)
+            mangoCountLabel.text = String(juice[.mango] ?? errorNumber)
         }
     }
     
-    func clickButton(sender: UIButton) {
+    func orderFruitsButton(sender: UIButton) {
         switch sender {
         case strawberrybananaButton:
-            orderStrawberryBananaJuice(sender)
+            orderStrawberryBananaJuiceTapped(sender)
         case mangoKiwiButton:
-            orderMangoKiwiJuice(sender)
+            orderMangoKiwiJuiceTapped(sender)
         case strawberryButton:
-            orderStrawberryJuice(sender)
+            orderStrawberryJuiceTapped(sender)
         case bananaButton:
-            orderBananaJuice(sender)
+            orderBananaJuiceTapped(sender)
         case pineappleButton:
-            orderPineappleJuice(sender)
+            orderPineappleJuiceTapped(sender)
         case kiwiButton:
-            orderKiwiJuice(sender)
+            orderKiwiJuiceTapped(sender)
         case mangoButton:
-            orderMangoJuice(sender)
+            orderMangoJuiceTapped(sender)
         default:
             // TODO: 새로운 에러 처리 필요
             print("에러")
         }
     }
     
-    // MARK: 재고 없을 시 얼럿 메시지
-    func showAlertMessage() {
-        let juiceOutOfStockAlert = UIAlertController(title: AlertMessage.outOfStock, message: "", preferredStyle: .alert)
-        let yesButton = UIAlertAction(title: AlertMessage.ok, style: .default) {_ in
-            guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondVC") else { return }
+    func showWithoutStockAlertMessage() {
+        let juiceOutOfStockAlert = UIAlertController(title: AlertMessages.outOfStock, message: "", preferredStyle: .alert)
+        let yesButton = UIAlertAction(title: AlertMessages.ok, style: .default) {_ in
+            guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
             self.navigationController?.pushViewController(pushViewController, animated: true)
         }
-        let noButton = UIAlertAction(title: AlertMessage.cancel, style: .destructive, handler: nil)
+        let noButton = UIAlertAction(title: AlertMessages.cancel, style: .destructive, handler: nil)
         juiceOutOfStockAlert.addAction(noButton)
         juiceOutOfStockAlert.addAction(yesButton)
         present(juiceOutOfStockAlert, animated: false, completion: nil)
     }
     
-    // MARK: 재고 있을 시 얼럿 메시지
-    func showConfirmAlert(juiceTypes: JuiceTypes) {
-        let okButton = UIAlertAction(title: AlertMessage.ok, style: .default, handler: nil)
-        let provideJuiceAlert = UIAlertController(title: "\(juiceTypes)\(AlertMessage.completeOrder)", message: "", preferredStyle: .alert)
-        provideJuiceAlert.addAction(okButton)
-        present(provideJuiceAlert, animated: false, completion: nil)
+    func showJuiceAlertMessage(juiceMenu: JuiceTypes) {
+        let okButton = UIAlertAction(title: AlertMessages.ok, style: .default, handler: nil)
+        let juiceAlert = UIAlertController(title: "\(juiceMenu) \(AlertMessages.completeOrder)", message: "", preferredStyle: .alert)
+        juiceAlert.addAction(okButton)
+        present(juiceAlert, animated: false, completion: nil)
     }
-    // TODO: 리팩토링 필요?
-    func updateUI() {
-        for i in fruitStore.fruits {
-            if i.key == JuiceTypes.strawberry {
-                strawberryCount.text = String(i.value)
-            } else if i.key == JuiceTypes.banana {
-                bananaCount.text = String(i.value)
-            } else if i.key == JuiceTypes.kiwi {
-                kiwiCount.text = String(i.value)
-            } else if i.key == JuiceTypes.mango {
-                mangoCount.text = String(i.value)
-            } else if i.key == JuiceTypes.pineapple {
-                pineappleCount.text = String(i.value)
+    
+    func initFruits() {
+        for fruit in fruitStore.fruits {
+            if fruit.key == JuiceTypes.strawberry {
+                strawberryCountLabel.text = String(fruit.value)
+            } else if fruit.key == JuiceTypes.banana {
+                bananaCountLabel.text = String(fruit.value)
+            } else if fruit.key == JuiceTypes.kiwi {
+                kiwiCountLabel.text = String(fruit.value)
+            } else if fruit.key == JuiceTypes.mango {
+                mangoCountLabel.text = String(fruit.value)
+            } else if fruit.key == JuiceTypes.pineapple {
+                pineappleCountLabel.text = String(fruit.value)
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+        initFruits()
     }
 }

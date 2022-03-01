@@ -15,6 +15,7 @@ class FruitStore {
             fruits[fruitQuantity] = stockCount
         }
     }
+    
     func consumeFruit(recipe: [JuiceTypes: Int]) throws -> [JuiceTypes:Int] {
         for (fruit, fruitCount) in recipe {
             guard let stock = fruits[fruit], stock >= fruitCount else {
