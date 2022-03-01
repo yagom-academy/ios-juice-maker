@@ -47,7 +47,7 @@ struct JuiceMaker {
         }
     }
     
-    func checkOrder(_ juice: JuiceMaker.Juice) -> Bool {
+    func orderAndCheck(_ juice: Juice) -> Bool {
         do {
             try takeOrder(juice)
         } catch {
@@ -69,9 +69,7 @@ struct JuiceMaker {
         for ingredient in juice.recipe {
             checkList.append(fruitStore.isEnoughStock(of: ingredient))
         }
-        return checkList.allSatisfy{ (check: Bool) -> Bool in
-            return check == true
-        }
+        return checkList.allSatisfy{ $0 }
     }
     
     private func make(_ juice: Juice) {

@@ -24,10 +24,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var strawberryAndBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoAndKiwiJuiceButton: UIButton!
     
-    @IBAction func orderButton(_ sender: UIButton) {
-        guard let juice = matchButtonToJuice(sender) else { return }
-        if juiceMaker.checkOrder(juice) {
-            showSuccessAlert(juice.koreanName)
+    @IBAction func orderJuice(with button: UIButton) {
+        guard let juice = matchButtonToJuice(button) else { return }
+        if juiceMaker.orderAndCheck(juice) {
+            showSuccessAlert(with: juice.koreanName)
         } else {
             showFailureAlert()
         }
@@ -66,32 +66,32 @@ class ViewController: UIViewController {
         magoLabel.text = String(fruitStore.getStock(of: .mango))
     }
     
-    func showSuccessAlert(_ alertMessage: String) {
-        let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: alertMessage + Phrases.readyForJuice.text, preferredStyle: .alert)
+    func showSuccessAlert(with juiceName: String) {
+        let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: juiceName + Phrases.readyForJuice.text, preferredStyle: .alert)
         let okAction = UIAlertAction(title: Phrases.ok.text, style: .default, handler: nil )
         alertCountroll.addAction(okAction)
         present(alertCountroll, animated: false, completion: nil)
     }
     
     func showFailureAlert() {
-        let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
-        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveStockCorrectionView() })
+        let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
+        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveStockChangeView() })
         let cancelAction = UIAlertAction(title: Phrases.no.text, style: .default, handler: nil )
-        alertCountroll.addAction(moveAction)
-        alertCountroll.addAction(cancelAction)
-        present(alertCountroll, animated: false, completion: nil)
+        alertCountrol.addAction(moveAction)
+        alertCountrol.addAction(cancelAction)
+        present(alertCountrol, animated: false, completion: nil)
     }
     
     
-    @IBAction func clickStockCorrectionButton(_ sender: UIButton) {
-        moveStockCorrectionView()
+    @IBAction func clickStockChangeButton(_ sender: UIButton) {
+        moveStockChangeView()
     }
     
-    func moveStockCorrectionView() {
-        let stockCorrectionView = self.storyboard?.instantiateViewController(withIdentifier: "stockCorrection")
-        stockCorrectionView?.modalTransitionStyle = .coverVertical
-        stockCorrectionView?.modalPresentationStyle = .automatic
-        self.present(stockCorrectionView!, animated: true, completion: nil)
+    func moveStockChangeView() {
+        let stockChangeView = self.storyboard?.instantiateViewController(withIdentifier: "stockChange")
+        stockChangeView?.modalTransitionStyle = .coverVertical
+        stockChangeView?.modalPresentationStyle = .automatic
+        self.present(stockChangeView!, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
