@@ -7,9 +7,10 @@
 import Foundation
 
 final class FruitStore {
-  private var stock = [Fruit: Int]()
+  static let shared = FruitStore()
+  private(set) var stock = [Fruit: Int]()
   
-  init() {
+  private init() {
     self.configureStock()
   }
   

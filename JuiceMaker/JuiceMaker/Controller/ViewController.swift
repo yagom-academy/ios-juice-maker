@@ -25,10 +25,20 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.fetchStock()
   }
   
   // IBAction
   @IBAction func didTapOrderButton(_ sender: UIButton) {}
+  
+  private func fetchStock() {
+    let fruitStore = FruitStore.shared
+    strawberryCountLabel.text = "\(fruitStore.stock[.strawberry] ?? 0)"
+    bananaCountLabel.text = "\(fruitStore.stock[.banana] ?? 0)"
+    pineappleCountLabel.text = "\(fruitStore.stock[.pineapple] ?? 0)"
+    kiwiCountLabel.text = "\(fruitStore.stock[.kiwi] ?? 0)"
+    mangoCountLabel.text = "\(fruitStore.stock[.mango] ?? 0)"
+  }
   
   private func createAlertController(
     title: String?,
