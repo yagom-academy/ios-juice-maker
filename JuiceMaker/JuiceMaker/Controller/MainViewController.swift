@@ -54,22 +54,34 @@ class MainViewController: UIViewController {
     @IBAction func orderJuice(_ sender: UIButton) {
         switch sender {
         case ddalBaJuiceOrderButton:
-            print("ddalba")
+            makeJuice(menu: .ddalBaJuice)
         case mangKiJuiceOrderButton:
-            print("mangki")
+            makeJuice(menu: .mangKiJuice)
         case strawberryJuiceOrderButton:
-            print("strawberry")
+            makeJuice(menu: .strawberryJuice)
         case bananaJuiceOrderButton:
-            print("banana")
+            makeJuice(menu: .bananaJuice)
         case pineappleJuiceOrderButton:
-            print("pineapple")
+            makeJuice(menu: .pineappleJuice)
         case kiwiJuiceOrderButton:
-            print("kiwi")
+            makeJuice(menu: .kiwiJuice)
         case mangoJuiceOrderButton:
-            print("mango")
+            makeJuice(menu: .mangoJuice)
         default:
             print("no")
         }
+    }
+    func makeJuice(menu: Menu) {
+        do {
+            try juiceMaker.checkStock(menu: menu)
+        } catch let 에러 as FruitStoreError {
+            switch 에러 {
+            case .invalidSelection:
+                print("그런 과일 없음")
+            case .outOfStock:
+                print("재고 없음")
+            }
+        } catch { print("알 수 없는 오류") }
     }
 }
 
