@@ -32,4 +32,25 @@ enum Menu {
             }
         }
     }
+    
+    var orderMessage: String {
+        get {
+            switch self {
+            case .strawberryJuice:
+                return "딸기 쥬스 나왔습니다! 맛있게 드세요!"
+            case .bananaJuice:
+                return "바나나 쥬스 나왔습니다! 맛있게 드세요!"
+            case .kiwiJuice:
+                return "키위 쥬스 나왔습니다! 맛있게 드세요!"
+            case .pineappleJuice:
+                return "파인애플 쥬스 나왔습니다! 맛있게 드세요!"
+            case .ddalBaJuice:
+                return "딸바 쥬스 나왔습니다! 맛있게 드세요!"
+            case .mangoJuice:
+                return "망고 쥬스 나왔습니다! 맛있게 드세요!"
+            case .mangKiJuice:
+                return "망키 쥬스 나왔습니다! 맛있게 드세요!"
+            }
+        }
+    }
 }
