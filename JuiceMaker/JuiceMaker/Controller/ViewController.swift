@@ -8,7 +8,6 @@ import UIKit
 
 class ViewController: UIViewController {
   
-  // IBOutlet
   @IBOutlet weak var strawberryCountLabel: UILabel!
   @IBOutlet weak var bananaCountLabel: UILabel!
   @IBOutlet weak var pineappleCountLabel: UILabel!
@@ -28,15 +27,47 @@ class ViewController: UIViewController {
     self.fetchStock()
   }
   
-  // IBAction
   @IBAction func didTapOrderButton(_ sender: UIButton) {
     guard let juice = self.selectJuice(sender) else {
       return
     }
+    let juiceMaker = JuiceMaker()
+    let result = juiceMaker.make(juice)
+    switch result {
+    case .success(let juice):
+      let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
+      let alert = self.createAlert(
+        title: AlertSetting.notice,
+        message: juice.description,
+        preferredStyle: .alert,
+        actions: [okAction]
+      )
+      self.present(alert, animated: true)
+    case .failure(let error):
+      let okAction = UIAlertAction(title: AlertSetting.yes, style: .default) { _ in
+        guard let stockVC = self.storyboard?.instantiateViewController(withIdentifier: "stockVC")
+        else {
+          return
+        }
+        self.present(stockVC, animated: true)
+      }
+      let noAction = UIAlertAction(title: AlertSetting.no, style: .destructive)
+      let alert = self.createAlert(
+        title: AlertSetting.notice,
+        message: error.errorDescription,
+        preferredStyle: .alert,
+        actions: [noAction, okAction]
+      )
+      self.present(alert, animated: true)
+    }
     self.fetchStock()
   }
-  
-  private func selectJuice(_ sender: UIButton) -> Juice? {
+}
+
+// MARK: - Extension
+
+private extension ViewController {
+  func selectJuice(_ sender: UIButton) -> Juice? {
     switch sender {
     case strawberryBananaButton:
       return .strawberryBanana
@@ -57,7 +88,7 @@ class ViewController: UIViewController {
     }
   }
   
-  private func fetchStock() {
+  func fetchStock() {
     let fruitStore = FruitStore.shared
     strawberryCountLabel.text = "\(fruitStore.stock[.strawberry] ?? 0)"
     bananaCountLabel.text = "\(fruitStore.stock[.banana] ?? 0)"
@@ -66,11 +97,11 @@ class ViewController: UIViewController {
     mangoCountLabel.text = "\(fruitStore.stock[.mango] ?? 0)"
   }
   
-  private func createAlertController(
+  func createAlert(
     title: String?,
     message: String?,
     preferredStyle: UIAlertController.Style,
-    actions: UIAlertAction...
+    actions: [UIAlertAction]
   ) -> UIAlertController {
     let alertController = UIAlertController(
       title: title,
