@@ -25,10 +25,10 @@ class JuiceStoreViewController: UIViewController {
             
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStockCountLabel()
+        updateFruitStockLabels()
     }
     
-    func updateFruitStockCountLabel() {
+    func updateFruitStockLabels() {
         strawberryCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .strawberry)
         bananaCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .banana)
         pineappleCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .pineapple)
@@ -56,7 +56,7 @@ class JuiceStoreViewController: UIViewController {
     @IBAction func orderJuices(_ sender: UIButton) {
         let juice = convertToJuice(sender)
         juiceMaker.makeJuice(juice) ? showSuccessAlert(of: juice) : showFailureAlert()
-        updateFruitStockCountLabel()
+        updateFruitStockLabels()
     }
     
     @IBAction func moveEditFruitStockViewController(_ sender: Any) {
