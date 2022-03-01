@@ -30,17 +30,32 @@ struct JuiceMaker {
                 return [.mango: 2, .kiwi: 1]
             }
         }
+        
+        func name() -> String {
+            switch self {
+            case .strawberryJuice:
+                return "딸기쥬스"
+            case .bananaJuice:
+                return "바나나쥬스"
+            case .kiwiJuice:
+                return "키위쥬스"
+            case .pineappleJuice:
+                return "파인애플쥬스"
+            case .strawberryBananaJuice:
+                return "딸기바나나쥬스"
+            case .mangoJuice:
+                return "망고쥬스"
+            case .mangoKiwiJuice:
+                return "망고키위쥬스"
+            }
+        }
     }
     
-    func test(juice: JuiceType) {
-        print("hello")
-    }
-    
-    func makeJuice(juice: JuiceType) throws {
+    func makeJuice(juice: JuiceType) throws -> String {
         let recipe: JuiceRecipe = JuiceType.recipe(juice)()
         try checkEnoughFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
         try consumeFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
-        print("\(juice.rawValue) 제조완료")
+        return juice.name()
     }
     
     private func checkEnoughFruitStock(fruitTypes: [FruitType], amounts: [Int]) throws {

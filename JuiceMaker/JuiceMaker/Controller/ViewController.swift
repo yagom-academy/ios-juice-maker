@@ -30,9 +30,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var orderMangoButton: UIButton!
     
     @IBAction func orderJuiceAction(_ sender: UIButton) {
-        let juiceName: String = sender.currentTitle!.components(separatedBy: " ")[0]
+        let juiceRawValue: String = sender.currentTitle!.components(separatedBy: " ")[0]
         do {
-            try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceName)!)
+            let juiceName = try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceRawValue)!)
+            showJuiceAlert(juiceName: juiceName)
             updateFruitStockLabel()
         } catch {
             showAlert()
@@ -48,6 +49,13 @@ class ViewController: UIViewController {
         let noAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         alert.addAction(yesAction)
         alert.addAction(noAction)
+        present(alert, animated: false, completion: nil)
+    }
+    
+    func showJuiceAlert(juiceName: String) {
+        let alert = UIAlertController(title: "\(juiceName) 나왔습니다. 맛있게 드세요.", message: "", preferredStyle: UIAlertController.Style.alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(confirmAction)
         present(alert, animated: false, completion: nil)
     }
     
