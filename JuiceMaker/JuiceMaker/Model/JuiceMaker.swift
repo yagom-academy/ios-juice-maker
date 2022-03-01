@@ -9,14 +9,18 @@ import Foundation
 struct JuiceMaker {
     private var fruitStore = FruitStore.fruitStore
     
-    enum Juice {
-        case strawberryJuice
-        case bananaJuice
-        case pineappleJuice
-        case kiwiJuice
-        case mangoJuice
-        case strawberryAndBananaJuice
-        case mangoAndKiwiJuice
+    enum Juice: String {
+        case strawberryJuice = "딸기쥬스"
+        case bananaJuice = "바나나쥬스"
+        case pineappleJuice = "파인애플쥬스"
+        case kiwiJuice = "키위쥬스"
+        case mangoJuice = "망고쥬스"
+        case strawberryAndBananaJuice = "딸바쥬스"
+        case mangoAndKiwiJuice = "망키쥬스"
+        
+        var koreanName: String {
+            return self.rawValue
+        }
         
         var recipe: [(Fruit, Int)] {
             switch self {
@@ -42,7 +46,7 @@ struct JuiceMaker {
     func takeOrder(_ juice: Juice) -> String {
         if ensureStock(of: juice) {
             make(juice)
-            return "\(juice) 나왔습니다! 맛있게 드세요!"
+            return "\(juice.koreanName) 나왔습니다! 맛있게 드세요!"
         } else {
             return "재료가 모자라요. 재고를 수정할까요?"
         }
