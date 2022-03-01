@@ -30,11 +30,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var orderMangoButton: UIButton!
     
     @IBAction func orderJuiceAction(_ sender: UIButton) {
-        let juiceRawValue: String = sender.currentTitle!.components(separatedBy: " ")[0]
+        let juiceName: String = sender.currentTitle!.components(separatedBy: " ")[0]
         do {
-            let juiceName = try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceRawValue)!)
-            showJuiceAlert(juiceName: juiceName)
-            updateFruitStockLabel()
+            let juice = try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceName)!)
+            showJuiceAlert(juiceName: juice.name())
+            updateFruitStockLabel(fruitType: juice.recipe().keys.map({ $0 }))
         } catch {
             showAlert()
         }
@@ -65,6 +65,23 @@ class ViewController: UIViewController {
         stockOfPineapple.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? 0)
         stockOfKiwi.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? 0)
         stockOfMango.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? 0)
+    }
+    
+    func updateFruitStockLabel(fruitType: [FruitType]) {
+        for fruit in fruitType {
+            switch fruit {
+            case FruitType.strawberry:
+                stockOfStrawberry.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? 0)
+            case FruitType.banana:
+                stockOfBanana.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? 0)
+            case FruitType.pineapple:
+                stockOfPineapple.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? 0)
+            case FruitType.kiwi:
+                stockOfKiwi.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? 0)
+            case FruitType.mango:
+                stockOfMango.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? 0)
+            }
+        }
     }
 
     @IBAction func changeFruitStock(_ sender: Any) {

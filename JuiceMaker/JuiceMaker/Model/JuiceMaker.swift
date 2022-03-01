@@ -51,11 +51,11 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(juice: JuiceType) throws -> String {
+    func makeJuice(juice: JuiceType) throws -> JuiceType {
         let recipe: JuiceRecipe = JuiceType.recipe(juice)()
         try checkEnoughFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
         try consumeFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
-        return juice.name()
+        return juice
     }
     
     private func checkEnoughFruitStock(fruitTypes: [FruitType], amounts: [Int]) throws {
