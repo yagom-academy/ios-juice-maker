@@ -1,10 +1,9 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by 원툴, 두두. 
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore = FruitStore()
     

@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by 원툴, 두두. 
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -22,7 +22,6 @@ class JuiceMakerController: UIViewController {
     @IBOutlet weak var mangoKiwiButton: UIButton!
     @IBOutlet weak var kiwiButton: UIButton!
     @IBOutlet weak var mangoButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +45,11 @@ class JuiceMakerController: UIViewController {
         }
     }
     
-    
     @IBAction func tapStockEditButton(_ sender: UIBarButtonItem) {
-        move()
+        moveToStockViewController()
     }
     
-    private func move() {
+    private func moveToStockViewController() {
         let stock = self.juiceMaker.fruitStock
         
         guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController", creator: { coder in
@@ -105,7 +103,7 @@ extension JuiceMakerController {
     func showStockErrorAlert(title: String){
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.yes, style: .default) { _ in
-            self.move()
+            self.moveToStockViewController()
         }
         
         let cancelAction = UIAlertAction(title: AlertMessage.no, style: .default)

@@ -2,7 +2,7 @@
 //  Juice.swift
 //  JuiceMaker
 //
-//  Created by taehun kim on 2022/02/22.
+//  Created by 원툴, 두두 on 2022/02/22.
 //
 
 enum Juice: CustomStringConvertible {
