@@ -7,8 +7,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var fruitStore = FruitStore.fruitStore
-    var juiceMaker = JuiceMaker()
+    private var fruitStore = FruitStore.fruitStore
+    private var juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         updateFruitLable()
     }
     
-    func matchButtonToJuice(_ button: UIButton) -> Juice? {
+    private func matchButtonToJuice(_ button: UIButton) -> Juice? {
         var juice: Juice?
         switch button {
         case strawberryJuiceButton:
@@ -56,9 +56,8 @@ class ViewController: UIViewController {
         }
         return juice
     }
-        
     
-    func updateFruitLable() {
+    private func updateFruitLable() {
         strawberryLabel.text = String(fruitStore.getStock(of: .strawberry))
         bananaLabel.text = String(fruitStore.getStock(of: .banana))
         pineappleLabel.text = String(fruitStore.getStock(of: .pineapple))
@@ -66,14 +65,14 @@ class ViewController: UIViewController {
         magoLabel.text = String(fruitStore.getStock(of: .mango))
     }
     
-    func showSuccessAlert(with juiceName: String) {
+    private func showSuccessAlert(with juiceName: String) {
         let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: juiceName + Phrases.readyForJuice.text, preferredStyle: .alert)
         let okAction = UIAlertAction(title: Phrases.ok.text, style: .default, handler: nil )
         alertCountroll.addAction(okAction)
         present(alertCountroll, animated: false, completion: nil)
     }
     
-    func showFailureAlert() {
+    private func showFailureAlert() {
         let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
         let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveStockChangeView() })
         let cancelAction = UIAlertAction(title: Phrases.no.text, style: .default, handler: nil )
@@ -82,12 +81,11 @@ class ViewController: UIViewController {
         present(alertCountrol, animated: false, completion: nil)
     }
     
-    
     @IBAction func clickStockChangeButton(_ sender: UIButton) {
         moveStockChangeView()
     }
     
-    func moveStockChangeView() {
+    private func moveStockChangeView() {
         let stockChangeView = self.storyboard?.instantiateViewController(withIdentifier: "stockChange")
         stockChangeView?.modalTransitionStyle = .coverVertical
         stockChangeView?.modalPresentationStyle = .automatic
