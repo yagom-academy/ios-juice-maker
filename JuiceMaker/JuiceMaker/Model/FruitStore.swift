@@ -7,7 +7,7 @@
 import Foundation
 
 // 과일 저장소 타입
-class FruitStore {
+final class FruitStore {
     var fruits: [JuiceTypes: Int] = [:]
     init() {
         let stockCount = 10

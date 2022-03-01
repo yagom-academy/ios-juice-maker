@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
     @IBOutlet weak var pineappleCountLabel: UILabel!
@@ -23,36 +23,36 @@ class ViewController: UIViewController {
 
     var fruitStore = FruitStore()
 
-    @IBAction func changeViewControllerTapped(_ sender: Any) {
+    @IBAction private func changeViewControllerTapped(_ sender: Any) {
         guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
         self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     
-    @IBAction func orderStrawberryBananaJuiceTapped(_ sender: Any) {
+    @IBAction private func orderStrawberryBananaJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .strawberryBanana)
     }
     
-    @IBAction func orderStrawberryJuiceTapped(_ sender: Any) {
+    @IBAction private func orderStrawberryJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .strawberry)
     }
     
-    @IBAction func orderMangoKiwiJuiceTapped(_ sender: Any) {
+    @IBAction private func orderMangoKiwiJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .mangoKiwi)
     }
     
-    @IBAction func orderBananaJuiceTapped(_ sender: Any) {
+    @IBAction private func orderBananaJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .banana)
     }
     
-    @IBAction func orderPineappleJuiceTapped(_ sender: Any) {
+    @IBAction private func orderPineappleJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .pineapple)
     }
     
-    @IBAction func orderKiwiJuiceTapped(_ sender: Any) {
+    @IBAction private func orderKiwiJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .kiwi)
     }
     
-    @IBAction func orderMangoJuiceTapped(_ sender: Any) {
+    @IBAction private func orderMangoJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .mango)
     }
     
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateFruitsLabel(juice: [JuiceTypes:Int], juices: JuiceTypes) {
+    private func updateFruitsLabel(juice: [JuiceTypes:Int], juices: JuiceTypes) {
         let errorNumber = 0
         switch juices {
         case .strawberryBanana:
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func orderFruitsButton(sender: UIButton) {
+    private func orderFruitsButton(sender: UIButton) {
         switch sender {
         case strawberrybananaButton:
             orderStrawberryBananaJuiceTapped(sender)
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showWithoutStockAlertMessage() {
+    private func showWithoutStockAlertMessage() {
         let juiceOutOfStockAlert = UIAlertController(title: AlertMessages.outOfStock, message: "", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: AlertMessages.ok, style: .default) {_ in
             guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
@@ -123,14 +123,14 @@ class ViewController: UIViewController {
         present(juiceOutOfStockAlert, animated: false, completion: nil)
     }
     
-    func showJuiceAlertMessage(juiceMenu: JuiceTypes) {
+  private func showJuiceAlertMessage(juiceMenu: JuiceTypes) {
         let okButton = UIAlertAction(title: AlertMessages.ok, style: .default, handler: nil)
         let juiceAlert = UIAlertController(title: "\(juiceMenu) \(AlertMessages.completeOrder)", message: "", preferredStyle: .alert)
         juiceAlert.addAction(okButton)
         present(juiceAlert, animated: false, completion: nil)
     }
     
-    func initFruits() {
+   private func initFruits() {
         for fruit in fruitStore.fruits {
             if fruit.key == JuiceTypes.strawberry {
                 strawberryCountLabel.text = String(fruit.value)
