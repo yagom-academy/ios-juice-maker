@@ -256,7 +256,6 @@
                         <outletCollection property="juiceOrderButtons" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="qwK-Qq-qXb"/>
                         <outletCollection property="juiceOrderButtons" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="rc9-3c-48l"/>
                         <outletCollection property="juiceOrderButtons" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="ak0-L5-f1r"/>
-                        <segue destination="Yu1-lM-nqp" kind="presentation" identifier="StockViewController" id="ZQ0-QC-zXD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -284,7 +283,7 @@
         <!--재고 수정-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="StockViewController" id="Yu1-lM-nqp" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="stockViewController" id="Yu1-lM-nqp" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -384,18 +383,18 @@
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="재고수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBg-RM-0P9">
-                                <rect key="frame" x="393" y="10" width="59" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="재고 추가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBg-RM-0P9">
+                                <rect key="frame" x="393" y="10" width="64" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-Fr-r4p">
-                                <rect key="frame" x="41" y="10" width="68" height="31"/>
+                                <rect key="frame" x="726" y="5" width="68" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="취소">
+                                <buttonConfiguration key="configuration" style="plain" title="닫기">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -410,7 +409,7 @@
                     <navigationItem key="navigationItem" title="재고 수정" id="g4W-fY-l7r"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="cancelButton" destination="Ivp-Fr-r4p" id="XAp-II-BMy"/>
+                        <outlet property="closeButton" destination="Ivp-Fr-r4p" id="XAp-II-BMy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

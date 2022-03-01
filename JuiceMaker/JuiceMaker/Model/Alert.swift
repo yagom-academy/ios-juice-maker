@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum OrderError: Error {
-    case outOfStock
-    case unknownError
-}
-
 enum Alert {
     case outOfStock
     case orderSuccess

@@ -41,43 +41,25 @@ class MainViewController: UIViewController {
     }
     
     func transformTypeToString(_ fruit: Fruit) -> String? {
-        guard let fruitForKey = juiceMaker.fruitStore.inventory[fruit] else {
+        guard let currentStock = juiceMaker.fruitStore.inventory[fruit] else {
             return nil
         }
-        return String(fruitForKey)
-    }
-    
-    func order(_ juice: Juice) {
-        do {
-            try juiceMaker.makeJuice(by: juice.recipe)
-            alertOrderCompletion(juice)
-        } catch OrderError.outOfStock {
-            alertOutOfStock()
-        } catch { }
-    }
-    
-    func alertOrderCompletion(_ juice: Juice) {
-        let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.hangeulName) \(Alert.orderSuccess.message)", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
-        alert.addAction(defaultAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func alertOutOfStock() {
-        let alert = UIAlertController(title: Alert.outOfStock.title, message: Alert.outOfStock.message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: AlertButton.yes.title, style: .default) { action in
-            self.performSegue(withIdentifier: "StockViewController", sender: self)
-        }
-        let cancelAction = UIAlertAction(title: AlertButton.no.title, style: .destructive, handler: nil)
-        alert.addAction(defaultAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
+        return String(currentStock)
     }
     
     @IBAction func stockManagerButtonClicked(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "StockViewController", sender: self)
+        self.presentStockViewController()
     }
     
+    func presentStockViewController() {
+        guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") as? StockViewController else {
+            return
+        }
+        stockViewController.modalTransitionStyle = .coverVertical
+        stockViewController.modalPresentationStyle = .fullScreen
+        self.present(stockViewController, animated: true, completion: nil)
+    }
+
     @IBAction func juiceOrderButtonCollection(_ sender: UIButton) {
         switch sender.tag {
         case 1:
@@ -102,6 +84,33 @@ class MainViewController: UIViewController {
             order(.mangoJuice)
             showCurrentStock()
         }
+    }
+    
+    func order(_ juice: Juice) {
+        do {
+            try juiceMaker.makeJuice(by: juice.recipe)
+            alertOrderCompletion(juice)
+        } catch OrderError.outOfStock {
+            alertOutOfStock()
+        } catch { }
+    }
+    
+    func alertOrderCompletion(_ juice: Juice) {
+        let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.hangeulName) \(Alert.orderSuccess.message)", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertOutOfStock() {
+        let alert = UIAlertController(title: Alert.outOfStock.title, message: Alert.outOfStock.message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: AlertButton.yes.title, style: .default) { action in
+            self.presentStockViewController()
+        }
+        let cancelAction = UIAlertAction(title: AlertButton.no.title, style: .destructive, handler: nil)
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 

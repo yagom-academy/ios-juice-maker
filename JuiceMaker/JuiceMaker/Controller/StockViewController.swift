@@ -9,14 +9,13 @@ import UIKit
 
 class StockViewController: UIViewController {
 
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
-    @IBAction func cancelButtonClicked(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func closeButtonClicked(_ sender: UIButton) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
