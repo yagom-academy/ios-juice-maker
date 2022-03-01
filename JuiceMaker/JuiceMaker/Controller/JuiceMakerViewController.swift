@@ -131,8 +131,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let modifyingStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
             return
         }
-        
-        modifyingStockViewController.modalTransitionStyle = .coverVertical
+
         self.present(modifyingStockViewController, animated: true)
     }
 }
