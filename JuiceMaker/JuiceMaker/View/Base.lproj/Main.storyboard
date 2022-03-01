@@ -236,11 +236,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
-                            <connections>
-                                <action selector="touchUpTest:" destination="BYZ-38-t0r" id="rA4-PQ-5ny"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaAmountLabel" destination="gvk-pA-Lw5" id="l3k-7q-u08"/>

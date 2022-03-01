@@ -33,9 +33,6 @@ final class JuiceMakerViewController: UIViewController {
             alertError(error: error)
         }
     }
-    @IBAction func touchUpTest(_ sender: Any) {
-        presentModifyingStockViewController()
-    }
     
     static func instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
@@ -124,7 +121,10 @@ final class JuiceMakerViewController: UIViewController {
     
     private func alertError(error: Error) {
         let error = error as? JuiceMakerError
-        showAlert(title: error?.errorDescription, confirmTitle: "확인", cancelTitle: "취소", confirmHandler: presentModifyingStockViewController)
+        showAlert(title: error?.errorDescription,
+                  confirmTitle: "확인",
+                  cancelTitle: "취소",
+                  confirmHandler: presentModifyingStockViewController)
     }
     
     private func presentModifyingStockViewController() {
