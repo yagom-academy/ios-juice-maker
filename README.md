@@ -50,6 +50,46 @@
     - 해당 부분은 뭔가 상황에 따라 다른 느낌이어서 이번에는 두 경우 모두 사용해보았습니다.
 - 하드코딩과 전역변수를 지양하기 위해 해당 부분을 Enum으로 관리를 했는데 이 부분이 적절한 방법인지에 대해 고민했습니다.
 
+## [STEP 2]
+
+### 구현 내용
+- **final** **class** JuiceMakerViewController: UIViewController: JuiceMaker 스토리보드에 연동된 viewController
+    - **@IBAction** **func** touchUpJuiceOrderButton(_ sender: UIButton): 쥬스 주문 버튼을 눌렀을 경우 실행되는 메서드
+    - **static** **func** instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController: 의존성 주입 및 viewController 생성을 위한 타입 메서드
+    - **override** **func** viewDidLoad(): NotificationCenter Observer 세팅 진행
+    - **@objc** **private** **func** updateStockLabels(): StockLabels Update를 처리해주는 메서드
+    - **private** **func** configureStockLabels(): StockLabels를 Fruit에 매칭시켜 현재 해당 과일에 대한 재고를 Labels에 할당해주는 메서드
+    - **private** **func** findStockLabel(of fruit: Fruit) -> UILabel: StockLabel에 Fruit을 매칭시키고, 매칭된 Label을 리턴해주는 메서드
+    - **private** **func** takeOrder(sender: UIButton) **throws** -> JuiceMaker.Menu: UIButton을 Menu에 매칭시키고 Menu를 리턴해주는 메서드
+    - **private** **func** showSuccessOrder(of menu: JuiceMaker.Menu): 주문이 성공했을 경우 성공 알럿을 띄워주는 메서드
+    - **private** **func** showFailedOrder(with error: Error): 주문이 실패했을 경우 실패 알럿을 띄워주는 메서드
+    - **private** **func** presentModifyingStockViewController(): ModifyingStockViewController를 모달리티로 띄워주는 메서드
+    - **extension** [Notification.Name](http://notification.name/)
+    - **extension** UIViewController
+        - **func** showAlert(title: String?,
+        confirmTitle: String?,
+        message: String? = nil,
+        cancelTitle: String? = nil,
+        confirmHandler: (() -> Void)? = nil,
+        cancelHandler: (() -> Void)? = nil): alert을 편리하게 관리하기 위한 메서드
+### 고민한 점
+- Naming
+- 하드 코딩 지양
+    - switch문으로 레이블과 Fruit 대응시키고 레이블 배열을 만들 수 있습니다.
+- alert 함수화
+    - 매개변수를 통해 다양한 alert 생성 가능합니다.
+    - UiViewController 에서 extension을 해서 다른 viewcontroller에서도 사용 가능합니다.
+- label 갱신
+    - notification에서 이벤트 발생 시 레이블을 수정합니다.
+- IBAction에 여러 버튼 연결
+    - IBAction 하나에 여러 개의 버튼을 연결해서 코드 중복을 막았습니다.
+    - switch 문을 통해 sender를 구분합니다.
+- 의존성 주입
+    - JuiceMakerViewController의 타입 매서드로 뷰 컨트롤러를 만들었습니다.
+    - SceneDelegate에서 위 타입 메서드 호출로 초기화하고 루트 뷰 컨트롤러로 연결했습니다.
+- Constant 확장
+    - Fruit 타입에서만 사용되는 상수를 extention으로 Fruit 파일 내부에 만들었습니다.
+    - fileprivte으로 해당 파일 내부에서만 사용 가능하도록 했습니다.
 ## 그라운드 룰 
 ## 시간 
 -   프로젝트에 집중하는 시간: 10:00 ~ 23:00
