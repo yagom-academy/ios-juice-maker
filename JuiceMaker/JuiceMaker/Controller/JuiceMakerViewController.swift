@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {   
+final class JuiceMakerViewController: UIViewController {
     private var juiceMaker: JuiceMaker?
     
     @IBOutlet weak var strawberryAmountLabel: UILabel!
@@ -50,7 +50,7 @@ class JuiceMakerViewController: UIViewController {
         NotificationCenter.default.post(name: .updatedStockLabels, object: nil)
     }
     
-    @objc func updateStockLabels() {
+    @objc private func updateStockLabels() {
         do {
             try configureStockLabels()
         } catch (let error) {
