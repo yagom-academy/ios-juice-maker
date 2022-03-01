@@ -26,5 +26,9 @@ class JuiceMakerController: UIViewController {
         super.viewDidLoad()
 
     }
+    
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
 }
 
