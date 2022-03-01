@@ -44,4 +44,19 @@ class JuiceStoreViewController: UIViewController {
         successAlert.addAction(okAction)
         present(successAlert, animated: true, completion: nil)
     }
+    
+    func showFailureAlert() {
+        let failureAlert = UIAlertController(title: "재료가 모자람",
+                                             message: "재고수정으로 ㄱ?",
+                                             preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네",
+                                     style: .default,
+                                     handler: nil)
+        let noAction = UIAlertAction(title: "아니오",
+                                     style: .cancel,
+                                     handler: nil)
+        failureAlert.addAction(okAction)
+        failureAlert.addAction(noAction)
+        present(failureAlert, animated: true, completion: nil)
+    }
 }
