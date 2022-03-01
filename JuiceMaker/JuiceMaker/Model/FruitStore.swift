@@ -1,12 +1,8 @@
 import Foundation
 
-enum FruitType: CaseIterable {
-    case strawberry, banana, pineapple, kiwi, mango
-}
-
 class FruitStore {
     
-    let defaultNumberOfStock = 10
+    let defaultNumberOfStock = ConstantNameSpace.defaultNumberOfStock
     var fruits: [FruitType: Int] = [:]
     
     init() {

@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         updateFruitStockLabel()
     }
     
@@ -42,50 +41,50 @@ class ViewController: UIViewController {
     }
     
     private func showNotEnoughStockAlert() {
-        let alertBody = UIAlertController(title: Message.notEnoughStock, message: nil, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: Message.yes, style: .default, handler: {
+        let alertBody = UIAlertController(title: MessageNameSpace.notEnoughStock, message: nil, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: MessageNameSpace.yes, style: .default, handler: {
             _ in self.switchScreenToManageStockView()
         })
-        let noAction = UIAlertAction(title: Message.no, style: .cancel, handler: nil)
+        let noAction = UIAlertAction(title: MessageNameSpace.no, style: .cancel, handler: nil)
         alertBody.addAction(yesAction)
         alertBody.addAction(noAction)
         present(alertBody, animated: false, completion: nil)
     }
     
     private func showJuiceReadyAlert(juiceName: String) {
-        let alertBody = UIAlertController(title: juiceName +  Message.juiceReady, message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: Message.confirm, style: .default, handler: nil)
+        let alertBody = UIAlertController(title: juiceName +  MessageNameSpace.juiceReady, message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: MessageNameSpace.confirm, style: .default, handler: nil)
         alertBody.addAction(confirmAction)
         present(alertBody, animated: false, completion: nil)
     }
     
     private func updateFruitStockLabel() {
-        stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? 0)
-        stockOfBananaLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? 0)
-        stockOfPineappleLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? 0)
-        stockOfKiwiLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? 0)
-        stockOfMangoLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? 0)
+        stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? ConstantNameSpace.minimumNumberOfStock)
+        stockOfBananaLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? ConstantNameSpace.minimumNumberOfStock)
+        stockOfPineappleLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? ConstantNameSpace.minimumNumberOfStock)
+        stockOfKiwiLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? ConstantNameSpace.minimumNumberOfStock)
+        stockOfMangoLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? ConstantNameSpace.minimumNumberOfStock)
     }
     
     private func updateFruitStockLabel(fruitType: [FruitType]) {
         for fruit in fruitType {
             switch fruit {
             case FruitType.strawberry:
-                stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? 0)
+                stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? ConstantNameSpace.minimumNumberOfStock)
             case FruitType.banana:
-                stockOfBananaLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? 0)
+                stockOfBananaLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? ConstantNameSpace.minimumNumberOfStock)
             case FruitType.pineapple:
-                stockOfPineappleLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? 0)
+                stockOfPineappleLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? ConstantNameSpace.minimumNumberOfStock)
             case FruitType.kiwi:
-                stockOfKiwiLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? 0)
+                stockOfKiwiLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? ConstantNameSpace.minimumNumberOfStock)
             case FruitType.mango:
-                stockOfMangoLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? 0)
+                stockOfMangoLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? ConstantNameSpace.minimumNumberOfStock)
             }
         }
     }
     
     private func switchScreenToManageStockView() {
-        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: "ManageStockViewController") else { return }
+        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: ViewNameSpace.ManageStockViewController) else { return }
         self.navigationController?.pushViewController(manageStockViewController, animated: true)
     }
     
