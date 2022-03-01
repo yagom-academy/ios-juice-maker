@@ -29,7 +29,33 @@ class ViewController: UIViewController {
   }
   
   // IBAction
-  @IBAction func didTapOrderButton(_ sender: UIButton) {}
+  @IBAction func didTapOrderButton(_ sender: UIButton) {
+    guard let juice = self.selectJuice(sender) else {
+      return
+    }
+    self.fetchStock()
+  }
+  
+  private func selectJuice(_ sender: UIButton) -> Juice? {
+    switch sender {
+    case strawberryBananaButton:
+      return .strawberryBanana
+    case mangoKiwiButton:
+      return .mangoKiwi
+    case strawberryButton:
+      return .strawberry
+    case bananaButton:
+      return .banana
+    case pineappleButton:
+      return .pineapple
+    case kiwiButton:
+      return .kiwi
+    case mangoButton:
+      return .mango
+    default:
+      return nil
+    }
+  }
   
   private func fetchStock() {
     let fruitStore = FruitStore.shared
