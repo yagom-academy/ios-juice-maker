@@ -55,17 +55,17 @@ class JuiceStoreViewController: UIViewController {
     
     @IBAction func orderJuices(_ sender: UIButton) {
         let juice = convertToJuice(sender)
-        juiceMaker.makeJuice(juice) ? showSuccesAlert() : showFailureAlert()
+        juiceMaker.makeJuice(juice) ? showSuccessAlert(of: juice) : showFailureAlert()
         updateFruitStockCountLabel()
     }
     
     @IBAction func moveEditFruitStockViewController(_ sender: Any) {
         guard let editFruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: EditFruitStockViewController.identifier()) else { return }
-        self.present(editFruitStockViewController, animated: true, completion: nil)
+        present(editFruitStockViewController, animated: true, completion: nil)
     }
     
-    func showSuccesAlert() {
-        let successAlert = UIAlertController(title: AlertMessage.cameOut.description,
+    func showSuccessAlert(of juice: Juice) {
+        let successAlert = UIAlertController(title: juice.name+AlertMessage.cameOut.description,
                                              message: AlertMessage.enjoyDrink.description,
                                             preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.check.description,
