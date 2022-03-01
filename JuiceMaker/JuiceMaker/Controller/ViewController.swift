@@ -16,30 +16,44 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var magoLabel: UILabel!
     
+    @IBOutlet weak var strawberryJuiceButton: UIButton!
+    @IBOutlet weak var bananaJuiceButton: UIButton!
+    @IBOutlet weak var pineappleJuiceButton: UIButton!
+    @IBOutlet weak var kiwiJuiceButton: UIButton!
+    @IBOutlet weak var mangoJuiceButton: UIButton!
+    @IBOutlet weak var strawberryAndBananaJuiceButton: UIButton!
+    @IBOutlet weak var mangoAndKiwiJuiceButton: UIButton!
+    
     @IBAction func orderButton(_ sender: UIButton) {
-        var juice: JuiceMaker.Juice
-        switch sender.tag {
-        case 0:
-            juice = .strawberryJuice
-        case 1:
-            juice = .bananaJuice
-        case 2:
-            juice = .pineappleJuice
-        case 3:
-            juice = .kiwiJuice
-        case 4:
-            juice = .mangoJuice
-        case 5:
-            juice = .strawberryAndBananaJuice
-        case 6:
-            juice = .mangoAndKiwiJuice
-        default:
-            return
-        }
-        var message = juiceMaker.takeOrder(juice)
+        guard let juice = matchButtonToJuice(sender) else { return }
+        let message = juiceMaker.takeOrder(juice)
         updateFruitLable()
         showAlert(alertMessage: message)
     }
+    
+    func matchButtonToJuice(_ button: UIButton) -> JuiceMaker.Juice? {
+        var juice: JuiceMaker.Juice?
+        switch button {
+        case strawberryJuiceButton:
+            juice = .strawberryJuice
+        case bananaJuiceButton:
+            juice = .bananaJuice
+        case pineappleJuiceButton:
+            juice = .pineappleJuice
+        case kiwiJuiceButton:
+            juice = .kiwiJuice
+        case mangoJuiceButton:
+            juice = .mangoJuice
+        case strawberryAndBananaJuiceButton:
+            juice = .strawberryAndBananaJuice
+        case mangoAndKiwiJuiceButton:
+            juice = .mangoAndKiwiJuice
+        default:
+            juice = nil
+        }
+        return juice
+    }
+        
     
     func updateFruitLable() {
         strawberryLabel.text = String(fruitStore.getStock(of: .strawberry))

@@ -243,10 +243,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="5sC-da-5Ck"/>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="kdB-dt-XDL"/>
+                        <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="88o-U9-Xfm"/>
                         <outlet property="kiwiLabel" destination="FZq-de-TJG" id="oF0-wi-ul0"/>
                         <outlet property="magoLabel" destination="3Ce-SU-JeH" id="Ili-H7-sYQ"/>
+                        <outlet property="mangoAndKiwiJuiceButton" destination="ngP-kF-Yii" id="pKi-cD-rmT"/>
+                        <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="9v4-h2-OLw"/>
+                        <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="Dt4-Ww-XDQ"/>
                         <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="7lf-95-zJU"/>
+                        <outlet property="strawberryAndBananaJuiceButton" destination="hrc-2F-fzl" id="kQU-TB-rTW"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="aEw-YY-z9Q"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="7qE-ya-o6g"/>
                     </connections>
                 </viewController>
