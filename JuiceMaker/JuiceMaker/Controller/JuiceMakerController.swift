@@ -28,7 +28,32 @@ class JuiceMakerController: UIViewController {
     }
     
     @IBAction func order(_ sender: UIButton) {
-        
+        do{
+            let juice = try check(button: sender)
+        } catch {
+            
+        }
+    }
+    
+    private func check(button: UIButton) throws -> Juice {
+        switch button {
+        case strawberryBananaButton:
+            return .strawberryBananaJuice
+        case strawberryButton:
+            return .strawberryJuice
+        case bananaButton:
+            return .bananaJuice
+        case pineappleButton:
+            return .pineappleJuice
+        case mangoKiwiButton:
+            return .mangoKiwiJuice
+        case kiwiButton:
+            return .kiwiJuice
+        case mangoButton:
+            return .mangoJuice
+        default:
+            return .strawberryBananaJuice
+        }
     }
 }
 
