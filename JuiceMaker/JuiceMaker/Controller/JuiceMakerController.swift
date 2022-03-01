@@ -83,3 +83,26 @@ class JuiceMakerController: UIViewController {
     }
 }
 
+extension JuiceMakerController {
+    func showStockErrorAlert(){
+        let alertController = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default) { _ in
+            let stock = juiceMaker.fruitStock
+
+            // stockView 컨트롤러 만들기
+            // stockView 컨트롤러 띄우기
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .default)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
+    func showOkAlert(title: String){
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+}
