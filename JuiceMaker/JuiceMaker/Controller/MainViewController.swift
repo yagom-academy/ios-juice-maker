@@ -17,30 +17,25 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         showCurrentStock()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        showCurrentStock()
-    }
 
     func showCurrentStock() {
         juiceMaker.fruitStore.inventory.keys.forEach {
             switch $0 {
             case .strawberry:
-                stockLabels[0].text = transformTypeToString(.strawberry)
+                stockLabels[0].text = transformIntToString(.strawberry)
             case .banana:
-                stockLabels[1].text = transformTypeToString(.banana)
+                stockLabels[1].text = transformIntToString(.banana)
             case .pineapple:
-                stockLabels[2].text = transformTypeToString(.pineapple)
+                stockLabels[2].text = transformIntToString(.pineapple)
             case .kiwi:
-                stockLabels[3].text = transformTypeToString(.kiwi)
+                stockLabels[3].text = transformIntToString(.kiwi)
             default:
-                stockLabels[4].text = transformTypeToString(.mango)
+                stockLabels[4].text = transformIntToString(.mango)
             }
         }
     }
     
-    func transformTypeToString(_ fruit: Fruit) -> String? {
+    func transformIntToString(_ fruit: Fruit) -> String? {
         guard let currentStock = juiceMaker.fruitStore.inventory[fruit] else {
             return nil
         }
