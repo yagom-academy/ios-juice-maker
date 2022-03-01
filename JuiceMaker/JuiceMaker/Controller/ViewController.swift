@@ -26,9 +26,8 @@ class ViewController: UIViewController {
     
     @IBAction func orderButton(_ sender: UIButton) {
         guard let juice = matchButtonToJuice(sender) else { return }
-        let okay = chekcError(juice)
+        chekcError(juice)
         updateFruitLable()
-        showAlert(alertMessage: "\(okay)")
     }
     
     func matchButtonToJuice(_ button: UIButton) -> JuiceMaker.Juice? {
@@ -63,29 +62,31 @@ class ViewController: UIViewController {
         magoLabel.text = String(fruitStore.getStock(of: .mango))
     }
     
-    func chekcError(_ juice: JuiceMaker.Juice) -> Bool {
+    func chekcError(_ juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.takeOrder(juice)
         } catch {
-            return false
+            showFailureAlert()
         }
-        return true
+        showSuccessAlert(alertMessage: "\(juice.koreanName)")
     }
     
-    func showAlert(alertMessage: String) {
+    func showSuccessAlert(alertMessage: String) {
         let alertCountroll = UIAlertController(title: "알림", message: alertMessage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil )
-        let moveAction = UIAlertAction(title: "예", style: .default, handler: { _ in self.moveStockCorrectionView() })
-        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil )
-        
-        if alertMessage == "재료가 모자라요. 재고를 수정할까요?" {
-            alertCountroll.addAction(moveAction)
-            alertCountroll.addAction(cancelAction)
-        } else {
-            alertCountroll.addAction(okAction)
-        }
+        alertCountroll.addAction(okAction)
         present(alertCountroll, animated: false, completion: nil)
     }
+    
+    func showFailureAlert() {
+        let alertCountroll = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let moveAction = UIAlertAction(title: "예", style: .default, handler: { _ in self.moveStockCorrectionView() })
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil )
+        alertCountroll.addAction(moveAction)
+        alertCountroll.addAction(cancelAction)
+        present(alertCountroll, animated: false, completion: nil)
+    }
+    
     
     @IBAction func clickStockCorrectionButton(_ sender: UIButton) {
         moveStockCorrectionView()
