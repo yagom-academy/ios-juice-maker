@@ -9,12 +9,15 @@ struct JuiceMaker {
     func makeJuice(menu: Menu) {
         do {
             try checkStock(menu: menu)
-        } catch FruitStoreError.outOfStock {
-            print("재고 없음!")
-        } catch FruitStoreError.invalidSelection {
-            print("선택된 과일이 없습니다.")
+        } catch let error as FruitStoreError {
+            switch error {
+            case .outOfStock:
+                print("재고가 부족 합니다.")
+            case .invalidSelection:
+                print("선택된 과일이 없습니다.")
+            }
         } catch {
-            print("알 수 없는 오류 발생.")
+            print("알수없는 오류")
         }
     }
     
