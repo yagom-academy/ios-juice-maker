@@ -9,6 +9,8 @@ import Foundation
 class FruitStore {
     private var fruitStock: Dictionary<Fruit, Int>
     
+    static let fruitStore = FruitStore(fruitStock: Fruit.defaultFruitStock)
+    
     init(fruitStock: Dictionary<Fruit, Int>) {
         self.fruitStock = fruitStock
     }

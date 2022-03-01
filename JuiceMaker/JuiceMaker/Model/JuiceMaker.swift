@@ -10,6 +10,8 @@ struct JuiceMaker {
     private var recipe: Dictionary<Juice,Dictionary<Fruit,Int>> = Juice.defaultJuiceRecipe
     private let fruitStore: FruitStore
     
+    static let juiceMaker = JuiceMaker(fruitStore: FruitStore.fruitStore)
+    
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
     }
