@@ -36,12 +36,21 @@ class ViewController: UIViewController {
     
     @IBAction func orderJuiceAction(_ sender: UIButton) {
         let juiceName: String = sender.currentTitle!.components(separatedBy: " ")[0]
-        do { try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceName)!) }
-        catch {
-            print("재고없음")
+        do {
+            try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceName)!)
+        } catch {
+            showAlert()
         }
     }
     
+    func showAlert() {
+        let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: UIAlertController.Style.alert)
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in print("yes")})
+        let noAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: false, completion: nil)
+    }
     
     
 
