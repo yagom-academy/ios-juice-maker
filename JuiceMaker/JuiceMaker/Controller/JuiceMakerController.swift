@@ -7,6 +7,8 @@
 import UIKit
 
 class JuiceMakerController: UIViewController {
+    private let juiceMaker = JuiceMaker()
+    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -30,6 +32,11 @@ class JuiceMakerController: UIViewController {
     @IBAction func order(_ sender: UIButton) {
         do{
             let juice = try check(button: sender)
+            try juiceMaker.make(fruitJuice: juice)
+        } catch JuiceMakerError.invalidButton {
+            
+        } catch JuiceMakerError.outOfStock {
+            
         } catch {
             
         }
