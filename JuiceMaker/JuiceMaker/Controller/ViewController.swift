@@ -64,6 +64,11 @@ class ViewController: UIViewController {
         present(alertCountroll, animated: false, completion: nil)
     }
     
+    @IBAction func moveStockCorrectionView(_ sender: UIButton) {
+            let stockCorrectionView = self.storyboard?.instantiateViewController(withIdentifier: "stockCorrection")
+            self.navigationController?.pushViewController(stockCorrectionView!, animated: true)
+        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLable()
