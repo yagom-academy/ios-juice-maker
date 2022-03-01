@@ -69,13 +69,13 @@ class JuiceMakerController: UIViewController {
             let juice = try check(button: sender)
             try juiceMaker.make(fruitJuice: juice)
             updateFruitLabel()
-            showOkAlert(title: "\(juice) 나왔습니다! 맛있게 드세요!")
+            showOkAlert(title: "\(juice) " + AlertMessage.makeJuice)
         } catch JuiceMakerError.invalidButton {
-            showOkAlert(title: "버튼을 잘못 누르셨습니다.")
+            showOkAlert(title: AlertMessage.pushWrongButton)
         } catch JuiceMakerError.outOfStock {
-            showStockErrorAlert()
+            showStockErrorAlert(title: AlertMessage.outOfStock)
         } catch {
-            showOkAlert(title: "알 수 없는 오류")
+            showOkAlert(title: AlertMessage.unknownError)
         }
     }
     
@@ -102,13 +102,13 @@ class JuiceMakerController: UIViewController {
 }
 
 extension JuiceMakerController {
-    func showStockErrorAlert(){
-        let alertController = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default) { _ in
+    func showStockErrorAlert(title: String){
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: AlertMessage.yes, style: .default) { _ in
             self.move()
         }
         
-        let cancelAction = UIAlertAction(title: "아니오", style: .default)
+        let cancelAction = UIAlertAction(title: AlertMessage.no, style: .default)
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
@@ -116,9 +116,19 @@ extension JuiceMakerController {
     
     func showOkAlert(title: String){
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default)
+        let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
         
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
+}
+
+enum AlertMessage{
+    static let makeJuice = "나왔습니다! 맛있게 드세요!"
+    static let pushWrongButton = "버튼을 잘못 누르셨습니다."
+    static let unknownError = "알 수 없는 오류"
+    static let outOfStock = "재료가 모자라요. 재고를 수정할까요?"
+    static let yes = "예"
+    static let no = "아니오"
+    static let ok = "확인"
 }
