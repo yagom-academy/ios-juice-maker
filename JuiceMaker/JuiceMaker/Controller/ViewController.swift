@@ -42,19 +42,19 @@ class ViewController: UIViewController {
     }
     
     private func showNotEnoughStockAlert() {
-        let alertBody = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default, handler: {
+        let alertBody = UIAlertController(title: Message.notEnoughStock, message: nil, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: Message.yes, style: .default, handler: {
             _ in self.switchScreenToManageStockView()
         })
-        let noAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
+        let noAction = UIAlertAction(title: Message.no, style: .cancel, handler: nil)
         alertBody.addAction(yesAction)
         alertBody.addAction(noAction)
         present(alertBody, animated: false, completion: nil)
     }
     
     private func showJuiceReadyAlert(juiceName: String) {
-        let alertBody = UIAlertController(title: "\(juiceName) 나왔습니다! 맛있게 드세요!", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let alertBody = UIAlertController(title: juiceName +  Message.juiceReady, message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: Message.confirm, style: .default, handler: nil)
         alertBody.addAction(confirmAction)
         present(alertBody, animated: false, completion: nil)
     }
