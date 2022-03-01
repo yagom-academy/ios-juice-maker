@@ -87,11 +87,18 @@ extension JuiceMakerController {
     func showStockErrorAlert(){
         let alertController = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
-            let stock = juiceMaker.fruitStock
-
-            // stockView 컨트롤러 만들기
-            // stockView 컨트롤러 띄우기
+            let stock = self.juiceMaker.fruitStock
+            
+            guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController", creator: { coder in
+                return StockViewController(coder: coder, stock: stock)
+            }) else {
+                return
+            }
+            
+            let navigationController = UINavigationController(rootViewController: stockViewController)
+            self.present(navigationController, animated: true)
         }
+        
         let cancelAction = UIAlertAction(title: "아니오", style: .default)
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
