@@ -7,11 +7,11 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
     let juiceMaker = JuiceMaker()
+    
     @IBOutlet var stockLabels: [UILabel]!
     @IBOutlet var juiceOrderButtons: [UIButton]!
-    @IBOutlet weak var stockManagerButton: UIBarButtonItem!
+    @IBOutlet weak var viewTransitionButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
         return String(currentStock)
     }
     
-    @IBAction func stockManagerButtonClicked(_ sender: UIBarButtonItem) {
+    @IBAction func viewTransitionButtonClicked(_ sender: UIBarButtonItem) {
         self.presentStockViewController()
     }
     
@@ -60,7 +60,7 @@ class MainViewController: UIViewController {
         self.present(stockViewController, animated: true, completion: nil)
     }
 
-    @IBAction func juiceOrderButtonCollection(_ sender: UIButton) {
+    @IBAction func orderButtonsClicked(_ sender: UIButton) {
         switch sender.tag {
         case 1:
             order(.strawberryBananaJuice)
@@ -96,7 +96,7 @@ class MainViewController: UIViewController {
     }
     
     func alertOrderCompletion(_ juice: Juice) {
-        let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.hangeulName) \(Alert.orderSuccess.message)", preferredStyle: .alert)
+        let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.name) \(Alert.orderSuccess.message)", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)

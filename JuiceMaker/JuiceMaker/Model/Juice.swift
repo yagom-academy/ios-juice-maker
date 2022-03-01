@@ -37,7 +37,7 @@ extension Juice {
         }
     }
     
-    var hangeulName: String {
+    var name: String {
         switch self {
         case .strawberryJuice:
             return "딸기 쥬스"

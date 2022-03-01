@@ -16,9 +16,9 @@ extension Alert {
     var title: String {
         switch self {
         case .outOfStock:
-            return "주문완료"
-        case .orderSuccess:
             return "재고부족"
+        case .orderSuccess:
+            return "주문완료"
         }
     }
     

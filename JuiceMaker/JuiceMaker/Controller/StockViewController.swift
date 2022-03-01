@@ -8,7 +8,6 @@
 import UIKit
 
 class StockViewController: UIViewController {
-
     @IBOutlet weak var closeButton: UIButton!
     
     override func viewDidLoad() {
