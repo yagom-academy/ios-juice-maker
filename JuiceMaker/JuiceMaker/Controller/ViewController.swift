@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     func showAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: UIAlertController.Style.alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: {
-            _ in print("yes")
+            _ in self.changeFruitStock((Any).self)
             
         })
         let noAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
@@ -85,7 +85,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func changeFruitStock(_ sender: Any) {
-        print("재고수정")
+        guard let stock = self.storyboard?.instantiateViewController(identifier: "PushViewController") else{
+                    return
+                }
+                self.navigationController?.pushViewController(stock, animated: true)
     }
+    
 }
 
