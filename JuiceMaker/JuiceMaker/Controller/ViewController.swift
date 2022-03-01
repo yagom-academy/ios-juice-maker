@@ -34,8 +34,8 @@ class ViewController: UIViewController {
         updateFruitLable()
     }
     
-    func matchButtonToJuice(_ button: UIButton) -> JuiceMaker.Juice? {
-        var juice: JuiceMaker.Juice?
+    func matchButtonToJuice(_ button: UIButton) -> Juice? {
+        var juice: Juice?
         switch button {
         case strawberryJuiceButton:
             juice = .strawberryJuice
