@@ -18,12 +18,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        updateFruitStockLabel()
         
-        stockOfStrawberry.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? 0)
-        stockOfBanana.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? 0)
-        stockOfPineapple.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? 0)
-        stockOfKiwi.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? 0)
-        stockOfMango.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? 0)
     }
 
     @IBOutlet weak var orderStrawberryBananaButton: UIButton!
@@ -38,6 +34,7 @@ class ViewController: UIViewController {
         let juiceName: String = sender.currentTitle!.components(separatedBy: " ")[0]
         do {
             try juiceMaker.makeJuice(juice: JuiceMaker.JuiceType.init(rawValue: juiceName)!)
+            updateFruitStockLabel()
         } catch {
             showAlert()
         }
@@ -50,6 +47,14 @@ class ViewController: UIViewController {
         alert.addAction(yesAction)
         alert.addAction(noAction)
         present(alert, animated: false, completion: nil)
+    }
+    
+    func updateFruitStockLabel() {
+        stockOfStrawberry.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? 0)
+        stockOfBanana.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? 0)
+        stockOfPineapple.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? 0)
+        stockOfKiwi.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? 0)
+        stockOfMango.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? 0)
     }
     
     
