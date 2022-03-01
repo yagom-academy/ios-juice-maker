@@ -7,7 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
     @IBOutlet weak var pineappleCountLabel: UILabel!
@@ -21,10 +20,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleButton: UIButton!
     @IBOutlet weak var bananaButton: UIButton!
     @IBOutlet weak var mangoKiwiButton: UIButton!
-    
+
     var fruitStore = FruitStore()
-    
-    // MARK: 재고수정 버튼 눌렀을 시 화면 전환
+
     @IBAction func changeViewControllerTapped(_ sender: Any) {
         guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
         self.navigationController?.pushViewController(pushViewController, animated: true)
@@ -33,12 +31,15 @@ class ViewController: UIViewController {
     @IBAction func orderStrawberryBananaJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .strawberryBanana)
     }
+    
     @IBAction func orderStrawberryJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .strawberry)
     }
+    
     @IBAction func orderMangoKiwiJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .mangoKiwi)
     }
+    
     @IBAction func orderBananaJuiceTapped(_ sender: Any) {
         orderJuices(fruitJuice: .banana)
     }
@@ -106,8 +107,7 @@ class ViewController: UIViewController {
         case mangoButton:
             orderMangoJuiceTapped(sender)
         default:
-            // TODO: 새로운 에러 처리 필요
-            print("에러")
+            JuiceMakerError.unexpectedError
         }
     }
     

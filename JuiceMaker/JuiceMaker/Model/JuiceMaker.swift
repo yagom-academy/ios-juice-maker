@@ -14,9 +14,9 @@ struct JuiceMaker {
         do  {
             fruitsStock = try fruitStore.consumeFruit(recipe: recipe)
         } catch JuiceMakerError.outOfStock {
-            print("재고가 없습니다")
-        } catch {
+        } catch JuiceMakerError.unexpectedError {
             print("예상치 못한 에러 발생")
+        } catch {
         }
         return fruitsStock
     }
