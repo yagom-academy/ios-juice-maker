@@ -63,7 +63,7 @@ class ViewController: UIViewController {
             showAlertMessage()
         } else {
             updateLabel(juice: juiceSet, juices: fruitJuice)
-            showConfirmAlert(juiceType: fruitJuice)
+            showConfirmAlert(juiceTypes: fruitJuice)
         }
     }
     
