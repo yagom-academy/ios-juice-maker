@@ -64,6 +64,10 @@ final class JuiceMakerViewController: UIViewController {
                 amountLabels.append(findStockLabel(of: fruit))
             }
         
+        try match(amountLabels: amountLabels, with: fruits)
+    }
+    
+    private func match(amountLabels: [UILabel], with fruits: [Fruit]) throws {
         var currentIndex = amountLabels.startIndex
         
         for fruit in fruits {
@@ -77,7 +81,7 @@ final class JuiceMakerViewController: UIViewController {
             currentIndex = amountLabels.index(after: currentIndex)
         }
     }
-
+    
     private func findStockLabel(of fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
@@ -131,7 +135,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let modifyingStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
             return
         }
-
+        
         self.present(modifyingStockViewController, animated: true)
     }
 }
