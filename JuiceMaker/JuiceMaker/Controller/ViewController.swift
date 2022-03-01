@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
   
   @IBOutlet weak var strawberryCountLabel: UILabel!
   @IBOutlet weak var bananaCountLabel: UILabel!
