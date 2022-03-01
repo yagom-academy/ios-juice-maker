@@ -46,7 +46,11 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBAction func moveToManageView(_ sender: UIBarButtonItem) {
+    @IBAction func moveToManageViewBtn(_ sender: UIBarButtonItem) {
+        moveToManageView()
+    }
+    
+    func moveToManageView() {
         guard let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController") else { return }
         self.navigationController?.present(manageVC, animated: true, completion: nil)
     }
@@ -68,20 +72,40 @@ class MainViewController: UIViewController {
         case mangoJuiceOrderButton:
             makeJuice(menu: .mangoJuice)
         default:
-            print("no")
+            makeAlert(title: "경고", message: "알 수 없는 오류.")
         }
     }
+    
     func makeJuice(menu: Menu) {
         do {
             try juiceMaker.checkStock(menu: menu)
-        } catch let 에러 as FruitStoreError {
-            switch 에러 {
+        } catch let error as FruitStoreError {
+            switch error {
             case .invalidSelection:
-                print("그런 과일 없음")
+                makeAlert(title: "경고", message: "해당 과일이 없습니다.")
             case .outOfStock:
-                print("재고 없음")
+                outOfStockAlert()
             }
-        } catch { print("알 수 없는 오류") }
+        } catch { makeAlert(title: "경고", message: "알 수 없는 오류.") }
     }
+    
+    func makeAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(confirmAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func outOfStockAlert() {
+        let alert = UIAlertController(title: "경고", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: {(_) in
+            self.moveToManageView()
+        })
+        let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
