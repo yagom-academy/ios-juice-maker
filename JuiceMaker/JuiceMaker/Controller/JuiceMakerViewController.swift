@@ -28,9 +28,9 @@ final class JuiceMakerViewController: UIViewController {
             let order = try takeOrder(sender: sender)
             try juiceMaker?.produce(juice: order)
             try configureStockLabels()
-            alert(menu: order)
+            showSuccessOrder(of: order)
         } catch (let error) {
-            alertError(error: error)
+            showFailedOrder(with: error)
         }
     }
     
@@ -51,7 +51,7 @@ final class JuiceMakerViewController: UIViewController {
         do {
             try configureStockLabels()
         } catch (let error) {
-            alertError(error: error)
+            showFailedOrder(with: error)
         }
     }
     
@@ -114,12 +114,12 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func alert(menu: JuiceMaker.Menu) {
+    private func showSuccessOrder(of menu: JuiceMaker.Menu) {
         let message = menu.rawValue + "쥬스 나왔습니다! 맛있게 드세요!"
         showAlert(title: message, confirmTitle: "확인")
     }
     
-    private func alertError(error: Error) {
+    private func showFailedOrder(with error: Error) {
         let error = error as? JuiceMakerError
         showAlert(title: error?.errorDescription,
                   confirmTitle: "확인",
