@@ -15,7 +15,7 @@ struct JuiceMaker {
         case mangoKiwi = "망키"
     }
     
-    private let fruitStore: FruitStore
+    let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore

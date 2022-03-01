@@ -7,7 +7,6 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {   
-    private var fruitStore: FruitStore?
     private var juiceMaker: JuiceMaker?
     
     @IBOutlet weak var strawberryAmountLabel: UILabel!
@@ -34,16 +33,24 @@ class JuiceMakerViewController: UIViewController {
             alertError(error: error)
         }
     }
+    @IBAction func touchUpTest(_ sender: Any) {
+        presentModifyingStockViewController()
+    }
     
-    static func instance(juiceMaker: JuiceMaker, fruitStore: FruitStore) -> JuiceMakerViewController {
+    static func instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyborad.instantiateViewController(withIdentifier: "JuiceMakerViewController") as! JuiceMakerViewController
         viewController.juiceMaker = juiceMaker
-        viewController.fruitStore = fruitStore
         return viewController
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(test3), name: .test, object: nil)
+        NotificationCenter.default.post(name: .test, object: nil)
+    }
+    
+    @objc func test3() {
         do {
             try configureLabels()
         } catch (let error) {
@@ -52,19 +59,40 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func configureLabels() throws {
-        let amountLabels: [UILabel] = [strawberryAmountLabel, bananaAmountLabel, pineappleAmountLabel, kiwiAmountLabel, mangoAmountLabel]
-        let fruits: [Fruit] = Fruit.allCases
+        var amountLabels: [UILabel] = []
+        let fruits = Fruit.allCases
+        
+        fruits
+            .forEach { fruit in
+                amountLabels.append(test(fruit: fruit))
+            }
+        
         var currentIndex = amountLabels.startIndex
         
         for fruit in fruits {
             let currentLabel = amountLabels[currentIndex]
             
-            guard let fruitAmount = fruitStore?.stocks[fruit] else {
+            guard let fruitAmount = juiceMaker?.fruitStore.stocks[fruit] else {
                 throw JuiceMakerError.notFoundFruit
             }
             
             currentLabel.text = String(fruitAmount)
             currentIndex = amountLabels.index(after: currentIndex)
+        }
+    }
+
+    private func test(fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryAmountLabel
+        case .banana:
+            return bananaAmountLabel
+        case .pineapple:
+            return pineappleAmountLabel
+        case .kiwi:
+            return kiwiAmountLabel
+        case .mango:
+            return mangoAmountLabel
         }
     }
     
@@ -103,9 +131,14 @@ class JuiceMakerViewController: UIViewController {
         guard let modifyingStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
             return
         }
+        
         modifyingStockViewController.modalTransitionStyle = .coverVertical
         self.present(modifyingStockViewController, animated: true)
     }
+}
+
+extension Notification.Name {
+    static let test = Notification.Name("test")
 }
 
 extension UIViewController {

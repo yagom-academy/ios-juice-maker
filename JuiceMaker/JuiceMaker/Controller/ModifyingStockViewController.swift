@@ -9,6 +9,10 @@ import UIKit
 
 class ModifyingStockViewController: UIViewController {
 
+    @IBAction func touchUpDismissButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

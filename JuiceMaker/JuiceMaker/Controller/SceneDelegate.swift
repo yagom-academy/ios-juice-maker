@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let fruitStore = FruitStore(stocks: defaultFruitAmount)
         let juiceMaker = JuiceMaker(fruitStore: fruitStore)
         
-        let juiceMakerViewController = JuiceMakerViewController.instance(juiceMaker: juiceMaker, fruitStore: fruitStore)
+        let juiceMakerViewController = JuiceMakerViewController.instance(juiceMaker: juiceMaker)
         let navigationController = UINavigationController(rootViewController: juiceMakerViewController)
         
         window?.rootViewController = navigationController
