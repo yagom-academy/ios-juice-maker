@@ -26,7 +26,11 @@ class ViewController: UIViewController {
     
     @IBAction func orderButton(_ sender: UIButton) {
         guard let juice = matchButtonToJuice(sender) else { return }
-        chekcError(juice)
+        if juiceMaker.checkOrder(juice) {
+            showSuccessAlert(juice.koreanName)
+        } else {
+            showFailureAlert()
+        }
         updateFruitLable()
     }
     
@@ -62,16 +66,7 @@ class ViewController: UIViewController {
         magoLabel.text = String(fruitStore.getStock(of: .mango))
     }
     
-    func chekcError(_ juice: JuiceMaker.Juice) {
-        do {
-            try juiceMaker.takeOrder(juice)
-        } catch {
-            showFailureAlert()
-        }
-        showSuccessAlert(alertMessage: "\(juice.koreanName)")
-    }
-    
-    func showSuccessAlert(alertMessage: String) {
+    func showSuccessAlert(_ alertMessage: String) {
         let alertCountroll = UIAlertController(title: "알림", message: alertMessage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil )
         alertCountroll.addAction(okAction)

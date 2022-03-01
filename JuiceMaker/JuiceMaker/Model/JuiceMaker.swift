@@ -47,7 +47,16 @@ struct JuiceMaker {
         }
     }
     
-    func takeOrder(_ juice: Juice) throws {
+    func checkOrder(_ juice: JuiceMaker.Juice) -> Bool {
+        do {
+            try takeOrder(juice)
+        } catch {
+            return false
+        }
+        return true
+    }
+    
+    private func takeOrder(_ juice: Juice) throws {
         if ensureStock(of: juice) {
             make(juice)
         } else {
