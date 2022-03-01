@@ -9,7 +9,7 @@ import UIKit
 class ViewController: UIViewController {
     var fruitStore = FruitStore.fruitStore
     var juiceMaker = JuiceMaker()
-
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     func showAlert(alertMessage: String) {
         let alertCountroll = UIAlertController(title: "알림", message: alertMessage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil )
-        let moveAction = UIAlertAction(title: "예", style: .default, handler: nil )
+        let moveAction = UIAlertAction(title: "예", style: .default, handler: { _ in self.moveStockCorrectionView() })
         let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil )
         
         if alertMessage == "재료가 모자라요. 재고를 수정할까요?" {
@@ -64,17 +64,22 @@ class ViewController: UIViewController {
         present(alertCountroll, animated: false, completion: nil)
     }
     
-    @IBAction func moveStockCorrectionView(_ sender: UIButton) {
+    @IBAction func clickStockCorrectionButton(_ sender: UIButton) {
+        moveStockCorrectionView()
+    }
+    
+    func moveStockCorrectionView() {
         let stockCorrectionView = self.storyboard?.instantiateViewController(withIdentifier: "stockCorrection")
         stockCorrectionView?.modalTransitionStyle = .coverVertical
         stockCorrectionView?.modalPresentationStyle = .automatic
         self.present(stockCorrectionView!, animated: true, completion: nil)
-        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLable()
-       
+        
         // Do any additional setup after loading the view.
     }
 }
