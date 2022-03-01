@@ -76,39 +76,30 @@ class MainViewController: UIViewController {
         self.performSegue(withIdentifier: "StockViewController", sender: self)
     }
     
-    @IBAction func strawberryBananaJuiceOrderButtonClicked(_ sender: UIButton) {
-        order(.strawberryBananaJuice)
-        showCurrentStock()
-    }
-    
-    @IBAction func mangoKiwiJuiceOrderButtonClicked(_ sender: UIButton) {
-        order(.mangoKiwiJuice)
-        showCurrentStock()
-    }
-    
-    @IBAction func strawberryJuiceOrderButtonClicked(_ sender: UIButton) {
-        order(.strawberryJuice)
-        showCurrentStock()
-    }
-    
-    @IBAction func bananaJuiceOrderButtonClicked(_ sender: UIButton) {
-        order(.bananaJuice)
-        showCurrentStock()
-    }
-    
-    @IBAction func pineappleJuiceOrderButtonClicked(_ sender: UIButton) {
-        order(.pineappleJuice)
-        showCurrentStock()
-    }
-    
-    @IBAction func kiwiJuiceOrderButtonClicked(_ sender: UIButton) {
-        order(.kiwiJuice)
-        showCurrentStock()
-    }
-    
-    @IBAction func mangoJuiceOrderButtonClicked(_ sender: UIButton) {
-        order(.mangoJuice)
-        showCurrentStock()
+    @IBAction func juiceOrderButtonCollection(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            order(.strawberryBananaJuice)
+            showCurrentStock()
+        case 2:
+            order(.mangoKiwiJuice)
+            showCurrentStock()
+        case 3:
+            order(.strawberryJuice)
+            showCurrentStock()
+        case 4:
+            order(.bananaJuice)
+            showCurrentStock()
+        case 5:
+            order(.pineappleJuice)
+            showCurrentStock()
+        case 6:
+            order(.kiwiJuice)
+            showCurrentStock()
+        default:
+            order(.mangoJuice)
+            showCurrentStock()
+        }
     }
 }
 
