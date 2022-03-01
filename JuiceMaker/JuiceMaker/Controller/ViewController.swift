@@ -30,4 +30,20 @@ class ViewController: UIViewController {
   // IBAction
   @IBAction func didTapOrderButton(_ sender: UIButton) {}
   
+  private func createAlertController(
+    title: String?,
+    message: String?,
+    preferredStyle: UIAlertController.Style,
+    actions: UIAlertAction...
+  ) -> UIAlertController {
+    let alertController = UIAlertController(
+      title: title,
+      message: message,
+      preferredStyle: preferredStyle
+    )
+    actions.forEach { action in
+      alertController.addAction(action)
+    }
+    return alertController
+  }
 }
