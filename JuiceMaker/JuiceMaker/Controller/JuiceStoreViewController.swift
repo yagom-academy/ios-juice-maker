@@ -15,7 +15,6 @@ class JuiceStoreViewController: UIViewController {
     @IBOutlet weak var kiwiCountLabel: UILabel!
     @IBOutlet weak var mangoCountLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockCountLabel()
@@ -28,5 +27,9 @@ class JuiceStoreViewController: UIViewController {
         kiwiCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .kiwi)
         mangoCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .mango)
     }
+    
+    @IBAction func moveEditFruitStockViewController(_ sender: Any) {
+        guard let editFruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditFruitStockViewControlle") else { return }
+        self.present(editFruitStockViewController, animated: true, completion: nil)
+    }
 }
-
