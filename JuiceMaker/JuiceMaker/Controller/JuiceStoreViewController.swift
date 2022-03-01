@@ -18,6 +18,7 @@ class JuiceStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockCountLabel()
+        showSuccesAlert()
     }
     
     func updateFruitStockCountLabel() {
@@ -31,5 +32,16 @@ class JuiceStoreViewController: UIViewController {
     @IBAction func moveEditFruitStockViewController(_ sender: Any) {
         guard let editFruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditFruitStockViewControlle") else { return }
         self.present(editFruitStockViewController, animated: true, completion: nil)
+    }
+    
+    func showSuccesAlert() {
+        let successAlert = UIAlertController(title: "타이틀입니다.",
+                                            message: "메세지입니다.",
+                                            preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "okActioin입니다.",
+                                     style: .default,
+                                     handler: nil)
+        successAlert.addAction(okAction)
+        present(successAlert, animated: true, completion: nil)
     }
 }
