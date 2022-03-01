@@ -7,6 +7,10 @@
 
 import UIKit
 
-class SecondViewController {
+class SecondViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
 }

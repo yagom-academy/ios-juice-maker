@@ -382,10 +382,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="재고 수정" id="g4W-fY-l7r" userLabel="재고 수정">
                         <barButtonItem key="backBarButtonItem" title="  " id="dUm-My-pMB"/>
-                        <barButtonItem key="rightBarButtonItem" title="수정 완료" id="Pdp-IS-xiL" userLabel="수정 완료"/>
+                        <barButtonItem key="rightBarButtonItem" title="수정 완료" id="Pdp-IS-xiL" userLabel="수정 완료">
+                            <connections>
+                                <action selector="edit:" destination="vAg-OG-ybS" id="oxT-qd-a2u"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
+                <exit id="vAg-OG-ybS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1637" y="901"/>
         </scene>
