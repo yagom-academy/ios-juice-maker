@@ -52,7 +52,15 @@ class ViewController: UIViewController {
     func showAlert(alertMessage: String) {
         let alertCountroll = UIAlertController(title: "알림", message: alertMessage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil )
-        alertCountroll.addAction(okAction)
+        let moveAction = UIAlertAction(title: "예", style: .default, handler: nil )
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil )
+        
+        if alertMessage == "재료가 모자라요. 재고를 수정할까요?" {
+            alertCountroll.addAction(moveAction)
+            alertCountroll.addAction(cancelAction)
+        } else {
+            alertCountroll.addAction(okAction)
+        }
         present(alertCountroll, animated: false, completion: nil)
     }
     
