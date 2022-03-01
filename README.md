@@ -30,24 +30,24 @@
 ### 구현 내용
 ---
 #### struct JuiceMaker
-`makeJuice()` : 쥬스를 만드는 함수
-`deleteStockFromRecipeRequired()` : 레시피에 적힌 만큼 재고에서 삭제하는 함수
+`makeJuice()` : 쥬스를 만드는 함수  
+`deleteStockFromRecipeRequired()` : 레시피에 적힌 만큼 재고에서 삭제하는 함수  
 #### class FruitStore
-`canMakeJuice()` : 레시피대로 쥬스를 만들수 있는지 재고를 확인하는 함수
-`changeFruitStock()` : fruit의 재고를 amount 만큼 낮추는 함수
+`canMakeJuice()` : 레시피대로 쥬스를 만들수 있는지 재고를 확인하는 함수  
+`changeFruitStock()` : fruit의 재고를 amount 만큼 낮추는 함수  
 
 
 ## [STEP 2]
 
 ### 구현 내용
 ---
-`updateFruitLabel` : 과일의 재고를 Label에 표시해주는 함수
-`tapStockEditButton` : 재고 관리 버튼과 연결된 함수
-`moveToStockViewController` : StockViewController를 modal로 띄워주는 함수
-`order` : 쥬스 주문 시, 실행되는 함수
-`check` : 어떤 버튼이 눌렸는지, 판단해서 만들 Juice를 retun해주는 함수
-`showSotckErrorAlert()` :  쥬스 재고가 부족할때 alert을 띄우는 함수
-`showOkAlert()` : 확인 버튼 하나인 alert을 띄우는 함수
-`enum AlertMessage` : AlertController에 쓰이는 문자열들을 관리하기 위한 namespace
+`updateFruitLabel` : 과일의 재고를 Label에 표시해주는 함수  
+`tapStockEditButton` : 재고 관리 버튼과 연결된 함수  
+`moveToStockViewController` : StockViewController를 modal로 띄워주는 함수  
+`order` : 쥬스 주문 시, 실행되는 함수  
+`check` : 어떤 버튼이 눌렸는지, 판단해서 만들 Juice를 retun해주는 함수  
+`showSotckErrorAlert()` :  쥬스 재고가 부족할때 alert을 띄우는 함수  
+`showOkAlert()` : 확인 버튼 하나인 alert을 띄우는 함수  
+`enum AlertMessage` : AlertController에 쓰이는 문자열들을 관리하기 위한 namespace  
 
 
