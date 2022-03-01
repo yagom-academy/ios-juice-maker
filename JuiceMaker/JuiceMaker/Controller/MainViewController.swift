@@ -88,6 +88,8 @@ class MainViewController: UIViewController {
                 outOfStockAlert()
             }
         } catch { makeAlert(title: "경고", message: "알 수 없는 오류.") }
+        
+        completeAlert(menu: menu)
     }
     
     func makeAlert(title: String, message: String) {
@@ -108,5 +110,23 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func completeAlert(menu: Menu) {
+        switch menu {
+        case .strawberryJuice:
+            makeAlert(title: "완료", message: "딸기 쥬스 나왔습니다! 맛있게 드세요!")
+        case .bananaJuice:
+            makeAlert(title: "완료", message: "바나나 쥬스 나왔습니다! 맛있게 드세요!")
+        case .kiwiJuice:
+            makeAlert(title: "완료", message: "키위 쥬스 나왔습니다! 맛있게 드세요!")
+        case .pineappleJuice:
+            makeAlert(title: "완료", message: "파인애플 쥬스 나왔습니다! 맛있게 드세요!")
+        case .ddalBaJuice:
+            makeAlert(title: "완료", message: "딸바 쥬스 나왔습니다! 맛있게 드세요!")
+        case .mangoJuice:
+            makeAlert(title: "완료", message: "망고 쥬스 나왔습니다! 맛있게 드세요!")
+        case .mangKiJuice:
+            makeAlert(title: "완료", message: "망키 쥬스 나왔습니다! 맛있게 드세요!")
+        }
+    }
 }
 
