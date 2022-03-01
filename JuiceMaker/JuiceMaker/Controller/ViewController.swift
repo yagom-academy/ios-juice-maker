@@ -13,6 +13,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleCount: UILabel!
     @IBOutlet weak var kiwiCount: UILabel!
     @IBOutlet weak var mangoCount: UILabel!
+    
+    @IBOutlet weak var strawberrybananaButton: UIButton!
+    @IBOutlet weak var strawberryButton: UIButton!
+    @IBOutlet weak var mangoButton: UIButton!
+    @IBOutlet weak var kiwiButton: UIButton!
+    @IBOutlet weak var pineappleButton: UIButton!
+    @IBOutlet weak var bananaButton: UIButton!
+    @IBOutlet weak var mangoKiwiButton: UIButton!
+    
     var fruitStore = FruitStore()
     
     // MARK: 재고수정 버튼 눌렀을 시 화면 전환
@@ -21,23 +30,84 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(pushVC, animated: true)
     }
     
+    @IBAction func orderStrawberryBananaJuice(_ sender: Any) {
+        orderJuices(fruitJuice: .strawberryBanana)
+    }
+    @IBAction func orderStrawberryJuice(_ sender: Any) {
+        orderJuices(fruitJuice: .strawberry)
+    }
+    @IBAction func orderMangoKiwiJuice(_ sender: Any) {
+        orderJuices(fruitJuice: .mangoKiwi)
+    }
+    @IBAction func orderBananaJuice(_ sender: Any) {
+        orderJuices(fruitJuice: .banana)
+    }
     
-    @IBAction func orderStrawBerryJuice(_ sender: UIButton) {
-        orderjuice(fruitjuice: .strawberryBanana)
-        }
-        
-       
-    //MARK: 공동으로 사용 하는 함수
-    func orderjuice(fruitjuice: JuiceTypes) {
-        updateUI()
+    @IBAction func orderPineappleJuice(_ sender: Any) {
+        orderJuices(fruitJuice: .pineapple)
+    }
+    
+    @IBAction func orderKiwiJuice(_ sender: Any) {
+        orderJuices(fruitJuice: .kiwi)
+    }
+    
+    @IBAction func orderMangoJuice(_ sender: Any) {
+        orderJuices(fruitJuice: .mango)
+    }
+    
+    func orderJuices(fruitJuice: JuiceTypes) {
         var juiceSet = Dictionary<JuiceTypes, Int>()
         let orderJuice = JuiceMaker()
-        juiceSet = orderJuice.makeJuice(fruitJuice: fruitjuice, fruitStore: fruitStore)
+        juiceSet = orderJuice.makeJuice(fruitJuice: fruitJuice, fruitStore: fruitStore)
         if juiceSet.isEmpty {
             showAlertMessage()
         } else {
-            mangoCount.text = String(juiceSet[fruitjuice]!)
-            showConfirmAlert(juiceTypes: fruitjuice)
+            updateLabel(juice: juiceSet, juices: fruitJuice)
+            showConfirmAlert(juiceType: fruitJuice)
+        }
+    }
+    
+    func updateLabel(juice: [JuiceTypes:Int], juices: JuiceTypes) {
+        let errorNumber = 0
+        switch juices {
+        case .strawberryBanana:
+            strawberryCount.text = String(juice[.strawberry] ?? errorNumber)
+            bananaCount.text = String(juice[.banana] ?? errorNumber)
+        case .mangoKiwi:
+            mangoCount.text = String(juice[.mango] ?? errorNumber)
+            kiwiCount.text = String(juice[.kiwi] ?? errorNumber)
+        case .strawberry:
+            strawberryCount.text = String(juice[.strawberry] ?? errorNumber)
+        case .banana:
+            bananaCount.text = String(juice[.banana] ?? errorNumber)
+        case .pineapple:
+            pineappleCount.text = String(juice[.pineapple] ?? errorNumber)
+        case .kiwi:
+            kiwiCount.text = String(juice[.kiwi] ?? errorNumber)
+        case .mango:
+            mangoCount.text = String(juice[.mango] ?? errorNumber)
+        }
+    }
+    
+    func clickButton(sender: UIButton) {
+        switch sender {
+        case strawberrybananaButton:
+            orderStrawberryBananaJuice(sender)
+        case mangoKiwiButton:
+            orderMangoKiwiJuice(sender)
+        case strawberryButton:
+            orderStrawberryJuice(sender)
+        case bananaButton:
+            orderBananaJuice(sender)
+        case pineappleButton:
+            orderPineappleJuice(sender)
+        case kiwiButton:
+            orderKiwiJuice(sender)
+        case mangoButton:
+            orderMangoJuice(sender)
+        default:
+            // TODO: 새로운 에러 처리 필요
+            print("에러")
         }
     }
     
@@ -52,7 +122,6 @@ class ViewController: UIViewController {
         juiceOutOfStockAlert.addAction(noButton)
         juiceOutOfStockAlert.addAction(yesButton)
         present(juiceOutOfStockAlert, animated: false, completion: nil)
-        
     }
     
     // MARK: 재고 있을 시 얼럿 메시지
@@ -62,9 +131,8 @@ class ViewController: UIViewController {
         provideJuiceAlert.addAction(okButton)
         present(provideJuiceAlert, animated: false, completion: nil)
     }
-    
-    
-    func updateUI () {
+    // TODO: 리팩토링 필요?
+    func updateUI() {
         for i in fruitStore.fruits {
             if i.key == JuiceTypes.strawberry {
                 strawberryCount.text = String(i.value)
@@ -79,12 +147,9 @@ class ViewController: UIViewController {
             }
         }
     }
-        
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        
     }
 }
