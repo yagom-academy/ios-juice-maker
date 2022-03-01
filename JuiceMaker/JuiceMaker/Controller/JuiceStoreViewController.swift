@@ -18,7 +18,7 @@ class JuiceStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockCountLabel()
-        showSuccesAlert()
+        showFailureAlert()
     }
     
     func updateFruitStockCountLabel() {
@@ -35,10 +35,10 @@ class JuiceStoreViewController: UIViewController {
     }
     
     func showSuccesAlert() {
-        let successAlert = UIAlertController(title: "타이틀입니다.",
-                                            message: "메세지입니다.",
+        let successAlert = UIAlertController(title: AlertMessage.cameOut.description,
+                                             message: AlertMessage.enjoyDrink.description,
                                             preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "okActioin입니다.",
+        let okAction = UIAlertAction(title: AlertMessage.check.description,
                                      style: .default,
                                      handler: nil)
         successAlert.addAction(okAction)
@@ -46,14 +46,14 @@ class JuiceStoreViewController: UIViewController {
     }
     
     func showFailureAlert() {
-        let failureAlert = UIAlertController(title: "재료가 모자람",
-                                             message: "재고수정으로 ㄱ?",
+        let failureAlert = UIAlertController(title: AlertMessage.outOfStock.description,
+                                             message: AlertMessage.editStock.description,
                                              preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "네",
+        let okAction = UIAlertAction(title: AlertMessage.yes.description,
                                      style: .default,
                                      handler: nil)
-        let noAction = UIAlertAction(title: "아니오",
-                                     style: .cancel,
+        let noAction = UIAlertAction(title: AlertMessage.no.description,
+                                     style: .destructive,
                                      handler: nil)
         failureAlert.addAction(okAction)
         failureAlert.addAction(noAction)

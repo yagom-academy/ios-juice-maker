@@ -1,16 +1,16 @@
 //
-//  JuiceError.swift
+//  AlertMessage.swift
 //  JuiceMaker
 //
-//  Created by SeoDongyeon on 2022/02/24.
+//  Created by SeoDongyeon on 2022/03/01.
 //
 
 enum AlertMessage {
     case cameOut
-    case enjoyDrink
     case outOfStock
+    case enjoyDrink
     case editStock
-    case ok
+    case check
     case yes
     case no
     
@@ -18,13 +18,13 @@ enum AlertMessage {
         switch self {
         case .cameOut:
             return " 나왔습니다!"
-        case .enjoyDrink:
-            return " 맛있게 드세요!"
         case .outOfStock:
             return "재료가 모자라요"
+        case .enjoyDrink:
+            return "맛있게 드세요!"
         case .editStock:
             return "재고를 수정할까요?"
-        case .ok:
+        case .check:
             return "확인"
         case .yes:
             return "네"
