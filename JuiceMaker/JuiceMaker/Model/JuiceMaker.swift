@@ -19,7 +19,7 @@ struct JuiceMaker {
     }
     
     private func subtractFruitQuantity(for juice: Juice) {
-        juice.recipe.forEach { (fruit: Juice.Fruit, count: Int) in
+        juice.recipe.forEach { (fruit: FruitStore.Fruit, count: Int) in
             fruitStore.changeFruitQuantity(by: fruit, count: count)
         }
     }
