@@ -65,8 +65,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func moveStockCorrectionView(_ sender: UIButton) {
-            let stockCorrectionView = self.storyboard?.instantiateViewController(withIdentifier: "stockCorrection")
-            self.navigationController?.pushViewController(stockCorrectionView!, animated: true)
+        let stockCorrectionView = self.storyboard?.instantiateViewController(withIdentifier: "stockCorrection")
+        stockCorrectionView?.modalTransitionStyle = .coverVertical
+        stockCorrectionView?.modalPresentationStyle = .automatic
+        self.present(stockCorrectionView!, animated: true, completion: nil)
         }
     
     override func viewDidLoad() {
