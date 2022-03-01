@@ -18,7 +18,6 @@ class JuiceStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockCountLabel()
-        showFailureAlert()
     }
     
     func updateFruitStockCountLabel() {
@@ -30,7 +29,7 @@ class JuiceStoreViewController: UIViewController {
     }
     
     @IBAction func moveEditFruitStockViewController(_ sender: Any) {
-        guard let editFruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditFruitStockViewControlle") else { return }
+        guard let editFruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: EditFruitStockViewController.identifier()) else { return }
         self.present(editFruitStockViewController, animated: true, completion: nil)
     }
     
@@ -50,8 +49,10 @@ class JuiceStoreViewController: UIViewController {
                                              message: AlertMessage.editStock.description,
                                              preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.yes.description,
-                                     style: .default,
-                                     handler: nil)
+                                     style: .default) { action in
+            self.moveEditFruitStockViewController(action)
+        }
+                                     
         let noAction = UIAlertAction(title: AlertMessage.no.description,
                                      style: .destructive,
                                      handler: nil)

@@ -9,6 +9,10 @@ import UIKit
 
 class EditFruitStockViewController: UIViewController {
 
+    static func identifier() -> String {
+        return String(describing: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
