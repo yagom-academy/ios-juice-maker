@@ -1,14 +1,13 @@
 import Foundation
 
 struct JuiceMaker {
-   func makeJuice(by order: Juice) {
+    func makeJuice(by order: Juice) -> Bool {
         let juiceRecipe = order.recipe
         
-        do {
-            try FruitStore.shared.decreaseFruitStock(by: juiceRecipe)
-        } catch {
-            print(error.localizedDescription)
+        guard let result = try? FruitStore.shared.canDecreaseFruitStock(by: juiceRecipe) else {
+            return false
         }
+        return result
     }
 }
 

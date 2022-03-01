@@ -11,7 +11,7 @@ final class FruitStore {
         Fruit.allCases.forEach { inventory[$0] = DefaulSetting.stock }
     }
     
-    func decreaseFruitStock(by ingredient: [Fruit: Int]) throws {
+    func canDecreaseFruitStock(by ingredient: [Fruit: Int]) throws -> Bool {
         for (fruit, requiredAmount) in ingredient {
             guard let currentAmount = inventory[fruit], currentAmount >= requiredAmount else {
                 throw JuiceMakingError.outOfStock
@@ -19,5 +19,6 @@ final class FruitStore {
             let remainingAmount = currentAmount - requiredAmount
             inventory[fruit] = remainingAmount
         }
+        return true
     }
 }
