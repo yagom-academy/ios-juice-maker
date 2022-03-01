@@ -12,10 +12,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showFruitsStock()
+        updateFruitsStock()
     }
     
-    private func showFruitsStock() {
+    private func updateFruitsStock() {
         var index:Int = .zero
         for fruit in Fruit.allCases {
             guard let stock = FruitStore.shared.inventory[fruit] else {
@@ -44,25 +44,73 @@ class ViewController: UIViewController {
     }
     
     @IBAction func makeStrawberryBananaJuiceButton(_ sender: UIButton) {
+        switch juiceMaker.makeJuice(by: .strawberryBananaJuice) {
+        case true:
+            showSuccessAlert(juice: Juice.strawberryBananaJuice.rawValue)
+            updateFruitsStock()
+        case false:
+            showFailAlert()
+        }
     }
     
     @IBAction func makeMangoKiwiJuiceButton(_ sender: UIButton) {
+        switch juiceMaker.makeJuice(by: .mangoKiwiJuice) {
+        case true:
+            showSuccessAlert(juice: Juice.mangoKiwiJuice.rawValue)
+            updateFruitsStock()
+        case false:
+            showFailAlert()
+        }
     }
     
     @IBAction func makeStrawberryJuiceButton(_ sender: UIButton) {
+        switch juiceMaker.makeJuice(by: .strawberryJuice) {
+        case true:
+            showSuccessAlert(juice: Juice.strawberryJuice.rawValue)
+            updateFruitsStock()
+        case false:
+            showFailAlert()
+        }
     }
     
     @IBAction func makeBananaJuiceButton(_ sender: UIButton) {
+        switch juiceMaker.makeJuice(by: .bananaJuice) {
+        case true:
+            showSuccessAlert(juice: Juice.bananaJuice.rawValue)
+            updateFruitsStock()
+        case false:
+            showFailAlert()
+        }
     }
     
     @IBAction func makePineappleJuiceButton(_ sender: UIButton) {
+        switch juiceMaker.makeJuice(by: .pineappleJuice) {
+        case true:
+            showSuccessAlert(juice: Juice.pineappleJuice.rawValue)
+            updateFruitsStock()
+        case false:
+            showFailAlert()
+        }
     }
     
     
     @IBAction func makeKiwiJuiceButton(_ sender: UIButton) {
+        switch juiceMaker.makeJuice(by: .kiwiJuice) {
+        case true:
+            showSuccessAlert(juice: Juice.kiwiJuice.rawValue)
+            updateFruitsStock()
+        case false:
+            showFailAlert()
+        }
     }
     
     @IBAction func makeMangoJuiceButton(_ sender: UIButton) {
+        switch juiceMaker.makeJuice(by: .mangoJuice) {
+        case true:
+            showSuccessAlert(juice: Juice.mangoJuice.rawValue)
+            updateFruitsStock()
+        case false:
+            showFailAlert()
+        }
     }
-    
 }

@@ -127,7 +127,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="makeStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BnN-hT-6CA"/>
+                                                    <action selector="makeStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dFC-EY-FV4"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
@@ -142,7 +142,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="makeMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4vo-Lm-A6J"/>
+                                                    <action selector="makeMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2p-Aa-W5U"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -161,7 +161,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="makeStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cni-6g-djd"/>
+                                                            <action selector="makeStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Duo-sO-yab"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
@@ -172,7 +172,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="makeBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="diE-mV-O1t"/>
+                                                            <action selector="makeBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kjb-ij-X0r"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
@@ -183,7 +183,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="makePineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Ta-FK-uB8"/>
+                                                            <action selector="makePineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KCP-10-Axk"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -194,7 +194,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="makeKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b7k-lH-8Yt"/>
+                                                            <action selector="makeKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EpL-gi-EYx"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
@@ -205,7 +205,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="makeMangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XYT-DS-ckB"/>
+                                                            <action selector="makeMangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Si4-ts-Dwl"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
