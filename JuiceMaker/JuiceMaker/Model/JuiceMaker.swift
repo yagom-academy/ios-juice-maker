@@ -8,6 +8,10 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore()
     
+    var fruitStock: [Fruit: Int] {
+        return fruitStore.fruitStock
+    }
+    
     func make(fruitJuice: Juice) throws {
         let recipe = fruitJuice.recipe
         

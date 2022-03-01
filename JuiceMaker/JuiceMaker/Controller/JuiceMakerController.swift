@@ -26,13 +26,31 @@ class JuiceMakerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateFruitLabel()
+    }
+    
+    private func updateFruitLabel() {
+        let stock = juiceMaker.fruitStock
+        
+        let fruitLabelDictionary: [Fruit: UILabel] = [
+            .strawberry: strawberryStockLabel,
+            .banana: bananaStockLabel,
+            .pineapple: pineappleStockLabel,
+            .kiwi: kiwiStockLabel,
+            .mango: mangoStockLabel
+        ]
+        
+        for (fruit, amount) in stock {
+            let label = fruitLabelDictionary[fruit]
+            label?.text = "\(amount)"
+        }
     }
     
     @IBAction func order(_ sender: UIButton) {
         do{
             let juice = try check(button: sender)
             try juiceMaker.make(fruitJuice: juice)
+            updateFruitLabel()
         } catch JuiceMakerError.invalidButton {
             
         } catch JuiceMakerError.outOfStock {
