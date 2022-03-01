@@ -43,4 +43,9 @@ class FruitStore {
             fruitsStock.updateValue(currentFruitQuantity - count, forKey: fruit)
         }
     }
+    
+    func bringStockValue(for fruit: Fruit) -> String {
+        guard let fruitStock = fruitsStock[fruit] else { return "" }
+        return "\(fruitStock)"
+    }
 }
