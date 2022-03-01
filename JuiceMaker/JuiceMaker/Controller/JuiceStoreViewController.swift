@@ -15,6 +15,14 @@ class JuiceStoreViewController: UIViewController {
     @IBOutlet weak var kiwiCountLabel: UILabel!
     @IBOutlet weak var mangoCountLabel: UILabel!
     
+    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var strawberryJuiceButton: UIButton!
+    @IBOutlet weak var bananaJuiceButton: UIButton!
+    @IBOutlet weak var pineappleJuiceButton: UIButton!
+    @IBOutlet weak var kiwiJuiceButton: UIButton!
+    @IBOutlet weak var mangoJuiceButton: UIButton!
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockCountLabel()
@@ -26,6 +34,29 @@ class JuiceStoreViewController: UIViewController {
         pineappleCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .pineapple)
         kiwiCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .kiwi)
         mangoCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .mango)
+    }
+    
+    func convertToJuice(_ sender: UIButton) -> Juice {
+        if sender == strawberryBananaJuiceButton {
+            return .strawberryBanana
+        } else if sender == mangoKiwiJuiceButton {
+            return .mangoKiwi
+        } else if sender == strawberryJuiceButton {
+            return .strawberry
+        } else if sender == bananaJuiceButton {
+            return .banana
+        } else if sender == pineappleJuiceButton {
+            return .pineapple
+        } else if sender == kiwiJuiceButton {
+            return .kiwi
+        }
+        return .mango
+    }
+    
+    @IBAction func orderJuices(_ sender: UIButton) {
+        let juice = convertToJuice(sender)
+        juiceMaker.makeJuice(juice) ? showSuccesAlert() : showFailureAlert()
+        updateFruitStockCountLabel()
     }
     
     @IBAction func moveEditFruitStockViewController(_ sender: Any) {

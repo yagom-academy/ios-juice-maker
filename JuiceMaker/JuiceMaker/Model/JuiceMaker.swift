@@ -7,13 +7,14 @@ import Foundation
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func makeJuice(_ juice: Juice) {
+    func makeJuice(_ juice: Juice) -> Bool {
         do {
             _ = try fruitStore.makeReady(for: juice)
             subtractFruitQuantity(for: juice)
-            print("주문하신 \(juice)가 나왔어용~")
+            return true
         } catch (let fruit) {
-            print("\(fruit)의 재고가 불충분합니다.")
+            print("\(fruit)")
+            return false
         }
     }
     
