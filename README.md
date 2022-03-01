@@ -1,41 +1,20 @@
 # ios-juice-maker
 # 팀원
 - minseong, papri
-# UML
-<img src ="https://user-images.githubusercontent.com/94295586/155451528-fa9ba753-61da-4ce2-9307-f750c8073a50.png" width = 700 height = 500>
 
 # 구현함수
-- `makeJuice()`: 음료를 입력받아 음료제작이 가능한지 확인 후 가능하면 제작
-- `isEnoughStock()`: 음료에 필요한 재료가 있는지 확인
-- `decreaseFruitStock()`: 음료제작에 필요한 재료만큼  과일저장소의 정보최신화
-# 고민한 점
-- `Enum Fruit`를 `FruitStore`에 종속되게 해줄지 아니면 파일을 따로 빼줄지 고민했습니다. `FruitStore`가 과일종류와 재고의 관한 목록만 있으면 된다고 판단하여 파일을 분리했습니다.
-- `Class FruitStore`에서 과일과 과일재고의 구현. 
-  - a. `enum Fruit`을 만들어 해당 과일과 재고를 `Dictionary`의 `key`와 `index`로 두어 관리할지
-  - b. `Fruit`이란 구조체를 만들어 그 안에 과일이름과 과일재고를 넣고 `struct Fruit`객체들의 배열로 관리할지 
-> b를 선택하면 과일 객체를 하나하나 다 만들어줘서 배열에 넣어야 하고, 과일 값을 줄일 때 배열.과일구조체인스턴스.재고 << 이렇게 접근해야해서, a 방식을 선택하였습니다. 
-> 추후에 `FruitStore`에서 취급하는 과일의 종류가 다양해지더라도 `Fruit enum`에 `case`를 추가하면 되기 때문에 a방식으로 결정했습니다.
-- 매직넘버
-  - `Class FruitSore`에서 초기화를 진행할 때, 초기 재고인 10이 매직넘버이기 때문에 `DefaultSetting`이란 `enum`을 만들어 해결하였습니다.
-- 접근지정자
-  - `Class FruitStore`의 재고관리는 `decreaseFruitQuantity()`메소드를 통해 `private`한 과일인벤토리에 접근하는 식으로 이뤄져야겠다고 생각했습니다. 
-  - 과일을 만드는 것 외에 다른 이유로 과일인벤토리를 건들지 못하게 만들어야 한다고 생각했습니다.
-- 에러처리 - `throw`를 하는 부분과 `catch`를 할 부분
-  - 재고를 검사하는 동시에 `Error`를 던져줄지 검사가 끝나고 `Bool`값으로 반환받아 그 결과값에 따라서 `Error`를 던져줄지 고민하였습니다.
-> 재고를 확인하는 부분은 `FruitStore`에서 진행해야 한다고 생각하여 `Error`를 `isEnoughStock()`서 던져주었습니다.
-- 네이밍
-  - `JuiceMakeError`, `JuiceMakerError`라는 네이밍을 고민하였습니다
-> 쥬스를 만드는 과정에서 에러가 생기는 것이기 때문에 JuiceMakeError라는 이름을 선택하였습니다.
-# 조언을 얻고 싶은 부분
-```swift
-func decreaseFruitStock(by juiceIngredient: [Fruit : Int]) {
-    for (fruit, requiredAmount) in juiceIngredient {
-        if var fruitStoreStock = fruitsInventory[fruit] {
-            fruitStoreStock -= requiredAmount
-            fruitsInventory[fruit] = fruitStoreStock
-        }
-    }
-}
-```
-- 위 코드의 네이밍을 고민을 많이 했는데 가독성이 좋은지 조언 부탁드립니다! 
-- 이번 프로젝트를 수행함에 있어 읽고 참고해야 하는 문서를 이틀간 읽고 프로젝트를 실행하였습니다, 막상 시작하려니 알고 있는 지식들을 어떻게 활용해야 할지 어떤 방향으로 갈지 계속 방황했습니다. 어떤식으로 공부를 해야 할까요?? 조언을 얻고 싶습니다.
+- `makeJuice()`: 음료를 입력받아 음료제작이 가능한지 확인 후 가능하면 제작. 제작에 성공하면 `true`, 실패하면 `false` 리턴
+- `canDecreaseFruitStock()`: 음료제작에 필요한 양만큼 재고를 깎고, 필요한 재료의 재고가 부족하다면 `error`를 `throw`한다. 만약 재고가 충분해 재고를 깎을 수 있다면, `inventory`에 재고상황을 반영하고 `ture`를 리턴
+- `updateFruitsStock()`: 과일 `inventory`의 현황을 `VC`의 `UILabel`에 각각 표시
+- `showSuccessAlert()`: 과일 제조에 성공했을 때 `Alert`표시
+- `showFailAlert()`: 과일 제조에 실패했을 때 `Alert`표시 후 재고 수정시 화면전환
+
+# 고민한 점 및 해결
+- 각각의 과일의 재고를 표시하는 `UILabel`을 한번에 관리할 수 있게 하고 싶었습니다
+> `IBOutlet Collection`을 사용했습니다.
+- `ViewControl`에서 과일 수량 표시하는 `label`의 값을 띄워줘야 하는데 어떻게 `FruitStore` 인벤토리의 값을 가져올지 고민하였습니다.
+> 싱글턴패턴을 이용하여 `FruitStore` 인벤토리에 접근하여 반복문을 통해  각각의 `Label` 세팅해 주었습니다
+- 주문버튼을 눌렀을 때 재고가 있을 경우와 없을 경우를 어떻게 구별해야 할지 고민하였습니다.
+> `makeJuice()`의 `return` 타입을 `bool`타입으로 주어 제조에 성공한 경우와 실패한 경우를 구분해 주었습니다.
+- 각각의 쥬스주문버튼의 기능들이 중복이 되는데 하나의 액션으로 다양한 버튼의 기능을 수행할 수 있게 만드는 방법이 있을까요?? 혹시;;; 있다면 그 (정보or기법??)에대한 키워드등을 얻을 수 있을까요??😭
+- 과일의 재고가 변경될 때마다 `updateFruitsStock()`를 실행해 주었습니다 매번 실행해 주는게 비효율적이라는 생각이 들었습니다 더 좋은 방법이 있을까요???
