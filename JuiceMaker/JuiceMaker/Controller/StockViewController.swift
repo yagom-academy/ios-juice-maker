@@ -2,7 +2,7 @@
 //  StockViewController.swift
 //  JuiceMaker
 //
-//  Created by marisol on 2022/02/28.
+//  Created by marisol, mmim on 2022/02/28.
 //
 
 import UIKit

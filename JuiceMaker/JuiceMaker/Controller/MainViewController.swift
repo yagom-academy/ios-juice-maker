@@ -27,17 +27,24 @@ class MainViewController: UIViewController {
         juiceMaker.fruitStore.inventory.keys.forEach {
             switch $0 {
             case .strawberry:
-                stockLabels[0].text = String(juiceMaker.fruitStore.inventory[.strawberry] ?? 0)
+                stockLabels[0].text = transformTypeToString(.strawberry)
             case .banana:
-                stockLabels[1].text = String(juiceMaker.fruitStore.inventory[.banana] ?? 0)
+                stockLabels[1].text = transformTypeToString(.banana)
             case .pineapple:
-                stockLabels[2].text = String(juiceMaker.fruitStore.inventory[.pineapple] ?? 0)
+                stockLabels[2].text = transformTypeToString(.pineapple)
             case .kiwi:
-                stockLabels[3].text = String(juiceMaker.fruitStore.inventory[.kiwi] ?? 0)
+                stockLabels[3].text = transformTypeToString(.kiwi)
             default:
-                stockLabels[4].text = String(juiceMaker.fruitStore.inventory[.mango] ?? 0)
+                stockLabels[4].text = transformTypeToString(.mango)
             }
         }
+    }
+    
+    func transformTypeToString(_ fruit: Fruit) -> String? {
+        guard let fruitForKey = juiceMaker.fruitStore.inventory[fruit] else {
+            return nil
+        }
+        return String(fruitForKey)
     }
     
     func order(_ juice: Juice) {
@@ -46,27 +53,22 @@ class MainViewController: UIViewController {
             alertOrderCompletion(juice)
         } catch OrderError.outOfStock {
             alertOutOfStock()
-        } catch {
-            print(error)
-        }
+        } catch { }
     }
     
     func alertOrderCompletion(_ juice: Juice) {
-        let alert = UIAlertController(title: "주문완료", message: "\(juice.hangeulName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.hangeulName) \(Alert.orderSuccess.message)", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
     }
     
     func alertOutOfStock() {
-        let alert = UIAlertController(title: "재고부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        
-        let defaultAction = UIAlertAction(title: "예", style: .default) { action in
+        let alert = UIAlertController(title: Alert.outOfStock.title, message: Alert.outOfStock.message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: AlertButton.yes.title, style: .default) { action in
             self.performSegue(withIdentifier: "StockViewController", sender: self)
         }
-        
-        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
-        
+        let cancelAction = UIAlertAction(title: AlertButton.no.title, style: .destructive, handler: nil)
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
