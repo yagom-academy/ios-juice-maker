@@ -74,6 +74,7 @@ class MainViewController: UIViewController {
         default:
             makeAlert(title: "경고", message: "알 수 없는 오류.")
         }
+        showStock()
     }
     
     func makeJuice(menu: Menu) {
