@@ -52,7 +52,7 @@ class JuiceMakerController: UIViewController {
         case mangoButton:
             return .mangoJuice
         default:
-            return .strawberryBananaJuice
+            throw JuiceMakerError.invalidButton
         }
     }
 }
