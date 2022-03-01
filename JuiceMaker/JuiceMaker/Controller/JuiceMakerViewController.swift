@@ -27,7 +27,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             let order = try takeOrder(sender: sender)
             try juiceMaker?.produce(juice: order)
-            try configureLabels()
+            try configureStockLabels()
             alert(menu: order)
         } catch (let error) {
             alertError(error: error)
@@ -46,25 +46,25 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(test3), name: .test, object: nil)
-        NotificationCenter.default.post(name: .test, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabels), name: .updatedStockLabels, object: nil)
+        NotificationCenter.default.post(name: .updatedStockLabels, object: nil)
     }
     
-    @objc func test3() {
+    @objc func updateStockLabels() {
         do {
-            try configureLabels()
+            try configureStockLabels()
         } catch (let error) {
             alertError(error: error)
         }
     }
     
-    private func configureLabels() throws {
+    private func configureStockLabels() throws {
         var amountLabels: [UILabel] = []
         let fruits = Fruit.allCases
         
         fruits
             .forEach { fruit in
-                amountLabels.append(test(fruit: fruit))
+                amountLabels.append(findStockLabel(of: fruit))
             }
         
         var currentIndex = amountLabels.startIndex
@@ -81,7 +81,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
 
-    private func test(fruit: Fruit) -> UILabel {
+    private func findStockLabel(of fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
             return strawberryAmountLabel
@@ -138,7 +138,7 @@ class JuiceMakerViewController: UIViewController {
 }
 
 extension Notification.Name {
-    static let test = Notification.Name("test")
+    static let updatedStockLabels = Notification.Name("updatedStockLabels")
 }
 
 extension UIViewController {
