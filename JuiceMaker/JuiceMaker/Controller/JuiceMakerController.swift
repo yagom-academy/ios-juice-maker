@@ -51,7 +51,7 @@ class JuiceMakerController: UIViewController {
             let juice = try check(button: sender)
             try juiceMaker.make(fruitJuice: juice)
             updateFruitLabel()
-            showOkAlert(title: "쥬스 나왔습니다! 맛있게 드세요!")
+            showOkAlert(title: "\(juice) 나왔습니다! 맛있게 드세요!")
         } catch JuiceMakerError.invalidButton {
             showOkAlert(title: "버튼을 잘못 누르셨습니다.")
         } catch JuiceMakerError.outOfStock {
