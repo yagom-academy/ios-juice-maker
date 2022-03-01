@@ -19,7 +19,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         updateFruitStockLabel()
-        
     }
 
     @IBOutlet weak var orderStrawberryBananaButton: UIButton!
@@ -42,7 +41,10 @@ class ViewController: UIViewController {
     
     func showAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: UIAlertController.Style.alert)
-        let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in print("yes")})
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: {
+            _ in print("yes")
+            
+        })
         let noAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         alert.addAction(yesAction)
         alert.addAction(noAction)
@@ -56,8 +58,9 @@ class ViewController: UIViewController {
         stockOfKiwi.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? 0)
         stockOfMango.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? 0)
     }
-    
-    
 
+    @IBAction func changeFruitStock(_ sender: Any) {
+        print("재고수정")
+    }
 }
 
