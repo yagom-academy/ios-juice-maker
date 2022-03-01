@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
