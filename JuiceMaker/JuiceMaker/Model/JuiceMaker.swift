@@ -78,10 +78,6 @@ struct JuiceMaker {
         for ingredient in juice.recipe {
             let (neededFruit, neededStock) = ingredient
             fruitStore.changeStock(of: neededFruit, to: -neededStock)
-            
         }
-        print("\(juice) 나왔습니다.")
     }
 }
-
-

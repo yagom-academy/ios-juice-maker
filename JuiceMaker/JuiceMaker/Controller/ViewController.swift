@@ -67,16 +67,16 @@ class ViewController: UIViewController {
     }
     
     func showSuccessAlert(_ alertMessage: String) {
-        let alertCountroll = UIAlertController(title: "알림", message: alertMessage, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil )
+        let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: alertMessage + Phrases.readyForJuice.text, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Phrases.ok.text, style: .default, handler: nil )
         alertCountroll.addAction(okAction)
         present(alertCountroll, animated: false, completion: nil)
     }
     
     func showFailureAlert() {
-        let alertCountroll = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let moveAction = UIAlertAction(title: "예", style: .default, handler: { _ in self.moveStockCorrectionView() })
-        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil )
+        let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
+        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveStockCorrectionView() })
+        let cancelAction = UIAlertAction(title: Phrases.no.text, style: .default, handler: nil )
         alertCountroll.addAction(moveAction)
         alertCountroll.addAction(cancelAction)
         present(alertCountroll, animated: false, completion: nil)
@@ -93,7 +93,6 @@ class ViewController: UIViewController {
         stockCorrectionView?.modalPresentationStyle = .automatic
         self.present(stockCorrectionView!, animated: true, completion: nil)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
