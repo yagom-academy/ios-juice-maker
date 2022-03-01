@@ -9,21 +9,15 @@ import Foundation
 struct JuiceMaker {
   private let fruitStore = FruitStore()
 
-  private func canMake(_ juice: Juice) -> Bool {
-    for (fruit, amount) in juice.recipe {
-      guard let _ = try? self.fruitStore.checkStock(of: fruit, in: amount, by: -).get() else {
-        return false
-      }
+  func make(_ juice: Juice) -> Result<Juice, MakeJuiceError> {
+    let recipe = juice.recipe
+    guard self.fruitStore.checkStock(of: recipe) else {
+      return .failure(.notExistFruit)
     }
-    return true
-  }
-  
-  func make(_ juice: Juice) {
-    guard self.canMake(juice) else {
-      return
+    guard self.fruitStore.canMake(recipe) else {
+      return .failure(.outOfStock)
     }
-    for (fruit, amount) in juice.recipe {
-      self.fruitStore.changeStock(of: fruit, in: amount, by: -)
-    }
+    self.fruitStore.consumeStock(of: recipe)
+    return .success(juice)
   }
 }
