@@ -6,6 +6,10 @@
 
 import Foundation
 
+enum JuiceMakeError: Error {
+    case lackOfStock
+}
+
 struct JuiceMaker {
     private var fruitStore = FruitStore.fruitStore
     
@@ -43,12 +47,11 @@ struct JuiceMaker {
         }
     }
     
-    func takeOrder(_ juice: Juice) -> String {
+    func takeOrder(_ juice: Juice) throws {
         if ensureStock(of: juice) {
             make(juice)
-            return "\(juice.koreanName) 나왔습니다! 맛있게 드세요!"
         } else {
-            return "재료가 모자라요. 재고를 수정할까요?"
+            throw JuiceMakeError.lackOfStock
         }
     }
     

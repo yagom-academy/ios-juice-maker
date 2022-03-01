@@ -26,9 +26,9 @@ class ViewController: UIViewController {
     
     @IBAction func orderButton(_ sender: UIButton) {
         guard let juice = matchButtonToJuice(sender) else { return }
-        let message = juiceMaker.takeOrder(juice)
+        let okay = chekcError(juice)
         updateFruitLable()
-        showAlert(alertMessage: message)
+        showAlert(alertMessage: "\(okay)")
     }
     
     func matchButtonToJuice(_ button: UIButton) -> JuiceMaker.Juice? {
@@ -61,6 +61,15 @@ class ViewController: UIViewController {
         pineappleLabel.text = String(fruitStore.getStock(of: .pineapple))
         kiwiLabel.text = String(fruitStore.getStock(of: .kiwi))
         magoLabel.text = String(fruitStore.getStock(of: .mango))
+    }
+    
+    func chekcError(_ juice: JuiceMaker.Juice) -> Bool {
+        do {
+            try juiceMaker.takeOrder(juice)
+        } catch {
+            return false
+        }
+        return true
     }
     
     func showAlert(alertMessage: String) {
