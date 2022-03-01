@@ -217,6 +217,20 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaButton" destination="y2A-PH-DJY" id="SNx-IP-RlX"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="mFh-gb-gFl"/>
+                        <outlet property="kiwiButton" destination="wcW-7H-RXw" id="sKf-dB-0vK"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="gEz-Wi-oH4"/>
+                        <outlet property="mangoButton" destination="q6G-4X-bVm" id="mQP-51-vGv"/>
+                        <outlet property="mangoKiwiButton" destination="ngP-kF-Yii" id="Fl8-7K-cED"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="i2j-P5-Z4m"/>
+                        <outlet property="pineappleButton" destination="BFb-ka-wGA" id="FfT-5z-1bn"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="ihI-6C-iPX"/>
+                        <outlet property="strawberryBananaButton" destination="hrc-2F-fzl" id="YYW-hk-pc7"/>
+                        <outlet property="strawberryButton" destination="avd-o5-3JM" id="vvu-d6-IeU"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="iad-my-S89"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
