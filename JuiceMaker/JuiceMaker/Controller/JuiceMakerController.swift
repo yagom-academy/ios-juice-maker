@@ -46,6 +46,24 @@ class JuiceMakerController: UIViewController {
         }
     }
     
+    
+    @IBAction func tapStockEditButton(_ sender: UIBarButtonItem) {
+        move()
+    }
+    
+    private func move() {
+        let stock = self.juiceMaker.fruitStock
+        
+        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController", creator: { coder in
+            return StockViewController(coder: coder, stock: stock)
+        }) else {
+            return
+        }
+        
+        let navigationController = UINavigationController(rootViewController: stockViewController)
+        self.present(navigationController, animated: true)
+    }
+    
     @IBAction func order(_ sender: UIButton) {
         do{
             let juice = try check(button: sender)
@@ -87,16 +105,7 @@ extension JuiceMakerController {
     func showStockErrorAlert(){
         let alertController = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
-            let stock = self.juiceMaker.fruitStock
-            
-            guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController", creator: { coder in
-                return StockViewController(coder: coder, stock: stock)
-            }) else {
-                return
-            }
-            
-            let navigationController = UINavigationController(rootViewController: stockViewController)
-            self.present(navigationController, animated: true)
+            self.move()
         }
         
         let cancelAction = UIAlertAction(title: "아니오", style: .default)
