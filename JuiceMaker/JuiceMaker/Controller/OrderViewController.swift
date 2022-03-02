@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+final class OrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet var stockLabels: [UILabel]!
