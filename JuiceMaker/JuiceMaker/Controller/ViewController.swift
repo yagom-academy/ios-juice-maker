@@ -83,13 +83,15 @@ class ViewController: UIViewController {
         }
     }
     
-    private func switchScreenToManageStockView() {
-        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: ViewNameSpace.ManageStockViewController) else { return }
-        self.navigationController?.pushViewController(manageStockViewController, animated: true)
-    }
-    
-    @IBAction private func modifyFruitStockAction(_ sender: Any) {
+    @IBAction func modifyFruitStockAction(_ sender: Any) {
         switchScreenToManageStockView()
     }
+    
+    private func switchScreenToManageStockView() {
+        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: ViewNameSpace.ManageStockViewController) else { return }
+        manageStockViewController.modalTransitionStyle = .coverVertical
+        manageStockViewController.modalPresentationStyle = .automatic
+        self.present(manageStockViewController, animated: true)
+        }
 }
 
