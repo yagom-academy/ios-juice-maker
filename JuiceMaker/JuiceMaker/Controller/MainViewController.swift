@@ -80,6 +80,7 @@ final class MainViewController: UIViewController {
     private func makeJuice(menu: Menu) {
         do {
             try juiceMaker.checkStock(menu: menu)
+            presentCompleteAlert(menu: menu)
         } catch let error as FruitStoreError {
             switch error {
             case .invalidSelection:
@@ -88,11 +89,9 @@ final class MainViewController: UIViewController {
                 presentOutOfStockAlert()
             }
         } catch { presentBasicAlert(title: "경고", message: "알 수 없는 오류.") }
-        
-        presentCompleteAlert(menu: menu)
     }
     
-    private func presentBasicAlert(title: String, message: String) {
+    private func presentBasicAlert(title: String?, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(confirmAction)
@@ -111,7 +110,7 @@ final class MainViewController: UIViewController {
     }
 
     private func presentCompleteAlert(menu: Menu) {
-        presentBasicAlert(title: "완료", message: menu.orderMessage)
+        presentBasicAlert(title: nil, message: menu.orderMessage)
     }
 }
 
