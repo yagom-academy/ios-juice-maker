@@ -10,7 +10,7 @@ struct JuiceMaker {
     private var recipe: Dictionary<Juice,Dictionary<Fruit,Int>> = Juice.defaultJuiceRecipe
     private let fruitStore: FruitStore
     
-    static let juiceMaker = JuiceMaker(fruitStore: FruitStore.fruitStore)
+    static let juiceMaker = JuiceMaker(fruitStore: FruitStore(fruitStock: Fruit.defaultFruitStock))
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
@@ -23,7 +23,7 @@ struct JuiceMaker {
         return juiceRecipe
     }
     
-    func makeJuice(_ juice: Juice) -> Juice? {
+    func makeJuice(_ juice: Juice) throws {
         do {
             let juiceRecipe = try getAJuiceRecipe(juice: juice)
             for (fruit,amount) in juiceRecipe {
@@ -32,14 +32,10 @@ struct JuiceMaker {
             for (fruit,amount) in juiceRecipe {
                 try self.fruitStore.consumeStock(fruit: fruit, amount: amount)
             }
-            return juice
-        } catch {
-            if let juiceMakingError = error as? JuiceMakingError {
-                JuiceMakingError.printErrorMessage(error: juiceMakingError)
-            } else {
-                JuiceMakingError.printErrorMessage(error: JuiceMakingError.unkownError)
-            }
-            return nil
         }
+    }
+    
+    func getFruitStore() -> FruitStore {
+        return self.fruitStore
     }
 }
