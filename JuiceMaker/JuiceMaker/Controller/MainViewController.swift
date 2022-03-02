@@ -1,13 +1,13 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by Doogie & Malrang.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import UIKit
 
-class MainViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+final class MainViewController: UIViewController {
+    private let juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -55,7 +55,7 @@ class MainViewController: UIViewController {
         showStock()
     }
     
-    func showStock() {
+    private func showStock() {
         for (fruit, stock) in  juiceMaker.store.fruitList {
             switch fruit {
             case .strawberry:
@@ -72,12 +72,12 @@ class MainViewController: UIViewController {
         }
     }
     
-    func moveToManageView() {
+    private func moveToManageView() {
         guard let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController") else { return }
         self.navigationController?.present(manageVC, animated: true, completion: nil)
     }
     
-    func makeJuice(menu: Menu) {
+    private func makeJuice(menu: Menu) {
         do {
             try juiceMaker.checkStock(menu: menu)
         } catch let error as FruitStoreError {
@@ -92,14 +92,14 @@ class MainViewController: UIViewController {
         presentCompleteAlert(menu: menu)
     }
     
-    func presentBasicAlert(title: String, message: String) {
+    private func presentBasicAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(confirmAction)
         self.present(alert, animated: true, completion: nil)
     }
     
-    func presentOutOfStockAlert() {
+    private func presentOutOfStockAlert() {
         let alert = UIAlertController(title: "경고", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: {(_) in
             self.moveToManageView()
@@ -110,7 +110,7 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    func presentCompleteAlert(menu: Menu) {
+    private func presentCompleteAlert(menu: Menu) {
         presentBasicAlert(title: "완료", message: menu.orderMessage)
     }
 }
