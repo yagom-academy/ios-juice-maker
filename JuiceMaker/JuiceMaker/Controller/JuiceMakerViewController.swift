@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
     @IBOutlet weak var pineappleCountLabel: UILabel!
@@ -61,7 +61,7 @@ final class ViewController: UIViewController {
         let orderJuice = JuiceMaker()
         juicesStock = orderJuice.makeJuice(fruitJuice: fruitJuice, fruitStore: fruitStore)
         if juicesStock.isEmpty {
-            showWithoutStockAlertMessage()
+            showStockChangeAlertMessage()
         } else {
             updateFruitsLabel(juice: juicesStock, juices: fruitJuice)
             showJuiceAlertMessage(juiceMenu: fruitJuice)
@@ -111,7 +111,7 @@ final class ViewController: UIViewController {
         }
     }
     
-    private func showWithoutStockAlertMessage() {
+    private func showStockChangeAlertMessage() {
         let juiceOutOfStockAlert = UIAlertController(title: AlertMessages.outOfStock, message: "", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: AlertMessages.ok, style: .default) {_ in
             guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
