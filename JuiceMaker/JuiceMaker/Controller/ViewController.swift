@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineAppleStockLabel: UILabel!
@@ -17,23 +17,78 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        strawberryStockLabel.text = String(FruitStore.fruitStore.getStock(fruit: .strawberry))
-        bananaStockLabel.text = String(FruitStore.fruitStore.getStock(fruit: .banana))
-        pineAppleStockLabel.text = String(FruitStore.fruitStore.getStock(fruit: .pineapple))
-        kiwiStockLabel.text = String(FruitStore.fruitStore.getStock(fruit: .kiwi))
-        mangoStockLabel.text = String(FruitStore.fruitStore.getStock(fruit: .mango))
+       updateStock()
     }
     
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        if let buttonTitle = sender.titleLabel?.text {
-            print(buttonTitle)
+    @IBAction func orderJuice(_ sender: UIButton) {
+        do {
+            guard let targetJuice = Juice(rawValue: sender.tag) else {
+                makeAlert(error: JuiceMakingError.unkownError)
+                return
+            }
+            try JuiceMaker.juiceMaker.makeJuice(targetJuice)
+            updateStock()
+            makeAlert(juice: targetJuice)
+        } catch {
+            if let juiceMakingError = error as? JuiceMakingError{
+                makeAlert(error: juiceMakingError)
+            } else {
+                makeAlert(error: JuiceMakingError.unkownError)
+            }
         }
-        let alert = UIAlertController(title: "쥬스 제조 성공!",
-                                   message: "쥬스 나왔습니다 맛있게 드세요.",
-                                   preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    }
+    
+    @IBAction func moveToStockView(_ sender: UIButton) {
+        let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController")
+        vcName?.modalTransitionStyle = .coverVertical
+        self.present(vcName!, animated: true, completion: nil)
+    }
+    
+    func makeAlert(juice: Juice) {
+        let title = DisplayMessage.successAlertTitle
+        let okAction = UIAlertAction(title: DisplayMessage.alertOk, style: .default, handler: nil)
+        let message = Juice.getJuiceName(juice: juice) + DisplayMessage.orderSuccess
+        
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    func makeAlert(error: JuiceMakingError) {
+        let title = DisplayMessage.failAlertTitle
+        let message = JuiceMakingError.getErrorMessage(error: error)
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        if error == JuiceMakingError.notEnoughStock {
+            let noAction = UIAlertAction(title: DisplayMessage.alertNo, style: .default, handler: nil)
+            let yesAction = UIAlertAction(title: DisplayMessage.alertYes,
+                                          style: UIAlertAction.Style.destructive){(_) in
+                let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController")
+                vcName?.modalTransitionStyle = .coverVertical
+                self.present(vcName!, animated: true, completion: nil)
+            }
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+        } else {
+            let okAction = UIAlertAction(title: DisplayMessage.alertOk, style: .default, handler: nil)
+            alert.addAction(okAction)
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func updateStock() {
+        strawberryStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .strawberry))
+        bananaStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .banana))
+        pineAppleStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .pineapple))
+        kiwiStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .kiwi))
+        mangoStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .mango))
+    }
 }
+
+
 
