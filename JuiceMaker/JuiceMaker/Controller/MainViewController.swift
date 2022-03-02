@@ -6,8 +6,8 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+final class MainViewController: UIViewController {
+    private let juiceMaker = JuiceMaker()
     
     @IBOutlet var stockLabels: [UILabel]!
     @IBOutlet var juiceOrderButtons: [UIButton]!
@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         showCurrentStock()
     }
 
-    func showCurrentStock() {
+    private func showCurrentStock() {
         juiceMaker.fruitStore.inventory.keys.forEach {
             switch $0 {
             case .strawberry:
@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func transformIntToString(_ fruit: Fruit) -> String? {
+    private func transformIntToString(_ fruit: Fruit) -> String? {
         guard let currentStock = juiceMaker.fruitStore.inventory[fruit] else {
             return nil
         }
@@ -46,12 +46,12 @@ class MainViewController: UIViewController {
         self.presentStockViewController()
     }
     
-    func presentStockViewController() {
+    private func presentStockViewController() {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") as? StockViewController else {
             return
         }
         stockViewController.modalTransitionStyle = .coverVertical
-        stockViewController.modalPresentationStyle = .fullScreen
+        stockViewController.modalPresentationStyle = .automatic
         self.present(stockViewController, animated: true, completion: nil)
     }
 
@@ -81,7 +81,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func order(_ juice: Juice) {
+    private func order(_ juice: Juice) {
         do {
             try juiceMaker.makeJuice(by: juice.recipe)
             alertOrderCompletion(juice)
@@ -90,14 +90,14 @@ class MainViewController: UIViewController {
         } catch { }
     }
     
-    func alertOrderCompletion(_ juice: Juice) {
+    private func alertOrderCompletion(_ juice: Juice) {
         let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.name) \(Alert.orderSuccess.message)", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
     }
     
-    func alertOutOfStock() {
+    private func alertOutOfStock() {
         let alert = UIAlertController(title: Alert.outOfStock.title, message: Alert.outOfStock.message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: AlertButton.yes.title, style: .default) { action in
             self.presentStockViewController()

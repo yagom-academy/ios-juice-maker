@@ -6,7 +6,7 @@
 
 import Foundation
 
-class FruitStore {
+final class FruitStore {
     static let shared = FruitStore()
     var inventory: [Fruit: Int] = [:]
     
