@@ -34,26 +34,24 @@ class ViewController: UIViewController {
     }
     
     private func matchButtonToJuice(_ button: UIButton) -> Juice? {
-        var juice: Juice?
         switch button {
         case strawberryJuiceButton:
-            juice = .strawberryJuice
+            return .strawberryJuice
         case bananaJuiceButton:
-            juice = .bananaJuice
+            return .bananaJuice
         case pineappleJuiceButton:
-            juice = .pineappleJuice
+            return .pineappleJuice
         case kiwiJuiceButton:
-            juice = .kiwiJuice
+            return .kiwiJuice
         case mangoJuiceButton:
-            juice = .mangoJuice
+            return .mangoJuice
         case strawberryAndBananaJuiceButton:
-            juice = .strawberryAndBananaJuice
+            return .strawberryAndBananaJuice
         case mangoAndKiwiJuiceButton:
-            juice = .mangoAndKiwiJuice
+            return .mangoAndKiwiJuice
         default:
-            juice = nil
+            return nil
         }
-        return juice
     }
     
     private func updateFruitLable() {
@@ -94,7 +92,5 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLable()
-        
-        // Do any additional setup after loading the view.
     }
 }
