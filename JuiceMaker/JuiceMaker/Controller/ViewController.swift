@@ -30,7 +30,6 @@ class ViewController: UIViewController {
         } else {
             showFailureAlert()
         }
-        //updateFruitLable()
     }
     
     private func matchButtonToJuice(_ button: UIButton) -> Juice? {
@@ -68,12 +67,6 @@ class ViewController: UIViewController {
         } else if fruitName == .pineapple {
             pineappleLabel.text = String(fruitStock)
         }
-//        strawberryLabel.text = String(FruitStore.shared.getStock(of: .strawberry))
-//        bananaLabel.text = String(FruitStore.shared.getStock(of: .banana))
-//        pineappleLabel.text = String(FruitStore.shared.getStock(of: .pineapple))
-//        kiwiLabel.text = String(FruitStore.shared.getStock(of: .kiwi))
-//        magoLabel.text = String(FruitStore.shared.getStock(of: .mango))
-        
     }
     
     
@@ -103,22 +96,16 @@ class ViewController: UIViewController {
         stockChangeView?.modalPresentationStyle = .automatic
         self.present(stockChangeView!, animated: true, completion: nil)
     }
-//
-//    func settingFruitLabel() {
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        updateFruitLable()
-//        settingFruitLabel()Thread
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateFruitLable(_:)), name: Notification.Name("notificationStock"), object: nil)
+        juiceMaker.initLable()
         
     }
 }

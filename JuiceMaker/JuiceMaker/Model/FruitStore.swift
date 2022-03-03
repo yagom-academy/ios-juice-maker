@@ -6,11 +6,10 @@
 
 import Foundation
 
-class FruitStore: NSObject {
-    static var shared = FruitStore()
+class FruitStore {
     private var stock: [Fruit: Int]
     
-    private init(defaultStock: Int = 10) {
+    init(defaultStock: Int = 10) {
         stock = [.strawberry: defaultStock,
                  .banana: defaultStock,
                  .pineapple: defaultStock,
@@ -31,8 +30,7 @@ class FruitStore: NSObject {
         NotificationCenter.default.post(name: Notification.Name("notificationStock"),
                                         object: nil,
                                         userInfo: ["fruit": fruit,
-                                                   "stock": inStock]
-        )
+                                                   "stock": inStock])
     }
     
     func getStock(of fruit: Fruit) -> Int {
