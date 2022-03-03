@@ -56,19 +56,25 @@ private extension ViewController {
   }
   
   func fetchStock() {
-    let fruitStore = FruitStore.shared
-    strawberryCountLabel.text = "\(fruitStore.stock[.strawberry] ?? 0)"
-    bananaCountLabel.text = "\(fruitStore.stock[.banana] ?? 0)"
-    pineappleCountLabel.text = "\(fruitStore.stock[.pineapple] ?? 0)"
-    kiwiCountLabel.text = "\(fruitStore.stock[.kiwi] ?? 0)"
-    mangoCountLabel.text = "\(fruitStore.stock[.mango] ?? 0)"
+    strawberryCountLabel.text = self.convertStockToString(.strawberry)
+    bananaCountLabel.text = self.convertStockToString(.banana)
+    pineappleCountLabel.text = self.convertStockToString(.pineapple)
+    kiwiCountLabel.text = self.convertStockToString(.kiwi)
+    mangoCountLabel.text = self.convertStockToString(.mango)
+  }
+  
+  func convertStockToString(_ fruit: Fruit) -> String {
+    guard let fruitAmount = FruitStore.shared.stock[fruit] else {
+      return String(Int.zero)
+    }
+    return String(fruitAmount)
   }
   
   func presentSuccessAlert(_ juice: Juice) {
     let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
     let alert = AlertSetting.presentAlert(
       title: AlertSetting.notice,
-      message: "\(juice)",
+      message: String(describing: juice),
       preferredStyle: .alert,
       actions: [okAction]
     )
