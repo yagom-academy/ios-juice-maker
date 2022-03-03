@@ -7,7 +7,7 @@
 import Foundation
 
 class FruitStore {
-    static var fruitStore = FruitStore()
+    static var shared = FruitStore()
     private var stock: [Fruit: Int]
     
     private init(defaultStock: Int = 10) {

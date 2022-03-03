@@ -7,7 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var fruitStore = FruitStore.fruitStore
     private var juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryLabel: UILabel!
@@ -58,11 +57,11 @@ class ViewController: UIViewController {
     }
     
     private func updateFruitLable() {
-        strawberryLabel.text = String(fruitStore.getStock(of: .strawberry))
-        bananaLabel.text = String(fruitStore.getStock(of: .banana))
-        pineappleLabel.text = String(fruitStore.getStock(of: .pineapple))
-        kiwiLabel.text = String(fruitStore.getStock(of: .kiwi))
-        magoLabel.text = String(fruitStore.getStock(of: .mango))
+        strawberryLabel.text = String(FruitStore.shared.getStock(of: .strawberry))
+        bananaLabel.text = String(FruitStore.shared.getStock(of: .banana))
+        pineappleLabel.text = String(FruitStore.shared.getStock(of: .pineapple))
+        kiwiLabel.text = String(FruitStore.shared.getStock(of: .kiwi))
+        magoLabel.text = String(FruitStore.shared.getStock(of: .mango))
     }
     
     private func showSuccessAlert(with juiceName: String) {
