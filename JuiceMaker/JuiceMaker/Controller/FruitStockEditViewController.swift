@@ -7,8 +7,7 @@
 
 import UIKit
 
-class EditFruitStockViewController: UIViewController {
-
+final class FruitStockEditViewController: UIViewController {
     static func identifier() -> String {
         return String(describing: self)
     }

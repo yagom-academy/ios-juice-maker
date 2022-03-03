@@ -5,7 +5,7 @@
 import Foundation
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private(set) var fruitStore = FruitStore()
     
     func makeJuice(_ juice: Juice) -> Bool {
         do {
