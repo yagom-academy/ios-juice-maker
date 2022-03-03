@@ -35,30 +35,9 @@ final class ViewController: UIViewController {
     let result = juiceMaker.make(juice)
     switch result {
     case .success(let juice):
-      let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
-      let alert = AlertSetting.presentAlert(
-        title: AlertSetting.notice,
-        message: "\(juice)",
-        preferredStyle: .alert,
-        actions: [okAction]
-      )
-      self.present(alert, animated: true)
+      self.presentSuccessAlert(juice)
     case .failure(let error):
-      let okAction = UIAlertAction(title: AlertSetting.yes, style: .default) { _ in
-        guard let stockVC = self.storyboard?.instantiateViewController(withIdentifier: "stockVC")
-        else {
-          return
-        }
-        self.present(stockVC, animated: true)
-      }
-      let noAction = UIAlertAction(title: AlertSetting.no, style: .destructive)
-      let alert = AlertSetting.presentAlert(
-        title: AlertSetting.notice,
-        message: error.errorDescription,
-        preferredStyle: .alert,
-        actions: [noAction, okAction]
-      )
-      self.present(alert, animated: true)
+      self.presentFailureAlert(error)
     }
     self.fetchStock()
   }
@@ -95,5 +74,36 @@ private extension ViewController {
     pineappleCountLabel.text = "\(fruitStore.stock[.pineapple] ?? 0)"
     kiwiCountLabel.text = "\(fruitStore.stock[.kiwi] ?? 0)"
     mangoCountLabel.text = "\(fruitStore.stock[.mango] ?? 0)"
+  }
+  
+  private func presentSuccessAlert(_ juice: Juice) {
+    let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
+    let alert = AlertSetting.presentAlert(
+      title: AlertSetting.notice,
+      message: "\(juice)",
+      preferredStyle: .alert,
+      actions: [okAction]
+    )
+    self.present(alert, animated: true)
+  }
+  
+  private func presentFailureAlert(_ error: MakeJuiceError) {
+    let okAction = UIAlertAction(title: AlertSetting.yes, style: .default, handler: handleOkAction)
+    let noAction = UIAlertAction(title: AlertSetting.no, style: .destructive)
+    let alert = AlertSetting.presentAlert(
+      title: AlertSetting.notice,
+      message: error.errorDescription,
+      preferredStyle: .alert,
+      actions: [noAction, okAction]
+    )
+    self.present(alert, animated: true)
+  }
+  
+  private func handleOkAction(_ action: UIAlertAction) {
+    guard let stockVC = self.storyboard?.instantiateViewController(withIdentifier: "stockVC")
+    else {
+      return
+    }
+    self.present(stockVC, animated: true)
   }
 }
