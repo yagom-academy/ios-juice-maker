@@ -24,15 +24,10 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func updateFruitsStock() {
-        for (index, fruit) in Fruit.allCases.enumerated() {
-            guard let stock = FruitStore.shared.inventory[fruit] else {
-                return
-            }
-            
+        for (index, stock) in juiceMaker.getFruitsStock().enumerated() {
             guard let fruitLabel = fruitLabelCollection[safeIndex: index] else {
                 return
             }
-            
             fruitLabel.text = String(stock)
         }
     }
@@ -53,6 +48,10 @@ final class JuiceMakerViewController: UIViewController {
         failAlert.addAction(UIAlertAction(title: "아니요", style: .destructive))
         present(failAlert, animated: true)
     }
+    
+    // 이벤트가 발생한 버튼이 어떤 Juice를 가리키는지 알 수 있다면, 하나의 메서드에서 처리할 수 있을 것 같아요.
+   // 힌트를 드리자면, 하나의 IBAction에 여러 개의 버튼을 연결해줄 수 있고 이벤트가 발생한 버튼에 대한 정보는 인자인 sender로 전달됩니다!
+    
     
     @IBAction func makeStrawberryBananaJuiceButton(_ sender: UIButton) {
         switch juiceMaker.makeJuice(by: .strawberryBananaJuice) {
