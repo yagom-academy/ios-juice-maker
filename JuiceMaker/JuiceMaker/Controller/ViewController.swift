@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         } else {
             showFailureAlert()
         }
-        updateFruitLable()
+        //updateFruitLable()
     }
     
     private func matchButtonToJuice(_ button: UIButton) -> Juice? {
@@ -55,11 +55,15 @@ class ViewController: UIViewController {
     }
     
     @objc private func updateFruitLable(_ notification: Notification) {
-        strawberryLabel.text = String(FruitStore.shared.getStock(of: .strawberry))
-        bananaLabel.text = String(FruitStore.shared.getStock(of: .banana))
-        pineappleLabel.text = String(FruitStore.shared.getStock(of: .pineapple))
-        kiwiLabel.text = String(FruitStore.shared.getStock(of: .kiwi))
-        magoLabel.text = String(FruitStore.shared.getStock(of: .mango))
+        guard let fruitName = notification.userInfo?["fruit"] as? Fruit else { return }
+        guard let fruitStock = notification.userInfo?["stock"] as? Int else { return }
+        print(fruitName, fruitStock)
+//        strawberryLabel.text = String(FruitStore.shared.getStock(of: .strawberry))
+//        bananaLabel.text = String(FruitStore.shared.getStock(of: .banana))
+//        pineappleLabel.text = String(FruitStore.shared.getStock(of: .pineapple))
+//        kiwiLabel.text = String(FruitStore.shared.getStock(of: .kiwi))
+//        magoLabel.text = String(FruitStore.shared.getStock(of: .mango))
+        
     }
     
     private func showSuccessAlert(with juiceName: String) {
