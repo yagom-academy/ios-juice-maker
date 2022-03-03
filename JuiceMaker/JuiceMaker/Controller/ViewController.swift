@@ -36,7 +36,7 @@ final class ViewController: UIViewController {
     switch result {
     case .success(let juice):
       let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
-      let alert = self.createAlert(
+      let alert = AlertSetting.presentAlert(
         title: AlertSetting.notice,
         message: "\(juice)",
         preferredStyle: .alert,
@@ -52,7 +52,7 @@ final class ViewController: UIViewController {
         self.present(stockVC, animated: true)
       }
       let noAction = UIAlertAction(title: AlertSetting.no, style: .destructive)
-      let alert = self.createAlert(
+      let alert = AlertSetting.presentAlert(
         title: AlertSetting.notice,
         message: error.errorDescription,
         preferredStyle: .alert,
@@ -95,22 +95,5 @@ private extension ViewController {
     pineappleCountLabel.text = "\(fruitStore.stock[.pineapple] ?? 0)"
     kiwiCountLabel.text = "\(fruitStore.stock[.kiwi] ?? 0)"
     mangoCountLabel.text = "\(fruitStore.stock[.mango] ?? 0)"
-  }
-  
-  func createAlert(
-    title: String?,
-    message: String?,
-    preferredStyle: UIAlertController.Style,
-    actions: [UIAlertAction]
-  ) -> UIAlertController {
-    let alertController = UIAlertController(
-      title: title,
-      message: message,
-      preferredStyle: preferredStyle
-    )
-    actions.forEach { action in
-      alertController.addAction(action)
-    }
-    return alertController
   }
 }
