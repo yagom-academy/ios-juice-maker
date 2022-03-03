@@ -43,28 +43,16 @@ final class ViewController: UIViewController {
   }
 }
 
-// MARK: - Extension
+// MARK: - Private Extension
 
 private extension ViewController {
   func selectJuice(_ sender: UIButton) -> Juice? {
-    switch sender {
-    case strawberryBananaButton:
-      return .strawberryBanana
-    case mangoKiwiButton:
-      return .mangoKiwi
-    case strawberryButton:
-      return .strawberry
-    case bananaButton:
-      return .banana
-    case pineappleButton:
-      return .pineapple
-    case kiwiButton:
-      return .kiwi
-    case mangoButton:
-      return .mango
-    default:
+    guard let buttonTitle = sender.titleLabel?.text,
+          let juiceName = buttonTitle.components(separatedBy: " ").first
+    else {
       return nil
     }
+    return Juice(rawValue: juiceName)
   }
   
   func fetchStock() {
@@ -76,7 +64,7 @@ private extension ViewController {
     mangoCountLabel.text = "\(fruitStore.stock[.mango] ?? 0)"
   }
   
-  private func presentSuccessAlert(_ juice: Juice) {
+  func presentSuccessAlert(_ juice: Juice) {
     let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
     let alert = AlertSetting.presentAlert(
       title: AlertSetting.notice,
@@ -87,7 +75,7 @@ private extension ViewController {
     self.present(alert, animated: true)
   }
   
-  private func presentFailureAlert(_ error: MakeJuiceError) {
+  func presentFailureAlert(_ error: MakeJuiceError) {
     let okAction = UIAlertAction(title: AlertSetting.yes, style: .default, handler: handleOkAction)
     let noAction = UIAlertAction(title: AlertSetting.no, style: .destructive)
     let alert = AlertSetting.presentAlert(
@@ -99,7 +87,7 @@ private extension ViewController {
     self.present(alert, animated: true)
   }
   
-  private func handleOkAction(_ action: UIAlertAction) {
+  func handleOkAction(_ action: UIAlertAction) {
     guard let stockVC = self.storyboard?.instantiateViewController(withIdentifier: "stockVC")
     else {
       return
