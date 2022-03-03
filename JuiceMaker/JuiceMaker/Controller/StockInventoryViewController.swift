@@ -1,14 +1,11 @@
-import Foundation
 import UIKit
 
-class ManageStockViewController:
-    
-    UIViewController {
+class StockInventoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func closeManageStockView(_ sender: UIButton) {
+    @IBAction func closeManageStockView(_ sender: UIBarButtonItem) {
         self.presentingViewController?.dismiss(animated: true)
     }
 }

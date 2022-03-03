@@ -1,5 +1,5 @@
 import Foundation
 
 enum ViewName {
-    static let ManageStockViewController = "ManageStockViewController"
+    static let StockInventoryViewController = "StockInventoryViewController"
 }

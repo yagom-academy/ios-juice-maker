@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceOrderViewController: UIViewController {
     
     private var juiceMaker = JuiceMaker()
     enum MessageNameSpace {
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStockLabel()
+        setupFruitStockLabel()
     }
     
     @IBOutlet private weak var orderStrawberryBananaButton: UIButton!
@@ -37,29 +37,29 @@ class ViewController: UIViewController {
     @IBOutlet private weak var orderMangoButton: UIButton!
     
     
-        func giveCorrectJuiceType(sender: UIButton) -> JuiceMaker.JuiceType? {
-            switch sender {
-            case orderStrawberryBananaButton:
-                return JuiceMaker.JuiceType.strawberryBananaJuice
-            case orderMangoKiwiButton:
-                return JuiceMaker.JuiceType.mangoKiwiJuice
-            case orderStrawberryButton:
-                return JuiceMaker.JuiceType.strawberryJuice
-            case orderBananaButton:
-                return JuiceMaker.JuiceType.bananaJuice
-            case orderPineappleButton:
-                return JuiceMaker.JuiceType.pineappleJuice
-            case orderKiwiButton:
-                return JuiceMaker.JuiceType.kiwiJuice
-            case orderMangoButton:
-                return JuiceMaker.JuiceType.mangoJuice
-            default:
-                return nil
-            }
+    func orderedJuiceType(sender: UIButton) -> JuiceMaker.JuiceType? {
+        switch sender {
+        case orderStrawberryBananaButton:
+            return JuiceMaker.JuiceType.strawberryBananaJuice
+        case orderMangoKiwiButton:
+            return JuiceMaker.JuiceType.mangoKiwiJuice
+        case orderStrawberryButton:
+            return JuiceMaker.JuiceType.strawberryJuice
+        case orderBananaButton:
+            return JuiceMaker.JuiceType.bananaJuice
+        case orderPineappleButton:
+            return JuiceMaker.JuiceType.pineappleJuice
+        case orderKiwiButton:
+            return JuiceMaker.JuiceType.kiwiJuice
+        case orderMangoButton:
+            return JuiceMaker.JuiceType.mangoJuice
+        default:
+            return nil
         }
+    }
     
     @IBAction private func orderJuiceAction(_ sender: UIButton) {
-        guard let orderedJuiceType = giveCorrectJuiceType(sender: sender) else { return }
+        guard let orderedJuiceType = orderedJuiceType(sender: sender) else { return }
         do {
             let juice = try juiceMaker.makeJuice(juice: orderedJuiceType)
             showJuiceReadyAlert(juiceName: juice.name())
@@ -70,24 +70,24 @@ class ViewController: UIViewController {
     }
     
     private func showNotEnoughStockAlert() {
-        let alertBody = UIAlertController(title: MessageNameSpace.notEnoughStock, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: MessageNameSpace.notEnoughStock, message: nil, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: MessageNameSpace.yes, style: .default, handler: {
-            _ in self.switchScreenToManageStockView()
+            [weak self] _ in self?.presentStockInventoryView()
         })
         let noAction = UIAlertAction(title: MessageNameSpace.no, style: .cancel, handler: nil)
-        alertBody.addAction(yesAction)
-        alertBody.addAction(noAction)
-        present(alertBody, animated: false, completion: nil)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: false, completion: nil)
     }
     
     private func showJuiceReadyAlert(juiceName: String) {
-        let alertBody = UIAlertController(title: juiceName +  MessageNameSpace.juiceReady, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: juiceName +  MessageNameSpace.juiceReady, message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: MessageNameSpace.confirm, style: .default, handler: nil)
-        alertBody.addAction(confirmAction)
-        present(alertBody, animated: false, completion: nil)
+        alertController.addAction(confirmAction)
+        present(alertController, animated: false, completion: nil)
     }
     
-    private func updateFruitStockLabel() {
+    private func setupFruitStockLabel() {
         stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
         stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
         stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
@@ -112,15 +112,15 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func modifyFruitStockAction(_ sender: Any) {
-        switchScreenToManageStockView()
+    @IBAction func modifyFruitStockAction(_ sender: UIBarButtonItem) {
+        presentStockInventoryView()
     }
     
-    private func switchScreenToManageStockView() {
-        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: ViewName.ManageStockViewController) else { return }
-        manageStockViewController.modalTransitionStyle = .coverVertical
-        manageStockViewController.modalPresentationStyle = .automatic
-        self.present(manageStockViewController, animated: true)
+    private func presentStockInventoryView() {
+        guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) else { return }
+        stockInventoryViewController.modalTransitionStyle = .coverVertical
+        stockInventoryViewController.modalPresentationStyle = .automatic
+        self.present(stockInventoryViewController, animated: true)
     }
 }
 
