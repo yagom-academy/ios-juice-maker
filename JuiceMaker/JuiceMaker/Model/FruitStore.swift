@@ -7,7 +7,7 @@
 import Foundation
 
 class FruitStore {
-    static var shared = FruitStore()
+    static var fruitStore = FruitStore()
     private var stock: [Fruit: Int]
     
     private init(defaultStock: Int = 10) {
@@ -28,7 +28,6 @@ class FruitStore {
         guard var inStock: Int = stock[fruit] else { return }
         inStock += numberOfFruit
         stock[fruit] = inStock
-        
     }
     
     func getStock(of fruit: Fruit) -> Int {
