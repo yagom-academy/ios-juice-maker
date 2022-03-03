@@ -36,18 +36,19 @@ final class JuiceMakerViewController: UIViewController {
     
     static func instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyborad.instantiateViewController(withIdentifier: "JuiceMakerViewController") as! JuiceMakerViewController
+        guard let viewController = storyborad.instantiateViewController(withIdentifier: "JuiceMakerViewController") as? JuiceMakerViewController else {
+            return JuiceMakerViewController()
+        }
         viewController.juiceMaker = juiceMaker
         return viewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabels), name: .updatedStockLabels, object: nil)
-        NotificationCenter.default.post(name: .updatedStockLabels, object: nil)
+        updateStockLabels()
     }
     
-    @objc private func updateStockLabels() {
+    private func updateStockLabels() {
         do {
             try configureStockLabels()
         } catch (let error) {
@@ -120,15 +121,25 @@ final class JuiceMakerViewController: UIViewController {
     
     private func showSuccessOrder(of menu: JuiceMaker.Menu) {
         let message = menu.rawValue + "쥬스 나왔습니다! 맛있게 드세요!"
-        showAlert(title: message, confirmTitle: "확인")
+
+        AlertBuilder(viewController: self)
+            .setTitle(message)
+            .setConfirmTitle("확인")
+            .showAlert()
     }
     
     private func showFailedOrder(with error: Error) {
-        let error = error as? JuiceMakerError
-        showAlert(title: error?.errorDescription,
-                  confirmTitle: "확인",
-                  cancelTitle: "취소",
-                  confirmHandler: presentModifyingStockViewController)
+        guard let error = error as? JuiceMakerError,
+              let errorDescription = error.errorDescription else {
+                  return
+              }
+
+        AlertBuilder(viewController: self)
+            .setTitle(errorDescription)
+            .setConfirmTitle("확인")
+            .setCancelTitle("취소")
+            .setConfirmHandler(presentModifyingStockViewController)
+            .showAlert()
     }
     
     private func presentModifyingStockViewController() {
@@ -139,33 +150,3 @@ final class JuiceMakerViewController: UIViewController {
         self.present(modifyingStockViewController, animated: true)
     }
 }
-
-extension Notification.Name {
-    static let updatedStockLabels = Notification.Name("updatedStockLabels")
-}
-
-extension UIViewController {
-    func showAlert(title: String?,
-                   confirmTitle: String?,
-                   message: String? = nil,
-                   cancelTitle: String? = nil,
-                   confirmHandler: (() -> Void)? = nil,
-                   cancelHandler: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        if let cancelTitle = cancelTitle {
-            let cancelButton = UIAlertAction(title: cancelTitle, style: .destructive, handler: { _ in cancelHandler?()
-            })
-            alert.addAction(cancelButton)
-        }
-        
-        let confirmButton = UIAlertAction(title: confirmTitle, style: .default, handler: { _ in
-            confirmHandler?()
-        })
-        
-        alert.addAction(confirmButton)
-        
-        self.present(alert, animated: false)
-    }
-}
-
