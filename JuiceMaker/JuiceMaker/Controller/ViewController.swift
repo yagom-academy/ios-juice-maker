@@ -29,8 +29,30 @@ class ViewController: UIViewController {
     @IBOutlet private weak var orderKiwiButton: UIButton!
     @IBOutlet private weak var orderMangoButton: UIButton!
     
+    
+        func giveCorrectJuiceType(sender: UIButton) -> JuiceMaker.JuiceType? {
+            switch sender {
+            case orderStrawberryBananaButton:
+                return JuiceMaker.JuiceType.strawberryBananaJuice
+            case orderMangoKiwiButton:
+                return JuiceMaker.JuiceType.mangoKiwiJuice
+            case orderStrawberryButton:
+                return JuiceMaker.JuiceType.strawberryJuice
+            case orderBananaButton:
+                return JuiceMaker.JuiceType.bananaJuice
+            case orderPineappleButton:
+                return JuiceMaker.JuiceType.pineappleJuice
+            case orderKiwiButton:
+                return JuiceMaker.JuiceType.kiwiJuice
+            case orderMangoButton:
+                return JuiceMaker.JuiceType.mangoJuice
+            default:
+                return nil
+            }
+        }
+    
     @IBAction private func orderJuiceAction(_ sender: UIButton) {
-        guard let orderedJuiceType = JuiceMaker.JuiceType.init(rawValue: sender.currentTitle!.components(separatedBy: " ")[0]) else { return }
+        guard let orderedJuiceType = giveCorrectJuiceType(sender: sender) else { return }
         do {
             let juice = try juiceMaker.makeJuice(juice: orderedJuiceType)
             showJuiceReadyAlert(juiceName: juice.name())
@@ -92,6 +114,6 @@ class ViewController: UIViewController {
         manageStockViewController.modalTransitionStyle = .coverVertical
         manageStockViewController.modalPresentationStyle = .automatic
         self.present(manageStockViewController, animated: true)
-        }
+    }
 }
 
