@@ -30,7 +30,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qas-vP-td6">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qas-vP-td6">
                                                 <rect key="frame" x="0.0" y="113.66666666666666" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -48,7 +48,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gvk-pA-Lw5">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gvk-pA-Lw5">
                                                 <rect key="frame" x="0.0" y="113.66666666666666" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -66,7 +66,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ccQ-Dk-PuY">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ccQ-Dk-PuY">
                                                 <rect key="frame" x="0.0" y="113.66666666666666" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -84,7 +84,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FZq-de-TJG">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FZq-de-TJG">
                                                 <rect key="frame" x="0.0" y="113.66666666666666" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -102,7 +102,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3Ce-SU-JeH">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3Ce-SU-JeH">
                                                 <rect key="frame" x="0.0" y="113.66666666666666" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -244,22 +244,29 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaButton" destination="y2A-PH-DJY" id="E7D-rs-5LQ"/>
-                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="1Xe-gH-dEr"/>
+                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="dzj-YI-Koy"/>
                         <outlet property="kiwiButton" destination="wcW-7H-RXw" id="RcI-aN-L3f"/>
-                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="WNO-da-EO0"/>
+                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="C0f-ud-baN"/>
                         <outlet property="mangoButton" destination="q6G-4X-bVm" id="bqi-gT-eP7"/>
-                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="jfO-Vt-07Q"/>
+                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="stf-BV-40M"/>
                         <outlet property="mangoKiwiButton" destination="ngP-kF-Yii" id="Y5u-4w-XyV"/>
                         <outlet property="pineappleButton" destination="BFb-ka-wGA" id="DcG-Es-XQn"/>
-                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="2Fo-bm-5ym"/>
+                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="mIF-87-3y4"/>
                         <outlet property="strawberryButton" destination="avd-o5-3JM" id="Gao-13-67z"/>
-                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="raq-r0-kBR"/>
+                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="e2c-7s-x0r"/>
                         <outlet property="strawberrybananaButton" destination="hrc-2F-fzl" id="zjX-9B-ZQv"/>
                         <outletCollection property="fruitsLabelCollection" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="u3Y-E3-s27"/>
                         <outletCollection property="fruitsLabelCollection" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="IF5-do-O3T"/>
                         <outletCollection property="fruitsLabelCollection" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="6e5-3I-mhc"/>
                         <outletCollection property="fruitsLabelCollection" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="gfW-qH-8Jd"/>
                         <outletCollection property="fruitsLabelCollection" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="IKx-wb-XWV"/>
+                        <outletCollection property="fruitsButtonCollection" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="oq7-Ch-1st"/>
+                        <outletCollection property="fruitsButtonCollection" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="3bR-uH-BMN"/>
+                        <outletCollection property="fruitsButtonCollection" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="BEB-sY-Xdp"/>
+                        <outletCollection property="fruitsButtonCollection" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="VhD-tF-zdD"/>
+                        <outletCollection property="fruitsButtonCollection" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="y40-63-cZN"/>
+                        <outletCollection property="fruitsButtonCollection" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="3MZ-9V-gYo"/>
+                        <outletCollection property="fruitsButtonCollection" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="Xax-ab-CdY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

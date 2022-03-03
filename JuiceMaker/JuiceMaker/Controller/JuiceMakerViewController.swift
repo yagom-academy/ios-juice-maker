@@ -8,16 +8,14 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     
-    
     @IBOutlet var fruitsLabelCollection: [UILabel]!
-    
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
     @IBOutlet weak var pineappleCountLabel: UILabel!
     @IBOutlet weak var kiwiCountLabel: UILabel!
     @IBOutlet weak var mangoCountLabel: UILabel!
     
-    // TODO: 배열로 합쳐야함!!
+    @IBOutlet var fruitsButtonCollection: [UIButton]!
     @IBOutlet weak var strawberrybananaButton: UIButton!
     @IBOutlet weak var strawberryButton: UIButton!
     @IBOutlet weak var mangoButton: UIButton!
@@ -27,6 +25,7 @@ final class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoKiwiButton: UIButton!
 
     var fruitStore = FruitStore()
+    let orderJuice = JuiceMaker()
 
     @IBAction private func changeViewControllerTapped(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -39,57 +38,29 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func OrderJuicesbuttonPressed(_ sender: UIButton) {
-        switch sender.tag {
-        case 1:
-            orderJuices(fruitJuice: .strawberryBanana)
-        case 2:
-            orderJuices(fruitJuice: .mangoKiwi)
-        case 3:
-            orderJuices(fruitJuice: .strawberry)
-        case 4:
-            orderJuices(fruitJuice: .banana)
-        case 5:
-            orderJuices(fruitJuice: .pineapple)
-        case 6:
-            orderJuices(fruitJuice: .kiwi)
-        case 7:
-            orderJuices(fruitJuice: .mango)
-        default:
-            JuiceMakerError.unexpectedError
+        if let juiceType = JuiceTypes.init(rawValue: sender.tag) {
+            orderJuices(juice: juiceType)
         }
     }
     
-    func orderJuices(fruitJuice: JuiceTypes) {
-        var juicesStock = Dictionary<JuiceTypes, Int>()
-        let orderJuice = JuiceMaker()
-        juicesStock = orderJuice.makeJuice(fruitJuice: fruitJuice, fruitStore: fruitStore)
-        if juicesStock.isEmpty {
+    func orderJuices(juice: JuiceTypes) {
+        var fruitsStock = Dictionary<FruitsTypes, Int>()
+        fruitsStock = orderJuice.makeJuice(juice: juice, fruitStore: fruitStore)
+        if fruitsStock.isEmpty {
             showStockChangeAlertMessage()
         } else {
-            updateFruitsLabel(juice: juicesStock, juices: fruitJuice)
-            showJuiceAlertMessage(juiceMenu: fruitJuice)
+            updateFruitsLabel(fruits: fruitsStock)
+            showJuiceAlertMessage(juiceMenu: juice)
         }
     }
     
-    private func updateFruitsLabel(juice: [JuiceTypes:Int], juices: JuiceTypes) {
-        let errorNumber = 0
-        switch juices {
-        case .strawberryBanana:
-            strawberryCountLabel.text = String(juice[.strawberry] ?? errorNumber)
-            bananaCountLabel.text = String(juice[.banana] ?? errorNumber)
-        case .mangoKiwi:
-            mangoCountLabel.text = String(juice[.mango] ?? errorNumber)
-            kiwiCountLabel.text = String(juice[.kiwi] ?? errorNumber)
-        case .strawberry:
-            strawberryCountLabel.text = String(juice[.strawberry] ?? errorNumber)
-        case .banana:
-            bananaCountLabel.text = String(juice[.banana] ?? errorNumber)
-        case .pineapple:
-            pineappleCountLabel.text = String(juice[.pineapple] ?? errorNumber)
-        case .kiwi:
-            kiwiCountLabel.text = String(juice[.kiwi] ?? errorNumber)
-        case .mango:
-            mangoCountLabel.text = String(juice[.mango] ?? errorNumber)
+    private func updateFruitsLabel(fruits: [FruitsTypes:Int]) {
+        let notFoundFruitCount = 0
+        for fruitsLabel in fruitsLabelCollection {
+            let fruitsLabelTag = fruitsLabel.tag
+            if let fruitType = FruitsTypes.init(rawValue: fruitsLabelTag) {
+                fruitsLabelCollection[fruitsLabelTag].text = String(fruits[fruitType] ?? notFoundFruitCount)
+            }
         }
     }
     
@@ -135,15 +106,15 @@ final class JuiceMakerViewController: UIViewController {
     
    private func initFruits() {
         for fruit in fruitStore.fruits {
-            if fruit.key == JuiceTypes.strawberry {
+            if fruit.key == FruitsTypes.strawberry {
                 strawberryCountLabel.text = String(fruit.value)
-            } else if fruit.key == JuiceTypes.banana {
+            } else if fruit.key == FruitsTypes.banana {
                 bananaCountLabel.text = String(fruit.value)
-            } else if fruit.key == JuiceTypes.kiwi {
+            } else if fruit.key == FruitsTypes.kiwi {
                 kiwiCountLabel.text = String(fruit.value)
-            } else if fruit.key == JuiceTypes.mango {
+            } else if fruit.key == FruitsTypes.mango {
                 mangoCountLabel.text = String(fruit.value)
-            } else if fruit.key == JuiceTypes.pineapple {
+            } else if fruit.key == FruitsTypes.pineapple {
                 pineappleCountLabel.text = String(fruit.value)
             }
         }
