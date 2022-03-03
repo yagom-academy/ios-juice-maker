@@ -38,7 +38,7 @@ final class ViewController: UIViewController {
       let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
       let alert = self.createAlert(
         title: AlertSetting.notice,
-        message: juice.description,
+        message: "\(juice)",
         preferredStyle: .alert,
         actions: [okAction]
       )
