@@ -10,7 +10,7 @@ extension Array {
     }
 }
 
-final class RootViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController {
     @IBOutlet private var fruitLabelCollection: [UILabel]!
     private let juiceMaker = JuiceMaker()
     
