@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateFruitLable() {
+    @objc private func updateFruitLable(_ notification: Notification) {
         strawberryLabel.text = String(FruitStore.shared.getStock(of: .strawberry))
         bananaLabel.text = String(FruitStore.shared.getStock(of: .banana))
         pineappleLabel.text = String(FruitStore.shared.getStock(of: .pineapple))
@@ -91,6 +91,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitLable()
+//        updateFruitLable()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitLable(_:)), name: Notification.Name("notificationStock"), object: nil)
+        
     }
 }

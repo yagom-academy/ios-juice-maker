@@ -7,8 +7,8 @@
 import Foundation
 
 class FruitStore: NSObject {
-    //static var shared = FruitStore()
-    @objc dynamic var stock: [Fruit: Int]
+    static var shared = FruitStore()
+    private var stock: [Fruit: Int]
     
     private init(defaultStock: Int = 10) {
         stock = [.strawberry: defaultStock,
