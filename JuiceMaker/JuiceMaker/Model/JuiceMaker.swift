@@ -33,7 +33,6 @@ extension Juice {
 }
 
 struct JuiceMaker {
-    private var fruitStore = FruitStore.fruitStore
     
     func orderAndCheck(_ juice: Juice) -> Bool {
         do {
@@ -55,7 +54,7 @@ struct JuiceMaker {
     private func ensureStock(of juice: Juice) -> Bool {
         var checkList: [Bool] = []
         for ingredient in juice.recipe {
-            checkList.append(fruitStore.isEnoughStock(of: ingredient))
+            checkList.append(FruitStore.shared.isEnoughStock(of: ingredient))
         }
         return checkList.allSatisfy{ $0 }
     }
@@ -63,7 +62,7 @@ struct JuiceMaker {
     private func make(_ juice: Juice) {
         for ingredient in juice.recipe {
             let (neededFruit, neededStock) = ingredient
-            fruitStore.changeStock(of: neededFruit, to: -neededStock)
+            FruitStore.shared.changeStock(of: neededFruit, to: -neededStock)
         }
     }
 }

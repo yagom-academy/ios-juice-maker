@@ -7,7 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var fruitStore = FruitStore.fruitStore
     var juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryLabel: UILabel!
@@ -15,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var magoLabel: UILabel!
-    
+     
     @IBOutlet weak var strawberryJuiceButton: UIButton!
     @IBOutlet weak var bananaJuiceButton: UIButton!
     @IBOutlet weak var pineappleJuiceButton: UIButton!
@@ -57,13 +56,12 @@ class ViewController: UIViewController {
         return juice
     }
         
-    
     func updateFruitLable() {
-        strawberryLabel.text = String(fruitStore.getStock(of: .strawberry))
-        bananaLabel.text = String(fruitStore.getStock(of: .banana))
-        pineappleLabel.text = String(fruitStore.getStock(of: .pineapple))
-        kiwiLabel.text = String(fruitStore.getStock(of: .kiwi))
-        magoLabel.text = String(fruitStore.getStock(of: .mango))
+        strawberryLabel.text = String(FruitStore.shared.getStock(of: .strawberry))
+        bananaLabel.text = String(FruitStore.shared.getStock(of: .banana))
+        pineappleLabel.text = String(FruitStore.shared.getStock(of: .pineapple))
+        kiwiLabel.text = String(FruitStore.shared.getStock(of: .kiwi))
+        magoLabel.text = String(FruitStore.shared.getStock(of: .mango))
     }
     
     func showSuccessAlert(with juiceName: String) {
