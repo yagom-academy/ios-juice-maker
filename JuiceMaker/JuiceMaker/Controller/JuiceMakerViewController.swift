@@ -7,12 +7,17 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
+    
+    
+    @IBOutlet var fruitsLabelCollection: [UILabel]!
+    
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
     @IBOutlet weak var pineappleCountLabel: UILabel!
     @IBOutlet weak var kiwiCountLabel: UILabel!
     @IBOutlet weak var mangoCountLabel: UILabel!
     
+    // TODO: 배열로 합쳐야함!!
     @IBOutlet weak var strawberrybananaButton: UIButton!
     @IBOutlet weak var strawberryButton: UIButton!
     @IBOutlet weak var mangoButton: UIButton!
@@ -33,32 +38,25 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction private func orderStrawberryBananaJuiceTapped(_ sender: Any) {
-        orderJuices(fruitJuice: .strawberryBanana)
-    }
-    
-    @IBAction private func orderStrawberryJuiceTapped(_ sender: Any) {
-        orderJuices(fruitJuice: .strawberry)
-    }
-    
-    @IBAction private func orderMangoKiwiJuiceTapped(_ sender: Any) {
-        orderJuices(fruitJuice: .mangoKiwi)
-    }
-    
-    @IBAction private func orderBananaJuiceTapped(_ sender: Any) {
-        orderJuices(fruitJuice: .banana)
-    }
-    
-    @IBAction private func orderPineappleJuiceTapped(_ sender: Any) {
-        orderJuices(fruitJuice: .pineapple)
-    }
-    
-    @IBAction private func orderKiwiJuiceTapped(_ sender: Any) {
-        orderJuices(fruitJuice: .kiwi)
-    }
-    
-    @IBAction private func orderMangoJuiceTapped(_ sender: Any) {
-        orderJuices(fruitJuice: .mango)
+    @IBAction func OrderJuicesbuttonPressed(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            orderJuices(fruitJuice: .strawberryBanana)
+        case 2:
+            orderJuices(fruitJuice: .mangoKiwi)
+        case 3:
+            orderJuices(fruitJuice: .strawberry)
+        case 4:
+            orderJuices(fruitJuice: .banana)
+        case 5:
+            orderJuices(fruitJuice: .pineapple)
+        case 6:
+            orderJuices(fruitJuice: .kiwi)
+        case 7:
+            orderJuices(fruitJuice: .mango)
+        default:
+            JuiceMakerError.unexpectedError
+        }
     }
     
     func orderJuices(fruitJuice: JuiceTypes) {
@@ -98,19 +96,19 @@ final class JuiceMakerViewController: UIViewController {
     private func orderFruitsButton(sender: UIButton) {
         switch sender {
         case strawberrybananaButton:
-            orderStrawberryBananaJuiceTapped(sender)
+            OrderJuicesbuttonPressed(sender)
         case mangoKiwiButton:
-            orderMangoKiwiJuiceTapped(sender)
+            OrderJuicesbuttonPressed(sender)
         case strawberryButton:
-            orderStrawberryJuiceTapped(sender)
+            OrderJuicesbuttonPressed(sender)
         case bananaButton:
-            orderBananaJuiceTapped(sender)
+            OrderJuicesbuttonPressed(sender)
         case pineappleButton:
-            orderPineappleJuiceTapped(sender)
+            OrderJuicesbuttonPressed(sender)
         case kiwiButton:
-            orderKiwiJuiceTapped(sender)
+            OrderJuicesbuttonPressed(sender)
         case mangoButton:
-            orderMangoJuiceTapped(sender)
+            OrderJuicesbuttonPressed(sender)
         default:
             JuiceMakerError.unexpectedError
         }
