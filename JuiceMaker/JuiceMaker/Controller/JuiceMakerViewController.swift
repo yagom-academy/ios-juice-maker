@@ -24,8 +24,13 @@ final class JuiceMakerViewController: UIViewController {
     var fruitStore = FruitStore()
 
     @IBAction private func changeViewControllerTapped(_ sender: Any) {
-        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
-        self.navigationController?.pushViewController(pushViewController, animated: true)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let ChangeStockViewController = storyboard.instantiateViewController(withIdentifier: "ChangeStockViewController")
+        if let naviController = navigationController {
+            naviController.pushViewController(ChangeStockViewController, animated: false)
+        } else {
+            JuiceMakerError.notExistNavigationController
+        }
     }
     
     @IBAction private func orderStrawberryBananaJuiceTapped(_ sender: Any) {

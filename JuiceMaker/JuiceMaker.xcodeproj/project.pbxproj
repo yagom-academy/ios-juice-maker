@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64CDFB7E27C46F25005D9D13 /* FruitsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CDFB7D27C46F25005D9D13 /* FruitsType.swift */; };
+		64CDFB8927D04EBD005D9D13 /* ChangeStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CDFB8827D04EBD005D9D13 /* ChangeStockViewController.swift */; };
 		7FF7FEE227C6555600B06218 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7FEE127C6555600B06218 /* Error.swift */; };
 		7FFBBE2327CDAF5200E6B933 /* AlerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFBBE2227CDAF5200E6B933 /* AlerMessage.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		64CDFB7D27C46F25005D9D13 /* FruitsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsType.swift; sourceTree = "<group>"; };
+		64CDFB8827D04EBD005D9D13 /* ChangeStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeStockViewController.swift; sourceTree = "<group>"; };
 		7FF7FEE127C6555600B06218 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		7FFBBE2227CDAF5200E6B933 /* AlerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlerMessage.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */,
+				64CDFB8827D04EBD005D9D13 /* ChangeStockViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				64CDFB7E27C46F25005D9D13 /* FruitsType.swift in Sources */,
+				64CDFB8927D04EBD005D9D13 /* ChangeStockViewController.swift in Sources */,
 				7FF7FEE227C6555600B06218 /* Error.swift in Sources */,
 				7FFBBE2327CDAF5200E6B933 /* AlerMessage.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
