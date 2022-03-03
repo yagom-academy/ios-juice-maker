@@ -57,7 +57,17 @@ class ViewController: UIViewController {
     @objc private func updateFruitLable(_ notification: Notification) {
         guard let fruitName = notification.userInfo?["fruit"] as? Fruit else { return }
         guard let fruitStock = notification.userInfo?["stock"] as? Int else { return }
-        print(fruitName, fruitStock)
+        if fruitName == .strawberry {
+            strawberryLabel.text = String(fruitStock)
+        } else if fruitName == .banana {
+            bananaLabel.text = String(fruitStock)
+        } else if fruitName == .mango {
+            magoLabel.text = String(fruitStock)
+        } else if fruitName == .kiwi {
+            kiwiLabel.text = String(fruitStock)
+        } else if fruitName == .pineapple {
+            pineappleLabel.text = String(fruitStock)
+        }
 //        strawberryLabel.text = String(FruitStore.shared.getStock(of: .strawberry))
 //        bananaLabel.text = String(FruitStore.shared.getStock(of: .banana))
 //        pineappleLabel.text = String(FruitStore.shared.getStock(of: .pineapple))
@@ -65,6 +75,7 @@ class ViewController: UIViewController {
 //        magoLabel.text = String(FruitStore.shared.getStock(of: .mango))
         
     }
+    
     
     private func showSuccessAlert(with juiceName: String) {
         let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: juiceName + Phrases.readyForJuice.text, preferredStyle: .alert)
@@ -92,10 +103,16 @@ class ViewController: UIViewController {
         stockChangeView?.modalPresentationStyle = .automatic
         self.present(stockChangeView!, animated: true, completion: nil)
     }
+//
+//    func settingFruitLabel() {
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        updateFruitLable()
+//        settingFruitLabel()Thread
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
