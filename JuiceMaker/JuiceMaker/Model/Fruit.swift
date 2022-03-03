@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Fruit {
+enum Fruit {    
     case strawberry
     case banana
     case pineapple
