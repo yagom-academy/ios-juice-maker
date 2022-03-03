@@ -8,7 +8,7 @@ class ManageStockViewController:
         super.viewDidLoad()
     }
     
-    @IBAction func closeManageStockView(_ sender: Any) {
+    @IBAction func closeManageStockView(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true)
     }
 }

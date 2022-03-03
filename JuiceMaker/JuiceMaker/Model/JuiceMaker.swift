@@ -60,7 +60,7 @@ struct JuiceMaker {
     
     private func checkEnoughFruitStock(fruitTypes: [FruitType], amounts: [Int]) throws {
         for index in 0..<amounts.count {
-            guard let currentStock = fruitStore.fruits[fruitTypes[index]] else { return }
+            let currentStock = fruitStore.numberOfStock(fruit: fruitTypes[index])
             if currentStock < amounts[index] {
                 throw JuiceMakerError.notEnoughStock
             }

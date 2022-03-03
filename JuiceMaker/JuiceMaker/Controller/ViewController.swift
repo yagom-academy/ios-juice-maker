@@ -9,6 +9,13 @@ import UIKit
 class ViewController: UIViewController {
     
     private var juiceMaker = JuiceMaker()
+    enum MessageNameSpace {
+        static let notEnoughStock = "재료가 모자라요. 재고를 수정할까요?"
+        static let juiceReady = " 나왔습니다! 맛있게 드세요!"
+        static let yes = "예"
+        static let no = "아니오"
+        static let confirm = "확인"
+    }
     
     @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
     @IBOutlet private weak var stockOfBananaLabel: UILabel!
@@ -56,7 +63,7 @@ class ViewController: UIViewController {
         do {
             let juice = try juiceMaker.makeJuice(juice: orderedJuiceType)
             showJuiceReadyAlert(juiceName: juice.name())
-            updateFruitStockLabel(fruitType: juice.recipe().keys.map({ $0 }))
+            updateFruitStockLabel(recipe: juice.recipe())
         } catch {
             showNotEnoughStockAlert()
         }
@@ -81,26 +88,26 @@ class ViewController: UIViewController {
     }
     
     private func updateFruitStockLabel() {
-        stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? ConstantNameSpace.minimumNumberOfStock)
-        stockOfBananaLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? ConstantNameSpace.minimumNumberOfStock)
-        stockOfPineappleLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? ConstantNameSpace.minimumNumberOfStock)
-        stockOfKiwiLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? ConstantNameSpace.minimumNumberOfStock)
-        stockOfMangoLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? ConstantNameSpace.minimumNumberOfStock)
+        stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
+        stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
+        stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
+        stockOfKiwiLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi))
+        stockOfMangoLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango))
     }
     
-    private func updateFruitStockLabel(fruitType: [FruitType]) {
-        for fruit in fruitType {
-            switch fruit {
+    private func updateFruitStockLabel(recipe: [FruitType: Int]) {
+        recipe.forEach {
+            switch $0.key {
             case FruitType.strawberry:
-                stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.strawberry] ?? ConstantNameSpace.minimumNumberOfStock)
+                stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
             case FruitType.banana:
-                stockOfBananaLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.banana] ?? ConstantNameSpace.minimumNumberOfStock)
+                stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
             case FruitType.pineapple:
-                stockOfPineappleLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.pineapple] ?? ConstantNameSpace.minimumNumberOfStock)
+                stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
             case FruitType.kiwi:
-                stockOfKiwiLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.kiwi] ?? ConstantNameSpace.minimumNumberOfStock)
+                stockOfKiwiLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi))
             case FruitType.mango:
-                stockOfMangoLabel.text = String(juiceMaker.fruitStore.fruits[FruitType.mango] ?? ConstantNameSpace.minimumNumberOfStock)
+                stockOfMangoLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango))
             }
         }
     }
@@ -110,7 +117,7 @@ class ViewController: UIViewController {
     }
     
     private func switchScreenToManageStockView() {
-        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: ViewNameSpace.ManageStockViewController) else { return }
+        guard let manageStockViewController = self.storyboard?.instantiateViewController(identifier: ViewName.ManageStockViewController) else { return }
         manageStockViewController.modalTransitionStyle = .coverVertical
         manageStockViewController.modalPresentationStyle = .automatic
         self.present(manageStockViewController, animated: true)
