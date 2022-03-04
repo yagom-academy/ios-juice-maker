@@ -22,19 +22,15 @@ class JuiceMakeController: UIViewController {
     
     @IBAction func orderJuice(_ sender: UIButton) {
         do {
-            guard let targetJuice = Juice(rawValue: sender.tag) else {
-                showAlert(error: JuiceMakingError.unkownError)
-                return
-            }
-            try JuiceMaker.juiceMaker.makeJuice(targetJuice)
-            updateStock()
-            showAlert(juice: targetJuice)
-        } catch {
-            if let juiceMakingError = error as? JuiceMakingError{
-                showAlert(error: juiceMakingError)
+            if let targetJuice = Juice(rawValue: sender.tag) {
+                try JuiceMaker.juiceMaker.makeJuice(targetJuice)
+                updateStock()
+                showAlert(juice: targetJuice)
             } else {
                 showAlert(error: JuiceMakingError.unkownError)
             }
+        } catch {
+            showAlert(error: error as? JuiceMakingError ?? JuiceMakingError.unkownError)
         }
     }
     
