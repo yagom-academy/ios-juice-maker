@@ -20,35 +20,13 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     private func updateFruitStockLabels() {
-        fruitStockLabels.forEach({ fruitCountLabel in
-            guard let fruit = FruitStore.Fruit(rawValue: fruitCountLabel.tag) else { return }
-            fruitCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: fruit)
-        })
+        fruitStockLabels.forEach ({
+            guard let fruit = FruitStore.Fruit(rawValue: $0.tag) else { return }
+            $0.text = juiceMaker.fruitStore.bringStockValue(for: fruit) })
     }
     
-    private func convertToJuice(_ sender: UIButton) -> Juice? {
-        switch Juice(rawValue: sender.tag) {
-        case .strawberryBanana:
-                return .strawberryBanana
-        case .strawberry:
-                return .strawberry
-        case .banana:
-                return .banana
-        case .pineapple:
-                return .pineapple
-        case .kiwi:
-                return .kiwi
-        case .mango:
-                return .mango
-        case .mangoKiwi:
-                return .mangoKiwi
-            default:
-                return nil
-            }
-        }
-    
     @IBAction private func orderJuices(_ sender: UIButton) {
-        guard let juice = convertToJuice(sender) else { return }
+        guard let juice = Juice(rawValue: sender.tag) else { return }
         do {
             try juiceMaker.makeJuice(juice)
             showSuccessAlert(of: juice)

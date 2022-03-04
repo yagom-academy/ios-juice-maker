@@ -19,21 +19,18 @@ class FruitStore {
         }
     }
     
-    func makeReady(for juice: Juice) throws -> Bool {
-        var isReady = false
+    func makeReady(for juice: Juice) throws {
         for fruit in juice.recipe.keys {
-            isReady = try checkEnoughStock(for: juice, fruit: fruit)
+            try checkEnoughStock(for: juice, fruit: fruit)
         }
-        return isReady
     }
     
-    private func checkEnoughStock(for juice: Juice, fruit: Fruit) throws -> Bool {
+    private func checkEnoughStock(for juice: Juice, fruit: Fruit) throws {
         guard let currentFruitQuantity = fruitsStock[fruit],
               let needFruitQuantity = juice.recipe[fruit],
               currentFruitQuantity >= needFruitQuantity else {
                   throw JuiceError.notEnoughStock
               }
-        return true
     }
     
     func changeFruitQuantity(by fruit: Fruit, count: Int) {
