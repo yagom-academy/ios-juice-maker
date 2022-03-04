@@ -74,7 +74,7 @@ final class MainViewController: UIViewController {
     
     private func moveToManageView() {
         guard let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController") else { return }
-        self.navigationController?.present(manageVC, animated: true, completion: nil)
+        self.present(manageVC, animated: true, completion: nil)
     }
     
     private func makeJuice(menu: Menu) {
