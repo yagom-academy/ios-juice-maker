@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class JuiceViewController: UIViewController {
   
   @IBOutlet weak var strawberryCountLabel: UILabel!
   @IBOutlet weak var bananaCountLabel: UILabel!
@@ -22,6 +22,8 @@ final class ViewController: UIViewController {
   @IBOutlet weak var kiwiButton: UIButton!
   @IBOutlet weak var mangoButton: UIButton!
   
+  let juiceMaker = JuiceMaker()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.fetchStock()
@@ -31,7 +33,6 @@ final class ViewController: UIViewController {
     guard let juice = self.selectJuice(sender) else {
       return
     }
-    let juiceMaker = JuiceMaker()
     let result = juiceMaker.make(juice)
     switch result {
     case .success(let juice):
@@ -45,7 +46,7 @@ final class ViewController: UIViewController {
 
 // MARK: - Private Extension
 
-private extension ViewController {
+private extension JuiceViewController {
   func selectJuice(_ sender: UIButton) -> Juice? {
     guard let buttonTitle = sender.titleLabel?.text,
           let juiceName = buttonTitle.components(separatedBy: " ").first
@@ -64,7 +65,7 @@ private extension ViewController {
   }
   
   func convertStockToString(_ fruit: Fruit) -> String {
-    guard let fruitAmount = FruitStore.shared.stock[fruit] else {
+    guard let fruitAmount = juiceMaker.fruitStore.stock[fruit] else {
       return String(Int.zero)
     }
     return String(fruitAmount)
@@ -94,10 +95,13 @@ private extension ViewController {
   }
   
   func handleOkAction(_ action: UIAlertAction) {
-    guard let stockVC = self.storyboard?.instantiateViewController(withIdentifier: "stockVC")
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    guard let stockViewController = storyboard.instantiateViewController(
+      withIdentifier: "StockViewController"
+    ) as? StockViewController
     else {
       return
     }
-    self.present(stockVC, animated: true)
+    self.present(stockViewController, animated: true)
   }
 }

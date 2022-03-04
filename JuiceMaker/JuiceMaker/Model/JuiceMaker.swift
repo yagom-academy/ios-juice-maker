@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-  private let fruitStore = FruitStore.shared
+  let fruitStore = FruitStore()
 
   func make(_ juice: Juice) -> Result<Juice, MakeJuiceError> {
     let recipe = juice.recipe
