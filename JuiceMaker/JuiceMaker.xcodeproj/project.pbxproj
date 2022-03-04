@@ -62,17 +62,9 @@
 		0E793FE727C4C3730020DACD /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A145C2A427D0E53900E2EA87 /* Extension */,
 				0E793FE827C4C3880020DACD /* Constant.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		A145C2A427D0E53900E2EA87 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		A145C2A527D0E59600E2EA87 /* AlertBuilder */ = {

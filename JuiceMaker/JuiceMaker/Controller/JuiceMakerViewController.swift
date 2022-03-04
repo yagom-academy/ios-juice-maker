@@ -27,7 +27,6 @@ final class JuiceMakerViewController: UIViewController {
         do {
             let order = try takeOrder(sender: sender)
             try juiceMaker?.produce(juice: order)
-            try configureStockLabels()
             showSuccessOrder(of: order)
         } catch (let error) {
             showFailedOrder(with: error)
@@ -48,14 +47,16 @@ final class JuiceMakerViewController: UIViewController {
         updateStockLabels()
     }
     
-    private func updateStockLabels() {
-        do {
-            try configureStockLabels()
-        } catch (let error) {
-            showFailedOrder(with: error)
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribe()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unSubscribe()
+    }
+
     private func configureStockLabels() throws {
         var amountLabels: [UILabel] = []
         let fruits = Fruit.allCases
@@ -148,5 +149,23 @@ final class JuiceMakerViewController: UIViewController {
         }
         
         self.present(modifyingStockViewController, animated: true)
+    }
+}
+
+extension JuiceMakerViewController: Observer {
+    private func subscribe() {
+        juiceMaker?.fruitStore.subscribe(observer: self)
+    }
+    
+    private func unSubscribe() {
+        juiceMaker?.fruitStore.unSubscribe(observer: self)
+    }
+    
+    func updateStockLabels() {
+        do {
+            try configureStockLabels()
+        } catch (let error) {
+            showFailedOrder(with: error)
+        }
     }
 }

@@ -4,11 +4,25 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+protocol Observer {
+    func updateStockLabels()
+}
+
 final class FruitStore {
-    private(set) var stocks: [Fruit: Int]
+    private var observer: Observer?
+    private var defaultStock: [Fruit: Int]
+    private(set) var stocks: [Fruit: Int] {
+        set {
+            defaultStock = newValue
+            notify()
+        }
+        get {
+            return defaultStock
+        }
+    }
 
     init(stocks: [Fruit : Int]) {
-        self.stocks = stocks
+        self.defaultStock = stocks
     }
     
     func consume(fruit: Fruit, amount: Int) throws {
@@ -37,5 +51,19 @@ final class FruitStore {
         }
         
         return remainingAmount
+    }
+}
+
+extension FruitStore {
+    func subscribe(observer: Observer) {
+        self.observer = observer
+    }
+    
+    func unSubscribe(observer: Observer) {
+        self.observer = nil
+    }
+    
+    private func notify() {
+        observer?.updateStockLabels()
     }
 }
