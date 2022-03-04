@@ -56,9 +56,9 @@ struct JuiceMaker {
             fruitStore.changeStock(of: neededFruit, to: -neededStock)
         }
     }
-    func initLable() {
-        for i in Fruit.allCases {
-            fruitStore.changeStock(of: i, to: .zero)
+    func initializeLable() {
+        for fruit in Fruit.allCases {
+            fruitStore.changeStock(of: fruit, to: .zero)
         }
     }
     

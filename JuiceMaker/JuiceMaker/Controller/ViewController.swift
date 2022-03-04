@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateFruitLable(_:)), name: Notification.Name("notificationStock"), object: nil)
-        juiceMaker.initLable()
+        juiceMaker.initializeLable()
         
     }
 }
