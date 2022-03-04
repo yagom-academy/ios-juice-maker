@@ -1,12 +1,12 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by 우롱차, vayne.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakeController: UIViewController {
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -23,40 +23,40 @@ class ViewController: UIViewController {
     @IBAction func orderJuice(_ sender: UIButton) {
         do {
             guard let targetJuice = Juice(rawValue: sender.tag) else {
-                makeAlert(error: JuiceMakingError.unkownError)
+                showAlert(error: JuiceMakingError.unkownError)
                 return
             }
             try JuiceMaker.juiceMaker.makeJuice(targetJuice)
             updateStock()
-            makeAlert(juice: targetJuice)
+            showAlert(juice: targetJuice)
         } catch {
             if let juiceMakingError = error as? JuiceMakingError{
-                makeAlert(error: juiceMakingError)
+                showAlert(error: juiceMakingError)
             } else {
-                makeAlert(error: JuiceMakingError.unkownError)
+                showAlert(error: JuiceMakingError.unkownError)
             }
         }
     }
     
     @IBAction func moveToStockView(_ sender: UIButton) {
-        let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController")
-        vcName?.modalTransitionStyle = .coverVertical
-        self.present(vcName!, animated: true, completion: nil)
+        guard let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") else {
+            return
+        }
+        vcName.modalTransitionStyle = .coverVertical
+        self.present(vcName, animated: true, completion: nil)
     }
     
-    func makeAlert(juice: Juice) {
+    func showAlert(juice: Juice) {
         let title = DisplayMessage.successAlertTitle
         let okAction = UIAlertAction(title: DisplayMessage.alertOk, style: .default, handler: nil)
         let message = Juice.getJuiceName(juice: juice) + DisplayMessage.orderSuccess
         
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
     
-    func makeAlert(error: JuiceMakingError) {
+    func showAlert(error: JuiceMakingError) {
         let title = DisplayMessage.failAlertTitle
         let message = JuiceMakingError.getErrorMessage(error: error)
         let alert = UIAlertController(title: title,
