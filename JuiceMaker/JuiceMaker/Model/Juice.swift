@@ -5,15 +5,15 @@
 //  Created by SeoDongyeon on 2022/02/23.
 //
 
-enum Juice: CaseIterable {
+enum Juice: Int, CaseIterable {
     typealias Fruit = FruitStore.Fruit
     
+    case strawberryBanana = 1
     case strawberry
     case banana
     case pineapple
     case kiwi
     case mango
-    case strawberryBanana
     case mangoKiwi
     
     var recipe: [Fruit: Int] {

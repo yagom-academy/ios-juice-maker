@@ -36,20 +36,20 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     private func convertToJuice(_ sender: UIButton) -> Juice? {
-        switch sender.tag {
-            case 1:
+        switch Juice(rawValue: sender.tag) {
+        case .strawberryBanana:
                 return .strawberryBanana
-            case 2:
+        case .strawberry:
                 return .strawberry
-            case 3:
+        case .banana:
                 return .banana
-            case 4:
+        case .pineapple:
                 return .pineapple
-            case 5:
+        case .kiwi:
                 return .kiwi
-            case 6:
+        case .mango:
                 return .mango
-            case 7:
+        case .mangoKiwi:
                 return .mangoKiwi
             default:
                 return nil
@@ -58,7 +58,12 @@ final class JuiceStoreViewController: UIViewController {
     
     @IBAction private func orderJuices(_ sender: UIButton) {
         guard let juice = convertToJuice(sender) else { return }
-        juiceMaker.makeJuice(juice) ? showSuccessAlert(of: juice) : showFailureAlert()
+        do {
+            try juiceMaker.makeJuice(juice)
+            showSuccessAlert(of: juice)
+        } catch {
+            showFailureAlert()
+        }
         updateFruitStockLabels()
     }
     
@@ -68,11 +73,10 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     private func showSuccessAlert(of juice: Juice) {
-        let alert = AlertMessage.self
-        let successAlert = UIAlertController(title: juice.name+alert.cameOut.description,
-                                             message: alert.enjoyDrink.description,
+        let successAlert = UIAlertController(title: juice.name+AlertText.cameOut,
+                                             message: AlertText.enjoyDrink,
                                             preferredStyle: .alert)
-        let okAction = UIAlertAction(title: alert.check.description,
+        let okAction = UIAlertAction(title: AlertText.check,
                                      style: .default,
                                      handler: nil)
         successAlert.addAction(okAction)
@@ -80,15 +84,15 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     private func showFailureAlert() {
-        let failureAlert = UIAlertController(title: AlertMessage.outOfStock.description,
-                                             message: AlertMessage.editStock.description,
+        let failureAlert = UIAlertController(title: AlertText.outOfStock,
+                                             message: AlertText.editStock,
                                              preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.yes.description,
+        let okAction = UIAlertAction(title: AlertText.yes,
                                      style: .default) { action in
             self.moveEditFruitStockViewController(action)
         }
                                      
-        let noAction = UIAlertAction(title: AlertMessage.no.description,
+        let noAction = UIAlertAction(title: AlertText.no,
                                      style: .destructive,
                                      handler: nil)
         failureAlert.addAction(okAction)

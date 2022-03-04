@@ -7,15 +7,9 @@ import Foundation
 struct JuiceMaker {
     private(set) var fruitStore = FruitStore()
     
-    func makeJuice(_ juice: Juice) -> Bool {
-        do {
-            _ = try fruitStore.makeReady(for: juice)
-            subtractFruitQuantity(for: juice)
-            return true
-        } catch (let fruit) {
-            print("\(fruit)")
-            return false
-        }
+    func makeJuice(_ juice: Juice) throws {
+        _ = try fruitStore.makeReady(for: juice)
+        subtractFruitQuantity(for: juice)
     }
     
     private func subtractFruitQuantity(for juice: Juice) {
