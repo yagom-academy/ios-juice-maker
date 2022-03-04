@@ -10,19 +10,14 @@ protocol Observer {
 
 final class FruitStore {
     private var observer: Observer?
-    private var defaultStock: [Fruit: Int]
     private(set) var stocks: [Fruit: Int] {
-        set {
-            defaultStock = newValue
+        didSet {
             notify()
-        }
-        get {
-            return defaultStock
         }
     }
 
     init(stocks: [Fruit : Int]) {
-        self.defaultStock = stocks
+        self.stocks = stocks
     }
     
     func consume(fruit: Fruit, amount: Int) throws {
