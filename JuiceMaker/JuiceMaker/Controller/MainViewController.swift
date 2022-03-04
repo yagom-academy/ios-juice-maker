@@ -80,7 +80,7 @@ final class MainViewController: UIViewController {
     private func makeJuice(menu: Menu) {
         do {
             try juiceMaker.checkStock(menu: menu)
-            presentCompleteAlert(menu: menu)
+            presentBasicAlert(title: nil, message: menu.orderMessage)
         } catch let error as FruitStoreError {
             switch error {
             case .invalidSelection:
@@ -107,10 +107,6 @@ final class MainViewController: UIViewController {
         alert.addAction(yesAction)
         alert.addAction(noAction)
         self.present(alert, animated: true, completion: nil)
-    }
-
-    private func presentCompleteAlert(menu: Menu) {
-        presentBasicAlert(title: nil, message: menu.orderMessage)
     }
 }
 
