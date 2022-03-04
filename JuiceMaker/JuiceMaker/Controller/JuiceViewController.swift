@@ -37,7 +37,8 @@ final class JuiceViewController: UIViewController {
     switch result {
     case .success(let juice):
       self.presentAlert(message: String(describing: juice), actions: [
-        UIAlertAction(title: AlertSetting.ok, style: .default)])
+        UIAlertAction(title: AlertSetting.ok, style: .default)
+      ])
     case .failure(let error):
       self.presentAlert(message: error.errorDescription, actions: [
         UIAlertAction(title: AlertSetting.yes, style: .default, handler: self.handleOkAction),
