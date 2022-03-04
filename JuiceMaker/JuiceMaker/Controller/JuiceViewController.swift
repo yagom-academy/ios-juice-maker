@@ -8,28 +8,28 @@ import UIKit
 
 final class JuiceViewController: UIViewController {
   
-  @IBOutlet weak var strawberryCountLabel: UILabel!
-  @IBOutlet weak var bananaCountLabel: UILabel!
-  @IBOutlet weak var pineappleCountLabel: UILabel!
-  @IBOutlet weak var kiwiCountLabel: UILabel!
-  @IBOutlet weak var mangoCountLabel: UILabel!
+  @IBOutlet private weak var strawberryCountLabel: UILabel!
+  @IBOutlet private weak var bananaCountLabel: UILabel!
+  @IBOutlet private weak var pineappleCountLabel: UILabel!
+  @IBOutlet private weak var kiwiCountLabel: UILabel!
+  @IBOutlet private weak var mangoCountLabel: UILabel!
   
-  @IBOutlet weak var strawberryBananaButton: UIButton!
-  @IBOutlet weak var mangoKiwiButton: UIButton!
-  @IBOutlet weak var strawberryButton: UIButton!
-  @IBOutlet weak var bananaButton: UIButton!
-  @IBOutlet weak var pineappleButton: UIButton!
-  @IBOutlet weak var kiwiButton: UIButton!
-  @IBOutlet weak var mangoButton: UIButton!
+  @IBOutlet private weak var strawberryBananaButton: UIButton!
+  @IBOutlet private weak var mangoKiwiButton: UIButton!
+  @IBOutlet private weak var strawberryButton: UIButton!
+  @IBOutlet private weak var bananaButton: UIButton!
+  @IBOutlet private weak var pineappleButton: UIButton!
+  @IBOutlet private weak var kiwiButton: UIButton!
+  @IBOutlet private weak var mangoButton: UIButton!
   
-  let juiceMaker = JuiceMaker()
+  private let juiceMaker = JuiceMaker()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.fetchStock()
   }
   
-  @IBAction func didTapOrderButton(_ sender: UIButton) {
+  @IBAction private func didTapOrderButton(_ sender: UIButton) {
     guard let juice = self.selectJuice(sender) else {
       return
     }
