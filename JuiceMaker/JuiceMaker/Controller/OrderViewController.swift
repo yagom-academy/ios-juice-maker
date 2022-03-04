@@ -34,27 +34,27 @@ final class OrderViewController: UIViewController {
         juiceMaker.fruitStore.inventory.keys.forEach {
             switch $0 {
             case .strawberry:
-                strawberryStockLabel.text = transformIntToString(.strawberry)
+                strawberryStockLabel.text = convertFruitStockToString(.strawberry)
             case .banana:
-                bananaStockLabel.text = transformIntToString(.banana)
+                bananaStockLabel.text = convertFruitStockToString(.banana)
             case .pineapple:
-                pineappleStockLabel.text = transformIntToString(.pineapple)
+                pineappleStockLabel.text = convertFruitStockToString(.pineapple)
             case .kiwi:
-                kiwiStockLabel.text = transformIntToString(.kiwi)
+                kiwiStockLabel.text = convertFruitStockToString(.kiwi)
             default:
-                mangoStockLabel.text = transformIntToString(.mango)
+                mangoStockLabel.text = convertFruitStockToString(.mango)
             }
         }
     }
     
-    private func transformIntToString(_ fruit: Fruit) -> String? {
+    private func convertFruitStockToString(_ fruit: Fruit) -> String? {
         guard let currentStock = juiceMaker.fruitStore.inventory[fruit] else {
             return nil
         }
         return String(currentStock)
     }
     
-    @IBAction func viewTransitionButtonClicked(_ sender: UIBarButtonItem) {
+    @IBAction func moveToStockViewButtonClicked(_ sender: UIBarButtonItem) {
         self.presentStockViewController()
     }
     
@@ -110,7 +110,7 @@ final class OrderViewController: UIViewController {
 
 extension OrderViewController {
     private func alertOrderCompletion(_ juice: Juice) {
-        let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.name) \(Alert.orderSuccess.message)", preferredStyle: .alert)
+        let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice) \(Alert.orderSuccess.message)", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
