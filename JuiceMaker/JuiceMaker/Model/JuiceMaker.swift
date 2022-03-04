@@ -47,14 +47,14 @@ struct JuiceMaker {
     }
     
     private func takeOrder(_ juice: Juice) throws {
-        if ensureStock(of: juice) {
+        if canMake(of: juice) {
             make(juice)
         } else {
             throw JuiceMakeError.lackOfStock
         }
     }
     
-    private func ensureStock(of juice: Juice) -> Bool {
+    private func canMake(of juice: Juice) -> Bool {
         var checkList: [Bool] = []
         for ingredient in juice.recipe {
             checkList.append(fruitStore.isEnoughStock(of: ingredient))
