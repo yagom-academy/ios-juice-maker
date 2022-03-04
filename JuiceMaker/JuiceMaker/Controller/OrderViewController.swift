@@ -1,6 +1,6 @@
 //
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  JuiceMaker - OrderViewController.swift
+//  Created by marisol, mmim.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -91,7 +91,7 @@ final class OrderViewController: UIViewController {
             order(.mangoJuice)
             showCurrentStock()
         default:
-            // 에러처리
+            alertUnknownError()
             showCurrentStock()
         }
     }
@@ -102,9 +102,13 @@ final class OrderViewController: UIViewController {
             alertOrderCompletion(juice)
         } catch OrderError.outOfStock {
             alertOutOfStock()
-        } catch { }
+        } catch {
+            alertUnknownError()
+        }
     }
-    
+}
+
+extension OrderViewController {
     private func alertOrderCompletion(_ juice: Juice) {
         let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice.name) \(Alert.orderSuccess.message)", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
@@ -122,5 +126,11 @@ final class OrderViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    private func alertUnknownError() {
+        let alert = UIAlertController(title: Alert.unknownError.title, message: Alert.unknownError.message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
-

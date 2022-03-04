@@ -1,8 +1,7 @@
 //
-//  StockViewController.swift
-//  JuiceMaker
-//
-//  Created by marisol, mmim on 2022/02/28.
+//  JuiceMaker - StockViewController.swift
+//  Created by marisol, mmim.
+//  Copyright © yagom academy. All rights reserved.
 //
 
 import UIKit

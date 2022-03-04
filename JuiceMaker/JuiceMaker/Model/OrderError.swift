@@ -1,8 +1,7 @@
 //
-//  OrderError.swift
-//  JuiceMaker
-//
-//  Created by marisol, mmim on 2022/03/01.
+//  JuiceMaker - OrderError.swift
+//  Created by marisol, mmim.
+//  Copyright © yagom academy. All rights reserved.
 //
 
 import Foundation
