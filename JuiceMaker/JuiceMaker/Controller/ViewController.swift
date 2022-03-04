@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoAndKiwiJuiceButton: UIButton!
     
     @IBAction func orderJuice(with button: UIButton) {
-        guard let juice = matchButtonToJuice(button) else { return }
+        guard let juice = matchJuice(with: button) else { return }
         if juiceMaker.orderAndCheck(juice) {
             showSuccessAlert(with: juice.koreanName)
         } else {
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func matchButtonToJuice(_ button: UIButton) -> Juice? {
+    private func matchJuice(with button: UIButton) -> Juice? {
         switch button {
         case strawberryJuiceButton:
             return .strawberryJuice
