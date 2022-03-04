@@ -56,7 +56,7 @@ final class MainViewController: UIViewController {
     }
     
     private func showStock() {
-        for (fruit, stock) in  juiceMaker.store.fruitList {
+        for (fruit, stock) in juiceMaker.store.fruitList {
             switch fruit {
             case .strawberry:
                 self.strawberryStockLabel.text = String(stock)
