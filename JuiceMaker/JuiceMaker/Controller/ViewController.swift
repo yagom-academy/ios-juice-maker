@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     @IBAction func orderJuice(with button: UIButton) {
         guard let juice = matchJuice(with: button) else { return }
-        if juiceMaker.orderAndCheck(juice) {
+        if juiceMaker.canMake(of: juice) {
             showSuccessAlert(with: juice.koreanName)
         } else {
             showFailureAlert()
