@@ -9,6 +9,8 @@ import UIKit
 
 final class StockViewController: UIViewController {
   
+  static let identifier = String(describing: StockViewController.self)
+  
   @IBOutlet weak var strawberryCountLabel: UILabel!
   @IBOutlet weak var bananaCountLabel: UILabel!
   @IBOutlet weak var pineappleCountLabel: UILabel!

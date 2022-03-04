@@ -33,15 +33,16 @@ final class JuiceViewController: UIViewController {
     guard let juice = self.selectJuice(sender) else {
       return
     }
-    let result = juiceMaker.make(juice)
+    let result = self.juiceMaker.make(juice)
     switch result {
     case .success(let juice):
-      let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
-      self.presentAlert(message: String(describing: juice), actions: [okAction])
+      self.presentAlert(message: String(describing: juice), actions: [
+        UIAlertAction(title: AlertSetting.ok, style: .default)])
     case .failure(let error):
-      let okAction = UIAlertAction(title: AlertSetting.yes, style: .default, handler: handleOkAction)
-      let noAction = UIAlertAction(title: AlertSetting.no, style: .cancel)
-      self.presentAlert(message: error.errorDescription, actions: [okAction, noAction])
+      self.presentAlert(message: error.errorDescription, actions: [
+        UIAlertAction(title: AlertSetting.yes, style: .default, handler: self.handleOkAction),
+        UIAlertAction(title: AlertSetting.no, style: .cancel)
+      ])
     }
     self.fetchStock()
   }
@@ -60,15 +61,15 @@ private extension JuiceViewController {
   }
   
   func fetchStock() {
-    strawberryCountLabel.text = self.convertStockToString(.strawberry)
-    bananaCountLabel.text = self.convertStockToString(.banana)
-    pineappleCountLabel.text = self.convertStockToString(.pineapple)
-    kiwiCountLabel.text = self.convertStockToString(.kiwi)
-    mangoCountLabel.text = self.convertStockToString(.mango)
+    self.strawberryCountLabel.text = self.convertStockToString(.strawberry)
+    self.bananaCountLabel.text = self.convertStockToString(.banana)
+    self.pineappleCountLabel.text = self.convertStockToString(.pineapple)
+    self.kiwiCountLabel.text = self.convertStockToString(.kiwi)
+    self.mangoCountLabel.text = self.convertStockToString(.mango)
   }
   
   func convertStockToString(_ fruit: Fruit) -> String {
-    guard let fruitAmount = juiceMaker.fruitStore.stock[fruit] else {
+    guard let fruitAmount = self.juiceMaker.fruitStore.stock[fruit] else {
       return String(Int.zero)
     }
     return String(fruitAmount)
@@ -87,7 +88,7 @@ private extension JuiceViewController {
   func handleOkAction(_ action: UIAlertAction) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     guard let stockViewController = storyboard.instantiateViewController(
-      withIdentifier: "StockViewController"
+      withIdentifier: StockViewController.identifier
     ) as? StockViewController
     else {
       return
