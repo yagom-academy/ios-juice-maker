@@ -37,29 +37,17 @@ extension Juice {
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func orderAndCheck(_ juice: Juice) -> Bool {
-        do {
-            try takeOrder(juice)
-        } catch {
-            return false
-        }
-        return true
-    }
-    
-    private func takeOrder(_ juice: Juice) throws {
-        if canMake(of: juice) {
-            make(juice)
-        } else {
-            throw JuiceMakeError.lackOfStock
-        }
-    }
-    
-    private func canMake(of juice: Juice) -> Bool {
+    func canMake(of juice: Juice) -> Bool {
         var checkList: [Bool] = []
         for ingredient in juice.recipe {
             checkList.append(fruitStore.isEnoughStock(of: ingredient))
         }
-        return checkList.allSatisfy{ $0 }
+        if (checkList.allSatisfy{ $0 }) {
+            make(juice)
+            return true
+        } else {
+            return false
+        }
     }
     
     private func make(_ juice: Juice) {
