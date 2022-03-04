@@ -6,8 +6,6 @@
 //
 
 enum Constant {
-    static let defaultFruitAmount = 10
-    
     enum CustomType {
         typealias Recipe = [(Fruit, Int)]
     }

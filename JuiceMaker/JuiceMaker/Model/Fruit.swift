@@ -22,3 +22,7 @@ enum Fruit: String, CaseIterable {
         return fruits
     }
 }
+
+fileprivate extension Constant {
+    static let defaultFruitAmount = 10
+}

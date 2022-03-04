@@ -4,8 +4,17 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+protocol Observer {
+    func updateStockLabels()
+}
+
 final class FruitStore {
-    private var stocks: [Fruit: Int]
+    private var observer: Observer?
+    private(set) var stocks: [Fruit: Int] {
+        didSet {
+            notify()
+        }
+    }
 
     init(stocks: [Fruit : Int]) {
         self.stocks = stocks
@@ -27,7 +36,7 @@ final class FruitStore {
         let remainingAmount = try checkStock(of: fruit)
         
         guard remainingAmount >= amount else {
-            throw JuiceMakerError.notEnoughFruitAmount(fruit: fruit.rawValue)
+            throw JuiceMakerError.notEnoughFruitAmount
         }
     }
     
@@ -37,5 +46,19 @@ final class FruitStore {
         }
         
         return remainingAmount
+    }
+}
+
+extension FruitStore {
+    func subscribe(observer: Observer) {
+        self.observer = observer
+    }
+    
+    func unSubscribe(observer: Observer) {
+        self.observer = nil
+    }
+    
+    private func notify() {
+        observer?.updateStockLabels()
     }
 }
