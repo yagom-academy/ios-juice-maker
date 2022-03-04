@@ -23,7 +23,7 @@ final class OrderViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
-    @IBOutlet weak var viewTransitionButton: UIBarButtonItem!
+    @IBOutlet weak var moveToStockViewButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ final class OrderViewController: UIViewController {
                 pineappleStockLabel.text = convertFruitStockToString(.pineapple)
             case .kiwi:
                 kiwiStockLabel.text = convertFruitStockToString(.kiwi)
-            default:
+            case .mango:
                 mangoStockLabel.text = convertFruitStockToString(.mango)
             }
         }
@@ -71,29 +71,22 @@ final class OrderViewController: UIViewController {
         switch sender {
         case strawberryBananaJuiceOrderButton:
             order(.strawberryBananaJuice)
-            showCurrentStock()
         case mangoKiwiJuiceOrderButton:
             order(.mangoKiwiJuice)
-            showCurrentStock()
         case strawberryJuiceOrderButton:
             order(.strawberryJuice)
-            showCurrentStock()
         case bananaJuiceOrderButton:
             order(.bananaJuice)
-            showCurrentStock()
         case pineappleJuiceOrderButton:
             order(.pineappleJuice)
-            showCurrentStock()
         case kiwiJuiceOrderButton:
             order(.kiwiJuice)
-            showCurrentStock()
         case mangoJuiceOrderButton:
             order(.mangoJuice)
-            showCurrentStock()
         default:
             alertUnknownError()
-            showCurrentStock()
         }
+        showCurrentStock()
     }
     
     private func order(_ juice: Juice) {
