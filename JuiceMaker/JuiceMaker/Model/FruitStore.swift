@@ -4,7 +4,7 @@ final class FruitStore {
     private enum DefaulSetting {
         static let stock = 10
     }
-    var inventory: [Fruit: Int] = [:]
+    private(set) var inventory: [Fruit: Int] = [:]
     
    init() {
         Fruit.allCases.forEach { inventory[$0] = DefaulSetting.stock }

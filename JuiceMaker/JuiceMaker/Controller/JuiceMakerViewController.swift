@@ -32,8 +32,8 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func showSuccessAlert(juice: String) {
-        let successAlert = UIAlertController(title: "\(juice)쥬스 나왔습니다", message: "맛있게드세요", preferredStyle: .alert)
+    private func showSuccessAlert(juice: Juice) {
+        let successAlert = UIAlertController(title: "\(juice)  나왔습니다", message: "맛있게드세요", preferredStyle: .alert)
         successAlert.addAction(UIAlertAction(title: "네", style: .default))
         present(successAlert, animated: true)
     }
@@ -49,75 +49,30 @@ final class JuiceMakerViewController: UIViewController {
         present(failAlert, animated: true)
     }
     
-    // 이벤트가 발생한 버튼이 어떤 Juice를 가리키는지 알 수 있다면, 하나의 메서드에서 처리할 수 있을 것 같아요.
-   // 힌트를 드리자면, 하나의 IBAction에 여러 개의 버튼을 연결해줄 수 있고 이벤트가 발생한 버튼에 대한 정보는 인자인 sender로 전달됩니다!
-    
-    
-    @IBAction func makeStrawberryBananaJuiceButton(_ sender: UIButton) {
-        switch juiceMaker.makeJuice(by: .strawberryBananaJuice) {
-        case true:
-            showSuccessAlert(juice: Juice.strawberryBananaJuice.rawValue)
-            updateFruitsStock()
-        case false:
-            showFailAlert()
+    @IBAction func clickMakeJuiceButton(_ sender: UIButton) {
+        var order: Juice
+        switch sender.tag {
+        case 1:
+            order = .strawberryBananaJuice
+        case 2:
+            order = .mangoKiwiJuice
+        case 3:
+            order = .strawberryJuice
+        case 4:
+            order = .bananaJuice
+        case 5:
+            order = .pineappleJuice
+        case 6:
+            order = .kiwiJuice
+        case 7:
+            order = .mangoJuice
+        default:
+            order = .strawberryJuice
         }
-    }
-    
-    @IBAction func makeMangoKiwiJuiceButton(_ sender: UIButton) {
-        switch juiceMaker.makeJuice(by: .mangoKiwiJuice) {
+        
+        switch juiceMaker.makeJuice(by: order) {
         case true:
-            showSuccessAlert(juice: Juice.mangoKiwiJuice.rawValue)
-            updateFruitsStock()
-        case false:
-            showFailAlert()
-        }
-    }
-    
-    @IBAction func makeStrawberryJuiceButton(_ sender: UIButton) {
-        switch juiceMaker.makeJuice(by: .strawberryJuice) {
-        case true:
-            showSuccessAlert(juice: Juice.strawberryJuice.rawValue)
-            updateFruitsStock()
-        case false:
-            showFailAlert()
-        }
-    }
-    
-    @IBAction func makeBananaJuiceButton(_ sender: UIButton) {
-        switch juiceMaker.makeJuice(by: .bananaJuice) {
-        case true:
-            showSuccessAlert(juice: Juice.bananaJuice.rawValue)
-            updateFruitsStock()
-        case false:
-            showFailAlert()
-        }
-    }
-    
-    @IBAction func makePineappleJuiceButton(_ sender: UIButton) {
-        switch juiceMaker.makeJuice(by: .pineappleJuice) {
-        case true:
-            showSuccessAlert(juice: Juice.pineappleJuice.rawValue)
-            updateFruitsStock()
-        case false:
-            showFailAlert()
-        }
-    }
-    
-    
-    @IBAction func makeKiwiJuiceButton(_ sender: UIButton) {
-        switch juiceMaker.makeJuice(by: .kiwiJuice) {
-        case true:
-            showSuccessAlert(juice: Juice.kiwiJuice.rawValue)
-            updateFruitsStock()
-        case false:
-            showFailAlert()
-        }
-    }
-    
-    @IBAction func makeMangoJuiceButton(_ sender: UIButton) {
-        switch juiceMaker.makeJuice(by: .mangoJuice) {
-        case true:
-            showSuccessAlert(juice: Juice.mangoJuice.rawValue)
+            showSuccessAlert(juice: order)
             updateFruitsStock()
         case false:
             showFailAlert()

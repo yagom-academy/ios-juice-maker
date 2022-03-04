@@ -1,10 +1,3 @@
-//
-//  FruitStoreViewController.swift
-//  JuiceMaker
-//
-//  Created by 허윤영 on 28/02/2022.
-//
-
 import UIKit
 
 class FruitStoreViewController: UIViewController {
