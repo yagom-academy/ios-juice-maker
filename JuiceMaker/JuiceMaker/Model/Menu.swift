@@ -4,14 +4,14 @@
 //
 //  Created by Doogie & Malrang.
 //
-enum Menu {
+enum Menu: Int {
+    case ddalBaJuice = 1
+    case mangKiJuice
     case strawberryJuice
     case bananaJuice
-    case kiwiJuice
     case pineappleJuice
-    case ddalBaJuice
+    case kiwiJuice
     case mangoJuice
-    case mangKiJuice
     var recipe: [Fruits : Int] {
         get {
             switch self {

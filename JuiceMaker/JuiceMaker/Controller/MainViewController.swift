@@ -14,16 +14,7 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    @IBOutlet weak var ddalBaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangKiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         showStock()
@@ -34,24 +25,11 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction func touchToOrderJuice(_ sender: UIButton) {
-        switch sender {
-        case ddalBaJuiceOrderButton:
-            makeJuice(menu: .ddalBaJuice)
-        case mangKiJuiceOrderButton:
-            makeJuice(menu: .mangKiJuice)
-        case strawberryJuiceOrderButton:
-            makeJuice(menu: .strawberryJuice)
-        case bananaJuiceOrderButton:
-            makeJuice(menu: .bananaJuice)
-        case pineappleJuiceOrderButton:
-            makeJuice(menu: .pineappleJuice)
-        case kiwiJuiceOrderButton:
-            makeJuice(menu: .kiwiJuice)
-        case mangoJuiceOrderButton:
-            makeJuice(menu: .mangoJuice)
-        default:
+        guard let menu = Menu(rawValue: sender.tag) else {
             presentBasicAlert(title: "경고", message: "알 수 없는 오류.")
+            return
         }
+        makeJuice(menu: menu)
         showStock()
     }
     
