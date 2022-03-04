@@ -7,7 +7,7 @@
 import Foundation
 
 final class FruitStore {
-  private var stock = [Fruit: Int]()
+  private(set) var stock = [Fruit: Int]()
   
   init() {
     self.configureStock()
@@ -21,24 +21,20 @@ final class FruitStore {
     }
   }
   
-  func checkStock(
-    of fruit: Fruit,
-    in amount: Int,
-    by operation: (Int, Int) -> Int
-  ) -> Result<Int, MakeJuiceError> {
-    guard let item = self.stock[fruit] else {
-      return .failure(.notExistFruit)
-    }
-    guard operation(item, amount) >= 0 else {
-      return .failure(.outOfStock)
-    }
-    return .success(item)
+  func checkStock(of fruits: [Fruit: Int]) -> Bool {
+    return fruits.keys
+      .filter { self.stock.keys.contains($0) }
+      .count == fruits.count
   }
   
-  func changeStock(of fruit: Fruit, in amount: Int, by operation: (Int, Int) -> Int) {
-    guard let item = self.stock[fruit] else {
-      return
-    }
-    self.stock[fruit] = operation(item, amount)
+  func canMake(_ fruits: [Fruit: Int]) -> Bool {
+    return self.stock
+      .merging(fruits) { $0 - $1 }
+      .filter { $0.value < Int.zero }
+      .count == Int.zero
+  }
+  
+  func consumeStock(of fruits: [Fruit: Int]) {
+    self.stock.merge(fruits) { $0 - $1 }
   }
 }
