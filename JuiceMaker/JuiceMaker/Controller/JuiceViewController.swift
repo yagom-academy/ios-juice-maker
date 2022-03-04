@@ -36,9 +36,12 @@ final class JuiceViewController: UIViewController {
     let result = juiceMaker.make(juice)
     switch result {
     case .success(let juice):
-      self.presentSuccessAlert(juice)
+      let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
+      self.presentAlert(message: String(describing: juice), actions: [okAction])
     case .failure(let error):
-      self.presentFailureAlert(error)
+      let okAction = UIAlertAction(title: AlertSetting.yes, style: .default, handler: handleOkAction)
+      let noAction = UIAlertAction(title: AlertSetting.no, style: .cancel)
+      self.presentAlert(message: error.errorDescription, actions: [okAction, noAction])
     }
     self.fetchStock()
   }
@@ -71,25 +74,12 @@ private extension JuiceViewController {
     return String(fruitAmount)
   }
   
-  func presentSuccessAlert(_ juice: Juice) {
-    let okAction = UIAlertAction(title: AlertSetting.ok, style: .default)
-    let alert = AlertSetting.presentAlert(
+  func presentAlert(message: String?, actions: [UIAlertAction]) {
+    let alert = AlertSetting.createAlertController(
       title: AlertSetting.notice,
-      message: String(describing: juice),
+      message: message,
       preferredStyle: .alert,
-      actions: [okAction]
-    )
-    self.present(alert, animated: true)
-  }
-  
-  func presentFailureAlert(_ error: MakeJuiceError) {
-    let okAction = UIAlertAction(title: AlertSetting.yes, style: .default, handler: handleOkAction)
-    let noAction = UIAlertAction(title: AlertSetting.no, style: .destructive)
-    let alert = AlertSetting.presentAlert(
-      title: AlertSetting.notice,
-      message: error.errorDescription,
-      preferredStyle: .alert,
-      actions: [noAction, okAction]
+      actions: actions
     )
     self.present(alert, animated: true)
   }

@@ -13,7 +13,7 @@ enum AlertSetting {
   static let yes = "예"
   static let no = "아니오"
   
-  static func presentAlert(
+  static func createAlertController(
     title: String?,
     message: String?,
     preferredStyle: UIAlertController.Style,
