@@ -1,8 +1,5 @@
-//
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//  ViewController.swift
+//  Created by Quokka, Donnie
 
 import UIKit
 
@@ -23,9 +20,9 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     private func updateFruitStockLabels() {
-        fruitStockLabels.forEach({ label in
-            guard let fruit = FruitStore.Fruit(rawValue: label.tag) else { return }
-            label.text = juiceMaker.fruitStore.bringStockValue(for: fruit)
+        fruitStockLabels.forEach({ fruitCountLabel in
+            guard let fruit = FruitStore.Fruit(rawValue: fruitCountLabel.tag) else { return }
+            fruitCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: fruit)
         })
     }
     
@@ -62,7 +59,7 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     @IBAction private func moveEditFruitStockViewController(_ sender: Any) {
-        guard let fruitStockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: FruitStockEditViewController.identifier()) else { return }
+        guard let fruitStockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: FruitStockEditViewController.identifier) else { return }
         present(fruitStockEditViewController, animated: true, completion: nil)
     }
     

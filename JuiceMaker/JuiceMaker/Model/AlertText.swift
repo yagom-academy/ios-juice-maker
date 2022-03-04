@@ -1,9 +1,5 @@
-//
-//  AlertMessage.swift
-//  JuiceMaker
-//
-//  Created by SeoDongyeon on 2022/03/01.
-//
+//  AlertText.swift
+//  Created by Quokka, Donnie
 
 enum AlertText {
     static var cameOut: String = " 나왔습니다!"

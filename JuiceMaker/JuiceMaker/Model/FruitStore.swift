@@ -1,7 +1,5 @@
-//
-//  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
+// FruitStore.swift
+// Created by Quokka, Donnie
 
 import Foundation
 

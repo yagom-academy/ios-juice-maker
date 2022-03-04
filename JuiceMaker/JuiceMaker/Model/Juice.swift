@@ -1,9 +1,5 @@
-//
-//  Recipe.swift
-//  JuiceMaker
-//
-//  Created by SeoDongyeon on 2022/02/23.
-//
+//  Juice.swift
+//  Created by Quokka, Donnie
 
 enum Juice: Int, CaseIterable {
     typealias Fruit = FruitStore.Fruit
