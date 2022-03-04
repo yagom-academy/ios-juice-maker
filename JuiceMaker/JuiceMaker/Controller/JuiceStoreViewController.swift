@@ -8,12 +8,7 @@ import UIKit
 
 final class JuiceStoreViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
-    @IBOutlet private weak var strawberryCountLabel: UILabel!
-    @IBOutlet private weak var bananaCountLabel: UILabel!
-    @IBOutlet private weak var pineappleCountLabel: UILabel!
-    @IBOutlet private weak var kiwiCountLabel: UILabel!
-    @IBOutlet private weak var mangoCountLabel: UILabel!
-    
+    @IBOutlet private var fruitStockLabels: [UILabel]!
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     @IBOutlet private weak var strawberryJuiceButton: UIButton!
@@ -28,11 +23,10 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     private func updateFruitStockLabels() {
-        strawberryCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .strawberry)
-        bananaCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .banana)
-        pineappleCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .pineapple)
-        kiwiCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .kiwi)
-        mangoCountLabel.text = juiceMaker.fruitStore.bringStockValue(for: .mango)
+        fruitStockLabels.forEach({ label in
+            guard let fruit = FruitStore.Fruit(rawValue: label.tag) else { return }
+            label.text = juiceMaker.fruitStore.bringStockValue(for: fruit)
+        })
     }
     
     private func convertToJuice(_ sender: UIButton) -> Juice? {

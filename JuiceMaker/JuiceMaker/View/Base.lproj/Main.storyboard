@@ -243,23 +243,23 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="3zm-OH-b8J"/>
                         <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="6t1-Mg-C3H"/>
-                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="VkC-bU-KB2"/>
                         <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="kgv-iT-FQb"/>
-                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="64w-aB-9Ya"/>
                         <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="bbx-zv-kI7"/>
                         <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="gLz-8i-huZ"/>
-                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="Gqq-XW-Lf9"/>
                         <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="zoz-Va-wh4"/>
                         <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="wie-6I-LHe"/>
-                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="M6i-Eg-bkP"/>
                         <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="Mlm-ja-I2g"/>
+                        <outletCollection property="fruitStockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="Gbh-Uc-NT6"/>
+                        <outletCollection property="fruitStockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="JsE-S5-EWK"/>
+                        <outletCollection property="fruitStockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="LSC-mm-OdA"/>
+                        <outletCollection property="fruitStockLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="kxA-fl-KnQ"/>
+                        <outletCollection property="fruitStockLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="5Ph-Y8-y1K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762.72321428571422" y="92.753623188405811"/>
+            <point key="canvasLocation" x="874" y="92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">

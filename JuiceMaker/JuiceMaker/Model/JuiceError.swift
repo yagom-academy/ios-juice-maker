@@ -6,5 +6,5 @@
 //
 
 enum JuiceError: Error {
-    case notEnoughStock(String)
+    case notEnoughStock
 }

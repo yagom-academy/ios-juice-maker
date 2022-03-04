@@ -6,8 +6,8 @@
 import Foundation
 
 class FruitStore {
-    enum Fruit: CaseIterable {
-        case strawberry
+    enum Fruit: Int, CaseIterable {
+        case strawberry = 1
         case banana
         case pineapple
         case kiwi
@@ -33,7 +33,7 @@ class FruitStore {
         guard let currentFruitQuantity = fruitsStock[fruit],
               let needFruitQuantity = juice.recipe[fruit],
               currentFruitQuantity >= needFruitQuantity else {
-                  throw JuiceError.notEnoughStock("\(fruit)")
+                  throw JuiceError.notEnoughStock
               }
         return true
     }
