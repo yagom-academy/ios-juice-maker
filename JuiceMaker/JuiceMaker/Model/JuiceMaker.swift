@@ -1,7 +1,8 @@
 import Foundation
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
+    
     func makeJuice(by order: Juice) -> Bool {
         let juiceRecipe = order.recipe
         guard let result = try? fruitStore.canDecreaseFruitStock(by: juiceRecipe) else {
