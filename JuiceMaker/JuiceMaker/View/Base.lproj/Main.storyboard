@@ -127,7 +127,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ggq-GV-6td"/>
+                                                    <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3pU-jx-tc3"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
@@ -142,7 +142,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WXc-yZ-ozb"/>
+                                                    <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="osK-xQ-EIP"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -161,7 +161,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fig-pD-Svw"/>
+                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lka-Vr-bhe"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
@@ -172,7 +172,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pbk-UO-BQr"/>
+                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q4m-mh-3my"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
@@ -183,7 +183,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jpr-HD-MKr"/>
+                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yhD-gq-UvM"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -194,7 +194,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3PX-mG-Doj"/>
+                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uDc-Eb-SAS"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
@@ -205,7 +205,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lWs-EU-eft"/>
+                                                            <action selector="orderButtonsClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pZB-fz-iZv"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -243,19 +243,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="S7B-Aj-d1a"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="eE4-2m-62x"/>
+                        <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="Ms7-pG-Chm"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="yWf-zE-ahK"/>
+                        <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="U5E-9i-KFe"/>
+                        <outlet property="mangoKiwiJuiceOrderButton" destination="ngP-kF-Yii" id="Hpj-hm-ysb"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="Hde-Pd-1dQ"/>
+                        <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="jU9-xB-nwS"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="5Af-ee-j8J"/>
+                        <outlet property="strawberryBananaJuiceOrderButton" destination="hrc-2F-fzl" id="Wl6-dz-WwI"/>
+                        <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="63n-ay-ksl"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="h6l-ti-cDE"/>
                         <outlet property="viewTransitionButton" destination="C3q-Te-cNT" id="6kL-IJ-POT"/>
-                        <outletCollection property="stockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="gvZ-sL-ggm"/>
-                        <outletCollection property="stockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="DxM-PP-FhD"/>
-                        <outletCollection property="stockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="lfM-xN-rrF"/>
-                        <outletCollection property="stockLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="Ja5-mw-rYt"/>
-                        <outletCollection property="stockLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="JZK-0s-rTa"/>
-                        <outletCollection property="juiceOrderButtons" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="roa-Ky-N4a"/>
-                        <outletCollection property="juiceOrderButtons" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="4tE-0j-Fpg"/>
-                        <outletCollection property="juiceOrderButtons" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="9rb-2O-Kgv"/>
-                        <outletCollection property="juiceOrderButtons" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="Uac-6p-3fN"/>
-                        <outletCollection property="juiceOrderButtons" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="qwK-Qq-qXb"/>
-                        <outletCollection property="juiceOrderButtons" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="rc9-3c-48l"/>
-                        <outletCollection property="juiceOrderButtons" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="ak0-L5-f1r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

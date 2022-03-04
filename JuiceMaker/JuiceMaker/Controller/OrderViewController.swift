@@ -9,8 +9,20 @@ import UIKit
 final class OrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet var stockLabels: [UILabel]!
-    @IBOutlet var juiceOrderButtons: [UIButton]!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
+    
+    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    
     @IBOutlet weak var viewTransitionButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -22,15 +34,15 @@ final class OrderViewController: UIViewController {
         juiceMaker.fruitStore.inventory.keys.forEach {
             switch $0 {
             case .strawberry:
-                stockLabels[0].text = transformIntToString(.strawberry)
+                strawberryStockLabel.text = transformIntToString(.strawberry)
             case .banana:
-                stockLabels[1].text = transformIntToString(.banana)
+                bananaStockLabel.text = transformIntToString(.banana)
             case .pineapple:
-                stockLabels[2].text = transformIntToString(.pineapple)
+                pineappleStockLabel.text = transformIntToString(.pineapple)
             case .kiwi:
-                stockLabels[3].text = transformIntToString(.kiwi)
+                kiwiStockLabel.text = transformIntToString(.kiwi)
             default:
-                stockLabels[4].text = transformIntToString(.mango)
+                mangoStockLabel.text = transformIntToString(.mango)
             }
         }
     }
@@ -56,27 +68,30 @@ final class OrderViewController: UIViewController {
     }
 
     @IBAction func orderButtonsClicked(_ sender: UIButton) {
-        switch sender.tag {
-        case 1:
+        switch sender {
+        case strawberryBananaJuiceOrderButton:
             order(.strawberryBananaJuice)
             showCurrentStock()
-        case 2:
+        case mangoKiwiJuiceOrderButton:
             order(.mangoKiwiJuice)
             showCurrentStock()
-        case 3:
+        case strawberryJuiceOrderButton:
             order(.strawberryJuice)
             showCurrentStock()
-        case 4:
+        case bananaJuiceOrderButton:
             order(.bananaJuice)
             showCurrentStock()
-        case 5:
+        case pineappleJuiceOrderButton:
             order(.pineappleJuice)
             showCurrentStock()
-        case 6:
+        case kiwiJuiceOrderButton:
             order(.kiwiJuice)
             showCurrentStock()
-        default:
+        case mangoJuiceOrderButton:
             order(.mangoJuice)
+            showCurrentStock()
+        default:
+            // 에러처리
             showCurrentStock()
         }
     }
