@@ -87,4 +87,3 @@ final class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
-
