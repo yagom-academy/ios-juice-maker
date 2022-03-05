@@ -8,9 +8,16 @@ import Foundation
 
 class FruitStore {
     private var fruitStock: Dictionary<Fruit, Int>
-    
+        
     init(fruitStock: Dictionary<Fruit, Int>) {
         self.fruitStock = fruitStock
+    }
+    
+    func getStock(fruit: Fruit) -> Int {
+        guard let stock = self.fruitStock[fruit] else {
+            return 0
+        }
+        return stock
     }
     
     func checkStock(fruit: Fruit, amount: Int) throws {

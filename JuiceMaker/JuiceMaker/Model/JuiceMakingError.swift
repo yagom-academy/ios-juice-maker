@@ -14,21 +14,21 @@ enum JuiceMakingError: Error {
     case noRecipe
     case unkownError
     
-    static let notEnoughStockErrorMessage = "재고가 부족합니다."
+    static let notEnoughStockErrorMessage = "재료가 모자라요. 재고를 수정할까요?"
     static let notRegisteredFruitErrorMessage = "존재하지 않는 과일입니다."
     static let noRecipeErrorMessage = "레서피가 존재하지 않습니다."
     static let unkownErrorMessage = "알 수 없는 오류가 발생했습니다."
     
-    static func printErrorMessage(error: JuiceMakingError) {
+    static func getErrorMessage(error: JuiceMakingError) -> String {
         switch error {
         case JuiceMakingError.notEnoughStock:
-            print(JuiceMakingError.notEnoughStockErrorMessage)
+            return JuiceMakingError.notEnoughStockErrorMessage
         case JuiceMakingError.notRegisteredFruit:
-            print(JuiceMakingError.notRegisteredFruitErrorMessage)
+            return JuiceMakingError.notRegisteredFruitErrorMessage
         case JuiceMakingError.noRecipe:
-            print(JuiceMakingError.noRecipeErrorMessage)
+            return JuiceMakingError.noRecipeErrorMessage
         default:
-            print(JuiceMakingError.unkownErrorMessage)
+            return JuiceMakingError.unkownErrorMessage
         }
     }
 }
