@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3086C9B27C4741E00A25CAA /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3086C9A27C4741E00A25CAA /* Fruit.swift */; };
+		B3086CA727C4D0B100A25CAA /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3086CA627C4D0B100A25CAA /* Alert.swift */; };
+		B3086CA927C4D29600A25CAA /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3086CA827C4D29500A25CAA /* Juice.swift */; };
+		B30CA10427CCF3B20023489E /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA10327CCF3B20023489E /* StockViewController.swift */; };
+		B38111E027CE39D800591D63 /* OrderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38111DF27CE39D800591D63 /* OrderError.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
-		C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* ViewController.swift */; };
+		C73DAF3B255D0CDD00020D38 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF3A255D0CDD00020D38 /* OrderViewController.swift */; };
 		C73DAF3E255D0CDD00020D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3C255D0CDD00020D38 /* Main.storyboard */; };
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
@@ -18,11 +23,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B3086C9A27C4741E00A25CAA /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		B3086CA627C4D0B100A25CAA /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		B3086CA827C4D29500A25CAA /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
+		B30CA10327CCF3B20023489E /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
+		B38111DF27CE39D800591D63 /* OrderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderError.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C73DAF3A255D0CDD00020D38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C73DAF3A255D0CDD00020D38 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		C73DAF3D255D0CDD00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C73DAF3F255D0CDE00020D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,7 +56,8 @@
 			children = (
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
-				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				C73DAF3A255D0CDD00020D38 /* OrderViewController.swift */,
+				B30CA10327CCF3B20023489E /* StockViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -54,8 +65,12 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				B3086CA827C4D29500A25CAA /* Juice.swift */,
+				B3086C9A27C4741E00A25CAA /* Fruit.swift */,
+				B3086CA627C4D0B100A25CAA /* Alert.swift */,
+				B38111DF27CE39D800591D63 /* OrderError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,10 +183,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
-				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
+				C73DAF3B255D0CDD00020D38 /* OrderViewController.swift in Sources */,
+				B3086CA727C4D0B100A25CAA /* Alert.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				B3086C9B27C4741E00A25CAA /* Fruit.swift in Sources */,
+				B38111E027CE39D800591D63 /* OrderError.swift in Sources */,
+				B3086CA927C4D29600A25CAA /* Juice.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
+				B30CA10427CCF3B20023489E /* StockViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +339,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JuiceMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -337,6 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JuiceMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
