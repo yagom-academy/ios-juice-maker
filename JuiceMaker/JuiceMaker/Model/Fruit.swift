@@ -7,8 +7,12 @@
 
 import Foundation
 
-enum Fruit {
-    case strawberry, banana, pineapple, kiwi, mango
+enum Fruit: Int {
+    case strawberry = 1 ,
+         banana,
+         pineapple,
+         kiwi,
+         mango
     
     static let defaultStock = 10
     static let defaultFruitStock = [Fruit.strawberry: Fruit.defaultStock,

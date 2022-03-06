@@ -21,6 +21,32 @@ class FruitStockController: UIViewController {
     @IBOutlet weak var kiwiStockStepper: UIStepper!
     @IBOutlet weak var mangoStockStepper: UIStepper!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateStock()
+        setStepperValue()
+    }
     
+    @IBAction func stockStepperValueChanged(_ sender: UIStepper) {
+        if let targetFruit = Fruit(rawValue: sender.tag) {
+            try? JuiceMaker.juiceMaker.getFruitStore().fixStock(fruit: targetFruit, amount: Int(sender.value))
+        }
+        updateStock()
+    }
     
+    func updateStock() {
+        strawberryStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .strawberry))
+        bananaStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .banana))
+        pineAppleStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .pineapple))
+        kiwiStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .kiwi))
+        mangoStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .mango))
+    }
+    
+    func setStepperValue() {
+        strawberryStockStepper.value = Double(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .strawberry))
+        bananaStockStepper.value = Double(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .banana))
+        pineAppleStockStepper.value = Double(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .pineapple))
+        kiwiStockStepper.value = Double(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .kiwi))
+        mangoStockStepper.value = Double(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .mango))
+    }
 }
