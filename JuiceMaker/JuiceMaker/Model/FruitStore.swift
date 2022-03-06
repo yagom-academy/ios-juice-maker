@@ -33,11 +33,7 @@ class FruitStore {
         guard let _ = self.fruitStock[fruit] else {
             throw JuiceMakingError.notRegisteredFruit
         }
-        if amount > 0 {
-            self.fruitStock[fruit] = amount
-        } else {
-            self.fruitStock[fruit] = 0
-        }
+        self.fruitStock[fruit] = amount
     }
     
     func addNewFruit(_ fruit: Fruit) throws {
