@@ -1,27 +1,13 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by marisol, mmim.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import Foundation
 
 struct JuiceMaker {
-    private var fruitStore = FruitStore()
-    
-    func selectMenu(_ juice: Juice) {
-        order(juice.recipe)
-    }
-    
-    func order(_ recipe: [Fruit: Int]) {
-        do {
-            try makeJuice(by: recipe)
-        } catch let error as OrderError {
-            print(error.description)
-        } catch {
-            print(error)
-        }
-    }
+    var fruitStore = FruitStore.shared
 
     func makeJuice(by recipe: [Fruit: Int]) throws {
         for (fruit, requiredQuantity) in recipe {

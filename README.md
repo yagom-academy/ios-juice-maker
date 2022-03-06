@@ -11,6 +11,9 @@
 - [STEP 1](#step-1)
     + [고민한점](#고민한점)
     + [배운개념](#배운개념)
+- [STEP 2](#step-2)
+    + [고민한점](#고민한점)
+    + [배운개념](#배운개념)
     
 ## 프로젝트 소개
 
@@ -20,7 +23,7 @@
 [![xcode](https://img.shields.io/badge/Xcode-13.0-blue)]()
 
 ## UML
-<img width="3328" alt="UML" src="https://user-images.githubusercontent.com/88810018/155649179-341204e7-b6aa-410a-8fbc-bc6fabebf76a.png">
+<img width="6112" alt="JuiceMaker STEP2_UML " src="https://user-images.githubusercontent.com/88810018/156316885-de12aa6c-24b2-4045-b3b0-77d737cbf7b5.png">
 
 ## 키워드
 
@@ -51,6 +54,40 @@
 - MVC
 - Result 타입
 - LocalizedError 프로토콜
+---
+
+## [STEP 2]
+### 고민한점
+#### 과일 재고를 나타내는 Label을 Outlet Collection으로 사용
+- 의미가 비슷하고 단순 나열되어 있는 5개의 과일 Label을 하나씩 만들어주지 않고, Outlet Collection으로 만들었습니다. 코드를 간결하게 할 수 있다는 장점이 있어서 Outlet Collection 기능을 사용했습니다.
+    
+#### 화면 전환을 modal로 선택
+- 쥬스를 주문하는 화면에서 재고를 추가하는 화면이 쭉 이어지는 흐름이 아니라고 생각했습니다. 마치 edit과 같은 성격의 화면전환이라 생각했고 modal을 사용하는 것이 적절하다 판단했습니다.
+    
+#### 여러 IBAction을 하나로 묶어서 사용
+- 쥬스 버튼마다 IBAction를 생성할 경우, 비슷한 기능을 하는 IBAction을 7가지를 생성해야 해서 IBAction을 하나로 묶어 하나의 메서드에서 sender를 구분해서 쥬스를 만들도록 했습니다. UIButton마다 tag를 사용해서 구분하였고, switch로 sender.tag를 돌면서 쥬스를 만들고 재고를 업데이트 하도록 했습니다.
+
+#### static을 이용한 singleton pattern 채택
+- 과일재고라는 단하나의 자원을 여러 객체에서 공유하는 컨셉이라고 생각했고, 이에 singleton이 적절하다 판단했습니다. 마침 학습활동으로 singleton에 대해 학습했고, 이번 기회에 적용해 사용해보는게 좋을 것 같아 사용했습니다. 이전에 singleton과 static 사용이 미숙하여 좀 더 학습하고 보안해보았습니다. 
+   
+#### enum OrderError의 사용
+- 이번 프로젝트를 보면 error의 종류는 '재고부족', '알수없는 error' 두 가지 밖에 없습니다. 때문에 굳이 error를 enum으로 만들어주어야만 하나...라는 고민을 했습니다. 하지만 주문 버튼을 누르고 주문 과정에서 재고가 있다면 정상 동작해야하고, 재고가 부족하다면 주문 과정을 멈추고 오류를 핸들링해줘야만 했습니다. 이러한 이유로 `enum OrderError: Error {}`가 있어야 우리가 원하는 do-catch로 로직을 구현할 수 있을 거라 판단했습니다.🥲
+
+#### enum Alert의 사용
+- Alert을 사용하게 되면서 title과 message를 매직 리터럴을 사용하게 되었고, 만약 프로젝트 규모가 크다면 Alert의 내용을 변경할 때 하나하나 바꿔줘야한다는 생각이 들었습니다. 이 두가지 문제점을 해결하기 위해 enum Alert을 사용하게 됐습니다. 
+
+### 배운개념
+- Singleton
+- Modality
+- H.I.G
+- Alert
+- Error handling
+- NotificationCenter
+- IBOutlet
+- View Transition(present, navigationController, segue)
+- Access control
+- UIKit, UIViewController
+- Class, Struct
 
 ---
 
@@ -98,6 +135,6 @@
 ex) STEP-start, STEP-PR 
 
 #### **브랜치 이름 규칙**
-ex) 5_mmin90-STEP1, 5_mmin90-STEP1-1, 5_mmin90-STEP1-2, 5_mmin90-STEP2, 5_mmin90-STEP2-1, 5_mmin90-STEP2-2
+ex) 5_mmin90, 5_mmin90-2, 5_mmin90-3 
 
 
