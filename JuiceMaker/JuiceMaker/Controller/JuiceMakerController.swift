@@ -77,6 +77,21 @@ class JuiceMakerController: UIViewController {
         }
     }
     
+    private func findLabel(of fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryStockLabel
+        case .kiwi:
+            return kiwiStockLabel
+        case .banana:
+            return bananaStockLabel
+        case .pineapple:
+            return pineappleStockLabel
+        case .mango:
+            return mangoStockLabel
+        }
+    }
+    
     private func findJuice(of button: UIButton) throws -> Juice {
         switch button {
         case strawberryBananaButton:
