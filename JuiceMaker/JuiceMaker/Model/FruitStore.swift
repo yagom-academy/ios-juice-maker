@@ -1,17 +1,13 @@
 import Foundation
 
-enum FruitType: CaseIterable {
-    case strawberry, banana, pineapple, kiwi, mango
-}
-
 class FruitStore {
-    
-    let defaultNumberOfStock = 10
-    var fruits: [FruitType: Int] = [:]
+    static let minimumNumberOfStock = 0
+    static let defaultNumberOfStock = 10
+    private var fruits: [FruitType: Int] = [:]
     
     init() {
         for fruit in FruitType.allCases {
-            fruits[fruit] = defaultNumberOfStock
+            fruits[fruit] = FruitStore.defaultNumberOfStock
         }
     }
     
@@ -24,6 +20,11 @@ class FruitStore {
         guard let currentStock = fruits[fruit] else { return }
         guard currentStock >= amount else { throw JuiceMakerError.outOfStockRange }
         fruits.updateValue(currentStock - amount, forKey: fruit)
+    }
+    
+    func numberOfStock(fruit: FruitType) -> Int {
+        guard let currentStock = fruits[fruit] else { return FruitStore.minimumNumberOfStock }
+        return currentStock
     }
 }
 

@@ -2,9 +2,15 @@ import Foundation
 
 struct JuiceMaker {
     typealias JuiceRecipe = [FruitType:Int]
-    private let fruitStore: FruitStore = FruitStore()
+    private(set) var fruitStore: FruitStore = FruitStore()
     enum JuiceType {
-        case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice, strawberryBananaJuice, mangoJuice, mangoKiwiJuice
+        case strawberryJuice
+        case bananaJuice
+        case kiwiJuice
+        case pineappleJuice
+        case strawberryBananaJuice
+        case mangoJuice
+        case mangoKiwiJuice
         
         func recipe() -> JuiceRecipe {
             switch self {
@@ -24,17 +30,37 @@ struct JuiceMaker {
                 return [.mango: 2, .kiwi: 1]
             }
         }
+        
+        func name() -> String {
+            switch self {
+            case .strawberryJuice:
+                return "딸기쥬스"
+            case .bananaJuice:
+                return "바나나쥬스"
+            case .kiwiJuice:
+                return "키위쥬스"
+            case .pineappleJuice:
+                return "파인애플쥬스"
+            case .strawberryBananaJuice:
+                return "딸기바나나쥬스"
+            case .mangoJuice:
+                return "망고쥬스"
+            case .mangoKiwiJuice:
+                return "망고키위쥬스"
+            }
+        }
     }
     
-    func makeJuice(juice: JuiceType) throws {
+    func makeJuice(juice: JuiceType) throws -> JuiceType {
         let recipe: JuiceRecipe = JuiceType.recipe(juice)()
         try checkEnoughFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
         try consumeFruitStock(fruitTypes: recipe.keys.map({ $0 }), amounts: recipe.values.map({ $0 }))
+        return juice
     }
     
     private func checkEnoughFruitStock(fruitTypes: [FruitType], amounts: [Int]) throws {
         for index in 0..<amounts.count {
-            guard let currentStock = fruitStore.fruits[fruitTypes[index]] else { return }
+            let currentStock = fruitStore.numberOfStock(fruit: fruitTypes[index])
             if currentStock < amounts[index] {
                 throw JuiceMakerError.notEnoughStock
             }
