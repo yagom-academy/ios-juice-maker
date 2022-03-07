@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         guard let juice = matchJuice(with: button) else { return }
         if juiceMaker.canMake(of: juice) {
             showSuccessAlert(with: String(describing: juice))
+            updateFruitLable()
         } else {
             showFailureAlert()
         }
@@ -92,13 +93,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitLable()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitLable(_:)), name: Notification.Name("notificationStock"), object: nil)
-        juiceMaker.initializeLable()
-        
-    }
 }
