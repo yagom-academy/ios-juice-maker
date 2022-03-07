@@ -25,23 +25,12 @@ class JuiceMakerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitLabel()
+        updateMultipleLabel()
     }
     
-    private func updateFruitLabel() {
-        let stock = juiceMaker.fruitStock
-        
-        let fruitLabelDictionary: [Fruit: UILabel] = [
-            .strawberry: strawberryStockLabel,
-            .banana: bananaStockLabel,
-            .pineapple: pineappleStockLabel,
-            .kiwi: kiwiStockLabel,
-            .mango: mangoStockLabel
-        ]
-        
-        for (fruit, amount) in stock {
-            let label = fruitLabelDictionary[fruit]
-            label?.text = "\(amount)"
+    private func updateMultipleLabel(of fruits: [Fruit] = Fruit.allCases) {
+        fruits.forEach { fruit in
+            updateLabel(of: fruit)
         }
     }
     
@@ -76,7 +65,10 @@ class JuiceMakerController: UIViewController {
         do {
             let juice = try findJuice(of: sender)
             try juiceMaker.make(fruitJuice: juice)
-            updateFruitLabel()
+            
+            let ingredients = juice.recipe.map{$0.key}
+            updateMultipleLabel(of: ingredients)
+            
             showOkAlert(title: "\(juice) " + AlertMessage.makeJuice)
         } catch JuiceMakerError.invalidButton {
             showOkAlert(title: AlertMessage.pushWrongButton)
