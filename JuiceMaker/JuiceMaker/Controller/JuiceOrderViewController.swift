@@ -4,10 +4,11 @@ protocol dataDelegate {
     func exchangeData(data: String)
 }
 
-class JuiceOrderViewController: UIViewController, dataDelegate {
-    func exchangeData(data: String) {
-        print("Data: [\(data)]")
-    }
+class JuiceOrderViewController: UIViewController {
+//    func exchangeData(data: String) {
+//        print("ViewController DelegateFunction: \(data)")
+//        print("Data: [\(data)]")
+//    }
     
     
     private var juiceMaker = JuiceMaker()
@@ -119,9 +120,7 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
     }
 
     private func presentStockInventoryView() {
-        guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) as? StockInventoryViewController else { return }
-        stockInventoryViewController.data = "first view가 보내는 데이터"
-        stockInventoryViewController.delegate = self
+        guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) else { return }
         stockInventoryViewController.modalTransitionStyle = .coverVertical
         stockInventoryViewController.modalPresentationStyle = .automatic
         
