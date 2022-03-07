@@ -33,6 +33,10 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
+    @IBAction func touchUpModifyingStockButton(_ sender: Any) {
+        presentModifyingStockViewController()
+        }
+    
     static func instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         guard let viewController = storyborad.instantiateViewController(withIdentifier: "JuiceMakerViewController") as? JuiceMakerViewController else {
