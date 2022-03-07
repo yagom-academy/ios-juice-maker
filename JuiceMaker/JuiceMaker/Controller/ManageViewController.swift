@@ -73,12 +73,23 @@ class ManageViewController: UIViewController {
     }
     
     @IBAction func touchConfirmButton(_ sender: UIButton) {
-        self.fruitDic[.strawberry] = Int(strawberryStepper.value)
-        self.fruitDic[.banana] = Int(bananaStepper.value)
-        self.fruitDic[.pineapple] = Int(pineappleStepper.value)
-        self.fruitDic[.kiwi] = Int(kiwiStepper.value)
-        self.fruitDic[.mango] = Int(mangoStepper.value)
+        let alert = UIAlertController(title: "경고", message: "재고를 수정하시겠습니까?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: {_ in
+            self.changeStocks()
+            self.dismiss(animated: true, completion: nil)
+        })
+        let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func changeStocks() {
+        fruitDic[.strawberry] = Int(strawberryStepper.value)
+        fruitDic[.banana] = Int(bananaStepper.value)
+        fruitDic[.pineapple] = Int(pineappleStepper.value)
+        fruitDic[.kiwi] = Int(kiwiStepper.value)
+        fruitDic[.mango] = Int(mangoStepper.value)
         delegate?.sendStocks(stocks: fruitDic)
-        self.dismiss(animated: true, completion: nil)
     }
 }
