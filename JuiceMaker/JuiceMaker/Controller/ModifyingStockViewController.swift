@@ -33,8 +33,6 @@ final class ModifyingStockViewController: UIViewController {
         } catch {
             
         }
-        
-        
     }
     
     static func instance(fruitStore: FruitStore) -> ModifyingStockViewController {
@@ -49,15 +47,41 @@ final class ModifyingStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
+            try setDefaultValues()
             try setDefaultLabels()
         } catch {
             
         }
     }
     
+    private func setDefaultValues() throws {
+        for fruit in Fruit.allCases {
+            let stepper = find(fruit: fruit)
+            guard let amount = try fruitStore?.checkStock(of: fruit) else {
+                throw JuiceMakerError.notFoundFruit
+            }
+            stepper.value = Double(amount)
+        }
+    }
+    
+    private func find(fruit: Fruit) -> UIStepper {
+        switch fruit {
+        case .strawberry:
+            return strawberryStepper
+        case .banana:
+            return bananaStepper
+        case .pineapple:
+            return pineappleStepper
+        case .kiwi:
+            return kiwiStepper
+        case .mango:
+            return mangoStepper
+        }
+    }
+    
     private func setDefaultLabels() throws {
         let labels = Fruit.allCases.map { fruit in
-            find(fruit: fruit)
+            findLabel(fruit: fruit)
         }
         
         for label in labels {
@@ -70,7 +94,7 @@ final class ModifyingStockViewController: UIViewController {
         }
     }
     
-    private func find(fruit: Fruit) -> UILabel {
+    private func findLabel(fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
             return strawberryAmountLabel
