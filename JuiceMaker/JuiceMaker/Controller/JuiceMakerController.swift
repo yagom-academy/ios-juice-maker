@@ -114,6 +114,31 @@ class JuiceMakerController: UIViewController {
             throw JuiceMakerError.invalidButton
         }
     }
+    
+    private func showAlert(alertTitle: String,
+                   okTitle: String?,
+                   okAction: (() -> ())?,
+                   noTitle: String?,
+                   noAction: (() -> ())?) {
+        
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+    
+        if let okTitle = okTitle {
+            let okAction = UIAlertAction(title: okTitle, style: .default) { _ in
+                okAction?()
+            }
+            alertController.addAction(okAction)
+        }
+        
+        if let noTitle = noTitle {
+            let noAction = UIAlertAction(title: noTitle, style: .default) { _ in
+                noAction?()
+            }
+            alertController.addAction(noAction)
+        }
+        
+        present(alertController, animated: true)
+    }
 }
 
 extension JuiceMakerController {
