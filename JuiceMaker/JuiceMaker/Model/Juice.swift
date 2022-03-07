@@ -1,26 +1,5 @@
 import Foundation
 
-extension Juice: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .strawberryJuice:
-            return "딸기쥬스"
-        case .bananaJuice:
-            return "바나나쥬스"
-        case .kiwiJuice:
-            return "키위쥬스"
-        case .pineappleJuice:
-            return "파인애플쥬스"
-        case .strawberryBananaJuice:
-            return "딸바쥬스"
-        case .mangoJuice:
-            return "망고쥬스"
-        case .mangoKiwiJuice:
-            return "망키쥬스"
-        }
-    }
-}
-
 enum Juice {
     case strawberryJuice
     case bananaJuice
@@ -46,6 +25,27 @@ enum Juice {
             return [.mango: 3]
         case .mangoKiwiJuice:
             return [.mango: 2, .kiwi: 1]
+        }
+    }
+}
+
+extension Juice: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기쥬스"
+        case .bananaJuice:
+            return "바나나쥬스"
+        case .kiwiJuice:
+            return "키위쥬스"
+        case .pineappleJuice:
+            return "파인애플쥬스"
+        case .strawberryBananaJuice:
+            return "딸바쥬스"
+        case .mangoJuice:
+            return "망고쥬스"
+        case .mangoKiwiJuice:
+            return "망키쥬스"
         }
     }
 }

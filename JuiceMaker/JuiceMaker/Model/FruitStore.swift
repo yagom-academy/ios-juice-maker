@@ -6,7 +6,7 @@ final class FruitStore {
     }
     private(set) var inventory: [Fruit: Int] = [:]
     
-   init() {
+    init() {
         Fruit.allCases.forEach { inventory[$0] = DefaulSetting.stock }
     }
     

@@ -1,15 +1,5 @@
 import UIKit
 
-extension Array {
-    public subscript(safeIndex index: Int) -> Element? {
-        guard index >= .zero, index < endIndex else {
-            return nil
-        }
-
-        return self[index]
-    }
-}
-
 final class JuiceMakerViewController: UIViewController {
     @IBOutlet private var fruitLabelCollection: [UILabel]!
     private let juiceMaker = JuiceMaker()
@@ -21,6 +11,19 @@ final class JuiceMakerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateFruitsStock()
+    }
+    
+    @IBAction private func clickMakeJuiceButton(_ sender: UIButton) {
+        var order: Juice
+        order = checkClickedJuice(Button: sender)
+    
+        do {
+            try juiceMaker.makeJuice(by: order)
+            showSuccessAlert(juice: order)
+            updateFruitsStock()
+        } catch {
+            showFailAlert(error)
+        }
     }
     
     private func updateFruitsStock() {
@@ -49,33 +52,24 @@ final class JuiceMakerViewController: UIViewController {
         present(failAlert, animated: true)
     }
     
-    @IBAction func clickMakeJuiceButton(_ sender: UIButton) {
-        var order: Juice
-        switch sender.tag {
+    private func checkClickedJuice(Button: UIButton) -> Juice {
+        switch Button.tag {
         case 1:
-            order = .strawberryBananaJuice
+            return .strawberryBananaJuice
         case 2:
-            order = .mangoKiwiJuice
+            return .mangoKiwiJuice
         case 3:
-            order = .strawberryJuice
+            return .strawberryJuice
         case 4:
-            order = .bananaJuice
+            return .bananaJuice
         case 5:
-            order = .pineappleJuice
+            return .pineappleJuice
         case 6:
-            order = .kiwiJuice
+            return .kiwiJuice
         case 7:
-            order = .mangoJuice
+            return .mangoJuice
         default:
-            order = .strawberryJuice
-        }
-        
-        do {
-            try juiceMaker.makeJuice(by: order)
-            showSuccessAlert(juice: order)
-            updateFruitsStock()
-        } catch {
-            showFailAlert(error)
+            return .strawberryJuice
         }
     }
 }
