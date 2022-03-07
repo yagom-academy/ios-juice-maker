@@ -45,6 +45,16 @@ class JuiceMakerController: UIViewController {
         }
     }
     
+    private func updateLabel(of fruit: Fruit) {
+        let fruitLabel = findLabel(of: fruit)
+        let stock = juiceMaker.fruitStock
+        
+        guard let amount = stock[fruit] else {
+            return
+        }
+        fruitLabel.text = "\(amount)"
+    }
+    
     @IBAction private func didTapStockEditButton(_ sender: UIBarButtonItem) {
         moveToStockViewController()
     }
