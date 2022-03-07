@@ -27,6 +27,7 @@ final class ModifyingStockViewController: UIViewController {
     }
     
     @IBAction func touchUpStepper(_ sender: UIStepper) {
+        updateLabel(stepper: sender)
     }
     
     override func viewDidLoad() {
@@ -34,4 +35,25 @@ final class ModifyingStockViewController: UIViewController {
 
     }
     
+    private func updateLabel(stepper: UIStepper) {
+        let label = findLabel(stepper: stepper)
+        label.text = String(Int(stepper.value))
+    }
+    
+    private func findLabel(stepper: UIStepper) -> UILabel {
+        switch stepper {
+        case strawberryStepper:
+            return strawberryAmountLabel
+        case bananaStepper:
+            return bananaAmountLabel
+        case pineappleStepper:
+            return pineappleAmountLabel
+        case kiwiStepper:
+            return kiwiAmountLabel
+        case mangoStepper:
+            return mangoAmountLabel
+        default:
+            return strawberryAmountLabel
+        }
+    }
 }
