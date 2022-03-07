@@ -26,6 +26,10 @@ final class FruitStore {
         stocks.updateValue(newAmount, forKey: fruit)
     }
     
+    func modify(fruit: Fruit, amount: Int) {
+        stocks.updateValue(amount, forKey: fruit)
+    }
+    
     func checkEnoughStocks(recipe: Constant.CustomType.Recipe) throws {
         for (fruit, requiredAmount) in recipe {
             try checkEnoughStock(of: fruit, amount: requiredAmount)

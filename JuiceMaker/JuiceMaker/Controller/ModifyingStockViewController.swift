@@ -27,7 +27,14 @@ final class ModifyingStockViewController: UIViewController {
     }
     
     @IBAction func touchUpStepper(_ sender: UIStepper) {
-        updateLabel(stepper: sender)
+        do {
+            try modifyFruitStock(stepper: sender)
+            updateLabel(stepper: sender)
+        } catch {
+            
+        }
+        
+        
     }
     
     static func instance(fruitStore: FruitStore) -> ModifyingStockViewController {
@@ -115,5 +122,27 @@ final class ModifyingStockViewController: UIViewController {
         default:
             return strawberryAmountLabel
         }
+    }
+    
+    private func modifyFruitStock(stepper: UIStepper) throws {
+        switch stepper {
+        case strawberryStepper:
+            updateFruitStock(fruit: .strawberry, stepper: strawberryStepper)
+        case bananaStepper:
+            updateFruitStock(fruit: .banana, stepper: bananaStepper)
+        case pineappleStepper:
+            updateFruitStock(fruit: .pineapple, stepper: pineappleStepper)
+        case kiwiStepper:
+            updateFruitStock(fruit: .kiwi, stepper: kiwiStepper)
+        case mangoStepper:
+            updateFruitStock(fruit: .mango, stepper: mangoStepper)
+        default:
+            throw JuiceMakerError.notFoundFruit
+        }
+    }
+    
+    private func updateFruitStock(fruit: Fruit, stepper: UIStepper) {
+        let currentStepperValue = Int(stepper.value)
+        fruitStore?.modify(fruit: fruit, amount: currentStepperValue)
     }
 }
