@@ -7,10 +7,9 @@
 import Foundation
 
 final class FruitStore {
-    static let shared = FruitStore()
     var inventory: [Fruit: Int] = [:]
     
-    private init() {
+    init() {
         let defaultQuantity = 10
         Fruit.allCases.forEach{ inventory[$0] = defaultQuantity }
     }

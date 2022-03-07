@@ -27,31 +27,35 @@ final class OrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeButtonCornerRadius()
         showCurrentStock()
     }
-
+    
+    private func changeButtonCornerRadius() {
+        self.strawberryBananaJuiceOrderButton.layer.cornerRadius = 16
+        self.mangoKiwiJuiceOrderButton.layer.cornerRadius = 16
+        self.strawberryJuiceOrderButton.layer.cornerRadius = 16
+        self.bananaJuiceOrderButton.layer.cornerRadius = 16
+        self.pineappleJuiceOrderButton.layer.cornerRadius = 16
+        self.kiwiJuiceOrderButton.layer.cornerRadius = 16
+        self.mangoJuiceOrderButton.layer.cornerRadius = 16
+    }
+    
     private func showCurrentStock() {
         juiceMaker.fruitStore.inventory.keys.forEach {
             switch $0 {
             case .strawberry:
-                strawberryStockLabel.text = convertFruitStockToString(.strawberry)
+                strawberryStockLabel.text = juiceMaker.fruitStore.inventory[.strawberry]?.description
             case .banana:
-                bananaStockLabel.text = convertFruitStockToString(.banana)
+                bananaStockLabel.text = juiceMaker.fruitStore.inventory[.banana]?.description
             case .pineapple:
-                pineappleStockLabel.text = convertFruitStockToString(.pineapple)
+                pineappleStockLabel.text = juiceMaker.fruitStore.inventory[.pineapple]?.description
             case .kiwi:
-                kiwiStockLabel.text = convertFruitStockToString(.kiwi)
+                kiwiStockLabel.text = juiceMaker.fruitStore.inventory[.kiwi]?.description
             case .mango:
-                mangoStockLabel.text = convertFruitStockToString(.mango)
+                mangoStockLabel.text = juiceMaker.fruitStore.inventory[.mango]?.description
             }
         }
-    }
-    
-    private func convertFruitStockToString(_ fruit: Fruit) -> String? {
-        guard let currentStock = juiceMaker.fruitStore.inventory[fruit] else {
-            return nil
-        }
-        return String(currentStock)
     }
     
     @IBAction func moveToStockViewButtonClicked(_ sender: UIBarButtonItem) {
@@ -62,8 +66,6 @@ final class OrderViewController: UIViewController {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") as? StockViewController else {
             return
         }
-        stockViewController.modalTransitionStyle = .coverVertical
-        stockViewController.modalPresentationStyle = .automatic
         self.present(stockViewController, animated: true, completion: nil)
     }
 
