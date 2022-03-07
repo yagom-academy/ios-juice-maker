@@ -51,7 +51,7 @@ class JuiceMakerController: UIViewController {
     private func moveToStockViewController() {
         let stock = self.juiceMaker.fruitStock
         
-        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController", creator: { coder in
+        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: JuiceMakerController.identifier, creator: { coder in
             return StockViewController(coder: coder, stock: stock)
         }) else {
             return
@@ -136,6 +136,8 @@ extension JuiceMakerController {
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
+    
+    static let identifier = "StockViewController"
 }
 
 enum AlertMessage{
@@ -147,3 +149,4 @@ enum AlertMessage{
     static let no = "아니오"
     static let ok = "확인"
 }
+
