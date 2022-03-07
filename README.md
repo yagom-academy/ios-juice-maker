@@ -33,7 +33,8 @@
 ###  실행 화면
 
 
-![](https://i.imgur.com/gDyPFbl.gif)
+![Simulator Screen Recording - iPhone 13 Pro Max - 2022-03-07 at 11 12 18](https://user-images.githubusercontent.com/75601594/156959790-ebd0229b-b661-4e12-b144-78915ab3d9ae.gif)
+
 
 </br>
 
