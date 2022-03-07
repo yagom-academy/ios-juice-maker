@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum JuiceTypes: CaseIterable {
-    case strawberry, banana, pineapple, kiwi, mango, strawberryBanana, mangoKiwi
-    private var juiceName: String {
+enum JuiceTypes: Int, CaseIterable, CustomStringConvertible {
+    case strawberryBanana = 1, mangoKiwi, strawberry, banana, pineapple, kiwi, mango
+    var description: String {
         switch self {
         case .strawberryBanana:
             return "딸바쥬스"
@@ -27,7 +27,7 @@ enum JuiceTypes: CaseIterable {
             return "망고 쥬스"
         }
     }
-    var recipe: [JuiceTypes: Int] {
+    var recipe: [FruitsTypes: Int] {
         switch self {
         case .strawberryBanana:
             return [.strawberry: 10, .banana: 1]

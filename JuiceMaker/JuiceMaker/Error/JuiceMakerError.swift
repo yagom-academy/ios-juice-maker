@@ -6,6 +6,10 @@
 //
 
 import Foundation
+
 enum JuiceMakerError: Error {
     case outOfStock
+    case unexpectedError
+    case notExistNavigationController
+    case typeCastingError
 }
