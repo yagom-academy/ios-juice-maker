@@ -85,8 +85,11 @@ class ViewController: UIViewController {
     }
     
     private func moveStockChangeView() {
-        guard let stockChangeView = self.storyboard?.instantiateViewController(withIdentifier: "stockChange") else { return }
-        self.present(stockChangeView, animated: true, completion: nil)
+        guard let stockChangeNavigation = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeNavigation") as? UINavigationController else { return }
+        guard let stockChangeView = stockChangeNavigation.topViewController as? SubViewController else { return }
+        stockChangeView.stockNumber = strawberryLabel.text
+
+        self.present(stockChangeNavigation, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

@@ -8,6 +8,7 @@
 import UIKit
 
 class SubViewController: UIViewController {
+    var stockNumber: String?
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -21,6 +22,18 @@ class SubViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateLabel()
+    }
+    
+    func updateLabel() {
+        self.strawberryLabel.text = stockNumber ?? "0"
+//        self.bananaLabel
+//        self.pineappleLabel
+//        self.kiwiLabel
+//        self.mangoLabel
     }
     
 
