@@ -53,20 +53,13 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc private func updateFruitLable(_ notification: Notification) {
-        guard let fruitName = notification.userInfo?["fruit"] as? Fruit else { return }
-        guard let fruitStock = notification.userInfo?["stock"] as? Int else { return }
-        if fruitName == .strawberry {
-            strawberryLabel.text = String(fruitStock)
-        } else if fruitName == .banana {
-            bananaLabel.text = String(fruitStock)
-        } else if fruitName == .mango {
-            magoLabel.text = String(fruitStock)
-        } else if fruitName == .kiwi {
-            kiwiLabel.text = String(fruitStock)
-        } else if fruitName == .pineapple {
-            pineappleLabel.text = String(fruitStock)
-        }
+    private func updateFruitLable() {
+        strawberryLabel.text = String(juiceMaker.fruitStore.getStock(of:.strawberry))
+        bananaLabel.text = String(juiceMaker.fruitStore.getStock(of:.banana))
+        magoLabel.text = String(juiceMaker.fruitStore.getStock(of:.mango))
+        kiwiLabel.text = String(juiceMaker.fruitStore.getStock(of:.kiwi))
+        pineappleLabel.text = String(juiceMaker.fruitStore.getStock(of:.pineapple))
+        
     }
     
     
