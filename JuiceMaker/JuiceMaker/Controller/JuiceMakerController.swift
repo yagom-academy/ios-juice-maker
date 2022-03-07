@@ -13,10 +13,10 @@ class JuiceMakeController: UIViewController {
     @IBOutlet weak var pineAppleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       updateStock()
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStock()
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
@@ -38,6 +38,7 @@ class JuiceMakeController: UIViewController {
             return
         }
         vcName.modalTransitionStyle = .coverVertical
+        vcName.modalPresentationStyle = .fullScreen
         self.present(vcName, animated: true, completion: nil)
     }
     
@@ -64,6 +65,7 @@ class JuiceMakeController: UIViewController {
                                           style: UIAlertAction.Style.destructive){(_) in
                 let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController")
                 vcName?.modalTransitionStyle = .coverVertical
+                vcName?.modalPresentationStyle = .fullScreen
                 self.present(vcName!, animated: true, completion: nil)
             }
             alert.addAction(yesAction)
@@ -72,7 +74,6 @@ class JuiceMakeController: UIViewController {
             let okAction = UIAlertAction(title: DisplayMessage.alertOk, style: .default, handler: nil)
             alert.addAction(okAction)
         }
-        
         present(alert, animated: true, completion: nil)
     }
     
