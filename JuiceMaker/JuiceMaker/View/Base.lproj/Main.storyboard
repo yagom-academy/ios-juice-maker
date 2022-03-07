@@ -372,9 +372,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="812" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </navigationBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJA-NQ-f4T">
+                                <rect key="frame" x="0.0" y="0.0" width="812" height="32"/>
+                                <items>
+                                    <navigationItem title="재고 수정" id="HMF-6J-iRW">
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="yHA-CN-V5n">
+                                            <connections>
+                                                <action selector="touchCloseButton:" destination="Yu1-lM-nqp" id="eHr-29-4z0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aJA-NQ-f4T" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="RvK-Bf-8i1"/>
+                            <constraint firstItem="aJA-NQ-f4T" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" id="Y6a-Xp-yFT"/>
+                            <constraint firstAttribute="trailing" secondItem="aJA-NQ-f4T" secondAttribute="trailing" id="j2h-e3-jVS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                 </viewController>
