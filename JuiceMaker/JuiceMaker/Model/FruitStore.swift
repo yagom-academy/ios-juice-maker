@@ -27,10 +27,6 @@ class FruitStore {
         guard var inStock: Int = stock[fruit] else { return }
         inStock += numberOfFruit
         stock[fruit] = inStock
-        NotificationCenter.default.post(name: Notification.Name("notificationStock"),
-                                        object: nil,
-                                        userInfo: ["fruit": fruit,
-                                                   "stock": inStock])
     }
     
     func getStock(of fruit: Fruit) -> Int {
