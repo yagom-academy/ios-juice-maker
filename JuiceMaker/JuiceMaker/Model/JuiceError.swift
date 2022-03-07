@@ -1,10 +1,6 @@
-//
 //  JuiceError.swift
-//  JuiceMaker
-//
-//  Created by SeoDongyeon on 2022/02/24.
-//
+//  Created by Quokka, Donnie
 
 enum JuiceError: Error {
-    case notEnoughStock(String)
+    case notEnoughStock
 }

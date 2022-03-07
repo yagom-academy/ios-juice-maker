@@ -1,24 +1,18 @@
-//  JuiceMaker - JuiceMaker.swift
-//  Created by yagom.
-//  Copyright © yagom academy. All rights reserved
+// JuiceMaker.swift
+//  Created by Quokka, Donnie
 
 import Foundation
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore()
+    private(set) var fruitStore = FruitStore()
     
-    func makeJuice(_ juice: Juice) {
-        do {
-            _ = try fruitStore.makeReady(for: juice)
-            subtractFruitQuantity(for: juice)
-            print("주문하신 \(juice)가 나왔어용~")
-        } catch (let fruit) {
-            print("\(fruit)의 재고가 불충분합니다.")
-        }
+    func makeJuice(_ juice: Juice) throws {
+        _ = try fruitStore.makeReady(for: juice)
+        subtractFruitQuantity(for: juice)
     }
     
     private func subtractFruitQuantity(for juice: Juice) {
-        juice.recipe.forEach { (fruit: Juice.Fruit, count: Int) in
+        juice.recipe.forEach { (fruit: FruitStore.Fruit, count: Int) in
             fruitStore.changeFruitQuantity(by: fruit, count: count)
         }
     }
