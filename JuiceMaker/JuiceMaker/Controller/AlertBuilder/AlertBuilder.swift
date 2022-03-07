@@ -17,7 +17,7 @@ struct AlertProduct {
 }
 
 final class AlertBuilder {
-    private let viewController: UIViewController
+    private weak var viewController: UIViewController?
     private var product = AlertProduct()
 
     init(viewController: UIViewController) {
@@ -70,7 +70,7 @@ final class AlertBuilder {
 
         alert.addAction(confirmButton)
 
-        viewController.present(alert, animated: true, completion: nil)
+        viewController?.present(alert, animated: true, completion: nil)
     }
 }
 

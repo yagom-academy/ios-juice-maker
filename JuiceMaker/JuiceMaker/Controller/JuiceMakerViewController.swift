@@ -148,11 +148,7 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func presentModifyingStockViewController() {
-        guard let fruitStore = juiceMaker?.fruitStore else {
-            return
-        }
-        
-        let modifyingStockViewController = ModifyingStockViewController.instance(fruitStore: fruitStore)
+        let modifyingStockViewController: ModifyingStockViewController = CompositionContainer.shared.resolve()
         
         self.present(modifyingStockViewController, animated: true)
     }

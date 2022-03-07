@@ -17,15 +17,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        let defaultFruitAmount = Fruit.configureDefaultFruits()
-        let fruitStore = FruitStore(stocks: defaultFruitAmount)
-        let juiceMaker = JuiceMaker(fruitStore: fruitStore)
-        
-        let juiceMakerViewController = JuiceMakerViewController.instance(juiceMaker: juiceMaker)
-        let navigationController = UINavigationController(rootViewController: juiceMakerViewController)
-        
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+//        let defaultFruitAmount = Fruit.configureDefaultFruits()
+//        let fruitStore = FruitStore(stocks: defaultFruitAmount)
+//        let juiceMaker = JuiceMaker(fruitStore: fruitStore)
+//
+//        let juiceMakerViewController = JuiceMakerViewController.instance(juiceMaker: juiceMaker)
+//        let navigationController = UINavigationController(rootViewController: juiceMakerViewController)
+//
+//        window?.rootViewController = navigationController
+//        window?.makeKeyAndVisible()
+        registerDependencies()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
