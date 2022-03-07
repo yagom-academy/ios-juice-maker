@@ -34,6 +34,10 @@ class FruitStockController: UIViewController {
         updateStock()
     }
     
+    @IBAction func close(_ sender: UIButton) {
+        self.presentingViewController?.dismiss(animated: true)
+    }
+    
     func updateStock() {
         strawberryStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .strawberry))
         bananaStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .banana))
