@@ -38,8 +38,8 @@ final class JuiceMakerViewController: UIViewController {
         present(successAlert, animated: true)
     }
     
-    private func showFailAlert() {
-        let failAlert = UIAlertController(title: "재료부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+    private func showFailAlert(_ error: Error) {
+        let failAlert = UIAlertController(title: "재료부족", message: error.localizedDescription, preferredStyle: .alert)
         failAlert.addAction(UIAlertAction(title: "네", style: .default, handler: { _ in
             guard let fruitStoreVC = self.storyboard?.instantiateViewController(identifier: "FruitStoreVC") else {
                 return
@@ -70,12 +70,12 @@ final class JuiceMakerViewController: UIViewController {
             order = .strawberryJuice
         }
         
-        switch juiceMaker.makeJuice(by: order) {
-        case true:
+        do {
+            try juiceMaker.makeJuice(by: order)
             showSuccessAlert(juice: order)
             updateFruitsStock()
-        case false:
-            showFailAlert()
+        } catch {
+            showFailAlert(error)
         }
     }
 }

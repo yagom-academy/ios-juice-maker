@@ -3,13 +3,9 @@ import Foundation
 struct JuiceMaker {
     private let fruitStore = FruitStore()
     
-    func makeJuice(by order: Juice) -> Bool {
+    func makeJuice(by order: Juice) throws {
         let juiceRecipe = order.recipe
-        guard let result = try? fruitStore.canDecreaseFruitStock(by: juiceRecipe) else {
-            return false
-        }
-        
-        return result
+        try fruitStore.decreaseFruitStock(by: juiceRecipe)
     }
     
     func getFruitsStock() -> [Int] {
@@ -20,6 +16,7 @@ struct JuiceMaker {
                 fruitStockArray.append(stock)
             }
         }
+        
         return fruitStockArray
     }
 }
