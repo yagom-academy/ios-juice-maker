@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -357,6 +357,9 @@
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="strawberryStockchange:" destination="Yu1-lM-nqp" eventType="valueChanged" id="zB6-Yf-Z4z"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="620-1Q-ELP">
                                 <rect key="frame" x="87" y="158" width="37" height="23"/>
@@ -395,10 +398,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="Dsx-HE-4sL" id="jkT-I6-Irc"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="aK5-Zh-Xp8"/>
                         <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="rWj-Jf-Dum"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="B3G-ye-c0b"/>
                         <outlet property="mangoLabel" destination="wTV-Cj-xEW" id="FTR-6N-Rx0"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="joR-tL-VSz"/>
                         <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="cMQ-vU-vIT"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="XGw-Jv-dez"/>
                         <outlet property="strawberryLabel" destination="620-1Q-ELP" id="h3q-BL-pbI"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="MHe-P2-g7w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
