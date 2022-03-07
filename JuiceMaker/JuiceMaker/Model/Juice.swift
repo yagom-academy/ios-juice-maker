@@ -13,7 +13,9 @@ enum Juice {
     case mangoJuice
     case mangoKiwiJuice
     case strawberryBananaJuice
-    
+}
+
+extension Juice {
     var name: String {
         switch self {
         case .strawberryJuice:
