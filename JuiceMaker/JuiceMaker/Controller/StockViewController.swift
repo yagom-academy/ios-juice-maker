@@ -7,7 +7,7 @@
 import UIKit
 
 final class StockViewController: UIViewController {
-
+    
     weak var delegate: StockDeliveryProtocol?
     var changedStock: [Fruit: Int] = [:]
     
@@ -51,39 +51,32 @@ final class StockViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func stepperClicked(_ sender: UIStepper) {
-        switch sender {
-        case strawberryStepper:
+        if sender == strawberryStepper {
             strawberryStockLabel.text = Int(sender.value).description
             changedStock[.strawberry] = Int(sender.value)
-        case bananaStepper:
+            
+        } else if sender == bananaStepper {
             bananaStockLabel.text = Int(sender.value).description
             changedStock[.banana] = Int(sender.value)
-        case pineappleStepper:
+            
+        } else if sender == pineappleStepper {
             pineappleStockLabel.text = Int(sender.value).description
             changedStock[.pineapple] = Int(sender.value)
-        case kiwiStepper:
+            
+        } else if sender == kiwiStepper {
             kiwiStockLabel.text = Int(sender.value).description
             changedStock[.kiwi] = Int(sender.value)
-        case mangoStepper:
+            
+        } else {
             mangoStockLabel.text = Int(sender.value).description
             changedStock[.mango] = Int(sender.value)
-        default:
-            alertUnknownError()
         }
     }
     
     @IBAction func closeButtonClicked(_ sender: Any) {
         delegate?.updateStock(changedStock)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension StockViewController {
-    private func alertUnknownError() {
-        let alert = UIAlertController(title: Alert.unknownError.title, message: Alert.unknownError.message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
-        alert.addAction(defaultAction)
-        present(alert, animated: true, completion: nil)
     }
 }

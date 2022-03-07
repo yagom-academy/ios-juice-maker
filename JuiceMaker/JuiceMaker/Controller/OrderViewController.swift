@@ -72,23 +72,27 @@ final class OrderViewController: UIViewController {
     }
 
     @IBAction func orderButtonsClicked(_ sender: UIButton) {
-        switch sender {
-        case strawberryBananaJuiceOrderButton:
+        if sender == strawberryBananaJuiceOrderButton {
             order(.strawberryBananaJuice)
-        case mangoKiwiJuiceOrderButton:
+        
+        } else if sender == mangoKiwiJuiceOrderButton {
             order(.mangoKiwiJuice)
-        case strawberryJuiceOrderButton:
+        
+        } else if sender == strawberryJuiceOrderButton {
             order(.strawberryJuice)
-        case bananaJuiceOrderButton:
+
+        } else if sender == bananaJuiceOrderButton {
             order(.bananaJuice)
-        case pineappleJuiceOrderButton:
+
+        } else if sender == pineappleJuiceOrderButton {
             order(.pineappleJuice)
-        case kiwiJuiceOrderButton:
+            
+        } else if sender == kiwiJuiceOrderButton {
             order(.kiwiJuice)
-        case mangoJuiceOrderButton:
+            
+        } else {
             order(.mangoJuice)
-        default:
-            alertUnknownError()
+            
         }
         showCurrentStock()
     }
@@ -99,9 +103,7 @@ final class OrderViewController: UIViewController {
             alertOrderCompletion(juice)
         } catch OrderError.outOfStock {
             alertOutOfStock()
-        } catch {
-            alertUnknownError()
-        }
+        } catch { }
     }
 }
 
@@ -121,13 +123,6 @@ extension OrderViewController {
         let cancelAction = UIAlertAction(title: AlertButton.no.title, style: .destructive, handler: nil)
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func alertUnknownError() {
-        let alert = UIAlertController(title: Alert.unknownError.title, message: Alert.unknownError.message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
-        alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
     }
 }
