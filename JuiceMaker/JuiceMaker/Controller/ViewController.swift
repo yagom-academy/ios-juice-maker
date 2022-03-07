@@ -87,7 +87,7 @@ class ViewController: UIViewController {
     private func moveStockChangeView() {
         guard let stockChangeNavigation = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeNavigation") as? UINavigationController else { return }
         guard let stockChangeView = stockChangeNavigation.topViewController as? SubViewController else { return }
-        stockChangeView.stockNumber = strawberryLabel.text
+        stockChangeView.stockNumbers = juiceMaker.fruitStore.stock
 
         self.present(stockChangeNavigation, animated: true, completion: nil)
     }

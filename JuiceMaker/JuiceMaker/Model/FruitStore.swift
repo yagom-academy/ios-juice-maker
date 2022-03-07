@@ -7,7 +7,7 @@
 import Foundation
 
 class FruitStore {
-    private var stock: [Fruit: Int]
+    private(set) var stock: [Fruit: Int]
     
     init(defaultStock: Int = 10) {
         stock = [.strawberry: defaultStock,
@@ -32,6 +32,8 @@ class FruitStore {
     func getStock(of fruit: Fruit) -> Int {
         return stock[fruit] ?? 0
     }
+    
+
 }
 
 

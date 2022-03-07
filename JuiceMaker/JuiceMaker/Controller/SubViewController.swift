@@ -8,7 +8,7 @@
 import UIKit
 
 class SubViewController: UIViewController {
-    var stockNumber: String?
+    var stockNumbers: [Fruit: Int]?
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -29,7 +29,22 @@ class SubViewController: UIViewController {
     }
     
     func updateLabel() {
-        self.strawberryLabel.text = stockNumber ?? "0"
+        guard let stockNumbers = stockNumbers else { return }
+        for (fruit, count) in stockNumbers {
+            switch fruit {
+            case.strawberry:
+                strawberryLabel.text = String(count)
+            case.banana:
+                bananaLabel.text = String(count)
+            case.pineapple:
+                pineappleLabel.text = String(count)
+            case.kiwi:
+                kiwiLabel.text = String(count)
+            case.mango:
+                mangoLabel.text = String(count)
+                
+            }
+        }
 //        self.bananaLabel
 //        self.pineappleLabel
 //        self.kiwiLabel
