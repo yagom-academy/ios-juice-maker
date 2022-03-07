@@ -66,6 +66,8 @@ final class OrderViewController: UIViewController {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") as? StockViewController else {
             return
         }
+        stockViewController.delegate = self
+        stockViewController.changedStock = juiceMaker.fruitStore.inventory
         self.present(stockViewController, animated: true, completion: nil)
     }
 
@@ -127,5 +129,16 @@ extension OrderViewController {
         let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+protocol StockDeliveryProtocol: NSObjectProtocol {
+    func updateStock(_ changedStock: [Fruit: Int])
+}
+
+extension OrderViewController: StockDeliveryProtocol {
+    func updateStock(_ changedStock: [Fruit : Int]) {
+        juiceMaker.fruitStore.inventory = changedStock
+        showCurrentStock()
     }
 }
