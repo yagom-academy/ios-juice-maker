@@ -29,7 +29,6 @@ final class ModifyingStockViewController: UIViewController {
     @IBAction func touchUpStepper(_ sender: UIStepper) {
         do {
             try modifyFruitStock(stepper: sender)
-            updateLabel(stepper: sender)
         } catch {
             
         }
@@ -46,11 +45,23 @@ final class ModifyingStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try setDefaultValues()
-            try setDefaultLabels()
-        } catch {
+
+    }
+    
+    private func match(amountUI: [(label: UILabel, stepper: UIStepper)], with fruits: [Fruit]) throws {
+        var currentIndex = amountUI.startIndex
+        
+        for fruit in fruits {
+            let currentLabel = amountUI[currentIndex].label
+            let currentStepper = amountUI[currentIndex].stepper
             
+            guard let fruitAmount = fruitStore?.stocks[fruit] else {
+                throw JuiceMakerError.notFoundFruit
+            }
+            
+            currentLabel.text = String(fruitAmount)
+            currentStepper.value = Double(fruitAmount)
+            currentIndex = amountUI.index(after: currentIndex)
         }
     }
     
@@ -66,100 +77,6 @@ final class ModifyingStockViewController: UIViewController {
             return (kiwiAmountLabel, kiwiStepper)
         case .mango:
             return (mangoAmountLabel, mangoStepper)
-        }
-    }
-    
-    private func setDefaultValues() throws {
-        for fruit in Fruit.allCases {
-            let stepper = find(fruit: fruit)
-            guard let amount = try fruitStore?.checkStock(of: fruit) else {
-                throw JuiceMakerError.notFoundFruit
-            }
-            stepper.value = Double(amount)
-        }
-    }
-    
-    private func find(fruit: Fruit) -> UIStepper {
-        switch fruit {
-        case .strawberry:
-            return strawberryStepper
-        case .banana:
-            return bananaStepper
-        case .pineapple:
-            return pineappleStepper
-        case .kiwi:
-            return kiwiStepper
-        case .mango:
-            return mangoStepper
-        }
-    }
-    
-    private func setDefaultLabels() throws {
-        let labels = Fruit.allCases.map { fruit in
-            findLabel(fruit: fruit)
-        }
-        
-        for label in labels {
-            let fruit = find(label: label)
-            guard let amount = try fruitStore?.checkStock(of: fruit) else {
-                throw JuiceMakerError.notFoundFruit
-            }
-            
-            label.text = String(amount)
-        }
-    }
-    
-    private func findLabel(fruit: Fruit) -> UILabel {
-        switch fruit {
-        case .strawberry:
-            return strawberryAmountLabel
-        case .banana:
-            return bananaAmountLabel
-        case .pineapple:
-            return pineappleAmountLabel
-        case .kiwi:
-            return kiwiAmountLabel
-        case .mango:
-            return mangoAmountLabel
-        }
-    }
-    
-    private func find(label: UILabel) -> Fruit {
-        switch label {
-        case strawberryAmountLabel:
-            return .strawberry
-        case bananaAmountLabel:
-            return .banana
-        case pineappleAmountLabel:
-            return .pineapple
-        case kiwiAmountLabel:
-            return .kiwi
-        case mangoAmountLabel:
-            return .mango
-        default:
-            return .strawberry
-        }
-    }
-    
-    private func updateLabel(stepper: UIStepper) {
-        let label = findLabel(stepper: stepper)
-        label.text = String(Int(stepper.value))
-    }
-    
-    private func findLabel(stepper: UIStepper) -> UILabel {
-        switch stepper {
-        case strawberryStepper:
-            return strawberryAmountLabel
-        case bananaStepper:
-            return bananaAmountLabel
-        case pineappleStepper:
-            return pineappleAmountLabel
-        case kiwiStepper:
-            return kiwiAmountLabel
-        case mangoStepper:
-            return mangoAmountLabel
-        default:
-            return strawberryAmountLabel
         }
     }
     
