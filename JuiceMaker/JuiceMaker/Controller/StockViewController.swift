@@ -28,4 +28,8 @@ final class StockViewController: UIViewController {
   }
   
   @IBAction private func didStepperValueChanged(_ sender: UIStepper) {}
+  
+  @IBAction private func didTapCloseButton(_ sender: UIBarButtonItem) {
+    self.dismiss(animated: true)
+  }
 }

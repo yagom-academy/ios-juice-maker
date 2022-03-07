@@ -87,13 +87,10 @@ private extension JuiceViewController {
   }
   
   func handleOkAction(_ action: UIAlertAction) {
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let stockViewController = storyboard.instantiateViewController(
-      withIdentifier: StockViewController.identifier
-    ) as? StockViewController
-    else {
-      return
-    }
-    self.present(stockViewController, animated: true)
+    let storyboard = UIStoryboard(name: "Main", bundle: .main)
+    let navigationController = storyboard.instantiateViewController(
+      withIdentifier: StoryboardID.StockNavigationController
+    )
+    self.present(navigationController, animated: true)
   }
 }

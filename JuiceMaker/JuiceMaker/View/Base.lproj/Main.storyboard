@@ -279,7 +279,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Stock View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="StockViewController" id="Yu1-lM-nqp" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -401,7 +401,13 @@
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Oj5-U0-ivs">
+                            <connections>
+                                <action selector="didTapCloseButton:" destination="Yu1-lM-nqp" id="fnH-lR-Eut"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bananaCountLabel" destination="gKu-86-RhI" id="CVX-NS-HHl"/>
                         <outlet property="bananaStepper" destination="O5s-2N-3iP" id="0el-2E-lMN"/>
@@ -422,7 +428,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StockNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="J66-nR-WIv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
