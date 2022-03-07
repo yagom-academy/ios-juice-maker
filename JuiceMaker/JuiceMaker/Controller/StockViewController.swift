@@ -9,8 +9,6 @@ import UIKit
 
 final class StockViewController: UIViewController {
   
-  static let identifier = String(describing: StockViewController.self)
-  
   @IBOutlet private weak var strawberryCountLabel: UILabel!
   @IBOutlet private weak var bananaCountLabel: UILabel!
   @IBOutlet private weak var pineappleCountLabel: UILabel!
@@ -22,6 +20,8 @@ final class StockViewController: UIViewController {
   @IBOutlet private weak var pineappleStepper: UIStepper!
   @IBOutlet private weak var kiwiStepper: UIStepper!
   @IBOutlet private weak var mangoStepper: UIStepper!
+  
+  var juiceMaker: JuiceMaker?
   
   override func viewDidLoad() {
     super.viewDidLoad()

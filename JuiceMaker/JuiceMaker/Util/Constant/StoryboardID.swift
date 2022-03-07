@@ -8,5 +8,7 @@
 import Foundation
 
 enum StoryboardID {
-  static let StockNavigationController = "StockNavigationController"
+  static let main = "Main"
+  static let stockViewController = "StockViewController"
+  static let stockNavigationController = "StockNavigationController"
 }

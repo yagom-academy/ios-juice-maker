@@ -47,6 +47,10 @@ final class JuiceViewController: UIViewController {
     }
     self.fetchStock()
   }
+  
+  @IBAction private func didTapChangeStockButton(_ sender: UIBarButtonItem) {
+    self.presentStockViewController()
+  }
 }
 
 // MARK: - Private Extension
@@ -87,10 +91,21 @@ private extension JuiceViewController {
   }
   
   func handleOkAction(_ action: UIAlertAction) {
-    let storyboard = UIStoryboard(name: "Main", bundle: .main)
-    let navigationController = storyboard.instantiateViewController(
-      withIdentifier: StoryboardID.StockNavigationController
-    )
+    self.presentStockViewController()
+  }
+  
+  func presentStockViewController() {
+    guard let navigationController = self.storyboard?.instantiateViewController(
+      withIdentifier: StoryboardID.stockNavigationController) as? UINavigationController
+    else {
+      return
+    }
+    guard let stockViewController = navigationController.visibleViewController
+      as? StockViewController
+    else {
+      return
+    }
+    stockViewController.juiceMaker = juiceMaker
     self.present(navigationController, animated: true)
   }
 }
