@@ -41,7 +41,58 @@ final class ModifyingStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        do {
+            try setDefaultLabels()
+        } catch {
+            
+        }
+    }
+    
+    private func setDefaultLabels() throws {
+        let labels = Fruit.allCases.map { fruit in
+            find(fruit: fruit)
+        }
+        
+        for label in labels {
+            let fruit = find(label: label)
+            guard let amount = try fruitStore?.checkStock(of: fruit) else {
+                throw JuiceMakerError.notFoundFruit
+            }
+            
+            label.text = String(amount)
+        }
+    }
+    
+    private func find(fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryAmountLabel
+        case .banana:
+            return bananaAmountLabel
+        case .pineapple:
+            return pineappleAmountLabel
+        case .kiwi:
+            return kiwiAmountLabel
+        case .mango:
+            return mangoAmountLabel
+        }
+    }
+    
+    private func find(label: UILabel) -> Fruit {
+        switch label {
+        case strawberryAmountLabel:
+            return .strawberry
+        case bananaAmountLabel:
+            return .banana
+        case pineappleAmountLabel:
+            return .pineapple
+        case kiwiAmountLabel:
+            return .kiwi
+        case mangoAmountLabel:
+            return .mango
+        default:
+            return .strawberry
+        }
     }
     
     private func updateLabel(stepper: UIStepper) {

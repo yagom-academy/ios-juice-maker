@@ -40,7 +40,7 @@ final class FruitStore {
         }
     }
     
-    private func checkStock(of fruit: Fruit) throws -> Int {
+    func checkStock(of fruit: Fruit) throws -> Int {
         guard let remainingAmount = stocks[fruit] else {
             throw JuiceMakerError.notFoundFruit
         }
