@@ -1,12 +1,15 @@
-//
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
-
 import UIKit
 
+protocol dataDelegate {
+    func exchangeData(data: String)
+}
+
 class JuiceOrderViewController: UIViewController {
+//    func exchangeData(data: String) {
+//        print("ViewController DelegateFunction: \(data)")
+//        print("Data: [\(data)]")
+//    }
+    
     
     private var juiceMaker = JuiceMaker()
     enum MessageNameSpace {
@@ -115,12 +118,15 @@ class JuiceOrderViewController: UIViewController {
     @IBAction func modifyFruitStockAction(_ sender: UIBarButtonItem) {
         presentStockInventoryView()
     }
-    
+
     private func presentStockInventoryView() {
         guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) else { return }
         stockInventoryViewController.modalTransitionStyle = .coverVertical
         stockInventoryViewController.modalPresentationStyle = .automatic
+        
         self.present(stockInventoryViewController, animated: true)
+
+        
     }
 }
 
