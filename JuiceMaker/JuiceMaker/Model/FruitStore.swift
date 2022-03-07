@@ -1,12 +1,11 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by 원툴, 두두. 
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// 과일 저장소 타입
 class FruitStore {
-    private var fruitStock = [Fruit: Int]()
+    private(set) var fruitStock = [Fruit: Int]()
     
     init() {
         let initialStock = 10

@@ -1,18 +1,21 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by 원툴, 두두. 
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore = FruitStore()
+    
+    var fruitStock: [Fruit: Int] {
+        return fruitStore.fruitStock
+    }
     
     func make(fruitJuice: Juice) throws {
         let recipe = fruitJuice.recipe
         
         try checkEnoughStock(recipe: recipe)
-        deleteStockFrom(recipe: recipe)
+        deleteStock(from: recipe)
     }
     
     private func checkEnoughStock(recipe: [Fruit: Int]) throws {
@@ -21,7 +24,7 @@ struct JuiceMaker {
         }
     }
     
-    private func deleteStockFrom(recipe: [Fruit: Int]) {
+    private func deleteStock(from recipe: [Fruit: Int]) {
         for (fruit, amount) in recipe {
             fruitStore.changeStock(fruit: fruit, amount: amount)
         }
