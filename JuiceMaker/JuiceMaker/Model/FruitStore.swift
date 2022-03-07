@@ -3,7 +3,7 @@
 //  Created by Doogie & Malrang. 
 //  Copyright © yagom academy. All rights reserved.
 //
-class FruitStore {
+final class FruitStore {
     var fruitList = [Fruits: Int]()
     
     init() {

@@ -5,11 +5,14 @@
 - [프로젝트 팀 규칙](#프로젝트-팀-규칙)
 - [UML](#uml)
 - [STEP 1 기능 구현](#step-1-기능-구현)
-+ [고민했던 것들](#고민했던-것들)
-+ [배운 개념](#배운-개념)
-+ [PR 후 개선사항](#pr-후-개선사항)
+    + [고민했던 것들](#고민했던-것들)
+    + [배운 개념](#배운-개념)
+    + [PR 후 개선사항](#pr-후-개선사항)
+- [STEP 2 기능 구현](#step-2-기능-구현)
+    + [고민했던 것들](#고민했던-것들)
+    + [배운 개념](#배운-개념)
+    + [PR 후 개선사항](#pr-후-개선사항)
 
-## 프로젝트 팀 규칙
 **Ground Rules**
 - 프로젝트에 집중하는 시간: 10:00 ~ 19:00
 - 밥먹는 시간: 13:00 ~ 14:00
@@ -21,7 +24,8 @@
 - malrang: 상관없음
 
 ## UML
-![UML](https://user-images.githubusercontent.com/82325822/155452091-a370b687-2da7-413a-9b05-436a29170d40.png)
+
+![스크린샷 2022-03-02 오전 11 39 42](https://user-images.githubusercontent.com/82325822/156287001-9b674eb3-9a57-43b5-aba3-66d29816fee0.png)
 
 ## STEP 1 기능 구현
 - JuiceMaker 타입 구현
@@ -99,7 +103,7 @@ print("Invalid Selection.")
 `buyFavoriteSnack` 에서 던져진 error 가 `VendingMachineError.invalidSelection` 일 경우 `print("Invalid Selection.")`를 실행 하라는 뜻으로 해석 할수 있다.
 
 ## PR 후 개선사항
-- 기존 재료 비교 함수
+1. 기존 재료 비교 함수
 ```swift
 func checkStock(menu: Menu) throws {
         for (ingredent, amount) in menu.recipie {
@@ -133,3 +137,179 @@ func checkStock(menu: Menu) throws {
 ```
 위의 함수에서 반복문으로 Menu 에 들어가는 재료가 모자라진 않는지 확인한후
 두번째 반복문에서 재고를 관리하는 calculateStock() 메서드를 재사용 하여 재고를 차감하도록 수정함
+
+2. Error Handling 방법 변경
+Error Handling 을 하기위해 do-catch 문 내부에서 catch 구문에 각 에러 케이스들을 나열해 두었으나 바인딩,다운캐스팅을 활용하고 switch 를 이용하여 전체 에러를 확인할 수 있도록 수정함
+
+- 변경전
+```swift
+func makeJuice(menu: Menu) {
+        do {
+            try checkStock(menu: menu)
+        } catch FruitStoreError.outOfStock {
+            print("재고 없음!")
+        } catch FruitStoreError.invalidSelection {
+            print("선택된 과일이 없습니다.")
+        } catch {
+            print("알 수 없는 오류 발생.")
+        }
+    }
+```
+- 변경후
+```swift
+func makeJuice(menu: Menu) {
+        do {
+            try checkStock(menu: menu)
+        } catch let error as FruitStoreError {
+            switch error {
+            case .invalidSelection:
+                print("선택된 과일이 없습니다.")
+            case .outOfStock:
+                print("재고 없음!")
+            } 
+        } catch {
+            print("알 수 없는 오류 발생.")
+        }
+    }
+```
+3. 메서드 재사용 
+JuiceMaker 에서 checkStock 을 호출시 쥬스레시피에 따라 과일의 재고를 차감시키는 기능을 FruitStore 의 과일을 재고를 관리하는 기능인 calculateStock 를 사용하여 calculateStock 메서드를 재사용 할수있도록 수정함
+
+- 변경전
+```swift
+func checkStock(menu: Menu) throws {
+        for (ingredent, amount) in menu.recipie {
+            guard let stock = store.fruitList[ingredent] else {
+                throw FruitStoreError.invalidSelection
+            }
+            guard amount <= stock else {
+                throw FruitStoreError.outOfStock
+            }
+        }
+        try store.minusStock(menu: menu)
+    }
+```
+
+- 변경후
+```swift
+    func checkStock(menu: Menu) throws {
+        for (ingredent, amount) in menu.recipe {
+            guard let stock = store.fruitList[ingredent] else {
+                throw FruitStoreError.invalidSelection
+            }
+            guard amount <= stock else {
+                throw FruitStoreError.outOfStock
+            }
+        }
+        
+        for (ingredent, amount) in menu.recipe {
+            try store.calculateStock(fruit: ingredent, amount: amount, calculationType: .minus)
+        }
+    }
+```
+
+
+
+
+
+## STEP 2 기능 구현
+- navigationController를 이용한 화면 전환 기능 구현
+-> segue 사용 시 이 프로젝트에서는 크게 문제가 없으나 프로젝트 규모가 커질 경우 각 segue를 관리하기 힘들어질 것이라는 판단하에 moveToManageView 함수에 코드로 구현
+- 재고 표시 함수(showStock) 구현
+- 각 주문 버튼 별로 outlet생성 및 하나의 IBAction으로 이어 각 버튼에 따라 다른 동작을 시행할 수 있게 구현
+- JuiceMaker구조체에서 구현한 오류 캐치 구문인 makeJuice함수 viewController로 이동
+-> 구조체 내에서 alert을 호출 할 수 있는 방법이 생각나지 않아(있어도 불필요한 작업이 너무 많아) 이동
+- 각 상황에 맞는 alert생성 함수 구현
+- 현재 기능들이 클래스 외부에서 사용되지 않는 경우 은닉화 진행
+
+## 고민했던 것들
+1. 각 과일의 Label 에 String 값을 어떻게 넣어줄지 고민함
+- switch 와 for 문을 이용한 방법
+```swift 
+    private func showStock() {
+        for (fruit, stock) in  juiceMaker.store.fruitList {
+            switch fruit {
+            case .strawberry:
+                self.strawberryStockLabel.text = String(stock)
+            case .banana:
+                self.bananaStockLabel.text = String(stock)
+            case .pineapple:
+                self.pineappleStockLabel.text = String(stock)
+            case .kiwi:
+                self.kiwiStockLabel.text = String(stock)
+            case .mango:
+                self.mangoStockLabel.text = String(stock)
+            }
+        }
+    }
+```
+- Label 을 배열에 넣어 사용한 방법
+```swift
+ lazy var stocks: [Fruits : UILabel] = [
+        .strawberry : strawberryStockLabel,
+        .banana : bananaStockLabel,
+        .pineapple : pineappleStockLabel,
+        .kiwi : kiwiStockLabel,
+        .mango : mangoStockLabel]
+
+ override func viewDidLoad() {
+        super.viewDidLoad()
+        for (fruit, stock) in juiceStore.store.fruitList {
+            guard let fruitLabel = stocks[fruit] else { return }
+            fruitLabel.text = String(stock)
+        }
+    }
+```
+재고 표시 함수 코드를 작성할 때는 후자의 방법을 이용해 작성하는 것이 더 보기 좋다고 생각했으나 전체적으로 봤을 때 Label을 배열로 관리하게 되면 가독성이 떨어진다고 생각해 전자의 방법을 선택
+2. alert 
+- alert의 중복제거를 위한 고민
+-> invalideSelection에러와 알 수 없는 오류, 주문 완료 후 나타나는 alert을 하나하나 만들어 줬으나 title과 message를 매개변수로 받아 하나의 함수로 통합
+-> alert 함수 통합 이후 주문 완료 alert의 경우 최초에는 메뉴에 따라 하나하나 메세지를 수정해 호출하는 함수로 구현하였으나 *`"메뉴에 따라"`* 작동한다는 사실에 초점을 두어 열거형 Menu 에 메세지를 return 하는 연산 프로퍼티 추가하여 간단하게 작성
+
+- alert 을 error 열거형 처럼 관리해줄수는 없을까? 고민
+열거형은 View 가 아니기 때문에 alert 을 띄우도록 하는 present 를 사용할수 없으며
+저장 프로퍼티를 갖지 못하기때문에 연산프로퍼티를 활용할 방법을 찾아보았으나
+사례를 찾을수 없었고 불가능 할것 같지는 않지만 지금의 실력으로 구현하기에는 무리가 있어보여 실패함
+
+## 배운 개념
+### 1. alert
+### 2. 여러개의 버튼을 하나의 @IBAction 에 연결해서 조건문으로 버튼을 관리하는 방법
+### 3. ViewController life cycle
+![](https://i.imgur.com/ASSlasn.jpg)
+
+## PR 후 개선사항
+### tag를 사용해 함수 간략화 및 함수 호출 중복 제거
+
+- 변경 전
+```swift
+    @IBAction func touchToOrderJuice(_ sender: UIButton) {
+        switch sender {
+        case ddalBaJuiceOrderButton:
+            makeJuice(menu: .ddalBaJuice)
+        case mangKiJuiceOrderButton:
+            makeJuice(menu: .mangKiJuice)
+        case strawberryJuiceOrderButton:
+            makeJuice(menu: .strawberryJuice)
+        case bananaJuiceOrderButton:
+            makeJuice(menu: .bananaJuice)
+        case pineappleJuiceOrderButton:
+            makeJuice(menu: .pineappleJuice)
+        case kiwiJuiceOrderButton:
+            makeJuice(menu: .kiwiJuice)
+        case mangoJuiceOrderButton:
+            makeJuice(menu: .mangoJuice)
+        default:
+            presentBasicAlert(title: "경고", message: "알 수 없는 오류.")
+        }
+```
+- 변경 후
+```swift
+    @IBAction func touchToOrderJuice(_ sender: UIButton) {
+        guard let menu = Menu(rawValue: sender.tag) else {
+            presentBasicAlert(title: "경고", message: "알 수 없는 오류.")
+            return
+        }
+        makeJuice(menu: menu)
+        showStock()
+    }
+```
