@@ -45,7 +45,7 @@ class JuiceMakerController: UIViewController {
         }
     }
     
-    @IBAction func tapStockEditButton(_ sender: UIBarButtonItem) {
+    @IBAction func didTapStockEditButton(_ sender: UIBarButtonItem) {
         moveToStockViewController()
     }
     
@@ -63,8 +63,8 @@ class JuiceMakerController: UIViewController {
     }
     
     @IBAction func order(_ sender: UIButton) {
-        do{
-            let juice = try check(button: sender)
+        do {
+            let juice = try findJuice(of: sender)
             try juiceMaker.make(fruitJuice: juice)
             updateFruitLabel()
             showOkAlert(title: "\(juice) " + AlertMessage.makeJuice)
@@ -77,7 +77,7 @@ class JuiceMakerController: UIViewController {
         }
     }
     
-    private func check(button: UIButton) throws -> Juice {
+    private func findJuice(of button: UIButton) throws -> Juice {
         switch button {
         case strawberryBananaButton:
             return .strawberryBananaJuice
