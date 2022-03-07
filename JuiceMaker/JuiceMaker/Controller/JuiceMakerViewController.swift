@@ -148,9 +148,11 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func presentModifyingStockViewController() {
-        guard let modifyingStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
+        guard let fruitStore = juiceMaker?.fruitStore else {
             return
         }
+        
+        let modifyingStockViewController = ModifyingStockViewController.instance(fruitStore: fruitStore)
         
         self.present(modifyingStockViewController, animated: true)
     }

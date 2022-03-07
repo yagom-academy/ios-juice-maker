@@ -8,7 +8,8 @@
 import UIKit
 
 final class ModifyingStockViewController: UIViewController {
-
+    private var fruitStore: FruitStore?
+    
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
     @IBOutlet weak var pineappleAmountLabel: UILabel!
@@ -22,12 +23,20 @@ final class ModifyingStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
-        print(sender)
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func touchUpStepper(_ sender: UIStepper) {
         updateLabel(stepper: sender)
+    }
+    
+    static func instance(fruitStore: FruitStore) -> ModifyingStockViewController {
+        let storyborad = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = storyborad.instantiateViewController(withIdentifier: String(describing: self)) as? ModifyingStockViewController else {
+            return ModifyingStockViewController()
+        }
+        viewController.fruitStore = fruitStore
+        return viewController
     }
     
     override func viewDidLoad() {
