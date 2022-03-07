@@ -5,7 +5,7 @@
 //  Created by 원툴, 두두 on 2022/02/22.
 //
 
-enum Juice: CustomStringConvertible {
+enum Juice {
     case strawberryJuice
     case kiwiJuice
     case bananaJuice
@@ -14,7 +14,7 @@ enum Juice: CustomStringConvertible {
     case mangoKiwiJuice
     case strawberryBananaJuice
     
-    var description: String {
+    var name: String {
         switch self {
         case .strawberryJuice:
             return "딸기 쥬스"

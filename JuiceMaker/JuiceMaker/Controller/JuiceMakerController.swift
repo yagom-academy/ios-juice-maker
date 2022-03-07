@@ -69,7 +69,7 @@ class JuiceMakerController: UIViewController {
             let ingredients = juice.recipe.map{$0.key}
             updateMultipleLabel(of: ingredients)
             
-            showOkAlert(title: "\(juice) " + AlertMessage.makeJuice)
+            showOkAlert(title: juice.name + " " + AlertMessage.makeJuice)
         } catch JuiceMakerError.invalidButton {
             showOkAlert(title: AlertMessage.pushWrongButton)
         } catch JuiceMakerError.outOfStock {
