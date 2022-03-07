@@ -39,7 +39,7 @@ final class JuiceMakerViewController: UIViewController {
     
     static func instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
-        guard let viewController = storyborad.instantiateViewController(withIdentifier: "JuiceMakerViewController") as? JuiceMakerViewController else {
+        guard let viewController = storyborad.instantiateViewController(withIdentifier: identifier) as? JuiceMakerViewController else {
             return JuiceMakerViewController()
         }
         viewController.juiceMaker = juiceMaker

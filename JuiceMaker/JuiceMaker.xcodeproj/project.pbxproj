@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E6A67F027D62B230003A509 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6A67EF27D62B230003A509 /* UIViewController.swift */; };
 		0E793FE327C481DC0020DACD /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E793FE227C481DC0020DACD /* Fruit.swift */; };
 		0E793FE627C4BEBD0020DACD /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E793FE527C4BEBD0020DACD /* JuiceMakerError.swift */; };
 		0E793FE927C4C3880020DACD /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E793FE827C4C3880020DACD /* Constant.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E6A67EF27D62B230003A509 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		0E793FE227C481DC0020DACD /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		0E793FE527C4BEBD0020DACD /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		0E793FE827C4C3880020DACD /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E6A67EE27D62B080003A509 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0E6A67EF27D62B230003A509 /* UIViewController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		0E793FE427C4BE9E0020DACD /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 		0E793FE727C4C3730020DACD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0E6A67EE27D62B080003A509 /* Extension */,
 				0E793FE827C4C3880020DACD /* Constant.swift */,
 			);
 			path = Common;
@@ -209,6 +220,7 @@
 				0E793FE327C481DC0020DACD /* Fruit.swift in Sources */,
 				0E793FE627C4BEBD0020DACD /* JuiceMakerError.swift in Sources */,
 				0E793FE927C4C3880020DACD /* Constant.swift in Sources */,
+				0E6A67F027D62B230003A509 /* UIViewController.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				A145C2A727D0E5A300E2EA87 /* AlertBuilder.swift in Sources */,
 				A1015E0F27C8B2030038B7C9 /* ModifyingStockViewController.swift in Sources */,
