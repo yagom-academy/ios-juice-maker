@@ -3,6 +3,7 @@ import UIKit
 class StockInventoryViewController: UIViewController {
     
     public var data: String = ""
+    var delegate: dataDelegate?
     
     @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
     @IBOutlet private weak var stockOfBananaLabel: UILabel!
@@ -20,6 +21,7 @@ class StockInventoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("data: \(data)")
         setupFruitStockLabel()
         
         strawberryStepper.autorepeat = true
@@ -77,6 +79,11 @@ class StockInventoryViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate?.exchangeData(data: "second view가 보내는 데이터")
     }
     
     
