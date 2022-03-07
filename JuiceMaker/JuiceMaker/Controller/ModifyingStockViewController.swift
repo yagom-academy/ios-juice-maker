@@ -29,8 +29,9 @@ final class ModifyingStockViewController: UIViewController {
     @IBAction func touchUpStepper(_ sender: UIStepper) {
         do {
             try modifyFruitStock(stepper: sender)
-        } catch {
-            
+            try configureStockUI()
+        } catch (let error) {
+            showFailedOrder(with: error)
         }
     }
     
@@ -45,7 +46,15 @@ final class ModifyingStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateUI()
+    }
+    
+    private func updateUI() {
+        do {
+            try configureStockUI()
+        } catch (let error) {
+            showFailedOrder(with: error)
+        }
     }
     
     private func configureStockUI() throws {
@@ -112,5 +121,17 @@ final class ModifyingStockViewController: UIViewController {
     private func updateFruitStock(fruit: Fruit, stepper: UIStepper) {
         let currentStepperValue = Int(stepper.value)
         fruitStore?.modify(fruit: fruit, amount: currentStepperValue)
+    }
+    
+    private func showFailedOrder(with error: Error) {
+        guard let error = error as? JuiceMakerError,
+              let errorDescription = error.errorDescription else {
+                  return
+              }
+
+        AlertBuilder(viewController: self)
+            .setTitle(errorDescription)
+            .setConfirmTitle("확인")
+            .showAlert()
     }
 }
