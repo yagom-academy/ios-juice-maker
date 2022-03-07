@@ -85,10 +85,8 @@ class ViewController: UIViewController {
     }
     
     private func moveStockChangeView() {
-        let stockChangeView = self.storyboard?.instantiateViewController(withIdentifier: "stockChange")
-        stockChangeView?.modalTransitionStyle = .coverVertical
-        stockChangeView?.modalPresentationStyle = .automatic
-        self.present(stockChangeView!, animated: true, completion: nil)
+        guard let stockChangeView = self.storyboard?.instantiateViewController(withIdentifier: "stockChange") else { return }
+        self.present(stockChangeView, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
