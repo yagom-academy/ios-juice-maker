@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ManageViewControllerDelegate {
+    func sendStocks(stocks : [Fruits: Int])
+}
+
 class ManageViewController: UIViewController {
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
@@ -22,6 +26,7 @@ class ManageViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     var fruitDic: [Fruits: Int] = [:]
+    var delegate: ManageViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +54,7 @@ class ManageViewController: UIViewController {
     @IBAction func touchCloseButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func touchStepper(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
@@ -64,5 +70,15 @@ class ManageViewController: UIViewController {
         default:
             print("에러")
         }
+    }
+    
+    @IBAction func touchConfirmButton(_ sender: UIButton) {
+        self.fruitDic[.strawberry] = Int(strawberryStepper.value)
+        self.fruitDic[.banana] = Int(bananaStepper.value)
+        self.fruitDic[.pineapple] = Int(pineappleStepper.value)
+        self.fruitDic[.kiwi] = Int(kiwiStepper.value)
+        self.fruitDic[.mango] = Int(mangoStepper.value)
+        delegate?.sendStocks(stocks: fruitDic)
+        self.dismiss(animated: true, completion: nil)
     }
 }
