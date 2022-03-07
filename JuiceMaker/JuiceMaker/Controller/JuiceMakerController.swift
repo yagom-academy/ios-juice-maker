@@ -162,37 +162,12 @@ class JuiceMakerController: UIViewController {
         
         present(alertController, animated: true)
     }
-}
-
-extension JuiceMakerController {
-    private func showStockErrorAlert(title: String){
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.yes, style: .default) { _ in
-            self.moveToStockViewController()
-        }
-        
-        let cancelAction = UIAlertAction(title: AlertMessage.no, style: .default)
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
-    }
-    
-    private func showOkAlert(title: String){
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
-        
-        alertController.addAction(okAction)
-        present(alertController, animated: true)
-    }
     
     static let identifier = "StockViewController"
 }
 
 enum AlertMessage{
     static let makeJuice = "나왔습니다! 맛있게 드세요!"
-    static let pushWrongButton = "버튼을 잘못 누르셨습니다."
-    static let unknownError = "알 수 없는 오류"
-    static let outOfStock = "재료가 모자라요. 재고를 수정할까요?"
     static let yes = "예"
     static let no = "아니오"
     static let ok = "확인"
