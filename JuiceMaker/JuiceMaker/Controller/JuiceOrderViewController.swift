@@ -37,8 +37,8 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var orderMangoButton: UIButton!
     
     
-    func orderedJuiceType(sender: UIButton) -> JuiceMaker.JuiceType? {
-        switch sender {
+    func orderedJuiceType(from button: UIButton) -> JuiceMaker.JuiceType? {
+        switch button {
         case orderStrawberryBananaButton:
             return JuiceMaker.JuiceType.strawberryBananaJuice
         case orderMangoKiwiButton:
@@ -59,7 +59,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction private func orderJuiceAction(_ sender: UIButton) {
-        guard let orderedJuiceType = orderedJuiceType(sender: sender) else { return }
+        guard let orderedJuiceType = orderedJuiceType(from: sender) else { return }
         do {
             let juice = try juiceMaker.makeJuice(juice: orderedJuiceType)
             showJuiceReadyAlert(juiceName: juice.name())
