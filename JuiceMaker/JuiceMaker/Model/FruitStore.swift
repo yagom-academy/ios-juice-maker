@@ -8,13 +8,13 @@ import Foundation
 
 class FruitStore {
     private var stock: [Fruit: Int]
-
+    
     init(defaultStock: Int = 10) {
         stock = [.strawberry: defaultStock,
-                     .banana: defaultStock,
-                     .pineapple: defaultStock,
-                     .kiwi: defaultStock,
-                     .mango: defaultStock]
+                 .banana: defaultStock,
+                 .pineapple: defaultStock,
+                 .kiwi: defaultStock,
+                 .mango: defaultStock]
     }
     
     func isEnoughStock(of fruit: (Fruit, Int)) -> Bool {
@@ -27,6 +27,14 @@ class FruitStore {
         guard var inStock: Int = stock[fruit] else { return }
         inStock += numberOfFruit
         stock[fruit] = inStock
+        NotificationCenter.default.post(name: Notification.Name("notificationStock"),
+                                        object: nil,
+                                        userInfo: ["fruit": fruit,
+                                                   "stock": inStock])
+    }
+    
+    func getStock(of fruit: Fruit) -> Int {
+        return stock[fruit] ?? 0
     }
 }
 
