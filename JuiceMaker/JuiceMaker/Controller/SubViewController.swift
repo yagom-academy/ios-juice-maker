@@ -9,6 +9,9 @@ import UIKit
 
 class SubViewController: UIViewController {
 
+    @IBAction func closeView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
