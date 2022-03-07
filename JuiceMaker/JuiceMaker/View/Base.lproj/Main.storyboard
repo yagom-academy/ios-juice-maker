@@ -243,30 +243,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaButton" destination="y2A-PH-DJY" id="E7D-rs-5LQ"/>
-                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="dzj-YI-Koy"/>
-                        <outlet property="kiwiButton" destination="wcW-7H-RXw" id="RcI-aN-L3f"/>
-                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="C0f-ud-baN"/>
-                        <outlet property="mangoButton" destination="q6G-4X-bVm" id="bqi-gT-eP7"/>
-                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="stf-BV-40M"/>
-                        <outlet property="mangoKiwiButton" destination="ngP-kF-Yii" id="Y5u-4w-XyV"/>
-                        <outlet property="pineappleButton" destination="BFb-ka-wGA" id="DcG-Es-XQn"/>
-                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="mIF-87-3y4"/>
-                        <outlet property="strawberryButton" destination="avd-o5-3JM" id="Gao-13-67z"/>
-                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="e2c-7s-x0r"/>
-                        <outlet property="strawberrybananaButton" destination="hrc-2F-fzl" id="zjX-9B-ZQv"/>
                         <outletCollection property="fruitsLabelCollection" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="u3Y-E3-s27"/>
                         <outletCollection property="fruitsLabelCollection" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="IF5-do-O3T"/>
                         <outletCollection property="fruitsLabelCollection" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="6e5-3I-mhc"/>
                         <outletCollection property="fruitsLabelCollection" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="gfW-qH-8Jd"/>
                         <outletCollection property="fruitsLabelCollection" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="IKx-wb-XWV"/>
-                        <outletCollection property="fruitsButtonCollection" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="oq7-Ch-1st"/>
-                        <outletCollection property="fruitsButtonCollection" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="3bR-uH-BMN"/>
-                        <outletCollection property="fruitsButtonCollection" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="BEB-sY-Xdp"/>
-                        <outletCollection property="fruitsButtonCollection" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="VhD-tF-zdD"/>
-                        <outletCollection property="fruitsButtonCollection" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="y40-63-cZN"/>
-                        <outletCollection property="fruitsButtonCollection" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="3MZ-9V-gYo"/>
-                        <outletCollection property="fruitsButtonCollection" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="Xax-ab-CdY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -294,7 +275,7 @@
         <!--재고 수정-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="ChangeStockViewController" id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeStockViewController" id="Yu1-lM-nqp" customClass="ChangeStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,7 +283,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="xMQ-5p-PR6">
                                 <rect key="frame" x="87" y="118.66666666666667" width="670" height="152.66666666666663"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="GjG-wQ-vkX">
+                                    <stackView opaque="NO" tag="1" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="GjG-wQ-vkX">
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="152.66666666666666"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dCK-AJ-zGU">
@@ -311,14 +292,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
                                                 <rect key="frame" x="41.333333333333343" y="91.666666666666671" width="11.666666666666664" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
                                             </stepper>
                                         </subviews>
@@ -332,14 +313,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
                                                 <rect key="frame" x="41.333333333333314" y="94.666666666666671" width="11.666666666666664" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
                                             </stepper>
                                         </subviews>
@@ -353,14 +334,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
                                                 <rect key="frame" x="41.333333333333314" y="90.666666666666671" width="11.666666666666664" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
                                             </stepper>
                                         </subviews>
@@ -374,14 +355,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
                                                 <rect key="frame" x="41.333333333333371" y="90.666666666666671" width="11.666666666666664" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
                                             </stepper>
                                         </subviews>
@@ -395,14 +376,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
                                                 <rect key="frame" x="41.333333333333371" y="90.666666666666671" width="11.666666666666664" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
                                             </stepper>
                                         </subviews>
@@ -421,15 +402,14 @@
                         <barButtonItem key="backBarButtonItem" title="  " id="dUm-My-pMB"/>
                         <barButtonItem key="rightBarButtonItem" title="수정 완료" id="Pdp-IS-xiL" userLabel="수정 완료">
                             <connections>
-                                <action selector="edit:" destination="vAg-OG-ybS" id="oxT-qd-a2u"/>
+                                <action selector="closedButton:" destination="Yu1-lM-nqp" id="uQz-jB-aOb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
-                <exit id="vAg-OG-ybS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="901"/>
+            <point key="canvasLocation" x="1641" y="1058"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
@@ -447,7 +427,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="21"/>
+            <point key="canvasLocation" x="1636" y="37"/>
         </scene>
     </scenes>
     <resources>

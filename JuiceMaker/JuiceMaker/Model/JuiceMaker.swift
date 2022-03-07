@@ -16,8 +16,7 @@ struct JuiceMaker {
         } catch JuiceMakerError.outOfStock {
         } catch JuiceMakerError.unexpectedError {
             print("예상치 못한 에러 발생")
-        } catch {
-        }
+        } catch { }
         return fruitsStock
     }
 }

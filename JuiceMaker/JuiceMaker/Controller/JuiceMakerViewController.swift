@@ -7,29 +7,13 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
-    
-    @IBOutlet var fruitsLabelCollection: [UILabel]!
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
-    
-    @IBOutlet var fruitsButtonCollection: [UIButton]!
-    @IBOutlet weak var strawberrybananaButton: UIButton!
-    @IBOutlet weak var strawberryButton: UIButton!
-    @IBOutlet weak var mangoButton: UIButton!
-    @IBOutlet weak var kiwiButton: UIButton!
-    @IBOutlet weak var pineappleButton: UIButton!
-    @IBOutlet weak var bananaButton: UIButton!
-    @IBOutlet weak var mangoKiwiButton: UIButton!
-
+    @IBOutlet private var fruitsLabelCollection: [UILabel]!
     var fruitStore = FruitStore()
     let orderJuice = JuiceMaker()
-
+    
     @IBAction private func changeViewControllerTapped(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let ChangeStockViewController = storyboard.instantiateViewController(withIdentifier: "ChangeStockViewController")
+         let ChangeStockViewController = storyboard.instantiateViewController(withIdentifier: "ChangeStockViewController")
         if let naviController = navigationController {
             naviController.pushViewController(ChangeStockViewController, animated: false)
         } else {
@@ -37,13 +21,13 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction func OrderJuicesbuttonPressed(_ sender: UIButton) {
+    @IBAction private func OrderJuicesbuttonPressed(_ sender: UIButton) {
         if let juiceType = JuiceTypes.init(rawValue: sender.tag) {
             orderJuices(juice: juiceType)
         }
     }
     
-    func orderJuices(juice: JuiceTypes) {
+    private func orderJuices(juice: JuiceTypes) {
         var fruitsStock = Dictionary<FruitsTypes, Int>()
         fruitsStock = orderJuice.makeJuice(juice: juice, fruitStore: fruitStore)
         if fruitsStock.isEmpty {
@@ -64,31 +48,10 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func orderFruitsButton(sender: UIButton) {
-        switch sender {
-        case strawberrybananaButton:
-            OrderJuicesbuttonPressed(sender)
-        case mangoKiwiButton:
-            OrderJuicesbuttonPressed(sender)
-        case strawberryButton:
-            OrderJuicesbuttonPressed(sender)
-        case bananaButton:
-            OrderJuicesbuttonPressed(sender)
-        case pineappleButton:
-            OrderJuicesbuttonPressed(sender)
-        case kiwiButton:
-            OrderJuicesbuttonPressed(sender)
-        case mangoButton:
-            OrderJuicesbuttonPressed(sender)
-        default:
-            JuiceMakerError.unexpectedError
-        }
-    }
-    
     private func showStockChangeAlertMessage() {
         let juiceOutOfStockAlert = UIAlertController(title: AlertMessages.outOfStock, message: "", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: AlertMessages.ok, style: .default) {_ in
-            guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
+            guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController")  else { return }
             self.navigationController?.pushViewController(pushViewController, animated: true)
         }
         let noButton = UIAlertAction(title: AlertMessages.cancel, style: .destructive, handler: nil)
@@ -97,25 +60,19 @@ final class JuiceMakerViewController: UIViewController {
         present(juiceOutOfStockAlert, animated: false, completion: nil)
     }
     
-  private func showJuiceAlertMessage(juiceMenu: JuiceTypes) {
+    private func showJuiceAlertMessage(juiceMenu: JuiceTypes) {
         let okButton = UIAlertAction(title: AlertMessages.ok, style: .default, handler: nil)
         let juiceAlert = UIAlertController(title: "\(juiceMenu) \(AlertMessages.completeOrder)", message: "", preferredStyle: .alert)
         juiceAlert.addAction(okButton)
         present(juiceAlert, animated: false, completion: nil)
     }
     
-   private func initFruits() {
-        for fruit in fruitStore.fruits {
-            if fruit.key == FruitsTypes.strawberry {
-                strawberryCountLabel.text = String(fruit.value)
-            } else if fruit.key == FruitsTypes.banana {
-                bananaCountLabel.text = String(fruit.value)
-            } else if fruit.key == FruitsTypes.kiwi {
-                kiwiCountLabel.text = String(fruit.value)
-            } else if fruit.key == FruitsTypes.mango {
-                mangoCountLabel.text = String(fruit.value)
-            } else if fruit.key == FruitsTypes.pineapple {
-                pineappleCountLabel.text = String(fruit.value)
+    private func initFruits() {
+        let notFoundLabelCount = 0
+        for fruitLabel in fruitsLabelCollection {
+            let fruitLabelTag = fruitLabel.tag
+            if let fruitType = FruitsTypes.init(rawValue: fruitLabelTag) {
+                fruitLabel.text = String(fruitStore.fruits[fruitType] ?? notFoundLabelCount)
             }
         }
     }
