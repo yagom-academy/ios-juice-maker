@@ -7,6 +7,7 @@
 import UIKit
 
 class JuiceMakerController: UIViewController {
+    static let identifier = "StockViewController"
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -26,39 +27,6 @@ class JuiceMakerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateMultipleLabel()
-    }
-    
-    private func updateMultipleLabel(of fruits: [Fruit] = Fruit.allCases) {
-        fruits.forEach { fruit in
-            updateLabel(of: fruit)
-        }
-    }
-    
-    private func updateLabel(of fruit: Fruit) {
-        let fruitLabel = findLabel(of: fruit)
-        let stock = juiceMaker.fruitStock
-        
-        guard let amount = stock[fruit] else {
-            return
-        }
-        fruitLabel.text = "\(amount)"
-    }
-    
-    @IBAction private func didTapStockEditButton(_ sender: UIBarButtonItem) {
-        moveToStockViewController()
-    }
-    
-    private func moveToStockViewController() {
-        let stock = self.juiceMaker.fruitStock
-        
-        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: JuiceMakerController.identifier, creator: { coder in
-            return StockViewController(coder: coder, stock: stock)
-        }) else {
-            return
-        }
-        
-        let navigationController = UINavigationController(rootViewController: stockViewController)
-        self.present(navigationController, animated: true)
     }
     
     @IBAction private func order(_ sender: UIButton) {
@@ -108,6 +76,39 @@ class JuiceMakerController: UIViewController {
         default:
             throw JuiceMakerError.invalidButton
         }
+    }
+    
+    private func updateMultipleLabel(of fruits: [Fruit] = Fruit.allCases) {
+        fruits.forEach { fruit in
+            updateLabel(of: fruit)
+        }
+    }
+    
+    private func updateLabel(of fruit: Fruit) {
+        let fruitLabel = findLabel(of: fruit)
+        let stock = juiceMaker.fruitStock
+        
+        guard let amount = stock[fruit] else {
+            return
+        }
+        fruitLabel.text = "\(amount)"
+    }
+    
+    @IBAction private func didTapStockEditButton(_ sender: UIBarButtonItem) {
+        moveToStockViewController()
+    }
+    
+    private func moveToStockViewController() {
+        let stock = self.juiceMaker.fruitStock
+        
+        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: JuiceMakerController.identifier, creator: { coder in
+            return StockViewController(coder: coder, stock: stock)
+        }) else {
+            return
+        }
+        
+        let navigationController = UINavigationController(rootViewController: stockViewController)
+        self.present(navigationController, animated: true)
     }
     
     private func showCompleteAlert(of juice: Juice) {
@@ -162,8 +163,6 @@ class JuiceMakerController: UIViewController {
         
         present(alertController, animated: true)
     }
-    
-    static let identifier = "StockViewController"
 }
 
 enum AlertMessage{
