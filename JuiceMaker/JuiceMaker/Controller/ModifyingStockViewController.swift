@@ -54,6 +54,21 @@ final class ModifyingStockViewController: UIViewController {
         }
     }
     
+    private func findStockUI(of fruit: Fruit) -> (UILabel, UIStepper) {
+        switch fruit {
+        case .strawberry:
+            return (strawberryAmountLabel, strawberryStepper)
+        case .banana:
+            return (bananaAmountLabel, bananaStepper)
+        case .pineapple:
+            return (pineappleAmountLabel, pineappleStepper)
+        case .kiwi:
+            return (kiwiAmountLabel, kiwiStepper)
+        case .mango:
+            return (mangoAmountLabel, mangoStepper)
+        }
+    }
+    
     private func setDefaultValues() throws {
         for fruit in Fruit.allCases {
             let stepper = find(fruit: fruit)
