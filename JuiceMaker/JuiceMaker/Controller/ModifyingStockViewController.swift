@@ -48,6 +48,18 @@ final class ModifyingStockViewController: UIViewController {
 
     }
     
+    private func configureStockUI() throws {
+        var amountUI: [(UILabel, UIStepper)] = []
+        let fruits = Fruit.allCases
+        
+        fruits
+            .forEach { fruit in
+                amountUI.append(findStockUI(of: fruit))
+            }
+        
+        try match(amountUI: amountUI, with: fruits)
+    }
+    
     private func match(amountUI: [(label: UILabel, stepper: UIStepper)], with fruits: [Fruit]) throws {
         var currentIndex = amountUI.startIndex
         
