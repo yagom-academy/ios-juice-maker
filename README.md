@@ -272,8 +272,44 @@ func checkStock(menu: Menu) throws {
 사례를 찾을수 없었고 불가능 할것 같지는 않지만 지금의 실력으로 구현하기에는 무리가 있어보여 실패함
 
 ## 배운 개념
-1. alert
-2. 여러개의 버튼을 하나의 @IBAction 에 연결해서 조건문으로 버튼을 관리하는 방법
-3. ViewController life cycle
+### 1. alert
+### 2. 여러개의 버튼을 하나의 @IBAction 에 연결해서 조건문으로 버튼을 관리하는 방법
+### 3. ViewController life cycle
+![](https://i.imgur.com/ASSlasn.jpg)
 
 ## PR 후 개선사항
+### tag를 사용해 함수 간략화 및 함수 호출 중복 제거
+
+- 변경 전
+```swift
+    @IBAction func touchToOrderJuice(_ sender: UIButton) {
+        switch sender {
+        case ddalBaJuiceOrderButton:
+            makeJuice(menu: .ddalBaJuice)
+        case mangKiJuiceOrderButton:
+            makeJuice(menu: .mangKiJuice)
+        case strawberryJuiceOrderButton:
+            makeJuice(menu: .strawberryJuice)
+        case bananaJuiceOrderButton:
+            makeJuice(menu: .bananaJuice)
+        case pineappleJuiceOrderButton:
+            makeJuice(menu: .pineappleJuice)
+        case kiwiJuiceOrderButton:
+            makeJuice(menu: .kiwiJuice)
+        case mangoJuiceOrderButton:
+            makeJuice(menu: .mangoJuice)
+        default:
+            presentBasicAlert(title: "경고", message: "알 수 없는 오류.")
+        }
+```
+- 변경 후
+```swift
+    @IBAction func touchToOrderJuice(_ sender: UIButton) {
+        guard let menu = Menu(rawValue: sender.tag) else {
+            presentBasicAlert(title: "경고", message: "알 수 없는 오류.")
+            return
+        }
+        makeJuice(menu: menu)
+        showStock()
+    }
+```
