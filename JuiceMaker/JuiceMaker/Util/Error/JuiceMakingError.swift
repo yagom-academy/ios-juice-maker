@@ -8,7 +8,7 @@ extension JuiceMakingError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .outOfStock:
-            return "과일재고가 부족해서 제조 불가"
+            return "재료가 모자라요. 재고를 수정할까요?"
         }
     }
 }
