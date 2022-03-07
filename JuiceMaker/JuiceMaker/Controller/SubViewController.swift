@@ -22,8 +22,21 @@ class SubViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    @IBAction func strawberryStockchange(_ sender: UIStepper) {
-        strawberryLabel.text = String(format: "%.0f", strawberryStepper.value)
+    @IBAction func matchLabel(with stepper: UIStepper) {
+        switch stepper {
+        case strawberryStepper:
+            strawberryLabel.text = String(format: "%.0f", strawberryStepper.value)
+        case bananaStepper:
+            bananaLabel.text = String(format: "%.0f", bananaStepper.value)
+        case pineappleStepper:
+            pineappleLabel.text = String(format: "%.0f", pineappleStepper.value)
+        case kiwiStepper:
+            kiwiLabel.text = String(format: "%.0f", kiwiStepper.value)
+        case mangoStepper:
+            mangoLabel.text = String(format: "%.0f", mangoStepper.value)
+        default:
+            return 
+        }
     }
     
     @IBAction func closeView(_ sender: UIBarButtonItem) {
