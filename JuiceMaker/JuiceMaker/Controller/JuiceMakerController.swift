@@ -69,12 +69,8 @@ class JuiceMakerController: UIViewController {
             let ingredients = juice.recipe.map{$0.key}
             updateMultipleLabel(of: ingredients)
             showCompleteAlert(of: juice)
-        } catch JuiceMakerError.invalidButton {
-            showOkAlert(title: AlertMessage.pushWrongButton)
-        } catch JuiceMakerError.outOfStock {
-            showStockErrorAlert(title: AlertMessage.outOfStock)
         } catch {
-            showOkAlert(title: AlertMessage.unknownError)
+            showErrorAlert(of: error)
         }
     }
     
@@ -121,13 +117,34 @@ class JuiceMakerController: UIViewController {
         showAlert(alertTitle: alertTitle, okTitle: okTitle)
     }
     
+    private func showErrorAlert(of error: Error) {
+        guard let juiceMakerError = error as? JuiceMakerError else {
+            return
+        }
+        
+        let alertTitle = juiceMakerError.localizedDescription
+        
+        switch juiceMakerError {
+        case .outOfStock:
+            let okTitle = AlertMessage.yes
+            let okAction = moveToStockViewController
+            let noTitle = AlertMessage.no
+            
+            showAlert(alertTitle: alertTitle, okTitle: okTitle, okAction: okAction, noTitle: noTitle)
+        case .invalidButton:
+            let okTitle = AlertMessage.ok
+            
+            showAlert(alertTitle: alertTitle, okTitle: okTitle)
+        }
+    }
+    
     private func showAlert(alertTitle: String,
                    okTitle: String?,
                    okAction: (() -> ())? = nil,
                    noTitle: String? = nil,
                    noAction: (() -> ())? = nil) {
         
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: alertTitle, message: nil, preferredStyle: .alert)
     
         if let okTitle = okTitle {
             let okAction = UIAlertAction(title: okTitle, style: .default) { _ in
