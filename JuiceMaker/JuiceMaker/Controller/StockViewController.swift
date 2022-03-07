@@ -9,7 +9,7 @@ import UIKit
 final class StockViewController: UIViewController {
     
     weak var delegate: StockDeliveryProtocol?
-    var changedStock: [Fruit: Int] = [:]
+    var currentStocks: [Fruit: Int] = [:]
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -31,23 +31,23 @@ final class StockViewController: UIViewController {
     }
     
     private func showCurrentStock() {
-        changedStock.keys.forEach {
+        currentStocks.keys.forEach {
             switch $0 {
             case .strawberry:
-                strawberryStockLabel.text = changedStock[.strawberry]?.description
-                strawberryStepper.value = Double(changedStock[.strawberry] ?? 0)
+                strawberryStockLabel.text = currentStocks[.strawberry]?.description
+                strawberryStepper.value = Double(currentStocks[.strawberry] ?? 0)
             case .banana:
-                bananaStockLabel.text = changedStock[.banana]?.description
-                bananaStepper.value = Double(changedStock[.banana] ?? 0)
+                bananaStockLabel.text = currentStocks[.banana]?.description
+                bananaStepper.value = Double(currentStocks[.banana] ?? 0)
             case .pineapple:
-                pineappleStockLabel.text = changedStock[.pineapple]?.description
-                pineappleStepper.value = Double(changedStock[.pineapple] ?? 0)
+                pineappleStockLabel.text = currentStocks[.pineapple]?.description
+                pineappleStepper.value = Double(currentStocks[.pineapple] ?? 0)
             case .kiwi:
-                kiwiStockLabel.text = changedStock[.kiwi]?.description
-                kiwiStepper.value = Double(changedStock[.kiwi] ?? 0)
+                kiwiStockLabel.text = currentStocks[.kiwi]?.description
+                kiwiStepper.value = Double(currentStocks[.kiwi] ?? 0)
             case .mango:
-                mangoStockLabel.text = changedStock[.mango]?.description
-                mangoStepper.value = Double(changedStock[.mango] ?? 0)
+                mangoStockLabel.text = currentStocks[.mango]?.description
+                mangoStepper.value = Double(currentStocks[.mango] ?? 0)
             }
         }
     }
@@ -55,28 +55,24 @@ final class StockViewController: UIViewController {
     @IBAction func stepperClicked(_ sender: UIStepper) {
         if sender == strawberryStepper {
             strawberryStockLabel.text = Int(sender.value).description
-            changedStock[.strawberry] = Int(sender.value)
-            
+            currentStocks[.strawberry] = Int(sender.value)
         } else if sender == bananaStepper {
             bananaStockLabel.text = Int(sender.value).description
-            changedStock[.banana] = Int(sender.value)
-            
+            currentStocks[.banana] = Int(sender.value)
         } else if sender == pineappleStepper {
             pineappleStockLabel.text = Int(sender.value).description
-            changedStock[.pineapple] = Int(sender.value)
-            
+            currentStocks[.pineapple] = Int(sender.value)
         } else if sender == kiwiStepper {
             kiwiStockLabel.text = Int(sender.value).description
-            changedStock[.kiwi] = Int(sender.value)
-            
-        } else {
+            currentStocks[.kiwi] = Int(sender.value)
+        } else if sender == mangoStepper {
             mangoStockLabel.text = Int(sender.value).description
-            changedStock[.mango] = Int(sender.value)
+            currentStocks[.mango] = Int(sender.value)
         }
     }
     
-    @IBAction func closeButtonClicked(_ sender: Any) {
-        delegate?.updateStock(changedStock)
+    @IBAction func closeButtonClicked(_ sender: UIButton) {
+        delegate?.update(by: currentStocks)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

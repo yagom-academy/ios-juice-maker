@@ -27,18 +27,7 @@ final class OrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeButtonCornerRadius()
         showCurrentStock()
-    }
-    
-    private func changeButtonCornerRadius() {
-        self.strawberryBananaJuiceOrderButton.layer.cornerRadius = 16
-        self.mangoKiwiJuiceOrderButton.layer.cornerRadius = 16
-        self.strawberryJuiceOrderButton.layer.cornerRadius = 16
-        self.bananaJuiceOrderButton.layer.cornerRadius = 16
-        self.pineappleJuiceOrderButton.layer.cornerRadius = 16
-        self.kiwiJuiceOrderButton.layer.cornerRadius = 16
-        self.mangoJuiceOrderButton.layer.cornerRadius = 16
     }
     
     private func showCurrentStock() {
@@ -67,32 +56,25 @@ final class OrderViewController: UIViewController {
             return
         }
         stockViewController.delegate = self
-        stockViewController.changedStock = juiceMaker.fruitStore.inventory
+        stockViewController.currentStocks = juiceMaker.fruitStore.inventory
         self.present(stockViewController, animated: true, completion: nil)
     }
 
     @IBAction func orderButtonsClicked(_ sender: UIButton) {
         if sender == strawberryBananaJuiceOrderButton {
             order(.strawberryBananaJuice)
-        
         } else if sender == mangoKiwiJuiceOrderButton {
             order(.mangoKiwiJuice)
-        
         } else if sender == strawberryJuiceOrderButton {
             order(.strawberryJuice)
-
         } else if sender == bananaJuiceOrderButton {
             order(.bananaJuice)
-
         } else if sender == pineappleJuiceOrderButton {
             order(.pineappleJuice)
-            
         } else if sender == kiwiJuiceOrderButton {
             order(.kiwiJuice)
-            
-        } else {
+        } else if sender == mangoJuiceOrderButton {
             order(.mangoJuice)
-            
         }
         showCurrentStock()
     }
@@ -127,13 +109,13 @@ extension OrderViewController {
     }
 }
 
-protocol StockDeliveryProtocol: NSObjectProtocol {
-    func updateStock(_ changedStock: [Fruit: Int])
+protocol StockDeliveryProtocol: AnyObject {
+    func update(by currentStock: [Fruit: Int])
 }
 
 extension OrderViewController: StockDeliveryProtocol {
-    func updateStock(_ changedStock: [Fruit : Int]) {
-        juiceMaker.fruitStore.inventory = changedStock
+    func update(by currentStock: [Fruit : Int]) {
+        juiceMaker.fruitStore.inventory = currentStock
         showCurrentStock()
     }
 }
