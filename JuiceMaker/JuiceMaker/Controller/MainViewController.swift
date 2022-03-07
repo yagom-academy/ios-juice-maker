@@ -51,7 +51,8 @@ final class MainViewController: UIViewController {
     }
     
     private func moveToManageView() {
-        guard let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController") else { return }
+        guard let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController") as? ManageViewController else { return }
+        manageVC.fruitDic = juiceMaker.store.fruitList
         self.present(manageVC, animated: true, completion: nil)
     }
     
