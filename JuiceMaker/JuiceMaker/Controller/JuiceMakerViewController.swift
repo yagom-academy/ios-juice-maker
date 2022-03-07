@@ -21,7 +21,7 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction private func OrderJuicesbuttonPressed(_ sender: UIButton) {
+    @IBAction private func orderJuicesbuttonPressed(_ sender: UIButton) {
         if let juiceType = JuiceTypes.init(rawValue: sender.tag) {
             orderJuices(juice: juiceType)
         }
