@@ -9,19 +9,19 @@ import UIKit
 class JuiceMakerController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel!
+    @IBOutlet weak private var bananaStockLabel: UILabel!
+    @IBOutlet weak private var pineappleStockLabel: UILabel!
+    @IBOutlet weak private var kiwiStockLabel: UILabel!
+    @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryBananaButton: UIButton!
-    @IBOutlet weak var strawberryButton: UIButton!
-    @IBOutlet weak var bananaButton: UIButton!
-    @IBOutlet weak var pineappleButton: UIButton!
-    @IBOutlet weak var mangoKiwiButton: UIButton!
-    @IBOutlet weak var kiwiButton: UIButton!
-    @IBOutlet weak var mangoButton: UIButton!
+    @IBOutlet weak private var strawberryBananaButton: UIButton!
+    @IBOutlet weak private var strawberryButton: UIButton!
+    @IBOutlet weak private var bananaButton: UIButton!
+    @IBOutlet weak private var pineappleButton: UIButton!
+    @IBOutlet weak private var mangoKiwiButton: UIButton!
+    @IBOutlet weak private var kiwiButton: UIButton!
+    @IBOutlet weak private var mangoButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class JuiceMakerController: UIViewController {
         }
     }
     
-    @IBAction func didTapStockEditButton(_ sender: UIBarButtonItem) {
+    @IBAction private func didTapStockEditButton(_ sender: UIBarButtonItem) {
         moveToStockViewController()
     }
     
@@ -62,7 +62,7 @@ class JuiceMakerController: UIViewController {
         self.present(navigationController, animated: true)
     }
     
-    @IBAction func order(_ sender: UIButton) {
+    @IBAction private func order(_ sender: UIButton) {
         do {
             let juice = try findJuice(of: sender)
             try juiceMaker.make(fruitJuice: juice)
@@ -100,7 +100,7 @@ class JuiceMakerController: UIViewController {
 }
 
 extension JuiceMakerController {
-    func showStockErrorAlert(title: String){
+    private func showStockErrorAlert(title: String){
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.yes, style: .default) { _ in
             self.moveToStockViewController()
@@ -112,7 +112,7 @@ extension JuiceMakerController {
         present(alertController, animated: true)
     }
     
-    func showOkAlert(title: String){
+    private func showOkAlert(title: String){
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertMessage.ok, style: .default)
         
