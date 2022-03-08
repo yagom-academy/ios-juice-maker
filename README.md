@@ -53,5 +53,18 @@
 `showCompleteAlert()` : 쥬스가 완성되었을 때 Alert을 띄우는 함수  
 `findLabel()` : 과일에 맞는 Label을 찾는 함수  
 
+## [Step3]
 
-
+### 구현내용
+---
+`findStepper()` : fruit에 맞는 stepper를 찾는 함수  
+`findLabel()` : fruit에 맞는 label을 찾는 함수  
+`initalizeData()` : 두번째 VC의 데이터들을 초기화 해주기 위한 함수  
+`initalizeViewController()` : 두번째 VC의 속성들을 초기화 해주기 위한 함수  
+`dismissVC()` : 두번째 VC를 dismiss해주는 함수  
+`didTapStockEditStepper()` : Stepper가 눌릴때마다 호출되는 함수  
+`findFruit()` : stepper에 맞는 과일을 찾는 함수  
+`UpdateDeglate protocol` : StockViewController의 값을 JuiceMakerController로 업데이트 시켜주는 프로토콜  
+`update()` : 두 번째 view를 업데이트 해서 첫 번째 view로 업데이트 해주는 함수  
+`makeButtonTiltleDynamic()` : 주문 버튼의 title을 dynamic size가 가능하도록 해주는 함수  
+`changeStock()` : 변경된 값만큼, 재고를 업데이트 해주는 함수  
