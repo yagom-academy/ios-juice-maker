@@ -4,6 +4,9 @@
 import UIKit
 
 final class FruitStockEditViewController: UIViewController {
+    @IBOutlet private var fruitStockLabels: [UILabel]!
+    var fruitsStock = [String]()
+    
     private let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .blue
@@ -24,7 +27,14 @@ final class FruitStockEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitsCountLabel()
         setConstraintUI()
+    }
+    
+    private func updateFruitsCountLabel() {
+        for index in fruitsStock.indices {
+            fruitStockLabels[index].text = fruitsStock[index]
+        }
     }
     
     private func setConstraintUI() {
@@ -38,8 +48,7 @@ final class FruitStockEditViewController: UIViewController {
         view.addSubview(dismissButton)
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         dismissButton.centerYAnchor.constraint(equalTo: editStockTitleLabel.centerYAnchor).isActive = true
-        dismissButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                constant: view.safeAreaInsets.right).isActive = true
+        dismissButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
         dismissButton.topAnchor.constraint(equalTo: editStockTitleLabel.topAnchor).isActive = true
         dismissButton.heightAnchor.constraint(equalTo: editStockTitleLabel.heightAnchor).isActive = true
     }

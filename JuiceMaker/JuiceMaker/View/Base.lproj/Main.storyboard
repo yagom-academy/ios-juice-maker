@@ -259,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="92"/>
+            <point key="canvasLocation" x="873" y="92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
@@ -406,10 +406,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="EH9-79-T00"/>
+                        <outletCollection property="fruitStockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="dpA-Md-bc4"/>
+                        <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="U0V-kn-ThC"/>
+                        <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="l1w-2Y-Flu"/>
+                        <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="4xr-ML-tyY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1490.7582938388625" y="90.769230769230759"/>
+            <point key="canvasLocation" x="1582" y="91"/>
         </scene>
     </scenes>
     <resources>

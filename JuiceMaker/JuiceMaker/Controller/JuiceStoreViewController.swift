@@ -13,7 +13,7 @@ final class JuiceStoreViewController: UIViewController {
     @IBOutlet private weak var pineappleJuiceButton: UIButton!
     @IBOutlet private weak var kiwiJuiceButton: UIButton!
     @IBOutlet private weak var mangoJuiceButton: UIButton!
-            
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockLabels()
@@ -37,7 +37,11 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     @IBAction private func moveEditFruitStockViewController(_ sender: Any) {
-        guard let fruitStockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: FruitStockEditViewController.identifier) else { return }
+        guard let fruitStockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: FruitStockEditViewController.identifier) as? FruitStockEditViewController else { return }
+        fruitStockLabels.forEach {
+            guard let label = $0.text else { return }
+            fruitStockEditViewController.fruitsStock.append(label)
+        }
         present(fruitStockEditViewController, animated: true, completion: nil)
     }
     
