@@ -3,6 +3,7 @@ import UIKit
 class StockInventoryViewController: UIViewController {
     
     public var fruitsStock: [FruitType: Int] = [:]
+    let minimumNumberOfStock: Double = 0
     var delegate: dataDelegate?
     
     @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
@@ -33,36 +34,31 @@ class StockInventoryViewController: UIViewController {
         super.viewDidLoad()
         
         setupFruitStockLabel()
-        
-        strawberryStepper.autorepeat = true
-        strawberryStepper.minimumValue = 0
-        strawberryStepper.maximumValue = 20
-        
-        bananaStepper.autorepeat = true
-        bananaStepper.minimumValue = 0
-        bananaStepper.maximumValue = 20
-        
-        pineappleStepper.autorepeat = true
-        pineappleStepper.minimumValue = 0
-        pineappleStepper.maximumValue = 20
-        
-        kiwiStepper.autorepeat = true
-        kiwiStepper.minimumValue = 0
-        kiwiStepper.maximumValue = 20
-        
-        mangoStepper.autorepeat = true
-        mangoStepper.minimumValue = 0
-        mangoStepper.maximumValue = 20
+        setupFruitStockStepper()
     }
     
     func updatedFruitsStock() -> [FruitType: Int] {
         var fruits: [FruitType: Int] = [:]
-        fruits.updateValue(Int(strawberryStepper.value), forKey: FruitType.strawberry)
-        fruits.updateValue(Int(bananaStepper.value), forKey: FruitType.banana)
-        fruits.updateValue(Int(pineappleStepper.value), forKey: FruitType.pineapple)
-        fruits.updateValue(Int(kiwiStepper.value), forKey: FruitType.kiwi)
-        fruits.updateValue(Int(mangoStepper.value), forKey: FruitType.mango)
+        if isStockChanged(fruit: FruitType.strawberry, currentStock: Int(strawberryStepper.value)) {
+            fruits.updateValue(Int(strawberryStepper.value), forKey: FruitType.strawberry)
+        }
+        if isStockChanged(fruit: FruitType.banana, currentStock: Int(bananaStepper.value)) {
+            fruits.updateValue(Int(bananaStepper.value), forKey: FruitType.banana)
+        }
+        if isStockChanged(fruit: FruitType.pineapple, currentStock: Int(pineappleStepper.value)) {
+            fruits.updateValue(Int(pineappleStepper.value), forKey: FruitType.pineapple)
+        }
+        if isStockChanged(fruit: FruitType.kiwi, currentStock: Int(kiwiStepper.value)) {
+            fruits.updateValue(Int(kiwiStepper.value), forKey: FruitType.kiwi)
+        }
+        if isStockChanged(fruit: FruitType.mango, currentStock: Int(mangoStepper.value)) {
+            fruits.updateValue(Int(mangoStepper.value), forKey: FruitType.mango)
+        }
         return fruits
+    }
+    
+    func isStockChanged(fruit: FruitType, currentStock: Int) -> Bool {
+        return currentStock != fruitsStock[fruit]
     }
     
     private func setupFruitStockLabel() {
@@ -71,6 +67,13 @@ class StockInventoryViewController: UIViewController {
         stockOfPineappleLabel.text = String(fruitsStock[FruitType.pineapple] ?? 0)
         stockOfKiwiLabel.text = String(fruitsStock[FruitType.kiwi] ?? 0)
         stockOfMangoLabel.text = String(fruitsStock[FruitType.mango] ?? 0)
+    }
+    
+    func setupFruitStockStepper() {
+        stockSteppers.forEach({
+            $0.autorepeat = true
+            $0.minimumValue = minimumNumberOfStock
+        })
         
         strawberryStepper.value = Double(fruitsStock[FruitType.strawberry] ?? 0)
         bananaStepper.value = Double(fruitsStock[FruitType.banana] ?? 0)
@@ -97,7 +100,7 @@ class StockInventoryViewController: UIViewController {
         case mangoStepper:
             stockOfMangoLabel.text = Int(sender.value).description
         default:
-            break
+            return
         }
     }
     
