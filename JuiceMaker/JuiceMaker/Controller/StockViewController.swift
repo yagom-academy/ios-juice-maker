@@ -34,6 +34,7 @@ class StockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initalizeViewController()
+        initalizeData()
     }
     
     private func initalizeViewController() {
@@ -41,6 +42,16 @@ class StockViewController: UIViewController {
         
         let closeButton = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    private func initalizeData() {
+        for (fruit, amount) in stock {
+            let stepper = findStepper(of: fruit)
+            let label = findLabel(of: fruit)
+            
+            stepper.value = Double(amount)
+            label.text = "\(amount)"
+        }
     }
     
     private func findStepper(of fruit: Fruit) -> UIStepper {
