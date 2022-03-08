@@ -2,7 +2,7 @@ import UIKit
 
 class StockInventoryViewController: UIViewController {
     
-    public var data: String = ""
+    public var data: [FruitType: String] = [:]
     var delegate: dataDelegate?
     
     @IBOutlet private weak var stockOfStrawberryLabel: UILabel!

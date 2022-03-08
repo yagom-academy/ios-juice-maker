@@ -433,8 +433,6 @@
                         <outlet property="stockOfPineappleLabel" destination="MpT-VW-hCb" id="NcC-6R-0Xd"/>
                         <outlet property="stockOfStrawberryLabel" destination="0yV-kn-zaT" id="djE-CV-ZDk"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="9O2-Bc-szr"/>
-                        <outletCollection property="stepperCollection" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="X65-7Y-tVM"/>
-                        <outletCollection property="stockLabelCollection" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="lbw-hk-mOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
