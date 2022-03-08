@@ -73,7 +73,7 @@ class MainViewController: UIViewController, Updateable {
     
     private func showFailureAlert() {
         let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
-        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveStockChangeView() })
+        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveManagingStockView() })
         let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive, handler: nil )
         alertCountrol.addAction(moveAction)
         alertCountrol.addAction(cancelAction)
@@ -81,14 +81,18 @@ class MainViewController: UIViewController, Updateable {
     }
     
     @IBAction func clickStockChangeButton(_ sender: UIButton) {
-        moveStockChangeView()
+        moveManagingStockView()
     }
     
-    private func moveStockChangeView() {
-        guard let ManagingStockViewNavigation = self.storyboard?.instantiateViewController(withIdentifier: "ManagingStockViewNavigation") as? UINavigationController else { return }
-        guard let stockChangeView = ManagingStockViewNavigation.topViewController as? ManagingStockViewController else { return }
+    private func setUpDelegate(_ stockChangeView: ManagingStockViewController) {
         stockChangeView.stock = juiceMaker.fruitStore.stock
         stockChangeView.delegate = self
+    }
+    
+    private func moveManagingStockView() {
+        guard let ManagingStockViewNavigation = self.storyboard?.instantiateViewController(withIdentifier: "ManagingStockViewNavigation") as? UINavigationController else { return }
+        guard let ManagingStockView = ManagingStockViewNavigation.topViewController as? ManagingStockViewController else { return }
+        setUpDelegate(ManagingStockView)
         self.present(ManagingStockViewNavigation, animated: true, completion: nil)
     }
     
