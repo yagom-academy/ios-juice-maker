@@ -58,23 +58,23 @@ final class ModifyingStockViewController: UIViewController {
     }
     
     private func configureStockUI() throws {
-        var amountUI: [(UILabel, UIStepper)] = []
+        var stockUIComponent: [(UILabel, UIStepper)] = []
         let fruits = Fruit.allCases
         
         fruits
             .forEach { fruit in
-                amountUI.append(findStockUI(of: fruit))
+                stockUIComponent.append(findStockUIComponent(of: fruit))
             }
         
-        try match(amountUI: amountUI, with: fruits)
+        try match(stockUIComponent: stockUIComponent, with: fruits)
     }
     
-    private func match(amountUI: [(label: UILabel, stepper: UIStepper)], with fruits: [Fruit]) throws {
-        var currentIndex = amountUI.startIndex
+    private func match(stockUIComponent: [(label: UILabel, stepper: UIStepper)], with fruits: [Fruit]) throws {
+        var currentIndex = stockUIComponent.startIndex
         
         for fruit in fruits {
-            let currentLabel = amountUI[currentIndex].label
-            let currentStepper = amountUI[currentIndex].stepper
+            let currentLabel = stockUIComponent[currentIndex].label
+            let currentStepper = stockUIComponent[currentIndex].stepper
             
             guard let fruitAmount = fruitStore?.stocks[fruit] else {
                 throw JuiceMakerError.notFoundFruit
@@ -82,11 +82,11 @@ final class ModifyingStockViewController: UIViewController {
             
             currentLabel.text = String(fruitAmount)
             currentStepper.value = Double(fruitAmount)
-            currentIndex = amountUI.index(after: currentIndex)
+            currentIndex = stockUIComponent.index(after: currentIndex)
         }
     }
     
-    private func findStockUI(of fruit: Fruit) -> (UILabel, UIStepper) {
+    private func findStockUIComponent(of fruit: Fruit) -> (UILabel, UIStepper) {
         switch fruit {
         case .strawberry:
             return (strawberryAmountLabel, strawberryStepper)
