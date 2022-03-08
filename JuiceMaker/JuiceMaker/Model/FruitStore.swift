@@ -26,5 +26,9 @@ class FruitStore {
         guard let currentStock = fruits[fruit] else { return FruitStore.minimumNumberOfStock }
         return currentStock
     }
+    
+    func updateStock(fruit: FruitType, amount: Int) {
+        fruits.updateValue(amount, forKey: fruit)
+    }
 }
 
