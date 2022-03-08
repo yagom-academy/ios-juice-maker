@@ -29,29 +29,22 @@ final class OrderViewController: UIViewController {
         super.viewDidLoad()
         showCurrentStock()
     }
-
+    
     private func showCurrentStock() {
-        juiceMaker.fruitStore.inventory.keys.forEach {
-            switch $0 {
+        juiceMaker.fruitStore.inventory.keys.forEach { fruit in
+            switch fruit {
             case .strawberry:
-                strawberryStockLabel.text = convertFruitStockToString(.strawberry)
+                strawberryStockLabel.text = juiceMaker.fruitStore.inventory[.strawberry]?.description
             case .banana:
-                bananaStockLabel.text = convertFruitStockToString(.banana)
+                bananaStockLabel.text = juiceMaker.fruitStore.inventory[.banana]?.description
             case .pineapple:
-                pineappleStockLabel.text = convertFruitStockToString(.pineapple)
+                pineappleStockLabel.text = juiceMaker.fruitStore.inventory[.pineapple]?.description
             case .kiwi:
-                kiwiStockLabel.text = convertFruitStockToString(.kiwi)
+                kiwiStockLabel.text = juiceMaker.fruitStore.inventory[.kiwi]?.description
             case .mango:
-                mangoStockLabel.text = convertFruitStockToString(.mango)
+                mangoStockLabel.text = juiceMaker.fruitStore.inventory[.mango]?.description
             }
         }
-    }
-    
-    private func convertFruitStockToString(_ fruit: Fruit) -> String? {
-        guard let currentStock = juiceMaker.fruitStore.inventory[fruit] else {
-            return nil
-        }
-        return String(currentStock)
     }
     
     @IBAction func moveToStockViewButtonClicked(_ sender: UIBarButtonItem) {
@@ -62,29 +55,26 @@ final class OrderViewController: UIViewController {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") as? StockViewController else {
             return
         }
-        stockViewController.modalTransitionStyle = .coverVertical
-        stockViewController.modalPresentationStyle = .automatic
+        stockViewController.delegate = self
+        stockViewController.currentStocks = juiceMaker.fruitStore.inventory
         self.present(stockViewController, animated: true, completion: nil)
     }
 
     @IBAction func orderButtonsClicked(_ sender: UIButton) {
-        switch sender {
-        case strawberryBananaJuiceOrderButton:
+        if sender == strawberryBananaJuiceOrderButton {
             order(.strawberryBananaJuice)
-        case mangoKiwiJuiceOrderButton:
+        } else if sender == mangoKiwiJuiceOrderButton {
             order(.mangoKiwiJuice)
-        case strawberryJuiceOrderButton:
+        } else if sender == strawberryJuiceOrderButton {
             order(.strawberryJuice)
-        case bananaJuiceOrderButton:
+        } else if sender == bananaJuiceOrderButton {
             order(.bananaJuice)
-        case pineappleJuiceOrderButton:
+        } else if sender == pineappleJuiceOrderButton {
             order(.pineappleJuice)
-        case kiwiJuiceOrderButton:
+        } else if sender == kiwiJuiceOrderButton {
             order(.kiwiJuice)
-        case mangoJuiceOrderButton:
+        } else if sender == mangoJuiceOrderButton {
             order(.mangoJuice)
-        default:
-            alertUnknownError()
         }
         showCurrentStock()
     }
@@ -95,9 +85,7 @@ final class OrderViewController: UIViewController {
             alertOrderCompletion(juice)
         } catch OrderError.outOfStock {
             alertOutOfStock()
-        } catch {
-            alertUnknownError()
-        }
+        } catch { }
     }
 }
 
@@ -119,11 +107,15 @@ extension OrderViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
-    
-    private func alertUnknownError() {
-        let alert = UIAlertController(title: Alert.unknownError.title, message: Alert.unknownError.message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
-        alert.addAction(defaultAction)
-        present(alert, animated: true, completion: nil)
+}
+
+protocol StockDeliveryProtocol: AnyObject {
+    func update(by currentStock: [Fruit: Int])
+}
+
+extension OrderViewController: StockDeliveryProtocol {
+    func update(by currentStock: [Fruit : Int]) {
+        juiceMaker.fruitStore.inventory = currentStock
+        showCurrentStock()
     }
 }

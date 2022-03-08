@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    var fruitStore = FruitStore.shared
+    var fruitStore = FruitStore()
 
     func makeJuice(by recipe: [Fruit: Int]) throws {
         for (fruit, requiredQuantity) in recipe {
