@@ -35,7 +35,7 @@ final class JuiceMakerViewController: UIViewController {
     
     @IBAction func touchUpModifyingStockButton(_ sender: Any) {
         presentModifyingStockViewController()
-        }
+    }
     
     static func instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
@@ -60,7 +60,7 @@ final class JuiceMakerViewController: UIViewController {
         super.viewWillDisappear(animated)
         unSubscribe()
     }
-
+    
     private func configureStockLabels() throws {
         var amountLabels: [UILabel] = []
         let fruits = Fruit.allCases
@@ -126,7 +126,7 @@ final class JuiceMakerViewController: UIViewController {
     
     private func showSuccessOrder(of menu: JuiceMaker.Menu) {
         let message = menu.rawValue + "쥬스 나왔습니다! 맛있게 드세요!"
-
+        
         AlertBuilder(viewController: self)
             .setTitle(message)
             .setConfirmTitle("확인")
@@ -138,7 +138,7 @@ final class JuiceMakerViewController: UIViewController {
               let errorDescription = error.errorDescription else {
                   return
               }
-
+        
         AlertBuilder(viewController: self)
             .setTitle(errorDescription)
             .setConfirmTitle("확인")
@@ -148,9 +148,11 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func presentModifyingStockViewController() {
-        let modifyingStockViewController: ModifyingStockViewController = CompositionContainer.shared.resolve()
-        
-        self.present(modifyingStockViewController, animated: true)
+        if let fruitStore = juiceMaker?.fruitStore {
+            let modifyingStockViewController = ModifyingStockViewController.instance(fruitStore: fruitStore)
+            
+            self.present(modifyingStockViewController, animated: true)
+        }
     }
 }
 

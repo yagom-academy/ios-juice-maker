@@ -37,7 +37,7 @@ final class ModifyingStockViewController: UIViewController {
     
     static func instance(fruitStore: FruitStore) -> ModifyingStockViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
-        guard let viewController = storyborad.instantiateViewController(withIdentifier: String(describing: self)) as? ModifyingStockViewController else {
+        guard let viewController = storyborad.instantiateViewController(withIdentifier: identifier) as? ModifyingStockViewController else {
             return ModifyingStockViewController()
         }
         viewController.fruitStore = fruitStore
@@ -128,7 +128,7 @@ final class ModifyingStockViewController: UIViewController {
               let errorDescription = error.errorDescription else {
                   return
               }
-
+        
         AlertBuilder(viewController: self)
             .setTitle(errorDescription)
             .setConfirmTitle("확인")
