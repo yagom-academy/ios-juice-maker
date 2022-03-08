@@ -11,7 +11,7 @@ struct JuiceMaker {
     func getFruitsStock() -> [Int] {
         var fruitStockArray: [Int] = []
         
-        fruitStockArray = Fruit.allCases.compactMap { fruitStore.inventory[ $0 ] }
+        fruitStockArray = Fruit.allCases.compactMap { fruitStore.inventory[$0] }
         
         return fruitStockArray
     }

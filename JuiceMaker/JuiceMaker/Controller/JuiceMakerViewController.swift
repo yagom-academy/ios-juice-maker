@@ -14,8 +14,9 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction private func clickMakeJuiceButton(_ sender: UIButton) {
-        var order: Juice
-        order = checkClickedJuice(Button: sender)
+        guard let order = checkClickedJuice(button: sender) else {
+            return
+        }
     
         do {
             try juiceMaker.makeJuice(by: order)
@@ -52,8 +53,8 @@ final class JuiceMakerViewController: UIViewController {
         present(failAlert, animated: true)
     }
     
-    private func checkClickedJuice(Button: UIButton) -> Juice {
-        switch Button.tag {
+    private func checkClickedJuice(button: UIButton) -> Juice? {
+        switch button.tag {
         case 1:
             return .strawberryBananaJuice
         case 2:
@@ -69,7 +70,7 @@ final class JuiceMakerViewController: UIViewController {
         case 7:
             return .mangoJuice
         default:
-            return .strawberryJuice
+            return nil
         }
     }
 }
