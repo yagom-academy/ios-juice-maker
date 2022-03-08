@@ -123,7 +123,7 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
         self.present(stockInventoryViewController, animated: true)
     }
     
-    func fruitStockStatus() -> [FruitType: Int] {
+    private func fruitStockStatus() -> [FruitType: Int] {
         var stockStatus: [FruitType: Int] = [:]
         stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry), forKey: FruitType.strawberry)
         stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana), forKey: FruitType.banana)
@@ -140,4 +140,3 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
         })
     }
 }
-

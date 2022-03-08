@@ -26,34 +26,34 @@ class StockInventoryViewController: UIViewController {
     }
     
     private func setupFruitStockLabel() {
-        stockOfStrawberryLabel.text = String(fruitStockStatus[FruitType.strawberry] ?? 0)
-        stockOfBananaLabel.text = String(fruitStockStatus[FruitType.banana] ?? 0)
-        stockOfPineappleLabel.text = String(fruitStockStatus[FruitType.pineapple] ?? 0)
-        stockOfKiwiLabel.text = String(fruitStockStatus[FruitType.kiwi] ?? 0)
-        stockOfMangoLabel.text = String(fruitStockStatus[FruitType.mango] ?? 0)
+        stockOfStrawberryLabel.text = String(fruitStockStatus[FruitType.strawberry] ?? Int.zero)
+        stockOfBananaLabel.text = String(fruitStockStatus[FruitType.banana] ?? Int.zero)
+        stockOfPineappleLabel.text = String(fruitStockStatus[FruitType.pineapple] ?? Int.zero)
+        stockOfKiwiLabel.text = String(fruitStockStatus[FruitType.kiwi] ?? Int.zero)
+        stockOfMangoLabel.text = String(fruitStockStatus[FruitType.mango] ?? Int.zero)
     }
     
-    func setupFruitStockStepper() {
+    private func setupFruitStockStepper() {
         setupFruitStockStepperOption()
         setupFruitStockStepperLabel()
     }
     
-    func setupFruitStockStepperOption() {
+    private func setupFruitStockStepperOption() {
         stockSteppers.forEach({
             $0.autorepeat = true
             $0.minimumValue = minimumNumberOfStock
         })
     }
     
-    func setupFruitStockStepperLabel() {
-        strawberryStepper.value = Double(fruitStockStatus[FruitType.strawberry] ?? 0)
-        bananaStepper.value = Double(fruitStockStatus[FruitType.banana] ?? 0)
-        pineappleStepper.value = Double(fruitStockStatus[FruitType.pineapple] ?? 0)
-        kiwiStepper.value = Double(fruitStockStatus[FruitType.kiwi] ?? 0)
-        mangoStepper.value = Double(fruitStockStatus[FruitType.mango] ?? 0)
+    private func setupFruitStockStepperLabel() {
+        strawberryStepper.value = Double(fruitStockStatus[FruitType.strawberry] ?? Int.zero)
+        bananaStepper.value = Double(fruitStockStatus[FruitType.banana] ?? Int.zero)
+        pineappleStepper.value = Double(fruitStockStatus[FruitType.pineapple] ?? Int.zero)
+        kiwiStepper.value = Double(fruitStockStatus[FruitType.kiwi] ?? Int.zero)
+        mangoStepper.value = Double(fruitStockStatus[FruitType.mango] ?? Int.zero)
     }
     
-    @IBAction func stepperValueChangedAction(_ sender: UIStepper) {
+    @IBAction private func stepperValueChangedAction(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
             stockOfStrawberryLabel.text = Int(sender.value).description
@@ -70,7 +70,7 @@ class StockInventoryViewController: UIViewController {
         }
     }
     
-    func changedFruitsStock() -> [FruitType: Int] {
+    private func changedFruitsStock() -> [FruitType: Int] {
         var fruits: [FruitType: Int] = [:]
         if isStockChanged(fruit: FruitType.strawberry, currentStock: Int(strawberryStepper.value)) {
             fruits.updateValue(Int(strawberryStepper.value), forKey: FruitType.strawberry)
@@ -90,11 +90,11 @@ class StockInventoryViewController: UIViewController {
         return fruits
     }
     
-    func isStockChanged(fruit: FruitType, currentStock: Int) -> Bool {
+    private func isStockChanged(fruit: FruitType, currentStock: Int) -> Bool {
         return currentStock != fruitStockStatus[fruit]
     }
     
-    @IBAction func closeManageStockView(_ sender: UIBarButtonItem) {
+    @IBAction private func closeManageStockView(_ sender: UIBarButtonItem) {
         self.presentingViewController?.dismiss(animated: true)
     }
     
