@@ -3,6 +3,11 @@
 
 import UIKit
 
+
+protocol FruitStockDelegate: AnyObject {
+    func sendData(_ fruitStockLabels: [UILabel]!)
+}
+
 final class FruitStockEditViewController: UIViewController {
     @IBOutlet private var fruitStockLabels: [UILabel]!
     var fruitsStock = [String]()
@@ -24,6 +29,7 @@ final class FruitStockEditViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+    var delegate: FruitStockDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +64,7 @@ final class FruitStockEditViewController: UIViewController {
     }
     
     @objc private func tapDismissButton() {
+        delegate?.sendData(fruitStockLabels)
         dismiss(animated: true, completion: nil)
     }
 }

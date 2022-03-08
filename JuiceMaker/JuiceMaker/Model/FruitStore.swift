@@ -2,6 +2,7 @@
 // Created by Quokka, Donnie
 
 import Foundation
+import UIKit
 
 class FruitStore {
     enum Fruit: Int, CaseIterable {

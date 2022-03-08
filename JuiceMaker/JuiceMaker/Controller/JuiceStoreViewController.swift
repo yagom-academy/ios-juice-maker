@@ -3,9 +3,9 @@
 
 import UIKit
 
-final class JuiceStoreViewController: UIViewController {
+final class JuiceStoreViewController: UIViewController, FruitStockDelegate {
     private let juiceMaker = JuiceMaker()
-    @IBOutlet private var fruitStockLabels: [UILabel]!
+    @IBOutlet var fruitStockLabels: [UILabel]!
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     @IBOutlet private weak var strawberryJuiceButton: UIButton!
@@ -42,6 +42,7 @@ final class JuiceStoreViewController: UIViewController {
             guard let label = $0.text else { return }
             fruitStockEditViewController.fruitsStock.append(label)
         }
+        fruitStockEditViewController.delegate = self
         present(fruitStockEditViewController, animated: true, completion: nil)
     }
     
@@ -64,12 +65,17 @@ final class JuiceStoreViewController: UIViewController {
                                      style: .default) { action in
             self.moveEditFruitStockViewController(action)
         }
-                                     
         let noAction = UIAlertAction(title: AlertText.no,
                                      style: .destructive,
                                      handler: nil)
         failureAlert.addAction(okAction)
         failureAlert.addAction(noAction)
         present(failureAlert, animated: true, completion: nil)
+    }
+    
+    func sendData(_ fruitStockLabels: [UILabel]!) {
+        for index in fruitStockLabels.indices {
+            self.fruitStockLabels[index].text = fruitStockLabels[index].text
+        }
     }
 }
