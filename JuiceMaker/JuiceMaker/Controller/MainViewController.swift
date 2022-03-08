@@ -27,7 +27,7 @@ class MainViewController: UIViewController, Updateable {
     @IBAction func orderJuice(with button: UIButton) {
         guard let juice = matchJuice(with: button) else { return }
         if juiceMaker.canMake(of: juice) {
-            showSuccessAlert(with: String(describing: juice))
+            showSuccessAlert(with: "\(juice)")
             updateStockLable()
             
         } else {
