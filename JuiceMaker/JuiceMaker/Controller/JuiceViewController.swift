@@ -8,7 +8,7 @@ import UIKit
 
 final class JuiceViewController: UIViewController {
   
-  @IBOutlet var countFruitLabels: [UILabel]!
+  @IBOutlet var fruitCountLabels: [UILabel]!
 
   private let juiceMaker = JuiceMaker()
   
@@ -54,7 +54,7 @@ private extension JuiceViewController {
   }
   
   func updateLabel() {
-    for (label, fruit) in zip(countFruitLabels, Fruit.allCases) {
+    for (label, fruit) in zip(fruitCountLabels, Fruit.allCases) {
       if let fruitAmount = self.juiceMaker.fruitStore.stock[fruit] {
         label.text = String(fruitAmount)
       } else {
