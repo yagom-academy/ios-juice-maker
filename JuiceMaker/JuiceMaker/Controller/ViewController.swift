@@ -87,12 +87,12 @@ class ViewController: UIViewController, Updateable {
     private func moveStockChangeView() {
         guard let stockChangeNavigation = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeNavigation") as? UINavigationController else { return }
         guard let stockChangeView = stockChangeNavigation.topViewController as? SubViewController else { return }
-        stockChangeView.stockNumbers = juiceMaker.fruitStore.stock
+        stockChangeView.stock = juiceMaker.fruitStore.stock
         stockChangeView.delegate = self
         self.present(stockChangeNavigation, animated: true, completion: nil)
     }
     
-    func update(stock: [Fruit: Int]) {
+    func update(for stock: [Fruit: Int]) {
         juiceMaker.fruitStore.updateStock(to: stock)
         updateStockLable()
     }

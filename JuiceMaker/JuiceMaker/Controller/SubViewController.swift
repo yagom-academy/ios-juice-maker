@@ -8,11 +8,11 @@
 import UIKit
 
 protocol Updateable: AnyObject {
-    func update(stock: [Fruit: Int])
+    func update(for stock: [Fruit: Int])
 }
 
 class SubViewController: UIViewController {
-    var stockNumbers: [Fruit: Int]?
+    var stock: [Fruit: Int]?
     weak var delegate: Updateable?
 
     @IBOutlet weak var strawberryLabel: UILabel!
@@ -31,19 +31,19 @@ class SubViewController: UIViewController {
         switch stepper {
         case strawberryStepper:
             strawberryLabel.text = String(format: "%.0f", strawberryStepper.value)
-            stockNumbers?[.strawberry] = Int(strawberryStepper.value)
+            stock?[.strawberry] = Int(strawberryStepper.value)
         case bananaStepper:
             bananaLabel.text = String(format: "%.0f", bananaStepper.value)
-            stockNumbers?[.banana] = Int(bananaStepper.value)
+            stock?[.banana] = Int(bananaStepper.value)
         case pineappleStepper:
             pineappleLabel.text = String(format: "%.0f", pineappleStepper.value)
-            stockNumbers?[.pineapple] = Int(pineappleStepper.value)
+            stock?[.pineapple] = Int(pineappleStepper.value)
         case kiwiStepper:
             kiwiLabel.text = String(format: "%.0f", kiwiStepper.value)
-            stockNumbers?[.kiwi] = Int(kiwiStepper.value)
+            stock?[.kiwi] = Int(kiwiStepper.value)
         case mangoStepper:
             mangoLabel.text = String(format: "%.0f", mangoStepper.value)
-            stockNumbers?[.mango] = Int(mangoStepper.value)
+            stock?[.mango] = Int(mangoStepper.value)
         default:
             return 
         }
@@ -54,43 +54,41 @@ class SubViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeViewValue()
 
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateLabel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let stock = stockNumbers else { return }
-        delegate?.update(stock: stock)
+        guard let stock = stock else { return }
+        delegate?.update(for: stock)
     }
     
-    func updateLabel() {
-        guard let stockNumbers = stockNumbers else { return }
-        for (fruit, count) in stockNumbers {
-            switch fruit {
-            case.strawberry:
-                strawberryLabel.text = String(count)
-                strawberryStepper.value = Double(count)
-            case.banana:
-                bananaLabel.text = String(count)
-                bananaStepper.value = Double(count)
-            case.pineapple:
-                pineappleLabel.text = String(count)
-                pineappleStepper.value = Double(count)
-            case.kiwi:
-                kiwiLabel.text = String(count)
-                kiwiStepper.value = Double(count)
-            case.mango:
-                mangoLabel.text = String(count)
-                mangoStepper.value = Double(count)
-                
-            }
+    func initializeViewValue() {
+        guard let stock = stock else { return }
+        for (fruit, amount) in stock {
+            setUpViewValue(fruit, amount)
         }
     }
     
-
-
+    func setUpViewValue(_ fruit: Fruit, _ amount: Int) {
+        switch fruit {
+        case.strawberry:
+            strawberryLabel.text = String(amount)
+            strawberryStepper.value = Double(amount)
+        case.banana:
+            bananaLabel.text = String(amount)
+            bananaStepper.value = Double(amount)
+        case.pineapple:
+            pineappleLabel.text = String(amount)
+            pineappleStepper.value = Double(amount)
+        case.kiwi:
+            kiwiLabel.text = String(amount)
+            kiwiStepper.value = Double(amount)
+        case.mango:
+            mangoLabel.text = String(amount)
+            mangoStepper.value = Double(amount)
+            
+        }
+    }
 }
