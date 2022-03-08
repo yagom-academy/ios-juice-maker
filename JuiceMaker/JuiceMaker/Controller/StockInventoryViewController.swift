@@ -2,7 +2,7 @@ import UIKit
 
 class StockInventoryViewController: UIViewController {
     
-    public var data: [FruitType: String] = [:]
+    public var fruitsStock: [FruitType: Int] = [:]
     var delegate: dataDelegate?
     
     @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
@@ -19,9 +19,19 @@ class StockInventoryViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     
+    
+    @IBOutlet var stockLabels: [UILabel]!
+    
+    
+    @IBOutlet var stockSteppers: [UIStepper]!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("data: \(data)")
+        
         setupFruitStockLabel()
         
         strawberryStepper.autorepeat = true
@@ -46,17 +56,17 @@ class StockInventoryViewController: UIViewController {
     }
     
     private func setupFruitStockLabel() {
-        stockOfStrawberryLabel.text = "10"
-        stockOfBananaLabel.text = "10"
-        stockOfPineappleLabel.text = "10"
-        stockOfKiwiLabel.text = "10"
-        stockOfMangoLabel.text = "10"
+        stockOfStrawberryLabel.text = String(fruitsStock[FruitType.strawberry] ?? 0)
+        stockOfBananaLabel.text = String(fruitsStock[FruitType.banana] ?? 0)
+        stockOfPineappleLabel.text = String(fruitsStock[FruitType.pineapple] ?? 0)
+        stockOfKiwiLabel.text = String(fruitsStock[FruitType.kiwi] ?? 0)
+        stockOfMangoLabel.text = String(fruitsStock[FruitType.mango] ?? 0)
         
-        strawberryStepper.value = 10
-        bananaStepper.value = 10
-        pineappleStepper.value = 10
-        kiwiStepper.value = 10
-        mangoStepper.value = 10
+        strawberryStepper.value = Double(fruitsStock[FruitType.strawberry] ?? 0)
+        bananaStepper.value = Double(fruitsStock[FruitType.banana] ?? 0)
+        pineappleStepper.value = Double(fruitsStock[FruitType.pineapple] ?? 0)
+        kiwiStepper.value = Double(fruitsStock[FruitType.kiwi] ?? 0)
+        mangoStepper.value = Double(fruitsStock[FruitType.mango] ?? 0)
     }
     
     @IBAction func closeManageStockView(_ sender: UIBarButtonItem) {

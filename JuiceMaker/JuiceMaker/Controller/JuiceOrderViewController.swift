@@ -120,23 +120,21 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
 
     private func presentStockInventoryView() {
         guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) as? StockInventoryViewController else { return }
-        stockInventoryViewController.data = fruitsStock()
+        stockInventoryViewController.fruitsStock = fruitsStock()
         stockInventoryViewController.delegate = self
         stockInventoryViewController.modalTransitionStyle = .coverVertical
         stockInventoryViewController.modalPresentationStyle = .automatic
         
         self.present(stockInventoryViewController, animated: true)
-
-        
     }
     
-    func fruitsStock() -> [FruitType: String] {
-        var fruits: [FruitType: String] = [:]
-        fruits.updateValue(String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry)), forKey: FruitType.strawberry)
-        fruits.updateValue(String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana)), forKey: FruitType.banana)
-        fruits.updateValue(String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple)), forKey: FruitType.pineapple)
-        fruits.updateValue(String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi)), forKey: FruitType.kiwi)
-        fruits.updateValue(String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango)), forKey: FruitType.mango)
+    func fruitsStock() -> [FruitType: Int] {
+        var fruits: [FruitType: Int] = [:]
+        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry), forKey: FruitType.strawberry)
+        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana), forKey: FruitType.banana)
+        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple), forKey: FruitType.pineapple)
+        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi), forKey: FruitType.kiwi)
+        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango), forKey: FruitType.mango)
         return fruits
     }
 }
