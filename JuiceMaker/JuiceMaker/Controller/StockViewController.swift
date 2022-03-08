@@ -89,6 +89,11 @@ class StockViewController: UIViewController {
     }
     
     @IBAction func didTapStockEditStepper(_ sender: UIStepper) {
+        guard let fruit = findFruit(of: sender) else {
+            return
+        }
+        let label = findLabel(of: fruit)
+        label.text = "\(Int(sender.value))"
     }
     
     private func findFruit(of stepper: UIStepper) -> Fruit? {
