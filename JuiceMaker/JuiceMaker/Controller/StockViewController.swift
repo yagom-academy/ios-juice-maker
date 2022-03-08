@@ -43,7 +43,7 @@ class StockViewController: UIViewController {
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    func findStepper(of fruit: Fruit) -> UIStepper {
+    private func findStepper(of fruit: Fruit) -> UIStepper {
         switch fruit {
         case .strawberry:
             return strawberryStepper
@@ -55,6 +55,21 @@ class StockViewController: UIViewController {
             return pineappleStepper
         case .mango:
             return mangoStepper
+        }
+    }
+    
+    private func findLabel(of fruit: Fruit) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryStockLabel
+        case .kiwi:
+            return kiwiStockLabel
+        case .banana:
+            return bananaStockLabel
+        case .pineapple:
+            return pineappleStockLabel
+        case .mango:
+            return mangoStockLabel
         }
     }
     
