@@ -9,8 +9,8 @@ import UIKit
 
 final class StockViewController: UIViewController {
   
-  @IBOutlet var fruitCountLabels: [UILabel]!
-  @IBOutlet var fruitSteppers: [UIStepper]!
+  @IBOutlet private var fruitCountLabels: [UILabel]!
+  @IBOutlet private var fruitSteppers: [UIStepper]!
   
   var juiceMaker: JuiceMaker?
   var delegate: StockDelegate?

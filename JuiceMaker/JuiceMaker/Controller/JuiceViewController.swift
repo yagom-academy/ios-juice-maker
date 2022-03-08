@@ -8,7 +8,7 @@ import UIKit
 
 final class JuiceViewController: UIViewController {
   
-  @IBOutlet var fruitCountLabels: [UILabel]!
+  @IBOutlet private var fruitCountLabels: [UILabel]!
 
   private let juiceMaker = JuiceMaker()
   
