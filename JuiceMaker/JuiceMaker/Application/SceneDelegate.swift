@@ -15,7 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
 
         let compositionRoot = CompositionRoot.shared
-        compositionRoot.resolve(window: window)
+        
+        compositionRoot.setWindow(
+            dependency: compositionRoot.resolve(window: window)
+        )
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
