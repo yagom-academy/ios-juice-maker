@@ -21,5 +21,18 @@ class StockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initalizeViewController()
     }
+    
+    private func initalizeViewController() {
+        title = "재고 추가"
+        
+        let closeButton = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func dismissVC() {
+        dismiss(animated: true)
+    }
+    
 }
