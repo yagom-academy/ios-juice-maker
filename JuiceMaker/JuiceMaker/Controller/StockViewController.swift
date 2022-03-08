@@ -57,6 +57,15 @@ class StockViewController: UIViewController {
         }
     }
     
+    @IBAction private func didTapStockEditStepper(_ sender: UIStepper) {
+        guard let fruit = findFruit(of: sender) else {
+            return
+        }
+        
+        let label = findLabel(of: fruit)
+        label.text = "\(Int(sender.value))"
+    }
+ 
     private func findStepper(of fruit: Fruit) -> UIStepper {
         switch fruit {
         case .strawberry:
@@ -87,6 +96,23 @@ class StockViewController: UIViewController {
         }
     }
     
+    private func findFruit(of stepper: UIStepper) -> Fruit? {
+        switch stepper {
+        case strawberryStepper:
+            return .strawberry
+        case kiwiStepper:
+            return .kiwi
+        case bananaStepper:
+            return .banana
+        case pineappleStepper:
+            return .pineapple
+        case mangoStepper:
+            return .mango
+        default:
+            return nil
+        }
+    }
+    
     @objc private func dismissVC() {
         let sendData = makeFruitAmountChangedDictionary()
         delegate?.update(data: sendData)
@@ -105,30 +131,5 @@ class StockViewController: UIViewController {
         }
         
         return differenceDictionary
-    }
-    
-    @IBAction private func didTapStockEditStepper(_ sender: UIStepper) {
-        guard let fruit = findFruit(of: sender) else {
-            return
-        }
-        let label = findLabel(of: fruit)
-        label.text = "\(Int(sender.value))"
-    }
-    
-    private func findFruit(of stepper: UIStepper) -> Fruit? {
-        switch stepper {
-        case strawberryStepper:
-            return .strawberry
-        case kiwiStepper:
-            return .kiwi
-        case bananaStepper:
-            return .banana
-        case pineappleStepper:
-            return .pineapple
-        case mangoStepper:
-            return .mango
-        default:
-            return nil
-        }
     }
 }
