@@ -11,7 +11,7 @@ protocol Updateable: AnyObject {
     func update(for stock: [Fruit: Int])
 }
 
-class SubViewController: UIViewController {
+class ManagingStockViewController: UIViewController {
     var stock: [Fruit: Int]?
     weak var delegate: Updateable?
     

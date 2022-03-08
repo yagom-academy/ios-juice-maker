@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, Updateable {
+class MainViewController: UIViewController, Updateable {
     
     private var juiceMaker = JuiceMaker()
     
@@ -29,6 +29,7 @@ class ViewController: UIViewController, Updateable {
         if juiceMaker.canMake(of: juice) {
             showSuccessAlert(with: String(describing: juice))
             updateStockLable()
+            
         } else {
             showFailureAlert()
         }
@@ -84,11 +85,11 @@ class ViewController: UIViewController, Updateable {
     }
     
     private func moveStockChangeView() {
-        guard let stockChangeNavigation = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeNavigation") as? UINavigationController else { return }
-        guard let stockChangeView = stockChangeNavigation.topViewController as? SubViewController else { return }
+        guard let ManagingStockViewNavigation = self.storyboard?.instantiateViewController(withIdentifier: "ManagingStockViewNavigation") as? UINavigationController else { return }
+        guard let stockChangeView = ManagingStockViewNavigation.topViewController as? ManagingStockViewController else { return }
         stockChangeView.stock = juiceMaker.fruitStore.stock
         stockChangeView.delegate = self
-        self.present(stockChangeNavigation, animated: true, completion: nil)
+        self.present(ManagingStockViewNavigation, animated: true, completion: nil)
     }
     
     func update(for stock: [Fruit: Int]) {
