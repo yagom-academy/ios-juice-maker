@@ -9,6 +9,7 @@ final class FruitStockEditViewController: UIViewController {
         button.tintColor = .blue
         button.setTitle("닫기", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(tapDismissButton), for: .touchUpInside)
         return button
     }()
     private let editStockTitleLabel: UILabel = {
@@ -41,5 +42,9 @@ final class FruitStockEditViewController: UIViewController {
                                                 constant: view.safeAreaInsets.right).isActive = true
         dismissButton.topAnchor.constraint(equalTo: editStockTitleLabel.topAnchor).isActive = true
         dismissButton.heightAnchor.constraint(equalTo: editStockTitleLabel.heightAnchor).isActive = true
+    }
+    
+    @objc private func tapDismissButton() {
+        dismiss(animated: true, completion: nil)
     }
 }
