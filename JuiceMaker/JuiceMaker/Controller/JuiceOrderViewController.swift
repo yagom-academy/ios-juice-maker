@@ -5,12 +5,14 @@ protocol dataDelegate {
 }
 
 class JuiceOrderViewController: UIViewController, dataDelegate {
-    func exchangeData(data: [FruitType: Int]) {
-        print("Data: [\(data)]")
-    }
-    
-    
     private var juiceMaker = JuiceMaker()
+    func exchangeData(data: [FruitType: Int]) {
+        data.forEach({
+            juiceMaker.fruitStore.updateStock(fruit: $0.key, amount: $0.value)
+            updateFruitStockLabel(recipe: [$0.key: $0.value])
+        })
+    }
+
     enum MessageNameSpace {
         static let notEnoughStock = "재료가 모자라요. 재고를 수정할까요?"
         static let juiceReady = " 나왔습니다! 맛있게 드세요!"
