@@ -8,7 +8,6 @@ import UIKit
 
 class ViewController: UIViewController, Update {
     func updateModel(stock: [Fruit: Int]) {
-        print(stock)
         juiceMaker.fruitStore.updateStock(to: stock)
         updateFruitLable()
     }
@@ -68,7 +67,6 @@ class ViewController: UIViewController, Update {
         pineappleLabel.text = String(juiceMaker.fruitStore.getStock(of:.pineapple))
         
     }
-    
     
     private func showSuccessAlert(with juiceName: String) {
         let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: juiceName + Phrases.readyForJuice.text, preferredStyle: .alert)
