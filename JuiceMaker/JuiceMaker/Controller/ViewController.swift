@@ -6,11 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, Update {
-    func updateModel(stock: [Fruit: Int]) {
-        juiceMaker.fruitStore.updateStock(to: stock)
-        updateFruitLable()
-    }
+class ViewController: UIViewController, Updateable {
     
     private var juiceMaker = JuiceMaker()
     
@@ -32,7 +28,7 @@ class ViewController: UIViewController, Update {
         guard let juice = matchJuice(with: button) else { return }
         if juiceMaker.canMake(of: juice) {
             showSuccessAlert(with: String(describing: juice))
-            updateFruitLable()
+            updateStockLable()
         } else {
             showFailureAlert()
         }
@@ -59,7 +55,7 @@ class ViewController: UIViewController, Update {
         }
     }
     
-    private func updateFruitLable() {
+    private func updateStockLable() {
         strawberryLabel.text = String(juiceMaker.fruitStore.getStock(of:.strawberry))
         bananaLabel.text = String(juiceMaker.fruitStore.getStock(of:.banana))
         magoLabel.text = String(juiceMaker.fruitStore.getStock(of:.mango))
@@ -96,9 +92,14 @@ class ViewController: UIViewController, Update {
         self.present(stockChangeNavigation, animated: true, completion: nil)
     }
     
+    func update(stock: [Fruit: Int]) {
+        juiceMaker.fruitStore.updateStock(to: stock)
+        updateStockLable()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitLable()
+        updateStockLable()
     }
     
 }

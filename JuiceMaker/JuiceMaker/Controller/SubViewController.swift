@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol Update: AnyObject {
-    func updateModel(stock: [Fruit: Int])
+protocol Updateable: AnyObject {
+    func update(stock: [Fruit: Int])
 }
 
 class SubViewController: UIViewController {
     var stockNumbers: [Fruit: Int]?
-    weak var delegate: Update?
+    weak var delegate: Updateable?
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -64,7 +64,7 @@ class SubViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard let stock = stockNumbers else { return }
-        delegate?.updateModel(stock: stock)
+        delegate?.update(stock: stock)
     }
     
     func updateLabel() {
