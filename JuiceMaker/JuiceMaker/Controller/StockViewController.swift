@@ -10,7 +10,7 @@ import UIKit
 class StockViewController: UIViewController {
     static let identifier = "StockViewController"
     
-    private var stock: [Fruit: Int]
+    private let stock: [Fruit: Int]
     weak var delegate: UpdateDelegate?
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
