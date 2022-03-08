@@ -86,7 +86,23 @@ class StockViewController: UIViewController {
     }
     
     @objc private func dismissVC() {
+        let sendData = makeFruitAmountChangedDictionary()
+        delegate?.update(data: sendData)
         dismiss(animated: true)
+    }
+    
+    func makeFruitAmountChangedDictionary() -> [Fruit: Int] {
+        var differenceDictionary: [Fruit: Int] = [:]
+        
+        Fruit.allCases.forEach { fruit in
+            let stepper = findStepper(of: fruit)
+            let stepperValue = Int(stepper.value)
+            let amount = stock[fruit] ?? .zero
+            let difference = stepperValue - amount
+            differenceDictionary[fruit] = difference
+        }
+        
+        return differenceDictionary
     }
     
     @IBAction func didTapStockEditStepper(_ sender: UIStepper) {
