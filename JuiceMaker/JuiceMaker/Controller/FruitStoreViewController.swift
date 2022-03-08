@@ -3,10 +3,24 @@ import UIKit
 class FruitStoreViewController: UIViewController {
     
     @IBOutlet var fruitLabelCollection: [UILabel]!
+    var juiceMaker: JuiceMaker?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitsStock()
+    }
+    
+    private func updateFruitsStock() {
+        guard let juiceMaker = juiceMaker else {
+            return
+        }
+        
+        for (index, stock) in juiceMaker.getFruitsStock().enumerated() {
+            guard let fruitLabel = fruitLabelCollection[safeIndex: index] else {
+                return
+            }
+            fruitLabel.text = String(stock)
+        }
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
@@ -27,6 +41,5 @@ class FruitStoreViewController: UIViewController {
     
     @IBAction func mangoStepper(_ sender: UIStepper) {
     }
-    
 }
 

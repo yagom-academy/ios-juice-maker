@@ -6,7 +6,6 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -14,10 +13,13 @@ final class JuiceMakerViewController: UIViewController {
         updateFruitsStock()
     }
     
-    @IBAction func updateFruitStockButton(_ sender: UIBarButtonItem) {
-        guard let fruitStoreVC = storyboard?.instantiateViewController(withIdentifier: "FruitStoreVC") else {
+    @IBAction func clickUpdateFruitStockButton(_ sender: UIBarButtonItem) {
+        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: "FruitStoreVC") as? FruitStoreViewController else {
             return
         }
+        
+        fruitStoreVC.juiceMaker = juiceMaker
+       
         present(fruitStoreVC, animated: true, completion: nil)
     }
     
@@ -53,9 +55,10 @@ final class JuiceMakerViewController: UIViewController {
     private func showFailAlert(_ error: Error) {
         let failAlert = UIAlertController(title: "재료부족", message: error.localizedDescription, preferredStyle: .alert)
         failAlert.addAction(UIAlertAction(title: "네", style: .default, handler: { _ in
-            guard let fruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreVC") else {
+            guard let fruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreVC") as? FruitStoreViewController else {
                 return
             }
+            fruitStoreVC.juiceMaker = self.juiceMaker
             self.present(fruitStoreVC, animated: true, completion: nil)}))
         failAlert.addAction(UIAlertAction(title: "아니요", style: .destructive))
         present(failAlert, animated: true)
