@@ -1,18 +1,12 @@
 import UIKit
 
 protocol dataDelegate {
-    func exchangeData(data: [FruitType: Int])
+    func sendData(fruits: [FruitType: Int])
 }
 
 class JuiceOrderViewController: UIViewController, dataDelegate {
     private var juiceMaker = JuiceMaker()
-    func exchangeData(data: [FruitType: Int]) {
-        data.forEach({
-            juiceMaker.fruitStore.updateStock(fruit: $0.key, amount: $0.value)
-            updateFruitStockLabel(recipe: [$0.key: $0.value])
-        })
-    }
-
+    
     enum MessageNameSpace {
         static let notEnoughStock = "재료가 모자라요. 재고를 수정할까요?"
         static let juiceReady = " 나왔습니다! 맛있게 드세요!"
@@ -27,11 +21,6 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
     @IBOutlet private weak var stockOfKiwiLabel: UILabel!
     @IBOutlet private weak var stockOfMangoLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupFruitStockLabel()
-    }
-    
     @IBOutlet private weak var orderStrawberryBananaButton: UIButton!
     @IBOutlet private weak var orderMangoKiwiButton: UIButton!
     @IBOutlet private weak var orderStrawberryButton: UIButton!
@@ -40,8 +29,20 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
     @IBOutlet private weak var orderKiwiButton: UIButton!
     @IBOutlet private weak var orderMangoButton: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupFruitStockLabel()
+    }
     
-    func orderedJuiceType(from button: UIButton) -> JuiceMaker.JuiceType? {
+    private func setupFruitStockLabel() {
+        stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
+        stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
+        stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
+        stockOfKiwiLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi))
+        stockOfMangoLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango))
+    }
+    
+    private func orderedJuiceType(from button: UIButton) -> JuiceMaker.JuiceType? {
         switch button {
         case orderStrawberryBananaButton:
             return JuiceMaker.JuiceType.strawberryBananaJuice
@@ -91,14 +92,6 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
         present(alertController, animated: false, completion: nil)
     }
     
-    private func setupFruitStockLabel() {
-        stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
-        stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
-        stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
-        stockOfKiwiLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi))
-        stockOfMangoLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango))
-    }
-    
     private func updateFruitStockLabel(recipe: [FruitType: Int]) {
         recipe.forEach {
             switch $0.key {
@@ -119,25 +112,32 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
     @IBAction func modifyFruitStockAction(_ sender: UIBarButtonItem) {
         presentStockInventoryView()
     }
-
+    
     private func presentStockInventoryView() {
         guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) as? StockInventoryViewController else { return }
-        stockInventoryViewController.fruitsStock = fruitsStock()
-        stockInventoryViewController.delegate = self
+        stockInventoryViewController.fruitStockStatus = fruitStockStatus()
+        stockInventoryViewController.dataDelegate = self
         stockInventoryViewController.modalTransitionStyle = .coverVertical
         stockInventoryViewController.modalPresentationStyle = .automatic
         
         self.present(stockInventoryViewController, animated: true)
     }
     
-    func fruitsStock() -> [FruitType: Int] {
-        var fruits: [FruitType: Int] = [:]
-        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry), forKey: FruitType.strawberry)
-        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana), forKey: FruitType.banana)
-        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple), forKey: FruitType.pineapple)
-        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi), forKey: FruitType.kiwi)
-        fruits.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango), forKey: FruitType.mango)
-        return fruits
+    func fruitStockStatus() -> [FruitType: Int] {
+        var stockStatus: [FruitType: Int] = [:]
+        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry), forKey: FruitType.strawberry)
+        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana), forKey: FruitType.banana)
+        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple), forKey: FruitType.pineapple)
+        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi), forKey: FruitType.kiwi)
+        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango), forKey: FruitType.mango)
+        return stockStatus
+    }
+    
+    func sendData(fruits: [FruitType: Int]) {
+        fruits.forEach({
+            juiceMaker.fruitStore.updateStock(fruit: $0.key, amount: $0.value)
+            updateFruitStockLabel(recipe: [$0.key: $0.value])
+        })
     }
 }
 

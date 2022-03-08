@@ -306,7 +306,7 @@
                                 <rect key="frame" x="580" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="stepperValueChanged:" destination="Yu1-lM-nqp" eventType="valueChanged" id="KZ7-eo-7aW"/>
+                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Ys6-xx-qlV"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EHe-D1-1xN">
@@ -328,7 +328,7 @@
                                 <rect key="frame" x="410" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="stepperValueChanged:" destination="Yu1-lM-nqp" eventType="valueChanged" id="oMf-bl-ceA"/>
+                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="dzO-yy-WfM"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rac-Ji-vZK">
@@ -350,7 +350,7 @@
                                 <rect key="frame" x="261" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="stepperValueChanged:" destination="Yu1-lM-nqp" eventType="valueChanged" id="ppb-Fg-kwL"/>
+                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Jir-uF-Wmb"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y33-ND-gz2">
@@ -364,7 +364,7 @@
                                 <rect key="frame" x="154" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="stepperValueChanged:" destination="Yu1-lM-nqp" eventType="valueChanged" id="wMG-gO-H2Z"/>
+                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="yma-U7-MYh"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
@@ -394,7 +394,7 @@
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="stepperValueChanged:" destination="Yu1-lM-nqp" eventType="valueChanged" id="NwE-Zh-Y2z"/>
+                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="ZIy-DN-9h3"/>
                                 </connections>
                             </stepper>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMk-gw-386">
@@ -433,16 +433,11 @@
                         <outlet property="stockOfPineappleLabel" destination="MpT-VW-hCb" id="NcC-6R-0Xd"/>
                         <outlet property="stockOfStrawberryLabel" destination="0yV-kn-zaT" id="djE-CV-ZDk"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="9O2-Bc-szr"/>
-                        <outletCollection property="stockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="30q-Wl-pIn"/>
                         <outletCollection property="stockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="KWP-mf-xeA"/>
                         <outletCollection property="stockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="ZGy-bH-O22"/>
                         <outletCollection property="stockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="xJb-fe-Bz4"/>
                         <outletCollection property="stockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="wEk-on-JK2"/>
                         <outletCollection property="stockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="shh-NC-ch5"/>
-                        <outletCollection property="stockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="YuI-cc-T9m"/>
-                        <outletCollection property="stockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="FLU-ay-UqI"/>
-                        <outletCollection property="stockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="eyn-Di-lad"/>
-                        <outletCollection property="stockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="ocg-Is-Clx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
