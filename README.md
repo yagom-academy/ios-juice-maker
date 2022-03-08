@@ -41,13 +41,17 @@
 
 ### 구현 내용
 ---
-`updateFruitLabel` : 과일의 재고를 Label에 표시해주는 함수  
-`tapStockEditButton` : 재고 관리 버튼과 연결된 함수  
-`moveToStockViewController` : StockViewController를 modal로 띄워주는 함수  
-`order` : 쥬스 주문 시, 실행되는 함수  
-`check` : 어떤 버튼이 눌렸는지, 판단해서 만들 Juice를 retun해주는 함수  
+`updateLabel()` : 과일의 재고를 Label에 표시해주는 함수  
+`updateMultipleLabel()` : 과일들의 재고를 Label에 표시해주는 함수
+`didTapStockEditButton()` : 재고 관리 버튼과 연결된 함수  
+`moveToStockViewController()` : StockViewController를 modal로 띄워주는 함수  
+`order()` : 쥬스 주문 시, 실행되는 함수  
+`findJuice()` : 어떤 버튼이 눌렸는지, 판단해서 만들 Juice를 retun해주는 함수  
 `showSotckErrorAlert()` :  쥬스 재고가 부족할때 alert을 띄우는 함수  
-`showOkAlert()` : 확인 버튼 하나인 alert을 띄우는 함수  
+`showAlert()` : alert을 띄우는 함수 
+`showErrorAlert()` : 확인 버튼만 존재하는 ErrorAlert을 띄우는 함수
+`showCompleteAlert()` : 쥬스가 완성되었을 때 Alert을 띄우는 함수
+`findLabel()` : 과일에 맞는 Label을 찾는 함수
 `enum AlertMessage` : AlertController에 쓰이는 문자열들을 관리하기 위한 namespace  
 
 
