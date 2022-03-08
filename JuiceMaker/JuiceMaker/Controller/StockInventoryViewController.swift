@@ -55,6 +55,16 @@ class StockInventoryViewController: UIViewController {
         mangoStepper.maximumValue = 20
     }
     
+    func updatedFruitsStock() -> [FruitType: Int] {
+        var fruits: [FruitType: Int] = [:]
+        fruits.updateValue(Int(strawberryStepper.value), forKey: FruitType.strawberry)
+        fruits.updateValue(Int(bananaStepper.value), forKey: FruitType.banana)
+        fruits.updateValue(Int(pineappleStepper.value), forKey: FruitType.pineapple)
+        fruits.updateValue(Int(kiwiStepper.value), forKey: FruitType.kiwi)
+        fruits.updateValue(Int(mangoStepper.value), forKey: FruitType.mango)
+        return fruits
+    }
+    
     private func setupFruitStockLabel() {
         stockOfStrawberryLabel.text = String(fruitsStock[FruitType.strawberry] ?? 0)
         stockOfBananaLabel.text = String(fruitsStock[FruitType.banana] ?? 0)
@@ -93,7 +103,7 @@ class StockInventoryViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        delegate?.exchangeData(data: "second view가 보내는 데이터")
+        delegate?.exchangeData(data: updatedFruitsStock())
     }
     
     

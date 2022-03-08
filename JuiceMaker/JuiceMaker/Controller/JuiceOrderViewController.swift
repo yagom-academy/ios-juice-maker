@@ -1,11 +1,11 @@
 import UIKit
 
 protocol dataDelegate {
-    func exchangeData(data: String)
+    func exchangeData(data: [FruitType: Int])
 }
 
 class JuiceOrderViewController: UIViewController, dataDelegate {
-    func exchangeData(data: String) {
+    func exchangeData(data: [FruitType: Int]) {
         print("Data: [\(data)]")
     }
     
