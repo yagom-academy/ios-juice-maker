@@ -56,7 +56,7 @@ final class AlertBuilder {
 
     func showAlert() {
         let alert = UIAlertController(title: product.title, message: product.message, preferredStyle: .alert)
-
+        
         if let cancelTitle = product.cancelTitle {
             let cancelButton = UIAlertAction(title: cancelTitle, style: .destructive, handler: { _ in
                 self.product.cancelHandler?()
