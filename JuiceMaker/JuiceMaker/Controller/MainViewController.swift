@@ -52,7 +52,7 @@ final class MainViewController: UIViewController {
     
     private func moveToManageView() {
         guard let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController") as? ManageViewController else { return }
-        manageVC.fruitDic = juiceMaker.store.fruitList
+        manageVC.fruitDictionary = juiceMaker.store.fruitList
         manageVC.delegate = self
         self.present(manageVC, animated: true, completion: nil)
     }
