@@ -31,8 +31,8 @@ final class OrderViewController: UIViewController {
     }
     
     private func showCurrentStock() {
-        juiceMaker.fruitStore.inventory.keys.forEach {
-            switch $0 {
+        juiceMaker.fruitStore.inventory.keys.forEach { fruit in
+            switch fruit {
             case .strawberry:
                 strawberryStockLabel.text = juiceMaker.fruitStore.inventory[.strawberry]?.description
             case .banana:

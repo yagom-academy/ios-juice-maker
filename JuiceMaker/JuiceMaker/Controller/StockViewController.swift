@@ -31,8 +31,8 @@ final class StockViewController: UIViewController {
     }
     
     private func showCurrentStock() {
-        currentStocks.keys.forEach {
-            switch $0 {
+        currentStocks.keys.forEach { fruit in
+            switch fruit {
             case .strawberry:
                 strawberryStockLabel.text = currentStocks[.strawberry]?.description
                 strawberryStepper.value = Double(currentStocks[.strawberry] ?? 0)
