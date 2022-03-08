@@ -26,7 +26,23 @@ class JuiceMakerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeButtonTitleDynamic()
         updateMultipleLabel()
+    }
+    
+    private func makeButtonTitleDynamic() {
+        let buttons: [UIButton] = [strawberryBananaButton,
+                       strawberryButton,
+                       bananaButton,
+                       pineappleButton,
+                       mangoButton,
+                       mangoKiwiButton,
+                       kiwiButton]
+        
+        buttons.forEach { button in
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.minimumScaleFactor = 0.5
+        }
     }
     
     @IBAction private func order(_ sender: UIButton) {
