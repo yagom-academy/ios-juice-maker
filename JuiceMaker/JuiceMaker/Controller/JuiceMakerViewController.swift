@@ -6,16 +6,25 @@
 
 import UIKit
 
+
 final class JuiceMakerViewController: UIViewController {
-    @IBOutlet private var fruitsLabelCollection: [UILabel]!
+    
+    @IBOutlet var fruitsLabelCollection: [UILabel]!
     var fruitStore = FruitStore()
     let orderJuice = JuiceMaker()
     
     @IBAction private func changeViewControllerTapped(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-         let ChangeStockViewController = storyboard.instantiateViewController(withIdentifier: "ChangeStockViewController")
+        guard let ChangeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
+        let notFoundStringLabelCount = "0"
+        for fruitLabel in fruitsLabelCollection {
+            let fruitsLabelTag = fruitLabel.tag
+            if let fruitType = FruitsTypes.init(rawValue: fruitsLabelTag) {
+                fruitLabel.text = String(fruitStore.fruits[fruitType] ?? .zero)
+                ChangeStockViewController.fruitsNum.append(fruitLabel.text ?? notFoundStringLabelCount)
+            }
+        }
         if let naviController = navigationController {
-            naviController.pushViewController(ChangeStockViewController, animated: false)
+            naviController.pushViewController(ChangeStockViewController, animated: true)
         } else {
             JuiceMakerError.notExistNavigationController
         }
@@ -51,8 +60,16 @@ final class JuiceMakerViewController: UIViewController {
     private func showStockChangeAlertMessage() {
         let juiceOutOfStockAlert = UIAlertController(title: AlertMessages.outOfStock, message: "", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: AlertMessages.ok, style: .default) {_ in
-            guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController")  else { return }
-            self.navigationController?.pushViewController(pushViewController, animated: true)
+            guard let ChangeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
+            let notFoundStringLabelCount = "0"
+            for fruitLabel in self.fruitsLabelCollection {
+                let fruitsLabelTag = fruitLabel.tag
+                if let fruitType = FruitsTypes.init(rawValue: fruitsLabelTag) {
+                    fruitLabel.text = String(self.fruitStore.fruits[fruitType] ?? .zero)
+                    ChangeStockViewController.fruitsNum.append(fruitLabel.text ?? notFoundStringLabelCount)
+                }
+            }
+            self.navigationController?.pushViewController(ChangeStockViewController, animated: true)
         }
         let noButton = UIAlertAction(title: AlertMessages.cancel, style: .destructive, handler: nil)
         juiceOutOfStockAlert.addAction(noButton)
