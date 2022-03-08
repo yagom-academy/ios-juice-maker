@@ -61,7 +61,6 @@ class ViewController: UIViewController, Updateable {
         magoLabel.text = String(juiceMaker.fruitStore.getStock(of:.mango))
         kiwiLabel.text = String(juiceMaker.fruitStore.getStock(of:.kiwi))
         pineappleLabel.text = String(juiceMaker.fruitStore.getStock(of:.pineapple))
-        
     }
     
     private func showSuccessAlert(with juiceName: String) {
@@ -74,7 +73,7 @@ class ViewController: UIViewController, Updateable {
     private func showFailureAlert() {
         let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
         let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveStockChangeView() })
-        let cancelAction = UIAlertAction(title: Phrases.no.text, style: .default, handler: nil )
+        let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive, handler: nil )
         alertCountrol.addAction(moveAction)
         alertCountrol.addAction(cancelAction)
         present(alertCountrol, animated: false, completion: nil)

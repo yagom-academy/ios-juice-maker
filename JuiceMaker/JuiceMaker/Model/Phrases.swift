@@ -18,5 +18,4 @@ enum Phrases: String {
     var text: String {
         return self.rawValue
     }
-    
 }

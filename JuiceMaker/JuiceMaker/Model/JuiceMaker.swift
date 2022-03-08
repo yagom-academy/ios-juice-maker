@@ -29,7 +29,6 @@ extension Juice {
             return [(.strawberry, 10), (.banana, 1)]
         case .mangoAndKiwiJuice:
             return [(.mango, 2), (.kiwi, 1)]
-            
         }
     }
 }
@@ -56,5 +55,4 @@ struct JuiceMaker {
             fruitStore.changeStock(of: neededFruit, to: -neededStock)
         }
     }
-    
 }

@@ -14,7 +14,7 @@ protocol Updateable: AnyObject {
 class SubViewController: UIViewController {
     var stock: [Fruit: Int]?
     weak var delegate: Updateable?
-
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -45,23 +45,12 @@ class SubViewController: UIViewController {
             mangoLabel.text = String(format: "%.0f", mangoStepper.value)
             stock?[.mango] = Int(mangoStepper.value)
         default:
-            return 
+            return
         }
     }
     
     @IBAction func closeView(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initializeViewValue()
-
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard let stock = stock else { return }
-        delegate?.update(for: stock)
     }
     
     func initializeViewValue() {
@@ -88,7 +77,17 @@ class SubViewController: UIViewController {
         case.mango:
             mangoLabel.text = String(amount)
             mangoStepper.value = Double(amount)
-            
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initializeViewValue()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let stock = stock else { return }
+        delegate?.update(for: stock)
     }
 }
