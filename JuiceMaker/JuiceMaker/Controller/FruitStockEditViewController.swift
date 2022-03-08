@@ -31,6 +31,10 @@ final class FruitStockEditViewController: UIViewController {
         setConstraintUI()
     }
     
+    @IBAction func fruitStockCountStepper(_ sender: UIStepper) {
+        fruitStockLabels[sender.tag].text = Int(sender.value).description
+    }
+    
     private func updateFruitsCountLabel() {
         for index in fruitsStock.indices {
             fruitStockLabels[index].text = fruitsStock[index]
