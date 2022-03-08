@@ -37,4 +37,8 @@ final class FruitStore {
   func consumeStock(of fruits: [Fruit: Int]) {
     self.stock.merge(fruits) { $0 - $1 }
   }
+  
+  func setStock(of fruit: Fruit, _ value: Int) {
+    self.stock[fruit] = value
+  }
 }

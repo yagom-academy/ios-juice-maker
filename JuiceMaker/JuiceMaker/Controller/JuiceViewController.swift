@@ -26,7 +26,7 @@ final class JuiceViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.fetchStock()
+    self.updateLabel()
   }
   
   @IBAction private func didTapOrderButton(_ sender: UIButton) {
@@ -45,7 +45,7 @@ final class JuiceViewController: UIViewController {
         UIAlertAction(title: AlertSetting.no, style: .cancel)
       ])
     }
-    self.fetchStock()
+    self.updateLabel()
   }
   
   @IBAction private func didTapChangeStockButton(_ sender: UIBarButtonItem) {
@@ -65,7 +65,7 @@ private extension JuiceViewController {
     return Juice(rawValue: juiceName)
   }
   
-  func fetchStock() {
+  func updateLabel() {
     self.strawberryCountLabel.text = self.convertStockToString(.strawberry)
     self.bananaCountLabel.text = self.convertStockToString(.banana)
     self.pineappleCountLabel.text = self.convertStockToString(.pineapple)
@@ -113,6 +113,6 @@ private extension JuiceViewController {
 
 extension JuiceViewController: StockDelegate {
   func update() {
-    self.fetchStock()
+    self.updateLabel()
   }
 }
