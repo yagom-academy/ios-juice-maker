@@ -25,6 +25,6 @@ class FruitStore {
         guard let stock = fruitStock[fruit] else {
             return
         }
-        fruitStock[fruit] = stock - amount
+        fruitStock[fruit] = stock + amount
     }
 }
