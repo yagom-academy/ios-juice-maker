@@ -84,9 +84,9 @@ class MainViewController: UIViewController, Updateable {
         moveManagingStockView()
     }
     
-    private func setUpDelegate(_ stockChangeView: ManagingStockViewController) {
-        stockChangeView.stock = juiceMaker.fruitStore.stock
-        stockChangeView.delegate = self
+    private func setUpDelegate(_ ManagingStockView: ManagingStockViewController) {
+        ManagingStockView.stock = juiceMaker.fruitStore.stock
+        ManagingStockView.delegate = self
     }
     
     private func moveManagingStockView() {
