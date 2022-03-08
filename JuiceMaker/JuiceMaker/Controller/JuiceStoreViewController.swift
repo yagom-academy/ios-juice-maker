@@ -77,5 +77,6 @@ final class JuiceStoreViewController: UIViewController, FruitStockDelegate {
         for index in fruitStockLabels.indices {
             self.fruitStockLabels[index].text = fruitStockLabels[index].text
         }
+        juiceMaker.fruitStore.updateStock(fruitStockLabels)
     }
 }

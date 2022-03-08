@@ -44,4 +44,13 @@ class FruitStore {
         guard let fruitStock = fruitsStock[fruit] else { return "" }
         return "\(fruitStock)"
     }
+    
+    func updateStock(_ fruitStockLabels: [UILabel]!) {
+        for index in fruitStockLabels.indices {
+            guard let fruit = Fruit(rawValue: fruitStockLabels[index].tag),
+                  let fruitCountText = fruitStockLabels[index].text,
+                  let fruitCount = Int(fruitCountText) else { return }
+            fruitsStock[fruit] = fruitCount
+        }
+    }
 }
