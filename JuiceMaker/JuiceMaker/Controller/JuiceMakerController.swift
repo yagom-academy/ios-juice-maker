@@ -106,7 +106,7 @@ class JuiceMakerController: UIViewController {
         }) else {
             return
         }
-        
+        stockViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: stockViewController)
         self.present(navigationController, animated: true)
     }
@@ -162,6 +162,15 @@ class JuiceMakerController: UIViewController {
         }
         
         present(alertController, animated: true)
+    }
+}
+
+protocol UpdateDelegate: AnyObject {
+    func update(data: [Fruit: Int])
+}
+
+extension JuiceMakerController: UpdateDelegate {
+    func update(data: [Fruit : Int]) {
     }
 }
 
