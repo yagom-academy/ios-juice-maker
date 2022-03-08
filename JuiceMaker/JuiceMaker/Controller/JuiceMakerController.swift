@@ -7,7 +7,6 @@
 import UIKit
 
 class JuiceMakerController: UIViewController {
-    static let identifier = "StockViewController"
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -117,7 +116,7 @@ class JuiceMakerController: UIViewController {
     private func moveToStockViewController() {
         let stock = self.juiceMaker.fruitStock
         
-        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: JuiceMakerController.identifier, creator: { coder in
+        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: StockViewController.identifier, creator: { coder in
             return StockViewController(coder: coder, stock: stock)
         }) else {
             return

@@ -8,20 +8,22 @@
 import UIKit
 
 class StockViewController: UIViewController {
+    static let identifier = "StockViewController"
+    
     private var stock: [Fruit: Int]
     weak var delegate: UpdateDelegate?
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel!
+    @IBOutlet weak private var bananaStockLabel: UILabel!
+    @IBOutlet weak private var pineappleStockLabel: UILabel!
+    @IBOutlet weak private var kiwiStockLabel: UILabel!
+    @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
     init?(coder: NSCoder, stock: [Fruit: Int]) {
         self.stock = stock
@@ -29,7 +31,7 @@ class StockViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("You must create this view controller with code")
+        fatalError("You must not use this initalizer")
     }
 
     override func viewDidLoad() {
@@ -91,7 +93,7 @@ class StockViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    func makeFruitAmountChangedDictionary() -> [Fruit: Int] {
+    private func makeFruitAmountChangedDictionary() -> [Fruit: Int] {
         var differenceDictionary: [Fruit: Int] = [:]
         
         Fruit.allCases.forEach { fruit in
@@ -105,7 +107,7 @@ class StockViewController: UIViewController {
         return differenceDictionary
     }
     
-    @IBAction func didTapStockEditStepper(_ sender: UIStepper) {
+    @IBAction private func didTapStockEditStepper(_ sender: UIStepper) {
         guard let fruit = findFruit(of: sender) else {
             return
         }
