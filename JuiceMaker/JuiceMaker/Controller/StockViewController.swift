@@ -22,6 +22,7 @@ final class StockViewController: UIViewController {
   @IBOutlet private weak var mangoStepper: UIStepper!
   
   var juiceMaker: JuiceMaker?
+  var delegate: StockDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,6 +31,7 @@ final class StockViewController: UIViewController {
   @IBAction private func didStepperValueChanged(_ sender: UIStepper) {}
   
   @IBAction private func didTapCloseButton(_ sender: UIBarButtonItem) {
+    self.delegate?.update()
     self.dismiss(animated: true)
   }
 }

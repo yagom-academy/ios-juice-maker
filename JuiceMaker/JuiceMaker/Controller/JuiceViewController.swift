@@ -106,6 +106,13 @@ private extension JuiceViewController {
       return
     }
     stockViewController.juiceMaker = juiceMaker
+    stockViewController.delegate = self
     self.present(navigationController, animated: true)
+  }
+}
+
+extension JuiceViewController: StockDelegate {
+  func update() {
+    self.fetchStock()
   }
 }

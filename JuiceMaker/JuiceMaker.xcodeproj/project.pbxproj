@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8633B34B27CD08CE0050BB44 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8633B34A27CD08CE0050BB44 /* StockViewController.swift */; };
 		86898DD227D61D96006A263F /* StoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86898DD127D61D96006A263F /* StoryboardID.swift */; };
+		86898DD427D714AC006A263F /* StockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86898DD327D714AC006A263F /* StockDelegate.swift */; };
 		B0295A2527C64929005C092E /* MakeJuiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0295A2427C64929005C092E /* MakeJuiceError.swift */; };
 		B0960BFA27CDFE2B00BB4634 /* AlertSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0960BF927CDFE2B00BB4634 /* AlertSetting.swift */; };
 		B09A4E2427C5080400FB06DA /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09A4E2327C5080400FB06DA /* Fruit.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		8633B34A27CD08CE0050BB44 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		86898DD127D61D96006A263F /* StoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
+		86898DD327D714AC006A263F /* StockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDelegate.swift; sourceTree = "<group>"; };
 		B0295A2427C64929005C092E /* MakeJuiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeJuiceError.swift; sourceTree = "<group>"; };
 		B0960BF927CDFE2B00BB4634 /* AlertSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSetting.swift; sourceTree = "<group>"; };
 		B09A4E2327C5080400FB06DA /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				C73DAF3A255D0CDD00020D38 /* JuiceViewController.swift */,
 				8633B34A27CD08CE0050BB44 /* StockViewController.swift */,
+				86898DD327D714AC006A263F /* StockDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				C73DAF3B255D0CDD00020D38 /* JuiceViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				86898DD427D714AC006A263F /* StockDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				B0295A2527C64929005C092E /* MakeJuiceError.swift in Sources */,
 			);
