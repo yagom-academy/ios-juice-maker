@@ -43,6 +43,21 @@ class StockViewController: UIViewController {
         navigationItem.rightBarButtonItem = closeButton
     }
     
+    func findStepper(of fruit: Fruit) -> UIStepper {
+        switch fruit {
+        case .strawberry:
+            return strawberryStepper
+        case .kiwi:
+            return kiwiStepper
+        case .banana:
+            return bananaStepper
+        case .pineapple:
+            return pineappleStepper
+        case .mango:
+            return mangoStepper
+        }
+    }
+    
     @objc private func dismissVC() {
         dismiss(animated: true)
     }
