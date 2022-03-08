@@ -144,7 +144,7 @@
         - 현재 과일의 전체 재고 상태를 딕셔너리로 만드는 함수
     - ```sendData(fruits: [FruitType: Int])```
         - 데이터를 전달받는 dataDelegate 프로토콜의 함수를 구현한 함수
-- StockInventoryViewControlle`
+- StockInventoryViewController
     - ```fruitStockStatus: [FruitType: Int]```
         - 현재 과일의 재고 상태를 저장하는 변수
     - ```minimumNumberOfStock: Double = 0```
