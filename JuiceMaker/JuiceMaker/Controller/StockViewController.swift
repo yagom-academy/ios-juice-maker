@@ -90,4 +90,21 @@ class StockViewController: UIViewController {
     
     @IBAction func didTapStockEditStepper(_ sender: UIStepper) {
     }
+    
+    private func findFruit(of stepper: UIStepper) -> Fruit? {
+        switch stepper {
+        case strawberryStepper:
+            return .strawberry
+        case kiwiStepper:
+            return .kiwi
+        case bananaStepper:
+            return .banana
+        case pineappleStepper:
+            return .pineapple
+        case mangoStepper:
+            return .mango
+        default:
+            return nil
+        }
+    }
 }
