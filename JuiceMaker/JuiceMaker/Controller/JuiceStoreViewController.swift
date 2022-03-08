@@ -38,12 +38,16 @@ final class JuiceStoreViewController: UIViewController, FruitStockDelegate {
     
     @IBAction private func moveEditFruitStockViewController(_ sender: Any) {
         guard let fruitStockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: FruitStockEditViewController.identifier) as? FruitStockEditViewController else { return }
-        fruitStockLabels.forEach {
-            guard let label = $0.text else { return }
-            fruitStockEditViewController.fruitsStock.append(label)
-        }
+        appendFruitStockLabelsText(to: fruitStockEditViewController)
         fruitStockEditViewController.delegate = self
         present(fruitStockEditViewController, animated: true, completion: nil)
+    }
+    
+    private func appendFruitStockLabelsText(to fruitStockEditVC: FruitStockEditViewController) {
+        fruitStockLabels.forEach {
+            guard let label = $0.text else { return }
+            fruitStockEditVC.fruitsStock.append(label)
+        }
     }
     
     private func showSuccessAlert(of juice: Juice) {
