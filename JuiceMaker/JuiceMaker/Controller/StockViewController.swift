@@ -9,17 +9,8 @@ import UIKit
 
 final class StockViewController: UIViewController {
   
-  @IBOutlet private weak var strawberryCountLabel: UILabel!
-  @IBOutlet private weak var bananaCountLabel: UILabel!
-  @IBOutlet private weak var pineappleCountLabel: UILabel!
-  @IBOutlet private weak var kiwiCountLabel: UILabel!
-  @IBOutlet private weak var mangoCountLabel: UILabel!
-  
-  @IBOutlet private weak var strawberryStepper: UIStepper!
-  @IBOutlet private weak var bananaStepper: UIStepper!
-  @IBOutlet private weak var pineappleStepper: UIStepper!
-  @IBOutlet private weak var kiwiStepper: UIStepper!
-  @IBOutlet private weak var mangoStepper: UIStepper!
+  @IBOutlet var fruitCountLabels: [UILabel]!
+  @IBOutlet var fruitSteppers: [UIStepper]!
   
   var juiceMaker: JuiceMaker?
   var delegate: StockDelegate?
@@ -48,50 +39,26 @@ final class StockViewController: UIViewController {
 
 private extension StockViewController {
   func selectFruit(_ sender: UIStepper) -> Fruit? {
-    switch sender {
-    case strawberryStepper:
-      return .strawberry
-    case bananaStepper:
-      return .banana
-    case pineappleStepper:
-      return .pineapple
-    case kiwiStepper:
-      return .kiwi
-    case mangoStepper:
-      return .mango
-    default:
-      return nil
-    }
+    return Fruit(rawValue: sender.tag)
   }
   
   func updateLabel() {
-    self.strawberryCountLabel.text = self.convertStockToString(.strawberry)
-    self.bananaCountLabel.text = self.convertStockToString(.banana)
-    self.pineappleCountLabel.text = self.convertStockToString(.pineapple)
-    self.kiwiCountLabel.text = self.convertStockToString(.kiwi)
-    self.mangoCountLabel.text = self.convertStockToString(.mango)
-  }
-  
-  func convertStockToString(_ fruit: Fruit) -> String {
-    guard let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] else {
-      return String(Int.zero)
+    for (label, fruit) in zip(fruitCountLabels, Fruit.allCases) {
+      if let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] {
+        label.text = String(fruitAmount)
+      } else {
+        label.text = String(Int.zero)
+      }
     }
-    return String(fruitAmount)
   }
   
   func updateStepper() {
-    self.strawberryStepper.value = self.convertStockToDouble(.strawberry)
-    self.bananaStepper.value = self.convertStockToDouble(.banana)
-    self.pineappleStepper.value = self.convertStockToDouble(.pineapple)
-    self.kiwiStepper.value = self.convertStockToDouble(.kiwi)
-    self.mangoStepper.value = self.convertStockToDouble(.mango)
-  }
-  
-  func convertStockToDouble(_ fruit: Fruit) -> Double {
-    guard let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] else {
-      return Double.zero
+    for (stepper, fruit) in zip(fruitSteppers, Fruit.allCases) {
+      if let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] {
+        stepper.value = Double(fruitAmount)
+      } else {
+        stepper.value = Double.zero
+      }
     }
-    return Double(fruitAmount)
   }
-  
 }

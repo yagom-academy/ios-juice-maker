@@ -8,20 +8,8 @@ import UIKit
 
 final class JuiceViewController: UIViewController {
   
-  @IBOutlet private weak var strawberryCountLabel: UILabel!
-  @IBOutlet private weak var bananaCountLabel: UILabel!
-  @IBOutlet private weak var pineappleCountLabel: UILabel!
-  @IBOutlet private weak var kiwiCountLabel: UILabel!
-  @IBOutlet private weak var mangoCountLabel: UILabel!
-  
-  @IBOutlet private weak var strawberryBananaButton: UIButton!
-  @IBOutlet private weak var mangoKiwiButton: UIButton!
-  @IBOutlet private weak var strawberryButton: UIButton!
-  @IBOutlet private weak var bananaButton: UIButton!
-  @IBOutlet private weak var pineappleButton: UIButton!
-  @IBOutlet private weak var kiwiButton: UIButton!
-  @IBOutlet private weak var mangoButton: UIButton!
-  
+  @IBOutlet var countFruitLabels: [UILabel]!
+
   private let juiceMaker = JuiceMaker()
   
   override func viewDidLoad() {
@@ -66,18 +54,13 @@ private extension JuiceViewController {
   }
   
   func updateLabel() {
-    self.strawberryCountLabel.text = self.convertStockToString(.strawberry)
-    self.bananaCountLabel.text = self.convertStockToString(.banana)
-    self.pineappleCountLabel.text = self.convertStockToString(.pineapple)
-    self.kiwiCountLabel.text = self.convertStockToString(.kiwi)
-    self.mangoCountLabel.text = self.convertStockToString(.mango)
-  }
-  
-  func convertStockToString(_ fruit: Fruit) -> String {
-    guard let fruitAmount = self.juiceMaker.fruitStore.stock[fruit] else {
-      return String(Int.zero)
+    for (label, fruit) in zip(countFruitLabels, Fruit.allCases) {
+      if let fruitAmount = self.juiceMaker.fruitStore.stock[fruit] {
+        label.text = String(fruitAmount)
+      } else {
+        label.text = String(Int.zero)
+      }
     }
-    return String(fruitAmount)
   }
   
   func presentAlert(message: String?, actions: [UIAlertAction]) {
@@ -95,13 +78,11 @@ private extension JuiceViewController {
   }
   
   func presentStockViewController() {
-    guard let navigationController = self.storyboard?.instantiateViewController(
-      withIdentifier: StoryboardID.stockNavigationController) as? UINavigationController
-    else {
-      return
-    }
-    guard let stockViewController = navigationController.visibleViewController
-      as? StockViewController
+    guard let navigationController =
+            self.storyboard?.instantiateViewController(
+              withIdentifier: StoryboardID.stockNavigationController) as? UINavigationController,
+          let stockViewController =
+            navigationController.visibleViewController as? StockViewController
     else {
       return
     }
