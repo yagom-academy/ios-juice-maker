@@ -8,7 +8,7 @@
 import UIKit
 
 protocol Update: AnyObject {
-    func updateModel() 
+    func updateModel(stock: [Fruit: Int])
 }
 
 class SubViewController: UIViewController {
@@ -31,14 +31,19 @@ class SubViewController: UIViewController {
         switch stepper {
         case strawberryStepper:
             strawberryLabel.text = String(format: "%.0f", strawberryStepper.value)
+            stockNumbers?[.strawberry] = Int(strawberryStepper.value)
         case bananaStepper:
             bananaLabel.text = String(format: "%.0f", bananaStepper.value)
+            stockNumbers?[.banana] = Int(bananaStepper.value)
         case pineappleStepper:
             pineappleLabel.text = String(format: "%.0f", pineappleStepper.value)
+            stockNumbers?[.pineapple] = Int(pineappleStepper.value)
         case kiwiStepper:
             kiwiLabel.text = String(format: "%.0f", kiwiStepper.value)
+            stockNumbers?[.kiwi] = Int(kiwiStepper.value)
         case mangoStepper:
             mangoLabel.text = String(format: "%.0f", mangoStepper.value)
+            stockNumbers?[.mango] = Int(mangoStepper.value)
         default:
             return 
         }

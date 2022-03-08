@@ -6,7 +6,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, Update {
+    func updateModel(stock: [Fruit: Int]) {
+        
+    }
+    
     private var juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryLabel: UILabel!
