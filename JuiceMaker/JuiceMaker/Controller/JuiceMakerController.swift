@@ -171,6 +171,11 @@ protocol UpdateDelegate: AnyObject {
 
 extension JuiceMakerController: UpdateDelegate {
     func update(data: [Fruit : Int]) {
+        let validData = data.filter{$0.value != 0}
+        juiceMaker.changeStock(from: validData)
+        
+        let fruits = validData.map{$0.key}
+        updateMultipleLabel(of: fruits)
     }
 }
 
