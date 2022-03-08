@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol Update: AnyObject {
+    func updateModel() 
+}
+
 class SubViewController: UIViewController {
     var stockNumbers: [Fruit: Int]?
+    weak var delegate: Update?
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
