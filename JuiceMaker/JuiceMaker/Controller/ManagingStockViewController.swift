@@ -53,14 +53,14 @@ class ManagingStockViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func initializeViewValue() {
+    private func initializeViewValue() {
         guard let stock = stock else { return }
         for (fruit, amount) in stock {
             setUpViewValue(fruit, amount)
         }
     }
     
-    func setUpViewValue(_ fruit: Fruit, _ amount: Int) {
+    private func setUpViewValue(_ fruit: Fruit, _ amount: Int) {
         switch fruit {
         case.strawberry:
             strawberryLabel.text = String(amount)

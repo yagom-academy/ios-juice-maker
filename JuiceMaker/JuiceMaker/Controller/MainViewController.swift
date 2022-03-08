@@ -80,7 +80,7 @@ class MainViewController: UIViewController, Updateable {
         present(alertCountrol, animated: false, completion: nil)
     }
     
-    @IBAction func clickStockChangeButton(_ sender: UIButton) {
+    @IBAction func touchUpMoveButton(_ sender: UIButton) {
         moveManagingStockView()
     }
     
