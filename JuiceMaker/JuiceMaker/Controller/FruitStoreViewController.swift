@@ -4,6 +4,7 @@ class FruitStoreViewController: UIViewController {
     @IBOutlet var fruitLabelCollection: [UILabel]!
     @IBOutlet var fruitStockStepper: [UIStepper]!
     var juiceMaker: JuiceMaker?
+    var delegate: UpdateData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,25 +39,16 @@ class FruitStoreViewController: UIViewController {
     }
     
     @IBAction func closeButton(_ sender: UIBarButtonItem) {
+        delegate?.updateFruitStock()
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func tapStepper(_ sender: UIStepper) {
-        switch sender.tag {
-        case 1:
-            fruitLabelCollection[0].text = Int(sender.value).description
-        case 2:
-            fruitLabelCollection[1].text = Int(sender.value).description
-        case 3:
-            fruitLabelCollection[2].text = Int(sender.value).description
-        case 4:
-            fruitLabelCollection[3].text = Int(sender.value).description
-        case 5:
-            fruitLabelCollection[4].text = Int(sender.value).description
-        default:
+        guard let fruit = Fruit(rawValue: sender.tag) else {
             return
         }
+        fruitLabelCollection[sender.tag].text = Int(sender.value).description
+        juiceMaker?.fruitStore.updateInventory(fruit: fruit, value: Int(sender.value))
     }
-    
 }
 

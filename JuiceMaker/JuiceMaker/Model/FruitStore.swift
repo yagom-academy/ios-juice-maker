@@ -19,4 +19,8 @@ final class FruitStore {
             inventory[fruit] = remainingAmount
         }
     }
+    
+    func updateInventory(fruit: Fruit, value: Int) {
+        inventory[fruit] = value
+    }
 }
