@@ -3,12 +3,17 @@
 팀원 : [@malrang](https://github.com/kinggoguma) [@doogie97](https://github.com/doogie97) / 리뷰어 : [@yoo-kie](https://github.com/yoo-kie)
 
 - [프로젝트 팀 규칙](#프로젝트-팀-규칙)
+- [실행화면](#실행화면)
 - [UML](#uml)
 - [STEP 1 기능 구현](#step-1-기능-구현)
     + [고민했던 것들](#고민했던-것들)
     + [배운 개념](#배운-개념)
     + [PR 후 개선사항](#pr-후-개선사항)
 - [STEP 2 기능 구현](#step-2-기능-구현)
+    + [고민했던 것들](#고민했던-것들)
+    + [배운 개념](#배운-개념)
+    + [PR 후 개선사항](#pr-후-개선사항)
+- [STEP 3 기능 구현](#step-3-기능-구현)
     + [고민했던 것들](#고민했던-것들)
     + [배운 개념](#배운-개념)
     + [PR 후 개선사항](#pr-후-개선사항)
@@ -22,6 +27,9 @@
 **프로젝트 수행이 어려운 시간**
 - Doogie: 수: 18:00 이후, 금: 18:00 이후
 - malrang: 상관없음
+
+## 실행화면
+![화면_기록2022-03-08오후_12_22_10_AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/82325822/157161081-14a93f78-1f12-401a-ac52-c59a170076ee.gif)
 
 ## UML
 
@@ -313,3 +321,70 @@ func checkStock(menu: Menu) throws {
         showStock()
     }
 ```
+
+## STEP 3 기능 구현
+- MainViewController 타입 확장
+    - ManageViewControllerDelegate 프로토콜을 채택후 전달된 값을 받는 함수(sendStocks)
+- ManageViewControllerDelegate 프로토콜 구현
+    - 데이터를 전달할 함수(sendStocks)
+- ManageViewController 타입 구현
+    - 현재 과일 재고 를 재고화면 의 label 에 적용 하는 함수(showStock)
+    - 닫기 버튼 터치시 현재 view 를 제거 하는 함수(touchCloseButton)
+    - 스테퍼 버튼 터치시 label 의 값이 변경되는 함수(touchStepper)
+    - 변경된 스테퍼의 value 를 과일재고 에서 차감 해주고 다른 객체로 전달 해주는 함수(changeStocks) 
+    - 확인 버튼 터치시 과일의 재고가 변경된 것을 적용할것인지 아닌지 alert 을 띄워주는 함수(touchConfirmButton)
+
+## 고민했던 것들
+### data전달 방식의 선택
+1. 값을 넘겨 줄 때
+```swift 
+let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController")
+```
+코드로 화면 전환을 구현하기 위해 *`manageVC`* 라는 *`ManageViewController`* 의 인스턴스를 생성 했으며 이미 생성된 인스턴스를 활용하고자 해당 인스턴스를  *`ManageViewController`* 로 다운캐스팅만 진행해 data를 넘겨줌.
+```swift
+guard let manageVC = self.storyboard?.instantiateViewController(withIdentifier: "ManageViewController") as? ManageViewController else { return }
+```
+
+2. 재고 관리 화면에서 변경된 값을 가져올 때(delegate패턴 vs notification)
+
+- notification의 userInfo는 *`[AnyHashable : Any]`* 타입의 딕셔너리로 값을 주고 받기에 딕셔너리의 key와 value를 꺼내서 쓰는 해당 어플에서는 delegate패턴이 더 유리하다고 생각.
+### 코드를 간소화 시킬 때 가독성의 문제
+
+
+dictionary를 통해서 코드를 많이 간소화 시켰고 가독성 또한 크게 떨어지지 않는다고 생각함.
+변경전
+```swift 
+    @IBAction func touchStepper( sender: UIStepper) {
+     switch sender {
+        case strawberryStepper:
+            self.strawberryStockLabel.text = String(Int(sender.value))
+        case bananaStepper:
+            self.bananaStockLabel.text = String(Int(sender.value))
+        case pineappleStepper:
+            self.pineappleStockLabel.text = String(Int(sender.value))
+        case kiwiStepper:
+            self.kiwiStockLabel.text = String(Int(sender.value))
+        case mangoStepper:
+            self.mangoStockLabel.text = String(Int(sender.value))
+        default:
+            print("에러")
+        }   
+    }
+```
+
+변경 후 
+```swift 
+    @IBAction func touchStepper( sender: UIStepper) {
+            let selectedStepperDic = stepperDic.filter{ $0.value == sender }
+            selectedStepperDic.forEach{ fruit, stepper in labelDic[fruit]?.text = String(Int(sender.value)) }
+    }
+```
+다만 위 코드는 간소화를 시켰으나 코드를 볼때 직관성이 많이 떨어진다고 생각하는데 기능적인 측면에서는 큰 차이가 없다고 생각이 든다면 코드가 길어져도 상관이 없는건지 고민.
+(길어진 코드의 가독성이 더 좋다고 생각된다면.)
+
+## 배운 개념
+1. notification
+2. delegate 패턴
+3. autolayout 사용법
+
+## PR 후 개선사항
