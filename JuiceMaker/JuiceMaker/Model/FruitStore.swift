@@ -29,6 +29,12 @@ class FruitStore {
         stock[fruit] = inStock
     }
     
+    func updateStock(to stock: [Fruit: Int]) {
+        self.stock = stock
+    }
+    
+    
+    
     func getStock(of fruit: Fruit) -> Int {
         return stock[fruit] ?? 0
     }

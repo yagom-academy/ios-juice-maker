@@ -61,6 +61,12 @@ class SubViewController: UIViewController {
         updateLabel()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let stock = stockNumbers else { return }
+        delegate?.updateModel(stock: stock)
+    }
+    
     func updateLabel() {
         guard let stockNumbers = stockNumbers else { return }
         for (fruit, count) in stockNumbers {

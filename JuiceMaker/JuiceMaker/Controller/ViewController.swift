@@ -8,7 +8,9 @@ import UIKit
 
 class ViewController: UIViewController, Update {
     func updateModel(stock: [Fruit: Int]) {
-        
+        print(stock)
+        juiceMaker.fruitStore.updateStock(to: stock)
+        updateFruitLable()
     }
     
     private var juiceMaker = JuiceMaker()
@@ -92,7 +94,7 @@ class ViewController: UIViewController, Update {
         guard let stockChangeNavigation = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeNavigation") as? UINavigationController else { return }
         guard let stockChangeView = stockChangeNavigation.topViewController as? SubViewController else { return }
         stockChangeView.stockNumbers = juiceMaker.fruitStore.stock
-
+        stockChangeView.delegate = self
         self.present(stockChangeNavigation, animated: true, completion: nil)
     }
     
