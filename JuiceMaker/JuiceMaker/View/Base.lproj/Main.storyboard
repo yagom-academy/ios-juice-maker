@@ -430,25 +430,13 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sN0-bq-B2f">
-                                <rect key="frame" x="377.66666666666669" y="262.66666666666669" width="57" height="37"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="확인">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="touchConfirmButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="7M3-0l-Ai8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="sN0-bq-B2f" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="LpP-nE-HiD"/>
                             <constraint firstItem="aJA-NQ-f4T" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="RvK-Bf-8i1"/>
                             <constraint firstItem="aJA-NQ-f4T" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" id="Y6a-Xp-yFT"/>
                             <constraint firstItem="vVU-xE-Q5u" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="e8O-nl-llD"/>
-                            <constraint firstItem="sN0-bq-B2f" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" multiplier="1.5" id="gY3-Ev-OHN"/>
                             <constraint firstAttribute="trailing" secondItem="aJA-NQ-f4T" secondAttribute="trailing" id="j2h-e3-jVS"/>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="vVU-xE-Q5u" secondAttribute="trailing" constant="16" id="jM3-2w-RjE"/>
                             <constraint firstItem="vVU-xE-Q5u" firstAttribute="top" secondItem="aJA-NQ-f4T" secondAttribute="bottom" constant="20" id="mBf-SX-0LI"/>
