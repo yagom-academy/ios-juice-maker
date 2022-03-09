@@ -80,7 +80,7 @@ private extension JuiceViewController {
   func presentStockViewController() {
     guard let navigationController =
             self.storyboard?.instantiateViewController(
-              withIdentifier: StoryboardID.stockNavigationController) as? UINavigationController,
+              withIdentifier: StockNavigationController.identifier) as? UINavigationController,
           let stockViewController =
             navigationController.visibleViewController as? StockViewController
     else {

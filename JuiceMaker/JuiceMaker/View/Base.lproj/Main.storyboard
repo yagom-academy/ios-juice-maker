@@ -439,10 +439,10 @@
             </objects>
             <point key="canvasLocation" x="1537.6777251184833" y="987.69230769230762"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Stock Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController storyboardIdentifier="StockNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StockNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" customClass="StockNavigationController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="J66-nR-WIv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">

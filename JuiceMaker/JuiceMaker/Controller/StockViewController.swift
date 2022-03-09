@@ -13,7 +13,7 @@ final class StockViewController: UIViewController {
   @IBOutlet private var fruitSteppers: [UIStepper]!
   
   var juiceMaker: JuiceMaker?
-  var delegate: StockDelegate?
+  weak var delegate: StockDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
