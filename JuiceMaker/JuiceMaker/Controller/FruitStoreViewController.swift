@@ -1,8 +1,8 @@
 import UIKit
 
 class FruitStoreViewController: UIViewController {
-    @IBOutlet var fruitLabelCollection: [UILabel]!
-    @IBOutlet var fruitStockStepper: [UIStepper]!
+    @IBOutlet private var fruitLabelCollection: [UILabel]!
+    @IBOutlet private var fruitStockStepper: [UIStepper]!
     var juiceMaker: JuiceMaker?
     var delegate: UpdateData?
     
@@ -12,7 +12,7 @@ class FruitStoreViewController: UIViewController {
         updateStepperValue()
     }
     
-    func updateStepperValue() {
+    private func updateStepperValue() {
         guard let juiceMaker = juiceMaker else {
             return
         }
@@ -38,12 +38,12 @@ class FruitStoreViewController: UIViewController {
         }
     }
     
-    @IBAction func closeButton(_ sender: UIBarButtonItem) {
+    @IBAction private func closeButton(_ sender: UIBarButtonItem) {
         delegate?.updateFruitStock()
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func tapStepper(_ sender: UIStepper) {
+    @IBAction private func tapStepper(_ sender: UIStepper) {
         guard let fruit = Fruit(rawValue: sender.tag) else {
             return
         }

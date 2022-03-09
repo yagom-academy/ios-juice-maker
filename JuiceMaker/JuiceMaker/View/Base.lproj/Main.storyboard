@@ -295,7 +295,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY" userLabel="strawberry">
                                                 <rect key="frame" x="0.0" y="108" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -311,9 +311,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="dCK-AJ-zGU" firstAttribute="centerX" secondItem="eju-hZ-3a5" secondAttribute="centerX" id="HiC-q7-Y6U"/>
-                                            <constraint firstItem="0yV-kn-zaT" firstAttribute="width" secondItem="dCK-AJ-zGU" secondAttribute="width" id="RMQ-ux-pKz"/>
                                             <constraint firstItem="ZQk-f4-zrz" firstAttribute="centerX" secondItem="eju-hZ-3a5" secondAttribute="centerX" id="ak4-gE-dFa"/>
-                                            <constraint firstItem="0yV-kn-zaT" firstAttribute="centerX" secondItem="eju-hZ-3a5" secondAttribute="centerX" id="iTL-jE-34x"/>
                                             <constraint firstItem="ZQk-f4-zrz" firstAttribute="width" secondItem="dCK-AJ-zGU" secondAttribute="width" id="lD6-zE-bnm"/>
                                         </constraints>
                                     </stackView>
@@ -326,7 +324,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI" userLabel="banana">
                                                 <rect key="frame" x="0.0" y="108" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -343,8 +341,6 @@
                                         <constraints>
                                             <constraint firstItem="O5s-2N-3iP" firstAttribute="centerX" secondItem="HQ9-4x-L9b" secondAttribute="centerX" id="N2a-s9-l9Y"/>
                                             <constraint firstItem="y33-ND-gz2" firstAttribute="centerX" secondItem="HQ9-4x-L9b" secondAttribute="centerX" id="Wna-LS-r2W"/>
-                                            <constraint firstItem="gKu-86-RhI" firstAttribute="centerX" secondItem="HQ9-4x-L9b" secondAttribute="centerX" id="aWa-vi-d2q"/>
-                                            <constraint firstItem="gKu-86-RhI" firstAttribute="width" secondItem="y33-ND-gz2" secondAttribute="width" id="oW1-ou-gcf"/>
                                             <constraint firstItem="O5s-2N-3iP" firstAttribute="width" secondItem="y33-ND-gz2" secondAttribute="width" id="ufs-3u-Fwx"/>
                                         </constraints>
                                     </stackView>
@@ -357,7 +353,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR" userLabel="pineapple">
                                                 <rect key="frame" x="0.0" y="108" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -373,10 +369,8 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="rac-Ji-vZK" firstAttribute="centerX" secondItem="nYm-ff-BfG" secondAttribute="centerX" id="0lo-7u-1Gf"/>
-                                            <constraint firstItem="MpT-VW-hCb" firstAttribute="width" secondItem="rac-Ji-vZK" secondAttribute="width" id="Ldp-fv-57J"/>
                                             <constraint firstItem="Rcr-xr-eqz" firstAttribute="centerX" secondItem="nYm-ff-BfG" secondAttribute="centerX" id="j0S-Y8-XKp"/>
                                             <constraint firstItem="Rcr-xr-eqz" firstAttribute="width" secondItem="rac-Ji-vZK" secondAttribute="width" id="kex-fv-dhc"/>
-                                            <constraint firstItem="MpT-VW-hCb" firstAttribute="centerX" secondItem="nYm-ff-BfG" secondAttribute="centerX" id="qhz-fS-T40"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="trV-Ug-33x">
@@ -388,7 +382,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb" userLabel="kiwi">
                                                 <rect key="frame" x="0.0" y="108" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -406,8 +400,6 @@
                                             <constraint firstItem="klA-59-Nu4" firstAttribute="centerX" secondItem="trV-Ug-33x" secondAttribute="centerX" id="1YF-Sd-BNB"/>
                                             <constraint firstItem="EHe-D1-1xN" firstAttribute="centerX" secondItem="trV-Ug-33x" secondAttribute="centerX" id="HJm-Fq-y3R"/>
                                             <constraint firstItem="klA-59-Nu4" firstAttribute="width" secondItem="EHe-D1-1xN" secondAttribute="width" id="MM4-8y-kN5"/>
-                                            <constraint firstItem="ZDv-1m-HBY" firstAttribute="centerX" secondItem="trV-Ug-33x" secondAttribute="centerX" id="c0e-Nr-5fa"/>
-                                            <constraint firstItem="ZDv-1m-HBY" firstAttribute="width" secondItem="EHe-D1-1xN" secondAttribute="width" id="jqp-tb-am9"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="mbI-No-bBY">
@@ -419,7 +411,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT" userLabel="mango">
                                                 <rect key="frame" x="0.0" y="108" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -436,7 +428,6 @@
                                         <constraints>
                                             <constraint firstItem="w1F-9o-qJR" firstAttribute="centerX" secondItem="mbI-No-bBY" secondAttribute="centerX" id="1Kc-U9-aju"/>
                                             <constraint firstItem="xbn-6P-grO" firstAttribute="centerX" secondItem="mbI-No-bBY" secondAttribute="centerX" id="4rv-GH-fQ4"/>
-                                            <constraint firstItem="YJI-ER-LJR" firstAttribute="centerX" secondItem="mbI-No-bBY" secondAttribute="centerX" id="r25-WJ-4Dr"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -463,15 +454,15 @@
                     </view>
                     <connections>
                         <outletCollection property="fruitStockStepper" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="3rt-bn-0fd"/>
-                        <outletCollection property="fruitLabelCollection" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="HxW-mS-YMa"/>
                         <outletCollection property="fruitStockStepper" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="c5s-e3-mPe"/>
-                        <outletCollection property="fruitLabelCollection" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="0Hk-9m-J6H"/>
-                        <outletCollection property="fruitLabelCollection" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="9n7-ye-P0D"/>
                         <outletCollection property="fruitStockStepper" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="LpM-V3-9nd"/>
-                        <outletCollection property="fruitLabelCollection" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="Wlg-Uz-sir"/>
                         <outletCollection property="fruitStockStepper" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="qJW-0y-ux4"/>
                         <outletCollection property="fruitStockStepper" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="1ve-Or-BiK"/>
-                        <outletCollection property="fruitLabelCollection" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="VKU-Hn-fPF"/>
+                        <outletCollection property="fruitLabelCollection" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="3Py-ko-nGf"/>
+                        <outletCollection property="fruitLabelCollection" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="x5U-vh-kZ2"/>
+                        <outletCollection property="fruitLabelCollection" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="oZs-Gg-yQz"/>
+                        <outletCollection property="fruitLabelCollection" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="qgc-nG-uYy"/>
+                        <outletCollection property="fruitLabelCollection" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="yvP-8K-1nk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

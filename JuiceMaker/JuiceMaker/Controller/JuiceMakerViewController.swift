@@ -13,7 +13,7 @@ final class JuiceMakerViewController: UIViewController {
         updateFruitsStock()
     }
     
-    @IBAction func clickUpdateFruitStockButton(_ sender: UIBarButtonItem) {
+    @IBAction private func clickUpdateFruitStockButton(_ sender: UIBarButtonItem) {
         guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: "FruitStoreVC") as? FruitStoreViewController else {
             return
         }
