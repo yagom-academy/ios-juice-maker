@@ -6,23 +6,15 @@
 
 import UIKit
 
-
-final class JuiceMakerViewController: UIViewController {
-    
+final class JuiceMakerViewController: UIViewController{
     @IBOutlet var fruitsLabelCollection: [UILabel]!
     var fruitStore = FruitStore()
     let orderJuice = JuiceMaker()
     
     @IBAction private func changeViewControllerTapped(_ sender: Any) {
         guard let ChangeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
-        let notFoundStringLabelCount = "0"
-        for fruitLabel in fruitsLabelCollection {
-            let fruitsLabelTag = fruitLabel.tag
-            if let fruitType = FruitsTypes.init(rawValue: fruitsLabelTag) {
-                fruitLabel.text = String(fruitStore.fruits[fruitType] ?? .zero)
-                ChangeStockViewController.fruitsNum.append(fruitLabel.text ?? notFoundStringLabelCount)
-            }
-        }
+        ChangeStockViewController.delegate = self
+        ChangeStockViewController.changedStock = fruitStore.fruits
         if let naviController = navigationController {
             naviController.pushViewController(ChangeStockViewController, animated: true)
         } else {
@@ -61,14 +53,7 @@ final class JuiceMakerViewController: UIViewController {
         let juiceOutOfStockAlert = UIAlertController(title: AlertMessages.outOfStock, message: "", preferredStyle: .alert)
         let yesButton = UIAlertAction(title: AlertMessages.ok, style: .default) {_ in
             guard let ChangeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
-            let notFoundStringLabelCount = "0"
-            for fruitLabel in self.fruitsLabelCollection {
-                let fruitsLabelTag = fruitLabel.tag
-                if let fruitType = FruitsTypes.init(rawValue: fruitsLabelTag) {
-                    fruitLabel.text = String(self.fruitStore.fruits[fruitType] ?? .zero)
-                    ChangeStockViewController.fruitsNum.append(fruitLabel.text ?? notFoundStringLabelCount)
-                }
-            }
+            ChangeStockViewController.changedStock = self.fruitStore.fruits
             self.navigationController?.pushViewController(ChangeStockViewController, animated: true)
         }
         let noButton = UIAlertAction(title: AlertMessages.cancel, style: .destructive, handler: nil)
@@ -93,9 +78,16 @@ final class JuiceMakerViewController: UIViewController {
             }
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initFruits()
     }
 }
+    
+    extension JuiceMakerViewController: ChangeStockViewControllerDelegate {
+        func sendData(stocks: [FruitsTypes : Int]) {
+            fruitStore.fruits = stocks
+            initFruits()
+        }
+    }

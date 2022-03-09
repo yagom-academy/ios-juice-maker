@@ -12,4 +12,5 @@ enum JuiceMakerError: Error {
     case unexpectedError
     case notExistNavigationController
     case typeCastingError
+    case stepperError
 }
