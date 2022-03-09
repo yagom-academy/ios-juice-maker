@@ -86,8 +86,8 @@ private extension JuiceViewController {
     else {
       return
     }
-    stockViewController.juiceMaker = juiceMaker
     stockViewController.delegate = self
+    stockViewController.setJuiceMaker(juiceMaker)
     self.present(navigationController, animated: true)
   }
 }

@@ -12,7 +12,7 @@ final class StockViewController: UIViewController {
   @IBOutlet private var fruitCountLabels: [UILabel]!
   @IBOutlet private var fruitSteppers: [UIStepper]!
   
-  var juiceMaker: JuiceMaker?
+  private var juiceMaker: JuiceMaker?
   weak var delegate: StockDelegate?
   
   override func viewDidLoad() {
@@ -32,6 +32,10 @@ final class StockViewController: UIViewController {
   @IBAction private func didTapCloseButton(_ sender: UIBarButtonItem) {
     self.delegate?.update()
     self.dismiss(animated: true)
+  }
+  
+  func setJuiceMaker(_ juiceMaker: JuiceMaker) {
+    self.juiceMaker = juiceMaker
   }
 }
 
