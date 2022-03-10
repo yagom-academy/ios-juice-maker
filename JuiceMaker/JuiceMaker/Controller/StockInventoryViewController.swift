@@ -5,33 +5,43 @@ class StockInventoryViewController: UIViewController {
     let minimumNumberOfStock: Double = 0
     weak var delegate: JuiceOrderViewControllerDelegate?
     
-    @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
-    @IBOutlet private weak var stockOfBananaLabel: UILabel!
-    @IBOutlet private weak var stockOfPineappleLabel: UILabel!
-    @IBOutlet private weak var stockOfKiwiLabel: UILabel!
-    @IBOutlet private weak var stockOfMangoLabel: UILabel!
+    @IBOutlet private weak var stockOfStrawberryLabel: FruitLabel!
+    @IBOutlet private weak var stockOfBananaLabel: FruitLabel!
+    @IBOutlet private weak var stockOfPineappleLabel: FruitLabel!
+    @IBOutlet private weak var stockOfKiwiLabel: FruitLabel!
+    @IBOutlet private weak var stockOfMangoLabel: FruitLabel!
     
     @IBOutlet private weak var strawberryStepper: UIStepper!
     @IBOutlet private weak var bananaStepper: UIStepper!
     @IBOutlet private weak var pineappleStepper: UIStepper!
     @IBOutlet private weak var kiwiStepper: UIStepper!
     @IBOutlet private weak var mangoStepper: UIStepper!
+
+    @IBOutlet var fruitLabels: [FruitLabel]!
     
     @IBOutlet private var stockSteppers: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupFruitLabelType()
         setupFruitStockLabel()
         setupFruitStockStepper()
     }
     
+    private func setupFruitLabelType() {
+        stockOfStrawberryLabel.fruitType = .strawberry
+        stockOfBananaLabel.fruitType = .banana
+        stockOfPineappleLabel.fruitType = .pineapple
+        stockOfKiwiLabel.fruitType = .kiwi
+        stockOfMangoLabel.fruitType = .mango
+    }
+    
     private func setupFruitStockLabel() {
         guard let fruitStore = fruitStore else { return }
-        stockOfStrawberryLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.strawberry))
-        stockOfBananaLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.banana))
-        stockOfPineappleLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.pineapple))
-        stockOfKiwiLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.kiwi))
-        stockOfMangoLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.mango))
+        fruitLabels.forEach({
+            guard let fruitType = $0.fruitType else { return }
+            $0.text = String(fruitStore.numberOfStock(fruit: fruitType))
+        })
     }
     
     private func setupFruitStockStepper() {

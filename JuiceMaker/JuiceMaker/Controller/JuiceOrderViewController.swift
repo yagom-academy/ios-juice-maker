@@ -105,18 +105,8 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
     
     private func updateFruitStockLabel(recipe: [FruitType: Int]) {
         recipe.forEach {
-            switch $0.key {
-            case FruitType.strawberry:
-                stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
-            case FruitType.banana:
-                stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
-            case FruitType.pineapple:
-                stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
-            case FruitType.kiwi:
-                stockOfKiwiLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi))
-            case FruitType.mango:
-                stockOfMangoLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango))
-            }
+            let fruitType = $0.key
+            fruitLabels.filter({ $0.fruitType == fruitType }).last?.text = String(juiceMaker.fruitStore.numberOfStock(fruit: fruitType))
         }
     }
     

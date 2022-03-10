@@ -322,7 +322,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT" customClass="FruitLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="63.66666666666665" y="113.66666666666667" width="11.666666666666664" height="23.000000000000014"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -346,7 +346,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI" customClass="FruitLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="63.66666666666665" y="113.66666666666667" width="11.666666666666664" height="23.000000000000014"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -370,7 +370,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb" customClass="FruitLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="63.999999999999993" y="113.66666666666667" width="11.666666666666664" height="23.000000000000014"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -394,7 +394,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY" customClass="FruitLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="63.666666666666679" y="113.66666666666667" width="11.666666666666664" height="23.000000000000014"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -418,7 +418,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR" customClass="FruitLabel" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="63.999999999999993" y="113.66666666666667" width="11.666666666666664" height="23.000000000000014"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -456,17 +456,22 @@
                         <outlet property="kiwiStepper" destination="klA-59-Nu4" id="aSH-52-hxN"/>
                         <outlet property="mangoStepper" destination="xbn-6P-grO" id="13m-FY-Y7o"/>
                         <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="uuV-0u-9HU"/>
-                        <outlet property="stockOfBananaLabel" destination="gKu-86-RhI" id="ZSO-Pm-fmQ"/>
-                        <outlet property="stockOfKiwiLabel" destination="ZDv-1m-HBY" id="gXM-Rq-8YO"/>
-                        <outlet property="stockOfMangoLabel" destination="YJI-ER-LJR" id="Nb5-ad-f6M"/>
-                        <outlet property="stockOfPineappleLabel" destination="MpT-VW-hCb" id="NcC-6R-0Xd"/>
-                        <outlet property="stockOfStrawberryLabel" destination="0yV-kn-zaT" id="djE-CV-ZDk"/>
+                        <outlet property="stockOfBananaLabel" destination="gKu-86-RhI" id="k5W-a9-dL5"/>
+                        <outlet property="stockOfKiwiLabel" destination="ZDv-1m-HBY" id="gqq-9h-WBU"/>
+                        <outlet property="stockOfMangoLabel" destination="YJI-ER-LJR" id="FhI-by-i5q"/>
+                        <outlet property="stockOfPineappleLabel" destination="MpT-VW-hCb" id="4d0-7Q-E30"/>
+                        <outlet property="stockOfStrawberryLabel" destination="0yV-kn-zaT" id="U6m-vp-Hlv"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="9O2-Bc-szr"/>
                         <outletCollection property="stockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="KWP-mf-xeA"/>
                         <outletCollection property="stockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="ZGy-bH-O22"/>
                         <outletCollection property="stockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="xJb-fe-Bz4"/>
                         <outletCollection property="stockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="wEk-on-JK2"/>
                         <outletCollection property="stockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="shh-NC-ch5"/>
+                        <outletCollection property="fruitLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="DCc-Dj-zWW"/>
+                        <outletCollection property="fruitLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="bQF-Fo-bKo"/>
+                        <outletCollection property="fruitLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="IWp-T5-OsK"/>
+                        <outletCollection property="fruitLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="KYO-dB-PhM"/>
+                        <outletCollection property="fruitLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="3Zc-c9-yf2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
