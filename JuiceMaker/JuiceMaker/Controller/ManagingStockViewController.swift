@@ -32,6 +32,13 @@ class ManagingStockViewController: UIViewController, Delegator {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
+    lazy var uiGroup: [Fruit: (label: UILabel, stepper: UIStepper)] = [.strawberry: (strawberryLabel, strawberryStepper),
+                                                                            .banana: (bananaLabel, bananaStepper),
+                                                                            .pineapple: (pineappleLabel, pineappleStepper),
+                                                                            .kiwi: (kiwiLabel, kiwiStepper),
+                                                                            .mango: (mangoLabel, mangoStepper)]
+    
+    
     @IBAction func matchLabel(with stepper: UIStepper) {
         switch stepper {
         case strawberryStepper:
