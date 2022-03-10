@@ -1,17 +1,5 @@
 import UIKit
 
-protocol JuiceOrderViewControllerDelegate: AnyObject {
-    func JuiceOrderViewControllerHasChanges()
-}
-
-class JuiceButton: UIButton {
-    var juiceType: JuiceMaker.JuiceType?
-}
-
-class FruitLabel: UILabel {
-    var fruitType: FruitType?
-}
-
 class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelegate {
     private var juiceMaker = JuiceMaker()
     

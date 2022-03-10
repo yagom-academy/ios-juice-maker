@@ -1,9 +1,5 @@
 import UIKit
 
-class FruitStepper: UIStepper {
-    var fruitType: FruitType?
-}
-
 class StockInventoryViewController: UIViewController {
     var fruitStore: FruitStore?
     let minimumNumberOfStock: Double = 0
