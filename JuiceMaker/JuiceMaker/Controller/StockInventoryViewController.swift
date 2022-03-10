@@ -1,7 +1,7 @@
 import UIKit
 
 class StockInventoryViewController: UIViewController {
-    var fruitStockStatus: [FruitType: Int] = [:]
+    var fruitStore: FruitStore?
     let minimumNumberOfStock: Double = 0
     weak var delegate: JuiceOrderViewControllerDelegate?
     
@@ -26,11 +26,12 @@ class StockInventoryViewController: UIViewController {
     }
     
     private func setupFruitStockLabel() {
-        stockOfStrawberryLabel.text = String(fruitStockStatus[FruitType.strawberry] ?? Int.zero)
-        stockOfBananaLabel.text = String(fruitStockStatus[FruitType.banana] ?? Int.zero)
-        stockOfPineappleLabel.text = String(fruitStockStatus[FruitType.pineapple] ?? Int.zero)
-        stockOfKiwiLabel.text = String(fruitStockStatus[FruitType.kiwi] ?? Int.zero)
-        stockOfMangoLabel.text = String(fruitStockStatus[FruitType.mango] ?? Int.zero)
+        guard let fruitStore = fruitStore else { return }
+        stockOfStrawberryLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.strawberry))
+        stockOfBananaLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.banana))
+        stockOfPineappleLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.pineapple))
+        stockOfKiwiLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.kiwi))
+        stockOfMangoLabel.text = String(fruitStore.numberOfStock(fruit: FruitType.mango))
     }
     
     private func setupFruitStockStepper() {
@@ -46,11 +47,12 @@ class StockInventoryViewController: UIViewController {
     }
     
     private func setupFruitStockStepperLabel() {
-        strawberryStepper.value = Double(fruitStockStatus[FruitType.strawberry] ?? Int.zero)
-        bananaStepper.value = Double(fruitStockStatus[FruitType.banana] ?? Int.zero)
-        pineappleStepper.value = Double(fruitStockStatus[FruitType.pineapple] ?? Int.zero)
-        kiwiStepper.value = Double(fruitStockStatus[FruitType.kiwi] ?? Int.zero)
-        mangoStepper.value = Double(fruitStockStatus[FruitType.mango] ?? Int.zero)
+        guard let fruitStore = fruitStore else { return }
+        strawberryStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.strawberry))
+        bananaStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.banana))
+        pineappleStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.pineapple))
+        kiwiStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.kiwi))
+        mangoStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.mango))
     }
     
     @IBAction private func stepperValueChangedAction(_ sender: UIStepper) {
@@ -70,14 +72,12 @@ class StockInventoryViewController: UIViewController {
         }
     }
     
-    private func changedFruitsStock() -> [FruitType: Int] {
-        var fruits: [FruitType: Int] = [:]
-        fruits.updateValue(Int(strawberryStepper.value), forKey: FruitType.strawberry)
-        fruits.updateValue(Int(bananaStepper.value), forKey: FruitType.banana)
-        fruits.updateValue(Int(pineappleStepper.value), forKey: FruitType.pineapple)
-        fruits.updateValue(Int(kiwiStepper.value), forKey: FruitType.kiwi)
-        fruits.updateValue(Int(mangoStepper.value), forKey: FruitType.mango)
-        return fruits
+    private func changeFruitsStock() {
+        fruitStore?.updateStock(fruit: FruitType.strawberry, amount: Int(strawberryStepper.value))
+        fruitStore?.updateStock(fruit: FruitType.banana, amount: Int(bananaStepper.value))
+        fruitStore?.updateStock(fruit: FruitType.pineapple, amount: Int(pineappleStepper.value))
+        fruitStore?.updateStock(fruit: FruitType.kiwi, amount: Int(kiwiStepper.value))
+        fruitStore?.updateStock(fruit: FruitType.mango, amount: Int(mangoStepper.value))
     }
     
     @IBAction private func closeManageStockView(_ sender: UIBarButtonItem) {
@@ -86,6 +86,8 @@ class StockInventoryViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        delegate?.JuiceOrderViewControllerHasChanges(changedFruitsStock())
+        changeFruitsStock()
+
+        delegate?.JuiceOrderViewControllerHasChanges()
     }
 }

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol JuiceOrderViewControllerDelegate: AnyObject {
-    func JuiceOrderViewControllerHasChanges(_ fruits: [FruitType: Int])
+    func JuiceOrderViewControllerHasChanges()
 }
 
 class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelegate {
@@ -115,7 +115,7 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
     
     private func presentStockInventoryView() {
         guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) as? StockInventoryViewController else { return }
-        stockInventoryViewController.fruitStockStatus = fruitStockStatus()
+        stockInventoryViewController.fruitStore = juiceMaker.fruitStore
         stockInventoryViewController.delegate = self
         stockInventoryViewController.modalTransitionStyle = .coverVertical
         stockInventoryViewController.modalPresentationStyle = .automatic
@@ -133,10 +133,7 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         return stockStatus
     }
     
-    func JuiceOrderViewControllerHasChanges(_ fruits: [FruitType: Int]) {
-        fruits.forEach({
-            juiceMaker.fruitStore.updateStock(fruit: $0.key, amount: $0.value)
-        })
+    func JuiceOrderViewControllerHasChanges() {
         configureFruitStockLabel()
     }
 }
