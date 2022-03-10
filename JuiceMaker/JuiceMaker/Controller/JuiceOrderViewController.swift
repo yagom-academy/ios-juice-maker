@@ -1,10 +1,10 @@
 import UIKit
 
-protocol dataDelegate {
-    func sendData(fruits: [FruitType: Int])
+protocol JuiceOrderViewDelegate: class {
+    func JuiceOrderViewHasChanges(_ fruits: [FruitType: Int])
 }
 
-class JuiceOrderViewController: UIViewController, dataDelegate {
+class JuiceOrderViewController: UIViewController, JuiceOrderViewDelegate {
     private var juiceMaker = JuiceMaker()
     
     enum MessageNameSpace {
@@ -116,7 +116,7 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
     private func presentStockInventoryView() {
         guard let stockInventoryViewController = self.storyboard?.instantiateViewController(identifier: ViewName.StockInventoryViewController) as? StockInventoryViewController else { return }
         stockInventoryViewController.fruitStockStatus = fruitStockStatus()
-        stockInventoryViewController.dataDelegate = self
+        stockInventoryViewController.delegate = self
         stockInventoryViewController.modalTransitionStyle = .coverVertical
         stockInventoryViewController.modalPresentationStyle = .automatic
         
@@ -133,7 +133,7 @@ class JuiceOrderViewController: UIViewController, dataDelegate {
         return stockStatus
     }
     
-    func sendData(fruits: [FruitType: Int]) {
+    func JuiceOrderViewHasChanges(_ fruits: [FruitType: Int]) {
         fruits.forEach({
             juiceMaker.fruitStore.updateStock(fruit: $0.key, amount: $0.value)
             updateFruitStockLabel(recipe: [$0.key: $0.value])

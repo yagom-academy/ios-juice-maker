@@ -3,7 +3,7 @@ import UIKit
 class StockInventoryViewController: UIViewController {
     var fruitStockStatus: [FruitType: Int] = [:]
     let minimumNumberOfStock: Double = 0
-    var dataDelegate: dataDelegate?
+    weak var delegate: JuiceOrderViewDelegate?
     
     @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
     @IBOutlet private weak var stockOfBananaLabel: UILabel!
@@ -100,6 +100,6 @@ class StockInventoryViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        dataDelegate?.sendData(fruits: changedFruitsStock())
+        delegate?.JuiceOrderViewHasChanges(changedFruitsStock())
     }
 }
