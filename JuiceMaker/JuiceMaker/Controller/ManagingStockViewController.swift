@@ -38,8 +38,8 @@ class ManagingStockViewController: UIViewController, Delegator {
                                                                             .kiwi: (kiwiLabel, kiwiStepper),
                                                                             .mango: (mangoLabel, mangoStepper)]
     
-    
     @IBAction func matchLabel(with stepper: UIStepper) {
+        
         switch stepper {
         case strawberryStepper:
             strawberryLabel.text = String(format: "%.0f", strawberryStepper.value)
@@ -73,23 +73,8 @@ class ManagingStockViewController: UIViewController, Delegator {
     }
     
     private func setUpViewValue(_ fruit: Fruit, _ amount: Int) {
-        switch fruit {
-        case.strawberry:
-            strawberryLabel.text = String(amount)
-            strawberryStepper.value = Double(amount)
-        case.banana:
-            bananaLabel.text = String(amount)
-            bananaStepper.value = Double(amount)
-        case.pineapple:
-            pineappleLabel.text = String(amount)
-            pineappleStepper.value = Double(amount)
-        case.kiwi:
-            kiwiLabel.text = String(amount)
-            kiwiStepper.value = Double(amount)
-        case.mango:
-            mangoLabel.text = String(amount)
-            mangoStepper.value = Double(amount)
-        }
+        uiGroup[fruit]?.label.text = String(amount)
+        uiGroup[fruit]?.stepper.value = Double(amount)
     }
 
     override func viewDidLoad() {
