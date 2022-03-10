@@ -2,7 +2,6 @@
 // Created by Quokka, Donnie
 
 import Foundation
-import UIKit
 
 class FruitStore {
     enum Fruit: Int, CaseIterable {
@@ -13,7 +12,7 @@ class FruitStore {
         case mango
     }
     private var fruitsStock: [Fruit: Int] = [:]
-     
+    
     init(defaultCount: Int = 10) {
         Fruit.allCases.forEach { (fruit: Fruit) in
             fruitsStock[fruit] = defaultCount
@@ -40,17 +39,24 @@ class FruitStore {
         }
     }
     
+    func bringFruitsStock() -> [String] {
+        var fruitsStock = [String]()
+        let fruits = Fruit.allCases
+        for index in .zero..<self.fruitsStock.count {
+            if let fruitStockValue = self.fruitsStock[fruits[index]] { fruitsStock.append(String(fruitStockValue)) }
+        }
+        return fruitsStock
+    }
+    
     func bringStockValue(for fruit: Fruit) -> String {
         guard let fruitStock = fruitsStock[fruit] else { return "" }
         return "\(fruitStock)"
     }
     
-    func updateStock(_ fruitStockLabels: [UILabel]!) {
-        for index in fruitStockLabels.indices {
-            guard let fruit = Fruit(rawValue: fruitStockLabels[index].tag),
-                  let fruitCountText = fruitStockLabels[index].text,
-                  let fruitCount = Int(fruitCountText) else { return }
-            fruitsStock[fruit] = fruitCount
+    func updateStock(_ fruitsStock: [String]) {
+        let fruits = Fruit.allCases
+        for index in .zero..<self.fruitsStock.count {
+            self.fruitsStock[fruits[index]] = Int(fruitsStock[index])
         }
     }
 }

@@ -3,16 +3,18 @@
 
 import UIKit
 
-final class JuiceStoreViewController: UIViewController, FruitStockDelegate {
+extension JuiceStoreViewController: FruitStockDelegate {
+    func sendData(_ fruitsStock: [String]) {
+        for index in fruitStockLabels.indices {
+            fruitStockLabels[index].text = fruitsStock[index]
+        }
+        juiceMaker.fruitStore.updateStock(fruitsStock)
+    }
+}
+
+final class JuiceStoreViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     @IBOutlet var fruitStockLabels: [UILabel]!
-    @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
-    @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
-    @IBOutlet private weak var strawberryJuiceButton: UIButton!
-    @IBOutlet private weak var bananaJuiceButton: UIButton!
-    @IBOutlet private weak var pineappleJuiceButton: UIButton!
-    @IBOutlet private weak var kiwiJuiceButton: UIButton!
-    @IBOutlet private weak var mangoJuiceButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +40,13 @@ final class JuiceStoreViewController: UIViewController, FruitStockDelegate {
     
     @IBAction private func moveEditFruitStockViewController(_ sender: Any) {
         guard let fruitStockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: FruitStockEditViewController.identifier) as? FruitStockEditViewController else { return }
-        appendFruitStockLabelsText(to: fruitStockEditViewController)
+        appendFruitStock(to: fruitStockEditViewController)
         fruitStockEditViewController.delegate = self
         present(fruitStockEditViewController, animated: true, completion: nil)
     }
     
-    private func appendFruitStockLabelsText(to fruitStockEditVC: FruitStockEditViewController) {
-        fruitStockLabels.forEach {
-            guard let label = $0.text else { return }
-            fruitStockEditVC.fruitsStock.append(label)
-        }
+    private func appendFruitStock(to fruitStockEditVC: FruitStockEditViewController) {
+        fruitStockEditVC.fruitsStock = juiceMaker.fruitStore.bringFruitsStock()
     }
     
     private func showSuccessAlert(of juice: Juice) {
@@ -75,12 +74,5 @@ final class JuiceStoreViewController: UIViewController, FruitStockDelegate {
         failureAlert.addAction(okAction)
         failureAlert.addAction(noAction)
         present(failureAlert, animated: true, completion: nil)
-    }
-    
-    func sendData(_ fruitStockLabels: [UILabel]!) {
-        for index in fruitStockLabels.indices {
-            self.fruitStockLabels[index].text = fruitStockLabels[index].text
-        }
-        juiceMaker.fruitStore.updateStock(fruitStockLabels)
     }
 }

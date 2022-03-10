@@ -3,14 +3,10 @@
 
 import UIKit
 
-
-protocol FruitStockDelegate: AnyObject {
-    func sendData(_ fruitStockLabels: [UILabel]!)
-}
-
 final class FruitStockEditViewController: UIViewController {
     @IBOutlet private var fruitStockLabels: [UILabel]!
     var fruitsStock = [String]()
+    weak var delegate: FruitStockDelegate?
     
     private let dismissButton: UIButton = {
         let button = UIButton(type: .system)
@@ -29,7 +25,6 @@ final class FruitStockEditViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-    var delegate: FruitStockDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +33,13 @@ final class FruitStockEditViewController: UIViewController {
     }
     
     @IBAction func fruitStockCountStepper(_ sender: UIStepper) {
-        fruitStockLabels[sender.tag].text = Int(sender.value).description
+        guard let fruitStockValue = fruitStockLabels[sender.tag].text,
+              let fruitStock = Double(fruitStockValue) else {return}
+        fruitStockLabels[sender.tag].text = Int(sender.stepValue+fruitStock).description
     }
     
     private func updateFruitsCountLabel() {
-        for index in fruitsStock.indices {
+        for index in fruitStockLabels.indices {
             fruitStockLabels[index].text = fruitsStock[index]
         }
     }
@@ -63,8 +60,16 @@ final class FruitStockEditViewController: UIViewController {
         dismissButton.heightAnchor.constraint(equalTo: editStockTitleLabel.heightAnchor).isActive = true
     }
     
+    private func updateFruitInventory() {
+        for index in fruitStockLabels.indices {
+            guard let fruitStockLabel = fruitStockLabels[index].text else { return }
+            fruitsStock[index] = fruitStockLabel
+        }
+    }
+    
     @objc private func tapDismissButton() {
-        delegate?.sendData(fruitStockLabels)
+        updateFruitInventory()
+        delegate?.sendData(fruitsStock)
         dismiss(animated: true, completion: nil)
     }
 }
