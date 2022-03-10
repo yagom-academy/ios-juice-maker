@@ -11,7 +11,12 @@ protocol Updateable: AnyObject {
     func update(for stock: [Fruit: Int])
 }
 
-class ManagingStockViewController: UIViewController {
+protocol Delegator: AnyObject {
+    var stock: [Fruit: Int]? { get set }
+    var delegate: Updateable? { get set }
+}
+
+class ManagingStockViewController: UIViewController, Delegator {
     var stock: [Fruit: Int]?
     weak var delegate: Updateable?
     

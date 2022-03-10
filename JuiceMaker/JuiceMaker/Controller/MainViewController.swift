@@ -72,8 +72,12 @@ class MainViewController: UIViewController, Updateable {
     }
     
     private func showFailureAlert() {
+        
         let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
-        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default, handler: { _ in self.moveManagingStockView() })
+        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default) {_ in
+            guard let navigationC = self.moveManagingStockView() else { return }
+            self.setUpDelegate(navigationC)
+        }
         let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive, handler: nil )
         alertCountrol.addAction(moveAction)
         alertCountrol.addAction(cancelAction)
@@ -81,19 +85,21 @@ class MainViewController: UIViewController, Updateable {
     }
     
     @IBAction func touchUpMoveButton(_ sender: UIButton) {
-        moveManagingStockView()
+        guard let navigationC = moveManagingStockView() else { return }
+        setUpDelegate(navigationC)
+        
     }
     
-    private func setUpDelegate(_ ManagingStockView: ManagingStockViewController) {
-        ManagingStockView.stock = juiceMaker.fruitStore.stock
-        ManagingStockView.delegate = self
+    private func setUpDelegate(_ viewNavigation: UINavigationController) {
+        guard let topView = viewNavigation.topViewController as? Delegator else { return }
+        topView.stock = juiceMaker.fruitStore.stock
+        topView.delegate = self
     }
     
-    private func moveManagingStockView() {
-        guard let ManagingStockViewNavigation = self.storyboard?.instantiateViewController(withIdentifier: "ManagingStockViewNavigation") as? UINavigationController else { return }
-        guard let ManagingStockView = ManagingStockViewNavigation.topViewController as? ManagingStockViewController else { return }
-        setUpDelegate(ManagingStockView)
-        self.present(ManagingStockViewNavigation, animated: true, completion: nil)
+    private func moveManagingStockView() -> UINavigationController? {
+        guard let managingStockVN = self.storyboard?.instantiateViewController(withIdentifier: "ManagingStockViewNavigation") as? UINavigationController else { return nil }
+        self.present(managingStockVN, animated: true, completion: nil)
+        return managingStockVN
     }
     
     func update(for stock: [Fruit: Int]) {
