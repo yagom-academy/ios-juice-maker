@@ -6,6 +6,10 @@
 
 import UIKit
 
+protocol Updateable: AnyObject {
+    func update(for stock: [Fruit: Int])
+}
+
 class MainViewController: UIViewController, Updateable {
     
     private var juiceMaker = JuiceMaker()

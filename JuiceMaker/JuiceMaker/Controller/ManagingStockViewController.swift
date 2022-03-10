@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol Updateable: AnyObject {
-    func update(for stock: [Fruit: Int])
-}
-
 protocol Delegator: AnyObject {
     var stock: [Fruit: Int]? { get set }
     var delegate: Updateable? { get set }
@@ -38,7 +34,6 @@ class ManagingStockViewController: UIViewController, Delegator {
                                                                             .kiwi: (kiwiLabel, kiwiStepper),
                                                                             .mango: (mangoLabel, mangoStepper)]
     
-
     @IBAction func matchLabel(with stepper: UIStepper) {
         guard let fruit = Fruit(rawValue: stepper.tag) else { return }
         uiGroup[fruit]?.label.text = String(format: "%.0f", stepper.value)

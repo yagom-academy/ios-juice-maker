@@ -33,8 +33,6 @@ class FruitStore {
         self.stock = stock
     }
     
-    
-    
     func getStock(of fruit: Fruit) -> Int {
         return stock[fruit] ?? 0
     }
