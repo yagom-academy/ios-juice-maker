@@ -11,19 +11,9 @@ final class StockViewController: UIViewController {
     weak var delegate: StockDeliveryProtocol?
     var currentStocks: [Fruit: Int] = [:]
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    
+    @IBOutlet var stockLabels: [UILabel]!
+    @IBOutlet var stockSteppers: [UIStepper]!
     @IBOutlet weak var closeButton: UIButton!
-    
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,43 +21,19 @@ final class StockViewController: UIViewController {
     }
     
     private func showCurrentStock() {
-        currentStocks.keys.forEach { fruit in
-            switch fruit {
-            case .strawberry:
-                strawberryStockLabel.text = currentStocks[.strawberry]?.description
-                strawberryStepper.value = Double(currentStocks[.strawberry] ?? 0)
-            case .banana:
-                bananaStockLabel.text = currentStocks[.banana]?.description
-                bananaStepper.value = Double(currentStocks[.banana] ?? 0)
-            case .pineapple:
-                pineappleStockLabel.text = currentStocks[.pineapple]?.description
-                pineappleStepper.value = Double(currentStocks[.pineapple] ?? 0)
-            case .kiwi:
-                kiwiStockLabel.text = currentStocks[.kiwi]?.description
-                kiwiStepper.value = Double(currentStocks[.kiwi] ?? 0)
-            case .mango:
-                mangoStockLabel.text = currentStocks[.mango]?.description
-                mangoStepper.value = Double(currentStocks[.mango] ?? 0)
-            }
+        Fruit.allCases.forEach{ fruit in
+            stockLabels[fruit.rawValue].text = currentStocks[fruit]?.description
+            stockSteppers[fruit.rawValue].value = Double(currentStocks[fruit] ?? 0)
         }
     }
     
     @IBAction func stepperClicked(_ sender: UIStepper) {
-        if sender == strawberryStepper {
-            strawberryStockLabel.text = Int(sender.value).description
-            currentStocks[.strawberry] = Int(sender.value)
-        } else if sender == bananaStepper {
-            bananaStockLabel.text = Int(sender.value).description
-            currentStocks[.banana] = Int(sender.value)
-        } else if sender == pineappleStepper {
-            pineappleStockLabel.text = Int(sender.value).description
-            currentStocks[.pineapple] = Int(sender.value)
-        } else if sender == kiwiStepper {
-            kiwiStockLabel.text = Int(sender.value).description
-            currentStocks[.kiwi] = Int(sender.value)
-        } else if sender == mangoStepper {
-            mangoStockLabel.text = Int(sender.value).description
-            currentStocks[.mango] = Int(sender.value)
+        Fruit.allCases.forEach{ fruit in
+            guard sender.tag == fruit.rawValue else {
+                return
+            }
+            stockLabels[fruit.rawValue].text = Int(sender.value).description
+            currentStocks[fruit] = Int(sender.value)
         }
     }
     

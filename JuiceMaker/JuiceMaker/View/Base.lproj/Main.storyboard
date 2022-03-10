@@ -356,7 +356,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="19.333333333333314" y="126.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperClicked:" destination="Yu1-lM-nqp" eventType="valueChanged" id="KDE-gF-CGA"/>
@@ -383,7 +383,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="19.666666666666686" y="126.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperClicked:" destination="Yu1-lM-nqp" eventType="valueChanged" id="lcZ-y8-w1F"/>
@@ -410,7 +410,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="19.666666666666686" y="126.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperClicked:" destination="Yu1-lM-nqp" eventType="valueChanged" id="4Cc-Rw-d32"/>
@@ -437,7 +437,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="19.666666666666742" y="126.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperClicked:" destination="Yu1-lM-nqp" eventType="valueChanged" id="eQ7-89-XQF"/>
@@ -471,17 +471,17 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="bq8-TA-BKj"/>
-                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="1uX-Xp-rch"/>
                         <outlet property="closeButton" destination="THf-UW-HuW" id="B4A-Zd-B8r"/>
-                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="znM-K2-QfC"/>
-                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="GlB-po-yf7"/>
-                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="eiU-V2-gE2"/>
-                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="Kkm-QK-IXW"/>
-                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="XIe-58-AKB"/>
-                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="8yo-zN-ufH"/>
-                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="BhL-dO-V59"/>
-                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="6Fc-to-RRu"/>
+                        <outletCollection property="stockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="8qP-UQ-kYG"/>
+                        <outletCollection property="stockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="3bD-Ag-Lb9"/>
+                        <outletCollection property="stockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="XyC-Wd-8kD"/>
+                        <outletCollection property="stockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="C0D-dt-bm3"/>
+                        <outletCollection property="stockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="g82-VG-qaL"/>
+                        <outletCollection property="stockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="7Mb-mG-Mg3"/>
+                        <outletCollection property="stockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="hbk-yp-hBl"/>
+                        <outletCollection property="stockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="G1q-cJ-dk3"/>
+                        <outletCollection property="stockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="165-2u-95V"/>
+                        <outletCollection property="stockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="b5U-8A-UuG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
