@@ -11,4 +11,8 @@ extension UIViewController {
     static var identifier: String {
         return String(describing: self)
     }
+    
+    var alertBuilder: AlertBuilder {
+        AlertBuilder(viewController: self)
+    }
 }

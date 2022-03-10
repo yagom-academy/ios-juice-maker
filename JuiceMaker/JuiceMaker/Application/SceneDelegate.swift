@@ -7,18 +7,20 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    private let compositionRoot: CompositionRoot
     var window: UIWindow?
+    
+    private override init() {
+        self.compositionRoot = CompositionRoot()
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let window = window else { return }
         guard let _ = (scene as? UIWindowScene) else { return }
 
-        let compositionRoot = CompositionRoot.shared
-        
-        compositionRoot.setWindow(
-            dependency: compositionRoot.resolve(window: window)
-        )
+        let dependencies: CompositionRoot.Dependency = compositionRoot.resolve()
+        compositionRoot.setWindow(window: window, dependency: dependencies)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

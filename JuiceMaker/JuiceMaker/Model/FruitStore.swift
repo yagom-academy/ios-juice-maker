@@ -4,12 +4,12 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-protocol Observer {
+protocol Observer: AnyObject {
     func updateStockLabels()
 }
 
 final class FruitStore {
-    private var observer: Observer?
+    private weak var observer: Observer?
     private(set) var stocks: [Fruit: Int] {
         didSet {
             notify()

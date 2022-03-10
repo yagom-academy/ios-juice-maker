@@ -8,38 +8,36 @@
 import UIKit
 
 final class CompositionRoot {
-    static let shared = CompositionRoot()
-    
     struct Dependency {
-        let window: UIWindow
-        
         let fruitStore: FruitStore
         let juiceMaker: JuiceMaker
         
         let juiceMakerViewController: JuiceMakerViewController
+        let modifyingViewController: ModifyingStockViewController
+        
         let navigationController: UINavigationController
     }
     
-    func resolve(window: UIWindow) -> Dependency {
+    func resolve() -> Dependency {
         let defaultFruitAmount = Fruit.configureDefaultFruits()
         let fruitStore = FruitStore(stocks: defaultFruitAmount)
         let juiceMaker = JuiceMaker(fruitStore: fruitStore)
         
-        let juiceMakerViewController = JuiceMakerViewController.instance(juiceMaker: juiceMaker)
+        let juiceMakerViewController = JuiceMakerViewController.instance(juiceMaker: juiceMaker, modifyingStockViewControllerable: self)
+        let modifyingViewController = ModifyingStockViewController.instance(fruitStore: fruitStore)
+        
         let navigationController = UINavigationController(rootViewController: juiceMakerViewController)
 
         return Dependency(
-            window: window,
             fruitStore: fruitStore,
             juiceMaker: juiceMaker,
             juiceMakerViewController: juiceMakerViewController,
+            modifyingViewController: modifyingViewController,
             navigationController: navigationController
         )
     }
     
-    func setWindow(dependency: Dependency) {
-        let window = dependency.window
-        
+    func setWindow(window: UIWindow, dependency: Dependency) {
         window.rootViewController = dependency.navigationController
         window.makeKeyAndVisible()
     }

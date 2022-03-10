@@ -9,7 +9,7 @@ import UIKit
 
 final class ModifyingStockViewController: UIViewController {
     private var fruitStore: FruitStore?
-    
+        
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
     @IBOutlet weak var pineappleAmountLabel: UILabel!

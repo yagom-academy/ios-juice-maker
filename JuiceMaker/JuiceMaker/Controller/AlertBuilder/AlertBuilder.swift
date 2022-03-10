@@ -64,8 +64,8 @@ final class AlertBuilder {
             alert.addAction(cancelButton)
         }
 
-        let confirmButton = UIAlertAction(title: product.confirmTitle, style: .default, handler: { _ in
-            self.product.confirmHandler?()
+        let confirmButton = UIAlertAction(title: product.confirmTitle, style: .default, handler: { [weak self] _ in
+            self?.product.confirmHandler?()
         })
 
         alert.addAction(confirmButton)
