@@ -41,7 +41,7 @@ class ManagingStockViewController: UIViewController, Delegator {
     }
     
     @IBAction func closeView(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        showFailureAlert()
     }
     
     private func initializeViewValue() {
@@ -55,15 +55,25 @@ class ManagingStockViewController: UIViewController, Delegator {
         uiGroup[fruit]?.label.text = String(amount)
         uiGroup[fruit]?.stepper.value = Double(amount)
     }
+    
+    private func showFailureAlert() {
+        let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.acceptChanges.text, preferredStyle: .alert)
+        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default) {_ in
+            guard let stock = self.stock else { return }
+            self.delegate?.update(for: stock)
+            self.dismiss(animated: true, completion: nil)
+             }
+        let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive) {_ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertCountrol.addAction(moveAction)
+        alertCountrol.addAction(cancelAction)
+        present(alertCountrol, animated: false, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeViewValue()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard let stock = stock else { return }
-        delegate?.update(for: stock)
-    }
+
 }

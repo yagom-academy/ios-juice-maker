@@ -14,6 +14,7 @@ enum Phrases: String {
     case ok = "OK"
     case questionForStockChange = "재료가 모자라요. 재고를 수정할까요?"
     case readyForJuice = " 나왔습니다! 맛있게 드세요!"
+    case acceptChanges = "정말로 재고를 수정할까요?"
     
     var text: String {
         return self.rawValue
