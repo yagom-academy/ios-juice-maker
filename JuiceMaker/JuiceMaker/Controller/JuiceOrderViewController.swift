@@ -1,10 +1,10 @@
 import UIKit
 
-protocol JuiceOrderViewDelegate: class {
-    func JuiceOrderViewHasChanges(_ fruits: [FruitType: Int])
+protocol JuiceOrderViewControllerDelegate: AnyObject {
+    func JuiceOrderViewControllerHasChanges(_ fruits: [FruitType: Int])
 }
 
-class JuiceOrderViewController: UIViewController, JuiceOrderViewDelegate {
+class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelegate {
     private var juiceMaker = JuiceMaker()
     
     enum MessageNameSpace {
@@ -31,10 +31,10 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFruitStockLabel()
+        configureFruitStockLabel()
     }
     
-    private func setupFruitStockLabel() {
+    private func configureFruitStockLabel() {
         stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
         stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
         stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
@@ -133,10 +133,10 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewDelegate {
         return stockStatus
     }
     
-    func JuiceOrderViewHasChanges(_ fruits: [FruitType: Int]) {
+    func JuiceOrderViewControllerHasChanges(_ fruits: [FruitType: Int]) {
         fruits.forEach({
             juiceMaker.fruitStore.updateStock(fruit: $0.key, amount: $0.value)
-            updateFruitStockLabel(recipe: [$0.key: $0.value])
         })
+        configureFruitStockLabel()
     }
 }

@@ -3,7 +3,7 @@ import UIKit
 class StockInventoryViewController: UIViewController {
     var fruitStockStatus: [FruitType: Int] = [:]
     let minimumNumberOfStock: Double = 0
-    weak var delegate: JuiceOrderViewDelegate?
+    weak var delegate: JuiceOrderViewControllerDelegate?
     
     @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
     @IBOutlet private weak var stockOfBananaLabel: UILabel!
@@ -72,26 +72,12 @@ class StockInventoryViewController: UIViewController {
     
     private func changedFruitsStock() -> [FruitType: Int] {
         var fruits: [FruitType: Int] = [:]
-        if isStockChanged(fruit: FruitType.strawberry, currentStock: Int(strawberryStepper.value)) {
-            fruits.updateValue(Int(strawberryStepper.value), forKey: FruitType.strawberry)
-        }
-        if isStockChanged(fruit: FruitType.banana, currentStock: Int(bananaStepper.value)) {
-            fruits.updateValue(Int(bananaStepper.value), forKey: FruitType.banana)
-        }
-        if isStockChanged(fruit: FruitType.pineapple, currentStock: Int(pineappleStepper.value)) {
-            fruits.updateValue(Int(pineappleStepper.value), forKey: FruitType.pineapple)
-        }
-        if isStockChanged(fruit: FruitType.kiwi, currentStock: Int(kiwiStepper.value)) {
-            fruits.updateValue(Int(kiwiStepper.value), forKey: FruitType.kiwi)
-        }
-        if isStockChanged(fruit: FruitType.mango, currentStock: Int(mangoStepper.value)) {
-            fruits.updateValue(Int(mangoStepper.value), forKey: FruitType.mango)
-        }
+        fruits.updateValue(Int(strawberryStepper.value), forKey: FruitType.strawberry)
+        fruits.updateValue(Int(bananaStepper.value), forKey: FruitType.banana)
+        fruits.updateValue(Int(pineappleStepper.value), forKey: FruitType.pineapple)
+        fruits.updateValue(Int(kiwiStepper.value), forKey: FruitType.kiwi)
+        fruits.updateValue(Int(mangoStepper.value), forKey: FruitType.mango)
         return fruits
-    }
-    
-    private func isStockChanged(fruit: FruitType, currentStock: Int) -> Bool {
-        return currentStock != fruitStockStatus[fruit]
     }
     
     @IBAction private func closeManageStockView(_ sender: UIBarButtonItem) {
@@ -100,6 +86,6 @@ class StockInventoryViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        delegate?.JuiceOrderViewHasChanges(changedFruitsStock())
+        delegate?.JuiceOrderViewControllerHasChanges(changedFruitsStock())
     }
 }
