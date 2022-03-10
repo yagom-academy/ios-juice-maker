@@ -28,7 +28,7 @@ class MainViewController: UIViewController, Updateable {
         guard let juice = matchJuice(with: button) else { return }
         if juiceMaker.canMake(of: juice) {
             showSuccessAlert(with: "\(juice)")
-            updateStockLable()
+            updateStockLabel()
             
         } else {
             showFailureAlert()
@@ -56,7 +56,7 @@ class MainViewController: UIViewController, Updateable {
         }
     }
     
-    private func updateStockLable() {
+    private func updateStockLabel() {
         strawberryLabel.text = String(juiceMaker.fruitStore.getStock(of:.strawberry))
         bananaLabel.text = String(juiceMaker.fruitStore.getStock(of:.banana))
         magoLabel.text = String(juiceMaker.fruitStore.getStock(of:.mango))
@@ -98,12 +98,12 @@ class MainViewController: UIViewController, Updateable {
     
     func update(for stock: [Fruit: Int]) {
         juiceMaker.fruitStore.updateStock(to: stock)
-        updateStockLable()
+        updateStockLabel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateStockLable()
+        updateStockLabel()
     }
     
 }

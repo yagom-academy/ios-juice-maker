@@ -6,12 +6,6 @@
 
 import Foundation
 
-
-
-enum JuiceMakeError: Error {
-    case lackOfStock
-}
-
 extension Juice {
     var recipe: [(Fruit, Int)] {
         switch self {
