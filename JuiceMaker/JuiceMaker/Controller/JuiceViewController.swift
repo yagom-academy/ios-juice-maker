@@ -54,7 +54,7 @@ private extension JuiceViewController {
   }
   
   func updateLabel() {
-    for (label, fruit) in zip(fruitCountLabels, Fruit.allCases) {
+    for (label, fruit) in zip(self.fruitCountLabels, Fruit.allCases) {
       if let fruitAmount = self.juiceMaker.fruitStore.stock[fruit] {
         label.text = String(fruitAmount)
       } else {
@@ -87,7 +87,7 @@ private extension JuiceViewController {
       return
     }
     stockViewController.delegate = self
-    stockViewController.setJuiceMaker(juiceMaker)
+    stockViewController.setJuiceMaker(self.juiceMaker)
     self.present(navigationController, animated: true)
   }
 }

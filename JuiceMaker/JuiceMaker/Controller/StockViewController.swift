@@ -47,7 +47,7 @@ private extension StockViewController {
   }
   
   func updateLabel() {
-    for (label, fruit) in zip(fruitCountLabels, Fruit.allCases) {
+    for (label, fruit) in zip(self.fruitCountLabels, Fruit.allCases) {
       if let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] {
         label.text = String(fruitAmount)
       } else {
@@ -57,7 +57,7 @@ private extension StockViewController {
   }
   
   func updateStepper() {
-    for (stepper, fruit) in zip(fruitSteppers, Fruit.allCases) {
+    for (stepper, fruit) in zip(self.fruitSteppers, Fruit.allCases) {
       if let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] {
         stepper.value = Double(fruitAmount)
       } else {
