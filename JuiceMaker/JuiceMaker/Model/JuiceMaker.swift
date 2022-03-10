@@ -35,18 +35,23 @@ struct JuiceMaker {
         for ingredient in juice.recipe {
             checkList.append(fruitStore.isEnoughStock(of: ingredient))
         }
-        if (checkList.allSatisfy{ $0 }) {
-            make(juice)
-            return true
-        } else {
-            return false
-        }
+         return (checkList.allSatisfy{ $0 })
     }
     
-    private func make(_ juice: Juice) {
+    func make(_ juice: Juice) {
         for ingredient in juice.recipe {
             let (neededFruit, neededStock) = ingredient
             fruitStore.changeStock(of: neededFruit, to: -neededStock)
         }
+    }
+    
+    func checkAll() -> [Juice] {
+        var soldOutList: [Juice] = []
+        for juice in Juice.allCases {
+             if canMake(of: juice) {
+                 soldOutList.append(juice)
+             } else { continue }
+        }
+        return soldOutList
     }
 }
