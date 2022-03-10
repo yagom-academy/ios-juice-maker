@@ -28,8 +28,16 @@ class MainViewController: UIViewController, Updateable {
     @IBOutlet weak var strawberryAndBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoAndKiwiJuiceButton: UIButton!
     
+    lazy var buttonGroup :[UIButton: Juice] = [strawberryJuiceButton: .strawberryJuice,
+                                                   bananaJuiceButton: .bananaJuice,
+                                                pineappleJuiceButton: .pineappleJuice,
+                                                     kiwiJuiceButton: .kiwiJuice,
+                                                    mangoJuiceButton: .mangoJuice,
+                                      strawberryAndBananaJuiceButton: .strawberryAndBananaJuice,
+                                             mangoAndKiwiJuiceButton: .mangoAndKiwiJuice]
+    
     @IBAction func orderJuice(with button: UIButton) {
-        guard let juice = matchJuice(with: button) else { return }
+        guard let juice = buttonGroup[button] else { return }
         if juiceMaker.canMake(of: juice) {
             juiceMaker.make(juice)
             showSuccessAlert(with: "\(juice)")
@@ -38,27 +46,7 @@ class MainViewController: UIViewController, Updateable {
         } else {
             showFailureAlert()
         }
-    }
-    
-    private func matchJuice(with button: UIButton) -> Juice? {
-        switch button {
-        case strawberryJuiceButton:
-            return .strawberryJuice
-        case bananaJuiceButton:
-            return .bananaJuice
-        case pineappleJuiceButton:
-            return .pineappleJuice
-        case kiwiJuiceButton:
-            return .kiwiJuice
-        case mangoJuiceButton:
-            return .mangoJuice
-        case strawberryAndBananaJuiceButton:
-            return .strawberryAndBananaJuice
-        case mangoAndKiwiJuiceButton:
-            return .mangoAndKiwiJuice
-        default:
-            return nil
-        }
+        noticeOutOfStock()
     }
     
     private func updateStockLabel() {
@@ -105,14 +93,22 @@ class MainViewController: UIViewController, Updateable {
         return managingStockVN
     }
     
+    func noticeOutOfStock() {
+        for (uiButton, juice) in buttonGroup {
+            uiButton.backgroundColor = juiceMaker.checkAll().contains(juice) ? .systemBlue : .gray
+        }
+    }
+    
     func update(for stock: [Fruit: Int]) {
         juiceMaker.fruitStore.updateStock(to: stock)
         updateStockLabel()
+        noticeOutOfStock()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStockLabel()
+        noticeOutOfStock()
     }
     
 }

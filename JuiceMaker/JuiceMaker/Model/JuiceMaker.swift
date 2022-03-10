@@ -48,9 +48,8 @@ struct JuiceMaker {
     func checkAll() -> [Juice] {
         var soldOutList: [Juice] = []
         for juice in Juice.allCases {
-             if canMake(of: juice) {
-                 soldOutList.append(juice)
-             } else { continue }
+            guard canMake(of: juice) else { continue }
+            soldOutList.append(juice)
         }
         return soldOutList
     }
