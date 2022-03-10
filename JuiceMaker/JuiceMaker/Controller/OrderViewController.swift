@@ -31,20 +31,11 @@ final class OrderViewController: UIViewController {
     }
     
     private func showCurrentStock() {
-        juiceMaker.fruitStore.inventory.keys.forEach { fruit in
-            switch fruit {
-            case .strawberry:
-                strawberryStockLabel.text = juiceMaker.fruitStore.inventory[.strawberry]?.description
-            case .banana:
-                bananaStockLabel.text = juiceMaker.fruitStore.inventory[.banana]?.description
-            case .pineapple:
-                pineappleStockLabel.text = juiceMaker.fruitStore.inventory[.pineapple]?.description
-            case .kiwi:
-                kiwiStockLabel.text = juiceMaker.fruitStore.inventory[.kiwi]?.description
-            case .mango:
-                mangoStockLabel.text = juiceMaker.fruitStore.inventory[.mango]?.description
-            }
-        }
+        strawberryStockLabel.text = juiceMaker.fruitStore.inventory[.strawberry]?.description
+        bananaStockLabel.text = juiceMaker.fruitStore.inventory[.banana]?.description
+        pineappleStockLabel.text = juiceMaker.fruitStore.inventory[.pineapple]?.description
+        kiwiStockLabel.text = juiceMaker.fruitStore.inventory[.kiwi]?.description
+        mangoStockLabel.text = juiceMaker.fruitStore.inventory[.mango]?.description
     }
     
     @IBAction func moveToStockViewButtonClicked(_ sender: UIBarButtonItem) {
@@ -59,22 +50,13 @@ final class OrderViewController: UIViewController {
         stockViewController.currentStocks = juiceMaker.fruitStore.inventory
         self.present(stockViewController, animated: true, completion: nil)
     }
-
+    
     @IBAction func orderButtonsClicked(_ sender: UIButton) {
-        if sender == strawberryBananaJuiceOrderButton {
-            order(.strawberryBananaJuice)
-        } else if sender == mangoKiwiJuiceOrderButton {
-            order(.mangoKiwiJuice)
-        } else if sender == strawberryJuiceOrderButton {
-            order(.strawberryJuice)
-        } else if sender == bananaJuiceOrderButton {
-            order(.bananaJuice)
-        } else if sender == pineappleJuiceOrderButton {
-            order(.pineappleJuice)
-        } else if sender == kiwiJuiceOrderButton {
-            order(.kiwiJuice)
-        } else if sender == mangoJuiceOrderButton {
-            order(.mangoJuice)
+        Juice.allCases.forEach { juice in
+            guard sender.tag == juice.rawValue else {
+                return
+            }
+            order(juice)
         }
         showCurrentStock()
     }
@@ -114,7 +96,7 @@ protocol StockDeliveryProtocol: AnyObject {
 }
 
 extension OrderViewController: StockDeliveryProtocol {
-    func update(by currentStock: [Fruit : Int]) {
+    func update(by currentStock: [Fruit: Int]) {
         juiceMaker.fruitStore.inventory = currentStock
         showCurrentStock()
     }
