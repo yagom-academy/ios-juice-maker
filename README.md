@@ -33,7 +33,8 @@
 
 ## UML
 
-![스크린샷 2022-03-02 오전 11 39 42](https://user-images.githubusercontent.com/82325822/156287001-9b674eb3-9a57-43b5-aba3-66d29816fee0.png)
+![juicemakeruml drawio](https://user-images.githubusercontent.com/82325822/157613952-adfa2aa8-4b66-4a15-9776-8c83c405dd9d.png)
+
 
 ## STEP 1 기능 구현
 - JuiceMaker 타입 구현
