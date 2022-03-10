@@ -7,7 +7,6 @@
 import UIKit
 
 final class StockViewController: UIViewController {
-    
     weak var delegate: StockDeliveryProtocol?
     var currentStocks: [Fruit: Int] = [:]
     

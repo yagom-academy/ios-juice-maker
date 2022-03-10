@@ -8,13 +8,8 @@ import UIKit
 
 final class OrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
-    
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    
+
+    @IBOutlet var stockLabels: [UILabel]!
     @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
@@ -22,7 +17,6 @@ final class OrderViewController: UIViewController {
     @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
-    
     @IBOutlet weak var moveToStockViewButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -31,11 +25,9 @@ final class OrderViewController: UIViewController {
     }
     
     private func showCurrentStock() {
-        strawberryStockLabel.text = juiceMaker.fruitStore.inventory[.strawberry]?.description
-        bananaStockLabel.text = juiceMaker.fruitStore.inventory[.banana]?.description
-        pineappleStockLabel.text = juiceMaker.fruitStore.inventory[.pineapple]?.description
-        kiwiStockLabel.text = juiceMaker.fruitStore.inventory[.kiwi]?.description
-        mangoStockLabel.text = juiceMaker.fruitStore.inventory[.mango]?.description
+        Fruit.allCases.forEach { fruit in
+            stockLabels[fruit.rawValue].text = juiceMaker.fruitStore.inventory[fruit]?.description
+        }
     }
     
     @IBAction func moveToStockViewButtonClicked(_ sender: UIBarButtonItem) {
@@ -71,6 +63,7 @@ final class OrderViewController: UIViewController {
     }
 }
 
+// MARK: Alert
 extension OrderViewController {
     private func alertOrderCompletion(_ juice: Juice) {
         let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice) \(Alert.orderSuccess.message)", preferredStyle: .alert)
