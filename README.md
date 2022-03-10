@@ -26,7 +26,7 @@
 [![xcode](https://img.shields.io/badge/Xcode-13.0-blue)]()
 
 ## UML
-<img width="5440" alt="UML (1)" src="https://user-images.githubusercontent.com/88810018/157178663-d0a88ec5-5f84-4d36-a9db-05551d35b6ea.png">
+<img width="4612" alt="JuiceMaker_UML_STEP3" src="https://user-images.githubusercontent.com/88810018/157645606-09fdfbff-f86d-405c-ad2e-94622356cae6.png">
 
 ## 키워드
 
@@ -104,11 +104,22 @@ let A = 10 {
 #### Switch문 & if문
 - switch문은 모든 case를 언급하지 않으면 default 구문을 사용해줘야 합니다. 따라서 무결점한 코드가 이뤄지기 어렵다는 단점이 있습니다. 만약 enum 타입과 같이 case가 명확히 정해져있다면 switch문을 통해 각 case를 구현해준다면 무결점한 코드가 되겠지만, 그렇지 않다면 default를 언급해줘야해서 무결점하지 못하다는 것을 알게 됐습니다. 이러한 경우에는 오히려 if-if else문으로 구현하는 것이 좀 더 무결점하다는 생각을 했습니다. 
 
+#### 코드의 간결성 vs 코드의 가독성
+- 반복되는 코드를 줄이기 위해 label과 stepper를 outletCollection으로 묶어주었습니다. 그리고 과일의 재고를 표시하는 라벨마다 tag를 붙이고, Fruit 열거형의 rawValue에 원시값을 넣어 tag를 이용해 라벨의 outletCollection에 index로 접근했습니다.
+```swift
+Fruit.allCases.forEach{ fruit in
+    stockLabels[fruit.rawValue].text = currentStocks[fruit]?.description
+    stockSteppers[fruit.rawValue].value = Double(currentStocks[fruit] ?? 0)
+}
+```
+이렇게 하면 반복되는 코드가 줄고 매우 간결하게 표현할 수 있다는 장점이 있지만, 과일이 추가될 때마다 tag를 달아줘야하고, 혹시라도 tag과 fruit의 rawValue가 매칭되지 않는 경우에 문제가 발생할 수 있다는 단점이 있는 것 같습니다. 이전 코드보다 매우 간결해졌지만 가독성 부분에서 좋지 않은 것 같다는 생각도 들었습니다.
+
 ### 배운개념
 - Delegation Pattern
 - Auto-Layout
 - Property Observer ( didSet )
 - Protocol
+- UML
 
 ---
 
