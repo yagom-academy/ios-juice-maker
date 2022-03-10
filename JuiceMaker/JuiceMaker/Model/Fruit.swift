@@ -8,7 +8,7 @@
 import Foundation
 
 enum Fruit: Int {
-    case strawberry = 1 ,
+    case strawberry = 1,
          banana,
          pineapple,
          kiwi,

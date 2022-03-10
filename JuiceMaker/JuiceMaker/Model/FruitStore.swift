@@ -8,8 +8,9 @@ import Foundation
 
 class FruitStore {
     private var fruitStock: Dictionary<Fruit, Int>
-        
-    init(fruitStock: Dictionary<Fruit, Int>) {
+    static let fruitStore = FruitStore(fruitStock: Fruit.defaultFruitStock)
+    
+    private init(fruitStock: Dictionary<Fruit, Int>) {
         self.fruitStock = fruitStock
     }
     
@@ -39,7 +40,7 @@ class FruitStore {
         self.fruitStock[fruit] = stock - amount
     }
     
-    func fixStock(fruit: Fruit, amount: Int) throws {
+    func changeStock(fruit: Fruit, amount: Int) throws {
         guard let _ = self.fruitStock[fruit] else {
             throw JuiceMakingError.notRegisteredFruit
         }
