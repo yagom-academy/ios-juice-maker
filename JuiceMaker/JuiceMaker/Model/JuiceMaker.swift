@@ -4,13 +4,7 @@ struct JuiceMaker {
     typealias JuiceRecipe = [FruitType:Int]
     private(set) var fruitStore: FruitStore = FruitStore()
     enum JuiceType {
-        case strawberryJuice
-        case bananaJuice
-        case kiwiJuice
-        case pineappleJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
+        case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice, strawberryBananaJuice, mangoJuice, mangoKiwiJuice
         
         func recipe() -> JuiceRecipe {
             switch self {

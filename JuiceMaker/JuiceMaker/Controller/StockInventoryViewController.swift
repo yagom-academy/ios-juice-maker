@@ -1,5 +1,9 @@
 import UIKit
 
+class FruitStepper: UIStepper {
+    var fruitType: FruitType?
+}
+
 class StockInventoryViewController: UIViewController {
     var fruitStore: FruitStore?
     let minimumNumberOfStock: Double = 0
@@ -11,21 +15,24 @@ class StockInventoryViewController: UIViewController {
     @IBOutlet private weak var stockOfKiwiLabel: FruitLabel!
     @IBOutlet private weak var stockOfMangoLabel: FruitLabel!
     
-    @IBOutlet private weak var strawberryStepper: UIStepper!
-    @IBOutlet private weak var bananaStepper: UIStepper!
-    @IBOutlet private weak var pineappleStepper: UIStepper!
-    @IBOutlet private weak var kiwiStepper: UIStepper!
-    @IBOutlet private weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: FruitStepper!
+    @IBOutlet private weak var bananaStepper: FruitStepper!
+    @IBOutlet private weak var pineappleStepper: FruitStepper!
+    @IBOutlet private weak var kiwiStepper: FruitStepper!
+    @IBOutlet private weak var mangoStepper: FruitStepper!
 
     @IBOutlet var fruitLabels: [FruitLabel]!
-    
-    @IBOutlet private var stockSteppers: [UIStepper]!
-    
+    @IBOutlet var fruitSteppers: [FruitStepper]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupFruitLabel()
+        setupFruitStepper()
+    }
+    
+    private func setupFruitLabel() {
         setupFruitLabelType()
-        setupFruitStockLabel()
-        setupFruitStockStepper()
+        setupFruitLabelText()
     }
     
     private func setupFruitLabelType() {
@@ -36,7 +43,16 @@ class StockInventoryViewController: UIViewController {
         stockOfMangoLabel.fruitType = .mango
     }
     
-    private func setupFruitStockLabel() {
+    private func setupFruitStepperType() {
+        strawberryStepper.fruitType = .strawberry
+        bananaStepper.fruitType = .banana
+        pineappleStepper.fruitType = .pineapple
+        kiwiStepper.fruitType = .kiwi
+        mangoStepper.fruitType = .mango
+    }
+    
+    
+    private func setupFruitLabelText() {
         guard let fruitStore = fruitStore else { return }
         fruitLabels.forEach({
             guard let fruitType = $0.fruitType else { return }
@@ -44,75 +60,43 @@ class StockInventoryViewController: UIViewController {
         })
     }
     
-    private func setupFruitStockStepper() {
-        setupFruitStockStepperOption()
-        setupFruitStockStepperLabel()
+    private func setupFruitStepper() {
+        setupFruitStepperType()
+        setupFruitStepperOption()
+        setupFruitStepperLabel()
     }
     
-    private func setupFruitStockStepperOption() {
-        stockSteppers.forEach({
+    private func setupFruitStepperOption() {
+        fruitSteppers.forEach({
             $0.autorepeat = true
             $0.minimumValue = minimumNumberOfStock
         })
     }
     
-    private func setupFruitStockStepperLabel() {
+    private func setupFruitStepperLabel() {
         guard let fruitStore = fruitStore else { return }
-        strawberryStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.strawberry))
-        bananaStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.banana))
-        pineappleStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.pineapple))
-        kiwiStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.kiwi))
-        mangoStepper.value = Double(fruitStore.numberOfStock(fruit: FruitType.mango))
+        fruitSteppers.forEach({
+            guard let fruitType = $0.fruitType else { return }
+            $0.value = Double(fruitStore.numberOfStock(fruit: fruitType))
+        })
     }
     
-    @IBAction private func stepperValueChangedAction(_ sender: UIStepper) {
-//        switch sender {
-//        case strawberryStepper:
-//            guard let currentStock = fruitStore?.numberOfStock(fruit: FruitType.strawberry) else { return }
-//            if currentStock > Int(sender.value) {
-//                try fruitStore?.decreaseStock(fruit: FruitType.strawberry, amount: 1)
-//            } else {
-//                try
-//            }
-//            stockOfStrawberryLabel.text = Int(sender.value).description
-//        case bananaStepper:
-//            stockOfBananaLabel.text = Int(sender.value).description
-//        case pineappleStepper:
-//            stockOfPineappleLabel.text = Int(sender.value).description
-//        case kiwiStepper:
-//            stockOfKiwiLabel.text = Int(sender.value).description
-//        case mangoStepper:
-//            stockOfMangoLabel.text = Int(sender.value).description
-//        default:
-//            return
-//        }
-                
-        switch sender {
-        case strawberryStepper:
-            stockOfStrawberryLabel.text = Int(sender.value).description
-        case bananaStepper:
-            stockOfBananaLabel.text = Int(sender.value).description
-        case pineappleStepper:
-            stockOfPineappleLabel.text = Int(sender.value).description
-        case kiwiStepper:
-            stockOfKiwiLabel.text = Int(sender.value).description
-        case mangoStepper:
-            stockOfMangoLabel.text = Int(sender.value).description
-        default:
-            return
+    @IBAction private func stepperValueChangedAction(_ sender: FruitStepper) {
+        fruitLabels.filter({ $0.fruitType == sender.fruitType }).last?.text = Int(sender.value).description
+        guard let currentStock = fruitStore?.numberOfStock(fruit: FruitType.strawberry) else { return }
+        let afterStock = Int(sender.value)
+        
+        guard let fruitType = sender.fruitType else { return }
+        if currentStock > afterStock {
+            do {
+                try fruitStore?.decreaseStock(fruit: fruitType, amount: 1)
+            } catch {  }
+        } else {
+            fruitStore?.increaseStock(fruit: fruitType, amount: 1)
         }
     }
     
-    private func changeFruitsStock() {
-        fruitStore?.updateStock(fruit: FruitType.strawberry, amount: Int(strawberryStepper.value))
-        fruitStore?.updateStock(fruit: FruitType.banana, amount: Int(bananaStepper.value))
-        fruitStore?.updateStock(fruit: FruitType.pineapple, amount: Int(pineappleStepper.value))
-        fruitStore?.updateStock(fruit: FruitType.kiwi, amount: Int(kiwiStepper.value))
-        fruitStore?.updateStock(fruit: FruitType.mango, amount: Int(mangoStepper.value))
-    }
-    
     @IBAction private func closeManageStockView(_ sender: UIBarButtonItem) {
-        changeFruitsStock()
         delegate?.JuiceOrderViewControllerHasChanges()
         self.presentingViewController?.dismiss(animated: true)
     }

@@ -329,10 +329,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="22.666666666666671" y="166.66666666666663" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="ZIy-DN-9h3"/>
+                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="03L-Md-Y4T"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -353,10 +353,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="22.333333333333314" y="166.66666666666663" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="yma-U7-MYh"/>
+                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="M7J-cW-Dir"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -377,10 +377,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="22.666666666666686" y="166.66666666666663" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Jir-uF-Wmb"/>
+                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="eDk-NV-Zqt"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -401,10 +401,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="22.666666666666686" y="166.66666666666663" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="dzO-yy-WfM"/>
+                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="rdq-Ql-VOH"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -425,10 +425,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO" customClass="FruitStepper" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="22.666666666666742" y="166.66666666666663" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Ys6-xx-qlV"/>
+                                                    <action selector="stepperValueChangedAction:" destination="Yu1-lM-nqp" eventType="valueChanged" id="sMa-DQ-0Ut"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -452,26 +452,26 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="BG9-vf-ZdQ"/>
-                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="aSH-52-hxN"/>
-                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="13m-FY-Y7o"/>
-                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="uuV-0u-9HU"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="ZCf-DY-8mP"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="Hdg-gX-nEj"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="0RZ-2u-7Q3"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="TCK-hn-rry"/>
                         <outlet property="stockOfBananaLabel" destination="gKu-86-RhI" id="k5W-a9-dL5"/>
                         <outlet property="stockOfKiwiLabel" destination="ZDv-1m-HBY" id="gqq-9h-WBU"/>
                         <outlet property="stockOfMangoLabel" destination="YJI-ER-LJR" id="FhI-by-i5q"/>
                         <outlet property="stockOfPineappleLabel" destination="MpT-VW-hCb" id="4d0-7Q-E30"/>
                         <outlet property="stockOfStrawberryLabel" destination="0yV-kn-zaT" id="U6m-vp-Hlv"/>
-                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="9O2-Bc-szr"/>
-                        <outletCollection property="stockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="KWP-mf-xeA"/>
-                        <outletCollection property="stockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="ZGy-bH-O22"/>
-                        <outletCollection property="stockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="xJb-fe-Bz4"/>
-                        <outletCollection property="stockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="wEk-on-JK2"/>
-                        <outletCollection property="stockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="shh-NC-ch5"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="Thx-R9-ZPf"/>
                         <outletCollection property="fruitLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="DCc-Dj-zWW"/>
                         <outletCollection property="fruitLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="bQF-Fo-bKo"/>
                         <outletCollection property="fruitLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="IWp-T5-OsK"/>
                         <outletCollection property="fruitLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="KYO-dB-PhM"/>
                         <outletCollection property="fruitLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="3Zc-c9-yf2"/>
+                        <outletCollection property="fruitSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="KdU-6Z-B7T"/>
+                        <outletCollection property="fruitSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="e4I-2D-zav"/>
+                        <outletCollection property="fruitSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="0L5-0m-oeY"/>
+                        <outletCollection property="fruitSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="7gM-G4-hqg"/>
+                        <outletCollection property="fruitSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="jiM-R4-6WU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

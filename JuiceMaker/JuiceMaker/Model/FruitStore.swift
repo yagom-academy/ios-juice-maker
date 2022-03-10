@@ -11,8 +11,13 @@ class FruitStore {
         }
     }
     
+    func increaseStock(fruit: FruitType, amount: Int) {
+        let currentStock = numberOfStock(fruit: fruit)
+        fruits.updateValue(currentStock + amount, forKey: fruit)
+    }
+    
     func decreaseStock(fruit: FruitType, amount: Int) throws {
-        guard let currentStock = fruits[fruit] else { return }
+        let currentStock = numberOfStock(fruit: fruit)
         guard currentStock >= amount else { throw JuiceMakerError.outOfStockRange }
         fruits.updateValue(currentStock - amount, forKey: fruit)
     }
@@ -20,10 +25,6 @@ class FruitStore {
     func numberOfStock(fruit: FruitType) -> Int {
         guard let currentStock = fruits[fruit] else { return FruitStore.minimumNumberOfStock }
         return currentStock
-    }
-    
-    func updateStock(fruit: FruitType, amount: Int) {
-        fruits.updateValue(amount, forKey: fruit)
     }
 }
 

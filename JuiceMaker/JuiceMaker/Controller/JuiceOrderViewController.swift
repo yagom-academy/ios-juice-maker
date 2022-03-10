@@ -24,7 +24,6 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
     }
     
     @IBOutlet var fruitLabels: [FruitLabel]!
-
     
     @IBOutlet private weak var stockOfStrawberryLabel: FruitLabel!
     @IBOutlet private weak var stockOfBananaLabel: FruitLabel!
@@ -43,8 +42,7 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         setupJuiceButtonType()
-        setupFruitLabelType()
-        configureFruitStockLabel()
+        setupFruitLabel()
     }
     
     private func setupJuiceButtonType() {
@@ -57,6 +55,11 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         orderMangoButton.juiceType = .mangoJuice
     }
     
+    private func setupFruitLabel() {
+        setupFruitLabelType()
+        setupFruitLabelText()
+    }
+    
     private func setupFruitLabelType() {
         stockOfStrawberryLabel.fruitType = .strawberry
         stockOfBananaLabel.fruitType = .banana
@@ -65,7 +68,7 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         stockOfMangoLabel.fruitType = .mango
     }
     
-    private func configureFruitStockLabel() {
+    private func setupFruitLabelText() {
         fruitLabels.forEach({
             guard let fruitType = $0.fruitType else { return }
             $0.text = String(juiceMaker.fruitStore.numberOfStock(fruit: fruitType))
@@ -77,13 +80,11 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         do {
             let juice = try juiceMaker.makeJuice(juice: orderedJuiceType)
             showJuiceReadyAlert(juiceName: juice.name())
-            updateFruitStockLabel(recipe: juice.recipe())
+            updateFruitLabel(recipe: juice.recipe())
         } catch {
             showNotEnoughStockAlert()
         }
     }
-    
-    
     
     private func showNotEnoughStockAlert() {
         let alertController = UIAlertController(title: MessageNameSpace.notEnoughStock, message: nil, preferredStyle: .alert)
@@ -103,11 +104,11 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         present(alertController, animated: false, completion: nil)
     }
     
-    private func updateFruitStockLabel(recipe: [FruitType: Int]) {
-        recipe.forEach {
+    private func updateFruitLabel(recipe: [FruitType: Int]) {
+        recipe.forEach ({
             let fruitType = $0.key
             fruitLabels.filter({ $0.fruitType == fruitType }).last?.text = String(juiceMaker.fruitStore.numberOfStock(fruit: fruitType))
-        }
+        })
     }
     
     @IBAction func modifyFruitStockAction(_ sender: UIBarButtonItem) {
@@ -125,6 +126,6 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
     }
     
     func JuiceOrderViewControllerHasChanges() {
-        configureFruitStockLabel()
+        setupFruitLabel()
     }
 }
