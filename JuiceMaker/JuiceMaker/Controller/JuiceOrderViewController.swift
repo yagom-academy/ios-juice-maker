@@ -4,6 +4,14 @@ protocol JuiceOrderViewControllerDelegate: AnyObject {
     func JuiceOrderViewControllerHasChanges()
 }
 
+class JuiceButton: UIButton {
+    var juiceType: JuiceMaker.JuiceType?
+}
+
+class FruitLabel: UILabel {
+    var fruitType: FruitType?
+}
+
 class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelegate {
     private var juiceMaker = JuiceMaker()
     
@@ -15,56 +23,57 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         static let confirm = "확인"
     }
     
-    @IBOutlet private weak var stockOfStrawberryLabel: UILabel!
-    @IBOutlet private weak var stockOfBananaLabel: UILabel!
-    @IBOutlet private weak var stockOfPineappleLabel: UILabel!
-    @IBOutlet private weak var stockOfKiwiLabel: UILabel!
-    @IBOutlet private weak var stockOfMangoLabel: UILabel!
+    @IBOutlet var fruitLabels: [FruitLabel]!
+
     
-    @IBOutlet private weak var orderStrawberryBananaButton: UIButton!
-    @IBOutlet private weak var orderMangoKiwiButton: UIButton!
-    @IBOutlet private weak var orderStrawberryButton: UIButton!
-    @IBOutlet private weak var orderBananaButton: UIButton!
-    @IBOutlet private weak var orderPineappleButton: UIButton!
-    @IBOutlet private weak var orderKiwiButton: UIButton!
-    @IBOutlet private weak var orderMangoButton: UIButton!
+    @IBOutlet private weak var stockOfStrawberryLabel: FruitLabel!
+    @IBOutlet private weak var stockOfBananaLabel: FruitLabel!
+    @IBOutlet private weak var stockOfPineappleLabel: FruitLabel!
+    @IBOutlet private weak var stockOfKiwiLabel: FruitLabel!
+    @IBOutlet private weak var stockOfMangoLabel: FruitLabel!
+    
+    @IBOutlet private weak var orderStrawberryBananaButton: JuiceButton!
+    @IBOutlet private weak var orderMangoKiwiButton: JuiceButton!
+    @IBOutlet private weak var orderStrawberryButton: JuiceButton!
+    @IBOutlet private weak var orderBananaButton: JuiceButton!
+    @IBOutlet private weak var orderPineappleButton: JuiceButton!
+    @IBOutlet private weak var orderKiwiButton: JuiceButton!
+    @IBOutlet private weak var orderMangoButton: JuiceButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupJuiceButtonType()
+        setupFruitLabelType()
         configureFruitStockLabel()
     }
     
+    private func setupJuiceButtonType() {
+        orderStrawberryBananaButton.juiceType = .strawberryBananaJuice
+        orderMangoKiwiButton.juiceType = .mangoKiwiJuice
+        orderStrawberryButton.juiceType = .strawberryJuice
+        orderBananaButton.juiceType = .bananaJuice
+        orderPineappleButton.juiceType = .pineappleJuice
+        orderKiwiButton.juiceType = .mangoKiwiJuice
+        orderMangoButton.juiceType = .mangoJuice
+    }
+    
+    private func setupFruitLabelType() {
+        stockOfStrawberryLabel.fruitType = .strawberry
+        stockOfBananaLabel.fruitType = .banana
+        stockOfPineappleLabel.fruitType = .pineapple
+        stockOfKiwiLabel.fruitType = .kiwi
+        stockOfMangoLabel.fruitType = .mango
+    }
+    
     private func configureFruitStockLabel() {
-        stockOfStrawberryLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry))
-        stockOfBananaLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana))
-        stockOfPineappleLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple))
-        stockOfKiwiLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi))
-        stockOfMangoLabel.text = String(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango))
+        fruitLabels.forEach({
+            guard let fruitType = $0.fruitType else { return }
+            $0.text = String(juiceMaker.fruitStore.numberOfStock(fruit: fruitType))
+        })
     }
     
-    private func orderedJuiceType(from button: UIButton) -> JuiceMaker.JuiceType? {
-        switch button {
-        case orderStrawberryBananaButton:
-            return JuiceMaker.JuiceType.strawberryBananaJuice
-        case orderMangoKiwiButton:
-            return JuiceMaker.JuiceType.mangoKiwiJuice
-        case orderStrawberryButton:
-            return JuiceMaker.JuiceType.strawberryJuice
-        case orderBananaButton:
-            return JuiceMaker.JuiceType.bananaJuice
-        case orderPineappleButton:
-            return JuiceMaker.JuiceType.pineappleJuice
-        case orderKiwiButton:
-            return JuiceMaker.JuiceType.kiwiJuice
-        case orderMangoButton:
-            return JuiceMaker.JuiceType.mangoJuice
-        default:
-            return nil
-        }
-    }
-    
-    @IBAction private func orderJuiceAction(_ sender: UIButton) {
-        guard let orderedJuiceType = orderedJuiceType(from: sender) else { return }
+    @IBAction private func orderJuiceAction(_ sender: JuiceButton) {
+        guard let orderedJuiceType = sender.juiceType else { return }
         do {
             let juice = try juiceMaker.makeJuice(juice: orderedJuiceType)
             showJuiceReadyAlert(juiceName: juice.name())
@@ -73,6 +82,8 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
             showNotEnoughStockAlert()
         }
     }
+    
+    
     
     private func showNotEnoughStockAlert() {
         let alertController = UIAlertController(title: MessageNameSpace.notEnoughStock, message: nil, preferredStyle: .alert)
@@ -121,16 +132,6 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         stockInventoryViewController.modalPresentationStyle = .automatic
         
         self.present(stockInventoryViewController, animated: true)
-    }
-    
-    private func fruitStockStatus() -> [FruitType: Int] {
-        var stockStatus: [FruitType: Int] = [:]
-        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.strawberry), forKey: FruitType.strawberry)
-        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.banana), forKey: FruitType.banana)
-        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.pineapple), forKey: FruitType.pineapple)
-        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.kiwi), forKey: FruitType.kiwi)
-        stockStatus.updateValue(juiceMaker.fruitStore.numberOfStock(fruit: FruitType.mango), forKey: FruitType.mango)
-        return stockStatus
     }
     
     func JuiceOrderViewControllerHasChanges() {

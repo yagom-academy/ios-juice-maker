@@ -11,13 +11,13 @@ class StockInventoryViewController: UIViewController {
     @IBOutlet private weak var stockOfKiwiLabel: UILabel!
     @IBOutlet private weak var stockOfMangoLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
-    @IBOutlet var stockSteppers: [UIStepper]!
+    @IBOutlet private var stockSteppers: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +56,27 @@ class StockInventoryViewController: UIViewController {
     }
     
     @IBAction private func stepperValueChangedAction(_ sender: UIStepper) {
+//        switch sender {
+//        case strawberryStepper:
+//            guard let currentStock = fruitStore?.numberOfStock(fruit: FruitType.strawberry) else { return }
+//            if currentStock > Int(sender.value) {
+//                try fruitStore?.decreaseStock(fruit: FruitType.strawberry, amount: 1)
+//            } else {
+//                try
+//            }
+//            stockOfStrawberryLabel.text = Int(sender.value).description
+//        case bananaStepper:
+//            stockOfBananaLabel.text = Int(sender.value).description
+//        case pineappleStepper:
+//            stockOfPineappleLabel.text = Int(sender.value).description
+//        case kiwiStepper:
+//            stockOfKiwiLabel.text = Int(sender.value).description
+//        case mangoStepper:
+//            stockOfMangoLabel.text = Int(sender.value).description
+//        default:
+//            return
+//        }
+                
         switch sender {
         case strawberryStepper:
             stockOfStrawberryLabel.text = Int(sender.value).description
@@ -81,13 +102,8 @@ class StockInventoryViewController: UIViewController {
     }
     
     @IBAction private func closeManageStockView(_ sender: UIBarButtonItem) {
-        self.presentingViewController?.dismiss(animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         changeFruitsStock()
-
         delegate?.JuiceOrderViewControllerHasChanges()
+        self.presentingViewController?.dismiss(animated: true)
     }
 }
