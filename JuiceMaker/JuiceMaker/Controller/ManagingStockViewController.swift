@@ -38,27 +38,11 @@ class ManagingStockViewController: UIViewController, Delegator {
                                                                             .kiwi: (kiwiLabel, kiwiStepper),
                                                                             .mango: (mangoLabel, mangoStepper)]
     
+
     @IBAction func matchLabel(with stepper: UIStepper) {
-        
-        switch stepper {
-        case strawberryStepper:
-            strawberryLabel.text = String(format: "%.0f", strawberryStepper.value)
-            stock?[.strawberry] = Int(strawberryStepper.value)
-        case bananaStepper:
-            bananaLabel.text = String(format: "%.0f", bananaStepper.value)
-            stock?[.banana] = Int(bananaStepper.value)
-        case pineappleStepper:
-            pineappleLabel.text = String(format: "%.0f", pineappleStepper.value)
-            stock?[.pineapple] = Int(pineappleStepper.value)
-        case kiwiStepper:
-            kiwiLabel.text = String(format: "%.0f", kiwiStepper.value)
-            stock?[.kiwi] = Int(kiwiStepper.value)
-        case mangoStepper:
-            mangoLabel.text = String(format: "%.0f", mangoStepper.value)
-            stock?[.mango] = Int(mangoStepper.value)
-        default:
-            return
-        }
+        guard let fruit = Fruit(rawValue: stepper.tag) else { return }
+        uiGroup[fruit]?.label.text = String(format: "%.0f", stepper.value)
+        stock?[fruit] = Int(stepper.value)
     }
     
     @IBAction func closeView(_ sender: UIBarButtonItem) {
