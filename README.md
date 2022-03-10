@@ -6,7 +6,8 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 - 리뷰어: 개굴
 
 # UML
-![juiceMaker_Step1_UML](https://user-images.githubusercontent.com/74251593/155289035-e6babcc5-e609-425c-b967-0806c1ee272c.png)
+![Untitled](https://user-images.githubusercontent.com/74251593/157680342-4e904059-b021-498d-af48-7409c65df4cd.png)
+
 
 
 # [STEP2 PR 후 수정완료]
