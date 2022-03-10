@@ -61,11 +61,12 @@ class MainViewController: UIViewController, Updateable {
     }
     
     private func updateStockLabel() {
-        strawberryLabel.text = String(juiceMaker.fruitStore.getStock(of:.strawberry))
-        bananaLabel.text = String(juiceMaker.fruitStore.getStock(of:.banana))
-        magoLabel.text = String(juiceMaker.fruitStore.getStock(of:.mango))
-        kiwiLabel.text = String(juiceMaker.fruitStore.getStock(of:.kiwi))
-        pineappleLabel.text = String(juiceMaker.fruitStore.getStock(of:.pineapple))
+        let store = juiceMaker.fruitStore
+        strawberryLabel.text = store.getStock(of:.strawberry)
+        bananaLabel.text = store.getStock(of:.banana)
+        magoLabel.text = store.getStock(of:.mango)
+        kiwiLabel.text = store.getStock(of:.kiwi)
+        pineappleLabel.text = store.getStock(of:.pineapple)
     }
     
     private func showSuccessAlert(with juiceName: String) {
@@ -76,12 +77,10 @@ class MainViewController: UIViewController, Updateable {
     }
     
     private func showFailureAlert() {
-        
         let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
         let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default) {_ in
             guard let navigationC = self.moveManagingStockView() else { return }
-            self.setUpDelegate(navigationC)
-        }
+            self.setUpDelegate(navigationC) }
         let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive, handler: nil )
         alertCountrol.addAction(moveAction)
         alertCountrol.addAction(cancelAction)
@@ -91,7 +90,6 @@ class MainViewController: UIViewController, Updateable {
     @IBAction func touchUpMoveButton(_ sender: UIButton) {
         guard let navigationC = moveManagingStockView() else { return }
         setUpDelegate(navigationC)
-        
     }
     
     private func setUpDelegate(_ viewNavigation: UINavigationController) {

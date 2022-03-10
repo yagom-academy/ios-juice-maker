@@ -33,8 +33,9 @@ class FruitStore {
         self.stock = stock
     }
     
-    func getStock(of fruit: Fruit) -> Int {
-        return stock[fruit] ?? 0
+    func getStock(of fruit: Fruit) -> String {
+        let amount = stock[fruit] ?? 0
+        return String(amount)
     }
     
 
