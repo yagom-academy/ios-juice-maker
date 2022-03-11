@@ -6,10 +6,6 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         updateFruitsStock()
     }
     
@@ -54,7 +50,7 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func showFruitStoreVC() {
-        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: "FruitStoreVC" , creator: { coder in
+        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: FruitStoreViewController.identifier , creator: { coder in
             FruitStoreViewController(juiceMaker: self.juiceMaker, coder: coder)
         }) else {
             return
@@ -87,7 +83,7 @@ final class JuiceMakerViewController: UIViewController {
     }
 }
 
-extension JuiceMakerViewController: UpdateData {
+extension JuiceMakerViewController: FruitStoreViewControllerDelegate {
     func updateFruitStock() {
         updateFruitsStock()
     }

@@ -29,7 +29,7 @@ final class FruitStore {
         }
     }
     
-    func updateInventory(fruit: Fruit, value: Int) {
+    func updateInventoryStock(fruit: Fruit, value: Int) {
         inventory[fruit] = value
     }
 }

@@ -1,11 +1,15 @@
 import UIKit
 
+protocol FruitStoreViewControllerDelegate: AnyObject {
+    func updateFruitStock()
+}
+
 final class FruitStoreViewController: UIViewController {
     @IBOutlet private var fruitLabelCollection: [UILabel]!
     @IBOutlet private var fruitStockStepper: [UIStepper]!
 
     private let juiceMaker: JuiceMaker?
-    weak var delegate: UpdateData?
+    weak var delegate: FruitStoreViewControllerDelegate?
     
     init?(juiceMaker: JuiceMaker, coder: NSCoder) {
         self.juiceMaker = juiceMaker
@@ -58,7 +62,7 @@ final class FruitStoreViewController: UIViewController {
             return
         }
         fruitLabelCollection[sender.tag].text = Int(sender.value).description
-        juiceMaker?.fruitStore.updateInventory(fruit: fruit, value: Int(sender.value))
+        juiceMaker?.updateInventory(fruit: fruit, value: Int(sender.value))
     }
 }
 
