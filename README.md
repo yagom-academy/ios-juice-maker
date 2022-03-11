@@ -1,13 +1,12 @@
-# ios-juice-maker
+# 🧃ios-juice-maker
 
-> 프로젝트 기간 2022.02.21 ~  </br>
-팀원 : [@mmim](https://github.com/JoSH0318) [@marisol](https://github.com/marisol-develop) / 리뷰어 : [@steven](https://github.com/stevenkim18)
+> 📅 프로젝트 기간 2022.02.21 ~ 2022.03.11 </br>
+🎓 팀원 : [@mmim](https://github.com/JoSH0318) [@marisol](https://github.com/marisol-develop) / 👑 리뷰어 : [@steven](https://github.com/stevenkim18)
 
 ## 목차
 
-- [프로젝트 소개](#프로젝트-소개)
-- [UML](#UML)
-- [키워드](#키워드)
+- [프로젝트 소개 및 기능](#프로젝트-소개-및-기능)
+- [UML](#uml)
 - [STEP 1](#step-1)
     + [고민한점](#고민한점)
     + [배운개념](#배운개념)
@@ -17,8 +16,19 @@
 - [STEP 3](#step-3)
     + [고민한점](#고민한점)
     + [배운개념](#배운개념)
+- [트러블슈팅](#트러블슈팅)
+- [기술의 장단점](#기술의-장단점)
     
-## 프로젝트 소개
+## 프로젝트 소개 및 기능
+1️⃣ 쥬스 주문시 재고 차감 후 얼럿 표시
+![](https://i.imgur.com/LksXAzw.gif)
+
+2️⃣ 재고 부족시 얼럿 띄우고 재고추가 화면으로 이동
+![](https://i.imgur.com/TKovVvj.gif)
+
+3️⃣ 재고수정 버튼 클릭시 재고추가 화면으로 이동
+![](https://i.imgur.com/IqYtGA6.gif)
+
 
 ## 개발환경 및 라이브러리
 
@@ -27,8 +37,6 @@
 
 ## UML
 <img width="4612" alt="JuiceMaker_UML_STEP3" src="https://user-images.githubusercontent.com/88810018/157645606-09fdfbff-f86d-405c-ad2e-94622356cae6.png">
-
-## 키워드
 
 ## [STEP 1]
 ### 고민한점
@@ -122,6 +130,31 @@ Fruit.allCases.forEach{ fruit in
 - UML
 
 ---
+## 트러블슈팅
+
+---
+
+## 기술의 장단점
+- `Dictionary` 형태의 데이터 저장
+   - 장점
+      - key(과일)값에 따라 각각의 value(재고량)이 존재하여 정보의 매칭이 편리하다.
+      - key값만으로 value값에 접근할 수 있다.
+   - 단점
+      - value값에 접근할 때, nil값에 주의해야한다.(Optional binding과정이 필수)
+- `Delegation Pattern`으로 데이터 전달
+   - 장점
+       - 제3의 객체 없이 데이터 전달이 가능하다. (ex: notification center)
+       - 객체간 서로 의존하지 않아 결합도가 낮다.
+   - 단점
+      - 패턴을 따라야해서 코드가 길어진다.
+      - delegate에 nil 값이 들어가지 않도록 주의해야한다.
+- `Modality` 화면 전환
+    - 장점
+        - 현재 작업과 다른 작업을 수행할 때 사용자가 집중하게 할 수 있다.
+    - 단점
+        - 만약 depth가 깊어진 상황에서 Modality를 사용하면 사용자로 하여금 현재 위치를 파악하기 어려워진다.
+        - `Modality`에서 다시 mainVC로 전환될 때, `viewWillDisapear`, `viewWillApear` 등이 호출되지 않아 해당시점에 특정 동작을 제어할 없다.
+---
 
 ## 📜 팀 그라운드 룰
 
@@ -163,10 +196,8 @@ Fruit.allCases.forEach{ fruit in
 - 제목 끝에 마침표(.) 금지
 - 한글로 작성
 
-#### **태그 이름 규칙**
-ex) STEP-start, STEP-PR 
-
 #### **브랜치 이름 규칙**
-ex) 5_mmin90, 5_mmin90-2, 5_mmin90-3 
+ex) 5_mmim90, 5_mmim90-2, 5_mmim90-3 
+
 
 
