@@ -9,19 +9,19 @@ import UIKit
 class JuiceMakerController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak private var strawberryStockLabel: UILabel!
-    @IBOutlet weak private var bananaStockLabel: UILabel!
-    @IBOutlet weak private var pineappleStockLabel: UILabel!
-    @IBOutlet weak private var kiwiStockLabel: UILabel!
-    @IBOutlet weak private var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel?
+    @IBOutlet weak private var bananaStockLabel: UILabel?
+    @IBOutlet weak private var pineappleStockLabel: UILabel?
+    @IBOutlet weak private var kiwiStockLabel: UILabel?
+    @IBOutlet weak private var mangoStockLabel: UILabel?
     
-    @IBOutlet weak private var strawberryBananaButton: UIButton!
-    @IBOutlet weak private var strawberryButton: UIButton!
-    @IBOutlet weak private var bananaButton: UIButton!
-    @IBOutlet weak private var pineappleButton: UIButton!
-    @IBOutlet weak private var mangoKiwiButton: UIButton!
-    @IBOutlet weak private var kiwiButton: UIButton!
-    @IBOutlet weak private var mangoButton: UIButton!
+    @IBOutlet weak private var strawberryBananaButton: UIButton?
+    @IBOutlet weak private var strawberryButton: UIButton?
+    @IBOutlet weak private var bananaButton: UIButton?
+    @IBOutlet weak private var pineappleButton: UIButton?
+    @IBOutlet weak private var mangoKiwiButton: UIButton?
+    @IBOutlet weak private var kiwiButton: UIButton?
+    @IBOutlet weak private var mangoButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class JuiceMakerController: UIViewController {
     }
     
     private func setUpButtonTitleDynamic() {
-        let buttons: [UIButton] = [strawberryBananaButton,
+        let buttons: [UIButton?] = [strawberryBananaButton,
                        strawberryButton,
                        bananaButton,
                        pineappleButton,
@@ -39,8 +39,8 @@ class JuiceMakerController: UIViewController {
                        kiwiButton]
         
         buttons.forEach { button in
-            button.titleLabel?.adjustsFontSizeToFitWidth = true
-            button.titleLabel?.minimumScaleFactor = 0.5
+            button?.titleLabel?.adjustsFontSizeToFitWidth = true
+            button?.titleLabel?.minimumScaleFactor = 0.5
         }
     }
     
@@ -57,7 +57,7 @@ class JuiceMakerController: UIViewController {
         }
     }
     
-    private func findLabel(of fruit: Fruit) -> UILabel {
+    private func findLabel(of fruit: Fruit) -> UILabel? {
         switch fruit {
         case .strawberry:
             return strawberryStockLabel
@@ -106,7 +106,7 @@ class JuiceMakerController: UIViewController {
         guard let amount = stock[fruit] else {
             return
         }
-        fruitLabel.text = "\(amount)"
+        fruitLabel?.text = "\(amount)"
     }
     
     @IBAction private func didTapStockEditButton(_ sender: UIBarButtonItem) {

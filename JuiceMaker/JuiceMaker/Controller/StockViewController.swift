@@ -11,17 +11,17 @@ class StockViewController: UIViewController {
     private let stock: [Fruit: Int]
     weak var delegate: StockUpdateDelegate?
     
-    @IBOutlet weak private var strawberryStockLabel: UILabel!
-    @IBOutlet weak private var bananaStockLabel: UILabel!
-    @IBOutlet weak private var pineappleStockLabel: UILabel!
-    @IBOutlet weak private var kiwiStockLabel: UILabel!
-    @IBOutlet weak private var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel?
+    @IBOutlet weak private var bananaStockLabel: UILabel?
+    @IBOutlet weak private var pineappleStockLabel: UILabel?
+    @IBOutlet weak private var kiwiStockLabel: UILabel?
+    @IBOutlet weak private var mangoStockLabel: UILabel?
     
-    @IBOutlet weak private var strawberryStepper: UIStepper!
-    @IBOutlet weak private var bananaStepper: UIStepper!
-    @IBOutlet weak private var pineappleStepper: UIStepper!
-    @IBOutlet weak private var kiwiStepper: UIStepper!
-    @IBOutlet weak private var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper?
+    @IBOutlet weak private var bananaStepper: UIStepper?
+    @IBOutlet weak private var pineappleStepper: UIStepper?
+    @IBOutlet weak private var kiwiStepper: UIStepper?
+    @IBOutlet weak private var mangoStepper: UIStepper?
     
     init?(coder: NSCoder, stock: [Fruit: Int]) {
         self.stock = stock
@@ -48,8 +48,8 @@ class StockViewController: UIViewController {
             let stepper = findStepper(of: fruit)
             let label = findLabel(of: fruit)
             
-            stepper.value = Double(amount)
-            label.text = "\(amount)"
+            stepper?.value = Double(amount)
+            label?.text = "\(amount)"
         }
     }
     
@@ -64,10 +64,10 @@ class StockViewController: UIViewController {
         }
         
         let label = findLabel(of: fruit)
-        label.text = "\(Int(sender.value))"
+        label?.text = "\(Int(sender.value))"
     }
  
-    private func findStepper(of fruit: Fruit) -> UIStepper {
+    private func findStepper(of fruit: Fruit) -> UIStepper? {
         switch fruit {
         case .strawberry:
             return strawberryStepper
@@ -82,7 +82,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    private func findLabel(of fruit: Fruit) -> UILabel {
+    private func findLabel(of fruit: Fruit) -> UILabel? {
         switch fruit {
         case .strawberry:
             return strawberryStockLabel
@@ -125,7 +125,7 @@ class StockViewController: UIViewController {
         
         Fruit.allCases.forEach { fruit in
             let stepper = findStepper(of: fruit)
-            let stepperValue = Int(stepper.value)
+            let stepperValue = Int(stepper?.value ?? 0)
             let amount = stock[fruit] ?? .zero
             let difference = stepperValue - amount
             differenceDictionary[fruit] = difference
