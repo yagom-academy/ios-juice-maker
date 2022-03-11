@@ -113,7 +113,7 @@ class JuiceOrderViewController: UIViewController, JuiceOrderViewControllerDelega
         self.present(stockInventoryViewController, animated: true)
     }
     
-    func JuiceOrderViewControllerHasChanges() {
+    func juiceOrderViewControllerHasChanges() {
         setupFruitLabel()
     }
 }

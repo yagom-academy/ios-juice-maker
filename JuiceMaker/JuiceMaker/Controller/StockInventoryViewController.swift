@@ -93,7 +93,7 @@ class StockInventoryViewController: UIViewController {
     }
     
     @IBAction private func closeManageStockView(_ sender: UIBarButtonItem) {
-        delegate?.JuiceOrderViewControllerHasChanges()
+        delegate?.juiceOrderViewControllerHasChanges()
         self.presentingViewController?.dismiss(animated: true)
     }
 }
