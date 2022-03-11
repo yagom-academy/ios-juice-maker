@@ -8,25 +8,13 @@ import UIKit
 
 final class JuiceViewController: UIViewController {
   
-  @IBOutlet private weak var strawberryCountLabel: UILabel!
-  @IBOutlet private weak var bananaCountLabel: UILabel!
-  @IBOutlet private weak var pineappleCountLabel: UILabel!
-  @IBOutlet private weak var kiwiCountLabel: UILabel!
-  @IBOutlet private weak var mangoCountLabel: UILabel!
-  
-  @IBOutlet private weak var strawberryBananaButton: UIButton!
-  @IBOutlet private weak var mangoKiwiButton: UIButton!
-  @IBOutlet private weak var strawberryButton: UIButton!
-  @IBOutlet private weak var bananaButton: UIButton!
-  @IBOutlet private weak var pineappleButton: UIButton!
-  @IBOutlet private weak var kiwiButton: UIButton!
-  @IBOutlet private weak var mangoButton: UIButton!
-  
+  @IBOutlet private var fruitCountLabels: [UILabel]!
+
   private let juiceMaker = JuiceMaker()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.fetchStock()
+    self.updateLabel()
   }
   
   @IBAction private func didTapOrderButton(_ sender: UIButton) {
@@ -45,7 +33,11 @@ final class JuiceViewController: UIViewController {
         UIAlertAction(title: AlertSetting.no, style: .cancel)
       ])
     }
-    self.fetchStock()
+    self.updateLabel()
+  }
+  
+  @IBAction private func didTapChangeStockButton(_ sender: UIBarButtonItem) {
+    self.presentStockViewController()
   }
 }
 
@@ -61,19 +53,14 @@ private extension JuiceViewController {
     return Juice(rawValue: juiceName)
   }
   
-  func fetchStock() {
-    self.strawberryCountLabel.text = self.convertStockToString(.strawberry)
-    self.bananaCountLabel.text = self.convertStockToString(.banana)
-    self.pineappleCountLabel.text = self.convertStockToString(.pineapple)
-    self.kiwiCountLabel.text = self.convertStockToString(.kiwi)
-    self.mangoCountLabel.text = self.convertStockToString(.mango)
-  }
-  
-  func convertStockToString(_ fruit: Fruit) -> String {
-    guard let fruitAmount = self.juiceMaker.fruitStore.stock[fruit] else {
-      return String(Int.zero)
+  func updateLabel() {
+    for (label, fruit) in zip(self.fruitCountLabels, Fruit.allCases) {
+      if let fruitAmount = self.juiceMaker.fruitStore.stock[fruit] {
+        label.text = String(fruitAmount)
+      } else {
+        label.text = String(Int.zero)
+      }
     }
-    return String(fruitAmount)
   }
   
   func presentAlert(message: String?, actions: [UIAlertAction]) {
@@ -87,13 +74,26 @@ private extension JuiceViewController {
   }
   
   func handleOkAction(_ action: UIAlertAction) {
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let stockViewController = storyboard.instantiateViewController(
-      withIdentifier: StockViewController.identifier
-    ) as? StockViewController
+    self.presentStockViewController()
+  }
+  
+  func presentStockViewController() {
+    guard let navigationController =
+            self.storyboard?.instantiateViewController(
+              withIdentifier: StockNavigationController.identifier) as? UINavigationController,
+          let stockViewController =
+            navigationController.visibleViewController as? StockViewController
     else {
       return
     }
-    self.present(stockViewController, animated: true)
+    stockViewController.delegate = self
+    stockViewController.setJuiceMaker(self.juiceMaker)
+    self.present(navigationController, animated: true)
+  }
+}
+
+extension JuiceViewController: StockDelegate {
+  func update() {
+    self.updateLabel()
   }
 }

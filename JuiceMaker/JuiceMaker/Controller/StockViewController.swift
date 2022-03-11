@@ -9,23 +9,60 @@ import UIKit
 
 final class StockViewController: UIViewController {
   
-  static let identifier = String(describing: StockViewController.self)
+  @IBOutlet private var fruitCountLabels: [UILabel]!
+  @IBOutlet private var fruitSteppers: [UIStepper]!
   
-  @IBOutlet private weak var strawberryCountLabel: UILabel!
-  @IBOutlet private weak var bananaCountLabel: UILabel!
-  @IBOutlet private weak var pineappleCountLabel: UILabel!
-  @IBOutlet private weak var kiwiCountLabel: UILabel!
-  @IBOutlet private weak var mangoCountLabel: UILabel!
-  
-  @IBOutlet private weak var strawberryStepper: UIStepper!
-  @IBOutlet private weak var bananaStepper: UIStepper!
-  @IBOutlet private weak var pineappleStepper: UIStepper!
-  @IBOutlet private weak var kiwiStepper: UIStepper!
-  @IBOutlet private weak var mangoStepper: UIStepper!
+  private var juiceMaker: JuiceMaker?
+  weak var delegate: StockDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.updateLabel()
+    self.updateStepper()
   }
   
-  @IBAction private func didStepperValueChanged(_ sender: UIStepper) {}
+  @IBAction private func didStepperValueChanged(_ sender: UIStepper) {
+    guard let fruit = self.selectFruit(sender) else {
+      return
+    }
+    self.juiceMaker?.fruitStore.setStock(of: fruit, Int(sender.value))
+    self.updateLabel()
+  }
+  
+  @IBAction private func didTapCloseButton(_ sender: UIBarButtonItem) {
+    self.delegate?.update()
+    self.dismiss(animated: true)
+  }
+  
+  func setJuiceMaker(_ juiceMaker: JuiceMaker) {
+    self.juiceMaker = juiceMaker
+  }
+}
+
+// MARK: - Private Extension
+
+private extension StockViewController {
+  func selectFruit(_ sender: UIStepper) -> Fruit? {
+    return Fruit(rawValue: sender.tag)
+  }
+  
+  func updateLabel() {
+    for (label, fruit) in zip(self.fruitCountLabels, Fruit.allCases) {
+      if let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] {
+        label.text = String(fruitAmount)
+      } else {
+        label.text = String(Int.zero)
+      }
+    }
+  }
+  
+  func updateStepper() {
+    for (stepper, fruit) in zip(self.fruitSteppers, Fruit.allCases) {
+      if let fruitAmount = self.juiceMaker?.fruitStore.stock[fruit] {
+        stepper.value = Double(fruitAmount)
+      } else {
+        stepper.value = Double.zero
+      }
+    }
+  }
 }
