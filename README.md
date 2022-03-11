@@ -1,3 +1,7 @@
+>프로젝트 기간 2022.02.21 ~ 2022.03.11
+>
+>팀원 : @cherrishRed @saafaaari / 리뷰어 : @stevenkim18
+
 ## 목차
 
 - [프로젝트 소개](#프로젝트-소개)
@@ -11,6 +15,7 @@
     + [배운개념](#배운-개념)
 
 ## 프로젝트 소개
+
 <div align="center">
     <img src = "https://i.imgur.com/DW3C93h.png" width="100px">
 
