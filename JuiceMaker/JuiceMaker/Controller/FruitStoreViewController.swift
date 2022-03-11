@@ -22,6 +22,7 @@ final class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         updateFruitsStock()
         updateStepperValue()
     }
@@ -61,8 +62,8 @@ final class FruitStoreViewController: UIViewController {
         guard let fruit = Fruit(rawValue: sender.tag) else {
             return
         }
+        
         fruitLabelCollection[sender.tag].text = Int(sender.value).description
         juiceMaker?.updateInventory(fruit: fruit, value: Int(sender.value))
     }
 }
-

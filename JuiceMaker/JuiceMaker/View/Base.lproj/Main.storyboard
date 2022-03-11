@@ -264,7 +264,7 @@
         <!--Fruit Store View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="FruitStoreVC" id="Yu1-lM-nqp" customClass="FruitStoreViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FruitStoreViewController" id="Yu1-lM-nqp" customClass="FruitStoreViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -453,16 +453,16 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outletCollection property="fruitStockStepper" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="3rt-bn-0fd"/>
-                        <outletCollection property="fruitStockStepper" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="c5s-e3-mPe"/>
-                        <outletCollection property="fruitStockStepper" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="LpM-V3-9nd"/>
-                        <outletCollection property="fruitStockStepper" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="qJW-0y-ux4"/>
-                        <outletCollection property="fruitStockStepper" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="1ve-Or-BiK"/>
                         <outletCollection property="fruitLabelCollection" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="3Py-ko-nGf"/>
                         <outletCollection property="fruitLabelCollection" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="x5U-vh-kZ2"/>
                         <outletCollection property="fruitLabelCollection" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="oZs-Gg-yQz"/>
                         <outletCollection property="fruitLabelCollection" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="qgc-nG-uYy"/>
                         <outletCollection property="fruitLabelCollection" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="yvP-8K-1nk"/>
+                        <outletCollection property="fruitStockStepper" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="xLZ-Oq-1Eb"/>
+                        <outletCollection property="fruitStockStepper" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="lcY-bO-VoF"/>
+                        <outletCollection property="fruitStockStepper" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="kRM-RN-4NR"/>
+                        <outletCollection property="fruitStockStepper" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="hs0-P3-xmq"/>
+                        <outletCollection property="fruitStockStepper" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="quI-Lu-vXb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

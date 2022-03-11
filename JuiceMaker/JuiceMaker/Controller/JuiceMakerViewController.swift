@@ -2,6 +2,7 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     @IBOutlet private var fruitLabelCollection: [UILabel]!
+    
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
