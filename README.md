@@ -17,7 +17,7 @@
 
 ## UML
 
-<img width="500" alt="스크린샷 2022-02-23 오전 11 26 39" src="https://user-images.githubusercontent.com/54234176/157787258-b7613e22-ccc8-4716-aabf-789553a87c9d.png">
+<img alt="" src="https://user-images.githubusercontent.com/54234176/157787258-b7613e22-ccc8-4716-aabf-789553a87c9d.png">
 
 ---
 
