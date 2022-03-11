@@ -8,8 +8,6 @@
 import UIKit
 
 class StockViewController: UIViewController {
-    static let identifier = "StockViewController"
-    
     private let stock: [Fruit: Int]
     weak var delegate: StockUpdateDelegate?
     
