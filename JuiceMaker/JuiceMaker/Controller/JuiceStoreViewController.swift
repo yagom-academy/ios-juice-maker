@@ -39,7 +39,10 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     @IBAction private func moveEditFruitStockViewController(_ sender: Any) {
-        guard let fruitStockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: FruitStockEditViewController.identifier) as? FruitStockEditViewController else { return }
+        guard let fruitStockEditViewController = self.storyboard?
+                .instantiateViewController(
+                    withIdentifier: FruitStockEditViewController.identifier
+                ) as? FruitStockEditViewController else { return }
         appendFruitStock(to: fruitStockEditViewController)
         fruitStockEditViewController.delegate = self
         present(fruitStockEditViewController, animated: true, completion: nil)
@@ -50,29 +53,23 @@ final class JuiceStoreViewController: UIViewController {
     }
     
     private func showSuccessAlert(of juice: Juice) {
-        let successAlert = UIAlertController(title: juice.name+AlertText.cameOut,
-                                             message: AlertText.enjoyDrink,
-                                            preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertText.check,
-                                     style: .default,
-                                     handler: nil)
-        successAlert.addAction(okAction)
-        present(successAlert, animated: true, completion: nil)
+        AlertBuilder(viewController: self)
+            .withTitle(juice.name + AlertText.cameOut)
+            .andMessage(AlertText.enjoyDrink)
+            .preferredStyle(.alert)
+            .onSuccessAction(title: AlertText.check) { _ in }
+            .show()
     }
     
     private func showFailureAlert() {
-        let failureAlert = UIAlertController(title: AlertText.outOfStock,
-                                             message: AlertText.editStock,
-                                             preferredStyle: .alert)
-        let okAction = UIAlertAction(title: AlertText.yes,
-                                     style: .default) { action in
-            self.moveEditFruitStockViewController(action)
-        }
-        let noAction = UIAlertAction(title: AlertText.no,
-                                     style: .destructive,
-                                     handler: nil)
-        failureAlert.addAction(okAction)
-        failureAlert.addAction(noAction)
-        present(failureAlert, animated: true, completion: nil)
+        AlertBuilder(viewController: self)
+            .withTitle(AlertText.outOfStock)
+            .andMessage(AlertText.editStock)
+            .preferredStyle(.alert)
+            .onSuccessAction(title: AlertText.yes) { action in
+                self.moveEditFruitStockViewController(action)
+            }
+            .onCancelAction(title: AlertText.no) { _ in }
+            .show()
     }
 }

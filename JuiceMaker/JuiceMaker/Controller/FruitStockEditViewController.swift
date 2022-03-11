@@ -5,6 +5,7 @@ import UIKit
 
 final class FruitStockEditViewController: UIViewController {
     @IBOutlet private var fruitStockLabels: [UILabel]!
+    @IBOutlet private var fruitStockSteppers: [UIStepper]!
     var fruitsStock = [String]()
     weak var delegate: FruitStockDelegate?
     
@@ -30,12 +31,19 @@ final class FruitStockEditViewController: UIViewController {
         super.viewDidLoad()
         updateFruitsCountLabel()
         setConstraintUI()
+        asignFruitsCountToStepperValue()
+    }
+    
+    private func asignFruitsCountToStepperValue() {
+        for index in fruitStockLabels.indices {
+            guard let fruitCount = fruitStockLabels[index].text,
+                  let currentCount = Double(fruitCount) else { return }
+            fruitStockSteppers[index].value = currentCount
+        }
     }
     
     @IBAction func fruitStockCountStepper(_ sender: UIStepper) {
-        guard let fruitStockValue = fruitStockLabels[sender.tag].text,
-              let fruitStock = Double(fruitStockValue) else {return}
-        fruitStockLabels[sender.tag].text = Int(sender.stepValue+fruitStock).description
+        fruitStockLabels[sender.tag].text = Int(sender.value).description
     }
     
     private func updateFruitsCountLabel() {

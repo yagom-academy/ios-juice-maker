@@ -5,7 +5,7 @@ import Foundation
 
 class FruitStore {
     enum Fruit: Int, CaseIterable {
-        case strawberry = 1
+        case strawberry = 0
         case banana
         case pineapple
         case kiwi
@@ -19,18 +19,18 @@ class FruitStore {
         }
     }
     
-    func makeReady(for juice: Juice) throws {
-        for fruit in juice.recipe.keys {
-            try checkEnoughStock(for: juice, fruit: fruit)
-        }
-    }
-    
     private func checkEnoughStock(for juice: Juice, fruit: Fruit) throws {
         guard let currentFruitQuantity = fruitsStock[fruit],
               let needFruitQuantity = juice.recipe[fruit],
               currentFruitQuantity >= needFruitQuantity else {
                   throw JuiceError.notEnoughStock
               }
+    }
+    
+    func makeReady(for juice: Juice) throws {
+        for fruit in juice.recipe.keys {
+            try checkEnoughStock(for: juice, fruit: fruit)
+        }
     }
     
     func changeFruitQuantity(by fruit: Fruit, count: Int) {
