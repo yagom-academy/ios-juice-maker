@@ -4,12 +4,12 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-protocol Observer {
+protocol Observer: AnyObject {
     func updateStockLabels()
 }
 
 final class FruitStore {
-    private var observer: Observer?
+    private weak var observer: Observer?
     private(set) var stocks: [Fruit: Int] {
         didSet {
             notify()
@@ -24,6 +24,10 @@ final class FruitStore {
         let oldAmount = try checkStock(of: fruit)
         let newAmount = oldAmount - amount
         stocks.updateValue(newAmount, forKey: fruit)
+    }
+    
+    func modify(fruit: Fruit, amount: Int) {
+        stocks.updateValue(amount, forKey: fruit)
     }
     
     func checkEnoughStocks(recipe: Constant.CustomType.Recipe) throws {

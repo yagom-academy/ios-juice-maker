@@ -6,8 +6,19 @@
 
 import UIKit
 
+protocol ModifyingStockViewControllerable: AnyObject {
+    func resolve(fruitStore: FruitStore) -> ModifyingStockViewController
+}
+
+extension CompositionRoot: ModifyingStockViewControllerable  {
+    func resolve(fruitStore: FruitStore) -> ModifyingStockViewController {
+        return .instance(fruitStore: fruitStore)
+    }
+}
+
 final class JuiceMakerViewController: UIViewController {
     private var juiceMaker: JuiceMaker?
+    private weak var modifyingStockViewControllerable: ModifyingStockViewControllerable?
     
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
@@ -33,12 +44,17 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    static func instance(juiceMaker: JuiceMaker) -> JuiceMakerViewController {
+    @IBAction func touchUpModifyingStockButton(_ sender: Any) {
+        presentModifyingStockViewController()
+    }
+    
+    static func instance(juiceMaker: JuiceMaker, modifyingStockViewControllerable: ModifyingStockViewControllerable) -> JuiceMakerViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
-        guard let viewController = storyborad.instantiateViewController(withIdentifier: "JuiceMakerViewController") as? JuiceMakerViewController else {
+        guard let viewController = storyborad.instantiateViewController(withIdentifier: identifier) as? JuiceMakerViewController else {
             return JuiceMakerViewController()
         }
         viewController.juiceMaker = juiceMaker
+        viewController.modifyingStockViewControllerable = modifyingStockViewControllerable
         return viewController
     }
     
@@ -56,7 +72,7 @@ final class JuiceMakerViewController: UIViewController {
         super.viewWillDisappear(animated)
         unSubscribe()
     }
-
+    
     private func configureStockLabels() throws {
         var amountLabels: [UILabel] = []
         let fruits = Fruit.allCases
@@ -122,8 +138,8 @@ final class JuiceMakerViewController: UIViewController {
     
     private func showSuccessOrder(of menu: JuiceMaker.Menu) {
         let message = menu.rawValue + "쥬스 나왔습니다! 맛있게 드세요!"
-
-        AlertBuilder(viewController: self)
+        
+        alertBuilder
             .setTitle(message)
             .setConfirmTitle("확인")
             .showAlert()
@@ -134,8 +150,8 @@ final class JuiceMakerViewController: UIViewController {
               let errorDescription = error.errorDescription else {
                   return
               }
-
-        AlertBuilder(viewController: self)
+        
+        alertBuilder
             .setTitle(errorDescription)
             .setConfirmTitle("확인")
             .setCancelTitle("취소")
@@ -144,11 +160,11 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func presentModifyingStockViewController() {
-        guard let modifyingStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyingStockViewController") else {
-            return
+        if let fruitStore = juiceMaker?.fruitStore, let modifyingStockViewControllerable = modifyingStockViewControllerable {
+            let modifyingStockViewController = modifyingStockViewControllerable.resolve(fruitStore: fruitStore)
+            
+            self.present(modifyingStockViewController, animated: true)
         }
-        
-        self.present(modifyingStockViewController, animated: true)
     }
 }
 
