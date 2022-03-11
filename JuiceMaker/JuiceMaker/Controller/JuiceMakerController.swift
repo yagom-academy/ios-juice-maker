@@ -25,11 +25,11 @@ class JuiceMakerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeButtonTitleDynamic()
+        setUpButtonTitleDynamic()
         updateMultipleLabel()
     }
     
-    private func makeButtonTitleDynamic() {
+    private func setUpButtonTitleDynamic() {
         let buttons: [UIButton] = [strawberryBananaButton,
                        strawberryButton,
                        bananaButton,
@@ -180,11 +180,11 @@ class JuiceMakerController: UIViewController {
     }
 }
 
-protocol UpdateDelegate: AnyObject {
+protocol StockUpdateDelegate: AnyObject {
     func update(data: [Fruit: Int])
 }
 
-extension JuiceMakerController: UpdateDelegate {
+extension JuiceMakerController: StockUpdateDelegate {
     func update(data: [Fruit : Int]) {
         let validData = data.filter{$0.value != 0}
         juiceMaker.changeStock(from: validData)

@@ -11,7 +11,7 @@ class StockViewController: UIViewController {
     static let identifier = "StockViewController"
     
     private var stock: [Fruit: Int]
-    weak var delegate: UpdateDelegate?
+    weak var delegate: StockUpdateDelegate?
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
     @IBOutlet weak private var bananaStockLabel: UILabel!
@@ -36,18 +36,16 @@ class StockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initalizeViewController()
-        initalizeData()
+        setUpTitle()
+        setUpData()
+        setUpRightBarButton()
     }
     
-    private func initalizeViewController() {
+    private func setUpTitle() {
         title = "재고 추가"
-        
-        let closeButton = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(dismissVC))
-        navigationItem.rightBarButtonItem = closeButton
     }
     
-    private func initalizeData() {
+    private func setUpData() {
         for (fruit, amount) in stock {
             let stepper = findStepper(of: fruit)
             let label = findLabel(of: fruit)
@@ -57,6 +55,11 @@ class StockViewController: UIViewController {
         }
     }
     
+    private func setUpRightBarButton() {
+        let closeButton = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(dismissViewController))
+        navigationItem.rightBarButtonItem = closeButton
+    }
+        
     @IBAction private func didTapStockEditStepper(_ sender: UIStepper) {
         guard let fruit = findFruit(of: sender) else {
             return
@@ -113,7 +116,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    @objc private func dismissVC() {
+    @objc private func dismissViewController() {
         let sendData = makeFruitAmountChangedDictionary()
         delegate?.update(data: sendData)
         dismiss(animated: true)
