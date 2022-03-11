@@ -14,13 +14,7 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction private func clickUpdateFruitStockButton(_ sender: UIBarButtonItem) {
-        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: "FruitStoreVC") as? FruitStoreViewController else {
-            return
-        }
-        fruitStoreVC.delegate = self
-        fruitStoreVC.juiceMaker = juiceMaker
-       
-        present(fruitStoreVC, animated: true, completion: nil)
+       showFruitStoreVC()
     }
     
     @IBAction private func clickMakeJuiceButton(_ sender: UIButton) {
@@ -55,14 +49,20 @@ final class JuiceMakerViewController: UIViewController {
     private func showFailAlert(_ error: Error) {
         let failAlert = UIAlertController(title: "재료부족", message: error.localizedDescription, preferredStyle: .alert)
         failAlert.addAction(UIAlertAction(title: "아니요", style: .destructive))
-        failAlert.addAction(UIAlertAction(title: "네", style: .default, handler: { _ in
-            guard let fruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreVC") as? FruitStoreViewController else {
-                return
-            }
-            fruitStoreVC.delegate = self
-            fruitStoreVC.juiceMaker = self.juiceMaker
-            self.present(fruitStoreVC, animated: true, completion: nil)}))
+        failAlert.addAction(UIAlertAction(title: "네", style: .default, handler: { _ in self.showFruitStoreVC()}))
         present(failAlert, animated: true)
+    }
+    
+    private func showFruitStoreVC() {
+        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: "FruitStoreVC" , creator: { coder in
+            FruitStoreViewController(juiceMaker: self.juiceMaker, coder: coder)
+        }) else {
+            return
+        }
+
+        fruitStoreVC.delegate = self
+
+        present(fruitStoreVC, animated: true, completion: nil)
     }
     
     private func checkClickedJuice(button: UIButton) -> Juice? {

@@ -1,10 +1,20 @@
 import UIKit
 
-class FruitStoreViewController: UIViewController {
+final class FruitStoreViewController: UIViewController {
     @IBOutlet private var fruitLabelCollection: [UILabel]!
     @IBOutlet private var fruitStockStepper: [UIStepper]!
-    var juiceMaker: JuiceMaker?
-    var delegate: UpdateData?
+
+    private let juiceMaker: JuiceMaker?
+    weak var delegate: UpdateData?
+    
+    init?(juiceMaker: JuiceMaker, coder: NSCoder) {
+        self.juiceMaker = juiceMaker
+        super.init(coder: coder)
+     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,6 +1,6 @@
 import UIKit
 
-protocol UpdateData {
+protocol UpdateData: AnyObject {
     func updateFruitStock()
 }
 
