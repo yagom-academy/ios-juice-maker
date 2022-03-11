@@ -11,7 +11,7 @@ protocol ManageViewControllerDelegate {
     func sendStocks(stocks : [Fruits: Int])
 }
 
-class ManageViewController: UIViewController {
+final class ManageViewController: UIViewController {
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -55,12 +55,12 @@ class ManageViewController: UIViewController {
         selectedStepperDictionary.forEach{ fruit, stepper in labelDictionary[fruit]?.text = String(Int(sender.value)) }
     }
     
-    func showStock() {
+    private func showStock() {
         fruitDictionary.forEach{ (fruit, stock) in labelDictionary[fruit]?.text = String(stock) }
         fruitDictionary.forEach{ (fruit, stock) in stepperDictionary[fruit]?.value = Double(stock) }
     }
     
-    func changeStocks() {
+    private func changeStocks() {
         stepperDictionary.forEach{ fruit, stepper in fruitDictionary[fruit] = Int(stepper.value) }
         delegate?.sendStocks(stocks: fruitDictionary)
     }
