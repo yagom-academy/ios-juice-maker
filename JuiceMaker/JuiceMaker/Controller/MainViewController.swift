@@ -58,26 +58,10 @@ class MainViewController: UIViewController, Updateable {
         pineappleLabel.text = store.getStock(of:.pineapple)
     }
     
-    private func showSuccessAlert(with juiceName: String) {
-        let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: juiceName + Phrases.readyForJuice.text, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: Phrases.ok.text, style: .default, handler: nil )
-        alertCountroll.addAction(okAction)
-        present(alertCountroll, animated: false, completion: nil)
-    }
     
-    private func showFailureAlert() {
-        let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
-        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default) {_ in
-            guard let navigationC = self.moveManagingStockView() else { return }
-            self.setUpDelegate(navigationC) }
-        let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive, handler: nil )
-        alertCountrol.addAction(moveAction)
-        alertCountrol.addAction(cancelAction)
-        present(alertCountrol, animated: false, completion: nil)
-    }
     
     @IBAction func touchUpMoveButton(_ sender: UIButton) {
-        guard let navigationC = moveManagingStockView() else { return }
+        guard let navigationC = moveStockView() else { return }
         setUpDelegate(navigationC)
     }
     
@@ -87,10 +71,10 @@ class MainViewController: UIViewController, Updateable {
         topView.delegate = self
     }
     
-    private func moveManagingStockView() -> UINavigationController? {
-        guard let managingStockVN = self.storyboard?.instantiateViewController(withIdentifier: "ManagingStockViewNavigation") as? UINavigationController else { return nil }
-        self.present(managingStockVN, animated: true, completion: nil)
-        return managingStockVN
+    private func moveStockView() -> UINavigationController? {
+        guard let StockNC = self.storyboard?.instantiateViewController(withIdentifier: "StockNavigationController") as? UINavigationController else { return nil }
+        self.present(StockNC, animated: true, completion: nil)
+        return StockNC
     }
     
     private func noticeOutOfStock() {
@@ -111,4 +95,26 @@ class MainViewController: UIViewController, Updateable {
         noticeOutOfStock()
     }
     
+}
+
+//Mark: Alert
+extension MainViewController {
+    
+    private func showSuccessAlert(with juiceName: String) {
+        let alertCountroll = UIAlertController(title: Phrases.noticeTitle.text, message: juiceName + Phrases.readyForJuice.text, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Phrases.ok.text, style: .default, handler: nil )
+        alertCountroll.addAction(okAction)
+        present(alertCountroll, animated: false, completion: nil)
+    }
+    
+    private func showFailureAlert() {
+        let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.questionForStockChange.text, preferredStyle: .alert)
+        let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default) {_ in
+            guard let navigationC = self.moveStockView() else { return }
+            self.setUpDelegate(navigationC) }
+        let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive, handler: nil )
+        alertCountrol.addAction(moveAction)
+        alertCountrol.addAction(cancelAction)
+        present(alertCountrol, animated: false, completion: nil)
+    }
 }

@@ -12,7 +12,7 @@ protocol Delegator: AnyObject {
     var delegate: Updateable? { get set }
 }
 
-class ManagingStockViewController: UIViewController, Delegator {
+class StockViewController: UIViewController, Delegator {
     var stock: [Fruit: Int]?
     weak var delegate: Updateable?
     
@@ -29,10 +29,10 @@ class ManagingStockViewController: UIViewController, Delegator {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     lazy var uiGroup: [Fruit: (label: UILabel, stepper: UIStepper)] = [.strawberry: (strawberryLabel, strawberryStepper),
-                                                                            .banana: (bananaLabel, bananaStepper),
-                                                                            .pineapple: (pineappleLabel, pineappleStepper),
-                                                                            .kiwi: (kiwiLabel, kiwiStepper),
-                                                                            .mango: (mangoLabel, mangoStepper)]
+                                                                       .banana: (bananaLabel, bananaStepper),
+                                                                       .pineapple: (pineappleLabel, pineappleStepper),
+                                                                       .kiwi: (kiwiLabel, kiwiStepper),
+                                                                       .mango: (mangoLabel, mangoStepper)]
     
     @IBAction func matchLabel(with stepper: UIStepper) {
         guard let fruit = Fruit(rawValue: stepper.tag) else { return }
@@ -56,13 +56,23 @@ class ManagingStockViewController: UIViewController, Delegator {
         uiGroup[fruit]?.stepper.value = Double(amount)
     }
     
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initializeViewValue()
+    }
+    
+}
+//Mark: Alert
+extension StockViewController {
     private func askForChangeAlert() {
         let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.acceptChanges.text, preferredStyle: .alert)
         let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default) {_ in
             guard let stock = self.stock else { return }
             self.delegate?.update(for: stock)
             self.dismiss(animated: true, completion: nil)
-             }
+        }
         let cancelAction = UIAlertAction(title: Phrases.no.text, style: .destructive) {_ in
             self.dismiss(animated: true, completion: nil)
         }
@@ -70,10 +80,4 @@ class ManagingStockViewController: UIViewController, Delegator {
         alertCountrol.addAction(cancelAction)
         present(alertCountrol, animated: false, completion: nil)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initializeViewValue()
-    }
-
 }
