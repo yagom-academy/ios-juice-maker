@@ -8,13 +8,8 @@ import UIKit
 
 final class OrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
-    
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    
+
+    @IBOutlet var stockLabels: [UILabel]!
     @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
@@ -22,36 +17,17 @@ final class OrderViewController: UIViewController {
     @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
-    
     @IBOutlet weak var moveToStockViewButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showCurrentStock()
     }
-
-    private func showCurrentStock() {
-        juiceMaker.fruitStore.inventory.keys.forEach {
-            switch $0 {
-            case .strawberry:
-                strawberryStockLabel.text = convertFruitStockToString(.strawberry)
-            case .banana:
-                bananaStockLabel.text = convertFruitStockToString(.banana)
-            case .pineapple:
-                pineappleStockLabel.text = convertFruitStockToString(.pineapple)
-            case .kiwi:
-                kiwiStockLabel.text = convertFruitStockToString(.kiwi)
-            case .mango:
-                mangoStockLabel.text = convertFruitStockToString(.mango)
-            }
-        }
-    }
     
-    private func convertFruitStockToString(_ fruit: Fruit) -> String? {
-        guard let currentStock = juiceMaker.fruitStore.inventory[fruit] else {
-            return nil
+    private func showCurrentStock() {
+        Fruit.allCases.forEach { fruit in
+            stockLabels[fruit.rawValue].text = juiceMaker.fruitStore.inventory[fruit]?.description
         }
-        return String(currentStock)
     }
     
     @IBAction func moveToStockViewButtonClicked(_ sender: UIBarButtonItem) {
@@ -62,29 +38,17 @@ final class OrderViewController: UIViewController {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController") as? StockViewController else {
             return
         }
-        stockViewController.modalTransitionStyle = .coverVertical
-        stockViewController.modalPresentationStyle = .automatic
+        stockViewController.delegate = self
+        stockViewController.currentStocks = juiceMaker.fruitStore.inventory
         self.present(stockViewController, animated: true, completion: nil)
     }
-
+    
     @IBAction func orderButtonsClicked(_ sender: UIButton) {
-        switch sender {
-        case strawberryBananaJuiceOrderButton:
-            order(.strawberryBananaJuice)
-        case mangoKiwiJuiceOrderButton:
-            order(.mangoKiwiJuice)
-        case strawberryJuiceOrderButton:
-            order(.strawberryJuice)
-        case bananaJuiceOrderButton:
-            order(.bananaJuice)
-        case pineappleJuiceOrderButton:
-            order(.pineappleJuice)
-        case kiwiJuiceOrderButton:
-            order(.kiwiJuice)
-        case mangoJuiceOrderButton:
-            order(.mangoJuice)
-        default:
-            alertUnknownError()
+        Juice.allCases.forEach { juice in
+            guard sender.tag == juice.rawValue else {
+                return
+            }
+            order(juice)
         }
         showCurrentStock()
     }
@@ -95,12 +59,11 @@ final class OrderViewController: UIViewController {
             alertOrderCompletion(juice)
         } catch OrderError.outOfStock {
             alertOutOfStock()
-        } catch {
-            alertUnknownError()
-        }
+        } catch { }
     }
 }
 
+// MARK: Alert
 extension OrderViewController {
     private func alertOrderCompletion(_ juice: Juice) {
         let alert = UIAlertController(title: Alert.orderSuccess.title, message: "\(juice) \(Alert.orderSuccess.message)", preferredStyle: .alert)
@@ -119,11 +82,15 @@ extension OrderViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
-    
-    private func alertUnknownError() {
-        let alert = UIAlertController(title: Alert.unknownError.title, message: Alert.unknownError.message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: AlertButton.confirm.title, style: .default, handler: nil)
-        alert.addAction(defaultAction)
-        present(alert, animated: true, completion: nil)
+}
+
+protocol StockDeliveryProtocol: AnyObject {
+    func update(by currentStock: [Fruit: Int])
+}
+
+extension OrderViewController: StockDeliveryProtocol {
+    func update(by currentStock: [Fruit: Int]) {
+        juiceMaker.fruitStore.inventory = currentStock
+        showCurrentStock()
     }
 }

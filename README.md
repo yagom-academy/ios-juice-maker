@@ -1,21 +1,34 @@
-# ios-juice-maker
+# 🧃ios-juice-maker
 
-> 프로젝트 기간 2022.02.21 ~  </br>
-팀원 : [@mmim](https://github.com/JoSH0318) [@marisol](https://github.com/marisol-develop) / 리뷰어 : [@steven](https://github.com/stevenkim18)
+> 📅 프로젝트 기간 2022.02.21 ~ 2022.03.11 </br>
+🎓 팀원 : [@mmim](https://github.com/JoSH0318) [@marisol](https://github.com/marisol-develop) / 👑 리뷰어 : [@steven](https://github.com/stevenkim18)
 
 ## 목차
 
-- [프로젝트 소개](#프로젝트-소개)
-- [UML](#UML)
-- [키워드](#키워드)
+- [프로젝트 소개 및 기능](#프로젝트-소개-및-기능)
+- [UML](#uml)
 - [STEP 1](#step-1)
     + [고민한점](#고민한점)
     + [배운개념](#배운개념)
 - [STEP 2](#step-2)
     + [고민한점](#고민한점)
     + [배운개념](#배운개념)
+- [STEP 3](#step-3)
+    + [고민한점](#고민한점)
+    + [배운개념](#배운개념)
+- [트러블슈팅](#트러블슈팅)
+- [기술의 장단점](#기술의-장단점)
     
-## 프로젝트 소개
+## 프로젝트 소개 및 기능
+1️⃣ 쥬스 주문시 재고 차감 후 얼럿 표시
+![](https://i.imgur.com/LksXAzw.gif)
+
+2️⃣ 재고 부족시 얼럿 띄우고 재고추가 화면으로 이동
+![](https://i.imgur.com/TKovVvj.gif)
+
+3️⃣ 재고수정 버튼 클릭시 재고추가 화면으로 이동
+![](https://i.imgur.com/IqYtGA6.gif)
+
 
 ## 개발환경 및 라이브러리
 
@@ -23,9 +36,7 @@
 [![xcode](https://img.shields.io/badge/Xcode-13.0-blue)]()
 
 ## UML
-<img width="6112" alt="JuiceMaker STEP2_UML " src="https://user-images.githubusercontent.com/88810018/156316885-de12aa6c-24b2-4045-b3b0-77d737cbf7b5.png">
-
-## 키워드
+<img width="4612" alt="JuiceMaker_UML_STEP3" src="https://user-images.githubusercontent.com/88810018/157645606-09fdfbff-f86d-405c-ad2e-94622356cae6.png">
 
 ## [STEP 1]
 ### 고민한점
@@ -54,6 +65,7 @@
 - MVC
 - Result 타입
 - LocalizedError 프로토콜
+
 ---
 
 ## [STEP 2]
@@ -76,19 +88,72 @@
 #### enum Alert의 사용
 - Alert을 사용하게 되면서 title과 message를 매직 리터럴을 사용하게 되었고, 만약 프로젝트 규모가 크다면 Alert의 내용을 변경할 때 하나하나 바꿔줘야한다는 생각이 들었습니다. 이 두가지 문제점을 해결하기 위해 enum Alert을 사용하게 됐습니다. 
 
-### 배운개념
-- Singleton
-- Modality
-- H.I.G
-- Alert
-- Error handling
-- NotificationCenter
-- IBOutlet
-- View Transition(present, navigationController, segue)
-- Access control
-- UIKit, UIViewController
-- Class, Struct
+---
 
+## [STEP 3]
+### 고민한점
+#### Property observer
+- A라는 값을 label에 보여지고자 할 때, `label.text = A`라고 직접 넣어주는 방식을 택했습니다. 하지만 A의 값이 변할 때 마다 label 값에 직접 대입해야했고 property observer를 사용해보는 게 어떨까 고민했습니다. 
+```swift
+let A = 10 {
+    didSet {
+        label.text = "\(A)"    
+    }
+}
+```
+이런 식으로 property observer를 설정해준다면, 주문 또는 stepper의 변화로 인해 A값의 변화를 인지하고 자동으로 label를 갱신이 가능하겠구나 생각했습니다. 하지만 A의 값이 변할때마다 `juiceMaker.fruitStore.inventory`값도 갱신시켜줘야했고, 이러한 이유로 오히려 코드가 길어지고, 복잡해진다는 것을 깨닫고 철회했습니다.
+
+#### Delegation pattern
+- OrderViewController와 StockViewController가 서로 과일 재고의 데이터를 주고 받아야 했고, 데이터 전송의 방법 중 notification center와 delegation pattern을 고민해보았습니다. notification center는 특정 이벤트에 대해 알림을 요청한 구독자 모두에게 해당 이벤트가 발생하면 알림 발송해주는데, 일대일로 데이터를 주고 받는 방식에서는 쥬스메이커의 상황에서는 delegation pattern이 적절하다고 생각해서 delegation pattern을 공부해서 사용하게 되었습니다.
+
+#### Dictionary
+- 과일의 종류와 해당 과일의 재고를 매칭해서 관리해주기 위해 key로 과일에 접근하면 해당 과일의 재고를 파악할 수 있도록 Dictionary를 선택하게 되었습니다. 하지만 과일의 재고를 확인해야 할 때마다 Dictionary의 key를 통해 접근해야 했기 때문에 항상 optional binding을 해줘야 하는 문제점이 있었습니다. StockViewController의 `showCurrentStock()`메서드 내에서 과일마다 forEach를 돌면서 현재 과일의 재고를 label과 stepper에 세팅해줘야 했고, `strawberryStepper.value = Double(currentStocks[.strawberry] ?? 0)`처럼 Coalesce를 사용하지 않으면 두 번 들여쓰기를 하게 되어, guard let / if let과 고민하던 중, Coalesce를 사용하게 되었습니다.
+
+#### Switch문 & if문
+- switch문은 모든 case를 언급하지 않으면 default 구문을 사용해줘야 합니다. 따라서 무결점한 코드가 이뤄지기 어렵다는 단점이 있습니다. 만약 enum 타입과 같이 case가 명확히 정해져있다면 switch문을 통해 각 case를 구현해준다면 무결점한 코드가 되겠지만, 그렇지 않다면 default를 언급해줘야해서 무결점하지 못하다는 것을 알게 됐습니다. 이러한 경우에는 오히려 if-if else문으로 구현하는 것이 좀 더 무결점하다는 생각을 했습니다. 
+
+#### 코드의 간결성 vs 코드의 가독성
+- 반복되는 코드를 줄이기 위해 label과 stepper를 outletCollection으로 묶어주었습니다. 그리고 과일의 재고를 표시하는 라벨마다 tag를 붙이고, Fruit 열거형의 rawValue에 원시값을 넣어 tag를 이용해 라벨의 outletCollection에 index로 접근했습니다.
+```swift
+Fruit.allCases.forEach{ fruit in
+    stockLabels[fruit.rawValue].text = currentStocks[fruit]?.description
+    stockSteppers[fruit.rawValue].value = Double(currentStocks[fruit] ?? 0)
+}
+```
+이렇게 하면 반복되는 코드가 줄고 매우 간결하게 표현할 수 있다는 장점이 있지만, 과일이 추가될 때마다 tag를 달아줘야하고, 혹시라도 tag과 fruit의 rawValue가 매칭되지 않는 경우에 문제가 발생할 수 있다는 단점이 있는 것 같습니다. 이전 코드보다 매우 간결해졌지만 가독성 부분에서 좋지 않은 것 같다는 생각도 들었습니다.
+
+### 배운개념
+- Delegation Pattern
+- Auto-Layout
+- Property Observer ( didSet )
+- Protocol
+- UML
+
+---
+## 트러블슈팅
+
+---
+
+## 기술의 장단점
+- `Dictionary` 형태의 데이터 저장
+   - 장점
+      - key(과일)값에 따라 각각의 value(재고량)이 존재하여 정보의 매칭이 편리하다.
+      - key값만으로 value값에 접근할 수 있다.
+   - 단점
+      - value값에 접근할 때, nil값에 주의해야한다.(Optional binding과정이 필수)
+- `Delegation Pattern`으로 데이터 전달
+   - 장점
+       - 제3의 객체 없이 데이터 전달이 가능하다. (ex: notification center)
+       - 객체간 서로 의존하지 않아 결합도가 낮다.
+   - 단점
+      - 패턴을 따라야해서 코드가 길어진다.
+      - delegate에 nil 값이 들어가지 않도록 주의해야한다.
+- `Modality` 화면 전환
+    - 장점
+        - 현재 작업과 다른 작업을 수행할 때 사용자가 집중하게 할 수 있다.
+    - 단점
+        - 만약 depth가 깊어진 상황에서 Modality를 사용하면 사용자로 하여금 현재 위치를 파악하기 어려워진다.
+        - `Modality`에서 다시 mainVC로 전환될 때, `viewWillDisapear`, `viewWillApear` 등이 호출되지 않아 해당시점에 특정 동작을 제어할 없다.
 ---
 
 ## 📜 팀 그라운드 룰
@@ -131,10 +196,8 @@
 - 제목 끝에 마침표(.) 금지
 - 한글로 작성
 
-#### **태그 이름 규칙**
-ex) STEP-start, STEP-PR 
-
 #### **브랜치 이름 규칙**
-ex) 5_mmin90, 5_mmin90-2, 5_mmin90-3 
+ex) 5_mmim90, 5_mmim90-2, 5_mmim90-3 
+
 
 
