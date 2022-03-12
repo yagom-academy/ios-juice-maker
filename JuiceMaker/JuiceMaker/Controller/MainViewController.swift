@@ -93,7 +93,7 @@ class MainViewController: UIViewController, Updateable {
         return managingStockVN
     }
     
-    func noticeOutOfStock() {
+    private func noticeOutOfStock() {
         for (uiButton, juice) in buttonGroup {
             uiButton.backgroundColor = juiceMaker.checkAll().contains(juice) ? .systemBlue : .gray
         }

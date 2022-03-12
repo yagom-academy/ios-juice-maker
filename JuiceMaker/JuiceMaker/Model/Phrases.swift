@@ -2,7 +2,7 @@
 //  Phrases.swift
 //  JuiceMaker
 //
-//  Created by 이시원 on 2022/03/01.
+//  Created by safari and Red on 2022/03/01.
 //
 
 import Foundation

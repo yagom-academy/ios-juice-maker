@@ -41,7 +41,7 @@ class ManagingStockViewController: UIViewController, Delegator {
     }
     
     @IBAction func closeView(_ sender: UIBarButtonItem) {
-        showFailureAlert()
+        askForChangeAlert()
     }
     
     private func initializeViewValue() {
@@ -56,7 +56,7 @@ class ManagingStockViewController: UIViewController, Delegator {
         uiGroup[fruit]?.stepper.value = Double(amount)
     }
     
-    private func showFailureAlert() {
+    private func askForChangeAlert() {
         let alertCountrol = UIAlertController(title: Phrases.noticeTitle.text, message: Phrases.acceptChanges.text, preferredStyle: .alert)
         let moveAction = UIAlertAction(title: Phrases.yes.text, style: .default) {_ in
             guard let stock = self.stock else { return }
