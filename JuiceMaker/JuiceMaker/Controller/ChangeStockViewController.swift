@@ -13,7 +13,7 @@ protocol ChangeStockViewControllerDelegate: AnyObject {
 
 class ChangeStockViewController: UIViewController {
     weak var delegate: ChangeStockViewControllerDelegate?
-    var changedStock: [FruitsTypes: Int] = [:]
+    var changedStock: Dictionary<FruitsTypes, Int> = [:]
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bannaStockLabel: UILabel!
@@ -33,23 +33,24 @@ class ChangeStockViewController: UIViewController {
     }
 
     func showFruitsStock() {
+        let noFruitCount = 0
         changedStock.keys.forEach{ fruits in
             switch fruits{
             case .strawberry:
                 strawberryStockLabel.text = changedStock[.strawberry]?.description
-                strawberryStockStepper.value = Double(changedStock[.strawberry] ?? .zero)
+                strawberryStockStepper.value = Double(changedStock[.strawberry] ?? noFruitCount)
             case .banana:
                 bannaStockLabel.text = changedStock[.banana]?.description
-                bannaStockStepper.value = Double(changedStock[.banana] ?? .zero)
+                bannaStockStepper.value = Double(changedStock[.banana] ?? noFruitCount)
             case .pineapple:
                 pineappleStockLabel.text = changedStock[.pineapple]?.description
-                pineappleStockStepper.value = Double(changedStock[.pineapple] ?? .zero)
+                pineappleStockStepper.value = Double(changedStock[.pineapple] ?? noFruitCount)
             case .kiwi:
                 kiwiStockLabel.text = changedStock[.kiwi]?.description
-                kiwiStockStepper.value = Double(changedStock[.kiwi] ?? .zero)
+                kiwiStockStepper.value = Double(changedStock[.kiwi] ?? noFruitCount)
             case .mango:
                 mangoStockLabel.text = changedStock[.mango]?.description
-                mangoStockStepper.value = Double(changedStock[.mango] ?? .zero)
+                mangoStockStepper.value = Double(changedStock[.mango] ?? noFruitCount)
             }
         }
     }
