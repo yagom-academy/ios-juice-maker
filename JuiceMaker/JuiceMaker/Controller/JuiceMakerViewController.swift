@@ -85,9 +85,9 @@ final class JuiceMakerViewController: UIViewController{
     }
 }
     
-    extension JuiceMakerViewController: ChangeStockViewControllerDelegate {
-        func sendData(stocks: [FruitsTypes : Int]) {
-            fruitStore.fruits = stocks
-            initFruits()
-        }
+extension JuiceMakerViewController: ChangeStockViewControllerDelegate {
+    func sendData(stocks: [FruitsTypes : Int]) {
+        fruitStore.fruits = stocks
+        initFruits()
     }
+}
