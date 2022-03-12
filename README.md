@@ -50,8 +50,7 @@
 
 
 ## 프로젝트 구조 
-<img src = "https://i.imgur.com/LQpivZf.jpg" width="700px">
-
+<img alt = "juiceMakerUML" src = "https://user-images.githubusercontent.com/63499481/158018534-21381ba4-4d77-48ca-8227-073e0f564fe9.png" width="1200px">
 
 ## 개발환경 및 라이브러리
 
