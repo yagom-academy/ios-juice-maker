@@ -4,15 +4,21 @@
 
 - [쥬스 메이커](#쥬스-메이커)
 - [STEP 1](#[STEP-1]-쥬스-메이커-타입-정의)
-    + [기능 구현](#step-1-기능-구현)
-    + [고민했던 것](#step-1-고민했던-것들)
-    + [배운 개념](#step-1-배운-개념)
-    + [PR 후 개선사항](#step-1-pr-후-개선사항)
+    + [기능 구현](#STEP-1-기능-구현)
+    + [고민했던 것](#STEP-1-고민했던-것들)
+    + [배운 개념](#STEP-1-배운-개념)
+    + [PR 후 개선사항](#STEP-1-PR-후-개선사항)
 - [STEP 2](#[STEP-2]-초기화면-기능구현)
-    + [기능 구현](#step-2-기능-구현)
-    + [고민했던 것](#step-2-고민했던-것들)
-    + [배운 개념](#step-2-배운-개념)
-    + [PR 후 개선사항](#step-2-pr-후-개선사항)
+    + [기능 구현](#STEP-2-기능-구현)
+    + [고민했던 것](#STEP-2-고민했던-것들)
+    + [배운 개념](#STEP-2-배운-개념)
+    + [PR 후 개선사항](#STEP-2-PR-후-개선사항)
+- [STEP 3](#[STEP-3]-재고수정-기능구현)
+    + [기능 구현](#STEP-3-기능-구현)
+    + [고민했던 것](#STEP-3-고민했던-것들)
+    + [배운 개념](#STEP-3-배운-개념)
+    + [PR 후 개선사항](#STEP-3-PR-후-개선사항)
+
 
 ## 쥬스 메이커
 
@@ -111,7 +117,72 @@
 - Storyboard 내 아이템의 값과 이벤트 관리
 
 ## STEP 2 PR 후 개선사항
+- View Controller 명사형으로 이름 수정
+- IBAction의 sender Any타입에서 특정 타입으로 수정
+- 쥬스 타입을 가져오는 방식을 juiceType에서 주스 이름을 반환하는 방식으로 변경
+- juiceMaker내에 있는 fruitStore를 private(set)으로 변경
+- sender를 from button으로 변경
+- NameSpace로 생성했던 상수들을 내부에서 선언하도록 수정
+- updateFruitStockLabel의 파라미터를 딕셔너리 타입으로 수정
 
 
 
+---
+
+## [STEP 3] 재고수정 기능구현
+- 화면 제목 '재고 추가' 및 '닫기' 버튼 구현
+- 화면 진입 시 과일의 현재 재고 수량 표시
+- -,+를 통한 재고 수정
+- iPhone 12 외에 다른 시뮬레이터에서도 UI가 정상적으로 보일 수 있도록 오토레이아웃 적용
+
+## STEP 3 기능 구현
+- FruitStore
+    - ```updateStock(fruit: FruitType, amount: Int```
+        - 과일의 재고를 전달받은 ```amount```로 수정하는 함수
+- JuiceOrderViewController
+    - ```fruitStockStatus() -> [FruitType: Int]```
+        - 현재 과일의 전체 재고 상태를 딕셔너리로 만드는 함수
+    - ```sendData(fruits: [FruitType: Int])```
+        - 데이터를 전달받는 dataDelegate 프로토콜의 함수를 구현한 함수
+- StockInventoryViewController
+    - ```fruitStockStatus: [FruitType: Int]```
+        - 현재 과일의 재고 상태를 저장하는 변수
+    - ```minimumNumberOfStock: Double = 0```
+        - 과일 재고가 될 수 있는 최소값을 나타내는 상수
+    - ```dataDelegate: dataDelegate?```
+        - StockInventoryViewController에서 JuiceOrderViewController로 데이터를 전달하는 위임자
+    - ```setupFruitStockLabel()```
+        - 뷰가 로드됐을 때 과일 재고 수량을 세팅하는 함수 
+    - ```setupFruitStockStepper()```
+        - 과일 재고 조절을 하는 -,+ 버튼(stepper)의 설정을 하기 위한 함수
+    - ```setupFruitStockStepperOption()```
+        - stepper의 옵션을 설정하기 위한 함수
+    - ```setupFruitStockStepperLabel()```
+        - stepper의 초기값을 설정하기 위한 함수
+    - ```stepperValueChangedAction(_ sender: UIStepper)```
+        - stepper의 값에 변화가 감지되었을 때 수행할 액션을 지정한 함수
+    - ```changedFruitsStock() -> [FruitType: Int]```
+        - 재고 변경으로 인해 변경된 과일과 그 수량을 담은 딕셔너리를 반환하는 함수
+    - ```isStockChanged(fruit: FruitType, currentStock: Int) -> Bool```
+        - 해당 과일의 재고가 변경되었는지 확인하는 함수
+    - ```viewWillDisappear(_ animated: Bool)```
+        - 뷰가 사라지기 직전에 호출되는 함수. 위임자를 통해 데이터를 JuiceOrderViewController로 전달하는 함수
+
+   
+## STEP 3 고민했던 것들
+1. 뷰 컨트롤러 사이 데이터 전송 방법을 고민했습니다.
+2. 뷰 컨트롤러 간 어떤 데이터를 전송해야 할지 고민했습니다.
+3. 변경된 재고만을 업데이트하는 방법을 고민했습니다.
+4. label과 stepper에 필요한 데이터를 입력하는 과정에서 중복된 동작을 최대한 줄일 수 있는 방법을 고민했습니다.
+5. stepper로 인해 재고가 변경되었을 때 어떤 행동을 수행해야 할 지 고민했습니다.
+6. 오토레이아웃을 적용하는 방법에 대해 고민했습니다.
+
+
+## STEP 3 배운 개념
+- Stepper의 활용
+- UI Item Outlet Collection의 사용
+- 화면 사이의 데이터 공유(직접 공유 방법과 Delegate를 활용한 공유)
+- 오토레이아웃을 위한 Stack View와 Constraints의 활용
+
+## STEP 3 PR 후 개선사항
 
