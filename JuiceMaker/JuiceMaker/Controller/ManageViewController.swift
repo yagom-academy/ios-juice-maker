@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ManageViewControllerDelegate {
+protocol ManageViewControllerDelegate: AnyObject {
     func sendStocks(stocks: [Fruits: Int])
 }
 
@@ -38,7 +38,7 @@ final class ManageViewController: UIViewController {
                                                 .kiwi: kiwiStepper,
                                                 .mango: mangoStepper]
     
-    var delegate: ManageViewControllerDelegate?
+    weak var delegate: ManageViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +51,11 @@ final class ManageViewController: UIViewController {
     }
     
     @IBAction func touchStepper(_ sender: UIStepper) {
-        let selectedStepperDictionary = stepperDictionary.filter{ $0.value == sender }
-        selectedStepperDictionary.forEach{ fruit, stepper in labelDictionary[fruit]?.text = String(Int(sender.value)) }
+        stepperDictionary.forEach{ fruit, stepper in
+            if sender == stepper {
+                labelDictionary[fruit]?.text = String(Int(sender.value))
+            }
+        }
     }
     
     private func showStock() {
