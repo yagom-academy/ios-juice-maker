@@ -55,7 +55,7 @@ class ChangeStockViewController: UIViewController {
         }
     }
     
-    @IBAction func closedButtonTapped(_ sender: Any) {
+    @IBAction func updateFruitStockButtonTapped(_ sender: Any) {
         delegate?.sendData(stocks: changedStock)
         self.navigationController?.popViewController(animated: true)
     }
