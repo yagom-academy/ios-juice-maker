@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ManageViewControllerDelegate {
-    func sendStocks(stocks : [Fruits: Int])
+    func sendStocks(stocks: [Fruits: Int])
 }
 
 final class ManageViewController: UIViewController {
@@ -25,14 +25,14 @@ final class ManageViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    var fruitDictionary: [Fruits: Int] = [:]
-    lazy var labelDictionary: [Fruits: UILabel] = [.strawberry: strawberryStockLabel,
+    var fruitsStockDictionary: [Fruits: Int] = [:]
+    private lazy var labelDictionary: [Fruits: UILabel] = [.strawberry: strawberryStockLabel,
                                             .banana: bananaStockLabel,
                                             .pineapple: pineappleStockLabel,
                                             .kiwi: kiwiStockLabel,
                                             .mango: mangoStockLabel]
     
-    lazy var stepperDictionary: [Fruits: UIStepper] = [.strawberry: strawberryStepper,
+    private lazy var stepperDictionary: [Fruits: UIStepper] = [.strawberry: strawberryStepper,
                                                 .banana: bananaStepper,
                                                 .pineapple: pineappleStepper,
                                                 .kiwi: kiwiStepper,
@@ -56,12 +56,14 @@ final class ManageViewController: UIViewController {
     }
     
     private func showStock() {
-        fruitDictionary.forEach{ (fruit, stock) in labelDictionary[fruit]?.text = String(stock) }
-        fruitDictionary.forEach{ (fruit, stock) in stepperDictionary[fruit]?.value = Double(stock) }
+        fruitsStockDictionary.forEach{ (fruit, stock) in
+            labelDictionary[fruit]?.text = String(stock)
+            stepperDictionary[fruit]?.value = Double(stock)
+        }
     }
     
     private func changeStocks() {
-        stepperDictionary.forEach{ fruit, stepper in fruitDictionary[fruit] = Int(stepper.value) }
-        delegate?.sendStocks(stocks: fruitDictionary)
+        stepperDictionary.forEach{ fruit, stepper in fruitsStockDictionary[fruit] = Int(stepper.value) }
+        delegate?.sendStocks(stocks: fruitsStockDictionary)
     }
 }
