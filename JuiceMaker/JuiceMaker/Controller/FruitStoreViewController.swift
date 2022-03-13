@@ -1,7 +1,7 @@
 import UIKit
 
 protocol FruitStoreViewControllerDelegate: AnyObject {
-    func updateFruitStock()
+    func didDismiss(_ fruitStoreViewController: FruitStoreViewController)
 }
 
 final class FruitStoreViewController: UIViewController {
@@ -54,7 +54,7 @@ final class FruitStoreViewController: UIViewController {
     }
     
     @IBAction private func closeButton(_ sender: UIBarButtonItem) {
-        delegate?.updateFruitStock()
+        delegate?.didDismiss(self)
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     

@@ -85,7 +85,7 @@ final class JuiceMakerViewController: UIViewController {
 }
 
 extension JuiceMakerViewController: FruitStoreViewControllerDelegate {
-    func updateFruitStock() {
+    func didDismiss(_ fruitStoreViewController: FruitStoreViewController) {
         updateFruitsStock()
     }
 }
