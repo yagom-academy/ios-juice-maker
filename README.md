@@ -82,6 +82,17 @@ iOS 쥬스 메이커 재고관리 시작 저장소
                 return nil
             }
         }
+
+@IBAction private func orderJuices(_ sender: UIButton) {
+        guard let juice = convertToJuice(sender) else { return }
+        do {
+            try juiceMaker.makeJuice(juice)
+            showSuccessAlert(of: juice)
+        } catch {
+            showFailureAlert()
+        }
+        updateFruitStockLabels()
+    }
 ```
 
 [After]
