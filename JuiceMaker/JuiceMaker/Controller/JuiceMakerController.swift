@@ -39,7 +39,6 @@ class JuiceMakeController: UIViewController {
         guard let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") else {
             return
         }
-        //vcName.modalTransitionStyle = .coverVertical
         self.present(vcName, animated: true, completion: nil)
     }
     
