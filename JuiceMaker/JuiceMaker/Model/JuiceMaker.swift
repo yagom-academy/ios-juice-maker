@@ -7,7 +7,7 @@ struct JuiceMaker {
     private(set) var fruitStore = FruitStore()
     
     func makeJuice(_ juice: Juice) throws {
-        _ = try fruitStore.makeReady(for: juice)
+        try fruitStore.makeReady(for: juice)
         subtractFruitQuantity(for: juice)
     }
     

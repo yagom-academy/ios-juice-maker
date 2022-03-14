@@ -6,7 +6,8 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 - 리뷰어: 개굴
 
 # UML
-![juiceMaker_Step1_UML](https://user-images.githubusercontent.com/74251593/155289035-e6babcc5-e609-425c-b967-0806c1ee272c.png)
+![Untitled](https://user-images.githubusercontent.com/74251593/157680342-4e904059-b021-498d-af48-7409c65df4cd.png)
+
 
 
 # [STEP2 PR 후 수정완료]
@@ -60,7 +61,7 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 
 **Example1)**
 [Before]
-```swift=
+```swift
     private func convertToJuice(_ sender: UIButton) -> Juice? {
         switch sender.tag {
             case 1:
@@ -81,36 +82,37 @@ iOS 쥬스 메이커 재고관리 시작 저장소
                 return nil
             }
         }
+
+@IBAction private func orderJuices(_ sender: UIButton) {
+        guard let juice = convertToJuice(sender) else { return }
+        do {
+            try juiceMaker.makeJuice(juice)
+            showSuccessAlert(of: juice)
+        } catch {
+            showFailureAlert()
+        }
+        updateFruitStockLabels()
+    }
 ```
 
 [After]
-```swift=
-private func convertToJuice(_ sender: UIButton) -> Juice? {
-        switch Juice(rawValue: sender.tag) {
-        case .strawberryBanana:
-                return .strawberryBanana
-        case .strawberry:
-                return .strawberry
-        case .banana:
-                return .banana
-        case .pineapple:
-                return .pineapple
-        case .kiwi:
-                return .kiwi
-        case .mango:
-                return .mango
-        case .mangoKiwi:
-                return .mangoKiwi
-            default:
-                return nil
-            }
+```swift
+@IBAction private func orderJuices(_ sender: UIButton) {
+        guard let juice = Juice(rawValue: sender.tag) else { return }
+        do {
+            try juiceMaker.makeJuice(juice)
+            showSuccessAlert(of: juice)
+        } catch {
+            showFailureAlert()
         }
+        updateFruitStockLabels()
+    }
 ```
 
 **Example2)**
 
 [Before]
-```swift=
+```swift
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -127,7 +129,7 @@ private func convertToJuice(_ sender: UIButton) -> Juice? {
 ```
 
 [After]
-```swift=
+```swift
     @IBOutlet private var fruitStockLabels: [UILabel]!
 
     private func updateFruitStockLabels() {
@@ -140,7 +142,7 @@ private func convertToJuice(_ sender: UIButton) -> Juice? {
 
 ## Extension UIViewController / identifier 연산프로퍼티
 > 이전에는 하나의 클래스에 일일이 아래와 같은 코드를 넣어주어 identifier를 가졌다면, UIViewController를 확장함으로써 UIViewController를 상속받는 모든 클래스에 자동적으로 identifier를 가질 수 있도록 하였습니다.  
-```swift=
+```swift
 extension UIViewController {
     static var identifier: String {
         return String(describing: self)
@@ -162,7 +164,7 @@ extension UIViewController {
 
 [Before]
 
-```Swift=
+```Swift
     @IBAction func orderStrawberryBananaButton(_ sender: Any) {
         makeJuice(.strawberryBanana) ? showSuccessAlert() : showFailureAlert()
         updateFruitStock()
@@ -200,7 +202,7 @@ extension UIViewController {
 ```
 
 [After]
-```Swift=
+```Swift
     @IBOutlet weak var sbJuiceButton: UIButton!
     @IBOutlet weak var sJuiceButton: UIButton!
     @IBOutlet weak var bJuiceButton: UIButton!
@@ -262,7 +264,7 @@ extension UIViewController {
 subtractFruitQuantity메서드 내 self.fruitStore.changeFruitQuantity코드가 중복되는데 코드 개선을 해볼수있을까요 ?
 
 [Before]
-```Swift=
+```Swift
     private func subtractFruitQuantity(for juice: Juice) {
         switch juice {
         case .strawberry:
@@ -285,7 +287,7 @@ subtractFruitQuantity메서드 내 self.fruitStore.changeFruitQuantity코드가 
     }
 ```
 [After]
-```Swift=
+```Swift
     private func subtractFruitQuantity(for juice: Juice) {
         juice.recipe.forEach { (fruit: Juice.Fruit, count: Int) in
             fruitStore.changeFruitQuantity(by: fruit, count: count)

@@ -4,7 +4,7 @@
 enum Juice: Int, CaseIterable {
     typealias Fruit = FruitStore.Fruit
     
-    case strawberryBanana = 1
+    case strawberryBanana = 0
     case strawberry
     case banana
     case pineapple
