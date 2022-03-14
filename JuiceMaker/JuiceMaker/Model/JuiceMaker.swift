@@ -6,12 +6,6 @@
 
 import Foundation
 
-
-
-enum JuiceMakeError: Error {
-    case lackOfStock
-}
-
 extension Juice {
     var recipe: [(Fruit, Int)] {
         switch self {
@@ -29,7 +23,6 @@ extension Juice {
             return [(.strawberry, 10), (.banana, 1)]
         case .mangoAndKiwiJuice:
             return [(.mango, 2), (.kiwi, 1)]
-            
         }
     }
 }
@@ -42,24 +35,22 @@ struct JuiceMaker {
         for ingredient in juice.recipe {
             checkList.append(fruitStore.isEnoughStock(of: ingredient))
         }
-        if (checkList.allSatisfy{ $0 }) {
-            make(juice)
-            return true
-        } else {
-            return false
-        }
+         return (checkList.allSatisfy{ $0 })
     }
     
-    private func make(_ juice: Juice) {
+    func make(_ juice: Juice) {
         for ingredient in juice.recipe {
             let (neededFruit, neededStock) = ingredient
             fruitStore.changeStock(of: neededFruit, to: -neededStock)
         }
     }
-    func initLable() {
-        for i in Fruit.allCases {
-            fruitStore.changeStock(of: i, to: .zero)
-        }
-    }
     
+    func checkAll() -> [Juice] {
+        var soldOutList: [Juice] = []
+        for juice in Juice.allCases {
+            guard canMake(of: juice) else { continue }
+            soldOutList.append(juice)
+        }
+        return soldOutList
+    }
 }

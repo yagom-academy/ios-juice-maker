@@ -7,7 +7,7 @@
 import Foundation
 
 class FruitStore {
-    private var stock: [Fruit: Int]
+    private(set) var stock: [Fruit: Int]
     
     init(defaultStock: Int = 10) {
         stock = [.strawberry: defaultStock,
@@ -27,15 +27,18 @@ class FruitStore {
         guard var inStock: Int = stock[fruit] else { return }
         inStock += numberOfFruit
         stock[fruit] = inStock
-        NotificationCenter.default.post(name: Notification.Name("notificationStock"),
-                                        object: nil,
-                                        userInfo: ["fruit": fruit,
-                                                   "stock": inStock])
     }
     
-    func getStock(of fruit: Fruit) -> Int {
-        return stock[fruit] ?? 0
+    func updateStock(to stock: [Fruit: Int]) {
+        self.stock = stock
     }
+    
+    func getStock(of fruit: Fruit) -> String {
+        let amount = stock[fruit] ?? 0
+        return String(amount)
+    }
+    
+
 }
 
 
