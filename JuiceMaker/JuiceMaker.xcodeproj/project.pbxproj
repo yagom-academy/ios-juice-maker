@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		67C793D327CC684B00CCB452 /* FruitStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C793D227CC684B00CCB452 /* FruitStoreViewController.swift */; };
+		67C7AB3527DB808700A2AA1C /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7AB3427DB808700A2AA1C /* UIViewControllerExtension.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		67C793D227CC684B00CCB452 /* FruitStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreViewController.swift; sourceTree = "<group>"; };
+		67C7AB3427DB808700A2AA1C /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				E5ED4F9527D6206900B8A517 /* ArrayExtension.swift */,
+				67C7AB3427DB808700A2AA1C /* UIViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				E581838B27C651BD0084B0EC /* Juice.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				E581838F27C652590084B0EC /* JuiceMakingError.swift in Sources */,
+				67C7AB3527DB808700A2AA1C /* UIViewControllerExtension.swift in Sources */,
 				67C793D327CC684B00CCB452 /* FruitStoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

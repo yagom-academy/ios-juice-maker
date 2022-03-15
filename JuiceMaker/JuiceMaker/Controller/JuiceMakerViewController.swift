@@ -2,20 +2,22 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     @IBOutlet private var fruitLabelCollection: [UILabel]!
+    
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         updateFruitsStock()
     }
     
+    @IBAction private func clickUpdateFruitStockButton(_ sender: UIBarButtonItem) {
+       showFruitStoreVC()
+    }
+    
     @IBAction private func clickMakeJuiceButton(_ sender: UIButton) {
-        var order: Juice
-        order = checkClickedJuice(Button: sender)
+        guard let order = checkClickedJuice(button: sender) else {
+            return
+        }
     
         do {
             try juiceMaker.makeJuice(by: order)
@@ -43,17 +45,25 @@ final class JuiceMakerViewController: UIViewController {
     
     private func showFailAlert(_ error: Error) {
         let failAlert = UIAlertController(title: "재료부족", message: error.localizedDescription, preferredStyle: .alert)
-        failAlert.addAction(UIAlertAction(title: "네", style: .default, handler: { _ in
-            guard let fruitStoreVC = self.storyboard?.instantiateViewController(identifier: "FruitStoreVC") else {
-                return
-            }
-            self.navigationController?.pushViewController(fruitStoreVC, animated: true)}))
         failAlert.addAction(UIAlertAction(title: "아니요", style: .destructive))
+        failAlert.addAction(UIAlertAction(title: "네", style: .default, handler: { _ in self.showFruitStoreVC()}))
         present(failAlert, animated: true)
     }
     
-    private func checkClickedJuice(Button: UIButton) -> Juice {
-        switch Button.tag {
+    private func showFruitStoreVC() {
+        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: FruitStoreViewController.identifier , creator: { coder in
+            FruitStoreViewController(juiceMaker: self.juiceMaker, coder: coder)
+        }) else {
+            return
+        }
+
+        fruitStoreVC.delegate = self
+
+        present(fruitStoreVC, animated: true, completion: nil)
+    }
+    
+    private func checkClickedJuice(button: UIButton) -> Juice? {
+        switch button.tag {
         case 1:
             return .strawberryBananaJuice
         case 2:
@@ -69,7 +79,13 @@ final class JuiceMakerViewController: UIViewController {
         case 7:
             return .mangoJuice
         default:
-            return .strawberryJuice
+            return nil
         }
+    }
+}
+
+extension JuiceMakerViewController: FruitStoreViewControllerDelegate {
+    func didDismiss(_ fruitStoreViewController: FruitStoreViewController) {
+        updateFruitsStock()
     }
 }
