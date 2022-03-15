@@ -7,26 +7,41 @@
 import UIKit
 
 class JuiceMakerController: UIViewController {
-    static let identifier = "StockViewController"
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak private var strawberryStockLabel: UILabel!
-    @IBOutlet weak private var bananaStockLabel: UILabel!
-    @IBOutlet weak private var pineappleStockLabel: UILabel!
-    @IBOutlet weak private var kiwiStockLabel: UILabel!
-    @IBOutlet weak private var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel?
+    @IBOutlet weak private var bananaStockLabel: UILabel?
+    @IBOutlet weak private var pineappleStockLabel: UILabel?
+    @IBOutlet weak private var kiwiStockLabel: UILabel?
+    @IBOutlet weak private var mangoStockLabel: UILabel?
     
-    @IBOutlet weak private var strawberryBananaButton: UIButton!
-    @IBOutlet weak private var strawberryButton: UIButton!
-    @IBOutlet weak private var bananaButton: UIButton!
-    @IBOutlet weak private var pineappleButton: UIButton!
-    @IBOutlet weak private var mangoKiwiButton: UIButton!
-    @IBOutlet weak private var kiwiButton: UIButton!
-    @IBOutlet weak private var mangoButton: UIButton!
+    @IBOutlet weak private var strawberryBananaButton: UIButton?
+    @IBOutlet weak private var strawberryButton: UIButton?
+    @IBOutlet weak private var bananaButton: UIButton?
+    @IBOutlet weak private var pineappleButton: UIButton?
+    @IBOutlet weak private var mangoKiwiButton: UIButton?
+    @IBOutlet weak private var kiwiButton: UIButton?
+    @IBOutlet weak private var mangoButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpButtonTitleDynamic()
         updateMultipleLabel()
+    }
+    
+    private func setUpButtonTitleDynamic() {
+        let buttons: [UIButton?] = [strawberryBananaButton,
+                       strawberryButton,
+                       bananaButton,
+                       pineappleButton,
+                       mangoButton,
+                       mangoKiwiButton,
+                       kiwiButton]
+        
+        buttons.forEach { button in
+            button?.titleLabel?.adjustsFontSizeToFitWidth = true
+            button?.titleLabel?.minimumScaleFactor = 0.5
+        }
     }
     
     @IBAction private func order(_ sender: UIButton) {
@@ -42,7 +57,7 @@ class JuiceMakerController: UIViewController {
         }
     }
     
-    private func findLabel(of fruit: Fruit) -> UILabel {
+    private func findLabel(of fruit: Fruit) -> UILabel? {
         switch fruit {
         case .strawberry:
             return strawberryStockLabel
@@ -91,7 +106,7 @@ class JuiceMakerController: UIViewController {
         guard let amount = stock[fruit] else {
             return
         }
-        fruitLabel.text = "\(amount)"
+        fruitLabel?.text = "\(amount)"
     }
     
     @IBAction private func didTapStockEditButton(_ sender: UIBarButtonItem) {
@@ -101,12 +116,12 @@ class JuiceMakerController: UIViewController {
     private func moveToStockViewController() {
         let stock = self.juiceMaker.fruitStock
         
-        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: JuiceMakerController.identifier, creator: { coder in
+        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: StockViewController.identifier, creator: { coder in
             return StockViewController(coder: coder, stock: stock)
         }) else {
             return
         }
-        
+        stockViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: stockViewController)
         self.present(navigationController, animated: true)
     }
@@ -162,6 +177,20 @@ class JuiceMakerController: UIViewController {
         }
         
         present(alertController, animated: true)
+    }
+}
+
+protocol StockUpdateDelegate: AnyObject {
+    func update(data: [Fruit: Int])
+}
+
+extension JuiceMakerController: StockUpdateDelegate {
+    func update(data: [Fruit : Int]) {
+        let validData = data.filter{$0.value != 0}
+        juiceMaker.changeStock(from: validData)
+        
+        let fruits = validData.map{$0.key}
+        updateMultipleLabel(of: fruits)
     }
 }
 
