@@ -13,18 +13,19 @@ class JuiceMakeController: UIViewController {
     @IBOutlet weak var pineAppleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-       updateStock()
+    let juiceMaker = JuiceMaker(fruitStore: FruitStore.fruitStore)
+    let fruitStore = FruitStore.fruitStore
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadStockToLabel()
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
         do {
             if let targetJuice = Juice(rawValue: sender.tag) {
-                try JuiceMaker.juiceMaker.makeJuice(targetJuice)
-                updateStock()
+                try juiceMaker.makeJuice(targetJuice)
+                loadStockToLabel()
                 showAlert(juice: targetJuice)
             } else {
                 showAlert(error: JuiceMakingError.unkownError)
@@ -38,7 +39,6 @@ class JuiceMakeController: UIViewController {
         guard let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") else {
             return
         }
-        vcName.modalTransitionStyle = .coverVertical
         self.present(vcName, animated: true, completion: nil)
     }
     
@@ -63,9 +63,12 @@ class JuiceMakeController: UIViewController {
             let noAction = UIAlertAction(title: DisplayMessage.alertNo, style: .default, handler: nil)
             let yesAction = UIAlertAction(title: DisplayMessage.alertYes,
                                           style: UIAlertAction.Style.destructive){(_) in
-                let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController")
-                vcName?.modalTransitionStyle = .coverVertical
-                self.present(vcName!, animated: true, completion: nil)
+                
+                guard let vcName = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") else {
+                    return
+                }
+                vcName.modalPresentationStyle = .fullScreen
+                self.present(vcName, animated: true, completion: nil)
             }
             alert.addAction(yesAction)
             alert.addAction(noAction)
@@ -73,16 +76,20 @@ class JuiceMakeController: UIViewController {
             let okAction = UIAlertAction(title: DisplayMessage.alertOk, style: .default, handler: nil)
             alert.addAction(okAction)
         }
-        
         present(alert, animated: true, completion: nil)
     }
     
-    func updateStock() {
-        strawberryStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .strawberry))
-        bananaStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .banana))
-        pineAppleStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .pineapple))
-        kiwiStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .kiwi))
-        mangoStockLabel.text = String(JuiceMaker.juiceMaker.getFruitStore().getStock(fruit: .mango))
+    func loadStockToLabel() {
+        let strawberryStock = fruitStore.getStock(fruit: .strawberry)
+        let bananaStock = fruitStore.getStock(fruit: .banana)
+        let pineappleStock = fruitStore.getStock(fruit: .pineapple)
+        let kiwiappleStock = fruitStore.getStock(fruit: .kiwi)
+        let mangoStock = fruitStore.getStock(fruit: .mango)
+        strawberryStockLabel.text = "\(strawberryStock)"
+        bananaStockLabel.text = "\(bananaStock)"
+        pineAppleStockLabel.text = "\(pineappleStock)"
+        kiwiStockLabel.text = "\(kiwiappleStock)"
+        mangoStockLabel.text = "\(mangoStock)"
     }
 }
 

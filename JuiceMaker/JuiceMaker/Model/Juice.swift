@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Juice: Int { //인트타입, 쥬스 이름 반환하는 함수 제작
+enum Juice: Int {
     case strawberryBannaTaste = 1,
          mangoKiwiTaste,
          strawberryTaste,
