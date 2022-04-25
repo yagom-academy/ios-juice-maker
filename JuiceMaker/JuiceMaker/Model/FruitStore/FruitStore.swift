@@ -6,6 +6,10 @@
 
 import Foundation
 
+protocol Fruitable {
+    func count(of fruit: Fruit) -> Int?
+    func add(fruit: Fruit, as amount: Int)
+    func consume(fruit: Fruit, for amount: Int)
 }
 
 //MARK: 과일 저장소 타입
@@ -19,3 +23,16 @@ class FruitStore: Fruitable {
     }
 }
 
+extension FruitStore {
+    func count(of fruit: Fruit) -> Int? {
+        return fruits[fruit]
+    }
+    
+    func add(fruit: Fruit, as amount: Int) {
+        fruits.updateValue((fruits[fruit] ?? 10) + amount, forKey: fruit)
+    }
+    
+    func consume(fruit: Fruit, for amount: Int) {
+        fruits.updateValue((fruits[fruit] ?? 10) - amount, forKey: fruit)
+    }
+}
