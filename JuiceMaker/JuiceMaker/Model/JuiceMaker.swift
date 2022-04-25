@@ -11,9 +11,9 @@ struct JuiceMaker {
     
     let fruitStore: FruitStore = FruitStore(quantity: 10)
     
-    func makeJuice(what juiceMenu: Menu) {
+    func makeJuice(what juiceMenu: Menu) throws {
         for (juice, fruitCount) in juiceMenu.returnRecipe(){
-            fruitStore.subtractQuantity(fruit: juice, by: fruitCount)
+            try fruitStore.subtractQuantity(fruit: juice, by: fruitCount)
         }
     }
 }

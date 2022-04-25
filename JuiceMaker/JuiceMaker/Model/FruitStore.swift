@@ -10,9 +10,13 @@ import Foundation
 class FruitStore {
     var fruitStock: [Fruit: Int] = [:]
     
-    func subtractQuantity(fruit: Fruit, by number: Int) {
+    func subtractQuantity(fruit: Fruit, by number: Int) throws {
         guard let quantity = fruitStock[fruit] else {
             return
+        }
+        
+        if quantity < number {
+            throw ThrowError.outOfStock
         }
         
         fruitStock[fruit] = quantity - number

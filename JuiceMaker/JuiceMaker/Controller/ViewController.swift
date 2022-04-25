@@ -58,7 +58,12 @@ class ViewController: UIViewController {
             break
         }
         
-        order.makeJuice(what: juiceMenu)
+        do{
+            try order.makeJuice(what: juiceMenu)
+        } catch {
+            print("재고가 부족합니다.")
+        }
+        
         showStock()
     }
     
