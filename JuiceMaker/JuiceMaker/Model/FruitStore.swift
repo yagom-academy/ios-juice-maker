@@ -13,4 +13,10 @@ class FruitStore {
     func changeStock(fruit: Fruit, stock: Int) {
             fruitDictionary[fruit] = stock
         }
+    
+    func addStock(fruit: Fruit, stock: Int) {
+         guard let fruitStock = fruitDictionary[fruit] else { return }
+         
+         fruitDictionary[fruit] = fruitStock + stock
+     }
 }
