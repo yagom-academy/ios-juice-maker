@@ -10,6 +10,14 @@ import Foundation
 class FruitStore {
     var fruitStock: [Fruit: Int] = [:]
     
+    func subtractQuantity(fruit: Fruit, by number: Int) {
+        guard let quantity = fruitStock[fruit] else {
+            return
+        }
+        
+        fruitStock[fruit] = quantity - number
+    }
+    
     init(quantity: Int) {
         for fruit in Fruit.allCases {
             fruitStock.updateValue(quantity, forKey: fruit)
