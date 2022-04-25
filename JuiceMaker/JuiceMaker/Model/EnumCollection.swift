@@ -1,5 +1,5 @@
 //
-//  FruitEnum.swift
+//  EnumCollection.swift
 //  JuiceMaker
 //  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
@@ -13,4 +13,14 @@ enum FruitKind {
     case pineaple
     case kiwi
     case mango
+}
+
+enum JuiceKind {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
 }

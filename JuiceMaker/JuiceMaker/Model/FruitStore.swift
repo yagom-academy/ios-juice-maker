@@ -15,18 +15,19 @@ class FruitStore {
      FruitKind.pineaple : 10,
      FruitKind.mango: 10]
     
-    func changeAmountFruit(fruitName: FruitKind, amount: Int) -> Void {
-        switch fruitName {
-        case .strawberry:
-            stock[FruitKind.strawberry] = amount
-        case .banana:
-            stock[FruitKind.banana] = amount
-        case .pineaple:
-            stock[FruitKind.pineaple] = amount
-        case .kiwi:
-            stock[FruitKind.kiwi] = amount
-        case .mango:
-            stock[FruitKind.mango] = amount
+    func changeFruitAmount(fruitName: FruitKind, amount: Int) {
+        stock[fruitName] = amount
+    }
+    
+    func subtractFruitAmount(fruitName: FruitKind, amount: Int) {
+        if let fruit = stock[fruitName] {
+            stock[fruitName] = fruit - amount
+        }
+    }
+    
+    func addFruitAmount(fruitName: FruitKind, amount: Int) {
+        if let fruit = stock[fruitName] {
+            stock[fruitName] = fruit + amount
         }
     }
 }
