@@ -12,7 +12,7 @@ class FruitStore {
         static let stock = 10
     }
     
-    var fruitDictionary: Dictionary<String, Int> = [Fruit.strawberry.rawValue : InitialSetting.stock, Fruit.banana.rawValue : InitialSetting.stock, Fruit.pineapple.rawValue : InitialSetting.stock, Fruit.kiwi.rawValue : InitialSetting.stock, Fruit.mango.rawValue : InitialSetting.stock]
+    var fruitDictionary: Dictionary<String, Int> = [Fruit.strawberry.name : InitialSetting.stock, Fruit.banana.name : InitialSetting.stock, Fruit.pineapple.name : InitialSetting.stock, Fruit.kiwi.name : InitialSetting.stock, Fruit.mango.name : InitialSetting.stock]
     
     func changeStock(fruit: String, stock: Int) {
         fruitDictionary[fruit] = stock

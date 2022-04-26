@@ -8,13 +8,30 @@
 import Foundation
 
 enum Fruit: String {
-    case strawberry = "strawberry"
-    case banana = "banana"
-    case pineapple = "pineapple"
-    case kiwi = "kiwi"
-    case mango = "mango"
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
 }
 
 enum stockError: Error {
     case invalidSelection
+}
+
+extension Fruit {
+    var name: String {
+        switch self {
+        case .strawberry:
+            return "strawberry"
+        case .banana:
+            return "banana"
+        case .pineapple:
+            return "pineapple"
+        case .kiwi:
+            return "kiwi"
+        case .mango:
+            return "mango"
+        }
+    }
 }
