@@ -36,4 +36,19 @@ struct JuiceMaker {
             return [.mango: 10, .kiwi: 1]
         }
     }
+    
+    func make(juice: Menu, at store: FruitStore) {
+        var isPossible = false
+        
+        do {
+            isPossible = try store.isPossibleToMake(of: checkRecipe(of: juice), in: store.fruitData)
+        } catch {
+            print(appError.lackOfStock.errorMessage)
+        }
+
+        if isPossible {
+            store.reduce(ingredient: checkRecipe(of: juice))
+            print("\(juice)를 만들었어요! 😁")
+        }
+    }
 }

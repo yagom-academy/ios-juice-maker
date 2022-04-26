@@ -45,6 +45,32 @@ class FruitStore {
             print("\(fruit) 입고후 재고: \(fruitData)")
         }
     }
+    
+    
+    func isPossibleToMake(of ingredient: FruitData, in stock: FruitData) throws -> Bool {
+    
+        for fruit in ingredient.keys {
+            let requiredIngredient = ingredient[fruit] ?? 0
+            let fruitStock = stock[fruit] ?? 0
+            
+            if fruitStock >= requiredIngredient {
+                continue
+            } else {
+                throw appError.lackOfStock
+            }
+        }
+        return true
+    }
 }
 
 
+enum appError: Error {
+    case lackOfStock
+    
+    var errorMessage: String {
+        switch self {
+        case .lackOfStock:
+            return "재고 부족"
+        }
+    }
+}
