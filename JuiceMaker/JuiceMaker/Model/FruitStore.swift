@@ -14,7 +14,8 @@ class FruitStore {
     
     func addStock(fruit: String, amount: Int) throws {
         guard let fruitStock = fruitDictionary[fruit] else {
-            throw StockError.invalidSelection }
+            throw StockError.invalidSelection
+        }
         let changedStock = fruitStock + amount
         
         fruitDictionary[fruit] = changedStock
@@ -22,7 +23,8 @@ class FruitStore {
     
     func reduceStock(fruit: String, amount: Int) throws {
         guard let fruitStock = fruitDictionary[fruit] else {
-            throw StockError.invalidSelection }
+            throw StockError.invalidSelection
+        }
         
         guard fruitStock >= amount else {
             throw StockError.outOfStock

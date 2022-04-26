@@ -116,6 +116,7 @@
 - `juiceMaker`는 `FruitStore`를 소유하고 있다는 말은 상속을 받는 것인가? 아니면 `juiceMaker`안에 있는 것인가?
 - 열거형으로 처리하였을 때는 case구문 안에서만 확인하기 때문에 case 구문에 없는 것은 빌드 자체가 안됨 -> 오류처리를 하기위해 열거형 타입에 `extenstion`을 사용해 스트링값을 할당
 - 쥬스메이커에서 makejuice를 스트링타입으로 `parameter`를 받을지 case 자체를 `parameter`로 받을지 고민함 -> 일단 String 타입으로 `parameter` 생성
+- 현재 `makeJuice`함수 내에서 현재 너무 많은 일들을 하고 있는데 이 부분을 어떻게 나눌지 고민중
 
 ## 배운개념
 
