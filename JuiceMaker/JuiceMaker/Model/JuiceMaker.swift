@@ -8,5 +8,11 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
+    let fruitStore = FruitStore()
     
+    func make(_: FruitJuice) {
+    }
+    
+    func printError(error: JuiceMakerError) {
+    }
 }
