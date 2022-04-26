@@ -19,4 +19,12 @@ struct JuiceMaker {
         }
         return false
     }
+    
+    func buy(menu: Menu, numberOfOrder: Int) {
+        if hasFruits(menu: menu, numberOfOrder: numberOfOrder) {
+            store.decreaseStock(menu: menu, numberOfOrder: numberOfOrder)
+        } else {
+            store.fillStock(fruit: .strawberry)
+        }
+    }
 }
