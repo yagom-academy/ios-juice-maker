@@ -18,7 +18,10 @@ enum Juice {
 }
 
 extension Juice {
-    func isRequiredIngrediants() -> [Fruit: Int] {
+    /// 해당 쥬스의 재료값 반환 함수
+    ///
+    ///  Returns: [Fruit:Int] Dictionary
+    func requireIngredients() -> [Fruit: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry : 16]

@@ -7,8 +7,17 @@
 import Foundation
 
 protocol Fruitable {
+    /// 과일 수량 반환 함수
+    ///
+    /// Return : Int
     func count(of fruit: Fruit) -> Int?
+    
+    /// 과일 수 추가 함수
+    ///
     func add(fruit: Fruit, as amount: Int)
+    
+    /// 과일 소진 시키는 함수
+    ///
     func consume(fruit: Fruit, for amount: Int)
 }
 

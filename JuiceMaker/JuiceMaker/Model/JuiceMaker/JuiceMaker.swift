@@ -7,6 +7,11 @@
 import Foundation
 
 protocol JuiceMakerable {
+    /// 쥬스 제조 함수
+    ///
+    /// Parameters:
+    ///   - juice : Juice 타입
+    ///
     func make(of juice: Juice)
 }
 
