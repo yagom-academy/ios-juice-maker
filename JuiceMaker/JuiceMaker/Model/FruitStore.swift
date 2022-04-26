@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var stock: Dictionary<FruitKind, Int> =
+    private var stock: Dictionary<FruitKind, Int> =
     [FruitKind.strawberry: 10,
      FruitKind.banana: 10,
      FruitKind.kiwi: 10,

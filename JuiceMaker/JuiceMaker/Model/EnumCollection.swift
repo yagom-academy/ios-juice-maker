@@ -23,6 +23,7 @@ enum JuiceKind {
     case mangoJuice
     case strawberryBananaJuice
     case mangoKiwiJuice
+    
 }
 
 enum InputError: Error {
