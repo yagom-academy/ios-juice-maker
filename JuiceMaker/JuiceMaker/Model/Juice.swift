@@ -14,3 +14,24 @@ enum Juice {
     case mangoJuice
     case mangoKiwiJuice
 }
+
+extension Juice {
+    var name: String {
+        switch self {
+        case .strawberryJuice:
+            return "strawberryJuice"
+        case .bananaJuice:
+            return "bananaJuice"
+        case .pineappleJuice:
+            return "pineappleJuice"
+        case .kiwiJuice:
+            return "kiwiJuice"
+        case .strawberryBananaJuice:
+            return "strawberryBananaJuice"
+        case .mangoJuice:
+            return "mangoJuice"
+        case .mangoKiwiJuice:
+            return "mangoKiwiJuice"
+        }
+    }
+}

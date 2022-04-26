@@ -10,25 +10,27 @@ import Foundation
 struct JuiceMaker {
     var JuiceMakersStore = FruitStore()
     
-    func makeJuice(juice: Juice) {
+    func makeJuice(juice: String) {
         do {
             switch juice {
-            case .strawberryJuice:
+            case Juice.strawberryJuice.name:
                 try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, amount: FruitConsumption.strawberryInStrawberryJuice)
-             case .bananaJuice:
+            case Juice.bananaJuice.name:
                 try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, amount: FruitConsumption.bananaInBananaJuice)
-            case .kiwiJuice:
+            case Juice.kiwiJuice.name:
                 try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, amount: FruitConsumption.kiwiInKiwiJuice)
-            case .pineappleJuice:
+            case Juice.pineappleJuice.name:
                 try JuiceMakersStore.reduceStock(fruit: Fruit.pineapple.name, amount: FruitConsumption.pineappleInPineappleJuice)
-            case .strawberryBananaJuice:
+            case Juice.strawberryBananaJuice.name:
                 try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, amount: FruitConsumption.strawberryInStrawberryBananaJuice)
                 try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, amount: FruitConsumption.bananaInStrawberryBananaJuice)
-            case .mangoJuice:
+            case Juice.mangoJuice.name:
                 try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, amount: FruitConsumption.mangoInMangoJuice)
-            case .mangoKiwiJuice:
+            case Juice.mangoKiwiJuice.name:
                 try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, amount: FruitConsumption.mangoInMangoKiwiJuice)
                 try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, amount: FruitConsumption.kiwiInMangoKiwiJuice)
+            default:
+                print("만들 수 없는 주스입니다")
             }
         } catch (let error) {
             switch error {
