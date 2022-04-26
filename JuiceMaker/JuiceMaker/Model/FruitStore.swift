@@ -38,7 +38,7 @@ class FruitStore {
             throw StockError.outOfStock
         }
         let changedStock = fruitStock - stock
- 
+        
         fruitDictionary[fruit] = changedStock
     }
 }
