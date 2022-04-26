@@ -15,7 +15,7 @@ enum Juice: CaseIterable {
     case pineapple
 
     //주스에 들어가는 재료를 한번에 하면?
-    var chooseJuice: [Fruits: Int] {
+    var chooseJuiceRecipe: [Fruits: Int] {
         switch self {
         case .strawberry:
             return [.strawberry: 16]
