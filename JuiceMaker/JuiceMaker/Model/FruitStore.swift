@@ -14,7 +14,10 @@ class FruitStore {
         fruitInventory = [.strawberry: 10, .banana: 10, .kiwi: 10, .pineapple: 10, .mango: 10]
     }
     
-    func changeInventory(fruit: [Fruit:Int]) {
+    func changeInventory(fruits: [Fruit:Int]) {
+        for (fruit,count) in fruits {
+            fruitInventory[fruit, default: 10] -= count
+        }
     }
     
     func checkGenerationAvailable(fruit: [Fruit:Int]) throws -> Bool {
