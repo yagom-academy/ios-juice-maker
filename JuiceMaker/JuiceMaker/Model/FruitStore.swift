@@ -15,10 +15,6 @@ class FruitStore {
     }
     
     func addStock(fruit: String, amount: Int) throws {
-        guard fruitDictionary.keys.contains(fruit) else {
-            throw StockError.invalidSelection
-        }
-        
         guard let fruitStock = fruitDictionary[fruit] else {
             throw StockError.invalidSelection }
         let changedStock = fruitStock + amount
