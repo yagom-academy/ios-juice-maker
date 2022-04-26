@@ -11,19 +11,17 @@ struct JuiceMaker {
     private var store = FruitStore()
     private let menu = Menu.allCases.map({ "\($0)" }).joined(separator: ", ")
         
-    func hasFruits(menu: Menu, numberOfOrder: Int) -> Bool {
+    func hasFruits(menu: Menu, numberOfOrder: Int) throws {
         for (fruit, need) in menu.recipe {
-            if store.stock[fruit]! >= need * numberOfOrder {
-                return true
-            }
+            guard store.stock[fruit]! >= need * numberOfOrder else { throw ErrorCase.lackOfStock }
         }
-        return false
     }
     
     func buy(menu: Menu, numberOfOrder: Int) {
-        if hasFruits(menu: menu, numberOfOrder: numberOfOrder) {
+        do {
+            try hasFruits(menu: menu, numberOfOrder: numberOfOrder)
             store.decreaseStock(menu: menu, numberOfOrder: numberOfOrder)
-        } else {
+        } catch {
             store.fillStock(fruits: classifyKey(menu: menu))
         }
     }
