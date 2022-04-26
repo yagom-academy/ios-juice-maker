@@ -20,9 +20,6 @@ struct JuiceMaker: JuiceMakerable {
     let fruitStore = FruitStore()
     
     func make(of juice: Juice) {
-        for (fruit, amount) in juice.requireIngredients() {
-            print(fruit,amount)
-            fruitStore.consume(fruit: fruit, for: amount)
-        }
+        fruitStore.consume(fruits: juice.requireIngredients())
     }
 }

@@ -18,7 +18,7 @@ protocol Fruitable {
     
     /// 과일 소진 시키는 함수
     ///
-    func consume(fruit: Fruit, for amount: Int)
+    func consume(fruits: [Fruit: Int])
 }
 
 //MARK: 과일 저장소 타입
@@ -41,7 +41,26 @@ extension FruitStore {
         fruits.updateValue((fruits[fruit] ?? 10) + amount, forKey: fruit)
     }
     
-    func consume(fruit: Fruit, for amount: Int) {
-        fruits.updateValue((fruits[fruit] ?? 10) - amount, forKey: fruit)
+    func consume(fruits: [Fruit: Int]) {
+        do{
+            try check(fruits)
+            for (fruit, amount) in fruits {
+                self.fruits.updateValue((fruits[fruit] ?? 10) - amount, forKey: fruit)
+            }
+        } catch let error {
+            print("에러: \(error)")
+        }
+    }
+
+    private func check(_ fruits: [Fruit: Int]) throws {
+        for (fruit, amount) in fruits {
+            if self.fruits[fruit] ?? 0 < amount {
+                throw StockError.notEnoughIngredient
+            }
+        }
     }
 }
+
+
+
+
