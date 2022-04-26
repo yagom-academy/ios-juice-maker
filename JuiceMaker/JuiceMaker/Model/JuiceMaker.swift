@@ -6,20 +6,13 @@
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    private var JuiceMakersStore = FruitStore()
+    var JuiceMakersStore = FruitStore()
     
     func makeJuice(juice: String) {
         do {
             try checkStock(function: JuiceMakersStore.reduceStock(fruit:amount:), juice: juice)
         } catch (let error) {
-            switch error {
-            case StockError.outOfStock:
-                print(StockError.outOfStock.message)
-            case StockError.invalidSelection:
-                print(StockError.invalidSelection.message)
-            default:
-                print("알 수 없는 에러")
-            }
+            handleError(error)
         }
     }
     
@@ -43,6 +36,17 @@ struct JuiceMaker {
             try function(Fruit.kiwi.name, FruitConsumption.kiwiInMangoKiwiJuice)
         default:
             print("만들 수 없는 주스입니다")
+        }
+    }
+    
+    private func handleError(_ error: Error) {
+        switch error {
+        case StockError.outOfStock:
+            print(StockError.outOfStock.message)
+        case StockError.invalidSelection:
+            print(StockError.invalidSelection.message)
+        default:
+            print("알 수 없는 오류입니다")
         }
     }
 }
