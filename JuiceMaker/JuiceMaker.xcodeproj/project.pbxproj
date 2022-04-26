@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AF61162428166E8B008D02EB /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF61162328166E8B008D02EB /* Fruit.swift */; };
+		AFD9E41C2817819C008A919E /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD9E41B2817819C008A919E /* Juice.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		AF61162328166E8B008D02EB /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		AFD9E41B2817819C008A919E /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +54,15 @@
 			path = FruitStore;
 			sourceTree = "<group>";
 		};
+		AFD9E41D281781A2008A919E /* JuiceMaker */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				AFD9E41B2817819C008A919E /* Juice.swift */,
+			);
+			path = JuiceMaker;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				AF61162228166E49008D02EB /* FruitStore */,
-				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				AFD9E41D281781A2008A919E /* JuiceMaker */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +191,7 @@
 			files = (
 				AF61162428166E8B008D02EB /* Fruit.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
+				AFD9E41C2817819C008A919E /* Juice.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
