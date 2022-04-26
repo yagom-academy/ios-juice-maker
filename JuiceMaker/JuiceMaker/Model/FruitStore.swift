@@ -4,8 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
 // 과일 저장소 타입
 class FruitStore {
     enum Fruit: CaseIterable {
@@ -21,9 +19,7 @@ class FruitStore {
     
     init() {
         let initialInventory = 10
-        for element in Fruit.allCases {
-            fruitData[element] = initialInventory
-        }
+        Fruit.allCases.forEach { element in fruitData[element] = initialInventory }
     }
     
     func reduce(ingredient: FruitData) {
