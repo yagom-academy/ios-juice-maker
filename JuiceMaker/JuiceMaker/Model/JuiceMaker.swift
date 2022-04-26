@@ -10,4 +10,13 @@ import Foundation
 struct JuiceMaker {
     private var store = FruitStore()
     private let menu = Menu.allCases.map({ "\($0)" }).joined(separator: ", ")
+        
+    func hasFruits(menu: Menu, numberOfOrder: Int) -> Bool {
+        for (fruit, need) in menu.recipe {
+            if store.stock[fruit]! >= need * numberOfOrder {
+                return true
+            }
+        }
+        return false
+    }
 }
