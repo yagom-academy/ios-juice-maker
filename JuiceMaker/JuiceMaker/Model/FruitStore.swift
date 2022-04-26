@@ -24,7 +24,7 @@ class FruitStore {
         }
         
         guard let fruitStock = fruitDictionary[fruit] else {
-            return }
+            throw StockError.invalidSelection }
         let changedStock = fruitStock + stock
         
         fruitDictionary[fruit] = changedStock
