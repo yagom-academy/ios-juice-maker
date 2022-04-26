@@ -15,36 +15,12 @@ class FruitStore {
 extension FruitStore {
     
     func pickUpFruits(for menu: FruitJuice) -> PickUpFruitResult {
-        var selectedStrawberry = 0
-        var selectedBanana = 0
-        var selectedPineapple = 0
-        var selectedKiwi = 0
-        var selectedMango = 0
-        
-        switch menu {
-        case .strawberry:
-            selectedStrawberry += 16
-        case .banana:
-            selectedBanana += 2
-        case .kiwi:
-            selectedKiwi += 3
-        case .pineapple:
-            selectedPineapple += 2
-        case .strawberryAndBanana:
-            selectedStrawberry += 10
-            selectedBanana += 1
-        case .mango:
-            selectedMango += 3
-        case .mangoAndKiwi:
-            selectedKiwi += 1
-            selectedMango += 2
-        }
-        
-        return useFruits(strawberry: selectedStrawberry,
-                               banana: selectedBanana,
-                               pineapple: selectedPineapple,
-                               kiwi: selectedKiwi,
-                               mango: selectedMango)
+        let recipe = menu.pickUpRecipe()
+        return useFruits(strawberry: recipe.strawberry,
+                         banana: recipe.banana,
+                         pineapple: recipe.pineapple,
+                         kiwi: recipe.kiwi,
+                         mango: recipe.mango)
     }
     
     private func useFruits(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) -> PickUpFruitResult {
