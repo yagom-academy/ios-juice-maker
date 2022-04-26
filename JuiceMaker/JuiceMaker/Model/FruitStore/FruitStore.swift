@@ -13,7 +13,7 @@ protocol Fruitable {
 }
 
 //MARK: 과일 저장소 타입
-class FruitStore: Fruitable {
+final class FruitStore: Fruitable {
     private var fruits: [Fruit:Int] = [:]
     
     init(initialValue: Int = 10) {
