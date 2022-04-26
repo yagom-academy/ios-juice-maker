@@ -8,11 +8,11 @@
 struct JuiceMaker {
     var JuiceMakersStore = FruitStore()
     
-    func makeJuice(juice: String) {
+    func makeJuice(of juice: String) {
         do {
             try checkStock(function: JuiceMakersStore.reduceStock(fruit:amount:), juice: juice)
         } catch (let error) {
-            handleError(error)
+            handle(error)
         }
     }
     
@@ -39,12 +39,12 @@ struct JuiceMaker {
         }
     }
     
-    private func handleError(_ error: Error) {
+    private func handle(_ error: Error) {
         switch error {
         case StockError.outOfStock:
             print(StockError.outOfStock.message)
-        case StockError.invalidSelection:
-            print(StockError.invalidSelection.message)
+        case StockError.missingProduct:
+            print(StockError.missingProduct.message)
         default:
             print("알 수 없는 오류입니다")
         }
