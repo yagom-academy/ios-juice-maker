@@ -14,21 +14,21 @@ struct JuiceMaker {
         do {
             switch juice {
             case .strawberryJuice:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, stock: 16)
-            case .bananaJuice:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, stock: 2)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, amount: FruitConsumption.strawberryInStrawberryJuice)
+             case .bananaJuice:
+                try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, amount: FruitConsumption.bananaInBananaJuice)
             case .kiwiJuice:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, stock: 3)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, amount: FruitConsumption.kiwiInKiwiJuice)
             case .pineappleJuice:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.pineapple.name, stock: 2)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.pineapple.name, amount: FruitConsumption.pineappleInPineappleJuice)
             case .strawberryBananaJuice:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, stock: 10)
-                try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, stock: 1)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, amount: FruitConsumption.strawberryInStrawberryBananaJuice)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, amount: FruitConsumption.bananaInStrawberryBananaJuice)
             case .mangoJuice:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, stock: 3)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, amount: FruitConsumption.mangoInMangoJuice)
             case .mangoKiwiJuice:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, stock: 2)
-                try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, stock: 1)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, amount: FruitConsumption.mangoInMangoKiwiJuice)
+                try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, amount: FruitConsumption.kiwiInMangoKiwiJuice)
             }
         } catch (let error) {
             switch error {

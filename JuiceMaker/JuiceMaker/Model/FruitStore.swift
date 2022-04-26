@@ -18,26 +18,26 @@ class FruitStore {
         fruitDictionary[fruit] = stock
     }
     
-    func addStock(fruit: String, stock: Int) throws {
+    func addStock(fruit: String, amount: Int) throws {
         guard fruitDictionary.keys.contains(fruit) else {
             throw StockError.invalidSelection
         }
         
         guard let fruitStock = fruitDictionary[fruit] else {
             throw StockError.invalidSelection }
-        let changedStock = fruitStock + stock
+        let changedStock = fruitStock + amount
         
         fruitDictionary[fruit] = changedStock
     }
     
-    func reduceStock(fruit: String, stock: Int) throws {
+    func reduceStock(fruit: String, amount: Int) throws {
         guard let fruitStock = fruitDictionary[fruit] else {
             throw StockError.invalidSelection }
         
-        guard fruitStock >= stock else {
+        guard fruitStock >= amount else {
             throw StockError.outOfStock
         }
-        let changedStock = fruitStock - stock
+        let changedStock = fruitStock - amount
         
         fruitDictionary[fruit] = changedStock
     }

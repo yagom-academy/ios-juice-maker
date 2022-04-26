@@ -17,6 +17,7 @@
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
 		D7CB1413281793F900B24611 /* StockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB1412281793F900B24611 /* StockError.swift */; };
+		D7CB14152817AF3D00B24611 /* FruitConsumption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB14142817AF3D00B24611 /* FruitConsumption.swift */; };
 		D7FC4E4C2816F0120093A003 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FC4E4B2816F0120093A003 /* Juice.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
 		D7CB1412281793F900B24611 /* StockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockError.swift; sourceTree = "<group>"; };
+		D7CB14142817AF3D00B24611 /* FruitConsumption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitConsumption.swift; sourceTree = "<group>"; };
 		D7FC4E4B2816F0120093A003 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 				20CC39C22816E8B500E517BE /* Fruit.swift */,
 				D7FC4E4B2816F0120093A003 /* Juice.swift */,
 				D7CB1412281793F900B24611 /* StockError.swift */,
+				D7CB14142817AF3D00B24611 /* FruitConsumption.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7CB14152817AF3D00B24611 /* FruitConsumption.swift in Sources */,
 				20CC39C32816E8B500E517BE /* Fruit.swift in Sources */,
 				D7CB1413281793F900B24611 /* StockError.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
