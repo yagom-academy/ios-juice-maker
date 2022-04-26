@@ -15,11 +15,6 @@ enum Fruit: String {
     case mango
 }
 
-enum stockError: Error {
-    case invalidSelection
-    case outOfStock
-}
-
 extension Fruit {
     var name: String {
         switch self {
@@ -36,15 +31,3 @@ extension Fruit {
         }
     }
 }
-
-extension stockError {
-    var message: String {
-        switch self {
-        case .invalidSelection:
-            return "해당 상품이 없습니다"
-        case .outOfStock:
-            return "재고가 부족합니다"
-        }
-    }
-}
-
