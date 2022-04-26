@@ -23,7 +23,7 @@ struct JuiceMaker {
         }
     }
     
-    func checkStock(function: (String, Int) throws -> Void, juice: String) rethrows {
+    private func checkStock(function: (String, Int) throws -> Void, juice: String) rethrows {
         switch juice {
         case Juice.strawberryJuice.name:
             try function(Fruit.strawberry.name, FruitConsumption.strawberryInStrawberryJuice)
