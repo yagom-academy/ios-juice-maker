@@ -24,7 +24,7 @@ struct JuiceMaker {
         if hasFruits(menu: menu, numberOfOrder: numberOfOrder) {
             store.decreaseStock(menu: menu, numberOfOrder: numberOfOrder)
         } else {
-            store.fillStock(fruit: .strawberry)
+            store.fillStock(fruits: classifyKey(menu: menu))
         }
     }
     

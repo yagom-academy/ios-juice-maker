@@ -11,23 +11,15 @@ class FruitStore {
     var stock: [Fruits: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     private let orderQuantity: [Fruits: Int] = [.strawberry: 80, .banana: 10, .pineapple: 10, .kiwi: 15, .mango: 15]
     
-    func checkStock(menu: Menu, numberOfOrder: Int) {
-        for (fruit, need) in menu.recipe {
-            if stock[fruit]! >= need * numberOfOrder {
-                decreaseStock(menu: menu, numberOfOrder: numberOfOrder)
-            } else {
-                fillStock(fruit: fruit)
-            }
-        }
-    }
-    
     func decreaseStock(menu: Menu, numberOfOrder: Int) {
         for (fruit, need) in menu.recipe {
             stock[fruit]! -= need * numberOfOrder
         }
     }
     
-    func fillStock(fruit: Fruits) {
-        stock[fruit] = orderQuantity[fruit]
+    func fillStock(fruits: [Fruits]) {
+        for fruit in fruits {
+            stock[fruit] = orderQuantity[fruit]
+        }
     }
 }
