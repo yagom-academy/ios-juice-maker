@@ -35,7 +35,7 @@ class FruitStore {
             throw stockError.invalidSelection }
         
         guard fruitStock >= stock else {
-            throw stockError.invalidSelection
+            throw stockError.outOfStock
         }
         let changedStock = fruitStock - stock
  
