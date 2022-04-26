@@ -20,7 +20,10 @@ class FruitStore {
         }
     }
     
-    func checkGenerationAvailable(fruit: [Fruit:Int]) throws -> Bool {
-        return true
+    func checkGenerationAvailable(fruit: Fruit, count :Int) throws {
+        guard let stock = fruitInventory[fruit],
+                  stock >= count else {
+            throw JuiceMakerError.outOfStock
+        }
     }
 }
