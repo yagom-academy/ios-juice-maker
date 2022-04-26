@@ -14,15 +14,17 @@ class FruitStore {
      FruitKind.kiwi: 10,
      FruitKind.pineaple : 10,
      FruitKind.mango: 10]
-    
+
     func changeFruitAmount(fruitName: FruitKind, amount: Int) {
         stock[fruitName] = amount
     }
     
-    func subtractFruitAmount(fruitName: FruitKind, amount: Int) {
-        if let fruit = stock[fruitName] {
-            stock[fruitName] = fruit - amount
+    func subtractFruitAmount(fruitName: FruitKind, amount: Int) throws {
+        guard let currentNumber = stock[fruitName] else { throw InputError.cannotError}
+        if currentNumber < amount {
+            throw InputError.zeroError
         }
+        stock[fruitName] = currentNumber - amount
     }
     
     func addFruitAmount(fruitName: FruitKind, amount: Int) {

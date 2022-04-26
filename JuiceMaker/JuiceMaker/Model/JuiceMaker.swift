@@ -10,26 +10,30 @@ import Foundation
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
-    func makeJuice(juiceName: JuiceKind) {
-        switch juiceName {
-        case .strawberryJuice:
-            fruitStore.subtractFruitAmount(fruitName: .strawberry, amount: 16)
-        case .bananaJuice:
-            fruitStore.subtractFruitAmount(fruitName: .banana, amount: 2)
-        case .kiwiJuice:
-            fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 3)
-        case .pineappleJuice:
-            fruitStore.subtractFruitAmount(fruitName: .pineaple, amount: 2)
-        case .mangoJuice:
-            fruitStore.subtractFruitAmount(fruitName: .mango, amount: 3)
-        case .strawberryBananaJuice:
-            fruitStore.subtractFruitAmount(fruitName: .strawberry, amount: 10)
-            fruitStore.subtractFruitAmount(fruitName: .banana, amount: 1)
-        case .mangoKiwiJuice:
-            fruitStore.subtractFruitAmount(fruitName: .mango, amount: 2)
-            fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 1)
+    func makeJuice(juiceName: JuiceKind) throws {
+        do{
+            switch juiceName {
+            case .strawberryJuice:
+                try fruitStore.subtractFruitAmount(fruitName: .strawberry, amount: 16)
+            case .bananaJuice:
+                try fruitStore.subtractFruitAmount(fruitName: .banana, amount: 2)
+            case .kiwiJuice:
+                try fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 3)
+            case .pineappleJuice:
+                try fruitStore.subtractFruitAmount(fruitName: .pineaple, amount: 2)
+            case .mangoJuice:
+                try fruitStore.subtractFruitAmount(fruitName: .mango, amount: 3)
+            case .strawberryBananaJuice:
+                try fruitStore.subtractFruitAmount(fruitName: .strawberry, amount: 10)
+                try fruitStore.subtractFruitAmount(fruitName: .banana, amount: 1)
+            case .mangoKiwiJuice:
+                try fruitStore.subtractFruitAmount(fruitName: .mango, amount: 2)
+                try fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 1)
+            }
+        }catch InputError.zeroError {
+            print("\(InputError.zeroError.message)")
+        }catch InputError.cannotError {
+            print("\(InputError.cannotError.message)")
         }
     }
-    
-    
 }
