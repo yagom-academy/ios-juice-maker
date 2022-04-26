@@ -6,6 +6,8 @@
 
 import Foundation
 
+typealias Fruits = [Fruit: Int]
+
 protocol Fruitable {
     /// 과일 수량 반환 함수
     ///
@@ -18,12 +20,12 @@ protocol Fruitable {
     
     /// 과일 소진 시키는 함수
     ///
-    func consume(fruits: [Fruit: Int])
+    func consume(fruits: Fruits)
 }
 
 //MARK: 과일 저장소 타입
 final class FruitStore: Fruitable {
-    private var fruits: [Fruit:Int] = [:]
+    private var fruits: Fruits = [:]
     
     init(initialValue: Int = 10) {
         for fruit in Fruit.allCases {
@@ -41,9 +43,9 @@ extension FruitStore {
         fruits.updateValue((fruits[fruit] ?? 10) + amount, forKey: fruit)
     }
     
-    func consume(fruits: [Fruit: Int]) {
+    func consume(fruits: Fruits) {
         do{
-            try check(fruits)
+            try figure(out: fruits)
             for (fruit, amount) in fruits {
                 self.fruits.updateValue((fruits[fruit] ?? 10) - amount, forKey: fruit)
             }
@@ -51,8 +53,13 @@ extension FruitStore {
             print("에러: \(error)")
         }
     }
+}
 
-    private func check(_ fruits: [Fruit: Int]) throws {
+private extension FruitStore {
+    /// 재료 수량 파악하는 함수
+    ///
+    /// throws : StockError
+    func figure(out fruits: Fruits) throws {
         for (fruit, amount) in fruits {
             if self.fruits[fruit] ?? 0 < amount {
                 throw StockError.notEnoughIngredient
@@ -60,7 +67,3 @@ extension FruitStore {
         }
     }
 }
-
-
-
-
