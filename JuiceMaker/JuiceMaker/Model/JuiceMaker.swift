@@ -10,26 +10,7 @@ struct JuiceMaker {
     
     func makeJuice(juice: String) {
         do {
-            switch juice {
-            case Juice.strawberryJuice.name:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, amount: FruitConsumption.strawberryInStrawberryJuice)
-            case Juice.bananaJuice.name:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, amount: FruitConsumption.bananaInBananaJuice)
-            case Juice.kiwiJuice.name:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, amount: FruitConsumption.kiwiInKiwiJuice)
-            case Juice.pineappleJuice.name:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.pineapple.name, amount: FruitConsumption.pineappleInPineappleJuice)
-            case Juice.strawberryBananaJuice.name:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.strawberry.name, amount: FruitConsumption.strawberryInStrawberryBananaJuice)
-                try JuiceMakersStore.reduceStock(fruit: Fruit.banana.name, amount: FruitConsumption.bananaInStrawberryBananaJuice)
-            case Juice.mangoJuice.name:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, amount: FruitConsumption.mangoInMangoJuice)
-            case Juice.mangoKiwiJuice.name:
-                try JuiceMakersStore.reduceStock(fruit: Fruit.mango.name, amount: FruitConsumption.mangoInMangoKiwiJuice)
-                try JuiceMakersStore.reduceStock(fruit: Fruit.kiwi.name, amount: FruitConsumption.kiwiInMangoKiwiJuice)
-            default:
-                print("만들 수 없는 주스입니다")
-            }
+            try checkStock(function: JuiceMakersStore.reduceStock(fruit:amount:), juice: juice)
         } catch (let error) {
             switch error {
             case StockError.outOfStock:
@@ -39,6 +20,29 @@ struct JuiceMaker {
             default:
                 print("알 수 없는 에러")
             }
+        }
+    }
+    
+    func checkStock(function: (String, Int) throws -> Void, juice: String) rethrows {
+        switch juice {
+        case Juice.strawberryJuice.name:
+            try function(Fruit.strawberry.name, FruitConsumption.strawberryInStrawberryJuice)
+        case Juice.bananaJuice.name:
+            try function(Fruit.banana.name, FruitConsumption.bananaInBananaJuice)
+        case Juice.kiwiJuice.name:
+            try function(Fruit.kiwi.name, FruitConsumption.kiwiInKiwiJuice)
+        case Juice.pineappleJuice.name:
+            try function(Fruit.pineapple.name, FruitConsumption.pineappleInPineappleJuice)
+        case Juice.strawberryBananaJuice.name:
+            try function(Fruit.strawberry.name, FruitConsumption.strawberryInStrawberryBananaJuice)
+            try function(Fruit.banana.name, FruitConsumption.bananaInStrawberryBananaJuice)
+        case Juice.mangoJuice.name:
+            try function(Fruit.mango.name, FruitConsumption.mangoInMangoJuice)
+        case Juice.mangoKiwiJuice.name:
+            try function(Fruit.mango.name, FruitConsumption.mangoInMangoKiwiJuice)
+            try function(Fruit.kiwi.name, FruitConsumption.kiwiInMangoKiwiJuice)
+        default:
+            print("만들 수 없는 주스입니다")
         }
     }
 }
