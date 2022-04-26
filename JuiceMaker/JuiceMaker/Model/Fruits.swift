@@ -24,7 +24,7 @@ enum Menu: CaseIterable {
     case strawberryAndBananaJuice
     case mangoAndKiwiJuice
     
-    private var recipe: [Fruits: Int] {
+    var recipe: [Fruits: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
