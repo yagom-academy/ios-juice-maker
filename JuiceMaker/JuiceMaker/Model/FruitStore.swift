@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -11,28 +11,34 @@ class FruitStore {
     enum InitialSetting {
         static let stock = 10
     }
-
-    var fruitDictionary: Dictionary<Fruit, Int> = [.strawberry : InitialSetting.stock, .banana : InitialSetting.stock, .pineapple : InitialSetting.stock, .kiwi : InitialSetting.stock, .mango : InitialSetting.stock]
     
-    func changeStock(fruit: Fruit, stock: Int) {
+    var fruitDictionary: Dictionary<String, Int> = [Fruit.strawberry.rawValue : InitialSetting.stock, Fruit.banana.rawValue : InitialSetting.stock, Fruit.pineapple.rawValue : InitialSetting.stock, Fruit.kiwi.rawValue : InitialSetting.stock, Fruit.mango.rawValue : InitialSetting.stock]
+    
+    func changeStock(fruit: String, stock: Int) {
         fruitDictionary[fruit] = stock
     }
     
-    func addStock(fruit: Fruit, stock: Int) {
-        guard let fruitStock = fruitDictionary[fruit] else { return }
+    func addStock(fruit: String, stock: Int) throws {
+        guard fruitDictionary.keys.contains(fruit) else {
+            throw stockError.invalidSelection
+        }
+        
+        guard let fruitStock = fruitDictionary[fruit] else {
+            return }
         let changedStock = fruitStock + stock
         
         fruitDictionary[fruit] = changedStock
     }
     
-    func reduceStock(fruit: Fruit, stock: Int) {
-        guard let fruitStock = fruitDictionary[fruit] else { return }
-        let changedStock = fruitStock - stock
+    func reduceStock(fruit: String, stock: Int) throws {
+        guard let fruitStock = fruitDictionary[fruit] else {
+            throw stockError.invalidSelection }
         
-        if fruitStock < stock {
-            print("재고가 부족합니다.")
-        } else {
-            fruitDictionary[fruit] = changedStock
+        guard fruitStock >= stock else {
+            throw stockError.invalidSelection
         }
+        let changedStock = fruitStock - stock
+ 
+        fruitDictionary[fruit] = changedStock
     }
 }
