@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18A346C428181BBA003F2F29 /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346C328181BBA003F2F29 /* Fruits.swift */; };
+		18A346C628181E28003F2F29 /* StockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346C528181E28003F2F29 /* StockError.swift */; };
 		7E96767C2817F7FD00655FA5 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E96767B2817F7FD00655FA5 /* Juice.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18A346C328181BBA003F2F29 /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
+		18A346C528181E28003F2F29 /* StockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockError.swift; sourceTree = "<group>"; };
 		7E96767B2817F7FD00655FA5 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,9 +60,11 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7E96767B2817F7FD00655FA5 /* Juice.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
+				7E96767B2817F7FD00655FA5 /* Juice.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+				18A346C328181BBA003F2F29 /* Fruits.swift */,
+				18A346C528181E28003F2F29 /* StockError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +176,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A346C628181E28003F2F29 /* StockError.swift in Sources */,
+				18A346C428181BBA003F2F29 /* Fruits.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				7E96767C2817F7FD00655FA5 /* Juice.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,

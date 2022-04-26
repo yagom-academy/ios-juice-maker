@@ -5,9 +5,7 @@
 //  Created by 변재은 on 2022/04/26.
 //
 
-import Foundation
-
-enum Juice {
+enum Juice: CaseIterable {
     case strawberry
     case banana
     case strawberryBanana
@@ -17,7 +15,7 @@ enum Juice {
     case pineapple
 
     //주스에 들어가는 재료를 한번에 하면?
-    var chooseJuice: [FruitStore.Fruit: Int] {
+    var chooseJuice: [Fruits: Int] {
         switch self {
         case .strawberry:
             return [.strawberry: 16]
