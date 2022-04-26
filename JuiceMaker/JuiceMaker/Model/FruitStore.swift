@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var fruitDictionary: Dictionary<String, Int> = [Fruit.strawberry.name : InitialFruitSetting.stock, Fruit.banana.name : InitialFruitSetting.stock, Fruit.pineapple.name : InitialFruitSetting.stock, Fruit.kiwi.name : InitialFruitSetting.stock, Fruit.mango.name : InitialFruitSetting.stock]
+    private var fruitDictionary: Dictionary<String, Int> = [Fruit.strawberry.name : InitialFruitSetting.stock, Fruit.banana.name : InitialFruitSetting.stock, Fruit.pineapple.name : InitialFruitSetting.stock, Fruit.kiwi.name : InitialFruitSetting.stock, Fruit.mango.name : InitialFruitSetting.stock]
     
     func changeStock(fruit: String, amount: Int) {
         fruitDictionary[fruit] = amount
