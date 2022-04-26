@@ -30,11 +30,11 @@ class ViewController: UIViewController {
     }
 
     func showStock() {
-        lblStrawberryStock.text = String(order.fruitStore.fruitStock[.strawberry] ?? 0)
-        lblBananaStock.text = String(order.fruitStore.fruitStock[.banana] ?? 0)
-        lblPineappleStock.text = String(order.fruitStore.fruitStock[.pineapple] ?? 0)
-        lblKiwiStock.text = String(order.fruitStore.fruitStock[.kiwi] ?? 0)
-        lblMangoStock.text = String(order.fruitStore.fruitStock[.mango] ?? 0)
+        lblStrawberryStock.text = order.fruitStore.convertToString(fruit: .strawberry)
+        lblBananaStock.text = order.fruitStore.convertToString(fruit: .banana)
+        lblPineappleStock.text = order.fruitStore.convertToString(fruit: .pineapple)
+        lblKiwiStock.text = order.fruitStore.convertToString(fruit: .kiwi)
+        lblMangoStock.text = order.fruitStore.convertToString(fruit: .mango)
     }
     
     @IBAction func orderJuice(sender: UIButton) {
