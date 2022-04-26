@@ -1,5 +1,5 @@
-enum Menu: String {
-    case strawberryJuice
+enum Menu: Int {
+    case strawberryJuice = 0
     case bananaJuice
     case pineappleJuice
     case kiwiJuice

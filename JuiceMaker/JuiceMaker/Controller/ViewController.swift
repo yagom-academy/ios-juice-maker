@@ -8,14 +8,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblKiwiStock: UILabel!
     @IBOutlet weak var lblMangoStock: UILabel!
 
-    var order: JuiceMaker = JuiceMaker()
+    private var order: JuiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showStock()
     }
 
-    func showStock() {
+    private func showStock() {
         lblStrawberryStock.text = order.fruitStore.convertToString(fruit: .strawberry)
         lblBananaStock.text = order.fruitStore.convertToString(fruit: .banana)
         lblPineappleStock.text = order.fruitStore.convertToString(fruit: .pineapple)
@@ -24,12 +24,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuice(sender: UIButton) {
-        
-        guard let orderedMenu = sender.restorationIdentifier else {
-            return
-        }
-        
-        let juiceMenu: Menu? = Menu(rawValue: orderedMenu)
+        let juiceMenu: Menu? = Menu(rawValue: sender.tag)
     
         do{
             try order.makeJuice(what: juiceMenu)
