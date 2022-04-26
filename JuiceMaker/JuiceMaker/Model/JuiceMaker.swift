@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func make(_ fruitJuice: FruitJuice) {
         do {
@@ -21,13 +21,13 @@ struct JuiceMaker {
         }
     }
     
-    func checkGenerationAvailable(_ fruitJuice: FruitJuice) throws {
-        for (fruit, amount) in fruitJuice.getRecipe()  {
+    private func checkGenerationAvailable(_ fruitJuice: FruitJuice) throws {
+        for (fruit, amount) in fruitJuice.getRecipe() {
             try fruitStore.checkInventory(about: fruit, by: amount)
         }
     }
     
-    func generate(_ fruitJuice: FruitJuice) {
+    private func generate(_ fruitJuice: FruitJuice) {
         for (fruit, amount) in fruitJuice.getRecipe() {
             fruitStore.usedLeftover(fruit, by: amount)
         }

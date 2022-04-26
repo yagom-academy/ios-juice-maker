@@ -8,16 +8,24 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var fruitInventory: [Fruit:Int] = [:]
+    private var fruitInventory: [Fruit:Int] = [:]
     
     init() {
-        fruitInventory = [.strawberry: 10, .banana: 10, .kiwi: 10, .pineapple: 10, .mango: 10]
+        let initialAmount: Int = 10
+        fruitInventory = [
+            .strawberry: initialAmount,
+            .banana: initialAmount,
+            .kiwi: initialAmount,
+            .pineapple: initialAmount,
+            .mango: initialAmount
+        ]
     }
     
     func usedLeftover(_ fruit: Fruit, by amount :Int) {
         guard (fruitInventory[fruit]? -= amount) != nil else {
             return
         }
+        print("남은 \(fruit)의 수: \(fruitInventory[fruit] ?? 0)")
     }
     
     func checkInventory(about fruit: Fruit, by amount :Int) throws {
