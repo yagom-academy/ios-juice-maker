@@ -22,7 +22,7 @@ class FruitStore {
     
     func checkGenerationAvailable(fruit: Fruit, count :Int) throws {
         guard let stock = fruitInventory[fruit],
-                  stock >= count else {
+              stock >= count else {
             throw JuiceMakerError.outOfStock
         }
     }
