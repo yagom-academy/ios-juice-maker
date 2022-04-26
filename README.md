@@ -24,3 +24,5 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 ### JuiceMaker(구조체)
 - 프로퍼티: 주문받을 메뉴를 저장할 변수, 주문 개수
 - 메서드: 주문받는 함수, 주스를 제조하는 함수, 남은 재고로 만들 수 있는 과일주스 알려주는 함수
+
+![Class Diagram](https://user-images.githubusercontent.com/102569735/165211439-7dc467d8-e6e7-4d3f-a1ed-e517b555cd38.png)
