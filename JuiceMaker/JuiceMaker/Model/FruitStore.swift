@@ -21,4 +21,5 @@ class FruitStore {
         guard let fruitsStock = fruits[name] else { return }
         fruits[name] = fruitsStock + quantity
     }
+    
 }
