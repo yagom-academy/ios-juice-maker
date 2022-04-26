@@ -20,25 +20,9 @@ struct JuiceMaker {
         }
     }
     
-    
     func checkAbout(_ fruitJuice: FruitJuice) throws {
-        switch fruitJuice {
-        case .strawberryJuice:
-            try fruitStore.checkGenerationAvailable(fruit: .strawberry, count: 16)
-        case .bananaJuice:
-            try fruitStore.checkGenerationAvailable(fruit: .banana, count: 2)
-        case .kiwiJuice:
-            try fruitStore.checkGenerationAvailable(fruit: .kiwi, count: 3)
-        case .pineappleJuice:
-            try fruitStore.checkGenerationAvailable(fruit: .pineapple, count: 2)
-        case .mangoJuice:
-            try fruitStore.checkGenerationAvailable(fruit: .mango, count: 3)
-        case .strawberryAndBananaJuice:
-            try fruitStore.checkGenerationAvailable(fruit: .strawberry, count: 10)
-            try fruitStore.checkGenerationAvailable(fruit: .banana, count: 1)
-        case .mangoAndKiwiJuice:
-            try fruitStore.checkGenerationAvailable(fruit: .mango, count: 2)
-            try fruitStore.checkGenerationAvailable(fruit: .kiwi, count: 1)
+        for (fruit, count) in fruitJuice.getRecipe() {
+            try fruitStore.checkGenerationAvailable(fruit: fruit, count: count)
         }
     }
 }

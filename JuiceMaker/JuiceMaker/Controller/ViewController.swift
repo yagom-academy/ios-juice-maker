@@ -10,7 +10,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let juicemaker1: JuiceMaker = JuiceMaker()
+        juicemaker1.make(.strawberryJuice)
     }
 
 
