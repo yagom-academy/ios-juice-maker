@@ -16,4 +16,9 @@ class FruitStore {
             fruits[fruitStock] = 10
         }
     }
+    
+    func addFruitsStock(name: Fruits, quantity: Int) {
+        guard let fruitsStock = fruits[name] else { return }
+        fruits[name] = fruitsStock + quantity
+    }
 }
