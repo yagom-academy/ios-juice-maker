@@ -2,7 +2,7 @@
 //  StockError.swift
 //  JuiceMaker
 //
-//  Created by 김동용 on 2022/04/26.
+//  Created by 수꿍, 바드 on 2022/04/26.
 //
 
 enum StockError: Error {

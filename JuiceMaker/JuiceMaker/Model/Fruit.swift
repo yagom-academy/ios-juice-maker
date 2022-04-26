@@ -2,10 +2,8 @@
 //  Fruit.swift
 //  JuiceMaker
 //
-//  Created by 전민수 on 2022/04/25.
+//  Created by 수꿍, 바드 on 2022/04/25.
 //
-
-import Foundation
 
 enum Fruit: String {
     case strawberry

@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by 수꿍, 바드. 
 //  Copyright © yagom academy. All rights reserved.
 // 
 
