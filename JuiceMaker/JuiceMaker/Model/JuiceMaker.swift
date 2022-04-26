@@ -27,4 +27,13 @@ struct JuiceMaker {
             store.fillStock(fruit: .strawberry)
         }
     }
+    
+    func classifyKey(menu: Menu) -> [Fruits] {
+        var keys: [Fruits] = []
+        
+        for keyValue in menu.recipe.keys {
+            keys.append(keyValue)
+        }
+        return keys
+    }
 }
