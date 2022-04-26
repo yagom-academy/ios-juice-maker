@@ -12,17 +12,24 @@ struct JuiceMaker {
     
     func make(_ fruitJuice: FruitJuice) {
         do {
-            try checkAbout(fruitJuice)
+            try checkGenerationAvailable(fruitJuice)
+            generate(fruitJuice)
         } catch JuiceMakerError.outOfStock {
-            print("재고없음")
+            print("재고가 부족합니다.")
         } catch {
-            print("알수없는 오류")
+            print(error)
         }
     }
     
-    func checkAbout(_ fruitJuice: FruitJuice) throws {
-        for (fruit, count) in fruitJuice.getRecipe() {
-            try fruitStore.checkGenerationAvailable(fruit: fruit, count: count)
+    func checkGenerationAvailable(_ fruitJuice: FruitJuice) throws {
+        for (fruit, amount) in fruitJuice.getRecipe()  {
+            try fruitStore.checkInventory(about: fruit, by: amount)
+        }
+    }
+    
+    func generate(_ fruitJuice: FruitJuice) {
+        for (fruit, amount) in fruitJuice.getRecipe() {
+            fruitStore.usedLeftover(fruit, by: amount)
         }
     }
 }

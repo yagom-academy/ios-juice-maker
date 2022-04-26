@@ -11,7 +11,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let juicemaker1: JuiceMaker = JuiceMaker()
-        juicemaker1.make(.strawberryJuice)
+        for _ in 1...10 {
+            juicemaker1.make(.bananaJuice)
+        }
     }
 
 

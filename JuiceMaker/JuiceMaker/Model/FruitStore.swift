@@ -14,15 +14,15 @@ class FruitStore {
         fruitInventory = [.strawberry: 10, .banana: 10, .kiwi: 10, .pineapple: 10, .mango: 10]
     }
     
-    func changeInventory(fruits: [Fruit:Int]) {
-        for (fruit,count) in fruits {
-            fruitInventory[fruit, default: 10] -= count
+    func usedLeftover(_ fruit: Fruit, by amount :Int) {
+        guard (fruitInventory[fruit]? -= amount) != nil else {
+            return
         }
     }
     
-    func checkGenerationAvailable(fruit: Fruit, count :Int) throws {
+    func checkInventory(about fruit: Fruit, by amount :Int) throws {
         guard let stock = fruitInventory[fruit],
-              stock >= count else {
+              stock >= amount else {
             throw JuiceMakerError.outOfStock
         }
     }
