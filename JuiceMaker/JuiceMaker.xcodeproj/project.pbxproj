@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		204055732817B09900452301 /* InitialFruitSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204055722817B09900452301 /* InitialFruitSetting.swift */; };
 		20CC39C32816E8B500E517BE /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC39C22816E8B500E517BE /* Fruit.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		204055722817B09900452301 /* InitialFruitSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialFruitSetting.swift; sourceTree = "<group>"; };
 		20CC39C22816E8B500E517BE /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				D7FC4E4B2816F0120093A003 /* Juice.swift */,
 				D7CB1412281793F900B24611 /* StockError.swift */,
 				D7CB14142817AF3D00B24611 /* FruitConsumption.swift */,
+				204055722817B09900452301 /* InitialFruitSetting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204055732817B09900452301 /* InitialFruitSetting.swift in Sources */,
 				D7CB14152817AF3D00B24611 /* FruitConsumption.swift in Sources */,
 				20CC39C32816E8B500E517BE /* Fruit.swift in Sources */,
 				D7CB1413281793F900B24611 /* StockError.swift in Sources */,
