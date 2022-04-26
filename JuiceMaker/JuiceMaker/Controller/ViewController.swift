@@ -1,9 +1,3 @@
-//
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -13,19 +7,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblPineappleStock: UILabel!
     @IBOutlet weak var lblKiwiStock: UILabel!
     @IBOutlet weak var lblMangoStock: UILabel!
-    @IBOutlet weak var btnStrawberryBananaOrder: UIButton!
-    @IBOutlet weak var btnMangoKiwiOrder: UIButton!
-    @IBOutlet weak var btnStrawberryOrder: UIButton!
-    @IBOutlet weak var btnBananaOrder: UIButton!
-    @IBOutlet weak var btnPineappleOrder: UIButton!
-    @IBOutlet weak var btnKiwiOrder: UIButton!
-    @IBOutlet weak var btnMangoOrder: UIButton!
-    
+
     var order: JuiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         showStock()
     }
 
@@ -38,30 +24,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuice(sender: UIButton) {
-        var juiceMenu: Menu = .mangoJuice
-        switch sender {
-        case btnStrawberryBananaOrder:
-            juiceMenu = .strawberryBananaJuice
-        case btnMangoKiwiOrder:
-            juiceMenu = .mangoKiwiJuice
-        case btnStrawberryOrder:
-            juiceMenu = .strawberryJuice
-        case btnBananaOrder:
-            juiceMenu = .bananaJuice
-        case btnPineappleOrder:
-            juiceMenu = .pineappleJuice
-        case btnKiwiOrder:
-            juiceMenu = .kiwiJuice
-        case btnMangoOrder:
-            juiceMenu = .mangoJuice
-        default:
-            break
+        
+        guard let orderedMenu = sender.restorationIdentifier else {
+            return
         }
         
+        let juiceMenu: Menu? = Menu(rawValue: orderedMenu)
+    
         do{
             try order.makeJuice(what: juiceMenu)
-        } catch {
+        } catch ThrowError.outOfStock {
             print("재고가 부족합니다.")
+        } catch ThrowError.invalidMenu {
+            print("유효하지 않은 주문입니다.")
+        } catch {
+            print("알 수 없는 에러입니다.")
         }
         
         showStock()

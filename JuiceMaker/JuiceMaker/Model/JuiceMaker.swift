@@ -1,18 +1,12 @@
-//
-//  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
-
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
-    
     let fruitStore: FruitStore = FruitStore(quantity: 10)
     
-    func makeJuice(what juiceMenu: Menu) throws {
-        for (juice, fruitCount) in juiceMenu.returnRecipe(){
+    func makeJuice(what juiceMenu: Menu?) throws {
+        guard let menu = juiceMenu else {
+            throw ThrowError.invalidMenu
+        }
+                
+        for (juice, fruitCount) in menu.returnRecipe() {
             try fruitStore.subtractQuantity(fruit: juice, by: fruitCount)
         }
     }

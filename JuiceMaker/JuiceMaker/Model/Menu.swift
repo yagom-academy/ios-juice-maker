@@ -1,13 +1,4 @@
-//
-//  Menu.swift
-//  JuiceMaker
-//
-//  Created by 김주영 on 2022/04/25.
-//
-
-import Foundation
-
-enum Menu {
+enum Menu: String {
     case strawberryJuice
     case bananaJuice
     case pineappleJuice
