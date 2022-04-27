@@ -30,7 +30,8 @@
 과일의 수량을 확인해서 과일쥬스를 만드는 어플리케이션
 ---
 # UML  
-![ClassDiagram](https://i.imgur.com/okSho6R.png)
+![ClassDiagram](https://i.imgur.com/MIMeDGQ.png)
+
 ---
 
 # 키워드  
