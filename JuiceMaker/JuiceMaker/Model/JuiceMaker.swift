@@ -18,7 +18,7 @@ struct JuiceMaker {
     }
     
     private func checkMaterial(_ juice: Product) throws {
-        try juiceMakerStore.checkStock(function: juiceMakerStore.check(fruit:), juice: juice)
+        try juiceMakerStore.goToWarehouse(of: juiceMakerStore.check(fruit:), juice: juice)
     }
     
     private func checkPossibilityOfMaking(_ juice: Product) throws {

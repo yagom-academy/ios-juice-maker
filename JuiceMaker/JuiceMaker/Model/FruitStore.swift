@@ -6,7 +6,7 @@
 
 // 과일 저장소 타입
 class FruitStore {
-     private var fruitRecipe: Dictionary<Fruit, Int> = [
+     private var fruitWarehouse: Dictionary<Fruit, Int> = [
         Fruit.strawberry: InitialFruitSetting.stock,
         Fruit.banana: InitialFruitSetting.stock,
         Fruit.pineapple: InitialFruitSetting.stock,
@@ -19,11 +19,11 @@ class FruitStore {
             throw FruitStoreError.invalidAmount
         }
         
-        fruitRecipe[fruit] = amount
+        fruitWarehouse[fruit] = amount
     }
     
     func addStock(fruit: Fruit, amount: Int) throws {
-        guard let fruitStock = fruitRecipe[fruit] else {
+        guard let fruitStock = fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
         guard amount >= 0 else {
@@ -31,11 +31,11 @@ class FruitStore {
         }
         let changedStock = fruitStock + amount
         
-        fruitRecipe[fruit] = changedStock
+        fruitWarehouse[fruit] = changedStock
     }
     
     func reduceStock(fruit: Fruit, amount: Int) throws {
-        guard let fruitStock = fruitRecipe[fruit] else {
+        guard let fruitStock = fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
         guard amount >= 0 else {
@@ -46,16 +46,16 @@ class FruitStore {
         }
         let changedStock = fruitStock - amount
         
-        fruitRecipe[fruit] = changedStock
+        fruitWarehouse[fruit] = changedStock
     }
     
     func check(fruit: Fruit) throws {
-        guard fruitRecipe.keys.contains(fruit) else {
+        guard fruitWarehouse.keys.contains(fruit) else {
             throw FruitStoreError.missingProduct
         }
     }
     
-    func checkStock(function: (Fruit) throws -> Void, juice: Product) rethrows {
+    func goToWarehouse(of function: (Fruit) throws -> Void, juice: Product) rethrows {
         switch juice {
         case Product.strawberryJuice:
             try function(Fruit.strawberry)
