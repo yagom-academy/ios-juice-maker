@@ -10,9 +10,13 @@ struct JuiceMaker {
     
     func make(_ juice: Product) {
         do {
-            try juiceMakerStore.checkStock(function: juiceMakerStore.reduceStock(fruit:amount:), juice: juice)
+            try checkPossibilityOfMaking(juice)
         } catch (let error) {
             juiceMakerStore.handle(error)
         }
+    }
+    
+    private func checkPossibilityOfMaking(_ juice: Product) throws {
+        try juiceMakerStore.checkStock(function: juiceMakerStore.reduceStock(fruit:amount:), juice: juice)
     }
 }
