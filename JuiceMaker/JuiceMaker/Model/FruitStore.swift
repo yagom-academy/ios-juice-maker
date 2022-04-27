@@ -49,6 +49,33 @@ class FruitStore {
         fruitRecipe[fruit] = changedStock
     }
     
+    func check(fruit: Fruit) throws {
+        guard fruitRecipe.keys.contains(fruit) else {
+            throw FruitStoreError.missingProduct
+        }
+    }
+    
+    func checkStock(function: (Fruit) throws -> Void, juice: Product) rethrows {
+        switch juice {
+        case Product.strawberryJuice:
+            try function(Fruit.strawberry)
+        case Product.bananaJuice:
+            try function(Fruit.banana)
+        case Product.kiwiJuice:
+            try function(Fruit.kiwi)
+        case Product.pineappleJuice:
+            try function(Fruit.pineapple)
+        case Product.strawberryBananaJuice:
+            try function(Fruit.strawberry)
+            try function(Fruit.banana)
+        case Product.mangoJuice:
+            try function(Fruit.mango)
+        case Product.mangoKiwiJuice:
+            try function(Fruit.mango)
+            try function(Fruit.kiwi)
+        }
+    }
+    
     func checkStock(function: (Fruit, Int) throws -> Void, juice: Product) rethrows {
         switch juice {
         case Product.strawberryJuice:
