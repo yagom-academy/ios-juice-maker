@@ -5,7 +5,7 @@
 //  Created by 수꿍, 바드 on 2022/04/26.
 //
 
-enum FruitConsumption {
+enum CostOfJuiceProduction {
     static let strawberryInStrawberryJuice = 16
     static let bananaInBananaJuice = 2
     static let kiwiInKiwiJuice = 3
