@@ -5,7 +5,7 @@
 //
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    let fruitStore = FruitStore(defaultFruitStock: 10)
     
     func orderFruitJuice(of juice: Juice){
         do {

@@ -14,7 +14,7 @@ enum Juice: CaseIterable {
     case kiwi
     case pineapple
 
-    var chooseJuice: [Fruits: Int] {
+    var chooseJuice: [Fruit: Int] {
         switch self {
         case .strawberry:
             return [.strawberry: 16]
