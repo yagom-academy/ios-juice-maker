@@ -14,25 +14,23 @@ struct JuiceMaker {
         do{
             switch juiceName {
             case .strawberryJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .strawberry, amount: 16)
+                try fruitStore.subtractFruitAmount(juiceRecipe: JuiceKind.strawberryJuice.recipe)
             case .bananaJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .banana, amount: 2)
+                try fruitStore.subtractFruitAmount(juiceRecipe: JuiceKind.bananaJuice.recipe)
             case .kiwiJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 3)
+                try fruitStore.subtractFruitAmount(juiceRecipe: JuiceKind.kiwiJuice.recipe)
             case .pineappleJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .pineapple, amount: 2)
+                try fruitStore.subtractFruitAmount(juiceRecipe: JuiceKind.pineappleJuice.recipe)
             case .mangoJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .mango, amount: 3)
+                try fruitStore.subtractFruitAmount(juiceRecipe: JuiceKind.mangoJuice.recipe)
             case .strawberryBananaJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .strawberry, amount: 10)
-                try fruitStore.subtractFruitAmount(fruitName: .banana, amount: 1)
+                try fruitStore.subtractFruitAmount(juiceRecipe: JuiceKind.strawberryBananaJuice.recipe)
             case .mangoKiwiJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .mango, amount: 2)
-                try fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 1)
+                try fruitStore.subtractFruitAmount(juiceRecipe: JuiceKind.mangoKiwiJuice.recipe)
             }
-        }catch ErrorCategory.zeroError {
+        } catch ErrorCategory.zeroError {
             print("\(ErrorCategory.zeroError.message)")
-        }catch ErrorCategory.cannotError {
+        } catch ErrorCategory.cannotError {
             print("\(ErrorCategory.cannotError.message)")
         }
     }

@@ -19,13 +19,13 @@ class FruitStore {
         stock[fruitName] = amount
     }
     
-    func subtractFruitAmount(fruitName: FruitKind, amount: Int) throws {
-        guard let currentNumber = stock[fruitName] else {
-            throw ErrorCategory.cannotError }
-        if currentNumber < amount {
-            throw ErrorCategory.zeroError
-        }
-        stock[fruitName] = currentNumber - amount
+    func subtractFruitAmount(juiceRecipe: Dictionary<FruitKind, Int>) throws {
+//        guard let currentNumber = stock[juiceRecipe[fruitName]] else {
+//            throw ErrorCategory.cannotError }
+//        if currentNumber < fruitAmount {
+//            throw ErrorCategory.zeroError
+//        }
+//        stock[fruitName] = currentNumber - fruitAmount
     }
     
     func addFruitAmount(fruitName: FruitKind, amount: Int) {
