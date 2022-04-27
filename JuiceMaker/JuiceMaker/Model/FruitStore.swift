@@ -24,22 +24,22 @@ class FruitStore {
     func reduceInventory(of ingredient: FruitsInventory) throws {
         for fruit in ingredient.keys {
             let amountOfIngredient = ingredient[fruit] ?? 0
-            guard var stock = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
+            guard var inventory = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
             
-            print("\(fruit) 사용전 재고: \(stock)")
-            stock -= amountOfIngredient
-            print("\(fruit) 사용후 재고: \(stock)")
+            print("\(fruit) 사용전 재고: \(inventory)")
+            inventory -= amountOfIngredient
+            print("\(fruit) 사용후 재고: \(inventory)")
         }
     }
     
     func supplyInventory(of ingredient: FruitsInventory) throws {
         for fruit in ingredient.keys {
             let amountOfSupply = ingredient[fruit] ?? 0
-            guard var stock = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
+            guard var inventory = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
             
-            print("\(fruit) 입고전 재고: \(stock)")
-            stock += amountOfSupply
-            print("\(fruit) 입고후 재고: \(stock)")
+            print("\(fruit) 입고전 재고: \(inventory)")
+            inventory += amountOfSupply
+            print("\(fruit) 입고후 재고: \(inventory)")
         }
     }
     
