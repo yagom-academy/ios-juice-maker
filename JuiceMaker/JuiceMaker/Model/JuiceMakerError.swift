@@ -5,21 +5,23 @@
 //  Created by 수꿍, 바드 on 2022/04/26.
 //
 
+import Foundation
+
 enum JuiceMakerError: Error {
     case missingProduct
     case outOfStock
     case invalidAmount
 }
 
-extension JuiceMakerError {
-    var message: String {
+extension JuiceMakerError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
         case .missingProduct:
-            return "해당 상품이 없습니다"
+            return NSLocalizedString("해당 상품이 없습니다", comment: "Description of missing Product")
         case .outOfStock:
-            return "재고가 부족합니다"
+            return NSLocalizedString("재고가 부족합니다", comment: "Description of out of stock")
         case .invalidAmount:
-            return "잘못된 수량입니다"
+            return NSLocalizedString("잘못된 수량입니다", comment: "Description of invalid amount")
         }
     }
 }

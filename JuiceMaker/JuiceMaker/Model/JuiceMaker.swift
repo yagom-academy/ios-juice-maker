@@ -40,11 +40,11 @@ struct JuiceMaker {
     private func handle(_ error: Error) {
         switch error {
         case JuiceMakerError.outOfStock:
-            print(JuiceMakerError.outOfStock.message)
+            print(JuiceMakerError.outOfStock.localizedDescription)
         case JuiceMakerError.missingProduct:
-            print(JuiceMakerError.missingProduct.message)
+            print(JuiceMakerError.missingProduct.localizedDescription)
         case JuiceMakerError.invalidAmount:
-            print(JuiceMakerError.invalidAmount.message)
+            print(JuiceMakerError.invalidAmount.localizedDescription)
         default:
             print("알 수 없는 오류입니다")
         }
