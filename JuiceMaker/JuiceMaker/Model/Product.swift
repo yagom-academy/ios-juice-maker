@@ -5,7 +5,7 @@
 //  Created by 수꿍, 바드 on 2022/04/26.
 //
 
-enum Juice {
+enum Product {
     case strawberryJuice
     case bananaJuice
     case pineappleJuice
@@ -15,7 +15,7 @@ enum Juice {
     case mangoKiwiJuice
 }
 
-extension Juice {
+extension Product {
     var name: String {
         switch self {
         case .strawberryJuice:

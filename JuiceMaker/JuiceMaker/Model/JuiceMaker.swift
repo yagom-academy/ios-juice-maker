@@ -6,11 +6,11 @@
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var JuiceMakersStore = FruitStore()
+    let juiceMakerStore = FruitStore()
     
-    func makeJuice(of juice: String) {
+    func make(_ juice: String) {
         do {
-            try checkStock(function: JuiceMakersStore.reduceStock(fruit:amount:), juice: juice)
+            try checkStock(function: juiceMakerStore.reduceStock(fruit:amount:), juice: juice)
         } catch (let error) {
             handle(error)
         }
@@ -18,20 +18,20 @@ struct JuiceMaker {
     
     private func checkStock(function: (String, Int) throws -> Void, juice: String) rethrows {
         switch juice {
-        case Juice.strawberryJuice.name:
+        case Product.strawberryJuice.name:
             try function(Fruit.strawberry.name, FruitConsumption.strawberryInStrawberryJuice)
-        case Juice.bananaJuice.name:
+        case Product.strawberryJuice.name:
             try function(Fruit.banana.name, FruitConsumption.bananaInBananaJuice)
-        case Juice.kiwiJuice.name:
+        case Product.kiwiJuice.name:
             try function(Fruit.kiwi.name, FruitConsumption.kiwiInKiwiJuice)
-        case Juice.pineappleJuice.name:
+        case Product.pineappleJuice.name:
             try function(Fruit.pineapple.name, FruitConsumption.pineappleInPineappleJuice)
-        case Juice.strawberryBananaJuice.name:
+        case Product.strawberryBananaJuice.name:
             try function(Fruit.strawberry.name, FruitConsumption.strawberryInStrawberryBananaJuice)
             try function(Fruit.banana.name, FruitConsumption.bananaInStrawberryBananaJuice)
-        case Juice.mangoJuice.name:
+        case Product.mangoJuice.name:
             try function(Fruit.mango.name, FruitConsumption.mangoInMangoJuice)
-        case Juice.mangoKiwiJuice.name:
+        case Product.mangoKiwiJuice.name:
             try function(Fruit.mango.name, FruitConsumption.mangoInMangoKiwiJuice)
             try function(Fruit.kiwi.name, FruitConsumption.kiwiInMangoKiwiJuice)
         default:
@@ -41,10 +41,10 @@ struct JuiceMaker {
     
     private func handle(_ error: Error) {
         switch error {
-        case StockError.outOfStock:
-            print(StockError.outOfStock.message)
-        case StockError.missingProduct:
-            print(StockError.missingProduct.message)
+        case JuiceMakerError.outOfStock:
+            print(JuiceMakerError.outOfStock.message)
+        case JuiceMakerError.missingProduct:
+            print(JuiceMakerError.missingProduct.message)
         default:
             print("알 수 없는 오류입니다")
         }

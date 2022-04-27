@@ -6,31 +6,37 @@
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruitDictionary: Dictionary<String, Int> = [Fruit.strawberry.name: InitialFruitSetting.stock, Fruit.banana.name: InitialFruitSetting.stock, Fruit.pineapple.name: InitialFruitSetting.stock, Fruit.kiwi.name: InitialFruitSetting.stock, Fruit.mango.name: InitialFruitSetting.stock]
+     var fruitRecipe: Dictionary<String, Int> = [
+        Fruit.strawberry.name: InitialFruitSetting.stock,
+        Fruit.banana.name: InitialFruitSetting.stock,
+        Fruit.pineapple.name: InitialFruitSetting.stock,
+        Fruit.kiwi.name: InitialFruitSetting.stock,
+        Fruit.mango.name: InitialFruitSetting.stock
+    ]
     
     func changeStock(fruit: String, amount: Int) {
-        fruitDictionary[fruit] = amount
+        fruitRecipe[fruit] = amount
     }
     
     func addStock(fruit: String, amount: Int) throws {
-        guard let fruitStock = fruitDictionary[fruit] else {
-            throw StockError.missingProduct
+        guard let fruitStock = fruitRecipe[fruit] else {
+            throw JuiceMakerError.missingProduct
         }
         let changedStock = fruitStock + amount
         
-        fruitDictionary[fruit] = changedStock
+        fruitRecipe[fruit] = changedStock
     }
     
     func reduceStock(fruit: String, amount: Int) throws {
-        guard let fruitStock = fruitDictionary[fruit] else {
-            throw StockError.missingProduct
+        guard let fruitStock = fruitRecipe[fruit] else {
+            throw JuiceMakerError.missingProduct
         }
         
         guard fruitStock >= amount else {
-            throw StockError.outOfStock
+            throw JuiceMakerError.outOfStock
         }
         let changedStock = fruitStock - amount
         
-        fruitDictionary[fruit] = changedStock
+        fruitRecipe[fruit] = changedStock
     }
 }

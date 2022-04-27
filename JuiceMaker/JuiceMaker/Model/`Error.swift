@@ -5,12 +5,12 @@
 //  Created by 수꿍, 바드 on 2022/04/26.
 //
 
-enum StockError: Error {
+enum JuiceMakerError: Error {
     case missingProduct
     case outOfStock
 }
 
-extension StockError {
+extension JuiceMakerError {
     var message: String {
         switch self {
         case .missingProduct:
