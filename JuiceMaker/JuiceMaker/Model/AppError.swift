@@ -1,10 +1,13 @@
 enum AppError: Error {
-    case lackOfStock
+    case lackOfInventory
+    case invalidInputOfFruit
     
     var message: String {
         switch self {
-        case .lackOfStock:
-            return "재고 부족"
+        case .lackOfInventory:
+            return "재고가 부족합니다."
+        case .invalidInputOfFruit:
+            return "그런 과일은 없습니다."
         }
     }
 }

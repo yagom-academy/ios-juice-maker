@@ -4,9 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
-    var store = FruitStore()
+    private var store = FruitStore()
     
     enum Menu {
         case strawberryJuice
@@ -18,7 +17,7 @@ struct JuiceMaker {
         case mangoKiwiJuice
     }
     
-    func checkRecipe(of juice: Menu) -> [FruitStore.Fruit: Int] {
+    private func checkRecipe(of juice: Menu) -> [FruitStore.Fruit: Int] {
         switch juice {
         case .strawberryJuice:
             return [.strawberry: 16]
@@ -38,16 +37,16 @@ struct JuiceMaker {
     }
     
     func make(juice: Menu, at store: FruitStore) {
-        var isPossible = false
         do {
-            isPossible = try store.isPossibleToMake(of: checkRecipe(of: juice), in: store.fruitsStock)
-        } catch {
-            print(AppError.lackOfStock.message)
-        }
+            let recipe = checkRecipe(of: juice)
+            let isPossible = try store.hasEnoughInventory(of: recipe, in: store.fruitsInventory)
         
-        if isPossible {
-            store.reduce(ingredient: checkRecipe(of: juice))
-            print("\(juice)를 만들었어요! 😁")
+            if isPossible {
+                try store.reduceInventory(of: recipe)
+                print("\(juice)를 만들었어요! 😁")
+            }
+        } catch {
+            print(AppError.lackOfInventory.message)
         }
     }
 }

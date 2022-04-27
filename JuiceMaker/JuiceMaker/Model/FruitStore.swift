@@ -4,7 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// 과일 저장소 타입
 class FruitStore {
     enum Fruit: CaseIterable {
         case strawberry
@@ -14,43 +13,45 @@ class FruitStore {
         case mango
     }
     
-    typealias FruitsStock = [Fruit: Int]
-    var fruitsStock: FruitsStock = [:]
+    typealias FruitsInventory = [Fruit: Int]
+    var fruitsInventory: FruitsInventory = [:]
     
     init() {
-        let initialStock = 10
-        Fruit.allCases.forEach { eachFruit in fruitsStock[eachFruit] = initialStock }
+        let initialInventory = 10
+        Fruit.allCases.forEach { eachFruit in fruitsInventory[eachFruit] = initialInventory }
     }
     
-    func reduce(ingredient: FruitsStock) {
+    func reduceInventory(of ingredient: FruitsInventory) throws {
         for fruit in ingredient.keys {
             let amountOfIngredient = ingredient[fruit] ?? 0
-            guard var stock = fruitsStock[fruit] else { return }
+            guard var stock = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
+            
             print("\(fruit) 사용전 재고: \(stock)")
             stock -= amountOfIngredient
             print("\(fruit) 사용후 재고: \(stock)")
         }
     }
-
-    func supplyStock(ingredient: FruitsStock) {
+    
+    func supplyInventory(of ingredient: FruitsInventory) throws {
         for fruit in ingredient.keys {
             let amountOfSupply = ingredient[fruit] ?? 0
-            guard var stock = fruitsStock[fruit] else { return }
+            guard var stock = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
+            
             print("\(fruit) 입고전 재고: \(stock)")
             stock += amountOfSupply
             print("\(fruit) 입고후 재고: \(stock)")
         }
     }
     
-    func isPossibleToMake(of ingredient: FruitsStock, in stock: FruitsStock) throws -> Bool {
+    func hasEnoughInventory(of ingredient: FruitsInventory, in inventory: FruitsInventory) throws -> Bool {
         for fruit in ingredient.keys {
             let requiredIngredient = ingredient[fruit] ?? 0
-            let fruitStock = stock[fruit] ?? 0
+            let fruitInventory = inventory[fruit] ?? 0
             
-            if fruitStock >= requiredIngredient {
+            if fruitInventory >= requiredIngredient {
                 continue
             } else {
-                throw AppError.lackOfStock
+                throw AppError.lackOfInventory
             }
         }
         return true
