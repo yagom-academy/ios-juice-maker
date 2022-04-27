@@ -7,13 +7,13 @@
 import Foundation
 
 // 과일 저장소 타입
-class FruitStore {
+class FruitStore: BindingOptional {
     var stock: [Fruits: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     private let orderQuantity: [Fruits: Int] = [.strawberry: 80, .banana: 10, .pineapple: 10, .kiwi: 15, .mango: 15]
     
     func decreaseStock(menu: Menu, numberOfOrder: Int) {
         for (fruit, need) in menu.recipe {
-            stock[fruit]! -= need * numberOfOrder
+            stock[fruit] = unwrapOptional(type: stock[fruit]) - (need * numberOfOrder)
         }
     }
     
@@ -21,5 +21,10 @@ class FruitStore {
         for fruit in fruits {
             stock[fruit] = orderQuantity[fruit]
         }
+    }
+    
+    func unwrapOptional(type: Int?) -> Int {
+        guard let num = type else { return 0 }
+        return num
     }
 }

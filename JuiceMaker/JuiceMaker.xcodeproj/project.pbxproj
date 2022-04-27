@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42C7F4FC2818D8EF0031CCAB /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7F4FB2818D8EF0031CCAB /* Menu.swift */; };
+		42C7F4FE2818DAD40031CCAB /* BindingOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7F4FD2818DAD40031CCAB /* BindingOptional.swift */; };
 		7255F11128181DD800803680 /* ErrorCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255F11028181DD800803680 /* ErrorCase.swift */; };
 		72F2D8622817AE1400962C28 /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2D8612817AE1400962C28 /* Fruits.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42C7F4FB2818D8EF0031CCAB /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		42C7F4FD2818DAD40031CCAB /* BindingOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingOptional.swift; sourceTree = "<group>"; };
 		7255F11028181DD800803680 /* ErrorCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCase.swift; sourceTree = "<group>"; };
 		72F2D8612817AE1400962C28 /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				72F2D8612817AE1400962C28 /* Fruits.swift */,
 				7255F11028181DD800803680 /* ErrorCase.swift */,
+				42C7F4FB2818D8EF0031CCAB /* Menu.swift */,
+				42C7F4FD2818DAD40031CCAB /* BindingOptional.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,9 +181,11 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
+				42C7F4FC2818D8EF0031CCAB /* Menu.swift in Sources */,
 				72F2D8622817AE1400962C28 /* Fruits.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				42C7F4FE2818DAD40031CCAB /* BindingOptional.swift in Sources */,
 				7255F11128181DD800803680 /* ErrorCase.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);

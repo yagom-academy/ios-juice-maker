@@ -7,13 +7,13 @@
 import Foundation
 
 // 쥬스 메이커 타입
-struct JuiceMaker {
+struct JuiceMaker: BindingOptional {
     private var store = FruitStore()
     private let menu = Menu.allCases.map({ "\($0)" }).joined(separator: ", ")
         
     func hasFruits(menu: Menu, numberOfOrder: Int) throws {
         for (fruit, need) in menu.recipe {
-            guard store.stock[fruit]! >= need * numberOfOrder else { throw ErrorCase.lackOfStock }
+            guard unwrapOptional(type: store.stock[fruit]) >= need * numberOfOrder else { throw ErrorCase.lackOfStock }
         }
     }
     
@@ -33,5 +33,10 @@ struct JuiceMaker {
             keys.append(keyValue)
         }
         return keys
+    }
+    
+    func unwrapOptional(type: Int?) -> Int {
+        guard let num = type else { return 0 }
+        return num
     }
 }
