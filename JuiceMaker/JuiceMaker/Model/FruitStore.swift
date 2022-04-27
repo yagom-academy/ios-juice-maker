@@ -4,16 +4,13 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
-// 과일 저장소 타입
 class FruitStore: BindingOptional {
     var stock: [Fruits: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     private let orderQuantity: [Fruits: Int] = [.strawberry: 80, .banana: 10, .pineapple: 10, .kiwi: 15, .mango: 15]
     
-    func decreaseStock(menu: Menu, numberOfOrder: Int) {
+    func decreaseStock(menu: Menu, total: Int) {
         for (fruit, need) in menu.recipe {
-            stock[fruit] = unwrapOptional(type: stock[fruit]) - (need * numberOfOrder)
+            stock[fruit] = unwrapOptional(stock[fruit]) - (need * total)
         }
     }
     
@@ -23,8 +20,8 @@ class FruitStore: BindingOptional {
         }
     }
     
-    func unwrapOptional(type: Int?) -> Int {
-        guard let num = type else { return 0 }
-        return num
+    func unwrapOptional(_ stock: Int?) -> Int {
+        guard let number = stock else { return 0 }
+        return number
     }
 }

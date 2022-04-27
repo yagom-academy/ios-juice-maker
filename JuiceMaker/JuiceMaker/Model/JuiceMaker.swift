@@ -4,39 +4,35 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker: BindingOptional {
     private var store = FruitStore()
-    private let menu = Menu.allCases.map({ "\($0)" }).joined(separator: ", ")
         
-    func hasFruits(menu: Menu, numberOfOrder: Int) throws {
+    func checkStock(menu: Menu, total: Int) throws {
         for (fruit, need) in menu.recipe {
-            guard unwrapOptional(type: store.stock[fruit]) >= need * numberOfOrder else { throw ErrorCase.lackOfStock }
+            guard unwrapOptional(store.stock[fruit]) >= need * total else { throw JuiceMakerError.lackOfStock }
         }
     }
     
-    func buy(menu: Menu, numberOfOrder: Int) {
+    func make(menu: Menu, total: Int) {
         do {
-            try hasFruits(menu: menu, numberOfOrder: numberOfOrder)
-            store.decreaseStock(menu: menu, numberOfOrder: numberOfOrder)
+            try checkStock(menu: menu, total: total)
+            store.decreaseStock(menu: menu, total: total)
         } catch {
-            store.fillStock(fruits: classifyKey(menu: menu))
+            store.fillStock(fruits: classifyKey(from: menu))
         }
     }
     
-    func classifyKey(menu: Menu) -> [Fruits] {
+    func classifyKey(from juice: Menu) -> [Fruits] {
         var keys: [Fruits] = []
         
-        for keyValue in menu.recipe.keys {
+        for keyValue in juice.recipe.keys {
             keys.append(keyValue)
         }
         return keys
     }
     
-    func unwrapOptional(type: Int?) -> Int {
-        guard let num = type else { return 0 }
-        return num
+    func unwrapOptional(_ stock: Int?) -> Int {
+        guard let number = stock else { return 0 }
+        return number
     }
 }

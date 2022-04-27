@@ -2,12 +2,10 @@
 //  Menu.swift
 //  JuiceMaker
 //
-//  Created by 이예은 on 2022/04/27.
+//  Created by hugh, yeton on 2022/04/27.
 //
 
-import Foundation
-
-enum Menu: CaseIterable {
+enum Menu {
     case strawberryJuice
     case bananaJuice
     case pineappleJuice
@@ -35,3 +33,4 @@ enum Menu: CaseIterable {
         }
     }
 }
+
