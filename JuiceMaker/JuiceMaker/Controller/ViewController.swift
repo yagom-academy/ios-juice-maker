@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by bradheo65, bonf, ZZBAE
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -12,7 +12,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let a = JuiceMaker()
-        a.chooseRecipe(of: .banana)
+        
     }
 }
 

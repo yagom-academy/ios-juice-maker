@@ -1,16 +1,15 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by bradheo65, bonf, ZZBAE
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func chooseRecipe(of juice: Juice){
+    func orderFruitJuice(of juice: Juice){
         do {
-            try fruitStore.orderJuice(order: juice)
+            try fruitStore.chooseRecipe(order: juice)
         } catch StockError.outOfError {
             print("재고부족")
         } catch {

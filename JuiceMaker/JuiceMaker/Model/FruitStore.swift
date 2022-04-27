@@ -1,10 +1,10 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//
+//  Created by bradheo65, bonf, ZZBAE
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// 과일 저장소 타입
 class FruitStore {
     
     private var stocks: [Fruits: Int] = [:]
@@ -13,7 +13,7 @@ class FruitStore {
         Fruits.allCases.forEach { stocks[$0] = stock }
     }
     
-    func orderJuice(order: Juice) throws {
+    func chooseRecipe(order: Juice) throws {
         for fruit in order.chooseJuice.keys {
             try checkFruitStock(juice: order, fruits: fruit)
         }
@@ -23,12 +23,12 @@ class FruitStore {
         guard let stockFruit = stocks[fruits] ,let needFruitAmount = juice.chooseJuice[fruits], stockFruit >= needFruitAmount else {
             throw StockError.outOfError
         }
-        minusStock(juice: juice, fruits: fruits)
+        makeJuice(juice: juice, fruits: fruits)
     }
-    private func minusStock(juice: Juice, fruits: Fruits) {
-        if let stockFruit = stocks[fruits] ,let needFruit = juice.chooseJuice[fruits] {
-            stocks.updateValue(stockFruit - needFruit, forKey: fruits)
+    
+    private func makeJuice(juice: Juice, fruits: Fruits) {
+        if let stockFruit = stocks[fruits] ,let requiredFruit = juice.chooseJuice[fruits] {
+            stocks.updateValue(stockFruit - requiredFruit, forKey: fruits)
         }
     }
 }
-
