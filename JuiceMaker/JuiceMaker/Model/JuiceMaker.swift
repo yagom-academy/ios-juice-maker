@@ -20,7 +20,7 @@ struct JuiceMaker {
             case .kiwiJuice:
                 try fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 3)
             case .pineappleJuice:
-                try fruitStore.subtractFruitAmount(fruitName: .pineaple, amount: 2)
+                try fruitStore.subtractFruitAmount(fruitName: .pineapple, amount: 2)
             case .mangoJuice:
                 try fruitStore.subtractFruitAmount(fruitName: .mango, amount: 3)
             case .strawberryBananaJuice:
@@ -30,10 +30,10 @@ struct JuiceMaker {
                 try fruitStore.subtractFruitAmount(fruitName: .mango, amount: 2)
                 try fruitStore.subtractFruitAmount(fruitName: .kiwi, amount: 1)
             }
-        }catch InputError.zeroError {
-            print("\(InputError.zeroError.message)")
-        }catch InputError.cannotError {
-            print("\(InputError.cannotError.message)")
+        }catch ErrorCategory.zeroError {
+            print("\(ErrorCategory.zeroError.message)")
+        }catch ErrorCategory.cannotError {
+            print("\(ErrorCategory.cannotError.message)")
         }
     }
 }

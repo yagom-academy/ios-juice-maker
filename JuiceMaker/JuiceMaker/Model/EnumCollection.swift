@@ -7,10 +7,20 @@
 
 import Foundation
 
+enum initCount {
+    case Fruit
+    
+    var amount: Int {
+        switch self {
+        case .Fruit:
+            return 10
+        }
+    }
+}
 enum FruitKind {
     case strawberry
     case banana
-    case pineaple
+    case pineapple
     case kiwi
     case mango
 }
@@ -23,10 +33,9 @@ enum JuiceKind {
     case mangoJuice
     case strawberryBananaJuice
     case mangoKiwiJuice
-    
 }
 
-enum InputError: Error {
+enum ErrorCategory: Error {
     case zeroError
     case cannotError
     

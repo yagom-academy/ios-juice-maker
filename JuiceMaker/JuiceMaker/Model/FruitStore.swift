@@ -9,20 +9,21 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     private var stock: Dictionary<FruitKind, Int> =
-    [FruitKind.strawberry: 10,
-     FruitKind.banana: 10,
-     FruitKind.kiwi: 10,
-     FruitKind.pineaple : 10,
-     FruitKind.mango: 10]
+    [FruitKind.strawberry: initCount.Fruit.amount,
+     FruitKind.banana: initCount.Fruit.amount,
+     FruitKind.kiwi: initCount.Fruit.amount,
+     FruitKind.pineapple : initCount.Fruit.amount,
+     FruitKind.mango: initCount.Fruit.amount]
 
     func changeFruitAmount(fruitName: FruitKind, amount: Int) {
         stock[fruitName] = amount
     }
     
     func subtractFruitAmount(fruitName: FruitKind, amount: Int) throws {
-        guard let currentNumber = stock[fruitName] else { throw InputError.cannotError}
+        guard let currentNumber = stock[fruitName] else {
+            throw ErrorCategory.cannotError }
         if currentNumber < amount {
-            throw InputError.zeroError
+            throw ErrorCategory.zeroError
         }
         stock[fruitName] = currentNumber - amount
     }
