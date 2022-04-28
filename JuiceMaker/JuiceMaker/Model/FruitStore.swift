@@ -22,34 +22,21 @@ class FruitStore {
         ]
     }
     
-    private func usedLeftover(_ fruit: Fruit, by amount :Int) {
-        guard (fruitInventory[fruit]? -= amount) != nil else {
-            return
+    private func usedLeftover(_ fruit: Fruit, by amount :Int) throws {
+        guard let stock = fruitInventory[fruit] else {
+            throw JuiceMakerError.outOfStock
         }
+        guard stock >= amount else {
+            throw JuiceMakerError.outOfStock
+        }
+        fruitInventory[fruit] = stock - amount
         print("남은 \(fruit)의 수: \(fruitInventory[fruit] ?? 0)")
     }
     
-    private func checkInventory(about fruit: Fruit, by amount :Int) throws {
-        guard let stock = fruitInventory[fruit],
-              stock >= amount else {
-            throw JuiceMakerError.outOfStock
-        }
-    }
-    
-    private func checkGenerationAvailable(_ fruitJuice: FruitJuice) throws {
+    func make(_ fruitJuice: FruitJuice) throws -> FruitJuice {
         for (fruit, amount) in fruitJuice.getRecipe() {
-            try checkInventory(about: fruit, by: amount)
+            try usedLeftover(fruit, by: amount)
         }
-    }
-    
-    private func generate(_ fruitJuice: FruitJuice) {
-        for (fruit, amount) in fruitJuice.getRecipe() {
-            usedLeftover(fruit, by: amount)
-        }
-    }
-    
-    func make(_ fruitJuice: FruitJuice) throws {
-        try checkGenerationAvailable(fruitJuice)
-        generate(fruitJuice)
+        return fruitJuice
     }
 }
