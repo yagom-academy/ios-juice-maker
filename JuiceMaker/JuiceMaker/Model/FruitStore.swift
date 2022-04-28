@@ -24,7 +24,7 @@ final class FruitStore {
     
     func consumeFruitsStock(name: Fruits, quantity: Int) throws {
         guard let fruitsStock = fruits[name] else { return }
-        guard fruitsStock >= quantity else { throw FruitStoreError.outOfStockError }
+        guard fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
         fruits[name] = fruitsStock - quantity
     }
 }
