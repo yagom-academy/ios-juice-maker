@@ -2,41 +2,40 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var lblStrawberryStock: UILabel!
-    @IBOutlet weak var lblBananaStock: UILabel!
-    @IBOutlet weak var lblPineappleStock: UILabel!
-    @IBOutlet weak var lblKiwiStock: UILabel!
-    @IBOutlet weak var lblMangoStock: UILabel!
+    @IBOutlet weak var StrawberryStockLabel: UILabel!
+    @IBOutlet weak var BananaStockLabel: UILabel!
+    @IBOutlet weak var PineappleStockLabel: UILabel!
+    @IBOutlet weak var KiwiStockLabel: UILabel!
+    @IBOutlet weak var MangoStockLabel: UILabel!
 
-    private var order: JuiceMaker = JuiceMaker()
+    private var juiceMachine = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showStock()
+        updateStock()
     }
 
-    private func showStock() {
-        lblStrawberryStock.text = order.fruitStore.convertToString(fruit: .strawberry)
-        lblBananaStock.text = order.fruitStore.convertToString(fruit: .banana)
-        lblPineappleStock.text = order.fruitStore.convertToString(fruit: .pineapple)
-        lblKiwiStock.text = order.fruitStore.convertToString(fruit: .kiwi)
-        lblMangoStock.text = order.fruitStore.convertToString(fruit: .mango)
+    private func updateStock() {
+        StrawberryStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .strawberry)
+        BananaStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .banana)
+        PineappleStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .pineapple)
+        KiwiStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .kiwi)
+        MangoStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .mango)
     }
     
     @IBAction func orderJuice(sender: UIButton) {
-        let juiceMenu: Menu? = Menu(rawValue: sender.tag)
+        
+        guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
     
         do{
-            try order.makeJuice(what: juiceMenu)
-        } catch ThrowError.outOfStock {
+            try juiceMachine.make(juice: juiceMenu)
+        } catch JuiceMakerError.outOfStock {
             print("재고가 부족합니다.")
-        } catch ThrowError.invalidMenu {
-            print("유효하지 않은 주문입니다.")
         } catch {
             print("알 수 없는 에러입니다.")
         }
         
-        showStock()
+        updateStock()
     }
     
 }

@@ -1,5 +1,5 @@
 class FruitStore {
-    var fruitStock: [Fruit: Int] = [:]
+    private var fruitStock: [Fruit: Int] = [:]
     
     func subtractQuantity(fruit: Fruit, by number: Int) throws {
         guard let quantity = fruitStock[fruit] else {
@@ -7,13 +7,13 @@ class FruitStore {
         }
         
         if quantity < number {
-            throw ThrowError.outOfStock
+            throw JuiceMakerError.outOfStock
         }
         
         fruitStock[fruit] = quantity - number
     }
     
-    func convertToString(fruit: Fruit) -> String {
+    func stockCount(fruit: Fruit) -> String {
         guard let stock = fruitStock[fruit] else {
             return "0"
         }
