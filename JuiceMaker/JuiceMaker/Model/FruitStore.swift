@@ -14,11 +14,14 @@ class FruitStore {
         Fruit.mango: InitialFruitStock.stock
     ]
     
-    func changeStock(fruit: Fruit, amount: Int) throws {
+    func checkInvalidAmount(_ amount: Int) throws {
         guard amount >= 0 else {
             throw FruitStoreError.invalidAmount
         }
-        
+    }
+    
+    func changeStock(fruit: Fruit, amount: Int) throws {
+        try checkInvalidAmount(amount)
         fruitWarehouse[fruit] = amount
     }
     
@@ -26,9 +29,7 @@ class FruitStore {
         guard let fruitStock = fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
-        guard amount >= 0 else {
-            throw FruitStoreError.invalidAmount
-        }
+        try checkInvalidAmount(amount)
         let changedStock = fruitStock + amount
         
         fruitWarehouse[fruit] = changedStock
@@ -38,9 +39,7 @@ class FruitStore {
         guard let fruitStock = fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
-        guard amount >= 0 else {
-            throw FruitStoreError.invalidAmount
-        }
+        try checkInvalidAmount(amount)
         guard fruitStock >= amount else {
             throw FruitStoreError.outOfStock
         }
