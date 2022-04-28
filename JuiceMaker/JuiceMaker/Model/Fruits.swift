@@ -1,12 +1,3 @@
-//
-//  Fruits.swift
-//  JuiceMaker
-//
-//  Created by Gordon Choi on 2022/04/28.
-//
-
-import Foundation
-
 struct Fruits {
     private var strawberry: Int
     private var banana: Int
@@ -20,5 +11,21 @@ struct Fruits {
         self.kiwi = kiwi
         self.pineapple = pineapple
         self.mango = mango
+    }
+    
+    func hasEnoughFruits(toMake recipe: Fruits) -> Bool {
+        return (strawberry >= recipe.strawberry
+                && banana >= recipe.banana
+                && kiwi >= recipe.kiwi
+                && pineapple >= recipe.pineapple
+                && mango >= recipe.mango)
+    }
+    
+    mutating func useFruits(toMake recipe: Fruits) {
+        strawberry -= recipe.strawberry
+        banana -= recipe.banana
+        kiwi -= recipe.kiwi
+        pineapple -= recipe.pineapple
+        mango -= recipe.mango
     }
 }
