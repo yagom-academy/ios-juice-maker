@@ -22,16 +22,7 @@ struct JuiceMaker {
             try checkStock(menu: menu, total: total)
             store.decreaseStock(menu: menu, total: total)
         } catch {
-            store.fillStock(fruits: classifyKey(from: menu))
+            store.fillStock(fruits: menu.classifyKey(from: menu))
         }
-    }
-    
-    private func classifyKey(from juice: Menu) -> [Fruits] {
-        var keys: [Fruits] = []
-        
-        for keyValue in juice.recipe.keys {
-            keys.append(keyValue)
-        }
-        return keys
     }
 }

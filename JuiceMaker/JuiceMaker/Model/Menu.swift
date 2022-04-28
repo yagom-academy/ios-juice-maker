@@ -32,5 +32,14 @@ enum Menu {
             return [.mango: 2, .kiwi: 1]
         }
     }
+    
+    func classifyKey(from juice: Self) -> [Fruits] {
+        var keys: [Fruits] = []
+        
+        for keyValue in juice.recipe.keys {
+            keys.append(keyValue)
+        }
+        return keys
+    }
 }
 
