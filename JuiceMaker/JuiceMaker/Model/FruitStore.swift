@@ -5,38 +5,19 @@
 //
 
 class FruitStore {
-    private var strawberry = 10
-    private var banana = 10
-    private var pineapple = 10
-    private var kiwi = 10
-    private var mango = 10
-}
-
-extension FruitStore {
+    private var fruits: Fruits
     
-    func pickUpFruits(for menu: FruitJuice) -> PickUpFruitResult {
-        let recipe = menu.pickUpRecipe()
-        return useFruits(strawberry: recipe.strawberry,
-                         banana: recipe.banana,
-                         pineapple: recipe.pineapple,
-                         kiwi: recipe.kiwi,
-                         mango: recipe.mango)
+    init(fruits: Fruits) {
+        self.fruits = fruits
     }
-    
-    private func useFruits(strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) -> PickUpFruitResult {
-        guard self.strawberry >= strawberry,
-              self.banana >= banana,
-              self.pineapple >= pineapple,
-              self.kiwi >= kiwi,
-              self.mango >= mango else {
-            return PickUpFruitResult.failure
+
+    // MARK: - 쥬스 제작 관련 메서드
+    func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
+        let recipe = menu.chooseRecipe()
+        guard fruits.hasEnoughFruits(toMake: recipe) else {
+            return .failure(.insufficientFruit)
         }
-        
-        self.strawberry -= strawberry
-        self.banana -= banana
-        self.pineapple -= pineapple
-        self.kiwi -= kiwi
-        self.mango -= mango
-        return PickUpFruitResult.success
+        fruits.useFruits(toMake: recipe)
+        return .success(menu)
     }
 }
