@@ -14,23 +14,23 @@ class FruitStore {
     }
 
     func chooseRecipe(order: Juice) throws {
-        for fruit in order.chooseJuice.keys {
+        for fruit in order.recipeOfJuice.keys {
             try checkFruitStock(juice: order, fruits: fruit)
         }
     }
 
     private func checkFruitStock(juice: Juice, fruits: Fruit) throws {
         guard let stockFruit = stocks[fruits],
-              let needFruitAmount = juice.chooseJuice[fruits],
+              let needFruitAmount = juice.recipeOfJuice[fruits],
               stockFruit >= needFruitAmount else {
-            throw StockError.outOfError
+            throw StockError.outOfStock
         }
-        makeJuice(juice: juice, fruits: fruits)
+        useStock(juice: juice, fruits: fruits)
     }
     
-    private func makeJuice(juice: Juice, fruits: Fruit) {
+    private func useStock(juice: Juice, fruits: Fruit) {
         if let stockFruit = stocks[fruits],
-           let requiredFruit = juice.chooseJuice[fruits] {
+           let requiredFruit = juice.recipeOfJuice[fruits] {
             stocks.updateValue(stockFruit - requiredFruit, forKey: fruits)
         }
     }

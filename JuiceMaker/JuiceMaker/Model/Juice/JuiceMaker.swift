@@ -7,10 +7,10 @@
 struct JuiceMaker {
     let fruitStore = FruitStore(defaultFruitStock: 10)
     
-    func orderFruitJuice(of juice: Juice){
+    func makeJuice(of juice: Juice){
         do {
             try fruitStore.chooseRecipe(order: juice)
-        } catch StockError.outOfError {
+        } catch StockError.outOfStock {
             print("재고부족")
         } catch {
             print(error)
