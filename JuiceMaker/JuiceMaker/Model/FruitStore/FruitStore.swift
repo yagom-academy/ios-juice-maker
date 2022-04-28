@@ -6,64 +6,43 @@
 
 import Foundation
 
-typealias Fruits = [Fruit: Int]
+typealias FruitStock = [Fruit: Int]
 
-protocol Fruitable {
-    /// 과일 수량 반환 함수
-    ///
-    /// Return : Int
-    func count(of fruit: Fruit) -> Int?
-    
-    /// 과일 수 추가 함수
-    ///
+protocol StorageManaging {
+    func count(_ fruit: Fruit) -> Int
     func add(fruit: Fruit, as amount: Int)
-    
-    /// 과일 소진 시키는 함수
-    ///
-    func consume(fruits: Fruits)
+    func consume(_ stock: FruitStock) throws
 }
 
 //MARK: 과일 저장소 타입
-final class FruitStore: Fruitable {
-    private var fruits: Fruits = [:]
+final class FruitStore: StorageManaging {
+    private var fruits: FruitStock = [:]
     
     init(initialValue: Int = 10) {
-        for fruit in Fruit.allCases {
+        Fruit.allCases.forEach { fruit in
             self.fruits.updateValue(initialValue, forKey: fruit)
         }
     }
 }
 
 extension FruitStore {
-    func count(of fruit: Fruit) -> Int? {
-        return fruits[fruit]
+    func count(_ fruit: Fruit) -> Int {
+        guard let currentQuantity = self.fruits[fruit] else {
+            return 0
+        }
+        return currentQuantity
     }
     
     func add(fruit: Fruit, as amount: Int) {
-        fruits.updateValue((fruits[fruit] ?? 10) + amount, forKey: fruit)
+        self.fruits.updateValue(count(fruit) + amount, forKey: fruit)
     }
     
-    func consume(fruits: Fruits) {
-        do{
-            try figure(out: fruits)
-            for (fruit, amount) in fruits {
-                self.fruits.updateValue((fruits[fruit] ?? 10) - amount, forKey: fruit)
-            }
-        } catch let error {
-            print("에러: \(error)")
-        }
-    }
-}
-
-private extension FruitStore {
-    /// 재료 수량 파악하는 함수
-    ///
-    /// throws : StockError
-    func figure(out fruits: Fruits) throws {
-        for (fruit, amount) in fruits {
-            if self.fruits[fruit] ?? 0 < amount {
+    func consume(_ stock: FruitStock) throws {
+        try stock.forEach { (fruit, amount) in
+            if count(fruit) < amount {
                 throw StockError.notEnoughIngredient
             }
+            self.fruits.updateValue(count(fruit) - amount, forKey: fruit)
         }
     }
 }

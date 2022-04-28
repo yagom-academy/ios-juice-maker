@@ -1,13 +1,13 @@
 //
-//  Juice.swift
+//  JuiceType.swift
 //  JuiceMaker
 //
-//  Created by 이원빈 on 2022/04/26.
+//  Created by Derrick kim on 2022/04/28.
 //
 
 import Foundation
 
-enum Juice {
+enum JuiceType {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -17,10 +17,7 @@ enum Juice {
     case mangoKiwiJuice
 }
 
-extension Juice {
-    /// 해당 쥬스의 재료값 반환 함수
-    ///
-    ///  Returns: 재료값
+extension JuiceType {
     func requireIngredients() -> [Fruit: Int] {
         switch self {
         case .strawberryJuice:
