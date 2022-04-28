@@ -8,5 +8,5 @@
 import Foundation
 
 enum FruitStoreError: Error {
-    case outOfStockError
+    case outOfStock
 }
