@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func makeJuice(flavor: Juice)throws {
         let recipe = flavor.recipe
@@ -17,7 +17,7 @@ struct JuiceMaker {
             for (name, number) in recipe {
                 try fruitStore.consumeFruitsStock(name: name, quantity: number)
             }
-        } catch FruitStoreError.outOfStockError {
+        } catch FruitStoreError.outOfStock {
             print("재고가 없습니다")
         }
     }
