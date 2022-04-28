@@ -7,11 +7,11 @@
 // 과일 저장소 타입
 class FruitStore {
      private var fruitWarehouse: Dictionary<Fruit, Int> = [
-        Fruit.strawberry: InitialFruitSetting.stock,
-        Fruit.banana: InitialFruitSetting.stock,
-        Fruit.pineapple: InitialFruitSetting.stock,
-        Fruit.kiwi: InitialFruitSetting.stock,
-        Fruit.mango: InitialFruitSetting.stock
+        Fruit.strawberry: InitialFruitStock.stock,
+        Fruit.banana: InitialFruitStock.stock,
+        Fruit.pineapple: InitialFruitStock.stock,
+        Fruit.kiwi: InitialFruitStock.stock,
+        Fruit.mango: InitialFruitStock.stock
     ]
     
     func changeStock(fruit: Fruit, amount: Int) throws {
@@ -49,49 +49,49 @@ class FruitStore {
         fruitWarehouse[fruit] = changedStock
     }
     
-    func check(fruit: Fruit) throws {
+    func checkFruitKind(_ fruit: Fruit) throws {
         guard fruitWarehouse.keys.contains(fruit) else {
             throw FruitStoreError.missingProduct
         }
     }
     
-    func goToWarehouse(of function: (Fruit) throws -> Void, juice: Product) rethrows {
+    func goToWarehouse(of function: (Fruit) throws -> Void, juice: Juice) rethrows {
         switch juice {
-        case Product.strawberryJuice:
+        case Juice.strawberry:
             try function(Fruit.strawberry)
-        case Product.bananaJuice:
+        case Juice.banana:
             try function(Fruit.banana)
-        case Product.kiwiJuice:
+        case Juice.kiwi:
             try function(Fruit.kiwi)
-        case Product.pineappleJuice:
+        case Juice.pineapple:
             try function(Fruit.pineapple)
-        case Product.strawberryBananaJuice:
+        case Juice.strawberryBanana:
             try function(Fruit.strawberry)
             try function(Fruit.banana)
-        case Product.mangoJuice:
+        case Juice.mango:
             try function(Fruit.mango)
-        case Product.mangoKiwiJuice:
+        case Juice.mangoKiwi:
             try function(Fruit.mango)
             try function(Fruit.kiwi)
         }
     }
     
-    func checkStock(function: (Fruit, Int) throws -> Void, juice: Product) rethrows {
+    func checkStock(function: (Fruit, Int) throws -> Void, juice: Juice) rethrows {
         switch juice {
-        case Product.strawberryJuice:
+        case Juice.strawberry:
             try function(Fruit.strawberry, CostOfJuiceProduction.strawberryInStrawberryJuice)
-        case Product.bananaJuice:
+        case Juice.banana:
             try function(Fruit.banana, CostOfJuiceProduction.bananaInBananaJuice)
-        case Product.kiwiJuice:
+        case Juice.kiwi:
             try function(Fruit.kiwi, CostOfJuiceProduction.kiwiInKiwiJuice)
-        case Product.pineappleJuice:
+        case Juice.pineapple:
             try function(Fruit.pineapple, CostOfJuiceProduction.pineappleInPineappleJuice)
-        case Product.strawberryBananaJuice:
+        case Juice.strawberryBanana:
             try function(Fruit.strawberry, CostOfJuiceProduction.strawberryInStrawberryBananaJuice)
             try function(Fruit.banana, CostOfJuiceProduction.bananaInStrawberryBananaJuice)
-        case Product.mangoJuice:
+        case Juice.mango:
             try function(Fruit.mango, CostOfJuiceProduction.mangoInMangoJuice)
-        case Product.mangoKiwiJuice:
+        case Juice.mangoKiwi:
             try function(Fruit.mango, CostOfJuiceProduction.mangoInMangoKiwiJuice)
             try function(Fruit.kiwi, CostOfJuiceProduction.kiwiInMangoKiwiJuice)
         }
