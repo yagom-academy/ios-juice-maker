@@ -4,12 +4,16 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-struct JuiceMaker: BindingOptional {
+struct JuiceMaker {
     private var store = FruitStore()
         
     private func checkStock(menu: Menu, total: Int) throws {
         for (fruit, need) in menu.recipe {
-            guard unwrapOptional(store.stock[fruit]) >= need * total else { throw JuiceMakerError.lackOfStock }
+            guard let number = store.stock[fruit],
+                   number >= need * total
+            else {
+                throw JuiceMakerError.lackOfStock
+            }
         }
     }
     
@@ -29,10 +33,5 @@ struct JuiceMaker: BindingOptional {
             keys.append(keyValue)
         }
         return keys
-    }
-    
-    func unwrapOptional(_ stock: Int?) -> Int {
-        guard let number = stock else { return 0 }
-        return number
     }
 }
