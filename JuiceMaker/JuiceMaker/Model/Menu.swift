@@ -33,8 +33,13 @@ enum Menu {
         }
     }
     
-    func notifyRecipe() -> [Fruits: Int] {
-        return self.recipe
+    func count(to total: Int, of juice: Self) -> [Fruits: Int] {
+        var countList: [Fruits: Int] = [:]
+        
+        for (fruit, need) in juice.recipe {
+            countList.updateValue(need * total, forKey: fruit)
+        }
+        return countList
     }
 }
 

@@ -18,10 +18,18 @@ class FruitStore {
         return true
     }
     
-    func decreaseStock(menu: Menu, total: Int) throws {
-        for (fruit, need) in menu.notifyRecipe() {
-            guard hasFruit(menu: menu, total: total) else { throw JuiceMakerError.lackOfStock }
-            guard let number = stock[fruit] else { return }
+    func decreaseStock(total: Int, menu: Menu) throws {
+        let necessaryFruit = menu.count(to: total, of: menu)
+        
+        for (fruit, need) in necessaryFruit {
+            guard hasFruit(menu: menu, total: total) else {
+                throw JuiceMakerError.lackOfStock
+            }
+            
+            guard let number = stock[fruit] else {
+                return
+            }
+            
             stock[fruit] = number - (need * total)
         }
     }
