@@ -18,16 +18,9 @@ class FruitStore {
         return true
     }
     
-    func checkStock(menu: Menu, total: Int) throws {
-        if hasFruit(menu: menu, total: total) {
-            decreaseStock(menu: menu, total: total)
-        } else {
-            throw JuiceMakerError.lackOfStock
-        }
-    }
-    
-    func decreaseStock(menu: Menu, total: Int) {
+    func decreaseStock(menu: Menu, total: Int) throws {
         for (fruit, need) in menu.notifyRecipe() {
+            guard hasFruit(menu: menu, total: total) else { throw JuiceMakerError.lackOfStock }
             guard let number = stock[fruit] else { return }
             stock[fruit] = number - (need * total)
         }
