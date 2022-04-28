@@ -12,10 +12,13 @@ struct JuiceMaker {
     
     func takeOrder(_ fruitJuice: FruitJuice) {
         do {
-            let finishedFruitJuice = try fruitStore.make(fruitJuice)
-            print("\(finishedFruitJuice)가 완성되었습니다.")
-        } catch JuiceMakerError.outOfStock {
-            print("재고가 부족합니다.")
+            guard let completedFruitJuice = try fruitStore.make(fruitJuice) else {
+                print("재고가 부족합니다.")
+                return 
+            }
+            print("\(completedFruitJuice)가 완성되었습니다.")
+        } catch JuiceMakerError.invalidOrder {
+            print("잘못된 음료 요청.")
         } catch {
             print(error)
         }

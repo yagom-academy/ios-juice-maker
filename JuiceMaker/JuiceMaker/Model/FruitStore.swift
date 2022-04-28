@@ -22,21 +22,23 @@ class FruitStore {
         ]
     }
     
-    private func usedLeftover(_ fruit: Fruit, by amount :Int) throws {
+    private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
         guard let stock = fruitInventory[fruit] else {
-            throw JuiceMakerError.outOfStock
+            throw JuiceMakerError.invalidOrder
         }
         guard stock >= amount else {
-            throw JuiceMakerError.outOfStock
+            return false
         }
         fruitInventory[fruit] = stock - amount
-        print("남은 \(fruit)의 수: \(fruitInventory[fruit] ?? 0)")
+        return true
     }
     
-    func make(_ fruitJuice: FruitJuice) throws -> FruitJuice {
+    func make(_ fruitJuice: FruitJuice) throws -> FruitJuice? {
+        var canComplete = true
         for (fruit, amount) in fruitJuice.getRecipe() {
-            try usedLeftover(fruit, by: amount)
+            canComplete = try canUseStock(of: fruit, by: amount) && canComplete
         }
-        return fruitJuice
+        return canComplete ? fruitJuice : nil
     }
 }
+
