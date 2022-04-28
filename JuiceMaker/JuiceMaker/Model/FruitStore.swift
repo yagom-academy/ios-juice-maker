@@ -5,8 +5,19 @@
 //
 
 class FruitStore {
-    var stock: [Fruits: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    private var stock: [Fruits: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     private let orderQuantity: [Fruits: Int] = [.strawberry: 80, .banana: 10, .pineapple: 10, .kiwi: 15, .mango: 15]
+    
+    func hasFruit(menu: Menu, total: Int) -> Bool {
+        for (fruit, need) in menu.notifyRecipe() {
+            guard let number = stock[fruit],
+                   number >= need * total
+            else {
+                return false
+            }
+        }
+        return true
+    }
     
     func decreaseStock(menu: Menu, total: Int) {
         for (fruit, need) in menu.notifyRecipe() {
