@@ -9,9 +9,10 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     private var fruitInventory: [Fruit:Int] = [:]
+    let initialAmount: Int
     
-    init() {
-        let initialAmount: Int = 10
+    init(initialAmount: Int) {
+        self.initialAmount = initialAmount
         fruitInventory = [
             .strawberry: initialAmount,
             .banana: initialAmount,
