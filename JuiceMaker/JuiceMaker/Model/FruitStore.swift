@@ -9,7 +9,7 @@ class FruitStore {
     private let orderQuantity: [Fruits: Int] = [.strawberry: 80, .banana: 10, .pineapple: 10, .kiwi: 15, .mango: 15]
     
     func decreaseStock(menu: Menu, total: Int) {
-        for (fruit, need) in menu.recipe {
+        for (fruit, need) in menu.notifyRecipe() {
             guard let number = stock[fruit] else { return }
             stock[fruit] = number - (need * total)
         }

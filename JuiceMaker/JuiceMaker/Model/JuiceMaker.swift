@@ -8,7 +8,7 @@ struct JuiceMaker {
     private var store = FruitStore()
         
     private func checkStock(menu: Menu, total: Int) throws {
-        for (fruit, need) in menu.recipe {
+        for (fruit, need) in menu.notifyRecipe() {
             guard let number = store.stock[fruit],
                    number >= need * total
             else {

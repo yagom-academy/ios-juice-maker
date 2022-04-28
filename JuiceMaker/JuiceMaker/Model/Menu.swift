@@ -14,7 +14,7 @@ enum Menu {
     case strawberryAndBananaJuice
     case mangoAndKiwiJuice
     
-    var recipe: [Fruits: Int] {
+    private var recipe: [Fruits: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
@@ -31,6 +31,10 @@ enum Menu {
         case .mangoAndKiwiJuice:
             return [.mango: 2, .kiwi: 1]
         }
+    }
+    
+    func notifyRecipe() -> [Fruits: Int] {
+        return self.recipe
     }
     
     func classifyKey(from juice: Self) -> [Fruits] {
