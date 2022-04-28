@@ -7,12 +7,12 @@
 struct JuiceMaker {
     private var store = FruitStore()
         
-    func make(menu: Menu, total: Int) {
+    func make(menu: Menu, total: Int) throws {
         do {
-            try checkStock(menu: menu, total: total)
-            store.decreaseStock(menu: menu, total: total)
+            try store.checkStock(menu: menu, total: total)
+            print("주문하신 음료 나왔습니다.")
         } catch {
-            store.fillStock(fruits: menu.classifyKey(from: menu))
+            print("재고가 부족합니다.")
         }
     }
 }
