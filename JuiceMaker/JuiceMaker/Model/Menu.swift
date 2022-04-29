@@ -14,7 +14,7 @@ enum Menu {
     case strawberryAndBananaJuice
     case mangoAndKiwiJuice
     
-    private var recipe: [Fruits: Int] {
+    private var recipe: [Fruit: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]
@@ -33,8 +33,8 @@ enum Menu {
         }
     }
     
-    func count(to total: Int, of juice: Self) -> [Fruits: Int] {
-        var countList: [Fruits: Int] = [:]
+    func count(to total: Int, of juice: Self) -> [Fruit: Int] {
+        var countList: [Fruit: Int] = [:]
         
         for (fruit, need) in juice.recipe {
             countList.updateValue(need * total, forKey: fruit)

@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var stock: [Fruits: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    private var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     private func hasFruit(menu: Menu, total: Int) -> Bool {
         let necessaryFruit = menu.count(to: total, of: menu)
@@ -35,7 +35,7 @@ class FruitStore {
         }
     }
     
-    func fillStock(fruit: Fruits, total: Int) {
+    func fillStock(fruit: Fruit, total: Int) {
         guard let number = stock[fruit] else { return }
         stock[fruit] = number + total
     }
