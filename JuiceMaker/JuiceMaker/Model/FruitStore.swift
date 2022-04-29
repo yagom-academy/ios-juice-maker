@@ -14,11 +14,10 @@ class FruitStore {
     }
     
     typealias FruitsInventory = [Fruit: Int]
-    var fruitsInventory: FruitsInventory = [:]
+    private var fruitsInventory: FruitsInventory = [:]
     
-    init() {
-        let initialInventory = 10
-        Fruit.allCases.forEach { eachFruit in fruitsInventory[eachFruit] = initialInventory }
+    init(initialInventory:Int = 10) {
+        Fruit.allCases.forEach { fruitsInventory[$0] = initialInventory }
     }
     
     func reduceInventory(of ingredient: FruitsInventory) throws {
@@ -28,6 +27,7 @@ class FruitStore {
             
             print("\(fruit) 사용전 재고: \(inventory)")
             inventory -= amountOfIngredient
+            fruitsInventory[fruit] = inventory
             print("\(fruit) 사용후 재고: \(inventory)")
         }
     }
@@ -39,6 +39,7 @@ class FruitStore {
             
             print("\(fruit) 입고전 재고: \(inventory)")
             inventory += amountOfSupply
+            fruitsInventory[fruit] = inventory
             print("\(fruit) 입고후 재고: \(inventory)")
         }
     }
