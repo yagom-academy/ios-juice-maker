@@ -4,9 +4,15 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
-    
+    private var store = FruitStore()
+        
+    func make(juice: Menu) throws {
+        let fruitsToUse = store.grabIngredients(of: juice.recipe)
+        
+        guard fruitsToUse != nil else { throw AppError.lackOfInventory }
+        
+        try store.reduceInventory(of: juice.recipe)
+        print("\(juice)쥬스 나왔습니다! 맛있게 드세요!")
+    }
 }
