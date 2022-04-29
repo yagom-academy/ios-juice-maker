@@ -8,7 +8,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var KiwiStockLabel: UILabel!
     @IBOutlet weak var MangoStockLabel: UILabel!
 
-    private var juiceMachine = JuiceMaker()
+    private var store = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +16,11 @@ class ViewController: UIViewController {
     }
 
     private func updateStock() {
-        StrawberryStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .strawberry)
-        BananaStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .banana)
-        PineappleStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .pineapple)
-        KiwiStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .kiwi)
-        MangoStockLabel.text = juiceMachine.fruitStore.stockCount(fruit: .mango)
+        StrawberryStockLabel.text = store.stockCount(of: .strawberry)
+        BananaStockLabel.text = store.stockCount(of: .banana)
+        PineappleStockLabel.text = store.stockCount(of: .pineapple)
+        KiwiStockLabel.text = store.stockCount(of: .kiwi)
+        MangoStockLabel.text = store.stockCount(of: .mango)
     }
     
     @IBAction func orderJuice(sender: UIButton) {
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
     
         do{
-            try juiceMachine.make(juice: juiceMenu)
+            try store.make(juiceMenu: juiceMenu)
         } catch JuiceMakerError.outOfStock {
             print("재고가 부족합니다.")
         } catch {
