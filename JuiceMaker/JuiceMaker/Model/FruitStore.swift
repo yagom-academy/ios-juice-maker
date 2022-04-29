@@ -8,7 +8,7 @@ class FruitStore {
     private var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     private func hasFruit(menu: Menu, total: Int) -> Bool {
-        let necessaryFruit = menu.count(to: total, of: menu)
+        let necessaryFruit = menu.count(to: total)
         
         for (fruit, need) in necessaryFruit {
             guard let number = stock[fruit] else { continue }
@@ -20,7 +20,7 @@ class FruitStore {
     }
     
     func decreaseStock(total: Int, menu: Menu) throws {
-        let necessaryFruit = menu.count(to: total, of: menu)
+        let necessaryFruit = menu.count(to: total)
         
         for (fruit, need) in necessaryFruit {
             guard hasFruit(menu: menu, total: total) else {
