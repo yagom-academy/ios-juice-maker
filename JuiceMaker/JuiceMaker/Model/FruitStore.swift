@@ -11,9 +11,8 @@ class FruitStore {
         let necessaryFruit = menu.count(to: total, of: menu)
         
         for (fruit, need) in necessaryFruit {
-            guard let number = stock[fruit],
-                    number >= need
-            else {
+            guard let number = stock[fruit] else { continue }
+            if number < need {
                 return false
             }
         }
