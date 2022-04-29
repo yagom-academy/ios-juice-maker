@@ -44,17 +44,13 @@ class FruitStore {
         }
     }
     
-    func hasEnoughInventory(of ingredient: FruitsInventory, in inventory: FruitsInventory) throws -> Bool {
+    func grabIngredients(of ingredient: FruitsInventory) -> FruitsInventory? {
         for fruit in ingredient.keys {
             let requiredIngredient = ingredient[fruit] ?? 0
-            let fruitInventory = inventory[fruit] ?? 0
+            let fruitInventory = self.fruitsInventory[fruit] ?? 0
             
-            if fruitInventory >= requiredIngredient {
-                continue
-            } else {
-                throw AppError.lackOfInventory
-            }
+            guard fruitInventory >= requiredIngredient else { return nil }
         }
-        return true
+        return ingredient
     }
 }
