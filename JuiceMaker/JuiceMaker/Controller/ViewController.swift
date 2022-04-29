@@ -24,25 +24,34 @@ class ViewController: UIViewController {
     }
     
     func showCompleteAlert(juice: String) {
-        
         let completeAlert = UIAlertController(title: "쥬스 제조 완료", message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        
         let yesAction = UIAlertAction(title: "확인", style: .default)
         
         completeAlert.addAction(yesAction)
         
         present(completeAlert, animated: true)
+    }
+    
+    func showOutOfStockAlert() {
+        let outOfStockAlert = UIAlertController(title: "재료 소진", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .default) { action in
+            print("예 버튼 눌림")
+        }
+        let noAction = UIAlertAction(title: "아니요", style: .cancel)
         
+        [yesAction, noAction].forEach { outOfStockAlert.addAction($0) }
+            
+        present(outOfStockAlert, animated: true)
     }
     
     @IBAction func orderJuice(sender: UIButton) {
-        
         guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
     
         do{
             try store.make(juiceMenu: juiceMenu)
         } catch JuiceMakerError.outOfStock {
             print("재고가 부족합니다.")
+            showOutOfStockAlert()
         } catch {
             print("알 수 없는 에러입니다.")
         }
