@@ -25,4 +25,23 @@ enum Menu: Int {
             return [(.mango, 2), (.kiwi, 1)]
         }
     }
+    
+    var juiceName: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기"
+        case .bananaJuice:
+            return "바나나"
+        case .pineappleJuice:
+            return "파인애플"
+        case .kiwiJuice:
+            return "키위"
+        case .mangoJuice:
+            return "망고"
+        case .strawberryBananaJuice:
+            return "딸바"
+        case .mangoKiwiJuice:
+            return "망키"
+        }
+    }
 }

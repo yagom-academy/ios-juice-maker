@@ -23,6 +23,18 @@ class ViewController: UIViewController {
         MangoStockLabel.text = store.stockCount(of: .mango)
     }
     
+    func showCompleteAlert(juice: String) {
+        
+        let completeAlert = UIAlertController(title: "쥬스 제조 완료", message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "확인", style: .default)
+        
+        completeAlert.addAction(yesAction)
+        
+        present(completeAlert, animated: true)
+        
+    }
+    
     @IBAction func orderJuice(sender: UIButton) {
         
         guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
@@ -35,6 +47,7 @@ class ViewController: UIViewController {
             print("알 수 없는 에러입니다.")
         }
         
+        showCompleteAlert(juice: juiceMenu.juiceName)
         updateStock()
     }
     
