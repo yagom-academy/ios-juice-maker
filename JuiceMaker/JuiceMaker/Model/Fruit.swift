@@ -5,7 +5,7 @@
 //  Created by hugh, yeton on 2022/04/26.
 //
 
-enum Fruits {
+enum Fruit {
     case strawberry
     case banana
     case pineapple
