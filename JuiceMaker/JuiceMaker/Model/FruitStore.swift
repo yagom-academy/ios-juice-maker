@@ -96,16 +96,16 @@ class FruitStore {
         }
     }
     
-    func handle(_ error: Error) {
+    func handle(_ error: Error) -> String {
         switch error {
         case FruitStoreError.outOfStock:
-            print(FruitStoreError.outOfStock.localizedDescription)
+            return FruitStoreError.outOfStock.localizedDescription
         case FruitStoreError.missingProduct:
-            print(FruitStoreError.missingProduct.localizedDescription)
+            return FruitStoreError.missingProduct.localizedDescription
         case FruitStoreError.invalidAmount:
-            print(FruitStoreError.invalidAmount.localizedDescription)
+            return FruitStoreError.invalidAmount.localizedDescription
         default:
-            print("알 수 없는 오류입니다")
+            return "알 수 없는 오류입니다"
         }
     }
 }
