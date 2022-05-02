@@ -135,6 +135,9 @@
                                                         <real key="value" value="1.5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fdr-p5-PY3"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
                                                 <rect key="frame" x="296" y="0.0" width="280" height="66"/>
@@ -153,6 +156,9 @@
                                                         <real key="value" value="1.5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ohi-Aj-oUf"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
                                                 <rect key="frame" x="592" y="0.0" width="132" height="66"/>
@@ -189,6 +195,9 @@
                                                                 <real key="value" value="1.5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d3a-A8-PP0"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
                                                         <rect key="frame" x="148" y="0.0" width="132" height="66.333333333333329"/>
@@ -227,6 +236,9 @@
                                                                 <real key="value" value="1.5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dxv-Hs-x0f"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
                                                         <rect key="frame" x="296" y="0.0" width="132" height="66.333333333333329"/>
@@ -251,6 +263,9 @@
                                                                 <real key="value" value="1.5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ilN-jq-L2y"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
                                                         <rect key="frame" x="444" y="0.0" width="132" height="66.333333333333329"/>
@@ -275,6 +290,9 @@
                                                                 <real key="value" value="1.5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Jc-Dq-HXs"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
                                                         <rect key="frame" x="592" y="0.0" width="132" height="66.333333333333329"/>
@@ -299,6 +317,9 @@
                                                                 <real key="value" value="1.5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="orderFruitJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Er8-yD-baK"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -334,6 +355,20 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="t0d-n5-Edw"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="u0a-Wa-mZJ"/>
+                        <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="377-2t-EKX"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="0FZ-lG-bc5"/>
+                        <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="Tf5-ph-HQv"/>
+                        <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="XED-EP-Zbd"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="UYZ-Gs-cox"/>
+                        <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="K9a-UE-lMC"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="9LI-eS-cX7"/>
+                        <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="BKv-H3-nSz"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="QYj-jW-7aT"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="LqK-Nz-pgu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
