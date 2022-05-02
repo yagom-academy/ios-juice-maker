@@ -19,6 +19,27 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func orderStrawberryBananaJuiceButton(_ sender: Any) {
+    }
+    
+    @IBAction func orderMangoKiwiJuiceButton(_ sender: Any) {
+    }
+    
+    @IBAction func orderStrawberryJuiceButton(_ sender: Any) {
+    }
+    
+    @IBAction func orderBananaJuiceButton(_ sender: Any) {
+    }
+    
+    @IBAction func orderPineappleJuiceButton(_ sender: Any) {
+    }
+    
+    @IBAction func orderKiwiJuiceButton(_ sender: Any) {
+    }
+    
+    @IBAction func orderMangoJuiceButton(_ sender: Any) {
+    }
+    
     @IBAction func editStock(_ sender: UIBarButtonItem) {
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") {
             self.navigationController?.pushViewController(controller, animated: true)
