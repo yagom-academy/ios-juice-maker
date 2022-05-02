@@ -7,7 +7,26 @@ enum Menu: Int {
     case strawberryBananaJuice
     case mangoKiwiJuice
     
-    func recipe() -> [(Fruit, Int)] {
+    var juiceName: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기"
+        case .bananaJuice:
+            return "바나나"
+        case .pineappleJuice:
+            return "파인애플"
+        case .kiwiJuice:
+            return "키위"
+        case .mangoJuice:
+            return "망고"
+        case .strawberryBananaJuice:
+            return "딸바"
+        case .mangoKiwiJuice:
+            return "망키"
+        }
+    }
+    
+    var recipe: [(Fruit, Int)] {
         switch self {
         case .strawberryJuice:
             return [(.strawberry, 16)]
