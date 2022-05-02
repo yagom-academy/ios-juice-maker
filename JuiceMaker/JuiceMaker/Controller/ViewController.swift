@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         juiceMaker.makeJuice(flavor: .strawberryBanana)
         strawberryStock.text = checkFruitsStock(name: .strawberry)
         bananaStock.text = checkFruitsStock(name: .banana)
+        showCheckStockMessage()
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
@@ -75,6 +76,16 @@ class ViewController: UIViewController {
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         makeJuiceMessage.addAction(okButton)
         present(makeJuiceMessage, animated: true, completion: nil)
+    }
+    
+    func showCheckStockMessage() {
+        let checkStockMessage = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
+        let yesButton = UIAlertAction(title: "예", style: .default, handler: nil)
+        let noButton = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+        
+        checkStockMessage.addAction(yesButton)
+        checkStockMessage.addAction(noButton)
+        present(checkStockMessage, animated: true, completion: nil)
     }
 }
 
