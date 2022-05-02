@@ -29,6 +29,7 @@ class ViewController: UIViewController {
             showSuccessAlert(juice)
         } catch (let error) {
             someJuiceMaker.fruitStore.handle(error)
+            showFailAlert()
         }
     }
     
@@ -54,12 +55,26 @@ class ViewController: UIViewController {
     }
     
     func showSuccessAlert(_ juice: Juice) {
-        let alert = UIAlertController(title: "\(juice.name) 쥬스 나왔습니다!\n 맛있게 드세요!", message: nil, preferredStyle: .alert)
+        let showAlert = UIAlertController(title: "\(juice.name) 쥬스 나왔습니다!\n 맛있게 드세요!", message: nil, preferredStyle: .alert)
 
         let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
 
-        alert.addAction(ok)
+        showAlert.addAction(ok)
 
-        present(alert, animated: true, completion: nil)
+        present(showAlert, animated: true)
     }
+    
+    func showFailAlert() {
+        let failAlert = UIAlertController(title: "재료가 모자라요.\n 재고를 수정할까요?", message: nil, preferredStyle: .alert)
+        let no = UIAlertAction(title: "아니오", style: .destructive)
+        let yes = UIAlertAction(title: "예", style: .default) { action in
+            if let editMenu = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") {
+                self.navigationController?.pushViewController(editMenu, animated: true)
+            }
+        }
+        failAlert.addAction(no)
+        failAlert.addAction(yes)
+        present(failAlert, animated: true)
+    }
+    
 }
