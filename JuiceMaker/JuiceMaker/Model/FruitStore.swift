@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by BaekGom,Kay. 
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -22,7 +22,6 @@ class FruitStore {
     func subtractFruitAmount(juiceRecipe: Dictionary<FruitKind, Int>) throws {
         var correctCount = 0
         for (fruitName, fruitCount) in juiceRecipe {
-            print(fruitName)
             guard let currentNumber = stock[fruitName] else {
                 throw ErrorCategory.cannotError }
             if currentNumber < fruitCount {
