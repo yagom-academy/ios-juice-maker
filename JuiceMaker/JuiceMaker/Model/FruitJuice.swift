@@ -18,11 +18,11 @@ enum FruitJuice {
         case .pineapple:
             return "파인애플"
         case .strawberryAndBanana:
-            return "딸기 바나나"
+            return "딸바"
         case .mango:
             return "망고"
         case .mangoAndKiwi:
-            return "망고 키위"
+            return "망키"
         }
     }
     
