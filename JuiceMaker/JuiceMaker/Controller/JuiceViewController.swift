@@ -32,9 +32,20 @@ class JuiceViewController: UIViewController {
         guard let orderedJuice = JuiceType(rawValue: sender.tag) else {
             return
         }
-
+        
         let juice = Drink(juice: orderedJuice)
-        juiceMaker.make(juice)
+        let result = juiceMaker.make(juice)
+        
+        switch result {
+        case .success(let juice):
+            print(juice)
+        case .failure(let error):
+            switch error {
+            case .notEnoughIngredient(let errorStr):
+                print(errorStr)
+            }
+        }
+
         updateValue()
     }
 }

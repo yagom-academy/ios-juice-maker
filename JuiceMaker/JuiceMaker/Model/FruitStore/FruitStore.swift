@@ -40,7 +40,7 @@ extension FruitStore {
     func consume(_ stock: FruitStock) throws {
         try stock.forEach { (fruit, amount) in
             if count(fruit) < amount {
-                throw StockError.notEnoughIngredient
+                throw StockError.notEnoughIngredient("재료가 모자라요. 재고를 수정할까요?")
             }
             self.fruits.updateValue(count(fruit) - amount, forKey: fruit)
         }

@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 protocol DrinkMakerable {
-    func make(_ beverage: Drink) -> Result<Drink, StockError>
+    func make(_ beverage: Drink) -> Result<JuiceType, StockError>
 }

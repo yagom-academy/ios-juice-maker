@@ -7,9 +7,6 @@
 
 import Foundation
 
-enum StockError: String, LocalizedError {
-    case notEnoughIngredient = "재료가 모자라요. 재고를 수정할까요?"
-    var errorDescription: String? {
-        self.rawValue
-    }
+enum StockError: Error {
+    case notEnoughIngredient(String)
 }
