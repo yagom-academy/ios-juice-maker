@@ -16,6 +16,7 @@ enum Juice {
     case strawberryBanana
     case mangoKiwi
 
+    
         var recipe: [Fruits : Int] {
             switch self {
             case .strawberry:

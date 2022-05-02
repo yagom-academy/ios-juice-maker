@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var strawberryStock: UILabel!
     @IBOutlet weak var bananaStock: UILabel!
     @IBOutlet weak var pineappleStock: UILabel!
@@ -28,7 +28,6 @@ class ViewController: UIViewController {
         kiwiStock.text = checkFruitsStock(name: .kiwi)
         mangoStock.text = checkFruitsStock(name: .mango)
     }
-
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
         juiceMaker.makeJuice(flavor: .strawberryBanana)
@@ -66,9 +65,16 @@ class ViewController: UIViewController {
         juiceMaker.makeJuice(flavor: .mango)
         mangoStock.text = checkFruitsStock(name: .mango)
     }
-  
+    
     @IBAction func changeStockButton(_ sender: UIBarButtonItem) {
         
+    }
+    
+    func showMakeJuiceMessage(from message: String) {
+        let makeJuiceMessage = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        makeJuiceMessage.addAction(okButton)
+        present(makeJuiceMessage, animated: true, completion: nil)
     }
 }
 
