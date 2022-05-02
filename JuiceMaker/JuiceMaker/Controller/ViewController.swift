@@ -2,13 +2,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var StrawberryStockLabel: UILabel!
-    @IBOutlet weak var BananaStockLabel: UILabel!
-    @IBOutlet weak var PineappleStockLabel: UILabel!
-    @IBOutlet weak var KiwiStockLabel: UILabel!
-    @IBOutlet weak var MangoStockLabel: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
 
-    private var store = JuiceMaker()
+    private var juice = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,15 +16,15 @@ class ViewController: UIViewController {
     }
 
     private func updateStock() {
-        StrawberryStockLabel.text = store.stockCount(of: .strawberry)
-        BananaStockLabel.text = store.stockCount(of: .banana)
-        PineappleStockLabel.text = store.stockCount(of: .pineapple)
-        KiwiStockLabel.text = store.stockCount(of: .kiwi)
-        MangoStockLabel.text = store.stockCount(of: .mango)
+        strawberryStockLabel.text = juice.stockCount(of: .strawberry)
+        bananaStockLabel.text = juice.stockCount(of: .banana)
+        pineappleStockLabel.text = juice.stockCount(of: .pineapple)
+        kiwiStockLabel.text = juice.stockCount(of: .kiwi)
+        mangoStockLabel.text = juice.stockCount(of: .mango)
     }
     
-    private func showCompleteAlert(juice: String) {
-        let completeAlert = UIAlertController(title: "쥬스 제조 완료", message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+    private func showCompleteAlert(juice: Menu) {
+        let completeAlert = UIAlertController(title: "쥬스 제조 완료", message: "\(juice.juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "확인", style: .default)
         
         completeAlert.addAction(yesAction)
@@ -50,14 +50,14 @@ class ViewController: UIViewController {
         guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
     
         do{
-            try store.make(juiceMenu: juiceMenu)
+            try juice.make(juiceMenu: juiceMenu)
         } catch JuiceMakerError.outOfStock {
             showOutOfStockAlert()
         } catch {
             print("알 수 없는 에러입니다.")
         }
         
-        showCompleteAlert(juice: juiceMenu.juiceName)
+        showCompleteAlert(juice: juiceMenu)
         updateStock()
     }
     
