@@ -10,16 +10,18 @@ import Foundation
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func makeJuice(flavor: Juice) {
+    func makeJuice(flavor: Juice) -> Bool {
         let recipe = flavor.recipe
         
         do {
             try fruitStore.checkInventory(about: recipe)
             fruitStore.consumeFruitsStock(by: recipe)
+            return true
         } catch FruitStoreError.outOfStock {
             print("재고가 없습니다")
+            return false
         } catch {
-            print("")
+            return false
         }
     }
 }

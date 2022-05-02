@@ -30,40 +30,39 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(flavor: .strawberryBanana)
+        decideMessage(fruit: .strawberryBanana)
         strawberryStock.text = checkFruitsStock(name: .strawberry)
         bananaStock.text = checkFruitsStock(name: .banana)
-        decideMessage(fruit: .strawberryBanana)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(flavor: .mangoKiwi)
+        decideMessage(fruit: .mangoKiwi)
         mangoStock.text = checkFruitsStock(name: .mango)
         kiwiStock.text = checkFruitsStock(name: .kiwi)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(flavor: .strawberry)
+        decideMessage(fruit: .strawberry)
         strawberryStock.text = checkFruitsStock(name: .strawberry)
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(flavor: .banana)
+        decideMessage(fruit: .banana)
         bananaStock.text = checkFruitsStock(name: .banana)
     }
     
     @IBAction func orderPineapplerJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(flavor: .pineapple)
+        decideMessage(fruit: .pineapple)
         pineappleStock.text = checkFruitsStock(name: .pineapple)
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(flavor: .kiwi)
+        decideMessage(fruit: .kiwi)
         kiwiStock.text = checkFruitsStock(name: .kiwi)
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(flavor: .mango)
+        decideMessage(fruit: .mango)
         mangoStock.text = checkFruitsStock(name: .mango)
     }
     
@@ -89,29 +88,11 @@ class ViewController: UIViewController {
     }
     
     func decideMessage(fruit: Juice) {
-        let recipe = fruit.recipe
-        
-        if checkMakeJuice(by: recipe) {
+        if juiceMaker.makeJuice(flavor: fruit) {
             showMakeJuiceMessage(from: "dd")
         } else {
             showCheckStockMessage()
         }
     }
-    
-    func checkMakeJuice(by fruit: [Fruits: Int]) -> Bool {
-        for (name, quantity) in fruit{
-            return checkMakeJuiceFlag(name: name, quantity: quantity)
-        }
-        return true
-    }
-    
-    func checkMakeJuiceFlag(name: Fruits, quantity: Int) -> Bool {
-        if let fruitsStock = juiceMaker.fruitStore.fruits[name],fruitsStock >= quantity {
-            return true
-        } else {
-            return false
-        }
-    }
-    
 }
 

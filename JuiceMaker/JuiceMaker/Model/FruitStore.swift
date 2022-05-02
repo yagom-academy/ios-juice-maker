@@ -34,7 +34,7 @@ final class FruitStore {
             guard let fruitsStock = fruits[name], fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
         }
     }
-    
+
     func checkFruitsStock(name: Fruits) -> String {
         guard let fruitsStock = fruits[name] else { return " " }
         return String(fruitsStock)
