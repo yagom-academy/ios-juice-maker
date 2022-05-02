@@ -91,7 +91,7 @@ class ViewController: UIViewController {
     
     func decideMessage(fruit: Juice) {
         if juiceMaker.makeJuice(flavor: fruit) {
-            showMakeJuiceMessage(from: "dd")
+            showMakeJuiceMessage(from: "\(fruit.name) 나왔습니다! 맛있게 드세요!")
         } else {
             showCheckStockMessage()
         }
