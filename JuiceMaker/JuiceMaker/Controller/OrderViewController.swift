@@ -40,7 +40,9 @@ class OrderViewController: UIViewController {
 
         updateValue()
     }
-    
+}
+
+extension OrderViewController {
     func updateValue() {
         self.strawberryLabel.text = juiceMaker.fruitStore.count(.strawberry).description
         self.bananaLabel.text = juiceMaker.fruitStore.count(.banana).description
@@ -52,11 +54,7 @@ class OrderViewController: UIViewController {
     func showWarningAlert(_ message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let positiveAction = UIAlertAction(title: "예", style: .default) { _ in
-            guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "StoreViewController") else {
-                return
-            }
-            viewController.modalTransitionStyle = .coverVertical
-            self.present(viewController, animated: true)
+            self.move(to: "StoreViewController")
         }
         let negativeAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         alertController.addAction(positiveAction)
@@ -64,4 +62,3 @@ class OrderViewController: UIViewController {
         self.present(alertController, animated: false)
     }
 }
-
