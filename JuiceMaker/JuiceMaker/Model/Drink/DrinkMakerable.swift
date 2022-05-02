@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DrinkMakerable {
-    func make(_ beverage: Drink)
+    func make(_ beverage: Drink) -> Result<Drink, StockError>
 }
