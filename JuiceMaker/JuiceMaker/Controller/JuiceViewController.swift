@@ -17,8 +17,16 @@ class JuiceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateValue()
     }
     
+    func updateValue() {
+        self.strawberryLabel.text = juiceMaker.fruitStore.count(.strawberry).description
+        self.bananaLabel.text = juiceMaker.fruitStore.count(.banana).description
+        self.pineappleLabel.text = juiceMaker.fruitStore.count(.pineapple).description
+        self.kiwiLabel.text = juiceMaker.fruitStore.count(.kiwi).description
+        self.mangoLabel.text = juiceMaker.fruitStore.count(.mango).description
+    }
     
     @IBAction func orderJuice(_ sender: UIButton) {
         guard let orderedJuice = JuiceType(rawValue: sender.tag) else {
@@ -27,6 +35,7 @@ class JuiceViewController: UIViewController {
 
         let juice = Drink(juice: orderedJuice)
         juiceMaker.make(juice)
+        updateValue()
     }
 }
 
