@@ -8,7 +8,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
 
-    private var juice = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +16,11 @@ class ViewController: UIViewController {
     }
 
     private func updateStock() {
-        strawberryStockLabel.text = juice.stockCount(of: .strawberry)
-        bananaStockLabel.text = juice.stockCount(of: .banana)
-        pineappleStockLabel.text = juice.stockCount(of: .pineapple)
-        kiwiStockLabel.text = juice.stockCount(of: .kiwi)
-        mangoStockLabel.text = juice.stockCount(of: .mango)
+        strawberryStockLabel.text = juiceMaker.stockCount(of: .strawberry)
+        bananaStockLabel.text = juiceMaker.stockCount(of: .banana)
+        pineappleStockLabel.text = juiceMaker.stockCount(of: .pineapple)
+        kiwiStockLabel.text = juiceMaker.stockCount(of: .kiwi)
+        mangoStockLabel.text = juiceMaker.stockCount(of: .mango)
     }
     
     private func showCompleteAlert(juice: Menu) {
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
     
         do{
-            try juice.make(juiceMenu: juiceMenu)
+            try juiceMaker.make(juiceMenu: juiceMenu)
         } catch JuiceMakerError.outOfStock {
             showOutOfStockAlert()
         } catch {
