@@ -7,6 +7,7 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
+    var juiceMaker: JuiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -26,7 +27,6 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         
     }
-    var juiceMaker: JuiceMaker = JuiceMaker()
     
     @IBAction func orderFruitJuice(_ sender: UIButton) {
         switch sender {
@@ -49,8 +49,22 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func alertResult(_ result: (fruitJuice: FruitJuice, result: Bool)) {
-        print(result.fruitJuice)
-        print(result.result)
+    func alertResult(_ alertInfomation: (fruitJuice: FruitJuice, result: Bool)) {
+        if alertInfomation.result {
+            let alert = UIAlertController(title: nil, message: "***쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "예", style: .default) { UIAlertAction in
+            }
+            let noAction = UIAlertAction(title: "아니오", style: .default) { UIAlertAction in
+            }
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            present(alert, animated: true)
+        }
     }
 }
