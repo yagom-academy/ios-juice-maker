@@ -26,6 +26,10 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(forName: Notification.Name("fruitInventory"), object: nil , queue: nil) { Notification in
+            guard let inventory = Notification.userInfo as? Dictionary<Fruit, Int>? else {
+                return
+            }
+            self.updateFruitInventory(inventory: inventory)
         }
     }
     
@@ -73,5 +77,16 @@ class JuiceMakerViewController: UIViewController {
             return
         }
         present(modalVC, animated: true)
+    }
+    
+    func updateFruitInventory(inventory: Dictionary<Fruit, Int>?){
+        guard let unwrappedInventory = inventory else {
+            return
+        }
+        strawberryStockLabel.text = String(unwrappedInventory[.strawberry] ?? 0)
+        bananaStockLabel.text = String(unwrappedInventory[.banana] ?? 0)
+        pineappleStockLabel.text = String(unwrappedInventory[.pineapple] ?? 0)
+        kiwiStockLabel.text = String(unwrappedInventory[.kiwi] ?? 0)
+        mangoStockLabel.text = String(unwrappedInventory[.mango] ?? 0)
     }
 }
