@@ -1,13 +1,32 @@
-enum FruitJuice: String {
-    case strawberry = "딸기"
-    case banana = "바나나"
-    case kiwi = "키위"
-    case pineapple = "파인애플"
-    case strawberryAndBanana = "딸기 바나나"
-    case mango = "망고"
-    case mangoAndKiwi = "망고 키위"
+enum FruitJuice {
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case strawberryAndBanana
+    case mango
+    case mangoAndKiwi
     
-    func chooseRecipe() -> Fruits {
+    var name: String {
+        switch self {
+        case .strawberry:
+            return "딸기"
+        case .banana:
+            return "바나나"
+        case .kiwi:
+            return "키위"
+        case .pineapple:
+            return "파인애플"
+        case .strawberryAndBanana:
+            return "딸기 바나나"
+        case .mango:
+            return "망고"
+        case .mangoAndKiwi:
+            return "망고 키위"
+        }
+    }
+    
+    var recipe: Fruits {
         switch self {
         case .strawberry:
             return Fruits(strawberry: 16)

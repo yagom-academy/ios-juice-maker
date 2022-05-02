@@ -13,7 +13,7 @@ struct JuiceMaker {
         // TODO: UI에서 쥬스 이름을 표시하게끔 다시 짜 줘야 한다.
         switch result {
         case .success(let juice):
-            print(juice.rawValue)
+            print(juice.name)
         case .failure(let error):
             print(error.errorDescription)
         }

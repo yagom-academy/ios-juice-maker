@@ -13,11 +13,27 @@ class FruitStore {
 
     // MARK: - 쥬스 제작 관련 메서드
     func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
-        let recipe = menu.chooseRecipe()
-        guard fruits.hasEnoughFruits(toMake: recipe) else {
+        let recipe = menu.recipe
+        guard hasEnoughFruits(toMake: recipe) else {
             return .failure(.insufficientFruit)
         }
-        fruits.useFruits(toMake: recipe)
+        useFruits(toMake: recipe)
         return .success(menu)
+    }
+    
+    private func hasEnoughFruits(toMake recipe: Fruits) -> Bool {
+        return (fruits.strawberry >= recipe.strawberry
+                && fruits.banana >= recipe.banana
+                && fruits.kiwi >= recipe.kiwi
+                && fruits.pineapple >= recipe.pineapple
+                && fruits.mango >= recipe.mango)
+    }
+    
+    private func useFruits(toMake recipe: Fruits) {
+        fruits.strawberry -= recipe.strawberry
+        fruits.banana -= recipe.banana
+        fruits.kiwi -= recipe.kiwi
+        fruits.pineapple -= recipe.pineapple
+        fruits.mango -= recipe.mango
     }
 }
