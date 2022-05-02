@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         do {
             try someJuiceMaker.checkFruitAvailable(for: juice)
             try someJuiceMaker.checkPossibilityOfMaking(juice)
+            showSuccessAlert(juice)
         } catch (let error) {
             someJuiceMaker.fruitStore.handle(error)
         }
@@ -50,5 +51,15 @@ class ViewController: UIViewController {
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") {
             self.navigationController?.pushViewController(controller, animated: true)
         }
+    }
+    
+    func showSuccessAlert(_ juice: Juice) {
+        let alert = UIAlertController(title: "\(juice.name) 쥬스 나왔습니다!\n 맛있게 드세요!", message: nil, preferredStyle: .alert)
+
+        let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+
+        alert.addAction(ok)
+
+        present(alert, animated: true, completion: nil)
     }
 }
