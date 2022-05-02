@@ -35,4 +35,8 @@ class FruitStore {
             stock[fruitName] = fruit + amount
         }
     }
+    
+    func returnStock() -> Dictionary<FruitKind, Int>{
+        return stock
+    }
 }

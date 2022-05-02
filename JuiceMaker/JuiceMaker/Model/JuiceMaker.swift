@@ -19,4 +19,13 @@ struct JuiceMaker {
             print("\(ErrorCategory.cannotError.message)")
         }
     }
+    
+    func fruitCount(fruitName: FruitKind) -> String{
+        let fruitCount = fruitStore.returnStock()
+        if let selectedFruitCount = fruitCount[fruitName] {
+            return  String(selectedFruitCount)
+        } else {
+            return "0"
+        }
+    }
 }

@@ -13,7 +13,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MakerViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,6 +221,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaCount" destination="gvk-pA-Lw5" id="yVH-qK-GQX"/>
+                        <outlet property="kiwiCount" destination="FZq-de-TJG" id="X32-SO-33J"/>
+                        <outlet property="mangoCount" destination="3Ce-SU-JeH" id="8wN-oF-Bqq"/>
+                        <outlet property="pineappleCount" destination="ccQ-Dk-PuY" id="MjB-AR-yJk"/>
+                        <outlet property="strawberryCount" destination="Qas-vP-td6" id="H19-qV-afw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
