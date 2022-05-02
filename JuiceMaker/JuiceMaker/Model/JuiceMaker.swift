@@ -10,7 +10,7 @@ import Foundation
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func makeJuice(flavor: Juice)throws {
+    func makeJuice(flavor: Juice) {
         let recipe = flavor.recipe
         
         do {
@@ -19,6 +19,8 @@ struct JuiceMaker {
             }
         } catch FruitStoreError.outOfStock {
             print("재고가 없습니다")
+        } catch {
+            print("")
         }
     }
 }
