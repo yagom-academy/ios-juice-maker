@@ -31,7 +31,7 @@ final class FruitStore {
     
     func checkInventory(about fruit: [Fruits: Int]) throws {
         for (name, quantity) in fruit{
-        guard let fruitsStock = fruits[name], fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
+            guard let fruitsStock = fruits[name], fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
         }
     }
     

@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         juiceMaker.makeJuice(flavor: .strawberryBanana)
         strawberryStock.text = checkFruitsStock(name: .strawberry)
         bananaStock.text = checkFruitsStock(name: .banana)
-        showCheckStockMessage()
+        decideMessage(fruit: .strawberryBanana)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
@@ -87,5 +87,31 @@ class ViewController: UIViewController {
         checkStockMessage.addAction(noButton)
         present(checkStockMessage, animated: true, completion: nil)
     }
+    
+    func decideMessage(fruit: Juice) {
+        let recipe = fruit.recipe
+        
+        if checkMakeJuice(by: recipe) {
+            showMakeJuiceMessage(from: "dd")
+        } else {
+            showCheckStockMessage()
+        }
+    }
+    
+    func checkMakeJuice(by fruit: [Fruits: Int]) -> Bool {
+        for (name, quantity) in fruit{
+            return checkMakeJuiceFlag(name: name, quantity: quantity)
+        }
+        return true
+    }
+    
+    func checkMakeJuiceFlag(name: Fruits, quantity: Int) -> Bool {
+        if let fruitsStock = juiceMaker.fruitStore.fruits[name],fruitsStock >= quantity {
+            return true
+        } else {
+            return false
+        }
+    }
+    
 }
 
