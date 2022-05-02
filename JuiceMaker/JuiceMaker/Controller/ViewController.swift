@@ -31,33 +31,19 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func makeJuiceButton(_ sender: UIButton) {
+        guard let juice = Juice(rawValue: sender.tag) else { return }
+        
+        make(juice)
+        updateFruitStock()
+    }
+    
     func updateFruitStock() {
         strawberryLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
         bananaLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
         pineappleLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
         kiwiLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.kiwi] ?? 0)
         mangoLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.mango] ?? 0)
-    }
-    
-    @IBAction func orderStrawberryBananaJuiceButton(_ sender: Any) {
-    }
-    
-    @IBAction func orderMangoKiwiJuiceButton(_ sender: Any) {
-    }
-    
-    @IBAction func orderStrawberryJuiceButton(_ sender: Any) {
-    }
-    
-    @IBAction func orderBananaJuiceButton(_ sender: Any) {
-    }
-    
-    @IBAction func orderPineappleJuiceButton(_ sender: Any) {
-    }
-    
-    @IBAction func orderKiwiJuiceButton(_ sender: Any) {
-    }
-    
-    @IBAction func orderMangoJuiceButton(_ sender: Any) {
     }
     
     @IBAction func editStock(_ sender: UIBarButtonItem) {
