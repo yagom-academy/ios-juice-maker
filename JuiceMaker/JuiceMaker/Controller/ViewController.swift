@@ -18,8 +18,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
+    
+    func updateInventory() {
+        strawberryCount.text = String(juiceMaker.store.fruitsInventory[.strawberry]!)
+        bananaCount.text = String(juiceMaker.store.fruitsInventory[.banana]!)
+        pineappleCount.text = String(juiceMaker.store.fruitsInventory[.pineapple]!)
+        kiwiCount.text = String(juiceMaker.store.fruitsInventory[.kiwi]!)
+        mangoCount.text = String(juiceMaker.store.fruitsInventory[.mango]!)
+    }
+    
     
     func order(juice: JuiceMaker.Menu) {
         do {
@@ -28,8 +36,8 @@ class ViewController: UIViewController {
         } catch {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
+        updateInventory()
     }
-    
     
     func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)

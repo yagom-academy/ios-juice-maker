@@ -14,7 +14,7 @@ class FruitStore {
     }
     
     typealias FruitsInventory = [Fruit: Int]
-    private var fruitsInventory: FruitsInventory = [:]
+    private(set) var fruitsInventory: FruitsInventory = [:]
     
     init(initialInventory:Int = 10) {
         Fruit.allCases.forEach { fruitsInventory[$0] = initialInventory }
