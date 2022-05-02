@@ -175,21 +175,9 @@
                                                         </state>
                                                         <buttonConfiguration key="configuration" style="plain" titleAlignment="center">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="딸기쥬스">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content=" ">
+                                                                <fragment content="딸기쥬스 주문">
                                                                     <attributes>
                                                                         <font key="NSFont" metaFont="system" size="20"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content="주문">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
@@ -213,7 +201,7 @@
                                                             <attributedString key="attributedTitle">
                                                                 <fragment content="바나나쥬스">
                                                                     <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSFont" metaFont="system" size="20"/>
                                                                         <font key="NSOriginalFont" metaFont="system" size="20"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
@@ -226,7 +214,7 @@
                                                                 </fragment>
                                                                 <fragment content="주문">
                                                                     <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSFont" metaFont="system" size="20"/>
                                                                         <font key="NSOriginalFont" metaFont="system" size="20"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
@@ -249,33 +237,9 @@
                                                         </state>
                                                         <buttonConfiguration key="configuration" style="plain">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="파인애플">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content=" ">
+                                                                <fragment content="파인애플 쥬스 주문">
                                                                     <attributes>
                                                                         <font key="NSFont" metaFont="system" size="20"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content="쥬스">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content=" ">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="system" size="20"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content="주문">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
@@ -297,21 +261,9 @@
                                                         </state>
                                                         <buttonConfiguration key="configuration" style="plain">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="키위쥬스">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content=" ">
+                                                                <fragment content="키위쥬스 주문">
                                                                     <attributes>
                                                                         <font key="NSFont" metaFont="system" size="20"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content="주문">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
@@ -333,21 +285,9 @@
                                                         </state>
                                                         <buttonConfiguration key="configuration" style="plain">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="망고쥬스">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content=" ">
+                                                                <fragment content="망고쥬스 주문">
                                                                     <attributes>
                                                                         <font key="NSFont" metaFont="system" size="20"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                                <fragment content="주문">
-                                                                    <attributes>
-                                                                        <font key="NSFont" size="20" name=".AppleSDGothicNeoI-Regular"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
