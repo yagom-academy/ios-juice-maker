@@ -139,9 +139,62 @@
 # [STEP 2]
 
 ## 고민한점
+- ### `화면전환`
+    - 처음 `네비게이션`을 사용해서 화면전환을 할지, `모달` 방식을 이용해서 화면전환을 할지 고민했었습니다. 
+	- `네비게이션`은 주로 정보의 깊이와 흐름을 가지는 구조에서 사용되고, `모달`은 화면 전체를 정보의 흐름에서 벗어나 전환해주는 것이라고 알고있습니다.
+	- 하지만, 재고를 변경하는 것은 정보의 흐름에서 벗어나지 않고 메인 스토리보드의 정보를 흐름에 따라 변경한다 생각해 `네비게이션`을 사용하였습니다.
+
+
+- ### `얼럿 타입`
+	- 재고가 부족할 때 나타나는 아니오 얼럿구문은 `.cancel`와 `.destructive`중 무엇을 사용해야 할지 고민했습니다.
+	- `.destructive`는 데이터를 파괴하거나 변경할 때 사용한다고 나와있는데, 아니오를 누를 경우, 데이터의 변환없이 화면을 다시 띄어주면 되는 것이어서 `.cancel`스타일을 선택하였습니다.
+
+
+- ### `IBAction button`
+	- 처음에는 각 버튼에 `IBAction` 이벤트를 연결해주어 총 일곱개의 `IBAction` 이벤트가 생성되었습니다.
+	- 너무 많은 이벤트가 생성이 되어 비효율적이라고 생각하였습니다.
+	- 이를 한곳으로 모을 수 있을까라는 생각에 `tag`와 `currentTitle`이라는 메소드를 알게되었고, `currentTitle`을 사용하여 적용해보았습니다.
+
+- ### `텍스트 레이블 언래핑`
+	- 텍스트 레이블을 강제 언래핑을 하는 이유는 개발자가 제대로 된 레이블에 연결을 하기 때문에 강제 언래핑을 사용하는 것으로 알고 있습니다.
+	- 하지만, 프로젝트 제약사항에 `!`는 최대한 사용하지 말라는 문구가 있어서 `optional binding(?)`를 사용해 언래핑을 하였습니다.
+	- UILabel이 다른 코드들을 보았을 때 강제 언래핑을 많이 사용하는데 현 프로젝트에서도 강제 언래핑을 사용해도 될까요?
+
+
+
+- ### `error handling`
+	- STEP1에서 `error handling`을 할 때, 재고가 부족하면 `localized Error`타입을 통해 에러 메세지를 출력해주었는데, STEP2를 진행하면서 출력해줄 필요가 없다고 생각하여 `FruitStore`내 `handle`함수에서 `String`으로 반환값을 주었는데, `handle`함수의 결과가 사용되지 않는다고 노란색 에러가 뜹니다.
+	- 이럴 때에는 반환값을 `String`으로 주는 것이 나을까요? 아니면 출력을 하도록 그냥 두는것이 나을까요?🤔
+
+- ### `함수 은닉화`
+	- `JuiceMaker`구조체 내에 있는 `make`함수를 `ViewController`로 빼내서 사용을 하였는데, 이를 위해 `JuiceMaker`의 메소드들의 은닉화를 풀어줘야만 했습니다.
+	- 은닉화를 풀지않고 하는 방법이 있을까요?
+
+- ### `singleton`
+	- 싱글톤 디자인 패턴을 적용해보려고 했는데, 안의 인스턴스 멤버를 사용할 수 없다고 합니다.
+	- 만약 싱글톤 디자인 패턴을 적용시키려면 전체적인 리팩토링이 필요할까요?
+	- 아니면 저희가 적용을 제대로 못시킨 걸까요?
+
+>```swift
+>extension JuiceMaker {
+>    static let warehouse = JuiceMaker.fruitStore.fruitWarehouse
+>}
+><오류메시지>
+>Cannot use instance member 'fruitStore' within property initializer; property initializers run >before 'self' is available
+>```
+
+
+- ### `notification`
+	- 최근에 배운 `notification`을 적용해보려고 했는데 현재 상황에서는 `notification`이 사용될 필요가 없다고 생각하여 사용하지 않았습니다. 
+	- 만약 `notification`을 사용한다면 `FruitStockViewController` 뷰 컨트롤러에서 데이터를 발송하면 `main ViewController`가 받는 방법으로 사용해야 될 것 같습니다.
+	- 제이크의 생각은 어떠한가요?🤔
+
 
 
 ## 배운개념
+- `Iterface Builder`, `IBOutlet`, `IBAction`, `sender.currentTitle`, `sender.tag`
+- `navigation`, `modal`, `auto layout`
+- `alert`, `UIKit`
 
 # [STEP 3]
 
