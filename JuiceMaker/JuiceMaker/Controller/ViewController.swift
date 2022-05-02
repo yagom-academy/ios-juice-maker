@@ -8,6 +8,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let someJuiceMaker = JuiceMaker()
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -17,6 +19,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    func make(_ juice: Juice) {
+        do {
+            try someJuiceMaker.checkFruitAvailable(for: juice)
+            try someJuiceMaker.checkPossibilityOfMaking(juice)
+        } catch (let error) {
+            someJuiceMaker.fruitStore.handle(error)
+        }
     }
     
     @IBAction func orderStrawberryBananaJuiceButton(_ sender: Any) {
