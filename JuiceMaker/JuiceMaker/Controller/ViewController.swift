@@ -13,6 +13,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    @IBAction func editStock(_ sender: UIBarButtonItem) {
+        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") {
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
-
