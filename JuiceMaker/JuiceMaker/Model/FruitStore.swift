@@ -8,16 +8,16 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruitInventory: [Fruit:Int] = [:] {
+    private(set) var fruitsStock: [Fruit:Int] = [:] {
         didSet {
-            NotificationCenter.default.post(name: Notification.Name("fruitInventory"), object: nil, userInfo: fruitInventory)
+            NotificationCenter.default.post(name: Notification.Name("fruitInventory"), object: nil, userInfo: fruitsStock)
         }
     }
     let initialAmount: Int
     
     init(initialAmount: Int) {
         self.initialAmount = initialAmount
-        fruitInventory = [
+        fruitsStock = [
             .strawberry: initialAmount,
             .banana: initialAmount,
             .kiwi: initialAmount,
@@ -27,13 +27,13 @@ class FruitStore {
     }
     
     private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
-        guard let stock = fruitInventory[fruit] else {
+        guard let stock = fruitsStock[fruit] else {
             throw JuiceMakerError.invalidOrder
         }
         guard stock >= amount else {
             return false
         }
-        fruitInventory[fruit] = stock - amount
+        fruitsStock[fruit] = stock - amount
         return true
     }
     

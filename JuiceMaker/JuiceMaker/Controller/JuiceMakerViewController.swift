@@ -26,11 +26,12 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(forName: Notification.Name("fruitInventory"), object: nil , queue: nil) { Notification in
-            guard let inventory = Notification.userInfo as? Dictionary<Fruit, Int>? else {
+            guard let currentStock = Notification.userInfo as? Dictionary<Fruit, Int>? else {
                 return
             }
-            self.updateFruitInventory(inventory: inventory)
+            self.updateFruitsStockLabels(currentStock)
         }
+        updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
     @IBAction func orderFruitJuice(_ sender: UIButton) {
@@ -79,14 +80,14 @@ class JuiceMakerViewController: UIViewController {
         present(modalVC, animated: true)
     }
     
-    func updateFruitInventory(inventory: Dictionary<Fruit, Int>?){
-        guard let unwrappedInventory = inventory else {
+    func updateFruitsStockLabels(_ stock: Dictionary<Fruit, Int>?){
+        guard let unwrappedStock = stock else {
             return
         }
-        strawberryStockLabel.text = String(unwrappedInventory[.strawberry] ?? 0)
-        bananaStockLabel.text = String(unwrappedInventory[.banana] ?? 0)
-        pineappleStockLabel.text = String(unwrappedInventory[.pineapple] ?? 0)
-        kiwiStockLabel.text = String(unwrappedInventory[.kiwi] ?? 0)
-        mangoStockLabel.text = String(unwrappedInventory[.mango] ?? 0)
+        strawberryStockLabel.text = String(unwrappedStock[.strawberry] ?? 0)
+        bananaStockLabel.text = String(unwrappedStock[.banana] ?? 0)
+        pineappleStockLabel.text = String(unwrappedStock[.pineapple] ?? 0)
+        kiwiStockLabel.text = String(unwrappedStock[.kiwi] ?? 0)
+        mangoStockLabel.text = String(unwrappedStock[.mango] ?? 0)
     }
 }

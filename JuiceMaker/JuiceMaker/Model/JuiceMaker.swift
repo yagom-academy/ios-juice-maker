@@ -24,4 +24,8 @@ struct JuiceMaker {
         }
         return (fruitJuice, true)
     }
+    
+    func requestCurrentStock() -> [Fruit:Int]? {
+        return fruitStore.fruitsStock
+    }
 }
