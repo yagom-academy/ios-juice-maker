@@ -15,7 +15,12 @@ class MakeJuiceViewController: UIViewController {
     @IBOutlet weak var orderMangoJuiceButton: UIButton!
     @IBOutlet weak var orderMangoAndKiwiJuiceButton: UIButton!
     @IBOutlet weak var addFruitsButton: UIBarButtonItem!
-    
+    @IBOutlet weak var strawberryLabel: UILabel!
+    @IBOutlet weak var bananaLabel: UILabel!
+    @IBOutlet weak var pineappleLabel: UILabel!
+    @IBOutlet weak var kiwiLabel: UILabel!
+    @IBOutlet weak var mangoLabel: UILabel!
+
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
