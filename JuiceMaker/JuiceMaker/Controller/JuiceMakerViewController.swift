@@ -26,26 +26,31 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    var juiceMaker: JuiceMaker = JuiceMaker()
     
     @IBAction func orderFruitJuice(_ sender: UIButton) {
         switch sender {
         case strawberryBananaJuiceButton:
-            print("StrawberryBananaJuice")
+            alertResult(juiceMaker.takeOrder(.strawberryAndBananaJuice))
         case mangoKiwiJuiceButton:
-            print("MangoKiwiJuice")
+            alertResult(juiceMaker.takeOrder(.mangoAndKiwiJuice))
         case strawberryJuiceButton:
-            print("StrawberryJuice")
+            alertResult(juiceMaker.takeOrder(.strawberryJuice))
         case bananaJuiceButton:
-            print("BananaJuice")
+            alertResult(juiceMaker.takeOrder(.bananaJuice))
         case pineappleJuiceButton:
-            print("PineappleJuice")
+            alertResult(juiceMaker.takeOrder(.pineappleJuice))
         case kiwiJuiceButton:
-            print("KiwiJuice")
+            alertResult(juiceMaker.takeOrder(.kiwiJuice))
         case mangoJuiceButton:
-            print("MangoJuice")
+            alertResult(juiceMaker.takeOrder(.mangoJuice))
         default:
             break
         }
     }
+    
+    func alertResult(_ result: (fruitJuice: FruitJuice, result: Bool)) {
+        print(result.fruitJuice)
+        print(result.result)
+    }
 }
-

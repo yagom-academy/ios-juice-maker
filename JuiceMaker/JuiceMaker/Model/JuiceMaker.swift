@@ -10,11 +10,11 @@ import Foundation
 struct JuiceMaker {
     private let fruitStore = FruitStore(initialAmount: 10)
     
-    func takeOrder(_ fruitJuice: FruitJuice) {
+    func takeOrder(_ fruitJuice: FruitJuice) -> (FruitJuice, Bool) {
         do {
             guard let completedFruitJuice = try fruitStore.make(fruitJuice) else {
                 print("재고가 부족합니다.")
-                return 
+                return (fruitJuice, false)
             }
             print("\(completedFruitJuice)가 완성되었습니다.")
         } catch JuiceMakerError.invalidOrder {
@@ -22,5 +22,6 @@ struct JuiceMaker {
         } catch {
             print(error)
         }
+        return (fruitJuice, true)
     }
 }
