@@ -8,7 +8,11 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruitInventory: [Fruit:Int] = [:]
+    private var fruitInventory: [Fruit:Int] = [:] {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name("fruitInventory"), object: nil, userInfo: fruitInventory)
+        }
+    }
     let initialAmount: Int
     
     init(initialAmount: Int) {

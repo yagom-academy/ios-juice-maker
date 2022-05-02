@@ -25,7 +25,8 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(forName: Notification.Name("fruitInventory"), object: nil , queue: nil) { Notification in
+        }
     }
     
     @IBAction func orderFruitJuice(_ sender: UIButton) {
