@@ -66,6 +66,9 @@ class ViewController: UIViewController {
         juiceMaker.makeJuice(flavor: .mango)
         mangoStock.text = checkFruitsStock(name: .mango)
     }
-    
+  
+    @IBAction func changeStockButton(_ sender: UIBarButtonItem) {
+        
+    }
 }
 
