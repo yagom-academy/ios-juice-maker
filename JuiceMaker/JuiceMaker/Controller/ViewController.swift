@@ -14,9 +14,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
     
+    let juiceMaker = JuiceMaker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        strawberryStock.text = juiceMaker.fruitStore.checkFruitsStock(name: .strawberry)
+        bananaStock.text = juiceMaker.fruitStore.checkFruitsStock(name: .banana)
+        pineappleStock.text = juiceMaker.fruitStore.checkFruitsStock(name: .pineapple)
+        kiwiStock.text = juiceMaker.fruitStore.checkFruitsStock(name: .kiwi)
+        mangoStock.text = juiceMaker.fruitStore.checkFruitsStock(name: .mango)
     }
 
     

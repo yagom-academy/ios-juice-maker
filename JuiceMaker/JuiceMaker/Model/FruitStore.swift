@@ -9,7 +9,7 @@ import Foundation
 // 과일 저장소 타입
 final class FruitStore {
     
-    private var fruits = [Fruits:Int]()
+    var fruits = [Fruits:Int]()
     
     init(){
         for fruitStock in Fruits.allCases {
@@ -26,5 +26,10 @@ final class FruitStore {
         guard let fruitsStock = fruits[name] else { return }
         guard fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
         fruits[name] = fruitsStock - quantity
+    }
+    
+    func checkFruitsStock(name: Fruits) -> String {
+        guard let fruitsStock = fruits[name] else { return " " }
+        return String(fruitsStock)
     }
 }
