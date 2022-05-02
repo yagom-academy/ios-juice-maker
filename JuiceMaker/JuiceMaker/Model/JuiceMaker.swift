@@ -14,16 +14,16 @@ struct JuiceMaker {
         do{
             try fruitStore.subtractFruitAmount(juiceRecipe: juiceName.recipe)
         } catch ErrorCategory.zeroError {
-            print("\(ErrorCategory.zeroError.message)")
+            throw ErrorCategory.zeroError
         } catch ErrorCategory.cannotError {
-            print("\(ErrorCategory.cannotError.message)")
+            throw ErrorCategory.cannotError
         }
     }
-    
-    func fruitCount(fruitName: FruitKind) -> String{
+
+    func fruitCount(fruitName: FruitKind) -> String {
         let fruitCount = fruitStore.returnStock()
         if let selectedFruitCount = fruitCount[fruitName] {
-            return  String(selectedFruitCount)
+            return String(selectedFruitCount)
         } else {
             return "0"
         }

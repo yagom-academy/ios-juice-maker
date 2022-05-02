@@ -17,6 +17,11 @@ enum initCount {
         }
     }
 }
+
+enum JuiceInfo {
+    case JuiceName
+}
+
 enum FruitKind {
     case strawberry
     case banana
@@ -33,6 +38,7 @@ enum JuiceKind {
     case mangoJuice
     case strawberryBananaJuice
     case mangoKiwiJuice
+    case none
     
     var recipe: Dictionary<FruitKind, Int> {
         switch self {
@@ -50,6 +56,29 @@ enum JuiceKind {
             return [.strawberry: 10, .banana: 1]
         case .mangoKiwiJuice:
             return [.mango: 2, .kiwi: 1]
+        case .none:
+            return [:]
+        }
+    }
+    
+    var juiceNameInKorean: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기쥬스"
+        case .bananaJuice:
+            return "바나나쥬스"
+        case .kiwiJuice:
+            return "키위쥬스"
+        case .pineappleJuice:
+            return "파인애플쥬스"
+        case .mangoJuice:
+            return "망고쥬스"
+        case .strawberryBananaJuice:
+            return "딸바쥬스"
+        case .mangoKiwiJuice:
+            return "망키쥬스"
+        case .none:
+            return ""
         }
     }
 }
