@@ -8,12 +8,12 @@
 import UIKit
 
 class StoreViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.topItem?.backButtonTitle = "뒤로가기"
     }
 
-
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
