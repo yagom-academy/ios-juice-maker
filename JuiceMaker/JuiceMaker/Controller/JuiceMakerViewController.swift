@@ -57,7 +57,7 @@ class JuiceMakerViewController: UIViewController {
     
     func alertResult(_ alertInfomation: (fruitJuice: FruitJuice, result: Bool)) {
         if alertInfomation.result {
-            let alert = UIAlertController(title: nil, message: "***쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "\(alertInfomation.fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
             alert.addAction(okAction)
             present(alert, animated: true)
@@ -73,14 +73,14 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func presentModalView(withIdentifier: String){
+    func presentModalView(withIdentifier: String) {
         guard let modalVC = storyboard?.instantiateViewController(withIdentifier: withIdentifier) else {
             return
         }
         present(modalVC, animated: true)
     }
     
-    func updateFruitsStockLabels(_ stock: Dictionary<Fruit, Int>?){
+    func updateFruitsStockLabels(_ stock: Dictionary<Fruit, Int>?) {
         guard let unwrappedStock = stock else {
             return
         }
