@@ -14,9 +14,8 @@ struct JuiceMaker {
         let recipe = flavor.recipe
         
         do {
-            for (name, number) in recipe {
-                try fruitStore.consumeFruitsStock(name: name, quantity: number)
-            }
+            try fruitStore.checkInventory(about: recipe)
+            fruitStore.consumeFruitsStock(by: recipe)
         } catch FruitStoreError.outOfStock {
             print("재고가 없습니다")
         } catch {
