@@ -6,7 +6,7 @@
 
 // 과일 저장소 타입
 class FruitStore {
-     private var fruitWarehouse: Dictionary<Fruit, Int> = [
+     private(set) var fruitWarehouse: Dictionary<Fruit, Int> = [
         Fruit.strawberry: InitialFruitStock.stock,
         Fruit.banana: InitialFruitStock.stock,
         Fruit.pineapple: InitialFruitStock.stock,

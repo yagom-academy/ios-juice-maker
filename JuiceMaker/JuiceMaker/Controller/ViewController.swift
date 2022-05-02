@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        updateFruitStock()
     }
     
     func make(_ juice: Juice) {
@@ -28,6 +29,14 @@ class ViewController: UIViewController {
         } catch (let error) {
             someJuiceMaker.fruitStore.handle(error)
         }
+    }
+    
+    func updateFruitStock() {
+        strawberryLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
+        bananaLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
+        pineappleLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
+        kiwiLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.kiwi] ?? 0)
+        mangoLabel.text = String(someJuiceMaker.fruitStore.fruitWarehouse[.mango] ?? 0)
     }
     
     @IBAction func orderStrawberryBananaJuiceButton(_ sender: Any) {
