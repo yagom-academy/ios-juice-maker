@@ -52,19 +52,25 @@ class JuiceMakerViewController: UIViewController {
     func alertResult(_ alertInfomation: (fruitJuice: FruitJuice, result: Bool)) {
         if alertInfomation.result {
             let alert = UIAlertController(title: nil, message: "***쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
-            }
+            let okAction = UIAlertAction(title: "OK", style: .default)
             alert.addAction(okAction)
             present(alert, animated: true)
         } else {
-            let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .actionSheet)
             let yesAction = UIAlertAction(title: "예", style: .default) { UIAlertAction in
+                self.presentModalView(withIdentifier: "FruitStoreViewController")
             }
-            let noAction = UIAlertAction(title: "아니오", style: .default) { UIAlertAction in
-            }
+            let noAction = UIAlertAction(title: "아니오", style: .default)
             alert.addAction(yesAction)
             alert.addAction(noAction)
             present(alert, animated: true)
         }
+    }
+    
+    func presentModalView(withIdentifier: String){
+        guard let modalVC = storyboard?.instantiateViewController(withIdentifier: withIdentifier) else {
+            return
+        }
+        present(modalVC, animated: true)
     }
 }
