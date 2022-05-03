@@ -77,7 +77,9 @@ extension MakeJuiceViewController {
                                                  message: error.errorDescription,
                                                  preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-            let moveAction = UIAlertAction(title: "예", style: .default, handler: nil)
+            let moveAction = UIAlertAction(title: "예", style: .default) { action in
+                self.performSegue(withIdentifier: "editFruitsSegue", sender: self)
+            }
             failureAlert.addAction(cancelAction)
             failureAlert.addAction(moveAction)
             self.present(failureAlert, animated: true, completion: nil)
@@ -94,3 +96,6 @@ extension MakeJuiceViewController {
         mangoLabel.text = String(juiceMaker.fruitStore.fruits.mango)
     }
 }
+
+
+
