@@ -30,7 +30,7 @@ class OrderViewController: UIViewController {
         
         switch result {
         case .success(let juice):
-            showConfirmAlert(message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!")
+            showConfirmAlert(message: "\(juice.localeKorean) 쥬스 나왔습니다! 맛있게 드세요!")
         case .failure(let error):
             check(error: error)
         }
@@ -47,7 +47,16 @@ private extension OrderViewController {
         self.kiwiLabel.text = juiceMaker.fruitStore.count(.kiwi).description
         self.mangoLabel.text = juiceMaker.fruitStore.count(.mango).description
     }
-    
+
+    func check(error: StockError) {
+        switch error {
+        case .notEnoughIngredient(let errorStr):
+            showWarningAlert(message: errorStr)
+        }
+    }
+}
+
+private extension OrderViewController {
     func showConfirmAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -64,12 +73,5 @@ private extension OrderViewController {
         alertController.addAction(positiveAction)
         alertController.addAction(negativeAction)
         self.present(alertController, animated: false)
-    }
-    
-    func check(error: StockError) {
-        switch error {
-        case .notEnoughIngredient(let errorStr):
-            showWarningAlert(message: errorStr)
-        }
     }
 }
