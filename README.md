@@ -127,5 +127,93 @@ func classifyKey(menu: Menu) -> [Fruits] {
 - 프로토콜(CaseIterable) 사용하는 법 배움
 
 ## PR 후 개선사항
+- 타입 내의 프로퍼티에 무조건 private을 붙이고 그 후에 메서드끼리 상호작용하도록 코드를 작성해보기로 했음
+```swift
+enum Menu {
+     case strawberryJuice
+     case bananaJuice
 
+     private var recipe: [Fruit: Int] { // private 붙이고
+         switch self {
+         case .strawberryJuice:
+             return [.strawberry: 16]
+         case .bananaJuice:
+             return [.banana: 2]
+         }
+     }
+     func count(to total: Int) -> [Fruit: Int] { // 메서드로 상호작용하도록
+         var countList: [Fruit: Int] = [:]
+
+         for (fruit, need) in self.recipe {
+             countList.updateValue(need * total, forKey: fruit)
+         }
+         return countList
+     }
+ }
+```
+- 재고를 체크하는 메서드를 재고 프로퍼티가 있는 FruitStore에 구현해주는 것이 나을 것 같다는 피드백을 받고, JuiceMaker에서 FruitStore로 메서드를 옮김 
+
+- 아래의 오류 처리 로직은 나중에 코드의 흐름을 이해하기 어려움
+```swift
+do {
+    try checkStock(menu: menu, total: total)
+    store.decreaseStock(menu: menu, total: total)
+} catch {
+    store.fillStock(fruits: classifyKey(from: menu))
+}
+```
+- 아래의 오류 처리 로직은 한눈에 파악하기가 쉬움
+```swift
+do {
+    try checkStock(menu: menu, total: total)
+} catch {
+    // 알랏으로 에러 뜨게 하기
+}
+store.decreaseStock(menu: menu, total: total)
+```
+    - 제이슨의 피드백에서 정상 흐름에 대해 고민해보라고 하셨는데 추후 공부가 더 필요할 것 같다..!
+     
+- struct와 class를 언제 사용하는 지에 대한 제이슨의 대답
+    - 보통 메소드가 있고 객체로서 협력할수 있는 역할이라면 class를 사용하고, 모델 값 혹은 DTO(Data Transfer Object)의 역할이라면 struct 를 사용한다. (ps. 위의 JuiceMaker와 FruitStore은 메소드가 있어 class 의 성격을 띄지만 사실 지금 프로젝트에서는 별로 상관이 없어보여서 그대로 둬도 괜찮을 것 같음)
+    
+## step2 기능 구현
+- ViewController
+    - 재고수정 버튼을 눌렀을 때 화면이 전환되는 메서드(tabEditStock)
+    - 쥬스 주문 버튼을 눌렀을 때 쥬스를 주문하는 메서드(order)
+    - 과일들의 재고(label) 수량을 변경시켜주는 메서드(updateStock)
+    - 재고 부족 알림창을 띄어주는 메서드(showlackOfStockAlert) 
+    - 쥬스 제조 완료 알림창을 띄어주는 메서드(showCompletionAlert)
+    - 재고 수정 화면으로 넘어가는 방식을 modality로 구현한 메서드(changeView)
+        - 메서드(showlackOfStockAlert)의 okAlert의 handler에서 사용
+        - 재고수정버튼 눌렀을 때 사용
+- JuiceMaker
+- FruitStore
+    - 원래 기본값으로 설정했던 초기재고를 initializer를 통해 초기화해주는 방식으로 변경
+    - stock에 저장돼있는 과일의 개수를 ViewController으로 가져다주는 메서드(notifyStock) 구현
+- Menu
+    - Menu의 case를 String 타입으로 반환해주는 계산 프로퍼티 name 변수 선언
+## 고민했던 것들
+- 네비게이션 컨트롤러가 두 개인 이유에 대해 고민
+    - 왜 이번 프로젝트에서 네비게이션 컨트롤러가 2개 있는지에 대해 토론해봤다. 결론은 나중에 앱이 확장될 것을 생각하면 재고 수정만의 문제가 아니라 훨씬 더 많은 화면들이 필요할텐데 하나의 네비게이션 컨트롤러에 연결된 흐름으로 재고수정 화면을 구현해주면 나중돼서 다 바꿔줘야할 수도 있어 번거로울 것이다 라는 결론이 나왔다. 네비게이션 컨트롤러는 스택을 담는 바구니라고 보면 쉬운데, 우리는 재고 수정 화면과 과일 주문 화면의 흐름이 다르다고 결론이 나서 모달로 화면을 구성하기로 했고, 또 그에따라 화면이 하나의 흐름이 아닌 두 갈래의 흐름이 되기 때문에(현재로썬) 두 개의 네비게이션 컨트롤러를 사용해주기로 결정함
+- 과일쥬스 주문 버튼을 눌렀을 때 그걸 Menu의 case로 인식하기 위한 방법 2가지 중 뭘 쓸지 고민함
+    - 1번째 방법: currentTitle(버튼에 쓰여진 문자열을 그대로 인식) 사용
+    - 2번째 방법: 각 주문 버튼에 tag를 설정해주고 enum Menu의 원시값을 Int형으로 해주고 둘의 int를 비교해줌
+    - 우리는 2번째 방법인 tag 방법을 사용했음. 그 이유는 코드가 더 깔끔해보여서...!
+- 원래 기본값으로 설정했던 초기재고를 initializer를 통해 초기화해주는 방식으로 변경
+
+## 배운 개념
+- forEach와 CaseIterable 사용
+```swift
+    private var stock = [Fruit: Int]()
+    
+    init(defaultStock: Int) {
+        Fruit.allCases.forEach {
+            stock[$0] = defaultStock
+        }
+    }
+```
+    - 초기 재고값을 init 메서드로 받아오기 위해서 stock의 key인 Fruit 타입은 CaseIterable을 채택함.
+    - 그리고 배열로 받아온 뒤 forEach를 사용해서 stock의 key을 가져와서 각각의 key에 value를 할당해줌
+
+## PR 후 개선사항
 
