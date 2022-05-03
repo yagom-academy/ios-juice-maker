@@ -1,7 +1,6 @@
 import UIKit
 
-class AddFruitsViewController: UIViewController {
-    
+class EditFruitsViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     override func viewDidLoad() {

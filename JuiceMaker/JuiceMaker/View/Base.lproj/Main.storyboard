@@ -238,13 +238,13 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="show" identifier="editFruitsSegue" id="f8t-pz-maU"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" identifier="editFruitsSegue" id="iFx-Fe-gtt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addFruitsButton" destination="C3q-Te-cNT" id="kCK-yR-bHg"/>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="3AV-4A-1j9"/>
+                        <outlet property="editFruitsButton" destination="C3q-Te-cNT" id="kCK-yR-bHg"/>
                         <outlet property="kiwiLabel" destination="FZq-de-TJG" id="iWD-F3-RHl"/>
                         <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="Udh-me-8PQ"/>
                         <outlet property="orderBananaJuiceButton" destination="y2A-PH-DJY" id="8sK-Az-eqq"/>
@@ -280,10 +280,10 @@
             </objects>
             <point key="canvasLocation" x="73" y="92"/>
         </scene>
-        <!--Add Fruits View Controller-->
+        <!--Edit Fruits View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="AddFruitsViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="EditFruitsViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
