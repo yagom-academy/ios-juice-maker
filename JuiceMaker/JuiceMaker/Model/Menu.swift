@@ -5,7 +5,7 @@
 //  Created by hugh, yeton on 2022/04/27.
 //
 
-enum Menu {
+enum Menu: Int {
     case strawberryJuice
     case bananaJuice
     case pineappleJuice
@@ -33,11 +33,11 @@ enum Menu {
         }
     }
     
-    func count(to total: Int) -> [Fruit: Int] {
+    func count() -> [Fruit: Int] {
         var countList: [Fruit: Int] = [:]
         
         for (fruit, need) in self.recipe {
-            countList.updateValue(need * total, forKey: fruit)
+            countList.updateValue(need, forKey: fruit)
         }
         return countList
     }
