@@ -9,7 +9,7 @@ import Foundation
 // 과일 저장소 타입
 final class FruitStore {
     
-    var fruits = [Fruits:Int]()
+    private var fruits = [Fruits:Int]()
     
     init(){
         for fruitStock in Fruits.allCases {
