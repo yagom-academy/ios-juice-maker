@@ -18,6 +18,7 @@ enum JuiceType: Int {
 }
 
 extension JuiceType {
+    
     func requireIngredients() -> [Fruit: Int] {
         switch self {
         case .strawberryJuice:
