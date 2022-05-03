@@ -36,17 +36,23 @@
 과일의 수량을 확인해서 과일쥬스를 만드는 어플리케이션
 ---
 # UML  
-![ClassDiagram]
+[ClassDiagram]
 ![](https://i.imgur.com/6SLfIZP.png)
-![Flowchart]
+[Flowchart]
 ![](https://i.imgur.com/cJtopsy.jpg)
 ---
 
-# 키워드  
+# 키워드
 - Dictionary
 - Error handling
 - Hiding
 - class, enum, struct
+- Notification
+- StoryBoard
+- Alert
+- Modality
+- UIButton
+- UILabel
 ---
 # 그라운드 룰
 
@@ -165,16 +171,30 @@ private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
     }
 ```
 
+---
+
 # [STEP 2]
 
 ## 기능설명
 
 ## 고민한점
-- Navigation, Modality 
-- closure 안에서 self
-- notifiction
-- Button의 Action을 하나로 묶고 어떤 Button이 눌렸는지 확인하는 방법
-- 여러 Label을 하나씩 수정하는 방법이 아닌, 
+- **Navigation, Modality**
+  - 재고를 수정하는 뷰로 넘어갈 때 Navigation방식으로 넘어갈지, Modal을 활용하여 present해줄 지 고민하였습니다. 화면이 단 두개뿐이라 흐름을 끊고 넘어간다는 점과, 음료를 주문하다가 재고를 변경해야해서 자연스럽게 넘어간다는 점 모두 해석에 따라 자연스럽다고 생각했습니다. 결론적으로 저희는 alert를 활용해서도 재고확인으로 넘어갈 수 있어야 해서 modal을 활용해서 화면전환을 구현했습니다.
+
+- **closure 안에서 self를 써줘야 하는 이유**
+  - NotificationCenter를 활용해서 UILabel을 업데이트해주는 함수를 호출하도록 구현했습니다. 다만 Observer를 등록하는 과정에서 클로저 내부에서 JuiceMakerViewController에 등록된 함수를 사용하려고 하니 self를 사용해야 했습니다. 왜 self를 사용해야 하는지에 대해 찾아보았는데 closure, 순환참조 등 가볍게 든 의문점인데 내용이 생각보다 많았습니다. 이 부분에 대해서 어떤 방향으로 공부를 해야하는지 고민을 했습니다.
+
+- **Notifiction**
+  - 과일의 재고를 나타내는 UILabel을 업데이트 해주는 과정에서 Notification을 사용했습니다. 이를 위해 과일 재고를 저장하는 FruitStore 인스턴스의 fruitStocks프로퍼티에 didset을 활용하여 NotificationCenter로 post해주도록 하였습니다. 하지만 didset에서 post해주는 방식은 최초에 NotificationCenter에 옵저버를 등록하기 전에(JuiceMakerViewController의 viewdidload 메서드에서 옵저버를 등록) post해주기 때문에 어플리케이션을 처음 실행하면 초기의 상태를 불러올 수 없었습니다. 그래서 저희는 초기에 FruitStock을 가져오는 함수를 구현하여 해결했지만, Notification을 활용하여 이를 해결 할 수 있는지 확인중에 있습니다. 
+
+- **Button의 Action을 하나로 묶고 어떤 Button이 눌렸는지 확인하는 방법**
+  - 이번에 기본적으로 제공된 UI에는 총 7개의 쥬스를 생성하는 버튼이 있습니다. 저희는 이 7개의 버튼이 모두 JuiceMaker의 takeOrder함수를 호출하기 때문에 모든 버튼이 하나의 IBAction을 공유하여 사용하고 어떤 버튼이 눌렸는지만 구분해주면 코드가 깔끔해질 것이라고 생각했씁니다. 다만 이 버튼을 구분하는 과정에서 어떤게 맞는지 고민을 했습니다. 
+처음에는 `RestorationID`라는 속성이 버튼에 있길래 ID라고 표현한 것이 Identifier처럼 사용해도 되는것이라 생각하여 이를 활용해볼까 했지만, 이 속성은 다른 목적을 위해(어플리케이션이 임의의 종료를 당했을 때 이를 복구하기 위해 사용되는 것이라고 이해했습니다) 사용되는것 같았습니다. 두번째로 AccessibilityIdentifier속성을 활용하는 것이었는데 이 속성은 목적에는 맞았지만 String타입이어서 switch 조건절에서 String으로 너무 많이 비교하는것 같아서 보류하였습니다.
+최종적으로 그냥 IBAction의 매개변수인 sender자체를 비교하였는데, 이렇게 여러 버튼들을 하나의 IBAction에서 처리할 때 어떻게 다루는지 궁금했습니다. 
+
+- **StoryBoard에 등록된 여러 UILabel을 가져오는 방법**
+  - 재고가 변경되면 FruitStore인스턴스의 fruitStock 프로퍼티를 가져와서 label을 업데이트 해주도록 구현하였습니다. 재고가 변경되면 storyboard에 등록된 stock들을 가져와서 각 과일의 재고를 업데이트 해주도록 했는데 5개나 되는 Label들을 일일이 `bananaStockLabel.text = stock`과 같이 업데이트 해주는게 맞는가 고민하였습니다. 
+
 ## 배운개념
 - Navigation
 - Modality
