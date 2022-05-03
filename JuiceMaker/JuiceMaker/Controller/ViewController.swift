@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         updateStock()
     }
     
+    @IBAction func tabEditStock(_ sender: UIBarButtonItem) {
+        self.changeView()
+    }
+    
     @IBAction func order(_ sender: UIButton) {
         guard let juice = Menu(rawValue: sender.tag) else {
             return
@@ -30,7 +34,7 @@ class ViewController: UIViewController {
             showlackOfStockAlert()
         }
         updateStock()
-        showCompletionAlert()
+        showCompletionAlert(menu: juice)
     }
     
     func updateStock() {
@@ -44,7 +48,9 @@ class ViewController: UIViewController {
     func showlackOfStockAlert() {
         let lackOfStockAlert = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let noAlert = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-        let okAlert = UIAlertAction(title: "예", style: .default, handler: nil)
+        let okAlert = UIAlertAction(title: "예", style: .default) { _ in
+            self.changeView()
+        }
         
         lackOfStockAlert.addAction(noAlert)
         lackOfStockAlert.addAction(okAlert)
@@ -52,12 +58,20 @@ class ViewController: UIViewController {
         present(lackOfStockAlert, animated: true)
     }
     
-    func showCompletionAlert() {
-        let completionAlert = UIAlertController(title: "알림", message: "쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+    func showCompletionAlert(menu: Menu) {
+        let completionAlert = UIAlertController(title: "알림", message: "\(menu.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         completionAlert.addAction(okAlert)
         
         present(completionAlert, animated: true)
+    }
+    
+    func changeView() {
+        guard let stockVC = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController")
+        else {
+            return
+        }
+        self.present(stockVC, animated: true)
     }
 }
