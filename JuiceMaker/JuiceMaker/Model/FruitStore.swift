@@ -21,6 +21,10 @@ class FruitStore {
         return String(stock)
     }
     
+    func remainStock() -> [Fruit: Int] {
+        return fruitStock
+    }
+    
     init(quantity: Int) {
         for fruit in Fruit.allCases {
             fruitStock.updateValue(quantity, forKey: fruit)

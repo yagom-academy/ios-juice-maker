@@ -35,7 +35,9 @@ class ViewController: UIViewController {
     private func showOutOfStockAlert() {
         let outOfStockAlert = UIAlertController(title: "재료 소진", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { action in
-            guard let stockView = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") else { return }
+            guard let stockView = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") as? FruitStockViewController else { return }
+            
+            stockView.stocks = self.juiceMaker.remainStock()
             
             self.navigationController?.pushViewController(stockView, animated: true)
         }
@@ -59,6 +61,13 @@ class ViewController: UIViewController {
         
         showCompleteAlert(juice: juiceMenu)
         updateStock()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "stockViewSegue" {
+            guard let stockViewController =  segue.destination as? FruitStockViewController else { return }
+            stockViewController.stocks = juiceMaker.remainStock()
+        }
     }
     
 }
