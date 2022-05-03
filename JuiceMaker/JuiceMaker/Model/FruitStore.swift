@@ -14,11 +14,13 @@ class FruitStore {
         return currentCount
     }
     
-    private func hasFruit(menu: Menu) -> Bool {
+    func hasFruit(menu: Menu) -> Bool {
         let necessaryFruit = menu.count()
         
         for (fruit, need) in necessaryFruit {
-            guard let number = stock[fruit] else { continue }
+            guard let number = stock[fruit] else {
+                continue
+            }
             if number < need {
                 return false
             }
@@ -26,24 +28,21 @@ class FruitStore {
         return true
     }
     
-    func decreaseStock(menu: Menu) throws {
+    func decreaseStock(menu: Menu) {
         let necessaryFruit = menu.count()
         
         for (fruit, need) in necessaryFruit {
-            guard hasFruit(menu: menu) else {
-                throw JuiceMakerError.lackOfStock
-            }
-            
             guard let number = stock[fruit] else {
                 return
             }
-            
             stock[fruit] = number - need
         }
     }
     
     func fillStock(fruit: Fruit, total: Int) {
-        guard let number = stock[fruit] else { return }
+        guard let number = stock[fruit] else {
+            return
+        }
         stock[fruit] = number + total
     }
 }
