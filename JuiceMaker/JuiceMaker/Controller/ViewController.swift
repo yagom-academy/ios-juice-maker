@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         let yesAction = UIAlertAction(title: "예", style: .default) { action in
             guard let stockView = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") as? FruitStockViewController else { return }
             
-            stockView.stocks = self.juiceMaker.remainStock()
+            stockView.stocks = self.juiceMaker
             
             self.navigationController?.pushViewController(stockView, animated: true)
         }
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "stockViewSegue" {
             guard let stockViewController =  segue.destination as? FruitStockViewController else { return }
-            stockViewController.stocks = juiceMaker.remainStock()
+            stockViewController.stocks = juiceMaker
         }
     }
     
