@@ -29,9 +29,8 @@ class ViewController: UIViewController {
     
     private func showCompleteAlert(juice: Menu) {
         let completeAlert = UIAlertController(title: "쥬스 제조 완료", message: "\(juice.juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "확인", style: .default)
-        
-        completeAlert.addAction(yesAction)
+
+        completeAlert.addAction(UIAlertAction(title: "확인", style: .default))
         
         present(completeAlert, animated: true)
     }
@@ -41,7 +40,7 @@ class ViewController: UIViewController {
         let yesAction = UIAlertAction(title: "예", style: .default) { action in
             guard let stockView = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") as? FruitStockViewController else { return }
             
-            stockView.stocks = self.juiceMaker.fruitStore
+            stockView.fruitStore = self.juiceMaker.fruitStore
             
             self.navigationController?.pushViewController(stockView, animated: true)
         }
@@ -70,7 +69,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "stockViewSegue" {
             guard let stockViewController =  segue.destination as? FruitStockViewController else { return }
-            stockViewController.stocks = juiceMaker.fruitStore
+            stockViewController.fruitStore = juiceMaker.fruitStore
         }
     }
 }

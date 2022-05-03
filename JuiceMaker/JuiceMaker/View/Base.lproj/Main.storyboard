@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="show" identifier="stockViewSegue" id="0qw-Dk-dwg"/>
+                                <segue destination="Yu1-lM-nqp" kind="show" identifier="stockViewSegue" id="q9g-TI-2lJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

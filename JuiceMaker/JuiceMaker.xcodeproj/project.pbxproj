@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20910F79282103B3002222A2 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20910F78282103B3002222A2 /* DoubleExtension.swift */; };
 		20EFEA7B281699D8007BFA54 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EFEA7A281699D8007BFA54 /* Menu.swift */; };
 		20EFEA7D2816A5BE007BFA54 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EFEA7C2816A5BE007BFA54 /* JuiceMakerError.swift */; };
 		B466BCA8281672D2005943B4 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466BCA7281672D2005943B4 /* Fruit.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20910F78282103B3002222A2 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		20EFEA7A281699D8007BFA54 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		20EFEA7C2816A5BE007BFA54 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		B466BCA7281672D2005943B4 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				B466BCA7281672D2005943B4 /* Fruit.swift */,
 				20EFEA7A281699D8007BFA54 /* Menu.swift */,
 				20EFEA7C2816A5BE007BFA54 /* JuiceMakerError.swift */,
+				20910F78282103B3002222A2 /* DoubleExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20910F79282103B3002222A2 /* DoubleExtension.swift in Sources */,
 				B466BCA8281672D2005943B4 /* Fruit.swift in Sources */,
 				B495365E2820B7C5004AFCDE /* FruitStockViewController.swift in Sources */,
 				20EFEA7D2816A5BE007BFA54 /* JuiceMakerError.swift in Sources */,

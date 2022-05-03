@@ -12,8 +12,4 @@ struct JuiceMaker {
     func stockCount(of fruit: Fruit) -> String {
         return fruitStore.stockAsString(fruit: fruit)
     }
-    
-    func remainStock() -> [Fruit: Int] {
-        return fruitStore.remainStock()
-    }
 }
