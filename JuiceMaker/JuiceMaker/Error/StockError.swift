@@ -7,4 +7,5 @@
 
 enum StockError: Error {
     case outOfStock
+    case defaultError
 }
