@@ -11,7 +11,6 @@ class FruitStoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     @IBAction func pressBackBarButton(_ sender: UIBarButtonItem) {

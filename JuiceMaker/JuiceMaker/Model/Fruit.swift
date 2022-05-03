@@ -5,10 +5,10 @@
 //  Created by groot, borysarng on 2022/04/26.
 //
 
-enum Fruit {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case mango
+enum Fruit: String {
+    case strawberry = "strawberry"
+    case banana = "banana"
+    case kiwi = "kiwi"
+    case pineapple = "pineapple"
+    case mango = "mango"
 }

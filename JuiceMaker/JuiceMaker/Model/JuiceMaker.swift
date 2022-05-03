@@ -15,7 +15,7 @@ struct JuiceMaker {
             guard try fruitStore.make(fruitJuice) != nil else {
                 return (fruitJuice, false)
             }
-         } catch JuiceMakerError.invalidOrder {
+        } catch JuiceMakerError.invalidOrder {
             print("잘못된 음료 요청.")
         } catch {
             print(error)

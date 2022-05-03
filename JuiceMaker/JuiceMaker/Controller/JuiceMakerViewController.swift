@@ -25,14 +25,12 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(forName: Notification.Name("fruitsStock"), object: nil , queue: nil) { Notification in
             guard let currentStock = Notification.userInfo as? [Fruit:Int]? else {
                 return
             }
             self.updateFruitsStockLabels(currentStock)
         }
-        
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
@@ -79,7 +77,6 @@ class JuiceMakerViewController: UIViewController {
         guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
             return
         }
-        
         present(modalViewController, animated: true)
     }
     
@@ -87,11 +84,18 @@ class JuiceMakerViewController: UIViewController {
         guard let unwrappedStock = stock else {
             return
         }
-        
-        strawberryStockLabel.text = String(unwrappedStock[.strawberry] ?? 0)
-        bananaStockLabel.text = String(unwrappedStock[.banana] ?? 0)
-        pineappleStockLabel.text = String(unwrappedStock[.pineapple] ?? 0)
-        kiwiStockLabel.text = String(unwrappedStock[.kiwi] ?? 0)
-        mangoStockLabel.text = String(unwrappedStock[.mango] ?? 0)
+        for (fruit, value) in unwrappedStock {
+            modifyFruitStockLabel(fruit.rawValue, value)
+        }
+    }
+    
+    func modifyFruitStockLabel(_ fruit: String, _ stock: Int?) {
+        let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+        guard let stock = stock else {
+            return
+        }
+        for uiLabel in allStockLabels where uiLabel.accessibilityIdentifier == fruit {
+            uiLabel.text = String(stock)
+        }
     }
 }
