@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         present(outOfStockAlert, animated: true)
     }
     
-    @IBAction func orderJuice(sender: UIButton) {
+    @IBAction func orderJuiceButtonTapped(sender: UIButton) {
         guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
     
         do{
