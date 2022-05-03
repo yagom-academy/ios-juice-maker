@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     func checkFruitsStock(name: Fruits) -> String{
         return juiceMaker.fruitStore.checkFruitsStock(name: name)
