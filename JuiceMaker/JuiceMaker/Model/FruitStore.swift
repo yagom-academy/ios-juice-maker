@@ -5,8 +5,14 @@
 //
 
 class FruitStore {
-    private var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    private var stock = [Fruit: Int]()
     
+    init(defaultStock: Int) {
+        Fruit.allCases.forEach {
+            stock[$0] = defaultStock
+        }
+    }
+
     func notifyStock(fruit: Fruit) -> Int {
         guard let currentCount = stock[fruit] else {
             return 0

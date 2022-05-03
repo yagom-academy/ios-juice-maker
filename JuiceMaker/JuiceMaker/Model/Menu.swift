@@ -34,7 +34,7 @@ enum Menu: Int {
     }
     
     func count() -> [Fruit: Int] {
-        var countList: [Fruit: Int] = [:]
+        var countList = [Fruit: Int]()
         
         for (fruit, need) in self.recipe {
             countList.updateValue(need, forKey: fruit)
