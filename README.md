@@ -215,6 +215,81 @@ enum Fruits: CaseIterable {
         print(error)
     }
 ```
+
+### Step 02
+
+> 04.29 (금) - 버튼 이벤트 함수 구상, FruitStore에 선언해 둔 함수 JuiceMaker로 옮기는 작업
+> 05.02 (월) - Step1 복습 및 Step2에 필요한 내용 공부
+> 05.03 (화) - 버튼 이벤트 함수 구현
+
+---
+
+#### 이번 스텝 수행 중 핵심 경험 체크
+- [x] 내비게이션 바 및 바 버튼 아이템의 활용
+- [x] 얼럿 컨트롤러 활용
+- [x] Modality의 활용
+
+---
+#### 구현해야하는 기능
+- ‘재고수정’ 버튼을 터치하면 ‘재고 추가’ 화면으로 이동합니다
+- 각 주문 버튼 터치 시
+    * 쥬스 재료의 재고가 있는 경우 : 쥬스 제조 후 “*** 쥬스 나왔습니다! 맛있게 드세요!” 얼럿 표시
+    * 쥬스 재료의 재고가 없는 경우 : “재료가 모자라요. 재고를 수정할까요?” 얼럿 표시
+        - ‘예’ 선택시 재고수정화면으로 이동
+        - ‘아니오’ 선택시 얼럿 닫기
+    * 과일쥬스를 제조하여 과일의 재고가 변경되면 화면의 적절한 요소에 변경사항을 반영합니다
+    
+#### 구현내용
+
+1. 각 과일 별 재고 라벨 생성
+2. 쥬스 생성 시 과일 재고에 따른 alert 이벤트 생성
+3. 쥬스 생성 후 변경된 재고 수량 반영
+4. 과일 재고 부족 시 alert 이벤트에서 재고 ViewController로 이동 기능 생성
+5. 쥬스 만드는 알람 시 한글로 보여지기 위해 Juice열거형에 name 연산 프로퍼티 추가
+6. + Step01 리뷰 반영
+---
+
+#### 고민한 점/해결한 점
+1. alert 이벤트
+>- 고민한 점: alert 이벤트 생성 후 ViewController로 이동 가능 기능 구현을 어떻게 해야할지..</br>
+>- 해결한 점: addAction의 UIAlertAction에서 handler에서 코드 입력 부분에 세그웨이 연결하는 방법 중 하나인 performSegue()를 사용해서 구현해보았습니다. withIdentifier인 부분은 View디렉토리 main에서 원하는 ViewController의 Identifier를 입력해주어 해결했습니다.
+```swift
+eventFail.addAction(UIAlertAction(title: "예", 
+                                  style: .default, 
+                                  handler: {_ in
+                                            self.performSegue(withIdentifier: "moveToFruitStock",
+                                                              sender: nil)}))
+```
+2. do-catch문의 위치 선정
+> - 고민한 점: 처음 do-catch 문이 juiceMaker 클래스 안에 위치해 있었기에 alert 메시지를 어떻게 구현해야 할지 고민하였습니다.
+> - 해결한 점: do-catch 문을 viewController에서 구현해주며 alert 메시지를 오류처리에서 구현할 수 있게 되었습니다.
+
+3. 쥬스 생성 알람 한글로 변경
+> - 고민한 점 : step01에서 생성하였던 Juice의 이름들이 그대로 나오는 것보다, 초기화면에 나와있는 한글로 변경하기 위해 고민하였습니다.
+> - 해결한 점 : Juice 열거형에 한글 이름을 넣은 name 연산 프로퍼티를 추가하여, 초기화면에서 쥬스 생성에 성공할 때 뜨는 얼럿에 한글로 쥬스 이름이 나오게끔 구현할 수 있었습니다.
+
+```swift
+ var name: String {
+        switch self {
+        case .strawberry:
+            return "딸기"
+        case .banana:
+            return "바나나"
+        case .kiwi:
+            return "키위"
+        case .mango:
+            return "망고"
+        case .pineapple:
+            return "파인애플"
+        case .strawberryBanana:
+            return "딸바"
+        case .mangoKiwi:
+            return "망키"
+        }
+    }
+```
+
+
 ---
 
 ## 그라운드 룰 
@@ -240,7 +315,7 @@ ZZBAE: 12:00 ~ 13:30, 18:00 ~ 19:30 연락 어려운 요일: (수)
 Swift Statements 형식 준수
 ### 🪵 브랜치 이름규칙
 develop - 최종 코드 → develop에서 야곰 레포로 pr 보내고, 머지되면 main으로 이동
-각 step 별로 브런치 생성 (ex. step1, step2, step3)
+각 step 별로 브런치 생성 (ex. step01, step02, step03)
 ### ⌨️ 커밋 규칙
 1. [타입] : 제목
 제목은 최대 50 글자까지만 입력
@@ -251,7 +326,7 @@ develop - 최종 코드 → develop에서 야곰 레포로 pr 보내고, 머지�
    > [타입] :  리스트
    > feat  : 기능 (새로운 기능)
    fix     : 버그 (버그 수정)
-   refactor: 리팩토링
+   refact  : 리팩토링
    style   : 스타일 (코드 형식, 세미콜론 추가: 비즈니스 로직에 변경 없음)
    docs    : 문서 (문서 추가, 수정, 삭제)
    test    : 테스트 (테스트 코드 추가, 수정, 삭제: 비즈니스 로직에 변경 없음)
