@@ -13,7 +13,7 @@ class FruitStockViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    private var fruitStore = FruitStore(quantity: 0)
+    var fruitStore = FruitStore(quantity: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
