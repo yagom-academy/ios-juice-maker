@@ -11,7 +11,6 @@ class FruitStore {
         self.fruits = fruits
     }
 
-    // MARK: - 쥬스 제작 관련 메서드
     func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
         let recipe = menu.recipe
         guard hasEnoughFruits(toMake: recipe) else {
