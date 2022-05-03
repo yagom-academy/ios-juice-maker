@@ -30,19 +30,16 @@ class OrderViewController: UIViewController {
         
         switch result {
         case .success(let juice):
-            showConfirmAlert("\(juice) 쥬스 나왔습니다! 맛있게 드세요!")
+            showConfirmAlert(message: "\(juice) 쥬스 나왔습니다! 맛있게 드세요!")
         case .failure(let error):
-            switch error {
-            case .notEnoughIngredient(let errorStr):
-                showWarningAlert(errorStr)
-            }
+            check(error: error)
         }
 
         updateValue()
     }
 }
 
-extension OrderViewController {
+private extension OrderViewController {
     func updateValue() {
         self.strawberryLabel.text = juiceMaker.fruitStore.count(.strawberry).description
         self.bananaLabel.text = juiceMaker.fruitStore.count(.banana).description
@@ -51,14 +48,14 @@ extension OrderViewController {
         self.mangoLabel.text = juiceMaker.fruitStore.count(.mango).description
     }
     
-    func showConfirmAlert(_ message: String) {
+    func showConfirmAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alertController.addAction(confirmAction)
         self.present(alertController, animated: false)
     }
     
-    func showWarningAlert(_ message: String) {
+    func showWarningAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let positiveAction = UIAlertAction(title: "예", style: .default) { _ in
             self.move(to: "StoreViewController")
@@ -67,5 +64,12 @@ extension OrderViewController {
         alertController.addAction(positiveAction)
         alertController.addAction(negativeAction)
         self.present(alertController, animated: false)
+    }
+    
+    func check(error: StockError) {
+        switch error {
+        case .notEnoughIngredient(let errorStr):
+            showWarningAlert(message: errorStr)
+        }
     }
 }
