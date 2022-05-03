@@ -13,6 +13,10 @@ class FruitStore {
         fruitStock[fruit] = quantity - number
     }
 
+    func modifyStock(fruit: Fruit, to number: Int) {
+        fruitStock[fruit] = number
+    }
+    
     func stockAsString(fruit: Fruit) -> String {
         guard let stock = fruitStock[fruit] else {
             return "0"

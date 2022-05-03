@@ -14,6 +14,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateStock()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateStock()
+    }
 
     private func updateStock() {
         strawberryStockLabel.text = juiceMaker.stockCount(of: .strawberry)
@@ -37,7 +41,7 @@ class ViewController: UIViewController {
         let yesAction = UIAlertAction(title: "예", style: .default) { action in
             guard let stockView = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") as? FruitStockViewController else { return }
             
-            stockView.stocks = self.juiceMaker
+            stockView.stocks = self.juiceMaker.fruitStore
             
             self.navigationController?.pushViewController(stockView, animated: true)
         }
@@ -66,7 +70,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "stockViewSegue" {
             guard let stockViewController =  segue.destination as? FruitStockViewController else { return }
-            stockViewController.stocks = juiceMaker
+            stockViewController.stocks = juiceMaker.fruitStore
         }
     }
 }
