@@ -15,8 +15,8 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var strawberryAndBananaJuiceButton: UIButton!
+    @IBOutlet weak var mangoAndKiwiJuiceButton: UIButton!
     @IBOutlet weak var strawberryJuiceButton: UIButton!
     @IBOutlet weak var bananaJuiceButton: UIButton!
     @IBOutlet weak var pineappleJuiceButton: UIButton!
@@ -25,20 +25,22 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(forName: Notification.Name("fruitInventory"), object: nil , queue: nil) { Notification in
-            guard let currentStock = Notification.userInfo as? Dictionary<Fruit, Int>? else {
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("fruitsStock"), object: nil , queue: nil) { Notification in
+            guard let currentStock = Notification.userInfo as? [Fruit:Int]? else {
                 return
             }
             self.updateFruitsStockLabels(currentStock)
         }
+        
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
     @IBAction func orderFruitJuice(_ sender: UIButton) {
         switch sender {
-        case strawberryBananaJuiceButton:
+        case strawberryAndBananaJuiceButton:
             alertResult(juiceMaker.takeOrder(.strawberryAndBananaJuice))
-        case mangoKiwiJuiceButton:
+        case mangoAndKiwiJuiceButton:
             alertResult(juiceMaker.takeOrder(.mangoAndKiwiJuice))
         case strawberryJuiceButton:
             alertResult(juiceMaker.takeOrder(.strawberryJuice))
@@ -64,7 +66,7 @@ class JuiceMakerViewController: UIViewController {
         } else {
             let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .actionSheet)
             let yesAction = UIAlertAction(title: "예", style: .default) { UIAlertAction in
-                self.presentModalView(withIdentifier: "FruitStoreViewController")
+                self.presentModalViewController(withId: "FruitStoreViewController")
             }
             let noAction = UIAlertAction(title: "아니오", style: .default)
             alert.addAction(yesAction)
@@ -73,17 +75,19 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func presentModalView(withIdentifier: String) {
-        guard let modalVC = storyboard?.instantiateViewController(withIdentifier: withIdentifier) else {
+    func presentModalViewController(withId: String) {
+        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
             return
         }
-        present(modalVC, animated: true)
+        
+        present(modalViewController, animated: true)
     }
     
-    func updateFruitsStockLabels(_ stock: Dictionary<Fruit, Int>?) {
+    func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         guard let unwrappedStock = stock else {
             return
         }
+        
         strawberryStockLabel.text = String(unwrappedStock[.strawberry] ?? 0)
         bananaStockLabel.text = String(unwrappedStock[.banana] ?? 0)
         pineappleStockLabel.text = String(unwrappedStock[.pineapple] ?? 0)

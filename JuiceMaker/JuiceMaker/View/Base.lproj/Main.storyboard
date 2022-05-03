@@ -372,12 +372,12 @@
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="u0a-Wa-mZJ"/>
                         <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="377-2t-EKX"/>
                         <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="0FZ-lG-bc5"/>
+                        <outlet property="mangoAndKiwiJuiceButton" destination="ngP-kF-Yii" id="XED-EP-Zbd"/>
                         <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="Tf5-ph-HQv"/>
-                        <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="XED-EP-Zbd"/>
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="UYZ-Gs-cox"/>
                         <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="K9a-UE-lMC"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="9LI-eS-cX7"/>
-                        <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="BKv-H3-nSz"/>
+                        <outlet property="strawberryAndBananaJuiceButton" destination="hrc-2F-fzl" id="BKv-H3-nSz"/>
                         <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="QYj-jW-7aT"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="LqK-Nz-pgu"/>
                     </connections>
@@ -515,7 +515,7 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
                         <barButtonItem key="leftBarButtonItem" title="뒤로가기" id="NoE-Jg-fht">
                             <connections>
-                                <action selector="pressBackBarButton:" destination="Yu1-lM-nqp" id="hwP-Rh-aTV"/>
+                                <action selector="pressBackBarButton:" destination="Yu1-lM-nqp" id="Qad-Xw-ibH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
