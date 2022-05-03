@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private var store = FruitStore()
+    let store = FruitStore()
         
     func make(menu: Menu) {
         do {

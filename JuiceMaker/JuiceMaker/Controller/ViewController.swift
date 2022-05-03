@@ -17,14 +17,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        updateStock()
     }
     
     @IBAction func order(_ sender: UIButton) {
         guard let juice = Menu(rawValue: sender.tag) else {
             return
         }
-        print(sender.tag)
         juiceMaker.make(menu: juice)
+        updateStock()
+    }
+    
+    func updateStock() {
+        strawberryStock.text = juiceMaker.store.notifyStock(fruit: .strawberry).description
+        bananaStock.text = juiceMaker.store.notifyStock(fruit: .banana).description
+        pineappleStock.text = juiceMaker.store.notifyStock(fruit: .pineapple).description
+        kiwiStock.text = juiceMaker.store.notifyStock(fruit: .kiwi).description
+        mangoStock.text = juiceMaker.store.notifyStock(fruit: .mango).description
     }
 }
