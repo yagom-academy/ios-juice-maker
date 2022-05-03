@@ -26,15 +26,27 @@ class FruitStore {
         ]
     }
     
-    private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
+    private func bindingStock(of fruit: Fruit) throws ->  Int {
         guard let stock = fruitsStock[fruit] else {
             throw JuiceMakerError.invalidOrder
         }
+        return stock
+    }
+    
+    private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
+        let stock = try bindingStock(of: fruit)
         guard stock >= amount else {
             return false
         }
-        fruitsStock[fruit] = stock - amount
         return true
+    }
+    
+    private func useOfStock(for fruitJuice: FruitJuice) throws -> FruitJuice? {
+        for (fruit, amount) in fruitJuice.getRecipe() {
+            let stock = try bindingStock(of: fruit)
+            fruitsStock[fruit] = stock - amount
+        }
+        return fruitJuice
     }
     
     func make(_ fruitJuice: FruitJuice) throws -> FruitJuice? {
@@ -42,7 +54,7 @@ class FruitStore {
         for (fruit, amount) in fruitJuice.getRecipe() {
             canComplete = try canUseStock(of: fruit, by: amount) && canComplete
         }
-        return canComplete ? fruitJuice : nil
+        return canComplete ? try useOfStock(for: fruitJuice) : nil
     }
 }
 
