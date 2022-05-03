@@ -1,6 +1,6 @@
-## iOS 커리어 스타터 캠프
+# iOS 커리어 스타터 캠프
 
-### 프로젝트 저장소
+## 프로젝트 저장소
 > 프로젝트 기간 
 > 팀원: [@Groot-94](https://github.com/Groot-94) [@borysarang](https://github.com/yusw10) 
 리뷰어: [@protocorn93]()
@@ -23,6 +23,12 @@
     - [배운 개념](#배운개념)
     - [Review](#Review)
     - [Update](#Update)
+- [STEP 2](#STEP-2)
+    - [기능설명](#기능설명)
+    - [고민한점](#고민한점)
+    - [배운 개념](#배운개념)
+    - [Review](#Review)
+    - [Update](#Update)
 
 ---
 
@@ -30,8 +36,10 @@
 과일의 수량을 확인해서 과일쥬스를 만드는 어플리케이션
 ---
 # UML  
-![ClassDiagram](https://i.imgur.com/MIMeDGQ.png)
-
+![ClassDiagram]
+![](https://i.imgur.com/6SLfIZP.png)
+![Flowchart]
+![](https://i.imgur.com/cJtopsy.jpg)
 ---
 
 # 키워드  
@@ -49,15 +57,13 @@
 - 유동적으로 산책, 음악감상
 
 ## 참고문서
-- Swift Playground 앱의 [코딩배우기 I, II] 끝까지 마치기
-- Swift API Design Guidelines - 특히 Naming 파트
-- Swift Language Guide - Structures and Classes
-- Swift Language Guide - Initialization
-- Swift Language Guide - Access Control
-- Swift Language Guide - Nested Types
-- Swift Language Guide - Type Casting
-- Swift Language Guide - Error Handling 
-
+- [Swift Language Guide - Structures and Classes](https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html)
+- [Swift Language Guide - Initialization](https://docs.swift.org/swift-book/LanguageGuide/Initialization.html)
+- [Swift Language Guide - Access Control](https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html)
+- [Swift Language Guide - Nested Types](https://docs.swift.org/swift-book/LanguageGuide/NestedTypes.html)
+- [Swift Language Guide - Error Handlin](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html)
+- [Swift Language Guide - Type Casting](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)
+- [Human Interface Guidelines - iOS](https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/)
 ## 의사소통 방법
 + 디스코드 회의실
 + 단톡방
@@ -90,11 +96,18 @@
 - [x] 메서드의 기능단위 분리
 - [x] 요구사항에 따른 타입의 정의
 - [x] 타입의 캡슐화/은닉화
-- [x] 상황에 알맞은 상수/변수의 올바른 선택
+- [x] 상황에 알맞은 상수/변수의 올바른 
+- [x] 내비게이션 바 및 바 버튼 아이템의 활용
+- [x] 얼럿 컨트롤러 활용
+- [x] Modality의 활용
 ---
 # [STEP 1]
 
 ## 기능설명
+- getRecipe() : 과일주스의 제작에 필요한 과일과 수량을 반환해주는 함수
+- canUseStock() : 과일주스를 제작하기 위한 과일의 수량확인해 가능여부를 알려주는 함수
+- make() : 과일주스을 만드는 함수 
+- takeOrder() : 과일주스를 주문받는 함수
 
 ## 고민한점
 - 은닉화 : FruitStore 클래스의 메서드들을 internal로 설정하면 FruitStore 객체를 만들어서 과일의 재고만 변동을 줄 수도 있다는 생각이 들었습니다. 그래서 FruitStore의 메서드를 JuiceMaker 에서만 사용하게 하고 싶었으나 은닉화를 하게 되면 JuiceMaker에서 사용할 수 없어서 `어떻게 해야 하는 게 좋은지`, `이 생각을 하는게 옳은 것인지 궁금합니다`. 
@@ -109,6 +122,68 @@
 - Error Handling
 - Enum
 
+## Review
+- 재고 초기화 부분에서 "자주 변경될 수 있는 것과 거의 변경되지 않는 것"을 구분해서 어떻게 초기화 해줄지 고민해보기
+- 에러를 언제 던지는게 좋을지에 대해서도 함께 고민해보기
+- 프로그램도 마찬가지로 input에 대한 output으로 검증을 할 수 있도록 만드는 것이 좋다.
+## Update
+- 이니셜라이저로 동일한 수량을 받도록 수정
+```swift
+let initialAmount: Int
+
+    init(initialAmount: Int) {
+        self.initialAmount = initialAmount
+        fruitInventory = [
+            .strawberry: initialAmount,
+            .banana: initialAmount,
+```
+
+
+- "재고가 없는 경우 사용자가 정상적으로 요청을 했지만 이를 수행할 수 없는경우"는 에러가 아니라고 생각했기에 코드의 재고확인하는 부분중 throw를 제거하고 Bool타입으로 수정
+```swift
+ func takeOrder(_ fruitJuice: FruitJuice) {
+        do {
+            let finishedFruitJuice = try fruitStore.make(fruitJuice)
+            print("\(finishedFruitJuice)가 완성되었습니다.")
+        } catch JuiceMakerError.outOfStock {
+            print("재고가 부족합니다.")
+        } catch {
+```
+
+
+-  input, output을 검증하는 방향으로 코드를 수정
+```swift
+private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
+        guard let stock = fruitInventory[fruit] else {
+            throw JuiceMakerError.invalidOrder
+        }
+        guard stock >= amount else {
+            return false
+        }
+        fruitInventory[fruit] = stock - amount
+        return true
+    }
+```
+
+# [STEP 2]
+
+## 기능설명
+
+## 고민한점
+- Navigation, Modality 
+- closure 안에서 self
+- notifiction
+- Button의 Action을 하나로 묶고 어떤 Button이 눌렸는지 확인하는 방법
+- 여러 Label을 하나씩 수정하는 방법이 아닌, 
+## 배운개념
+- Navigation
+- Modality
+- Notification
+- UIButton
+- UILabel
+- UIAlert
+- Type Casting
+- storyboard
 ## Review
 
 ## Update
