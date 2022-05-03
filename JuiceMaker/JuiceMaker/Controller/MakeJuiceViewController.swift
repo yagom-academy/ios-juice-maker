@@ -14,17 +14,21 @@ class MakeJuiceViewController: UIViewController {
     @IBOutlet weak var orderStrawberryAndBananaJuiceButton: UIButton!
     @IBOutlet weak var orderMangoJuiceButton: UIButton!
     @IBOutlet weak var orderMangoAndKiwiJuiceButton: UIButton!
+    
     @IBOutlet weak var addFruitsButton: UIBarButtonItem!
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
-
+    
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshFruits()
     }
     
     @IBAction func orderButton(_ sender: UIButton) {
@@ -63,18 +67,30 @@ extension MakeJuiceViewController {
             let successAlert = UIAlertController(title: nil,
                                                  message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!",
                                                  preferredStyle: UIAlertController.Style.alert)
-            let action = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            let action = UIAlertAction(title: "확인", style: .cancel) { action in
+                self.refreshFruits()
+            }
             successAlert.addAction(action)
             self.present(successAlert, animated: true, completion: nil)
         case .failure(let error):
             let failureAlert = UIAlertController(title: nil,
                                                  message: error.errorDescription,
                                                  preferredStyle: .alert)
-            let moveAction = UIAlertAction(title: "예", style: .default, handler: nil)
             let cancelAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-            failureAlert.addAction(moveAction)
+            let moveAction = UIAlertAction(title: "예", style: .default, handler: nil)
             failureAlert.addAction(cancelAction)
+            failureAlert.addAction(moveAction)
             self.present(failureAlert, animated: true, completion: nil)
         }
+    }
+}
+
+extension MakeJuiceViewController {
+    func refreshFruits() {
+        strawberryLabel.text = String(juiceMaker.fruitStore.fruits.strawberry)
+        bananaLabel.text = String(juiceMaker.fruitStore.fruits.banana)
+        kiwiLabel.text = String(juiceMaker.fruitStore.fruits.kiwi)
+        pineappleLabel.text = String(juiceMaker.fruitStore.fruits.pineapple)
+        mangoLabel.text = String(juiceMaker.fruitStore.fruits.mango)
     }
 }

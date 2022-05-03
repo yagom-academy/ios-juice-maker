@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var fruits: Fruits
+    var fruits: Fruits
     
     init(fruits: Fruits) {
         self.fruits = fruits
