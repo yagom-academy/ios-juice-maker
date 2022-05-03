@@ -94,7 +94,7 @@ func make(of juice: Juice)
 > .success(연관값) , .failure(에러타입의 case) 를 반환해 준다. 
 > 반환 값을 case **.success(let juice)**: 로 받아서 연관값 처리를 해주었다.
 > 반환 값을 case **.failure(let error)**: 로 받아서 에러 처리를 해주었다.
-```swift=
+```swift
 // ------ JuiceMaker    
 func make(_ beverage: Drink) -> Result<JuiceType, StockError> {
     do{
@@ -106,7 +106,7 @@ func make(_ beverage: Drink) -> Result<JuiceType, StockError> {
 }
 ```
 
-```swift=
+```swift
 // ------ OrderViewController
 // Return Result 값 
     switch result {
