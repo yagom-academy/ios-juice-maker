@@ -12,7 +12,7 @@ class FruitStore {
         
         fruitStock[fruit] = quantity - number
     }
-    
+
     func stockAsString(fruit: Fruit) -> String {
         guard let stock = fruitStock[fruit] else {
             return "0"

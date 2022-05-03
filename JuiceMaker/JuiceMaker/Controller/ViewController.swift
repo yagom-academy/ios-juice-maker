@@ -69,6 +69,5 @@ class ViewController: UIViewController {
             stockViewController.stocks = juiceMaker
         }
     }
-    
 }
 
