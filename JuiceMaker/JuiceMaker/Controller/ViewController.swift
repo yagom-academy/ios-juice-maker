@@ -16,10 +16,6 @@ class ViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     
-    func checkFruitsStock(name: Fruits) -> String{
-        return juiceMaker.fruitStore.checkFruitsStock(name: name)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         strawberryStock.text = checkFruitsStock(name: .strawberry)
@@ -68,6 +64,10 @@ class ViewController: UIViewController {
     
     @IBAction func changeStockButton(_ sender: UIBarButtonItem) {
         
+    }
+    
+    func checkFruitsStock(name: Fruits) -> String{
+        return juiceMaker.fruitStore.checkFruitsStock(name: name)
     }
     
     func showMakeJuiceMessage(from message: String) {
