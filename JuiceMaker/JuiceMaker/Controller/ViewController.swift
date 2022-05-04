@@ -14,12 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStock()
     }
-    
+
     @IBAction func strawberryButton(_ sender: UIButton) {
         buttonEvent(juice: .strawberry)
         updateStock()
