@@ -71,6 +71,8 @@ class FruitStore {
         case Juice.mangoKiwi:
             try function(Fruit.mango)
             try function(Fruit.kiwi)
+        case Juice.unknownFruit:
+            try function(Fruit.unknownFruit)
         }
     }
     
@@ -92,6 +94,8 @@ class FruitStore {
         case Juice.mangoKiwi:
             try function(Fruit.mango, CostOfJuiceProduction.mangoInMangoKiwiJuice)
             try function(Fruit.kiwi, CostOfJuiceProduction.kiwiInMangoKiwiJuice)
+        case Juice.unknownFruit:
+            try function(Fruit.unknownFruit, CostOfJuiceProduction.unknownFruitInUnknownFruitJuice)
         }
     }
     

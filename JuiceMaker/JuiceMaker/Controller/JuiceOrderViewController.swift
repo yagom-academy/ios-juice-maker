@@ -29,7 +29,27 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction private func makeJuice(_ sender: UIButton) {
-        guard let juice = Juice(rawValue: sender.currentTitle ?? "") else { return }
+        
+        var juice: Juice {
+            switch sender.currentTitle {
+            case "딸기쥬스 주문":
+                return .strawberry
+            case "바나나쥬스 주문":
+                return .banana
+            case "파인애플쥬스 주문":
+                return .pineapple
+            case "키위쥬스 주문":
+                return .kiwi
+            case "딸바쥬스 주문":
+                return .strawberryBanana
+            case "망고쥬스 주문":
+                return .mango
+            case "망키쥬스 주문":
+                return .mangoKiwi
+            default:
+                return .unknownFruit
+            }
+        }
         
         tryMaking(juice)
         updateFruitStock()

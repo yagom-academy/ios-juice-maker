@@ -11,4 +11,5 @@ enum Fruit: String {
     case pineapple
     case kiwi
     case mango
+    case unknownFruit
 }

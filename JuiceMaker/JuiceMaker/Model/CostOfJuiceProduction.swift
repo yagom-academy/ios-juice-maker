@@ -15,4 +15,5 @@ enum CostOfJuiceProduction {
     static let mangoInMangoJuice = 3
     static let mangoInMangoKiwiJuice = 2
     static let kiwiInMangoKiwiJuice = 1
+    static let unknownFruitInUnknownFruitJuice = -1
 }
