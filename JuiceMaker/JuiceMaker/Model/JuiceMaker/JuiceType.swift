@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum JuiceType: Int {
-    case strawberryJuice = 1
-    case bananaJuice = 2
-    case kiwiJuice = 3
-    case mangoJuice = 4
-    case pineappleJuice = 5
-    case strawberryBananaJuice = 6
-    case mangoKiwiJuice = 7
+enum JuiceType {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case mangoJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
 }
 
 extension JuiceType {

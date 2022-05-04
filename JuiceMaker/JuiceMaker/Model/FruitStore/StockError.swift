@@ -8,5 +8,14 @@
 import Foundation
 
 enum StockError: Error {
-    case notEnoughIngredient(String)
+    case notEnoughIngredient
+}
+
+extension StockError {
+    var message: String {
+        switch self {
+        case .notEnoughIngredient:
+            return "재료가 모자라요. 재고를 수정할까요?"
+        }
+    }
 }

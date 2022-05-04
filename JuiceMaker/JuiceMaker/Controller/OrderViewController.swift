@@ -13,14 +13,21 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateValue()
+        updateUI()
     }
 
-    @IBAction func orderJuice(_ sender: UIButton) {
+    @IBAction func juiceButtonDidTapped(_ sender: UIButton) {
+        orderJuice(sender)
+        updateUI()
+    }
+}
+
+private extension OrderViewController {
+    func orderJuice(_ sender: UIButton) {
         guard let orderedJuice = JuiceType(rawValue: sender.tag) else {
             return
         }
@@ -30,41 +37,30 @@ class OrderViewController: UIViewController {
         
         switch result {
         case .success(let juice):
-            showConfirmAlert(message: "\(juice.localeKorean) 쥬스 나왔습니다! 맛있게 드세요!")
+            presentConfirmAlert(message: "\(juice.localeKorean) 쥬스 나왔습니다! 맛있게 드세요!")
         case .failure(let error):
-            check(error: error)
+            presentWarningAlert(message: error.message)
         }
-
-        updateValue()
+    }
+    
+    func updateUI() {
+        self.strawberryLabel.text = juiceMaker.count(.strawberry)
+        self.bananaLabel.text = juiceMaker.count(.banana)
+        self.pineappleLabel.text = juiceMaker.count(.pineapple)
+        self.kiwiLabel.text = juiceMaker.count(.kiwi)
+        self.mangoLabel.text = juiceMaker.count(.mango)
     }
 }
 
 private extension OrderViewController {
-    func updateValue() {
-        self.strawberryLabel.text = juiceMaker.fruitStore.count(.strawberry).description
-        self.bananaLabel.text = juiceMaker.fruitStore.count(.banana).description
-        self.pineappleLabel.text = juiceMaker.fruitStore.count(.pineapple).description
-        self.kiwiLabel.text = juiceMaker.fruitStore.count(.kiwi).description
-        self.mangoLabel.text = juiceMaker.fruitStore.count(.mango).description
-    }
-
-    func check(error: StockError) {
-        switch error {
-        case .notEnoughIngredient(let errorStr):
-            showWarningAlert(message: errorStr)
-        }
-    }
-}
-
-private extension OrderViewController {
-    func showConfirmAlert(message: String) {
+    func presentConfirmAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alertController.addAction(confirmAction)
         self.present(alertController, animated: false)
     }
     
-    func showWarningAlert(message: String) {
+    func presentWarningAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let positiveAction = UIAlertAction(title: "예", style: .default) { _ in
             self.move(to: "StoreViewController")
