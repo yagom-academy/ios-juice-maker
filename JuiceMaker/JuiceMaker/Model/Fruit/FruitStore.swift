@@ -14,7 +14,7 @@ class FruitStore {
     }
     
     func checkFruitStock(fruit: Fruit, amount: Int) throws {
-        guard let stockFruit = stocks[fruit] else { throw StockError.defaultError }
+        guard let stockFruit = stocks[fruit] else { throw StockError.unknown }
         guard stockFruit >= amount else {
             return insufficientStock[fruit] = amount - stockFruit
         }
