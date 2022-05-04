@@ -21,7 +21,7 @@ struct JuiceMaker {
             print("재고가 없습니다")
             return false
         } catch {
-            return false
+            return true
         }
     }
 }

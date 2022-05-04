@@ -6,13 +6,21 @@
 
 import UIKit
 
-final class makeJuiceViewController: UIViewController {
+final class MakeJuiceViewController: UIViewController {
     
     @IBOutlet weak var strawberryStock: UILabel!
     @IBOutlet weak var bananaStock: UILabel!
     @IBOutlet weak var pineappleStock: UILabel!
     @IBOutlet weak var kiwiStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
+    
+    @IBOutlet weak var strawBerryBananJuiceButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var strawberryJuiceButton: UIButton!
+    @IBOutlet weak var bananaJuiceButton: UIButton!
+    @IBOutlet weak var pineappleJuiceButton: UIButton!
+    @IBOutlet weak var kiwiJuiceButton: UIButton!
+    @IBOutlet weak var mangoJuiceButton: UIButton!
     
     private let juiceMaker = JuiceMaker()
     
@@ -21,41 +29,19 @@ final class makeJuiceViewController: UIViewController {
         setupViews()
     }
     
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        makeJuice(fruit: .strawberryBanana)
-        strawberryStock.text = showFruitsStock(name: .strawberry)
-        bananaStock.text = showFruitsStock(name: .banana)
-    }
-    
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        makeJuice(fruit: .mangoKiwi)
-        mangoStock.text = showFruitsStock(name: .mango)
-        kiwiStock.text = showFruitsStock(name: .kiwi)
-    }
-    
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        makeJuice(fruit: .strawberry)
-        strawberryStock.text = showFruitsStock(name: .strawberry)
-    }
-    
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
-        makeJuice(fruit: .banana)
-        bananaStock.text = showFruitsStock(name: .banana)
-    }
-    
-    @IBAction func orderPineapplerJuice(_ sender: UIButton) {
-        makeJuice(fruit: .pineapple)
-        pineappleStock.text = showFruitsStock(name: .pineapple)
-    }
-    
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        makeJuice(fruit: .kiwi)
-        kiwiStock.text = showFruitsStock(name: .kiwi)
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
-        makeJuice(fruit: .mango)
-        mangoStock.text = showFruitsStock(name: .mango)
+    @IBAction func didTapOrderJuice(_ sender: UIButton) {
+        do {
+            let order = try orderJuice(sender: sender)
+            makeJuice(fruit: order)
+            for (fruit, _) in order.recipe {
+                let stock = selectFruitLable(fruit: fruit)
+                stock.text = showFruitsStock(name: fruit)
+            }
+        } catch FruitStoreError.wrongMenu {
+            print("없는 메뉴입니다")
+        } catch {
+            print("")
+        }
     }
     
     func setupViews() {
@@ -68,6 +54,42 @@ final class makeJuiceViewController: UIViewController {
     
     func showFruitsStock(name: Fruits) -> String {
         return juiceMaker.fruitStore.showFruitsStock(name: name)
+    }
+    
+    func selectFruitLable(fruit: Fruits) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryStock
+        case .mango:
+            return mangoStock
+        case .kiwi:
+            return kiwiStock
+        case .pineapple:
+            return pineappleStock
+        case .banana:
+            return bananaStock
+        }
+    }
+    
+    func orderJuice(sender: UIButton) throws -> Juice {
+        switch sender {
+        case strawBerryBananJuiceButton:
+            return .strawberryBanana
+        case mangoKiwiJuiceButton:
+            return .mangoKiwi
+        case strawberryJuiceButton:
+            return .strawberry
+        case bananaJuiceButton:
+            return .banana
+        case pineappleJuiceButton:
+            return .pineapple
+        case kiwiJuiceButton:
+            return .kiwi
+        case mangoJuiceButton:
+            return .mango
+        default:
+            throw FruitStoreError.wrongMenu
+        }
     }
     
     func showMakeJuiceMessage(message: String) {
