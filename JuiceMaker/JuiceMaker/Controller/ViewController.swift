@@ -79,8 +79,9 @@ class ViewController: UIViewController {
     
     func showCheckStockMessage() {
         let checkStockMessage = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let yesButton = UIAlertAction(title: "예", style: .default) { _ in
-            self.performSegue(withIdentifier: "showFruitStock", sender: nil)
+        let yesButton = UIAlertAction(title: "예", style: .default) { action -> Void in
+            let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController")
+            self.present(stockViewController!, animated: true, completion: nil)
         }
         let noButton = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
         
