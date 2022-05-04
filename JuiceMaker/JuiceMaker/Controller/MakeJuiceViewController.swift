@@ -18,56 +18,56 @@ final class makeJuiceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryStock.text = checkFruitsStock(name: .strawberry)
-        bananaStock.text = checkFruitsStock(name: .banana)
-        pineappleStock.text = checkFruitsStock(name: .pineapple)
-        kiwiStock.text = checkFruitsStock(name: .kiwi)
-        mangoStock.text = checkFruitsStock(name: .mango)
+        strawberryStock.text = showFruitsStock(name: .strawberry)
+        bananaStock.text = showFruitsStock(name: .banana)
+        pineappleStock.text = showFruitsStock(name: .pineapple)
+        kiwiStock.text = showFruitsStock(name: .kiwi)
+        mangoStock.text = showFruitsStock(name: .mango)
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
         decideMessage(fruit: .strawberryBanana)
-        strawberryStock.text = checkFruitsStock(name: .strawberry)
-        bananaStock.text = checkFruitsStock(name: .banana)
+        strawberryStock.text = showFruitsStock(name: .strawberry)
+        bananaStock.text = showFruitsStock(name: .banana)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
         decideMessage(fruit: .mangoKiwi)
-        mangoStock.text = checkFruitsStock(name: .mango)
-        kiwiStock.text = checkFruitsStock(name: .kiwi)
+        mangoStock.text = showFruitsStock(name: .mango)
+        kiwiStock.text = showFruitsStock(name: .kiwi)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
         decideMessage(fruit: .strawberry)
-        strawberryStock.text = checkFruitsStock(name: .strawberry)
+        strawberryStock.text = showFruitsStock(name: .strawberry)
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
         decideMessage(fruit: .banana)
-        bananaStock.text = checkFruitsStock(name: .banana)
+        bananaStock.text = showFruitsStock(name: .banana)
     }
     
     @IBAction func orderPineapplerJuice(_ sender: UIButton) {
         decideMessage(fruit: .pineapple)
-        pineappleStock.text = checkFruitsStock(name: .pineapple)
+        pineappleStock.text = showFruitsStock(name: .pineapple)
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
         decideMessage(fruit: .kiwi)
-        kiwiStock.text = checkFruitsStock(name: .kiwi)
+        kiwiStock.text = showFruitsStock(name: .kiwi)
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
         decideMessage(fruit: .mango)
-        mangoStock.text = checkFruitsStock(name: .mango)
+        mangoStock.text = showFruitsStock(name: .mango)
     }
     
     @IBAction func changeStockButton(_ sender: UIBarButtonItem) {
         
     }
     
-    func checkFruitsStock(name: Fruits) -> String{
-        return juiceMaker.fruitStore.checkFruitsStock(name: name)
+    func showFruitsStock(name: Fruits) -> String {
+        return juiceMaker.fruitStore.showFruitsStock(name: name)
     }
     
     func showMakeJuiceMessage(from message: String) {
