@@ -62,10 +62,6 @@ final class makeJuiceViewController: UIViewController {
         mangoStock.text = showFruitsStock(name: .mango)
     }
     
-    @IBAction func changeStockButton(_ sender: UIBarButtonItem) {
-        
-    }
-    
     func showFruitsStock(name: Fruits) -> String {
         return juiceMaker.fruitStore.showFruitsStock(name: name)
     }
