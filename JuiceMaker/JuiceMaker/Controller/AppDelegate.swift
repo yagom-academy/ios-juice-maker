@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - AppDelegate.swift
-//  Created by yagom. 
+//  Created by bradheo65, bonf, ZZBAE
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -8,8 +8,6 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
