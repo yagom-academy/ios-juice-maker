@@ -87,7 +87,7 @@ final class makeJuiceViewController: UIViewController {
     }
     
     func decideMessage(fruit: Juice) {
-        if juiceMaker.makeJuice(flavor: fruit) {
+        if juiceMaker.canMakeJuice(flavor: fruit) {
             showMakeJuiceMessage(from: "\(fruit.name) 나왔습니다! 맛있게 드세요!")
         } else {
             showCheckStockMessage()
