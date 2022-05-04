@@ -29,7 +29,7 @@ final class MakeJuiceViewController: UIViewController {
         setupViews()
     }
     
-    @IBAction func didTapOrderJuice(_ sender: UIButton) {
+    @IBAction private func didTapOrderJuice(_ sender: UIButton) {
         do {
             let order = try orderJuice(sender: sender)
             makeJuice(fruit: order)
@@ -44,7 +44,7 @@ final class MakeJuiceViewController: UIViewController {
         }
     }
     
-    func setupViews() {
+    private func setupViews() {
         strawberryStock.text = showFruitsStock(name: .strawberry)
         bananaStock.text = showFruitsStock(name: .banana)
         pineappleStock.text = showFruitsStock(name: .pineapple)
@@ -52,11 +52,11 @@ final class MakeJuiceViewController: UIViewController {
         mangoStock.text = showFruitsStock(name: .mango)
     }
     
-    func showFruitsStock(name: Fruits) -> String {
+    private func showFruitsStock(name: Fruits) -> String {
         return juiceMaker.fruitStore.showFruitsStock(name: name)
     }
     
-    func selectFruitLable(fruit: Fruits) -> UILabel {
+    private func selectFruitLable(fruit: Fruits) -> UILabel {
         switch fruit {
         case .strawberry:
             return strawberryStock
@@ -71,7 +71,7 @@ final class MakeJuiceViewController: UIViewController {
         }
     }
     
-    func orderJuice(sender: UIButton) throws -> Juice {
+    private func orderJuice(sender: UIButton) throws -> Juice {
         switch sender {
         case strawBerryBananJuiceButton:
             return .strawberryBanana
@@ -92,14 +92,14 @@ final class MakeJuiceViewController: UIViewController {
         }
     }
     
-    func showMakeJuiceMessage(message: String) {
+    private func showMakeJuiceMessage(message: String) {
         let makeJuiceMessage = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         makeJuiceMessage.addAction(okButton)
         present(makeJuiceMessage, animated: true, completion: nil)
     }
     
-    func showCheckStockMessage() {
+    private func showCheckStockMessage() {
         let checkStockMessage = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let yesButton = UIAlertAction(title: "예", style: .default) { action -> Void in
             let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController")
@@ -112,7 +112,7 @@ final class MakeJuiceViewController: UIViewController {
         present(checkStockMessage, animated: true, completion: nil)
     }
     
-    func makeJuice(fruit: Juice) {
+    private func makeJuice(fruit: Juice) {
         if juiceMaker.canMakeJuice(flavor: fruit) {
             showMakeJuiceMessage(message: "\(fruit.name) 나왔습니다! 맛있게 드세요!")
         } else {
