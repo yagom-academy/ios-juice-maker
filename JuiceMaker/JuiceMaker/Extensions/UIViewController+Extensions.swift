@@ -9,11 +9,14 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func move(to identifier: String) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: identifier) else {
-            return
+    class func instantiate(from storyboard: String = "Main", bundle: Bundle? = nil, identifier: String? = nil) -> Self {
+        let viewControllerIdentifier = identifier ?? String(describing: self)
+        let storyboard = UIStoryboard(name: storyboard, bundle: bundle)
+        guard let viewController = storyboard
+            .instantiateViewController(withIdentifier: viewControllerIdentifier) as? Self else {
+            preconditionFailure(
+                "Unable to instantiate view controller with identifier \(viewControllerIdentifier) as type \(type(of: self))")
         }
-        viewController.modalTransitionStyle = .coverVertical
-        self.present(viewController, animated: true)
+        return viewController
     }
 }

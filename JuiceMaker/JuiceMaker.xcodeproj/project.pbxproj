@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		902AAF01282267DA002A9C33 /* Result+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902AAF00282267DA002A9C33 /* Result+Extensions.swift */; };
 		90C948CA281FDC96006165FB /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C948C9281FDC96006165FB /* UIViewController+Extensions.swift */; };
 		90CFCF83281A55F800E4E938 /* JuiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFCF82281A55F800E4E938 /* JuiceType.swift */; };
 		90CFCF85281A565300E4E938 /* DrinkMakerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFCF84281A565300E4E938 /* DrinkMakerable.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		902AAF00282267DA002A9C33 /* Result+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Extensions.swift"; sourceTree = "<group>"; };
 		90C948C9281FDC96006165FB /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		90CFCF82281A55F800E4E938 /* JuiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceType.swift; sourceTree = "<group>"; };
 		90CFCF84281A565300E4E938 /* DrinkMakerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkMakerable.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				90C948C9281FDC96006165FB /* UIViewController+Extensions.swift */,
+				902AAF00282267DA002A9C33 /* Result+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFFE9EB7281FA6280046763B /* StoreViewController.swift in Sources */,
+				902AAF01282267DA002A9C33 /* Result+Extensions.swift in Sources */,
 				AF61162428166E8B008D02EB /* Fruit.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				AFD9E41C2817819C008A919E /* Drink.swift in Sources */,

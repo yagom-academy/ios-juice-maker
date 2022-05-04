@@ -35,12 +35,13 @@ private extension OrderViewController {
 
         let juice = Drink(juice: orderedJuice)
         let result = juiceMaker.make(juice)
-
-        switch result {
-        case .success(let _):
-            presentConfirmAlert(message: "\(orderedJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
-        case .failure(let error):
-            presentWarningAlert(message: error.message)
+        
+        result.handleValue { _ in
+            self.presentConfirmAlert(message: "\(orderedJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
+        }
+        
+        result.handleError { error in
+            self.presentWarningAlert(message: error.message)
         }
     }
     
@@ -64,7 +65,9 @@ private extension OrderViewController {
     func presentWarningAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let positiveAction = UIAlertAction(title: "예", style: .default) { _ in
-            self.move(to: "StoreViewController")
+            let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
+            storeViewController.modalTransitionStyle = .coverVertical
+            self.present(storeViewController, animated: true)
         }
         let negativeAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         alertController.addAction(positiveAction)
