@@ -26,39 +26,39 @@ final class makeJuiceViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        decideMessage(fruit: .strawberryBanana)
+        makeJuice(fruit: .strawberryBanana)
         strawberryStock.text = showFruitsStock(name: .strawberry)
         bananaStock.text = showFruitsStock(name: .banana)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        decideMessage(fruit: .mangoKiwi)
+        makeJuice(fruit: .mangoKiwi)
         mangoStock.text = showFruitsStock(name: .mango)
         kiwiStock.text = showFruitsStock(name: .kiwi)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        decideMessage(fruit: .strawberry)
+        makeJuice(fruit: .strawberry)
         strawberryStock.text = showFruitsStock(name: .strawberry)
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
-        decideMessage(fruit: .banana)
+        makeJuice(fruit: .banana)
         bananaStock.text = showFruitsStock(name: .banana)
     }
     
     @IBAction func orderPineapplerJuice(_ sender: UIButton) {
-        decideMessage(fruit: .pineapple)
+        makeJuice(fruit: .pineapple)
         pineappleStock.text = showFruitsStock(name: .pineapple)
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        decideMessage(fruit: .kiwi)
+        makeJuice(fruit: .kiwi)
         kiwiStock.text = showFruitsStock(name: .kiwi)
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
-        decideMessage(fruit: .mango)
+        makeJuice(fruit: .mango)
         mangoStock.text = showFruitsStock(name: .mango)
     }
     
@@ -86,7 +86,7 @@ final class makeJuiceViewController: UIViewController {
         present(checkStockMessage, animated: true, completion: nil)
     }
     
-    func decideMessage(fruit: Juice) {
+    func makeJuice(fruit: Juice) {
         if juiceMaker.canMakeJuice(flavor: fruit) {
             showMakeJuiceMessage(message: "\(fruit.name) 나왔습니다! 맛있게 드세요!")
         } else {
