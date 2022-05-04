@@ -7,11 +7,17 @@
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func checkFruitAvailable(for juice: Juice) throws {
+    func make(_ juice: Juice) throws {
+        try checkFruitAvailable(for: juice)
+        try checkPossibilityOfMaking(juice)
+    }
+    
+    
+    private func checkFruitAvailable(for juice: Juice) throws {
         try fruitStore.goToWarehouse(of: fruitStore.checkFruitKind(_:), juice: juice)
     }
     
-    func checkPossibilityOfMaking(_ juice: Juice) throws {
+    private func checkPossibilityOfMaking(_ juice: Juice) throws {
         try fruitStore.checkStock(function: fruitStore.reduceStock(fruit:amount:), juice: juice)
     }
 }

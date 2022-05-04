@@ -7,14 +7,13 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet private weak var strawberryLabel: UILabel?
-    @IBOutlet weak var bananaLabel: UILabel?
-    @IBOutlet weak var pineappleLabel: UILabel?
-    @IBOutlet weak var kiwiLabel: UILabel?
-    @IBOutlet weak var mangoLabel: UILabel?
+    @IBOutlet private weak var bananaLabel: UILabel?
+    @IBOutlet private weak var pineappleLabel: UILabel?
+    @IBOutlet private weak var kiwiLabel: UILabel?
+    @IBOutlet private weak var mangoLabel: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,21 +28,21 @@ class JuiceOrderViewController: UIViewController {
         mangoLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.mango] ?? 0)
     }
     
-    @IBAction func makeJuice(_ sender: UIButton) {
+    @IBAction private func makeJuice(_ sender: UIButton) {
         guard let juice = Juice(rawValue: sender.currentTitle ?? "") else { return }
         
-        make(juice)
+        tryMaking(juice)
         updateFruitStock()
     }
     
-    private func make(_ juice: Juice) {
+    private func tryMaking(_ juice: Juice) {
         do {
-            try juiceMaker.checkFruitAvailable(for: juice)
-            try juiceMaker.checkPossibilityOfMaking(juice)
+            try juiceMaker.make(juice)
             showSuccessAlert(juice)
-        } catch (let error) {
-            juiceMaker.fruitStore.handle(error)
+        } catch FruitStoreError.outOfStock {
             showFailAlert()
+        } catch {
+            print(error.localizedDescription)
         }
     }
 
@@ -60,9 +59,7 @@ class JuiceOrderViewController: UIViewController {
         let failAlert = UIAlertController(title: "재료가 모자라요.\n 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let no = UIAlertAction(title: "아니오", style: .cancel)
         let yes = UIAlertAction(title: "예", style: .default) { action in
-            guard let editMenu = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
-            
-            self.navigationController?.pushViewController(editMenu, animated: true)
+            self.goToFruitStockViewController()
         }
         
         failAlert.addAction(no)
@@ -70,7 +67,11 @@ class JuiceOrderViewController: UIViewController {
         present(failAlert, animated: true)
     }
     
-    @IBAction func navigationRightButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func navigationRightButtonTapped(_ sender: UIBarButtonItem) {
+        goToFruitStockViewController()
+    }
+    
+    private func goToFruitStockViewController() {
         guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
         
         self.navigationController?.pushViewController(controller, animated: true)

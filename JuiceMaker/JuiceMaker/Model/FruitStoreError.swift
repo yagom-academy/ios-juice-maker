@@ -23,5 +23,6 @@ extension FruitStoreError: LocalizedError {
         case .invalidAmount:
             return NSLocalizedString("잘못된 수량입니다", comment: "Description of invalid amount")
         }
+    
     }
 }
