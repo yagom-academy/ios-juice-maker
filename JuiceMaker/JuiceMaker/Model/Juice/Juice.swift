@@ -5,8 +5,8 @@
 //  Created by bradheo65, bonf, ZZBAE on 2022/04/26.
 //
 
-enum Juice: CaseIterable {
-    case strawberry
+enum Juice: Int, CaseIterable {
+    case strawberry 
     case banana
     case kiwi
     case mango

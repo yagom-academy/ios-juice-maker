@@ -20,33 +20,11 @@ class JuiceMakerViewController: UIViewController {
         updateStock()
     }
     
-    @IBAction func orderStrawberryJuiceButton(_ sender: UIButton) {
-        make(juice: .strawberry)
-        updateStock()
-    }
-    @IBAction func orderBananaJuiceButton(_ sender: UIButton) {
-        make(juice: .banana)
-        updateStock()
-    }
-    @IBAction func orderKiwiJuiceButton(_ sender: UIButton) {
-        make(juice: .kiwi)
-        updateStock()
-    }
-    @IBAction func orderMangoJuiceButton(_ sender: UIButton) {
-        make(juice: .mango)
-        updateStock()
-    }
-    @IBAction func orderPineappleJuiceButton(_ sender: UIButton) {
-        make(juice: .pineapple)
-        updateStock()
-    }
-    @IBAction func orderStrawberrybananaJuiceButton(_ sender: UIButton) {
-        make(juice: .strawberryBanana)
-        updateStock()
-    }
-    @IBAction func orderMangokiwiJuiceButton(_ sender: UIButton) {
-        make(juice: .mangoKiwi)
-        updateStock()
+    @IBAction private func orderFruitJuice(_ sender: UIButton) {
+        guard let juice = Juice(rawValue: sender.tag) else {
+            return
+        }
+        make(juice: juice)
     }
     
     private func updateStock() {
@@ -69,6 +47,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(of: juice)
             alertSuccessMakeJuice(juice: juice)
+            updateStock()
         } catch {
           guard let error = error as? StockError else {
             return

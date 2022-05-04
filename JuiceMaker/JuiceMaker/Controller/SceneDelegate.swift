@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - SceneDelegate.swift
-//  Created by yagom. 
+//  Created by bradheo65, bonf, ZZBAE
 //  Copyright © yagom academy. All rights reserved.
 // 
 
