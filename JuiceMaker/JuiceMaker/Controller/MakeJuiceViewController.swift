@@ -105,7 +105,7 @@ final class MakeJuiceViewController: UIViewController {
             let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController")
             self.present(stockViewController!, animated: true, completion: nil)
         }
-        let noButton = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+        let noButton = UIAlertAction(title: "아니오", style: .default, handler: nil)
         
         checkStockMessage.addAction(yesButton)
         checkStockMessage.addAction(noButton)
