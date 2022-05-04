@@ -7,35 +7,35 @@
 
 import Foundation
 
-enum JuiceType {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case mangoJuice
-    case pineappleJuice
-    case strawberryBananaJuice
-    case mangoKiwiJuice
+enum JuiceType: String {
+    case strawberryJuice = "딸기"
+    case bananaJuice = "바나나"
+    case kiwiJuice = "키위"
+    case mangoJuice = "망고"
+    case pineappleJuice = "파인애플"
+    case strawberryBananaJuice = "딸바"
+    case mangoKiwiJuice = "망키"
 }
 
 extension JuiceType {
-    var localeKorean: String {
-        switch self {
-        case .strawberryJuice:
-            return "딸기"
-        case .bananaJuice:
-            return "바나나"
-        case .kiwiJuice:
-            return "키위"
-        case .mangoJuice:
-            return "망고"
-        case .pineappleJuice:
-            return "파인애플"
-        case .strawberryBananaJuice:
-            return "딸바"
-        case .mangoKiwiJuice:
-            return "망키"
-        }
-    }
+//    var localeKorean: String {
+//        switch self {
+//        case .strawberryJuice:
+//            return "딸기"
+//        case .bananaJuice:
+//            return "바나나"
+//        case .kiwiJuice:
+//            return "키위"
+//        case .mangoJuice:
+//            return "망고"
+//        case .pineappleJuice:
+//            return "파인애플"
+//        case .strawberryBananaJuice:
+//            return "딸바"
+//        case .mangoKiwiJuice:
+//            return "망키"
+//        }
+//    }
     
     func requireIngredients() -> [Fruit: Int] {
         switch self {

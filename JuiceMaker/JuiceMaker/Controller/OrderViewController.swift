@@ -21,23 +21,24 @@ class OrderViewController: UIViewController {
     }
 
     @IBAction func juiceButtonDidTapped(_ sender: UIButton) {
-        orderJuice(sender)
+        orderJuice(sender.currentTitle ?? "")
         updateUI()
     }
 }
 
 private extension OrderViewController {
-    func orderJuice(_ sender: UIButton) {
-        guard let orderedJuice = JuiceType(rawValue: sender.tag) else {
+    func orderJuice(_ name: String?) {
+        guard let selectedJuice = name?.components(separatedBy: "쥬스 주문")[0],
+              let orderedJuice = JuiceType(rawValue: selectedJuice) else {
             return
         }
-        
+
         let juice = Drink(juice: orderedJuice)
         let result = juiceMaker.make(juice)
-        
+
         switch result {
-        case .success(let juice):
-            presentConfirmAlert(message: "\(juice.localeKorean) 쥬스 나왔습니다! 맛있게 드세요!")
+        case .success(let _):
+            presentConfirmAlert(message: "\(orderedJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
         case .failure(let error):
             presentWarningAlert(message: error.message)
         }
