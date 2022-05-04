@@ -66,7 +66,7 @@ final class makeJuiceViewController: UIViewController {
         return juiceMaker.fruitStore.showFruitsStock(name: name)
     }
     
-    func showMakeJuiceMessage(from message: String) {
+    func showMakeJuiceMessage(message: String) {
         let makeJuiceMessage = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         makeJuiceMessage.addAction(okButton)
@@ -88,7 +88,7 @@ final class makeJuiceViewController: UIViewController {
     
     func decideMessage(fruit: Juice) {
         if juiceMaker.canMakeJuice(flavor: fruit) {
-            showMakeJuiceMessage(from: "\(fruit.name) 나왔습니다! 맛있게 드세요!")
+            showMakeJuiceMessage(message: "\(fruit.name) 나왔습니다! 맛있게 드세요!")
         } else {
             showCheckStockMessage()
         }
