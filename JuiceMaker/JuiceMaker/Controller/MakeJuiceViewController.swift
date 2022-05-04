@@ -18,11 +18,7 @@ final class makeJuiceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryStock.text = showFruitsStock(name: .strawberry)
-        bananaStock.text = showFruitsStock(name: .banana)
-        pineappleStock.text = showFruitsStock(name: .pineapple)
-        kiwiStock.text = showFruitsStock(name: .kiwi)
-        mangoStock.text = showFruitsStock(name: .mango)
+        setupViews()
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
@@ -59,6 +55,14 @@ final class makeJuiceViewController: UIViewController {
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
         makeJuice(fruit: .mango)
+        mangoStock.text = showFruitsStock(name: .mango)
+    }
+    
+    func setupViews() {
+        strawberryStock.text = showFruitsStock(name: .strawberry)
+        bananaStock.text = showFruitsStock(name: .banana)
+        pineappleStock.text = showFruitsStock(name: .pineapple)
+        kiwiStock.text = showFruitsStock(name: .kiwi)
         mangoStock.text = showFruitsStock(name: .mango)
     }
     
