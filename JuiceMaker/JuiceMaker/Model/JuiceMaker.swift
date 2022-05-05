@@ -21,7 +21,7 @@ struct JuiceMaker {
     }
 
     func fruitCount(fruitName: FruitKind) -> String {
-        let fruitCount = fruitStore.returnStock()
+        let fruitCount = fruitStore.retrieveStock()
         if let selectedFruitCount = fruitCount[fruitName] {
             return String(selectedFruitCount)
         } else {

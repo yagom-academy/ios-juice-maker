@@ -51,7 +51,7 @@ class FruitStore {
         }
     }
     
-    func returnStock() -> Dictionary<FruitKind, Int>{
+    func retrieveStock() -> Dictionary<FruitKind, Int>{
         return stock
     }
 }
