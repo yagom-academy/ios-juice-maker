@@ -71,7 +71,6 @@ final class JuiceMakerViewController: UIViewController {
         } catch {
             alertInvalidAccess()
         }
-        
     }
     
     private func alertResult(_ fruitJuice: FruitJuice?) {
@@ -115,20 +114,14 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
-        guard let unwrappedStock = stock else {
-            return
-        }
-        for (fruit, value) in unwrappedStock {
-            modifyFruitStockLabel(fruit.rawValue, value)
+        _ = stock?.compactMap { (key: Fruit, value: Int) in
+            modifyFruitStockLabel(key.rawValue, value)
         }
     }
     
-    private func modifyFruitStockLabel(_ fruit: String, _ stock: Int?) {
+    private func modifyFruitStockLabel(_ fruit: String, _ stock: Int) {
         let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
-        guard let stock = stock else {
-            return
-        }
-        for uiLabel in allStockLabels where uiLabel.accessibilityIdentifier == fruit {
+        for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
             uiLabel.text = String(stock)
         }
     }
