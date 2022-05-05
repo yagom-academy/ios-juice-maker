@@ -25,13 +25,17 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObserver()
+        updateFruitsStockLabels(juiceMaker.requestCurrentStock())
+    }
+    
+    private func addObserver() {
         NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
             guard let currentStock = Notification.userInfo as? [Fruit:Int]? else {
                 return
             }
             self.updateFruitsStockLabels(currentStock)
         }
-        updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
      @IBAction private func orderFruitJuice(_ sender: UIButton) {
