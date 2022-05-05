@@ -13,7 +13,7 @@ class FruitStoreViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func pressBackBarButton(_ sender: UIBarButtonItem) {
+    @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }

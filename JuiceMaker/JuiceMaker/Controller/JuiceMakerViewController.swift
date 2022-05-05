@@ -7,21 +7,21 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
-    var juiceMaker: JuiceMaker = JuiceMaker()
+    private var juiceMaker: JuiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryAndBananaJuiceButton: UIButton!
-    @IBOutlet weak var mangoAndKiwiJuiceButton: UIButton!
-    @IBOutlet weak var strawberryJuiceButton: UIButton!
-    @IBOutlet weak var bananaJuiceButton: UIButton!
-    @IBOutlet weak var pineappleJuiceButton: UIButton!
-    @IBOutlet weak var kiwiJuiceButton: UIButton!
-    @IBOutlet weak var mangoJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryAndBananaJuiceButton: UIButton!
+    @IBOutlet private weak var mangoAndKiwiJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceButton: UIButton!
+    @IBOutlet private weak var bananaJuiceButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceButton: UIButton!
+    @IBOutlet private weak var mangoJuiceButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class JuiceMakerViewController: UIViewController {
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
-    @IBAction func orderFruitJuice(_ sender: UIButton) {
+     @IBAction private func orderFruitJuice(_ sender: UIButton) {
         switch sender {
         case strawberryAndBananaJuiceButton:
             alertResult(juiceMaker.takeOrder(.strawberryAndBananaJuice))
@@ -55,7 +55,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func alertResult(_ alertInfomation: (fruitJuice: FruitJuice, result: Bool)) {
+    private func alertResult(_ alertInfomation: (fruitJuice: FruitJuice, result: Bool)) {
         if alertInfomation.result {
             let alert = UIAlertController(title: nil, message: "\(alertInfomation.fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
@@ -73,14 +73,14 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func presentModalViewController(withId: String) {
+    private func presentModalViewController(withId: String) {
         guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
             return
         }
         present(modalViewController, animated: true)
     }
     
-    func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
+    private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         guard let unwrappedStock = stock else {
             return
         }
@@ -89,7 +89,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func modifyFruitStockLabel(_ fruit: String, _ stock: Int?) {
+    private func modifyFruitStockLabel(_ fruit: String, _ stock: Int?) {
         let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
         guard let stock = stock else {
             return
