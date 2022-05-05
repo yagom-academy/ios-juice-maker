@@ -24,11 +24,12 @@ class FruitStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBar.topItem?.title = "닫기"
     }
     
-    @IBAction func close(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true)
+    @IBAction func close(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
     }
-
 }
+
+
+

@@ -93,9 +93,8 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func goToFruitStockViewController() {
-        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else { return }
+        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "ModalViewController") else { return }
         
         present(controller, animated: true)
-//        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
