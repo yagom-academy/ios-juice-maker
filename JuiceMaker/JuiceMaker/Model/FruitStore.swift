@@ -10,7 +10,7 @@ import Foundation
 final class FruitStore {
     private(set) var fruitsStock: [Fruit:Int] = [:] {
         didSet {
-            NotificationCenter.default.post(name: NotificationName.fruitsStockDidChanged, object: nil, userInfo: fruitsStock)
+            postFruitsStockDidChanged(from : oldValue)
         }
     }
     let initialAmount: Int
@@ -55,6 +55,13 @@ final class FruitStore {
             canComplete = try canUseStock(of: fruit, by: amount) && canComplete
         }
         return canComplete ? try useOfStock(for: fruitJuice) : nil
+    }
+    
+    func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
+        let changedFruitsStock = fruitsStock.filter {
+            fruitsStock[$0.key] != oldValue[$0.key]
+        }
+        NotificationCenter.default.post(name: NotificationName.fruitsStockDidChanged, object: nil, userInfo: changedFruitsStock)
     }
 }
 
