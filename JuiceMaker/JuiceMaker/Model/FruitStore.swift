@@ -7,7 +7,7 @@
 import Foundation
 
 // 과일 저장소 타입
-class FruitStore {
+final class FruitStore {
     private(set) var fruitsStock: [Fruit:Int] = [:] {
         didSet {
             NotificationCenter.default.post(name: Notification.Name("fruitsStock"), object: nil, userInfo: fruitsStock)

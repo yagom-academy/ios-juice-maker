@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FruitStoreViewController: UIViewController {
+final class FruitStoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
