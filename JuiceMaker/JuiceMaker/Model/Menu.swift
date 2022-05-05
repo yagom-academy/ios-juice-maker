@@ -5,7 +5,7 @@
 //  Created by hugh, yeton on 2022/04/27.
 //
 
-enum Menu: Int {
+enum Menu {
     case strawberryJuice
     case bananaJuice
     case pineappleJuice
@@ -43,8 +43,8 @@ enum Menu: Int {
     }
 }
 
-extension Menu {
-    var name: String {
+extension Menu: CustomStringConvertible {
+    var description: String {
         switch self {
         case .strawberryJuice:
             return "딸기쥬스"

@@ -15,6 +15,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var strawberryAndBananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoAndKiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitLabel()
@@ -25,16 +33,37 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func order(_ sender: UIButton) {
-        guard let juice = Menu(rawValue: sender.tag) else {
-            return
-        }
         do {
+            let juice = try convertToJuice(from: sender)
             try juiceMaker.make(menu: juice)
-        } catch {
+            showCompletionAlert(menu: juice)
+        } catch JuiceMakerError.lackOfStock {
             showLackOfStockAlert()
+        } catch {
+            print(error)
         }
         updateFruitLabel()
-        showCompletionAlert(menu: juice)
+    }
+    
+    func convertToJuice(from button: UIButton) throws -> Menu {
+        switch button {
+        case strawberryAndBananaJuiceOrderButton:
+            return .strawberryAndBananaJuice
+        case mangoAndKiwiJuiceOrderButton:
+            return .mangoAndKiwiJuice
+        case strawberryJuiceOrderButton:
+            return .strawberryJuice
+        case bananaJuiceOrderButton:
+            return .bananaJuice
+        case pineappleJuiceOrderButton:
+            return .pineappleJuice
+        case kiwiJuiceOrderButton:
+            return .kiwiJuice
+        case mangoJuiceOrderButton:
+            return .mangoJuice
+        default:
+            throw JuiceMakerError.noneExistMenu
+        }
     }
     
     func updateFruitLabel() {
@@ -59,7 +88,7 @@ class HomeViewController: UIViewController {
     }
     
     func showCompletionAlert(menu: Menu) {
-        let completionAlert = UIAlertController(title: "알림", message: "\(menu.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let completionAlert = UIAlertController(title: "알림", message: "\(menu) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         completionAlert.addAction(okAlert)
