@@ -6,22 +6,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateStock()
+        updateFruitLabel()
     }
     
     @IBAction func tabEditStock(_ sender: UIBarButtonItem) {
-        self.changeView()
+        self.presentEditStockViewController()
     }
     
     @IBAction func order(_ sender: UIButton) {
@@ -31,25 +31,25 @@ class ViewController: UIViewController {
         do {
             try juiceMaker.make(menu: juice)
         } catch {
-            showlackOfStockAlert()
+            showLackOfStockAlert()
         }
-        updateStock()
+        updateFruitLabel()
         showCompletionAlert(menu: juice)
     }
     
-    func updateStock() {
-        strawberryStock.text = juiceMaker.store.notifyStock(fruit: .strawberry).description
-        bananaStock.text = juiceMaker.store.notifyStock(fruit: .banana).description
-        pineappleStock.text = juiceMaker.store.notifyStock(fruit: .pineapple).description
-        kiwiStock.text = juiceMaker.store.notifyStock(fruit: .kiwi).description
-        mangoStock.text = juiceMaker.store.notifyStock(fruit: .mango).description
+    func updateFruitLabel() {
+        strawberryStockLabel.text = juiceMaker.store.stock(fruit: .strawberry).description
+        bananaStockLabel.text = juiceMaker.store.stock(fruit: .banana).description
+        pineappleStockLabel.text = juiceMaker.store.stock(fruit: .pineapple).description
+        kiwiStockLabel.text = juiceMaker.store.stock(fruit: .kiwi).description
+        mangoStockLabel.text = juiceMaker.store.stock(fruit: .mango).description
     }
     
-    func showlackOfStockAlert() {
+    func showLackOfStockAlert() {
         let lackOfStockAlert = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let noAlert = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
         let okAlert = UIAlertAction(title: "예", style: .default) { _ in
-            self.changeView()
+            self.presentEditStockViewController()
         }
         
         lackOfStockAlert.addAction(noAlert)
@@ -67,11 +67,11 @@ class ViewController: UIViewController {
         present(completionAlert, animated: true)
     }
     
-    func changeView() {
-        guard let stockVC = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController")
+    func presentEditStockViewController() {
+        guard let editStockVC = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController")
         else {
             return
         }
-        self.present(stockVC, animated: true)
+        self.present(editStockVC, animated: true)
     }
 }

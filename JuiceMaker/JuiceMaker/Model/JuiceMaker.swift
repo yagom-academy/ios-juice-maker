@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    let store = FruitStore(defaultStock: 10)
+    let store = FruitStore()
         
     func make(menu: Menu) throws {
         guard store.hasFruit(menu: menu) else {

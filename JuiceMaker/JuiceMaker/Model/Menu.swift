@@ -33,7 +33,7 @@ enum Menu: Int {
         }
     }
     
-    func count() -> [Fruit: Int] {
+    func needsForFruits() -> [Fruit: Int] {
         var countList = [Fruit: Int]()
         
         for (fruit, need) in self.recipe {
