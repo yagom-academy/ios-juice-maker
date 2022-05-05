@@ -238,16 +238,16 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" id="gPt-PM-PTj"/>
+                                <action selector="changeStockValues:" destination="BYZ-38-t0r" id="MOQ-WC-yI0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaCount" destination="gvk-pA-Lw5" id="yVH-qK-GQX"/>
-                        <outlet property="kiwiCount" destination="FZq-de-TJG" id="X32-SO-33J"/>
-                        <outlet property="mangoCount" destination="3Ce-SU-JeH" id="8wN-oF-Bqq"/>
-                        <outlet property="pineappleCount" destination="ccQ-Dk-PuY" id="MjB-AR-yJk"/>
-                        <outlet property="strawberryCount" destination="Qas-vP-td6" id="H19-qV-afw"/>
+                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="yVH-qK-GQX"/>
+                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="X32-SO-33J"/>
+                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="8wN-oF-Bqq"/>
+                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="MjB-AR-yJk"/>
+                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="H19-qV-afw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -382,7 +382,7 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Xs5-1R-CTz">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="MRi-cY-Ul4">
-                                <rect key="frame" x="64" y="0.0" width="187" height="32"/>
+                                <rect key="frame" x="60" y="0.0" width="187" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="취소"/>
@@ -393,7 +393,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Zoe-l2-UvE">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="UVv-67-wHE">
-                                <rect key="frame" x="593" y="0.0" width="187" height="32"/>
+                                <rect key="frame" x="597" y="0.0" width="187" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="완료"/>
@@ -418,7 +418,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="stockNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>

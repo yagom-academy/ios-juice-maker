@@ -7,19 +7,13 @@
 
 import UIKit
 
-extension Notification.Name {
-    static let identifier = Notification.Name("orderJuice")
-}
-
-var juiceMaker = JuiceMaker()
-
 class MakerViewController: UIViewController {
-
-    @IBOutlet weak var strawberryCount: UILabel!
-    @IBOutlet weak var bananaCount: UILabel!
-    @IBOutlet weak var pineappleCount: UILabel!
-    @IBOutlet weak var kiwiCount: UILabel!
-    @IBOutlet weak var mangoCount: UILabel!
+    var juiceMaker = JuiceMaker()
+    @IBOutlet weak var strawberryCountLabel: UILabel!
+    @IBOutlet weak var bananaCountLabel: UILabel!
+    @IBOutlet weak var pineappleCountLabel: UILabel!
+    @IBOutlet weak var kiwiCountLabel: UILabel!
+    @IBOutlet weak var mangoCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +21,32 @@ class MakerViewController: UIViewController {
         addJuiceObserver()
     }
     
-    func addJuiceObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(takeJuiceOrder(_:)) ,
-                                               name: Notification.Name.identifier,
-                                               object: nil)
+    func setUpStockValues () {
+        guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeView") as? ViewController
+        else { return }
+        stockViewController.strawberry = retrieveFruitCount(fruitName: .strawberry)
+        stockViewController.banana = retrieveFruitCount(fruitName: .banana)
+        stockViewController.pineapple = retrieveFruitCount(fruitName: .pineapple)
+        stockViewController.kiwi = retrieveFruitCount(fruitName: .kiwi)
+        stockViewController.mango = retrieveFruitCount(fruitName: .mango)
+        self.navigationController?.pushViewController(stockViewController, animated: true)
     }
+    
+    func retrieveFruitCount(fruitName: FruitKind) -> String {
+        return juiceMaker.fruitCount(fruitName: fruitName)
+    }
+    
+    @IBAction func changeStockValues(_ sender: UIButton) {
+        setUpStockValues()
+    }
+    
+    func addJuiceObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(takeJuiceOrder(_:)), name: Notification.Name.identifier, object: nil)
+    }
+    
     @objc func takeJuiceOrder(_ juiceInfomation: Notification) throws {
-        guard let juiceName = juiceInfomation.userInfo?[JuiceInfo.JuiceName] as? String else{ return }
+        guard let juiceName = juiceInfomation.userInfo?[JuiceInfo.JuiceName] as? String
+        else { return }
         
         var kindOfJuice: JuiceKind
         switch juiceName {
@@ -65,41 +77,31 @@ class MakerViewController: UIViewController {
     }
     
     func bringFruitCount() {
-        strawberryCount.text = juiceMaker.fruitCount(fruitName: FruitKind.strawberry)
-        bananaCount.text = juiceMaker.fruitCount(fruitName: FruitKind.banana)
-        pineappleCount.text = juiceMaker.fruitCount(fruitName: FruitKind.pineapple)
-        kiwiCount.text = juiceMaker.fruitCount(fruitName: FruitKind.kiwi)
-        mangoCount.text = juiceMaker.fruitCount(fruitName: FruitKind.mango)
+        strawberryCountLabel.text = retrieveFruitCount(fruitName: .strawberry)
+        bananaCountLabel.text = retrieveFruitCount(fruitName: .banana)
+        pineappleCountLabel.text = retrieveFruitCount(fruitName: .pineapple)
+        kiwiCountLabel.text = retrieveFruitCount(fruitName: .kiwi)
+        mangoCountLabel.text = retrieveFruitCount(fruitName: .mango)
     }
     
     func successAlert(juiceName: String) {
         let alert = UIAlertController(title: nil, message: "\(juiceName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let successAction = UIAlertAction(title: "OK",
-                                          style: .default,
-                                          handler: { _ in self.bringFruitCount() })
+        let successAction = UIAlertAction(title: "OK", style: .default, handler: { _ in self.bringFruitCount() })
         alert.addAction(successAction)
         present(alert, animated: true, completion: nil)
     }
     
     func failAlert() {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예",
-                                      style: .default,
-                                      handler: { _ in
-            guard let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeView") else { return }
-            self.navigationController?.pushViewController(secondViewController, animated: true)
-        })
-        let noAction = UIAlertAction(title: "아니오",
-                                       style: .destructive)
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in self.setUpStockValues() })
+        let noAction = UIAlertAction(title: "아니오", style: .destructive)
         alert.addAction(yesAction)
         alert.addAction(noAction)
-        
         present(alert, animated: true, completion: nil)
     }
 
     @IBAction func orderProcess(buttonName: UIButton) {
         guard let juiceButtonName = buttonName.currentTitle else { return }
-        NotificationCenter.default.post(name: Notification.Name.identifier, object: nil,
-                                        userInfo: [JuiceInfo.JuiceName : juiceButtonName])
+        NotificationCenter.default.post(name: Notification.Name.identifier, object: nil, userInfo: [JuiceInfo.JuiceName : juiceButtonName])
     }
 }

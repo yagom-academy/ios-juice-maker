@@ -14,17 +14,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var stockKiwiCount: UILabel!
     @IBOutlet weak var stockMangoCount: UILabel!
     
+    var strawberry: String = ""
+    var banana: String = ""
+    var pineapple: String = ""
+    var kiwi: String = ""
+    var mango: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        bringStockFruitCount()
-    }
-
-    func bringStockFruitCount() {
-        stockStrawberryCount.text = juiceMaker.fruitCount(fruitName: FruitKind.strawberry)
-        stockBananaCount.text = juiceMaker.fruitCount(fruitName: FruitKind.banana)
-        stockPineappleCount.text = juiceMaker.fruitCount(fruitName: FruitKind.pineapple)
-        stockKiwiCount.text = juiceMaker.fruitCount(fruitName: FruitKind.kiwi)
-        stockMangoCount.text = juiceMaker.fruitCount(fruitName: FruitKind.mango)
+        self.stockStrawberryCount.text = strawberry
+        self.stockBananaCount.text = banana
+        self.stockPineappleCount.text = pineapple
+        self.stockKiwiCount.text = kiwi
+        self.stockMangoCount.text = mango
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
@@ -38,8 +40,7 @@ class ViewController: UIViewController {
     
     func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default)
+        let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }

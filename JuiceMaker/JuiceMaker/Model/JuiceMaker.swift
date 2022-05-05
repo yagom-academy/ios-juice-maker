@@ -25,7 +25,7 @@ struct JuiceMaker {
         if let selectedFruitCount = fruitCount[fruitName] {
             return String(selectedFruitCount)
         } else {
-            return "0"
+            return "EMPTY"
         }
     }
 }
