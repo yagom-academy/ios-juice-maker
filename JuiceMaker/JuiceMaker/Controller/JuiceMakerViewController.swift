@@ -7,7 +7,7 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
-    private var juiceMaker: JuiceMaker = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -25,71 +25,56 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addObserver()
+        addObserverFruitsStockDidChanged()
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
-    }
-    
-    private func addObserver() {
-        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
-            guard let currentStock = Notification.userInfo as? [Fruit:Int]? else {
-                return
-            }
-            self.updateFruitsStockLabels(currentStock)
-        }
     }
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
         switch sender {
         case strawberryAndBananaJuiceButton:
-            orderResult(customerRequest: .strawberryAndBananaJuice)
+            respondOrder(of: .strawberryAndBananaJuice)
         case strawberryJuiceButton:
-            orderResult(customerRequest: .strawberryJuice)
+            respondOrder(of: .strawberryJuice)
         case bananaJuiceButton:
-            orderResult(customerRequest: .bananaJuice)
+            respondOrder(of: .bananaJuice)
         case pineappleJuiceButton:
-            orderResult(customerRequest: .pineappleJuice)
+            respondOrder(of: .pineappleJuice)
         case kiwiJuiceButton:
-            orderResult(customerRequest: .kiwiJuice)
+            respondOrder(of: .kiwiJuice)
         case mangoJuiceButton:
-            orderResult(customerRequest: .mangoJuice)
+            respondOrder(of: .mangoJuice)
         case mangoAndKiwiJuiceButton:
-            orderResult(customerRequest: .mangoAndKiwiJuice)
+            respondOrder(of: .mangoAndKiwiJuice)
         default:
             break
         }
     }
     
-    private func orderResult(customerRequest request: FruitJuice) {
+    private func addObserverFruitsStockDidChanged() {
+        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
+            guard let changedFruitsStock = Notification.userInfo as? [Fruit:Int]? else {
+                return
+            }
+            self.updateFruitsStockLabels(changedFruitsStock)
+        }
+    }
+    
+    private func respondOrder(of fruitjuice: FruitJuice) {
         do {
-            let result = try juiceMaker.takeOrder(request)
-            switch result {
+            let orderResult = try juiceMaker.takeOrder(fruitjuice)
+            switch orderResult {
             case .failure(JuiceMakerError.productionImpossibleError):
                 alertfailureOfFruitJuice()
             case .success(let fruitJuice):
-                alertResult(fruitJuice)
+                alertSuccess(of: fruitJuice)
             }
         } catch {
             alertInvalidAccess()
         }
     }
     
-    private func alertResult(_ fruitJuice: FruitJuice?) {
-        guard let fruitJuice = fruitJuice else {
-            alertfailureOfFruitJuice()
-            return
-        }
-        alertSuccess(of: fruitJuice)
-    }
-    
     private func alertSuccess(of fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil, message: "\(fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
-    }
-    
-    private func alertInvalidAccess() {
-        let alert = UIAlertController(title: nil, message: "잘못된 접근입니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
@@ -103,6 +88,13 @@ final class JuiceMakerViewController: UIViewController {
         let noAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(yesAction)
         alert.addAction(noAction)
+        present(alert, animated: true)
+    }
+    
+    private func alertInvalidAccess() {
+        let alert = UIAlertController(title: nil, message: "잘못된 접근입니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
         present(alert, animated: true)
     }
     

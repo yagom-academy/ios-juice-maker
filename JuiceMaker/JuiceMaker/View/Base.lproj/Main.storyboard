@@ -518,7 +518,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
-                        <barButtonItem key="leftBarButtonItem" title="뒤로가기" id="NoE-Jg-fht">
+                        <barButtonItem key="leftBarButtonItem" title="닫기" id="NoE-Jg-fht">
                             <connections>
                                 <action selector="pressBackBarButton:" destination="Yu1-lM-nqp" id="Qad-Xw-ibH"/>
                             </connections>

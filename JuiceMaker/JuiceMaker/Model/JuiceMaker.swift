@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    private let fruitStore: FruitStore = FruitStore(initialAmount: 10)
+    private let fruitStore = FruitStore(initialAmount: 10)
     
     func takeOrder(_ fruitJuice: FruitJuice) throws -> Result<FruitJuice, JuiceMakerError> {
         guard try fruitStore.make(fruitJuice) != nil else {
