@@ -5,10 +5,9 @@
 // 
 
 import UIKit
+let juiceMaker = JuiceMaker()
 
 class JuiceOrderViewController: UIViewController {
-    private let juiceMaker = JuiceMaker()
-    
     @IBOutlet private weak var strawberryLabel: UILabel?
     @IBOutlet private weak var bananaLabel: UILabel?
     @IBOutlet private weak var pineappleLabel: UILabel?
@@ -18,10 +17,9 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStock()
-//        navigationController?.navigationBar.topItem?.title = "Main"
     }
     
-    private func updateFruitStock() {
+    func updateFruitStock() {
         strawberryLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
         bananaLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
         pineappleLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
@@ -30,7 +28,6 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction private func makeJuice(_ sender: UIButton) {
-        
         var juice: Juice {
             switch sender.currentTitle {
             case "딸기쥬스 주문":
