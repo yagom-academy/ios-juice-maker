@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6A72AC2828166D450079A0AC /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A72AC2728166D450079A0AC /* EnumCollection.swift */; };
+		6AE32956281F9DC0000E29D5 /* MakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE32955281F9DC0000E29D5 /* MakerViewController.swift */; };
+		6AE329792823911B000E29D5 /* ExtensionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE329782823911B000E29D5 /* ExtensionCollection.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		6A72AC2728166D450079A0AC /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
+		6AE32955281F9DC0000E29D5 /* MakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerViewController.swift; sourceTree = "<group>"; };
+		6AE329782823911B000E29D5 /* ExtensionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCollection.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +52,7 @@
 			children = (
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
+				6AE32955281F9DC0000E29D5 /* MakerViewController.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -59,6 +64,7 @@
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				6A72AC2728166D450079A0AC /* EnumCollection.swift */,
+				6AE329782823911B000E29D5 /* ExtensionCollection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,7 +179,9 @@
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				6A72AC2828166D450079A0AC /* EnumCollection.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
+				6AE32956281F9DC0000E29D5 /* MakerViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				6AE329792823911B000E29D5 /* ExtensionCollection.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);

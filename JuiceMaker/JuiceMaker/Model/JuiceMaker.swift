@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by BaekGom,Kay
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -14,9 +14,18 @@ struct JuiceMaker {
         do{
             try fruitStore.subtractFruitAmount(juiceRecipe: juiceName.recipe)
         } catch ErrorCategory.zeroError {
-            print("\(ErrorCategory.zeroError.message)")
+            throw ErrorCategory.zeroError
         } catch ErrorCategory.cannotError {
-            print("\(ErrorCategory.cannotError.message)")
+            throw ErrorCategory.cannotError
+        }
+    }
+
+    func fruitCount(fruitName: FruitKind) -> String {
+        let fruitCount = fruitStore.retrieveStock()
+        if let selectedFruitCount = fruitCount[fruitName] {
+            return String(selectedFruitCount)
+        } else {
+            return "EMPTY"
         }
     }
 }
