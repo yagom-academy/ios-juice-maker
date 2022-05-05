@@ -10,7 +10,7 @@ import Foundation
 class FruitStore {
     private(set) var fruitsStock: [Fruit:Int] = [:] {
         didSet {
-            NotificationCenter.default.post(name: Notification.Name("fruitsStock"), object: nil, userInfo: fruitsStock)
+            NotificationCenter.default.post(name: NotificationName.fruitsStockDidChanged, object: nil, userInfo: fruitsStock)
         }
     }
     let initialAmount: Int

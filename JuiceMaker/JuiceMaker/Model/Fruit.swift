@@ -6,9 +6,9 @@
 //
 
 enum Fruit: String {
-    case strawberry = "strawberry"
-    case banana = "banana"
-    case kiwi = "kiwi"
-    case pineapple = "pineapple"
-    case mango = "mango"
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case mango
 }

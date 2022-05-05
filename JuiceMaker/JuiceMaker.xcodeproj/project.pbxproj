@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37169526282396BF0001EE8E /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37169525282396BF0001EE8E /* NotificationName.swift */; };
 		371F91D52817C1B4005D1BB9 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F91D42817C1B4005D1BB9 /* JuiceMakerError.swift */; };
 		371F91D728180C02005D1BB9 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F91D628180C02005D1BB9 /* JuiceMaker.swift */; };
 		376C8781281FA54A0062519A /* FruitStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C8780281FA54A0062519A /* FruitStoreViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37169525282396BF0001EE8E /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		371F91D42817C1B4005D1BB9 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		371F91D628180C02005D1BB9 /* JuiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
 		376C8780281FA54A0062519A /* FruitStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				45D36D142817C27700B1D6D2 /* Fruit.swift */,
 				45D36D122817BE9E00B1D6D2 /* FruitJuice.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+				37169525282396BF0001EE8E /* NotificationName.swift */,
 				371F91D628180C02005D1BB9 /* JuiceMaker.swift */,
 				371F91D42817C1B4005D1BB9 /* JuiceMakerError.swift */,
 			);
@@ -184,6 +187,7 @@
 				45D36D132817BE9E00B1D6D2 /* FruitJuice.swift in Sources */,
 				371F91D728180C02005D1BB9 /* JuiceMaker.swift in Sources */,
 				371F91D52817C1B4005D1BB9 /* JuiceMakerError.swift in Sources */,
+				37169526282396BF0001EE8E /* NotificationName.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				376C8781281FA54A0062519A /* FruitStoreViewController.swift in Sources */,

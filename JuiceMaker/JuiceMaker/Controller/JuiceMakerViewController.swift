@@ -25,7 +25,7 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(forName: Notification.Name("fruitsStock"), object: nil , queue: nil) { Notification in
+        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
             guard let currentStock = Notification.userInfo as? [Fruit:Int]? else {
                 return
             }
