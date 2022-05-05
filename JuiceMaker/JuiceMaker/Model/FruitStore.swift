@@ -22,9 +22,21 @@ final class FruitStore {
         fruits[name] = fruitsStock + quantity
     }
     
-    func consumeFruitsStock(name: Fruits, quantity: Int) throws {
-        guard let fruitsStock = fruits[name] else { return }
-        guard fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
-        fruits[name] = fruitsStock - quantity
+    func consumeFruitsStock(by fruit: [Fruits: Int]) {
+        for (name, quantity) in fruit{
+            guard let fruitsStock = fruits[name],fruitsStock >= quantity else { return }
+            fruits[name] = fruitsStock - quantity
+        }
+    }
+    
+    func checkInventory(about fruit: [Fruits: Int]) throws {
+        for (name, quantity) in fruit{
+            guard let fruitsStock = fruits[name], fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
+        }
+    }
+
+    func showFruitsStock(name: Fruits) -> String {
+        guard let fruitsStock = fruits[name] else { return " " }
+        return String(fruitsStock)
     }
 }
