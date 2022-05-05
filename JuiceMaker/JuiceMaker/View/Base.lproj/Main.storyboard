@@ -272,10 +272,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--View Controller-->
+        <!--Fruit Stock View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="FruitStockViewController" id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FruitStockViewController" id="Yu1-lM-nqp" customClass="FruitStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -399,6 +399,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="gsi-uj-LeF"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="oul-9D-Cia"/>
+                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="WIP-cf-HaF"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="mr8-Zn-ZKu"/>
+                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="0Ra-dj-9a5"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="j8B-55-Du1"/>
+                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="I2B-o7-G5s"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="jtI-Yw-j4q"/>
+                        <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="fy6-h6-AYH"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="Yt6-6z-MkC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

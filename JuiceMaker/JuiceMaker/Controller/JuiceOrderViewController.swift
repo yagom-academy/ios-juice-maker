@@ -18,6 +18,7 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStock()
+//        navigationController?.navigationBar.topItem?.title = "Main"
     }
     
     private func updateFruitStock() {
@@ -92,8 +93,9 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func goToFruitStockViewController() {
-        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
+        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else { return }
         
-        self.navigationController?.pushViewController(controller, animated: true)
+        present(controller, animated: true)
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
