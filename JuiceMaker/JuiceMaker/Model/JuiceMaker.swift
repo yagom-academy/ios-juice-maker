@@ -4,18 +4,14 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func make(_ juice: Juice) {
-        do {
-            try checkFruitAvailable(for: juice)
-            try checkPossibilityOfMaking(juice)
-        } catch (let error) {
-            fruitStore.handle(error)
-        }
+    func make(_ juice: Juice) throws {
+        try checkFruitAvailable(for: juice)
+        try checkPossibilityOfMaking(juice)
     }
+    
     
     private func checkFruitAvailable(for juice: Juice) throws {
         try fruitStore.goToWarehouse(of: fruitStore.checkFruitKind(_:), juice: juice)

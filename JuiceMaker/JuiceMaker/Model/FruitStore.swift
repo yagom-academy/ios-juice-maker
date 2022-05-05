@@ -4,9 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// 과일 저장소 타입
 class FruitStore {
-     private var fruitWarehouse: Dictionary<Fruit, Int> = [
+     private(set) var fruitWarehouse: Dictionary<Fruit, Int> = [
         Fruit.strawberry: InitialFruitStock.stock,
         Fruit.banana: InitialFruitStock.stock,
         Fruit.pineapple: InitialFruitStock.stock,
@@ -72,6 +71,8 @@ class FruitStore {
         case Juice.mangoKiwi:
             try function(Fruit.mango)
             try function(Fruit.kiwi)
+        case Juice.unknownFruit:
+            try function(Fruit.unknownFruit)
         }
     }
     
@@ -93,19 +94,21 @@ class FruitStore {
         case Juice.mangoKiwi:
             try function(Fruit.mango, CostOfJuiceProduction.mangoInMangoKiwiJuice)
             try function(Fruit.kiwi, CostOfJuiceProduction.kiwiInMangoKiwiJuice)
+        case Juice.unknownFruit:
+            try function(Fruit.unknownFruit, CostOfJuiceProduction.unknownFruitInUnknownFruitJuice)
         }
     }
     
-    func handle(_ error: Error) {
+    func handle(_ error: Error) -> String {
         switch error {
         case FruitStoreError.outOfStock:
-            print(FruitStoreError.outOfStock.localizedDescription)
+            return FruitStoreError.outOfStock.localizedDescription
         case FruitStoreError.missingProduct:
-            print(FruitStoreError.missingProduct.localizedDescription)
+            return FruitStoreError.missingProduct.localizedDescription
         case FruitStoreError.invalidAmount:
-            print(FruitStoreError.invalidAmount.localizedDescription)
+            return FruitStoreError.invalidAmount.localizedDescription
         default:
-            print("알 수 없는 오류입니다")
+            return "알 수 없는 오류입니다"
         }
     }
 }
