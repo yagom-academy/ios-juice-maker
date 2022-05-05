@@ -38,37 +38,59 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-     @IBAction private func orderFruitJuice(_ sender: UIButton) {
+    @IBAction private func orderFruitJuice(_ sender: UIButton) {
         switch sender {
         case strawberryAndBananaJuiceButton:
-            alertResult(juiceMaker.takeOrder(.strawberryAndBananaJuice))
-        case mangoAndKiwiJuiceButton:
-            alertResult(juiceMaker.takeOrder(.mangoAndKiwiJuice))
+            orderResult(customerRequest: .strawberryAndBananaJuice)
         case strawberryJuiceButton:
-            alertResult(juiceMaker.takeOrder(.strawberryJuice))
+            orderResult(customerRequest: .strawberryJuice)
         case bananaJuiceButton:
-            alertResult(juiceMaker.takeOrder(.bananaJuice))
+            orderResult(customerRequest: .bananaJuice)
         case pineappleJuiceButton:
-            alertResult(juiceMaker.takeOrder(.pineappleJuice))
+            orderResult(customerRequest: .pineappleJuice)
         case kiwiJuiceButton:
-            alertResult(juiceMaker.takeOrder(.kiwiJuice))
+            orderResult(customerRequest: .kiwiJuice)
         case mangoJuiceButton:
-            alertResult(juiceMaker.takeOrder(.mangoJuice))
+            orderResult(customerRequest: .mangoJuice)
+        case mangoAndKiwiJuiceButton:
+            orderResult(customerRequest: .mangoAndKiwiJuice)
         default:
             break
         }
     }
     
-    private func alertResult(_ alertInfomation: (fruitJuice: FruitJuice, result: Bool)) {
-        if alertInfomation.result {
-            alertSuccess(of: alertInfomation.fruitJuice)
-        } else {
-            alertfailureOfFruitJuice()
+    private func orderResult(customerRequest request: FruitJuice) {
+        do {
+            let result = try juiceMaker.takeOrder(request)
+            switch result {
+            case .failure(JuiceMakerError.productionImpossibleError):
+                alertfailureOfFruitJuice()
+            case .success(let fruitJuice):
+                alertResult(fruitJuice)
+            }
+        } catch {
+            alertInvalidAccess()
         }
+        
+    }
+    
+    private func alertResult(_ fruitJuice: FruitJuice?) {
+        guard let fruitJuice = fruitJuice else {
+            alertfailureOfFruitJuice()
+            return
+        }
+        alertSuccess(of: fruitJuice)
     }
     
     private func alertSuccess(of fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil, message: "\(fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func alertInvalidAccess() {
+        let alert = UIAlertController(title: nil, message: "잘못된 접근입니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)

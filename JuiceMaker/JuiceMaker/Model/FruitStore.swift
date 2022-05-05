@@ -26,9 +26,9 @@ final class FruitStore {
         ]
     }
     
-    private func bindingStock(of fruit: Fruit) throws ->  Int {
+    private func bindingStock(of fruit: Fruit) throws -> Int {
         guard let stock = fruitsStock[fruit] else {
-            throw JuiceMakerError.invalidOrder
+            throw JuiceMakerError.productionImpossibleError
         }
         return stock
     }

@@ -10,17 +10,11 @@ import Foundation
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore(initialAmount: 10)
     
-    func takeOrder(_ fruitJuice: FruitJuice) -> (FruitJuice, Bool) {
-        do {
-            guard try fruitStore.make(fruitJuice) != nil else {
-                return (fruitJuice, false)
-            }
-        } catch JuiceMakerError.invalidOrder {
-            print("잘못된 음료 요청.")
-        } catch {
-            print(error)
+    func takeOrder(_ fruitJuice: FruitJuice) throws -> Result<FruitJuice, JuiceMakerError> {
+        guard try fruitStore.make(fruitJuice) != nil else {
+            return .failure(JuiceMakerError.productionImpossibleError)
         }
-        return (fruitJuice, true)
+        return .success(fruitJuice)
     }
     
     func requestCurrentStock() -> [Fruit:Int]? {
