@@ -61,20 +61,28 @@ final class JuiceMakerViewController: UIViewController {
     
     private func alertResult(_ alertInfomation: (fruitJuice: FruitJuice, result: Bool)) {
         if alertInfomation.result {
-            let alert = UIAlertController(title: nil, message: "\(alertInfomation.fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(okAction)
-            present(alert, animated: true)
+            alertSuccess(of: alertInfomation.fruitJuice)
         } else {
-            let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .actionSheet)
-            let yesAction = UIAlertAction(title: "예", style: .default) { UIAlertAction in
-                self.presentModalViewController(withId: "FruitStoreViewController")
-            }
-            let noAction = UIAlertAction(title: "아니오", style: .default)
-            alert.addAction(yesAction)
-            alert.addAction(noAction)
-            present(alert, animated: true)
+            alertfailureOfFruitJuice()
         }
+    }
+    
+    private func alertSuccess(of fruitJuice: FruitJuice) {
+        let alert = UIAlertController(title: nil, message: "\(fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func alertfailureOfFruitJuice() {
+        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .actionSheet)
+        let yesAction = UIAlertAction(title: "예", style: .default) { UIAlertAction in
+            self.presentModalViewController(withId: "FruitStoreViewController")
+        }
+        let noAction = UIAlertAction(title: "아니오", style: .default)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true)
     }
     
     private func presentModalViewController(withId: String) {
