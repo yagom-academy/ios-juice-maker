@@ -5,14 +5,17 @@
 // 
 
 import UIKit
-let juiceMaker = JuiceMaker()
+
+let center = NotificationCenter.default
 
 class JuiceOrderViewController: UIViewController {
-    @IBOutlet private weak var strawberryLabel: UILabel?
-    @IBOutlet private weak var bananaLabel: UILabel?
-    @IBOutlet private weak var pineappleLabel: UILabel?
-    @IBOutlet private weak var kiwiLabel: UILabel?
-    @IBOutlet private weak var mangoLabel: UILabel?
+    @IBOutlet private weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var bananaLabel: UILabel!
+    @IBOutlet private weak var pineappleLabel: UILabel!
+    @IBOutlet private weak var kiwiLabel: UILabel!
+    @IBOutlet private weak var mangoLabel: UILabel!
+    
+    let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +23,11 @@ class JuiceOrderViewController: UIViewController {
     }
 
     func updateFruitStock() {
-        strawberryLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
-        bananaLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
-        pineappleLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
-        kiwiLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.kiwi] ?? 0)
-        mangoLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.mango] ?? 0)
+        strawberryLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
+        bananaLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
+        pineappleLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
+        kiwiLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.kiwi] ?? 0)
+        mangoLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.mango] ?? 0)
     }
     
     @IBAction private func makeJuice(_ sender: UIButton) {
@@ -97,10 +100,14 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func dispatchFruitLabel() {
-        FruitStockViewController.strawberryText = strawberryLabel?.text ?? ""
-        FruitStockViewController.bananaText = bananaLabel?.text ?? ""
-        FruitStockViewController.pineappleText = pineappleLabel?.text ?? ""
-        FruitStockViewController.kiwiText = kiwiLabel?.text ?? ""
-        FruitStockViewController.mangoText = mangoLabel?.text ?? ""
+        FruitStockViewController.strawberryText = strawberryLabel.text ?? ""
+        FruitStockViewController.bananaText = bananaLabel.text ?? ""
+        FruitStockViewController.pineappleText = pineappleLabel.text ?? ""
+        FruitStockViewController.kiwiText = kiwiLabel.text ?? ""
+        FruitStockViewController.mangoText = mangoLabel.text ?? ""
     }
+}
+
+extension Notification.Name {
+    static let name = Notification.Name("name")
 }

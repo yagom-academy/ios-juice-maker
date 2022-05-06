@@ -30,7 +30,14 @@ class FruitStockViewController: UIViewController {
         super.viewDidLoad()
         updateStepperValue()
         updateFruitLabel()
-        
+    }
+    
+    private func updateStepperValue() {
+        strawberryStepper.value = Double(FruitStockViewController.strawberryText) ?? 0
+        bananaStepper.value = Double(FruitStockViewController.bananaText) ?? 0
+        pineappleStepper.value = Double(FruitStockViewController.pineappleText) ?? 0
+        kiwiStepper.value = Double(FruitStockViewController.kiwiText) ?? 0
+        mangoStepper.value = Double(FruitStockViewController.mangoText) ?? 0
     }
     
     private func updateFruitLabel() {
@@ -41,12 +48,12 @@ class FruitStockViewController: UIViewController {
         mangoLabel.text = String(Int(mangoStepper.value))
     }
     
-    func updateStepperValue() {
-        strawberryStepper.value = Double(FruitStockViewController.strawberryText)!
-        bananaStepper.value = Double(FruitStockViewController.bananaText)!
-        pineappleStepper.value = Double(FruitStockViewController.pineappleText)!
-        kiwiStepper.value = Double(FruitStockViewController.kiwiText)!
-        mangoStepper.value = Double(FruitStockViewController.mangoText)!
+    private func updateText() {
+        FruitStockViewController.strawberryText = strawberryLabel.text ?? ""
+        FruitStockViewController.bananaText = bananaLabel.text ?? ""
+        FruitStockViewController.pineappleText = pineappleLabel.text ?? ""
+        FruitStockViewController.kiwiText = kiwiLabel.text ?? ""
+        FruitStockViewController.mangoText = mangoLabel.text ?? ""
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -55,22 +62,32 @@ class FruitStockViewController: UIViewController {
     
     @IBAction func strawberryStepper(_ sender: UIStepper) {
         updateFruitLabel()
+        updateText()
+        center.post(name: .name, object: nil)
     }
     
     @IBAction func bananaStepper(_ sender: UIStepper) {
         updateFruitLabel()
+        updateText()
+        center.post(name: .name, object: nil)
     }
     
     @IBAction func pineappleStepper(_ sender: UIStepper) {
         updateFruitLabel()
+        updateText()
+        center.post(name: .name, object: nil)
     }
     
     @IBAction func kiwiStepper(_ sender: UIStepper) {
         updateFruitLabel()
+        updateText()
+        center.post(name: .name, object: nil)
     }
     
     @IBAction func mangoStepper(_ sender: UIStepper) {
         updateFruitLabel()
+        updateText()
+        center.post(name: .name, object: nil)
     }
 }
 
