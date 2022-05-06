@@ -23,8 +23,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     
+    var orderButton: [UIButton] {
+       return [strawberryJuiceOrderButton, mangoAndKiwiJuiceOrderButton, strawberryAndBananaJuiceOrderButton, bananaJuiceOrderButton, pineappleJuiceOrderButton, kiwiJuiceOrderButton, mangoJuiceOrderButton]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        orderButton.forEach { orderButton in
+            orderButton.addTarget(self, action: #selector(order), for: .touchUpInside)
+        }
+        
         updateFruitLabel()
     }
     
@@ -32,7 +41,7 @@ class HomeViewController: UIViewController {
         self.presentEditStockViewController()
     }
     
-    @IBAction func order(_ sender: UIButton) {
+    @objc func order(_ sender: UIButton) {
         do {
             let juice = try convertToJuice(from: sender)
             try juiceMaker.make(menu: juice)

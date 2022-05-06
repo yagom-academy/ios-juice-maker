@@ -7,7 +7,7 @@
 class FruitStore {
     private var stock = [Fruit: Int]()
     
-    init(amount: Int = 10) {
+    init(amount: Int = 20) {
         Fruit.allCases.forEach {
             stock[$0] = amount
         }
