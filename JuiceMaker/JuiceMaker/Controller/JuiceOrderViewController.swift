@@ -19,11 +19,12 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func updateFruitsInventoryLabels() {
-        strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry]!)
-        bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana]!)
-        pineappleInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple]!)
-        kiwiInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.kiwi]!)
-        mangoInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.mango]!)
+        let errorValue = 999
+        strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? errorValue)
+        bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana] ?? errorValue)
+        pineappleInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple] ?? errorValue)
+        kiwiInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.kiwi] ?? errorValue)
+        mangoInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.mango] ?? errorValue)
     }
     
     private func order(juice: JuiceMaker.Menu) {
@@ -61,7 +62,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func TapjuiceOrderButton(_ sender: UIButton) {
+    @IBAction func tapJuiceOrderButton(_ sender: UIButton) {
         let selected = sender.currentTitle
         
         switch selected {
