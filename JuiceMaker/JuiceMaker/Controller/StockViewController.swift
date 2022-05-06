@@ -15,5 +15,7 @@ class StockViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    @IBAction func didTapClosedStockViewController(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
 }

@@ -428,12 +428,16 @@
                                 </subviews>
                             </stackView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byS-IV-ke4">
-                                <rect key="frame" x="0.0" y="0.0" width="792" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <color key="barTintColor" systemColor="systemGray5Color"/>
                                 <items>
                                     <navigationItem title="재고 추가" id="rBQ-b6-Cnn">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6VF-bP-uvh"/>
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6VF-bP-uvh">
+                                            <connections>
+                                                <action selector="didTapClosedStockViewController:" destination="Yu1-lM-nqp" id="Oft-CR-Ad3"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
