@@ -15,10 +15,21 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var kiwiLabel: UILabel!
     @IBOutlet private weak var mangoLabel: UILabel!
     
+    @IBOutlet weak var orderButtonOfStrawberryBananaJuice: UIButton!
+    
+    @IBOutlet weak var orderButtonOfStrawberryJuice: UIButton!
+    @IBOutlet weak var orderButtonOfBananaJuice: UIButton!
+    @IBOutlet weak var orderButtonOfStrawberryPineappleJuice: UIButton!
+    @IBOutlet weak var orderButtonOfStrawberryKiwiJuice: UIButton!
+    @IBOutlet weak var orderButtonOfStrawberryMangoJuice: UIButton!
+    @IBOutlet weak var orderButtonOfStrawberryMangoKiwiJuice: UIButton!
+    
+    
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        breakLineOfButton()
         showFruitStock()
         observeStockChanges()
     }
@@ -122,6 +133,36 @@ class JuiceOrderViewController: UIViewController {
         try? juiceMaker.fruitStore.changeStock(fruit: .pineapple, amount: Int(FruitStockViewController.numberOfPineapple) ?? 0)
         try? juiceMaker.fruitStore.changeStock(fruit: .kiwi, amount: Int(FruitStockViewController.numberOfKiwi) ?? 0)
         try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.numberOfMango) ?? 0)
+    }
+    
+    func breakLineOfButton() {
+        orderButtonOfStrawberryBananaJuice.titleLabel?.lineBreakMode = .byWordWrapping
+        orderButtonOfStrawberryBananaJuice.titleLabel?.textAlignment = .center
+        orderButtonOfStrawberryBananaJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        
+        orderButtonOfStrawberryJuice.titleLabel?.lineBreakMode = .byWordWrapping
+        orderButtonOfStrawberryJuice.titleLabel?.textAlignment = .center
+        orderButtonOfStrawberryJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        
+        orderButtonOfBananaJuice.titleLabel?.lineBreakMode = .byWordWrapping
+        orderButtonOfBananaJuice.titleLabel?.textAlignment = .center
+        orderButtonOfBananaJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        
+        orderButtonOfStrawberryPineappleJuice.titleLabel?.lineBreakMode = .byWordWrapping
+        orderButtonOfStrawberryPineappleJuice.titleLabel?.textAlignment = .center
+        orderButtonOfStrawberryPineappleJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        
+        orderButtonOfStrawberryKiwiJuice.titleLabel?.lineBreakMode = .byWordWrapping
+        orderButtonOfStrawberryKiwiJuice.titleLabel?.textAlignment = .center
+        orderButtonOfStrawberryKiwiJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        
+        orderButtonOfStrawberryMangoJuice.titleLabel?.lineBreakMode = .byWordWrapping
+        orderButtonOfStrawberryMangoJuice.titleLabel?.textAlignment = .center
+        orderButtonOfStrawberryMangoJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        
+        orderButtonOfStrawberryMangoKiwiJuice.titleLabel?.lineBreakMode = .byWordWrapping
+        orderButtonOfStrawberryMangoKiwiJuice.titleLabel?.textAlignment = .center
+        orderButtonOfStrawberryMangoKiwiJuice.titleLabel?.font = .systemFont(ofSize: 20)
     }
 }
 
