@@ -19,6 +19,10 @@ class JuiceOrderViewController: UIViewController {
         updateFruitStock()
     }
     
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(true)
+//        FruitStockViewController().strawberryText = strawberryLabel?.text ?? ""
+//    }
     func updateFruitStock() {
         strawberryLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
         bananaLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
@@ -92,6 +96,15 @@ class JuiceOrderViewController: UIViewController {
     private func goToFruitStockViewController() {
         guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "ModalViewController") else { return }
         
+        dispatchFruitLabel()
         present(controller, animated: true)
+    }
+    
+    private func dispatchFruitLabel() {
+        FruitStockViewController.strawberryText = strawberryLabel?.text ?? ""
+        FruitStockViewController.bananaText = bananaLabel?.text ?? ""
+        FruitStockViewController.pineappleText = pineappleLabel?.text ?? ""
+        FruitStockViewController.kiwiText = kiwiLabel?.text ?? ""
+        FruitStockViewController.mangoText = mangoLabel?.text ?? ""
     }
 }

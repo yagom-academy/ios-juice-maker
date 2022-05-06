@@ -20,13 +20,27 @@ class FruitStockViewController: UIViewController {
     @IBOutlet private weak var kiwiStepper: UIStepper!
     @IBOutlet private weak var mangoStepper: UIStepper!
     
+    static var strawberryText = ""
+    static var bananaText = ""
+    static var pineappleText = ""
+    static var kiwiText = ""
+    static var mangoText = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateFruitLabel()
+    }
+    
+    private func updateFruitLabel() {
+        strawberryLabel.text = FruitStockViewController.strawberryText
+        bananaLabel.text = FruitStockViewController.bananaText
+        pineappleLabel.text = FruitStockViewController.pineappleText
+        kiwiLabel.text = FruitStockViewController.kiwiText
+        mangoLabel.text = FruitStockViewController.mangoText
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
-        
+        dismiss(animated: true)
     }
     
     @IBAction func strawberryStepper(_ sender: UIStepper) {
