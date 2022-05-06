@@ -106,7 +106,7 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
-        _ = stock?.compactMap { (key: Fruit, value: Int) in
+        stock?.forEach { (key: Fruit, value: Int) in
             modifyFruitStockLabel(key.rawValue, value)
         }
     }
