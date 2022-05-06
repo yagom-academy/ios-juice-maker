@@ -19,11 +19,11 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStock()
-        observer()
+        showFruitStock()
+        observeStockChanges()
     }
 
-    private func updateFruitStock() {
+    private func showFruitStock() {
         strawberryLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
         bananaLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
         pineappleLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
@@ -54,7 +54,7 @@ class JuiceOrderViewController: UIViewController {
         }
         
         tryMaking(juice)
-        updateFruitStock()
+        showFruitStock()
     }
     
     private func tryMaking(_ juice: Juice) {
@@ -67,10 +67,9 @@ class JuiceOrderViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-
+    
     private func showSuccessAlert(_ juice: Juice) {
         let successAlert = UIAlertController(title: "\(juice.name) 쥬스 나왔습니다!\n 맛있게 드세요!", message: nil, preferredStyle: .alert)
-
         let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
 
         successAlert.addAction(ok)
@@ -100,28 +99,32 @@ class JuiceOrderViewController: UIViewController {
         present(controller, animated: true)
     }
     
-    private func observer() {
-        center.addObserver(self, selector: #selector(tryUpdateFruitStock), name: .name, object: nil)
-    }
-    
-    @objc private func tryUpdateFruitStock() {
-        try? juiceMaker.fruitStore.changeStock(fruit: .strawberry, amount: Int(FruitStockViewController.strawberryText)!)
-        try? juiceMaker.fruitStore.changeStock(fruit: .banana, amount: Int(FruitStockViewController.bananaText)!)
-        try? juiceMaker.fruitStore.changeStock(fruit: .pineapple, amount: Int(FruitStockViewController.pineappleText)!)
-        try? juiceMaker.fruitStore.changeStock(fruit: .kiwi, amount: Int(FruitStockViewController.kiwiText)!)
-        try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.mangoText)!)
-        updateFruitStock()
-    }
-    
     private func dispatchFruitLabel() {
-        FruitStockViewController.strawberryText = strawberryLabel.text ?? ""
-        FruitStockViewController.bananaText = bananaLabel.text ?? ""
-        FruitStockViewController.pineappleText = pineappleLabel.text ?? ""
-        FruitStockViewController.kiwiText = kiwiLabel.text ?? ""
-        FruitStockViewController.mangoText = mangoLabel.text ?? ""
+        FruitStockViewController.numberOfStrawberry = strawberryLabel.text ?? ""
+        FruitStockViewController.numberOfBanana = bananaLabel.text ?? ""
+        FruitStockViewController.numberOfPineapple = pineappleLabel.text ?? ""
+        FruitStockViewController.numberOfKiwi = kiwiLabel.text ?? ""
+        FruitStockViewController.numberOfMango = mangoLabel.text ?? ""
+    }
+    
+    private func observeStockChanges() {
+        center.addObserver(self, selector: #selector(updateFruitStock), name: .checkFruitStock, object: nil)
+    }
+    
+    @objc private func updateFruitStock() {
+        tryUpdateFruitStock()
+        showFruitStock()
+    }
+    
+    private func tryUpdateFruitStock() {
+        try? juiceMaker.fruitStore.changeStock(fruit: .strawberry, amount: Int(FruitStockViewController.numberOfStrawberry) ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .banana, amount: Int(FruitStockViewController.numberOfBanana) ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .pineapple, amount: Int(FruitStockViewController.numberOfPineapple) ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .kiwi, amount: Int(FruitStockViewController.numberOfKiwi) ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.numberOfMango) ?? 0)
     }
 }
 
 extension Notification.Name {
-    static let name = Notification.Name("name")
+    static let checkFruitStock = Notification.Name("checkFruitStock")
 }
