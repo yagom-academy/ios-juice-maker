@@ -28,15 +28,25 @@ class FruitStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateStepperValue()
         updateFruitLabel()
+        
     }
     
     private func updateFruitLabel() {
-        strawberryLabel.text = FruitStockViewController.strawberryText
-        bananaLabel.text = FruitStockViewController.bananaText
-        pineappleLabel.text = FruitStockViewController.pineappleText
-        kiwiLabel.text = FruitStockViewController.kiwiText
-        mangoLabel.text = FruitStockViewController.mangoText
+        strawberryLabel.text = String(Int(strawberryStepper.value))
+        bananaLabel.text = String(Int(bananaStepper.value))
+        pineappleLabel.text = String(Int(pineappleStepper.value))
+        kiwiLabel.text = String(Int(kiwiStepper.value))
+        mangoLabel.text = String(Int(mangoStepper.value))
+    }
+    
+    func updateStepperValue() {
+        strawberryStepper.value = Double(FruitStockViewController.strawberryText)!
+        bananaStepper.value = Double(FruitStockViewController.bananaText)!
+        pineappleStepper.value = Double(FruitStockViewController.pineappleText)!
+        kiwiStepper.value = Double(FruitStockViewController.kiwiText)!
+        mangoStepper.value = Double(FruitStockViewController.mangoText)!
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -44,23 +54,23 @@ class FruitStockViewController: UIViewController {
     }
     
     @IBAction func strawberryStepper(_ sender: UIStepper) {
-        
+        updateFruitLabel()
     }
     
     @IBAction func bananaStepper(_ sender: UIStepper) {
-        
+        updateFruitLabel()
     }
     
     @IBAction func pineappleStepper(_ sender: UIStepper) {
-        
+        updateFruitLabel()
     }
     
     @IBAction func kiwiStepper(_ sender: UIStepper) {
-        
+        updateFruitLabel()
     }
     
     @IBAction func mangoStepper(_ sender: UIStepper) {
-        
+        updateFruitLabel()
     }
 }
 

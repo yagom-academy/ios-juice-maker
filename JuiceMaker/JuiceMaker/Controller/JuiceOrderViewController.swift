@@ -18,11 +18,7 @@ class JuiceOrderViewController: UIViewController {
         super.viewDidLoad()
         updateFruitStock()
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(true)
-//        FruitStockViewController().strawberryText = strawberryLabel?.text ?? ""
-//    }
+
     func updateFruitStock() {
         strawberryLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
         bananaLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
