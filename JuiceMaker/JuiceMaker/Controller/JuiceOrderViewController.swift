@@ -12,7 +12,15 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet weak var pineappleInventoryLabel: UILabel!
     @IBOutlet weak var kiwiInventoryLabel: UILabel!
     @IBOutlet weak var mangoInventoryLabel: UILabel!
-        
+    
+    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitsInventoryLabels()
@@ -31,10 +39,10 @@ class JuiceOrderViewController: UIViewController {
         do {
             try JuiceMaker.shared.make(juice: juice)
             showSuccessAlert(message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!")
+            updateFruitsInventoryLabels()
         } catch {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
-        updateFruitsInventoryLabels()
     }
     
     func showSuccessAlert(message: String) {
@@ -63,20 +71,18 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction func tapJuiceOrderButton(_ sender: UIButton) {
-        let selected = sender.currentTitle
-        
-        switch selected {
-        case "딸바쥬스 주문":
+        switch sender {
+        case strawberryBananaJuiceOrderButton:
             order(juice: .strawberryBananaJuice)
-        case "망키쥬스 주문":
+        case mangoKiwiJuiceOrderButton:
             order(juice: .mangoKiwiJuice)
-        case "딸기쥬스 주문":
+        case strawberryJuiceOrderButton:
             order(juice: .strawberryJuice)
-        case "바나나쥬스 주문":
+        case bananaJuiceOrderButton:
             order(juice: .bananaJuice)
-        case "파인애플쥬스 주문":
+        case pineappleJuiceOrderButton:
             order(juice: .pineappleJuice)
-        case "키위쥬스 주문":
+        case kiwiJuiceOrderButton:
             order(juice: .kiwiJuice)
         default:
             order(juice: .mangoJuice)
@@ -84,3 +90,14 @@ class JuiceOrderViewController: UIViewController {
     }
 }
 
+//extension UIButton {
+//    enum JuiceName: String {
+//        case strawberryJuice = "딸기쥬스"
+//        case bananaJuice = "바나나쥬스"
+//        case kiwiJuice = "키위쥬스"
+//        case pineappleJuice = "파인애플쥬스"
+//        case strawberryBananaJuice = "딸바쥬스"
+//        case mangoJuice = "망고쥬스"
+//        case mangoKiwiJuice = "망키쥬스"
+//    }
+//}
