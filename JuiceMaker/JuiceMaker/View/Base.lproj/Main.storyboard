@@ -358,6 +358,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="20.666666666666671" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="pressStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="T8p-J9-bHk"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -384,6 +387,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="20.333333333333314" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="pressStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="7lm-Ag-3IA"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -410,6 +416,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="20.666666666666686" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="pressStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="27M-hH-Fvx"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -436,6 +445,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="20.666666666666629" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="pressStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="cR7-wV-BZW"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -462,6 +474,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="20.666666666666742" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="pressStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="yOa-Mf-XhV"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -489,6 +504,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="XIq-Wb-CL6"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="emX-Uu-6w4"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="bsx-XU-ZsR"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="wEo-Du-RLf"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="LTI-7E-kEw"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="VGq-7L-v7M"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="b4R-7Z-IjF"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="TNu-vA-bP3"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="7k1-3j-Gd2"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="CeZ-kl-NLh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
