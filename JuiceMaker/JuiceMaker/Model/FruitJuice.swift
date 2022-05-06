@@ -5,14 +5,14 @@
 //  Created by groot, borysarng on 2022/04/26.
 //
 
-enum FruitJuice {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case mangoJuice
-    case strawberryAndBananaJuice
-    case mangoAndKiwiJuice
+enum FruitJuice: String {
+    case strawberryJuice = "딸기 쥬스"
+    case bananaJuice = "바나나 쥬스"
+    case kiwiJuice = "키위 쥬스"
+    case pineappleJuice = "파인애플 쥬스"
+    case mangoJuice = "망고 쥬스"
+    case strawberryAndBananaJuice = "딸바 쥬스"
+    case mangoAndKiwiJuice = "망키 쥬스"
     
     func getRecipe() -> [(Fruit, Int)] {
         switch self {

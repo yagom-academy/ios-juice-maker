@@ -7,13 +7,17 @@
 import Foundation
 
 // 과일 저장소 타입
-class FruitStore {
-    private var fruitInventory: [Fruit:Int] = [:]
+final class FruitStore {
+    private(set) var fruitsStock: [Fruit:Int] = [:] {
+        didSet {
+            postFruitsStockDidChanged(from : oldValue)
+        }
+    }
     let initialAmount: Int
     
     init(initialAmount: Int) {
         self.initialAmount = initialAmount
-        fruitInventory = [
+        fruitsStock = [
             .strawberry: initialAmount,
             .banana: initialAmount,
             .kiwi: initialAmount,
@@ -22,15 +26,27 @@ class FruitStore {
         ]
     }
     
-    private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
-        guard let stock = fruitInventory[fruit] else {
-            throw JuiceMakerError.invalidOrder
+    private func bindingStock(of fruit: Fruit) throws -> Int {
+        guard let stock = fruitsStock[fruit] else {
+            throw JuiceMakerError.productionImpossibleError
         }
+        return stock
+    }
+    
+    private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
+        let stock = try bindingStock(of: fruit)
         guard stock >= amount else {
             return false
         }
-        fruitInventory[fruit] = stock - amount
         return true
+    }
+    
+    private func useOfStock(for fruitJuice: FruitJuice) throws -> FruitJuice? {
+        for (fruit, amount) in fruitJuice.getRecipe() {
+            let stock = try bindingStock(of: fruit)
+            fruitsStock[fruit] = stock - amount
+        }
+        return fruitJuice
     }
     
     func make(_ fruitJuice: FruitJuice) throws -> FruitJuice? {
@@ -38,7 +54,14 @@ class FruitStore {
         for (fruit, amount) in fruitJuice.getRecipe() {
             canComplete = try canUseStock(of: fruit, by: amount) && canComplete
         }
-        return canComplete ? fruitJuice : nil
+        return canComplete ? try useOfStock(for: fruitJuice) : nil
+    }
+    
+    func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
+        let changedFruitsStock = fruitsStock.filter {
+            fruitsStock[$0.key] != oldValue[$0.key]
+        }
+        NotificationCenter.default.post(name: NotificationName.fruitsStockDidChanged, object: nil, userInfo: changedFruitsStock)
     }
 }
 

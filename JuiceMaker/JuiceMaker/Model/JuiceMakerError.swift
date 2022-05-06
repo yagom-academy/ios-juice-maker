@@ -6,5 +6,5 @@
 //
 
 enum JuiceMakerError: Error {
-    case invalidOrder
+    case productionImpossibleError
 }

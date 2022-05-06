@@ -5,7 +5,7 @@
 //  Created by groot, borysarng on 2022/04/26.
 //
 
-enum Fruit {
+enum Fruit: String {
     case strawberry
     case banana
     case kiwi
