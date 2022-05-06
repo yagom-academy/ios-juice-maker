@@ -382,6 +382,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
                                                 <rect key="frame" x="20.333333333333314" y="103.66666666666669" width="94" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="banana"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -411,6 +412,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
                                                 <rect key="frame" x="20.666666666666686" y="103.66666666666669" width="94" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="pineapple"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -440,6 +442,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
                                                 <rect key="frame" x="20.666666666666629" y="103.66666666666669" width="94" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="kiwi"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -469,6 +472,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
                                                 <rect key="frame" x="20.666666666666742" y="103.66666666666669" width="94" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="mango"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

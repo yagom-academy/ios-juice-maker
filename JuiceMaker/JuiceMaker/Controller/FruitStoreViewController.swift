@@ -9,13 +9,13 @@ import UIKit
 
 final class FruitStoreViewController: UIViewController {
     private var fruitsStock: [Fruit: Int] = [:]
+    private let stepperDefaultValue: Int = 0
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
     
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
@@ -49,6 +49,19 @@ final class FruitStoreViewController: UIViewController {
         let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
         for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
             uiLabel.text = String(stock)
+        }
+    }
+    
+    private func updateStepperValue() {
+        let fruitsSteppers: [Fruit: UIStepper] = [
+            .strawberry: strawberryStepper,
+            .banana: bananaStepper,
+            .pineapple: pineappleStepper,
+            .kiwi: kiwiStepper,
+            .mango: mangoStepper
+        ]
+        fruitsSteppers.forEach { (key: Fruit, stepper: UIStepper) in
+            stepper.value = Double(fruitsStock[key] ?? stepperDefaultValue)
         }
     }
 }
