@@ -8,7 +8,7 @@
 import UIKit
 
 class FruitStockViewController: UIViewController {
-    @IBOutlet  weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
     @IBOutlet private weak var pineappleLabel: UILabel!
     @IBOutlet private weak var kiwiLabel: UILabel!
@@ -56,35 +56,35 @@ class FruitStockViewController: UIViewController {
         FruitStockViewController.mangoText = mangoLabel.text ?? ""
     }
     
-    @IBAction func close(_ sender: UIBarButtonItem) {
+    @IBAction private func close(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
-    @IBAction func strawberryStepper(_ sender: UIStepper) {
+    @IBAction private func strawberryStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateText()
         center.post(name: .name, object: nil)
     }
     
-    @IBAction func bananaStepper(_ sender: UIStepper) {
+    @IBAction private func bananaStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateText()
         center.post(name: .name, object: nil)
     }
     
-    @IBAction func pineappleStepper(_ sender: UIStepper) {
+    @IBAction private func pineappleStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateText()
         center.post(name: .name, object: nil)
     }
     
-    @IBAction func kiwiStepper(_ sender: UIStepper) {
+    @IBAction private func kiwiStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateText()
         center.post(name: .name, object: nil)
     }
     
-    @IBAction func mangoStepper(_ sender: UIStepper) {
+    @IBAction private func mangoStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateText()
         center.post(name: .name, object: nil)

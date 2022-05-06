@@ -20,9 +20,10 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStock()
+        observer()
     }
 
-    func updateFruitStock() {
+    private func updateFruitStock() {
         strawberryLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
         bananaLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
         pineappleLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
@@ -97,6 +98,19 @@ class JuiceOrderViewController: UIViewController {
         
         dispatchFruitLabel()
         present(controller, animated: true)
+    }
+    
+    private func observer() {
+        center.addObserver(self, selector: #selector(tryUpdateFruitStock), name: .name, object: nil)
+    }
+    
+    @objc private func tryUpdateFruitStock() {
+        try? juiceMaker.fruitStore.changeStock(fruit: .strawberry, amount: Int(FruitStockViewController.strawberryText)!)
+        try? juiceMaker.fruitStore.changeStock(fruit: .banana, amount: Int(FruitStockViewController.bananaText)!)
+        try? juiceMaker.fruitStore.changeStock(fruit: .pineapple, amount: Int(FruitStockViewController.pineappleText)!)
+        try? juiceMaker.fruitStore.changeStock(fruit: .kiwi, amount: Int(FruitStockViewController.kiwiText)!)
+        try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.mangoText)!)
+        updateFruitStock()
     }
     
     private func dispatchFruitLabel() {
