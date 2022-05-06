@@ -19,7 +19,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateStock()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateStock()
+    }
     @IBAction func strawberryButton(_ sender: UIButton) {
         buttonEvent(juice: .strawberry)
         updateStock()
