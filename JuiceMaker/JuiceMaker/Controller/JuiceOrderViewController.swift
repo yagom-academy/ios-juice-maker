@@ -6,38 +6,34 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class JuiceOrderViewController: UIViewController {
     @IBOutlet weak var strawberryCount: UILabel!
     @IBOutlet weak var bananaCount: UILabel!
     @IBOutlet weak var pineappleCount: UILabel!
     @IBOutlet weak var kiwiCount: UILabel!
     @IBOutlet weak var mangoCount: UILabel!
-    
-    let juiceMaker = JuiceMaker()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateInventory()
+        updateFruitsCountLabels()
     }
     
-    func updateInventory() {
-        strawberryCount.text = String(juiceMaker.store.fruitsInventory[.strawberry]!)
-        bananaCount.text = String(juiceMaker.store.fruitsInventory[.banana]!)
-        pineappleCount.text = String(juiceMaker.store.fruitsInventory[.pineapple]!)
-        kiwiCount.text = String(juiceMaker.store.fruitsInventory[.kiwi]!)
-        mangoCount.text = String(juiceMaker.store.fruitsInventory[.mango]!)
+    func updateFruitsCountLabels() {
+        strawberryCount.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry]!)
+        bananaCount.text = String(JuiceMaker.shared.store.fruitsInventory[.banana]!)
+        pineappleCount.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple]!)
+        kiwiCount.text = String(JuiceMaker.shared.store.fruitsInventory[.kiwi]!)
+        mangoCount.text = String(JuiceMaker.shared.store.fruitsInventory[.mango]!)
     }
     
-    
-    func order(juice: JuiceMaker.Menu) {
+    private func order(juice: JuiceMaker.Menu) {
         do {
-            try juiceMaker.make(juice: juice)
+            try JuiceMaker.shared.make(juice: juice)
             showSuccessAlert(message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!")
         } catch {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
-        updateInventory()
+        updateFruitsCountLabels()
     }
     
     func showSuccessAlert(message: String) {
