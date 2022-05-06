@@ -14,8 +14,3 @@ enum Fruit: CaseIterable {
     case pineapple
     case mango
 }
-
-enum StockError: Error {
-    case notEnoughIngredient
-}
-

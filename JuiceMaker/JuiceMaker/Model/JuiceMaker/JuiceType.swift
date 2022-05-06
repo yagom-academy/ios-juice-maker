@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum JuiceType {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case mangoJuice
-    case pineappleJuice
-    case strawberryBananaJuice
-    case mangoKiwiJuice
+enum JuiceType: String {
+    case strawberryJuice = "딸기"
+    case bananaJuice = "바나나"
+    case kiwiJuice = "키위"
+    case mangoJuice = "망고"
+    case pineappleJuice = "파인애플"
+    case strawberryBananaJuice = "딸바"
+    case mangoKiwiJuice = "망키"
 }
 
 extension JuiceType {
