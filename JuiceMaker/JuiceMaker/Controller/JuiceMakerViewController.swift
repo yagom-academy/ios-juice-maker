@@ -26,6 +26,7 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserverFruitsStockDidChanged()
+        adjustButtonTitleAlignment()
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
@@ -116,5 +117,17 @@ final class JuiceMakerViewController: UIViewController {
         for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
             uiLabel.text = String(stock)
         }
+    }
+}
+
+extension JuiceMakerViewController {
+    func adjustButtonTitleAlignment(){
+        strawberryAndBananaJuiceButton.titleLabel?.textAlignment = .center
+        mangoAndKiwiJuiceButton.titleLabel?.textAlignment = .center
+        strawberryJuiceButton.titleLabel?.textAlignment = .center
+        bananaJuiceButton.titleLabel?.textAlignment = .center
+        pineappleJuiceButton.titleLabel?.textAlignment = .center
+        kiwiJuiceButton.titleLabel?.textAlignment = .center
+        mangoJuiceButton.titleLabel?.textAlignment = .center
     }
 }
