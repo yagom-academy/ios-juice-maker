@@ -241,11 +241,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaCount" destination="gvk-pA-Lw5" id="ti6-rO-tmE"/>
-                        <outlet property="kiwiCount" destination="FZq-de-TJG" id="WFf-aj-ouV"/>
-                        <outlet property="mangoCount" destination="3Ce-SU-JeH" id="VAz-gh-adg"/>
-                        <outlet property="pineappleCount" destination="ccQ-Dk-PuY" id="Udd-4c-Y8B"/>
-                        <outlet property="strawberryCount" destination="Qas-vP-td6" id="51y-6h-TDp"/>
+                        <outlet property="bananaInventoryLabel" destination="gvk-pA-Lw5" id="ti6-rO-tmE"/>
+                        <outlet property="kiwiInventoryLabel" destination="FZq-de-TJG" id="WFf-aj-ouV"/>
+                        <outlet property="mangoInventoryLabel" destination="3Ce-SU-JeH" id="VAz-gh-adg"/>
+                        <outlet property="pineappleInventoryLabel" destination="ccQ-Dk-PuY" id="Udd-4c-Y8B"/>
+                        <outlet property="strawberryInventoryLabel" destination="Qas-vP-td6" id="51y-6h-TDp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

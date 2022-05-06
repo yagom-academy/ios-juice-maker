@@ -7,23 +7,23 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    @IBOutlet weak var strawberryCount: UILabel!
-    @IBOutlet weak var bananaCount: UILabel!
-    @IBOutlet weak var pineappleCount: UILabel!
-    @IBOutlet weak var kiwiCount: UILabel!
-    @IBOutlet weak var mangoCount: UILabel!
+    @IBOutlet weak var strawberryInventoryLabel: UILabel!
+    @IBOutlet weak var bananaInventoryLabel: UILabel!
+    @IBOutlet weak var pineappleInventoryLabel: UILabel!
+    @IBOutlet weak var kiwiInventoryLabel: UILabel!
+    @IBOutlet weak var mangoInventoryLabel: UILabel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitsCountLabels()
+        updateFruitsInventoryLabels()
     }
     
-    func updateFruitsCountLabels() {
-        strawberryCount.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry]!)
-        bananaCount.text = String(JuiceMaker.shared.store.fruitsInventory[.banana]!)
-        pineappleCount.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple]!)
-        kiwiCount.text = String(JuiceMaker.shared.store.fruitsInventory[.kiwi]!)
-        mangoCount.text = String(JuiceMaker.shared.store.fruitsInventory[.mango]!)
+    func updateFruitsInventoryLabels() {
+        strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry]!)
+        bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana]!)
+        pineappleInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple]!)
+        kiwiInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.kiwi]!)
+        mangoInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.mango]!)
     }
     
     private func order(juice: JuiceMaker.Menu) {
@@ -33,7 +33,7 @@ class JuiceOrderViewController: UIViewController {
         } catch {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
-        updateFruitsCountLabels()
+        updateFruitsInventoryLabels()
     }
     
     func showSuccessAlert(message: String) {
@@ -61,7 +61,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func juiceOrderButtonTapped(_ sender: UIButton) {
+    @IBAction func TapjuiceOrderButton(_ sender: UIButton) {
         let selected = sender.currentTitle
         
         switch selected {
