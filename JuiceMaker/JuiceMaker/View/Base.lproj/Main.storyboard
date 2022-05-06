@@ -427,14 +427,28 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byS-IV-ke4">
+                                <rect key="frame" x="0.0" y="0.0" width="792" height="32"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="barTintColor" systemColor="systemGray5Color"/>
+                                <items>
+                                    <navigationItem title="재고 추가" id="rBQ-b6-Cnn">
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6VF-bP-uvh"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="30o-9v-xKK" secondAttribute="trailing" constant="40" id="3dw-AW-76u"/>
+                            <constraint firstItem="byS-IV-ke4" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="LeB-CD-pbt"/>
                             <constraint firstItem="30o-9v-xKK" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="MOb-kB-C0h"/>
+                            <constraint firstAttribute="trailing" secondItem="byS-IV-ke4" secondAttribute="trailing" id="euc-pO-cNk"/>
+                            <constraint firstItem="byS-IV-ke4" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="ihE-Wt-4SL"/>
                             <constraint firstItem="30o-9v-xKK" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="qSW-6r-0jf"/>
                             <constraint firstItem="30o-9v-xKK" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="40" id="us9-Sp-yDR"/>
+                            <constraint firstItem="byS-IV-ke4" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" id="y8r-Gz-hGO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
