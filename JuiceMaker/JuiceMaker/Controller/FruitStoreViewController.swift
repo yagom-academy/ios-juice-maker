@@ -38,4 +38,17 @@ final class FruitStoreViewController: UIViewController {
     
     @IBAction func pressStepper(_ sender: UIStepper) {
     }
+    
+    private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
+        stock?.forEach { (key: Fruit, value: Int) in
+            modifyFruitStockLabel(key.rawValue, value)
+        }
+    }
+    
+    private func modifyFruitStockLabel(_ fruit: String, _ stock: Int) {
+        let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+        for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
+            uiLabel.text = String(stock)
+        }
+    }
 }
