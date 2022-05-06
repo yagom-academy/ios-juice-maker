@@ -27,6 +27,10 @@ class HomeViewController: UIViewController {
        return [strawberryJuiceOrderButton, mangoAndKiwiJuiceOrderButton, strawberryAndBananaJuiceOrderButton, bananaJuiceOrderButton, pineappleJuiceOrderButton, kiwiJuiceOrderButton, mangoJuiceOrderButton]
     }
     
+    var fruitLabel: [UILabel] {
+        return [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,12 +79,29 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func convertToFruit(from label: UILabel) -> Fruit {
+        switch label {
+        case strawberryStockLabel:
+            return .strawberry
+        case bananaStockLabel:
+            return .banana
+        case pineappleStockLabel:
+            return .pineapple
+        case kiwiStockLabel:
+            return .kiwi
+        case mangoStockLabel:
+            return .mango
+        default:
+            return .strawberry
+        }
+    }
+    
     func updateFruitLabel() {
-        strawberryStockLabel.text = juiceMaker.store.stock(fruit: .strawberry).description
-        bananaStockLabel.text = juiceMaker.store.stock(fruit: .banana).description
-        pineappleStockLabel.text = juiceMaker.store.stock(fruit: .pineapple).description
-        kiwiStockLabel.text = juiceMaker.store.stock(fruit: .kiwi).description
-        mangoStockLabel.text = juiceMaker.store.stock(fruit: .mango).description
+        fruitLabel.forEach { fruitLabel in
+            let fruit = convertToFruit(from: fruitLabel)
+            
+            fruitLabel.text = "\(juiceMaker.store.stock(fruit: fruit))"
+        }
     }
     
     func showLackOfStockAlert() {
