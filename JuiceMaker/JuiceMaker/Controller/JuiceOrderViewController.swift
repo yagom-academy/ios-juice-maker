@@ -46,10 +46,11 @@ class JuiceOrderViewController: UIViewController {
     
     func showFailureAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default) {
-            (action) in 
-            let storyboard = self.storyboard!.instantiateViewController(identifier: "InventoryViewController")
-            self.present(storyboard, animated: true, completion: nil)
+        let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] (action) in
+            guard let storyboard = self?.storyboard?.instantiateViewController(identifier: "InventoryViewController") else {
+                return
+            }
+            self?.present(storyboard, animated: true, completion: nil)
         }
         
         let noAction = UIAlertAction(title: "아니오", style: .default)
