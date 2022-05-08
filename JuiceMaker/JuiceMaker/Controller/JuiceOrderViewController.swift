@@ -112,38 +112,38 @@ class JuiceOrderViewController: UIViewController {
 //        }
     }
 }
-
-extension UIButton {
-//  🤨 함수 사용 방법
-    func test(IBOutlets: [UIButton?:JuiceMaker.Menu]) -> JuiceMaker.Menu? {
-        var menu: JuiceMaker.Menu? = nil
-        IBOutlets.forEach {
-            if $0.key == self {
-                menu = $0.value
-            }
-        }
-        return menu
-    }
-    
-//  😢 tag 사용 방법
-    var id: JuiceMaker.Menu {
-        let tag = self.tag
-        
-        switch tag {
-        case 0:
-            return .strawberryBananaJuice
-        case 1:
-            return .mangoKiwiJuice
-        case 2:
-            return .strawberryJuice
-        case 3:
-            return .bananaJuice
-        case 4:
-            return .pineappleJuice
-        case 5:
-            return .kiwiJuice
-        default:
-            return .mangoJuice
-        }
-    }
-}
+//
+//extension UIButton {
+////  🤨 함수 사용 방법
+//    func convertOrderButtonToMenuType(IBOutlets: [UIButton?:JuiceMaker.Menu]) -> JuiceMaker.Menu? {
+//        var menu: JuiceMaker.Menu? = nil
+//        IBOutlets.forEach {
+//            if $0.key == self {
+//                menu = $0.value
+//            }
+//        }
+//        return menu
+//    }
+//
+////  😢 tag 사용 방법
+//    var id: JuiceMaker.Menu {
+//        let tag = self.tag
+//
+//        switch tag {
+//        case 0:
+//            return .strawberryBananaJuice
+//        case 1:
+//            return .mangoKiwiJuice
+//        case 2:
+//            return .strawberryJuice
+//        case 3:
+//            return .bananaJuice
+//        case 4:
+//            return .pineappleJuice
+//        case 5:
+//            return .kiwiJuice
+//        default:
+//            return .mangoJuice
+//        }
+//    }
+//}
