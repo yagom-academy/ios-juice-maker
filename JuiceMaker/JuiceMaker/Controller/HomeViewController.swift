@@ -42,11 +42,10 @@ class HomeViewController: UIViewController {
         }
         
         fruitStockLabel.forEach { label in
-            guard let fruit = label.convertToFruit()
-            else {
-                return
-            }
-            label.text = "\(fruitsStock[fruit] ?? 0)"
+            guard let fruit = label.convertToFruit() else { return }
+            guard let fruitLabel = fruitsStock[fruit] else { return }
+            
+            label.text = "\(fruitLabel)"
         }
     }
     

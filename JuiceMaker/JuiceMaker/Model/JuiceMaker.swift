@@ -15,6 +15,6 @@ struct JuiceMaker {
     }
     
     func transferFruitStock() {
-        return store.TransferFruitStockToJuiceMaker()
+        return store.transferFruitStockToJuiceMaker()
     }
 }

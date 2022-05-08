@@ -9,13 +9,13 @@ import Foundation
 class FruitStore {
     private var stock = [Fruit: Int]()
     
-    init(amount: Int = 20) {
+    init(amount: Int = 10) {
         Fruit.allCases.forEach {
             stock[$0] = amount
         }
     }
     
-    func TransferFruitStockToJuiceMaker() {
+    func transferFruitStockToJuiceMaker() {
         let fruitStock: [Fruit: Int] = stock
     
         NotificationCenter.default.post(name: .notifyStock, object: nil, userInfo: ["stock": fruitStock])
