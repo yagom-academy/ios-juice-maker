@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import Foundation
+
 class FruitStore {
     private var stock = [Fruit: Int]()
     
@@ -13,13 +15,12 @@ class FruitStore {
         }
     }
     
-    func stock(fruit: Fruit) -> Int {
-        guard let currentCount = stock[fruit] else {
-            return 0
-        }
-        return currentCount
-    }
+    func TransferFruitStockToJuiceMaker() {
+        let fruitStock: [Fruit: Int] = stock
     
+        NotificationCenter.default.post(name: .notifyStock, object: nil, userInfo: ["stock": fruitStock])
+    }
+
     func hasFruit(menu: Menu) -> Bool {
         let necessaryFruit = menu.needsForFruits()
         
@@ -51,4 +52,8 @@ class FruitStore {
         }
         stock[fruit] = number + total
     }
+}
+
+extension Notification.Name {
+    static let notifyStock = Notification.Name("notifyStock")
 }
