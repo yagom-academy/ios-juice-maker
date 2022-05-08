@@ -71,33 +71,79 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction func tapJuiceOrderButton(_ sender: UIButton) {
-        switch sender {
-        case strawberryBananaJuiceOrderButton:
-            order(juice: .strawberryBananaJuice)
-        case mangoKiwiJuiceOrderButton:
-            order(juice: .mangoKiwiJuice)
-        case strawberryJuiceOrderButton:
-            order(juice: .strawberryJuice)
-        case bananaJuiceOrderButton:
-            order(juice: .bananaJuice)
-        case pineappleJuiceOrderButton:
-            order(juice: .pineappleJuice)
-        case kiwiJuiceOrderButton:
-            order(juice: .kiwiJuice)
-        default:
-            order(juice: .mangoJuice)
-        }
+        // 딕셔너리만 사용
+        let IBOutlets = [strawberryBananaJuiceOrderButton: JuiceMaker.Menu.strawberryBananaJuice,
+                         mangoKiwiJuiceOrderButton:JuiceMaker.Menu.mangoKiwiJuice,
+                         strawberryJuiceOrderButton:JuiceMaker.Menu.strawberryJuice,
+                         bananaJuiceOrderButton:JuiceMaker.Menu.bananaJuice,
+                         pineappleJuiceOrderButton:JuiceMaker.Menu.pineappleJuice,
+                         kiwiJuiceOrderButton:JuiceMaker.Menu.kiwiJuice,
+                         mangoJuiceOrderButton:JuiceMaker.Menu.mangoJuice]
+        guard let juice =  IBOutlets[sender] else { return }
+        order(juice: juice)
+        
+ 
+        // extension해서 생성한 함수 + 딕셔너리 사용
+//        guard let menu = sender.test(IBOutlets: IBOutlets) else { return }
+//        order(juice:menu)
+
+        
+        // tag 사용
+//        let juice = sender.id
+//        order(juice: juice)
+        
+        
+        // 기존 코드
+//        switch sender {
+//        case strawberryBananaJuiceOrderButton:
+//            order(juice: .strawberryBananaJuice)
+//        case mangoKiwiJuiceOrderButton:
+//            order(juice: .mangoKiwiJuice)
+//        case strawberryJuiceOrderButton:
+//            order(juice: .strawberryJuice)
+//        case bananaJuiceOrderButton:
+//            order(juice: .bananaJuice)
+//        case pineappleJuiceOrderButton:
+//            order(juice: .pineappleJuice)
+//        case kiwiJuiceOrderButton:
+//            order(juice: .kiwiJuice)
+//        default:
+//            order(juice: .mangoJuice)
+//        }
     }
 }
 
-//extension UIButton {
-//    enum JuiceName: String {
-//        case strawberryJuice = "딸기쥬스"
-//        case bananaJuice = "바나나쥬스"
-//        case kiwiJuice = "키위쥬스"
-//        case pineappleJuice = "파인애플쥬스"
-//        case strawberryBananaJuice = "딸바쥬스"
-//        case mangoJuice = "망고쥬스"
-//        case mangoKiwiJuice = "망키쥬스"
-//    }
-//}
+extension UIButton {
+//  🤨 함수 사용 방법
+    func test(IBOutlets: [UIButton?:JuiceMaker.Menu]) -> JuiceMaker.Menu? {
+        var menu: JuiceMaker.Menu? = nil
+        IBOutlets.forEach {
+            if $0.key == self {
+                menu = $0.value
+            }
+        }
+        return menu
+    }
+    
+//  😢 tag 사용 방법
+    var id: JuiceMaker.Menu {
+        let tag = self.tag
+        
+        switch tag {
+        case 0:
+            return .strawberryBananaJuice
+        case 1:
+            return .mangoKiwiJuice
+        case 2:
+            return .strawberryJuice
+        case 3:
+            return .bananaJuice
+        case 4:
+            return .pineappleJuice
+        case 5:
+            return .kiwiJuice
+        default:
+            return .mangoJuice
+        }
+    }
+}
