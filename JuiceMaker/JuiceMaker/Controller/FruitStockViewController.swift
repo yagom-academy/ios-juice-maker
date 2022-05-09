@@ -5,13 +5,17 @@ class FruitStockViewController: UIViewController {
     @IBOutlet var stockLabelCollection: [UILabel]!
     @IBOutlet var stepperCollection: [UIStepper]!
     
-    var fruitStore = FruitStore(quantity: 0)
+    let fruitStore = FruitStore.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
+        hideNavigationBackButton()
         setStockLabel()
         setStepper()
+    }
+    
+    private func hideNavigationBackButton() {
+        navigationItem.hidesBackButton = true
     }
     
     private func setStepper() {
@@ -36,6 +40,6 @@ class FruitStockViewController: UIViewController {
         
         fruitStore.modifyStock(fruit: fruit, to: Int(stockValue))
   
-        stockLabelCollection[sender.tag - 1].text = stockValue.toString
+        stockLabelCollection[sender.tag - 1].text = String(format: "%.0f", sender.value) 
     }
 }

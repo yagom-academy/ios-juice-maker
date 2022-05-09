@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
 
     @IBOutlet var stockLabelCollection: [UILabel]!
 
@@ -32,11 +32,9 @@ class ViewController: UIViewController {
     private func showOutOfStockAlert() {
         let outOfStockAlert = UIAlertController(title: "재료 소진", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { action in
-            guard let stockView = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") as? FruitStockViewController else { return }
+            guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") as? FruitStockViewController else { return }
             
-            stockView.fruitStore = self.juiceMaker.fruitStore
-            
-            self.navigationController?.pushViewController(stockView, animated: true)
+            self.navigationController?.pushViewController(stockViewController, animated: true)
         }
         let noAction = UIAlertAction(title: "아니요", style: .cancel)
         
@@ -50,21 +48,12 @@ class ViewController: UIViewController {
     
         do{
             try juiceMaker.make(juiceMenu: juiceMenu)
-        } catch JuiceMakerError.outOfStock {
-            showOutOfStockAlert()
+            showCompleteAlert(juice: juiceMenu)
         } catch {
-            print("알 수 없는 에러입니다.")
+            showOutOfStockAlert()
         }
-        
-        showCompleteAlert(juice: juiceMenu)
-        updateStock()
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "stockViewSegue" {
-            guard let stockViewController =  segue.destination as? FruitStockViewController else { return }
-            stockViewController.fruitStore = juiceMaker.fruitStore
-        }
+        updateStock()
     }
 }
 

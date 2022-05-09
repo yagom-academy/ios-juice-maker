@@ -1,4 +1,5 @@
 class FruitStore {
+    static let shared = FruitStore(quantity: 10)
     private var fruitStock: [Fruit: Int] = [:]
     
     func subtractQuantity(fruit: Fruit, by number: Int) throws {
@@ -33,7 +34,7 @@ class FruitStore {
         return Double(stock)
     }
     
-    init(quantity: Int) {
+    private init(quantity: Int) {
         for fruit in Fruit.allCases {
             fruitStock.updateValue(quantity, forKey: fruit)
         }
