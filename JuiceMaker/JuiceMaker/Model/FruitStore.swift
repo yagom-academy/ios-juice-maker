@@ -24,7 +24,7 @@ final class FruitStore {
             .pineapple: initialAmount,
             .mango: initialAmount
         ]
-        addObserverUpdatedFruitsStock()
+        addObserverFruitsStockDidModified()
     }
     
     private func bindingStock(of fruit: Fruit) throws -> Int {
@@ -65,8 +65,8 @@ final class FruitStore {
         NotificationCenter.default.post(name: NotificationName.fruitsStockDidChanged, object: nil, userInfo: changedFruitsStock)
     }
     
-    private func addObserverUpdatedFruitsStock() {
-        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockUpdated, object: nil, queue: nil) { Notification in
+    private func addObserverFruitsStockDidModified() {
+        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidModified, object: nil, queue: nil) { Notification in
             guard let updatedFruitsStock = Notification.userInfo as? [Fruit: Int] else { return }
             self.fruitsStock = updatedFruitsStock
         }

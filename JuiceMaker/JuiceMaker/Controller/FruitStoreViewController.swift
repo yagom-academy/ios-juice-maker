@@ -29,7 +29,6 @@ final class FruitStoreViewController: UIViewController {
     }
 
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
-        NotificationCenter.default.post(name: NotificationName.fruitsStockUpdated, object: nil, userInfo: fruitsStock)
         dismiss(animated: true)
     }
     
