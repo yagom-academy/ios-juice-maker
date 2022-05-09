@@ -5,8 +5,12 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore = FruitStore(fruits: Fruits(strawberry: 10, banana: 10, kiwi: 10, pineapple: 10, mango: 10))
-
+    private let fruitStore = FruitStore(fruits: Fruits(stock: 10))
+    
+    var seeFruitsInStock: Fruits {
+        fruitStore.fruits
+    }
+    
     func make(_ menu: FruitJuice) -> Result<FruitJuice, FruitError> {
         let result = fruitStore.pickUpFruits(for: menu)
         return result

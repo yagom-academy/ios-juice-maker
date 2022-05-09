@@ -12,4 +12,12 @@ struct Fruits {
         self.pineapple = pineapple
         self.mango = mango
     }
+    
+    init(stock: Int) {
+        self.strawberry = stock
+        self.banana = stock
+        self.kiwi = stock
+        self.pineapple = stock
+        self.mango = stock
+    }
 }

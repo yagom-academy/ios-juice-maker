@@ -85,11 +85,12 @@ class MakeJuiceViewController: UIViewController {
     }
 
     private func refreshFruits() {
-        strawberryLabel.text = String(juiceMaker.fruitStore.fruits.strawberry)
-        bananaLabel.text = String(juiceMaker.fruitStore.fruits.banana)
-        kiwiLabel.text = String(juiceMaker.fruitStore.fruits.kiwi)
-        pineappleLabel.text = String(juiceMaker.fruitStore.fruits.pineapple)
-        mangoLabel.text = String(juiceMaker.fruitStore.fruits.mango)
+        let fruits = juiceMaker.seeFruitsInStock
+        strawberryLabel.text = String(fruits.strawberry)
+        bananaLabel.text = String(fruits.banana)
+        kiwiLabel.text = String(fruits.kiwi)
+        pineappleLabel.text = String(fruits.pineapple)
+        mangoLabel.text = String(fruits.mango)
     }
 }
 
