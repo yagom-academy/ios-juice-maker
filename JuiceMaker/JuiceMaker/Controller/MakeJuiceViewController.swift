@@ -14,9 +14,7 @@ class MakeJuiceViewController: UIViewController {
     @IBOutlet private weak var orderStrawberryAndBananaJuiceButton: UIButton!
     @IBOutlet private weak var orderMangoJuiceButton: UIButton!
     @IBOutlet private weak var orderMangoAndKiwiJuiceButton: UIButton!
-    
-    @IBOutlet private weak var editFruitsButton: UIBarButtonItem!
-    
+        
     @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
     @IBOutlet private weak var pineappleLabel: UILabel!
@@ -57,25 +55,26 @@ class MakeJuiceViewController: UIViewController {
         default:
             return
         }
+        refreshFruits()
     }
     
     private func alert(_ result: Result<FruitJuice, FruitError>) {
         switch result {
         case .success(let juice):
-            let successAlert = UIAlertController(title: nil,
-                                                 message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!",
-                                                 preferredStyle: UIAlertController.Style.alert)
-            let confirmAction = UIAlertAction(title: "확인", style: .cancel) { action in
-                self.refreshFruits()
-            }
+            let successAlert = UIAlertController(
+                title: nil,
+                message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!",
+                preferredStyle: UIAlertController.Style.alert)
+            let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
             successAlert.addAction(confirmAction)
             self.present(successAlert, animated: true, completion: nil)
         case .failure(let error):
-            let failureAlert = UIAlertController(title: nil,
-                                                 message: error.errorDescription,
-                                                 preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-            let presentEditFruitsViewControllerAction = UIAlertAction(title: "예", style: .default) { action in
+            let failureAlert = UIAlertController(
+                title: nil,
+                message: error.errorDescription,
+                preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
+            let presentEditFruitsViewControllerAction = UIAlertAction(title: "예", style: .default) { _ in
                 self.performSegue(withIdentifier: "editFruitsSegue", sender: self)
             }
             failureAlert.addAction(cancelAction)

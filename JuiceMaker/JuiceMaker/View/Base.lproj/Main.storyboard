@@ -244,7 +244,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="3AV-4A-1j9"/>
-                        <outlet property="editFruitsButton" destination="C3q-Te-cNT" id="kCK-yR-bHg"/>
                         <outlet property="kiwiLabel" destination="FZq-de-TJG" id="iWD-F3-RHl"/>
                         <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="Udh-me-8PQ"/>
                         <outlet property="orderBananaJuiceButton" destination="y2A-PH-DJY" id="8sK-Az-eqq"/>
@@ -395,7 +394,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cancelButton" destination="OZc-P1-rL7" id="u3w-AX-1kS"/>
+                        <outlet property="dismissButton" destination="OZc-P1-rL7" id="u3w-AX-1kS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
