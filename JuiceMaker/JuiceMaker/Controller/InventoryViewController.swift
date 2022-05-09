@@ -22,9 +22,19 @@ class InventoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitsInventoryLabels()
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    private func updateFruitsInventoryLabels() {
+            let errorValue = 999
+            strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? errorValue)
+            bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana] ?? errorValue)
+            pineappleInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple] ?? errorValue)
+            kiwiInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.kiwi] ?? errorValue)
+            mangoInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.mango] ?? errorValue)
+        }
 }
