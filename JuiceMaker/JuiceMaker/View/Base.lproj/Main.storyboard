@@ -238,6 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
+                                <action selector="editStockButtonDidTapped:" destination="BYZ-38-t0r" id="Cjn-WK-9MJ"/>
                                 <segue destination="Yu1-lM-nqp" kind="presentation" id="Jim-db-I5w"/>
                             </connections>
                         </barButtonItem>
@@ -395,6 +396,13 @@
                     <navigationItem key="navigationItem" title="재고추가" leftItemsSupplementBackButton="YES" id="0rf-oQ-s9Z">
                         <barButtonItem key="backBarButtonItem" title="뒤로가기" id="kHV-d7-aYC"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="zMg-wA-TuJ"/>
+                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="3qK-z7-FE2"/>
+                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="5kr-Vz-Wjr"/>
+                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="xbp-dj-yR3"/>
+                        <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="vx1-3V-b75"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
