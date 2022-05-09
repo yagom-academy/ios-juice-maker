@@ -6,8 +6,14 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
-    
+typealias Fruits = [Fruit: Int]
+
+protocol ManangingOrderDelegate {
+    func setUpStock() -> Fruits
+    func updateUI()
+}
+
+class OrderViewController: UIViewController, ManangingOrderDelegate {
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -15,8 +21,7 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var mangoLabel: UILabel!
     
     private let juiceMaker = JuiceMaker()
-    
-    var fruits: [Fruit: Int]?
+    private var fruits: Fruits = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,25 @@ class OrderViewController: UIViewController {
     @IBAction func editStockButtonDidTapped(_ sender: UIBarButtonItem) {
         let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
         storeViewController.modalTransitionStyle = .coverVertical
+        storeViewController.delegate = self
         self.present(storeViewController, animated: true)
+    }
+}
+
+extension OrderViewController {
+    func setUpStock() -> Fruits {
+        Fruit.allCases.forEach({ fruit in
+            self.fruits.updateValue(juiceMaker.count(fruit), forKey: fruit)
+        })
+        return fruits
+    }
+    
+    func updateUI() {
+        self.strawberryLabel.text = juiceMaker.count(.strawberry).description
+        self.bananaLabel.text = juiceMaker.count(.banana).description
+        self.pineappleLabel.text = juiceMaker.count(.pineapple).description
+        self.kiwiLabel.text = juiceMaker.count(.kiwi).description
+        self.mangoLabel.text = juiceMaker.count(.mango).description
     }
 }
 
@@ -54,16 +77,6 @@ private extension OrderViewController {
         }
     }
     
-    func updateUI() {
-        self.strawberryLabel.text = juiceMaker.count(.strawberry).description
-        self.bananaLabel.text = juiceMaker.count(.banana).description
-        self.pineappleLabel.text = juiceMaker.count(.pineapple).description
-        self.kiwiLabel.text = juiceMaker.count(.kiwi).description
-        self.mangoLabel.text = juiceMaker.count(.mango).description
-    }
-}
-
-private extension OrderViewController {
     func presentConfirmAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -76,6 +89,7 @@ private extension OrderViewController {
         let positiveAction = UIAlertAction(title: "예", style: .default) { _ in
             let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
             storeViewController.modalTransitionStyle = .coverVertical
+            storeViewController.delegate = self
             self.present(storeViewController, animated: true)
         }
         let negativeAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
