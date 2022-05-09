@@ -31,6 +31,23 @@ class StockViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    func findFruitStepper(stepper: UIStepper) throws -> Fruits {
+        switch stepper {
+        case strawberryStepper:
+            return .strawberry
+        case bananaStepper:
+            return .banana
+        case pineappleStepper:
+            return .pineapple
+        case kiwiStepper:
+            return .kiwi
+        case mangoStepper:
+            return .mango
+        default:
+            throw FruitStoreError.wrongMenu
+        }
+    }
+    
     func setupStepper() {
         strawberryStepper.value = Double(makeVaildStepperValue(fruit: .strawberry))
         bananaStepper.value = Double(makeVaildStepperValue(fruit: .banana))
