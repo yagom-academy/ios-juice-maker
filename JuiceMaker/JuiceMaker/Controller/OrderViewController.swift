@@ -6,48 +6,39 @@
 
 import UIKit
 
-typealias Fruits = [Fruit: Int]
-
-protocol ManangingOrderDelegate {
-    func setUpStock() -> Fruits
-    func updateUI()
-}
-
-class OrderViewController: UIViewController, ManangingOrderDelegate {
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+class OrderViewController: UIViewController {
+    @IBOutlet private weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var bananaLabel: UILabel!
+    @IBOutlet private weak var pineappleLabel: UILabel!
+    @IBOutlet private weak var kiwiLabel: UILabel!
+    @IBOutlet private weak var mangoLabel: UILabel!
     
     private let juiceMaker = JuiceMaker()
-    private var fruits: Fruits = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
-    }
-    
-    @IBAction func juiceButtonDidTapped(_ sender: UIButton) {
-        orderJuice(sender.currentTitle ?? "")
-        updateUI()
-    }
-    
-    @IBAction func editStockButtonDidTapped(_ sender: UIBarButtonItem) {
-        let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
-        storeViewController.modalTransitionStyle = .coverVertical
-        storeViewController.delegate = self
-        storeViewController.juiceMaker = juiceMaker
-        self.present(storeViewController, animated: true)
+        self.updateUI()
     }
 }
 
 extension OrderViewController {
-    func setUpStock() -> Fruits {
-        Fruit.allCases.forEach({ fruit in
-            self.fruits.updateValue(juiceMaker.count(fruit), forKey: fruit)
-        })
-        return fruits
+    @IBAction func juiceButtonDidTapped(_ sender: UIButton) {
+        self.orderJuice(sender.currentTitle ?? "")
+        self.updateUI()
+    }
+    
+    @IBAction func editStockButtonDidTapped(_ sender: UIBarButtonItem) {
+        self.presentStoreView()
+    }
+}
+
+extension OrderViewController: ManangingOrderDelegate {
+    func setUpStock() -> FruitStock {
+        return juiceMaker.stockUp()
+    }
+    
+    func edit(fruit: Fruit, with amount: Int) {
+        juiceMaker.editStock(of: fruit, with: amount)
     }
     
     func updateUI() {
@@ -65,7 +56,7 @@ private extension OrderViewController {
               let orderedJuice = JuiceType(rawValue: selectedJuice) else {
             return
         }
-
+        
         let juice = Drink(juice: orderedJuice)
         let result = juiceMaker.make(juice)
         
@@ -78,6 +69,16 @@ private extension OrderViewController {
         }
     }
     
+    func presentStoreView() {
+        let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
+        storeViewController.modalTransitionStyle = .coverVertical
+        storeViewController.delegate = self
+        self.present(storeViewController, animated: true)
+    }
+}
+
+// MARK: Alert
+private extension OrderViewController {
     func presentConfirmAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -88,10 +89,7 @@ private extension OrderViewController {
     func presentWarningAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let positiveAction = UIAlertAction(title: "예", style: .default) { _ in
-            let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
-            storeViewController.modalTransitionStyle = .coverVertical
-            storeViewController.delegate = self
-            self.present(storeViewController, animated: true)
+            self.presentStoreView()
         }
         let negativeAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         alertController.addAction(positiveAction)

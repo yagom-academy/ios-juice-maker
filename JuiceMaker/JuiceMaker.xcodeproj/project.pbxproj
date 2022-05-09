@@ -11,6 +11,8 @@
 		90C948CA281FDC96006165FB /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C948C9281FDC96006165FB /* UIViewController+Extensions.swift */; };
 		90CFCF83281A55F800E4E938 /* JuiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFCF82281A55F800E4E938 /* JuiceType.swift */; };
 		90CFCF85281A565300E4E938 /* DrinkMakerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CFCF84281A565300E4E938 /* DrinkMakerable.swift */; };
+		90E78BB028293A83009389E6 /* UIStepper+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E78BAF28293A83009389E6 /* UIStepper+Extensions.swift */; };
+		90E78BB32829449F009389E6 /* ManangingOrderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E78BB22829449F009389E6 /* ManangingOrderDelegate.swift */; };
 		AF61162428166E8B008D02EB /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF61162328166E8B008D02EB /* Fruit.swift */; };
 		AFD9E41C2817819C008A919E /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD9E41B2817819C008A919E /* Drink.swift */; };
 		AFFE9EB7281FA6280046763B /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFE9EB6281FA6280046763B /* StoreViewController.swift */; };
@@ -30,6 +32,8 @@
 		90C948C9281FDC96006165FB /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		90CFCF82281A55F800E4E938 /* JuiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceType.swift; sourceTree = "<group>"; };
 		90CFCF84281A565300E4E938 /* DrinkMakerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkMakerable.swift; sourceTree = "<group>"; };
+		90E78BAF28293A83009389E6 /* UIStepper+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStepper+Extensions.swift"; sourceTree = "<group>"; };
+		90E78BB22829449F009389E6 /* ManangingOrderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManangingOrderDelegate.swift; sourceTree = "<group>"; };
 		AF61162328166E8B008D02EB /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		AFD9E41B2817819C008A919E /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		AFFE9EB6281FA6280046763B /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			children = (
 				90C948C9281FDC96006165FB /* UIViewController+Extensions.swift */,
 				902AAF00282267DA002A9C33 /* Result+Extensions.swift */,
+				90E78BAF28293A83009389E6 /* UIStepper+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -73,6 +78,14 @@
 				90CFCF84281A565300E4E938 /* DrinkMakerable.swift */,
 			);
 			path = Drink;
+			sourceTree = "<group>";
+		};
+		90E78BB12829447D009389E6 /* ManagingOrder */ = {
+			isa = PBXGroup;
+			children = (
+				90E78BB22829449F009389E6 /* ManangingOrderDelegate.swift */,
+			);
+			path = ManagingOrder;
 			sourceTree = "<group>";
 		};
 		AF61162228166E49008D02EB /* FruitStore */ = {
@@ -108,6 +121,7 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				90E78BB12829447D009389E6 /* ManagingOrder */,
 				90CFCF86281A566900E4E938 /* Drink */,
 				AF61162228166E49008D02EB /* FruitStore */,
 				AFD9E41D281781A2008A919E /* JuiceMaker */,
@@ -223,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E78BB32829449F009389E6 /* ManangingOrderDelegate.swift in Sources */,
 				AFFE9EB7281FA6280046763B /* StoreViewController.swift in Sources */,
 				902AAF01282267DA002A9C33 /* Result+Extensions.swift in Sources */,
 				AF61162428166E8B008D02EB /* Fruit.swift in Sources */,
@@ -230,6 +245,7 @@
 				AFD9E41C2817819C008A919E /* Drink.swift in Sources */,
 				90C948CA281FDC96006165FB /* UIViewController+Extensions.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* OrderViewController.swift in Sources */,
+				90E78BB028293A83009389E6 /* UIStepper+Extensions.swift in Sources */,
 				90CFCF83281A55F800E4E938 /* JuiceType.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

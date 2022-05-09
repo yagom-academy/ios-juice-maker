@@ -12,6 +12,7 @@ protocol StorageManaging {
     func count(_ fruit: Fruit) -> Int
     func add(fruit: Fruit, as amount: Int)
     func consume(_ stock: FruitStock) throws
+    func listUp() -> FruitStock
 }
 
 //MARK: 과일 저장소 타입
@@ -44,5 +45,9 @@ extension FruitStore {
             }
             self.fruits.updateValue(count(fruit) - amount, forKey: fruit)
         }
+    }
+    
+    func listUp() -> FruitStock {
+        return fruits
     }
 }

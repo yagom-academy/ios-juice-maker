@@ -8,57 +8,57 @@
 import UIKit
 
 class StoreViewController: UIViewController {
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet private weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var bananaLabel: UILabel!
+    @IBOutlet private weak var pineappleLabel: UILabel!
+    @IBOutlet private weak var kiwiLabel: UILabel!
+    @IBOutlet private weak var mangoLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
+    private var fruits: [Fruit: Int]?
     var delegate: ManangingOrderDelegate?
-    var fruits: [Fruit: Int]?
-    var juiceMaker: JuiceMaker? 
-    
-    var isValid: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fruits = delegate?.setUpStock()
-        updateStepperDefaultValue()
+        
+        self.fruits = self.delegate?.setUpStock()
+        self.updateStepperDefaultValue()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateUI()
+        self.updateUI()
     }
-    
-    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+}
+
+extension StoreViewController {
+    @IBAction private func cancelButton(_ sender: UIBarButtonItem) {
+        self.delegate?.updateUI()
         self.dismiss(animated: true, completion: nil)
-        delegate?.updateUI()
     }
     
-    @IBAction func stepperButtonDidTapped(_ sender: UIStepper) {
+    @IBAction private func stepperButtonDidTapped(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
-            strawberryLabel.text = String(Int(sender.value))
-            juiceMaker?.editStock(of: .strawberry, Int(sender.value))
+            strawberryLabel.text = strawberryStepper.descriptionValue()
+            self.delegate?.edit(fruit: .strawberry, with: strawberryStepper.convertInt())
         case bananaStepper:
-            bananaLabel.text = String(Int(sender.value))
-            juiceMaker?.editStock(of: .banana, Int(sender.value))
+            bananaLabel.text = bananaStepper.descriptionValue()
+            self.delegate?.edit(fruit: .banana, with: bananaStepper.convertInt())
         case pineappleStepper:
-            pineappleLabel.text = String(Int(sender.value))
-            juiceMaker?.editStock(of: .pineapple, Int(sender.value))
+            pineappleLabel.text = pineappleStepper.descriptionValue()
+            self.delegate?.edit(fruit: .pineapple, with: pineappleStepper.convertInt())
         case kiwiStepper:
-            kiwiLabel.text = String(Int(sender.value))
-            juiceMaker?.editStock(of: .kiwi, Int(sender.value))
+            kiwiLabel.text = kiwiStepper.descriptionValue()
+            self.delegate?.edit(fruit: .kiwi, with: kiwiStepper.convertInt())
         case mangoStepper:
-            mangoLabel.text = String(Int(sender.value))
-            juiceMaker?.editStock(of: .mango, Int(sender.value))
+            mangoLabel.text = mangoStepper.descriptionValue()
+            self.delegate?.edit(fruit: .mango, with: mangoStepper.convertInt())
         default:
             return
         }
@@ -75,10 +75,10 @@ extension StoreViewController {
     }
     
     func updateUI() {
-        self.strawberryLabel.text = String(Int(strawberryStepper.value))
-        self.bananaLabel.text = String(Int(bananaStepper.value))
-        self.pineappleLabel.text = String(Int(pineappleStepper.value))
-        self.kiwiLabel.text = String(Int(kiwiStepper.value))
-        self.mangoLabel.text = String(Int(mangoStepper.value))
+        self.strawberryLabel.text = strawberryStepper.descriptionValue()
+        self.bananaLabel.text = bananaStepper.descriptionValue()
+        self.pineappleLabel.text = pineappleStepper.descriptionValue()
+        self.kiwiLabel.text = kiwiStepper.descriptionValue()
+        self.mangoLabel.text = mangoStepper.descriptionValue()
     }
 }
