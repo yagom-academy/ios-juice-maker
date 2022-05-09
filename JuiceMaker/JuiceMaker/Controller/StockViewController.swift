@@ -26,6 +26,11 @@ class StockViewController: UIViewController {
         setupViews()
     }
     
+    func makeVaildStepperValue(fruit: Fruits) -> Int {
+        guard let stepperValue = FruitStore.shared.fruits[fruit] else { return -1 }
+        return stepperValue
+    }
+    
     func setupViews() {
         strawberryStock.text = FruitStore.shared.showFruitsStock(name: .strawberry)
         bananaStock.text = FruitStore.shared.showFruitsStock(name: .banana)

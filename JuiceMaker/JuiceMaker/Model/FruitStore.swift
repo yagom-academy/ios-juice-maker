@@ -10,7 +10,7 @@ import Foundation
 final class FruitStore {
     
     static let shared = FruitStore()
-    private var fruits = [Fruits:Int]()
+    var fruits = [Fruits:Int]()
     
     private init(){
         for fruitStock in Fruits.allCases {
