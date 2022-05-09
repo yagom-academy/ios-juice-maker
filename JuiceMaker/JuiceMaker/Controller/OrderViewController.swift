@@ -7,6 +7,7 @@
 import UIKit
 
 class OrderViewController: UIViewController {
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -15,14 +16,22 @@ class OrderViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     
+    var fruits: [Fruit: Int]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
     }
-
+    
     @IBAction func juiceButtonDidTapped(_ sender: UIButton) {
         orderJuice(sender.currentTitle ?? "")
         updateUI()
+    }
+    
+    @IBAction func editStockButtonDidTapped(_ sender: UIBarButtonItem) {
+        let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
+        storeViewController.modalTransitionStyle = .coverVertical
+        self.present(storeViewController, animated: true)
     }
 }
 
@@ -46,11 +55,11 @@ private extension OrderViewController {
     }
     
     func updateUI() {
-        self.strawberryLabel.text = juiceMaker.count(.strawberry)
-        self.bananaLabel.text = juiceMaker.count(.banana)
-        self.pineappleLabel.text = juiceMaker.count(.pineapple)
-        self.kiwiLabel.text = juiceMaker.count(.kiwi)
-        self.mangoLabel.text = juiceMaker.count(.mango)
+        self.strawberryLabel.text = juiceMaker.count(.strawberry).description
+        self.bananaLabel.text = juiceMaker.count(.banana).description
+        self.pineappleLabel.text = juiceMaker.count(.pineapple).description
+        self.kiwiLabel.text = juiceMaker.count(.kiwi).description
+        self.mangoLabel.text = juiceMaker.count(.mango).description
     }
 }
 

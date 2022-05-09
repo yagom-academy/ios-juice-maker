@@ -20,7 +20,7 @@ struct JuiceMaker: DrinkMakerable {
         }
     }
     
-    func count(_ fruit: Fruit) -> String {
-        return String(fruitStore.count(fruit))
+    func count(_ fruit: Fruit) -> Int {
+        return fruitStore.count(fruit)
     }
 }
