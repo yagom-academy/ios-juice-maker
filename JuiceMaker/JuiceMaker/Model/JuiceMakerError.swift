@@ -7,4 +7,5 @@
 
 enum JuiceMakerError: Error {
     case lackOfStock
+    case noneExistMenu
 }

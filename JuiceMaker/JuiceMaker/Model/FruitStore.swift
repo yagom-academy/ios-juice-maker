@@ -4,14 +4,30 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import Foundation
+
 class FruitStore {
-    private var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    private var stock = [Fruit: Int]()
     
-    private func hasFruit(menu: Menu, total: Int) -> Bool {
-        let necessaryFruit = menu.count(to: total)
+    init(amount: Int = 10) {
+        Fruit.allCases.forEach {
+            stock[$0] = amount
+        }
+    }
+    
+    func transferFruitStockToJuiceMaker() {
+        let fruitStock: [Fruit: Int] = stock
+    
+        NotificationCenter.default.post(name: .notifyStock, object: nil, userInfo: ["stock": fruitStock])
+    }
+
+    func hasFruit(menu: Menu) -> Bool {
+        let necessaryFruit = menu.needsForFruits()
         
         for (fruit, need) in necessaryFruit {
-            guard let number = stock[fruit] else { continue }
+            guard let number = stock[fruit] else {
+                continue
+            }
             if number < need {
                 return false
             }
@@ -19,24 +35,25 @@ class FruitStore {
         return true
     }
     
-    func decreaseStock(total: Int, menu: Menu) throws {
-        let necessaryFruit = menu.count(to: total)
+    func decreaseStock(menu: Menu) {
+        let necessaryFruit = menu.needsForFruits()
         
         for (fruit, need) in necessaryFruit {
-            guard hasFruit(menu: menu, total: total) else {
-                throw JuiceMakerError.lackOfStock
-            }
-            
             guard let number = stock[fruit] else {
                 return
             }
-            
-            stock[fruit] = number - (need * total)
+            stock[fruit] = number - need
         }
     }
     
     func fillStock(fruit: Fruit, total: Int) {
-        guard let number = stock[fruit] else { return }
+        guard let number = stock[fruit] else {
+            return
+        }
         stock[fruit] = number + total
     }
+}
+
+extension Notification.Name {
+    static let notifyStock = Notification.Name("notifyStock")
 }
