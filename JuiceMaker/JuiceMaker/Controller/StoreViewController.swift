@@ -20,7 +20,7 @@ class StoreViewController: UIViewController {
     @IBOutlet private weak var kiwiStepper: UIStepper!
     @IBOutlet private weak var mangoStepper: UIStepper!
     
-    private var fruits: [Fruit: Int]?
+    private var fruits: FruitStock?
     var delegate: ManangingOrderDelegate?
     
     override func viewDidLoad() {
