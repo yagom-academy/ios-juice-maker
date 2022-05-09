@@ -29,6 +29,11 @@ final class MakeJuiceViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupViews()
+    }
+    
     @IBAction private func didTapOrderJuice(_ sender: UIButton) {
         do {
             let order = try orderJuice(sender: sender)
@@ -101,9 +106,8 @@ final class MakeJuiceViewController: UIViewController {
     
     private func showCheckStockMessage() {
         let checkStockMessage = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let yesButton = UIAlertAction(title: "예", style: .default) { action -> Void in
-            let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController")
-            self.present(stockViewController!, animated: true, completion: nil)
+        let yesButton = UIAlertAction(title: "예", style: .default) { _ in
+            self.performSegue(withIdentifier: "showFruitStock", sender: nil)
         }
         let noButton = UIAlertAction(title: "아니오", style: .default, handler: nil)
         
