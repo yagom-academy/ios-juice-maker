@@ -81,16 +81,6 @@ class ViewController: UIViewController {
     @IBAction func stepperMangoValueChanged(_ sender: UIStepper) {
         self.stockMangoCount.text = Int(sender.value).description
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 
