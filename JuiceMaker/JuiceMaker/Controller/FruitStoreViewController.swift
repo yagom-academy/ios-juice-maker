@@ -25,13 +25,7 @@ final class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fruitsStock[.strawberry] = 10
-        fruitsStock[.banana] = 10
-        fruitsStock[.pineapple] = 10
-        fruitsStock[.kiwi] = 10
-        fruitsStock[.mango] = 10
-        updateFruitsStockLabels(fruitsStock)
-        updateStepperValue()
+        addObserverFruitsStockDelivered()
     }
 
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
@@ -79,6 +73,17 @@ final class FruitStoreViewController: UIViewController {
         ]
         fruitsSteppers.forEach { (key: Fruit, stepper: UIStepper) in
             stepper.value = Double(fruitsStock[key] ?? stepperDefaultValue)
+        }
+    }
+    
+    private func addObserverFruitsStockDelivered() {
+        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDelivered, object: nil, queue: nil) { Notification in
+            guard let deliveredFruitsStock = Notification.userInfo as? [Fruit: Int] else {
+                return
+            }
+            self.fruitsStock = deliveredFruitsStock
+            self.updateFruitsStockLabels(self.fruitsStock)
+            self.updateStepperValue()
         }
     }
 }
