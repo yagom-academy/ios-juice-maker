@@ -30,6 +30,11 @@ final class JuiceMakerViewController: UIViewController {
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        postFruitsStockDelivered(juiceMaker.requestCurrentStock())
+    }
+    
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
         switch sender {
         case strawberryAndBananaJuiceButton:
@@ -103,6 +108,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
             return
         }
+        modalViewController.modalPresentationStyle = .fullScreen
         present(modalViewController, animated: true)
     }
     
@@ -117,6 +123,10 @@ final class JuiceMakerViewController: UIViewController {
         for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
             uiLabel.text = String(stock)
         }
+    }
+    
+    private func postFruitsStockDelivered(_ fruitsStock: [Fruit: Int]?) {
+        NotificationCenter.default.post(name: NotificationName.fruitsStockDelivered, object: nil, userInfo: fruitsStock)
     }
 }
 
