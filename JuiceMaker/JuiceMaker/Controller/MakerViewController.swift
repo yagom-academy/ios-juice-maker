@@ -17,19 +17,22 @@ class MakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bringFruitCount()
         addJuiceObserver()
     }
     
-    func setUpStockValues () {
+    override func viewWillAppear(_ animated: Bool) {
+        bringFruitCount()
+    }
+    
+    func setUpStockValues() {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeView") as? ViewController
         else { return }
-        stockViewController.strawberry = retrieveFruitCount(fruitName: .strawberry)
-        stockViewController.banana = retrieveFruitCount(fruitName: .banana)
-        stockViewController.pineapple = retrieveFruitCount(fruitName: .pineapple)
-        stockViewController.kiwi = retrieveFruitCount(fruitName: .kiwi)
-        stockViewController.mango = retrieveFruitCount(fruitName: .mango)
+        stockViewController.MakerController = self
         self.navigationController?.pushViewController(stockViewController, animated: true)
+    }
+    
+    func receiveEditedFruitCount(receivedStock: Dictionary<FruitKind,Int>) {
+        juiceMaker.updateTotalAmount(editedStock: receivedStock)
     }
     
     func retrieveFruitCount(fruitName: FruitKind) -> String {

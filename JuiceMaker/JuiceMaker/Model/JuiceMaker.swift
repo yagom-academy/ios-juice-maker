@@ -25,7 +25,15 @@ struct JuiceMaker {
         if let selectedFruitCount = fruitCount[fruitName] {
             return String(selectedFruitCount)
         } else {
-            return "EMPTY"
+            return String(StockCount.empty.amountInInteger)
         }
+    }
+    
+    func updateAmount(fruitName: FruitKind, fruitAmount: Int) {
+        fruitStore.changeFruitAmount(fruitName: fruitName, amount: fruitAmount)
+    }
+    
+    func updateTotalAmount(editedStock: Dictionary<FruitKind, Int>) {
+        fruitStore.changeAllFruitAmount(latestStock: editedStock)
     }
 }

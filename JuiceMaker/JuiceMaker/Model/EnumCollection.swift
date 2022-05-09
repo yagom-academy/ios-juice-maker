@@ -7,13 +7,29 @@
 
 import Foundation
 
-enum initCount {
-    case Fruit
+enum StockCount {
+    case empty
+    case initFruit
+    case maxFruit
     
-    var amount: Int {
+    var amountInInteger: Int {
         switch self {
-        case .Fruit:
+        case .empty:
+            return 0
+        case .initFruit:
             return 10
+        case .maxFruit:
+            return 100
+        }
+    }
+    var amountInDecimalPoint: Double {
+        switch self {
+        case .empty:
+            return 0.0
+        case .initFruit:
+            return 10.0
+        case .maxFruit:
+            return 100.0
         }
     }
 }
