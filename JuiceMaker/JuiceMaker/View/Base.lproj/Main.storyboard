@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" identifier="showFruitStock" modalPresentationStyle="fullScreen" id="auc-b7-kkM"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" identifier="showFruitStock" modalPresentationStyle="fullScreen" id="dYg-B5-gvD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -279,7 +279,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Stock View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="stockViewController" id="Yu1-lM-nqp" customClass="StockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -442,35 +442,23 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byS-IV-ke4">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <color key="barTintColor" systemColor="systemGray5Color"/>
-                                <items>
-                                    <navigationItem title="재고 추가" id="rBQ-b6-Cnn">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6VF-bP-uvh">
-                                            <connections>
-                                                <action selector="didTapClosedStockViewController:" destination="Yu1-lM-nqp" id="Oft-CR-Ad3"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="30o-9v-xKK" secondAttribute="trailing" constant="40" id="3dw-AW-76u"/>
-                            <constraint firstItem="byS-IV-ke4" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="LeB-CD-pbt"/>
                             <constraint firstItem="30o-9v-xKK" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="MOb-kB-C0h"/>
-                            <constraint firstAttribute="trailing" secondItem="byS-IV-ke4" secondAttribute="trailing" id="euc-pO-cNk"/>
-                            <constraint firstItem="byS-IV-ke4" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="ihE-Wt-4SL"/>
                             <constraint firstItem="30o-9v-xKK" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="qSW-6r-0jf"/>
                             <constraint firstItem="30o-9v-xKK" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="40" id="us9-Sp-yDR"/>
-                            <constraint firstItem="byS-IV-ke4" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" id="y8r-Gz-hGO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="6VF-bP-uvh">
+                            <connections>
+                                <action selector="didTapClosedStockViewController:" destination="Yu1-lM-nqp" id="Oft-CR-Ad3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bananaStepper" destination="O5s-2N-3iP" id="jVD-FH-lsp"/>
                         <outlet property="bananaStock" destination="gKu-86-RhI" id="TcQ-8O-WcG"/>
@@ -496,6 +484,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -507,15 +496,15 @@
             <point key="canvasLocation" x="1637" y="21"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="auc-b7-kkM"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
