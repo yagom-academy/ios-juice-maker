@@ -24,6 +24,15 @@ class StockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupStepper()
+    }
+    
+    func setupStepper() {
+        strawberryStepper.value = Double(makeVaildStepperValue(fruit: .strawberry))
+        bananaStepper.value = Double(makeVaildStepperValue(fruit: .banana))
+        pineappleStepper.value = Double(makeVaildStepperValue(fruit: .pineapple))
+        kiwiStepper.value = Double(makeVaildStepperValue(fruit: .kiwi))
+        mangoStepper.value = Double(makeVaildStepperValue(fruit: .mango))
     }
     
     func makeVaildStepperValue(fruit: Fruits) -> Int {
