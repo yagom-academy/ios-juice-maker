@@ -97,6 +97,27 @@ enum JuiceKind {
             return ""
         }
     }
+    
+    var juiceNameRecognize: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기쥬스주문"
+        case .bananaJuice:
+            return "바나나쥬스주문"
+        case .kiwiJuice:
+            return "키위쥬스주문"
+        case .pineappleJuice:
+            return "파인애플쥬스주문"
+        case .mangoJuice:
+            return "망고쥬스주문"
+        case .strawberryBananaJuice:
+            return "딸바쥬스주문"
+        case .mangoKiwiJuice:
+            return "망키쥬스주문"
+        case .none:
+            return ""
+        }
+    }
 }
 
 enum ErrorCategory: Error {

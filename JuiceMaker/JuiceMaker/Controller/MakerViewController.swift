@@ -51,21 +51,25 @@ class MakerViewController: UIViewController {
         guard let juiceName = juiceInfomation.userInfo?[JuiceInfo.JuiceName] as? String
         else { return }
         
+        let whitespaceRemovedName = juiceName.replacingOccurrences(of: " ", with: "")
+        let completeName = whitespaceRemovedName.replacingOccurrences(of: "\n", with: "")
+        
         var kindOfJuice: JuiceKind
-        switch juiceName {
-        case "딸바쥬스 주문":
+        
+        switch completeName {
+        case JuiceKind.strawberryBananaJuice.juiceNameRecognize:
             kindOfJuice = .strawberryBananaJuice
-        case "망키쥬스 주문":
+        case JuiceKind.mangoKiwiJuice.juiceNameRecognize:
             kindOfJuice = .mangoKiwiJuice
-        case "딸기쥬스 주문":
+        case JuiceKind.strawberryJuice.juiceNameRecognize:
             kindOfJuice = .strawberryJuice
-        case "바나나쥬스 주문":
+        case JuiceKind.bananaJuice.juiceNameRecognize:
             kindOfJuice = .bananaJuice
-        case "파인애플쥬스 주문":
+        case JuiceKind.pineappleJuice.juiceNameRecognize:
             kindOfJuice = .pineappleJuice
-        case "키위쥬스 주문":
+        case JuiceKind.kiwiJuice.juiceNameRecognize:
             kindOfJuice = .kiwiJuice
-        case "망고쥬스 주문":
+        case JuiceKind.mangoJuice.juiceNameRecognize:
             kindOfJuice = .mangoJuice
         default:
             kindOfJuice = .none
