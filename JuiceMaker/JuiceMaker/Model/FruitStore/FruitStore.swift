@@ -34,7 +34,7 @@ extension FruitStore {
     }
     
     func add(fruit: Fruit, as amount: Int) {
-        self.fruits.updateValue(count(fruit) + amount, forKey: fruit)
+        self.fruits.updateValue(amount, forKey: fruit)
     }
     
     func consume(_ stock: FruitStock) throws {

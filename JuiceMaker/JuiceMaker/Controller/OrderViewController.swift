@@ -37,6 +37,7 @@ class OrderViewController: UIViewController, ManangingOrderDelegate {
         let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
         storeViewController.modalTransitionStyle = .coverVertical
         storeViewController.delegate = self
+        storeViewController.juiceMaker = juiceMaker
         self.present(storeViewController, animated: true)
     }
 }

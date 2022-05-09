@@ -23,4 +23,8 @@ struct JuiceMaker: DrinkMakerable {
     func count(_ fruit: Fruit) -> Int {
         return fruitStore.count(fruit)
     }
+    
+    func editStock(of fruit: Fruit, _ amount: Int) {
+        fruitStore.add(fruit: fruit, as: amount)
+    }
 }

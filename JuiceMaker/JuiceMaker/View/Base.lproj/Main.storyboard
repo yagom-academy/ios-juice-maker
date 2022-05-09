@@ -280,6 +280,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bud-nF-2q8">
+                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
+                                <items>
+                                    <navigationItem title="Title" id="dCp-cV-otP">
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="1JQ-CN-cdR">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="Yu1-lM-nqp" id="gQI-ur-Pr5"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="QRA-ik-CJZ">
                                 <rect key="frame" x="109" y="107" width="626" height="187"/>
                                 <subviews>
@@ -299,7 +311,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="122.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperButtonDidTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Iwp-Gp-6vI"/>
@@ -323,7 +335,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="122.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperButtonDidTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="pgc-Dm-jFo"/>
@@ -347,7 +359,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="122.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperButtonDidTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="9eD-No-6Tn"/>
@@ -371,7 +383,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="122.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperButtonDidTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="UAq-hx-MuX"/>
@@ -395,7 +407,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="122.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="stepperButtonDidTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="8Lu-Jr-ajR"/>
@@ -405,18 +417,6 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bud-nF-2q8">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
-                                <items>
-                                    <navigationItem title="Title" id="dCp-cV-otP">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="1JQ-CN-cdR">
-                                            <connections>
-                                                <action selector="cancelButton:" destination="Yu1-lM-nqp" id="gQI-ur-Pr5"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

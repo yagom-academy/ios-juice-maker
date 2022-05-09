@@ -22,12 +22,14 @@ class StoreViewController: UIViewController {
     
     var delegate: ManangingOrderDelegate?
     var fruits: [Fruit: Int]?
+    var juiceMaker: JuiceMaker? 
     
     var isValid: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fruits = delegate?.setUpStock()
+        updateStepperDefaultValue()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,51 +45,40 @@ class StoreViewController: UIViewController {
     @IBAction func stepperButtonDidTapped(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
-            setMinimumValue(sender, fruit: .strawberry)
-            strawberryLabel.text = String(change(for: .strawberry, number: Int(sender.value)) ?? 0)
+            strawberryLabel.text = String(Int(sender.value))
+            juiceMaker?.editStock(of: .strawberry, Int(sender.value))
         case bananaStepper:
-            setMinimumValue(sender, fruit: .banana)
-            bananaLabel.text = String(change(for: .banana, number: Int(sender.value)) ?? 0)
+            bananaLabel.text = String(Int(sender.value))
+            juiceMaker?.editStock(of: .banana, Int(sender.value))
         case pineappleStepper:
-            setMinimumValue(sender, fruit: .pineapple)
-            pineappleLabel.text = String(change(for: .pineapple, number: Int(sender.value)) ?? 0)
+            pineappleLabel.text = String(Int(sender.value))
+            juiceMaker?.editStock(of: .pineapple, Int(sender.value))
         case kiwiStepper:
-            setMinimumValue(sender, fruit: .kiwi)
-            kiwiLabel.text = String(change(for: .kiwi, number: Int(sender.value)) ?? 0)
+            kiwiLabel.text = String(Int(sender.value))
+            juiceMaker?.editStock(of: .kiwi, Int(sender.value))
         case mangoStepper:
-            setMinimumValue(sender, fruit: .mango)
-            mangoLabel.text = String(change(for: .mango, number: Int(sender.value)) ?? 0)
+            mangoLabel.text = String(Int(sender.value))
+            juiceMaker?.editStock(of: .mango, Int(sender.value))
         default:
             return
-        }
-    }
-    
-    func change(for fruit: Fruit, number: Int) -> Int? {
-        var previousValue = 0
-        if(previousValue < number) {
-            previousValue = number
-            fruits?[fruit]! += 1
-        } else if (previousValue > number){
-            previousValue = number
-            fruits?[fruit]! -= 1
-        }
-        return fruits?[fruit]
-    }
-    
-    func setMinimumValue(_ sender: UIStepper, fruit: Fruit) {
-        if (isValid == false) {
-            sender.minimumValue = Double(((fruits?[fruit])!) * (-1))
-            isValid = true
         }
     }
 }
 
 extension StoreViewController {
+    func updateStepperDefaultValue() {
+        self.strawberryStepper.value = Double(fruits?[.strawberry] ?? 0)
+        self.bananaStepper.value = Double(fruits?[.banana] ?? 0)
+        self.pineappleStepper.value = Double(fruits?[.pineapple] ?? 0)
+        self.kiwiStepper.value = Double(fruits?[.kiwi] ?? 0)
+        self.mangoStepper.value = Double(fruits?[.mango] ?? 0)
+    }
+    
     func updateUI() {
-        self.strawberryLabel.text = fruits?[.strawberry]?.description
-        self.bananaLabel.text = fruits?[.banana]?.description
-        self.pineappleLabel.text = fruits?[.pineapple]?.description
-        self.kiwiLabel.text = fruits?[.kiwi]?.description
-        self.mangoLabel.text = fruits?[.mango]?.description
+        self.strawberryLabel.text = String(Int(strawberryStepper.value))
+        self.bananaLabel.text = String(Int(bananaStepper.value))
+        self.pineappleLabel.text = String(Int(pineappleStepper.value))
+        self.kiwiLabel.text = String(Int(kiwiStepper.value))
+        self.mangoLabel.text = String(Int(mangoStepper.value))
     }
 }
