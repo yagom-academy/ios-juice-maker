@@ -24,10 +24,10 @@ class StockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupViews()
     }
     
-    func setupView() {
+    func setupViews() {
         strawberryStock.text = FruitStore.shared.showFruitsStock(name: .strawberry)
         bananaStock.text = FruitStore.shared.showFruitsStock(name: .banana)
         pineappleStock.text = FruitStore.shared.showFruitsStock(name: .pineapple)
