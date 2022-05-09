@@ -2,7 +2,7 @@
 //  stockViewController.swift
 //  JuiceMaker
 //
-//  Created by 오경식 on 2022/05/02.
+//  Created by unchain, kiwi on 2022/05/02.
 //
 
 import UIKit
@@ -20,7 +20,6 @@ class StockViewController: UIViewController {
     @IBOutlet weak var pineappleStepper: UIStepper!
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
