@@ -16,6 +16,5 @@ struct JuiceMaker {
         guard fruitsToUse != nil else { throw AppError.lackOfInventory }
         
         try store.reduceInventory(of: juice.recipe)
-        print("\(juice)쥬스 나왔습니다! 맛있게 드세요!")
     }
 }

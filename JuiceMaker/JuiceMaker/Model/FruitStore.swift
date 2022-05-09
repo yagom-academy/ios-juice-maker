@@ -25,10 +25,8 @@ class FruitStore {
             let amountOfIngredient = ingredient[fruit] ?? 0
             guard var inventory = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
             
-            print("\(fruit) 사용전 재고: \(inventory)")
             inventory -= amountOfIngredient
             fruitsInventory[fruit] = inventory
-            print("\(fruit) 사용후 재고: \(inventory)")
         }
     }
     
@@ -37,10 +35,8 @@ class FruitStore {
             let amountOfSupply = ingredient[fruit] ?? 0
             guard var inventory = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
             
-            print("\(fruit) 입고전 재고: \(inventory)")
             inventory += amountOfSupply
             fruitsInventory[fruit] = inventory
-            print("\(fruit) 입고후 재고: \(inventory)")
         }
     }
     
