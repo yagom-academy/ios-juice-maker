@@ -20,6 +20,11 @@ class JuiceMakerViewController: UIViewController {
         updateStock()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStock()
+    }
+    
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
         guard let juice = Juice(rawValue: sender.tag) else {
             return
