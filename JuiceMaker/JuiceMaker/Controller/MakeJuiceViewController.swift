@@ -1,8 +1,8 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import UIKit
 
@@ -85,10 +85,11 @@ final class MakeJuiceViewController: UIViewController {
 
     private func refreshFruits() {
         let fruits = juiceMaker.fruitsInStock
-        strawberryLabel.text = String(fruits.strawberry)
-        bananaLabel.text = String(fruits.banana)
-        kiwiLabel.text = String(fruits.kiwi)
-        pineappleLabel.text = String(fruits.pineapple)
-        mangoLabel.text = String(fruits.mango)
+        strawberryLabel.text = String(fruits[.strawberry] ?? 0)
+        bananaLabel.text = String(fruits[.banana] ?? 0)
+        kiwiLabel.text = String(fruits[.kiwi] ?? 0)
+        pineappleLabel.text = String(fruits[.pineapple] ?? 0)
+        mangoLabel.text = String(fruits[.mango] ?? 0)
     }
 }
+

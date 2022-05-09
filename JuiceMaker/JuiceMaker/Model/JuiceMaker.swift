@@ -1,11 +1,11 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore(fruits: Fruits(stock: 10))
+    private let fruitStore = FruitStore(stock: 10)
     
     var fruitsInStock: Fruits {
         fruitStore.fruits

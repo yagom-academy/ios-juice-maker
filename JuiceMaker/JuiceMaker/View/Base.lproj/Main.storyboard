@@ -389,7 +389,7 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="OZc-P1-rL7">
                             <connections>
-                                <action selector="cancel:" destination="Yu1-lM-nqp" id="cVa-Wc-Iub"/>
+                                <action selector="dismissView:" destination="Yu1-lM-nqp" id="cGc-Js-VHq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
