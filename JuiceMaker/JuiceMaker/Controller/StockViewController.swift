@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StockViewController: UIViewController {
+final class StockViewController: UIViewController {
     
     @IBOutlet weak var strawberryStock: UILabel!
     @IBOutlet weak var bananaStock: UILabel!
@@ -27,11 +27,11 @@ class StockViewController: UIViewController {
         setupStepper()
     }
     
-    @IBAction func didTapClosedStockViewController(_ sender: UIBarButtonItem) {
+    @IBAction private func didTapClosedStockViewController(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
     
-    @IBAction func didTapStepper(_ sender: UIStepper) {
+    @IBAction private func didTapStepper(_ sender: UIStepper) {
            do {
            let fruit = try findFruit(stepper: sender)
            changeStock(fruit: fruit)
@@ -42,7 +42,7 @@ class StockViewController: UIViewController {
            }
        }
     
-    func setupViews() {
+    private func setupViews() {
         strawberryStock.text = FruitStore.shared.showFruitsStock(name: .strawberry)
         bananaStock.text = FruitStore.shared.showFruitsStock(name: .banana)
         pineappleStock.text = FruitStore.shared.showFruitsStock(name: .pineapple)
@@ -50,7 +50,7 @@ class StockViewController: UIViewController {
         mangoStock.text = FruitStore.shared.showFruitsStock(name: .mango)
     }
     
-    func findFruit(stepper: UIStepper) throws -> Fruit {
+    private func findFruit(stepper: UIStepper) throws -> Fruit {
         switch stepper {
         case strawberryStepper:
             return .strawberry
@@ -67,7 +67,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    func findFruitStepper(fruit: Fruit) -> UIStepper {
+    private func findFruitStepper(fruit: Fruit) -> UIStepper {
         switch fruit {
         case .strawberry:
             return strawberryStepper
@@ -82,7 +82,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    func setupStepper() {
+    private func setupStepper() {
         strawberryStepper.value = Double(makeVaildStepperValue(fruit: .strawberry))
         bananaStepper.value = Double(makeVaildStepperValue(fruit: .banana))
         pineappleStepper.value = Double(makeVaildStepperValue(fruit: .pineapple))
@@ -90,7 +90,7 @@ class StockViewController: UIViewController {
         mangoStepper.value = Double(makeVaildStepperValue(fruit: .mango))
     }
     
-    func makeVaildStepperValue(fruit: Fruit) -> Int {
+    private func makeVaildStepperValue(fruit: Fruit) -> Int {
         guard let stepperValue = FruitStore.shared.fruits[fruit] else { return -1 }
         return stepperValue
     }
@@ -110,7 +110,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    func changeStock(fruit: Fruit) {
+    private func changeStock(fruit: Fruit) {
         FruitStore.shared.fruits[fruit] = Int(findFruitStepper(fruit: fruit).value)
         selectFruitLable(fruit: fruit).text = FruitStore.shared.showFruitsStock(name: fruit)
     }
