@@ -189,8 +189,8 @@ private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
 
 - **Button의 Action을 하나로 묶고 어떤 Button이 눌렸는지 확인하는 방법**
   - 이번에 기본적으로 제공된 UI에는 총 7개의 쥬스를 생성하는 버튼이 있습니다. 저희는 이 7개의 버튼이 모두 JuiceMaker의 takeOrder함수를 호출하기 때문에 모든 버튼이 하나의 IBAction을 공유하여 사용하고 어떤 버튼이 눌렸는지만 구분해주면 코드가 깔끔해질 것이라고 생각했씁니다. 다만 이 버튼을 구분하는 과정에서 어떤게 맞는지 고민을 했습니다. 
-처음에는 `RestorationID`라는 속성이 버튼에 있길래 ID라고 표현한 것이 Identifier처럼 사용해도 되는것이라 생각하여 이를 활용해볼까 했지만, 이 속성은 다른 목적을 위해(어플리케이션이 임의의 종료를 당했을 때 이를 복구하기 위해 사용되는 것이라고 이해했습니다) 사용되는것 같았습니다. 두번째로 AccessibilityIdentifier속성을 활용하는 것이었는데 이 속성은 목적에는 맞았지만 String타입이어서 switch 조건절에서 String으로 너무 많이 비교하는것 같아서 보류하였습니다.
-최종적으로 그냥 IBAction의 매개변수인 sender자체를 비교하였는데, 이렇게 여러 버튼들을 하나의 IBAction에서 처리할 때 어떻게 다루는지 궁금했습니다. 
+  - 처음에는 `RestorationID`라는 속성이 버튼에 있길래 ID라고 표현한 것이 Identifier처럼 사용해도 되는것이라 생각하여 이를 활용해볼까 했지만, 이 속성은 다른 목적을 위해(어플리케이션이 임의의 종료를 당했을 때 이를 복구하기 위해 사용되는 것이라고 이해했습니다) 사용되는것 같았습니다. 두번째로 AccessibilityIdentifier속성을 활용하는 것이었는데 이 속성은 목적에는 맞았지만 String타입이어서 switch 조건절에서 String으로 너무 많이 비교하는것 같아서 보류하였습니다.
+  - 최종적으로 그냥 IBAction의 매개변수인 sender자체를 비교하였는데, 이렇게 여러 버튼들을 하나의 IBAction에서 처리할 때 어떻게 다루는지 궁금했습니다. 
 
 - **StoryBoard에 등록된 여러 UILabel을 가져오는 방법**
   - 재고가 변경되면 FruitStore인스턴스의 fruitStock 프로퍼티를 가져와서 label을 업데이트 해주도록 구현하였습니다. 재고가 변경되면 storyboard에 등록된 stock들을 가져와서 각 과일의 재고를 업데이트 해주도록 했는데 5개나 되는 Label들을 일일이 `bananaStockLabel.text = stock`과 같이 업데이트 해주는게 맞는가 고민하였습니다. 
@@ -203,7 +203,141 @@ private func canUseStock(of fruit: Fruit, by amount :Int) throws -> Bool {
 - UILabel
 - UIAlert
 - Type Casting
-- storyboard
+- Storyboard
+- higher-order functions
+- stepper
+- Auto Layout
+## Review
+### Navigation, Modality
+- 이 부분은 확실히 앱의 기능과 사용성에 따라 달라질 수 있을 것 같아요. 기능의 흐름에도 많은 영향을 미칠 수 있는 부분인데요. 이것에 대해선 HIG 문서를 한번 읽어보시면 조금은 감을 잡으실 수 있을거라 생각해요.
+    
+    - Modality 문서
+    - Navigation 문서
+
+### closure 안에서 self를 써줘야 하는 이유
+- 네 클로저! 이 개념 역시 상당히 어려운 개념이고 정말 iOS 개발자라면 늘 마주치는 녀석이죠! 방향성의 시작은 기본 문서라고 생각해요. 먼저 Swift 공식 문서부터 천천히 읽어보시는걸 추천해드려요.
+
+### Button의 Action을 하나로 묶고 어떤 Button이 눌렸는지 확인하는 방법
+- 하나의 IBAction 메서드로 소화하려면 현재 sender로 버튼을 비교하는 방법도 하나의 방법이에요! 그게 아니라면 버튼별 IBAction 메서드를 만들어주는 방법도 있겠죠!
+
+### StoryBoard에 등록된 여러 UILabel을 가져오는 방법
+- 이 문제는 현재 구현 방법과 관련이 있는데요. 재고가 변경될 때마다 모든 과일재고를 넘겨주기보단 변경이 필요한 재료에 대해서 남은 재료만을 userInfo를 통해 전달해주면 변경이 필요한 label을 명확하게 알 수 있기에 이에 대한 고민은 해결 할 수 있을 것으로 보여져요!
+
+- 예를 들어 딸기 10, 바나나 10개가 있는 상태에서 딸기, 바나나 각각 2개가 사용됐다면 딸기:8, 바나나:8 이렇게 건내줄거고 그렇다면 명확히 딸기레이블, 바나나레이블에 접근해서 값을 변경해주는거죠!
+
+## Update
+- Result Type 사용
+```swift 
+private func orderResult(customerRequest request: FruitJuice) {
+        do {
+            let result = try juiceMaker.takeOrder(request)
+            switch result {
+            case .failure(JuiceMakerError.productionImpossibleError):
+                alertfailureOfFruitJuice()
+            case .success(let fruitJuice):
+                alertResult(fruitJuice)
+            }
+        } catch {
+            alertInvalidAccess()
+        }
+
+    }
+
+    private func alertResult(_ fruitJuice: FruitJuice?) {
+        guard let fruitJuice = fruitJuice else {
+            alertfailureOfFruitJuice()
+            return
+        }
+        alertSuccess(of: fruitJuice)
+    }
+```
+
+---
+
+- 고차함수 사용
+ 
+>1. 과일의 재고가 변경되면 변경 후 값과 변경 전 값을 비교해서 변경이 이루어진 과일의 재고만 저장하는 filtering
+```swift
+    func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
+        let changedFruitsStock = fruitsStock.filter {
+            fruitsStock[$0.key] != oldValue[$0.key]
+        }
+        
+```     
+>2. 옵셔널로 입력받은 과일재고를 언랩핑하고 키값과 value를 사용하는 함수를 과일의 종류 만큼 여러번 호출해주는 함수
+```swift  
+// 변경 전
+    
+       private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
+        guard let unwrappedStock = stock else {
+            return
+        }
+        for (fruit, value) in unwrappedStock {
+            modifyFruitStockLabel(fruit.rawValue, value)
+        }
+    } 
+        
+//변경 후 
+        
+        private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
+        _ = stock?.compactMap { (key: Fruit, value: Int) in
+            modifyFruitStockLabel(key.rawValue, value)
+        }
+    }
+```
+
+>3. 입력받은 과일의 재고들을 현재 라벨명과 비교해서 같으면 라벨에 나타나는 과일의 재고를 변경해주는 함수
+```swift      
+// 변경 전
+        
+        private func modifyFruitStockLabel(_ fruit: String, _ stock: Int?) {
+        let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+        guard let stock = stock else {
+            return
+        }
+        for uiLabel in allStockLabels where uiLabel.accessibilityIdentifier == fruit {
+            uiLabel.text = String(stock)
+        }
+    }
+        
+// 변경 후
+        
+        private func modifyFruitStockLabel(_ fruit: String, _ stock: Int) {
+        let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
+        for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
+            uiLabel.text = String(stock)
+        }
+    }
+```
+
+
+# [STEP 3]
+
+## 기능설명
+
+## 고민한점
+- **View간 데이터 전달 방법**
+  - JuiceMakerViewController와 FruitStoreViewController간 데이터를 전송하는 방법에 대해서 어떻게 구현할지 고민했었습니다. 저희는 활동학습때 공부했던 NotificationCenter를 활용하여 데이터의 변경점을 전파하도록 했습니다. 
+  - 이렇게 했을 때 장점은 stepper로 증감 및 쥬스를 제조하여 수량이 차감되는 즉시 객체에 전파되어 추가로 변경해주는 함수가 필요없이 수정이 가능하다는 점이라고 생각합니다. 다만 Notification을 응용해보려고 사용했기에 1:N의 이벤트를 발생시키는 Notification의 특성을 살리지 못했다고 생각했습니다. 저희의 코드는 JuiceMakerViewController와 FruitStoreViewController간에 FruitsStock 딕셔너리 한개만을 주고 받기 때문에 이런경우 추가적인 뷰가 생겨 전파를 동시에 두곳에서 진행하거나, KVO방식으로 데이터 변경을 알리는게 좀 더 낫지 않을까 생각했습니다. 
+
+- **Stepper와 label 동기화**
+  - 이번에 Stepper 컴포넌트를 처음 사용해보았습니다. Stepper가 내부에 value 프로퍼티가 있었기에 이 value가 +값인지 -값인지를 나타내는 프로퍼티로 알았고 Label에 value값을 그대로 더해주는 방식으로 구현했었습니다. 하지만 의도한대로 동작하지 않아서 다시 문서를 읽어본 결과 Stepper도 내부에 자체value를 가지고 있음을 알게 되었습니다. 따라서 stepper의 value와 fruitsStock의 내부 저장 값을 일치시켜주니 의도한 대로 코드가 실행되었었습니다. 
+
+- **iphone 4s 시뮬레이터**
+  - Auto Layout을 적용하면서 가장 낮은 버전인 iPhone 4S 기기에서 테스트해보니 stepper의 크기가 비정상적으로 보이는 문제가 있었습니다. 이 부분에 대해 서포터와 이야기를 나눈 결과로, 너무 이전 버전의 기기에 대해선 고려하지 않아도 된다는 피드백을 받았습니다. 이 과정에서 실제로 현업에서는 어떤 기준을 가지고 지원대상(버전)을 정하고 관리하는지 궁금증이 생겼습니다!
+
+- **Stepper로 데이터 변경시 로직**
+  - Stepper로 재고수정 시 Stepper가 눌리는 순간 재고 변경을 post 해줄지, 아니면 modal이 닫히는 순간에 재고 변경을 post 할지 고민했습니다. 
+  - 고민 1: Stepper가 눌리는 순간 재고 변경을 post 하는 방식 
+    - 만약 Stepper가 10000번 눌리면 10000 번을 모두 post 하기 때문에 비효율적인 동작이라고 판단했습니다. 
+  - 고민 2: modal이 닫히는 순간에 재고 변경을 post 하는 방식 
+    - 재고가 변경되지 않아도 post를 하게 되고 FruitStore에서 기존과 같은 재고를 다시 덮어쓰는 무의미한 동작이라고 판단했습니다. 
+  - 해결방법: modal이 닫히는 순간에 재고 변경을 post 하되, FruitStore에서 기존 재고와 변경된 부분에 대해서만 재고를 수정하는 방식으로 구현
+
+## 배운개념
+- Stepper
+- Notification 
+- Auto Layout
 ## Review
 
 ## Update
