@@ -18,11 +18,6 @@ final class FruitStore {
         }
     }
     
-    func addFruitsStock(name: Fruits, quantity: Int) {
-        guard let fruitsStock = fruits[name] else { return }
-        fruits[name] = fruitsStock + quantity
-    }
-    
     func consumeFruitsStock(by fruit: [Fruits: Int]) {
         for (name, quantity) in fruit{
             guard let fruitsStock = fruits[name],fruitsStock >= quantity else { return }
