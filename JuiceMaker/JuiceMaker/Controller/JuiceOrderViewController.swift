@@ -7,26 +7,26 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    @IBOutlet weak var strawberryInventoryLabel: UILabel!
-    @IBOutlet weak var bananaInventoryLabel: UILabel!
-    @IBOutlet weak var pineappleInventoryLabel: UILabel!
-    @IBOutlet weak var kiwiInventoryLabel: UILabel!
-    @IBOutlet weak var mangoInventoryLabel: UILabel!
+    @IBOutlet private weak var strawberryInventoryLabel: UILabel!
+    @IBOutlet private weak var bananaInventoryLabel: UILabel!
+    @IBOutlet private weak var pineappleInventoryLabel: UILabel!
+    @IBOutlet private weak var kiwiInventoryLabel: UILabel!
+    @IBOutlet private weak var mangoInventoryLabel: UILabel!
     
-    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet private weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitsInventoryLabels()
     }
     
-    func updateFruitsInventoryLabels() {
+    private func updateFruitsInventoryLabels() {
         let errorValue = 999
         strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? errorValue)
         bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana] ?? errorValue)
@@ -45,7 +45,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func showSuccessAlert(message: String) {
+    private func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "고마워요 😘", style: .default)
         
@@ -53,7 +53,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showFailureAlert(message: String) {
+    private func showFailureAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] (action) in
             guard let storyboard = self?.storyboard?.instantiateViewController(identifier: "InventoryViewController") else {
@@ -70,7 +70,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func tapJuiceOrderButton(_ sender: UIButton) {
+    @IBAction private func tapJuiceOrderButton(_ sender: UIButton) {
         // 딕셔너리만 사용
         let IBOutlets = [strawberryBananaJuiceOrderButton: JuiceMaker.Menu.strawberryBananaJuice,
                          mangoKiwiJuiceOrderButton:JuiceMaker.Menu.mangoKiwiJuice,

@@ -12,7 +12,7 @@ class InventoryViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func touchUpDismissButton(_ sender: UIButton) {
+    @IBAction private func touchUpDismissButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 }
