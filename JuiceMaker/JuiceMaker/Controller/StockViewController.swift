@@ -27,6 +27,10 @@ class StockViewController: UIViewController {
         setupStepper()
     }
     
+    @IBAction func didTapClosedStockViewController(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    
     func setupStepper() {
         strawberryStepper.value = Double(makeVaildStepperValue(fruit: .strawberry))
         bananaStepper.value = Double(makeVaildStepperValue(fruit: .banana))
@@ -46,9 +50,5 @@ class StockViewController: UIViewController {
         pineappleStock.text = FruitStore.shared.showFruitsStock(name: .pineapple)
         kiwiStock.text = FruitStore.shared.showFruitsStock(name: .kiwi)
         mangoStock.text = FruitStore.shared.showFruitsStock(name: .mango)
-    }
-    
-    @IBAction func didTapClosedStockViewController(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true)
     }
 }
