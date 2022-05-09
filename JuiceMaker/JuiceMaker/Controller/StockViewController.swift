@@ -31,6 +31,14 @@ class StockViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    func setupViews() {
+        strawberryStock.text = FruitStore.shared.showFruitsStock(name: .strawberry)
+        bananaStock.text = FruitStore.shared.showFruitsStock(name: .banana)
+        pineappleStock.text = FruitStore.shared.showFruitsStock(name: .pineapple)
+        kiwiStock.text = FruitStore.shared.showFruitsStock(name: .kiwi)
+        mangoStock.text = FruitStore.shared.showFruitsStock(name: .mango)
+    }
+    
     func findFruitStepper(stepper: UIStepper) throws -> Fruits {
         switch stepper {
         case strawberryStepper:
@@ -61,11 +69,18 @@ class StockViewController: UIViewController {
         return stepperValue
     }
     
-    func setupViews() {
-        strawberryStock.text = FruitStore.shared.showFruitsStock(name: .strawberry)
-        bananaStock.text = FruitStore.shared.showFruitsStock(name: .banana)
-        pineappleStock.text = FruitStore.shared.showFruitsStock(name: .pineapple)
-        kiwiStock.text = FruitStore.shared.showFruitsStock(name: .kiwi)
-        mangoStock.text = FruitStore.shared.showFruitsStock(name: .mango)
+    private func selectFruitLable(fruit: Fruits) -> UILabel {
+        switch fruit {
+        case .strawberry:
+            return strawberryStock
+        case .mango:
+            return mangoStock
+        case .kiwi:
+            return kiwiStock
+        case .pineapple:
+            return pineappleStock
+        case .banana:
+            return bananaStock
+        }
     }
 }
