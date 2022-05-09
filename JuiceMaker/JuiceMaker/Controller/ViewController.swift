@@ -2,11 +2,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var stockLabelCollection: [UILabel]!
 
     private var juiceMaker = JuiceMaker()
     
@@ -20,11 +16,9 @@ class ViewController: UIViewController {
     }
 
     private func updateStock() {
-        strawberryStockLabel.text = juiceMaker.stockCount(of: .strawberry)
-        bananaStockLabel.text = juiceMaker.stockCount(of: .banana)
-        pineappleStockLabel.text = juiceMaker.stockCount(of: .pineapple)
-        kiwiStockLabel.text = juiceMaker.stockCount(of: .kiwi)
-        mangoStockLabel.text = juiceMaker.stockCount(of: .mango)
+        for (stockLabel, fruit) in zip(stockLabelCollection, Fruit.allCases) {
+            stockLabel.text = juiceMaker.stockCount(of: fruit)
+        }
     }
     
     private func showCompleteAlert(juice: Menu) {
