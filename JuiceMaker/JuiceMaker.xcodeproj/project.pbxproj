@@ -51,6 +51,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3786B4552829000B005524BF /* JuiceMaker */ = {
+			isa = PBXGroup;
+			children = (
+				371F91D628180C02005D1BB9 /* JuiceMaker.swift */,
+				371F91D42817C1B4005D1BB9 /* JuiceMakerError.swift */,
+			);
+			path = JuiceMaker;
+			sourceTree = "<group>";
+		};
+		3786B4562829001A005524BF /* Fruit */ = {
+			isa = PBXGroup;
+			children = (
+				45D36D142817C27700B1D6D2 /* Fruit.swift */,
+				45D36D122817BE9E00B1D6D2 /* FruitJuice.swift */,
+				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+			);
+			path = Fruit;
+			sourceTree = "<group>";
+		};
+		3786B4572829002F005524BF /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				37169525282396BF0001EE8E /* NotificationName.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,12 +92,9 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				45D36D142817C27700B1D6D2 /* Fruit.swift */,
-				45D36D122817BE9E00B1D6D2 /* FruitJuice.swift */,
-				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
-				37169525282396BF0001EE8E /* NotificationName.swift */,
-				371F91D628180C02005D1BB9 /* JuiceMaker.swift */,
-				371F91D42817C1B4005D1BB9 /* JuiceMakerError.swift */,
+				3786B4572829002F005524BF /* Notification */,
+				3786B4562829001A005524BF /* Fruit */,
+				3786B4552829000B005524BF /* JuiceMaker */,
 			);
 			path = Model;
 			sourceTree = "<group>";

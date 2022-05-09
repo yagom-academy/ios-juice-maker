@@ -57,7 +57,9 @@ final class FruitStore {
         }
         return canComplete ? try useOfStock(for: fruitJuice) : nil
     }
-    
+}
+
+extension FruitStore {
     private func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
         let changedFruitsStock = fruitsStock.filter {
             fruitsStock[$0.key] != oldValue[$0.key]
