@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MakeJuiceViewController: UIViewController {
+final class MakeJuiceViewController: UIViewController {
     @IBOutlet private weak var orderStrawberryJuiceButton: UIButton!
     @IBOutlet private weak var orderBananaJuiceButton: UIButton!
     @IBOutlet private weak var orderPineappleJuiceButton: UIButton!
@@ -84,7 +84,7 @@ class MakeJuiceViewController: UIViewController {
     }
 
     private func refreshFruits() {
-        let fruits = juiceMaker.seeFruitsInStock
+        let fruits = juiceMaker.fruitsInStock
         strawberryLabel.text = String(fruits.strawberry)
         bananaLabel.text = String(fruits.banana)
         kiwiLabel.text = String(fruits.kiwi)
@@ -92,6 +92,3 @@ class MakeJuiceViewController: UIViewController {
         mangoLabel.text = String(fruits.mango)
     }
 }
-
-
-

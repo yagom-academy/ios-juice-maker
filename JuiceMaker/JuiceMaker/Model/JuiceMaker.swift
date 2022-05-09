@@ -7,7 +7,7 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore(fruits: Fruits(stock: 10))
     
-    var seeFruitsInStock: Fruits {
+    var fruitsInStock: Fruits {
         fruitStore.fruits
     }
     

@@ -1,6 +1,6 @@
 import UIKit
 
-class EditFruitsViewController: UIViewController {
+final class EditFruitsViewController: UIViewController {
     @IBOutlet weak var dismissButton: UIBarButtonItem!
     
     override func viewDidLoad() {
