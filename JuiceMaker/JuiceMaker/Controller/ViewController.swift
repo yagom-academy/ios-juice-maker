@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "재고 추가"
         guard let juiceMakerController = self.MakerController as? MakerViewController else { return }
         
         self.stockStrawberryCount.text = juiceMakerController.retrieveFruitCount(fruitName: .strawberry)
