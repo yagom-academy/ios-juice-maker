@@ -27,7 +27,7 @@ final class FruitStoreViewController: UIViewController {
         super.viewDidLoad()
         addObserverFruitsStockDelivered()
     }
-
+    
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
         postFruitsStockDidModified()
         dismiss(animated: true)
@@ -76,7 +76,9 @@ final class FruitStoreViewController: UIViewController {
             stepper.value = Double(fruitsStock[key] ?? stepperDefaultValue)
         }
     }
-    
+}
+
+extension FruitStoreViewController {
     private func addObserverFruitsStockDelivered() {
         NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDelivered, object: nil, queue: nil) { Notification in
             guard let deliveredFruitsStock = Notification.userInfo as? [Fruit: Int] else {

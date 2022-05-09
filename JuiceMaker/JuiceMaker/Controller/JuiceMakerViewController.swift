@@ -56,15 +56,6 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func addObserverFruitsStockDidChanged() {
-        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
-            guard let changedFruitsStock = Notification.userInfo as? [Fruit:Int]? else {
-                return
-            }
-            self.updateFruitsStockLabels(changedFruitsStock)
-        }
-    }
-    
     private func respondOrder(of fruitjuice: FruitJuice) {
         do {
             let orderResult = try juiceMaker.takeOrder(fruitjuice)
@@ -124,14 +115,10 @@ final class JuiceMakerViewController: UIViewController {
             uiLabel.text = String(stock)
         }
     }
-    
-    private func postFruitsStockDelivered(_ fruitsStock: [Fruit: Int]?) {
-        NotificationCenter.default.post(name: NotificationName.fruitsStockDelivered, object: nil, userInfo: fruitsStock)
-    }
 }
 
 extension JuiceMakerViewController {
-    func adjustButtonTitleAlignment(){
+    private func adjustButtonTitleAlignment(){
         strawberryAndBananaJuiceButton.titleLabel?.textAlignment = .center
         mangoAndKiwiJuiceButton.titleLabel?.textAlignment = .center
         strawberryJuiceButton.titleLabel?.textAlignment = .center
@@ -139,5 +126,20 @@ extension JuiceMakerViewController {
         pineappleJuiceButton.titleLabel?.textAlignment = .center
         kiwiJuiceButton.titleLabel?.textAlignment = .center
         mangoJuiceButton.titleLabel?.textAlignment = .center
+    }
+}
+
+extension JuiceMakerViewController {
+    private func addObserverFruitsStockDidChanged() {
+        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
+            guard let changedFruitsStock = Notification.userInfo as? [Fruit:Int]? else {
+                return
+            }
+            self.updateFruitsStockLabels(changedFruitsStock)
+        }
+    }
+    
+    private func postFruitsStockDelivered(_ fruitsStock: [Fruit: Int]?) {
+        NotificationCenter.default.post(name: NotificationName.fruitsStockDelivered, object: nil, userInfo: fruitsStock)
     }
 }
