@@ -28,8 +28,10 @@ final class FruitStoreViewController: UIViewController {
         fruitsStock[.strawberry] = 10
         fruitsStock[.banana] = 10
         fruitsStock[.pineapple] = 10
+        fruitsStock[.kiwi] = 10
         fruitsStock[.mango] = 10
-        fruitsStock[.mango] = 10
+        updateFruitsStockLabels(fruitsStock)
+        updateStepperValue()
     }
 
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
@@ -37,6 +39,21 @@ final class FruitStoreViewController: UIViewController {
     }
     
     @IBAction func pressStepper(_ sender: UIStepper) {
+        switch sender {
+        case strawberryStepper:
+            fruitsStock[.strawberry] = Int(sender.value)
+        case bananaStepper:
+            fruitsStock[.banana] = Int(sender.value)
+        case pineappleStepper:
+            fruitsStock[.pineapple] = Int(sender.value)
+        case kiwiStepper:
+            fruitsStock[.kiwi] = Int(sender.value)
+        case mangoStepper:
+            fruitsStock[.mango] = Int(sender.value)
+        default:
+            break
+        }
+        updateFruitsStockLabels(fruitsStock)
     }
     
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
