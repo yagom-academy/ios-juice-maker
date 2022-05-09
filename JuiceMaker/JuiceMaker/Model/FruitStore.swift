@@ -58,7 +58,7 @@ final class FruitStore {
         return canComplete ? try useOfStock(for: fruitJuice) : nil
     }
     
-    func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
+    private func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
         let changedFruitsStock = fruitsStock.filter {
             fruitsStock[$0.key] != oldValue[$0.key]
         }
@@ -68,7 +68,11 @@ final class FruitStore {
     private func addObserverFruitsStockDidModified() {
         NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidModified, object: nil, queue: nil) { Notification in
             guard let updatedFruitsStock = Notification.userInfo as? [Fruit: Int] else { return }
-            self.fruitsStock = updatedFruitsStock
+            updatedFruitsStock.filter{ (fruit: Fruit, stock: Int) in
+                self.fruitsStock[fruit] != updatedFruitsStock[fruit]
+            }.forEach { (fruit: Fruit, stock: Int) in
+                self.fruitsStock[fruit] = updatedFruitsStock[fruit]
+            }
         }
     }
 }

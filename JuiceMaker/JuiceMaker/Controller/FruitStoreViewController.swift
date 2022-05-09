@@ -29,6 +29,7 @@ final class FruitStoreViewController: UIViewController {
     }
 
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
+        postFruitsStockDidModified()
         dismiss(animated: true)
     }
     
@@ -85,5 +86,9 @@ final class FruitStoreViewController: UIViewController {
             self.updateFruitsStockLabels(self.fruitsStock)
             self.updateStepperValue()
         }
+    }
+    
+    private func postFruitsStockDidModified() {
+        NotificationCenter.default.post(name: NotificationName.fruitsStockDidModified, object: nil, userInfo: fruitsStock)
     }
 }
