@@ -6,10 +6,13 @@
 //
 
 class FruitStore {
+    static let shared = FruitStore()
+    
     var stocks: [Fruit: Int] = [:]
     var insufficientStock: [Fruit: Int] = [:]
+    var defaultFruitStock: Int = 10
     
-    init(defaultFruitStock: Int) {
+    init() {
         Fruit.allCases.forEach { stocks[$0] = defaultFruitStock }
     }
     
@@ -27,5 +30,7 @@ class FruitStore {
             }
         }
     }
+    
+    
 }
 
