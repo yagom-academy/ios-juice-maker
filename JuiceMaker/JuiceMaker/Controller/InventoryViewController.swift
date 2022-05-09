@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class InventoryViewController: UIViewController {
     @IBOutlet private weak var strawberryInventoryLabel: UILabel!
     @IBOutlet private weak var bananaInventoryLabel: UILabel!
@@ -24,8 +22,28 @@ class InventoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitsInventoryLabels()
+        setInitialInventoryLabels()
         giveStepperFruitsInventory()
+    }
+    
+    @IBAction func updateInventoryLabels(_ sender: UIStepper) {
+        switch sender {
+        case strawberryInventoryStepper:
+            strawberryInventoryLabel.text = Int(sender.value).description
+        case bananaInventoryStepper:
+            bananaInventoryLabel.text = Int(sender.value).description
+        case pineappleInventoryStepper:
+            pineappleInventoryLabel.text = Int(sender.value).description
+        case kiwiInventoryStepper:
+            kiwiInventoryLabel.text = Int(sender.value).description
+        case mangoInventoryStepper:
+            mangoInventoryLabel.text = Int(sender.value).description
+        default: break
+        }
+    }
+    
+    @IBAction func touchUpDismissButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     func giveStepperFruitsInventory() {
@@ -36,11 +54,7 @@ class InventoryViewController: UIViewController {
         mangoInventoryStepper.value = Double(JuiceMaker.shared.store.fruitsInventory[.mango] ?? 0)
     }
     
-    @IBAction func touchUpDismissButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    private func updateFruitsInventoryLabels() {
+    private func setInitialInventoryLabels() {
         let errorValue = 999
         strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? errorValue)
         bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana] ?? errorValue)
