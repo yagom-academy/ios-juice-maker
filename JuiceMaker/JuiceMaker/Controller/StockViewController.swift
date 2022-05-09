@@ -39,7 +39,7 @@ class StockViewController: UIViewController {
         mangoStock.text = FruitStore.shared.showFruitsStock(name: .mango)
     }
     
-    func findFruitStepper(stepper: UIStepper) throws -> Fruits {
+    func findFruit(stepper: UIStepper) throws -> Fruits {
         switch stepper {
         case strawberryStepper:
             return .strawberry
