@@ -56,6 +56,20 @@ class StockViewController: UIViewController {
         }
     }
     
+    func findFruitStepper(fruit: Fruits) -> UIStepper {
+            switch fruit {
+            case .strawberry:
+                return strawberryStepper
+            case .banana:
+                return bananaStepper
+            case .pineapple:
+                return pineappleStepper
+            case .kiwi:
+                return kiwiStepper
+            case .mango:
+                return mangoStepper
+            }
+    
     func setupStepper() {
         strawberryStepper.value = Double(makeVaildStepperValue(fruit: .strawberry))
         bananaStepper.value = Double(makeVaildStepperValue(fruit: .banana))
