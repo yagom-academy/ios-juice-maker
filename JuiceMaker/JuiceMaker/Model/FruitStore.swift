@@ -13,7 +13,7 @@ class FruitStore {
         Fruit.mango: InitialFruitStock.stock
     ]
     
-    func checkInvalidAmount(_ amount: Int) throws {
+    private func checkInvalidAmount(_ amount: Int) throws {
         guard amount >= 0 else {
             throw FruitStoreError.invalidAmount
         }
@@ -24,7 +24,7 @@ class FruitStore {
         fruitWarehouse[fruit] = amount
     }
     
-    func addStock(fruit: Fruit, amount: Int) throws {
+    private func addStock(fruit: Fruit, amount: Int) throws {
         guard let fruitStock = fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
@@ -34,7 +34,7 @@ class FruitStore {
         fruitWarehouse[fruit] = changedStock
     }
     
-    func reduceStock(fruit: Fruit, amount: Int) throws {
+     func reduceStock(fruit: Fruit, amount: Int) throws {
         guard let fruitStock = fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
@@ -99,7 +99,7 @@ class FruitStore {
         }
     }
     
-    func handle(_ error: Error) -> String {
+    private func handle(_ error: Error) -> String {
         switch error {
         case FruitStoreError.outOfStock:
             return FruitStoreError.outOfStock.localizedDescription

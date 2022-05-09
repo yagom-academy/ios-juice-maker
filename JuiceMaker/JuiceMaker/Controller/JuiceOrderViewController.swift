@@ -16,14 +16,12 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var mangoLabel: UILabel!
     
     @IBOutlet weak var orderButtonOfStrawberryBananaJuice: UIButton!
-    
     @IBOutlet weak var orderButtonOfStrawberryJuice: UIButton!
     @IBOutlet weak var orderButtonOfBananaJuice: UIButton!
     @IBOutlet weak var orderButtonOfStrawberryPineappleJuice: UIButton!
     @IBOutlet weak var orderButtonOfStrawberryKiwiJuice: UIButton!
     @IBOutlet weak var orderButtonOfStrawberryMangoJuice: UIButton!
     @IBOutlet weak var orderButtonOfStrawberryMangoKiwiJuice: UIButton!
-    
     
     let juiceMaker = JuiceMaker()
     
@@ -135,7 +133,7 @@ class JuiceOrderViewController: UIViewController {
         try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.numberOfMango) ?? 0)
     }
     
-    func breakLineOfButton() {
+    private func breakLineOfButton() {
         orderButtonOfStrawberryBananaJuice.titleLabel?.lineBreakMode = .byWordWrapping
         orderButtonOfStrawberryBananaJuice.titleLabel?.textAlignment = .center
         orderButtonOfStrawberryBananaJuice.titleLabel?.font = .systemFont(ofSize: 20)
