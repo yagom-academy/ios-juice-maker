@@ -8,46 +8,59 @@
 import UIKit
 
 class BViewController: UIViewController {
-    // var juiceMaker = JuiceMaker()
     var fruitStore = FruitStore.shared
-
-    @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet weak var stepper: UIStepper!
-    @IBOutlet weak var stockBanana: UILabel!
+    
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
+    @IBOutlet weak var strawberryStock: UILabel!
+    @IBOutlet weak var bananaStock: UILabel!
+    @IBOutlet weak var pineappleStock: UILabel!
+    @IBOutlet weak var kiwiStock: UILabel!
+    @IBOutlet weak var mangoStock: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStock()
-        stepper.value = Double(fruitStore.stocks[.strawberry]!)
+        strawberryStepper.value = Double(fruitStore.stocks[.strawberry]!)
+        bananaStepper.value = Double(fruitStore.stocks[.banana]!)
+        pineappleStepper.value = Double(fruitStore.stocks[.pineapple]!)
+        kiwiStepper.value = Double(fruitStore.stocks[.kiwi]!)
+        mangoStepper.value = Double(fruitStore.stocks[.mango]!)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        
-        print("stocks: \(fruitStore.stocks[.strawberry]!)")
-        print(type(of: fruitStore.stocks[.strawberry]!))
-        print("stepper: \(stepper.value)")
-        print(type(of: stepper.value))
-        
-        sender.value = stepper.value
-        valueLabel.text = Int(sender.value).description
-        fruitStore.stocks[.strawberry]! = Int(stepper.value)
 
-        print("stocksAfter: \(fruitStore.stocks[.strawberry]!)")
-        print(type(of: fruitStore.stocks[.strawberry]!))
-        print("stepperAfter: \(stepper.value)")
-        print(type(of: stepper.value))
+        strawberryStock.text = Int(strawberryStepper.value).description
+        bananaStock.text = Int(bananaStepper.value).description
+        pineappleStock.text = Int(pineappleStepper.value).description
+        kiwiStock.text = Int(kiwiStepper.value).description
+        mangoStock.text = Int(mangoStepper.value).description
+
+        fruitStore.stocks[.strawberry]! = Int(strawberryStepper.value)
+        fruitStore.stocks[.banana]! = Int(bananaStepper.value)
+        fruitStore.stocks[.pineapple]! = Int(pineappleStepper.value)
+        fruitStore.stocks[.kiwi]! = Int(kiwiStepper.value)
+        fruitStore.stocks[.mango]! = Int(mangoStepper.value)
+
     }
 
     func updateStock() {
-        guard let strawberry = fruitStore.stocks[.strawberry]
+        guard let strawberry = fruitStore.stocks[.strawberry],
+              let banana = fruitStore.stocks[.banana],
+              let pineapple = fruitStore.stocks[.pineapple],
+              let kiwi = fruitStore.stocks[.kiwi],
+              let mango = fruitStore.stocks[.mango]
         else {
             return
         }
-        guard let banana = fruitStore.stocks[.banana]
-        else {
-            return
-        }
-        valueLabel.text = "\(strawberry)"
-        stockBanana.text = "\(banana)"
+        strawberryStock.text = "\(strawberry)"
+        bananaStock.text = "\(banana)"
+        pineappleStock.text = "\(pineapple)"
+        kiwiStock.text = "\(kiwi)"
+        mangoStock.text = "\(mango)"
     }
 }
