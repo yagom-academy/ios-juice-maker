@@ -66,18 +66,6 @@ class ViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func touchUpCompleteButton(_ sender: UIButton) {
-        showAlert(message: "Coming soon!")
-    }
-    
-    func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
     @IBAction func stepperStrawberryValueChanged(_ sender: UIStepper) {
         self.stockStrawberryCount.text = Int(sender.value).description
     }
