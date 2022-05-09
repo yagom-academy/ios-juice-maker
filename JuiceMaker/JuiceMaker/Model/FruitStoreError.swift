@@ -10,4 +10,5 @@ import Foundation
 enum FruitStoreError: Error {
     case outOfStock
     case wrongMenu
+    case wrongFruit
 }

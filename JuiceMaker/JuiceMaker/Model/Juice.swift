@@ -35,7 +35,7 @@ enum Juice {
         }
     }
     
-    var recipe: [Fruits : Int] {
+    var recipe: [Fruit : Int] {
         switch self {
         case .strawberry:
             return [.strawberry: 16]

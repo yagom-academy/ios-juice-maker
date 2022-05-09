@@ -10,28 +10,28 @@ import Foundation
 final class FruitStore {
     
     static let shared = FruitStore()
-    var fruits = [Fruits:Int]()
+    var fruits = [Fruit:Int]()
     
     private init(){
-        for fruitStock in Fruits.allCases {
+        for fruitStock in Fruit.allCases {
             fruits[fruitStock] = 10
         }
     }
     
-    func consumeFruitsStock(by fruit: [Fruits: Int]) {
+    func consumeFruitsStock(by fruit: [Fruit: Int]) {
         for (name, quantity) in fruit{
             guard let fruitsStock = fruits[name],fruitsStock >= quantity else { return }
             fruits[name] = fruitsStock - quantity
         }
     }
     
-    func checkInventory(about fruit: [Fruits: Int]) throws {
+    func checkInventory(about fruit: [Fruit: Int]) throws {
         for (name, quantity) in fruit{
             guard let fruitsStock = fruits[name], fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
         }
     }
 
-    func showFruitsStock(name: Fruits) -> String {
+    func showFruitsStock(name: Fruit) -> String {
         guard let fruitsStock = fruits[name] else { return " " }
         return String(fruitsStock)
     }

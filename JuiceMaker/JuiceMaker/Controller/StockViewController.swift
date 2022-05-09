@@ -35,8 +35,8 @@ class StockViewController: UIViewController {
            do {
            let fruit = try findFruit(stepper: sender)
            changeStock(fruit: fruit)
-           } catch FruitStoreError.wrongMenu {
-               print("없는 메뉴입니다")
+           } catch FruitStoreError.wrongFruit {
+               print("없는 과일입니다")
            } catch {
                print("")
            }
@@ -50,7 +50,7 @@ class StockViewController: UIViewController {
         mangoStock.text = FruitStore.shared.showFruitsStock(name: .mango)
     }
     
-    func findFruit(stepper: UIStepper) throws -> Fruits {
+    func findFruit(stepper: UIStepper) throws -> Fruit {
         switch stepper {
         case strawberryStepper:
             return .strawberry
@@ -67,7 +67,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    func findFruitStepper(fruit: Fruits) -> UIStepper {
+    func findFruitStepper(fruit: Fruit) -> UIStepper {
         switch fruit {
         case .strawberry:
             return strawberryStepper
@@ -90,12 +90,12 @@ class StockViewController: UIViewController {
         mangoStepper.value = Double(makeVaildStepperValue(fruit: .mango))
     }
     
-    func makeVaildStepperValue(fruit: Fruits) -> Int {
+    func makeVaildStepperValue(fruit: Fruit) -> Int {
         guard let stepperValue = FruitStore.shared.fruits[fruit] else { return -1 }
         return stepperValue
     }
     
-    private func selectFruitLable(fruit: Fruits) -> UILabel {
+    private func selectFruitLable(fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
             return strawberryStock
@@ -110,7 +110,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    func changeStock(fruit: Fruits) {
+    func changeStock(fruit: Fruit) {
         FruitStore.shared.fruits[fruit] = Int(findFruitStepper(fruit: fruit).value)
         selectFruitLable(fruit: fruit).text = FruitStore.shared.showFruitsStock(name: fruit)
     }
