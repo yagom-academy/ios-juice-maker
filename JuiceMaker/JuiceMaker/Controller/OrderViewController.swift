@@ -6,7 +6,7 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
+final class OrderViewController: UIViewController {
     @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
     @IBOutlet private weak var pineappleLabel: UILabel!

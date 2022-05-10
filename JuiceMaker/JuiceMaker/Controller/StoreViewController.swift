@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StoreViewController: UIViewController {
+final class StoreViewController: UIViewController {
     @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
     @IBOutlet private weak var pineappleLabel: UILabel!
@@ -36,13 +36,13 @@ class StoreViewController: UIViewController {
     }
 }
 
-extension StoreViewController {
-    @IBAction private func cancelButton(_ sender: UIBarButtonItem) {
+private extension StoreViewController {
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         self.delegate?.updateUI()
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction private func stepperButtonDidTapped(_ sender: UIStepper) {
+    @IBAction func stepperButtonDidTapped(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
             strawberryLabel.text = strawberryStepper.descriptionValue()
@@ -65,7 +65,7 @@ extension StoreViewController {
     }
 }
 
-extension StoreViewController {
+private extension StoreViewController {
     func updateStepperDefaultValue() {
         self.strawberryStepper.value = Double(fruits?[.strawberry] ?? 0)
         self.bananaStepper.value = Double(fruits?[.banana] ?? 0)
