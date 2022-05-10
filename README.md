@@ -37,9 +37,11 @@
 ---
 # UML  
 [ClassDiagram]
-![](https://i.imgur.com/6SLfIZP.png)
+![](https://i.imgur.com/iHjYEPq.png)
+
 [Flowchart]
-![](https://i.imgur.com/cJtopsy.jpg)
+![](https://i.imgur.com/YggRejI.jpg)
+
 ---
 
 # 키워드
