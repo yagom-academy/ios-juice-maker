@@ -8,6 +8,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
+    var transferStock = [Fruit: Int]()
     
     @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
     
@@ -46,7 +47,6 @@ class HomeViewController: UIViewController {
         else {
             return
         }
-        
         updateFruitStockLabel(stock: fruitsStock)
     }
     
@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
             
             label.text = "\(fruitLabel)"
         }
+        transferStock = stock
     }
     
     @objc private func order(_ sender: UIButton) {
@@ -69,7 +70,6 @@ class HomeViewController: UIViewController {
         } catch {
             print(error)
         }
-        //juiceMaker.transferFruitStock()
     }
     
     private func convertToJuice(from button: UIButton) throws -> Menu {
@@ -116,10 +116,11 @@ class HomeViewController: UIViewController {
     }
     
     private func presentEditStockViewController() {
-        guard let editStockVC = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController")
+        guard let editStockVC = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") as? EditStockViewController
         else {
             return
         }
+        editStockVC.fruitStock = transferStock
         self.present(editStockVC, animated: true)
     }
     

@@ -8,9 +8,14 @@
 import UIKit
 
 class EditStockViewController: UIViewController {
-
+    var fruitStock = [Fruit: Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(fruitStock)
+    }
+    
+    @IBAction func tapCloseButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
