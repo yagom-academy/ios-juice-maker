@@ -199,9 +199,12 @@ func showWarningAlert(message: String)
 ### Stepper
 - 현재 과일 재고량을 IBOutletStepper.value 에 넣어주고, minimunValue 를 0 으로 지정해주고, stepValue 는 1 로 설정 해주었다. 
 ### Unit Test
+- "juiceMaker" 안의 기능 테스트를 했다. 각 기능별 테스트 케이스에 대해 동작이 잘 이뤄지는지 검증 하였다.
+
 
 # 기능구현 
 > Step03에 필요한 기능구현에 대한 부연설명 
+
 
 --- 
 ### OrderViewController 
@@ -270,4 +273,3 @@ func updateStock(of fruit: Fruit, with amount: Int) {
 
 ```
 - 과일의 수량 변경을 위한 함수
-
