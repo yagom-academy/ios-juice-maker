@@ -30,13 +30,10 @@ class FruitStore {
         }
     }
     
-    func supplyInventory(of ingredient: FruitsInventory) throws {
-        for fruit in ingredient.keys {
-            let amountOfSupply = ingredient[fruit] ?? 0
-            guard var inventory = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
-            
-            inventory += amountOfSupply
-            fruitsInventory[fruit] = inventory
+    func applyChangesToFruitsInventory(from changedInventory: FruitsInventory) {
+        for fruitName in changedInventory.keys {
+            let newQuantity = changedInventory[fruitName] ?? 0
+            fruitsInventory[fruitName] = newQuantity
         }
     }
     

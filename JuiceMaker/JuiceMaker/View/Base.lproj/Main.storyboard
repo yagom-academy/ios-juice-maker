@@ -321,7 +321,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="129" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="fruitsInventoryStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="H0l-kT-3Y4"/>
+                                                    <action selector="updateInventoryLabels:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="gRD-bt-hQ0"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -345,7 +345,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="129" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="fruitsInventoryStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="B7u-BO-GmR"/>
+                                                    <action selector="updateInventoryLabels:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="uZU-ho-BJy"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -369,7 +369,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="129" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="fruitsInventoryStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="nUj-0i-0KD"/>
+                                                    <action selector="updateInventoryLabels:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="3z6-w7-odh"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -393,7 +393,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="129" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="fruitsInventoryStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="Sy2-AS-nfM"/>
+                                                    <action selector="updateInventoryLabels:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="CSo-hE-zyc"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -417,7 +417,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="129" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="fruitsInventoryStepper:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="4tU-5Q-DpJ"/>
+                                                    <action selector="updateInventoryLabels:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="X7H-cl-gyZ"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
