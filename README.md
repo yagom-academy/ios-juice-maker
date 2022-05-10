@@ -178,3 +178,96 @@ func showWarningAlert(message: String)
         }
     }
 ```
+
+# [Step 3]
+---
+# 공부한 내용
+> Collection Types, Error Handling, AutoLayout, Delegate, Stepper, Unit Test, iphone 4s
+
+### Collection Types
+- 과일저장소의 타입을 Dictionary로 이용하여 해당과일(Key값) 에 대한 요구되는 과일갯수(Value값) 를 작성 해주었다. 
+- 버튼의 sender.currentTitle 에서 문자열을 받아와 components(separatedBy:)를 이용해 필요한 String 값을 얻기 위해 Array Subscript syntax 를 이용했다
+- FruitStore에 listUp()메서드를 통해 [Fruit: Int] 딕셔너리를 생성 해주었다.
+
+### Error Handling
+- "FruitStore" 에 consume() 이란 함수에서 재고가 부족할 시에 오류를 던져주도록 구현했다. 이 오류를 받은 "JuiceMaker" 안에 상위함수 make() 에서는 Result<JuiceType, StockError> 값을 반환 해주고, 이 반환값을 처리하는 Result타입의 extension을 만들어 핸들링 하도록 구현했다. 
+### AutoLayout
+- iPhone SE1 ~ 13proMax 까지 기기에서의 호환성을 위해 AutoLayout 으로 UI 를 정렬해주었다. 
+
+### Delegate
+- `ManagingOrderDelegate` 프로토콜을 만들어서 "OrderViewController" 에서 채택하고, "StoreViewController"의 delegate 를 위임받아 "OrderViewController"에서 updateUI() 를 실행하게 하여 뷰 간의 sync를 맞춰주었다.  
+### Stepper
+- 현재 과일 재고량을 IBOutletStepper.value 에 넣어주고, minimunValue 를 0 으로 지정해주고, stepValue 는 1 로 설정 해주었다. 
+### Unit Test
+
+# 기능구현 
+> Step03에 필요한 기능구현에 대한 부연설명 
+
+--- 
+### OrderViewController 
+- ManagingOrderDelegate
+```swift
+protocol ManangingOrderDelegate {
+    func setUpStock() -> FruitStock
+    func edit(fruit: Fruit, with amount: Int)
+    func updateUI()
+}
+```
+> OrderViewController에서 StoreViewController로 data를 연동하기 위해 Delegate 패턴을 활용하였습니다.
+
+```swift
+func setUpStock() -> FruitStock
+```
+- 과일의 현재 수량을 넘기기 위한 함수
+```swift
+func edit(fruit: Fruit, with amount: Int)
+```
+- 과일의 수량을 수정하기 위한 함수
+```swift
+func updateUI()
+```
+- 변경된 사항들의 UI update를 위한 함수
+
+### StoreViewController 
+```swift 
+func updateStepperDefaultValue()
+```
+- Stepper의 default value 설정
+
+
+```swift 
+func updateUI()
+```
+- Stepper Action Event 호출 시 각 Label 변경 함수
+
+---
+### JuiceMaker
+- OrderViewController에서 사용할 과일 수량변경 함수
+```swift 
+func editStock(of fruit: Fruit, with amount: Int) {
+    fruitStore.updateStock(of: fruit, with: amount)
+}
+```
+
+- OrderViewController에서 사용할 총 과일 리스트
+```swift 
+func stockUp() -> FruitStock {
+    return fruitStore.listUp()
+}
+```
+
+### FruitStore
+```swift
+func listUp() -> FruitStock
+```
+- 해당 과일별 현재 수량을 Dictionary 타입으로 반환하는 함수
+
+```swift
+    
+func updateStock(of fruit: Fruit, with amount: Int) {
+    self.fruits.updateValue(amount, forKey: fruit)
+}
+
+```
+- 과일의 수량 변경을 위한 함수
+
