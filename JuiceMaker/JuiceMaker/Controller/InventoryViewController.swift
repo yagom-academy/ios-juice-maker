@@ -26,7 +26,7 @@ class InventoryViewController: UIViewController {
         giveStepperFruitsInventory()
     }
     
-    @IBAction func updateInventoryLabels(_ sender: UIStepper) {
+    @IBAction private func updateInventoryLabels(_ sender: UIStepper) {
         switch sender {
         case strawberryInventoryStepper:
             strawberryInventoryLabel.text = Int(sender.value).description
@@ -42,11 +42,26 @@ class InventoryViewController: UIViewController {
         }
     }
     
-    @IBAction func touchUpDismissButton(_ sender: UIButton) {
+    @IBAction private func touchUpDismissButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        JuiceMaker.shared.store.applyChangesToFruitsInventory(from: saveInventoryModifiedByStepper())
     }
     
-    func giveStepperFruitsInventory() {
+    private func saveInventoryModifiedByStepper() -> [FruitStore.Fruit: Int] {
+        var modifiedInventory: [FruitStore.Fruit: Int] = [:]
+    
+        FruitStore.Fruit.allCases.forEach { modifiedInventory[$0] = 0 }
+        
+        modifiedInventory[.strawberry] = Int(strawberryInventoryStepper.value)
+        modifiedInventory[.banana] = Int(bananaInventoryStepper.value)
+        modifiedInventory[.pineapple] = Int(pineappleInventoryStepper.value)
+        modifiedInventory[.kiwi] = Int(kiwiInventoryStepper.value)
+        modifiedInventory[.mango] = Int(mangoInventoryStepper.value)
+        
+        return modifiedInventory
+    }
+    
+    private func giveStepperFruitsInventory() {
         strawberryInventoryStepper.value = Double(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? 0)
         bananaInventoryStepper.value = Double(JuiceMaker.shared.store.fruitsInventory[.banana] ?? 0)
         pineappleInventoryStepper.value = Double(JuiceMaker.shared.store.fruitsInventory[.pineapple] ?? 0)

@@ -26,17 +26,20 @@ class JuiceOrderViewController: UIViewController {
         updateFruitsInventoryLabels()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateFruitsInventoryLabels()
+    }
+    
     @IBAction private func tapJuiceOrderButton(_ sender: UIButton) {
-        // 딕셔너리만 사용
         let juiceMenuForEachButton = [strawberryBananaJuiceOrderButton: JuiceMaker.Menu.strawberryBananaJuice,
-                         mangoKiwiJuiceOrderButton: JuiceMaker.Menu.mangoKiwiJuice,
-                         strawberryJuiceOrderButton: JuiceMaker.Menu.strawberryJuice,
-                         bananaJuiceOrderButton: JuiceMaker.Menu.bananaJuice,
-                         pineappleJuiceOrderButton: JuiceMaker.Menu.pineappleJuice,
-                         kiwiJuiceOrderButton: JuiceMaker.Menu.kiwiJuice,
-                         mangoJuiceOrderButton: JuiceMaker.Menu.mangoJuice]
+                                             mangoKiwiJuiceOrderButton: JuiceMaker.Menu.mangoKiwiJuice,
+                                            strawberryJuiceOrderButton: JuiceMaker.Menu.strawberryJuice,
+                                                bananaJuiceOrderButton: JuiceMaker.Menu.bananaJuice,
+                                             pineappleJuiceOrderButton: JuiceMaker.Menu.pineappleJuice,
+                                                  kiwiJuiceOrderButton: JuiceMaker.Menu.kiwiJuice,
+                                                 mangoJuiceOrderButton: JuiceMaker.Menu.mangoJuice]
         guard let juice = juiceMenuForEachButton[sender] else { return }
-        order(juice: juice)
+        order(juice)
     }
     
     private func updateFruitsInventoryLabels() {
@@ -48,7 +51,7 @@ class JuiceOrderViewController: UIViewController {
         mangoInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.mango] ?? errorValue)
     }
     
-    private func order(juice: JuiceMaker.Menu) {
+    private func order(_ juice: JuiceMaker.Menu) {
         do {
             try JuiceMaker.shared.make(juice: juice)
             showSuccessAlert(message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!")
@@ -72,6 +75,7 @@ class JuiceOrderViewController: UIViewController {
             guard let storyboard = self?.storyboard?.instantiateViewController(identifier: "InventoryViewController") else {
                 return
             }
+            storyboard.modalPresentationStyle = .fullScreen
             self?.present(storyboard, animated: true, completion: nil)
         }
         
