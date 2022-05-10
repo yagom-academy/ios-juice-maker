@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -287,10 +286,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWA-Iz-51I">
-                                <rect key="frame" x="44" y="20" width="36" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="xmark.circle" catalog="system">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWA-Iz-51I">
+                                <rect key="frame" x="805" y="20" width="32" height="34"/>
+                                <state key="normal" title="닫기">
+                                    <color key="titleColor" systemColor="linkColor"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                     </preferredSymbolConfiguration>
@@ -424,12 +423,22 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sd-xI-hif">
+                                <rect key="frame" x="402" y="20" width="92.5" height="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2Sd-xI-hif" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="0aE-42-toe"/>
+                            <constraint firstItem="2Sd-xI-hif" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" constant="20" id="OxJ-qR-wJa"/>
+                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="KWA-Iz-51I" secondAttribute="trailing" constant="15" id="RIz-Cj-dow"/>
                             <constraint firstItem="F9w-AN-IyQ" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="Y0L-f9-Ci6"/>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="F9w-AN-IyQ" secondAttribute="trailing" constant="26" id="h1L-4Y-7Hx"/>
+                            <constraint firstItem="KWA-Iz-51I" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" constant="20" id="phh-fa-O8W"/>
                             <constraint firstItem="F9w-AN-IyQ" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="26" id="ysI-Jd-78Q"/>
                         </constraints>
                     </view>
@@ -474,10 +483,12 @@
         <segue reference="WQU-OQ-nY0"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
