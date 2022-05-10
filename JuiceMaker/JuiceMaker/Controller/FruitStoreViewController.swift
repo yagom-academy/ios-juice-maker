@@ -24,17 +24,8 @@ class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryLabel.text = "\(fruitStore.stocks[.strawberry]!)"
-        bananaLabel.text = "\(fruitStore.stocks[.banana]!)"
-        pineappleLabel.text = "\(fruitStore.stocks[.pineapple]!)"
-        kiwiLabel.text = "\(fruitStore.stocks[.kiwi]!)"
-        mangoLabel.text = "\(fruitStore.stocks[.mango]!)"
-        
-        strawberryStepper.value = Double(fruitStore.stocks[.strawberry]!)
-        bananaStepper.value = Double(fruitStore.stocks[.banana]!)
-        pineappleStepper.value = Double(fruitStore.stocks[.pineapple]!)
-        kiwiStepper.value = Double(fruitStore.stocks[.kiwi]!)
-        mangoStepper.value = Double(fruitStore.stocks[.mango]!)
+        updateStock()
+        updateStepperValue()
     }
     
     @IBAction func changeStepperValue(_ sender: UIStepper) {
@@ -56,6 +47,22 @@ class FruitStoreViewController: UIViewController {
     
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
+    }
+    
+    func updateStock() {
+        strawberryLabel.text = "\(fruitStore.stocks[.strawberry]!)"
+        bananaLabel.text = "\(fruitStore.stocks[.banana]!)"
+        pineappleLabel.text = "\(fruitStore.stocks[.pineapple]!)"
+        kiwiLabel.text = "\(fruitStore.stocks[.kiwi]!)"
+        mangoLabel.text = "\(fruitStore.stocks[.mango]!)"
+    }
+
+    func updateStepperValue() {
+        strawberryStepper.value = Double(fruitStore.stocks[.strawberry]!)
+        bananaStepper.value = Double(fruitStore.stocks[.banana]!)
+        pineappleStepper.value = Double(fruitStore.stocks[.pineapple]!)
+        kiwiStepper.value = Double(fruitStore.stocks[.kiwi]!)
+        mangoStepper.value = Double(fruitStore.stocks[.mango]!)
     }
     
 }
