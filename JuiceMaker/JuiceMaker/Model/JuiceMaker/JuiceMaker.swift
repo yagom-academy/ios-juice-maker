@@ -27,7 +27,7 @@ extension JuiceMaker {
     }
     
     func editStock(of fruit: Fruit, with amount: Int) {
-        fruitStore.add(fruit: fruit, as: amount)
+        fruitStore.updateStock(of: fruit, with: amount)
     }
     
     func stockUp() -> FruitStock {

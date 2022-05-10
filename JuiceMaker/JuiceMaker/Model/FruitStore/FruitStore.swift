@@ -10,7 +10,7 @@ typealias FruitStock = [Fruit: Int]
 
 protocol StorageManaging {
     func count(_ fruit: Fruit) -> Int
-    func add(fruit: Fruit, as amount: Int)
+    func updateStock(of fruit: Fruit, with amount: Int)
     func consume(_ stock: FruitStock) throws
     func listUp() -> FruitStock
 }
@@ -34,7 +34,7 @@ extension FruitStore {
         return currentQuantity
     }
     
-    func add(fruit: Fruit, as amount: Int) {
+    func updateStock(of fruit: Fruit, with amount: Int) {
         self.fruits.updateValue(amount, forKey: fruit)
     }
     
