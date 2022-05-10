@@ -8,14 +8,13 @@
 import UIKit
 
 class FruitStoreViewController: UIViewController {
+    let fruitStore = FruitStore.shared
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
-    
-    let fruitStore = FruitStore.shared
     
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
@@ -54,4 +53,9 @@ class FruitStoreViewController: UIViewController {
         fruitStore.stocks[.mango]! = Int(mangoStepper.value)
         mangoLabel.text = "\(fruitStore.stocks[.mango]!)"
     }
+    
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
 }
