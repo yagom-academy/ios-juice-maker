@@ -7,43 +7,53 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var juiceMaker = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
     
-    @IBOutlet var fruitStockLabel: [FruitStockLabel]!
+    @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
     
-    @IBOutlet weak var strawberryAndBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoAndKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryAndBananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoAndKiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet private weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    var orderButton: [UIButton] {
-        return [strawberryJuiceOrderButton, mangoAndKiwiJuiceOrderButton, strawberryAndBananaJuiceOrderButton, bananaJuiceOrderButton, pineappleJuiceOrderButton, kiwiJuiceOrderButton, mangoJuiceOrderButton]
+    private var orderButton: [UIButton] {
+        return [strawberryJuiceOrderButton,
+                mangoAndKiwiJuiceOrderButton,
+                strawberryAndBananaJuiceOrderButton,
+                bananaJuiceOrderButton,
+                pineappleJuiceOrderButton,
+                kiwiJuiceOrderButton,
+                mangoJuiceOrderButton]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStockLabel), name: .notifyStock, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getFruitStock), name: .notifyStock, object: nil)
         
-        juiceMaker.transferFruitStock()
+        updateFruitStockLabel(stock: juiceMaker.notifyFruitStock())
         
         orderButton.forEach { orderButton in
             orderButton.addTarget(self, action: #selector(order), for: .touchUpInside)
         }
     }
     
-    @objc dynamic private func updateFruitStockLabel(notification: Notification) {
+    @objc dynamic private func getFruitStock(notification: Notification) {
         guard let fruitsStock = notification.userInfo?["stock"] as? [Fruit: Int]
         else {
             return
         }
         
+        updateFruitStockLabel(stock: fruitsStock)
+    }
+    
+    private func updateFruitStockLabel(stock: [Fruit: Int]) {
         fruitStockLabel.forEach { label in
             guard let fruit = label.convertToFruit() else { return }
-            guard let fruitLabel = fruitsStock[fruit] else { return }
+            guard let fruitLabel = stock[fruit] else { return }
             
             label.text = "\(fruitLabel)"
         }
@@ -59,7 +69,7 @@ class HomeViewController: UIViewController {
         } catch {
             print(error)
         }
-        juiceMaker.transferFruitStock()
+        //juiceMaker.transferFruitStock()
     }
     
     private func convertToJuice(from button: UIButton) throws -> Menu {

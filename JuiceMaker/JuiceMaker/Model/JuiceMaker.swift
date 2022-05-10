@@ -14,7 +14,7 @@ struct JuiceMaker {
         store.decreaseStock(menu: menu)
     }
     
-    func transferFruitStock() {
-        return store.transferFruitStockToJuiceMaker()
+    func notifyFruitStock() -> [Fruit: Int] {
+        return store.stock
     }
 }
