@@ -33,7 +33,7 @@ final class FruitStoreViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func pressStepper(_ sender: UIStepper) {
+    @IBAction private func pressStepper(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
             fruitsStock[.strawberry] = Int(sender.value)

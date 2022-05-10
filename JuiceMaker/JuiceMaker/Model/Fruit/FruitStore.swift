@@ -69,11 +69,11 @@ extension FruitStore {
     
     private func addObserverFruitsStockDidModified() {
         NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidModified, object: nil, queue: nil) { Notification in
-            guard let updatedFruitsStock = Notification.userInfo as? [Fruit: Int] else { return }
-            updatedFruitsStock.filter{ (fruit: Fruit, stock: Int) in
-                self.fruitsStock[fruit] != updatedFruitsStock[fruit]
+            guard let modifiedFruitsStock = Notification.userInfo as? [Fruit: Int] else { return }
+            modifiedFruitsStock.filter{ (fruit: Fruit, stock: Int) in
+                self.fruitsStock[fruit] != modifiedFruitsStock[fruit]
             }.forEach { (fruit: Fruit, stock: Int) in
-                self.fruitsStock[fruit] = updatedFruitsStock[fruit]
+                self.fruitsStock[fruit] = modifiedFruitsStock[fruit]
             }
         }
     }
