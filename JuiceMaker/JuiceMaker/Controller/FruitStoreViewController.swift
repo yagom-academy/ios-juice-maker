@@ -9,7 +9,7 @@ import UIKit
 
 class FruitStoreViewController: UIViewController {
     let fruitStore = FruitStore.shared
-
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -29,21 +29,27 @@ class FruitStoreViewController: UIViewController {
     }
     
     @IBAction func changeStepperValue(_ sender: UIStepper) {
-        fruitStore.stocks[.strawberry]! = Int(strawberryStepper.value)
-        strawberryLabel.text = "\(fruitStore.stocks[.strawberry]!)"
-        
-        fruitStore.stocks[.banana]! = Int(bananaStepper.value)
-        bananaLabel.text = "\(fruitStore.stocks[.banana]!)"
-        
-        fruitStore.stocks[.pineapple]! = Int(pineappleStepper.value)
-        pineappleLabel.text = "\(fruitStore.stocks[.pineapple]!)"
-        
-        fruitStore.stocks[.kiwi]! = Int(kiwiStepper.value)
-        kiwiLabel.text = "\(fruitStore.stocks[.kiwi]!)"
-        
-        fruitStore.stocks[.mango]! = Int(mangoStepper.value)
-        mangoLabel.text = "\(fruitStore.stocks[.mango]!)"
+        guard let fruit = Fruit(rawValue: sender.tag) else { return }
+        switch fruit {
+        case .strawberry:
+            strawberryLabel.text = "\(Int(strawberryStepper.value))"
+            fruitStore.stocks[fruit] = Int(strawberryStepper.value)
+        case .banana:
+            bananaLabel.text = "\(Int(bananaStepper.value))"
+            fruitStore.stocks[fruit] = Int(bananaStepper.value)
+        case .kiwi:
+            kiwiLabel.text = "\(Int(kiwiStepper.value))"
+            fruitStore.stocks[fruit] = Int(kiwiStepper.value)
+        case .mango:
+            mangoLabel.text = "\(Int(mangoStepper.value))"
+            fruitStore.stocks[fruit] = Int(mangoStepper.value)
+        case .pineapple:
+            pineappleLabel.text = "\(Int(pineappleStepper.value))"
+            fruitStore.stocks[fruit] = Int(pineappleStepper.value)
+        }
     }
+    
+    
     
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
@@ -56,7 +62,7 @@ class FruitStoreViewController: UIViewController {
         kiwiLabel.text = "\(fruitStore.stocks[.kiwi]!)"
         mangoLabel.text = "\(fruitStore.stocks[.mango]!)"
     }
-
+    
     func updateStepperValue() {
         strawberryStepper.value = Double(fruitStore.stocks[.strawberry]!)
         bananaStepper.value = Double(fruitStore.stocks[.banana]!)

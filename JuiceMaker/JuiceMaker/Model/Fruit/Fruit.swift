@@ -5,7 +5,7 @@
 //  Created by bradheo65, bonf, ZZBAE on 2022/04/26.
 //
 
-enum Fruit: CaseIterable {
+enum Fruit: Int, CaseIterable {
     case strawberry
     case banana
     case kiwi
