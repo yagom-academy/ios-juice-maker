@@ -4,7 +4,7 @@ enum FruitError: Error {
     var errorDescription: String {
         switch self {
         case .insufficientFruit:
-            return "과일이 부족합니다."
+            return "재료가 모자라요. 재고를 수정할까요?"
         }
     }
 }
