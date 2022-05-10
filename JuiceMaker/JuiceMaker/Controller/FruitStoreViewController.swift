@@ -2,7 +2,7 @@
 //  FruitStoreViewController.swift
 //  JuiceMaker
 //
-//  Created by 변재은 on 2022/05/09.
+//  Created by bradheo65, bonf, ZZBAE
 //
 
 import UIKit
@@ -24,8 +24,7 @@ class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateStock()
-        updateStepperValue()
+        setStockAndStepper()
     }
     
     @IBAction func changeStepperValue(_ sender: UIStepper) {
@@ -60,20 +59,24 @@ class FruitStoreViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    func updateStock() {
-        strawberryLabel.text = "\(fruitStore.stocks[.strawberry]!)"
-        bananaLabel.text = "\(fruitStore.stocks[.banana]!)"
-        pineappleLabel.text = "\(fruitStore.stocks[.pineapple]!)"
-        kiwiLabel.text = "\(fruitStore.stocks[.kiwi]!)"
-        mangoLabel.text = "\(fruitStore.stocks[.mango]!)"
+    func setStockAndStepper() {
+        if let strawberry = fruitStore.stocks[.strawberry],
+           let banana = fruitStore.stocks[.banana],
+           let kiwi = fruitStore.stocks[.kiwi],
+           let mango = fruitStore.stocks[.mango],
+           let pineapple = fruitStore.stocks[.pineapple] {
+            
+            strawberryLabel.text = "\(strawberry)"
+            bananaLabel.text = "\(banana)"
+            pineappleLabel.text = "\(pineapple)"
+            kiwiLabel.text = "\(kiwi)"
+            mangoLabel.text = "\(mango)"
+            
+            strawberryStepper.value = Double(strawberry)
+            bananaStepper.value = Double(banana)
+            pineappleStepper.value = Double(pineapple)
+            kiwiStepper.value = Double(kiwi)
+            mangoStepper.value = Double(mango)
+        }
     }
-    
-    func updateStepperValue() {
-        strawberryStepper.value = Double(fruitStore.stocks[.strawberry]!)
-        bananaStepper.value = Double(fruitStore.stocks[.banana]!)
-        pineappleStepper.value = Double(fruitStore.stocks[.pineapple]!)
-        kiwiStepper.value = Double(fruitStore.stocks[.kiwi]!)
-        mangoStepper.value = Double(fruitStore.stocks[.mango]!)
-    }
-    
 }

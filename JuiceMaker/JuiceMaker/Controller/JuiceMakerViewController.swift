@@ -1,5 +1,5 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - JuiceMakerViewController.swift
 //  Created by bradheo65, bonf, ZZBAE
 //  Copyright © yagom academy. All rights reserved.
 // 
@@ -15,37 +15,30 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var mangoLabel: UILabel!
     @IBOutlet weak private var pineappleLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        updateStock()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateStock()
     }
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
-        guard let juice = Juice(rawValue: sender.tag) else {
-            return
+        if let juice = Juice(rawValue: sender.tag) {
+            make(juice: juice)
         }
-        make(juice: juice)
     }
     
     private func updateStock() {
-        guard let strawberry = juiceMaker.fruitStore.stocks[.strawberry],
-              let banana = juiceMaker.fruitStore.stocks[.banana],
-              let kiwi = juiceMaker.fruitStore.stocks[.kiwi],
-              let mango = juiceMaker.fruitStore.stocks[.mango],
-              let pineapple = juiceMaker.fruitStore.stocks[.pineapple]
-        else {
-            return
+        if let strawberry = juiceMaker.fruitStore.stocks[.strawberry],
+           let banana = juiceMaker.fruitStore.stocks[.banana],
+           let kiwi = juiceMaker.fruitStore.stocks[.kiwi],
+           let mango = juiceMaker.fruitStore.stocks[.mango],
+           let pineapple = juiceMaker.fruitStore.stocks[.pineapple] {
+            
+            strawberryLabel.text = "\(strawberry)"
+            bananaLabel.text = "\(banana)"
+            kiwiLabel.text = "\(kiwi)"
+            mangoLabel.text = "\(mango)"
+            pineappleLabel.text = "\(pineapple)"
         }
-        strawberryLabel.text = "\(strawberry)"
-        bananaLabel.text = "\(banana)"
-        kiwiLabel.text = "\(kiwi)"
-        mangoLabel.text = "\(mango)"
-        pineappleLabel.text = "\(pineapple)"
     }
     
     private func make(juice: Juice) {
@@ -54,18 +47,19 @@ class JuiceMakerViewController: UIViewController {
             alertSuccessMakeJuice(juice: juice)
             updateStock()
         } catch {
-          guard let error = error as? StockError else {
-            return
-          }
-          switch error {
-          case .outOfStock:
-            alertFailMakeJuice()
-            juiceMaker.fruitStore.insufficientStock.removeAll()
-          case .unknown:
-            alertUnknownError()
-          }
+            guard let error = error as? StockError else {
+                return
+            }
+            switch error {
+            case .outOfStock:
+                alertFailMakeJuice()
+                juiceMaker.fruitStore.insufficientStock.removeAll()
+            case .unknown:
+                alertUnknownError()
+            }
         }
     }
+    
     private func alertUnknownError() {
         let unknownErrorAlert = UIAlertController(title: "unknownError",
                                                   message: "알 수 없는 에러가 발생하였습니다.",
@@ -74,17 +68,19 @@ class JuiceMakerViewController: UIViewController {
         unknownErrorAlert.addAction(UIAlertAction(title: "확인",
                                                   style: .default,
                                                   handler: nil))
+        
         self.present(unknownErrorAlert, animated: false)
     }
     
     private func alertSuccessMakeJuice(juice: Juice) {
         let successAlert = UIAlertController(title: "성공!",
-                                                  message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
-                                                  preferredStyle: .alert)
+                                             message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
+                                             preferredStyle: .alert)
         
         successAlert.addAction(UIAlertAction(title: "확인",
-                                                  style: .default,
-                                                  handler: nil))
+                                             style: .default,
+                                             handler: nil))
+        
         self.present(successAlert, animated: false)
     }
     
