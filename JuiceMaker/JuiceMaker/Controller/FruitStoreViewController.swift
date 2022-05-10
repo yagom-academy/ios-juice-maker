@@ -29,23 +29,28 @@ class FruitStoreViewController: UIViewController {
     }
     
     @IBAction func changeStepperValue(_ sender: UIStepper) {
-        guard let fruit = Fruit(rawValue: sender.tag) else { return }
-        switch fruit {
-        case .strawberry:
-            strawberryLabel.text = "\(Int(strawberryStepper.value))"
-            fruitStore.stocks[fruit] = Int(strawberryStepper.value)
-        case .banana:
-            bananaLabel.text = "\(Int(bananaStepper.value))"
-            fruitStore.stocks[fruit] = Int(bananaStepper.value)
-        case .kiwi:
-            kiwiLabel.text = "\(Int(kiwiStepper.value))"
-            fruitStore.stocks[fruit] = Int(kiwiStepper.value)
-        case .mango:
-            mangoLabel.text = "\(Int(mangoStepper.value))"
-            fruitStore.stocks[fruit] = Int(mangoStepper.value)
-        case .pineapple:
-            pineappleLabel.text = "\(Int(pineappleStepper.value))"
-            fruitStore.stocks[fruit] = Int(pineappleStepper.value)
+        if let fruit = Fruit(rawValue: sender.tag) {
+            switch fruit {
+            case .strawberry:
+                strawberryLabel.text = "\(Int(strawberryStepper.value))"
+                fruitStore.stocks[fruit] = Int(strawberryStepper.value)
+                
+            case .banana:
+                bananaLabel.text = "\(Int(bananaStepper.value))"
+                fruitStore.stocks[fruit] = Int(bananaStepper.value)
+                
+            case .pineapple:
+                pineappleLabel.text = "\(Int(pineappleStepper.value))"
+                fruitStore.stocks[fruit] = Int(pineappleStepper.value)
+                
+            case .kiwi:
+                kiwiLabel.text = "\(Int(kiwiStepper.value))"
+                fruitStore.stocks[fruit] = Int(kiwiStepper.value)
+                
+            case .mango:
+                mangoLabel.text = "\(Int(mangoStepper.value))"
+                fruitStore.stocks[fruit] = Int(mangoStepper.value)
+            }
         }
     }
     
