@@ -50,7 +50,9 @@ class JuiceMakerViewController: UIViewController {
             try juiceMaker.make(juiceMenu: juiceMenu)
             showCompleteAlert(juice: juiceMenu)
         } catch {
-            showOutOfStockAlert()
+            if error as? JuiceMakerError == JuiceMakerError.outOfStock {
+                showOutOfStockAlert()
+            }
         }
     
         updateStock()
