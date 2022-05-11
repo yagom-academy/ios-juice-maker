@@ -13,7 +13,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MakeJuiceViewController" customModule="JuiceMaker" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="JuiceMakerViewController" customModule="JuiceMaker" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,7 +455,7 @@
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="6VF-bP-uvh">
                             <connections>
-                                <action selector="didTapClosedStockViewController:" destination="Yu1-lM-nqp" id="Oft-CR-Ad3"/>
+                                <action selector="didTapClosedBarButton:" destination="Yu1-lM-nqp" id="iid-p1-CXV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
