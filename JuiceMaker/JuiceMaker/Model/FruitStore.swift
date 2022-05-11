@@ -3,6 +3,7 @@
 //  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
+import Foundation
 
 final class FruitStore {
     var fruits: Fruits = [:]
@@ -13,12 +14,16 @@ final class FruitStore {
         self.fruits[.kiwi] = kiwi
         self.fruits[.pineapple] = pineapple
         self.fruits[.mango] = mango
+        
+        startObservingStock()
     }
     
     init(stock: Int) {
         for fruit in Fruit.allCases {
             self.fruits[fruit] = stock
         }
+        
+        startObservingStock()
     }
 
     func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
@@ -26,7 +31,7 @@ final class FruitStore {
         guard hasEnoughFruits(for: recipe) else {
             return .failure(.insufficientFruit)
         }
-        useFruits(toMake: recipe)
+        useFruits(for: recipe)
         return .success(menu)
     }
     
@@ -37,9 +42,26 @@ final class FruitStore {
         return true
     }
     
-    private func useFruits(toMake recipe: Fruits) {
+    private func useFruits(for recipe: Fruits) {
         for fruit in fruits.keys {
             fruits[fruit]? -= recipe[fruit] ?? 0
         }
+    }
+    
+    private func startObservingStock() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(changeStock(notification:)),
+            name: Notification.Name.fruitsTag,
+            object: nil
+        )
+    }
+    
+    @objc func changeStock(notification: Notification) {
+        guard let stocks = notification.userInfo?["stocks"] as? Fruits else {
+            return
+        }
+        
+        fruits = stocks
     }
 }

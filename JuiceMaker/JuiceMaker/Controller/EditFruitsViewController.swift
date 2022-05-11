@@ -45,6 +45,11 @@ final class EditFruitsViewController: UIViewController {
     
     @IBAction func pressStepper(_ sender: UIStepper) {
         setNewValue()
+        NotificationCenter.default.post(
+            name: NSNotification.Name.fruitsTag,
+            object: nil,
+            userInfo: ["stocks": fruits ?? [:]]
+        )
     }
     
     @IBAction func dismissViewController(_ sender: Any) {
