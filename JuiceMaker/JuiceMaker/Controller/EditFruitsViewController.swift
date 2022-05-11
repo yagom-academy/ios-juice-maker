@@ -1,19 +1,19 @@
 import UIKit
 
 final class EditFruitsViewController: UIViewController {
-    @IBOutlet weak var dismissButton: UIBarButtonItem!
+    @IBOutlet weak private var dismissButton: UIBarButtonItem!
     
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet weak private var strawberryLabel: UILabel!
+    @IBOutlet weak private var bananaLabel: UILabel!
+    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet weak private var kiwiLabel: UILabel!
+    @IBOutlet weak private var mangoLabel: UILabel!
         
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
     var fruits: Fruits?
     
@@ -43,7 +43,7 @@ final class EditFruitsViewController: UIViewController {
         fruits?[.mango] = Int(mangoStepper.value)
     }
     
-    @IBAction func pressStepper(_ sender: UIStepper) {
+    @IBAction private func pressStepper(_ sender: UIStepper) {
         setNewValue()
         NotificationCenter.default.post(
             name: NSNotification.Name.fruitsTag,
@@ -52,7 +52,7 @@ final class EditFruitsViewController: UIViewController {
         )
     }
     
-    @IBAction func dismissViewController(_ sender: Any) {
+    @IBAction private func dismissViewController(_ sender: Any) {
         self.dismiss(animated: true)
     }
 }
