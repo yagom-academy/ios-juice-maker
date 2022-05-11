@@ -44,11 +44,8 @@ class FruitStore {
         }
     }
     
-    func fillStock(fruit: Fruit, total: Int) {
-        guard let number = stock[fruit] else {
-            return
-        }
-        stock[fruit] = number + total
+    func fillStock(fruit: [Fruit: Int]) {
+        stock = fruit
     }
 }
 
