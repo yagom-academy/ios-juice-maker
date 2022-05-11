@@ -241,11 +241,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outletCollection property="stockLabelList" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="uxp-rb-Xb8"/>
-                        <outletCollection property="stockLabelList" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="Hfq-TH-apa"/>
-                        <outletCollection property="stockLabelList" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="gzW-bB-fXH"/>
-                        <outletCollection property="stockLabelList" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="m7H-tr-sId"/>
-                        <outletCollection property="stockLabelList" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="1yB-It-0XR"/>
+                        <outletCollection property="stockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="uxp-rb-Xb8"/>
+                        <outletCollection property="stockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="Hfq-TH-apa"/>
+                        <outletCollection property="stockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="gzW-bB-fXH"/>
+                        <outletCollection property="stockLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="m7H-tr-sId"/>
+                        <outletCollection property="stockLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="1yB-It-0XR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -440,16 +440,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outletCollection property="stockLabelList" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="4bw-uu-PkY"/>
-                        <outletCollection property="stockLabelList" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="loF-AF-cAH"/>
-                        <outletCollection property="stockLabelList" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="6kV-e2-LWM"/>
-                        <outletCollection property="stockLabelList" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="jMg-IT-SSl"/>
-                        <outletCollection property="stockLabelList" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="w4O-y0-SXK"/>
-                        <outletCollection property="stepperList" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="MeI-tv-oSh"/>
-                        <outletCollection property="stepperList" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="AG0-Ii-gn0"/>
-                        <outletCollection property="stepperList" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="iga-w8-AOQ"/>
-                        <outletCollection property="stepperList" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="SUY-PY-Nls"/>
-                        <outletCollection property="stepperList" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="1v4-VO-3E3"/>
+                        <outletCollection property="stockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="4bw-uu-PkY"/>
+                        <outletCollection property="stockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="loF-AF-cAH"/>
+                        <outletCollection property="stockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="6kV-e2-LWM"/>
+                        <outletCollection property="stockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="jMg-IT-SSl"/>
+                        <outletCollection property="stockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="w4O-y0-SXK"/>
+                        <outletCollection property="stockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="MeI-tv-oSh"/>
+                        <outletCollection property="stockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="AG0-Ii-gn0"/>
+                        <outletCollection property="stockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="iga-w8-AOQ"/>
+                        <outletCollection property="stockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="SUY-PY-Nls"/>
+                        <outletCollection property="stockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="1v4-VO-3E3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
