@@ -9,34 +9,34 @@ import Foundation
 // 과일 저장소 타입
 final class FruitStore {
     
-    private var fruits = [Fruits:Int]()
+    static let shared = FruitStore()
+    var fruits = [Fruit:Int]()
     
-    init(){
-        for fruitStock in Fruits.allCases {
+    private init(){
+        for fruitStock in Fruit.allCases {
             fruits[fruitStock] = 10
         }
     }
     
-    func addFruitsStock(name: Fruits, quantity: Int) {
-        guard let fruitsStock = fruits[name] else { return }
-        fruits[name] = fruitsStock + quantity
-    }
-    
-    func consumeFruitsStock(by fruit: [Fruits: Int]) {
+    func consumeFruitsStock(by fruit: [Fruit: Int]) {
         for (name, quantity) in fruit{
             guard let fruitsStock = fruits[name],fruitsStock >= quantity else { return }
             fruits[name] = fruitsStock - quantity
         }
     }
     
-    func checkInventory(about fruit: [Fruits: Int]) throws {
+    func checkInventory(about fruit: [Fruit: Int]) throws {
         for (name, quantity) in fruit{
             guard let fruitsStock = fruits[name], fruitsStock >= quantity else { throw FruitStoreError.outOfStock }
         }
     }
 
-    func showFruitsStock(name: Fruits) -> String {
-        guard let fruitsStock = fruits[name] else { return " " }
-        return String(fruitsStock)
+    func showFruitsStock(name: Fruit) -> Int {
+        guard let fruitsStock = fruits[name] else { return -1 }
+        return fruitsStock
+    }
+    
+    func changeStock(fruit: Fruit, newValue: Int) {
+        fruits[fruit] = newValue
     }
 }

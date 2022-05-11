@@ -6,13 +6,13 @@
 
 import UIKit
 
-final class MakeJuiceViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawberryStockLable: UILabel!
+    @IBOutlet weak var bananaStockLable: UILabel!
+    @IBOutlet weak var pineappleStockLable: UILabel!
+    @IBOutlet weak var kiwiStockLable: UILabel!
+    @IBOutlet weak var mangoStockLable: UILabel!
     
     @IBOutlet weak var strawBerryBananJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
@@ -24,9 +24,9 @@ final class MakeJuiceViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViews()
     }
     
     @IBAction private func didTapOrderJuice(_ sender: UIButton) {
@@ -44,30 +44,30 @@ final class MakeJuiceViewController: UIViewController {
         }
     }
     
-    private func setupViews() {
-        strawberryStock.text = showFruitsStock(name: .strawberry)
-        bananaStock.text = showFruitsStock(name: .banana)
-        pineappleStock.text = showFruitsStock(name: .pineapple)
-        kiwiStock.text = showFruitsStock(name: .kiwi)
-        mangoStock.text = showFruitsStock(name: .mango)
+    private func updateViews() {
+        strawberryStockLable.text = showFruitsStock(name: .strawberry)
+        bananaStockLable.text = showFruitsStock(name: .banana)
+        pineappleStockLable.text = showFruitsStock(name: .pineapple)
+        kiwiStockLable.text = showFruitsStock(name: .kiwi)
+        mangoStockLable.text = showFruitsStock(name: .mango)
     }
     
-    private func showFruitsStock(name: Fruits) -> String {
-        return juiceMaker.fruitStore.showFruitsStock(name: name)
+    private func showFruitsStock(name: Fruit) -> String {
+        return String(FruitStore.shared.showFruitsStock(name: name))
     }
     
-    private func selectFruitLable(fruit: Fruits) -> UILabel {
+    private func selectFruitLable(fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
-            return strawberryStock
+            return strawberryStockLable
         case .mango:
-            return mangoStock
+            return mangoStockLable
         case .kiwi:
-            return kiwiStock
+            return kiwiStockLable
         case .pineapple:
-            return pineappleStock
+            return pineappleStockLable
         case .banana:
-            return bananaStock
+            return bananaStockLable
         }
     }
     
@@ -101,9 +101,8 @@ final class MakeJuiceViewController: UIViewController {
     
     private func showCheckStockMessage() {
         let checkStockMessage = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
-        let yesButton = UIAlertAction(title: "예", style: .default) { action -> Void in
-            let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockViewController")
-            self.present(stockViewController!, animated: true, completion: nil)
+        let yesButton = UIAlertAction(title: "예", style: .default) { _ in
+            self.performSegue(withIdentifier: "showFruitStockSegue", sender: nil)
         }
         let noButton = UIAlertAction(title: "아니오", style: .default, handler: nil)
         
