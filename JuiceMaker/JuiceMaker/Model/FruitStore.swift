@@ -22,7 +22,6 @@ final class FruitStore {
         for fruit in Fruit.allCases {
             self.fruits[fruit] = stock
         }
-        
         startObservingStock()
     }
 
@@ -61,7 +60,6 @@ final class FruitStore {
         guard let stocks = notification.userInfo?["stocks"] as? Fruits else {
             return
         }
-        
         fruits = stocks
     }
 }

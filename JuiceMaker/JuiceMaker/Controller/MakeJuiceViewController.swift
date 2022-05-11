@@ -110,7 +110,6 @@ final class MakeJuiceViewController: UIViewController {
         guard notification.userInfo?["stocks"] is Fruits else {
             return
         }
-        
         refreshFruits()
     }
 }
