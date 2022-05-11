@@ -56,7 +56,7 @@ class JuiceMakerTests: XCTestCase {
     
     func test_파인애플의_재고_초기값_10이_반환된다() {
         // given
-        let pineapple = Fruit.pineapple
+        let pineapple = FruitType.pineapple
         let expectation = 10
         
         // when

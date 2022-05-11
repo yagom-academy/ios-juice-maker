@@ -22,12 +22,12 @@ extension JuiceMaker {
         }
     }
     
-    func count(_ fruit: Fruit) -> Int {
+    func count(_ fruit: FruitType) -> Int {
         return fruitStore.count(fruit)
     }
     
-    func editStock(of fruit: Fruit, with amount: Int) {
-        fruitStore.updateStock(of: fruit, with: amount)
+    func editStock(of fruit: FruitType, with amount: Int) {
+        fruitStore.editStock(of: fruit, with: amount)
     }
     
     func stockUp() -> FruitStock {

@@ -6,11 +6,11 @@
 
 import Foundation
 
-typealias FruitStock = [Fruit: Int]
+typealias FruitStock = [FruitType: Int]
 
 protocol StorageManaging {
-    func count(_ fruit: Fruit) -> Int
-    func updateStock(of fruit: Fruit, with amount: Int)
+    func count(_ fruit: FruitType) -> Int
+    func editStock(of fruit: FruitType, with amount: Int)
     func consume(_ stock: FruitStock) throws
     func listUp() -> FruitStock
 }
@@ -20,21 +20,21 @@ final class FruitStore: StorageManaging {
     private var fruits: FruitStock = [:]
     
     init(initialValue: Int = 10) {
-        Fruit.allCases.forEach { fruit in
+        FruitType.allCases.forEach { fruit in
             self.fruits.updateValue(initialValue, forKey: fruit)
         }
     }
 }
 
 extension FruitStore {
-    func count(_ fruit: Fruit) -> Int {
+    func count(_ fruit: FruitType) -> Int {
         guard let currentQuantity = self.fruits[fruit] else {
             return 0
         }
         return currentQuantity
     }
     
-    func updateStock(of fruit: Fruit, with amount: Int) {
+    func editStock(of fruit: FruitType, with amount: Int) {
         self.fruits.updateValue(amount, forKey: fruit)
     }
     

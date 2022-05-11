@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-enum Fruit: CaseIterable {
+enum FruitType: CaseIterable {
     case strawberry
     case banana
     case kiwi
