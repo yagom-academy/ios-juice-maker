@@ -16,27 +16,23 @@ final class FruitStore {
     }
     
     init(stock: Int) {
-        self.fruits[.strawberry] = stock
-        self.fruits[.banana] = stock
-        self.fruits[.kiwi] = stock
-        self.fruits[.pineapple] = stock
-        self.fruits[.mango] = stock
+        for fruit in Fruit.allCases {
+            self.fruits[fruit] = stock
+        }
     }
 
     func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
         let recipe = menu.recipe
-        guard hasEnoughFruits(toMake: recipe) else {
+        guard hasEnoughFruits(for: recipe) else {
             return .failure(.insufficientFruit)
         }
         useFruits(toMake: recipe)
         return .success(menu)
     }
     
-    private func hasEnoughFruits(toMake recipe: Fruits) -> Bool {
-        for (fruit, stock) in fruits {
-            guard stock >= recipe[fruit] ?? 0 else {
-                return false
-            }
+    private func hasEnoughFruits(for recipe: Fruits) -> Bool {
+        for (fruit, stock) in fruits where stock < recipe[fruit] ?? 0 {
+            return false
         }
         return true
     }

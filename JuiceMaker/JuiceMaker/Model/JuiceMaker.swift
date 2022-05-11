@@ -5,7 +5,7 @@
 //
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore(stock: 10)
+    private let fruitStore = FruitStore(stock: Constant.initialFruitStock)
     
     var fruitsInStock: Fruits {
         fruitStore.fruits

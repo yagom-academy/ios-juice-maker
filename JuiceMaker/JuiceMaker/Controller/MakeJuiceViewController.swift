@@ -55,12 +55,12 @@ final class MakeJuiceViewController: UIViewController {
         default:
             return
         }
-        refreshFruits()
     }
     
     private func alert(_ result: Result<FruitJuice, FruitError>) {
         switch result {
         case .success(let juice):
+            refreshFruits()
             let successAlert = UIAlertController(
                 title: nil,
                 message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!",
