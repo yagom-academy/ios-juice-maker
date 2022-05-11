@@ -2,7 +2,7 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
 
-    @IBOutlet var stockLabelCollection: [UILabel]!
+    @IBOutlet var stockLabelList: [UILabel]!
 
     private var juiceMaker = JuiceMaker()
     
@@ -16,7 +16,7 @@ class JuiceMakerViewController: UIViewController {
     }
 
     private func updateStock() {
-        for (stockLabel, fruit) in zip(stockLabelCollection, Fruit.allCases) {
+        for (stockLabel, fruit) in zip(stockLabelList, Fruit.allCases) {
             stockLabel.text = juiceMaker.stockCount(of: fruit)
         }
     }

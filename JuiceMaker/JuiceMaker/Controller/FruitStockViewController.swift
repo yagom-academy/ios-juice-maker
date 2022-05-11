@@ -2,8 +2,8 @@ import UIKit
 
 class FruitStockViewController: UIViewController {
     
-    @IBOutlet var stockLabelCollection: [UILabel]!
-    @IBOutlet var stepperCollection: [UIStepper]!
+    @IBOutlet var stockLabelList: [UILabel]!
+    @IBOutlet var stepperList: [UIStepper]!
     
     let fruitStore = FruitStore.shared
     
@@ -19,13 +19,13 @@ class FruitStockViewController: UIViewController {
     }
     
     private func setStepper() {
-        for (stepperValue, fruit) in zip(stepperCollection, Fruit.allCases) {
+        for (stepperValue, fruit) in zip(stepperList, Fruit.allCases) {
             stepperValue.value = fruitStore.stockAsDouble(fruit: fruit)
         }
     }
     
     private func setStockLabel() {
-        for (stockLabel, fruit) in zip(stockLabelCollection, Fruit.allCases) {
+        for (stockLabel, fruit) in zip(stockLabelList, Fruit.allCases) {
             stockLabel.text = fruitStore.stockAsString(fruit: fruit)
         }
     }
@@ -40,6 +40,6 @@ class FruitStockViewController: UIViewController {
         
         fruitStore.modifyStock(fruit: fruit, to: Int(stockValue))
   
-        stockLabelCollection[sender.tag - 1].text = String(format: "%.0f", sender.value) 
+        stockLabelList[sender.tag - 1].text = String(format: "%.0f", sender.value) 
     }
 }
