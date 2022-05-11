@@ -8,26 +8,28 @@
 import UIKit
 
 final class StoreViewController: UIViewController {
-    @IBOutlet private weak var strawberryLabel: UILabel!
-    @IBOutlet private weak var bananaLabel: UILabel!
-    @IBOutlet private weak var pineappleLabel: UILabel!
-    @IBOutlet private weak var kiwiLabel: UILabel!
-    @IBOutlet private weak var mangoLabel: UILabel!
+    @IBOutlet private weak var strawberryLabel: UILabel?
+    @IBOutlet private weak var bananaLabel: UILabel?
+    @IBOutlet private weak var pineappleLabel: UILabel?
+    @IBOutlet private weak var kiwiLabel: UILabel?
+    @IBOutlet private weak var mangoLabel: UILabel?
     
-    @IBOutlet private weak var strawberryStepper: UIStepper!
-    @IBOutlet private weak var bananaStepper: UIStepper!
-    @IBOutlet private weak var pineappleStepper: UIStepper!
-    @IBOutlet private weak var kiwiStepper: UIStepper!
-    @IBOutlet private weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper?
+    @IBOutlet private weak var bananaStepper: UIStepper?
+    @IBOutlet private weak var pineappleStepper: UIStepper?
+    @IBOutlet private weak var kiwiStepper: UIStepper?
+    @IBOutlet private weak var mangoStepper: UIStepper?
     
     private var fruits: FruitStock?
     var delegate: ManangingOrderDelegate?
+    var fruits: FruitStock = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.fruits = self.delegate?.setUpStock()
         self.updateStepperDefaultValue()
+        self.updateStepperDefaultValue(with: fruits)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,19 +68,25 @@ private extension StoreViewController {
 }
 
 private extension StoreViewController {
-    func updateStepperDefaultValue() {
-        self.strawberryStepper.value = Double(fruits?[.strawberry] ?? 0)
-        self.bananaStepper.value = Double(fruits?[.banana] ?? 0)
-        self.pineappleStepper.value = Double(fruits?[.pineapple] ?? 0)
-        self.kiwiStepper.value = Double(fruits?[.kiwi] ?? 0)
-        self.mangoStepper.value = Double(fruits?[.mango] ?? 0)
+    func updateStepperDefaultValue(with fruits: FruitStock) {
+        self.strawberryStepper?.value = Double(fruits[.strawberry] ?? 0)
+        self.bananaStepper?.value = Double(fruits[.banana] ?? 0)
+        self.pineappleStepper?.value = Double(fruits[.pineapple] ?? 0)
+        self.kiwiStepper?.value = Double(fruits[.kiwi] ?? 0)
+        self.mangoStepper?.value = Double(fruits[.mango] ?? 0)
     }
     
     func updateUI() {
-        self.strawberryLabel.text = strawberryStepper.descriptionValue()
-        self.bananaLabel.text = bananaStepper.descriptionValue()
-        self.pineappleLabel.text = pineappleStepper.descriptionValue()
-        self.kiwiLabel.text = kiwiStepper.descriptionValue()
-        self.mangoLabel.text = mangoStepper.descriptionValue()
+        self.strawberryLabel?.text = self.strawberryStepper?.descriptionValue()
+        self.bananaLabel?.text = self.bananaStepper?.descriptionValue()
+        self.pineappleLabel?.text = self.pineappleStepper?.descriptionValue()
+        self.kiwiLabel?.text = self.kiwiStepper?.descriptionValue()
+        self.mangoLabel?.text = self.mangoStepper?.descriptionValue()
+    }
+}
+
+private extension UIStepper {
+    func descriptionValue() -> String {
+        return intValue().description
     }
 }
