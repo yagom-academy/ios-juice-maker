@@ -55,38 +55,38 @@ class FruitStockViewController: UIViewController {
         FruitStockViewController.numberOfMango = mangoLabel.text ?? ""
     }
     
-    private func postCheckFruitStockNotification() {
+    private func postUpdateFruitStockNotification() {
         center.post(name: .updateFruitStock, object: nil)
     }
     
     @IBAction private func changeValueOfStrawberryStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
-        postCheckFruitStockNotification()
+        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfBananaStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
-        postCheckFruitStockNotification()
+        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfPineappleStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
-        postCheckFruitStockNotification()
+        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfKiwiStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
-        postCheckFruitStockNotification()
+        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfMangoStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
-        postCheckFruitStockNotification()
+        postUpdateFruitStockNotification()
     }
     
     @IBAction private func closeButtonTouchedUpInside(_ sender: UIBarButtonItem) {

@@ -27,7 +27,7 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpAtttributesOfButton()
+        setUpButton()
         updateFruitStockLabelText()
         registerStockChanges()
     }
@@ -133,37 +133,25 @@ class JuiceOrderViewController: UIViewController {
         try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.numberOfMango) ?? 0)
     }
     
-    private func setUpAtttributesOfButton() {
-        strawberryBananaJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
-        strawberryBananaJuiceButton.titleLabel?.textAlignment = .center
-        strawberryBananaJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
-        
-        strawberryJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
-        strawberryJuiceButton.titleLabel?.textAlignment = .center
-        strawberryJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
-        
-        bananaJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
-        bananaJuiceButton.titleLabel?.textAlignment = .center
-        bananaJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
-        
-        pineappleJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
-        pineappleJuiceButton.titleLabel?.textAlignment = .center
-        pineappleJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
-        
-        kiwiJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
-        kiwiJuiceButton.titleLabel?.textAlignment = .center
-        kiwiJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
-        
-        mangoJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
-        mangoJuiceButton.titleLabel?.textAlignment = .center
-        mangoJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
-        
-        mangoKiwiJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
-        mangoKiwiJuiceButton.titleLabel?.textAlignment = .center
-        mangoKiwiJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
+    private func setUpButton() {
+        strawberryBananaJuiceButton.setUpAttributes()
+        strawberryJuiceButton.setUpAttributes()
+        bananaJuiceButton.setUpAttributes()
+        pineappleJuiceButton.setUpAttributes()
+        kiwiJuiceButton.setUpAttributes()
+        mangoJuiceButton.setUpAttributes()
+        mangoKiwiJuiceButton.setUpAttributes()
     }
 }
 
 extension Notification.Name {
     static let updateFruitStock = Notification.Name("updateFruitStock")
+}
+
+extension UIButton {
+    func setUpAttributes() {
+        self.titleLabel?.lineBreakMode = .byWordWrapping
+        self.titleLabel?.textAlignment = .center
+        self.titleLabel?.font = .systemFont(ofSize: 20)
+    }
 }
