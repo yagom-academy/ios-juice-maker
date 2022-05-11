@@ -217,3 +217,135 @@ store.decreaseStock(menu: menu, total: total)
 
 ## PR 후 개선사항
 
+- Notification을 함수 호출이 아닌 속성 감시자를 통해 Post
+    - 속성 감시자를 통해 stock이 변할 경우 post 하도록 수정
+    - 속성 감시자의 didSet, willSet은 값이 초기화된 이후로 호출된다.
+    - didSet, willSet을 사용하기 위해서는 속성이 반드시 초기화되야 한다.
+    - class의 생성자 안에서 값을 할당할 때는 didSet, willSet이 호출되지 않는다.(초기화 이후부터 속성 감시)
+
+```swift
+private(set) var stock = [Fruit: Int]() {
+        didSet {
+            NotificationCenter.default.post(name: .notifyStock, object: nil, userInfo: ["stock": stock])
+        }
+    }
+```
+
+
+- @IBOutletCollection
+
+`@IBOutlet private var fruitStockLabel: [FruitStockLabel]!`
+
+- 배열이기 때문에 버튼을 연결하는 순서대로 저장된다.
+- 배열의 요소들이 비슷한 특성이나 비슷한 디자인을 하고 있을 때 사용하는 것 같다.
+
+
+- 각각의 Label에 해당하는 타입 생성
+```swift
+class EditStockStepper: UIStepper {
+    func convertToFruit() -> Fruit? {
+        return nil
+    }
+}
+
+class StrawberryStepper: EditStockStepper {
+    override func convertToFruit() -> Fruit? {
+        return .strawberry
+    }
+}
+```
+
+상속받은 타입에서 재정의를 통해 타입에 해당하는 Fruit case반환
+
+
+- 원시값을 직접 설정하는 것보다 계산 속성을 이용하는게 좋다.
+
+`제이슨 피드백` : 순서를 정해주기 위해 Int를 채택하는 건 나쁜 패턴입니다.
+순서를 정해야 한다면 order를 반환하는 연산 프로퍼티를 만드시는게 좋습니다.
+
+```swift
+// 나쁜 예
+enum Menu: Int
+
+// 좋은 예
+extension Menu {
+    var name: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기쥬스"
+        case .mangoJuice:
+            return "망고쥬스"
+        case .kiwiJuice:
+            return "키위쥬스"
+        case .pineappleJuice:
+            return "파인애플쥬스"
+        case .bananaJuice:
+            return "바나나쥬스"
+        case .mangoAndKiwiJuice:
+            return "망키쥬스"
+        case .strawberryAndBananaJuice:
+            return "딸바쥬스"
+        }
+    }
+```
+
+
+- tag는 동적으로 생성된 뷰를 취급할 방법이 없을때 사용하기 좋은 값이다.
+화면에 보이는 버튼은 tag를 통해 구분하는 것보다 ViewController와 직접 연결해서 사용하는 것이 좋다.
+## Step3 기능구현
+- EditStockViewController
+  - stepper를 통해 EditStockViewController의 fruitsStock을 변경하고 delegate를 통해 HomeViewController에 전달
+  - 메서드 tapCloseButton을 통해 화면 닫기
+- HomeViewController
+  - EditStockViewController로 부터 전달받은 데이터를 메서드의 파라미터로 사용해 FruitStore의 stock 변경
+- Stepper 타입 만들기
+  - 각각의 Stepper의 타입을 만들어주었다. 
+- 화면간의 데이터 전달
+  - HomeViewController에서 EditStockViewController로 저장 속성을 통해 데이터 전달
+  - EditStockViewController에서 HomeViewController로 Delegate를 통해 데이터 전달
+- Delegate 패턴
+  - Delegate를 사용하기 위해 프로토콜 생성
+  - HomeViewController에서 프로토콜 채택
+  - HomeViewController에서 대리자 설정
+  - EditStockViewController에서 Delegate를 통해 HomeViewController로 데이터 전달
+- Auto Layout
+  - 다양한 기기에서 View가 잘 적용되도록 Auto Layout설정
+- StoryBoard 나누기
+  - Main 스토리보드에서 나눌 ViewController를 선택해 editor의 Refactor To Storyboard를 사용하면 새로운 Storyboard 파일 생성
+  - 중요한 point! Main Storyboard파일에 생성된 Storyboard Reference의 Referenced ID를 새로운 파일에 있는 ViewController의 ID와 동일하게 설정
+ 
+## 고민했던 것들
+1. 화면 간의 데이터를 전달하는 방법에 대해 고민했습니다.
+
+  - Model에 있는 FruitStore의 stock을 HomeViewController에 전달하는 방법은 NotificationCenter를 사용했습니다.
+  - HomeViewController와 EditStockViewController 사이의 데이터 전달은 저장속성을 통한 전달 방법과 Delegate 패턴 전달 방법을 사용했습니다.
+ 
+ 이번 프로젝트에서는 코코아 버전의 MVC를 사용했기에 View와 Controller가 명확히 구분되지 않았습니다... 그래서 편의상 설명할 때 ViewController라고 칭하겠습니다!.
+ 
+ 먼저 저희가 애플 문서를 읽어보니 Model과 ViewController사이에서는 Observer패턴을 자주 사용한다고 나와있어서 Model과 ViewController 사이의 데이터 전달 방식을 Notification으로 했습니다. 다수의 이벤트가 발생했을 때 사용하기 편리한 방법인데, 이번 프로젝트에서는 다수의 이벤트가 발생하지는 않았지만 공부한 김에 사용해보고 싶어서 써봤습니다..! 
+ 또, ViewController끼리는 의존성이 강해지면 분리하기 어려워 좋지 않다고 생각을 해서 프로토콜을 채택하는 방식인 delegate 패턴 전달 방식을 사용해서 의존성을 낮춰주는 방식을 사용했습니다. 두 번째 화면이 present될 때 데이터를 전달해 주도록 했습니다!
+ 
+  - Delegate의 대리자 설정 관련하여 고민... 
+ 
+`editStockVC.delegate = self`
+
+처음에는 EditStockViewController에서 HomeViewController의 메서드를 실행시키기 위한 데이터를 전달해 주기 때문에, HomeViewController이  EditStockViewController에게 너가 데이터를 보내줘! 라고 하면서 EditStockViewController을 대리자로 만들어준다고 생각을 했습니다.  
+
+그런데 다시 고민해보니 EditStockViewController는 데이터를 전달만 해주고 HomeViewController에서 데이터를 받아 일을 대신해주기 때문에( 함수의 정의도 이 곳에서 일어나기 때문) 대리자가 HomeViewController가 된다는 것을 알게되었습니다.
+처음 delegate를 사용해보니 개념이 매우 헷갈렸던 것 같습니다...
+
+- Stepper를 통한 데이터 전달을 어떻게 해줄지 고민
+
+updateStepperValue에서 생성된 데이터를 화면의 ` 닫기` 버튼이 눌렸을 때 한 번만 전달할지, Stepper 이벤트가 발생할 때마다 전달할지를 고민했습니다. 
+저희가 생각하기로는 Stepper 이벤트가 발생할 때마다 데이터를 전달해주면 변경될 때마다 FruitStore의 stock을 계속 변경해서 notificationCenter로 post를 해주기 때문에 이 방식은 비효율적이라 생각했습니다. 
+
+반면, 데이터를 화면 닫기 버튼을 눌렀을 때만 전달하게 되면 한 번에 데이터를 전달한다는 장점은 있지만, FruitStore의 stock 자체를 변경해준다기보다는 EditStockViewController에서 전달받은 stock으로 대체한다는 느낌이 들어 약간 어색함이 느껴졌습니다.
+
+
+
+## 배운 개념
+- Notification 사용 방법
+- Delegate패턴 사용 방법
+- 속성 감시자 활용 및 개념
+- IBAction을 사용하지 않고 addTarget을 통해 이벤트 처리
+- Class의 상속(메서드와 속성 재정의)
