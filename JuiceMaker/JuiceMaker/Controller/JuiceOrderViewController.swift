@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceOrderViewController: UIViewController {
+final class JuiceOrderViewController: UIViewController {
     // MARK: - Properties
     
     @IBOutlet private weak var strawberryInventoryLabel: UILabel!

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InventoryViewController: UIViewController {
+final class InventoryViewController: UIViewController {
     // MARK: - Properties
     
     @IBOutlet private weak var strawberryInventoryLabel: UILabel!

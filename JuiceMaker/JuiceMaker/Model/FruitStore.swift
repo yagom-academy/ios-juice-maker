@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+final class FruitStore {
     // MARK: - Enum
     
     enum Fruit: CaseIterable {
