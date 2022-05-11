@@ -1,4 +1,5 @@
 class FruitStore {
+    static let shared = FruitStore(quantity: 10)
     private var fruitStock: [Fruit: Int] = [:]
     
     func subtractQuantity(fruit: Fruit, by number: Int) throws {
@@ -12,6 +13,10 @@ class FruitStore {
         
         fruitStock[fruit] = quantity - number
     }
+
+    func modifyStock(fruit: Fruit, to number: Int) {
+        fruitStock[fruit] = number
+    }
     
     func stockAsString(fruit: Fruit) -> String {
         guard let stock = fruitStock[fruit] else {
@@ -21,7 +26,15 @@ class FruitStore {
         return String(stock)
     }
     
-    init(quantity: Int) {
+    func stockAsDouble(fruit: Fruit) -> Double {
+        guard let stock = fruitStock[fruit] else {
+            return 0.0
+        }
+        
+        return Double(stock)
+    }
+    
+    private init(quantity: Int) {
         for fruit in Fruit.allCases {
             fruitStock.updateValue(quantity, forKey: fruit)
         }

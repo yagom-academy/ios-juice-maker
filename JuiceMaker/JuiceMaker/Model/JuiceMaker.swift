@@ -1,5 +1,5 @@
 struct JuiceMaker {
-    let fruitStore = FruitStore(quantity: 10)
+    let fruitStore = FruitStore.shared
     
     func make(juiceMenu: Menu) throws {
         for (fruit, fruitCount) in juiceMenu.recipe {

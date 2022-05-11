@@ -9,6 +9,9 @@
 * [[STEP 2] 기능구현 및 코드설명](#[STEP-2]-기능구현-및-코드설명-🧑‍🏫)
     * [[STEP 2] 고민한점 및 해결방안](#[STEP-2]-고민한점-및-해결방안-🤔)
     * [[STEP 2] 배운개념](#STEP-2-배운개념-💡)
+* [[STEP 3] 기능구현 및 코드설명](#[STEP-3]-기능구현-및-코드설명-🧑‍🏫)
+    * [[STEP 3] 고민한점 및 해결방안](#[STEP-3]-고민한점-및-해결방안-🤔)
+    * [[STEP 3] 배운개념](#STEP-3-배운개념-💡)
 * [참조](#참조)
 <br/>
 
@@ -85,9 +88,77 @@
 <br/>
 
 # [STEP 2] 배운개념 💡
-- `storyboard?.instantiateViewController(withIdentifier:)` : 미리 지정해둔 `Identifier`를 통해 스토리보드의 인스턴스를 생성한다.
+- `storyboard?.instantiateViewController(withIdentifier:)` : 
 - `navigationController?.pushViewController(_:animated:)` : 파라미터로 전달된 `UIViewController` 타입의 인스턴스로 이동한다.
 - `UIAlertController` : 화면에 띄울 수 있는 `alert` 창을 관리한다. 해당 인스턴스에 `UIAlertAction` 인스턴스를 추가하면 버튼 및 동작을 할당할 수 있다.
+
+<br/>
+
+---
+# [STEP 3] 기능구현 및 코드설명 🧑‍🏫
+- `FruitStockViewController` : 재고 추가 화면의 컨트롤러
+-> `fruitStore` : 뷰 컨트롤러에서 넘겨받은 `FruitStore` 인스턴스
+-> `setStepper` : stepper의 기본 value를 설정하는 함수
+-> `setStockLabel` : 재고 lable에 텍스트를 설정하는 함수
+-> `closeButtonTapped` : 버튼을 탭할 경우 현재 화면을 닫는 함수
+-> `stepperTapped` : 스태퍼를 탭할 경우 발생하는 액션 함수
+- `FruitStore`
+-> `modifyStock` : 남은 재고를 원하는 숫자로 수정하는 함수
+-> `stockAsDouble` : 남은 재고를 Double 타입으로 반환하는 함수
+- `ViewControlelr`
+-> `prepare` : 세그웨이가 작동할 경우 동작하는 함수.
+- `DoubleExtension` : Double 타입을 String으로 반환해주는 함수
+
+
+<br/>
+
+# [STEP 3] 고민한점 및 해결방안 🤔
+## 고민한점
+
+### 1. 다른 ViewController로 데이터를 전달하는 방법
+데이터 전달에 관해 고민하는 과정에서 화면 이동방법에 따라 데이터를 전달할 수 있는 방법이 달라진다는 것을 배우게 되었다. '재고 추가' 버튼을 누를 경우에는 직접세그웨이 방식을 사용했기 때문에 `prepare` 메서드를 오버라이드 하여 데이터를 전달했다. 재고 품절시에 버튼을 누르면 이동하는 경우는 `Storyboard`의 `identifier`를 활용해 `instantiateViewController` 메서드로 인스턴스를 받아서 화면이동을 했기 때문에, 해당 인스턴스에 직접 접근해서 데이터를 전달하는 방식을 사용해 해결할 수 있었다.
+
+<br/>
+
+### 2. Extenstion 활용
+여러개의 레이블에 재고를 업데이트해주는 과정에서 `Double` 형을 `String`으로 변경해주어야 하는 작업을 반복적으로 하게 되었다. 이 부분을 `Double`에 `extension`을 추가해 `toString` 함수를 구현함으로써 가독성과 코드의 유연성을 향상시킬 수 있었다.
+
+<br/>
+
+### 3. 화면이동 방식 - 네비게이션
+처음에는 `alert`와 같이 `present` 메서드를 활용해 화면을 이동하려 했으나, 이렇게 할 경우 네이게이션바를 활용할 수 없는 상황이 발생해 네비게이션 방식으로 화면을 이동하는 함수인 `pushViewController` 및 `popViewController` 메서드를 사용해 해결했습니다.
+
+<br/>
+
+### 4. Stepper를 이용한 재고 수정
+#### 1) tag를 이용한 Stepper 분류
+STEP 2에서 쥬스 주문 버튼들을 `tag`로 분류했던 방식과 동일하게 `Fruit` 열거형에 `Int`로 1부터 `rawValue`를 지정하여 Stepper의 `tag`로 분류했습니다. 덕분에 하나의 액션함수로 모든 과일의 재고를 수정할 수 있었습니다.
+
+#### 2) 재고 변경 반영하기
+수정한 재고를 변경하는 방식으로 두 가지를 고민 했습니다.
+> 1. Stepper를 누를 때마다 재고를 변경하기
+> 2. 모든 변경이 끝나고 이전 화면으로 되돌아갈 때 한 번에 변경하기
+
+<br/>
+
+Stepper를 누를 때마다 변경이 발생하면 비효율적일까 싶어 2번 방식으로 도전해봤습니다. 하지만 재고가 변경되지 않은 과일도 일괄적으로 수정되어야 했고, 과일별로 Stepper의 `value`를 불러오는게 까다로워 1번 방식을 선택하게 되었습니다.
+
+<br/>
+
+# [STEP 3] 배운개념 💡
+```swift
+navigationItem.hidesBackButton = true
+```
+- 네비게이션으로 화면 전환 시 자동으로 생성되는 뒤로가기 버튼을 숨길 수 있다.
+```swift
+String(format: "%.0f", value)
+```
+- String으로 전환 시 지정한 형식에 맞게 변경된다.
+
+```swift
+navigationController?.popViewController(animated: true)
+```
+- 이전 네비게이션 화면으로 되돌아간다. 
 
 <br/>
 
@@ -104,4 +175,3 @@
 [Apple Developer - UIAlertController](https://developer.apple.com/documentation/uikit/uialertcontroller)
 
 [Apple Developer - UINavigationController](https://developer.apple.com/documentation/uikit/uinavigationcontroller)
-

@@ -1,12 +1,8 @@
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
 
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var stockLabels: [UILabel]!
 
     private var juiceMaker = JuiceMaker()
     
@@ -14,20 +10,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateStock()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateStock()
+    }
 
     private func updateStock() {
-        strawberryStockLabel.text = juiceMaker.stockCount(of: .strawberry)
-        bananaStockLabel.text = juiceMaker.stockCount(of: .banana)
-        pineappleStockLabel.text = juiceMaker.stockCount(of: .pineapple)
-        kiwiStockLabel.text = juiceMaker.stockCount(of: .kiwi)
-        mangoStockLabel.text = juiceMaker.stockCount(of: .mango)
+        for (stockLabel, fruit) in zip(stockLabels, Fruit.allCases) {
+            stockLabel.text = juiceMaker.stockCount(of: fruit)
+        }
     }
     
     private func showCompleteAlert(juice: Menu) {
         let completeAlert = UIAlertController(title: "쥬스 제조 완료", message: "\(juice.juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "확인", style: .default)
-        
-        completeAlert.addAction(yesAction)
+
+        completeAlert.addAction(UIAlertAction(title: "확인", style: .default))
         
         present(completeAlert, animated: true)
     }
@@ -35,9 +32,9 @@ class ViewController: UIViewController {
     private func showOutOfStockAlert() {
         let outOfStockAlert = UIAlertController(title: "재료 소진", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { action in
-            guard let stockView = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") else { return }
+            guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockViewController") as? FruitStockViewController else { return }
             
-            self.navigationController?.pushViewController(stockView, animated: true)
+            self.navigationController?.pushViewController(stockViewController, animated: true)
         }
         let noAction = UIAlertAction(title: "아니요", style: .cancel)
         
@@ -46,20 +43,19 @@ class ViewController: UIViewController {
         present(outOfStockAlert, animated: true)
     }
     
-    @IBAction func orderJuice(sender: UIButton) {
+    @IBAction func orderJuiceButtonTapped(sender: UIButton) {
         guard let juiceMenu = Menu(rawValue: sender.tag) else { return }
     
         do{
             try juiceMaker.make(juiceMenu: juiceMenu)
-        } catch JuiceMakerError.outOfStock {
-            showOutOfStockAlert()
+            showCompleteAlert(juice: juiceMenu)
         } catch {
-            print("알 수 없는 에러입니다.")
+            if error as? JuiceMakerError == JuiceMakerError.outOfStock {
+                showOutOfStockAlert()
+            }
         }
-        
-        showCompleteAlert(juice: juiceMenu)
+    
         updateStock()
     }
-    
 }
 
