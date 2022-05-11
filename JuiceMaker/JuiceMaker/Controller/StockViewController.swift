@@ -27,7 +27,7 @@ final class StockViewController: UIViewController {
         setupStepper()
     }
     
-    @IBAction private func didTapClosedStockViewController(_ sender: UIBarButtonItem) {
+    @IBAction private func didTapClosedBarButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
     
