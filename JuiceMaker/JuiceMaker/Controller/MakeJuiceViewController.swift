@@ -91,5 +91,13 @@ final class MakeJuiceViewController: UIViewController {
         pineappleLabel.text = String(fruits[.pineapple] ?? 0)
         mangoLabel.text = String(fruits[.mango] ?? 0)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let target = segue.destination as? UINavigationController,
+              let destinationViewController = target.topViewController as? EditFruitsViewController
+        else { return }
+        let fruits = juiceMaker.fruitsInStock
+        destinationViewController.fruits = fruits
+    }
 }
 
