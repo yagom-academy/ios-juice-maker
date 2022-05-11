@@ -120,12 +120,18 @@ class HomeViewController: UIViewController {
         else {
             return
         }
+        editStockVC.delegate = self
         editStockVC.fruitStock = transferStock
         self.present(editStockVC, animated: true)
     }
-    
+
     @IBAction private func tabEditStock(_ sender: UIBarButtonItem) {
         self.presentEditStockViewController()
     }
 }
 
+extension HomeViewController: DeliverFruitStockDelegate {
+    func transferFruit(stock: [Fruit : Int]) {
+        juiceMaker.store.fillStock(fruit: stock)
+    }
+}

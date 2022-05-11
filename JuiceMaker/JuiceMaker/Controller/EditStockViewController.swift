@@ -9,6 +9,7 @@ import UIKit
 
 class EditStockViewController: UIViewController {
     var fruitStock = [Fruit: Int]()
+    weak var delegate: DeliverFruitStockDelegate?
     
     @IBOutlet var fruitStockLabel: [FruitStockLabel]!
     @IBOutlet var editStockStepper: [EditStockStepper]!
@@ -19,31 +20,40 @@ class EditStockViewController: UIViewController {
         updateFruitStockLabel(stock: fruitStock)
         
         editStockStepper.forEach { stepper in
-            stepper.addTarget(self, action: #selector(stepFruit(_:)), for: .valueChanged)
+            stepper.addTarget(self, action: #selector(updateFruitStock), for: .valueChanged)
             
             guard let fruit = stepper.convertToFruit(),
-                    let amount = fruitStock[fruit]
+                  let amount = fruitStock[fruit]
             else {
                 return
             }
-            stepper.minimumValue = Double(-amount)
+            stepper.value = Double(amount)
         }
     }
     
     @IBAction func tapCloseButton(_ sender: Any) {
+        delegate?.transferFruit(stock: fruitStock)
         self.dismiss(animated: true, completion: nil)
     }
     
     private func updateFruitStockLabel(stock: [Fruit: Int]) {
         fruitStockLabel.forEach { label in
-            guard let fruit = label.convertToFruit() else { return }
-            guard let fruitLabel = stock[fruit] else { return }
-            
+            guard let fruit = label.convertToFruit(),
+                  let fruitLabel = stock[fruit]
+            else {
+                return
+            }
             label.text = "\(fruitLabel)"
         }
     }
     
-    @objc func stepFruit(_ sender: UIStepper) {
-        print(sender.value)
+    @objc func updateFruitStock(_ sender: EditStockStepper) {
+        guard let fruit = sender.convertToFruit()
+        else {
+            return
+        }
+        fruitStock[fruit] = Int(sender.value)
+        
+        updateFruitStockLabel(stock: fruitStock)
     }
 }
