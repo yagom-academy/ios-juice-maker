@@ -24,14 +24,9 @@ final class MakeJuiceViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupViews()
+        updateViews()
     }
     
     @IBAction private func didTapOrderJuice(_ sender: UIButton) {
@@ -49,7 +44,7 @@ final class MakeJuiceViewController: UIViewController {
         }
     }
     
-    private func setupViews() {
+    private func updateViews() {
         strawberryStock.text = showFruitsStock(name: .strawberry)
         bananaStock.text = showFruitsStock(name: .banana)
         pineappleStock.text = showFruitsStock(name: .pineapple)
