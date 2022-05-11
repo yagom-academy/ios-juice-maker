@@ -7,12 +7,8 @@
 
 import UIKit
 
-extension UIStepper {
-    func descriptionValue() -> String {
-        return convertInt().description
-    }
-    
-    func convertInt() -> Int {
+extension UIStepper {    
+    func intValue() -> Int {
         return Int(self.value)
     }
 }
