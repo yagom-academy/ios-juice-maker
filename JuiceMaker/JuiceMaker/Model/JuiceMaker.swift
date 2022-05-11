@@ -17,12 +17,10 @@ struct JuiceMaker {
     // MARK: - Action
     
     func make(juice: Menu) throws {
-        let fruitsToUse = store.grabIngredients(of: juice.recipe)
-        
-        guard fruitsToUse != nil else {
+        if store.isInventoryEnough(for: juice.recipe) {
+            try store.reduceInventory(of: juice.recipe)
+        } else {
             throw AppError.lackOfInventory
         }
-        
-        try store.reduceInventory(of: juice.recipe)
     }
 }
