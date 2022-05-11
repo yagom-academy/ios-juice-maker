@@ -100,37 +100,39 @@ class JuiceOrderViewController: UIViewController {
     @IBAction private func navigationRightButtonTapped(_ sender: UIBarButtonItem) {
         goToFruitStockViewController()
     }
-    
-    private func goToFruitStockViewController() {
-        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "ModalViewController") else { return }
         
-        sendFruitLabelText()
-        present(controller, animated: true)
+    private func goToFruitStockViewController() {
+        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else { return }
+        
+        let modalViewController = UINavigationController(rootViewController: controller)
+        
+        sendFruitLabelText(controller)
+        present(modalViewController, animated: true)
     }
     
-    private func sendFruitLabelText() {
-        FruitStockViewController.numberOfStrawberry = strawberryLabel.text ?? ""
-        FruitStockViewController.numberOfBanana = bananaLabel.text ?? ""
-        FruitStockViewController.numberOfPineapple = pineappleLabel.text ?? ""
-        FruitStockViewController.numberOfKiwi = kiwiLabel.text ?? ""
-        FruitStockViewController.numberOfMango = mangoLabel.text ?? ""
+    private func sendFruitLabelText(_ controller: FruitStockViewController) {
+        controller.numberOfStrawberry = strawberryLabel.text ?? ""
+        controller.numberOfBanana = bananaLabel.text ?? ""
+        controller.numberOfPineapple = pineappleLabel.text ?? ""
+        controller.numberOfKiwi = kiwiLabel.text ?? ""
+        controller.numberOfMango = mangoLabel.text ?? ""
     }
     
     private func registerStockChanges() {
         center.addObserver(self, selector: #selector(updateFruitStock), name: .updateFruitStock, object: nil)
     }
     
-    @objc private func updateFruitStock() {
-        tryUpdateFruitStock()
+    @objc private func updateFruitStock(_ notification: Notification) {
+        tryUpdateFruitStock(notification)
         updateFruitStockLabelText()
     }
     
-    private func tryUpdateFruitStock() {
-        try? juiceMaker.fruitStore.changeStock(fruit: .strawberry, amount: Int(FruitStockViewController.numberOfStrawberry) ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .banana, amount: Int(FruitStockViewController.numberOfBanana) ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .pineapple, amount: Int(FruitStockViewController.numberOfPineapple) ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .kiwi, amount: Int(FruitStockViewController.numberOfKiwi) ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.numberOfMango) ?? 0)
+    private func tryUpdateFruitStock(_ notification: Notification) {
+        try? juiceMaker.fruitStore.changeStock(fruit: .strawberry, amount: Int(notification.userInfo?["딸기재고"] as? String ?? "") ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .banana, amount: Int(notification.userInfo?["바나나재고"] as? String ?? "") ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .pineapple, amount: Int(notification.userInfo?["파인애플재고"] as? String ?? "") ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .kiwi, amount: Int(notification.userInfo?["키위재고"] as? String ?? "") ?? 0)
+        try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(notification.userInfo?["망고재고"] as? String ?? "") ?? 0)
     }
     
     private func setUpButton() {
