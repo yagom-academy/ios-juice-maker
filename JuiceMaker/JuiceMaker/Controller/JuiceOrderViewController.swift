@@ -15,24 +15,24 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var kiwiLabel: UILabel!
     @IBOutlet private weak var mangoLabel: UILabel!
     
-    @IBOutlet weak var orderButtonOfStrawberryBananaJuice: UIButton!
-    @IBOutlet weak var orderButtonOfStrawberryJuice: UIButton!
-    @IBOutlet weak var orderButtonOfBananaJuice: UIButton!
-    @IBOutlet weak var orderButtonOfStrawberryPineappleJuice: UIButton!
-    @IBOutlet weak var orderButtonOfStrawberryKiwiJuice: UIButton!
-    @IBOutlet weak var orderButtonOfStrawberryMangoJuice: UIButton!
-    @IBOutlet weak var orderButtonOfStrawberryMangoKiwiJuice: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceButton: UIButton!
+    @IBOutlet private weak var bananaJuiceButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceButton: UIButton!
+    @IBOutlet private weak var mangoJuiceButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        breakLineOfButton()
-        showFruitStock()
-        observeStockChanges()
+        setUpAtttributesOfButton()
+        updateFruitStockLabelText()
+        registerStockChanges()
     }
 
-    private func showFruitStock() {
+    private func updateFruitStockLabelText() {
         strawberryLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
         bananaLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
         pineappleLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
@@ -63,7 +63,7 @@ class JuiceOrderViewController: UIViewController {
         }
         
         tryMaking(juice)
-        showFruitStock()
+        updateFruitStockLabelText()
     }
     
     private func tryMaking(_ juice: Juice) {
@@ -104,11 +104,11 @@ class JuiceOrderViewController: UIViewController {
     private func goToFruitStockViewController() {
         guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "ModalViewController") else { return }
         
-        dispatchFruitLabel()
+        sendFruitLabelText()
         present(controller, animated: true)
     }
     
-    private func dispatchFruitLabel() {
+    private func sendFruitLabelText() {
         FruitStockViewController.numberOfStrawberry = strawberryLabel.text ?? ""
         FruitStockViewController.numberOfBanana = bananaLabel.text ?? ""
         FruitStockViewController.numberOfPineapple = pineappleLabel.text ?? ""
@@ -116,13 +116,13 @@ class JuiceOrderViewController: UIViewController {
         FruitStockViewController.numberOfMango = mangoLabel.text ?? ""
     }
     
-    private func observeStockChanges() {
-        center.addObserver(self, selector: #selector(updateFruitStock), name: .checkFruitStock, object: nil)
+    private func registerStockChanges() {
+        center.addObserver(self, selector: #selector(updateFruitStock), name: .updateFruitStock, object: nil)
     }
     
     @objc private func updateFruitStock() {
         tryUpdateFruitStock()
-        showFruitStock()
+        updateFruitStockLabelText()
     }
     
     private func tryUpdateFruitStock() {
@@ -133,37 +133,37 @@ class JuiceOrderViewController: UIViewController {
         try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(FruitStockViewController.numberOfMango) ?? 0)
     }
     
-    private func breakLineOfButton() {
-        orderButtonOfStrawberryBananaJuice.titleLabel?.lineBreakMode = .byWordWrapping
-        orderButtonOfStrawberryBananaJuice.titleLabel?.textAlignment = .center
-        orderButtonOfStrawberryBananaJuice.titleLabel?.font = .systemFont(ofSize: 20)
+    private func setUpAtttributesOfButton() {
+        strawberryBananaJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
+        strawberryBananaJuiceButton.titleLabel?.textAlignment = .center
+        strawberryBananaJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
         
-        orderButtonOfStrawberryJuice.titleLabel?.lineBreakMode = .byWordWrapping
-        orderButtonOfStrawberryJuice.titleLabel?.textAlignment = .center
-        orderButtonOfStrawberryJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        strawberryJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
+        strawberryJuiceButton.titleLabel?.textAlignment = .center
+        strawberryJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
         
-        orderButtonOfBananaJuice.titleLabel?.lineBreakMode = .byWordWrapping
-        orderButtonOfBananaJuice.titleLabel?.textAlignment = .center
-        orderButtonOfBananaJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        bananaJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
+        bananaJuiceButton.titleLabel?.textAlignment = .center
+        bananaJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
         
-        orderButtonOfStrawberryPineappleJuice.titleLabel?.lineBreakMode = .byWordWrapping
-        orderButtonOfStrawberryPineappleJuice.titleLabel?.textAlignment = .center
-        orderButtonOfStrawberryPineappleJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        pineappleJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
+        pineappleJuiceButton.titleLabel?.textAlignment = .center
+        pineappleJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
         
-        orderButtonOfStrawberryKiwiJuice.titleLabel?.lineBreakMode = .byWordWrapping
-        orderButtonOfStrawberryKiwiJuice.titleLabel?.textAlignment = .center
-        orderButtonOfStrawberryKiwiJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        kiwiJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
+        kiwiJuiceButton.titleLabel?.textAlignment = .center
+        kiwiJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
         
-        orderButtonOfStrawberryMangoJuice.titleLabel?.lineBreakMode = .byWordWrapping
-        orderButtonOfStrawberryMangoJuice.titleLabel?.textAlignment = .center
-        orderButtonOfStrawberryMangoJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        mangoJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
+        mangoJuiceButton.titleLabel?.textAlignment = .center
+        mangoJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
         
-        orderButtonOfStrawberryMangoKiwiJuice.titleLabel?.lineBreakMode = .byWordWrapping
-        orderButtonOfStrawberryMangoKiwiJuice.titleLabel?.textAlignment = .center
-        orderButtonOfStrawberryMangoKiwiJuice.titleLabel?.font = .systemFont(ofSize: 20)
+        mangoKiwiJuiceButton.titleLabel?.lineBreakMode = .byWordWrapping
+        mangoKiwiJuiceButton.titleLabel?.textAlignment = .center
+        mangoKiwiJuiceButton.titleLabel?.font = .systemFont(ofSize: 20)
     }
 }
 
 extension Notification.Name {
-    static let checkFruitStock = Notification.Name("checkFruitStock")
+    static let updateFruitStock = Notification.Name("updateFruitStock")
 }

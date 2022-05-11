@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-     private(set) var fruitWarehouse: Dictionary<Fruit, Int> = [
+    private(set) var fruitWarehouse: Dictionary<Fruit, Int> = [
         Fruit.strawberry: InitialFruitStock.stock,
         Fruit.banana: InitialFruitStock.stock,
         Fruit.pineapple: InitialFruitStock.stock,
@@ -34,7 +34,7 @@ class FruitStore {
         fruitWarehouse[fruit] = changedStock
     }
     
-     func reduceStock(fruit: Fruit, amount: Int) throws {
+    func reduceStock(fruit: Fruit, amount: Int) throws {
         guard let fruitStock = fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }

@@ -56,40 +56,40 @@ class FruitStockViewController: UIViewController {
     }
     
     private func postCheckFruitStockNotification() {
-        center.post(name: .checkFruitStock, object: nil)
+        center.post(name: .updateFruitStock, object: nil)
     }
     
-    @IBAction private func strawberryStepper(_ sender: UIStepper) {
+    @IBAction private func changeValueOfStrawberryStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
         postCheckFruitStockNotification()
     }
     
-    @IBAction private func bananaStepper(_ sender: UIStepper) {
+    @IBAction private func changeValueOfBananaStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
         postCheckFruitStockNotification()
     }
     
-    @IBAction private func pineappleStepper(_ sender: UIStepper) {
+    @IBAction private func changeValueOfPineappleStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
         postCheckFruitStockNotification()
     }
     
-    @IBAction private func kiwiStepper(_ sender: UIStepper) {
+    @IBAction private func changeValueOfKiwiStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
         postCheckFruitStockNotification()
     }
     
-    @IBAction private func mangoStepper(_ sender: UIStepper) {
+    @IBAction private func changeValueOfMangoStepper(_ sender: UIStepper) {
         updateFruitLabel()
         updateNumberOfFruit()
         postCheckFruitStockNotification()
     }
     
-    @IBAction private func closeCurrentView(_ sender: UIBarButtonItem) {
+    @IBAction private func closeButtonTouchedUpInside(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }
