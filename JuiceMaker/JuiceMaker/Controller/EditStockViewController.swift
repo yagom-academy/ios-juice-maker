@@ -8,22 +8,22 @@
 import UIKit
 
 class EditStockViewController: UIViewController {
-    var fruitStock = [Fruit: Int]()
-    weak var delegate: DeliverFruitStockDelegate?
+    var fruitsStock = [Fruit: Int]()
+    weak var delegate: TransferDelegate?
     
-    @IBOutlet var fruitStockLabel: [FruitStockLabel]!
-    @IBOutlet var editStockStepper: [EditStockStepper]!
+    @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
+    @IBOutlet private var editStockStepper: [EditStockStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateFruitStockLabel(stock: fruitStock)
+        updateLabel(from: fruitsStock)
         
         editStockStepper.forEach { stepper in
-            stepper.addTarget(self, action: #selector(updateFruitStock), for: .valueChanged)
+            stepper.addTarget(self, action: #selector(updateStepperValue), for: .valueChanged)
             
             guard let fruit = stepper.convertToFruit(),
-                  let amount = fruitStock[fruit]
+                  let amount = fruitsStock[fruit]
             else {
                 return
             }
@@ -31,12 +31,7 @@ class EditStockViewController: UIViewController {
         }
     }
     
-    @IBAction func tapCloseButton(_ sender: Any) {
-        delegate?.transferFruit(stock: fruitStock)
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    private func updateFruitStockLabel(stock: [Fruit: Int]) {
+    private func updateLabel(from stock: [Fruit: Int]) {
         fruitStockLabel.forEach { label in
             guard let fruit = label.convertToFruit(),
                   let fruitLabel = stock[fruit]
@@ -47,13 +42,18 @@ class EditStockViewController: UIViewController {
         }
     }
     
-    @objc func updateFruitStock(_ sender: EditStockStepper) {
-        guard let fruit = sender.convertToFruit()
+    @objc private func updateStepperValue(_ stepper: EditStockStepper) {
+        guard let fruit = stepper.convertToFruit()
         else {
             return
         }
-        fruitStock[fruit] = Int(sender.value)
+        fruitsStock[fruit] = Int(stepper.value)
         
-        updateFruitStockLabel(stock: fruitStock)
+        updateLabel(from: fruitsStock)
+    }
+    
+    @IBAction private func tapCloseButton(_ sender: Any) {
+        delegate?.transfer(changedStock: fruitsStock)
+        self.dismiss(animated: true, completion: nil)
     }
 }

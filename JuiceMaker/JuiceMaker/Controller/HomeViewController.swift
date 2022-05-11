@@ -8,7 +8,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
-    var transferStock = [Fruit: Int]()
+    private var transferStock = [Fruit: Int]()
     
     @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
     
@@ -121,7 +121,7 @@ class HomeViewController: UIViewController {
             return
         }
         editStockVC.delegate = self
-        editStockVC.fruitStock = transferStock
+        editStockVC.fruitsStock = transferStock
         self.present(editStockVC, animated: true)
     }
 
@@ -130,8 +130,8 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: DeliverFruitStockDelegate {
-    func transferFruit(stock: [Fruit : Int]) {
-        juiceMaker.store.fillStock(fruit: stock)
+extension HomeViewController: TransferDelegate {
+    func transfer(changedStock: [Fruit : Int]) {
+        juiceMaker.store.replaceStock(with: changedStock)
     }
 }

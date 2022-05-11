@@ -44,8 +44,8 @@ class FruitStore {
         }
     }
     
-    func fillStock(fruit: [Fruit: Int]) {
-        stock = fruit
+    func replaceStock(with changedStock: [Fruit: Int]) {
+        stock = changedStock
     }
 }
 

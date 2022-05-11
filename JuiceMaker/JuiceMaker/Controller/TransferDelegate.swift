@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol DeliverFruitStockDelegate: AnyObject {
-    func transferFruit(stock: [Fruit: Int])
+protocol TransferDelegate: AnyObject {
+    func transfer(changedStock: [Fruit: Int])
 }
