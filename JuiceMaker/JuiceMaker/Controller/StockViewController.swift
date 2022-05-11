@@ -9,11 +9,11 @@ import UIKit
 
 final class StockViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawberryStockLable: UILabel!
+    @IBOutlet weak var bananaStockLable: UILabel!
+    @IBOutlet weak var pineappleStockLable: UILabel!
+    @IBOutlet weak var kiwiStockLable: UILabel!
+    @IBOutlet weak var mangoStockLable: UILabel!
     
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
@@ -43,11 +43,11 @@ final class StockViewController: UIViewController {
        }
     
     private func setupViews() {
-        strawberryStock.text = FruitStore.shared.showFruitsStock(name: .strawberry)
-        bananaStock.text = FruitStore.shared.showFruitsStock(name: .banana)
-        pineappleStock.text = FruitStore.shared.showFruitsStock(name: .pineapple)
-        kiwiStock.text = FruitStore.shared.showFruitsStock(name: .kiwi)
-        mangoStock.text = FruitStore.shared.showFruitsStock(name: .mango)
+        strawberryStockLable.text = FruitStore.shared.showFruitsStock(name: .strawberry)
+        bananaStockLable.text = FruitStore.shared.showFruitsStock(name: .banana)
+        pineappleStockLable.text = FruitStore.shared.showFruitsStock(name: .pineapple)
+        kiwiStockLable.text = FruitStore.shared.showFruitsStock(name: .kiwi)
+        mangoStockLable.text = FruitStore.shared.showFruitsStock(name: .mango)
     }
     
     private func findFruit(stepper: UIStepper) throws -> Fruit {
@@ -98,15 +98,15 @@ final class StockViewController: UIViewController {
     private func selectFruitLable(fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
-            return strawberryStock
+            return strawberryStockLable
         case .mango:
-            return mangoStock
+            return mangoStockLable
         case .kiwi:
-            return kiwiStock
+            return kiwiStockLable
         case .pineapple:
-            return pineappleStock
+            return pineappleStockLable
         case .banana:
-            return bananaStock
+            return bananaStockLable
         }
     }
     

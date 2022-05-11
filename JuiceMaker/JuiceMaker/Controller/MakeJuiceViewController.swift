@@ -8,11 +8,11 @@ import UIKit
 
 final class MakeJuiceViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawberryStockLable: UILabel!
+    @IBOutlet weak var bananaStockLable: UILabel!
+    @IBOutlet weak var pineappleStockLable: UILabel!
+    @IBOutlet weak var kiwiStockLable: UILabel!
+    @IBOutlet weak var mangoStockLable: UILabel!
     
     @IBOutlet weak var strawBerryBananJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
@@ -45,11 +45,11 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     private func updateViews() {
-        strawberryStock.text = showFruitsStock(name: .strawberry)
-        bananaStock.text = showFruitsStock(name: .banana)
-        pineappleStock.text = showFruitsStock(name: .pineapple)
-        kiwiStock.text = showFruitsStock(name: .kiwi)
-        mangoStock.text = showFruitsStock(name: .mango)
+        strawberryStockLable.text = showFruitsStock(name: .strawberry)
+        bananaStockLable.text = showFruitsStock(name: .banana)
+        pineappleStockLable.text = showFruitsStock(name: .pineapple)
+        kiwiStockLable.text = showFruitsStock(name: .kiwi)
+        mangoStockLable.text = showFruitsStock(name: .mango)
     }
     
     private func showFruitsStock(name: Fruit) -> String {
@@ -59,15 +59,15 @@ final class MakeJuiceViewController: UIViewController {
     private func selectFruitLable(fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
-            return strawberryStock
+            return strawberryStockLable
         case .mango:
-            return mangoStock
+            return mangoStockLable
         case .kiwi:
-            return kiwiStock
+            return kiwiStockLable
         case .pineapple:
-            return pineappleStock
+            return pineappleStockLable
         case .banana:
-            return bananaStock
+            return bananaStockLable
         }
     }
     
