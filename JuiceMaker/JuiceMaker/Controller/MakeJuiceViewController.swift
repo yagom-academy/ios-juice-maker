@@ -53,7 +53,7 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     private func showFruitsStock(name: Fruit) -> String {
-        return FruitStore.shared.showFruitsStock(name: name)
+        return String(FruitStore.shared.showFruitsStock(name: name))
     }
     
     private func selectFruitLable(fruit: Fruit) -> UILabel {

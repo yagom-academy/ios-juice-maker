@@ -43,11 +43,15 @@ final class StockViewController: UIViewController {
        }
     
     private func setupViews() {
-        strawberryStockLable.text = FruitStore.shared.showFruitsStock(name: .strawberry)
-        bananaStockLable.text = FruitStore.shared.showFruitsStock(name: .banana)
-        pineappleStockLable.text = FruitStore.shared.showFruitsStock(name: .pineapple)
-        kiwiStockLable.text = FruitStore.shared.showFruitsStock(name: .kiwi)
-        mangoStockLable.text = FruitStore.shared.showFruitsStock(name: .mango)
+        strawberryStockLable.text = showFruitsStock(name: .strawberry)
+        bananaStockLable.text = showFruitsStock(name: .banana)
+        pineappleStockLable.text = showFruitsStock(name: .pineapple)
+        kiwiStockLable.text = showFruitsStock(name: .kiwi)
+        mangoStockLable.text = showFruitsStock(name: .mango)
+    }
+    
+    private func showFruitsStock(name: Fruit) -> String {
+        return String(FruitStore.shared.showFruitsStock(name: name))
     }
     
     private func findFruit(stepper: UIStepper) throws -> Fruit {
@@ -83,16 +87,11 @@ final class StockViewController: UIViewController {
     }
     
     private func setupStepper() {
-        strawberryStepper.value = Double(makeVaildStepperValue(fruit: .strawberry))
-        bananaStepper.value = Double(makeVaildStepperValue(fruit: .banana))
-        pineappleStepper.value = Double(makeVaildStepperValue(fruit: .pineapple))
-        kiwiStepper.value = Double(makeVaildStepperValue(fruit: .kiwi))
-        mangoStepper.value = Double(makeVaildStepperValue(fruit: .mango))
-    }
-    
-    private func makeVaildStepperValue(fruit: Fruit) -> Int {
-        guard let stepperValue = FruitStore.shared.fruits[fruit] else { return -1 }
-        return stepperValue
+        strawberryStepper.value = Double(FruitStore.shared.showFruitsStock(name: .strawberry))
+        bananaStepper.value = Double(FruitStore.shared.showFruitsStock(name: .banana))
+        pineappleStepper.value = Double(FruitStore.shared.showFruitsStock(name: .pineapple))
+        kiwiStepper.value = Double(FruitStore.shared.showFruitsStock(name: .kiwi))
+        mangoStepper.value = Double(FruitStore.shared.showFruitsStock(name: .mango))
     }
     
     private func selectFruitLable(fruit: Fruit) -> UILabel {
@@ -111,7 +110,7 @@ final class StockViewController: UIViewController {
     }
     
     private func changeStock(fruit: Fruit) {
-        FruitStore.shared.fruits[fruit] = Int(findFruitStepper(fruit: fruit).value)
-        selectFruitLable(fruit: fruit).text = FruitStore.shared.showFruitsStock(name: fruit)
+        FruitStore.shared.changeStock(fruit: fruit, newValue: Int(findFruitStepper(fruit: fruit).value))
+        selectFruitLable(fruit: fruit).text = showFruitsStock(name: fruit)
     }
 }

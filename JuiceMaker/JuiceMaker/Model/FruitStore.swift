@@ -31,8 +31,12 @@ final class FruitStore {
         }
     }
 
-    func showFruitsStock(name: Fruit) -> String {
-        guard let fruitsStock = fruits[name] else { return " " }
-        return String(fruitsStock)
+    func showFruitsStock(name: Fruit) -> Int {
+        guard let fruitsStock = fruits[name] else { return -1 }
+        return fruitsStock
+    }
+    
+    func changeStock(fruit: Fruit, newValue: Int) {
+        fruits[fruit] = newValue
     }
 }
