@@ -32,15 +32,15 @@ final class StockViewController: UIViewController {
     }
     
     @IBAction private func didTapStepper(_ sender: UIStepper) {
-           do {
-           let fruit = try findFruit(stepper: sender)
-           changeStock(fruit: fruit)
-           } catch FruitStoreError.wrongFruit {
-               print("없는 과일입니다")
-           } catch {
-               print("")
-           }
-       }
+        do {
+            let fruit = try findFruit(stepper: sender)
+            changeStock(fruit: fruit)
+        } catch FruitStoreError.wrongFruit {
+            print("없는 과일입니다")
+        } catch {
+            print("")
+        }
+    }
     
     private func setupViews() {
         strawberryStockLable.text = FruitStore.shared.showFruitsStock(name: .strawberry)
