@@ -7,6 +7,8 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
+    // MARK: - Properties
+    
     @IBOutlet private weak var strawberryInventoryLabel: UILabel!
     @IBOutlet private weak var bananaInventoryLabel: UILabel!
     @IBOutlet private weak var pineappleInventoryLabel: UILabel!
@@ -21,27 +23,23 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         updateFruitsInventoryLabels()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateFruitsInventoryLabels()
     }
-    
-    @IBAction private func tapJuiceOrderButton(_ sender: UIButton) {
-        let juiceMenuForEachButton = [strawberryBananaJuiceOrderButton: JuiceMaker.Menu.strawberryBananaJuice,
-                                             mangoKiwiJuiceOrderButton: JuiceMaker.Menu.mangoKiwiJuice,
-                                            strawberryJuiceOrderButton: JuiceMaker.Menu.strawberryJuice,
-                                                bananaJuiceOrderButton: JuiceMaker.Menu.bananaJuice,
-                                             pineappleJuiceOrderButton: JuiceMaker.Menu.pineappleJuice,
-                                                  kiwiJuiceOrderButton: JuiceMaker.Menu.kiwiJuice,
-                                                 mangoJuiceOrderButton: JuiceMaker.Menu.mangoJuice]
-        guard let juice = juiceMenuForEachButton[sender] else { return }
-        order(juice)
-    }
-    
+}
+
+
+// MARK: - UI
+
+extension JuiceOrderViewController {
     private func updateFruitsInventoryLabels() {
         let errorValue = 999
         strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? errorValue)
@@ -49,6 +47,55 @@ class JuiceOrderViewController: UIViewController {
         pineappleInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple] ?? errorValue)
         kiwiInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.kiwi] ?? errorValue)
         mangoInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.mango] ?? errorValue)
+    }
+    
+    private func showSuccessAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "고마워요 😘", style: .default)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func showFailureAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] (action) in
+            guard let storyboard = self?.storyboard?.instantiateViewController(identifier: "InventoryViewController") else {
+                return
+            }
+            
+            storyboard.modalPresentationStyle = .fullScreen
+            self?.present(storyboard, animated: true, completion: nil)
+        }
+        let noAction = UIAlertAction(title: "아니오", style: .default)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Action
+
+extension JuiceOrderViewController {
+    @IBAction private func tapJuiceOrderButton(_ sender: UIButton) {
+        let juiceMenuForEachButton = [
+            strawberryBananaJuiceOrderButton: JuiceMaker.Menu.strawberryBananaJuice,
+            mangoKiwiJuiceOrderButton: JuiceMaker.Menu.mangoKiwiJuice,
+            strawberryJuiceOrderButton: JuiceMaker.Menu.strawberryJuice,
+            bananaJuiceOrderButton: JuiceMaker.Menu.bananaJuice,
+            pineappleJuiceOrderButton: JuiceMaker.Menu.pineappleJuice,
+            kiwiJuiceOrderButton: JuiceMaker.Menu.kiwiJuice,
+            mangoJuiceOrderButton: JuiceMaker.Menu.mangoJuice
+        ]
+        
+        guard let juice = juiceMenuForEachButton[sender] else {
+            return
+        }
+        
+        order(juice)
     }
     
     private func order(_ juice: JuiceMaker.Menu) {
@@ -59,31 +106,5 @@ class JuiceOrderViewController: UIViewController {
         } catch {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
-    }
-    
-    private func showSuccessAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "고마워요 😘", style: .default)
-        
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func showFailureAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] (action) in
-            guard let storyboard = self?.storyboard?.instantiateViewController(identifier: "InventoryViewController") else {
-                return
-            }
-            storyboard.modalPresentationStyle = .fullScreen
-            self?.present(storyboard, animated: true, completion: nil)
-        }
-        
-        let noAction = UIAlertAction(title: "아니오", style: .default)
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        
-        present(alert, animated: true, completion: nil)
     }
 }

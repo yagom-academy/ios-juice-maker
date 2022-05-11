@@ -5,6 +5,8 @@
 //
 
 class FruitStore {
+    // MARK: - Enum
+    
     enum Fruit: CaseIterable {
         case strawberry
         case banana
@@ -13,6 +15,8 @@ class FruitStore {
         case mango
     }
     
+    // MARK: - Properties
+    
     typealias FruitsInventory = [Fruit: Int]
     private(set) var fruitsInventory: FruitsInventory = [:]
     
@@ -20,10 +24,15 @@ class FruitStore {
         Fruit.allCases.forEach { fruitsInventory[$0] = initialInventory }
     }
     
+    // MARK: - Action
+    
     func reduceInventory(of ingredient: FruitsInventory) throws {
         for fruit in ingredient.keys {
             let amountOfIngredient = ingredient[fruit] ?? 0
-            guard var inventory = fruitsInventory[fruit] else { throw AppError.invalidInputOfFruit }
+            
+            guard var inventory = fruitsInventory[fruit] else {
+                throw AppError.invalidInputOfFruit
+            }
             
             inventory -= amountOfIngredient
             fruitsInventory[fruit] = inventory
@@ -42,7 +51,9 @@ class FruitStore {
             let requiredIngredient = ingredient[fruit] ?? 0
             let fruitInventory = self.fruitsInventory[fruit] ?? 0
             
-            guard fruitInventory >= requiredIngredient else { return nil }
+            guard fruitInventory >= requiredIngredient else {
+                return nil
+            }
         }
         return ingredient
     }

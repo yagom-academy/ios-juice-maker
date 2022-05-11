@@ -8,6 +8,8 @@
 import UIKit
 
 class InventoryViewController: UIViewController {
+    // MARK: - Properties
+    
     @IBOutlet private weak var strawberryInventoryLabel: UILabel!
     @IBOutlet private weak var bananaInventoryLabel: UILabel!
     @IBOutlet private weak var pineappleInventoryLabel: UILabel!
@@ -20,12 +22,19 @@ class InventoryViewController: UIViewController {
     @IBOutlet private weak var kiwiInventoryStepper: UIStepper!
     @IBOutlet private weak var mangoInventoryStepper: UIStepper!
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setInitialInventoryLabels()
         giveStepperFruitsInventory()
     }
-    
+}
+
+// MARK: - Action
+
+extension InventoryViewController {
     @IBAction private func updateInventoryLabels(_ sender: UIStepper) {
         switch sender {
         case strawberryInventoryStepper:
@@ -38,12 +47,14 @@ class InventoryViewController: UIViewController {
             kiwiInventoryLabel.text = Int(sender.value).description
         case mangoInventoryStepper:
             mangoInventoryLabel.text = Int(sender.value).description
-        default: break
+        default:
+            break
         }
     }
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        
         JuiceMaker.shared.store.applyChangesToFruitsInventory(from: saveInventoryModifiedByStepper())
     }
     
