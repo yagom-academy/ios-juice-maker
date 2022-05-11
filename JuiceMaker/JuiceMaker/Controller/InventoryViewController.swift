@@ -81,7 +81,7 @@ extension InventoryViewController {
     }
     
     private func setInitialInventoryLabels() {
-        let errorValue = 999
+        let errorValue = -1
         strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? errorValue)
         bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana] ?? errorValue)
         pineappleInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple] ?? errorValue)

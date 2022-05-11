@@ -41,7 +41,7 @@ final class JuiceOrderViewController: UIViewController {
 
 extension JuiceOrderViewController {
     private func updateFruitsInventoryLabels() {
-        let errorValue = 999
+        let errorValue = -1
         strawberryInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.strawberry] ?? errorValue)
         bananaInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.banana] ?? errorValue)
         pineappleInventoryLabel.text = String(JuiceMaker.shared.store.fruitsInventory[.pineapple] ?? errorValue)
@@ -60,7 +60,7 @@ extension JuiceOrderViewController {
     
     private func showFailureAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] (action) in
+        let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
             guard let storyboard = self?.storyboard?.instantiateViewController(identifier: "InventoryViewController") else {
                 return
             }
