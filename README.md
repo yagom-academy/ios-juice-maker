@@ -1,6 +1,12 @@
 # ios-juice-maker
 iOS 쥬스 메이커 재고관리 시작 저장소
 
+# UML - Sequence Diagram
+![UML - Sequence Diagram](https://user-images.githubusercontent.com/59466342/167995461-0fefee67-9ae4-4b31-b900-67d664c6466e.png)
+
+# UML - Class Diagram 
+![UML - Class Diagram](https://user-images.githubusercontent.com/59466342/167995437-b21c0797-dfd2-4e18-a3d6-8db20c17306c.png)
+
 # [Step 1]
 ---
 # 공부한 내용
