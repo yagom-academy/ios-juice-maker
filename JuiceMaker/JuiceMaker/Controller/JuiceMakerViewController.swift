@@ -119,13 +119,16 @@ final class JuiceMakerViewController: UIViewController {
 
 extension JuiceMakerViewController {
     private func adjustButtonTitleAlignment(){
-        strawberryAndBananaJuiceButton.titleLabel?.textAlignment = .center
-        mangoAndKiwiJuiceButton.titleLabel?.textAlignment = .center
-        strawberryJuiceButton.titleLabel?.textAlignment = .center
-        bananaJuiceButton.titleLabel?.textAlignment = .center
-        pineappleJuiceButton.titleLabel?.textAlignment = .center
-        kiwiJuiceButton.titleLabel?.textAlignment = .center
-        mangoJuiceButton.titleLabel?.textAlignment = .center
+        let JuiceButtonArray = [
+            strawberryAndBananaJuiceButton,
+            mangoAndKiwiJuiceButton,
+            strawberryJuiceButton,
+            bananaJuiceButton,
+            pineappleJuiceButton,
+            kiwiJuiceButton,
+            mangoJuiceButton]
+        JuiceButtonArray.forEach { $0?.titleLabel?.textAlignment = .center
+        }
     }
 }
 
