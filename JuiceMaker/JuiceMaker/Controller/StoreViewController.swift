@@ -20,15 +20,12 @@ final class StoreViewController: UIViewController {
     @IBOutlet private weak var kiwiStepper: UIStepper?
     @IBOutlet private weak var mangoStepper: UIStepper?
     
-    private var fruits: FruitStock?
-    var delegate: ManangingOrderDelegate?
     var fruits: FruitStock = [:]
+    
+    var manager: StoreViewManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.fruits = self.delegate?.setUpStock()
-        self.updateStepperDefaultValue()
         self.updateStepperDefaultValue(with: fruits)
     }
     
@@ -40,27 +37,27 @@ final class StoreViewController: UIViewController {
 
 private extension StoreViewController {
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        self.delegate?.updateUI()
+        manager?.didCanceled(viewcontroller: self)
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func stepperButtonDidTapped(_ sender: UIStepper) {
-        switch sender {
-        case strawberryStepper:
-            strawberryLabel.text = strawberryStepper.descriptionValue()
-            self.delegate?.edit(fruit: .strawberry, with: strawberryStepper.convertInt())
-        case bananaStepper:
-            bananaLabel.text = bananaStepper.descriptionValue()
-            self.delegate?.edit(fruit: .banana, with: bananaStepper.convertInt())
-        case pineappleStepper:
-            pineappleLabel.text = pineappleStepper.descriptionValue()
-            self.delegate?.edit(fruit: .pineapple, with: pineappleStepper.convertInt())
-        case kiwiStepper:
-            kiwiLabel.text = kiwiStepper.descriptionValue()
-            self.delegate?.edit(fruit: .kiwi, with: kiwiStepper.convertInt())
-        case mangoStepper:
-            mangoLabel.text = mangoStepper.descriptionValue()
-            self.delegate?.edit(fruit: .mango, with: mangoStepper.convertInt())
+    @IBAction func stepperButtonDidTapped(_ stepper: UIStepper) {
+        switch stepper {
+        case (let strawberry) where strawberry == strawberryStepper:
+            self.strawberryLabel?.text = strawberry.descriptionValue()
+            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .strawberry, with: strawberry.intValue())
+        case (let banana) where banana == bananaStepper:
+            self.bananaLabel?.text = self.bananaStepper?.descriptionValue()
+            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .banana, with: banana.intValue())
+        case (let pineapple) where pineapple == pineappleStepper:
+            self.pineappleLabel?.text = pineapple.descriptionValue()
+            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .pineapple, with: pineapple.intValue())
+        case (let kiwi) where kiwi == kiwiStepper:
+            self.kiwiLabel?.text = kiwi.descriptionValue()
+            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .kiwi, with: kiwi.intValue())
+        case (let mango) where mango == mangoStepper:
+            self.mangoLabel?.text = mango.descriptionValue()
+            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .mango, with: mango.intValue())
         default:
             return
         }

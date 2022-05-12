@@ -31,6 +31,6 @@ extension JuiceMaker {
     }
     
     func stockUp() -> FruitStock {
-        return fruitStore.listUp()
+        return fruitStore.stockUp()
     }
 }

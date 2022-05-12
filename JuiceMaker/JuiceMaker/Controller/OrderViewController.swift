@@ -14,10 +14,12 @@ final class OrderViewController: UIViewController {
     @IBOutlet private weak var mangoLabel: UILabel?
     
     private let juiceMaker = JuiceMaker()
+    private var storeViewManager = StoreViewManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updateUI()
+        storeViewManager.delegate = self
     }
 }
 
@@ -32,15 +34,13 @@ extension OrderViewController {
     }
 }
 
-extension OrderViewController: ManangingOrderDelegate {
-    func setUpStock() -> FruitStock {
-        return juiceMaker.stockUp()
-    }
-    
-    func edit(fruit: Fruit, with amount: Int) {
+extension OrderViewController: StoreViewDelegate {
+    func stepperValueDidChanged(_ viewController: StoreViewController, fruit: FruitType, with amount: Int) {
         juiceMaker.editStock(of: fruit, with: amount)
     }
     
+    func didCanceledStoreViewController(_ viewController: StoreViewController) {
+        self.updateUI()
     }
 }
 
@@ -66,7 +66,8 @@ private extension OrderViewController {
     func presentStoreView() {
         let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
         storeViewController.modalTransitionStyle = .coverVertical
-        storeViewController.delegate = self
+        storeViewController.fruits = juiceMaker.stockUp()
+        storeViewController.manager = storeViewManager
         self.present(storeViewController, animated: true)
     }
     
