@@ -22,7 +22,7 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
         if let juice = Juice(rawValue: sender.tag) {
-            make(juice: juice)
+            make(to: juice)
         }
     }
     
@@ -41,10 +41,10 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func make(juice: Juice) {
+    private func make(to juice: Juice) {
         do {
             try juiceMaker.makeJuice(of: juice)
-            alertSuccessMakeJuice(juice: juice)
+            alertSuccessMakeJuice(to: juice)
             updateStock()
         } catch {
             guard let error = error as? StockError else {
@@ -72,7 +72,7 @@ class JuiceMakerViewController: UIViewController {
         self.present(unknownErrorAlert, animated: false)
     }
     
-    private func alertSuccessMakeJuice(juice: Juice) {
+    private func alertSuccessMakeJuice(to juice: Juice) {
         let successAlert = UIAlertController(title: "성공!",
                                              message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
                                              preferredStyle: .alert)

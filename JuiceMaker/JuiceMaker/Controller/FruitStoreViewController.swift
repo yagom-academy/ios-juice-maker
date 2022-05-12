@@ -8,7 +8,7 @@
 import UIKit
 
 class FruitStoreViewController: UIViewController {
-    let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore.shared
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -27,7 +27,7 @@ class FruitStoreViewController: UIViewController {
         setStockAndStepper()
     }
     
-    @IBAction func changeStepperValue(_ sender: UIStepper) {
+    @IBAction private func changeStepperValue(_ sender: UIStepper) {
         if let fruit = Fruit(rawValue: sender.tag) {
             switch fruit {
             case .strawberry:
@@ -53,13 +53,11 @@ class FruitStoreViewController: UIViewController {
         }
     }
     
-    
-    
-    @IBAction func backButton(_ sender: UIBarButtonItem) {
+    @IBAction private func backButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
-    func setStockAndStepper() {
+    private func setStockAndStepper() {
         if let strawberry = fruitStore.stocks[.strawberry],
            let banana = fruitStore.stocks[.banana],
            let kiwi = fruitStore.stocks[.kiwi],
