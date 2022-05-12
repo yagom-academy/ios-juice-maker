@@ -99,31 +99,18 @@
 ```swift
 
 func notification(name: Notification.Name) {
-
-        NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) 
-
-        { 
-
-            Notification in self.updateInventory()
-
-        }
-
-        NotificationCenter.default.post(name: name, object: nil)
-
+    NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) 
+    { 
+        Notification in self.updateInventory()
+    }
+    NotificationCenter.default.post(name: name, object: nil)
 }
 
-  
-
 // order에서 notifiation() 호출
-
 func order(juice: JuiceMaker.Menu) {
-
-        // ... 위에 코드 생략
-
-        notification(name: Notification.Name("재고 변화"))
-
-    }
-
+    // ... 위에 코드 생략
+    notification(name: Notification.Name("재고 변화"))
+}
 ```
 
 `addObserver`와 `post`를 같은 메서드 안에서 호출한 건 이벤트가 일어나는 곳과 처리하는 곳이 동일하다고 생각했기 때문입니다. 현재 상태에서는 `order 메서드`의 `notification()` 호출 하는 자리에 `updateInventory()` 를 넣어도 동일하게 작동합니다.
@@ -158,8 +145,8 @@ func order(juice: JuiceMaker.Menu) {
 
 
 ### 4) Label에 배경을 적용하는 법
-![[Pasted image 20220512154952.png]]
- 
+<img width="694" alt="스크린샷 2022-05-12 16 21 51" src="https://user-images.githubusercontent.com/96630194/168014639-44694467-b803-463b-8691-d184e62a5f73.png">
+
 - 위 이미지와 같이 화면의 타이틀에 회색 바탕을 적용하고 싶었습니다. Label에 '재고 수정'이라고 적어 Title 역할을 하게 만들고, '닫기'는 버튼으로 만든 후, 오브젝트 라이브러리에서 View를 선택해 회색 사각형을 만들어 윗부분에 놓았습니다.
 - 하지만 회색 사각형의 View가 재고 수정 레이블과 닫기 버튼을 모두 가려, 빌드했을 때 레이블과 버튼이 보이지 않았습니다. 혹시 파워포인트처럼 '맨 앞으로 보내기', '맨 뒤로 보내기'와 같은 기능이 있을지 찾아보았는데 발견하지 못했습니다.
 
