@@ -1,5 +1,5 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - JuiceMakerViewController.swift
 //  Created by bradheo65, bonf, ZZBAE
 //  Copyright © yagom academy. All rights reserved.
 // 
@@ -9,58 +9,56 @@ import UIKit
 class JuiceMakerViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     
-    @IBOutlet weak private var strawberryLabel: UILabel!
-    @IBOutlet weak private var bananaLabel: UILabel!
-    @IBOutlet weak private var kiwiLabel: UILabel!
-    @IBOutlet weak private var mangoLabel: UILabel!
-    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet private var fruitLabels: [UILabel]!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        updateStock()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setStock()
     }
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
-        guard let juice = Juice(rawValue: sender.tag) else {
-            return
+        if let juice = Juice(rawValue: sender.tag) {
+            make(to: juice)
         }
-        make(juice: juice)
     }
     
-    private func updateStock() {
-        guard let strawberry = juiceMaker.fruitStore.stocks[.strawberry],
-              let banana = juiceMaker.fruitStore.stocks[.banana],
-              let kiwi = juiceMaker.fruitStore.stocks[.kiwi],
-              let mango = juiceMaker.fruitStore.stocks[.mango],
-              let pineapple = juiceMaker.fruitStore.stocks[.pineapple]
-        else {
-            return
-        }
-        strawberryLabel.text = "\(strawberry)"
-        bananaLabel.text = "\(banana)"
-        kiwiLabel.text = "\(kiwi)"
-        mangoLabel.text = "\(mango)"
-        pineappleLabel.text = "\(pineapple)"
+    private func updateStock(fruit: Fruit, stock: Int) {
+        fruitLabels[fruit.rawValue].text = "\(stock)"
     }
     
-    private func make(juice: Juice) {
+    private func setStock() {
+        for fruitIndex in 0..<fruitLabels.count {
+            guard let fruit = Fruit(rawValue: fruitIndex),
+                  let fruitStock = juiceMaker.fruitStore.stocks[fruit] else {
+                return
+            }
+            fruitLabels[fruitIndex].text = fruitStock.description
+        }
+    }
+    
+    private func make(to juice: Juice) {
         do {
             try juiceMaker.makeJuice(of: juice)
-            alertSuccessMakeJuice(juice: juice)
-            updateStock()
+            alertSuccessMakeJuice(to: juice)
+            juice.recipe.keys.forEach { fruit in
+                if let fruitStock = juiceMaker.fruitStore.stocks[fruit] {
+                    updateStock(fruit: fruit, stock: fruitStock)
+                }
+            }
         } catch {
-          guard let error = error as? StockError else {
-            return
-          }
-          switch error {
-          case .outOfStock:
-            alertFailMakeJuice()
-            juiceMaker.fruitStore.insufficientStock.removeAll()
-          case .unknown:
-            alertUnknownError()
-          }
+            guard let error = error as? StockError else {
+                return
+            }
+            switch error {
+            case .outOfStock:
+                alertFailMakeJuice()
+                juiceMaker.fruitStore.insufficientStock.removeAll()
+            case .unknown:
+                alertUnknownError()
+            }
         }
     }
+    
     private func alertUnknownError() {
         let unknownErrorAlert = UIAlertController(title: "unknownError",
                                                   message: "알 수 없는 에러가 발생하였습니다.",
@@ -69,17 +67,19 @@ class JuiceMakerViewController: UIViewController {
         unknownErrorAlert.addAction(UIAlertAction(title: "확인",
                                                   style: .default,
                                                   handler: nil))
+        
         self.present(unknownErrorAlert, animated: false)
     }
     
-    private func alertSuccessMakeJuice(juice: Juice) {
+    private func alertSuccessMakeJuice(to juice: Juice) {
         let successAlert = UIAlertController(title: "성공!",
-                                                  message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
-                                                  preferredStyle: .alert)
+                                             message: "\(juice.name)쥬스 나왔습니다! 맛있게 드세요!",
+                                             preferredStyle: .alert)
         
         successAlert.addAction(UIAlertAction(title: "확인",
-                                                  style: .default,
-                                                  handler: nil))
+                                             style: .default,
+                                             handler: nil))
+        
         self.present(successAlert, animated: false)
     }
     
