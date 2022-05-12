@@ -29,7 +29,7 @@ class JuiceOrderViewController: UIViewController {
 
     private func updateFruitStockLabelText() {
         for fruits in 0..<fruitsLabel.count {
-            fruitsLabel[fruits].text = String(Int(juiceMaker.fruitStore.fruitWarehouse[Fruit(rawValue: fruits) ?? Fruit.unknownFruit] ?? 0))
+            fruitsLabel[fruits].text = String(Int(FruitStore.fruitWarehouse[Fruit(rawValue: fruits) ?? Fruit.unknownFruit] ?? 0))
         }
     }
     

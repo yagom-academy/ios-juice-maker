@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private(set) var fruitWarehouse: Dictionary<Fruit, Int> = [
+    static var fruitWarehouse: Dictionary<Fruit, Int> = [
         Fruit.strawberry: InitialFruitStock.stock,
         Fruit.banana: InitialFruitStock.stock,
         Fruit.pineapple: InitialFruitStock.stock,
@@ -21,21 +21,21 @@ class FruitStore {
     
     func changeStock(fruit: Fruit, amount: Int) throws {
         try checkInvalidAmount(amount)
-        fruitWarehouse[fruit] = amount
+        FruitStore.fruitWarehouse[fruit] = amount
     }
     
     private func addStock(fruit: Fruit, amount: Int) throws {
-        guard let fruitStock = fruitWarehouse[fruit] else {
+        guard let fruitStock = FruitStore.fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
         try checkInvalidAmount(amount)
         let changedStock = fruitStock + amount
         
-        fruitWarehouse[fruit] = changedStock
+        FruitStore.fruitWarehouse[fruit] = changedStock
     }
     
     func reduceStock(fruit: Fruit, amount: Int) throws {
-        guard let fruitStock = fruitWarehouse[fruit] else {
+        guard let fruitStock = FruitStore.fruitWarehouse[fruit] else {
             throw FruitStoreError.missingProduct
         }
         try checkInvalidAmount(amount)
@@ -44,11 +44,11 @@ class FruitStore {
         }
         let changedStock = fruitStock - amount
         
-        fruitWarehouse[fruit] = changedStock
+        FruitStore.fruitWarehouse[fruit] = changedStock
     }
     
     func checkFruitKind(_ fruit: Fruit) throws {
-        guard fruitWarehouse.keys.contains(fruit) else {
+        guard FruitStore.fruitWarehouse.keys.contains(fruit) else {
             throw FruitStoreError.missingProduct
         }
     }

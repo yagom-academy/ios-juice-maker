@@ -19,8 +19,8 @@ class FruitStockViewController: UIViewController {
     }
     
     private func updateStepperValue() {
-        for fruits in 0..<fruitStore.fruitWarehouse.count {
-            fruitsStepper[fruits].value = Double(fruitStore.fruitWarehouse[Fruit(rawValue: fruits) ?? Fruit.unknownFruit] ?? 0)
+        for fruits in 0..<FruitStore.fruitWarehouse.count {
+            fruitsStepper[fruits].value = Double(FruitStore.fruitWarehouse[Fruit(rawValue: fruits) ?? Fruit.unknownFruit] ?? 0)
         }
     }
     
