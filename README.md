@@ -1,6 +1,5 @@
-# ios-juice-maker
-iOS 쥬스 메이커 재고관리 시작 저장소
-프로젝트 기간 2022.04.25 ~ 2022.05.13 </br>
+# 쥬스메이커
+> 프로젝트 기간 2022.04.25 ~ 2022.05.13 </br>
 팀원: bonf, bradheo65, ZZBAE</br>
 리뷰어: GREEN
 
@@ -12,46 +11,39 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 
 ---
 ## 주차 별 학습
-
-Step 01
-> 04.25 (월) - 순서도, UML, GroundRolue 작성</br>
-> 04.26 (화) - 열거형 CaseIterable 프로토콜 사용, 에러 처리 사용</br>
-> 04.27 (수) - Step1 PR 작성</br>
-> 04.28 (목) - reNaming, 리뷰 토대로 수정</br>
----
+[STEP-01](#Step-01)
+[STEP-02](#Step-02)
+[STEP-03](#Step-03)
 
 ## PR
 > Step01: https://github.com/yagom-academy/ios-juice-maker/pull/223
+> Step02: https://github.com/yagom-academy/ios-juice-maker/pull/234
+> Step03: https://github.com/yagom-academy/ios-juice-maker/pull/242
+---
+
+## Step 01
+> 04.25 (월) - 순서도, UML, GroundRolue 작성
+> 04.26 (화) - 열거형 CaseIterable 프로토콜 사용, 에러 처리 사용
+> 04.27 (수) - Step1 PR 작성
+> 04.28 (목) - reNaming, 리뷰 토대로 수정
 
 ---
-## 키워드
+#### 키워드
 > #CaseIterable #defaultError #try-catch
 
 ---
-## 순서도
+#### 순서도
 ![unknown](https://user-images.githubusercontent.com/98302604/165425608-3a918bc5-32e5-4f12-b551-302fe8529ff9.png)
 
 
 ---
-## UML
+#### UML
 ![](https://i.imgur.com/EQEdVL3.png)
 
 
 ---
-
-## [STEP 1]
-
-### 이번 스텝 수행 중 핵심 경험 체크
-- [x] Swift API Design Guide에 따른 이름짓기
-- [x] 소스코드에 불필요한 코드 및 코멘트 남기지 않기
-- [x] 메서드의 기능단위 분리
-- [x] 요구사항에 따른 타입의 정의
-- [x] 타입의 캡슐화/은닉화
-- [x] 상황에 알맞은 상수/변수의 올바른 선택
-
----
  
-### 구현 내용
+#### 구현 내용
 > 각 과일별 재고 초기값 수량 선정, 쥬스 선택 시 과일별 재고에서 해당 쥬스를 만드는데 필요한 재료와 수량만큼 소모되는 기능, 과일 재고가 부족할 시 에러 처리를 해주는 기능.
 
 ---
@@ -173,14 +165,14 @@ enum StockError: Error {
 
 ---
 
-### 고민한 점/해결한 점
+#### 고민한 점/해결한 점
 
-> **1) 열거형 프로토콜**
->
+1) 열거형 프로토콜
+
 >- **고민한점**: 과일 재고의 초기값을 설정하기 위해 처음에 딕셔너리 형태로 하드코딩을 진행보았지만 다시 생각해보니 이미 열거형을 사용해서 초기값을 넣어준다면 유지보수하기도 편하기 때문에 어떻게 구현을 하면 될지 고민해보았습니다.
 >
 >- **해결한점**: Fruits라는 열거형에 CaseIterable이라는 프로토콜을 설정해주어서 딕셔너리 형태로 사용할 수 있도록 설정해 주었습니다.
-```swift
+```swift=
 enum Fruits: CaseIterable {
     case strawberry
     case banana
@@ -189,24 +181,24 @@ enum Fruits: CaseIterable {
     case mango
 }
 ```
-> **2) for문과 forEach의 사용성**
+2) for문과 forEach의 사용성
 >
 >- **고민한점**: for문과 forEach 중 어떤 것을 사용해서 각 과일 별로 초기 값을 넣어줄지 고민했습니다.
 >
 >- **해결한점**: 서로의 차이점은 for문인 경우 지정된 요소 수 만큼 반복되고 forEach인 경우 저장된 요소 수 만큼 반복되어 전체에 하나씩 넣어 줄 수 있어 forEach를 사용해서 작성해 보았습니다.
-```swift
+```swift=
     private var stocks: [Fruits: Int] = [:]
     private let stock = 10
     init() {
         Fruits.allCases.forEach { stocks[$0] = stock }
     }
 ```
-> **3) try-catch 디폴트 오류**
+3) do-catch 디폴트 오류
 > 
->- **고민한점**: try-catch 문을 이용하여 오류 처리를 하는 과정에서 "call can throw, but it is not marked with 'try' and the error is not handled" 문구의 오류가 발생하였습니다.
+>- **고민한점**: do-catch 문을 이용하여 오류 처리를 하는 과정에서 "call can throw, but it is not marked with 'try' and the error is not handled" 문구의 오류가 발생하였습니다.
 >
->- **해결한점**: try-catch 오류의 디폴트값을 설정해서 해결할 수 있었습니다.
-```swift
+>- **해결한점**: do-catch 오류의 디폴트값을 설정해서 해결할 수 있었습니다.
+```swift=
     do {
         try fruitStore.chooseRecipe(order: juice)
     } catch StockError.outOfError {
@@ -216,7 +208,8 @@ enum Fruits: CaseIterable {
     }
 ```
 
-### Step 02
+---
+## Step 02
 
 > 04.29 (금) - 버튼 이벤트 함수 구상, FruitStore에 선언해 둔 함수 JuiceMaker로 옮기는 작업
 > 05.02 (월) - Step1 복습 및 Step2에 필요한 내용 공부
@@ -288,10 +281,87 @@ eventFail.addAction(UIAlertAction(title: "예",
         }
     }
 ```
+---
+## Step 03
+> 05.09 (월) - 싱글톤 사용으로 각 ViewController으로 데이터 전달
+> 05.10 (화) - AutoLayout 설정, Step03 PR작성
+> 05.11 (수) - 휴무
+> 05.12 (목) - PR리뷰 확인 후 수정 및 IBOutCollection 사용
+---
 
+#### 이번 스텝 수행 중 핵심 경험 체크
+- [x] 내비게이션 바 및 바 버튼 아이템의 활용
+- [x] Stepper 활용
+- [x] Modality의 활용
+- [x] 화면 사이의 데이터 공유
+- [x] 오토레이아웃 시작하기
+
+---
+#### 구현해야하는 기능
+
+![](https://i.imgur.com/pTRDA22.png)
+
+- 화면 제목 ‘재고 추가’ 및 ‘닫기’ 버튼 구현
+- 닫기를 터치하면 이전화면으로 복귀
+- 화면 진입시 과일의 현재 재고 수량 표시
+- -, + 를 통한 재고 수정
+- iPhone 12 외에 다른 시뮬레이터에서도 UI가 정상적으로 보일 수 있도록 오토레이아웃 적용
+- 오토레이아웃 정복하기 참고(야곰닷넷 로그인 후 사용/유료로 보이면 야곰에게 DM주세요)
+
+    
+#### 구현내용
+
+1. 싱글톤 패턴 이용하여 데이터 전달
+2. Stepper 값 변경
+3. @IBOutlet Collection 이용하여 표현하기
+4. autoLayout 설정
+5. 은닉화, 캡슐화
+
+---
+#### UML (5/12 활동학습 내용추가)
+
+**1. Sequence Diagram**
+<img width="914" alt="스크린샷 2022-05-12 오전 10 34 40" src="https://user-images.githubusercontent.com/98302604/167982091-ae9c6161-14bd-4497-bfd7-52755fb5772a.png">
+
+**2. Class Diagram**
+<img width="864" alt="스크린샷 2022-05-12 오전 11 45 34" src="https://user-images.githubusercontent.com/98302604/167982055-c6bf9b77-04c6-47ee-8133-f89c6ea58b17.png">
 
 ---
 
+#### 고민한 점/해결한 점
+
+
+1. 첫 Stepper 기능 구현 시 value에 값을 연결하고 동작해 본 결과 계속 기존 stock에 있던 값을 불러와서 계산을 했었는데, viewdidLoad에서 초기값을 선언해주어서 해결해주었습니다.
+
+2. Stepper 기능 실행 할 때, + 를 누르면 과일재고 초기값인 10에서 더해주는게 아니라 0으로 되돌아가서 하나씩 추가가 되는 문제가 있었습니다. 그래서 Label에 초기값을 설정해준 것 처럼 Stepper에도 value값을 넣어주어 stepper 작동 시 기존값에서 수량이 늘어나고 줄어들 수 있게끔 해주었습니다.
+```swift
+func setStockAndStepper() {
+        if let strawberry = fruitStore.stocks[.strawberry],
+           let banana = fruitStore.stocks[.banana],
+           let kiwi = fruitStore.stocks[.kiwi],
+           let mango = fruitStore.stocks[.mango],
+           let pineapple = fruitStore.stocks[.pineapple] {
+            
+            strawberryLabel.text = "\(strawberry)"
+            bananaLabel.text = "\(banana)"
+            pineappleLabel.text = "\(pineapple)"
+            kiwiLabel.text = "\(kiwi)"
+            mangoLabel.text = "\(mango)"
+            
+            strawberryStepper.value = Double(strawberry)
+            bananaStepper.value = Double(banana)
+            pineappleStepper.value = Double(pineapple)
+            kiwiStepper.value = Double(kiwi)
+            mangoStepper.value = Double(mango)
+        }
+```
+
+3. show의 경우 네비게이션이 없을 경우 모달로 표현되는 것을 알게 되었습니다. 근데 present의 경우 Presentation을 automatic으로 할 경우 값이 넘어가지 않고 FullScreen을 해야지만 값이 넘어가게 됩니다. FullScreen을 해야만 JuiceMakerViewController가 DisAppear 되는 것을 확인하여 해결하였습니다.
+
+---
+## 그라운드 룰 
+
+```
 ## 그라운드 룰 
 
 ### 👨‍👦‍👦 협업 방식
@@ -304,8 +374,8 @@ git commit 시 Karma Style 준수
 ### 📱 연락이 어려운 시간
 업무시간: 10:00 ~ 19:00
 bonf : 12:00 ~ 13:30, 18:00 ~ 19:30
-Brad : 12:00 ~ 13:30, 18:00 ~ 19:30 연락 어려운 요일: (금)
-ZZBAE: 12:00 ~ 13:30, 18:00 ~ 19:30 연락 어려운 요일: (수)
+Brad : 12:00 ~ 13:30, 18:00 ~ 19:30 
+ZZBAE: 12:00 ~ 13:30, 18:00 ~ 19:30 
 
 급한일이 있을 경우 디엠 보낸다.
 
