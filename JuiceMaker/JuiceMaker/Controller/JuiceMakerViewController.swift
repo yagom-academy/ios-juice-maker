@@ -59,7 +59,6 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-//MARK: - Business Method
     private func respondOrder(of fruitjuice: FruitJuice) {
         do {
             let orderResult = try juiceMaker.takeOrder(fruitjuice)
@@ -74,7 +73,6 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-//MARK: - Alert Method
     private func alertSuccess(of fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil, message: "\(fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
@@ -100,7 +98,6 @@ final class JuiceMakerViewController: UIViewController {
         present(alert, animated: true)
     }
     
-//MARK: - Modality Method
     private func presentModalViewController(withId: String) {
 //        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) as? FruitStoreViewController else {
 //            return
@@ -113,7 +110,6 @@ final class JuiceMakerViewController: UIViewController {
         self.present(modalViewController, animated: true)
     }
     
-//MARK: - Label Method
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         stock?.forEach {
             modifyFruitStockLabel($0.key.rawValue, $0.value)
@@ -128,9 +124,8 @@ final class JuiceMakerViewController: UIViewController {
     }
 }
 
-//MARK: - UIComponent Modify
 extension JuiceMakerViewController {
-    private func adjustButtonTitleAlignment() {
+    private func adjustButtonTitleAlignment(){
         let JuiceButtonArray = [
             strawberryAndBananaJuiceButton,
             mangoAndKiwiJuiceButton,
@@ -145,7 +140,6 @@ extension JuiceMakerViewController {
     }
 }
 
-//MARK: - Notification
 extension JuiceMakerViewController {
     private func addObserverFruitsStockDidChanged() {
         NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
