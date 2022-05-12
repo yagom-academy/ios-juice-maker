@@ -11,17 +11,17 @@ final class FruitStoreViewController: UIViewController {
     private var fruitsStock: [Fruit: Int] = [:]
     private let stepperDefaultValue: Int = 0
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,7 @@ final class FruitStoreViewController: UIViewController {
         updateFruitsStockLabels(fruitsStock)
     }
     
+//MARK: - Label Method
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         stock?.forEach {
             modifyFruitStockLabel($0.key.rawValue, $0.value)
@@ -63,7 +64,8 @@ final class FruitStoreViewController: UIViewController {
             $0.text = String(stock)
         }
     }
-    
+
+//MARK: - Stepper Method
     private func updateStepperValue() {
         let fruitsSteppers: [Fruit: UIStepper] = [
             .strawberry: strawberryStepper,
@@ -78,6 +80,7 @@ final class FruitStoreViewController: UIViewController {
     }
 }
 
+//MARK: - Notification
 extension FruitStoreViewController {
     private func addObserverFruitsStockDelivered() {
         NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDelivered, object: nil, queue: nil) { Notification in
