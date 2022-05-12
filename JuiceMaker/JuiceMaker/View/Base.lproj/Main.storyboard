@@ -363,7 +363,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="116.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="changeStepperValue:" destination="Yu1-lM-nqp" eventType="valueChanged" id="pVg-Tg-Vgc"/>
@@ -393,7 +393,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="116.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="changeStepperValue:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Xyl-vn-Xc7"/>
@@ -423,7 +423,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="116.66666666666669" width="94" height="32"/>
                                                 <connections>
                                                     <action selector="changeStepperValue:" destination="Yu1-lM-nqp" eventType="valueChanged" id="vhd-fA-NVh"/>
@@ -455,16 +455,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="9X5-79-VHB"/>
-                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="PZE-cm-eQD"/>
-                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="Xyg-o3-H3w"/>
-                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="yVo-Ht-4vZ"/>
-                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="W3L-n9-AxR"/>
-                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="20L-vg-CL2"/>
-                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="m8w-Xi-MfY"/>
-                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="E6o-Ga-CdP"/>
-                        <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="95A-xI-Cyr"/>
-                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="iHh-c9-9fc"/>
+                        <outletCollection property="fruitLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="Pz3-xJ-vld"/>
+                        <outletCollection property="fruitLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="xxa-Rb-g6Z"/>
+                        <outletCollection property="fruitLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="a85-ts-VTi"/>
+                        <outletCollection property="fruitLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="E5U-JM-jDk"/>
+                        <outletCollection property="fruitLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="D8f-3V-pqE"/>
+                        <outletCollection property="fruitSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="69W-Yf-js4"/>
+                        <outletCollection property="fruitSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="xJc-uI-Vt7"/>
+                        <outletCollection property="fruitSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="lAv-zg-WKn"/>
+                        <outletCollection property="fruitSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="PlJ-0n-9dv"/>
+                        <outletCollection property="fruitSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="Fg4-43-vXB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

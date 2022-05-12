@@ -13,7 +13,7 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateStock()
+        setStock()
     }
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
@@ -22,11 +22,11 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func setStock(fruit: Fruit, stock: Int) {
+    private func updateStock(fruit: Fruit, stock: Int) {
         fruitLabels[fruit.rawValue].text = "\(stock)"
     }
     
-    private func updateStock() {
+    private func setStock() {
         for fruitIndex in 0..<fruitLabels.count {
             guard let fruit = Fruit(rawValue: fruitIndex),
                   let fruitStock = juiceMaker.fruitStore.stocks[fruit] else {
@@ -42,10 +42,9 @@ class JuiceMakerViewController: UIViewController {
             alertSuccessMakeJuice(to: juice)
             juice.recipe.keys.forEach { fruit in
                 if let fruitStock = juiceMaker.fruitStore.stocks[fruit] {
-                    setStock(fruit: fruit, stock: fruitStock)
+                    updateStock(fruit: fruit, stock: fruitStock)
                 }
             }
-            
         } catch {
             guard let error = error as? StockError else {
                 return
