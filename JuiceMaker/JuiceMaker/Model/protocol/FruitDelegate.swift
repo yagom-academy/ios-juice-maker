@@ -1,3 +1,3 @@
 protocol FruitsStockDelegate {
-    func updateFruitsStock(_ fruitStocks: [Fruit: Int]?)
+    func updateFruitsStock(_ fruitStocks: [Fruit: Int])
 }

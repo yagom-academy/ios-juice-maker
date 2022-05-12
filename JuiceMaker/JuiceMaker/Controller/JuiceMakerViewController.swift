@@ -32,9 +32,7 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        delegate?.updateFruitsStock(juiceMaker.requestCurrentStock())
-        print("쥬스메이커 윌디스어피어 완료")
-        //postFruitsStockDelivered(juiceMaker.requestCurrentStock())
+        postFruitsStockDelivered(juiceMaker.requestCurrentStock())
     }
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
@@ -57,7 +55,7 @@ final class JuiceMakerViewController: UIViewController {
             break
         }
     }
-    
+//MARK: - Buisness Logic(Making Juice)
     private func respondOrder(of fruitjuice: FruitJuice) {
         do {
             let orderResult = try juiceMaker.takeOrder(fruitjuice)
@@ -71,7 +69,7 @@ final class JuiceMakerViewController: UIViewController {
             alertInvalidAccess()
         }
     }
-    
+//MARK: - Alert View
     private func alertSuccess(of fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil, message: "\(fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
@@ -96,19 +94,15 @@ final class JuiceMakerViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
+//MARK: - View Exchange
     private func presentModalViewController(withId: String) {
-//        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) as? FruitStoreViewController else {
-//            return
-//        }
         guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
             return
         }
         modalViewController.modalPresentationStyle = .fullScreen
-        //modalViewController.previousViewController = self
         self.present(modalViewController, animated: true)
     }
-    
+//MARK: - UI Components data setting
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         stock?.forEach {
             modifyFruitStockLabel($0.key.rawValue, $0.value)
@@ -122,7 +116,7 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
 }
-
+//MARK: - UI Components Layout
 extension JuiceMakerViewController {
     private func adjustButtonTitleAlignment(){
         let JuiceButtonArray = [
@@ -138,7 +132,7 @@ extension JuiceMakerViewController {
         }
     }
 }
-
+//MARK: - Notification Center
 extension JuiceMakerViewController {
     private func addObserverFruitsStockDidChanged() {
         NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
