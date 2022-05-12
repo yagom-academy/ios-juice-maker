@@ -243,11 +243,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="M6b-6n-2su"/>
-                        <outlet property="kiwiLabel" destination="FZq-de-TJG" id="OVn-py-APB"/>
-                        <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="8ff-qD-rze"/>
-                        <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="n8P-DZ-yhQ"/>
-                        <outlet property="strawberryLabel" destination="Qas-vP-td6" id="e6Z-ii-H4T"/>
+                        <outletCollection property="fruitLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="JEN-qK-NTn"/>
+                        <outletCollection property="fruitLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="2Sw-oy-cqA"/>
+                        <outletCollection property="fruitLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="L66-sZ-gv5"/>
+                        <outletCollection property="fruitLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="B3M-9a-yQv"/>
+                        <outletCollection property="fruitLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="YFt-CC-XlZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

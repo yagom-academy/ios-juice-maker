@@ -9,11 +9,7 @@ import UIKit
 class JuiceMakerViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     
-    @IBOutlet weak private var strawberryLabel: UILabel!
-    @IBOutlet weak private var bananaLabel: UILabel!
-    @IBOutlet weak private var kiwiLabel: UILabel!
-    @IBOutlet weak private var mangoLabel: UILabel!
-    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet private var fruitLabels: [UILabel]!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -27,17 +23,12 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func updateStock() {
-        if let strawberry = juiceMaker.fruitStore.stocks[.strawberry],
-           let banana = juiceMaker.fruitStore.stocks[.banana],
-           let kiwi = juiceMaker.fruitStore.stocks[.kiwi],
-           let mango = juiceMaker.fruitStore.stocks[.mango],
-           let pineapple = juiceMaker.fruitStore.stocks[.pineapple] {
-            
-            strawberryLabel.text = "\(strawberry)"
-            bananaLabel.text = "\(banana)"
-            kiwiLabel.text = "\(kiwi)"
-            mangoLabel.text = "\(mango)"
-            pineappleLabel.text = "\(pineapple)"
+        for fruitIndex in 0..<fruitLabels.count {
+            guard let fruit = Fruit(rawValue: fruitIndex),
+                  let fruitStock = juiceMaker.fruitStore.stocks[fruit] else {
+                return
+            }
+            fruitLabels[fruitIndex].text = fruitStock.description
         }
     }
     
