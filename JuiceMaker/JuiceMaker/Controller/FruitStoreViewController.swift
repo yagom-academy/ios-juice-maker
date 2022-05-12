@@ -10,6 +10,7 @@ import UIKit
 final class FruitStoreViewController: UIViewController {
     var fruitsStock: [Fruit: Int] = [:]
     private let stepperDefaultValue: Int = 0
+    weak var delegate: FruitsStockDelegate?
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -30,7 +31,7 @@ final class FruitStoreViewController: UIViewController {
     }
     
     @IBAction private func pressBackBarButton(_ sender: UIButton) {
-        postFruitsStockDidModified()
+        delegate?.updateFruitsStock(fruitsStock)
         dismiss(animated: true)
     }
     
@@ -78,23 +79,5 @@ final class FruitStoreViewController: UIViewController {
         fruitsSteppers.forEach {
             $0.value.value = Double(fruitsStock[$0.key] ?? stepperDefaultValue)
         }
-    }
-}
-
-//MARK: - Notification
-extension FruitStoreViewController {
-    private func addObserverFruitsStockDelivered() {
-        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDelivered, object: nil, queue: nil) { Notification in
-            guard let deliveredFruitsStock = Notification.userInfo as? [Fruit: Int] else {
-                return
-            }
-            self.fruitsStock = deliveredFruitsStock
-            self.updateFruitsStockLabels(self.fruitsStock)
-            self.updateStepperValue()
-        }
-    }
-    
-    private func postFruitsStockDidModified() {
-        NotificationCenter.default.post(name: NotificationName.fruitsStockDidModified, object: nil, userInfo: fruitsStock)
     }
 }

@@ -8,6 +8,5 @@ import Foundation
 
 enum NotificationName {
     static let fruitsStockDidChanged = Notification.Name("fruitsStockDidChanged")
-    static let fruitsStockDelivered = Notification.Name("fruitsStockDelivered")
     static let fruitsStockDidModified = Notification.Name("fruitsStockDidModified")
 }

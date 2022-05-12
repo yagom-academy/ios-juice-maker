@@ -30,11 +30,6 @@ final class JuiceMakerViewController: UIViewController {
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        postFruitsStockDelivered(juiceMaker.requestCurrentStock())
-    }
-    
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
         switch sender {
         case strawberryAndBananaJuiceButton:
@@ -102,14 +97,16 @@ final class JuiceMakerViewController: UIViewController {
         }
         modalViewController.modalPresentationStyle = .fullScreen
         modalViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
+        modalViewController.delegate = self
         self.present(modalViewController, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination
         
-        guard let FruitStoreViewController = destination as? FruitStoreViewController else { return }
-        FruitStoreViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
+        guard let modalViewController = destination as? FruitStoreViewController else { return }
+        modalViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
+        modalViewController.delegate = self
     }
     
 //MARK: - UI Components data setting
@@ -154,6 +151,12 @@ extension JuiceMakerViewController {
     }
     
     private func postFruitsStockDelivered(_ fruitsStock: [Fruit: Int]?) {
-        NotificationCenter.default.post(name: NotificationName.fruitsStockDelivered, object: nil, userInfo: fruitsStock)
+        NotificationCenter.default.post(name: NotificationName.fruitsStockDidModified, object: nil, userInfo: fruitsStock)
+    }
+}
+//MARK: - FruitStore Delegate
+extension JuiceMakerViewController: FruitsStockDelegate {
+    func updateFruitsStock(_ fruitStocks: [Fruit : Int]) {
+        postFruitsStockDelivered(fruitStocks)
     }
 }
