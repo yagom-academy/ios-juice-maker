@@ -9,12 +9,7 @@ import UIKit
 let center = NotificationCenter.default
 
 class JuiceOrderViewController: UIViewController {
-    @IBOutlet private weak var strawberryLabel: UILabel!
-    @IBOutlet private weak var bananaLabel: UILabel!
-    @IBOutlet private weak var pineappleLabel: UILabel!
-    @IBOutlet private weak var kiwiLabel: UILabel!
-    @IBOutlet private weak var mangoLabel: UILabel!
-    
+    @IBOutlet private var fruitsLabel: [UILabel]!
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet private weak var strawberryJuiceButton: UIButton!
     @IBOutlet private weak var bananaJuiceButton: UIButton!
@@ -33,11 +28,9 @@ class JuiceOrderViewController: UIViewController {
     }
 
     private func updateFruitStockLabelText() {
-        strawberryLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
-        bananaLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
-        pineappleLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
-        kiwiLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.kiwi] ?? 0)
-        mangoLabel.text = String(juiceMaker.fruitStore.fruitWarehouse[.mango] ?? 0)
+        for fruits in 0..<fruitsLabel.count {
+            fruitsLabel[fruits].text = String(Int(juiceMaker.fruitStore.fruitWarehouse[Fruit(rawValue: fruits) ?? Fruit.unknownFruit] ?? 0))
+        }
     }
     
     @IBAction private func makeJuice(_ sender: UIButton) {
