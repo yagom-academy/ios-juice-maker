@@ -8,6 +8,7 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
+    var delegate: FruitsStockDelegate?
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -32,7 +33,9 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        postFruitsStockDelivered(juiceMaker.requestCurrentStock())
+        delegate?.updateFruitsStock(juiceMaker.requestCurrentStock())
+        print("쥬스메이커 윌디스어피어 완료")
+        //postFruitsStockDelivered(juiceMaker.requestCurrentStock())
     }
     
     @IBAction private func orderFruitJuice(_ sender: UIButton) {
@@ -99,11 +102,15 @@ final class JuiceMakerViewController: UIViewController {
     
 //MARK: - Modality Method
     private func presentModalViewController(withId: String) {
+//        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) as? FruitStoreViewController else {
+//            return
+//        }
         guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
             return
         }
         modalViewController.modalPresentationStyle = .fullScreen
-        present(modalViewController, animated: true)
+        //modalViewController.previousViewController = self
+        self.present(modalViewController, animated: true)
     }
     
 //MARK: - Label Method

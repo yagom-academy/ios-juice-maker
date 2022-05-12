@@ -10,6 +10,7 @@ import UIKit
 final class FruitStoreViewController: UIViewController {
     private var fruitsStock: [Fruit: Int] = [:]
     private let stepperDefaultValue: Int = 0
+    var previousViewController: JuiceMakerViewController?
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -25,7 +26,8 @@ final class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addObserverFruitsStockDelivered()
+        previousViewController?.delegate = self
+        //addObserverFruitsStockDelivered()
     }
     
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
@@ -51,7 +53,7 @@ final class FruitStoreViewController: UIViewController {
         updateFruitsStockLabels(fruitsStock)
     }
     
-//MARK: - Label Method
+    //MARK: - Label Method
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         stock?.forEach {
             modifyFruitStockLabel($0.key.rawValue, $0.value)
@@ -64,8 +66,8 @@ final class FruitStoreViewController: UIViewController {
             $0.text = String(stock)
         }
     }
-
-//MARK: - Stepper Method
+    
+    //MARK: - Stepper Method
     private func updateStepperValue() {
         let fruitsSteppers: [Fruit: UIStepper] = [
             .strawberry: strawberryStepper,
@@ -79,6 +81,20 @@ final class FruitStoreViewController: UIViewController {
         }
     }
 }
+
+//MARK: - FruitStoreDelegate
+extension FruitStoreViewController: FruitsStockDelegate {
+    func updateFruitsStock(_ fruitStocks: [Fruit : Int]?) {
+        print("ASDASDASDASDSDA")
+        guard let deliveredFruitsStock = fruitStocks else {
+            return
+        }
+        fruitsStock = deliveredFruitsStock
+        updateFruitsStockLabels(self.fruitsStock)
+        updateStepperValue()
+    }
+}
+
 
 //MARK: - Notification
 extension FruitStoreViewController {
