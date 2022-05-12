@@ -10,24 +10,21 @@ import UIKit
 final class FruitStoreViewController: UIViewController {
     private var fruitsStock: [Fruit: Int] = [:]
     private let stepperDefaultValue: Int = 0
-    var previousViewController: JuiceMakerViewController?
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet private weak var strawberryStepper: UIStepper!
+    @IBOutlet private weak var bananaStepper: UIStepper!
+    @IBOutlet private weak var pineappleStepper: UIStepper!
+    @IBOutlet private weak var kiwiStepper: UIStepper!
+    @IBOutlet private weak var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        previousViewController?.delegate = self
-        //addObserverFruitsStockDelivered()
     }
     
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
@@ -81,20 +78,6 @@ final class FruitStoreViewController: UIViewController {
         }
     }
 }
-
-//MARK: - FruitStoreDelegate
-extension FruitStoreViewController: FruitsStockDelegate {
-    func updateFruitsStock(_ fruitStocks: [Fruit : Int]?) {
-        print("ASDASDASDASDSDA")
-        guard let deliveredFruitsStock = fruitStocks else {
-            return
-        }
-        fruitsStock = deliveredFruitsStock
-        updateFruitsStockLabels(self.fruitsStock)
-        updateStepperValue()
-    }
-}
-
 
 //MARK: - Notification
 extension FruitStoreViewController {

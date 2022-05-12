@@ -8,7 +8,6 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
-    var delegate: FruitsStockDelegate?
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
