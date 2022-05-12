@@ -29,7 +29,7 @@ final class FruitStoreViewController: UIViewController {
         updateStepperValue()
     }
     
-    @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {
+    @IBAction private func pressBackBarButton(_ sender: UIButton) {
         postFruitsStockDidModified()
         dismiss(animated: true)
     }

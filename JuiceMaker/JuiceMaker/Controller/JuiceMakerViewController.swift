@@ -94,6 +94,7 @@ final class JuiceMakerViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
+    
 //MARK: - View Exchange
     private func presentModalViewController(withId: String) {
         guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) as? FruitStoreViewController else {
@@ -110,6 +111,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let FruitStoreViewController = destination as? FruitStoreViewController else { return }
         FruitStoreViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
     }
+    
 //MARK: - UI Components data setting
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         stock?.forEach {
