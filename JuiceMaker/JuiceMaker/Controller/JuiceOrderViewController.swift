@@ -111,11 +111,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func sendFruitLabelText(_ controller: FruitStockViewController) {
-        controller.numberOfStrawberry = strawberryLabel.text ?? ""
-        controller.numberOfBanana = bananaLabel.text ?? ""
-        controller.numberOfPineapple = pineappleLabel.text ?? ""
-        controller.numberOfKiwi = kiwiLabel.text ?? ""
-        controller.numberOfMango = mangoLabel.text ?? ""
+        controller.fruitStore = juiceMaker.fruitStore
     }
     
     private func registerStockChanges() {

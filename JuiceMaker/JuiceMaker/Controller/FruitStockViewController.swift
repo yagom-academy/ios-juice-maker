@@ -19,11 +19,7 @@ class FruitStockViewController: UIViewController {
     @IBOutlet private weak var kiwiStockStepper: UIStepper!
     @IBOutlet private weak var mangoStockStepper: UIStepper!
     
-    var numberOfStrawberry = ""
-    var numberOfBanana = ""
-    var numberOfPineapple = ""
-    var numberOfKiwi = ""
-    var numberOfMango = ""
+    var fruitStore: FruitStore = FruitStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +28,11 @@ class FruitStockViewController: UIViewController {
     }
     
     private func updateStepperValue() {
-        strawberryStockStepper.value = Double(numberOfStrawberry) ?? 0
-        bananaStockStepper.value = Double(numberOfBanana) ?? 0
-        pineappleStockStepper.value = Double(numberOfPineapple) ?? 0
-        kiwiStockStepper.value = Double(numberOfKiwi) ?? 0
-        mangoStockStepper.value = Double(numberOfMango) ?? 0
+        strawberryStockStepper.value = Double(fruitStore.fruitWarehouse[.strawberry] ?? 0)
+        bananaStockStepper.value = Double(fruitStore.fruitWarehouse[.banana] ?? 0)
+        pineappleStockStepper.value = Double(fruitStore.fruitWarehouse[.pineapple] ?? 0)
+        kiwiStockStepper.value = Double(fruitStore.fruitWarehouse[.kiwi] ?? 0)
+        mangoStockStepper.value = Double(fruitStore.fruitWarehouse[.mango] ?? 0)
     }
     
     private func updateFruitLabel() {
@@ -47,45 +43,32 @@ class FruitStockViewController: UIViewController {
         mangoLabel.text = String(Int(mangoStockStepper.value))
     }
     
-    private func updateNumberOfFruit() {
-        numberOfStrawberry = strawberryLabel.text ?? ""
-        numberOfBanana = bananaLabel.text ?? ""
-        numberOfPineapple = pineappleLabel.text ?? ""
-        numberOfKiwi = kiwiLabel.text ?? ""
-        numberOfMango = mangoLabel.text ?? ""
-    }
-    
     private func postUpdateFruitStockNotification() {
-        center.post(name: .updateFruitStock, object: nil, userInfo: ["딸기재고": numberOfStrawberry, "바나나재고": numberOfBanana, "파인애플재고": numberOfPineapple, "키위재고": numberOfKiwi, "망고재고": numberOfMango])
+        center.post(name: .updateFruitStock, object: nil, userInfo: ["딸기재고": strawberryLabel.text ?? "", "바나나재고": bananaLabel.text ?? "", "파인애플재고": pineappleLabel.text ?? "", "키위재고": kiwiLabel.text ?? "", "망고재고": mangoLabel.text ?? ""])
     }
     
     @IBAction private func changeValueOfStrawberryStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        updateNumberOfFruit()
         postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfBananaStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        updateNumberOfFruit()
         postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfPineappleStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        updateNumberOfFruit()
         postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfKiwiStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        updateNumberOfFruit()
         postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfMangoStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        updateNumberOfFruit()
         postUpdateFruitStockNotification()
     }
     
