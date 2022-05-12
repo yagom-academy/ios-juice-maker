@@ -22,6 +22,10 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
+    private func setStock(fruit: Fruit, stock: Int) {
+        fruitLabels[fruit.rawValue].text = "\(stock)"
+    }
+    
     private func updateStock() {
         for fruitIndex in 0..<fruitLabels.count {
             guard let fruit = Fruit(rawValue: fruitIndex),
@@ -36,7 +40,12 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(of: juice)
             alertSuccessMakeJuice(to: juice)
-            updateStock()
+            juice.recipe.keys.forEach { fruit in
+                if let fruitStock = juiceMaker.fruitStore.stocks[fruit] {
+                    setStock(fruit: fruit, stock: fruitStock)
+                }
+            }
+            
         } catch {
             guard let error = error as? StockError else {
                 return
