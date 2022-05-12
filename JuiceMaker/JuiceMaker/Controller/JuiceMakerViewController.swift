@@ -104,15 +104,15 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
-        stock?.forEach { (key: Fruit, value: Int) in
-            modifyFruitStockLabel(key.rawValue, value)
+        stock?.forEach {
+            modifyFruitStockLabel($0.key.rawValue, $0.value)
         }
     }
     
     private func modifyFruitStockLabel(_ fruit: String, _ stock: Int) {
         let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
-        for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
-            uiLabel.text = String(stock)
+        allStockLabels.filter({ $0.accessibilityIdentifier == fruit }).forEach {
+            $0.text = String(stock)
         }
     }
 }
@@ -127,7 +127,8 @@ extension JuiceMakerViewController {
             pineappleJuiceButton,
             kiwiJuiceButton,
             mangoJuiceButton]
-        JuiceButtonArray.forEach { $0?.titleLabel?.textAlignment = .center
+        JuiceButtonArray.forEach {
+            $0?.titleLabel?.textAlignment = .center
         }
     }
 }
