@@ -20,18 +20,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var stockKiwiStepper: UIStepper!
     @IBOutlet weak var stockMangoStepper: UIStepper!
     
-    var MakerController: UIViewController?
+    var makerViewController: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "재고 추가"
-        guard let juiceMakerController = self.MakerController as? MakerViewController else { return }
+        navigationItem.title = "재고 추가"
+        guard let juiceMakerController = self.makerViewController as? MakerViewController else { return }
         
-        self.stockStrawberryCount.text = juiceMakerController.retrieveFruitCount(fruitName: .strawberry)
-        self.stockBananaCount.text = juiceMakerController.retrieveFruitCount(fruitName: .banana)
-        self.stockPineappleCount.text = juiceMakerController.retrieveFruitCount(fruitName: .pineapple)
-        self.stockKiwiCount.text = juiceMakerController.retrieveFruitCount(fruitName: .kiwi)
-        self.stockMangoCount.text = juiceMakerController.retrieveFruitCount(fruitName: .mango)
+        stockStrawberryCount.text = juiceMakerController.retrieveFruitCount(fruitName: .strawberry)
+        stockBananaCount.text = juiceMakerController.retrieveFruitCount(fruitName: .banana)
+        stockPineappleCount.text = juiceMakerController.retrieveFruitCount(fruitName: .pineapple)
+        stockKiwiCount.text = juiceMakerController.retrieveFruitCount(fruitName: .kiwi)
+        stockMangoCount.text = juiceMakerController.retrieveFruitCount(fruitName: .mango)
         
         stockStrawberryStepper.value = retrieveFruitValue(fruit: juiceMakerController.retrieveFruitCount(fruitName: .strawberry))
         stockBananaStepper.value = retrieveFruitValue(fruit: juiceMakerController.retrieveFruitCount(fruitName: .banana))
@@ -43,16 +43,19 @@ class ViewController: UIViewController {
     }
     
     func retrieveFruitValue(fruit: String) -> Double {
-        guard let fruitAmount = Double(fruit) else { return StockCount.empty.amountInDecimalPoint }
-        return fruitAmount
+        if let fruitAmount = Double(fruit) {
+            return fruitAmount
+        } else {
+            return StockCount.empty.amountInDecimalPointType
+        }
     }
     
     func establishStepperEnvironment() {
-        stockStrawberryStepper.maximumValue = StockCount.maxFruit.amountInDecimalPoint
-        stockBananaStepper.maximumValue = StockCount.maxFruit.amountInDecimalPoint
-        stockPineappleStepper.maximumValue = StockCount.maxFruit.amountInDecimalPoint
-        stockKiwiStepper.maximumValue = StockCount.maxFruit.amountInDecimalPoint
-        stockMangoStepper.maximumValue = StockCount.maxFruit.amountInDecimalPoint
+        stockStrawberryStepper.maximumValue = StockCount.maxFruit.amountInDecimalPointType
+        stockBananaStepper.maximumValue = StockCount.maxFruit.amountInDecimalPointType
+        stockPineappleStepper.maximumValue = StockCount.maxFruit.amountInDecimalPointType
+        stockKiwiStepper.maximumValue = StockCount.maxFruit.amountInDecimalPointType
+        stockMangoStepper.maximumValue = StockCount.maxFruit.amountInDecimalPointType
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
@@ -61,25 +64,25 @@ class ViewController: UIViewController {
                                                     .pineapple: Int(stockPineappleStepper.value),
                                                     .kiwi: Int(stockKiwiStepper.value),
                                                     .mango: Int(stockMangoStepper.value)]
-        guard let juiceMakerController = self.MakerController as? MakerViewController else { return }
+        guard let juiceMakerController = self.makerViewController as? MakerViewController else { return }
         juiceMakerController.receiveEditedFruitCount(receivedStock: newStock)
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func stepperStrawberryValueChanged(_ sender: UIStepper) {
-        self.stockStrawberryCount.text = Int(sender.value).description
+        stockStrawberryCount.text = Int(sender.value).description
     }
     @IBAction func stepperBananaValueChanged(_ sender: UIStepper) {
-        self.stockBananaCount.text = Int(sender.value).description
+        stockBananaCount.text = Int(sender.value).description
     }
     @IBAction func stepperPineappleValueChanged(_ sender: UIStepper) {
-        self.stockPineappleCount.text = Int(sender.value).description
+        stockPineappleCount.text = Int(sender.value).description
     }
     @IBAction func stepperKiwiValueChanged(_ sender: UIStepper) {
-        self.stockKiwiCount.text = Int(sender.value).description
+        stockKiwiCount.text = Int(sender.value).description
     }
     @IBAction func stepperMangoValueChanged(_ sender: UIStepper) {
-        self.stockMangoCount.text = Int(sender.value).description
+        stockMangoCount.text = Int(sender.value).description
     }
 }
 

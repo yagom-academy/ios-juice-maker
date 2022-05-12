@@ -9,11 +9,11 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     private var stock: Dictionary<FruitKind, Int> =
-    [FruitKind.strawberry: StockCount.initFruit.amountInInteger,
-     FruitKind.banana: StockCount.initFruit.amountInInteger,
-     FruitKind.kiwi: StockCount.initFruit.amountInInteger,
-     FruitKind.pineapple : StockCount.initFruit.amountInInteger,
-     FruitKind.mango: StockCount.initFruit.amountInInteger]
+    [FruitKind.strawberry: StockCount.initFruit.amountInIntegerType,
+     FruitKind.banana: StockCount.initFruit.amountInIntegerType,
+     FruitKind.kiwi: StockCount.initFruit.amountInIntegerType,
+     FruitKind.pineapple : StockCount.initFruit.amountInIntegerType,
+     FruitKind.mango: StockCount.initFruit.amountInIntegerType]
 
     func changeFruitAmount(fruitName: FruitKind, amount: Int) {
         stock[fruitName] = amount

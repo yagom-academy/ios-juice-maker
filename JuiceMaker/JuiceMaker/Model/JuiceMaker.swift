@@ -25,7 +25,7 @@ struct JuiceMaker {
         if let selectedFruitCount = fruitCount[fruitName] {
             return String(selectedFruitCount)
         } else {
-            return String(StockCount.empty.amountInInteger)
+            return String(StockCount.empty.amountInIntegerType)
         }
     }
     

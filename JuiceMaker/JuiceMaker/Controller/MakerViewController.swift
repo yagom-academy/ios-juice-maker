@@ -21,13 +21,14 @@ class MakerViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         bringFruitCount()
     }
     
     func setUpStockValues() {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChangeView") as? ViewController
         else { return }
-        stockViewController.MakerController = self
+        stockViewController.makerViewController = self
         self.navigationController?.pushViewController(stockViewController, animated: true)
     }
     

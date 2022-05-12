@@ -12,7 +12,7 @@ enum StockCount {
     case initFruit
     case maxFruit
     
-    var amountInInteger: Int {
+    var amountInIntegerType: Int {
         switch self {
         case .empty:
             return 0
@@ -22,7 +22,7 @@ enum StockCount {
             return 100
         }
     }
-    var amountInDecimalPoint: Double {
+    var amountInDecimalPointType: Double {
         switch self {
         case .empty:
             return 0.0
