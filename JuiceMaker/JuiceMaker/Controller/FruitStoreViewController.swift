@@ -8,7 +8,7 @@
 import UIKit
 
 final class FruitStoreViewController: UIViewController {
-    private var fruitsStock: [Fruit: Int] = [:]
+    var fruitsStock: [Fruit: Int] = [:]
     private let stepperDefaultValue: Int = 0
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -25,6 +25,8 @@ final class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitsStockLabels(fruitsStock)
+        updateStepperValue()
     }
     
     @IBAction private func pressBackBarButton(_ sender: UIBarButtonItem) {

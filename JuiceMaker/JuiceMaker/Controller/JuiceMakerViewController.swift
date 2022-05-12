@@ -96,11 +96,19 @@ final class JuiceMakerViewController: UIViewController {
     }
 //MARK: - View Exchange
     private func presentModalViewController(withId: String) {
-        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
+        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) as? FruitStoreViewController else {
             return
         }
         modalViewController.modalPresentationStyle = .fullScreen
+        modalViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
         self.present(modalViewController, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination
+        
+        guard let FruitStoreViewController = destination as? FruitStoreViewController else { return }
+        FruitStoreViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
     }
 //MARK: - UI Components data setting
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
