@@ -11,6 +11,15 @@ class EditStockStepper: UIStepper {
     func convertToFruit() -> Fruit? {
         return nil
     }
+    
+    func configure(with fruitsStock: [Fruit: Int]) {
+        guard let fruit = self.convertToFruit(),
+              let amount = fruitsStock[fruit]
+        else {
+            return
+        }
+        self.value = Double(amount)
+    }
 }
 
 

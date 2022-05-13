@@ -32,11 +32,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStockLabel), name: .notifyStock, object: nil)
-        
+        fruitStockAddObserverDidChanged()
         updateLabel(to: juiceMaker.store.stock)
-        
         configureOrderButtons()
+    }
+    
+    func fruitStockAddObserverDidChanged() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStockLabel), name: .notifyStock, object: nil)
     }
     
     private func configureOrderButtons() {
@@ -54,12 +56,7 @@ class HomeViewController: UIViewController {
     }
     
     private func updateLabel(to stock: [Fruit: Int]) {
-        fruitStockLabel.forEach { label in
-            guard let fruit = label.convertToFruit() else { return }
-            guard let amountOfFruit = stock[fruit] else { return }
-            
-            label.text = "\(amountOfFruit)"
-        }
+        fruitStockLabel.forEach { $0.configure(with: stock) }
     }
     
     @objc private func orderButtonDidTap(_ sender: UIButton) {
@@ -127,7 +124,7 @@ class HomeViewController: UIViewController {
         self.present(editStockVC, animated: true)
     }
 
-    @IBAction private func tabEditStock(_ sender: UIBarButtonItem) {
+    @IBAction private func tapEditStock(_ sender: UIBarButtonItem) {
         self.presentEditStockViewController()
     }
 }

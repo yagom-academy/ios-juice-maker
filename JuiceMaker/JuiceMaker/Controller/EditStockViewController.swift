@@ -18,27 +18,17 @@ class EditStockViewController: UIViewController {
         super.viewDidLoad()
         
         updateLabel(from: fruitsStock)
-        
-        editStockStepper.forEach { stepper in
-            stepper.addTarget(self, action: #selector(updateStepperValue), for: .valueChanged)
-            
-            guard let fruit = stepper.convertToFruit(),
-                  let amount = fruitsStock[fruit]
-            else {
-                return
-            }
-            stepper.value = Double(amount)
-        }
+        configureEditStockSteppers()
     }
     
     private func updateLabel(from stock: [Fruit: Int]) {
-        fruitStockLabel.forEach { label in
-            guard let fruit = label.convertToFruit(),
-                  let fruitLabel = stock[fruit]
-            else {
-                return
-            }
-            label.text = "\(fruitLabel)"
+        fruitStockLabel.forEach { $0.configure(with: stock) }
+    }
+    
+    func configureEditStockSteppers() {
+        editStockStepper.forEach {
+            $0.addTarget(self, action: #selector(updateStepperValue), for: .valueChanged)
+            $0.configure(with: fruitsStock)
         }
     }
     
@@ -53,7 +43,7 @@ class EditStockViewController: UIViewController {
     }
     
     @IBAction private func tapCloseButton(_ sender: Any) {
-        delegate?.EditStockViewControllerDidChangeStock(fruitsStock)
+        delegate?.editStockViewControllerDidChangeStock(fruitsStock, self)
         self.dismiss(animated: true, completion: nil)
     }
 }

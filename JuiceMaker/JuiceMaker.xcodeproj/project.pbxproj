@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4210A9BA2821041200901B49 /* EditStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4210A9B92821041200901B49 /* EditStockViewController.swift */; };
 		42C7F4FC2818D8EF0031CCAB /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7F4FB2818D8EF0031CCAB /* Menu.swift */; };
-		42EA5221282B7F11006BF072 /* TransferDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5220282B7F11006BF072 /* TransferDelegate.swift */; };
+		42EA5221282B7F11006BF072 /* EditStockViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5220282B7F11006BF072 /* EditStockViewControllerDelegate.swift */; };
 		42EA5233282BC4E6006BF072 /* EditStock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42EA5232282BC4E6006BF072 /* EditStock.storyboard */; };
 		42EA523D282D6139006BF072 /* StrawberryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA523C282D6139006BF072 /* StrawberryLabel.swift */; };
 		42EA523F282D6212006BF072 /* BananaLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA523E282D6212006BF072 /* BananaLabel.swift */; };
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		4210A9B92821041200901B49 /* EditStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockViewController.swift; sourceTree = "<group>"; };
 		42C7F4FB2818D8EF0031CCAB /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
-		42EA5220282B7F11006BF072 /* TransferDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDelegate.swift; sourceTree = "<group>"; };
+		42EA5220282B7F11006BF072 /* EditStockViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockViewControllerDelegate.swift; sourceTree = "<group>"; };
 		42EA5232282BC4E6006BF072 /* EditStock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditStock.storyboard; sourceTree = "<group>"; };
 		42EA523C282D6139006BF072 /* StrawberryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawberryLabel.swift; sourceTree = "<group>"; };
 		42EA523E282D6212006BF072 /* BananaLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananaLabel.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* HomeViewController.swift */,
 				4210A9B92821041200901B49 /* EditStockViewController.swift */,
-				42EA5220282B7F11006BF072 /* TransferDelegate.swift */,
+				42EA5220282B7F11006BF072 /* EditStockViewControllerDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -256,7 +256,7 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				4210A9BA2821041200901B49 /* EditStockViewController.swift in Sources */,
-				42EA5221282B7F11006BF072 /* TransferDelegate.swift in Sources */,
+				42EA5221282B7F11006BF072 /* EditStockViewControllerDelegate.swift in Sources */,
 				42EA523F282D6212006BF072 /* BananaLabel.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* HomeViewController.swift in Sources */,
 				42C7F4FC2818D8EF0031CCAB /* Menu.swift in Sources */,
