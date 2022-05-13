@@ -31,7 +31,7 @@ class FruitStockViewController: UIViewController {
     }
     
     private func postUpdateFruitStockNotification() {
-        center.post(name: .updateFruitStock, object: nil, userInfo: ["updatedFruitStock": fruitsLabel ?? []])
+        NotificationCenter.default.post(name: .updateFruitStock, object: nil, userInfo: ["updatedFruitStock": fruitsLabel ?? []])
     }
     
     @IBAction private func changeValueOfStrawberryStepper(_ sender: UIStepper) {

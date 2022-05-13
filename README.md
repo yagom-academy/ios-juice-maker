@@ -236,6 +236,12 @@
 ## 배운개념
 - `notification`, `type property`, `UIBarButtonItem`
 - `push`, `present`, `UIViewController Lifecycle`
+- `naivgation`, `modal`
+- `extension`, `singleton`
+- `struct`, `class`
+- `type casting`
+- `중복 제거`
+
 
 
 질문

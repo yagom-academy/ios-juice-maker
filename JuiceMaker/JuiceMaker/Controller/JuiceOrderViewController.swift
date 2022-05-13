@@ -6,8 +6,6 @@
 
 import UIKit
 
-let center = NotificationCenter.default
-
 class JuiceOrderViewController: UIViewController {
     @IBOutlet private var fruitsLabel: [UILabel]!
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
@@ -108,7 +106,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func registerStockChanges() {
-        center.addObserver(self, selector: #selector(updateFruitStock), name: .updateFruitStock, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStock), name: .updateFruitStock, object: nil)
     }
     
     @objc private func updateFruitStock(_ notification: Notification) {
