@@ -5,8 +5,8 @@
 //  Created by 수꿍, 바드 on 2022/04/25.
 //
 
-enum Fruit: String {
-    case strawberry
+enum Fruit: Int {
+    case strawberry = 0
     case banana
     case pineapple
     case kiwi

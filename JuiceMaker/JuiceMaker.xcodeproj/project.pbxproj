@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		204055732817B09900452301 /* InitialFruitStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204055722817B09900452301 /* InitialFruitStock.swift */; };
+		206B51932823A5DA003A1A9B /* FruitStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B51922823A5DA003A1A9B /* FruitStockViewController.swift */; };
 		20CC39C32816E8B500E517BE /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC39C22816E8B500E517BE /* Fruit.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		204055722817B09900452301 /* InitialFruitStock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialFruitStock.swift; sourceTree = "<group>"; };
+		206B51922823A5DA003A1A9B /* FruitStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockViewController.swift; sourceTree = "<group>"; };
 		20CC39C22816E8B500E517BE /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +59,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */,
+				206B51922823A5DA003A1A9B /* FruitStockViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			files = (
 				204055732817B09900452301 /* InitialFruitStock.swift in Sources */,
 				D7CB14152817AF3D00B24611 /* CostOfJuiceProduction.swift in Sources */,
+				206B51932823A5DA003A1A9B /* FruitStockViewController.swift in Sources */,
 				20CC39C32816E8B500E517BE /* Fruit.swift in Sources */,
 				D7CB1413281793F900B24611 /* FruitStoreError.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,

@@ -12,7 +12,6 @@ struct JuiceMaker {
         try checkPossibilityOfMaking(juice)
     }
     
-    
     private func checkFruitAvailable(for juice: Juice) throws {
         try fruitStore.goToWarehouse(of: fruitStore.checkFruitKind(_:), juice: juice)
     }

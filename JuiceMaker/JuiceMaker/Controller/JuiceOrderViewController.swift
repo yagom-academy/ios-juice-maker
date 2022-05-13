@@ -7,29 +7,31 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    private let juiceMaker = JuiceMaker()
+    @IBOutlet private var fruitsLabel: [UILabel]!
+    @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceButton: UIButton!
+    @IBOutlet private weak var bananaJuiceButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceButton: UIButton!
+    @IBOutlet private weak var mangoJuiceButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     
-    @IBOutlet private weak var strawberryLabel: UILabel?
-    @IBOutlet private weak var bananaLabel: UILabel?
-    @IBOutlet private weak var pineappleLabel: UILabel?
-    @IBOutlet private weak var kiwiLabel: UILabel?
-    @IBOutlet private weak var mangoLabel: UILabel?
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStock()
+        setUpButton()
+        updateFruitStockLabelText()
+        registerStockChanges()
     }
-    
-    private func updateFruitStock() {
-        strawberryLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.strawberry] ?? 0)
-        bananaLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.banana] ?? 0)
-        pineappleLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.pineapple] ?? 0)
-        kiwiLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.kiwi] ?? 0)
-        mangoLabel?.text = String(juiceMaker.fruitStore.fruitWarehouse[.mango] ?? 0)
+
+    private func updateFruitStockLabelText() {
+        for index in 0..<fruitsLabel.count {
+            fruitsLabel[index].text = String(Int(juiceMaker.fruitStore.fruitWarehouse[Fruit(rawValue: index) ?? Fruit.unknownFruit] ?? 0))
+        }
     }
     
     @IBAction private func makeJuice(_ sender: UIButton) {
-        
         var juice: Juice {
             switch sender.currentTitle {
             case "딸기쥬스 주문":
@@ -52,7 +54,7 @@ class JuiceOrderViewController: UIViewController {
         }
         
         tryMaking(juice)
-        updateFruitStock()
+        updateFruitStockLabelText()
     }
     
     private func tryMaking(_ juice: Juice) {
@@ -65,10 +67,9 @@ class JuiceOrderViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-
+    
     private func showSuccessAlert(_ juice: Juice) {
         let successAlert = UIAlertController(title: "\(juice.name) 쥬스 나왔습니다!\n 맛있게 드세요!", message: nil, preferredStyle: .alert)
-
         let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
 
         successAlert.addAction(ok)
@@ -90,10 +91,56 @@ class JuiceOrderViewController: UIViewController {
     @IBAction private func navigationRightButtonTapped(_ sender: UIBarButtonItem) {
         goToFruitStockViewController()
     }
-    
-    private func goToFruitStockViewController() {
-        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
         
-        self.navigationController?.pushViewController(controller, animated: true)
+    private func goToFruitStockViewController() {
+        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else { return }
+        
+        let modalViewController = UINavigationController(rootViewController: controller)
+        
+        sendFruitStoreData(to: controller)
+        present(modalViewController, animated: true)
+    }
+    
+    private func sendFruitStoreData(to controller: FruitStockViewController) {
+        controller.fruitStore = juiceMaker.fruitStore
+    }
+    
+    private func registerStockChanges() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStock), name: .updateFruitStock, object: nil)
+    }
+    
+    @objc private func updateFruitStock(_ notification: Notification) {
+        tryUpdateFruitStock(notification)
+        updateFruitStockLabelText()
+    }
+    
+    private func tryUpdateFruitStock(_ notification: Notification) {
+        let updatedFruitStock = notification.userInfo?["updatedFruitStock"] as? [UILabel] ?? []
+        
+        for index in 0..<updatedFruitStock.count {
+            try? juiceMaker.fruitStore.changeStock(fruit: Fruit(rawValue: index) ?? Fruit.unknownFruit, amount: Int(updatedFruitStock[index].text ?? "") ?? 0)
+        }
+    }
+    
+    private func setUpButton() {
+        strawberryBananaJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        strawberryJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        bananaJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        pineappleJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        kiwiJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        mangoJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        mangoKiwiJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+    }
+}
+
+extension Notification.Name {
+    static let updateFruitStock = Notification.Name("updateFruitStock")
+}
+
+extension UIButton {
+    func setUp(lineBreakMode: NSLineBreakMode, textAlignment: NSTextAlignment, font: UIFont) {
+        self.titleLabel?.lineBreakMode = lineBreakMode
+        self.titleLabel?.textAlignment = textAlignment
+        self.titleLabel?.font = font
     }
 }
