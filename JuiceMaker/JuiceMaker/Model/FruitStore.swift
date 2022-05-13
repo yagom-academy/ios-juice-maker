@@ -6,7 +6,7 @@
 import Foundation
 
 final class FruitStore {
-    private var fruits: Fruits = [:]
+    private(set) var fruits: Fruits = [:]
     
     init(strawberry: Int = 0, banana: Int = 0, kiwi: Int = 0, pineapple: Int = 0, mango: Int = 0) {
         self.fruits[.strawberry] = strawberry
@@ -23,10 +23,6 @@ final class FruitStore {
             self.fruits[fruit] = stock
         }
         startObservingStock()
-    }
-    
-    var remainingStocks: Fruits {
-        fruits
     }
     
     func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
