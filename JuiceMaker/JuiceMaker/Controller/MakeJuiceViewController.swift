@@ -27,12 +27,10 @@ final class MakeJuiceViewController: UIViewController {
         super.viewDidLoad()
         
         refreshFruits()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(refreshStock(notification:)),
-            name: NSNotification.Name.fruitsTag,
-            object: nil
-        )
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refreshFruits()
     }
     
     @IBAction private func orderButton(_ sender: UIButton) {
@@ -104,13 +102,6 @@ final class MakeJuiceViewController: UIViewController {
         else { return }
         let fruits = juiceMaker.fruitsInStock
         destinationViewController.fruits = fruits
-    }
-    
-    @objc func refreshStock(notification: Notification) {
-        guard notification.userInfo?["stocks"] is Fruits else {
-            return
-        }
-        refreshFruits()
     }
 }
 

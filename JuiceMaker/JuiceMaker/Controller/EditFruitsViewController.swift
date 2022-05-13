@@ -3,53 +3,94 @@ import UIKit
 final class EditFruitsViewController: UIViewController {
     @IBOutlet weak private var dismissButton: UIBarButtonItem!
     
-    @IBOutlet weak private var strawberryLabel: UILabel!
-    @IBOutlet weak private var bananaLabel: UILabel!
-    @IBOutlet weak private var pineappleLabel: UILabel!
-    @IBOutlet weak private var kiwiLabel: UILabel!
-    @IBOutlet weak private var mangoLabel: UILabel!
+    @IBOutlet weak private var strawberryCountLabel: UILabel!
+    @IBOutlet weak private var bananaCountLabel: UILabel!
+    @IBOutlet weak private var pineappleCountLabel: UILabel!
+    @IBOutlet weak private var kiwiCountLabel: UILabel!
+    @IBOutlet weak private var mangoCountLabel: UILabel!
         
-    @IBOutlet weak private var strawberryStepper: UIStepper!
-    @IBOutlet weak private var bananaStepper: UIStepper!
-    @IBOutlet weak private var pineappleStepper: UIStepper!
-    @IBOutlet weak private var kiwiStepper: UIStepper!
-    @IBOutlet weak private var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryCountStepper: UIStepper!
+    @IBOutlet weak private var bananaCountStepper: UIStepper!
+    @IBOutlet weak private var pineappleCountStepper: UIStepper!
+    @IBOutlet weak private var kiwiCountStepper: UIStepper!
+    @IBOutlet weak private var mangoCountStepper: UIStepper!
     
     var fruits: Fruits?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        strawberryStepper.value = Double(fruits?[.strawberry] ?? 0)
-        bananaStepper.value = Double(fruits?[.banana] ?? 0)
-        pineappleStepper.value = Double(fruits?[.pineapple] ?? 0)
-        kiwiStepper.value = Double(fruits?[.kiwi] ?? 0)
-        mangoStepper.value = Double(fruits?[.mango] ?? 0)
-        
-        setNewValue()
+        setupFruitsCountSteppers()
+        setupFruitsCountLabels()
     }
     
-    private func setNewValue() {
-        strawberryLabel.text = Int(strawberryStepper.value).description
-        bananaLabel.text = Int(bananaStepper.value).description
-        pineappleLabel.text = Int(pineappleStepper.value).description
-        kiwiLabel.text = Int(kiwiStepper.value).description
-        mangoLabel.text = Int(mangoStepper.value).description
-        
-        fruits?[.strawberry] = Int(strawberryStepper.value)
-        fruits?[.banana] = Int(bananaStepper.value)
-        fruits?[.pineapple] = Int(pineappleStepper.value)
-        fruits?[.kiwi] = Int(kiwiStepper.value)
-        fruits?[.mango] = Int(mangoStepper.value)
+    private func setupFruitsCountSteppers() {
+        strawberryCountStepper.value = Double(fruits?[.strawberry] ?? 0)
+        bananaCountStepper.value = Double(fruits?[.banana] ?? 0)
+        pineappleCountStepper.value = Double(fruits?[.pineapple] ?? 0)
+        kiwiCountStepper.value = Double(fruits?[.kiwi] ?? 0)
+        mangoCountStepper.value = Double(fruits?[.mango] ?? 0)
+    }
+    
+    private func setupFruitsCountLabels() {
+        strawberryCountLabel.text = Int(strawberryCountStepper.value).description
+        bananaCountLabel.text = Int(bananaCountStepper.value).description
+        pineappleCountLabel.text = Int(pineappleCountStepper.value).description
+        kiwiCountLabel.text = Int(kiwiCountStepper.value).description
+        mangoCountLabel.text = Int(mangoCountStepper.value).description
     }
     
     @IBAction private func pressStepper(_ sender: UIStepper) {
-        setNewValue()
+        setNewValue(sender)
         NotificationCenter.default.post(
             name: NSNotification.Name.fruitsTag,
             object: nil,
-            userInfo: ["stocks": fruits ?? [:]]
+            userInfo: [Constant.userInfoKey: fruits ?? [:]]
         )
+    }
+    
+    private func setNewValue(_ stepper: UIStepper) {
+        switch stepper {
+        case strawberryCountStepper:
+            let strawberryValue = Int(strawberryCountStepper.value)
+            refreshFruitCountLabels(stepper, value: strawberryValue)
+            fruits?[.strawberry] = strawberryValue
+        case bananaCountStepper:
+            let bananaValue = Int(bananaCountStepper.value)
+            refreshFruitCountLabels(stepper, value: bananaValue)
+            fruits?[.banana] = bananaValue
+        case pineappleCountStepper:
+            let pineappleValue = Int(pineappleCountStepper.value)
+            refreshFruitCountLabels(stepper, value: pineappleValue)
+            fruits?[.pineapple] = pineappleValue
+        case kiwiCountStepper:
+            let kiwiValue = Int(kiwiCountStepper.value)
+            refreshFruitCountLabels(stepper, value: kiwiValue)
+            fruits?[.kiwi] = kiwiValue
+        case mangoCountStepper:
+            let mangoValue = Int(mangoCountStepper.value)
+            refreshFruitCountLabels(stepper, value: mangoValue)
+            fruits?[.mango] = mangoValue
+        default:
+            return
+        }
+    }
+    
+    private func refreshFruitCountLabels(_ stepper: UIStepper, value: Int) {
+        switch stepper {
+        case strawberryCountStepper:
+            strawberryCountLabel.text = value.description
+        case bananaCountStepper:
+            bananaCountLabel.text = value.description
+        case pineappleCountStepper:
+            pineappleCountLabel.text = value.description
+        case kiwiCountStepper:
+            kiwiCountLabel.text = value.description
+        case mangoCountStepper:
+            mangoCountLabel.text = value.description
+        default:
+            return
+        }
     }
     
     @IBAction private func dismissViewController(_ sender: Any) {

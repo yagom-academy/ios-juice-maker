@@ -6,7 +6,7 @@
 import Foundation
 
 final class FruitStore {
-    var fruits: Fruits = [:]
+    private var fruits: Fruits = [:]
     
     init(strawberry: Int = 0, banana: Int = 0, kiwi: Int = 0, pineapple: Int = 0, mango: Int = 0) {
         self.fruits[.strawberry] = strawberry
@@ -24,7 +24,11 @@ final class FruitStore {
         }
         startObservingStock()
     }
-
+    
+    var remainingStocks: Fruits {
+        fruits
+    }
+    
     func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
         let recipe = menu.recipe
         guard hasEnoughFruits(for: recipe) else {
@@ -57,7 +61,7 @@ final class FruitStore {
     }
     
     @objc func changeStock(notification: Notification) {
-        guard let stocks = notification.userInfo?["stocks"] as? Fruits else {
+        guard let stocks = notification.userInfo?[Constant.userInfoKey] as? Fruits else {
             return
         }
         fruits = stocks

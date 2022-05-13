@@ -8,7 +8,7 @@ struct JuiceMaker {
     private let fruitStore = FruitStore(stock: Constant.initialFruitStock)
     
     var fruitsInStock: Fruits {
-        fruitStore.fruits
+        fruitStore.remainingStocks
     }
     
     func make(_ menu: FruitJuice) -> Result<FruitJuice, FruitError> {
