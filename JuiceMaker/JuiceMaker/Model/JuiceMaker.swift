@@ -13,8 +13,4 @@ struct JuiceMaker {
         }
         store.decreaseStock(menu: menu)
     }
-    
-    func notifyFruitStock() -> [Fruit: Int] {
-        return store.stock
-    }
 }

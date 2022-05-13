@@ -8,7 +8,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
-    private var transferStock = [Fruit: Int]()
     
     @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
     
@@ -33,34 +32,37 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getFruitStock), name: .notifyStock, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStockLabel), name: .notifyStock, object: nil)
         
-        updateFruitStockLabel(stock: juiceMaker.notifyFruitStock())
+        updateLabel(to: juiceMaker.store.stock)
         
+        configureOrderButtons()
+    }
+    
+    private func configureOrderButtons() {
         orderButton.forEach { orderButton in
-            orderButton.addTarget(self, action: #selector(order), for: .touchUpInside)
+            orderButton.addTarget(self, action: #selector(orderButtonDidTap), for: .touchUpInside)
         }
     }
     
-    @objc dynamic private func getFruitStock(notification: Notification) {
+    @objc dynamic private func updateFruitStockLabel(notification: Notification) {
         guard let fruitsStock = notification.userInfo?["stock"] as? [Fruit: Int]
         else {
             return
         }
-        updateFruitStockLabel(stock: fruitsStock)
+        updateLabel(to: fruitsStock)
     }
     
-    private func updateFruitStockLabel(stock: [Fruit: Int]) {
+    private func updateLabel(to stock: [Fruit: Int]) {
         fruitStockLabel.forEach { label in
             guard let fruit = label.convertToFruit() else { return }
-            guard let fruitLabel = stock[fruit] else { return }
+            guard let amountOfFruit = stock[fruit] else { return }
             
-            label.text = "\(fruitLabel)"
+            label.text = "\(amountOfFruit)"
         }
-        transferStock = stock
     }
     
-    @objc private func order(_ sender: UIButton) {
+    @objc private func orderButtonDidTap(_ sender: UIButton) {
         do {
             let juice = try convertToJuice(from: sender)
             try juiceMaker.make(menu: juice)
@@ -121,7 +123,7 @@ class HomeViewController: UIViewController {
             return
         }
         editStockVC.delegate = self
-        editStockVC.fruitsStock = transferStock
+        editStockVC.fruitsStock = juiceMaker.store.stock
         self.present(editStockVC, animated: true)
     }
 
@@ -130,8 +132,8 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: TransferDelegate {
-    func transfer(changedStock: [Fruit : Int]) {
-        juiceMaker.store.replaceStock(with: changedStock)
+extension HomeViewController: EditStockViewControllerDelegate {
+    func EditStockViewControllerDidChangeStock(_ editedStock: [Fruit: Int]) {
+        juiceMaker.store.replaceStock(with: editedStock)
     }
 }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol TransferDelegate: AnyObject {
-    func transfer(changedStock: [Fruit: Int])
+protocol EditStockViewControllerDelegate: AnyObject {
+    func EditStockViewControllerDidChangeStock(_ editedStock: [Fruit: Int])
 }

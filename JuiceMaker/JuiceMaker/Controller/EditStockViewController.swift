@@ -9,7 +9,7 @@ import UIKit
 
 class EditStockViewController: UIViewController {
     var fruitsStock = [Fruit: Int]()
-    weak var delegate: TransferDelegate?
+    weak var delegate: EditStockViewControllerDelegate?
     
     @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
     @IBOutlet private var editStockStepper: [EditStockStepper]!
@@ -53,7 +53,7 @@ class EditStockViewController: UIViewController {
     }
     
     @IBAction private func tapCloseButton(_ sender: Any) {
-        delegate?.transfer(changedStock: fruitsStock)
+        delegate?.EditStockViewControllerDidChangeStock(fruitsStock)
         self.dismiss(animated: true, completion: nil)
     }
 }

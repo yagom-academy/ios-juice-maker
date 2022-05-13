@@ -112,6 +112,14 @@
 			path = Label;
 			sourceTree = "<group>";
 		};
+		42EA5251282E1AE3006BF072 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,10 +147,10 @@
 		C71CD671266C7B570038B9CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				42EA5251282E1AE3006BF072 /* Resource */,
 				42EA5239282D6049006BF072 /* Label */,
 				42EA5237282D6037006BF072 /* Stepper */,
 				42EA5236282D6018006BF072 /* StoryBoard */,
-				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 			);
 			path = View;
