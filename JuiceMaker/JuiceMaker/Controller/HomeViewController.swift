@@ -137,7 +137,7 @@ class HomeViewController: UIViewController {
     }
     
     private func presentEditStockViewController() {
-        let editStockVCNavigationController = UIStoryboard(name: "EditStockNavigationController", bundle: nil)
+        let editStockVCNavigationController = UIStoryboard(name: "EditStock", bundle: nil)
         guard let editStockVC = editStockVCNavigationController.instantiateViewController(
             withIdentifier: "EditStockViewController"
         ) as? EditStockViewController
