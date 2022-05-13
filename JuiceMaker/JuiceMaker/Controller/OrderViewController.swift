@@ -14,12 +14,10 @@ final class OrderViewController: UIViewController {
     @IBOutlet private weak var mangoLabel: UILabel?
     
     private let juiceMaker = JuiceMaker()
-    private var storeViewManager = StoreViewManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updateUI()
-        storeViewManager.delegate = self
     }
 }
 
@@ -67,7 +65,7 @@ private extension OrderViewController {
         let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
         storeViewController.modalTransitionStyle = .coverVertical
         storeViewController.fruits = juiceMaker.stockUp()
-        storeViewController.manager = storeViewManager
+        storeViewController.delegate = self
         self.present(storeViewController, animated: true)
     }
     

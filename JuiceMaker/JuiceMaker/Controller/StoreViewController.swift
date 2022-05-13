@@ -21,8 +21,7 @@ final class StoreViewController: UIViewController {
     @IBOutlet private weak var mangoStepper: UIStepper?
     
     var fruits: FruitStock = [:]
-    
-    var manager: StoreViewManager?
+    weak var delegate: StoreViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,7 @@ final class StoreViewController: UIViewController {
 
 private extension StoreViewController {
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        manager?.didCanceled(viewcontroller: self)
+        self.delegate?.didCanceledStoreViewController(self)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -45,19 +44,19 @@ private extension StoreViewController {
         switch stepper {
         case (let strawberry) where strawberry == strawberryStepper:
             self.strawberryLabel?.text = strawberry.descriptionValue()
-            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .strawberry, with: strawberry.intValue())
+            self.delegate?.stepperValueDidChanged(self, fruit: .strawberry, with: strawberry.intValue())
         case (let banana) where banana == bananaStepper:
             self.bananaLabel?.text = self.bananaStepper?.descriptionValue()
-            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .banana, with: banana.intValue())
+            self.delegate?.stepperValueDidChanged(self, fruit: .banana, with: banana.intValue())
         case (let pineapple) where pineapple == pineappleStepper:
             self.pineappleLabel?.text = pineapple.descriptionValue()
-            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .pineapple, with: pineapple.intValue())
+            self.delegate?.stepperValueDidChanged(self, fruit: .pineapple, with: pineapple.intValue())
         case (let kiwi) where kiwi == kiwiStepper:
             self.kiwiLabel?.text = kiwi.descriptionValue()
-            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .kiwi, with: kiwi.intValue())
+            self.delegate?.stepperValueDidChanged(self, fruit: .kiwi, with: kiwi.intValue())
         case (let mango) where mango == mangoStepper:
             self.mangoLabel?.text = mango.descriptionValue()
-            self.manager?.stepperValueDidChanged(viewcontroller: self, fruit: .mango, with: mango.intValue())
+            self.delegate?.stepperValueDidChanged(self, fruit: .mango, with: mango.intValue())
         default:
             return
         }
