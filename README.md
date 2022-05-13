@@ -236,3 +236,110 @@
 ## 배운개념
 - `notification`, `type property`, `UIBarButtonItem`
 - `push`, `present`, `UIViewController Lifecycle`
+
+
+질문
+---
+### 1. `Notification` 관련 질문
+
+>- 화면 이동 방식: ViewController 1 -> ViewController 2 -> ViewController 1 
+>- 데이터 전달 구조 : ViewController2 -> ViewController1
+
+- VC2 에서 Notification을 post,  
+VC1 에서 addObserver를 구현하려고 한다면,
+
+- VC1에서 NotificationCenter에 Observer로 등록을 해놓았기 때문에   
+VC2에서 NotificationCenter로 알림을 Post하면,   
+미리 VC1에서 등록한 옵저버에서 해당 알림을 수신하여, selector에 등록한 기능을 수행할 수 있습니다.
+
+- 반면에, 
+
+>- 화면 이동 방식: ViewController 1 -> ViewController 2 -> ViewController 1 
+>- 데이터 전달 구조 : ViewController1 -> ViewController2
+
+
+- VC1 에서 Notification을 post,   
+VC2 에서 addObserver를 구현하려고 한다면,
+
+- VC1에서 NotificationCenter로 알림을 Post하였으나, 메모리에 옵저버가 등록되지 않았기 때문에 해당 알림을 수신을 받지 못합니다.   
+VC2에서 뒤늦게 NotificationCenter에 Observer로 등록을 해보았지만, 이미 VC1에서 보낸 post는 만료가 되어 VC2의 Observer는 아무런 Notification을 수신하지 못하는 상태입니다.
+
+- 즉, 문제를 정리하자면, Observer가 메모리에 올라가기 이전에 VC1에서 post를 하였기에 observer가 알림을 인식하지 못하는 상태에 직면한 것입니다.
+
+- 이를 해결하기 위해서는 VC1에서 알림을 post하기 이전에 observer를 메모리에 먼저 올린다면 VC2에서도 알림을 수신할 수 있을 것입니다. 하지만, 어떻게 VC1에서 알림을 post하기 전에 VC2의 Observer를 메모리에 먼저 올릴 수 있는지 방법을 아무리 궁구해보아도 떠오르지 않았습니다.
+
+- 수일동안 여러 차례 고민하여 방법을 궁구하던 중 학습활동 시간을 통해 View Life Cycle의 State Method가 각각 언제 호출되는지 탐구하던 중 다음의 생각이 떠올랐습니다.
+
+- VC1에서 VC2로 기본 모달방식으로 화면전환을 할 때 각각의 State Method는 다음과 같이 호출됩니다.
+
+[모달 방식 - automatic]
+```swift
+1st viewDidLoad
+1st viewWillAppear
+1st viewDidAppear
+======================
+2nd viewDidLoad
+2nd viewWillAppear
+2nd viewDidAppear
+```
+
+- VC1에서 VC2로 풀스크린 모달방식으로 화면전환을 할 때 각각의 State Method는 다음과 같이 호출됩니다.
+
+[모달 방식 - fullScreen]
+```swift
+1st viewDidLoad
+1st viewWillAppear
+1st viewDidAppear
+======================
+2nd viewDidLoad
+1st viewWillDisappear
+2nd viewWillAppear
+2nd viewDidAppear
+1st viewDidDisappear
+```
+
+- 그렇다면, VC1이 viewWillDisappear나 viewDidDisappear에서 Notification을 Post하면
+이미 VC2에서 '2nd viewDidLoad'로 옵저버를 등록하면 알림을 수신받을 수 있지 않을까 하는 가설을 생각하게 됩니다.
+그리고 이를 구현해본 결과 VC2의 observer에 등록된 selector 함수가 올바르게 실행됨을 확인할 수 있었습니다!!
+
+- 이에 제이크에게 해당 방법이 앞서 끊임없이 갈구하였던 메모리에 미리 observer를 올린 알맞은 방법에 해당하는지 궁금합니다. 추가적으로 혹시나 다른 방법으로는 어떻게 미리 Observer를 메모리에 올릴 수 있는지 또한 궁금하여 질문드립니다!
+
+
+
+
+- 다만 notification을 사용하는 경우에 대해서 차차 알아가시면 좋을 것 같습니다.
+notification에 대한 [공식문서](https://developer.apple.com/documentation/foundation/notificationcenter)를 확인해보면
+A notification dispatch mechanism that enables the broadcast of information to registered observers.
+이런 설명이 있습니다. 여기서 broadcast라는 것이 중요한 부분입니다.
+notification은 어떠한 이벤트가 발생했을 때 이를 알아야하는 여러 개의 객체들이 있을 때 이들 각각에게 알려주는 것은 코드의 양이 많아질 수 있으므로 한 번의 post로 인해 observer하고 있는 모든 곳에서 이를 알아차릴 수 있도록 1:다 에 적합한 방법입니다.
+
+- 그렇다면 이번 프로젝트와 같이 vc끼리 1:1로 데이터를 주고 받는 경우에는 어떠한 방법들을 사용할까요?  
+위에서 말씀해주신 6가지 방법들 중 notificationCenter를 제외한 방법들을 사용할 수 있을 겁니다!
+물론 notification을 사용해도 됩니다. 그러나 지금 겪는 문제처럼 observer를 등록하는 시점과 post하는 시점이 순차적이지 않은 경우에 이를 수정하는 방법까지 고려하면서 notification을 사용했을 때 얻는 이점이 있을 것 같지는 않습니다.
+
+- 이외의 방법인 delegate에 대해서도 공부를 해보시면 좋을 것 같네요!
+[notification과 delegate를 비교하는 글](https://wlgusdn700.tistory.com/45)입니다.
+
+- 추가로 해주신 질문에 대해서는 다른 방법은 저도 잘 모르겠네요. 🥲 저도 찾아보고 알게되면 공유해드리겠습니다!
+---
+### 2-1 `Modal` 내 `Navigation`구현 중 `Navigation Bar`미표시
+2. 일단 아래 질문에 대해서는
+- 이전 방식에서 Navigation Bar의 Title 과 뒤로가기 버튼이 자동적으로 생성~  
+navigation viewcontroller에 대해서 공부를 해보시면 좋을 것 같네요. 🙏🏻  
+navigation viewcontroller에서는 navigationBar를 보여주고 말지 결정할 수 있습니다.
+
+> 이에, 스토리보드를 보면 FruitStockViewController에 navigation title과 item들이 정상적으로 표시되는데도 불구하고 네비게이션 컨트롤러가 아닌 VC로 화면 전환을 바로하면 왜 네비게이션 바가 노출되지 않는지 이유가 궁금합니다.
+
+- 또한 navigation viewcontroller에서 present와 push에 대해서도 같이 알아보시면 질문에 대한 답변이 될 수 있을 것 같네요. 🙏🏻
+- 지금의 구현하신 방법으로도 문제가 해결되긴 했지만 navigationViewController 에서 또 다른 navigationViewController를 present 하기 때문에 의도하신 것을 해결은 했지만 좋은 방법은 아닙니다.
+
+- 추가로 Modal의 경우에는 navigationBar가 기본적으로 생성되지 않기 때문에 직접 navigationBarView를 생성하고, button을 달아서 동작하게 할 수 있습니다.
+- 이 부분에 대해서는 modal에 대해서 추가적으로 알아보시면 도움이 될 것 같네요.
+
+
+
+- 수꿍과 바드가 알아보신 것처럼 navigationBar의 height를 변경할 수는 없습니다.  
+ modal 형태라면 위에서 말했듯이 navigationBar 처럼 생긴 뷰를 만들기 때문에 height를 조절할 수 있을 것이고, 그렇지 않은 경우라면 title의 fontsize를 변경하면 사이즈가 커질 것 같은데, 이 부분은 지금 꼭 확인하지 않아도 될 것 같네요 🙂
+
+- stepper의 경우에는 기획서에 있는 것이 Xcode 11이후부터 새로운 디자인으로 변경되었습니다. 커스텀을 하는 방법도 있지만 이번 프로젝트에서 의도한 내용은 아닌 것 같으니 현재 디자인으로 하셔도 될 것 같습니다. 👍🏻
+---
