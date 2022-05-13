@@ -68,13 +68,11 @@
 - Human Interface GuideLine
 ---
 # 그라운드 룰
-
 ## 활동 시간
 - 오전 9 : 30 시작
 - 오후 10시 까진 끝내기
 - 금요일은 6시까지
 - 유동적으로 산책, 음악감상
-
 ## 참고문서
 - [Swift Language Guide - Structures and Classes](https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html)
 - [Swift Language Guide - Initialization](https://docs.swift.org/swift-book/LanguageGuide/Initialization.html)
@@ -87,14 +85,10 @@
 ## 의사소통 방법
 + 디스코드 회의실
 + 단톡방
-
-
 ## 코딩 컨벤션
-
 1. Swift 코드 스타일 : [스위프트 API 가이드라인](https://gist.github.com/godrm/d07ae33973bf71c5324058406dfe42dd) 
 2. 커밋 
 + 커밋 Title 규칙
-
     + add: 새로운 파일 추가
     + refactor: 코드 리팩토링
     + style: 코드 내 들여쓰기나 부가적인 수정
@@ -102,7 +96,6 @@
     + fix: 버그 수정
     + docs: 문서 수정
 + 커밋 body 규칙
-
     + 현제 시제를 사용, 이전 행동과 대조하여 변경을 한 동기를 포함하는 것을 권장 문장형으로 끝내지 않기
     + commitTitle 과 body 사이는 한 줄 띄워 구분하기
     + commitTitle line의 글자수는 50자 이내로 제한하기
@@ -126,64 +119,61 @@
 - [x] delegate Pattern
 ---
 # 기능설명
-## JuiceMaker
+## **JuiceMakerViewController**
 - updateFruitsStock(): FruitStoreViewController로부터 위임받아 과일재고를 수정하는 메서드
 - postFruitsStockDelivered(): 과일재고를 Notification 방식으로 수정하는 메서드
 - addObserverFruitsStockDidChanged(): 과일재고가 수정되면 라벨을 업데이트하는 메서드
 - respondOrder(): 주문받은 쥬스의 레시피대로 재고를 차감하고 결과를 호출하는 메서드
 - orderFruitJuice(): UIButton이 어떤 과일 버튼을 눌럿는지 확인하는 메서드
-### label modify
+### *label modify*
 - modifyFruitStockLabel(): 파라미터로 받은 과일에 해당하는 UILabel을 변경하는 메서드
 - updateFruitsStockLabels: 각 과일에 해당하는 UILabel을 변경시키는 메서드
-### alert
+### *alert*
 - alertSuccess(): 쥬스 제조에 성공시 나오는 alert를 띄우는 메서드
 - alertfailureOfFruitJuice(): 쥬스 제조에 실패시 나오는 alert를 띄우는 메서드
 - alertInvalidAccess(): 오류 발생시 나오는 alert를 띄우는 메서드
-### 화면 전환
+### *화면 전환*
 - prepare(): segue로 화면 전환 시 현재 delegate지정해주는 메서드
 - presentModalViewController(): FruitStoreView Controller로 present해주는 메서드
-### UIComponents attribute
+### *UIComponents attribute*
 - adjustButtonTitleAlignment(): 각 UIButton의 text alignment를 재정의 하는 메서드
-## FruitsStockDelegate
+---
+## **FruitStoreViewController**
+- pressStepper(): Stepper의 입력을 받아 과일의 재고르 변경하는 메서드
+### *View Exchange*
+- pressBackBarButton(): modal 창을 dismiss 해주는 메서드
+### *UI Components data setting*
+- updateStepperValue(): 과일재고와 stepper의 값을동일하게 변경해주는 메서드
+---
+## **FruitsStockDelegate**
 - updateFruitsStock(): Delegate Pattern 사용을 위한 초기 메서드
-
-## FruitJuice
+---
+## **FruitJuice**
 - getRecipe(): 각각의 주스를 만들기 위해 필요한 과일과 양을 튜플의 배열로 반환하는 메서드
-
-## FruitStore
+---
+## **FruitStore**
 - bindingStock(): Dictionary 타입의 과일재고 프로퍼티에 대해 옵셔널 바인딩 된 값을 반환하는 메서드
 - canUseStock(): 과일의 양을 확인해 과일주스에 사용될 만큼 수량이 있는지에 대해 Bool타입을 반환하는 메서드
 - useOfStock(): 과일의 재고를 사용해 과일주스를 반환하는 메서드
 - make(): 과일주스를 만들어 반환하는 메서드
 - postFruitsStockDidChanged(): 과일재고의 변화를 Notification 으로 post 해주는 메서드
 - addObserverFruitsStockDidModified(): 외부에서 과일재고의 변경을 전달받기 위해 addObserver 해주는 메서드
-
-## JuiceMaker
+---
+## **JuiceMaker**
 - takeOrder(): 과일주스 주문의 결과를 Result타입으로 반환해주는 메서드
 - requestCurrentStock(): 현재 과일재고를 반환하는 메서드
-
-## FruitStoreViewController
-- pressStepper(): Stepper의 입력을 받아 과일의 재고르 변경하는 메서드
-### View Exchange
-- pressBackBarButton(): modal 창을 dismiss 해주는 메서드
-### UI Components data setting
-- updateStepperValue(): 과일재고와 stepper의 값을동일하게 변경해주는 메서드
 ---
 # [STEP 1]
-
 ## STEP 1 고민한점
 - 은닉화 : FruitStore 클래스의 메서드들을 internal로 설정하면 FruitStore 객체를 만들어서 과일의 재고만 변동을 줄 수도 있다는 생각이 들었습니다. 그래서 FruitStore의 메서드를 JuiceMaker 에서만 사용하게 하고 싶었으나 은닉화를 하게 되면 JuiceMaker에서 사용할 수 없어서 `어떻게 해야 하는 게 좋은지`, `이 생각을 하는게 옳은 것인지 궁금합니다`. 
     - 해결방법 : FruitStore에서 은닉화가 필요한 함수를 은닉화 해주고, 그 함수를 다른 함수로 묶어서 쥬스를 만들지 않으면 과일의 재고를 변경 할 수 없도록 해줬다. 그리고 JuiceMaker의 takeOrder 함수에선 쥬스를 만드는 함수 make만 호출하도록 수정했다.
-
 - Dictionary : 처음에 주스레시피를 Dictionary으로 관리를 하다 보니 Dictionary의 값을 옵셔널 바인딩해줘야 했습니다. 그렇게 되면 레시피가 두 가지의 과일을 사용하는 경우에는(딸기 바나나주스) for문을 사용해야 했고, for문 안에서 옵셔널 바인딩을 해야 했기 때문에 이중 들여쓰기를 사용해야 했고 이중들여쓰기 사용은 프로젝트 규칙을 어기는 방법이였습니다. 
     - 해결방법 : FruitJuice 열거형에서 각 레시피에 맞는 과일과 수량을 튜플에 넣고 그 `튜플을 배열에 넣어 리턴하는 방식`으로 사용했습니다.
-
 ## STEP 1 배운개념
 - Hiding
 - Dictionary
 - Error Handling
 - Enum
-
 ## STEP 1 Review
 - 재고 초기화 부분에서 "자주 변경될 수 있는 것과 거의 변경되지 않는 것"을 구분해서 어떻게 초기화 해줄지 고민해보기
 - 에러를 언제 던지는게 좋을지에 대해서도 함께 고민해보기
