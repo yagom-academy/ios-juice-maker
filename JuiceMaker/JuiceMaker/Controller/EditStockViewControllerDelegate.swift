@@ -8,5 +8,8 @@
 import Foundation
 
 protocol EditStockViewControllerDelegate: AnyObject {
-    func editStockViewControllerDidChangeStock(_ editedStock: [Fruit: Int],_ editStockViewController: EditStockViewController)
+    func editStockViewControllerDidChangeStock(
+        _ editedStock: [Fruit: Int],
+        _ editStockViewController: EditStockViewController
+    )
 }

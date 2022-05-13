@@ -8,7 +8,7 @@
 import UIKit
 
 class EditStockViewController: UIViewController {
-    var fruitsStock = [Fruit: Int]()
+    var fruits = FruitInventory()
     weak var delegate: EditStockViewControllerDelegate?
     
     @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
@@ -17,7 +17,7 @@ class EditStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateLabel(from: fruitsStock)
+        updateLabel(from: fruits.currentStock)
         configureEditStockSteppers()
     }
     
@@ -27,8 +27,12 @@ class EditStockViewController: UIViewController {
     
     func configureEditStockSteppers() {
         editStockStepper.forEach {
-            $0.addTarget(self, action: #selector(updateStepperValue), for: .valueChanged)
-            $0.configure(with: fruitsStock)
+            $0.addTarget(
+                self,
+                action: #selector(updateStepperValue),
+                for: .valueChanged
+            )
+            $0.configure(with: fruits.currentStock)
         }
     }
     
@@ -37,13 +41,16 @@ class EditStockViewController: UIViewController {
         else {
             return
         }
-        fruitsStock[fruit] = Int(stepper.value)
+        fruits.currentStock[fruit] = Int(stepper.value)
         
-        updateLabel(from: fruitsStock)
+        updateLabel(from: fruits.currentStock)
     }
     
     @IBAction private func tapCloseButton(_ sender: Any) {
-        delegate?.editStockViewControllerDidChangeStock(fruitsStock, self)
+        delegate?.editStockViewControllerDidChangeStock(
+            fruits.currentStock,
+            self
+        )
         self.dismiss(animated: true, completion: nil)
     }
 }

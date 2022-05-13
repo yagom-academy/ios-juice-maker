@@ -21,6 +21,7 @@
 		42EA524B282D6278006BF072 /* PineappleStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA524A282D6278006BF072 /* PineappleStepper.swift */; };
 		42EA524D282D627F006BF072 /* KiwiStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA524C282D627F006BF072 /* KiwiStepper.swift */; };
 		42EA524F282D6288006BF072 /* MangoStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA524E282D6288006BF072 /* MangoStepper.swift */; };
+		42EA5253282E4A8F006BF072 /* FruitInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5252282E4A8F006BF072 /* FruitInventory.swift */; };
 		7255F11128181DD800803680 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255F11028181DD800803680 /* JuiceMakerError.swift */; };
 		7261BFB8282A5CF4004B8C85 /* EditStockStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7261BFB7282A5CF4004B8C85 /* EditStockStepper.swift */; };
 		72F2D8622817AE1400962C28 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2D8612817AE1400962C28 /* Fruit.swift */; };
@@ -50,6 +51,7 @@
 		42EA524A282D6278006BF072 /* PineappleStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PineappleStepper.swift; sourceTree = "<group>"; };
 		42EA524C282D627F006BF072 /* KiwiStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiwiStepper.swift; sourceTree = "<group>"; };
 		42EA524E282D6288006BF072 /* MangoStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangoStepper.swift; sourceTree = "<group>"; };
+		42EA5252282E4A8F006BF072 /* FruitInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitInventory.swift; sourceTree = "<group>"; };
 		7255F11028181DD800803680 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		7261BFB7282A5CF4004B8C85 /* EditStockStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockStepper.swift; sourceTree = "<group>"; };
 		72F2D8612817AE1400962C28 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				72F2D8612817AE1400962C28 /* Fruit.swift */,
 				7255F11028181DD800803680 /* JuiceMakerError.swift */,
 				42C7F4FB2818D8EF0031CCAB /* Menu.swift */,
+				42EA5252282E4A8F006BF072 /* FruitInventory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				7261BFB8282A5CF4004B8C85 /* EditStockStepper.swift in Sources */,
 				72F98D16282540B400DF5D79 /* FruitStockLabel.swift in Sources */,
 				42EA524B282D6278006BF072 /* PineappleStepper.swift in Sources */,
+				42EA5253282E4A8F006BF072 /* FruitInventory.swift in Sources */,
 				42EA5249282D626E006BF072 /* BananaStepper.swift in Sources */,
 				42EA524F282D6288006BF072 /* MangoStepper.swift in Sources */,
 				42EA5243282D6231006BF072 /* KiwiLabel.swift in Sources */,

@@ -43,7 +43,10 @@ class HomeViewController: UIViewController {
     
     private func configureOrderButtons() {
         orderButton.forEach { orderButton in
-            orderButton.addTarget(self, action: #selector(orderButtonDidTap), for: .touchUpInside)
+            orderButton.addTarget(
+                self,
+                action: #selector(orderButtonDidTap),
+                for: .touchUpInside)
         }
     }
     
@@ -93,9 +96,19 @@ class HomeViewController: UIViewController {
     }
     
     private func showLackOfStockAlert() {
-        let lackOfStockAlert = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let noAlert = UIAlertAction(title: "아니오", style: .default, handler: nil)
-        let okAlert = UIAlertAction(title: "예", style: .default) { _ in
+        let lackOfStockAlert = UIAlertController(
+            title: "알림",
+            message: "재료가 모자라요. 재고를 수정할까요?",
+            preferredStyle: .alert
+        )
+        let noAlert = UIAlertAction(
+            title: "아니오",
+            style: .default,
+            handler: nil
+        )
+        let okAlert = UIAlertAction(
+            title: "예",
+            style: .default) { _ in
             self.presentEditStockViewController()
         }
         
@@ -106,8 +119,17 @@ class HomeViewController: UIViewController {
     }
     
     private func showCompletionAlert(menu: Menu) {
-        let completionAlert = UIAlertController(title: "알림", message: "\(menu) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let completionAlert = UIAlertController(
+            title: "알림",
+            message: "\(menu) 나왔습니다! 맛있게 드세요!",
+            preferredStyle: .alert
+        )
+        
+        let okAlert = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil
+        )
         
         completionAlert.addAction(okAlert)
         
@@ -115,22 +137,28 @@ class HomeViewController: UIViewController {
     }
     
     private func presentEditStockViewController() {
-        guard let editStockVC = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") as? EditStockViewController
+        guard let editStockVC = self.storyboard?.instantiateViewController(
+            withIdentifier: "EditStockViewController"
+        ) as? EditStockViewController
         else {
             return
         }
         editStockVC.delegate = self
-        editStockVC.fruitsStock = juiceMaker.store.stock
+        editStockVC.fruits.currentStock = juiceMaker.store.stock
         self.present(editStockVC, animated: true)
     }
 
-    @IBAction private func tapEditStock(_ sender: UIBarButtonItem) {
-        self.presentEditStockViewController()
+    
+    @IBAction func tapEditStock(_ sender: UIBarButtonItem) {
+            self.presentEditStockViewController()
     }
 }
 
 extension HomeViewController: EditStockViewControllerDelegate {
-    func EditStockViewControllerDidChangeStock(_ editedStock: [Fruit: Int]) {
+    func editStockViewControllerDidChangeStock(
+        _ editedStock: [Fruit: Int],
+        _ editStockViewController: EditStockViewController
+    ) {
         juiceMaker.store.replaceStock(with: editedStock)
     }
 }
