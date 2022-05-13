@@ -30,11 +30,6 @@ final class FruitStoreViewController: UIViewController {
         updateStepperValue()
     }
     
-    @IBAction private func pressBackBarButton(_ sender: UIButton) {
-        delegate?.updateFruitsStock(fruitsStock)
-        dismiss(animated: true)
-    }
-    
     @IBAction private func pressStepper(_ sender: UIStepper) {
         switch sender {
         case strawberryStepper:
@@ -53,7 +48,13 @@ final class FruitStoreViewController: UIViewController {
         updateFruitsStockLabels(fruitsStock)
     }
     
-    //MARK: - Label Method
+//MARK: - View Exchange
+    @IBAction private func pressBackBarButton(_ sender: UIButton) {
+        delegate?.updateFruitsStock(fruitsStock)
+        dismiss(animated: true)
+    }
+    
+//MARK: - UI Components data setting
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
         stock?.forEach {
             modifyFruitStockLabel($0.key.rawValue, $0.value)
@@ -67,7 +68,6 @@ final class FruitStoreViewController: UIViewController {
         }
     }
     
-    //MARK: - Stepper Method
     private func updateStepperValue() {
         let fruitsSteppers: [Fruit: UIStepper] = [
             .strawberry: strawberryStepper,

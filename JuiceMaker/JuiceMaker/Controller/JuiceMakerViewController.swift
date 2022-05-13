@@ -50,6 +50,7 @@ final class JuiceMakerViewController: UIViewController {
             break
         }
     }
+    
 //MARK: - Buisness Logic(Making Juice)
     private func respondOrder(of fruitjuice: FruitJuice) {
         do {
@@ -64,6 +65,7 @@ final class JuiceMakerViewController: UIViewController {
             alertInvalidAccess()
         }
     }
+    
 //MARK: - Alert View
     private func alertSuccess(of fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil, message: "\(fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
@@ -103,7 +105,6 @@ final class JuiceMakerViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination
-        
         guard let modalViewController = destination as? FruitStoreViewController else { return }
         modalViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
         modalViewController.delegate = self
@@ -123,9 +124,10 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
 }
+
 //MARK: - UI Components Layout
 extension JuiceMakerViewController {
-    private func adjustButtonTitleAlignment(){
+    private func adjustButtonTitleAlignment() {
         let JuiceButtonArray = [
             strawberryAndBananaJuiceButton,
             mangoAndKiwiJuiceButton,
@@ -139,6 +141,7 @@ extension JuiceMakerViewController {
         }
     }
 }
+
 //MARK: - Notification Center
 extension JuiceMakerViewController {
     private func addObserverFruitsStockDidChanged() {
@@ -154,6 +157,7 @@ extension JuiceMakerViewController {
         NotificationCenter.default.post(name: NotificationName.fruitsStockDidModified, object: nil, userInfo: fruitsStock)
     }
 }
+
 //MARK: - FruitStore Delegate
 extension JuiceMakerViewController: FruitsStockDelegate {
     func updateFruitsStock(_ fruitStocks: [Fruit : Int]) {
