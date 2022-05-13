@@ -10,7 +10,7 @@ class FruitStockViewController: UIViewController {
     @IBOutlet private var fruitsLabel: [UILabel]!
     @IBOutlet private var fruitsStepper: [UIStepper]!
     
-    var fruitStore: FruitStore = FruitStore()
+    var fruitStore: FruitStore? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,47 +19,43 @@ class FruitStockViewController: UIViewController {
     }
     
     private func updateStepperValue() {
-        for fruits in 0..<FruitStore.fruitWarehouse.count {
-            fruitsStepper[fruits].value = Double(FruitStore.fruitWarehouse[Fruit(rawValue: fruits) ?? Fruit.unknownFruit] ?? 0)
+        for index in 0..<(fruitStore?.fruitWarehouse.count ?? 0) {
+            fruitsStepper[index].value = Double(fruitStore?.fruitWarehouse[Fruit(rawValue: index) ?? Fruit.unknownFruit] ?? 0)
         }
     }
     
     private func updateFruitLabel() {
-        for fruits in 0..<fruitsLabel.count {
-            fruitsLabel[fruits].text = String(Int(fruitsStepper[fruits].value))
+        for index in 0..<fruitsLabel.count {
+            fruitsLabel[index].text = String(Int(fruitsStepper[index].value))
         }
     }
     
     private func postUpdateFruitStockNotification() {
-        center.post(name: .updateFruitStock, object: nil, userInfo: ["딸기재고": fruitsLabel[0].text ?? "", "바나나재고": fruitsLabel[1].text ?? "", "파인애플재고": fruitsLabel[2].text ?? "", "키위재고": fruitsLabel[3].text ?? "", "망고재고": fruitsLabel[4].text ?? ""])
+        center.post(name: .updateFruitStock, object: nil, userInfo: ["updatedFruitStock": fruitsLabel ?? []])
     }
     
     @IBAction private func changeValueOfStrawberryStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfBananaStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfPineappleStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfKiwiStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        postUpdateFruitStockNotification()
     }
     
     @IBAction private func changeValueOfMangoStepper(_ sender: UIStepper) {
         updateFruitLabel()
-        postUpdateFruitStockNotification()
     }
     
     @IBAction private func closeButtonTouchedUpInside(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
+        postUpdateFruitStockNotification()
     }
 }

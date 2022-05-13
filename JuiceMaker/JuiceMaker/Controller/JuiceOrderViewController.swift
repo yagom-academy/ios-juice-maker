@@ -18,7 +18,7 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var mangoJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,8 @@ class JuiceOrderViewController: UIViewController {
     }
 
     private func updateFruitStockLabelText() {
-        for fruits in 0..<fruitsLabel.count {
-            fruitsLabel[fruits].text = String(Int(FruitStore.fruitWarehouse[Fruit(rawValue: fruits) ?? Fruit.unknownFruit] ?? 0))
+        for index in 0..<fruitsLabel.count {
+            fruitsLabel[index].text = String(Int(juiceMaker.fruitStore.fruitWarehouse[Fruit(rawValue: index) ?? Fruit.unknownFruit] ?? 0))
         }
     }
     
@@ -99,11 +99,11 @@ class JuiceOrderViewController: UIViewController {
         
         let modalViewController = UINavigationController(rootViewController: controller)
         
-        sendFruitLabelText(controller)
+        sendFruitStoreData(to: controller)
         present(modalViewController, animated: true)
     }
     
-    private func sendFruitLabelText(_ controller: FruitStockViewController) {
+    private func sendFruitStoreData(to controller: FruitStockViewController) {
         controller.fruitStore = juiceMaker.fruitStore
     }
     
@@ -117,21 +117,21 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func tryUpdateFruitStock(_ notification: Notification) {
-        try? juiceMaker.fruitStore.changeStock(fruit: .strawberry, amount: Int(notification.userInfo?["딸기재고"] as? String ?? "") ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .banana, amount: Int(notification.userInfo?["바나나재고"] as? String ?? "") ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .pineapple, amount: Int(notification.userInfo?["파인애플재고"] as? String ?? "") ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .kiwi, amount: Int(notification.userInfo?["키위재고"] as? String ?? "") ?? 0)
-        try? juiceMaker.fruitStore.changeStock(fruit: .mango, amount: Int(notification.userInfo?["망고재고"] as? String ?? "") ?? 0)
+        let updatedFruitStock = notification.userInfo?["updatedFruitStock"] as? [UILabel] ?? []
+        
+        for index in 0..<updatedFruitStock.count {
+            try? juiceMaker.fruitStore.changeStock(fruit: Fruit(rawValue: index) ?? Fruit.unknownFruit, amount: Int(updatedFruitStock[index].text ?? "") ?? 0)
+        }
     }
     
     private func setUpButton() {
-        strawberryBananaJuiceButton.setUpAttributes()
-        strawberryJuiceButton.setUpAttributes()
-        bananaJuiceButton.setUpAttributes()
-        pineappleJuiceButton.setUpAttributes()
-        kiwiJuiceButton.setUpAttributes()
-        mangoJuiceButton.setUpAttributes()
-        mangoKiwiJuiceButton.setUpAttributes()
+        strawberryBananaJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        strawberryJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        bananaJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        pineappleJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        kiwiJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        mangoJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
+        mangoKiwiJuiceButton.setUp(lineBreakMode: .byWordWrapping, textAlignment: .center, font: .systemFont(ofSize: 20))
     }
 }
 
@@ -140,9 +140,9 @@ extension Notification.Name {
 }
 
 extension UIButton {
-    func setUpAttributes() {
-        self.titleLabel?.lineBreakMode = .byWordWrapping
-        self.titleLabel?.textAlignment = .center
-        self.titleLabel?.font = .systemFont(ofSize: 20)
+    func setUp(lineBreakMode: NSLineBreakMode, textAlignment: NSTextAlignment, font: UIFont) {
+        self.titleLabel?.lineBreakMode = lineBreakMode
+        self.titleLabel?.textAlignment = textAlignment
+        self.titleLabel?.font = font
     }
 }
