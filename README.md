@@ -21,24 +21,18 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 ### FruitStore 
 - 재고를 확인하는 함수
 ```swift 
-func count(of fruit: Fruit) -> Int?
+func count(_ fruit: FruitType) -> Int
 ```
 
-- 과일 수량 소진하는 함수 
+- 쥬스의 요구 과일의 수량 체크하고 재료 소진하는 함수 -> 없을시 Throws 
 
 ```swift 
-func consume(fruits: Fruits)
-```
-
-- 쥬스의 요구 과일의 수량 체크하는 함수 -> 없을시 Throws 
-
-```swift 
-func figure(out fruits: Fruits) throws 
+func consume(_ stock: FruitStock) throws 
 ```
 
 - 과일 수량 추가하는 함수
 ```swift 
-func add(fruit: Fruit, as amount: Int)
+func editStock(of fruit: FruitType, with amount: Int)
 ```
 
 ### JuiceMaker
@@ -115,11 +109,14 @@ func make(_ beverage: Drink) -> Result<JuiceType, StockError> {
 ```swift
 // ------ OrderViewController
 // Return Result 값 
-    switch result {
-    case .success(let juice):
-        showConfirmAlert(message: "\(juice.localeKorean) 쥬스 나왔습니다! 맛있게 드세요!")
-    case .failure(let error):
-        check(error: error)
+    let result = juiceMaker.make(juice)
+
+    result.handleValue { _ in
+        self.presentConfirmAlert(message: "\(orderedJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+
+    result.handleError { error in
+        self.presentWarningAlert(message: error.message)
     }
 ```
 
@@ -137,52 +134,22 @@ func make(_ beverage: Drink) -> Result<JuiceType, StockError> {
 # 기능구현 
 > Step02에 필요한 기능구현에 대한 부연설명 
 
-
-### OrderViewController 
-- Return 에러 종류 체크 
-```swift 
-func check(error: StockError)
-```
-
 #### Alert
 
 - 쥬스 생성 후 확인 알림 함수
 ```swift 
-func showConfirmAlert(message: String) 
+func presentConfirmAlert(message: String) 
 ```
 
 - 재고 부족시 알림 함수
 ```swift 
-func showWarningAlert(message: String)
+func presentWarningAlert(message: String)
 ```
 
 ### JuiceMaker 
 - make 함수 Result 타입 사용하여 반환 타입 추가 
 ```swift 
     func make(_ beverage: Drink) -> Result<JuiceType, StockError>
-```
-
-### JuiceType
-- 쥬스 이름 반환 Computed Property
-```swift 
-    var localeKorean: String {
-        switch self {
-        case .strawberryJuice:
-            return "딸기"
-        case .bananaJuice:
-            return "바나나"
-        case .kiwiJuice:
-            return "키위"
-        case .mangoJuice:
-            return "망고"
-        case .pineappleJuice:
-            return "파인애플"
-        case .strawberryBananaJuice:
-            return "딸바"
-        case .mangoKiwiJuice:
-            return "망키"
-        }
-    }
 ```
 
 # [Step 3]
@@ -214,24 +181,15 @@ func showWarningAlert(message: String)
 
 --- 
 ### OrderViewController 
-- ManagingOrderDelegate
+- StoreViewDelegate
 ```swift
-protocol ManangingOrderDelegate {
-    func setUpStock() -> FruitStock
-    func edit(fruit: Fruit, with amount: Int)
-    func updateUI()
+protocol StoreViewDelegate: AnyObject {
+    func stepperValueDidChanged(_ viewController: StoreViewController, fruit: FruitType, with amount: Int)
+    func didCanceledStoreViewController(_ viewController: StoreViewController)
 }
 ```
 > OrderViewController에서 StoreViewController로 data를 연동하기 위해 Delegate 패턴을 활용하였습니다.
-
-```swift
-func setUpStock() -> FruitStock
-```
-- 과일의 현재 수량을 넘기기 위한 함수
-```swift
-func edit(fruit: Fruit, with amount: Int)
-```
-- 과일의 수량을 수정하기 위한 함수
+ 
 ```swift
 func updateUI()
 ```
@@ -254,26 +212,19 @@ func updateUI()
 - OrderViewController에서 사용할 과일 수량변경 함수
 ```swift 
 func editStock(of fruit: Fruit, with amount: Int) {
-    fruitStore.updateStock(of: fruit, with: amount)
-}
-```
-
-- OrderViewController에서 사용할 총 과일 리스트
-```swift 
-func stockUp() -> FruitStock {
-    return fruitStore.listUp()
+    fruitStore.editStock(of: fruit, with: amount)
 }
 ```
 
 ### FruitStore
 ```swift
-func listUp() -> FruitStock
+func stockUp() -> FruitStock
 ```
 - 해당 과일별 현재 수량을 Dictionary 타입으로 반환하는 함수
 
 ```swift
     
-func updateStock(of fruit: Fruit, with amount: Int) {
+func editStock(of fruit: Fruit, with amount: Int) {
     self.fruits.updateValue(amount, forKey: fruit)
 }
 
