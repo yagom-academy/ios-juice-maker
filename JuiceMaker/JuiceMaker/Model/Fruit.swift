@@ -1,6 +1,6 @@
 typealias Fruits = [Fruit: Int]
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawberry
     case banana
     case kiwi

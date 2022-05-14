@@ -29,6 +29,10 @@ final class MakeJuiceViewController: UIViewController {
         refreshFruits()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        refreshFruits()
+    }
+    
     @IBAction private func orderButton(_ sender: UIButton) {
         switch sender {
         case orderStrawberryJuiceButton:
@@ -55,12 +59,12 @@ final class MakeJuiceViewController: UIViewController {
         default:
             return
         }
-        refreshFruits()
     }
     
     private func alert(_ result: Result<FruitJuice, FruitError>) {
         switch result {
         case .success(let juice):
+            refreshFruits()
             let successAlert = UIAlertController(
                 title: nil,
                 message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!",
@@ -90,6 +94,14 @@ final class MakeJuiceViewController: UIViewController {
         kiwiLabel.text = String(fruits[.kiwi] ?? 0)
         pineappleLabel.text = String(fruits[.pineapple] ?? 0)
         mangoLabel.text = String(fruits[.mango] ?? 0)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let target = segue.destination as? UINavigationController,
+              let destinationViewController = target.topViewController as? EditFruitsViewController
+        else { return }
+        let fruits = juiceMaker.fruitsInStock
+        destinationViewController.fruits = fruits
     }
 }
 

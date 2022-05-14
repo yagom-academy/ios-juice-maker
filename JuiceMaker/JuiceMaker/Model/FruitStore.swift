@@ -3,9 +3,10 @@
 //  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
+import Foundation
 
 final class FruitStore {
-    var fruits: Fruits = [:]
+    private(set) var fruits: Fruits = [:]
     
     init(strawberry: Int = 0, banana: Int = 0, kiwi: Int = 0, pineapple: Int = 0, mango: Int = 0) {
         self.fruits[.strawberry] = strawberry
@@ -13,37 +14,52 @@ final class FruitStore {
         self.fruits[.kiwi] = kiwi
         self.fruits[.pineapple] = pineapple
         self.fruits[.mango] = mango
+        
+        startObservingStock()
     }
     
     init(stock: Int) {
-        self.fruits[.strawberry] = stock
-        self.fruits[.banana] = stock
-        self.fruits[.kiwi] = stock
-        self.fruits[.pineapple] = stock
-        self.fruits[.mango] = stock
+        for fruit in Fruit.allCases {
+            self.fruits[fruit] = stock
+        }
+        startObservingStock()
     }
-
+    
     func pickUpFruits(for menu: FruitJuice) -> Result<FruitJuice, FruitError> {
         let recipe = menu.recipe
-        guard hasEnoughFruits(toMake: recipe) else {
+        guard hasEnoughFruits(for: recipe) else {
             return .failure(.insufficientFruit)
         }
-        useFruits(toMake: recipe)
+        useFruits(for: recipe)
         return .success(menu)
     }
     
-    private func hasEnoughFruits(toMake recipe: Fruits) -> Bool {
-        for (fruit, stock) in fruits {
-            guard stock >= recipe[fruit] ?? 0 else {
-                return false
-            }
+    private func hasEnoughFruits(for recipe: Fruits) -> Bool {
+        for (fruit, stock) in fruits where stock < recipe[fruit] ?? 0 {
+            return false
         }
         return true
     }
     
-    private func useFruits(toMake recipe: Fruits) {
+    private func useFruits(for recipe: Fruits) {
         for fruit in fruits.keys {
             fruits[fruit]? -= recipe[fruit] ?? 0
         }
+    }
+    
+    private func startObservingStock() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(changeStock(notification:)),
+            name: Notification.Name.fruitsTag,
+            object: nil
+        )
+    }
+    
+    @objc func changeStock(notification: Notification) {
+        guard let stocks = notification.userInfo?[Constant.userInfoKey] as? Fruits else {
+            return
+        }
+        fruits = stocks
     }
 }
