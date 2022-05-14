@@ -24,6 +24,7 @@ final class FruitStore {
             .pineapple: initialAmount,
             .mango: initialAmount
         ]
+        addObserverFruitsStockDidModified()
     }
     
     private func bindingStock(of fruit: Fruit) throws -> Int {
@@ -56,12 +57,25 @@ final class FruitStore {
         }
         return canComplete ? try useOfStock(for: fruitJuice) : nil
     }
-    
-    func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
+}
+
+extension FruitStore {
+    private func postFruitsStockDidChanged(from oldValue: [Fruit: Int]) {
         let changedFruitsStock = fruitsStock.filter {
             fruitsStock[$0.key] != oldValue[$0.key]
         }
         NotificationCenter.default.post(name: NotificationName.fruitsStockDidChanged, object: nil, userInfo: changedFruitsStock)
+    }
+    
+    private func addObserverFruitsStockDidModified() {
+        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidModified, object: nil, queue: nil) { Notification in
+            guard let modifiedFruitsStock = Notification.userInfo as? [Fruit: Int] else { return }
+            modifiedFruitsStock.filter{ (fruit: Fruit, stock: Int) in
+                self.fruitsStock[fruit] != modifiedFruitsStock[fruit]
+            }.forEach { (fruit: Fruit, stock: Int) in
+                self.fruitsStock[fruit] = modifiedFruitsStock[fruit]
+            }
+        }
     }
 }
 

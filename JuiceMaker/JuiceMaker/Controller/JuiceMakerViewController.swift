@@ -26,6 +26,7 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserverFruitsStockDidChanged()
+        adjustButtonTitleAlignment()
         updateFruitsStockLabels(juiceMaker.requestCurrentStock())
     }
     
@@ -50,15 +51,7 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    private func addObserverFruitsStockDidChanged() {
-        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
-            guard let changedFruitsStock = Notification.userInfo as? [Fruit:Int]? else {
-                return
-            }
-            self.updateFruitsStockLabels(changedFruitsStock)
-        }
-    }
-    
+//MARK: - Buisness Logic(Making Juice)
     private func respondOrder(of fruitjuice: FruitJuice) {
         do {
             let orderResult = try juiceMaker.takeOrder(fruitjuice)
@@ -73,6 +66,7 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
+//MARK: - Alert View
     private func alertSuccess(of fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil, message: "\(fruitJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
@@ -98,23 +92,75 @@ final class JuiceMakerViewController: UIViewController {
         present(alert, animated: true)
     }
     
+//MARK: - View Exchange
     private func presentModalViewController(withId: String) {
-        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) else {
+        guard let modalViewController = storyboard?.instantiateViewController(withIdentifier: withId) as? FruitStoreViewController else {
             return
         }
-        present(modalViewController, animated: true)
+        modalViewController.modalPresentationStyle = .fullScreen
+        modalViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
+        modalViewController.delegate = self
+        self.present(modalViewController, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination
+        guard let modalViewController = destination as? FruitStoreViewController else { return }
+        modalViewController.fruitsStock = juiceMaker.requestCurrentStock() ?? [:]
+        modalViewController.delegate = self
+    }
+    
+//MARK: - UI Components data setting
     private func updateFruitsStockLabels(_ stock: [Fruit:Int]?) {
-        _ = stock?.compactMap { (key: Fruit, value: Int) in
-            modifyFruitStockLabel(key.rawValue, value)
+        stock?.forEach {
+            modifyFruitStockLabel($0.key.rawValue, $0.value)
         }
     }
     
     private func modifyFruitStockLabel(_ fruit: String, _ stock: Int) {
         let allStockLabels: [UILabel] = [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel]
-        for uiLabel in allStockLabels.filter({ $0.accessibilityIdentifier == fruit }) {
-            uiLabel.text = String(stock)
+        allStockLabels.filter({ $0.accessibilityIdentifier == fruit }).forEach {
+            $0.text = String(stock)
         }
+    }
+}
+
+//MARK: - UI Components Layout
+extension JuiceMakerViewController {
+    private func adjustButtonTitleAlignment() {
+        let JuiceButtonArray = [
+            strawberryAndBananaJuiceButton,
+            mangoAndKiwiJuiceButton,
+            strawberryJuiceButton,
+            bananaJuiceButton,
+            pineappleJuiceButton,
+            kiwiJuiceButton,
+            mangoJuiceButton]
+        JuiceButtonArray.forEach {
+            $0?.titleLabel?.textAlignment = .center
+        }
+    }
+}
+
+//MARK: - Notification Center
+extension JuiceMakerViewController {
+    private func addObserverFruitsStockDidChanged() {
+        NotificationCenter.default.addObserver(forName: NotificationName.fruitsStockDidChanged, object: nil , queue: nil) { Notification in
+            guard let changedFruitsStock = Notification.userInfo as? [Fruit:Int]? else {
+                return
+            }
+            self.updateFruitsStockLabels(changedFruitsStock)
+        }
+    }
+    
+    private func postFruitsStockDelivered(_ fruitsStock: [Fruit: Int]?) {
+        NotificationCenter.default.post(name: NotificationName.fruitsStockDidModified, object: nil, userInfo: fruitsStock)
+    }
+}
+
+//MARK: - FruitStore Delegate
+extension JuiceMakerViewController: FruitsStockDelegate {
+    func updateFruitsStock(_ fruitStocks: [Fruit : Int]) {
+        postFruitsStockDelivered(fruitStocks)
     }
 }
