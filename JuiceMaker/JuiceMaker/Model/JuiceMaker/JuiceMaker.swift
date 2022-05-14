@@ -10,7 +10,9 @@ import UIKit
 //MARK: 쥬스 메이커 타입
 struct JuiceMaker: DrinkMakerable {
     private let fruitStore = FruitStore()
-    
+}
+
+extension JuiceMaker {
     func make(_ beverage: Drink) -> Result<JuiceType, StockError> {
         do{
             try fruitStore.consume(beverage.juice.requireIngredients())
@@ -20,7 +22,15 @@ struct JuiceMaker: DrinkMakerable {
         }
     }
     
-    func count(_ fruit: Fruit) -> String {
-        return String(fruitStore.count(fruit))
+    func count(_ fruit: FruitType) -> Int {
+        return fruitStore.count(fruit)
+    }
+    
+    func editStock(of fruit: FruitType, with amount: Int) {
+        fruitStore.editStock(of: fruit, with: amount)
+    }
+    
+    func stockUp() -> FruitStock {
+        return fruitStore.stockUp()
     }
 }

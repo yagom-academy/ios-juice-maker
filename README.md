@@ -1,6 +1,12 @@
 # ios-juice-maker
 iOS 쥬스 메이커 재고관리 시작 저장소
 
+# UML - Sequence Diagram
+![UML - Sequence Diagram](https://user-images.githubusercontent.com/59466342/167995461-0fefee67-9ae4-4b31-b900-67d664c6466e.png)
+
+# UML - Class Diagram 
+![UML - Class Diagram](https://user-images.githubusercontent.com/59466342/167995437-b21c0797-dfd2-4e18-a3d6-8db20c17306c.png)
+
 # [Step 1]
 ---
 # 공부한 내용
@@ -15,24 +21,18 @@ iOS 쥬스 메이커 재고관리 시작 저장소
 ### FruitStore 
 - 재고를 확인하는 함수
 ```swift 
-func count(of fruit: Fruit) -> Int?
+func count(_ fruit: FruitType) -> Int
 ```
 
-- 과일 수량 소진하는 함수 
+- 쥬스의 요구 과일의 수량 체크하고 재료 소진하는 함수 -> 없을시 Throws 
 
 ```swift 
-func consume(fruits: Fruits)
-```
-
-- 쥬스의 요구 과일의 수량 체크하는 함수 -> 없을시 Throws 
-
-```swift 
-func figure(out fruits: Fruits) throws 
+func consume(_ stock: FruitStock) throws 
 ```
 
 - 과일 수량 추가하는 함수
 ```swift 
-func add(fruit: Fruit, as amount: Int)
+func editStock(of fruit: FruitType, with amount: Int)
 ```
 
 ### JuiceMaker
@@ -109,11 +109,14 @@ func make(_ beverage: Drink) -> Result<JuiceType, StockError> {
 ```swift
 // ------ OrderViewController
 // Return Result 값 
-    switch result {
-    case .success(let juice):
-        showConfirmAlert(message: "\(juice.localeKorean) 쥬스 나왔습니다! 맛있게 드세요!")
-    case .failure(let error):
-        check(error: error)
+    let result = juiceMaker.make(juice)
+
+    result.handleValue { _ in
+        self.presentConfirmAlert(message: "\(orderedJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
+    }
+
+    result.handleError { error in
+        self.presentWarningAlert(message: error.message)
     }
 ```
 
@@ -131,23 +134,16 @@ func make(_ beverage: Drink) -> Result<JuiceType, StockError> {
 # 기능구현 
 > Step02에 필요한 기능구현에 대한 부연설명 
 
-
-### OrderViewController 
-- Return 에러 종류 체크 
-```swift 
-func check(error: StockError)
-```
-
 #### Alert
 
 - 쥬스 생성 후 확인 알림 함수
 ```swift 
-func showConfirmAlert(message: String) 
+func presentConfirmAlert(message: String) 
 ```
 
 - 재고 부족시 알림 함수
 ```swift 
-func showWarningAlert(message: String)
+func presentWarningAlert(message: String)
 ```
 
 ### JuiceMaker 
@@ -156,25 +152,81 @@ func showWarningAlert(message: String)
     func make(_ beverage: Drink) -> Result<JuiceType, StockError>
 ```
 
-### JuiceType
-- 쥬스 이름 반환 Computed Property
-```swift 
-    var localeKorean: String {
-        switch self {
-        case .strawberryJuice:
-            return "딸기"
-        case .bananaJuice:
-            return "바나나"
-        case .kiwiJuice:
-            return "키위"
-        case .mangoJuice:
-            return "망고"
-        case .pineappleJuice:
-            return "파인애플"
-        case .strawberryBananaJuice:
-            return "딸바"
-        case .mangoKiwiJuice:
-            return "망키"
-        }
-    }
+# [Step 3]
+---
+# 공부한 내용
+> Collection Types, Error Handling, AutoLayout, Delegate, Stepper, Unit Test, iphone 4s
+
+### Collection Types
+- 과일저장소의 타입을 Dictionary로 이용하여 해당과일(Key값) 에 대한 요구되는 과일갯수(Value값) 를 작성 해주었다. 
+- 버튼의 sender.currentTitle 에서 문자열을 받아와 components(separatedBy:)를 이용해 필요한 String 값을 얻기 위해 Array Subscript syntax 를 이용했다
+- FruitStore에 listUp()메서드를 통해 [Fruit: Int] 딕셔너리를 생성 해주었다.
+
+### Error Handling
+- "FruitStore" 에 consume() 이란 함수에서 재고가 부족할 시에 오류를 던져주도록 구현했다. 이 오류를 받은 "JuiceMaker" 안에 상위함수 make() 에서는 Result<JuiceType, StockError> 값을 반환 해주고, 이 반환값을 처리하는 Result타입의 extension을 만들어 핸들링 하도록 구현했다. 
+### AutoLayout
+- iPhone SE1 ~ 13proMax 까지 기기에서의 호환성을 위해 AutoLayout 으로 UI 를 정렬해주었다. 
+
+### Delegate
+- `ManagingOrderDelegate` 프로토콜을 만들어서 "OrderViewController" 에서 채택하고, "StoreViewController"의 delegate 를 위임받아 "OrderViewController"에서 updateUI() 를 실행하게 하여 뷰 간의 sync를 맞춰주었다.  
+### Stepper
+- 현재 과일 재고량을 IBOutletStepper.value 에 넣어주고, minimunValue 를 0 으로 지정해주고, stepValue 는 1 로 설정 해주었다. 
+### Unit Test
+- "juiceMaker" 안의 기능 테스트를 했다. 각 기능별 테스트 케이스에 대해 동작이 잘 이뤄지는지 검증 하였다.
+
+
+# 기능구현 
+> Step03에 필요한 기능구현에 대한 부연설명 
+
+
+--- 
+### OrderViewController 
+- StoreViewDelegate
+```swift
+protocol StoreViewDelegate: AnyObject {
+    func stepperValueDidChanged(_ viewController: StoreViewController, fruit: FruitType, with amount: Int)
+    func didCanceledStoreViewController(_ viewController: StoreViewController)
+}
 ```
+> OrderViewController에서 StoreViewController로 data를 연동하기 위해 Delegate 패턴을 활용하였습니다.
+ 
+```swift
+func updateUI()
+```
+- 변경된 사항들의 UI update를 위한 함수
+
+### StoreViewController 
+```swift 
+func updateStepperDefaultValue()
+```
+- Stepper의 default value 설정
+
+
+```swift 
+func updateUI()
+```
+- Stepper Action Event 호출 시 각 Label 변경 함수
+
+---
+### JuiceMaker
+- OrderViewController에서 사용할 과일 수량변경 함수
+```swift 
+func editStock(of fruit: Fruit, with amount: Int) {
+    fruitStore.editStock(of: fruit, with: amount)
+}
+```
+
+### FruitStore
+```swift
+func stockUp() -> FruitStock
+```
+- 해당 과일별 현재 수량을 Dictionary 타입으로 반환하는 함수
+
+```swift
+    
+func editStock(of fruit: Fruit, with amount: Int) {
+    self.fruits.updateValue(amount, forKey: fruit)
+}
+
+```
+- 과일의 수량 변경을 위한 함수

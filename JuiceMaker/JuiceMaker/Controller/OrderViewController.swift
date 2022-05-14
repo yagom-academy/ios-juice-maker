@@ -6,23 +6,39 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+final class OrderViewController: UIViewController {
+    @IBOutlet private weak var strawberryLabel: UILabel?
+    @IBOutlet private weak var bananaLabel: UILabel?
+    @IBOutlet private weak var pineappleLabel: UILabel?
+    @IBOutlet private weak var kiwiLabel: UILabel?
+    @IBOutlet private weak var mangoLabel: UILabel?
     
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+        self.updateUI()
     }
+}
 
+extension OrderViewController {
     @IBAction func juiceButtonDidTapped(_ sender: UIButton) {
-        orderJuice(sender.currentTitle ?? "")
-        updateUI()
+        self.orderJuice(sender.currentTitle ?? "")
+        self.updateUI()
+    }
+    
+    @IBAction func editStockButtonDidTapped(_ sender: UIBarButtonItem) {
+        self.presentStoreView()
+    }
+}
+
+extension OrderViewController: StoreViewDelegate {
+    func stepperValueDidChanged(_ viewController: StoreViewController, fruit: FruitType, with amount: Int) {
+        juiceMaker.editStock(of: fruit, with: amount)
+    }
+    
+    func didCanceledStoreViewController(_ viewController: StoreViewController) {
+        self.updateUI()
     }
 }
 
@@ -32,7 +48,7 @@ private extension OrderViewController {
               let orderedJuice = JuiceType(rawValue: selectedJuice) else {
             return
         }
-
+        
         let juice = Drink(juice: orderedJuice)
         let result = juiceMaker.make(juice)
         
@@ -45,15 +61,24 @@ private extension OrderViewController {
         }
     }
     
+    func presentStoreView() {
+        let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
+        storeViewController.modalTransitionStyle = .coverVertical
+        storeViewController.fruits = juiceMaker.stockUp()
+        storeViewController.delegate = self
+        self.present(storeViewController, animated: true)
+    }
+    
     func updateUI() {
-        self.strawberryLabel.text = juiceMaker.count(.strawberry)
-        self.bananaLabel.text = juiceMaker.count(.banana)
-        self.pineappleLabel.text = juiceMaker.count(.pineapple)
-        self.kiwiLabel.text = juiceMaker.count(.kiwi)
-        self.mangoLabel.text = juiceMaker.count(.mango)
+        self.strawberryLabel?.text = juiceMaker.count(.strawberry).description
+        self.bananaLabel?.text = juiceMaker.count(.banana).description
+        self.pineappleLabel?.text = juiceMaker.count(.pineapple).description
+        self.kiwiLabel?.text = juiceMaker.count(.kiwi).description
+        self.mangoLabel?.text = juiceMaker.count(.mango).description
     }
 }
 
+// MARK: Alert
 private extension OrderViewController {
     func presentConfirmAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
@@ -65,9 +90,7 @@ private extension OrderViewController {
     func presentWarningAlert(message: String) {
         let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let positiveAction = UIAlertAction(title: "예", style: .default) { _ in
-            let storeViewController = StoreViewController.instantiate(bundle: nil, identifier: "StoreViewController")
-            storeViewController.modalTransitionStyle = .coverVertical
-            self.present(storeViewController, animated: true)
+            self.presentStoreView()
         }
         let negativeAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         alertController.addAction(positiveAction)
