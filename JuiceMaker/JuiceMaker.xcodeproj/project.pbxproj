@@ -9,7 +9,21 @@
 /* Begin PBXBuildFile section */
 		4210A9BA2821041200901B49 /* EditStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4210A9B92821041200901B49 /* EditStockViewController.swift */; };
 		42C7F4FC2818D8EF0031CCAB /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7F4FB2818D8EF0031CCAB /* Menu.swift */; };
+		42EA5221282B7F11006BF072 /* EditStockViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5220282B7F11006BF072 /* EditStockViewControllerDelegate.swift */; };
+		42EA5233282BC4E6006BF072 /* EditStock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42EA5232282BC4E6006BF072 /* EditStock.storyboard */; };
+		42EA523D282D6139006BF072 /* StrawberryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA523C282D6139006BF072 /* StrawberryLabel.swift */; };
+		42EA523F282D6212006BF072 /* BananaLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA523E282D6212006BF072 /* BananaLabel.swift */; };
+		42EA5241282D6224006BF072 /* PineappleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5240282D6224006BF072 /* PineappleLabel.swift */; };
+		42EA5243282D6231006BF072 /* KiwiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5242282D6231006BF072 /* KiwiLabel.swift */; };
+		42EA5245282D6242006BF072 /* MangoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5244282D6242006BF072 /* MangoLabel.swift */; };
+		42EA5247282D6260006BF072 /* StrawberryStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5246282D6260006BF072 /* StrawberryStepper.swift */; };
+		42EA5249282D626E006BF072 /* BananaStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5248282D626E006BF072 /* BananaStepper.swift */; };
+		42EA524B282D6278006BF072 /* PineappleStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA524A282D6278006BF072 /* PineappleStepper.swift */; };
+		42EA524D282D627F006BF072 /* KiwiStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA524C282D627F006BF072 /* KiwiStepper.swift */; };
+		42EA524F282D6288006BF072 /* MangoStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA524E282D6288006BF072 /* MangoStepper.swift */; };
+		42EA5253282E4A8F006BF072 /* FruitInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA5252282E4A8F006BF072 /* FruitInventory.swift */; };
 		7255F11128181DD800803680 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255F11028181DD800803680 /* JuiceMakerError.swift */; };
+		7261BFB8282A5CF4004B8C85 /* EditStockStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7261BFB7282A5CF4004B8C85 /* EditStockStepper.swift */; };
 		72F2D8622817AE1400962C28 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2D8612817AE1400962C28 /* Fruit.swift */; };
 		72F98D16282540B400DF5D79 /* FruitStockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F98D15282540B400DF5D79 /* FruitStockLabel.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -25,7 +39,21 @@
 /* Begin PBXFileReference section */
 		4210A9B92821041200901B49 /* EditStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockViewController.swift; sourceTree = "<group>"; };
 		42C7F4FB2818D8EF0031CCAB /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		42EA5220282B7F11006BF072 /* EditStockViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockViewControllerDelegate.swift; sourceTree = "<group>"; };
+		42EA5232282BC4E6006BF072 /* EditStock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditStock.storyboard; sourceTree = "<group>"; };
+		42EA523C282D6139006BF072 /* StrawberryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawberryLabel.swift; sourceTree = "<group>"; };
+		42EA523E282D6212006BF072 /* BananaLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananaLabel.swift; sourceTree = "<group>"; };
+		42EA5240282D6224006BF072 /* PineappleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PineappleLabel.swift; sourceTree = "<group>"; };
+		42EA5242282D6231006BF072 /* KiwiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiwiLabel.swift; sourceTree = "<group>"; };
+		42EA5244282D6242006BF072 /* MangoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangoLabel.swift; sourceTree = "<group>"; };
+		42EA5246282D6260006BF072 /* StrawberryStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawberryStepper.swift; sourceTree = "<group>"; };
+		42EA5248282D626E006BF072 /* BananaStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BananaStepper.swift; sourceTree = "<group>"; };
+		42EA524A282D6278006BF072 /* PineappleStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PineappleStepper.swift; sourceTree = "<group>"; };
+		42EA524C282D627F006BF072 /* KiwiStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiwiStepper.swift; sourceTree = "<group>"; };
+		42EA524E282D6288006BF072 /* MangoStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangoStepper.swift; sourceTree = "<group>"; };
+		42EA5252282E4A8F006BF072 /* FruitInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitInventory.swift; sourceTree = "<group>"; };
 		7255F11028181DD800803680 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
+		7261BFB7282A5CF4004B8C85 /* EditStockStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStockStepper.swift; sourceTree = "<group>"; };
 		72F2D8612817AE1400962C28 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		72F98D15282540B400DF5D79 /* FruitStockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockLabel.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -51,6 +79,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42EA5236282D6018006BF072 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				42EA5232282BC4E6006BF072 /* EditStock.storyboard */,
+				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		42EA5237282D6037006BF072 /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				7261BFB7282A5CF4004B8C85 /* EditStockStepper.swift */,
+				42EA524E282D6288006BF072 /* MangoStepper.swift */,
+				42EA524C282D627F006BF072 /* KiwiStepper.swift */,
+				42EA524A282D6278006BF072 /* PineappleStepper.swift */,
+				42EA5248282D626E006BF072 /* BananaStepper.swift */,
+				42EA5246282D6260006BF072 /* StrawberryStepper.swift */,
+			);
+			path = Stepper;
+			sourceTree = "<group>";
+		};
+		42EA5239282D6049006BF072 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				72F98D15282540B400DF5D79 /* FruitStockLabel.swift */,
+				42EA523E282D6212006BF072 /* BananaLabel.swift */,
+				42EA5240282D6224006BF072 /* PineappleLabel.swift */,
+				42EA5242282D6231006BF072 /* KiwiLabel.swift */,
+				42EA5244282D6242006BF072 /* MangoLabel.swift */,
+				42EA523C282D6139006BF072 /* StrawberryLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		42EA5251282E1AE3006BF072 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +129,7 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* HomeViewController.swift */,
 				4210A9B92821041200901B49 /* EditStockViewController.swift */,
-				72F98D15282540B400DF5D79 /* FruitStockLabel.swift */,
+				42EA5220282B7F11006BF072 /* EditStockViewControllerDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -71,6 +142,7 @@
 				72F2D8612817AE1400962C28 /* Fruit.swift */,
 				7255F11028181DD800803680 /* JuiceMakerError.swift */,
 				42C7F4FB2818D8EF0031CCAB /* Menu.swift */,
+				42EA5252282E4A8F006BF072 /* FruitInventory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -78,8 +150,10 @@
 		C71CD671266C7B570038B9CB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
-				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
+				42EA5251282E1AE3006BF072 /* Resource */,
+				42EA5239282D6049006BF072 /* Label */,
+				42EA5237282D6037006BF072 /* Stepper */,
+				42EA5236282D6018006BF072 /* StoryBoard */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -170,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */,
+				42EA5233282BC4E6006BF072 /* EditStock.storyboard in Resources */,
 				C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */,
 				C73DAF3E255D0CDD00020D38 /* Main.storyboard in Resources */,
 			);
@@ -184,14 +259,27 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				4210A9BA2821041200901B49 /* EditStockViewController.swift in Sources */,
+				42EA5221282B7F11006BF072 /* EditStockViewControllerDelegate.swift in Sources */,
+				42EA523F282D6212006BF072 /* BananaLabel.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* HomeViewController.swift in Sources */,
 				42C7F4FC2818D8EF0031CCAB /* Menu.swift in Sources */,
 				72F2D8622817AE1400962C28 /* Fruit.swift in Sources */,
+				42EA5241282D6224006BF072 /* PineappleLabel.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				7255F11128181DD800803680 /* JuiceMakerError.swift in Sources */,
+				42EA523D282D6139006BF072 /* StrawberryLabel.swift in Sources */,
+				7261BFB8282A5CF4004B8C85 /* EditStockStepper.swift in Sources */,
 				72F98D16282540B400DF5D79 /* FruitStockLabel.swift in Sources */,
+				42EA524B282D6278006BF072 /* PineappleStepper.swift in Sources */,
+				42EA5253282E4A8F006BF072 /* FruitInventory.swift in Sources */,
+				42EA5249282D626E006BF072 /* BananaStepper.swift in Sources */,
+				42EA524F282D6288006BF072 /* MangoStepper.swift in Sources */,
+				42EA5243282D6231006BF072 /* KiwiLabel.swift in Sources */,
+				42EA5245282D6242006BF072 /* MangoLabel.swift in Sources */,
+				42EA5247282D6260006BF072 /* StrawberryStepper.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
+				42EA524D282D627F006BF072 /* KiwiStepper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

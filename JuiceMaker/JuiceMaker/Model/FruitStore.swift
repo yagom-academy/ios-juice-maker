@@ -7,7 +7,11 @@
 import Foundation
 
 class FruitStore {
-    private var stock = [Fruit: Int]()
+    private(set) var stock = [Fruit: Int]() {
+        didSet {
+            NotificationCenter.default.post(name: .notifyStock, object: nil, userInfo: ["stock": stock])
+        }
+    }
     
     init(amount: Int = 10) {
         Fruit.allCases.forEach {
@@ -15,12 +19,6 @@ class FruitStore {
         }
     }
     
-    func transferFruitStockToJuiceMaker() {
-        let fruitStock: [Fruit: Int] = stock
-    
-        NotificationCenter.default.post(name: .notifyStock, object: nil, userInfo: ["stock": fruitStock])
-    }
-
     func hasFruit(menu: Menu) -> Bool {
         let necessaryFruit = menu.needsForFruits()
         
@@ -46,11 +44,8 @@ class FruitStore {
         }
     }
     
-    func fillStock(fruit: Fruit, total: Int) {
-        guard let number = stock[fruit] else {
-            return
-        }
-        stock[fruit] = number + total
+    func replaceStock(with changedStock: [Fruit: Int]) {
+        stock = changedStock
     }
 }
 

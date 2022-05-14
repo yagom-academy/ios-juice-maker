@@ -7,31 +7,46 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var juiceMaker = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
     
-    @IBOutlet var fruitStockLabel: [FruitStockLabel]!
+    @IBOutlet private var fruitStockLabel: [FruitStockLabel]!
     
-    @IBOutlet weak var strawberryAndBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoAndKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryAndBananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoAndKiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet private weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
-    var orderButton: [UIButton] {
-        return [strawberryJuiceOrderButton, mangoAndKiwiJuiceOrderButton, strawberryAndBananaJuiceOrderButton, bananaJuiceOrderButton, pineappleJuiceOrderButton, kiwiJuiceOrderButton, mangoJuiceOrderButton]
+    private var orderButton: [UIButton] {
+        return [strawberryJuiceOrderButton,
+                mangoAndKiwiJuiceOrderButton,
+                strawberryAndBananaJuiceOrderButton,
+                bananaJuiceOrderButton,
+                pineappleJuiceOrderButton,
+                kiwiJuiceOrderButton,
+                mangoJuiceOrderButton]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fruitStockAddObserverDidChanged()
+        updateLabel(to: juiceMaker.store.stock)
+        configureOrderButtons()
+    }
+    
+    func fruitStockAddObserverDidChanged() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateFruitStockLabel), name: .notifyStock, object: nil)
-        
-        juiceMaker.transferFruitStock()
-        
+    }
+    
+    private func configureOrderButtons() {
         orderButton.forEach { orderButton in
-            orderButton.addTarget(self, action: #selector(order), for: .touchUpInside)
+            orderButton.addTarget(
+                self,
+                action: #selector(orderButtonDidTap),
+                for: .touchUpInside)
         }
     }
     
@@ -40,16 +55,14 @@ class HomeViewController: UIViewController {
         else {
             return
         }
-        
-        fruitStockLabel.forEach { label in
-            guard let fruit = label.convertToFruit() else { return }
-            guard let fruitLabel = fruitsStock[fruit] else { return }
-            
-            label.text = "\(fruitLabel)"
-        }
+        updateLabel(to: fruitsStock)
     }
     
-    @objc private func order(_ sender: UIButton) {
+    private func updateLabel(to stock: [Fruit: Int]) {
+        fruitStockLabel.forEach { $0.configure(with: stock) }
+    }
+    
+    @objc private func orderButtonDidTap(_ sender: UIButton) {
         do {
             let juice = try convertToJuice(from: sender)
             try juiceMaker.make(menu: juice)
@@ -59,7 +72,6 @@ class HomeViewController: UIViewController {
         } catch {
             print(error)
         }
-        juiceMaker.transferFruitStock()
     }
     
     private func convertToJuice(from button: UIButton) throws -> Menu {
@@ -84,9 +96,19 @@ class HomeViewController: UIViewController {
     }
     
     private func showLackOfStockAlert() {
-        let lackOfStockAlert = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let noAlert = UIAlertAction(title: "아니오", style: .default, handler: nil)
-        let okAlert = UIAlertAction(title: "예", style: .default) { _ in
+        let lackOfStockAlert = UIAlertController(
+            title: "알림",
+            message: "재료가 모자라요. 재고를 수정할까요?",
+            preferredStyle: .alert
+        )
+        let noAlert = UIAlertAction(
+            title: "아니오",
+            style: .default,
+            handler: nil
+        )
+        let okAlert = UIAlertAction(
+            title: "예",
+            style: .default) { _ in
             self.presentEditStockViewController()
         }
         
@@ -97,8 +119,17 @@ class HomeViewController: UIViewController {
     }
     
     private func showCompletionAlert(menu: Menu) {
-        let completionAlert = UIAlertController(title: "알림", message: "\(menu) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let completionAlert = UIAlertController(
+            title: "알림",
+            message: "\(menu) 나왔습니다! 맛있게 드세요!",
+            preferredStyle: .alert
+        )
+        
+        let okAlert = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil
+        )
         
         completionAlert.addAction(okAlert)
         
@@ -106,15 +137,29 @@ class HomeViewController: UIViewController {
     }
     
     private func presentEditStockViewController() {
-        guard let editStockVC = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController")
+        let editStockVCNavigationController = UIStoryboard(name: "EditStock", bundle: nil)
+        guard let editStockVC = editStockVCNavigationController.instantiateViewController(
+            withIdentifier: "EditStockViewController"
+        ) as? EditStockViewController
         else {
             return
         }
+        editStockVC.delegate = self
+        editStockVC.fruits.currentStock = juiceMaker.store.stock
         self.present(editStockVC, animated: true)
     }
+
     
-    @IBAction private func tabEditStock(_ sender: UIBarButtonItem) {
-        self.presentEditStockViewController()
+    @IBAction func tapEditStock(_ sender: UIBarButtonItem) {
+            self.presentEditStockViewController()
     }
 }
 
+extension HomeViewController: EditStockViewControllerDelegate {
+    func editStockViewControllerDidChangeStock(
+        _ editedStock: [Fruit: Int],
+        _ editStockViewController: EditStockViewController
+    ) {
+        juiceMaker.store.replaceStock(with: editedStock)
+    }
+}
