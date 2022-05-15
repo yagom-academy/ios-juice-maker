@@ -68,7 +68,7 @@ extension JuiceOrderViewController {
     private func showFailureAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { [weak self] _ in
-            guard let storyboard = self?.storyboard?.instantiateViewController(identifier: "InventoryViewController") else {
+            guard let storyboard = self?.storyboard?.instantiateViewController(identifier: String(describing: InventoryViewController.self)) else {
                 return
             }
             
