@@ -23,19 +23,26 @@ final class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
     @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
     
+    private lazy var juiceMenuForEachButton = [
+        strawberryBananaJuiceOrderButton: JuiceMaker.Menu.strawberryBananaJuice,
+        mangoKiwiJuiceOrderButton: JuiceMaker.Menu.mangoKiwiJuice,
+        strawberryJuiceOrderButton: JuiceMaker.Menu.strawberryJuice,
+        bananaJuiceOrderButton: JuiceMaker.Menu.bananaJuice,
+        pineappleJuiceOrderButton: JuiceMaker.Menu.pineappleJuice,
+        kiwiJuiceOrderButton: JuiceMaker.Menu.kiwiJuice,
+        mangoJuiceOrderButton: JuiceMaker.Menu.mangoJuice
+    ]
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateFruitsInventoryLabels()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateFruitsInventoryLabels()
     }
 }
-
 
 // MARK: - UI
 
@@ -81,16 +88,6 @@ extension JuiceOrderViewController {
 
 extension JuiceOrderViewController {
     @IBAction private func tapJuiceOrderButton(_ sender: UIButton) {
-        let juiceMenuForEachButton = [
-            strawberryBananaJuiceOrderButton: JuiceMaker.Menu.strawberryBananaJuice,
-            mangoKiwiJuiceOrderButton: JuiceMaker.Menu.mangoKiwiJuice,
-            strawberryJuiceOrderButton: JuiceMaker.Menu.strawberryJuice,
-            bananaJuiceOrderButton: JuiceMaker.Menu.bananaJuice,
-            pineappleJuiceOrderButton: JuiceMaker.Menu.pineappleJuice,
-            kiwiJuiceOrderButton: JuiceMaker.Menu.kiwiJuice,
-            mangoJuiceOrderButton: JuiceMaker.Menu.mangoJuice
-        ]
-        
         guard let juice = juiceMenuForEachButton[sender] else {
             return
         }

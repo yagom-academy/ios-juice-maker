@@ -53,9 +53,9 @@ extension InventoryViewController {
     }
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-        
         JuiceMaker.shared.store.applyChangesToFruitsInventory(from: saveInventoryModifiedByStepper())
+        
+        dismiss(animated: true, completion: nil)
     }
     
     private func saveInventoryModifiedByStepper() -> [FruitStore.Fruit: Int] {
