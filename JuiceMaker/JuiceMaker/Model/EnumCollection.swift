@@ -7,13 +7,29 @@
 
 import Foundation
 
-enum initCount {
-    case Fruit
+enum StockCount {
+    case empty
+    case initFruit
+    case maxFruit
     
-    var amount: Int {
+    var amountInIntegerType: Int {
         switch self {
-        case .Fruit:
+        case .empty:
+            return 0
+        case .initFruit:
             return 10
+        case .maxFruit:
+            return 100
+        }
+    }
+    var amountInDecimalPointType: Double {
+        switch self {
+        case .empty:
+            return 0.0
+        case .initFruit:
+            return 10.0
+        case .maxFruit:
+            return 100.0
         }
     }
 }
@@ -77,6 +93,27 @@ enum JuiceKind {
             return "딸바쥬스"
         case .mangoKiwiJuice:
             return "망키쥬스"
+        case .none:
+            return ""
+        }
+    }
+    
+    var juiceNameRecognize: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기쥬스주문"
+        case .bananaJuice:
+            return "바나나쥬스주문"
+        case .kiwiJuice:
+            return "키위쥬스주문"
+        case .pineappleJuice:
+            return "파인애플쥬스주문"
+        case .mangoJuice:
+            return "망고쥬스주문"
+        case .strawberryBananaJuice:
+            return "딸바쥬스주문"
+        case .mangoKiwiJuice:
+            return "망키쥬스주문"
         case .none:
             return ""
         }
