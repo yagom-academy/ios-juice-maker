@@ -1,4 +1,6 @@
 extension JuiceMaker {
+    // MARK: - Enum
+    
     enum Menu: String {
         case strawberryJuice = "딸기쥬스"
         case bananaJuice = "바나나쥬스"
