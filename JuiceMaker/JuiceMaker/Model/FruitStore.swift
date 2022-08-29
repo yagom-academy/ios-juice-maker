@@ -8,14 +8,12 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var fruitStock: [Fruit : Int]
+    var fruitStock: [Fruit : Int] = [:]
     
     init(defaultStock: Int = 10) {
-        fruitStock = [.strawberry : defaultStock,
-                      .banana : defaultStock,
-                      .kiwi : defaultStock,
-                      .mango : defaultStock,
-                      .pineapple : defaultStock]
+        for fruit in Fruit.allCases {
+            fruitStock.updateValue(defaultStock, forKey: fruit)
+        }
     }
     
     func addFruits(fruit: Fruit, amount: Int) {
@@ -36,4 +34,10 @@ class FruitStore {
         fruitStock[fruit] = fruitAmount
     }
     
+    func checkStock(fruit: Fruit, amount: Int) throws -> Bool {
+        guard let fruit =  fruitStock[fruit], fruit < amount else {
+            throw JuiceMakerError.outOfStock
+        }
+        return true
+    }
 }
