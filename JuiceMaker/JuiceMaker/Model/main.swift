@@ -8,6 +8,9 @@
 import Foundation
 
 
-let a = FruitStore()
-a.changeStockOf(fruit: .strawberry, by: 2)
-print(a.fruitStock)
+
+
+let myJuiceMaker = JuiceMaker()
+myJuiceMaker.makeJuice(.strawberryBananaJuice, total: 1)
+
+print(myJuiceMaker.fruitStore.fruitStock)

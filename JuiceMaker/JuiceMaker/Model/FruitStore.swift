@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore {
     enum Fruit {
         case strawberry
@@ -16,7 +15,7 @@ class FruitStore {
         case mango
     }
     
-    var fruitStock: Dictionary<Fruit, Int> = [.strawberry : 10,
+    var fruitStock: Dictionary<Fruit, Int> = [.strawberry : 30,
                                               .banana : 10,
                                               .pineapple : 10,
                                               .kiwi : 10,
@@ -34,6 +33,7 @@ class FruitStore {
         fruitStock[fruit] = currentStock + quantity
     }
 }
+
 
 
 
