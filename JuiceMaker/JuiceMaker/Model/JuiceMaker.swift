@@ -1,7 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
+//  Created by stone, jpush.
 // 
 
 import Foundation
