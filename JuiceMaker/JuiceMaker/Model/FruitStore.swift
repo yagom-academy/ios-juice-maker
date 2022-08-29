@@ -8,7 +8,7 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     static let shared = FruitStore()
-    private var fruits: [Fruit : Int] = [:]
+    var fruits: [Fruit : Int] = [:]
     
     private init() {
         Fruit.allCases.forEach { fruit in
