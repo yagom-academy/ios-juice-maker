@@ -9,12 +9,13 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     var fruitStore = FruitStore()
-    var juiceList: [String: Int] = ["strawberryJuice": 0, "bananaJuice": 0, "kiwiJuice": 0, "pineappleJuice": 0, "mangoJuice": 0, "strawBananaJuice": 0, "mangoKiwiJuice": 0]
+    var juiceList: [FruitJuice: Int] = [.strawberryJuice: 0, .bananaJuice: 0, .kiwiJuice: 0, .pineappleJuice: 0, .mangoJuice: 0, .strawberryBananaJuice: 0, .mangoKiwiJuice: 0]
     
-    func makeFruitJuice(fruit: String) {
+    func makeFruitJuice(fruit: Fruits) {
         switch fruit {
-        case "strawberry":
-            makeStrawberryJuice()
+        case .strawberry:
+            return
+            //makeStrawberryJuice()
             //        case "banana"
             //        case "kiwi"
             //        case "pineapple"
@@ -23,8 +24,8 @@ struct JuiceMaker {
         }
     }
     
-    func makeStrawberryJuice() {
-        guard let a = fruitStore.fruitList["strawberry"] else {
+    mutating func makeStrawberryJuice() {
+        guard var a = fruitStore.fruitList[Fruits.strawberry] else {
             print("해당하는 과일이 없습니다.")
             return
         }
@@ -33,6 +34,6 @@ struct JuiceMaker {
             print("딸기가 최소 16개 있어야 합니다.")
             return
         }
-        
     }
+    
 }

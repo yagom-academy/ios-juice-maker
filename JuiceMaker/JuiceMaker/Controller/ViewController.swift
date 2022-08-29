@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var a = JuiceMaker()
+        a.makeStrawberryJuice()
     }
 
 
