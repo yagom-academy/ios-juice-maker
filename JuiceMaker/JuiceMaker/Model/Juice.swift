@@ -13,28 +13,23 @@ enum Juice {
     case mangoJuice
     case strawberryBananaJuice
     case mangoKiwiJuice
-    
-    struct fruitType {
-        let first: Int
-        let second: Int
-    }
-    
-    var usageFruit: fruitType {
+        
+    var recipe: [(name: Fruit, count: Int)] {
         switch self {
         case .strawberryJuice:
-            return fruitType(first: 16, second: 0)
+            return [(name: .strawberry, count: 16)]
         case .bananaJuice:
-            return fruitType(first: 2, second: 0)
+            return [(name: .banana, count: 2)]
         case .pineappleJuice:
-            return fruitType(first: 2, second: 0)
+            return [(name: .pineapple, count: 2)]
         case .kiwiJuice:
-            return fruitType(first: 3, second: 0)
+            return [(name: .kiwi, count: 3)]
         case .mangoJuice:
-            return fruitType(first: 3, second: 0)
+            return [(name: .mango, count: 3)]
         case .strawberryBananaJuice:
-            return fruitType(first: 10, second: 1)
+            return [(name: .strawberry, count: 10), (name: .banana, count: 1)]
         case .mangoKiwiJuice:
-            return fruitType(first: 2, second: 2)
+            return [(name: .mango, count: 2), (name: .kiwi, count: 2)]
         }
     }
 }
