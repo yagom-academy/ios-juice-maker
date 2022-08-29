@@ -1,16 +1,13 @@
 //
 //  Fruit.swift
-//  JuiceMaker
-//
-//  Created by 서현웅 on 2022/08/29.
+//  Created by Wonbi, woong
 //
 
-import Foundation
-
-enum Fruit {
-    case strawberry
+enum Fruit: Int, CaseIterable {
+    case strawberry = 0
     case banana
     case pineapple
     case kiwi
     case mango
 }
+

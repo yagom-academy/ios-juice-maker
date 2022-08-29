@@ -1,12 +1,8 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//  Created by Wonbi, woong
+//
 
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
     
 }
