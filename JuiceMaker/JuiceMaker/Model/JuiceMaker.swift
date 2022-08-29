@@ -8,22 +8,11 @@ struct JuiceMaker {
     let fruitStore = FruitStore()
     
     func manufactorJuice(menu: Juice) {
-        switch menu {
-        case .strawberryJuice:
-            fruitStore.substractFruits(juice: .strawberryJuice)
-        case .bananaJuice:
-            fruitStore.substractFruits(juice: .bananaJuice)
-        case .pineappleJuice:
-            fruitStore.substractFruits(juice: .pineappleJuice)
-        case .kiwiJuice:
-            fruitStore.substractFruits(juice: .kiwiJuice)
-        case .mangoJuice:
-            fruitStore.substractFruits(juice: .mangoJuice)
-        case .strawberryBananaJuice:
-            fruitStore.substractFruits(juice: .strawberryBananaJuice)
-        case .mangoKiwiJuice:
-            fruitStore.substractFruits(juice: .mangoKiwiJuice)
+        guard filterError(juice: menu) else {
+            return
         }
+        
+        fruitStore.substractFruits(juice: menu)
     }
     
     func checkStock(juice: Juice) throws -> Bool {
@@ -33,5 +22,18 @@ struct JuiceMaker {
             }
         }
         return true
+    }
+    
+    func filterError(juice: Juice) -> Bool {
+        do {
+            let isNotSoldOut = try checkStock(juice: juice)
+            return isNotSoldOut
+        } catch JuiceMakerError.outOfStock {
+            print("품절입니다.")
+            return false
+        } catch {
+            print("some error")
+            return false
+        }
     }
 }
