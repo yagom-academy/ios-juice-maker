@@ -2,7 +2,7 @@
 //  Fruit.swift
 //  JuiceMaker
 //
-//  Created by 이정민 on 2022/08/29.
+//  Created by stone, jpush.
 //
 
 enum Fruit: CaseIterable {

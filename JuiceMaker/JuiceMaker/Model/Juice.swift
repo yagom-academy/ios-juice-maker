@@ -2,7 +2,7 @@
 //  Juice.swift
 //  JuiceMaker
 //
-//  Created by leewonseok on 2022/08/29.
+//  Created by stone, jpush.
 //
 enum Juice {
     case strawberry
