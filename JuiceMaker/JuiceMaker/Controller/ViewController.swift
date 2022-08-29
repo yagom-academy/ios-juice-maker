@@ -12,7 +12,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         var a = JuiceMaker()
-        a.makeStrawberryJuice()
+        a.makeFruitJuice(fruit: FruitJuice.strawberryJuice)
+        print(a.juiceList[FruitJuice.strawberryJuice])
     }
 
 
