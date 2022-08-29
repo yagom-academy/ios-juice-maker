@@ -22,5 +22,4 @@ class FruitStore {
         
         fruits[fruit] = fruitCount + count
     }
-    
 }
