@@ -30,4 +30,14 @@ class FruitStore {
         
         fruitStock[fruit] = currentStock + quantity
     }
+    
+    func checkStockOf(_ ingredient: Fruit, total: Int) throws {
+        guard let curStock = fruitStock[ingredient] else {
+            throw JuiceMakerError.noSuchFruit
+        }
+        
+        guard curStock >= total else {
+            throw JuiceMakerError.stockShortage
+        }
+    }
 }

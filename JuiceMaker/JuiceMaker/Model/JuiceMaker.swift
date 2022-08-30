@@ -58,36 +58,30 @@ struct JuiceMaker {
     }
     
     func makeJuice(_ juice: Juice, total: Int) {
-        do {
-            try checkStockOf(juice, total: total)
-        } catch let error as JuiceMakerError {
-            print(error.errorDescription)
-            return
-        } catch {
-            print("\(error)")
-            return
-        }
+
         
-        let recipe = juice.recipe
-        
-        for (ingredient, quantity) in recipe {
-            fruitStore.changeStockOf(fruit: ingredient, by: -(quantity * total))
-        }
+        orderFruit()
         
         print("\(juice.juiceName) \(total)잔 완성")
     }
     
-    private func checkStockOf(_ juice: Juice, total: Int) throws {
-        let recipe = juice.recipe
-        
-        for (ingredient, quantity) in recipe {
-            guard let currentStock = fruitStore.fruitStock[ingredient] else {
+    func goToFruitStore() {
+        for (ingredient, quantity) in juice.recipe {
+            do {
+                try fruitStore.checkStockOf(ingredient, total: quantity * total)
+            } catch let error as JuiceMakerError {
+                print(error.errorDescription)
+                return
+            } catch {
+                print("\(error)")
                 return
             }
-            
-            guard currentStock >= quantity * total else {
-                throw JuiceMakerError.stockShortage
-            }
+        }
+    }
+    
+    func  () {
+        for (ingredient, quantity) in juice.recipe {
+            fruitStore.changeStockOf(fruit: ingredient, by: -quantity * total)
         }
     }
 }
