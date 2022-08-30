@@ -16,7 +16,7 @@ enum OrderError: Error {
         case .outOfStack:
             return "재고가 부족합니다."
         case .unknown:
-            return "알 수 없는 오류입니다."
+            return "과일이 없습니다."
         }
     }
 }
