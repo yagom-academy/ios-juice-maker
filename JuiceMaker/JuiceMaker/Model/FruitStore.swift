@@ -11,7 +11,7 @@ class FruitStore {
     var inventory: [Fruit: Int] = [:]
     
     init(initialFruitAmount: Int) {
-        Fruit.allCases.forEach {inventory[$0] = initialFruitAmount}
+        Fruit.allCases.forEach { inventory[$0] = initialFruitAmount }
     }
     
     func addToInventory (of fruit: Fruit, by amount: Int) {
