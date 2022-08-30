@@ -14,7 +14,7 @@ struct JuiceMaker {
         do {
             try fruitStore.reduceInventory(of: juice.recipe)
         } catch {
-            fatalError()
+            throw error
         }
     }
 }
