@@ -45,11 +45,15 @@ struct JuiceMaker {
     
     func produce(juice: Menu) {
         let recipes = juice.recipe
-        guard fruitStore.isEnoughStock(for: juice) else {
-            return
-        }
-        for recipe in recipes {
-            fruitStore.useStock(of: recipe.fruit, amount: recipe.amount)
+        do {
+            try fruitStore.checkStock(for: juice)
+            for recipe in recipes {
+                fruitStore.useStock(of: recipe.fruit, amount: recipe.amount)
+            }
+        } catch JuiceMakerError.outOfStock {
+            print("재고가 없습니다.")
+        } catch {
+            print("Unexpected error: \(error).")
         }
     }
 }

@@ -24,16 +24,15 @@ class FruitStore {
         }
     }
     
-    func isEnoughStock(for juice: JuiceMaker.Menu) -> Bool {
+    func checkStock(for juice: JuiceMaker.Menu) throws {
         let recipes = juice.recipe
         for recipe in recipes {
             guard let currentStock = fruitStock[recipe.fruit],
                       currentStock >= recipe.amount
             else {
-                return false
+                throw JuiceMakerError.outOfStock
             }
         }
-        return true
     }
 }
 
