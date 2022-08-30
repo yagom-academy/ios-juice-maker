@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by 써니쿠키, SummerCat
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -15,25 +15,19 @@ class FruitStore {
         case mango
     }
     
-    var fruitStock: Dictionary<Fruit, Int> = [.strawberry : 10,
-                                              .banana : 0,
-                                              .pineapple : 10,
-                                              .kiwi : 10,
-                                              .mango : 10]
+    var fruitStock: Dictionary<Fruit, Int> = [
+        .strawberry : 10,
+        .banana : 10,
+        .pineapple : 10,
+        .kiwi : 10,
+        .mango : 10,
+    ]
     
     func changeStockOf(fruit: Fruit, by quantity: Int) {
         guard let currentStock = fruitStock[fruit] else {
             return
         }
         
-        guard currentStock >= quantity else {
-            return
-        }
-        
         fruitStock[fruit] = currentStock + quantity
     }
 }
-
-
-
-

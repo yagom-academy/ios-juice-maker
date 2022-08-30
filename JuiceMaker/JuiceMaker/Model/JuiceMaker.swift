@@ -1,97 +1,10 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by 써니쿠키, SummerCat
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import Foundation
-
-//struct JuiceMaker {
-//    let fruitStore = FruitStore()
-//
-//    enum Juice {
-//        case strawberryJuice
-//        case bananaJuice
-//        case kiwiJuice
-//        case pineappleJuice
-//        case strawberryBananaJuice
-//        case mangoJuice
-//        case mangoKiwiJuice
-//
-//
-//        var ingredient: (first: FruitStore.Fruit, second: FruitStore.Fruit?) {
-//            switch self {
-//            case .strawberryJuice:
-//                return (.strawberry, nil)
-//            case .bananaJuice:
-//                return (.banana, nil)
-//            case .kiwiJuice:
-//                return (.kiwi, nil)
-//            case .pineappleJuice:
-//                return (.pineapple, nil)
-//            case .strawberryBananaJuice:
-//                return (.strawberry, .banana)
-//            case .mangoJuice:
-//                return (.mango, nil)
-//            case .mangoKiwiJuice:
-//                return (.mango, .kiwi)
-//            }
-//        }
-//
-//        func ingredientsCount() -> (first: Int, second: Int) {
-//            switch self {
-//            case .strawberryJuice:
-//                return (16, 0)
-//            case .bananaJuice:
-//                return (2,0)
-//            case .kiwiJuice:
-//                return (3,0)
-//            case .pineappleJuice:
-//                return (2,0)
-//            case .strawberryBananaJuice:
-//                return (10, 1)
-//            case .mangoJuice:
-//                return (3,0)
-//            case .mangoKiwiJuice:
-//                return (2,1)
-//            }
-//        }
-//    }
-//
-//    func makeJuice(_ juice: Juice, total: Int) {
-//        let ingredients = juice.ingredientsCount()
-//
-//        switch juice {
-//        case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
-//            guard checkStockOf(fruit: juice.ingredient.first, count: ingredients.first * total) else {
-//                return
-//            }
-//            fruitStore.changeStockOf(fruit: juice.ingredient.first, by: -ingredients.first * total)
-//        case .strawberryBananaJuice, .mangoKiwiJuice:
-//            guard let secondIngredient = juice.ingredient.second else {
-//                return
-//            }
-//            guard checkStockOf(fruit: juice.ingredient.first, count: ingredients.first * total),
-//                  checkStockOf(fruit: secondIngredient, count: ingredients.second * total) else {
-//                return
-//            }
-//            fruitStore.changeStockOf(fruit: juice.ingredient.first, by: -ingredients.first * total)
-//            fruitStore.changeStockOf(fruit: secondIngredient, by: -ingredients.second * total)
-//        }
-//    }
-//
-//    func checkStockOf(fruit: FruitStore.Fruit, count: Int) -> Bool {
-//        guard let currentStock = fruitStore.fruitStock[fruit] else {
-//            return false
-//        }
-//
-//        guard currentStock >= count else {
-//            return false
-//        }
-//
-//        return true
-//    }
-//}
 
 struct JuiceMaker {
     let fruitStore = FruitStore()
@@ -104,6 +17,25 @@ struct JuiceMaker {
         case strawberryBananaJuice
         case mangoJuice
         case mangoKiwiJuice
+        
+        var juiceName: String {
+            switch self {
+            case .strawberryJuice:
+                return "딸기쥬스"
+            case .bananaJuice:
+                return "바나나쥬스"
+            case .kiwiJuice:
+                return "키위쥬스"
+            case .pineappleJuice:
+                return "파인애플쥬스"
+            case .strawberryBananaJuice:
+                return "딸바쥬스"
+            case .mangoJuice:
+                return "망고쥬스"
+            case .mangoKiwiJuice:
+                return "망키쥬스"
+            }
+        }
         
         var recipe: Dictionary<FruitStore.Fruit, Int> {
             switch self {
@@ -126,7 +58,13 @@ struct JuiceMaker {
     }
     
     func makeJuice(_ juice: Juice, total: Int) {
-        guard checkStockOf(juice, total: total) else {
+        do {
+            try checkStockOf(juice, total: total)
+        } catch let error as JuiceMakerError {
+            print(error.errorDescription)
+            return
+        } catch {
+            print("\(error)")
             return
         }
         
@@ -135,22 +73,23 @@ struct JuiceMaker {
         for (ingredient, quantity) in recipe {
             fruitStore.changeStockOf(fruit: ingredient, by: -(quantity * total))
         }
-        print("\(juice) 한 잔 완성")
+        
+        print("\(juice.juiceName) \(total)잔 완성")
     }
     
-    func checkStockOf(_ juice: Juice, total: Int) -> Bool {
+    private func checkStockOf(_ juice: Juice, total: Int) throws {
         let recipe = juice.recipe
         
         for (ingredient, quantity) in recipe {
             guard let currentStock = fruitStore.fruitStock[ingredient] else {
-                return false
+                return
             }
             
             guard currentStock >= quantity * total else {
-                return false
+                throw JuiceMakerError.stockShortage
             }
         }
         
-        return true
+        return
     }
 }

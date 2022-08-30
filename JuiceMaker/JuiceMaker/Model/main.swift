@@ -10,11 +10,3 @@ import Foundation
 
 
 
-let myJuiceMaker = JuiceMaker()
-myJuiceMaker.makeJuice(.strawberryBananaJuice, total: 1)
-
-print(myJuiceMaker.fruitStore.fruitStock)
-
-//myJuiceMaker.makeJuice(.mangoKiwiJuice, total: 1)
-//
-//print(myJuiceMaker.fruitStore.fruitStock)
