@@ -25,21 +25,4 @@ struct JuiceMaker {
             try fruitStorage.changeFruitStock(fruit: fruit, amount: amount)
         }
     }
-    
-    func grindFruit(juice: Juice) {
-        for (fruit, fruitAmount) in juice.recipeOFJuice {
-            if let stackEnough = fruitStorage.stack[fruit] {
-                fruitStorage.stack.updateValue(stackEnough - fruitAmount, forKey: fruit)
-            }
-        }
-    }
-    
-    func checkFruitStock(fruit: Fruit, amount: Int) throws {
-        guard let fruitStack = fruitStorage.stack[fruit] else {
-            throw OrderError.unknown
-        }
-        guard fruitStack >= amount else {
-            throw OrderError.outOfStack
-        }
-    }
 }
