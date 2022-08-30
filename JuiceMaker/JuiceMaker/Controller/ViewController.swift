@@ -5,10 +5,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var a = JuiceMaker()
-        a.handleMakeFruitJuiceError(fruitJuice: .strawberryJuice)
-        a.handleMakeFruitJuiceError(fruitJuice: .strawberryBananaJuice)
-        
+        var juiceMaker = JuiceMaker()
+        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryJuice)
+        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryBananaJuice)
+        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryJuice)
+        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryBananaJuice)
     }
 }
 

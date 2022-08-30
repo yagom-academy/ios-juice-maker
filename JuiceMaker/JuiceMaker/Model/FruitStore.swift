@@ -1,5 +1,11 @@
 class FruitStore {
-    var fruitList: [Fruits: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    private var fruitList: [Fruits: Int] = [
+        .strawberry: 10,
+        .banana: 10,
+        .pineapple: 10,
+        .kiwi: 10,
+        .mango: 10
+    ]
     
     init(fruitAmount: Int) {
         for fruit in fruitList.keys {

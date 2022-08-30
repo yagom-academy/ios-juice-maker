@@ -1,6 +1,6 @@
 struct JuiceMaker {
-    var fruitStore = FruitStore(fruitAmount: 50)
-    var fruitJuiceList: [FruitJuice: Int] = [
+    private var fruitStore = FruitStore(fruitAmount: 50)
+    private var fruitJuiceList: [FruitJuice: Int] = [
         .strawberryJuice: 0,
         .bananaJuice: 0,
         .kiwiJuice: 0,
@@ -9,10 +9,6 @@ struct JuiceMaker {
         .strawberryBananaJuice: 0,
         .mangoKiwiJuice: 0
     ]
-    
-    mutating func makeFruitJuice(_ fruitJuice: FruitJuice) throws {
-        try bringIngridients(of: fruitJuice)
-    }
     
     mutating func bringIngridients(of fruitJuice: FruitJuice) throws {
         switch fruitJuice {
@@ -24,17 +20,13 @@ struct JuiceMaker {
         case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
             let (fruit, amount) = fruitJuice.juiceIngridients.first
             try fruitStore.subtractAmount(of: fruit, by: amount)
-            
-            if let fruitJuiceNumber = fruitJuiceList[fruitJuice] {
-                fruitJuiceList[fruitJuice] = fruitJuiceNumber + 1
-            }
-            print(fruitJuiceList)
+            makeFruitJuice(fruitJuice: fruitJuice)
         }
     }
     
     mutating func handleMakeFruitJuiceError(fruitJuice: FruitJuice) {
         do {
-            try makeFruitJuice(fruitJuice)
+            try bringIngridients(of: fruitJuice)
         } catch {
             switch error {
             case ErrorHandling.underFlowOfAmount:
@@ -44,6 +36,17 @@ struct JuiceMaker {
             default:
                 print("Default Error Message")
             }
+        }
+    }
+    
+    mutating func makeFruitJuice(fruitJuice: FruitJuice) {
+        if let fruitJuiceNumber = fruitJuiceList[fruitJuice] {
+            fruitJuiceList[fruitJuice] = fruitJuiceNumber + 1
+            print("\(fruitJuice) 한잔 나왔습니다!")
+            print("\(fruitJuiceNumber)개 -> ",terminator: "")
+        }
+        if let fruitJuiceNumber = fruitJuiceList[fruitJuice] {
+            print("\(fruitJuiceNumber)개")
         }
     }
 }
