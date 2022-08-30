@@ -16,17 +16,27 @@ class FruitStore {
         }
     }
     
-    func changeCount(fruit: Fruit, by count: Int) {
+    func changeCount(fruit: Fruit, by count: Int) throws {
         guard let fruitCount = fruits[fruit] else {
-            return
+            throw JuiceMakerError.fruitExistError
         }
         
         fruits[fruit] = fruitCount + count
     }
     
-    func fetchFruitCount(fruit: Fruit) -> Int? {
+    func induceFruit(recipe: [Fruit : Int]) throws {
+        for (fruit, amount) in recipe {
+            guard let fruitAmount = fruits[fruit] else {
+                throw JuiceMakerError.fruitExistError
+            }
+        
+            fruits[fruit] = fruitAmount - amount
+        }
+    }
+    
+    func fetchFruitCount(fruit: Fruit) throws -> Int {
         guard let fruitCount = fruits[fruit] else {
-            return nil
+            throw JuiceMakerError.fruitExistError
         }
         
         return fruitCount
