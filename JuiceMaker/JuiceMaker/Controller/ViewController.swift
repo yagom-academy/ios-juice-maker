@@ -6,18 +6,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+	private let maker = JuiceMaker()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let juice: Juice = Juice.mangokiwiJuice
-        let maker = JuiceMaker()
-		
-		for _ in 1...20 {
-			maker.makeJuice(juice: juice)
-		}
     }
-
-
 }
 
