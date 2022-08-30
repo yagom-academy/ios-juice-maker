@@ -5,7 +5,7 @@
 //  Created by Mene, Dragon on 2022/08/30.
 //
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawBerry
     case banana
     case pineApple

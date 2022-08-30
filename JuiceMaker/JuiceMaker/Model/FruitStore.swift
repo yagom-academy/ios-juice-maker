@@ -9,6 +9,11 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     
+    var store: [Fruit: Int] = [:]
+    
+    init(initialFruitCount: Int) {
+        Fruit.allCases.forEach {store[$0] = initialFruitCount}
+    }
 }
 
 //FruitStore는 다음의 조건을 충족해야 합니다.
