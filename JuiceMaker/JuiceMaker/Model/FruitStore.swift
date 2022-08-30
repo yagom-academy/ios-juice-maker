@@ -1,6 +1,5 @@
 //  Created by 애종,질리,벨라 on 2022/08/30.
 
-// 과일 저장소 타입
 class FruitStore {
     var fruitStock: [Fruit: Int] = [
         .strawberry: 10,
@@ -20,6 +19,4 @@ class FruitStore {
             self.fruitStock[fruit] = targetStock - 1
         }
     }
-    
-    
 }

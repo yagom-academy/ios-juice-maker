@@ -12,10 +12,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let fruitStore = FruitStore()
-        debugPrint(fruitStore.fruitStock)
-        fruitStore.updateFruitStock(fruit: .strawberry, oper: "+")
-        debugPrint(fruitStore.fruitStock)
+        let juiceMaker = JuiceMaker()
+        juiceMaker.takeOrder(juice: .mangoKiwiJuice)
+        
     }
 
 
