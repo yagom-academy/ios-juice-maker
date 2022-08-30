@@ -18,16 +18,22 @@ class FruitStore {
     }
     
     func useStock(of fruit: Fruit, amount: Int) {
-        if let currentStock = fruitStock[fruit],
-           currentStock >= amount
-        {
+        if let currentStock = fruitStock[fruit] {
             let totalStock = currentStock - amount
             fruitStock.updateValue(totalStock, forKey: fruit)
-        } else {
-            // error
         }
     }
     
+    func isEnoughStock(for juice: JuiceMaker.Menu) -> Bool {
+        let recipes = juice.recipe
+        for recipe in recipes {
+            guard let currentStock = fruitStock[recipe.fruit],
+                      currentStock >= recipe.amount else {
+                          return false
+                      }
+        }
+        return true
+    }
 }
 
 
