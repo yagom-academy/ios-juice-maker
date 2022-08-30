@@ -8,6 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
+    typealias FruitsInventory = [Fruit: Int]
     var fruitsInventory: [Fruit: Int] = [:]
     
     init() {
@@ -15,4 +16,15 @@ class FruitStore {
             fruitsInventory[$0] = 10
         }
     }
+    
+    func increaseInventory(of increasingFruitsInventory: FruitsInventory) throws {
+        for (fruit, variability) in fruitsInventory {
+            guard let inventory = fruitsInventory[fruit] else {
+                fatalError()
+            }
+            
+            fruitsInventory[fruit] = inventory + variability
+        }
+    }
+
 }
