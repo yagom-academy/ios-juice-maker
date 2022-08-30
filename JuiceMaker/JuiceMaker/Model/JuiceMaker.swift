@@ -73,13 +73,13 @@ struct JuiceMaker {
         print("\(juice.juiceName) \(total)잔 완성")
     }
     
-    func checkFruitStore(for juice: Juice, total: Int) throws {
+    private func checkFruitStore(for juice: Juice, total: Int) throws {
         for (ingredient, quantity) in juice.recipe {
             try fruitStore.checkStockOf(ingredient, total: quantity * total)
         }
     }
     
-    func useFruit(_ juice: Juice, total: Int) {
+    private func useFruit(_ juice: Juice, total: Int) {
         for (ingredient, quantity) in juice.recipe {
             fruitStore.changeStockOf(fruit: ingredient, by: -quantity * total)
         }

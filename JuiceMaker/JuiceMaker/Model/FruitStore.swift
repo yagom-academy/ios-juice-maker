@@ -15,7 +15,7 @@ class FruitStore {
         case mango
     }
     
-    var fruitStock: Dictionary<Fruit, Int> = [
+    private var fruitStock: Dictionary<Fruit, Int> = [
         .strawberry : 10,
         .banana : 10,
         .pineapple : 10,
