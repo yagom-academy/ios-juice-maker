@@ -8,5 +8,9 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
+    var stack: [Fruit: Int] = [:]
     
+    init(defaultStack: Int) {
+        Fruit.allCases.forEach { stack[$0] = defaultStack }
+    }
 }
