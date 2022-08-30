@@ -22,9 +22,16 @@ class FruitStore {
     }
     
     func subtract(amount: Int, of fruit: Fruit) {
-        guard amount > 0, let currentStock = self.inventory[fruit], currentStock >= amount else {
+        guard let currentStock = self.inventory[fruit] else {
             return
         }
         self.inventory[fruit] = currentStock - amount
+    }
+    
+    func canSubtract(amount: Int, of fruit: Fruit) -> Bool {
+        guard amount > 0, let currentStock = self.inventory[fruit], currentStock >= amount else {
+            return false
+        }
+        return true
     }
 }
