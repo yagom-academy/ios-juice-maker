@@ -14,13 +14,13 @@ class FruitStore {
         }
     }
     
-    func increaseInventory(of increasingFruitsInventory: FruitsInventory) throws {
+    func increaseInventory(with fruitsInventory: FruitsInventory) throws {
         for (fruit, variability) in fruitsInventory {
             guard let inventory = fruitsInventory[fruit] else {
                 throw FruitStoreError.emptyFruit
             }
             
-            fruitsInventory[fruit] = inventory + variability
+            self.fruitsInventory[fruit] = inventory + variability
         }
     }
     
