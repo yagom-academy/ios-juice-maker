@@ -26,5 +26,20 @@ class FruitStore {
             fruitsInventory[fruit] = inventory + variability
         }
     }
+    
+    func reduceInventory(of reducingFruitsInventory: FruitsInventory) throws {
+        for (fruit, variability) in fruitsInventory {
+            guard var inventory = fruitsInventory[fruit] else {
+                fatalError()
+            }
+            
+            inventory -= variability
+            if inventory < 0 {
+                fatalError()
+            }
+            
+            fruitsInventory[fruit] = inventory
+        }
+    }
 
 }
