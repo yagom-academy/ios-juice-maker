@@ -6,7 +6,6 @@
 
 import Foundation
 
-// 과일 저장소 타입
 class FruitStore {
     private var stock: [Fruit: Int] = [
         .strawBerry: 10,
@@ -20,7 +19,7 @@ class FruitStore {
         for (fruitName, requiredamount) in juice.name {
             guard let stock = self.stock[fruitName], stock != 0 else {
                 throw StockError.outOfFruit
-            } //
+            }
             guard let stock = self.stock[fruitName], stock + requiredamount > 0 else {
                 throw StockError.notEnoughFruit
             }
@@ -29,10 +28,9 @@ class FruitStore {
     
     func manageStockOf(_ juice: Juice) {
         for (fruitName, requiredamount) in juice.name {
-            if var stock = self.stock[fruitName] {
-                stock += requiredamount
+            if let stock = self.stock[fruitName] {
+                self.stock.updateValue(stock + requiredamount, forKey: fruitName)
             }
         }
     }
 }
-
