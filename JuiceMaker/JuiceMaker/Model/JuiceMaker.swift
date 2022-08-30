@@ -89,7 +89,5 @@ struct JuiceMaker {
                 throw JuiceMakerError.stockShortage
             }
         }
-        
-        return
     }
 }

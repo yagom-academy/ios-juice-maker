@@ -17,9 +17,13 @@ class ViewController: UIViewController {
 
         print(myJuiceMaker.fruitStore.fruitStock)
 
-        //myJuiceMaker.makeJuice(.mangoKiwiJuice, total: 1)
-        //
-        //print(myJuiceMaker.fruitStore.fruitStock)
+        myJuiceMaker.makeJuice(.mangoKiwiJuice, total: 2)
+        
+        print(myJuiceMaker.fruitStore.fruitStock)
+        
+        myJuiceMaker.makeJuice(.strawberryJuice, total: 3)
+        
+        print(myJuiceMaker.fruitStore.fruitStock)
 
     }
 
