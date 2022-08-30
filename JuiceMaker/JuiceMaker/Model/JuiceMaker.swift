@@ -14,9 +14,15 @@ struct JuiceMaker {
         try chooseRecipe(order: juice)
     }
     
-    func chooseRecipe(order: Juice) throws {
-        for (fruit, fruitAmount) in order.recipeOFJuice {
-            try checkFruitStock(fruit: fruit, amount: fruitAmount)
+    func chooseRecipe(order juice: Juice) throws {
+        switch juice {
+        case .strawberryBananaJuice, .mangoKiwiJuice:
+            if let (fruit, amount) = juice.recipeOFJuice.second {
+                try fruitStorage.changeFruitStock(fruit: fruit, amount: amount)
+            }
+        default:
+            let (fruit, amount) = juice.recipeOFJuice.first
+            try fruitStorage.changeFruitStock(fruit: fruit, amount: amount)
         }
     }
     
