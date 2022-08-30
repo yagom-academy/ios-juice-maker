@@ -7,10 +7,11 @@
 import Foundation
 
 // 쥬스 메이커 타입
-struct JuiceMaker  {
+struct JuiceMaker {
     var store = FruitStore()
     
-    func makeJuice(_ juice: Juice) throws {
+    func makeJuice(_ juice: Juice)
+    throws {
         do {
             try FruitStore.checkStockAvailability(of: juice)
         } catch StockError.notEnoughFruit {
