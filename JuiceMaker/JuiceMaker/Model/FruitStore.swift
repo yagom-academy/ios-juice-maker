@@ -27,5 +27,13 @@ class FruitStore {
             }
         }
     }
+    
+    class func manageStock(_ juice: Juice) {
+        for (fruitName, amount) in juice.name {
+            if var stock = self.stock[fruitName] {
+                stock += amount
+            }
+        }
+    }
 }
 
