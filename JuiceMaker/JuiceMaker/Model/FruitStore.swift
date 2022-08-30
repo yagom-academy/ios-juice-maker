@@ -14,6 +14,11 @@ class FruitStore {
     init(initialFruitCount: Int) {
         Fruit.allCases.forEach {store[$0] = initialFruitCount}
     }
+    
+    func addToStore (fruit: Fruit, amount: Int) {
+        guard let fruitStock = store[fruit] else { return }
+        store[fruit] = fruitStock + amount
+    }
 }
 
 //FruitStore는 다음의 조건을 충족해야 합니다.
