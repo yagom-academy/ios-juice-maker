@@ -9,7 +9,7 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     let initialStock = 10
-    var fruitStock = [Fruit: Int]()
+    private var fruitStock = [Fruit: Int]()
     
     init() {
         Fruit.allCases.forEach { fruit in
