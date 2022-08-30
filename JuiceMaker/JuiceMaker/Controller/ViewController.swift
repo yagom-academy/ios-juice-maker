@@ -5,8 +5,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let a = JuiceMaker()
-        a.makeFruitJuice(.strawberryJuice)
+        var a = JuiceMaker()
+        a.handleMakeFruitJuiceError(fruitJuice: .strawberryJuice)
+        a.handleMakeFruitJuiceError(fruitJuice: .strawberryBananaJuice)
         
     }
 }

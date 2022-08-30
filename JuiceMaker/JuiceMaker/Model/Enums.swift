@@ -39,3 +39,11 @@ enum FruitJuice {
         }
     }
 }
+
+enum ErrorHandling: Error {
+    case underFlowOfAmount
+    case notExistFruits
+}
+
+//= "재료가 부족합니다."
+//""

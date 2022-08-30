@@ -11,19 +11,15 @@ class FruitStore {
         fruitList[fruit] = amount
     }
     
-    func subtractAmount(of fruit: Fruits, by amount: Int) {
+    func subtractAmount(of fruit: Fruits, by amount: Int) throws {
         guard let numberOfFruits = fruitList[fruit] else {
-            
-            print("해당 과일이 없습니다.")
-            return
+            throw ErrorHandling.notExistFruits
         }
         
         if numberOfFruits - amount < 0 {
-            print("재료가 부족합니다.")
-            return
+            throw ErrorHandling.underFlowOfAmount
         }
         
         fruitList[fruit] = numberOfFruits - amount
-        print(fruitList)
     }
 }
