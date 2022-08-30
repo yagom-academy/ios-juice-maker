@@ -13,19 +13,17 @@ struct JuiceMaker {
         let juiceRecipe = juice.recipe
         
         do {
-            try validFruitCount(juiceRecipe)
-            try fruitStore.induceFruit(recipe: juiceRecipe)
-        
+            try validFruitAmount(juiceRecipe)
+            try fruitStore.useFruits(recipe: juiceRecipe)
+            print("\(juice.rawValue) 완성")
         } catch {
             print(error.localizedDescription)
         }
-        
-        print("\(juice.rawValue) 완성")
     }
     
-    func validFruitCount(_ recipe : [Fruit : Int]) throws {
+    func validFruitAmount(_ recipe : [Fruit : Int]) throws {
         for (fruit, amount) in recipe {
-            let fruitAmount = try fruitStore.fetchFruitCount(fruit: fruit)
+            let fruitAmount = try fruitStore.fetchFruitAmount(fruit: fruit)
             guard amount <= fruitAmount else { throw JuiceMakerError.fruitAmountError }
         }
     }

@@ -10,9 +10,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let asd = JuiceMaker()
-        asd.makeJuice(Juice.strawberryBanana)
-        print(FruitStore.shared.fruits)
     }
 }
 

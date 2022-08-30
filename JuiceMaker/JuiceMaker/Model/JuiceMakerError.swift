@@ -5,11 +5,15 @@
 //  Created by stone, jpush.
 //
 
+import Foundation
+
 enum JuiceMakerError: Error {
     case fruitAmountError
     case fruitExistError
-    
-    var description: String {
+}
+
+extension JuiceMakerError: LocalizedError{
+    var errorDescription: String? {
         switch self {
         case .fruitAmountError:
             return "과일 재고가 부족합니다."
@@ -18,4 +22,3 @@ enum JuiceMakerError: Error {
         }
     }
 }
-

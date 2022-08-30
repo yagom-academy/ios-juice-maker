@@ -8,6 +8,7 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     static let shared = FruitStore()
+    
     var fruits: [Fruit : Int] = [:]
     
     private init() {
@@ -16,29 +17,21 @@ class FruitStore {
         }
     }
     
-    func changeCount(fruit: Fruit, by count: Int) throws {
-        guard let fruitCount = fruits[fruit] else {
-            throw JuiceMakerError.fruitExistError
-        }
-        
-        fruits[fruit] = fruitCount + count
-    }
-    
-    func induceFruit(recipe: [Fruit : Int]) throws {
+    func useFruits(recipe: [Fruit : Int]) throws {
         for (fruit, amount) in recipe {
             guard let fruitAmount = fruits[fruit] else {
                 throw JuiceMakerError.fruitExistError
             }
-        
-            fruits[fruit] = fruitAmount - amount
+            
+            self.fruits[fruit] = fruitAmount - amount
         }
     }
     
-    func fetchFruitCount(fruit: Fruit) throws -> Int {
-        guard let fruitCount = fruits[fruit] else {
+    func fetchFruitAmount(fruit: Fruit) throws -> Int {
+        guard let fruitAmount = fruits[fruit] else {
             throw JuiceMakerError.fruitExistError
         }
         
-        return fruitCount
+        return fruitAmount
     }
 }
