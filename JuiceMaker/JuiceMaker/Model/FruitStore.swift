@@ -16,18 +16,18 @@ class FruitStore {
     ]
     
     func checkStockAvailability(of juice: Juice) throws {
-        for (fruitName, requiredamount) in juice.name {
+        for (fruitName, requiredamount) in juice.recipe {
             guard let stock = self.stock[fruitName], stock != 0 else {
                 throw StockError.outOfFruit
             }
-            guard let stock = self.stock[fruitName], stock + requiredamount > 0 else {
+            guard let stock = self.stock[fruitName], stock < requiredamount else {
                 throw StockError.notEnoughFruit
             }
         }
     }
     
-    func manageStockOf(_ juice: Juice) {
-        for (fruitName, requiredamount) in juice.name {
+    func useStockForRecipe(of juice: Juice) {
+        for (fruitName, requiredamount) in juice.recipe {
             if let stock = self.stock[fruitName] {
                 self.stock.updateValue(stock + requiredamount, forKey: fruitName)
             }

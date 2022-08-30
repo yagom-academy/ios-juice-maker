@@ -16,22 +16,22 @@ enum Juice {
     case mango
     case mangoKiwi
     
-    var name: [Fruit: Int] {
+    var recipe: [Fruit: Int] {
         switch self {
         case .strawBerry:
-            return [.strawBerry: -16]
+            return [.strawBerry: 16]
         case .banana:
-            return [.banana: -2]
+            return [.banana: 2]
         case .kiwi:
-            return [.kiwi: -3]
+            return [.kiwi: 3]
         case .pineApple:
-            return [.pineApple: -2]
+            return [.pineApple: 2]
         case .strawBerryBanana:
-            return [.strawBerry: -10, .banana: -1]
+            return [.strawBerry: 10, .banana: 1]
         case .mango:
-            return [.mango: -3]
+            return [.mango: 3]
         case .mangoKiwi:
-            return [.mango: -2, .kiwi: -1]
+            return [.mango: 2, .kiwi: 1]
         }
     }
 }
