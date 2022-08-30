@@ -13,16 +13,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let myJuiceMaker = JuiceMaker()
+        print(myJuiceMaker.fruitStore.fruitStock)
         myJuiceMaker.makeJuice(.strawberryBananaJuice, total: 1)
-
         print(myJuiceMaker.fruitStore.fruitStock)
 
         myJuiceMaker.makeJuice(.mangoKiwiJuice, total: 2)
-        
         print(myJuiceMaker.fruitStore.fruitStock)
         
-        myJuiceMaker.makeJuice(.strawberryJuice, total: 3)
-        
+        myJuiceMaker.makeJuice(.strawberryBananaJuice, total: 1)
         print(myJuiceMaker.fruitStore.fruitStock)
 
     }
