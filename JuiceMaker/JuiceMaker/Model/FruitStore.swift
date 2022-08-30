@@ -5,12 +5,16 @@
 //
 
 class FruitStore {
-    var fruitStock: [Fruit : Int] = [:]
+    private var fruitStock: [Fruit : Int] = [:]
     
     init(defaultStock: Int = 10) {
         for fruit in Fruit.allCases {
             fruitStock.updateValue(defaultStock, forKey: fruit)
         }
+    }
+    
+    func bringFruitStock(_ fruit: Fruit) -> Int? {
+        return fruitStock[fruit]
     }
     
     func addFruits(fruit: Fruit, amount: Int) {

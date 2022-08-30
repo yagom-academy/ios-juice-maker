@@ -17,10 +17,11 @@ struct JuiceMaker {
     
     func checkStock(juice: Juice) throws -> Bool {
         for fruit in juice.recipe {
-            guard let stock =  fruitStore.fruitStock[fruit.name], stock > fruit.count else {
+            guard let stock = fruitStore.bringFruitStock(fruit.name), stock >= fruit.count else {
                 throw JuiceMakerError.outOfStock
             }
         }
+        
         return true
     }
     
@@ -29,7 +30,7 @@ struct JuiceMaker {
             let isNotSoldOut = try checkStock(juice: juice)
             return isNotSoldOut
         } catch JuiceMakerError.outOfStock {
-            print("품절입니다.")
+            print("과일 재고 품절입니다.")
             return false
         } catch {
             print("some error")
