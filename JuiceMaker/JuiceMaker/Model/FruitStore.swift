@@ -20,4 +20,6 @@ class FruitStore {
             self.fruitStock[fruit] = targetStock - 1
         }
     }
+    
+    
 }
