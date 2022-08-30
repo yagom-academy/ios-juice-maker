@@ -15,7 +15,7 @@ enum FruitJuice {
     case strawberryBananaJuice
     case mangoKiwiJuice
     
-    struct JuiceIngridients{
+    struct JuiceIngridients {
         let first: (Fruits, Int)
         let second: (Fruits, Int)?
     }
