@@ -29,17 +29,26 @@ class FruitStore {
     
     func reduceInventory(of reducingFruitsInventory: FruitsInventory) throws {
         for (fruit, variability) in fruitsInventory {
-            guard var inventory = fruitsInventory[fruit] else {
+            guard let inventory = fruitsInventory[fruit] else {
                 throw FruitStoreError.emptyFruit
             }
             
-            inventory -= variability
-            if inventory < 0 {
-                throw FruitStoreError.insufficientInventory
+            fruitsInventory[fruit] = inventory - variability
+        }
+    }
+    
+    func hasEnoughInventory(reduced fruitsInventory: FruitsInventory) throws -> Bool {
+        for (fruit, variability) in fruitsInventory {
+            guard let inventory = fruitsInventory[fruit] else {
+                throw FruitStoreError.emptyFruit
             }
             
-            fruitsInventory[fruit] = inventory
+            if inventory - variability < 0 {
+                return false
+            }
         }
+        
+        return true
     }
 
 }

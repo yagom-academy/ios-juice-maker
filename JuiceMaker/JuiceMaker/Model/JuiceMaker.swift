@@ -12,9 +12,15 @@ struct JuiceMaker {
     
     func make(juice: Juice) throws {
         do {
-            try fruitStore.reduceInventory(of: juice.recipe)
+            let recipe = juice.recipe
+            
+            if try fruitStore.hasEnoughInventory(reduced: recipe) {
+                try fruitStore.reduceInventory(of: recipe)
+            } else {
+                throw FruitStoreError.insufficientInventory
+            }
         } catch {
-            throw error
+            throw FruitStoreError.emptyFruit
         }
     }
 }
