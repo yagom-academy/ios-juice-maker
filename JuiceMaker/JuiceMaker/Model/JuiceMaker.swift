@@ -43,5 +43,13 @@ struct JuiceMaker {
     
     var fruitStore = FruitStore()
     
-    
+    func produce(juice: Menu) {
+        let recipes = juice.recipe
+        guard fruitStore.isEnoughStock(for: juice) else {
+            return
+        }
+        for recipe in recipes {
+            fruitStore.useStock(of: recipe.fruit, amount: recipe.amount)
+        }
+    }
 }
