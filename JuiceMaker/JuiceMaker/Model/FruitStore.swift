@@ -4,9 +4,13 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
-// 과일 저장소 타입
 class FruitStore {
+    var inventory: Dictionary<Fruit, Int>
     
+    init(initialStock: Int) {
+        inventory = [:]
+        for fruit in Fruit.allCases {
+            self.inventory[fruit] = initialStock
+        }
+    }
 }

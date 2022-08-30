@@ -5,7 +5,7 @@
 //  Created by Gundy, 준호
 //
 
-enum Fruit {
+enum Fruit: CaseIterable {
     case strawberry
     case banana
     case pineapple
