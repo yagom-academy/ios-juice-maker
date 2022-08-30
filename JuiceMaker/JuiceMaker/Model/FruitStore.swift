@@ -20,7 +20,7 @@ class FruitStore {
     func increaseInventory(of increasingFruitsInventory: FruitsInventory) throws {
         for (fruit, variability) in fruitsInventory {
             guard let inventory = fruitsInventory[fruit] else {
-                fatalError()
+                throw FruitStoreError.emptyFruit
             }
             
             fruitsInventory[fruit] = inventory + variability
@@ -30,12 +30,12 @@ class FruitStore {
     func reduceInventory(of reducingFruitsInventory: FruitsInventory) throws {
         for (fruit, variability) in fruitsInventory {
             guard var inventory = fruitsInventory[fruit] else {
-                fatalError()
+                throw FruitStoreError.emptyFruit
             }
             
             inventory -= variability
             if inventory < 0 {
-                fatalError()
+                throw FruitStoreError.insufficientInventory
             }
             
             fruitsInventory[fruit] = inventory
