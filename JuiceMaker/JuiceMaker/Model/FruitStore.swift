@@ -19,7 +19,22 @@ class FruitStore {
         guard let fruitStock = store[fruit] else { return }
         store[fruit] = fruitStock + amount
     }
+    
+    func removeToStore (fruit: Fruit, amount: Int) {
+        guard let fruitStock = store[fruit] else { return }
+        if fruitStock < amount {
+            print("수량이 작습니다!")
+            return
+        } else {
+            store[fruit] = fruitStock - amount
+        }
+    }
 }
+
+let store = FruitStore.init(initialFruitCount: 10)
+let mene = store.removeToStore(fruit: .strawBerry, amount: 10)
+let test = store.store
+
 
 //FruitStore는 다음의 조건을 충족해야 합니다.
 //FruitStore가 관리하는 과일의 종류 : 딸기, 바나나, 파인애플, 키위, 망고
