@@ -8,8 +8,8 @@ import UIKit
 class ViewController: UIViewController {
 	private let maker = JuiceMaker()
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+	override func viewDidLoad() {
+		super.viewDidLoad()
+	}
 }
 
