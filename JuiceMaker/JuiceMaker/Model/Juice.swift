@@ -16,22 +16,27 @@ enum Juice: String {
     case mangoJuice = "망고쥬스"
     case mangoKiwiJuice = "망고키위쥬스"
     
-    var recipeOFJuice: [Fruit: Int] {
+    struct Ingredient {
+        let first: (Fruit, Int)
+        let second: (Fruit, Int)?
+    }
+    
+    var recipeOFJuice: Ingredient {
         switch self {
         case .strawberryJuice:
-            return [.strawberry: 16]
+            return Ingredient(first: (.strawberry, 16), second: nil)
         case .bananaJuice:
-            return [.banna: 2]
+            return Ingredient(first: (.banna, 2), second: nil)
         case .kiwiJuice:
-            return [.kiwi: 3]
+            return Ingredient(first: (.kiwi, 3), second: nil)
         case .pineAppleJuice:
-            return [.pineApple: 2]
+            return Ingredient(first: (.pineApple, 2), second: nil)
         case .strawberryBananaJuice:
-            return [.strawberry: 10, .banna: 1]
+            return Ingredient(first: (.strawberry, 10), second: nil)
         case .mangoJuice:
-            return [.mango: 3]
+            return Ingredient(first: (.mango, 3), second: nil)
         case .mangoKiwiJuice:
-            return [.mango: 2, .kiwi: 1]
+            return Ingredient(first: (.mango, 2), second: (.kiwi, 1))
         }
     }
 }
