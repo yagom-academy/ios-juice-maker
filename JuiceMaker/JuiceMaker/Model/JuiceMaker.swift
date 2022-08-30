@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStorage = FruitStore(defaultStock: 10)
+    private let fruitStorage = FruitStore(defaultStock: 10)
     
     func makeJuice(of juice: Juice) {
         do {
@@ -22,7 +22,7 @@ struct JuiceMaker {
         }
     }
     
-    func chooseRecipe(order juice: Juice) throws {
+    private func chooseRecipe(order juice: Juice) throws {
         switch juice {
         case .strawberryBananaJuice, .mangoKiwiJuice:
             if let (fruit, amount) = juice.recipeOfJuice.second {
