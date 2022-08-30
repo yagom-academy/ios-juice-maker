@@ -3,8 +3,6 @@
 //  Created by Wonbi, woong
 //
 
-
-
 struct JuiceMaker {
     enum Juice: String {
         case strawberryJuice = "딸기 주스"
@@ -56,20 +54,16 @@ struct JuiceMaker {
     
     let stockManager = FruitStore.stockManager
     
-    @discardableResult
     func takeFruit(_ fruit: Fruit, amount: Int) -> Int {
         let takedFruitCount = stockManager.handOver(of: fruit, to: amount)
         return takedFruitCount
     }
     
     func makeJuice(_ juice: Juice) {
-        print(stockManager.stock)
         for (fruit, fruitCount) in juice.recipe {
             let takedFruitCount = takeFruit(fruit, amount: fruitCount)
             if takedFruitCount == 0 { return }
         }
         print("\(juice.name) 완성")
-        print(stockManager.stock)
     }
-    
 }
