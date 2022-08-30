@@ -3,6 +3,10 @@
 //  Created by Ash, 미니.
 //
 
+enum StockError: Error {
+    case outOfStock
+}
+
 enum Fruit: CaseIterable {
 	case strawberry
 	case banana
@@ -23,13 +27,12 @@ enum Fruit: CaseIterable {
 class FruitStore {
     var fruitStock: [Fruit: Int] = Fruit.beginningStock
     
- 	func checkStock(for fruits: [Fruit], than stocks: [Int]) -> Bool {
+ 	func checkStock(for fruits: [Fruit], than stocks: [Int]) throws {
 		for (fruit, stock) in zip(fruits, stocks)  {
 			guard let remainStock = fruitStock[fruit], remainStock >= -stock else {
-				return false
+                throw StockError.outOfStock
 			}
 		}
-        return true
     }
     
     func changeStock(for fruits: [Fruit], than stocks: [Int]) {
@@ -38,6 +41,5 @@ class FruitStore {
                 fruitStock.updateValue(remainStock + stock, forKey: fruit)
             }
         }
-        print(fruitStock)
     }
 }
