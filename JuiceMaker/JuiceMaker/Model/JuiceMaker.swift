@@ -12,7 +12,7 @@ struct JuiceMaker {
             let recipe = juice.recipe
             
             if try fruitStore.hasEnoughInventory(reduced: recipe) {
-                try fruitStore.reduceInventory(of: recipe)
+                try fruitStore.reduceInventory(about: recipe)
             } else {
                 throw FruitStoreError.insufficientInventory
             }
