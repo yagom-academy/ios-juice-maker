@@ -8,9 +8,15 @@ class FruitStore {
     var inventory: Dictionary<Fruit, Int>
     
     init(initialStock: Int) {
-        inventory = [:]
+        self.inventory = [:]
         for fruit in Fruit.allCases {
             self.inventory[fruit] = initialStock
+        }
+    }
+    
+    func add(amount: Int, of fruit: Fruit) {
+        if let currentStock = self.inventory[fruit] {
+            self.inventory[fruit] = currentStock + amount
         }
     }
 }
