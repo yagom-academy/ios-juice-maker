@@ -17,22 +17,28 @@ class FruitStore {
         }
     }
     
-    func add(amount: Int, of fruit: Fruit) {
-        guard amount > 0, let currentStock = inventory[fruit] else {
-            return
+    func add(amount: Int, of fruit: Fruit) throws {
+        guard amount > 0 else {
+            throw FruitStoreError.wrongAmount
+        }
+        guard let currentStock = inventory[fruit] else {
+            throw FruitStoreError.notInFruitList
         }
         inventory[fruit] = currentStock + amount
     }
     
-    func subtract(amount: Int, of fruit: Fruit) {
+    func subtract(amount: Int, of fruit: Fruit) throws {
+        guard amount > 0 else {
+            throw FruitStoreError.wrongAmount
+        }
         guard let currentStock = inventory[fruit] else {
-            return
+            throw FruitStoreError.notInFruitList
         }
         inventory[fruit] = currentStock - amount
     }
     
     func canSubtract(amount: Int, of fruit: Fruit) -> Bool {
-        guard amount > 0, let currentStock = inventory[fruit], currentStock >= amount else {
+        guard let currentStock = inventory[fruit], currentStock >= amount else {
             return false
         }
         return true
