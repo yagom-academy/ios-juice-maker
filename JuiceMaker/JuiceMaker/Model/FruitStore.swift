@@ -15,8 +15,16 @@ class FruitStore {
     }
     
     func add(amount: Int, of fruit: Fruit) {
-        if let currentStock = self.inventory[fruit] {
-            self.inventory[fruit] = currentStock + amount
+        guard amount > 0, let currentStock = self.inventory[fruit] else {
+            return
         }
+        self.inventory[fruit] = currentStock + amount
+    }
+    
+    func subtract(amount: Int, of fruit: Fruit) {
+        guard amount > 0, let currentStock = self.inventory[fruit], currentStock >= amount else {
+            return
+        }
+        self.inventory[fruit] = currentStock - amount
     }
 }
