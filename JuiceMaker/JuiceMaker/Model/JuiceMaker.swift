@@ -4,14 +4,14 @@
 //
 
 struct JuiceMaker {
-    enum Juice: String {
-        case strawberryJuice = "딸기 주스"
-        case bananaJuice = "바나나 주스"
-        case kiwiJuice = "키위 주스"
-        case pineappleJuice = "파인애플 주스"
-        case mangoJuice = "망고 주스"
-        case strawberryBananaJuice = "딸바 주스"
-        case mangoKiwiJuice = "망키 주스"
+    enum Juice {
+        case strawberryJuice
+        case bananaJuice
+        case kiwiJuice
+        case pineappleJuice
+        case mangoJuice
+        case strawberryBananaJuice
+        case mangoKiwiJuice
         
         var name: String {
             switch self {
@@ -54,15 +54,15 @@ struct JuiceMaker {
     
     let stockManager = FruitStore.stockManager
     
-    func takeFruit(_ fruit: Fruit, amount: Int) -> Int {
-        let takedFruitCount = stockManager.handOver(of: fruit, to: amount)
-        return takedFruitCount
+    func bringFruit(number: Int, of fruit: Fruit) -> Int {
+        let broughtNumberOfFruits = stockManager.handOver(of: fruit, to: number)
+        return broughtNumberOfFruits
     }
     
     func makeJuice(_ juice: Juice) {
-        for (fruit, fruitCount) in juice.recipe {
-            let takedFruitCount = takeFruit(fruit, amount: fruitCount)
-            if takedFruitCount == 0 { return }
+        for (fruit, numberOfFruits) in juice.recipe {
+            let broughtNumberOfFruits = bringFruit(number: numberOfFruits, of: fruit)
+            if broughtNumberOfFruits == 0 { return }
         }
         print("\(juice.name) 완성")
     }
