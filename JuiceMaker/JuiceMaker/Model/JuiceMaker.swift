@@ -10,7 +10,45 @@ enum Juice {
     case pineappleJuice
     case mangoJuice
     case strawberrybananaJuice
-    case mangokiwiJuice
+	case mangokiwiJuice
+	
+	var needFruits: [Fruit] {
+		switch self {
+		case .strawberryJuice:
+			return [.strawberry]
+		case .bananaJuice:
+			return [.banana]
+		case .kiwiJuice:
+			return [.kiwi]
+		case .pineappleJuice:
+			return [.pineapple]
+		case .mangoJuice:
+			return [.mango]
+		case .strawberrybananaJuice:
+			return [.strawberry, .banana]
+		case .mangokiwiJuice:
+			return [.mango, .kiwi]
+		}
+	}
+	
+	var needStocks: [Int] {
+		switch self {
+		case .strawberryJuice:
+			return [-16]
+		case .bananaJuice:
+			return [-2]
+		case .kiwiJuice:
+			return [-3]
+		case .pineappleJuice:
+			return [-2]
+		case .mangoJuice:
+			return [-3]
+		case .strawberrybananaJuice:
+			return [-10, -1]
+		case .mangokiwiJuice:
+			return [-2, -1]
+		}
+	}
 }
 
 // 쥬스 메이커 타입
@@ -18,37 +56,13 @@ struct JuiceMaker {
 	private let fruitStore: FruitStore = FruitStore()
     
     func makeJuice(juice: Juice) {
-        switch juice {
-        case .strawberryJuice:
-            if fruitStore.checkStock(fruit: .strawberry, stock: -16) {
-                fruitStore.changeStock(fruits: .strawberry, stocks: -16)
-            }
-        case .bananaJuice:
-            if fruitStore.checkStock(fruit: .banana, stock: -2) {
-                fruitStore.changeStock(fruits: .banana, stocks: -2)
-            }
-        case .kiwiJuice:
-            if fruitStore.checkStock(fruit: .kiwi, stock: -3) {
-                fruitStore.changeStock(fruits: .kiwi, stocks: -3)
-            }
-        case .pineappleJuice:
-            if fruitStore.checkStock(fruit: .pineapple, stock: -2) {
-                fruitStore.changeStock(fruits: .pineapple, stocks: -2)
-            }
-        case .mangoJuice:
-            if fruitStore.checkStock(fruit: .mango, stock: -3) {
-                fruitStore.changeStock(fruits: .mango, stocks: -3)
-            }
-        case .strawberrybananaJuice:
-            if fruitStore.checkStock(fruit: .strawberry, stock: -10) &&
-                fruitStore.checkStock(fruit: .banana, stock: -1) {
-                fruitStore.changeStock(fruits: .strawberry, .banana, stocks: -10, -1)
-            }
-        case .mangokiwiJuice:
-            if fruitStore.checkStock(fruit: .mango, stock: -2) &&
-                fruitStore.checkStock(fruit: .kiwi, stock: -1) {
-                fruitStore.changeStock(fruits: .mango, .kiwi, stocks: -2, -1)
-            }
-        }
+		let juiceNeedFruits = juice.needFruits
+		let juiceNeedStocks = juice.needStocks
+		
+		if fruitStore.checkStock(for: juiceNeedFruits, than: juiceNeedStocks) {
+			fruitStore.changeStock(for: juiceNeedFruits, than: juiceNeedStocks)
+		} else {
+			print("재고가 없습니다.")
+		}
     }
 }

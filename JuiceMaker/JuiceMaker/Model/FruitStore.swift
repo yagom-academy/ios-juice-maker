@@ -23,14 +23,16 @@ enum Fruit: CaseIterable {
 class FruitStore {
     var fruitStock: [Fruit: Int] = Fruit.beginningStock
     
-    func checkStock(fruit: Fruit, stock: Int) -> Bool {
-        guard let remainStock = fruitStock[fruit], remainStock > -stock else {
-            return false
-        }
+ 	func checkStock(for fruits: [Fruit], than stocks: [Int]) -> Bool {
+		for (fruit, stock) in zip(fruits, stocks)  {
+			guard let remainStock = fruitStock[fruit], remainStock >= -stock else {
+				return false
+			}
+		}
         return true
     }
     
-    func changeStock(fruits: Fruit..., stocks: Int...) {
+    func changeStock(for fruits: [Fruit], than stocks: [Int]) {
         for (fruit, stock) in zip(fruits, stocks) {
             if let remainStock = fruitStock[fruit] {
                 fruitStock.updateValue(remainStock + stock, forKey: fruit)

@@ -12,7 +12,10 @@ class ViewController: UIViewController {
         
         let juice: Juice = Juice.mangokiwiJuice
         let maker = JuiceMaker()
-        maker.makeJuice(juice: juice)
+		
+		for _ in 1...20 {
+			maker.makeJuice(juice: juice)
+		}
     }
 
 
