@@ -17,4 +17,13 @@ struct JuiceMaker {
             }
         }
     }
+    
+    func checkFruitStock(fruit: Fruit, amount: Int) throws {
+        guard let fruitStack = fruitStorage.stack[fruit] else {
+            throw OrderError.unknown
+        }
+        guard fruitStack >= amount else {
+            throw OrderError.outOfStack
+        }
+    }
 }
