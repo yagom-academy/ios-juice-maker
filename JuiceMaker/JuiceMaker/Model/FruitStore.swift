@@ -15,8 +15,8 @@ class FruitStore {
         case mango
     }
     
-    var fruitStock: Dictionary<Fruit, Int> = [.strawberry : 30,
-                                              .banana : 10,
+    var fruitStock: Dictionary<Fruit, Int> = [.strawberry : 10,
+                                              .banana : 0,
                                               .pineapple : 10,
                                               .kiwi : 10,
                                               .mango : 10]
