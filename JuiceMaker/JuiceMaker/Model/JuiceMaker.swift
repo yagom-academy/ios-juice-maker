@@ -9,7 +9,7 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker  {
     var store = FruitStore()
-
+    
     func makeJuice(_ juice: Juice) throws {
         do {
             try FruitStore.checkStockAvailability(of: juice)
@@ -18,5 +18,6 @@ struct JuiceMaker  {
         } catch StockError.outOfFruit {
             print("재고 없음")
         }
+        FruitStore.manageStockOf(juice)
     }
 }

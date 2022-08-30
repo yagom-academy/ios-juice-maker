@@ -19,7 +19,7 @@ class FruitStore {
     class func checkStockAvailability(of juice: Juice)
     throws {
         for (fruitName, amount) in juice.name {
-            guard let stock = self.stock[fruitName], stock !=  0 else {
+            guard let stock = self.stock[fruitName], stock != 0 else {
                 throw StockError.outOfFruit
             }
             guard let stock = self.stock[fruitName], stock > abs(amount) else {
@@ -28,7 +28,7 @@ class FruitStore {
         }
     }
     
-    class func manageStock(_ juice: Juice) {
+    class func manageStockOf(_ juice: Juice) {
         for (fruitName, amount) in juice.name {
             if var stock = self.stock[fruitName] {
                 stock += amount
