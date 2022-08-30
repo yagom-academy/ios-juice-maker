@@ -17,7 +17,7 @@ struct JuiceMaker {
              mangoJuice,
              mangoKiwiJuice
         struct Ingredient {
-            let fruit: FruitStore.Fruit, count: Int
+            let fruit: Fruit, count: Int
         }
         var ingredient: [Ingredient] {
             switch self {
