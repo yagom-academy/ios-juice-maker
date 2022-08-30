@@ -13,4 +13,18 @@ class FruitStore {
     init(defaultStack: Int) {
         Fruit.allCases.forEach { stack[$0] = defaultStack }
     }
+    
+    func changeFruitStock(fruit: Fruit, amount: Int) throws {
+        guard let countFruit = stack[fruit] else {
+            throw OrderError.unknown
+        }
+        
+        if countFruit - amount < 0 {
+            throw OrderError.outOfStack
+        }
+        
+        stack[fruit] = countFruit - amount
+        print(stack)
+        print("쥬스 만들기 성공!")
+    }
 }
