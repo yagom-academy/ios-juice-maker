@@ -23,14 +23,6 @@ class FruitStore {
         .mango : 10,
     ]
     
-    func changeStockOf(fruit: Fruit, by quantity: Int) {
-        guard let currentStock = fruitStock[fruit] else {
-            return
-        }
-        
-        fruitStock[fruit] = currentStock + quantity
-    }
-    
     func checkStockOf(_ ingredient: Fruit, total: Int) throws {
         guard let curStock = fruitStock[ingredient] else {
             throw JuiceMakerError.noSuchFruit
@@ -39,5 +31,13 @@ class FruitStore {
         guard curStock >= total else {
             throw JuiceMakerError.stockShortage
         }
+    }
+    
+    func changeStockOf(fruit: Fruit, by quantity: Int) {
+        guard let currentStock = fruitStock[fruit] else {
+            return
+        }
+        
+        fruitStock[fruit] = currentStock + quantity
     }
 }
