@@ -13,4 +13,23 @@ enum Juice: String {
     case mango = "망고"
     case strawBerryBanana = "딸바"
     case mangoKiwi = "망고키위"
+    
+    var recipe: [Fruit: Int] {
+        switch self {
+        case .strawBerry:
+            return [.strawBerry: 16]
+        case .banana:
+            return [.banana: 2]
+        case .pineApple:
+            return [.pineApple: 2]
+        case .kiwi:
+            return [.kiwi: 3]
+        case .mango:
+            return [.mango: 3]
+        case .strawBerryBanana:
+            return [.strawBerry: 10, .banana: 1]
+        case .mangoKiwi:
+            return [.mango: 2, .kiwi: 1]
+        }
+    }
 }

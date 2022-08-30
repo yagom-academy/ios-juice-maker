@@ -10,27 +10,8 @@ import Foundation
 struct JuiceMaker {
     let store = FruitStore(initialFruitAmount: 10)
     
-    func checkRecipe(of juice: Juice) -> [Fruit: Int] {
-        switch juice {
-        case .strawBerry:
-            return [.strawBerry: 16]
-        case .banana:
-            return [.banana: 2]
-        case .pineApple:
-            return [.pineApple: 2]
-        case .kiwi:
-            return [.kiwi: 3]
-        case .mango:
-            return [.mango: 3]
-        case .strawBerryBanana:
-            return [.strawBerry: 10, .banana: 1]
-        case .mangoKiwi:
-            return [.mango: 2, .kiwi: 1]
-        }
-    }
-    
     func makeJuice(of juice: Juice) {
-        let recipe = checkRecipe(of: juice)
+        let recipe = juice.recipe
         
         for (key, _) in recipe {
             guard let fruitStock = store.inventory[key] else { return }
