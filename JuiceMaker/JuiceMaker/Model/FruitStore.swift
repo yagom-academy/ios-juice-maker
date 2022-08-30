@@ -5,31 +5,34 @@
 //
 
 class FruitStore {
-    var inventory: Dictionary<Fruit, Int>
+    var inventory: Dictionary<Fruit, Int> = [:]
+    
+    init(inventory: Dictionary<Fruit, Int>) {
+        self.inventory = inventory
+    }
     
     init(initialStock: Int) {
-        self.inventory = [:]
         for fruit in Fruit.allCases {
-            self.inventory[fruit] = initialStock
+            inventory[fruit] = initialStock
         }
     }
     
     func add(amount: Int, of fruit: Fruit) {
-        guard amount > 0, let currentStock = self.inventory[fruit] else {
+        guard amount > 0, let currentStock = inventory[fruit] else {
             return
         }
-        self.inventory[fruit] = currentStock + amount
+        inventory[fruit] = currentStock + amount
     }
     
     func subtract(amount: Int, of fruit: Fruit) {
-        guard let currentStock = self.inventory[fruit] else {
+        guard let currentStock = inventory[fruit] else {
             return
         }
-        self.inventory[fruit] = currentStock - amount
+        inventory[fruit] = currentStock - amount
     }
     
     func canSubtract(amount: Int, of fruit: Fruit) -> Bool {
-        guard amount > 0, let currentStock = self.inventory[fruit], currentStock >= amount else {
+        guard amount > 0, let currentStock = inventory[fruit], currentStock >= amount else {
             return false
         }
         return true
