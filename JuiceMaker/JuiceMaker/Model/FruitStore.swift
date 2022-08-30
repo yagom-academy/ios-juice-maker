@@ -6,7 +6,7 @@
 
 class FruitStore {
     static var stockManager = FruitStore()
-    var stock = Fruit.defaultStock
+    var stock: [Fruit: Int] = [.mango: 2, .kiwi: 0]
     
     private init() {
     }
@@ -19,6 +19,11 @@ class FruitStore {
             return .failure(.outOfStock)
         }
         return .success(quantity)
+    }
+    
+    func addStock(of fruit: Fruit, quantity: Int) {
+        guard let stockQuantity = stock[fruit] else { return }
+        stock.updateValue(stockQuantity + quantity, forKey: fruit)
     }
     
     func changeStock(of fruit: Fruit, quantity: Int) {

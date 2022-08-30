@@ -59,11 +59,25 @@ struct JuiceMaker {
         return broughtNumberOfFruits
     }
     
-    func makeJuice(_ juice: Juice) {
-        for (fruit, numberOfFruits) in juice.recipe {
-            let broughtNumberOfFruits = bringFruit(number: numberOfFruits, of: fruit)
-            if broughtNumberOfFruits == 0 { return }
+    func turnBackFruit(from receivedFruits: [Fruit: Int]) {
+        for (fruit, numberOfFruits) in receivedFruits {
+            stockManager.addStock(of: fruit, quantity: numberOfFruits)
         }
-        print("\(juice.name) 완성")
+    }
+    
+    func makeJuice(_ juice: Juice) {
+        var receivedFruitsList = [Fruit: Int]()
+        for (fruit, numberOfFruits) in juice.recipe {
+            let receivedNumberOfFruits = bringFruit(number: numberOfFruits, of: fruit)
+            if receivedNumberOfFruits != 0 {
+            receivedFruitsList.updateValue(receivedNumberOfFruits, forKey: fruit)
+            }
+        }
+
+        if receivedFruitsList.count != juice.recipe.count {
+            turnBackFruit(from: receivedFruitsList)
+        } else {
+            print("\(juice.name) 완성")
+        }
     }
 }
