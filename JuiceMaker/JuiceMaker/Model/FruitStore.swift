@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    static var stock: [Fruit: Int] = [
+    private var stock: [Fruit: Int] = [
         .strawBerry: 10,
         .banana: 10,
         .pineApple: 10,
@@ -16,7 +16,7 @@ class FruitStore {
         .mango: 10
     ]
     
-    static func checkStockAvailability(of juice: Juice)
+    func checkStockAvailability(of juice: Juice)
     throws {
         for (fruitName, amount) in juice.name {
             guard let stock = self.stock[fruitName], stock != 0 else {
@@ -28,7 +28,7 @@ class FruitStore {
         }
     }
     
-    class func manageStockOf(_ juice: Juice) {
+    func manageStockOf(_ juice: Juice) {
         for (fruitName, amount) in juice.name {
             if var stock = self.stock[fruitName] {
                 stock += amount
