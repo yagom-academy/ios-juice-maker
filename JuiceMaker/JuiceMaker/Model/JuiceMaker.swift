@@ -10,6 +10,12 @@ import Foundation
 struct JuiceMaker {
     let fruitStorage = FruitStore(defaultStack: 10)
     
+    func chooseRecipe(order: Juice) throws {
+        for (fruit, fruitAmount) in order.recipeOFJuice {
+            try checkFruitStock(fruit: fruit, amount: fruitAmount)
+        }
+    }
+    
     func grindFruit(juice: Juice) {
         for (fruit, fruitAmount) in juice.recipeOFJuice {
             if let stackEnough = fruitStorage.stack[fruit] {
