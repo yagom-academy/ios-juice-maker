@@ -15,16 +15,18 @@ class FruitStore {
     var fruitStock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     func addStock(of fruit: Fruit, amount: Int) {
-        if var currentStock = fruitStock[fruit] {
-            currentStock += amount
+        if let currentStock = fruitStock[fruit] {
+            let totalStock = currentStock + amount
+            fruitStock.updateValue(totalStock, forKey: fruit)
         }
     }
     
     func useStock(of fruit: Fruit, amount: Int) {
-        if var currentStock = fruitStock[fruit],
+        if let currentStock = fruitStock[fruit],
            currentStock >= amount
         {
-            currentStock -= amount
+            let totalStock = currentStock - amount
+            fruitStock.updateValue(totalStock, forKey: fruit)
         } else {
             // error
         }
