@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore: FruitStore
+    private let fruitStore: FruitStore
     
     func makeJuice(of juice: Juice) {
         for material in juice.recipe {

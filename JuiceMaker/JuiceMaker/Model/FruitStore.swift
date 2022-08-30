@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    var inventory: Dictionary<Fruit, Int> = [:]
+    private(set) var inventory: Dictionary<Fruit, Int> = [:]
     
     init(inventory: Dictionary<Fruit, Int>) {
         self.inventory = inventory
