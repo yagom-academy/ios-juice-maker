@@ -28,9 +28,10 @@ class FruitStore {
         let recipes = juice.recipe
         for recipe in recipes {
             guard let currentStock = fruitStock[recipe.fruit],
-                      currentStock >= recipe.amount else {
-                          return false
-                      }
+                      currentStock >= recipe.amount
+            else {
+                return false
+            }
         }
         return true
     }
