@@ -10,6 +10,10 @@ import Foundation
 struct JuiceMaker {
     let fruitStorage = FruitStore(defaultStack: 10)
     
+    func makeJuice(of juice: Juice) throws {
+        try chooseRecipe(order: juice)
+    }
+    
     func chooseRecipe(order: Juice) throws {
         for (fruit, fruitAmount) in order.recipeOFJuice {
             try checkFruitStock(fruit: fruit, amount: fruitAmount)
