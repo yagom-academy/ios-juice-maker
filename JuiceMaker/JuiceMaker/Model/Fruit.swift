@@ -9,8 +9,8 @@ import Foundation
 
 enum Fruit: CaseIterable {
     case strawberry
-    case banna
-    case pineApple
+    case banana
+    case pineapple
     case kiwi
     case mango
     
@@ -18,9 +18,9 @@ enum Fruit: CaseIterable {
         switch self {
         case .strawberry:
             return "딸기"
-        case .banna:
+        case .banana:
             return "바나나"
-        case .pineApple:
+        case .pineapple:
             return "파인애플"
         case .kiwi:
             return "키위"

@@ -8,23 +8,21 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var stack: [Fruit: Int] = [:]
+    var stock: [Fruit: Int] = [:]
     
-    init(defaultStack: Int) {
-        Fruit.allCases.forEach { stack[$0] = defaultStack }
+    init(defaultStock: Int) {
+        Fruit.allCases.forEach { stock[$0] = defaultStock }
     }
     
     func changeFruitStock(fruit: Fruit, amount: Int) throws {
-        guard let countFruit = stack[fruit] else {
-            throw OrderError.unknown
+        guard let countFruit = stock[fruit] else {
+            throw OrderError.emptyStock
         }
         
         if countFruit - amount < 0 {
-            throw OrderError.outOfStack
+            throw OrderError.outOfStock
         }
         
-        stack[fruit] = countFruit - amount
-        print(stack)
-        print("쥬스 만들기 성공!")
+        stock[fruit] = countFruit - amount
     }
 }
