@@ -28,6 +28,7 @@ struct JuiceMaker {
             if let (fruit, amount) = juice.recipeOfJuice.second {
                 try fruitStorage.changeFruitStock(fruit: fruit, amount: amount)
             }
+            fallthrough
         default:
             let (fruit, amount) = juice.recipeOfJuice.first
             try fruitStorage.changeFruitStock(fruit: fruit, amount: amount)
