@@ -20,7 +20,7 @@ class FruitStore {
         stock[fruit] = fruitCount + amount
     }
     
-    func checkStock(of fruit: Fruit, amount: Int) -> Result<Int, StockError> {
+    func handOver(fruit: Fruit, amount: Int) -> Result<Int, StockError> {
         guard let fruitCount = stock[fruit] else {
             return .failure(.invalidFruit)
         }
@@ -30,4 +30,5 @@ class FruitStore {
         changeAmount(of: fruit, to: -amount)
         return .success(fruitCount)
     }
+        
 }
