@@ -32,7 +32,7 @@ class FruitStore {
 }
 
 let store = FruitStore.init(initialFruitCount: 10)
-let mene = store.removeToStore(fruit: .strawBerry, amount: 10)
+let mene: () = store.removeToStore(fruit: .strawBerry, amount: 10)
 let test = store.store
 
 
