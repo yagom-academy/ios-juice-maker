@@ -4,32 +4,16 @@ struct JuiceMaker {
     let fruitStore = FruitStore()
     
     func takeOrder(juice: Juice) {
-        // 재고 확인
-        checkRemainedStock(juiceRecipe: juice.recipe)
-        // 제조
-        
+        if let secondJuice = juice.recipe.second {
+            checkRemainedStock(juiceRecipe: secondJuice)
+        }
+        checkRemainedStock(juiceRecipe: juice.recipe.first)
     }
     
-    func checkRemainedStock(juiceRecipe: Juice.Recipe) -> Bool {
-        debugPrint(juiceRecipe)
-        var flag: Bool = false
-        guard let firstFruitStock = self.fruitStore.fruitStock[juiceRecipe.first.0] else { return false
+    func checkRemainedStock(juiceRecipe: (Fruit, Int)) {
+        guard let fruitStock = self.fruitStore.fruitStock[juiceRecipe.0],
+              fruitStock < juiceRecipe.1 else {
+            return
         }
-        
-        if firstFruitStock < juiceRecipe.first.1 {
-            return false
-        }
-        
-        guard let secondFruit = juiceRecipe.second else { return false }
-                
-        guard let secondFruitStock = self.fruitStore.fruitStock[secondFruit.0] else {
-            return false
-        }
-        
-        if secondFruitStock < secondFruit.1 {
-            return false
-        }
-        return true
     }
-    
 }
