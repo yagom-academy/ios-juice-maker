@@ -8,8 +8,29 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    
+    let store = FruitStore(initialFruitCount: 10)
+
+    func checkRecipe(of juice: Juice) -> [Fruit: Int] {
+        switch juice {
+        case .strawBerry:
+            return [.strawBerry: 16]
+        case .banana:
+            return [.banana: 2]
+        case .pineApple:
+            return [.pineApple: 2]
+        case .kiwi:
+            return [.kiwi: 3]
+        case .mango:
+            return [.mango: 3]
+        case .strawBerryBanana:
+            return [.strawBerry: 10, .banana: 1]
+        case .mangoKiwi:
+            return [.mango: 2, .kiwi: 1]
+        }
+    }
 }
+
+//let dragon = JuiceMaker().makeRecipe(of: .strawBerry)
 
 //JuiceMaker.swift 파일에 다음의 조건을 충족하는 JuiceMaker 타입을 정의합니다.
 //FruitStore의 과일을 사용해 과일쥬스를 제조합니다.

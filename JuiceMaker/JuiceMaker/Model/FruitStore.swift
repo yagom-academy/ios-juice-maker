@@ -9,31 +9,31 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     
-    var store: [Fruit: Int] = [:]
+    var inventory: [Fruit: Int] = [:]
     
     init(initialFruitCount: Int) {
-        Fruit.allCases.forEach {store[$0] = initialFruitCount}
+        Fruit.allCases.forEach {inventory[$0] = initialFruitCount}
     }
     
-    func addToStore (fruit: Fruit, amount: Int) {
-        guard let fruitStock = store[fruit] else { return }
-        store[fruit] = fruitStock + amount
+    func addToInventory (fruit: Fruit, amount: Int) {
+        guard let fruitStock = inventory[fruit] else { return }
+        inventory[fruit] = fruitStock + amount
     }
     
-    func removeToStore (fruit: Fruit, amount: Int) {
-        guard let fruitStock = store[fruit] else { return }
+    func removeToInventory (fruit: Fruit, amount: Int) {
+        guard let fruitStock = inventory[fruit] else { return }
         if fruitStock < amount {
             print("수량이 작습니다!")
             return
         } else {
-            store[fruit] = fruitStock - amount
+            inventory[fruit] = fruitStock - amount
         }
     }
 }
 
 let store = FruitStore.init(initialFruitCount: 10)
-let mene: () = store.removeToStore(fruit: .strawBerry, amount: 10)
-let test = store.store
+let mene: () = store.removeToInventory(fruit: .strawBerry, amount: 10)
+let test = store.inventory
 
 
 //FruitStore는 다음의 조건을 충족해야 합니다.
