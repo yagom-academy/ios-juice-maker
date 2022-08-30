@@ -11,7 +11,13 @@ struct JuiceMaker {
     let fruitStorage = FruitStore(defaultStack: 10)
     
     func makeJuice(of juice: Juice) throws {
-        try chooseRecipe(order: juice)
+        do {
+            try chooseRecipe(order: juice)
+        } catch OrderError.outOfStack {
+            print(OrderError.outOfStack.message)
+        } catch OrderError.unknown {
+            print(OrderError.unknown.message)
+        }
     }
     
     func chooseRecipe(order juice: Juice) throws {
