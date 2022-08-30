@@ -12,21 +12,19 @@ struct JuiceMaker {
     }
     
     func makeJuice(of juice: Juice) {
-        for material in juice.recipe {
-            guard fruitStore.canSubtract(amount: material.amount, of: material.fruit) else {
-                return
+        do {
+            try fruitStore.checkStockOfFruits(in: juice.recipe)
+            for material in juice.recipe {
+                fruitStore.changeStock(of: material.fruit, amount: -material.amount)
             }
-        }
-        for material in juice.recipe {
-            do {
-                try fruitStore.subtract(amount: material.amount, of: material.fruit)
-            } catch FruitStoreError.wrongAmount {
-                print(FruitStoreError.wrongAmount.failureReason)
-            } catch FruitStoreError.notInFruitList {
-                print(FruitStoreError.notInFruitList.failureReason)
-            } catch {
-                print(error)
-            }
+        } catch FruitStoreError.wrongAmount {
+            print(FruitStoreError.wrongAmount.failureReason)
+        } catch FruitStoreError.notInFruitList {
+            print(FruitStoreError.notInFruitList.failureReason)
+        } catch FruitStoreError.outOfStock {
+            print(FruitStoreError.outOfStock.failureReason)
+        } catch {
+            print(error)
         }
     }
 }

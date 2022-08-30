@@ -21,10 +21,10 @@ class FruitStore {
         guard amount > 0 else {
             throw FruitStoreError.wrongAmount
         }
-        guard let currentStock = inventory[fruit] else {
+        guard inventory[fruit] != nil else {
             throw FruitStoreError.notInFruitList
         }
-        inventory[fruit] = currentStock + amount
+        changeStock(of: fruit, amount: amount)
     }
     
     func subtract(amount: Int, of fruit: Fruit) throws {
@@ -34,13 +34,27 @@ class FruitStore {
         guard let currentStock = inventory[fruit] else {
             throw FruitStoreError.notInFruitList
         }
-        inventory[fruit] = currentStock - amount
+        guard currentStock >= amount else {
+            throw FruitStoreError.outOfStock
+        }
+        changeStock(of: fruit, amount: -amount)
     }
     
-    func canSubtract(amount: Int, of fruit: Fruit) -> Bool {
-        guard let currentStock = inventory[fruit], currentStock >= amount else {
-            return false
+    func changeStock(of fruit: Fruit, amount: Int) {
+        if let currentStock = inventory[fruit] {
+            inventory[fruit] = currentStock + amount
         }
-        return true
     }
+    
+    func checkStockOfFruits(in recipe: [Juice.Material]) throws {
+        for material in recipe {
+            guard let currentStock = inventory[material.fruit] else {
+                throw FruitStoreError.notInFruitList
+            }
+            guard currentStock >= material.amount else {
+                throw FruitStoreError.outOfStock
+            }
+        }
+    }
+    
 }
