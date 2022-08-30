@@ -16,22 +16,21 @@ class FruitStore {
         .mango: 10
     ]
     
-    func checkStockAvailability(of juice: Juice)
-    throws {
-        for (fruitName, amount) in juice.name {
+    func checkStockAvailability(of juice: Juice) throws {
+        for (fruitName, requiredamount) in juice.name {
             guard let stock = self.stock[fruitName], stock != 0 else {
                 throw StockError.outOfFruit
-            }
-            guard let stock = self.stock[fruitName], stock > abs(amount) else {
+            } //
+            guard let stock = self.stock[fruitName], stock + requiredamount > 0 else {
                 throw StockError.notEnoughFruit
             }
         }
     }
     
     func manageStockOf(_ juice: Juice) {
-        for (fruitName, amount) in juice.name {
+        for (fruitName, requiredamount) in juice.name {
             if var stock = self.stock[fruitName] {
-                stock += amount
+                stock += requiredamount
             }
         }
     }

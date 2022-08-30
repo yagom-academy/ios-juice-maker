@@ -10,8 +10,7 @@ import Foundation
 struct JuiceMaker {
     private var store = FruitStore()
     
-    func makeJuice(_ juice: Juice)
-    throws {
+    func makeJuice(_ juice: Juice) throws {
         do {
             try store.checkStockAvailability(of: juice)
         } catch StockError.notEnoughFruit {
