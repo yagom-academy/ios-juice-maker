@@ -4,8 +4,8 @@
 //
 
 struct Fruits {
-    enum FruitName {
-        case strawberry
+    enum FruitName: Int {
+        case strawberry = 0
         case banana
         case pineapple
         case kiwi

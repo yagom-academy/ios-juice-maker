@@ -4,23 +4,29 @@
 //
 
 class FruitStore {
-    static var stockManager = FruitStore()
-    var stock: [Fruits]
-    
-    private init() {
-        for fruit in Fruits.FruitName.fruitsList {
-            stock.append(Fruits(name: fruit, count: 10))
-        }
+    enum StockManagement {
+        case haveInStock
+        case outOfStock
     }
     
-    private func checkStock(fruit: Fruit, number: Int) -> Result<Void, StockError> {
-        guard let stockQuantity = stock[fruit] else {
-            return .failure(.invalidFruit)
+    static var stockManager = FruitStore()
+    private var stock: [Fruits] {
+        var stock = [Fruits]()
+        for fruit in Fruits.FruitName.fruitsList {
+            stock.insert(Fruits(name: fruit, count: 10), at: fruit.rawValue)
         }
-        guard stockQuantity >= number else {
-            return .failure(.outOfStock)
+        return stock
+    }
+    
+    private init() {}
+    
+    private func haveInStock(fruits: [Fruits]) -> Bool {
+        for fruit in fruits {
+            let stockCount = stock[fruit.name.rawValue].count
+            let requestedCount = fruit.count
+            if stockCount < requestedCount { return false }
         }
-        return .success(())
+        return true
     }
     
     func changeStock(of fruit: Fruit, number: Int) {
