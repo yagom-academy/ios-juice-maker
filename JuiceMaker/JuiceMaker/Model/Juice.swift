@@ -1,9 +1,4 @@
-//
-//  Juice.swift
-//  JuiceMaker
-//
-//  Created by som, LJ on 2022/08/30.
-//
+//  Created by som, LJ.
 
 import Foundation
 
