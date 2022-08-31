@@ -11,6 +11,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let juiceMaker: JuiceMakerProtocol = JuiceMaker()
+        juiceMaker.chooseJuice(juice: .mangoKiwiJuice)
+        
+        let juiceMaker2 = JuiceMaker()
+        juiceMaker2.chooseJuice(juice: .pineappleJuice)
     }
 }
 

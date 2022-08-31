@@ -1,15 +1,15 @@
 //  Created by 애종,질리,벨라 on 2022/08/30.
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore: FruitStoreProtocol = FruitStore()
     
-    func takeOrder(juice: Juice) {
-        if fruitStore.checkRemainedStock(juiceRecipe: juice.recipe.first) == false {
+    private func takeOrder(juice: Juice) {
+        if fruitStore.isEnoughStock(juiceRecipe: juice.recipe.first) == false {
             return
         }
         
         if let secondFruit = juice.recipe.second {
-            if fruitStore.checkRemainedStock(juiceRecipe: secondFruit) == false {
+            if fruitStore.isEnoughStock(juiceRecipe: secondFruit) == false {
                 return
             }
         }
@@ -17,7 +17,7 @@ struct JuiceMaker {
         make(juice)
     }
     
-    func make(_ juice: Juice) {
+    private func make(_ juice: Juice) {
         fruitStore.subtractFruitStock(fruit: juice.recipe.first.0, amount: juice.recipe.first.1)
         
         if let secondFruit = juice.recipe.second {
@@ -25,5 +25,11 @@ struct JuiceMaker {
         }
         
         debugPrint("\(juice)를 만들었습니다!")
+    }
+}
+
+extension JuiceMaker: JuiceMakerProtocol {
+    func chooseJuice(juice: Juice) {
+        takeOrder(juice: juice)
     }
 }
