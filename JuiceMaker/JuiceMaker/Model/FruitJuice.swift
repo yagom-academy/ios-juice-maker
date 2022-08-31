@@ -1,11 +1,3 @@
-enum Fruits {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
 enum FruitJuice {
     case strawberryJuice
     case bananaJuice
@@ -38,9 +30,4 @@ enum FruitJuice {
             return JuiceIngridients(first: (.mango, 2), second: (.kiwi, 1))
         }
     }
-}
-
-enum ErrorHandling: Error {
-    case underFlowOfAmount
-    case notExistFruits
 }
