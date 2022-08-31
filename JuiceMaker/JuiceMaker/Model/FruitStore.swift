@@ -7,10 +7,11 @@
 class FruitStore {
     typealias FruitsInventory = [Fruit: Int]
     private(set) var fruitsInventory: [Fruit: Int] = [:]
+    let defaultValueOfInventory = 10
     
     init() {
         Fruit.allCases.forEach {
-            fruitsInventory[$0] = 10
+            fruitsInventory[$0] = defaultValueOfInventory
         }
     }
     
