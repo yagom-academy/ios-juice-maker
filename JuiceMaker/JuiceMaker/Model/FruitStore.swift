@@ -14,11 +14,18 @@ class FruitStore {
             return
         }
         if plusOrMinus == "+" {
-            fruitStock[fruit] = targetStock + 1
+            fruitStock[fruit] = targetStock + amount
         } else if targetStock >= amount {
             fruitStock[fruit] = targetStock - amount
         } else {
             print("재고변경에 실패하였습니다.")
+        }
+    }
+    
+    func checkRemainedStock(juiceRecipe: (Fruit, Int)) {
+        guard let fruitStock = fruitStock[juiceRecipe.0],
+              fruitStock >= juiceRecipe.1 else {
+            return
         }
     }
 }

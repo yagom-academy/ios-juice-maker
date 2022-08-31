@@ -5,15 +5,16 @@ struct JuiceMaker {
     
     func takeOrder(juice: Juice) {
         if let secondJuice = juice.recipe.second {
-            checkRemainedStock(juiceRecipe: secondJuice)
+            fruitStore.checkRemainedStock(juiceRecipe: secondJuice)
         }
-        checkRemainedStock(juiceRecipe: juice.recipe.first)
+        fruitStore.checkRemainedStock(juiceRecipe: juice.recipe.first)
+        
+        // 제조
     }
     
-    func checkRemainedStock(juiceRecipe: (Fruit, Int)) {
-        guard let fruitStock = self.fruitStore.fruitStock[juiceRecipe.0],
-              fruitStock >= juiceRecipe.1 else {
-            return
+    func make(_ juice: Juice) {
+        if let secondJuice = juice.recipe.second {
+            fruitStore.updateFruitStock(fruit: secondJuice.0, plusOrMinus: "-", amount: secondJuice.1)
         }
     }
 }
