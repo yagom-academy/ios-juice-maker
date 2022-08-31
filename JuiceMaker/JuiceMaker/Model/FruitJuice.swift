@@ -1,12 +1,4 @@
-enum Fruits {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
-enum FruitJuice {
+enum FruitJuice: CaseIterable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -19,7 +11,6 @@ enum FruitJuice {
         let first: (Fruits, Int)
         let second: (Fruits, Int)?
     }
-//    struct JuiceIngridientsOfOne
     
     var juiceIngridients: JuiceIngridients {
         switch self {
@@ -39,9 +30,4 @@ enum FruitJuice {
             return JuiceIngridients(first: (.mango, 2), second: (.kiwi, 1))
         }
     }
-}
-
-enum ErrorHandling: Error {
-    case underFlowOfAmount
-    case notExistFruits
 }
