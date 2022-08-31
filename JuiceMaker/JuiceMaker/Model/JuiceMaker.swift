@@ -26,14 +26,7 @@ struct JuiceMaker {
         do {
             try makeFruitJuice(of: fruitJuice)
         } catch {
-            switch error {
-            case JuiceMakerError.underFlowOfAmount:
-                debugPrint(JuiceMakerError.underFlowOfAmount.rawValue)
-            case JuiceMakerError.notExistFruits:
-                debugPrint(JuiceMakerError.underFlowOfAmount.rawValue)
-            default:
-                debugPrint(JuiceMakerError.underFlowOfAmount.rawValue)
-            }
+            debugPrint(error.localizedDescription)
         }
     }
 }
