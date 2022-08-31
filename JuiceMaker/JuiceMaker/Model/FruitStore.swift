@@ -1,4 +1,4 @@
-class FruitStore {
+struct FruitStore {
     private var fruitList: [Fruits: Int] = [
         .strawberry: 10,
         .banana: 10,
@@ -13,11 +13,11 @@ class FruitStore {
         }
     }
     
-    func changeAmountOfFruits(fruit: Fruits, amount: Int) {
+    mutating func changeAmountOfFruits(fruit: Fruits, amount: Int) {
         fruitList[fruit] = amount
     }
     
-    func subtractAmount(of fruit: Fruits, by amount: Int) throws {
+    mutating func subtractAmount(of fruit: Fruits, by amount: Int) throws {
         guard let numberOfFruits = fruitList[fruit] else {
             throw ErrorHandling.notExistFruits
         }

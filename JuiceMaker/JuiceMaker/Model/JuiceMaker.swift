@@ -30,7 +30,8 @@ struct JuiceMaker {
         } catch {
             switch error {
             case ErrorHandling.underFlowOfAmount:
-                print("재료가 부족합니다.")
+                //print("재료가 부족합니다.")
+                dump("재료가 부족합니다")
             case ErrorHandling.notExistFruits:
                 print("해당 과일이 없습니다.")
             default:
