@@ -17,7 +17,7 @@ struct JuiceMaker {
                 throw FruitStoreError.insufficientInventory
             }
         } catch {
-            throw FruitStoreError.emptyFruit
+            throw FruitStoreError.noneFruit
         }
     }
 }
