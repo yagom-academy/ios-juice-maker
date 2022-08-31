@@ -11,7 +11,7 @@ struct FruitStore {
         fruitList[fruit] = amount
     }
     
-    mutating func subtractAmountOfOneIngridients(of fruit: Fruits, by amount: Int) throws {
+    mutating func use(_ fruit: Fruits, of amount: Int) throws {
         guard let numberOfFruit = fruitList[fruit] else {
             throw JuiceMakerError.notExistFruits
         }
@@ -23,22 +23,22 @@ struct FruitStore {
         fruitList[fruit] = numberOfFruit - amount
     }
     
-    mutating func subtractAmountOfTwoIngridients(
-        _ fruit1: Fruits,
-        _ amount1: Int,
-        _ fruit2: Fruits,
-        _ amount2: Int
+    mutating func use(
+        firstFruit: Fruits,
+        firstAmount: Int,
+        secondFruit: Fruits,
+        secondAmount: Int
     ) throws {
-        guard let numberOfFruit1 = fruitList[fruit1],
-              let numberOfFruit2 = fruitList[fruit2] else {
+        guard let numberOfFruit1 = fruitList[firstFruit],
+              let numberOfFruit2 = fruitList[secondFruit] else {
             throw JuiceMakerError.notExistFruits
         }
         
-        if numberOfFruit1 - amount1 < 0 || numberOfFruit2 - amount2 < 0 {
+        if numberOfFruit1 - firstAmount < 0 || numberOfFruit2 - secondAmount < 0 {
             throw JuiceMakerError.underFlowOfAmount
         }
         
-        fruitList[fruit1] = numberOfFruit1 - amount1
-        fruitList[fruit2] = numberOfFruit2 - amount2
+        fruitList[firstFruit] = numberOfFruit1 - firstAmount
+        fruitList[secondFruit] = numberOfFruit2 - secondAmount
     }
 }
