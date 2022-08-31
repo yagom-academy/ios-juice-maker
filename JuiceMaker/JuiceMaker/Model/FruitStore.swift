@@ -3,23 +3,23 @@ struct FruitStore {
     
     init(fruitAmount: Int = 10) {
         for fruit in Fruits.allCases {
-            fruitList[fruit] = fruitAmount
+            changeAmount(of: fruit, amount: fruitAmount)
         }
     }
     
-    mutating func changeAmountOfFruits(fruit: Fruits, amount: Int) {
+    mutating func changeAmount(of fruit: Fruits, amount: Int) {
         fruitList[fruit] = amount
     }
     
     mutating func subtractAmountOfOneIngridients(of fruit: Fruits, by amount: Int) throws {
-            guard let numberOfFruit = fruitList[fruit] else {
-                throw ErrorHandling.notExistFruits
-            }
-            
-            if numberOfFruit - amount < 0 {
-                throw ErrorHandling.underFlowOfAmount
-            }
-            
+        guard let numberOfFruit = fruitList[fruit] else {
+            throw JuiceMakerError.notExistFruits
+        }
+        
+        if numberOfFruit - amount < 0 {
+            throw JuiceMakerError.underFlowOfAmount
+        }
+        
         fruitList[fruit] = numberOfFruit - amount
     }
     
@@ -31,11 +31,11 @@ struct FruitStore {
     ) throws {
         guard let numberOfFruit1 = fruitList[fruit1],
               let numberOfFruit2 = fruitList[fruit2] else {
-            throw ErrorHandling.notExistFruits
+            throw JuiceMakerError.notExistFruits
         }
         
         if numberOfFruit1 - amount1 < 0 || numberOfFruit2 - amount2 < 0 {
-            throw ErrorHandling.underFlowOfAmount
+            throw JuiceMakerError.underFlowOfAmount
         }
         
         fruitList[fruit1] = numberOfFruit1 - amount1

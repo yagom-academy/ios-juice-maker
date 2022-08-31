@@ -26,12 +26,12 @@ struct JuiceMaker {
             try makeFruitJuice(of: fruitJuice)
         } catch {
             switch error {
-            case ErrorHandling.underFlowOfAmount:
-                debugPrint("재료가 부족합니다.")
-            case ErrorHandling.notExistFruits:
-                debugPrint("해당 과일이 없습니다.")
+            case JuiceMakerError.underFlowOfAmount:
+                debugPrint(JuiceMakerError.underFlowOfAmount.rawValue)
+            case JuiceMakerError.notExistFruits:
+                debugPrint(JuiceMakerError.underFlowOfAmount.rawValue)
             default:
-                debugPrint("Default Error Message")
+                debugPrint(JuiceMakerError.underFlowOfAmount.rawValue)
             }
         }
     }
