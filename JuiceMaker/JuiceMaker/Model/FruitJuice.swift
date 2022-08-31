@@ -1,4 +1,4 @@
-enum FruitJuice {
+enum FruitJuice: CaseIterable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice

@@ -1,14 +1,12 @@
 struct JuiceMaker {
     private var fruitStore = FruitStore(fruitAmount: 50)
-    private var fruitJuiceList: [FruitJuice: Int] = [
-        .strawberryJuice: 0,
-        .bananaJuice: 0,
-        .kiwiJuice: 0,
-        .pineappleJuice: 0,
-        .mangoJuice: 0,
-        .strawberryBananaJuice: 0,
-        .mangoKiwiJuice: 0
-    ]
+    private var fruitJuiceList: [FruitJuice: Int] = [:]
+    
+    init(numberOfFruitJuice: Int = 0) {
+        for fruitJuice in FruitJuice.allCases {
+            fruitJuiceList[fruitJuice] = numberOfFruitJuice
+        }
+    }
     
     mutating func bringIngridients(of fruitJuice: FruitJuice) throws {
         switch fruitJuice {
