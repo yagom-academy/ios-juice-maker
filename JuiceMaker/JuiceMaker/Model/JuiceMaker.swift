@@ -10,14 +10,14 @@ struct JuiceMaker {
     
     mutating func makeFruitJuice(of fruitJuice: FruitJuice) throws {
         switch fruitJuice {
-        case .strawberryBananaJuice, .mangoKiwiJuice:
-            if let (fruit, amount) = fruitJuice.juiceIngridients.second {
-                try fruitStore.subtractAmount(of: fruit, by: amount)
-            }
-            fallthrough
         case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
             let (fruit, amount) = fruitJuice.juiceIngridients.first
-            try fruitStore.subtractAmount(of: fruit, by: amount)
+            try fruitStore.subtractAmountOfOneIngridients(of: fruit, by: amount)
+        case .strawberryBananaJuice, .mangoKiwiJuice:
+            let (fruit1, amount1) = fruitJuice.juiceIngridients.first
+            if let (fruit2, amount2) = fruitJuice.juiceIngridients.second {
+                try fruitStore.subtractAmountOfTwoIngridients(fruit1, amount1, fruit2, amount2)
+            }
         }
     }
     
