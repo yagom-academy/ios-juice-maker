@@ -4,13 +4,8 @@
 //
 
 class FruitStore {
-    enum StockManagement {
-        case haveInStock
-        case outOfStock
-    }
-    
     static var stockManager = FruitStore()
-    private var stock: [Fruits]
+    private var stock = [Fruits]()
     
     private init() {
         for fruit in Fruits.FruitName.fruitsList {
@@ -47,19 +42,10 @@ class FruitStore {
         }
     }
     
-    func handOver(of fruit: Fruit, number: Int) -> Int {
-        let result = checkStock(fruit: fruit, number: number)
+    func supplyRequest(fruits: [Fruits]) -> [Fruits]? {
+        guard haveInStock(fruits: fruits) else { return nil }
         
-        switch result {
-        case .success(_):
-            removeStock(of: fruit, number: number)
-            return number
-        case .failure(.outOfStock):
-            print(StockError.outOfStock.description)
-            return 0
-        case .failure(.invalidFruit):
-            print(StockError.invalidFruit.description)
-            return 0
-        }
+        removeStock(fruits: fruits)
+        return fruits
     }
 }
