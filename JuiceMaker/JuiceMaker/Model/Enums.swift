@@ -19,6 +19,7 @@ enum FruitJuice {
         let first: (Fruits, Int)
         let second: (Fruits, Int)?
     }
+//    struct JuiceIngridientsOfOne
     
     var juiceIngridients: JuiceIngridients {
         switch self {

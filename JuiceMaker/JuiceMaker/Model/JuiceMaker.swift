@@ -20,7 +20,7 @@ struct JuiceMaker {
         case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
             let (fruit, amount) = fruitJuice.juiceIngridients.first
             try fruitStore.subtractAmount(of: fruit, by: amount)
-            makeFruitJuice(fruitJuice: fruitJuice)
+            notifyJuiceComesOut(fruitJuice: fruitJuice)
         }
     }
     
@@ -40,13 +40,10 @@ struct JuiceMaker {
         }
     }
     
-    mutating func makeFruitJuice(fruitJuice: FruitJuice) {
+    mutating func notifyJuiceComesOut(fruitJuice: FruitJuice) {
         if let fruitJuiceNumber = fruitJuiceList[fruitJuice] {
             fruitJuiceList[fruitJuice] = fruitJuiceNumber + 1
             print("\(fruitJuice) 한잔 나왔습니다!")
-            print("\(fruitJuiceNumber)개 -> ",terminator: "")
-        }
-        if let fruitJuiceNumber = fruitJuiceList[fruitJuice] {
             print("\(fruitJuiceNumber)개")
         }
     }
