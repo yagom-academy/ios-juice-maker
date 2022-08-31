@@ -10,7 +10,7 @@ struct JuiceMaker {
         .mangoKiwiJuice: 0
     ]
     
-    mutating func bringIngridients(of fruitJuice: FruitJuice) throws {
+    mutating func makeFruitJuice(of fruitJuice: FruitJuice) throws {
         switch fruitJuice {
         case .strawberryBananaJuice, .mangoKiwiJuice:
             if let (fruit, amount) = fruitJuice.juiceIngridients.second {
@@ -24,9 +24,9 @@ struct JuiceMaker {
         }
     }
     
-    mutating func handleMakeFruitJuiceError(fruitJuice: FruitJuice) {
+    mutating func takeAnOrder(fruitJuice: FruitJuice) {
         do {
-            try bringIngridients(of: fruitJuice)
+            try makeFruitJuice(of: fruitJuice)
         } catch {
             switch error {
             case ErrorHandling.underFlowOfAmount:

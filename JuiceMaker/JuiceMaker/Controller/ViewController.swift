@@ -6,10 +6,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         var juiceMaker = JuiceMaker()
-        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryJuice)
-        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryBananaJuice)
-        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryJuice)
-        juiceMaker.handleMakeFruitJuiceError(fruitJuice: .strawberryBananaJuice)
+        juiceMaker.takeAnOrder(fruitJuice: .strawberryJuice)
+        juiceMaker.takeAnOrder(fruitJuice: .strawberryBananaJuice)
+        juiceMaker.takeAnOrder(fruitJuice: .strawberryJuice)
+        juiceMaker.takeAnOrder(fruitJuice: .strawberryBananaJuice)
     }
 }
 
