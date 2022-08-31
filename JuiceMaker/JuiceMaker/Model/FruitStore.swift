@@ -9,14 +9,16 @@ class FruitStore {
         .mango:10
     ]
     
-    func updateFruitStock(fruit: Fruit, oper: String) {
+    func updateFruitStock(fruit: Fruit, plusOrMinus: String, amount: Int) {
         guard let targetStock = fruitStock[fruit] else {
             return
         }
-        if oper == "+" {
-            self.fruitStock[fruit] = targetStock + 1
-        } else if targetStock > 0 {
-            self.fruitStock[fruit] = targetStock - 1
+        if plusOrMinus == "+" {
+            fruitStock[fruit] = targetStock + 1
+        } else if targetStock >= amount {
+            fruitStock[fruit] = targetStock - amount
+        } else {
+            print("재고변경에 실패하였습니다.")
         }
     }
 }

@@ -12,7 +12,7 @@ struct JuiceMaker {
     
     func checkRemainedStock(juiceRecipe: (Fruit, Int)) {
         guard let fruitStock = self.fruitStore.fruitStock[juiceRecipe.0],
-              fruitStock < juiceRecipe.1 else {
+              fruitStock >= juiceRecipe.1 else {
             return
         }
     }
