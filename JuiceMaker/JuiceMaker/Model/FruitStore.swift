@@ -5,9 +5,13 @@
 
 class FruitStore {
     static var stockManager = FruitStore()
-    var stock: [Fruit: Int] = Fruit.defaultStock
+    var stock: [Fruits]
     
-    private init() {}
+    private init() {
+        for fruit in Fruits.FruitName.fruitsList {
+            stock.append(Fruits(name: fruit, count: 10))
+        }
+    }
     
     private func checkStock(fruit: Fruit, number: Int) -> Result<Void, StockError> {
         guard let stockQuantity = stock[fruit] else {
