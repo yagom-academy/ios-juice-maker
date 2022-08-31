@@ -2,42 +2,44 @@
 //  JuiceMaker - FruitStore.swift
 //  Created by Wonbi, woong
 //
-// 접근 하는 곳은 여러군데인데 참조하는 곳은 하나다.
 
 class FruitStore {
     static var stockManager = FruitStore()
-    var stock: [Fruit: Int] = [.mango: 2, .kiwi: 0]
+    var stock: [Fruit: Int] = Fruit.defaultStock
     
-    private init() {
-    }
+    private init() {}
     
-    private func checkStock(fruit: Fruit, quantity: Int) -> Result<Int, StockError> {
+    private func checkStock(fruit: Fruit, number: Int) -> Result<Void, StockError> {
         guard let stockQuantity = stock[fruit] else {
             return .failure(.invalidFruit)
         }
-        guard stockQuantity >= quantity else {
+        guard stockQuantity >= number else {
             return .failure(.outOfStock)
         }
-        return .success(quantity)
+        return .success(())
     }
     
-    func addStock(of fruit: Fruit, quantity: Int) {
-        guard let stockQuantity = stock[fruit] else { return }
-        stock.updateValue(stockQuantity + quantity, forKey: fruit)
+    func changeStock(of fruit: Fruit, number: Int) {
+        stock.updateValue(number, forKey: fruit)
     }
     
-    func changeStock(of fruit: Fruit, quantity: Int) {
-        stock.updateValue(quantity, forKey: fruit)
+    func addStock(of fruit: Fruit, number: Int) {
+        guard let numberOfStock = stock[fruit] else { return }
+        changeStock(of: fruit, number: numberOfStock + number)
     }
     
-    func handOver(of fruit: Fruit, quantity: Int) -> Int {
-        let result = checkStock(fruit: fruit, quantity: quantity)
+    func removeStock(of fruit: Fruit, number: Int) {
+        guard let numberOfStock = stock[fruit] else { return }
+        changeStock(of: fruit, number: numberOfStock - number)
+    }
+    
+    func handOver(of fruit: Fruit, number: Int) -> Int {
+        let result = checkStock(fruit: fruit, number: number)
         
         switch result {
-        case .success(let neededQuantity):
-            guard let stockQuantity = stock[fruit] else { return 0 }
-            changeStock(of: fruit, quantity: stockQuantity - neededQuantity)
-            return neededQuantity
+        case .success(_):
+            removeStock(of: fruit, number: number)
+            return number
         case .failure(.outOfStock):
             print(StockError.outOfStock.description)
             return 0
@@ -47,4 +49,3 @@ class FruitStore {
         }
     }
 }
-
