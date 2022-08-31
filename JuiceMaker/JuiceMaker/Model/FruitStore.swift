@@ -18,7 +18,7 @@ class FruitStore {
     func increaseInventory(about fruitsInventory: FruitsInventory) throws {
         for (fruit, count) in fruitsInventory {
             guard let inventory = fruitsInventory[fruit] else {
-                throw FruitStoreError.emptyFruit
+                throw FruitStoreError.noneFruit
             }
             
             self.fruitsInventory[fruit] = inventory + count
@@ -28,7 +28,7 @@ class FruitStore {
     func reduceInventory(about fruitsInventory: FruitsInventory) throws {
         for (fruit, count) in fruitsInventory {
             guard var inventory = fruitsInventory[fruit] else {
-                throw FruitStoreError.emptyFruit
+                throw FruitStoreError.noneFruit
             }
             
             inventory -= count
@@ -43,7 +43,7 @@ class FruitStore {
     func hasEnoughInventory(reduced fruitsInventory: FruitsInventory) throws -> Bool {
         for (fruit, count) in fruitsInventory {
             guard let inventory = fruitsInventory[fruit] else {
-                throw FruitStoreError.emptyFruit
+                throw FruitStoreError.noneFruit
             }
             
             if inventory - count < 0 {
