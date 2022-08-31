@@ -9,23 +9,36 @@ class FruitStore {
         .mango:10
     ]
     
-    func updateFruitStock(fruit: Fruit, plusOrMinus: String, amount: Int) {
-        guard let targetStock = fruitStock[fruit] else {
-            return
-        }
+    func updateStock(_ fruit: Fruit, for amount: Int){
+        fruitStock.updateValue(amount, forKey: fruit)
+    }
+    
+    func updateFruitStock(fruit: Fruit, plusOrMinus: String) {
+        guard let targetStock = fruitStock[fruit] else { return }
+    
         if plusOrMinus == "+" {
-            fruitStock[fruit] = targetStock + amount
-        } else if targetStock >= amount {
-            fruitStock[fruit] = targetStock - amount
+            updateStock(fruit, for: targetStock + 1)
+        } else if plusOrMinus == "-" && targetStock >= 0 {
+            updateStock(fruit, for: targetStock - 1)
         } else {
-            print("재고변경에 실패하였습니다.")
+            debugPrint("재고변경에 실패하였습니다.")
         }
     }
     
-    func checkRemainedStock(juiceRecipe: (Fruit, Int)) {
+    func subtractFruitStock(fruit: Fruit, amount: Int) {
+        guard let targetStock = fruitStock[fruit] else { return }
+        
+        updateStock(fruit, for: targetStock - amount)
+    }
+    
+    func checkRemainedStock(juiceRecipe: (Fruit, Int)) -> Bool {
         guard let fruitStock = fruitStock[juiceRecipe.0],
-              fruitStock >= juiceRecipe.1 else {
-            return
+              fruitStock >= juiceRecipe.1
+        else {
+            debugPrint("재고가 부족하여 제작에 실패하였습니다.")
+            return false
         }
+        
+        return true
     }
 }
