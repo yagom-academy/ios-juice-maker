@@ -5,11 +5,13 @@ struct JuiceMaker {
     
     private func takeOrder(juice: Juice) {
         if fruitStore.isEnoughStock(juiceRecipe: juice.recipe.first) == false {
+            debugPrint("재고가 부족하여 제작에 실패하였습니다.")
             return
         }
         
         if let secondFruit = juice.recipe.second {
             if fruitStore.isEnoughStock(juiceRecipe: secondFruit) == false {
+                debugPrint("재고가 부족하여 제작에 실패하였습니다.")
                 return
             }
         }

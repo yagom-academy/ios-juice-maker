@@ -37,7 +37,6 @@ extension FruitStore: FruitStoreProtocol {
         guard let fruitStock = fruitStock[juiceRecipe.0],
               fruitStock >= juiceRecipe.1
         else {
-            debugPrint("재고가 부족하여 제작에 실패하였습니다.")
             return false
         }
         
