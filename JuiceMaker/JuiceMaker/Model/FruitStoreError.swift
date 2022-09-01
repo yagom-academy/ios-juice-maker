@@ -6,13 +6,13 @@
 //
 
 enum FruitStoreError: Error {
-    case wrongAmount
+    case invalidAmount
     case notInFruitList
     case outOfStock
     
     var failureReason: String {
         switch self {
-        case .wrongAmount:
+        case .invalidAmount:
             return "잘못된 수량입니다."
         case .notInFruitList:
             return "목록에 없는 과일입니다."

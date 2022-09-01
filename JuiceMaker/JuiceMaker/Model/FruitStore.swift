@@ -5,31 +5,32 @@
 //
 
 class FruitStore {
-    private(set) var inventory: Dictionary<Fruit, Int> = [:]
+    private(set) var inventory: Dictionary<Fruit, Int>
     
     init(inventory: Dictionary<Fruit, Int>) {
         self.inventory = inventory
     }
     
     init(initialStock: Int) {
+        inventory = [:]
         for fruit in Fruit.allCases {
             inventory[fruit] = initialStock
         }
     }
     
-    func add(amount: Int, of fruit: Fruit) throws {
+    func increaseStock(of fruit: Fruit, by amount: Int) throws {
         guard amount > 0 else {
-            throw FruitStoreError.wrongAmount
+            throw FruitStoreError.invalidAmount
         }
         guard inventory[fruit] != nil else {
             throw FruitStoreError.notInFruitList
         }
-        changeStock(of: fruit, amount: amount)
+        changeStock(of: fruit, by: amount)
     }
     
-    func subtract(amount: Int, of fruit: Fruit) throws {
+    func decreaseStock(of fruit: Fruit, by amount: Int) throws {
         guard amount > 0 else {
-            throw FruitStoreError.wrongAmount
+            throw FruitStoreError.invalidAmount
         }
         guard let currentStock = inventory[fruit] else {
             throw FruitStoreError.notInFruitList
@@ -37,21 +38,21 @@ class FruitStore {
         guard currentStock >= amount else {
             throw FruitStoreError.outOfStock
         }
-        changeStock(of: fruit, amount: -amount)
+        changeStock(of: fruit, by: -amount)
     }
     
-    func changeStock(of fruit: Fruit, amount: Int) {
+    func changeStock(of fruit: Fruit, by amount: Int) {
         if let currentStock = inventory[fruit] {
             inventory[fruit] = currentStock + amount
         }
     }
     
-    func checkStockOfFruits(in recipe: [Juice.Material]) throws {
-        for material in recipe {
-            guard let currentStock = inventory[material.fruit] else {
+    func checkStockOfFruits(in recipe: [Juice.Ingredient]) throws {
+        for ingredient in recipe {
+            guard let currentStock = inventory[ingredient.fruit] else {
                 throw FruitStoreError.notInFruitList
             }
-            guard currentStock >= material.amount else {
+            guard currentStock >= ingredient.amount else {
                 throw FruitStoreError.outOfStock
             }
         }

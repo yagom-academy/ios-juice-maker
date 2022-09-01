@@ -6,35 +6,35 @@
 //
 
 enum Juice {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBananaMix
-    case mango
-    case mangoKiwiMix
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaMixJuice
+    case mangoJuice
+    case mangoKiwiMixJuice
     
-    struct Material {
+    struct Ingredient {
         let fruit: Fruit
         let amount: Int
     }
     
-    var recipe: [Material] {
+    var recipe: [Ingredient] {
         switch self {
-        case .strawberry:
-            return [Material(fruit: .strawberry, amount: 16)]
-        case .banana:
-            return [Material(fruit: .banana, amount: 2)]
-        case .kiwi:
-            return [Material(fruit: .kiwi, amount: 3)]
-        case .pineapple:
-            return [Material(fruit: .pineapple, amount: 2)]
-        case .strawberryBananaMix:
-            return [Material(fruit: .strawberry, amount: 10), Material(fruit: .banana, amount: 1)]
-        case .mango:
-            return [Material(fruit: .mango, amount: 3)]
-        case .mangoKiwiMix:
-            return [Material(fruit: .mango, amount: 2), Material(fruit: .kiwi, amount: 1)]
+        case .strawberryJuice:
+            return [Ingredient(fruit: .strawberry, amount: 16)]
+        case .bananaJuice:
+            return [Ingredient(fruit: .banana, amount: 2)]
+        case .kiwiJuice:
+            return [Ingredient(fruit: .kiwi, amount: 3)]
+        case .pineappleJuice:
+            return [Ingredient(fruit: .pineapple, amount: 2)]
+        case .strawberryBananaMixJuice:
+            return [Ingredient(fruit: .strawberry, amount: 10), Ingredient(fruit: .banana, amount: 1)]
+        case .mangoJuice:
+            return [Ingredient(fruit: .mango, amount: 3)]
+        case .mangoKiwiMixJuice:
+            return [Ingredient(fruit: .mango, amount: 2), Ingredient(fruit: .kiwi, amount: 1)]
         }
     }
 }

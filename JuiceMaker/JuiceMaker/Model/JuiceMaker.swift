@@ -11,14 +11,14 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func makeJuice(of juice: Juice) {
+    func make(_ juice: Juice) {
         do {
             try fruitStore.checkStockOfFruits(in: juice.recipe)
-            for material in juice.recipe {
-                fruitStore.changeStock(of: material.fruit, amount: -material.amount)
+            for ingredient in juice.recipe {
+                fruitStore.changeStock(of: ingredient.fruit, by: -ingredient.amount)
             }
-        } catch FruitStoreError.wrongAmount {
-            print(FruitStoreError.wrongAmount.failureReason)
+        } catch FruitStoreError.invalidAmount {
+            print(FruitStoreError.invalidAmount.failureReason)
         } catch FruitStoreError.notInFruitList {
             print(FruitStoreError.notInFruitList.failureReason)
         } catch FruitStoreError.outOfStock {
