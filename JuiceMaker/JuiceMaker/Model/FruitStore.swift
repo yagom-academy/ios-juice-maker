@@ -1,10 +1,7 @@
 //
-//  JuiceMaker - FruitStore.swift
-//  Created by yagom.
-//  Copyright © yagom academy. All rights reserved.
+//  Created by Baem, Jeremy
 //
-
-import Foundation
+//
 
 class FruitStore {
     private var stock: [Fruit: Int] = [
@@ -27,9 +24,9 @@ class FruitStore {
     }
     
     func useStockForRecipe(of juice: Juice) {
-        for (fruitName, requiredamount) in juice.recipe {
+        for (fruitName, requiredAmount) in juice.recipe {
             if let stock = self.stock[fruitName] {
-                self.stock.updateValue(stock + requiredamount, forKey: fruitName)
+                self.stock.updateValue(stock + requiredAmount, forKey: fruitName)
             }
         }
     }

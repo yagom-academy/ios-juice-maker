@@ -1,11 +1,7 @@
 //
-//  Juice.swift
-//  JuiceMaker
+//  Created by Baem, Jeremy
 //
-//  Created by Jeremy, Baem.
 //
-
-import Foundation
 
 enum Juice {
     case strawBerry

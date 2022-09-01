@@ -1,8 +1,6 @@
 //
-//  StockError.swift
-//  JuiceMaker
+//  Created by Baem, Jeremy
 //
-//  Created by Jeremy, Baem
 //
 
 enum StockError: Error {

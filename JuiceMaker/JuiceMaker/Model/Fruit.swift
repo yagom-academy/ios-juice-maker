@@ -1,7 +1,6 @@
 //
-//  JuiceMaker - FruitStore.swift
-//  Created by Jeremy, Baem.
-//  Copyright © yagom academy. All rights reserved.
+//  Created by Baem, Jeremy
+//
 //
 
 enum Fruit {

@@ -1,10 +1,7 @@
 //
-//  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
-
-import Foundation
+//  Created by Baem, Jeremy
+//
+//
 
 struct JuiceMaker {
     private let store = FruitStore()
@@ -18,6 +15,7 @@ struct JuiceMaker {
     func requestStockAvailability(for juice: Juice) -> Bool {
         do {
             try store.checkStockAvailability(of: juice)
+            return true
         } catch StockError.notEnoughFruit {
             print("재고 부족")
         } catch StockError.outOfFruit {
@@ -25,6 +23,6 @@ struct JuiceMaker {
         } catch {
             print("Unknown Error")
         }
-        return true
+        return false
     }
 }
