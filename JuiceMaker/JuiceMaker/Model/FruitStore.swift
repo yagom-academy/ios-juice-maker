@@ -4,21 +4,30 @@
 import Foundation
 
 class FruitStore {
-    private var stock: [Fruit: Int] = [:]
+    private var stock: [Fruit: Int] = [
+        .strawberry: 10,
+        .banana: 10,
+        .pineapple: 10,
+        .mango: 10,
+        .kiwi: 10
+    ]
     
-    init(defaultStock: Int) {
-        Fruit.allCases.forEach { stock[$0] = defaultStock }
+    func checkStockBeUsed(in juice: Juice) throws {
+        for (fruit, amountOfFruit) in juice.recipeOfJuice {
+            guard let stock = stock[fruit], stock != 0 else {
+                throw OrderError.emptyStock
+            }
+            guard stock >= amountOfFruit else {
+                throw OrderError.outOfStock
+            }
+        }
     }
     
-    func changeFruitStock(fruit: Fruit, amount: Int) throws {
-        guard let countFruit = stock[fruit] else {
-            throw OrderError.emptyStock
+    func changeFruitStock(to juice: Juice) {
+        for (fruit, amountOfFruit) in juice.recipeOfJuice {
+            if let stock = stock[fruit] {
+                self.stock.updateValue(stock - amountOfFruit, forKey: fruit)
+            }
         }
-        
-        if countFruit - amount < 0 {
-            throw OrderError.outOfStock
-        }
-        
-        stock[fruit] = countFruit - amount
     }
 }

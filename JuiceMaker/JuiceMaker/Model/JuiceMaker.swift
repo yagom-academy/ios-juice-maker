@@ -8,7 +8,7 @@ struct JuiceMaker {
     
     func makeJuice(of juice: Juice) {
         do {
-            try fruitStorage.checkStockWhenWeUse(in: juice)
+            try fruitStorage.checkStockBeUsed(in: juice)
         } catch OrderError.outOfStock {
             print(OrderError.outOfStock.message)
         } catch OrderError.emptyStock {
