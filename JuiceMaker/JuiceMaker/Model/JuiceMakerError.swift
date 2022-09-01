@@ -1,5 +1,5 @@
 //
-//  Fruit.swift
+//  JuiceMakerError.swift
 //  JuiceMaker
 //
 //  Created by Kyo, TaeLee on 2022/08/29.
