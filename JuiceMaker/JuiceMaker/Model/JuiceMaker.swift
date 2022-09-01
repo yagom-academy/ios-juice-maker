@@ -4,11 +4,11 @@
 import Foundation
 
 struct JuiceMaker {
-    private let fruitStorage = FruitStore(defaultStock: 10)
+    private let fruitStorage = FruitStore()
     
     func makeJuice(of juice: Juice) {
         do {
-            try chooseRecipe(order: juice)
+            try fruitStorage.checkStockWhenWeUse(in: juice)
         } catch OrderError.outOfStock {
             print(OrderError.outOfStock.message)
         } catch OrderError.emptyStock {
@@ -16,18 +16,6 @@ struct JuiceMaker {
         } catch {
             print("알 수 없는 오류입니다.")
         }
-    }
-    
-    private func chooseRecipe(order juice: Juice) throws {
-        switch juice {
-        case .strawberryBananaJuice, .mangoKiwiJuice:
-            if let (fruit, amount) = juice.recipeOfJuice.second {
-                try fruitStorage.changeFruitStock(fruit: fruit, amount: amount)
-            }
-            fallthrough
-        default:
-            let (fruit, amount) = juice.recipeOfJuice.first
-            try fruitStorage.changeFruitStock(fruit: fruit, amount: amount)
-        }
+        fruitStorage.changeFruitStock(to: juice)
     }
 }
