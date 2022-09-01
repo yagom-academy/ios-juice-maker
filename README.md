@@ -61,7 +61,7 @@
     - 이 함수는 주스를 만드는 명령을 내리는 함수입니다.
     - 이 함수의 기능은 창고에 재고가 있는지 확인 후 있다고 판단했을 경우에만 창고의 재료를 가져와 음료를 만들 도록 설계하였습니다.
     - 만약, 재고가 없거나 부족한 경우에는 에러를 발생시키도록 하였습니다.
-    <br/>
+    
     ```swift
 	func haveStock(of fruits: [Fruit], over stocks: [Int]) throws {
 		for (fruit, stock) in zip(fruits, stocks)  {
@@ -71,11 +71,10 @@
 		}
     }
 	```
-	
     - `haveStock(of:, over:)`은 주스를 만들기 위해서 필요한 재고가 있는지 확인하는 함수입니다.
     - 이 함수를 활용하여서 재고가 없는 경우에 에러를 발생시키도록 구현하였습니다.
     - 만약, 재고가 있다면 함수는 종료되게 되어, 에러를 발생시키지 않기 때문에 `makeJuice(juice:)`함수의 다음 구문이 실행되게 됩니다.
-    <br/>
+    
     ```swift
     func increaseStock(of fruits: [Fruit], by amounts: [Int]) {
         for (fruit, stock) in zip(fruits, amounts) {
@@ -85,6 +84,7 @@
         }
     }
     ```
+    
     - `increaseStock(of:, by:)`은 재고가 있는 주스를 생성하기 위해서 재료를 꺼내오는 과정을 표현한 함수입니다.
     - 주스에 필요한 재료들과 양을 통해서 현재 창고의 재고를 줄이는 역할을 담당하게 됩니다.
     - 또한, 이는 양수의 값이 들어오게 되면, 재고를 증가시키는 함수로도 활용할 수 있습니다.
@@ -99,5 +99,7 @@
 ### 📌 STEP 3
 ## 📎 6. 참고 링크
 [Swift Language Guide - Functions](https://docs.swift.org/swift-book/LanguageGuide/Functions.html)
+
 [Swift Language Guide - Enumerations](https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html)
+
 [Swift Language Guide - Properties](https://docs.swift.org/swift-book/LanguageGuide/Properties.html)
