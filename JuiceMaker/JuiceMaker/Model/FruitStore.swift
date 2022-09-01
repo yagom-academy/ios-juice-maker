@@ -25,13 +25,13 @@ class FruitStore {
     }
     
     func checkStock(for juice: JuiceMaker.Menu) throws {
-        let recipes = juice.recipe
-        for recipe in recipes {
-            guard let currentStock = fruitStock[recipe.fruit] else {
+        let recipe = juice.recipe
+        for (fruit, amount) in recipe.ingredient {
+            guard let currentStock = fruitStock[fruit] else {
                 throw JuiceMakerError.invalidFruit
             }
             
-            guard currentStock >= recipe.amount else {
+            guard currentStock >= amount else {
                 throw JuiceMakerError.outOfStock
             }
         }
