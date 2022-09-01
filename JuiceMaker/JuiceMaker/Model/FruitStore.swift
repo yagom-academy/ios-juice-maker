@@ -5,7 +5,6 @@
 //
 
 class FruitStore {
-    typealias FruitsInventory = [Fruit: Int]
     private(set) var fruitsInventory: [Fruit: Int] = [:]
     let defaultValueOfInventory = 10
     
@@ -38,5 +37,4 @@ class FruitStore {
         }
         return false
     }
-
 }
