@@ -18,28 +18,25 @@ struct JuiceMaker {
         case mangoKiwiJuice
         
         struct Recipe {
-            let fruit: Fruit
-            let amount: Int
+            let ingredient: [Fruit: Int]
         }
         
-        var recipe: [Recipe] {
+        var recipe: Recipe {
             switch self {
             case .strawberryJuice:
-                return [Recipe(fruit: .strawberry, amount: 16)]
+                return Recipe(ingredient: [.strawberry: 16])
             case .bananaJuice:
-                return [Recipe(fruit: .banana, amount: 2)]
+                return Recipe(ingredient: [.banana: 2])
             case .kiwiJuice:
-                return [Recipe(fruit: .kiwi, amount: 3)]
+                return Recipe(ingredient: [.kiwi: 3])
             case .pineappleJuice:
-                return [Recipe(fruit: .pineapple, amount: 2)]
+                return Recipe(ingredient: [.pineapple: 2])
             case .strawberryBananaJuice:
-                return [Recipe(fruit: .strawberry, amount: 1),
-                        Recipe(fruit: .banana, amount: 2)]
+                return Recipe(ingredient: [.strawberry: 10, .banana: 1])
             case .mangoJuice:
-                return [Recipe(fruit: .mango, amount: 3)]
+                return Recipe(ingredient: [.mango: 3])
             case .mangoKiwiJuice:
-                return [Recipe(fruit: .mango, amount: 2),
-                        Recipe(fruit: .kiwi, amount: 1)]
+                return Recipe(ingredient: [.mango: 2, .kiwi: 1])
             }
         }
     }
@@ -47,11 +44,11 @@ struct JuiceMaker {
     private let fruitStore = FruitStore()
     
     func produce(juice: Menu) {
-        let recipes = juice.recipe
+        let recipe = juice.recipe
         do {
             try fruitStore.checkStock(for: juice)
-            for recipe in recipes {
-                fruitStore.use(recipe.fruit, amountOf: recipe.amount)
+            for (fruit, amount) in recipe.ingredient {
+                fruitStore.use(fruit, amountOf: amount)
             }
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다.")
