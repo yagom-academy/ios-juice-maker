@@ -24,9 +24,7 @@ class FruitStore {
     ]
     
     func changeStockOf(fruit: Fruit, by quantity: Int) {
-        guard let currentStock = fruitStock[fruit] else {
-            return
-        }
+        let currentStock = fruitStock[fruit, default: 0]
         
         fruitStock[fruit] = currentStock + quantity
     }
