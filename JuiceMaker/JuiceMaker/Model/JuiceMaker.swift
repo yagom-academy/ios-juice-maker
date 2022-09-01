@@ -6,9 +6,9 @@ import Foundation
 struct JuiceMaker {
     private let fruitStorage = FruitStore()
     
-    func makeJuice(of juice: Juice) {
+    func makeJuice(to order: Juice) {
         do {
-            try fruitStorage.checkStockBeUsed(in: juice)
+            try fruitStorage.checkStockBeUsed(in: order)
         } catch OrderError.outOfStock {
             print(OrderError.outOfStock.message)
         } catch OrderError.emptyStock {
@@ -16,6 +16,6 @@ struct JuiceMaker {
         } catch {
             print("알 수 없는 오류입니다.")
         }
-        fruitStorage.changeFruitStock(to: juice)
+        fruitStorage.changeFruitStock(to: order)
     }
 }
