@@ -15,12 +15,12 @@ class FruitStore {
 }
 
 extension FruitStore: FruitStoreProtocol {
-    func updateFruitStock(fruit: Fruit, plusOrMinus: String) {
+    func updateFruitStock(fruit: Fruit, variation: Variation) {
         guard let targetStock = fruitStock[fruit] else { return }
     
-        if plusOrMinus == "+" {
+        if variation == .increase {
             updateStock(fruit, for: targetStock + 1)
-        } else if plusOrMinus == "-" && targetStock >= 0 {
+        } else if variation == .decrease && targetStock >= 0 {
             updateStock(fruit, for: targetStock - 1)
         } else {
             debugPrint("재고변경에 실패하였습니다.")
