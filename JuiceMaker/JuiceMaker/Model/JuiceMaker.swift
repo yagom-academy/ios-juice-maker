@@ -48,7 +48,7 @@ struct JuiceMaker {
         do {
             try fruitStore.checkStock(for: juice)
             for recipe in recipes {
-                fruitStore.useStock(of: recipe.fruit, amount: recipe.amount)
+                fruitStore.use(recipe.fruit, amountOf: recipe.amount)
             }
         } catch JuiceMakerError.outOfStock {
             print("재고가 없습니다.")

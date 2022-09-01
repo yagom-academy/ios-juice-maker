@@ -10,14 +10,14 @@ import Foundation
 class FruitStore {
     private var fruitStock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
-    func addStock(of fruit: Fruit, amount: Int) {
+    func add(_ fruit: Fruit, amountOf amount: Int) {
         if let currentStock = fruitStock[fruit] {
             let totalStock = currentStock + amount
             fruitStock.updateValue(totalStock, forKey: fruit)
         }
     }
     
-    func useStock(of fruit: Fruit, amount: Int) {
+    func use(_ fruit: Fruit, amountOf amount: Int) {
         if let currentStock = fruitStock[fruit] {
             let totalStock = currentStock - amount
             fruitStock.updateValue(totalStock, forKey: fruit)
