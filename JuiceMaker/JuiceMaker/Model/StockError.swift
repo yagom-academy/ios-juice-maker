@@ -1,5 +1,5 @@
 //
-//  StockError.swift
+//  JuiceMaker - StockError.swift
 //  Created by Wonbi, woong
 //
 

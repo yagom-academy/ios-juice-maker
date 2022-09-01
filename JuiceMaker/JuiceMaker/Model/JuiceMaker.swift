@@ -13,11 +13,11 @@ struct JuiceMaker {
         case strawberryBananaJuice = "딸바 주스"
         case mangoKiwiJuice = "망키 주스"
         
-        var name: String {
+        fileprivate var name: String {
             self.rawValue
         }
         
-        var recipe: [Fruits] {
+        fileprivate var recipe: [Fruits] {
             switch self {
             case .strawberryJuice:
                 return [Fruits(name: .strawberry, count: 16)]
@@ -37,10 +37,10 @@ struct JuiceMaker {
         }
     }
     
-    let stockManager = FruitStore.stockManager
+    private let stockManager = FruitStore.stockManager
     
     func makeJuice(_ juice: Juice) {
-        if stockManager.supplyRequest(fruits: juice.recipe) == nil { return }
+        guard stockManager.canSupplyRequest(juice.recipe) else { return }
         print("\(juice.name) 완성")
     }
 }
