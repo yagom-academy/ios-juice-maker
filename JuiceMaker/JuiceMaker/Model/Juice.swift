@@ -5,6 +5,8 @@
 //  Created by Kyo, TaeLee on 2022/08/29.
 //
 
+typealias RecipeType = (name: Fruit, count: Int)
+
 enum Juice {
     case strawberryJuice
     case bananaJuice
@@ -14,22 +16,24 @@ enum Juice {
     case strawberryBananaJuice
     case mangoKiwiJuice
         
-    var recipe: [(name: Fruit, count: Int)] {
+    var recipe: [RecipeType] {
         switch self {
         case .strawberryJuice:
-            return [(name: .strawberry, count: 16)]
+            return [(name: .strawberry, count: ConstantNameSpace.usageStrawberry)]
         case .bananaJuice:
-            return [(name: .banana, count: 2)]
+            return [(name: .banana, count: ConstantNameSpace.usageBanana)]
         case .pineappleJuice:
-            return [(name: .pineapple, count: 2)]
+            return [(name: .pineapple, count: ConstantNameSpace.usagePineapple)]
         case .kiwiJuice:
-            return [(name: .kiwi, count: 3)]
+            return [(name: .kiwi, count: ConstantNameSpace.usageKiwi)]
         case .mangoJuice:
-            return [(name: .mango, count: 3)]
+            return [(name: .mango, count: ConstantNameSpace.usageMango)]
         case .strawberryBananaJuice:
-            return [(name: .strawberry, count: 10), (name: .banana, count: 1)]
+            return [(name: .strawberry, count: ConstantNameSpace.usageStrawberryBanana.strawberry),
+                    (name: .banana, count: ConstantNameSpace.usageStrawberryBanana.banana)]
         case .mangoKiwiJuice:
-            return [(name: .mango, count: 2), (name: .kiwi, count: 2)]
+            return [(name: .mango, count: ConstantNameSpace.usageMangoKiwi.mango),
+                    (name: .kiwi, count: ConstantNameSpace.usageMangoKiwi.kiwi)]
         }
     }
 }

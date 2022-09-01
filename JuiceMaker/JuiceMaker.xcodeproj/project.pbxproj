@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C5F642928BC688C00A7CEA4 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F642828BC688C00A7CEA4 /* Fruit.swift */; };
 		0C5F642B28BCB21300A7CEA4 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F642A28BCB21300A7CEA4 /* JuiceMakerError.swift */; };
+		0C89C5FD28C0455C00AAB7CC /* ConstantNameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C89C5FC28C0455C00AAB7CC /* ConstantNameSpace.swift */; };
 		3C32E55028BC73DC00340932 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E54F28BC73DC00340932 /* Juice.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		0C5F642828BC688C00A7CEA4 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		0C5F642A28BCB21300A7CEA4 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
+		0C89C5FC28C0455C00AAB7CC /* ConstantNameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantNameSpace.swift; sourceTree = "<group>"; };
 		3C32E54F28BC73DC00340932 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +62,7 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0C89C5FC28C0455C00AAB7CC /* ConstantNameSpace.swift */,
 				0C5F642828BC688C00A7CEA4 /* Fruit.swift */,
 				3C32E54F28BC73DC00340932 /* Juice.swift */,
 				0C5F642A28BCB21300A7CEA4 /* JuiceMakerError.swift */,
@@ -179,6 +182,7 @@
 				0C5F642928BC688C00A7CEA4 /* Fruit.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				0C5F642B28BCB21300A7CEA4 /* JuiceMakerError.swift in Sources */,
+				0C89C5FD28C0455C00AAB7CC /* ConstantNameSpace.swift in Sources */,
 				3C32E55028BC73DC00340932 /* Juice.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
@@ -331,6 +335,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JuiceMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -349,6 +354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JuiceMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,15 +7,15 @@
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func manufactorJuice(menu: Juice) {
-        guard filterError(juice: menu) else {
+    func manufactorJuice(orderJuice: Juice) {
+        guard canManufactorJuice(juice: orderJuice) else {
             return
         }
         
-        fruitStore.substractFruits(juice: menu)
+        fruitStore.substractFruits(juice: orderJuice)
     }
     
-    func checkStock(juice: Juice) throws -> Bool {
+    func checkEnoughStock(juice: Juice) throws -> Bool {
         for fruit in juice.recipe {
             guard let stock = fruitStore.bringFruitStock(fruit.name), stock >= fruit.count else {
                 throw JuiceMakerError.outOfStock
@@ -25,16 +25,18 @@ struct JuiceMaker {
         return true
     }
     
-    func filterError(juice: Juice) -> Bool {
+    func canManufactorJuice(juice: Juice) -> Bool {
+        var isEnoughStock: Bool = false
+        
         do {
-            let isNotSoldOut = try checkStock(juice: juice)
-            return isNotSoldOut
+            isEnoughStock = try checkEnoughStock(juice: juice)
+            return isEnoughStock
         } catch JuiceMakerError.outOfStock {
             print("과일 재고 품절입니다.")
-            return false
+            return isEnoughStock
         } catch {
             print("some error")
-            return false
+            return isEnoughStock
         }
     }
 }
