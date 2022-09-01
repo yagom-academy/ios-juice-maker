@@ -3,5 +3,5 @@
 protocol FruitStoreProtocol {
     func updateFruitStock(fruit: Fruit, variation: Variation)
     func subtractFruitStock(fruit: Fruit, amount: Int)
-    func isEnoughStock(juiceRecipe: (Fruit, Int)) -> Bool
+    func isEnoughStock(juiceRecipe: [Juice.Recipe]) -> Bool
 }

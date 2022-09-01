@@ -9,6 +9,14 @@ class FruitStore {
         .mango:10
     ]
     
+    private func getStock(fruit: Fruit) -> Int? {
+        if let fruitStock = fruitStock[fruit] {
+            return fruitStock
+        } else {
+            return nil
+        }
+    }
+    
     private func updateStock(_ fruit: Fruit, for amount: Int){
         fruitStock.updateValue(amount, forKey: fruit)
     }
@@ -33,11 +41,13 @@ extension FruitStore: FruitStoreProtocol {
         updateStock(fruit, for: targetStock - amount)
     }
     
-    func isEnoughStock(juiceRecipe: (Fruit, Int)) -> Bool {
-        guard let fruitStock = fruitStock[juiceRecipe.0],
-              fruitStock >= juiceRecipe.1
-        else {
-            return false
+    func isEnoughStock(juiceRecipe: [Juice.Recipe]) -> Bool {
+        for ingredient in juiceRecipe {
+            guard let fruitStock = getStock(fruit: ingredient.name),
+               fruitStock >= ingredient.amount
+            else {
+                return false
+            }
         }
         
         return true
