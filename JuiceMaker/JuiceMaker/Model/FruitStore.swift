@@ -25,7 +25,7 @@ class FruitStore {
     func reduceInventory(of fruit: Fruit, by amount: Int) throws {
         if hasEnoughInventory(of: fruit, to: amount),
            let inventory = fruitsInventory[fruit] {
-            self.fruitsInventory = inventory - amount
+            self.fruitsInventory.updateValue(inventory - amount, forKey: fruit)
         } else {
             throw FruitStoreError.insufficientInventory
         }
