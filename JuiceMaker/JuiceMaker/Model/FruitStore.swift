@@ -7,9 +7,10 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    static let shared = FruitStore()
+    typealias Amount = Int
     
-    var fruits: [Fruit : Int] = [:]
+    static let shared = FruitStore()
+    var fruits: [Fruit : Amount] = [:]
     
     private init() {
         Fruit.allCases.forEach { fruit in
@@ -17,17 +18,14 @@ class FruitStore {
         }
     }
     
-    func useFruits(recipe: [Fruit : Int]) throws {
+    func useFruits(for recipe: [Fruit : Amount]) throws {
         for (fruit, amount) in recipe {
-            guard let fruitAmount = fruits[fruit] else {
-                throw JuiceMakerError.fruitExistError
-            }
-            
+            let fruitAmount = try fetchFruitAmount(for: fruit)
             self.fruits[fruit] = fruitAmount - amount
         }
     }
     
-    func fetchFruitAmount(fruit: Fruit) throws -> Int {
+    func fetchFruitAmount(for fruit: Fruit) throws -> Int {
         guard let fruitAmount = fruits[fruit] else {
             throw JuiceMakerError.fruitExistError
         }

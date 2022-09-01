@@ -12,7 +12,7 @@ enum JuiceMakerError: Error {
     case fruitExistError
 }
 
-extension JuiceMakerError: LocalizedError{
+extension JuiceMakerError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .fruitAmountError:
