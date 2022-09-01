@@ -3,7 +3,7 @@
 //  Created by Ash, 미니.
 //
 
-enum Juice: CaseIterable {
+enum Juice {
 	case strawberryJuice
 	case bananaJuice
 	case kiwiJuice
