@@ -8,12 +8,8 @@ struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
     
     func makeJuice(juice: Juice) {
-        let juiceNeedFruits = juice.needFruits
-        let juiceNeedStocks = juice.needStocks
-        
         do {
-			try fruitStore.haveStock(of: juiceNeedFruits, over: juiceNeedStocks)
-			fruitStore.increaseStock(of: juiceNeedFruits, by: juiceNeedStocks)
+			print("123")
         } catch StoreError.outOfStock {
             print("재고가 부족합니다.")
         } catch {

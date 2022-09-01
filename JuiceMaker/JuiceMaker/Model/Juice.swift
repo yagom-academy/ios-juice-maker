@@ -12,41 +12,22 @@ enum Juice: CaseIterable {
 	case strawberrybananaJuice
 	case mangokiwiJuice
 	
-	var needFruits: [Fruit] {
+	var needFruitAndStock: [Fruit: Int] {
 		switch self {
 		case .strawberryJuice:
-			return [.strawberry]
+			return [.strawberry: -16]
 		case .bananaJuice:
-			return [.banana]
+			return [.banana: -2]
 		case .kiwiJuice:
-			return [.kiwi]
+			return [.kiwi: -3]
 		case .pineappleJuice:
-			return [.pineapple]
+			return [.pineapple: -2]
 		case .mangoJuice:
-			return [.mango]
+			return [.mango: -3]
 		case .strawberrybananaJuice:
-			return [.strawberry, .banana]
+			return [.strawberry: -10, .banana: -1]
 		case .mangokiwiJuice:
-			return [.mango, .kiwi]
-		}
-	}
-	
-	var needStocks: [Int] {
-		switch self {
-		case .strawberryJuice:
-			return [-16]
-		case .bananaJuice:
-			return [-2]
-		case .kiwiJuice:
-			return [-3]
-		case .pineappleJuice:
-			return [-2]
-		case .mangoJuice:
-			return [-3]
-		case .strawberrybananaJuice:
-			return [-10, -1]
-		case .mangokiwiJuice:
-			return [-2, -1]
+			return [.mango: -2, .kiwi: -1]
 		}
 	}
 }
