@@ -7,8 +7,10 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore = FruitStore.shared
     typealias Amount = Int
+    
+    let fruitStore = FruitStore.shared
+    
     func makeJuice(_ juice: Juice) {
         let juiceRecipe = juice.recipe
         
