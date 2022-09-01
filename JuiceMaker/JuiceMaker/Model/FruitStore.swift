@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private(set) var inventory: Dictionary<Fruit, Int>
+    private var inventory: Dictionary<Fruit, Int>
     
     init(inventory: Dictionary<Fruit, Int>) {
         self.inventory = inventory
@@ -22,9 +22,7 @@ class FruitStore {
         guard amount > 0 else {
             throw FruitStoreError.invalidAmount
         }
-        guard inventory[fruit] != nil else {
-            throw FruitStoreError.notInFruitList
-        }
+        try _ = getCurrentStock(of: fruit)
         changeStock(of: fruit, by: amount)
     }
     
@@ -32,12 +30,7 @@ class FruitStore {
         guard amount > 0 else {
             throw FruitStoreError.invalidAmount
         }
-        guard let currentStock = inventory[fruit] else {
-            throw FruitStoreError.notInFruitList
-        }
-        guard currentStock >= amount else {
-            throw FruitStoreError.outOfStock
-        }
+        try checkInventoryHasStock(of: fruit, moreThan: amount)
         changeStock(of: fruit, by: -amount)
     }
     
@@ -47,15 +40,23 @@ class FruitStore {
         }
     }
     
-    func checkStockOfFruits(in recipe: [Juice.Ingredient]) throws {
+    func checkStockOfIngredients(in recipe: [Juice.Ingredient]) throws {
         for ingredient in recipe {
-            guard let currentStock = inventory[ingredient.fruit] else {
-                throw FruitStoreError.notInFruitList
-            }
-            guard currentStock >= ingredient.amount else {
-                throw FruitStoreError.outOfStock
-            }
+            try checkInventoryHasStock(of: ingredient.fruit, moreThan: ingredient.amount)
         }
     }
     
+    func checkInventoryHasStock(of fruit: Fruit, moreThan amount: Int) throws {
+        let currentStock = try getCurrentStock(of: fruit)
+        guard currentStock >= amount else {
+            throw FruitStoreError.outOfStock
+        }
+    }
+    
+    func getCurrentStock(of fruit: Fruit) throws -> Int {
+        guard let currentStock = inventory[fruit] else {
+            throw FruitStoreError.notInFruitList
+        }
+        return currentStock
+    }
 }

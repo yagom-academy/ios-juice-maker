@@ -13,12 +13,10 @@ struct JuiceMaker {
     
     func make(_ juice: Juice) {
         do {
-            try fruitStore.checkStockOfFruits(in: juice.recipe)
+            try fruitStore.checkStockOfIngredients(in: juice.recipe)
             for ingredient in juice.recipe {
                 fruitStore.changeStock(of: ingredient.fruit, by: -ingredient.amount)
             }
-        } catch FruitStoreError.invalidAmount {
-            print(FruitStoreError.invalidAmount.failureReason)
         } catch FruitStoreError.notInFruitList {
             print(FruitStoreError.notInFruitList.failureReason)
         } catch FruitStoreError.outOfStock {
