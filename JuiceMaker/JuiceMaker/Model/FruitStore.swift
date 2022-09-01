@@ -44,18 +44,12 @@ class FruitStore {
         }
     }
     
-    func hasEnoughInventory(reduced fruitsInventory: FruitsInventory) throws -> Bool {
-        for (fruit, count) in fruitsInventory {
-            guard let inventory = fruitsInventory[fruit] else {
-                throw FruitStoreError.noneFruit
-            }
-            
-            if inventory - count < 0 {
-                return false
-            }
+    func hasEnoughInventory(of fruit: Fruit, to amount: Int) -> Bool {
+        if let inventory = fruitsInventory[fruit],
+           inventory >= amount {
+            return true
         }
-        
-        return true
+        return false
     }
 
 }
