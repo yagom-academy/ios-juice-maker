@@ -7,12 +7,12 @@
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func manufactureJuice(orderJuice: Juice) {
-        guard canManufactureJuice(juice: orderJuice) else {
+    func manufactureJuice(menu juice: Juice) {
+        guard canManufactureJuice(juice: juice) else {
             return
         }
         
-        fruitStore.substractFruits(juice: orderJuice)
+        fruitStore.substractFruits(juice: juice)
     }
     
     func checkEnoughStock(juice: Juice) throws -> Bool {
