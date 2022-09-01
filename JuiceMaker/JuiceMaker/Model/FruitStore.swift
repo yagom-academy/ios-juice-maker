@@ -24,7 +24,7 @@ class FruitStore {
         }
     }
     
-    func checkStock(for juice: JuiceMaker.Menu) throws {
+    func checkStock(for juice: JuiceMaker.Juice) throws {
         let recipe = juice.recipe
         for (fruit, amount) in recipe.ingredient {
             guard let currentStock = fruitStock[fruit] else {

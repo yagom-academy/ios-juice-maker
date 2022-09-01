@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    enum Menu {
+    enum Juice {
         case strawberryJuice
         case bananaJuice
         case kiwiJuice
@@ -43,7 +43,7 @@ struct JuiceMaker {
     
     private let fruitStore = FruitStore()
     
-    func produce(juice: Menu) {
+    func produce(juice: Juice) {
         let recipe = juice.recipe
         do {
             try fruitStore.checkStock(for: juice)
