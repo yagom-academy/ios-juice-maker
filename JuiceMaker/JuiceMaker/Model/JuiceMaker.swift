@@ -37,10 +37,14 @@ struct JuiceMaker {
         }
     }
     
-    private let stockManager = FruitStore.stockManager
+    private var store: FruitStore
+    
+    init(store: FruitStore) {
+        self.store = store
+    }
     
     func makeJuice(_ juice: Juice) {
-        guard stockManager.canSupplyRequest(juice.recipe) else { return }
+        guard store.canSupplyRequest(juice.recipe) else { return }
         print("\(juice.name) 완성")
     }
 }

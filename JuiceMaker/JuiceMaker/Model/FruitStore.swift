@@ -4,10 +4,7 @@
 //
 
 class FruitStore {
-    static var stockManager = FruitStore()
     private var stock = makeDefaultStock(defaultCount: 10)
-    
-    private init() {}
     
     static private func makeDefaultStock(defaultCount: Int) -> [Fruits] {
         let fruitList = Fruits.FruitType.makeList()
