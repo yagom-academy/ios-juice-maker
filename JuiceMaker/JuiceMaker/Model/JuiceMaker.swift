@@ -41,7 +41,7 @@ struct JuiceMaker {
         }
     }
     
-    var fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func produce(juice: Menu) {
         let recipes = juice.recipe

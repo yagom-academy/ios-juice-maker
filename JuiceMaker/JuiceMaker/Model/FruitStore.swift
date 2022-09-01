@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    let initialStock = 10
+    private let initialStock = 10
     private var fruitStock = [Fruit: Int]()
     
     init() {
