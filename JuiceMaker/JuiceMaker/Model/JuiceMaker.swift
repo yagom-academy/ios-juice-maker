@@ -7,7 +7,6 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    typealias Amount = Int
     
     let fruitStore = FruitStore.shared
     
@@ -23,7 +22,7 @@ struct JuiceMaker {
         }
     }
     
-    func validFruitAmount(for recipe : [Fruit : Amount]) throws {
+    func validFruitAmount(for recipe : [Fruit : Int]) throws {
         for (fruit, amount) in recipe {
             let fruitAmount = try fruitStore.fetchFruitAmount(for: fruit)
             guard amount <= fruitAmount else { throw JuiceMakerError.fruitAmountError }

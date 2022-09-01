@@ -5,10 +5,7 @@
 //  Created by stone, jpush.
 //
 
-enum Juice: String {
-    typealias Amount = Int
-    
-    case strawberry
+enum Juice: String {    case strawberry
     case banana
     case kiwi
     case pineapple
@@ -35,7 +32,7 @@ enum Juice: String {
         }
     }
     
-    var recipe: [Fruit : Amount] {
+    var recipe: [Fruit : Int] {
         switch self {
         case .strawberry:
             return [.strawberry : 16]
