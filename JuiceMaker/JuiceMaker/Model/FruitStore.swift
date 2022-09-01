@@ -15,17 +15,10 @@ class FruitStore {
         }
     }
     
-    func increaseInventory(about fruitsInventory: FruitsInventory) throws {
-        guard fruitsInventory.filter({ $0.value < 0 }).isEmpty else {
-            throw FruitStoreError.invalidParameter
-        }
-        
-        for (fruit, count) in fruitsInventory {
-            guard let inventory = fruitsInventory[fruit] else {
-                throw FruitStoreError.noneFruit
-            }
-            
-            self.fruitsInventory[fruit] = inventory + count
+    func increaseInventory(of fruit: Fruit, by amount: Int) {
+        if amount >= 0,
+           let inventory = fruitsInventory[fruit] {
+            self.fruitsInventory = inventory + amount
         }
     }
     
