@@ -13,14 +13,15 @@ class FruitStore {
         }
     }
     
-    func bringFruitStock(_ fruit: Fruit) -> Int? {
-        return fruitStock[fruit]
+    func bringFruitStock(_ fruit: Fruit) throws -> Int {
+        guard let fruitAmount = fruitStock[fruit] else {
+            throw JuiceMakerError.invalidFruit
+        }
+        return fruitAmount
     }
     
     func addFruits(fruit: Fruit, amount: Int) {
-        guard var fruitAmount = fruitStock[fruit] else {
-            return
-        }
+        var fruitAmount = bringValidFruitStock(fruit)
         
         fruitAmount += amount
         fruitStock[fruit] = fruitAmount
@@ -28,12 +29,23 @@ class FruitStore {
     
     func substractFruits(juice: Juice) {
         for fruit in juice.recipe {
-            guard var fruitAmount = fruitStock[fruit.name] else {
-                return
-            }
+            var fruitAmount = bringValidFruitStock(fruit.name)
             
             fruitAmount -= fruit.count
             fruitStock[fruit.name] = fruitAmount
         }
+    }
+    
+    func bringValidFruitStock(_ fruit: Fruit) -> Int {
+        do {
+            let fruitAmount = try bringFruitStock(fruit)
+            return fruitAmount
+        } catch JuiceMakerError.invalidFruit {
+            print("없는 과일입니다.")
+        } catch {
+            print("some error")
+        }
+        
+        return ConstantUsageFruit.invalidFruit
     }
 }

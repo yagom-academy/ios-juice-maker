@@ -19,21 +19,21 @@ enum Juice {
     var recipe: [RecipeType] {
         switch self {
         case .strawberryJuice:
-            return [(name: .strawberry, count: ConstantNameSpace.usageStrawberry)]
+            return [(name: .strawberry, count: ConstantUsageFruit.strawberry)]
         case .bananaJuice:
-            return [(name: .banana, count: ConstantNameSpace.usageBanana)]
+            return [(name: .banana, count: ConstantUsageFruit.banana)]
         case .pineappleJuice:
-            return [(name: .pineapple, count: ConstantNameSpace.usagePineapple)]
+            return [(name: .pineapple, count: ConstantUsageFruit.pineapple)]
         case .kiwiJuice:
-            return [(name: .kiwi, count: ConstantNameSpace.usageKiwi)]
+            return [(name: .kiwi, count: ConstantUsageFruit.kiwi)]
         case .mangoJuice:
-            return [(name: .mango, count: ConstantNameSpace.usageMango)]
+            return [(name: .mango, count: ConstantUsageFruit.mango)]
         case .strawberryBananaJuice:
-            return [(name: .strawberry, count: ConstantNameSpace.usageStrawberryBanana.strawberry),
-                    (name: .banana, count: ConstantNameSpace.usageStrawberryBanana.banana)]
+            return [(name: .strawberry, count: ConstantUsageFruit.strawberryBanana.strawberry),
+                    (name: .banana, count: ConstantUsageFruit.strawberryBanana.banana)]
         case .mangoKiwiJuice:
-            return [(name: .mango, count: ConstantNameSpace.usageMangoKiwi.mango),
-                    (name: .kiwi, count: ConstantNameSpace.usageMangoKiwi.kiwi)]
+            return [(name: .mango, count: ConstantUsageFruit.mangoKiwi.mango),
+                    (name: .kiwi, count: ConstantUsageFruit.mangoKiwi.kiwi)]
         }
     }
 }
