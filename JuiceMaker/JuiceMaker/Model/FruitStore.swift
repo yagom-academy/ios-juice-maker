@@ -5,13 +5,9 @@
 
 class FruitStore {
     static var stockManager = FruitStore()
-    private var stock = [Fruits]()
+    private var stock = Fruits.makeDefaultStock(defaultCount: 10)
     
-    private init() {
-        for fruit in Fruits.FruitType.fruitsList {
-            stock.append(Fruits(name: fruit, count: 10))
-        }
-    }
+    private init() {}
     
     private func haveInStock(fruits: [Fruits]) -> Bool {
         for fruit in fruits {
@@ -23,7 +19,7 @@ class FruitStore {
     }
     
     private func changeStock(fruit: Fruits) {
-        stock.insert(fruit, at: fruit.fruitIndex)
+        stock[fruit.fruitIndex] = fruit
     }
     
     private func addStock(fruits: [Fruits]) {
