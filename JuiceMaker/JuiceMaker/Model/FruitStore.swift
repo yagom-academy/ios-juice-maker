@@ -29,18 +29,12 @@ class FruitStore {
         }
     }
     
-    func reduceInventory(about fruitsInventory: FruitsInventory) throws {
-        for (fruit, count) in fruitsInventory {
-            guard var inventory = fruitsInventory[fruit] else {
-                throw FruitStoreError.noneFruit
-            }
-            
-            inventory -= count
-            if inventory < 0 {
-                throw FruitStoreError.insufficientInventory
-            }
-            
-            self.fruitsInventory[fruit] = inventory
+    func reduceInventory(of fruit: Fruit, by amount: Int) throws {
+        if hasEnoughInventory(of: fruit, to: amount),
+           let inventory = fruitsInventory[fruit] {
+            self.fruitsInventory = inventory - amount
+        } else {
+            throw FruitStoreError.insufficientInventory
         }
     }
     
