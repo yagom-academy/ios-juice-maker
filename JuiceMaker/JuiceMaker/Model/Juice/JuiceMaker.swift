@@ -4,26 +4,16 @@ struct JuiceMaker {
     private let fruitStore: FruitStoreProtocol = FruitStore()
     
     private func takeOrder(juice: Juice) {
-        if fruitStore.isEnoughStock(juiceRecipe: juice.recipe.first) == false {
-            debugPrint("재고가 부족하여 제작에 실패하였습니다.")
-            return
+        if fruitStore.isEnoughStock(juiceRecipe: juice.recipe) {
+            make(juice)
+        } else {
+            debugPrint("재고가 부족하여 제작에 실패하였습니다!")
         }
-        
-        if let secondFruit = juice.recipe.second {
-            if fruitStore.isEnoughStock(juiceRecipe: secondFruit) == false {
-                debugPrint("재고가 부족하여 제작에 실패하였습니다.")
-                return
-            }
-        }
-        
-        make(juice)
     }
     
     private func make(_ juice: Juice) {
-        fruitStore.subtractFruitStock(fruit: juice.recipe.first.0, amount: juice.recipe.first.1)
-        
-        if let secondFruit = juice.recipe.second {
-            fruitStore.subtractFruitStock(fruit: secondFruit.0, amount: secondFruit.1)
+        for ingredient in juice.recipe {
+            fruitStore.subtractFruitStock(fruit: ingredient.name, amount: ingredient.amount)
         }
         
         debugPrint("\(juice)를 만들었습니다!")

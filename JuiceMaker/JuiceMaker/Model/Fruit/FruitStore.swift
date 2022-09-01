@@ -25,7 +25,7 @@ class FruitStore {
 extension FruitStore: FruitStoreProtocol {
     func updateFruitStock(fruit: Fruit, variation: Variation) {
         guard let targetStock = fruitStock[fruit] else { return }
-    
+        
         if variation == .increase {
             updateStock(fruit, for: targetStock + 1)
         } else if variation == .decrease && targetStock >= 0 {
@@ -44,7 +44,7 @@ extension FruitStore: FruitStoreProtocol {
     func isEnoughStock(juiceRecipe: [Juice.Recipe]) -> Bool {
         for ingredient in juiceRecipe {
             guard let fruitStock = getStock(fruit: ingredient.name),
-               fruitStock >= ingredient.amount
+                  fruitStock >= ingredient.amount
             else {
                 return false
             }
