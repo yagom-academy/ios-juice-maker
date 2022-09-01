@@ -18,7 +18,7 @@ class FruitStore {
     func increaseInventory(of fruit: Fruit, by amount: Int) {
         if amount >= 0,
            let inventory = fruitsInventory[fruit] {
-            self.fruitsInventory = inventory + amount
+            self.fruitsInventory.updateValue(inventory + amount, forKey: fruit)
         }
     }
     
