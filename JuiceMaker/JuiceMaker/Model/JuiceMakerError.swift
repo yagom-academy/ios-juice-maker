@@ -6,5 +6,6 @@
 //
 
 enum JuiceMakerError: Error {
+    case invalidFruit
     case outOfStock
 }
