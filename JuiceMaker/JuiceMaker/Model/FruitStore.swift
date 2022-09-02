@@ -6,38 +6,39 @@
 class FruitStore {
     private var stock = [Int](repeating: 10, count: 5)
     
-    private func haveInStock(fruits: [Fruits]) -> Bool {
+    private func haveInStock(fruits: [Recipe]) -> Bool {
         for fruit in fruits {
-            let stockCount = stock[fruit.fruitIndex]
+            let stockCount = stock[fruit.name.index]
             let requestedCount = fruit.count
-            if stockCount < requestedCount { return false }
+            if stockCount < requestedCount {
+                return false
+            }
         }
         return true
     }
     
-    private func changeStock(_ fruit: Fruits, count: Int) {
-        stock[fruit.fruitIndex] = count
+    private func changeStock(_ fruit: Fruit, count: Int) {
+        stock[fruit.index] = count
     }
     
-    private func addStock(fruit: Fruits, isNegative: Bool = false) {
-        let stockCount = stock[fruit.fruitIndex]
-        let requestedCount = fruit.count
+    private func addStock(fruit: Fruit, count: Int, isNegative: Bool = false) {
+        let stockCount = stock[fruit.index]
         
-        var count: Int {
-            isNegative ? stockCount - requestedCount : stockCount + requestedCount
+        var computedCount: Int {
+            isNegative ? stockCount - count : stockCount + count
         }
         
-        changeStock(fruit, count: count)
+        changeStock(fruit, count: computedCount)
     }
     
-    func canSupplyRequest(_ fruits: [Fruits]) -> Bool {
+    func canSupplyRequest(_ fruits: [Recipe]) -> Bool {
         guard haveInStock(fruits: fruits) else {
             print("재고가 부족합니다.")
             return false
         }
         
         for fruit in fruits {
-            addStock(fruit: fruit, isNegative: true)
+            addStock(fruit: fruit.name, count: fruit.count, isNegative: true)
         }
         return true
     }
