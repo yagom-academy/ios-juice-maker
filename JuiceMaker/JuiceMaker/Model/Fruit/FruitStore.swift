@@ -23,22 +23,14 @@ class FruitStore {
 }
 
 extension FruitStore: FruitStoreProtocol {
-    func updateFruitStock(fruit: Fruit, variation: Variation) {
+    func updateFruitStock(fruit: Fruit, variation: Variation, amount: Int) {
         guard let targetStock = fruitStock[fruit] else { return }
         
         if variation == .increase {
-            updateStock(fruit, for: targetStock + 1)
-        } else if variation == .decrease && targetStock >= 0 {
-            updateStock(fruit, for: targetStock - 1)
-        } else {
-            debugPrint("재고변경에 실패하였습니다.")
+            updateStock(fruit, for: targetStock + amount)
+        } else if variation == .decrease {
+            updateStock(fruit, for: targetStock - amount)
         }
-    }
-    
-    func subtractFruitStock(fruit: Fruit, amount: Int) {
-        guard let targetStock = fruitStock[fruit] else { return }
-        
-        updateStock(fruit, for: targetStock - amount)
     }
     
     func isEnoughStock(juiceRecipe: [Juice.Recipe]) -> Bool {

@@ -13,7 +13,11 @@ struct JuiceMaker {
     
     private func make(_ juice: Juice) {
         for ingredient in juice.recipe {
-            fruitStore.subtractFruitStock(fruit: ingredient.name, amount: ingredient.amount)
+            fruitStore.updateFruitStock(
+                fruit: ingredient.name,
+                variation: .decrease,
+                amount: ingredient.amount
+            )
         }
         
         debugPrint("\(juice)를 만들었습니다!")
