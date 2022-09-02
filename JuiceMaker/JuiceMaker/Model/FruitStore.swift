@@ -22,7 +22,9 @@ class FruitStore {
         guard amount > 0 else {
             throw FruitStoreError.invalidAmount
         }
-        try _ = getCurrentStock(of: fruit)
+        guard isInventoryFruitsListHas(fruit) else {
+            throw FruitStoreError.notInFruitList
+        }
         changeStock(of: fruit, by: amount)
     }
     
@@ -51,6 +53,13 @@ class FruitStore {
         guard currentStock >= amount else {
             throw FruitStoreError.outOfStock
         }
+    }
+    
+    func isInventoryFruitsListHas(_ fruit: Fruit) -> Bool {
+        guard inventory[fruit] != nil else {
+            return false
+        }
+        return true
     }
     
     func getCurrentStock(of fruit: Fruit) throws -> Int {
