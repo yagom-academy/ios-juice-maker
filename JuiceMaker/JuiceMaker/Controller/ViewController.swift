@@ -1,18 +1,14 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
+//  Created by Ash, 미니.
 // 
 
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
+	private let maker = JuiceMaker()
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+	}
 }
-
