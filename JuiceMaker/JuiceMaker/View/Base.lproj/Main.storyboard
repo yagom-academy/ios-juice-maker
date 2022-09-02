@@ -217,6 +217,13 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="4B7-dt-O2c"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="YhE-dw-GHK"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="cM2-HO-ZjQ"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="kRi-FW-ch6"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="gAt-Um-FMD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
