@@ -4,21 +4,11 @@
 //
 
 class FruitStore {
-    private var stock = makeDefaultStock(defaultCount: 10)
-    
-    static private func makeDefaultStock(defaultCount: Int) -> [Fruits] {
-        let fruitList = Fruits.FruitType.makeList()
-        var defaultStock = [Fruits]()
-        for fruit in fruitList {
-            defaultStock.append(Fruits(name: fruit, count: defaultCount))
-        }
-        print(defaultStock)
-        return defaultStock
-    }
+    private var stock = [Int](repeating: 10, count: 5)
     
     private func haveInStock(fruits: [Fruits]) -> Bool {
         for fruit in fruits {
-            let stockCount = stock[fruit.fruitIndex].count
+            let stockCount = stock[fruit.fruitIndex]
             let requestedCount = fruit.count
             if stockCount < requestedCount { return false }
         }
@@ -26,12 +16,13 @@ class FruitStore {
     }
     
     private func changeStock(_ fruit: Fruits, count: Int) {
-        stock[fruit.fruitIndex].count = count
+        stock[fruit.fruitIndex] = count
     }
     
     private func addStock(fruit: Fruits, isNegative: Bool = false) {
-        let stockCount = stock[fruit.fruitIndex].count
+        let stockCount = stock[fruit.fruitIndex]
         let requestedCount = fruit.count
+        
         var count: Int {
             isNegative ? stockCount - requestedCount : stockCount + requestedCount
         }

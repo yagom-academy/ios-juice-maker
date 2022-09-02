@@ -10,19 +10,6 @@ struct Fruits {
         case pineapple
         case kiwi
         case mango
-        
-        static func makeList() -> [Self] {
-            var fruitList = [Self]()
-            var fruitIndex: Int = Self.strawberry.rawValue
-            
-            while FruitType(rawValue: fruitIndex) != nil {
-                if let fruit = Self(rawValue: fruitIndex) {
-                    fruitList.append(fruit)
-                    fruitIndex += 1
-                }
-            }
-            return fruitList
-        }
     }
     
     var name: FruitType
