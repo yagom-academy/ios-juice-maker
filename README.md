@@ -36,17 +36,6 @@
 **이미 유효성을 확인 한 후에 `Dictionary`의 값을 사용할 때**
 - `fetchFruitAmount`함수를 사용하여, 과일의 유효성 체크를 하는데, 유효성 체크 후 `useFruits`함수를 사용하여 과일의 갯수를 감소시킵니다.
 - `useFruits`함수 내부에서 `Dictionary`값인 `fruits`를 사용하는데,이미 유효성 검사가 끝난 값이라 굳이 `throw`로 에러를 던지지 않고 `return`으로 처리해도 되지 않을까 고민했습니다.
-```swift
-func useFruits(recipe: [Fruit : Int]) throws {
-    for (fruit, amount) in recipe {
-        guard let fruitAmount = fruits[fruit] else {
-            throw JuiceMakerError.fruitExistError
-        }
-
-        self.fruits[fruit] = fruitAmount - amount
-    }
-}
-```
 
 **딕셔너리 [Fruit : Int]를 사용해서 과일 저장소를 구현할 때 Int의 모호함을 해결하기 위한 고민**
 
