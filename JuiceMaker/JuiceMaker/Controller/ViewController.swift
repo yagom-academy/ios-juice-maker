@@ -37,9 +37,20 @@ class ViewController: UIViewController {
         self.mangoStockLabel.text = "\(fruitStore.fruitsStock[.mango] ?? 0)"
     }
     
-    @IBAction func editStockButtonTapped(_ sender: UIBarButtonItem?) {
+    func transitionView(){
         guard let editStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") else { return }
         self.present(editStockViewController, animated: true)
+    }
+    
+    func registerAlert(alertController: UIAlertController, alertAction: [UIAlertAction]){
+        alertAction.forEach { action in
+            alertController.addAction(action)
+        }
+        self.present(alertController, animated: true)
+    }
+    
+    @IBAction func editStockButtonTapped(_ sender: UIBarButtonItem) {
+        transitionView()
     }
     
     @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
@@ -69,21 +80,17 @@ class ViewController: UIViewController {
             
             if let juice = juice {
                 let alert = UIAlertController(title: "알림", message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-                let defaultAction =  UIAlertAction(title: "예", style: UIAlertAction.Style.default)
-                alert.addAction(defaultAction)
-                self.present(alert, animated: true)
+                registerAlert(alertController: alert,
+                              alertAction: [UIAlertAction(title: "예", style: UIAlertAction.Style.default){ _ in self.viewDidLoad() }])
             }
             
         } catch {
             let alert = UIAlertController(title: "알림", message: "\(error.localizedDescription)", preferredStyle: .alert)
-            let defaultAction =  UIAlertAction(title: "아니오", style: .default)
-            let positiveAction = UIAlertAction(title: "예", style: .cancel)
-            alert.addAction(positiveAction)
-            alert.addAction(defaultAction)
-            self.present(alert, animated: true)
+            registerAlert(alertController: alert,
+                          alertAction: [UIAlertAction(title: "아니오", style: .cancel),
+                                        UIAlertAction(title: "예", style: .default) { _ in self.transitionView() }])
         }
         
-        self.viewDidLoad()
     }
 }
 
