@@ -8,7 +8,13 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruitStock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    private var fruitStock: [Fruit:Int] = [:]
+    
+    init() {
+        Fruit.allCases.forEach { fruit in
+            fruitStock.updateValue(fruit.initialStock, forKey: fruit)
+        }
+    }
     
     func add(_ fruit: Fruit, amountOf amount: Int) {
         if let currentStock = fruitStock[fruit] {

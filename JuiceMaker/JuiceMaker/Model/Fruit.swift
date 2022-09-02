@@ -6,4 +6,10 @@
 
 enum Fruit: CaseIterable {
     case strawberry, banana, pineapple, kiwi, mango
+    var initialStock: Int {
+        switch self {
+        default:
+            return 10
+        }
+    }
 }
