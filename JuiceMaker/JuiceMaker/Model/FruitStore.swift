@@ -25,21 +25,20 @@ class FruitStore {
         return true
     }
     
-    private func changeStock(_ fruit: Fruits) {
-        stock[fruit.fruitIndex] = fruit
+    private func changeStock(_ fruit: Fruits, count: Int) {
+        stock[fruit.fruitIndex].count = count
     }
-
+    
     private func addStock(fruit: Fruits, isNegative: Bool = false) {
         let stockCount = stock[fruit.fruitIndex].count
         let requestedCount = fruit.count
-
-        if isNegative {
-            changeStock(Fruits(name: fruit.name, count: stockCount - requestedCount))
-        } else {
-            changeStock(Fruits(name: fruit.name, count: stockCount + requestedCount))
+        var count: Int {
+            isNegative ? stockCount - requestedCount : stockCount + requestedCount
         }
-    }
         
+        changeStock(fruit, count: count)
+    }
+    
     func canSupplyRequest(_ fruits: [Fruits]) -> Bool {
         guard haveInStock(fruits: fruits) else {
             print("재고가 부족합니다.")
