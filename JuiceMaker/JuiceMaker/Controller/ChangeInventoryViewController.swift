@@ -2,7 +2,7 @@
 //  ChangeInventoryViewController.swift
 //  JuiceMaker
 //
-//  Created by yonggeun Kim on 2022/09/02.
+//  Created by Mene, Dragon on 2022/09/02.
 //
 
 import UIKit
