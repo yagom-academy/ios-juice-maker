@@ -2,7 +2,7 @@
 //  EditStockViewController.swift
 //  JuiceMaker
 //
-//  Created by leewonseok on 2022/09/02.
+//  Created by stone, jpush.
 //
 
 import UIKit
@@ -14,6 +14,7 @@ class EditStockViewController: UIViewController {
 
     }
     
-
-
+    @IBAction func closeButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

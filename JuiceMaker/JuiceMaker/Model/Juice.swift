@@ -5,7 +5,8 @@
 //  Created by stone, jpush.
 //
 
-enum Juice: String {    case strawberry
+enum Juice: String {
+    case strawberry
     case banana
     case kiwi
     case pineapple
