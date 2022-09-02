@@ -17,8 +17,8 @@ struct JuiceMaker {
             for ingredient in juice.recipe {
                 fruitStore.changeStock(of: ingredient.fruit, by: -ingredient.amount)
             }
-        } catch FruitStoreError.notInFruitList {
-            print(FruitStoreError.notInFruitList.failureReason)
+        } catch FruitStoreError.notInInventoryFruitList {
+            print(FruitStoreError.notInInventoryFruitList.failureReason)
         } catch FruitStoreError.outOfStock {
             print(FruitStoreError.outOfStock.failureReason)
         } catch {
