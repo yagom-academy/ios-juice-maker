@@ -7,7 +7,7 @@
 class FruitStore {
 	private var inventory: [Fruit: Int] = Fruit.beginningStock
 	
-	func haveStock(juice: Juice) throws {
+	func haveStock(for juice: Juice) throws {
 		let needFruitAndStock = juice.needFruitAndStock
 		
 		for (fruit, stock) in needFruitAndStock {
@@ -19,7 +19,7 @@ class FruitStore {
 		changeStock(fruitAndStock: needFruitAndStock)
 	}
 	
-	func changeStock(fruitAndStock: [Fruit: Int]) {
+	private func changeStock(fruitAndStock: [Fruit: Int]) {
 		for (fruit, stock) in fruitAndStock {
 			if let remainingStock = inventory[fruit] {
 				inventory.updateValue(remainingStock + stock, forKey: fruit)
