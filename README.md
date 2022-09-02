@@ -46,7 +46,7 @@
 
 ## 프로젝트 구조
 - Model
-    <img src="https://i.imgur.com/JA6ljkH.png" width="400" height="400"/>
+<img src="https://i.imgur.com/JA6ljkH.png" width="400" height="400"/>
 - Controller
  Step2 진행 후 작성.
 - View
