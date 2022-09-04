@@ -16,22 +16,41 @@ enum Juice: String {
         self.rawValue
     }
     
-    fileprivate var recipe: [Recipe] {
+    fileprivate var ingredient: [Fruit] {
         switch self {
         case .strawberryJuice:
-            return [Recipe(name: .strawberry, count: 16)]
+            return [.strawberry]
         case .bananaJuice:
-            return [Recipe(name: .banana, count: 2)]
+            return [.banana]
         case .kiwiJuice:
-            return [Recipe(name: .kiwi, count: 3)]
+            return [.kiwi]
         case .pineappleJuice:
-            return [Recipe(name: .pineapple, count: 2)]
+            return [.pineapple]
         case .mangoJuice:
-            return [Recipe(name: .mango, count: 3)]
+            return [.mango]
         case .strawberryBananaJuice:
-            return [Recipe(name: .strawberry, count: 10), Recipe(name: .banana, count: 1)]
+            return [.strawberry, .banana]
         case .mangoKiwiJuice:
-            return [Recipe(name: .mango, count: 2), Recipe(name: .kiwi, count: 1)]
+            return [.mango, .kiwi]
+        }
+    }
+    
+    fileprivate var ingredientCount: [Int] {
+        switch self {
+        case .strawberryJuice:
+            return [16]
+        case .bananaJuice:
+            return [2]
+        case .kiwiJuice:
+            return [3]
+        case .pineappleJuice:
+            return [2]
+        case .mangoJuice:
+            return [3]
+        case .strawberryBananaJuice:
+            return [10, 1]
+        case .mangoKiwiJuice:
+            return [2, 1]
         }
     }
 }
@@ -44,7 +63,9 @@ struct JuiceMaker {
     }
     
     func makeJuice(_ juice: Juice) {
-        guard store.canSupplyRequest(juice.recipe) else {
+        guard store.canSupplyRequest(fruits: juice.ingredient,
+                                     counts: juice.ingredientCount)
+        else {
             return
         }
         print("\(juice.name) 완성")

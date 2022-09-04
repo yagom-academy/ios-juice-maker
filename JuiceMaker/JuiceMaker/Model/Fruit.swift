@@ -3,8 +3,7 @@
 //  Created by Wonbi, woong
 //
 
-
-enum Fruit: Int {
+enum Fruit: Int, CaseIterable {
     case strawberry = 0
     case banana
     case pineapple
@@ -13,15 +12,5 @@ enum Fruit: Int {
     
     var index: Int {
         self.rawValue
-    }
-}
-
-struct Recipe {
-    var name: Fruit
-    var count: Int
-    
-    init(name: Fruit, count: Int) {
-        self.name = name
-        self.count = count
     }
 }
