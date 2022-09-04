@@ -1,8 +1,7 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//  Created by Wonbi, woong
+//
 
 import UIKit
 
@@ -12,7 +11,4 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
-
