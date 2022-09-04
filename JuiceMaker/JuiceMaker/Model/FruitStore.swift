@@ -7,13 +7,12 @@ class FruitStore {
     private var stock: [Int]
     
     init(stockCount: Int) {
-        self.stock = [Int](repeating: stockCount, count: Fruit.allCases.count)
+        let count = Fruit.allCases.count
+        self.stock = [Int](repeating: stockCount, count: count)
     }
     
-    private func haveInStock(fruits: [Fruit], counts: [Int]) -> Bool {
-        let recipe = zip(fruits, counts)
-        
-        for (fruit, count) in recipe {
+    private func haveInStock(ingredient: [(Fruit, Int)]) -> Bool {
+        for (fruit, count) in ingredient {
             let stockCount = stock[fruit.index]
             
             if stockCount < count {
@@ -23,31 +22,26 @@ class FruitStore {
         return true
     }
     
-    private func changeStock(_ fruit: Fruit, count: Int) {
-        stock[fruit.index] = count
-    }
-    
-    private func addStock(fruit: Fruit, count: Int, isNegative: Bool = false) {
+    private func changeStock(fruit: Fruit, count: Int, isMinus: Bool = false) {
         let stockCount = stock[fruit.index]
         
         var computedCount: Int {
-            isNegative ? stockCount - count : stockCount + count
+            isMinus ? stockCount - count : stockCount + count
         }
         
-        changeStock(fruit, count: computedCount)
+        stock[fruit.index] = computedCount
     }
     
-    func canSupplyRequest(fruits: [Fruit], counts: [Int]) -> Bool {
-        guard haveInStock(fruits: fruits, counts: counts) else {
+    func canSupplyRequest(ingredient: [(Fruit, Int)]) -> Bool {
+        guard haveInStock(ingredient: ingredient) else {
             print("재고가 부족합니다.")
             return false
         }
-        
-        let recipe = zip(fruits, counts)
-        
-        for (fruit, count) in recipe {
-            addStock(fruit: fruit, count: count, isNegative: true)
+        print(stock)
+        for (fruit, count) in ingredient {
+            changeStock(fruit: fruit, count: count, isMinus: true)
         }
+        print(stock)
         return true
     }
 }
