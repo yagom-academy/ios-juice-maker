@@ -24,4 +24,19 @@ class ViewController: UIViewController {
                 animated: true,
                 completion: nil)
     }
+    
+    func showEditAlert(_ message: String) {
+        let alert = UIAlertController(title: nil,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let editAction = UIAlertAction(title: "예",
+                                       style: .default)
+        let cancelAction = UIAlertAction(title: "아니오",
+                                         style: .default)
+        alert.addAction(editAction)
+        alert.addAction(cancelAction)
+        present(alert,
+                animated: true,
+                completion: nil)
+    }
 }
