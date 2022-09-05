@@ -90,5 +90,20 @@ class ViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
+    
+    func showOrderFailedAlert() {
+        let message = "재료가 모자라요. 재고를 수정할까요?"
+        let alert = UIAlertController(title: nil,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예",
+                                     style: .default)
+        let cancelAction = UIAlertAction(title: "아니요",
+                                         style: .default)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
 }
 
