@@ -7,9 +7,47 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var juiceMaker: JuiceMaker = .init(fruitStore: .init(initialStock: 10))
+    
+    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak var strawberryBananaMixJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoKiwiMixJuiceOrderButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+        let juice: Juice
+        switch sender {
+        case strawberryJuiceOrderButton:
+            juice = .strawberryJuice
+        case bananaJuiceOrderButton:
+            juice = .bananaJuice
+        case kiwiJuiceOrderButton:
+            juice = .kiwiJuice
+        case pineappleJuiceOrderButton:
+            juice = .pineappleJuice
+        case strawberryBananaMixJuiceOrderButton:
+            juice = .strawberryBananaMixJuice
+        case mangoJuiceOrderButton:
+            juice = .mangoJuice
+        case mangoKiwiMixJuiceOrderButton:
+            juice = .mangoKiwiMixJuice
+        default:
+            return
+        }
+        let result: Result<Juice,FruitStoreError> = juiceMaker.make(juice)
+        switch result {
+        case .success:
+            showOKAlert("\(juice.name) 나왔습니다! 맛있게 드세요!")
+        case .failure:
+            showEditAlert("재료가 모자라요. 재고를 수정할까요?")
+        }
     }
     
     func showOKAlert(_ message: String) {
