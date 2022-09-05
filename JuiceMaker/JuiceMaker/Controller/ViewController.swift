@@ -21,6 +21,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
+        prsentStockEditView()
+    }
+    
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
         let juice: Juice
         switch sender {
@@ -68,7 +72,9 @@ class ViewController: UIViewController {
                                       message: message,
                                       preferredStyle: .alert)
         let editAction = UIAlertAction(title: "예",
-                                       style: .default)
+                                       style: .default) { (action) in
+            self.prsentStockEditView()
+        }
         let cancelAction = UIAlertAction(title: "아니오",
                                          style: .default)
         alert.addAction(editAction)
@@ -76,5 +82,16 @@ class ViewController: UIViewController {
         present(alert,
                 animated: true,
                 completion: nil)
+    }
+    
+    func prsentStockEditView() {
+        guard let stockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditViewController") as? StockEditViewController else {
+            return
+        }
+        stockEditViewController.modalTransitionStyle = .coverVertical
+        stockEditViewController.modalPresentationStyle = .fullScreen
+        self.present(stockEditViewController,
+                     animated: true,
+                     completion: nil)
     }
 }
