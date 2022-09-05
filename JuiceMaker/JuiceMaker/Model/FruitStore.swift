@@ -7,13 +7,8 @@
 import Foundation
 
 class FruitStore {
-    enum Fruit {
-        case strawberry
-        case banana
-        case pineapple
-        case kiwi
-        case mango
-    }
+    static let sharedFruitStore = FruitStore()
+    private init() {}
     
     private var fruitStock: Dictionary<Fruit, Int> = [
         .strawberry : 10,
