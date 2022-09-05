@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         settingFruitStockLabel()
     }
     
-    @IBAction func toModifyStockView(_ sender: Any) {
+    @IBAction func modifyStockButtonTapped(_ sender: Any) {
         guard let modifyStockVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
             return
         }
