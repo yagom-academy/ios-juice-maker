@@ -70,12 +70,31 @@ class ViewController: UIViewController {
             showSuccessAlert(message: message)
             viewDidLoad()
         case .failure(let error):
-            showFailureAlert(message: error.errorDescription)
+            guard let juiceMakerError = error as? JuiceMakerError else {
+                return showFailureAlert(message: error.localizedDescription)
+            }
+            showFailureAlert(message: juiceMakerError.errorDescription )
         }
     }
     
-    func getresult() {
-        
+    func showSuccessAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+               let okAction = UIAlertAction(title: "예", style: .default, handler : nil)
+               
+               alert.addAction(okAction)
+               present(alert, animated: true, completion: nil)
+    }
+    
+    func showFailureAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message,preferredStyle: .alert)
+              let okAction = UIAlertAction(title: "예", style: .default) { _ in
+                  self.moveToFruitStockVC()
+              }
+              let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+              
+              alert.addAction(noAction)
+              alert.addAction(okAction)
+              present(alert, animated: true, completion: nil)
     }
 
     func moveToFruitStockVC() {
