@@ -29,16 +29,16 @@ struct FruitStore {
         secondFruit: Fruits,
         secondAmount: Int
     ) throws {
-        guard let numberOfFruit1 = fruitList[firstFruit],
-              let numberOfFruit2 = fruitList[secondFruit] else {
+        guard let countOfFruit1 = fruitList[firstFruit],
+              let countOfFruit2 = fruitList[secondFruit] else {
             throw JuiceMakerError.notExistFruits
         }
         
-        if numberOfFruit1 - firstAmount < 0 || numberOfFruit2 - secondAmount < 0 {
+        if countOfFruit1 - firstAmount < 0 || countOfFruit2 - secondAmount < 0 {
             throw JuiceMakerError.underFlowOfAmount
         }
         
-        fruitList[firstFruit] = numberOfFruit1 - firstAmount
-        fruitList[secondFruit] = numberOfFruit2 - secondAmount
+        fruitList[firstFruit] = countOfFruit1 - firstAmount
+        fruitList[secondFruit] = countOfFruit2 - secondAmount
     }
 }

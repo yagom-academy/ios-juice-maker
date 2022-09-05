@@ -26,7 +26,7 @@ struct JuiceMaker {
         do {
             try makeFruitJuice(of: fruitJuice)
         } catch {
-            debugPrint(error.localizedDescription)
+            debugPrint(error)
         }
     }
 }
