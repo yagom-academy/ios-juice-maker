@@ -27,6 +27,34 @@ class ViewController: UIViewController {
         kiwiLabel.text = "10"
         mangoLabel.text = "10"
     }
+    
+    @IBAction func touchUpStrawberryBananaJuice(_ sender: UIButton) {
+        print("딸바쥬스")
+    }
+    
+    @IBAction func touchUpMangoKiwiJuice(_ sender: UIButton) {
+        print("망고키위쥬스")
+    }
+    
+    @IBAction func touchUpStrawberryJuice(_ sender: UIButton) {
+        print("딸기쥬스")
+    }
+    
+    @IBAction func touchUpBananaJuice(_ sender: UIButton) {
+        print("바나나쥬스")
+    }
+    
+    @IBAction func touchUpKiwiJuice(_ sender: UIButton) {
+        print("키위쥬스")
+    }
+    
+    @IBAction func touchUpPineappleJuice(_ sender: UIButton) {
+        print("파인애플쥬스")
+    }
+    
+    @IBAction func touchUpMangoJuice(_ sender: UIButton) {
+        print("망고쥬스")
+    }
 
 }
 
