@@ -6,16 +6,13 @@
 
 struct JuiceMaker {
     
-    func make(juice: Juice) throws {
+    func make(_ juice: Juice) {
         do {
             let recipe = juice.recipe
             
-            try recipe.forEach { (fruit: Fruit, amount: Int) in
-                try FruitStore.shared.reduceInventory(of: fruit, by: amount)
-            }
-            
+            try FruitStore.shared.reduce(by: recipe)
         } catch {
-            throw FruitStoreError.insufficientInventory
+            print("재고 부족")
         }
     }
 }

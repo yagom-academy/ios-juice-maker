@@ -1,11 +1,11 @@
-enum Juice {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case mango
-    case strawberryBanana
-    case mangoKiwi
+enum Juice: Int {
+    case strawberry = 1
+    case banana = 2
+    case kiwi = 3
+    case pineapple = 4
+    case mango = 5
+    case strawberryBanana = 6
+    case mangoKiwi = 7
     
     var recipe: [Fruit: Int] {
         switch self {
