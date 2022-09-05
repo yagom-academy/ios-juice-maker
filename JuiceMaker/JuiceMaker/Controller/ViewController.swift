@@ -78,5 +78,17 @@ class ViewController: UIViewController {
             return "딸바쥬스 나왔습니다! 맛있게 드세요!"
         }
     }
+    
+    func showOrderedAlert(juice: JuiceMaker.Juice) {
+        let message = fetchOrderedAlertMessage(juice: juice)
+        let alert = UIAlertController(title: nil,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예",
+                                     style: .default)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
 }
 
