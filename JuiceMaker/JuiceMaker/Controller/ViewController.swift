@@ -22,6 +22,14 @@ class ViewController: UIViewController {
         settingFruitStockLabel()
     }
     
+    @IBAction func toModifyStockView(_ sender: Any) {
+        guard let modifyStockVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
+            return
+        }
+
+        present(modifyStockVC, animated: true, completion: nil)
+    }
+    
     @IBAction func orderButtonTapped(_ sender: UIButton) {
         guard var orderedJuice = sender.currentTitle else {
             return
