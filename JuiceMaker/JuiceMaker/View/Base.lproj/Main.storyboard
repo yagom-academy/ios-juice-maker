@@ -215,8 +215,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <action selector="touchUpChangeFruitStockButton:" destination="BYZ-38-t0r" id="SfT-9o-4Nw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="QGY-ap-m2a"/>
+                        <outlet property="changeFruitStockButton" destination="C3q-Te-cNT" id="3iP-fO-5zj"/>
+                        <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="5k7-P6-22y"/>
+                        <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="fXj-Ug-eSh"/>
+                        <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="ql1-wJ-bgJ"/>
+                        <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="SLf-rE-EaM"/>
+                        <outlet property="strawberryBannaJuiceButton" destination="hrc-2F-fzl" id="5Xy-MX-Znq"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="roH-DV-rXI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -243,7 +257,7 @@
         <!--View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fruitStoreStock" id="Yu1-lM-nqp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
