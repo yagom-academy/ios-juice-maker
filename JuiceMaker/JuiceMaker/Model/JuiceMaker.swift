@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    enum Juice {
+    enum Juice: Int {
         case strawberryJuice
         case bananaJuice
         case kiwiJuice

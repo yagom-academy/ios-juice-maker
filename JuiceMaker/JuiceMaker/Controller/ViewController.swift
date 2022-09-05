@@ -53,5 +53,11 @@ class ViewController: UIViewController {
         let mangoStock = try! juiceMaker.fetchStock(of: .mango)
         mangoStockLabel.text = String(mangoStock)
     }
+    
+    @IBAction func touchUpOrderButton(_ sender: UIButton) {
+        if let orderedJuice = JuiceMaker.Juice(rawValue: sender.tag) {
+            juiceMaker.produce(juice: orderedJuice)
+        }
+    }
 }
 
