@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by stone, jpush.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -39,14 +39,23 @@ class ViewController: UIViewController {
     
     func transitionView(){
         guard let editStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") else { return }
+        
+        editStockViewController
+        
         self.present(editStockViewController, animated: true)
     }
     
-    func registerAlert(alertController: UIAlertController, alertAction: [UIAlertAction]){
-        alertAction.forEach { action in
-            alertController.addAction(action)
-        }
-        self.present(alertController, animated: true)
+    func alertSuccess(for juice: Juice) {
+        let alert = UIAlertController(title: "알림", message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "예", style: .default) { _ in self.viewDidLoad() })
+        self.present(alert, animated: true)
+    }
+    
+    func alertFailure(for error: Error) {
+        let alert = UIAlertController(title: "알림", message: "\(error.localizedDescription)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
+        alert.addAction(UIAlertAction(title: "예", style: .default) { _ in self.transitionView() })
+        self.present(alert, animated: true)
     }
     
     @IBAction func editStockButtonTapped(_ sender: UIBarButtonItem) {
@@ -78,17 +87,10 @@ class ViewController: UIViewController {
                 break
             }
             
-            if let juice = juice {
-                let alert = UIAlertController(title: "알림", message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-                registerAlert(alertController: alert,
-                              alertAction: [UIAlertAction(title: "예", style: UIAlertAction.Style.default){ _ in self.viewDidLoad() }])
-            }
+            if let juice = juice { alertSuccess(for: juice) }
             
         } catch {
-            let alert = UIAlertController(title: "알림", message: "\(error.localizedDescription)", preferredStyle: .alert)
-            registerAlert(alertController: alert,
-                          alertAction: [UIAlertAction(title: "아니오", style: .cancel),
-                                        UIAlertAction(title: "예", style: .default) { _ in self.transitionView() }])
+            alertFailure(for: error)
         }
         
     }
