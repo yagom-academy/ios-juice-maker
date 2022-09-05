@@ -34,7 +34,7 @@ class FruitStore {
         }
     }
     
-    func fetchStockOf(_ ingredient: Fruit) -> Int? {
-        return fruitStock[ingredient] ?? nil
+    func fetchStockOf(_ ingredient: Fruit) -> Int {
+        return fruitStock[ingredient] ?? 0
     }
 }

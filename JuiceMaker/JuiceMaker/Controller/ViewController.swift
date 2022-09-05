@@ -28,19 +28,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        strawberryStockLabel.text = String(validateStock(.strawberry))
-        bananaStockLabel.text = String(validateStock(.banana))
-        pineappleStockLabel.text = String(validateStock(.pineapple))
-        kiwiStockLabel.text = String(validateStock(.kiwi))
-        mangoStockLabel.text = String(validateStock(.mango))
-    }
-    
-    func validateStock(_ fruit: Fruit) -> Int {
-        guard let stock = FruitStore.sharedFruitStore.fetchStockOf(fruit) else {
-            return 0
-        }
-        
-        return stock
+        strawberryStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.strawberry))
+        bananaStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.banana))
+        pineappleStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.pineapple))
+        kiwiStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.kiwi))
+        mangoStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.mango))
     }
     
     @IBAction func orderJuice(sender: UIButton) {
@@ -79,31 +71,31 @@ class ViewController: UIViewController {
     
     func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-               let okAction = UIAlertAction(title: "예", style: .default, handler : nil)
-               
-               alert.addAction(okAction)
-               present(alert, animated: true, completion: nil)
+        let okAction = UIAlertAction(title: "예", style: .default, handler : nil)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func showFailureAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message,preferredStyle: .alert)
-              let okAction = UIAlertAction(title: "예", style: .default) { _ in
-                  self.moveToFruitStockVC()
-              }
-              let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-              
-              alert.addAction(noAction)
-              alert.addAction(okAction)
-              present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default) { _ in
+            self.moveToFruitStockVC()
+        }
+        let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+        
+        alert.addAction(noAction)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
-
+    
     func moveToFruitStockVC() {
         guard let fruitStoreStockViewController =
                 self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreStock") else { return }
         self.present(fruitStoreStockViewController, animated: true, completion: nil)
     }
-
-    @IBAction func touchUpChangeFruitStockButton(_ sender: Any) {
+    
+    @IBAction func touchUpChangeFruitStockButton(_ sender: UIBarButtonItem) {
         moveToFruitStockVC()
     }
     

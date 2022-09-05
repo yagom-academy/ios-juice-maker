@@ -280,10 +280,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--View Controller-->
+        <!--재고 수정 화면-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="fruitStoreStock" id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fruitStoreStock" id="Yu1-lM-nqp" customClass="FruitStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -387,7 +387,16 @@
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 수정 화면" leftItemsSupplementBackButton="YES" id="g4W-fY-l7r">
+                        <barButtonItem key="backBarButtonItem" title="뒤로가기" id="usK-5H-c0b"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="5bv-5c-P8w"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="3Ep-dK-tg2"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="JUT-pg-5Eq"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="A7V-wg-z4g"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="nV2-YG-qLB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
