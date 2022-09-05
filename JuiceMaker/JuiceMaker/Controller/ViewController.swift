@@ -8,27 +8,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet private var fruitLabels: [UILabel]!
     
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         updateInventory()
     }
     
     func updateInventory() {
         let errorValue = -1
-        strawberryLabel.text = "\(FruitStore.shared.inventoryList[.strawberry] ?? errorValue)"
-        bananaLabel.text = "\(FruitStore.shared.inventoryList[.banana] ?? errorValue)"
-        pineappleLabel.text = "\(FruitStore.shared.inventoryList[.pineapple] ?? errorValue)"
-        kiwiLabel.text = "\(FruitStore.shared.inventoryList[.kiwi] ?? errorValue)"
-        mangoLabel.text = "\(FruitStore.shared.inventoryList[.mango] ?? errorValue)"
+        
+        fruitLabels.forEach {
+            if let fruit = Fruit.init(rawValue: $0.tag) {
+                $0.text = "\(FruitStore.shared.inventoryList[fruit] ?? errorValue)"
+            }
+        }
     }
  
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
