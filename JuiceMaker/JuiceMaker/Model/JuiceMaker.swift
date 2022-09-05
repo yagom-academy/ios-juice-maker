@@ -56,4 +56,8 @@ struct JuiceMaker {
             print("Unexpected error: \(error).")
         }
     }
+    
+    func fetchStock(of fruit: Fruit) throws -> Int {
+        return try fruitStore.fetchStock(of: fruit)
+    }
 }
