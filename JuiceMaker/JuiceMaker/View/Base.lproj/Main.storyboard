@@ -217,13 +217,13 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <action selector="modify:" destination="oDc-BI-cIU" id="K7D-Sv-uvT"/>
+                                <action selector="tappedButton:" destination="BYZ-38-t0r" id="LsP-5m-05c"/>
+                                <segue destination="Yu1-lM-nqp" kind="presentation" id="PeN-pX-j9E"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="oDc-BI-cIU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="762.72321428571422" y="92.753623188405811"/>
         </scene>
@@ -245,7 +245,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--재고수정-->
+        <!--Second View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController id="Yu1-lM-nqp" customClass="SecondViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -381,18 +381,27 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ZK-Ss-wHq">
+                                <rect key="frame" x="710.33333333333337" y="0.0" width="76.666666666666629" height="34.333333333333336"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cancel">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="tappedCancelButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="P7Z-pa-ems"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="1ZK-Ss-wHq" secondAttribute="trailing" constant="13" id="b00-Gu-2BS"/>
                             <constraint firstItem="Gsl-dy-hEL" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="eFV-r7-bfa"/>
+                            <constraint firstItem="1ZK-Ss-wHq" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" id="imn-LX-BEg"/>
                             <constraint firstItem="Gsl-dy-hEL" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="tlE-ai-yP1"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="재고수정" largeTitleDisplayMode="always" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="AYX-xB-wGW"/>
-                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

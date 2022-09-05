@@ -11,11 +11,13 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     @IBAction func btnComplete(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
+    @IBAction func tappedCancelButton(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
