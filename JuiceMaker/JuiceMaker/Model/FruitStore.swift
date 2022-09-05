@@ -5,10 +5,12 @@
 //
 
 class FruitStore {
+    static let shared: FruitStore = FruitStore()
+    
     private(set) var fruitsInventory: [Fruit: Int] = [:]
     let defaultValueOfInventory = 10
     
-    init() {
+    private init() {
         Fruit.allCases.forEach {
             fruitsInventory[$0] = defaultValueOfInventory
         }

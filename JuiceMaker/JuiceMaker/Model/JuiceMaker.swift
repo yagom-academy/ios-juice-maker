@@ -5,14 +5,13 @@
 //
 
 struct JuiceMaker {
-    private let fruitStore: FruitStore = FruitStore()
     
     func make(juice: Juice) throws {
         do {
             let recipe = juice.recipe
             
             try recipe.forEach { (fruit: Fruit, amount: Int) in
-                try fruitStore.reduceInventory(of: fruit, by: amount)
+                try FruitStore.shared.reduceInventory(of: fruit, by: amount)
             }
             
         } catch {

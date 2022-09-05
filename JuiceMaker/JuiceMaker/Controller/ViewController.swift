@@ -21,11 +21,12 @@ class ViewController: UIViewController {
     }
     
     func updateInventory() {
-        strawberryLabel.text = "10"
-        bananaLabel.text = "10"
-        pineappleLabel.text = "10"
-        kiwiLabel.text = "10"
-        mangoLabel.text = "10"
+        let errorValue = -1
+        strawberryLabel.text = "\(FruitStore.shared.fruitsInventory[.strawberry] ?? errorValue)"
+        bananaLabel.text = "\(FruitStore.shared.fruitsInventory[.banana] ?? errorValue)"
+        pineappleLabel.text = "\(FruitStore.shared.fruitsInventory[.pineapple] ?? errorValue)"
+        kiwiLabel.text = "\(FruitStore.shared.fruitsInventory[.kiwi] ?? errorValue)"
+        mangoLabel.text = "\(FruitStore.shared.fruitsInventory[.mango] ?? errorValue)"
     }
     
     @IBAction func touchUpStrawberryBananaJuice(_ sender: UIButton) {
