@@ -15,3 +15,9 @@ enum ConstantUsageFruit {
     static let mangoKiwi: (mango: Int, kiwi: Int) = (2, 2)
     static let invalidFruit: Int = -1
 }
+
+enum ConstantSentence {
+    static let navigationTitle: String =  "맛있는 주스를 만들어 드려요!"
+    static let successAlertMent: String = " 나왔습니다! 맛있게 드세요!"
+    static let failedAlertMent: String = "재료가 모자라요. 재고를 수정할까요?"
+}
