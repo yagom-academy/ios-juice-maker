@@ -50,4 +50,5 @@ struct JuiceMaker {
         }
         print("\(juice.name) 완성")
     }
+    
 }

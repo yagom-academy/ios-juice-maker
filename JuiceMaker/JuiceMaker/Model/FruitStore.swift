@@ -4,7 +4,7 @@
 //
 
 class FruitStore {
-    var stock: [Int]
+    private var stock: [Int]
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
@@ -43,5 +43,9 @@ class FruitStore {
         }
         print(stock)
         return true
+    }
+    
+    func displayStockCount() -> [Int] {
+        stock
     }
 }

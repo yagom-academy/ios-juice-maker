@@ -6,12 +6,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker(store: FruitStore(stockCount: 10))
+    let store = FruitStore(stockCount: 10)
+
+    @IBOutlet weak var strawberryCountLabel: UILabel!
+    @IBOutlet weak var bananaCountLabel: UILabel!
+    @IBOutlet weak var pineappleCountLabel: UILabel!
+    @IBOutlet weak var kiwiCountLabel: UILabel!
+    @IBOutlet weak var mangoCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+        displayStock()
     }
     @IBAction func tappedButton(_ sender: Any) {
         
@@ -20,6 +25,8 @@ class ViewController: UIViewController {
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         guard let juiceName = sender.restorationIdentifier else { return }
         guard let juice = Juice(rawValue: juiceName) else { return }
+        
+        let juiceMaker = JuiceMaker(store: store)
         
         juiceMaker.makeJuice(juice)
         madeJuiceAlert(message: "\(juiceName) 나왔습니다! 맛있게 드세요!")
@@ -45,7 +52,20 @@ class ViewController: UIViewController {
 
         present(alert, animated: true)
     }
+
+    func displayStock() {
+        strawberryCountLabel.text = String(store.displayStockCount()[0])
+        bananaCountLabel.text = String(store.displayStockCount()[1])
+        pineappleCountLabel.text = String(store.displayStockCount()[2])
+        kiwiCountLabel.text = String(store.displayStockCount()[3])
+        mangoCountLabel.text = String(store.displayStockCount()[4])
+        
+        
+    }
+
 }
+
+
 
 // 주스 제조후에 나오는 얼럿 : 000 쥬스 나왔습니다! 맛있게 드세요! (확인)
 // 주스 재고가 없는 경우 얼럿 : 재료가 모자라요 재고를 수정할까요? (예-재고수정화면이동/아니오-얼럿닫기)
