@@ -47,15 +47,14 @@ class ViewController: UIViewController {
             showFailedAlert(message: ConstantSentence.failedAlertMent)
             return
         }
+        
         showSuccessAlert(message: juice.rawValue + ConstantSentence.successAlertMent)
         settingFruitStockLabel()
     }
 
     func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
-
-        }
+        let confirmAction = UIAlertAction(title: "예", style: .default)
         alert.addAction(confirmAction)
         self.present(alert, animated: true)
     }
@@ -66,12 +65,11 @@ class ViewController: UIViewController {
             guard let modifyStockVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
                 return
             }
-
+            
             self.present(modifyStockVC, animated: true, completion: nil)
         }
         
         let cancleAction = UIAlertAction(title: "아니오", style: .cancel)
-        
         alert.addAction(confirmAction)
         alert.addAction(cancleAction)
         self.present(alert, animated: true)
@@ -91,4 +89,3 @@ class ViewController: UIViewController {
         self.mangoStockLabel.text = String(fruitStore.bringValidFruitStock(.mango))
     }
 }
-
