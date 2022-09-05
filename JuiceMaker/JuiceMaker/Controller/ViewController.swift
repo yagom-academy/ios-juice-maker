@@ -56,8 +56,16 @@ class ViewController: UIViewController {
     
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         if let orderedJuice = JuiceMaker.Juice(rawValue: sender.tag) {
-            juiceMaker.produce(juice: orderedJuice)
+            do {
+                try juiceMaker.produce(juice: orderedJuice)
+                showOrderedAlert(juice: orderedJuice)
+            } catch JuiceMakerError.outOfStock {
+                showOrderFailedAlert()
+            } catch {
+                print("unexpected error: \(error)")
+            }
         }
+        updateStockLabel()
     }
     
     func fetchOrderedAlertMessage(juice: JuiceMaker.Juice) -> String {
