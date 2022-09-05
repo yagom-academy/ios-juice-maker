@@ -1,14 +1,10 @@
-struct JuiceMaker {
+class JuiceMaker {
+    static let shared: JuiceMaker = JuiceMaker()
     private var fruitStore = FruitStore(fruitAmount: 50)
-    private var fruitJuiceList: [FruitJuice: Int] = [:]
     
-    init(numberOfFruitJuice: Int = 0) {
-        for fruitJuice in FruitJuice.allCases {
-            fruitJuiceList[fruitJuice] = numberOfFruitJuice
-        }
-    }
+    private init() { }
     
-    mutating func makeFruitJuice(of fruitJuice: FruitJuice) throws {
+    func makeFruitJuice(of fruitJuice: FruitJuice) throws {
         switch fruitJuice {
         case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
             let (fruit, amount) = fruitJuice.juiceIngridients.first
@@ -22,11 +18,13 @@ struct JuiceMaker {
         }
     }
     
-    mutating func takeAnOrder(fruitJuice: FruitJuice) {
+    func takeAnOrder(fruitJuice: FruitJuice) -> Bool {
         do {
             try makeFruitJuice(of: fruitJuice)
         } catch {
             debugPrint(error)
+            return false
         }
+        return true
     }
 }
