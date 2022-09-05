@@ -26,11 +26,15 @@ class FruitStore {
     
     func checkStockOf(_ ingredient: Fruit, total: Int) throws {
         guard let curStock = fruitStock[ingredient] else {
-            throw JuiceMakerError.noSuchFruit
+            return
         }
         
         guard curStock >= total else {
             throw JuiceMakerError.stockShortage
         }
+    }
+    
+    func fetchStockOf(_ ingredient: Fruit) -> Int? {
+        return fruitStock[ingredient] ?? nil
     }
 }

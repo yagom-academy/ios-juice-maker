@@ -7,20 +7,16 @@
 import Foundation
 
 struct JuiceMaker {
-    func makeJuice(_ juice: Juice, total: Int) {
+    func makeJuice(_ juice: Juice, total: Int) -> Result<String, Error> {
         do {
             try checkFruitStore(for: juice, total: total)
+            useFruit(juice, total: total)
+            return .success("\(juice.juiceName) 나왔습니다! 맛있게 드세요!")
         } catch let error as JuiceMakerError {
-            print(error.errorDescription)
-            return
+            return .failure(error)
         } catch {
-            print("\(error)")
-            return
+            return .failure(error)
         }
-        
-        useFruit(juice, total: total)
-        
-        print("\(juice.juiceName) \(total)잔 완성")
     }
     
     private func checkFruitStore(for juice: Juice, total: Int) throws {
