@@ -7,33 +7,47 @@
 class FruitStore {
     static let shared: FruitStore = FruitStore()
     
-    private(set) var fruitsInventory: [Fruit: Int] = [:]
+    private(set) var inventoryList: [Fruit: Int] = [:]
     let defaultValueOfInventory = 10
     
     private init() {
         Fruit.allCases.forEach {
-            fruitsInventory[$0] = defaultValueOfInventory
+            inventoryList[$0] = defaultValueOfInventory
         }
     }
     
-    func increaseInventory(of fruit: Fruit, by amount: Int) {
+    func increase(of fruit: Fruit, by amount: Int) {
         if amount >= 0,
-           let inventory = fruitsInventory[fruit] {
-            self.fruitsInventory.updateValue(inventory + amount, forKey: fruit)
+           let inventory = inventoryList[fruit] {
+            self.inventoryList.updateValue(inventory + amount, forKey: fruit)
         }
     }
     
-    func reduceInventory(of fruit: Fruit, by amount: Int) throws {
+    func reduce(of fruit: Fruit, by amount: Int) throws {
         if hasEnoughInventory(of: fruit, to: amount),
-           let inventory = fruitsInventory[fruit] {
-            self.fruitsInventory.updateValue(inventory - amount, forKey: fruit)
+           let inventory = inventoryList[fruit] {
+            self.inventoryList.updateValue(inventory - amount, forKey: fruit)
         } else {
             throw FruitStoreError.insufficientInventory
         }
     }
     
+    func reduce(by amount: [Fruit: Int]) throws {
+        try amount.forEach { (fruit: Fruit, amount: Int) in
+            if !hasEnoughInventory(of: fruit, to: amount) {
+                throw FruitStoreError.insufficientInventory
+            }
+        }
+        
+        amount.forEach { (fruit: Fruit, amount: Int) in
+            if let inventory = inventoryList[fruit] {
+                self.inventoryList.updateValue(inventory - amount, forKey: fruit)
+            }
+        }
+    }
+    
     func hasEnoughInventory(of fruit: Fruit, to amount: Int) -> Bool {
-        if let inventory = fruitsInventory[fruit],
+        if let inventory = inventoryList[fruit],
            inventory >= amount {
             return true
         }
