@@ -1,11 +1,11 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMakerViewController - JuiceMakerViewController.swift
 //  Created by Ash, 미니.
 // 
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
 	private let maker = JuiceMaker()
 	
 	@IBOutlet weak var strawberryStockLabel: UILabel!
@@ -16,6 +16,10 @@ class ViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		receiveStockChangedNoti()
+	}
+	
+	func receiveStockChangedNoti() {
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(didChangeStocks(noti:)),
@@ -55,10 +59,9 @@ class ViewController: UIViewController {
 	}
 	
 	func showAlertController(isSuccess: Bool, juice: Juice) {
-		let titleMessage = isSuccess ? "주문 완료" : "주문 불가"
-		let message = isSuccess ? "\(juice.description) 나왔습니다! 맛있게 드세요!" : "재료가 모자라요. 재고를 수정할까요?"
-		let confirmMessage = isSuccess ? "확인" : "예"
-		let cancelMessage = isSuccess ? "" : "아니요"
+		let titleMessage = isSuccess ? AlertMessages.successTitle : AlertMessages.failureTitle
+		let message = isSuccess ? "\(juice.description) \(AlertMessages.successMessage)" : AlertMessages.failureMessage
+		let confirmMessage = isSuccess ? AlertMessages.successConfirmMessage : AlertMessages.failureConfirmMessage
 		
 		let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
 		
@@ -67,11 +70,11 @@ class ViewController: UIViewController {
 				self.performSegue(withIdentifier: "presentModify", sender: nil)
 			}
 		}
-		let cancelAction = UIAlertAction(title: cancelMessage, style: .default)
 		
 		if isSuccess {
 			alertController.addAction(okAction)
 		} else {
+			let cancelAction = UIAlertAction(title: AlertMessages.failureCancelMessage, style: .default)
 			alertController.addAction(cancelAction)
 			alertController.addAction(okAction)
 		}

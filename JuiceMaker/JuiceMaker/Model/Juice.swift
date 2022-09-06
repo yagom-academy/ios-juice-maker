@@ -4,7 +4,7 @@
 //
 
 enum Juice: Int, CaseIterable {
-	case strawberryJuice = 0
+	case strawberryJuice
 	case bananaJuice
 	case pineappleJuice
 	case kiwiJuice

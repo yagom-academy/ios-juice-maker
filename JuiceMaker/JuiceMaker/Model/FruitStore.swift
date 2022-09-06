@@ -6,9 +6,8 @@
 import Foundation
 
 // 과일 저장소 타입
-final class FruitStore {
-//	static var shared = FruitStore()
-	var inventory: [Fruit: Int] = Fruit.beginningStock {
+class FruitStore {
+	private var inventory: [Fruit: Int] = Fruit.beginningStock {
 		didSet {
 			NotificationCenter.default.post(name: NSNotification.Name("stockChanged"),
 											object: nil,

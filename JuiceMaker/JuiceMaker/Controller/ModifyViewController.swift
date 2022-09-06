@@ -1,8 +1,6 @@
 //
-//  ModifyViewController.swift
-//  JuiceMaker
-//
-//  Created by 이경민 on 2022/09/06.
+//  ModifyViewController - ModifyViewController.swift
+//  Created by Ash, 미니.
 //
 
 import UIKit
