@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             let result = juiceMaker.make(juice)
             switch result {
             case .success(let juice):
-                let successMessage = "\(juice)쥬스 나왔습니다! 맛있게 드세요!"
+                let successMessage = "\(juice.name) 나왔습니다! 맛있게 드세요!"
                 showSuccessAlert(message: successMessage)
             case .failure:
                 showfailureAlert()
