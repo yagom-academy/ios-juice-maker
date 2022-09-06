@@ -55,13 +55,13 @@ class ViewController: UIViewController {
         switch result {
         case .success:
             updateFruitStockLabel()
-            showOKAlert("\(juice.name) 나왔습니다! 맛있게 드세요!")
+            showOkayAlert("\(juice.name) 나왔습니다! 맛있게 드세요!")
         case .failure:
-            showEditAlert("재료가 모자라요. 재고를 수정할까요?")
+            showStockEditAlert("재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
-    func showOKAlert(_ message: String) {
+    func showOkayAlert(_ message: String) {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
                 completion: nil)
     }
     
-    func showEditAlert(_ message: String) {
+    func showStockEditAlert(_ message: String) {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
