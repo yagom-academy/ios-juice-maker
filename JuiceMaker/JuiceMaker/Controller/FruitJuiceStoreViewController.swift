@@ -32,7 +32,7 @@ class FruitJuiceStoreViewController: UIViewController {
             
             let succeedAlert = UIAlertController(
                 title: nil,
-                message: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!",
+                message: "\(juiceName) 나왔습니다! 맛있게 드세요!",
                 preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
             
