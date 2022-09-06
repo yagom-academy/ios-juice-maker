@@ -1,8 +1,6 @@
 //
-//  SecondViewController.swift
-//  JuiceMaker
-//
-//  Created by 서현웅 on 2022/09/05.
+//  JuiceMaker - EditViewController.swift
+//  Created by Wonbi, woong
 //
 
 import UIKit
@@ -15,7 +13,7 @@ class EditViewController: UIViewController {
     @IBOutlet weak var mangoCount: UILabel!
     
     var stock: [Int]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let stock = stock {

@@ -1,5 +1,5 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - MainViewController.swift
 //  Created by Wonbi, woong
 //
 
@@ -12,7 +12,8 @@ extension NSNotification.Name {
 }
 
 class MainViewController: UIViewController {
-    let store = FruitStore(stockCount: 10)
+    private let store = FruitStore(stockCount: 10)
+    lazy var juiceMaker = JuiceMaker(store: store)
     
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
@@ -26,10 +27,12 @@ class MainViewController: UIViewController {
                                                selector: #selector(updateStockCount(_:)),
                                                name: .changedStockCount,
                                                object: nil)
+        
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(madeJuiceAlert(message:)),
+                                               selector: #selector(madeJuiceAlert(_:)),
                                                name: .madeJuiceAlert,
                                                object: nil)
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(failedAlert(_:)),
                                                name: .failedAlert,
@@ -41,24 +44,24 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func tappedButton(_ sender: UIButton) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "EditViewController") as? EditViewController else { return }
+        guard let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "EditNavigationController") as? UINavigationController else { return }
+        guard let viewController = navigationController.viewControllers.first as? EditViewController else { return }
+        navigationController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
         viewController.stock = store.stock
         
-        present(viewController, animated: true)
+        present(navigationController, animated: true)
     }
     
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         guard let juiceName = sender.restorationIdentifier else { return }
         guard let juice = Juice(rawValue: juiceName) else { return }
         
-        let juiceMaker = JuiceMaker(store: store)
-        
         juiceMaker.makeJuice(juice)
     }
     
-    @objc func madeJuiceAlert(message: Notification) {
-        guard let juiceName = message.userInfo?["JuiceName"] else { return }
+    @objc func madeJuiceAlert(_ noti: Notification) {
+        guard let juiceName = noti.userInfo?["JuiceName"] else { return }
         
         let alert = UIAlertController(title: nil,
                                       message: "\(juiceName) 나왔습니다! 맛있게 드세요!",
@@ -93,8 +96,3 @@ class MainViewController: UIViewController {
         mangoCountLabel.text = String(store.stock[Fruit.mango.index])
     }
 }
-
-
-
-// 주스 제조후에 나오는 얼럿 : 000 쥬스 나왔습니다! 맛있게 드세요! (확인)
-// 주스 재고가 없는 경우 얼럿 : 재료가 모자라요 재고를 수정할까요? (예-재고수정화면이동/아니오-얼럿닫기)

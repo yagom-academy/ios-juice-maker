@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DhC-Tx-fCk">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zaq-m5-IIF">
-                                <rect key="frame" x="60" y="52" width="724" height="136.66666666666666"/>
+                                <rect key="frame" x="60" y="83.999999999999986" width="724" height="136.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tcB-i6-XX4">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="136.66666666666666"/>
@@ -114,13 +114,13 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-6k-c2D">
-                                <rect key="frame" x="60" y="208.66666666666663" width="724" height="140.33333333333337"/>
+                                <rect key="frame" x="60" y="240.66666666666666" width="724" height="108.33333333333334"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zzl-05-bVq">
-                                        <rect key="frame" x="0.0" y="0.0" width="724" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="724" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="딸바 주스" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-2F-fzl">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="66"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <state key="normal" title="딸바쥬스 주문">
@@ -131,11 +131,11 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
-                                                <rect key="frame" x="296" y="0.0" width="132" height="66"/>
+                                                <rect key="frame" x="296" y="0.0" width="132" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="망키 주스" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
-                                                <rect key="frame" x="444" y="0.0" width="280" height="66"/>
+                                                <rect key="frame" x="444" y="0.0" width="280" height="50"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <state key="normal" title="망키쥬스 주문">
@@ -148,13 +148,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Pnn-0B-qbM">
-                                        <rect key="frame" x="0.0" y="74.000000000000028" width="724" height="66.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="58.000000000000028" width="724" height="50.333333333333343"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-e6-NWs">
-                                                <rect key="frame" x="0.0" y="0.0" width="724" height="66.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="724" height="50.333333333333336"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="딸기 주스" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132" height="66.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132" height="50.333333333333336"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <state key="normal" title="딸기쥬스 주문">
@@ -165,7 +165,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="바나나 주스" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
-                                                        <rect key="frame" x="148" y="0.0" width="132" height="66.333333333333329"/>
+                                                        <rect key="frame" x="148" y="0.0" width="132" height="50.333333333333336"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <state key="normal" title="바나나쥬스 주문">
@@ -176,7 +176,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="파인애플 주스" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
-                                                        <rect key="frame" x="296" y="0.0" width="132" height="66.333333333333329"/>
+                                                        <rect key="frame" x="296" y="0.0" width="132" height="50.333333333333336"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <state key="normal" title="파인애플쥬스 주문">
@@ -187,7 +187,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="키위 주스" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
-                                                        <rect key="frame" x="444" y="0.0" width="132" height="66.333333333333329"/>
+                                                        <rect key="frame" x="444" y="0.0" width="132" height="50.333333333333336"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <state key="normal" title="키위쥬스 주문">
@@ -198,7 +198,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="망고 주스" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
-                                                        <rect key="frame" x="592" y="0.0" width="132" height="66.333333333333329"/>
+                                                        <rect key="frame" x="592" y="0.0" width="132" height="50.333333333333336"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <state key="normal" title="망고쥬스 주문">
@@ -219,19 +219,6 @@
                                     <constraint firstItem="ngP-kF-Yii" firstAttribute="trailing" secondItem="q6G-4X-bVm" secondAttribute="trailing" id="IRM-sD-zPp"/>
                                 </constraints>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oz6-xx-QeW">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
-                                            <connections>
-                                                <action selector="tappedButton:" destination="BYZ-38-t0r" id="LsP-5m-05c"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -248,6 +235,13 @@
                             <constraint firstItem="zaq-m5-IIF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52" id="wst-Au-sZB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <action selector="tappedButton:" destination="BYZ-38-t0r" id="LsP-5m-05c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="sg6-8c-F3f"/>
                         <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="L0v-fa-DZG"/>
@@ -258,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2250.7109004739336" y="90.769230769230759"/>
+            <point key="canvasLocation" x="3002.8436018957345" y="90.769230769230759"/>
         </scene>
         <!--Edit View Controllerntroller-->
         <scene sceneID="fkG-vv-hpE">
@@ -396,19 +390,6 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtZ-7u-Ycp">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <items>
-                                    <navigationItem title="재고 수정" id="Twf-iM-3k4">
-                                        <barButtonItem key="rightBarButtonItem" title="취소" id="8SX-NP-cnf">
-                                            <connections>
-                                                <action selector="tappedCancelButton:" destination="Yu1-lM-nqp" id="Jcf-33-aWf"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -418,6 +399,13 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="재고 수정" id="Twf-iM-3k4">
+                        <barButtonItem key="rightBarButtonItem" title="취소" id="8SX-NP-cnf">
+                            <connections>
+                                <action selector="tappedCancelButton:" destination="Yu1-lM-nqp" id="Jcf-33-aWf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bananaCount" destination="gKu-86-RhI" id="4ee-fw-xmh"/>
@@ -429,7 +417,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2935" y="532"/>
+            <point key="canvasLocation" x="3747" y="583"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mh2-9i-Zvh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DhC-Tx-fCk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kmr-qw-3IB">
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QOR-HD-oly"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0uR-o8-s4t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2250.7109004739336" y="90.769230769230759"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rv2-9c-jbd">
+            <objects>
+                <navigationController storyboardIdentifier="EditNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="pab-WK-c7W" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A7B-hj-rsB">
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="QBC-ip-rrW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udm-XP-aug" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3747" y="-400"/>
         </scene>
     </scenes>
     <resources>
