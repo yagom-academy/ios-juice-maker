@@ -8,53 +8,54 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel!
+    @IBOutlet weak private var bananaStockLabel: UILabel!
+    @IBOutlet weak private var pineappleStockLabel: UILabel!
+    @IBOutlet weak private var kiwiStockLabel: UILabel!
+    @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
+    @IBAction private func orderStrawberryJuice(_ sender: UIButton) {
         showAlert(of: .strawBerry)
         checkInventory()
     }
     
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
+    @IBAction private func orderBananaJuice(_ sender: UIButton) {
         showAlert(of: .banana)
         checkInventory()
     }
     
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
+    @IBAction private func orderPineappleJuice(_ sender: UIButton) {
         showAlert(of: .pineApple)
         checkInventory()
     }
     
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
+    @IBAction private func orderKiwiJuice(_ sender: UIButton) {
         showAlert(of: .kiwi)
         checkInventory()
     }
     
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
+    @IBAction private func orderMangoJuice(_ sender: UIButton) {
         showAlert(of: .mango)
         checkInventory()
     }
     
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
+    @IBAction private func orderStrawberryBananaJuice(_ sender: UIButton) {
         showAlert(of: .strawBerryBanana)
         checkInventory()
     }
     
-    @IBAction func orderMangoKiwi(_ sender: UIButton) {
+    @IBAction private func orderMangoKiwi(_ sender: UIButton) {
         showAlert(of: .mangoKiwi)
         checkInventory()
     }
     
-    func showAlert(of juice: Juice) {
+    private func showAlert(of juice: Juice) {
         if juiceMaker.makeJuice(of: juice) {
             let alert = UIAlertController(title: "제조 완료", message: "\(juice.rawValue)쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
             let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+            
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         } else {
@@ -63,18 +64,20 @@ class HomeViewController: UIViewController {
                 self.presentChangeInventoryViewController()
             })
             let cancel = UIAlertAction(title: "취소", style: .destructive, handler: nil)
+            
             alert.addAction(cancel)
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }
     }
     
-    func presentChangeInventoryViewController() {
+    private func presentChangeInventoryViewController() {
         guard let changeInventoryVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeInventoryViewController") as? ChangeInventoryViewController else { return }
-            self.present(changeInventoryVC, animated: true)
+        
+        self.present(changeInventoryVC, animated: true)
     }
     
-    func checkInventory() {
+    private func checkInventory() {
         guard let strawberryAmount = juiceMaker.checkStock(of: .strawBerry) else { return }
         guard let bananaAmount = juiceMaker.checkStock(of: .banana) else { return }
         guard let pineappleAmount = juiceMaker.checkStock(of: .pineApple) else { return }
