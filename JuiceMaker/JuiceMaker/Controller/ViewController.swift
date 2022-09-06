@@ -8,7 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var juiceMaker: JuiceMaker = JuiceMaker()
+    let juiceMaker: JuiceMaker = JuiceMaker()
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
