@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -240,12 +240,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="Ogc-FR-SPe"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="aDc-oR-YnO"/>
                         <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="NiT-AX-6Iq"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="E99-p1-afq"/>
                         <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="V5U-t1-Wp4"/>
                         <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="QiF-yd-MdA"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="kmX-Ja-rVy"/>
                         <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="mpl-pV-nJc"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="jBv-yk-sRC"/>
                         <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="P9p-wj-j21"/>
                         <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="BVg-Hm-EcM"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="noN-S7-Ojg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -4,13 +4,17 @@
 import Foundation
 
 class FruitStore {
-    private var stock: [Fruit: Int] = [
-        .strawberry: 10,
-        .banana: 10,
-        .pineapple: 10,
-        .mango: 10,
-        .kiwi: 10
-    ]
+    private var stock: [Fruit: Int] = [ : ] {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name("stockChanged"),
+                                            object: nil,
+                                            userInfo: ["stockChanged": stock])
+        }
+    }
+    
+    init(defaultStock: Int) {
+            Fruit.allCases.forEach { stock[$0] = defaultStock }
+    }
     
     func checkStockBeUsed(in juice: Juice) throws {
         for (fruit, amountOfFruit) in juice.recipeOfJuice {

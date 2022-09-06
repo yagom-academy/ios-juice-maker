@@ -4,7 +4,7 @@
 import Foundation
 
 struct JuiceMaker {
-    private let fruitStorage = FruitStore()
+    private let fruitStorage = FruitStore(defaultStock: 10)
     
     func makeJuice(to order: Juice) {
         do {
