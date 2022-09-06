@@ -7,7 +7,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var quantityOfKiwiLabel: UILabel!
     @IBOutlet weak var quantityOfMangoLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
