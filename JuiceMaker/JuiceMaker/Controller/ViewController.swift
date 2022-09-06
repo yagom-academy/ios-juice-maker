@@ -64,8 +64,7 @@ class ViewController: UIViewController {
             guard let juiceMakerError = error as? JuiceMakerError else {
                 return showFailureAlert(message: error.localizedDescription)
             }
-            
-            showFailureAlert(message: juiceMakerError.errorDescription )
+            showFailureAlert(message: juiceMakerError.errorDescription)
         }
     }
     
