@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
                                         userInfo: nil)
     }
     
-    @IBAction func tappedButton(_ sender: UIButton) {
+    @IBAction func tappedModifyBarButton(_ sender: UIBarButtonItem) {
         guard let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "EditNavigationController") as? UINavigationController else { return }
         guard let viewController = navigationController.viewControllers.first as? EditViewController else { return }
         navigationController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
@@ -77,8 +77,8 @@ class MainViewController: UIViewController {
     
     @objc func failedAlert(_ noti: Notification) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default, handler: { [self] ACTION in
-            tappedButton(UIButton())
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: { ACTION in
+            self.tappedModifyBarButton(UIBarButtonItem())
         })
         let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
         
