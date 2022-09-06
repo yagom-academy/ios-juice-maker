@@ -11,7 +11,7 @@ extension NSNotification.Name {
     static let failedAlert = NSNotification.Name("failedAlert")
 }
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     let store = FruitStore(stockCount: 10)
     
     @IBOutlet weak var strawberryCountLabel: UILabel!
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(displayStock(_:)),
+                                               selector: #selector(updateStockCount(_:)),
                                                name: .changedStockCount,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
@@ -35,16 +35,15 @@ class ViewController: UIViewController {
                                                name: .failedAlert,
                                                object: nil)
         
-        
         NotificationCenter.default.post(name: .changedStockCount,
                                         object: nil,
                                         userInfo: nil)
     }
     
     @IBAction func tappedButton(_ sender: UIButton) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController else { return }
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "EditViewController") as? EditViewController else { return }
         
-        viewController.stock = store.displayStockCount()
+        viewController.stock = store.stock
         
         present(viewController, animated: true)
     }
@@ -60,13 +59,17 @@ class ViewController: UIViewController {
     
     @objc func madeJuiceAlert(message: Notification) {
         guard let juiceName = message.userInfo?["JuiceName"] else { return }
-        let alert = UIAlertController(title: nil, message: "\(juiceName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        
+        let alert = UIAlertController(title: nil,
+                                      message: "\(juiceName) 나왔습니다! 맛있게 드세요!",
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인",
+                                     style: .default,
+                                     handler: nil)
         
         alert.addAction(okAction)
         
         present(alert, animated: true)
-        
     }
     
     @objc func failedAlert(_ noti: Notification) {
@@ -82,12 +85,12 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc func displayStock(_ noti: Notification) {
-        strawberryCountLabel.text = String(store.displayStockCount()[0])
-        bananaCountLabel.text = String(store.displayStockCount()[1])
-        pineappleCountLabel.text = String(store.displayStockCount()[2])
-        kiwiCountLabel.text = String(store.displayStockCount()[3])
-        mangoCountLabel.text = String(store.displayStockCount()[4])
+    @objc func updateStockCount(_ noti: Notification) {
+        strawberryCountLabel.text = String(store.stock[Fruit.strawberry.index])
+        bananaCountLabel.text = String(store.stock[Fruit.banana.index])
+        pineappleCountLabel.text = String(store.stock[Fruit.pineapple.index])
+        kiwiCountLabel.text = String(store.stock[Fruit.kiwi.index])
+        mangoCountLabel.text = String(store.stock[Fruit.mango.index])
     }
 }
 

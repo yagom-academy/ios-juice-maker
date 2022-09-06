@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class EditViewController: UIViewController {
     @IBOutlet weak var strawberryCount: UILabel!
     @IBOutlet weak var bananaCount: UILabel!
     @IBOutlet weak var pineappleCount: UILabel!
@@ -19,19 +19,19 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let stock = stock {
-            strawberryCount.text = String(stock[0])
-            bananaCount.text = String(stock[1])
-            pineappleCount.text = String(stock[2])
-            kiwiCount.text = String(stock[3])
-            mangoCount.text = String(stock[4])
+            strawberryCount.text = String(stock[Fruit.strawberry.index])
+            bananaCount.text = String(stock[Fruit.banana.index])
+            pineappleCount.text = String(stock[Fruit.pineapple.index])
+            kiwiCount.text = String(stock[Fruit.kiwi.index])
+            mangoCount.text = String(stock[Fruit.mango.index])
         }
     }
     
-    @IBAction func btnComplete(_ sender: UIButton) {
+    @IBAction func tappedApplyButton(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
-    @IBAction func tappedCancelButton(_ sender: Any) {
+    @IBAction func tappedCancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }

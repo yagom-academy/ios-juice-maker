@@ -6,7 +6,7 @@
 import Foundation
 
 class FruitStore {
-    private var stock: [Int] {
+    private(set) var stock: [Int] {
         didSet {
             NotificationCenter.default.post(name: .changedStockCount,
                                             object: nil,
@@ -52,9 +52,5 @@ class FruitStore {
         }
         print(stock)
         return true
-    }
-    
-    func displayStockCount() -> [Int] {
-        stock
     }
 }
