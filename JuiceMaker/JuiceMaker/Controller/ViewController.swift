@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         designateFruitStock()
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(displayFruitStock(_:)),
                                                name: NSNotification.Name("stockChanged"),
@@ -32,6 +33,17 @@ class ViewController: UIViewController {
     }
     
     let juiceMaker = JuiceMaker()
+    
+    func executeJuiceMaker(to juice: Juice) {
+        do {
+            try juiceMaker.makeJuice(to: juice)
+            showSuccessAlert(to: juice)
+        } catch OrderError.outOfStock {
+            showFailedAlert()
+        } catch {
+            print("알 수 없는 오류입니다.")
+        }
+    }
     
     func designateFruitStock() {
         let fruitStock = juiceMaker.fruitStorage.updateFruitStock()
@@ -62,7 +74,7 @@ class ViewController: UIViewController {
         self.mangoStockLabel.text = "\(stock[.mango] ?? 0)"
     }
     
-    func showSuccessAlert(juice: Juice) {
+    func showSuccessAlert(to juice: Juice) {
         let successAlert = UIAlertController(title: "\(juice.name) 나왔습니다!",
                                              message: "",
                                              preferredStyle: .alert)
@@ -99,7 +111,9 @@ class ViewController: UIViewController {
                                             preferredStyle: .alert)
         failedAlert.addAction(UIAlertAction(title: "예",
                                             style: .default,
-                                            handler: nil))
+                                            handler: {_ in
+            self.performSegue(withIdentifier: "fruitStockUp", sender: nil)
+        }))
         failedAlert.addAction(UIAlertAction(title: "아니오",
                                             style: .cancel,
                                             handler: nil))
@@ -108,25 +122,11 @@ class ViewController: UIViewController {
     
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         
-        switch sender {
-        case strawberryBananaJuiceButton:
-            juiceMaker.makeJuice(to: .strawberryBananaJuice)
-        case mangoKiwiJuiceButton:
-            juiceMaker.makeJuice(to: .mangoKiwiJuice)
-        case strawberryJuiceButton:
-            juiceMaker.makeJuice(to: .strawberryJuice)
-        case bananaJuiceButton:
-            juiceMaker.makeJuice(to: .bananaJuice)
-        case pineappleJuiceButton:
-            juiceMaker.makeJuice(to: .pineappleJuice)
-        case kiwiJuiceButton:
-            juiceMaker.makeJuice(to: .kiwiJuice)
-        case mangoJuiceButton:
-            juiceMaker.makeJuice(to: .mangoJuice)
-        default:
-            print("버튼을 다시 눌러주세요.")
+        guard let juice = Juice(rawValue: sender.tag) else {
+            return
         }
+        
+        executeJuiceMaker(to: juice)
     }
-
 }
 

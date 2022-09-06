@@ -2,7 +2,7 @@
 
 import Foundation
 
-enum Juice: String {
+enum Juice: Int {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
