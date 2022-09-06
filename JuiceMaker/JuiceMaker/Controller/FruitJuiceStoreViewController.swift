@@ -1,12 +1,8 @@
-//
-//  JuiceMaker - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//  Created by 애종,질리,벨라 on 2022/09/06.
 
 import UIKit
 
-class ViewController: UIViewController {
+class FruitJuiceStoreViewController: UIViewController {
     
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
@@ -28,14 +24,15 @@ class ViewController: UIViewController {
     }
     
     @objc func resultInMakingJuice(_ notice: Notification) {
-        debugPrint("나왓다 호호")
-        guard let bindedIsSuccess: Bool = notice.userInfo?["isMakingSuccess"] as? Bool else {
-            return
-        }
-        if bindedIsSuccess {
+        guard let isSuccess: Bool = notice.userInfo?["isMakingSuccess"] as? Bool else { return }
+        guard let juiceName: String = notice.userInfo?["juiceName"] as? String else { return }
+        
+        if isSuccess {
+            updateFruitAmountLabel(currentStockValue: receiveFruitStock())
+            
             let succeedAlert = UIAlertController(
                 title: nil,
-                message: "(쥬스종류) 쥬스 나왔습니다! 맛있게 드세요!",
+                message: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!",
                 preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
             
@@ -57,17 +54,14 @@ class ViewController: UIViewController {
                 title: "아니오",
                 style: .cancel
             )
+            
             failedAlert.addAction(okAction)
             failedAlert.addAction(cancelAction)
             present(failedAlert, animated: true, completion: nil)
         }
-        
-        
-        
-        updateFruitAmountLabel(currentStockValue: receiveFruitStock())
     }
     
-    func receiveFruitStock() -> [Fruit: Int]{
+    func receiveFruitStock() -> [Fruit: Int] {
         return juiceMaker.sendFruitStockValue()
     }
     
@@ -112,7 +106,6 @@ class ViewController: UIViewController {
         juiceMaker.chooseJuice(juice: .kiwiJuice)
     }
     
-    
     @IBAction func touchUpMangoJuiceOrderButton(_ sender: Any) {
         juiceMaker.chooseJuice(juice: .mangoJuice)
     }
@@ -120,6 +113,4 @@ class ViewController: UIViewController {
     @IBAction func touchUpMangoKiwiJuiceOrderButton(_ sender: Any) {
         juiceMaker.chooseJuice(juice: .mangoKiwiJuice)
     }
-    
-    
 }

@@ -9,17 +9,20 @@ struct JuiceMaker {
         do {
             try fruitStore.isEnoughStock(juiceRecipe: juice.recipe)
             make(juice)
-            noticeResultOfJuiceMaking(isSuccess: true)
+            noticeResultOfJuiceMaking(isSuccess: true, juiceName: juice.rawValue)
         } catch JuiceMakerError.notEnoughStock {
             debugPrint("재고가 부족하여 제작에 실패하였습니다!")
-            noticeResultOfJuiceMaking(isSuccess: false)
+            noticeResultOfJuiceMaking(isSuccess: false, juiceName: juice.rawValue)
         } catch {
             debugPrint("알 수 없는 오류가 발생하였습니다.")
         }
     }
     
-    func noticeResultOfJuiceMaking(isSuccess: Bool) {
-        NotificationCenter.default.post(name: Notification.Name("resultInmakingJuice"), object: nil, userInfo: ["isMakingSuccess": isSuccess])
+    func noticeResultOfJuiceMaking(isSuccess: Bool, juiceName: String) {
+        NotificationCenter.default.post(
+            name: Notification.Name("resultInmakingJuice"),
+            object: nil,
+            userInfo: ["isMakingSuccess": isSuccess, "juiceName": juiceName])
     }
     
     private func make(_ juice: Juice) {
