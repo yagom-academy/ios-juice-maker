@@ -3,6 +3,8 @@
 //  Created by Wonbi, woong
 //
 
+import Foundation
+
 enum Juice: String {
     case strawberryJuice = "딸기 주스"
     case bananaJuice = "바나나 주스"
@@ -46,9 +48,11 @@ struct JuiceMaker {
     func makeJuice(_ juice: Juice) {
         guard store.canSupplyRequest(ingredient: juice.ingredient)
         else {
+            NotificationCenter.default.post(name: .failedAlert, object: nil)
             return
         }
-        print("\(juice.name) 완성")
+        print("true값")
+        NotificationCenter.default.post(name: .madeJuiceAlert, object: nil, userInfo: ["JuiceName" : juice.name])
     }
     
 }
