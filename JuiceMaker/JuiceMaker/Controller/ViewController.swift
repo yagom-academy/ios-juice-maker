@@ -30,11 +30,20 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: "재료가 모자라요. 재고를 수정할까요?",
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "예", style: .default) { _ in
+            let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
+            guard let vc = storyboard?.instantiateViewController(identifier: "modifyFruitVC") else {
+                return
+            }
+            self.present(vc, animated: true, completion: nil)
+            
+        }
         let cancleAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(okAction)
         alert.addAction(cancleAction)
         present(alert, animated: true)
     }
+    
+    
 }
 
