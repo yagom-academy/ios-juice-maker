@@ -1,17 +1,30 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var quantityOfStrawberryLabel: UILabel!
+    @IBOutlet weak var quantityOfBananaLabel: UILabel!
+    @IBOutlet weak var quantityOfPineappleLabel: UILabel!
+    @IBOutlet weak var quantityOfKiwiLabel: UILabel!
+    @IBOutlet weak var quantityOfMangoLabel: UILabel!
     
-    @IBAction func touchUpStrawberryJuiceOrder(_ sender: UIButton) {
-        if(JuiceMaker.shared.takeAnOrder(fruitJuice: .strawberryJuice)) {
-            showJuiceComeOutAlert(fruitJuice: .strawberryJuice)
-        } else {
-            showFruitsOutOfStockAlert()
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpQuantityOfFruits()
+    }
+    
+    func setUpQuantityOfFruits() {
+        guard let quantityOfStrawberry = JuiceMaker.shared.fruitStore.fruitList[.strawberry],
+              let quantityOfBanana = JuiceMaker.shared.fruitStore.fruitList[.banana],
+              let quantityOfPineapple = JuiceMaker.shared.fruitStore.fruitList[.pineapple],
+              let quantityOfKiwi = JuiceMaker.shared.fruitStore.fruitList[.kiwi],
+              let quantityOfMango = JuiceMaker.shared.fruitStore.fruitList[.mango] else { return }
+        quantityOfStrawberryLabel.text = String(quantityOfStrawberry)
+        quantityOfBananaLabel.text = String(quantityOfBanana)
+        quantityOfPineappleLabel.text = String(quantityOfPineapple)
+        quantityOfKiwiLabel.text = String(quantityOfKiwi)
+        quantityOfMangoLabel.text = String(quantityOfMango)
     }
     
     func showJuiceComeOutAlert(fruitJuice: FruitJuice) {
@@ -70,6 +83,7 @@ class ViewController: UIViewController {
         if !JuiceMaker.shared.takeAnOrder(fruitJuice: fruitJuice) {
             showFruitsOutOfStockAlert()
         } else {
+            setUpQuantityOfFruits()
             showJuiceComeOutAlert(fruitJuice: fruitJuice)
         }
     }

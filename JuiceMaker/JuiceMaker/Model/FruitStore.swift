@@ -1,5 +1,5 @@
 struct FruitStore {
-    private var fruitList: [Fruits: Int] = [:]
+    private(set) var fruitList: [Fruits: Int] = [:]
     
     init(fruitAmount: Int = 10) {
         for fruit in Fruits.allCases {

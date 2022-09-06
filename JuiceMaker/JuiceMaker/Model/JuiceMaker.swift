@@ -1,6 +1,6 @@
 class JuiceMaker {
     static let shared: JuiceMaker = JuiceMaker()
-    private var fruitStore = FruitStore(fruitAmount: 50)
+    private(set) var fruitStore = FruitStore(fruitAmount: 10)
     
     private init() { }
     

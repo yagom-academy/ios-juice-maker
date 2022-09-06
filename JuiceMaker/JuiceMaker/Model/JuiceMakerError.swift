@@ -1,5 +1,3 @@
-import Foundation
-
 enum JuiceMakerError: Error {
     case underFlowOfAmount
     case notExistFruits
