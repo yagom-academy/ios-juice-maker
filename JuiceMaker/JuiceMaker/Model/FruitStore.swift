@@ -25,7 +25,7 @@ class FruitStore {
     
     func changeFruitStock(to juice: Juice) {
         for (fruit, amountOfFruit) in juice.recipeOfJuice {
-            if let stock = stock[fruit] {
+            if let stock = self.stock[fruit] {
                 self.stock.updateValue(stock - amountOfFruit, forKey: fruit)
             }
         }
