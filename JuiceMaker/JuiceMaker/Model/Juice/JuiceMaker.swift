@@ -4,10 +4,13 @@ struct JuiceMaker {
     private let fruitStore: FruitStoreProtocol = FruitStore()
     
     private func takeOrder(juice: Juice) {
-        if fruitStore.isEnoughStock(juiceRecipe: juice.recipe) {
+        do {
+            try fruitStore.isEnoughStock(juiceRecipe: juice.recipe)
             make(juice)
-        } else {
+        } catch JuiceMakerError.notEnoughStock {
             debugPrint("재고가 부족하여 제작에 실패하였습니다!")
+        } catch {
+            debugPrint("알 수 없는 오류가 발생하였습니다.")
         }
     }
     
