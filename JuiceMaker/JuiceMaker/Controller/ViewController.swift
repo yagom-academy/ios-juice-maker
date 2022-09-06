@@ -62,6 +62,37 @@ class ViewController: UIViewController {
         self.mangoStockLabel.text = "\(stock[.mango] ?? 0)"
     }
     
+    func showSuccessAlert(juice: Juice) {
+        let successAlert = UIAlertController(title: "\(juice.name) 나왔습니다!",
+                                             message: "",
+                                             preferredStyle: .alert)
+        successAlert.addAction(UIAlertAction(title: "확인",
+                                             style: .default,
+                                             handler: nil))
+        
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 50, width: 250, height: 230))
+        imageView.image = UIImage(named: "위대한 개츠비")
+        successAlert.view.addSubview(imageView)
+        let height = NSLayoutConstraint(item: successAlert.view,
+                                        attribute: .height,
+                                        relatedBy: .equal,
+                                        toItem: nil,
+                                        attribute: .notAnAttribute,
+                                        multiplier: 1,
+                                        constant: 320)
+        let width = NSLayoutConstraint(item: successAlert.view,
+                                       attribute: .width,
+                                       relatedBy: .equal,
+                                       toItem: nil,
+                                       attribute: .notAnAttribute,
+                                       multiplier: 1,
+                                       constant: 250)
+        successAlert.view.addConstraint(height)
+        successAlert.view.addConstraint(width)
+        
+        self.present(successAlert, animated: false)
+    }
+    
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         
         switch sender {
