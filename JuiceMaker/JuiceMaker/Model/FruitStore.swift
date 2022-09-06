@@ -9,7 +9,13 @@ import Foundation
 class FruitStore {
     
     static let shared = FruitStore()
-    var fruitsStock: [Fruit : Int] = [:]
+    var fruitsStock: [Fruit : Int] = [:] {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name("fruitStockChange"),
+                                            object: nil,
+                                            userInfo: ["fruitsStock": fruitsStock])
+        }
+    }
     
     private init() {
         Fruit.allCases.forEach { fruit in
