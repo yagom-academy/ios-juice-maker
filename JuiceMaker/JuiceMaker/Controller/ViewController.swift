@@ -50,5 +50,26 @@ class ViewController: UIViewController {
                 animated: true,
                 completion: nil)
     }
+    
+    func showfailureAlert() {
+        let message = "재료가 모자라요. 재고를 수정할까요?"
+        let alert = UIAlertController(title: nil,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "예",
+                                     style: .default,
+                                     handler: nil)
+        let cancleAction = UIAlertAction(title: "아니오",
+                                     style: .default,
+                                     handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancleAction)
+        
+        present(alert,
+                animated: true,
+                completion: nil)
+    }
 }
 
