@@ -6,13 +6,13 @@
 import Foundation
 
 enum Juice: String {
-    case strawberryJuice = "딸기 주스"
-    case bananaJuice = "바나나 주스"
-    case kiwiJuice = "키위 주스"
-    case pineappleJuice = "파인애플 주스"
-    case mangoJuice = "망고 주스"
-    case strawberryBananaJuice = "딸바 주스"
-    case mangoKiwiJuice = "망키 주스"
+    case strawberryJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case kiwiJuice = "키위쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case mangoJuice = "망고쥬스"
+    case strawberryBananaJuice = "딸바쥬스"
+    case mangoKiwiJuice = "망키쥬스"
     
     var name: String {
         self.rawValue

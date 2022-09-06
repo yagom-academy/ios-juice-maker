@@ -46,11 +46,10 @@ class FruitStore {
             print("재고가 부족합니다.")
             return false
         }
-        print(stock)
+        
         for (fruit, count) in ingredient {
             changeStock(fruit: fruit, count: count, isMinus: true)
         }
-        print(stock)
         return true
     }
 }

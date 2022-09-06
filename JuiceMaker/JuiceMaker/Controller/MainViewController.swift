@@ -54,7 +54,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction private func tappedOrderButton(_ sender: UIButton) {
-        guard let juiceName = sender.restorationIdentifier else { return }
+        guard let buttonText = sender.titleLabel?.text else { return }
+        let juiceName = buttonText.replacingOccurrences(of: " 주문", with: "")
         guard let juice = Juice(rawValue: juiceName) else { return }
         
         juiceMaker.makeJuice(juice)
