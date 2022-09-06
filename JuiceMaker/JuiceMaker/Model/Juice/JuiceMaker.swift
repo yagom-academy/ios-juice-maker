@@ -31,4 +31,8 @@ extension JuiceMaker: JuiceMakerProtocol {
     func chooseJuice(juice: Juice) {
         takeOrder(juice: juice)
     }
+    
+    func sendFruitStockValue() -> [Fruit : Int] {
+        return fruitStore.sendFruitStockValue()
+    }
 }

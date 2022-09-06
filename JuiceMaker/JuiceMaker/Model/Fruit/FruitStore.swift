@@ -17,7 +17,7 @@ class FruitStore {
         }
     }
     
-    private func updateStock(_ fruit: Fruit, for amount: Int){
+    private func updateStock(_ fruit: Fruit, for amount: Int) {
         fruitStock.updateValue(amount, forKey: fruit)
     }
 }
@@ -41,5 +41,9 @@ extension FruitStore: FruitStoreProtocol {
                 throw JuiceMakerError.notEnoughStock
             }
         }
+    }
+    
+    func sendFruitStockValue() -> [Fruit : Int] {
+        return fruitStock
     }
 }
