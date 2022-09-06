@@ -8,6 +8,7 @@
 import UIKit
 
 class ModifyingInventoryViewController: UIViewController {
+    static let indentify: String = "ModifyingInventoryViewController"
 
     override func viewDidLoad() {
         super.viewDidLoad()

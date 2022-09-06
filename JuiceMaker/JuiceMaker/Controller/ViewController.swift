@@ -7,7 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet private var fruitLabels: [UILabel]!
     
     private let juiceMaker = JuiceMaker()
@@ -19,7 +18,7 @@ class ViewController: UIViewController {
         updateInventory()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateInventory),
-                                               name: NSNotification.Name("inventoryChanged"),
+                                               name: .inventoryChanged,
                                                object: nil)
     }
     
@@ -36,6 +35,7 @@ class ViewController: UIViewController {
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         if let juice = Juice.init(rawValue: sender.tag) {
             let result = juiceMaker.make(juice)
+            
             switch result {
             case .success(let juice):
                 let successMessage = "\(juice.name) 나왔습니다! 맛있게 드세요!"
@@ -85,8 +85,7 @@ class ViewController: UIViewController {
     }
     
     func presentModifyingInventoryView() {
-        if let modifyingInventoryViewController = storyboard?.instantiateViewController(withIdentifier: "ModifyingInventoryVC") as? ModifyingInventoryViewController {
-            
+        if let modifyingInventoryViewController = storyboard?.instantiateViewController(withIdentifier: ModifyingInventoryViewController.indentify) as? ModifyingInventoryViewController {
             modifyingInventoryViewController.modalPresentationStyle = .fullScreen
             
             present(modifyingInventoryViewController,

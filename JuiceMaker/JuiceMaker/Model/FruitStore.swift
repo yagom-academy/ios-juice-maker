@@ -10,8 +10,8 @@ class FruitStore {
     
     private(set) var inventoryList: [Fruit: Int] = [:] {
         didSet {
-            NotificationCenter.default.post(name: NSNotification.Name("inventoryChanged"), object: nil)
-            
+            NotificationCenter.default.post(name: .inventoryChanged,
+                                            object: nil)
         }
     }
     let defaultValueOfInventory = 10
