@@ -18,30 +18,37 @@ class HomeViewController: UIViewController {
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
         showAlert(of: .strawBerry)
+        checkInventory()
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
         showAlert(of: .banana)
+        checkInventory()
     }
     
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
         showAlert(of: .pineApple)
+        checkInventory()
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
         showAlert(of: .kiwi)
+        checkInventory()
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
         showAlert(of: .mango)
+        checkInventory()
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
         showAlert(of: .strawBerryBanana)
+        checkInventory()
     }
     
     @IBAction func orderMangoKiwi(_ sender: UIButton) {
         showAlert(of: .mangoKiwi)
+        checkInventory()
     }
     
     func showAlert(of juice: Juice) {
@@ -60,8 +67,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func checkInventory() {
         guard let strawberryAmount = juiceMaker.checkStock(of: .strawBerry) else { return }
         guard let bananaAmount = juiceMaker.checkStock(of: .banana) else { return }
         guard let pineappleAmount = juiceMaker.checkStock(of: .pineApple) else { return }
@@ -73,6 +79,11 @@ class HomeViewController: UIViewController {
         pineappleStockLabel.text = pineappleAmount
         kiwiStockLabel.text = kiwiAmount
         mangoStockLabel.text = mangoAmount
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        checkInventory()
     }
     
 }
