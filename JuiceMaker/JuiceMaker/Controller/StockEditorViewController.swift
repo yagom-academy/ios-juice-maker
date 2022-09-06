@@ -1,6 +1,6 @@
 import UIKit
 
-class stepperViewController: UIViewController {
+class StockEditorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -3,14 +3,14 @@
 //
 //
 
-enum Juice {
-    case strawBerry
-    case banana
-    case kiwi
-    case pineApple
-    case strawBerryBanana
-    case mango
-    case mangoKiwi
+enum Juice: String {
+    case strawBerry = "strawBerry"
+    case banana = "banana"
+    case kiwi = "kiwi"
+    case pineApple = "pineApple"
+    case strawBerryBanana = "strawBerryBanana"
+    case mango = "mango"
+    case mangoKiwi = "mangoKiwi"
     
     var recipe: [Fruit: Int] {
         switch self {

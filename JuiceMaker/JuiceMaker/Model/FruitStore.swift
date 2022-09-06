@@ -4,7 +4,7 @@
 //
 
 class FruitStore {
-    private var stock: [Fruit: Int] = [
+    private(set) public var stock: [Fruit: Int] = [
         .strawBerry: 10,
         .banana: 10,
         .pineApple: 10,
