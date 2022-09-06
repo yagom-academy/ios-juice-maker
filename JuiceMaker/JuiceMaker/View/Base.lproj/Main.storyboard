@@ -275,7 +275,6 @@
         <!--Change Inventory View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ChangeInventoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yu1-lM-nqp" customClass="ChangeInventoryViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
@@ -394,6 +393,7 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1451" y="92"/>
         </scene>
