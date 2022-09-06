@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0404F05D28C724B10067842F /* FruitStockEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404F05C28C724B10067842F /* FruitStockEditorViewController.swift */; };
 		043A88E728BF36A4002CBF5F /* JuiceMakerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A88E628BF36A4002CBF5F /* JuiceMakerProtocol.swift */; };
 		043A88E928BF394D002CBF5F /* FruitStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A88E828BF394D002CBF5F /* FruitStoreProtocol.swift */; };
 		0473BA6128C6DAED005AA1A9 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BA6028C6DAED005AA1A9 /* JuiceMakerError.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0404F05C28C724B10067842F /* FruitStockEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockEditorViewController.swift; sourceTree = "<group>"; };
 		043A88E628BF36A4002CBF5F /* JuiceMakerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerProtocol.swift; sourceTree = "<group>"; };
 		043A88E828BF394D002CBF5F /* FruitStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreProtocol.swift; sourceTree = "<group>"; };
 		0473BA6028C6DAED005AA1A9 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				0404F05C28C724B10067842F /* FruitStockEditorViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				B47820C328C0A285001EFE82 /* Variation.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
+				0404F05D28C724B10067842F /* FruitStockEditorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
