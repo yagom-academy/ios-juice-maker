@@ -5,11 +5,11 @@
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-	private let shared = FruitStore.shared
+	private let fruitStore = FruitStore()
 	
 	func makeJuice(juice: Juice) {
 		do {
-			try shared.haveStock(for: juice)
+			try fruitStore.haveStock(for: juice)
 			print("\(juice) 완성되었습니다.")
 		} catch StoreError.outOfStock {
 			print("재고가 부족합니다.")

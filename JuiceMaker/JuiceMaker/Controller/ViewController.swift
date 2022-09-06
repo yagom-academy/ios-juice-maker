@@ -7,7 +7,6 @@ import UIKit
 
 class ViewController: UIViewController {
 	private let maker = JuiceMaker()
-	private let shared = FruitStore.shared
 	
 	@IBOutlet weak var strawberryStockLabel: UILabel!
 	@IBOutlet weak var bananaStockLabel: UILabel!
@@ -17,10 +16,20 @@ class ViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setUpStockLabels()
+		NotificationCenter.default.addObserver(self,
+											   selector: #selector(didChangeStocks(noti:)),
+											   name: NSNotification.Name("stockChanged"),
+											   object: nil)
 	}
 	
-	func setUpStockLabels() {
+	@objc func didChangeStocks(noti: Notification) {
+		guard let stocks = noti.userInfo as? [Fruit: Int] else {
+			return
+		}
+		setUpStockLabels(changedStocks: stocks)
+	}
+	
+	func setUpStockLabels(changedStocks: [Fruit: Int]) {
 		[
 			strawberryStockLabel,
 			bananaStockLabel,
@@ -28,8 +37,9 @@ class ViewController: UIViewController {
 			kiwiStockLabel,
 			mangoStockLabel,
 		].compactMap { $0 }.forEach {
-			if let fruit = Fruit(rawValue: $0.tag) {
-				$0.text = shared.inventory[fruit]?.description
+			if let fruit = Fruit(rawValue: $0.tag),
+			   let stock = changedStocks[fruit]?.description {
+				$0.text = stock
 			}
 		}
 	}
@@ -39,6 +49,5 @@ class ViewController: UIViewController {
 			return
 		}
 		maker.makeJuice(juice: orderedJuice)
-		setUpStockLabels()
 	}
 }
