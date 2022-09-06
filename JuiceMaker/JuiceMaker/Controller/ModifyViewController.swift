@@ -7,8 +7,7 @@
 
 import UIKit
 
-class ModifyViewController: UINavigationController {
-
+class ModifyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }

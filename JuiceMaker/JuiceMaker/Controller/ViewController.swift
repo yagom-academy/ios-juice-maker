@@ -16,10 +16,12 @@ class ViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		NotificationCenter.default.addObserver(self,
-											   selector: #selector(didChangeStocks(noti:)),
-											   name: NSNotification.Name("stockChanged"),
-											   object: nil)
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(didChangeStocks(noti:)),
+			name: NSNotification.Name("stockChanged"),
+			object: nil
+		)
 	}
 	
 	@objc func didChangeStocks(noti: Notification) {
@@ -49,5 +51,31 @@ class ViewController: UIViewController {
 			return
 		}
 		maker.makeJuice(juice: orderedJuice)
+		showAlertController(isSuccess: false, juice: orderedJuice)
+	}
+	
+	func showAlertController(isSuccess: Bool, juice: Juice) {
+		let titleMessage = isSuccess ? "주문 완료" : "주문 불가"
+		let message = isSuccess ? "\(juice.description) 나왔습니다! 맛있게 드세요!" : "재료가 모자라요. 재고를 수정할까요?"
+		let confirmMessage = isSuccess ? "확인" : "예"
+		let cancelMessage = isSuccess ? "" : "아니요"
+		
+		let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
+		
+		let okAction = UIAlertAction(title: confirmMessage, style: .default) { action in
+			if !isSuccess {
+				print("is Not Success")
+			}
+		}
+		let cancelAction = UIAlertAction(title: cancelMessage, style: .default)
+		
+		if isSuccess {
+			alertController.addAction(okAction)
+		} else {
+			alertController.addAction(cancelAction)
+			alertController.addAction(okAction)
+		}
+		
+		present(alertController, animated: true)
 	}
 }

@@ -30,4 +30,23 @@ enum Juice: Int, CaseIterable {
 			return [.mango: -2, .kiwi: -1]
 		}
 	}
+	
+	var description: String {
+		switch self {
+		case .strawberryJuice:
+			return "딸기 주스"
+		case .bananaJuice:
+			return "바나나 주스"
+		case .pineappleJuice:
+			return "파인애플 주스"
+		case .kiwiJuice:
+			return "키위 주스"
+		case .mangoJuice:
+			return "망고 주스"
+		case .strawberrybananaJuice:
+			return "딸기 바나나 주스"
+		case .mangokiwiJuice:
+			return "망고 키위 주스"
+		}
+	}
 }

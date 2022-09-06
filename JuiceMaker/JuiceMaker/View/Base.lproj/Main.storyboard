@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" id="l5G-As-Opg"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" id="Xc3-Ya-Fxb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -377,12 +377,12 @@
                             </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" style="done" id="PTi-0H-sBb">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" style="plain" id="i1U-sB-jSs">
                             <connections>
-                                <action selector="didTapDismissButton:" destination="Yu1-lM-nqp" id="Tmx-z7-jgA"/>
+                                <action selector="didTapDismissButton:" destination="Yu1-lM-nqp" id="env-Y6-luH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -396,7 +396,6 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="g97-Jv-eab"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -408,7 +407,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1367" y="91"/>
+            <point key="canvasLocation" x="1366" y="92"/>
         </scene>
     </scenes>
     <resources>
