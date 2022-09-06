@@ -95,13 +95,24 @@ class ViewController: UIViewController {
                                       message: message,
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예",
-                                     style: .default)
+                                     style: .default) { action in
+            self.presentStockEditViewController()
+        }
         let cancelAction = UIAlertAction(title: "아니요",
                                          style: .default)
         
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+    
+    func presentStockEditViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let stockEditVC = storyboard.instantiateViewController(identifier: "stockEditNavigation")
+        
+        stockEditVC.modalPresentationStyle = .fullScreen
+        
+        present(stockEditVC, animated: true, completion: nil)
     }
 }
 
