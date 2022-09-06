@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    let fruitStore: FruitStore
+    private let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore

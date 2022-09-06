@@ -7,7 +7,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var juiceMaker: JuiceMaker = .init(fruitStore: .init(initialStock: 10))
+    
+    var fruitStore: FruitStore = .init(initialStock: 10)
+    lazy var juiceMaker: JuiceMaker = .init(fruitStore: fruitStore)
     
     @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
     @IBOutlet weak var bananaJuiceOrderButton: UIButton!
@@ -103,19 +105,19 @@ class ViewController: UIViewController {
     }
     
     func updateFruitStockLabel() {
-        if let strawberryStock = try? juiceMaker.fruitStore.currentStock(of: .strawberry) {
+        if let strawberryStock = try? fruitStore.currentStock(of: .strawberry) {
             strawberryStockLabel.text = "\(strawberryStock)"
         }
-        if let bananaStock = try? juiceMaker.fruitStore.currentStock(of: .banana) {
+        if let bananaStock = try? fruitStore.currentStock(of: .banana) {
             bananaStockLabel.text = "\(bananaStock)"
         }
-        if let kiwiStock = try? juiceMaker.fruitStore.currentStock(of: .kiwi) {
+        if let kiwiStock = try? fruitStore.currentStock(of: .kiwi) {
             kiwiStockLabel.text = "\(kiwiStock)"
         }
-        if let pineappleStock = try? juiceMaker.fruitStore.currentStock(of: .pineapple) {
+        if let pineappleStock = try? fruitStore.currentStock(of: .pineapple) {
             pineappleStockLabel.text = "\(pineappleStock)"
         }
-        if let mangoStock = try? juiceMaker.fruitStore.currentStock(of: .mango) {
+        if let mangoStock = try? fruitStore.currentStock(of: .mango) {
             mangoStockLabel.text = "\(mangoStock)"
         }
     }
