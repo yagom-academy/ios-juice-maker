@@ -72,7 +72,7 @@ class HomeViewController: UIViewController {
     func presentChangeInventoryViewController() {
         guard let changeInventoryVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeInventoryViewController") as? ChangeInventoryViewController else { return }
             self.present(changeInventoryVC, animated: true)
-        }
+    }
     
     func checkInventory() {
         guard let strawberryAmount = juiceMaker.checkStock(of: .strawBerry) else { return }
