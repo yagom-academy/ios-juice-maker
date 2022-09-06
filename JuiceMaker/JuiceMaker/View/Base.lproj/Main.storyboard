@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -244,12 +244,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaJuiceOrderButton" destination="y2A-PH-DJY" id="uHS-td-Tos"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="Nzr-AX-DwG"/>
                         <outlet property="kiwiJuiceOrderButton" destination="wcW-7H-RXw" id="cUB-rA-Wxy"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="UEu-wC-HvV"/>
                         <outlet property="mangoJuiceOrderButton" destination="q6G-4X-bVm" id="QLJ-Y9-dXE"/>
                         <outlet property="mangoKiwiMixJuiceOrderButton" destination="ngP-kF-Yii" id="mld-QX-cSS"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="A70-pS-wdZ"/>
                         <outlet property="pineappleJuiceOrderButton" destination="BFb-ka-wGA" id="cVe-oh-1nv"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="I1C-9T-gcx"/>
                         <outlet property="strawberryBananaMixJuiceOrderButton" destination="hrc-2F-fzl" id="Swk-6f-HTe"/>
                         <outlet property="strawberryJuiceOrderButton" destination="avd-o5-3JM" id="60X-Ze-EoR"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="j80-we-Cr8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -378,10 +383,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stepper>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpR-nc-oU7">
-                                <rect key="frame" x="722" y="34" width="61" height="31"/>
+                                <rect key="frame" x="728" y="34" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="나가기"/>
+                                <buttonConfiguration key="configuration" style="plain" title="닫기"/>
                                 <connections>
                                     <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="G9z-vc-rYR"/>
                                 </connections>

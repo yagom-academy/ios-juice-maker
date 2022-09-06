@@ -16,9 +16,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var strawberryBananaMixJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoJuiceOrderButton: UIButton!
     @IBOutlet weak var mangoKiwiMixJuiceOrderButton: UIButton!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitStockLabel()
     }
     
     @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
@@ -48,6 +54,7 @@ class ViewController: UIViewController {
         let result: Result<Juice,FruitStoreError> = juiceMaker.make(juice)
         switch result {
         case .success:
+            updateFruitStockLabel()
             showOKAlert("\(juice.name) 나왔습니다! 맛있게 드세요!")
         case .failure:
             showEditAlert("재료가 모자라요. 재고를 수정할까요?")
@@ -93,5 +100,23 @@ class ViewController: UIViewController {
         self.present(stockEditViewController,
                      animated: true,
                      completion: nil)
+    }
+    
+    func updateFruitStockLabel() {
+        if let strawberryStock = try? juiceMaker.fruitStore.currentStock(of: .strawberry) {
+            strawberryStockLabel.text = "\(strawberryStock)"
+        }
+        if let bananaStock = try? juiceMaker.fruitStore.currentStock(of: .banana) {
+            bananaStockLabel.text = "\(bananaStock)"
+        }
+        if let kiwiStock = try? juiceMaker.fruitStore.currentStock(of: .kiwi) {
+            kiwiStockLabel.text = "\(kiwiStock)"
+        }
+        if let pineappleStock = try? juiceMaker.fruitStore.currentStock(of: .pineapple) {
+            pineappleStockLabel.text = "\(pineappleStock)"
+        }
+        if let mangoStock = try? juiceMaker.fruitStore.currentStock(of: .mango) {
+            mangoStockLabel.text = "\(mangoStock)"
+        }
     }
 }
