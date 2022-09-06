@@ -16,6 +16,10 @@ class FruitStore {
             Fruit.allCases.forEach { stock[$0] = defaultStock }
     }
     
+    func updateFruitStock() -> [Fruit: Int] {
+        return stock
+    }
+    
     func checkStockBeUsed(in juice: Juice) throws {
         for (fruit, amountOfFruit) in juice.recipeOfJuice {
             guard let stock = stock[fruit], stock != 0 else {

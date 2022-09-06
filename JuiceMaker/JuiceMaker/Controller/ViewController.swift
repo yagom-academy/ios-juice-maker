@@ -24,14 +24,31 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        designateFruitStock()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(displayFruitStock(_:)),
                                                name: NSNotification.Name("stockChanged"),
                                                object: nil)
-        
     }
     
     let juiceMaker = JuiceMaker()
+    
+    func designateFruitStock() {
+        let fruitStock = juiceMaker.fruitStorage.updateFruitStock()
+        guard let strawberry = fruitStock[.strawberry],
+              let banana = fruitStock[.banana],
+              let pineapple = fruitStock[.pineapple],
+              let kiwi = fruitStock[.kiwi],
+              let mango = fruitStock[.mango] else {
+            return
+        }
+        
+        self.strawberryStockLabel.text = "\(strawberry)"
+        self.bananaStockLabel.text = "\(banana)"
+        self.pineappleStockLabel.text = "\(pineapple)"
+        self.kiwiStockLabel.text = "\(kiwi)"
+        self.mangoStockLabel.text = "\(mango)"
+    }
     
     @objc func displayFruitStock(_ notification: Notification) {
         guard let stock = notification.userInfo?["stockChanged"] as? Dictionary<Fruit, Int> else {
