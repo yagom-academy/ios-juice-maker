@@ -50,8 +50,8 @@ class ViewController: UIViewController {
 		guard let orderedJuice = Juice(rawValue: sender.tag) else {
 			return
 		}
-		maker.makeJuice(juice: orderedJuice)
-		showAlertController(isSuccess: false, juice: orderedJuice)
+		let result = maker.makeJuice(juice: orderedJuice)
+		showAlertController(isSuccess: result, juice: orderedJuice)
 	}
 	
 	func showAlertController(isSuccess: Bool, juice: Juice) {

@@ -7,14 +7,14 @@
 struct JuiceMaker {
 	private let fruitStore = FruitStore()
 	
-	func makeJuice(juice: Juice) {
+	func makeJuice(juice: Juice) -> Bool {
 		do {
 			try fruitStore.haveStock(for: juice)
-			print("\(juice) 완성되었습니다.")
+			return true
 		} catch StoreError.outOfStock {
-			print("재고가 부족합니다.")
+			return false
 		} catch {
-			print("알 수 없는 오류가 발생하였습니다.")
+			return false
 		}
 	}
 }
