@@ -3,11 +3,17 @@
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
 //
+import Foundation
 
 class FruitStore {
     static let shared: FruitStore = FruitStore()
     
-    private(set) var inventoryList: [Fruit: Int] = [:]
+    private(set) var inventoryList: [Fruit: Int] = [:] {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name("inventoryChanged"), object: nil)
+            
+        }
+    }
     let defaultValueOfInventory = 10
     
     private init() {

@@ -17,9 +17,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         updateInventory()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateInventory),
+                                               name: NSNotification.Name("inventoryChanged"),
+                                               object: nil)
     }
     
-    func updateInventory() {
+    @objc func updateInventory() {
         let errorValue = -1
         
         fruitLabels.forEach {
