@@ -59,13 +59,20 @@ class HomeViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "재고수정", style: .default, handler: nil)
+            let ok = UIAlertAction(title: "재고수정", style: .default, handler: {_ in
+                self.presentChangeInventoryViewController()
+            })
             let cancel = UIAlertAction(title: "취소", style: .destructive, handler: nil)
             alert.addAction(cancel)
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }
     }
+    
+    func presentChangeInventoryViewController() {
+        guard let changeInventoryVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeInventoryViewController") as? ChangeInventoryViewController else { return }
+            self.present(changeInventoryVC, animated: true)
+        }
     
     func checkInventory() {
         guard let strawberryAmount = juiceMaker.checkStock(of: .strawBerry) else { return }
