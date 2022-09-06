@@ -93,6 +93,19 @@ class ViewController: UIViewController {
         self.present(successAlert, animated: false)
     }
     
+    func showFailedAlert() {
+        let failedAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?",
+                                            message: "",
+                                            preferredStyle: .alert)
+        failedAlert.addAction(UIAlertAction(title: "예",
+                                            style: .default,
+                                            handler: nil))
+        failedAlert.addAction(UIAlertAction(title: "아니오",
+                                            style: .cancel,
+                                            handler: nil))
+        self.present(failedAlert, animated: false)
+    }
+    
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         
         switch sender {
