@@ -11,6 +11,8 @@ class StockEditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 
 }
