@@ -25,11 +25,11 @@ class EditViewController: UIViewController {
         }
     }
     
-    @IBAction func tappedApplyButton(_ sender: UIButton) {
+    @IBAction private func tappedApplyButton(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
-    @IBAction func tappedCancelButton(_ sender: UIBarButtonItem) {
+    @IBAction private func tappedCancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }

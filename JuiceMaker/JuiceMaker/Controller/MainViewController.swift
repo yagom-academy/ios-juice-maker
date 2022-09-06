@@ -13,7 +13,7 @@ extension NSNotification.Name {
 
 class MainViewController: UIViewController {
     private let store = FruitStore(stockCount: 10)
-    lazy var juiceMaker = JuiceMaker(store: store)
+    private lazy var juiceMaker = JuiceMaker(store: store)
     
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
                                         userInfo: nil)
     }
     
-    @IBAction func tappedModifyBarButton(_ sender: UIBarButtonItem) {
+    @IBAction private func tappedModifyBarButton(_ sender: UIBarButtonItem) {
         guard let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "EditNavigationController") as? UINavigationController else { return }
         guard let viewController = navigationController.viewControllers.first as? EditViewController else { return }
         navigationController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
@@ -53,14 +53,14 @@ class MainViewController: UIViewController {
         present(navigationController, animated: true)
     }
     
-    @IBAction func tappedOrderButton(_ sender: UIButton) {
+    @IBAction private func tappedOrderButton(_ sender: UIButton) {
         guard let juiceName = sender.restorationIdentifier else { return }
         guard let juice = Juice(rawValue: juiceName) else { return }
         
         juiceMaker.makeJuice(juice)
     }
     
-    @objc func madeJuiceAlert(_ noti: Notification) {
+    @objc private func madeJuiceAlert(_ noti: Notification) {
         guard let juiceName = noti.userInfo?["JuiceName"] else { return }
         
         let alert = UIAlertController(title: nil,
@@ -75,7 +75,7 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc func failedAlert(_ noti: Notification) {
+    @objc private func failedAlert(_ noti: Notification) {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: { ACTION in
             self.tappedModifyBarButton(UIBarButtonItem())
@@ -88,7 +88,7 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc func updateStockCount(_ noti: Notification) {
+    @objc private func updateStockCount(_ noti: Notification) {
         strawberryCountLabel.text = String(store.stock[Fruit.strawberry.index])
         bananaCountLabel.text = String(store.stock[Fruit.banana.index])
         pineappleCountLabel.text = String(store.stock[Fruit.pineapple.index])
