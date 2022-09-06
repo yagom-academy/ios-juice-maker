@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C71E63C28C6D73900C4C6DF /* StockEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71E63B28C6D73900C4C6DF /* StockEditViewController.swift */; };
 		3CA262AE28BDD96A00A10C26 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA262AD28BDD96A00A10C26 /* JuiceMakerError.swift */; };
 		B2E7C8FF28BDC9A100A75058 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E7C8FE28BDC9A100A75058 /* Fruit.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C71E63B28C6D73900C4C6DF /* StockEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockEditViewController.swift; sourceTree = "<group>"; };
 		3CA262AD28BDD96A00A10C26 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		B2E7C8FE28BDC9A100A75058 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				3C71E63B28C6D73900C4C6DF /* StockEditViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2E7C8FF28BDC9A100A75058 /* Fruit.swift in Sources */,
+				3C71E63C28C6D73900C4C6DF /* StockEditViewController.swift in Sources */,
 				3CA262AE28BDD96A00A10C26 /* JuiceMakerError.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
@@ -327,6 +331,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JuiceMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -345,6 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JuiceMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
