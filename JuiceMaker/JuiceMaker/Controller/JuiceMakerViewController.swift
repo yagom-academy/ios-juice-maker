@@ -19,11 +19,11 @@ class JuiceMakerViewController: UIViewController {
 		receiveStockChangedNoti()
 	}
 	
-	func receiveStockChangedNoti() {
+	private func receiveStockChangedNoti() {
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(didChangeStocks(noti:)),
-			name: NSNotification.Name("stockChanged"),
+			name: Notification.Name.stockChanged,
 			object: nil
 		)
 	}
@@ -35,7 +35,7 @@ class JuiceMakerViewController: UIViewController {
 		setUpStockLabels(changedStocks: stocks)
 	}
 	
-	func setUpStockLabels(changedStocks: [Fruit: Int]) {
+	private func setUpStockLabels(changedStocks: [Fruit: Int]) {
 		[
 			strawberryStockLabel,
 			bananaStockLabel,
@@ -58,7 +58,7 @@ class JuiceMakerViewController: UIViewController {
 		showAlertController(isSuccess: result, juice: orderedJuice)
 	}
 	
-	func showAlertController(isSuccess: Bool, juice: Juice) {
+	private func showAlertController(isSuccess: Bool, juice: Juice) {
 		let titleMessage = isSuccess ? AlertMessages.successTitle : AlertMessages.failureTitle
 		let message = isSuccess ? "\(juice.description) \(AlertMessages.successMessage)" : AlertMessages.failureMessage
 		let confirmMessage = isSuccess ? AlertMessages.successConfirmMessage : AlertMessages.failureConfirmMessage
@@ -67,7 +67,7 @@ class JuiceMakerViewController: UIViewController {
 		
 		let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
 			if !isSuccess {
-				self.performSegue(withIdentifier: "presentModify", sender: nil)
+				self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
 			}
 		}
 		

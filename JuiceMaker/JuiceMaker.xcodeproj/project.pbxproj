@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1859B77428C6D6A00065AA2A /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859B77328C6D6A00065AA2A /* ModifyViewController.swift */; };
 		1859B77628C732310065AA2A /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859B77528C732310065AA2A /* AlertMessages.swift */; };
+		1859B77928C7346E0065AA2A /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1859B77828C7346E0065AA2A /* Notification+.swift */; };
 		18DBC91328BDEFE40024DC1F /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBC91228BDEFE40024DC1F /* Juice.swift */; };
 		18DBC91528BDEFFC0024DC1F /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBC91428BDEFFC0024DC1F /* Fruit.swift */; };
 		18DBC91728BDF0130024DC1F /* StoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBC91628BDF0130024DC1F /* StoreError.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		1859B77328C6D6A00065AA2A /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
 		1859B77528C732310065AA2A /* AlertMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
+		1859B77828C7346E0065AA2A /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
 		18DBC91228BDEFE40024DC1F /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		18DBC91428BDEFFC0024DC1F /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		18DBC91628BDF0130024DC1F /* StoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreError.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1859B77728C734640065AA2A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1859B77828C7346E0065AA2A /* Notification+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +114,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				1859B77728C734640065AA2A /* Extensions */,
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
@@ -183,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
+				1859B77928C7346E0065AA2A /* Notification+.swift in Sources */,
 				18DBC91328BDEFE40024DC1F /* Juice.swift in Sources */,
 				18DBC91728BDF0130024DC1F /* StoreError.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,

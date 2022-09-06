@@ -9,7 +9,7 @@ import Foundation
 class FruitStore {
 	private var inventory: [Fruit: Int] = Fruit.beginningStock {
 		didSet {
-			NotificationCenter.default.post(name: NSNotification.Name("stockChanged"),
+			NotificationCenter.default.post(name: Notification.Name.stockChanged,
 											object: nil,
 											userInfo: inventory)
 		}
