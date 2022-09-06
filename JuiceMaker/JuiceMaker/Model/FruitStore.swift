@@ -8,6 +8,7 @@ import Foundation
 
 class FruitStore {
     static let sharedFruitStore = FruitStore()
+    
     private init() {}
     
     private var fruitStock: Dictionary<Fruit, Int> = [
@@ -19,17 +20,19 @@ class FruitStore {
     ]
     
     func changeStockOf(fruit: Fruit, by quantity: Int) {
-        let currentStock = fruitStock[fruit, default: 0]
+        guard let currentStock = fruitStock[fruit] else {
+            return
+        }
         
         fruitStock[fruit] = currentStock + quantity
     }
     
     func checkStockOf(_ ingredient: Fruit, total: Int) throws {
-        guard let curStock = fruitStock[ingredient] else {
+        guard let currentStock = fruitStock[ingredient] else {
             return
         }
         
-        guard curStock >= total else {
+        guard currentStock >= total else {
             throw JuiceMakerError.stockShortage
         }
     }

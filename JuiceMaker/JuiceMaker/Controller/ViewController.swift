@@ -28,34 +28,33 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        strawberryStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.strawberry))
-        bananaStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.banana))
-        pineappleStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.pineapple))
-        kiwiStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.kiwi))
-        mangoStockLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(.mango))
+        let fruitLabel: [UILabel: Fruit] = [
+            strawberryStockLabel: .strawberry,
+            bananaStockLabel: .banana,
+            pineappleStockLabel: .pineapple,
+            kiwiStockLabel: .kiwi,
+            mangoStockLabel: .mango,
+        ]
+        
+        for (label, fruit) in fruitLabel {
+            label.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
+        }
     }
     
     @IBAction func orderJuice(sender: UIButton) {
-        var result: Result<String, Error>
+        let juiceButton: [UIButton: Juice] = [
+            strawberryBananaJuiceButton: .strawberryBananaJuice,
+            mangoKiwiJuiceButton: .mangoKiwiJuice,
+            strawberryJuiceButton: .strawberryJuice,
+            bananaJuiceButton: .bananaJuice,
+            pineappleJuiceButton: .pineappleJuice,
+            kiwiJuiceButton: .kiwiJuice,
+            mangoJuiceButton: .mangoJuice,
+        ]
         
-        switch sender {
-        case strawberryBananaJuiceButton:
-            result = juiceMaker.makeJuice(.strawberryBananaJuice, total: 1)
-        case mangoKiwiJuiceButton:
-            result = juiceMaker.makeJuice(.mangoKiwiJuice, total: 1)
-        case strawberryJuiceButton:
-            result = juiceMaker.makeJuice(.strawberryJuice, total: 1)
-        case bananaJuiceButton:
-            result = juiceMaker.makeJuice(.bananaJuice, total: 1)
-        case pineappleJuiceButton:
-            result = juiceMaker.makeJuice(.pineappleJuice, total: 1)
-        case kiwiJuiceButton:
-            result = juiceMaker.makeJuice(.kiwiJuice, total: 1)
-        case mangoJuiceButton:
-            result = juiceMaker.makeJuice(.mangoJuice, total: 1)
-        default:
-            return
-        }
+        guard let juice = juiceButton[sender] else { return }
+        
+        let result = juiceMaker.makeJuice(juice, total: 1)
         
         switch result {
         case .success(let message):
@@ -65,27 +64,33 @@ class ViewController: UIViewController {
             guard let juiceMakerError = error as? JuiceMakerError else {
                 return showFailureAlert(message: error.localizedDescription)
             }
+            
             showFailureAlert(message: juiceMakerError.errorDescription )
         }
     }
     
     func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "예", style: .default, handler : nil)
         
         alert.addAction(okAction)
+        
         present(alert, animated: true, completion: nil)
     }
     
     func showFailureAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
             self.moveToFruitStockVC()
         }
+        
         let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
         
         alert.addAction(noAction)
         alert.addAction(okAction)
+        
         present(alert, animated: true, completion: nil)
     }
     
@@ -98,6 +103,5 @@ class ViewController: UIViewController {
     @IBAction func touchUpChangeFruitStockButton(_ sender: UIBarButtonItem) {
         moveToFruitStockVC()
     }
-    
 }
 
