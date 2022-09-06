@@ -3,12 +3,21 @@
 //  Created by Wonbi, woong
 //
 
+import Foundation
+
 class FruitStore {
-    private var stock: [Int]
+    private var stock: [Int] {
+        didSet {
+            NotificationCenter.default.post(name: .changedStockCount,
+                                            object: nil,
+                                            userInfo: nil)
+        }
+    }
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
         self.stock = [Int](repeating: stockCount, count: count)
+        print("만들어져벌임...")
     }
     
     private func haveInStock(ingredient: [(Fruit, Int)]) -> Bool {

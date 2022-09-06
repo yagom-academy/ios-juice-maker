@@ -5,6 +5,10 @@
 
 import UIKit
 
+extension NSNotification.Name {
+    static let changedStockCount = NSNotification.Name("changedStockCount")
+}
+
 class ViewController: UIViewController {
     let store = FruitStore(stockCount: 10)
 
@@ -16,21 +20,31 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayStock()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(displayStock(_:)), name: .changedStockCount,
+                                               object: nil)
+        NotificationCenter.default.post(name: .changedStockCount,
+                                        object: nil,
+                                        userInfo: nil)
     }
+    
     @IBAction func tappedButton(_ sender: Any) {
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController else { return }
         
+        viewController.stock = store.displayStockCount()
+        
+        present(viewController, animated: true)
     }
     
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         guard let juiceName = sender.restorationIdentifier else { return }
         guard let juice = Juice(rawValue: juiceName) else { return }
-        
+
         let juiceMaker = JuiceMaker(store: store)
-        
+
         juiceMaker.makeJuice(juice)
         madeJuiceAlert(message: "\(juiceName) 나왔습니다! 맛있게 드세요!")
-        failedAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+//        failedAlert(message: "재료가 모자라요. 재고를 수정할까요?")
     }
     
     func madeJuiceAlert(message: String) {
@@ -40,6 +54,7 @@ class ViewController: UIViewController {
         alert.addAction(okAction)
         
         present(alert, animated: true)
+        
     }
     
     func failedAlert(message: String) {
@@ -53,16 +68,13 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    func displayStock() {
+    @objc func displayStock(_ noti: Notification) {
         strawberryCountLabel.text = String(store.displayStockCount()[0])
         bananaCountLabel.text = String(store.displayStockCount()[1])
         pineappleCountLabel.text = String(store.displayStockCount()[2])
         kiwiCountLabel.text = String(store.displayStockCount()[3])
         mangoCountLabel.text = String(store.displayStockCount()[4])
-        
-        
     }
-
 }
 
 
