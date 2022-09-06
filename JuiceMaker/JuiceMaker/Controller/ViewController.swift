@@ -34,17 +34,6 @@ class ViewController: UIViewController {
     
     let juiceMaker = JuiceMaker()
     
-    func executeJuiceMaker(to juice: Juice) {
-        do {
-            try juiceMaker.makeJuice(to: juice)
-            showSuccessAlert(to: juice)
-        } catch OrderError.outOfStock {
-            showFailedAlert()
-        } catch {
-            print("알 수 없는 오류입니다.")
-        }
-    }
-    
     func designateFruitStock() {
         let fruitStock = juiceMaker.fruitStorage.updateFruitStock()
         guard let strawberry = fruitStock[.strawberry],
@@ -126,7 +115,7 @@ class ViewController: UIViewController {
             return
         }
         
-        executeJuiceMaker(to: juice)
+        juiceMaker.makeJuice(to: juice, in: self)
     }
 }
 

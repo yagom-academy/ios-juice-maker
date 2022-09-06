@@ -6,11 +6,12 @@ import Foundation
 struct JuiceMaker {
     let fruitStorage = FruitStore(defaultStock: 10)
     
-    func makeJuice(to order: Juice) {
+    func makeJuice(to order: Juice, in view: ViewController) {
         do {
             try fruitStorage.checkStockBeUsed(in: order)
+            view.showSuccessAlert(to: order)
         } catch OrderError.outOfStock {
-            print(OrderError.outOfStock.message)
+            view.showFailedAlert()
         } catch OrderError.emptyStock {
             print(OrderError.emptyStock.message)
         } catch {

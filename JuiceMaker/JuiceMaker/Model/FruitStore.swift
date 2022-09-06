@@ -22,10 +22,10 @@ class FruitStore {
     
     func checkStockBeUsed(in juice: Juice) throws {
         for (fruit, amountOfFruit) in juice.recipeOfJuice {
-            guard let stock = stock[fruit], stock != 0 else {
+            guard let stock = stock[fruit] else {
                 throw OrderError.emptyStock
             }
-            guard stock >= amountOfFruit else {
+            guard stock - amountOfFruit >= 0 else {
                 throw OrderError.outOfStock
             }
         }
