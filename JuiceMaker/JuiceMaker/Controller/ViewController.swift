@@ -114,5 +114,9 @@ class ViewController: UIViewController {
         
         present(stockEditVC, animated: true, completion: nil)
     }
+    
+    @IBAction func stockEditButtonPressed() {
+        presentStockEditViewController()
+    }
 }
 
