@@ -62,9 +62,9 @@ class ViewController: UIViewController {
 		
 		let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
 		
-		let okAction = UIAlertAction(title: confirmMessage, style: .default) { action in
+		let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
 			if !isSuccess {
-				print("is Not Success")
+				self.performSegue(withIdentifier: "presentModify", sender: nil)
 			}
 		}
 		let cancelAction = UIAlertAction(title: cancelMessage, style: .default)
