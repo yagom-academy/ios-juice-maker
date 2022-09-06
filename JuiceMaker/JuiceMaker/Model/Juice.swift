@@ -3,11 +3,11 @@
 //  Created by Ash, 미니.
 //
 
-enum Juice: CaseIterable {
-	case strawberryJuice
+enum Juice: Int, CaseIterable {
+	case strawberryJuice = 0
 	case bananaJuice
-	case kiwiJuice
 	case pineappleJuice
+	case kiwiJuice
 	case mangoJuice
 	case strawberrybananaJuice
 	case mangokiwiJuice

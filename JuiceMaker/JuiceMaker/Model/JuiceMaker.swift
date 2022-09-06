@@ -10,6 +10,7 @@ struct JuiceMaker {
 	func makeJuice(juice: Juice) {
 		do {
 			try fruitStore.haveStock(for: juice)
+			print("\(juice) 완성되었습니다.")
 		} catch StoreError.outOfStock {
 			print("재고가 부족합니다.")
 		} catch {

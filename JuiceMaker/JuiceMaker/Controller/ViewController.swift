@@ -11,4 +11,11 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
+	
+	@IBAction func didTapJuiceButton(_ sender: UIButton) {
+		guard let orderedJuice = Juice(rawValue: sender.tag) else {
+			return
+		}
+		maker.makeJuice(juice: orderedJuice)
+	}
 }
