@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet private var fruitLabels: [UILabel]!
     
     private let juiceMaker = JuiceMaker()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             }
         }
     }
- 
+    
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         if let juice = Juice.init(rawValue: sender.tag) {
             juiceMaker.make(juice)
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         let okAction = UIAlertAction(title: "확인",
                                      style: .default,
                                      handler: nil)
-
+        
         alert.addAction(okAction)
         
         present(alert,
@@ -58,11 +58,12 @@ class ViewController: UIViewController {
                                       preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "예",
-                                     style: .default,
-                                     handler: nil)
+                                     style: .default) { (action) in
+            self.presentModifyingInventoryView()
+        }
         let cancleAction = UIAlertAction(title: "아니오",
-                                     style: .default,
-                                     handler: nil)
+                                         style: .default,
+                                         handler: nil)
         
         alert.addAction(okAction)
         alert.addAction(cancleAction)
@@ -70,6 +71,17 @@ class ViewController: UIViewController {
         present(alert,
                 animated: true,
                 completion: nil)
+    }
+    
+    func presentModifyingInventoryView() {
+        if let modifyingInventoryViewController = storyboard?.instantiateViewController(withIdentifier: "ModifyingInventoryVC") as? ModifyingInventoryViewController {
+            
+            modifyingInventoryViewController.modalPresentationStyle = .fullScreen
+            
+            present(modifyingInventoryViewController,
+                    animated: true,
+                    completion: nil)
+        }
     }
 }
 
