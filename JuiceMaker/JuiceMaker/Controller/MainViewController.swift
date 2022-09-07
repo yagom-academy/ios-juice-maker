@@ -12,8 +12,10 @@ extension NSNotification.Name {
 }
 
 class MainViewController: UIViewController {
-    private let store = FruitStore(stockCount: 10)
+    let store = FruitStore(stockCount: 10)
     private lazy var juiceMaker = JuiceMaker(store: store)
+    
+    private var stockChangeObserver: NSKeyValueObservation?
     
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
@@ -23,24 +25,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateStockCount(_:)),
-                                               name: .changedStockCount,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(madeJuiceAlert(_:)),
-                                               name: .madeJuiceAlert,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(failedAlert(_:)),
-                                               name: .failedAlert,
-                                               object: nil)
-        
-        NotificationCenter.default.post(name: .changedStockCount,
-                                        object: nil,
-                                        userInfo: nil)
+        stockChangeObserver = store.observe(\.stock,
+                                             options: [.new, .initial],
+                                             changeHandler: { (object, stock) in
+            guard let newStock = stock.newValue else { return }
+            self.updateStockCount(stock: newStock)
+        })
     }
     
     @IBAction private func tappedModifyBarButton(_ sender: UIBarButtonItem) {
@@ -61,7 +51,7 @@ class MainViewController: UIViewController {
         juiceMaker.makeJuice(juice)
     }
     
-    @objc private func madeJuiceAlert(_ noti: Notification) {
+    private func madeJuiceAlert(_ noti: Notification) {
         guard let juiceName = noti.userInfo?["JuiceName"] else { return }
         
         let alert = UIAlertController(title: nil,
@@ -76,7 +66,7 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc private func failedAlert(_ noti: Notification) {
+    private func failedAlert() {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: { ACTION in
             self.tappedModifyBarButton(UIBarButtonItem())
@@ -89,11 +79,11 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc private func updateStockCount(_ noti: Notification) {
-        strawberryCountLabel.text = String(store.stock[Fruit.strawberry.index])
-        bananaCountLabel.text = String(store.stock[Fruit.banana.index])
-        pineappleCountLabel.text = String(store.stock[Fruit.pineapple.index])
-        kiwiCountLabel.text = String(store.stock[Fruit.kiwi.index])
-        mangoCountLabel.text = String(store.stock[Fruit.mango.index])
+    private func updateStockCount(stock: [Int]) {
+        strawberryCountLabel.text = String(stock[Fruit.strawberry.index])
+        bananaCountLabel.text = String(stock[Fruit.banana.index])
+        pineappleCountLabel.text = String(stock[Fruit.pineapple.index])
+        kiwiCountLabel.text = String(stock[Fruit.kiwi.index])
+        mangoCountLabel.text = String(stock[Fruit.mango.index])
     }
 }

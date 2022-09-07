@@ -5,14 +5,9 @@
 
 import Foundation
 
-class FruitStore {
-    private(set) var stock: [Int] {
-        didSet {
-            NotificationCenter.default.post(name: .changedStockCount,
-                                            object: nil,
-                                            userInfo: nil)
-        }
-    }
+class FruitStore: NSObject {
+    @objc dynamic private(set) var stock: [Int]
+    @objc dynamic private(set) var isSuccess: Bool = true
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
@@ -41,15 +36,18 @@ class FruitStore {
         stock[fruit.index] = computedCount
     }
     
+    @discardableResult
     func canSupplyRequest(ingredient: [(Fruit, Int)]) -> Bool {
         guard haveInStock(ingredient: ingredient) else {
             print("재고가 부족합니다.")
+            isSuccess = false
             return false
         }
         
         for (fruit, count) in ingredient {
             changeStock(fruit: fruit, count: count, isMinus: true)
         }
+        isSuccess = true
         return true
     }
 }

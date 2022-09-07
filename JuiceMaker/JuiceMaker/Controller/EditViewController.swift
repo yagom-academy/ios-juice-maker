@@ -6,6 +6,7 @@
 import UIKit
 
 class EditViewController: UIViewController {
+    
     @IBOutlet weak var strawberryCount: UILabel!
     @IBOutlet weak var bananaCount: UILabel!
     @IBOutlet weak var pineappleCount: UILabel!

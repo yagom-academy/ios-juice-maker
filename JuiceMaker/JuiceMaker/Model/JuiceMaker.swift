@@ -47,12 +47,9 @@ struct JuiceMaker {
     
     func makeJuice(_ juice: Juice) {
         if store.canSupplyRequest(ingredient: juice.ingredient) {
-            NotificationCenter.default.post(name: .madeJuiceAlert,
-                                            object: nil,
-                                            userInfo: ["JuiceName" : juice.name])
+            
         } else {
-            NotificationCenter.default.post(name: .failedAlert,
-                                            object: nil)
+            
         }
     }
 }
