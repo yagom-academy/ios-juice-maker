@@ -27,8 +27,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelDefaultValue()
-        
-        
     }
     
     func setLabelDefaultValue() {
@@ -39,7 +37,6 @@ class MainViewController: UIViewController {
         mangoLabel.text = fruitStock[.mango]?.description
     }
     
-
     @IBAction func orderJuice(_ sender: UIButton) {
         if let sender = sender.restorationIdentifier,
             let juice = Juice(rawValue: sender) {
@@ -50,6 +47,11 @@ class MainViewController: UIViewController {
                 present(alertOrderIsNotReady(), animated: true, completion: nil)
             }
         }
+    }
+    
+    func showStockEditor() {
+        guard let stockEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditorViewController") else { return }
+        self.present(stockEditorViewController, animated: true, completion: nil)
     }
     
     func alertOrderIsReady(_ juice: Juice) -> UIAlertController {
@@ -64,7 +66,9 @@ class MainViewController: UIViewController {
     func alertOrderIsNotReady() -> UIAlertController {
         let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")})
+            NSLog("The \"OK\" alert occured.")
+            self.showStockEditor()
+        })
         let cancle = UIAlertAction(title: "Cancle", style: .default, handler: { _ in
             NSLog("The \"Cancle\" alert occured.")})
         alert.addAction(ok)
