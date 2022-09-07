@@ -34,32 +34,37 @@ class ViewController: UIViewController {
     }
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        let juice: Juice
-        switch sender {
-        case strawberryJuiceOrderButton:
-            juice = .strawberryJuice
-        case bananaJuiceOrderButton:
-            juice = .bananaJuice
-        case kiwiJuiceOrderButton:
-            juice = .kiwiJuice
-        case pineappleJuiceOrderButton:
-            juice = .pineappleJuice
-        case strawberryBananaMixJuiceOrderButton:
-            juice = .strawberryBananaMixJuice
-        case mangoJuiceOrderButton:
-            juice = .mangoJuice
-        case mangoKiwiMixJuiceOrderButton:
-            juice = .mangoKiwiMixJuice
-        default:
+        guard let juice: Juice = juice(orderedBy: sender) else {
             return
         }
-        let result: Result<Juice,FruitStoreError> = juiceMaker.make(juice)
+        let result: Result<Juice, FruitStoreError> = juiceMaker.make(juice)
         switch result {
-        case .success:
+        case .success(let juice):
             updateFruitStockLabel()
             showOkayAlert("\(juice.name) 나왔습니다! 맛있게 드세요!")
-        case .failure:
-            showStockEditAlert("재료가 모자라요. 재고를 수정할까요?")
+        case .failure(let fruitStoreError):
+            showStockEditAlert("\(fruitStoreError.localizedDescription)")
+        }
+    }
+    
+    func juice(orderedBy button: UIButton) -> Juice? {
+        switch button {
+        case strawberryJuiceOrderButton:
+            return .strawberryJuice
+        case bananaJuiceOrderButton:
+            return .bananaJuice
+        case kiwiJuiceOrderButton:
+            return .kiwiJuice
+        case pineappleJuiceOrderButton:
+            return .pineappleJuice
+        case strawberryBananaMixJuiceOrderButton:
+            return .strawberryBananaMixJuice
+        case mangoJuiceOrderButton:
+            return .mangoJuice
+        case mangoKiwiMixJuiceOrderButton:
+            return .mangoKiwiMixJuice
+        default:
+            return nil
         }
     }
     
