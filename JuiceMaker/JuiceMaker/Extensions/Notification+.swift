@@ -1,12 +1,10 @@
 //
 //  Notification+.swift
-//  JuiceMaker
-//
-//  Created by 이경민 on 2022/09/06.
+//  Created by Ash, 미니.
 //
 
 import Foundation
 
 extension Notification.Name {
-	static let stockChanged = NSNotification.Name("stockChanged")
+	static let stockChanged = Notification.Name("stockChanged")
 }

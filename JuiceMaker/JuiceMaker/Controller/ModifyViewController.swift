@@ -16,4 +16,3 @@ class ModifyViewController: UIViewController {
 		dismiss(animated: true)
 	}
 }
-

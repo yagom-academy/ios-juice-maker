@@ -62,9 +62,7 @@ class JuiceMakerViewController: UIViewController {
 		let titleMessage = isSuccess ? AlertMessages.successTitle : AlertMessages.failureTitle
 		let message = isSuccess ? "\(juice.description) \(AlertMessages.successMessage)" : AlertMessages.failureMessage
 		let confirmMessage = isSuccess ? AlertMessages.successConfirmMessage : AlertMessages.failureConfirmMessage
-		
 		let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
-		
 		let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
 			if !isSuccess {
 				self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
