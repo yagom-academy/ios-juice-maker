@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
-        prsentStockEditView()
+        presentStockEditView()
     }
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
@@ -69,36 +69,35 @@ class ViewController: UIViewController {
     }
     
     func showOkayAlert(_ message: String) {
-        let alert = UIAlertController(title: nil,
-                                      message: message,
-                                      preferredStyle: .alert)
         let okAction = UIAlertAction(title: AlertText.okay,
                                      style: .default,
                                      handler: nil)
-        alert.addAction(okAction)
-        present(alert,
-                animated: true,
-                completion: nil)
+        showAlert(message, alertActions: okAction)
     }
     
     func showStockEditAlert(_ message: String) {
-        let alert = UIAlertController(title: nil,
-                                      message: message,
-                                      preferredStyle: .alert)
         let editAction = UIAlertAction(title: AlertText.yes,
                                        style: .default) { (action) in
-            self.prsentStockEditView()
+            self.presentStockEditView()
         }
         let cancelAction = UIAlertAction(title: AlertText.no,
                                          style: .default)
-        alert.addAction(editAction)
-        alert.addAction(cancelAction)
+        showAlert(message, alertActions: editAction, cancelAction)
+    }
+    
+    func showAlert(_ message: String, alertActions: UIAlertAction...) {
+        let alert = UIAlertController(title: nil,
+                                      message: message,
+                                      preferredStyle: .alert)
+        for alertAction in alertActions {
+            alert.addAction(alertAction)
+        }
         present(alert,
                 animated: true,
                 completion: nil)
     }
     
-    func prsentStockEditView() {
+    func presentStockEditView() {
         guard let stockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditViewController") as? StockEditViewController else {
             return
         }
