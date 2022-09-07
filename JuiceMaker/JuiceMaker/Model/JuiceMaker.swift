@@ -45,11 +45,12 @@ struct JuiceMaker {
         self.store = store
     }
     
-    func makeJuice(_ juice: Juice) {
+    @discardableResult
+    func makeJuice(_ juice: Juice) -> String {
         if store.canSupplyRequest(ingredient: juice.ingredient) {
-            
+            return juice.name
         } else {
-            
+            return ""
         }
     }
 }

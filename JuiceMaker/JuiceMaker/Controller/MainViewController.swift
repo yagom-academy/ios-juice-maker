@@ -5,17 +5,13 @@
 
 import UIKit
 
-extension NSNotification.Name {
-    static let changedStockCount = NSNotification.Name("changedStockCount")
-    static let madeJuiceAlert = NSNotification.Name("madeJuiceAlert")
-    static let failedAlert = NSNotification.Name("failedAlert")
-}
-
 class MainViewController: UIViewController {
-    let store = FruitStore(stockCount: 10)
+    @objc let store = FruitStore(stockCount: 10)
     private lazy var juiceMaker = JuiceMaker(store: store)
+    @objc dynamic private var juiceName: String = ""
     
     private var stockChangeObserver: NSKeyValueObservation?
+    private var makingJuiceObserver: NSKeyValueObservation?
     
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
@@ -25,11 +21,23 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stockChangeObserver = store.observe(\.stock,
+        stockChangeObserver = observe(\.store.stock,
                                              options: [.new, .initial],
                                              changeHandler: { (object, stock) in
             guard let newStock = stock.newValue else { return }
             self.updateStockCount(stock: newStock)
+        })
+        
+        makingJuiceObserver = observe(\.juiceName,
+                                       options: [.new],
+                                       changeHandler: { (object, juice) in
+            guard let juiceName = juice.newValue else { return }
+            
+            if juiceName.isEmpty {
+                self.failedAlert()
+            } else {
+                self.madeJuiceAlert(message: juiceName)
+            }
         })
     }
     
@@ -48,14 +56,12 @@ class MainViewController: UIViewController {
         let juiceName = buttonText.replacingOccurrences(of: " 주문", with: "")
         guard let juice = Juice(rawValue: juiceName) else { return }
         
-        juiceMaker.makeJuice(juice)
+        self.juiceName = juiceMaker.makeJuice(juice)
     }
     
-    private func madeJuiceAlert(_ noti: Notification) {
-        guard let juiceName = noti.userInfo?["JuiceName"] else { return }
-        
+    private func madeJuiceAlert(message: String) {
         let alert = UIAlertController(title: nil,
-                                      message: "\(juiceName) 나왔습니다! 맛있게 드세요!",
+                                      message: "\(message) 나왔습니다! 맛있게 드세요!",
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인",
                                      style: .default,
