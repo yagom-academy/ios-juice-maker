@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         switch result {
         case .success(let juice):
             updateFruitStockLabel()
-            showOkayAlert("\(juice.name) 나왔습니다! 맛있게 드세요!")
+            showOkayAlert("\(juice.name) \(AlertText.juiceCompletion)")
         case .failure(let fruitStoreError):
             showStockEditAlert("\(fruitStoreError.localizedDescription)")
         }
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
+        let okAction = UIAlertAction(title: AlertText.okay,
                                      style: .default,
                                      handler: nil)
         alert.addAction(okAction)
@@ -85,11 +85,11 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
-        let editAction = UIAlertAction(title: "예",
+        let editAction = UIAlertAction(title: AlertText.yes,
                                        style: .default) { (action) in
             self.prsentStockEditView()
         }
-        let cancelAction = UIAlertAction(title: "아니오",
+        let cancelAction = UIAlertAction(title: AlertText.no,
                                          style: .default)
         alert.addAction(editAction)
         alert.addAction(cancelAction)
