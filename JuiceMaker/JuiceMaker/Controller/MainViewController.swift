@@ -40,6 +40,15 @@ class MainViewController: UIViewController {
         let alert = UIAlertController(title: "완성!", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")})
+        alert.addAction(ok)
+        
+        return alert
+    }
+    
+    func alertOrderIsnotReady(_ juice: String) -> UIAlertController {
+        let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")})
         let cancle = UIAlertAction(title: "Cancle", style: .default, handler: { _ in
             NSLog("The \"Cancle\" alert occured.")})
         alert.addAction(ok)
