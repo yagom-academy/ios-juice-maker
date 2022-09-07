@@ -11,6 +11,7 @@ enum FruitStoreError: Error {
     case outOfStock
     case unexpectedError
     
+    static let notExist: String = "X"
     var localizedDescription: String {
         switch self {
         case .invalidAmount:

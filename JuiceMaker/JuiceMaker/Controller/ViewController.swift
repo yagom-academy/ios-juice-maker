@@ -8,7 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var fruitStore: FruitStore = .init(initialStock: 10)
+    var fruitStore: FruitStore = .init(inventory: [.strawberry: 10, .banana:10, .kiwi: 10, .mango: 10])
     lazy var juiceMaker: JuiceMaker = .init(fruitStore: fruitStore)
     
     @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockLabel()
@@ -39,11 +39,16 @@ class ViewController: UIViewController {
         }
         let result: Result<Juice, FruitStoreError> = juiceMaker.make(juice)
         switch result {
-        case .success(let juice):
+        case .success(let madeJuice):
             updateFruitStockLabel()
-            showOkayAlert("\(juice.name) \(AlertText.juiceCompletion)")
+            showOkayAlert("\(madeJuice.name) \(AlertText.juiceCompletion)")
         case .failure(let fruitStoreError):
-            showStockEditAlert("\(fruitStoreError.localizedDescription)")
+            switch fruitStoreError {
+            case .outOfStock:
+                showStockEditAlert(fruitStoreError.localizedDescription)
+            default:
+                showOkayAlert(fruitStoreError.localizedDescription)
+            }
         }
     }
     
@@ -111,18 +116,28 @@ class ViewController: UIViewController {
     func updateFruitStockLabel() {
         if let strawberryStock = try? fruitStore.currentStock(of: .strawberry) {
             strawberryStockLabel.text = "\(strawberryStock)"
+        } else {
+            strawberryStockLabel.text = FruitStoreError.notExist
         }
         if let bananaStock = try? fruitStore.currentStock(of: .banana) {
             bananaStockLabel.text = "\(bananaStock)"
+        } else {
+            bananaStockLabel.text = FruitStoreError.notExist
         }
         if let kiwiStock = try? fruitStore.currentStock(of: .kiwi) {
             kiwiStockLabel.text = "\(kiwiStock)"
+        } else {
+            kiwiStockLabel.text = FruitStoreError.notExist
         }
         if let pineappleStock = try? fruitStore.currentStock(of: .pineapple) {
             pineappleStockLabel.text = "\(pineappleStock)"
+        } else {
+            pineappleStockLabel.text = FruitStoreError.notExist
         }
         if let mangoStock = try? fruitStore.currentStock(of: .mango) {
             mangoStockLabel.text = "\(mangoStock)"
+        } else {
+            mangoStockLabel.text = FruitStoreError.notExist
         }
     }
 }

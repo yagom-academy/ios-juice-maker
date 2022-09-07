@@ -23,8 +23,6 @@ struct JuiceMaker {
             return .failure(.notInInventoryFruitList)
         } catch FruitStoreError.outOfStock {
             return .failure(.outOfStock)
-        } catch FruitStoreError.invalidAmount {
-            return .failure(.invalidAmount)
         } catch {
             return .failure(.unexpectedError)
         }
