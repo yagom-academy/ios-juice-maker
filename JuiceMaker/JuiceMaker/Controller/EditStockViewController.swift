@@ -24,39 +24,72 @@ class EditStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print(stock)
-        setStockLabel()
         
-//        Notification.default.addObserver(<#T##Any#>, selector: <#T##Selector#>, name: <#T##NSNotification.Name?#>, object: <#T##Any?#>)
+        super.viewDidLoad()
+        setStepperValue()
+        setStockLabel()
+        addNotification()
+        
+    }
+    
+    func setStepperValue() {
+        self.strawberryStepper.value = Double(stock[.strawberry] ?? 0)
+        self.bananaStepper.value = Double(stock[.banana] ?? 0)
+        self.pineappleStepper.value = Double(stock[.pineapple] ?? 0)
+        self.kiwiStepper.value = Double(stock[.kiwi] ?? 0)
+        self.mangoStepper.value = Double(stock[.mango] ?? 0)
     }
     
     func setStockLabel() {
-        self.strawberryStockLabel.text = "\(stock[.strawberry] ?? 0)"
-        self.bananaStockLabel.text = "\(stock[.banana] ?? 0)"
-        self.pineappleStockLabel.text = "\(stock[.pineapple] ?? 0)"
-        self.kiwiStockLabel.text = "\(stock[.kiwi] ?? 0)"
-        self.mangoStockLabel.text = "\(stock[.mango] ?? 0)"
+        self.strawberryStockLabel.text = "\(Int(self.strawberryStepper.value))"
+        self.bananaStockLabel.text = "\(Int(self.bananaStepper.value))"
+        self.pineappleStockLabel.text = "\(Int(self.pineappleStepper.value))"
+        self.kiwiStockLabel.text = "\(Int(self.kiwiStepper.value))"
+        self.mangoStockLabel.text = "\(Int(self.mangoStepper.value))"
+    }
+    
+    func addNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceivedFruitsAmountChanged(_:)),
+                                               name: NSNotification.Name("fruitStockChange"),
+                                               object: nil)
+    }
+    
+    @objc func didReceivedFruitsAmountChanged(_ noti: Notification){
+        guard let userInfo = noti.userInfo?["fruitsStock"],
+              let fruitsStock = userInfo as? Dictionary<Fruit,Int> else { return }
+        
+        self.strawberryStockLabel.text = "\(fruitsStock[.strawberry] ?? 0)"
+        self.bananaStockLabel.text = "\(fruitsStock[.banana] ?? 0)"
+        self.pineappleStockLabel.text = "\(fruitsStock[.pineapple] ?? 0)"
+        self.kiwiStockLabel.text = "\(fruitsStock[.kiwi] ?? 0)"
+        self.mangoStockLabel.text = "\(fruitsStock[.mango] ?? 0)"
     }
     
     @IBAction func changeFruitStock(_ sender: UIStepper) {
+        var fruit: Fruit?
         switch sender {
         case strawberryStepper:
-            print("딸기")
+            fruit = .strawberry
+        case bananaStepper:
+            fruit = .banana
+        case pineappleStepper:
+            fruit = .pineapple
+        case kiwiStepper:
+            fruit = .kiwi
+        case mangoStepper:
+            fruit = .mango
         default:
             break
-            
         }
+        
+        if let fruit = fruit { fruitStore.fruitsStock[fruit] = Int(sender.value) }
     }
-    
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 }
 
-// 1. view controller 에서 fruitsStore.fruitsStock 데이터를 전달받는 방법
-// 2. editStockViewController 에서 fruitsStore 싱글턴 객체를 선언한 후 viewdidLoad에서 데이터를 가져오는 방법
 
-// 차이점
-//
+

@@ -90,24 +90,26 @@ class ViewController: UIViewController {
             
             switch sender {
             case strawberryJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.strawberry)
+                juice = .strawberry
             case bananaJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.banana)
+                juice = .banana
             case pineappleJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.pineapple)
+                juice = .pineapple
             case kiwiJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.kiwi)
+                juice = .kiwi
             case mangoJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.mango)
+                juice = .mango
             case strawberryBananaJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.strawberryBanana)
+                juice = .strawberryBanana
             case mangoKiwiJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.mangoKiwi)
+                juice = .mangoKiwi
             default:
                 break
             }
-            
-            if let juice = juice { alertSuccess(for: juice) }
+            if let juice = juice {
+                try juiceMaker.makeJuice(juice)
+                alertSuccess(for: juice)
+            }
             
         } catch {
             alertFailure(for: error)
