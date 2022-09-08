@@ -8,7 +8,7 @@ class JuiceMaker {
         return fruitStore
     }
     
-    private func makeFruitJuice(of fruitJuice: FruitJuice) throws {
+    func makeFruitJuice(of fruitJuice: FruitJuice) throws {
         switch fruitJuice {
         case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
             let (fruit, count) = fruitJuice.juiceIngridients.first
@@ -20,15 +20,5 @@ class JuiceMaker {
             }
             try fruitStore.use(firstFruit: fruit1, firstCount: count1, secondFruit: fruit2, secondCount: count2)
         }
-    }
-    
-    func takeAnOrder(fruitJuice: FruitJuice) -> Bool {
-        do {
-            try makeFruitJuice(of: fruitJuice)
-        } catch {
-            debugPrint(error)
-            return false
-        }
-        return true
     }
 }

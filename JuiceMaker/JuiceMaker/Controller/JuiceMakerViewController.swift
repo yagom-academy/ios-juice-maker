@@ -27,17 +27,19 @@ class JuiceMakerViewController: UIViewController {
         mangoCountLabel.text = String(mangoCount)
     }
     
-    private func handleAlert(fruitJuice: FruitJuice, isJuiceOrderCompleted: Bool) {
+    private func handleAlert(fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil,
                                       message: nil,
                                       preferredStyle: .alert)
         
-        if isJuiceOrderCompleted {
+        do {
+            try JuiceMaker.shared.makeFruitJuice(of: fruitJuice)
             showJuiceComeOutAlert(alert, fruitJuice: fruitJuice)
-        } else {
+        } catch JuiceMakerError.underFlowOfAmount {
             showFruitsOutOfStockAlert(alert)
+        } catch {
+            debugPrint(error)
         }
-        
     }
     
     private func showJuiceComeOutAlert(_ alert: UIAlertController, fruitJuice: FruitJuice) {
@@ -93,8 +95,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func order(_ fruitJuice: FruitJuice) {
-        let isJuiceOrderCompleted = JuiceMaker.shared.takeAnOrder(fruitJuice: fruitJuice)
-        handleAlert(fruitJuice: fruitJuice, isJuiceOrderCompleted: isJuiceOrderCompleted)
+        handleAlert(fruitJuice: fruitJuice)
         setUpFruitsCount()
     }
 }
