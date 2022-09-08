@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09034F3028C9952A00F5AF66 /* ButtonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09034F2F28C9952A00F5AF66 /* ButtonID.swift */; };
 		099DE0FC28BCDA7E00E9E7EE /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099DE0FB28BCDA7E00E9E7EE /* Fruits.swift */; };
 		1A76326328BF25C80046C20E /* FruitJuice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A76326228BF25C80046C20E /* FruitJuice.swift */; };
 		1A76326528BF25DC0046C20E /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A76326428BF25DC0046C20E /* JuiceMakerError.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09034F2F28C9952A00F5AF66 /* ButtonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonID.swift; sourceTree = "<group>"; };
 		099DE0FB28BCDA7E00E9E7EE /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
 		1A76326228BF25C80046C20E /* FruitJuice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitJuice.swift; sourceTree = "<group>"; };
 		1A76326428BF25DC0046C20E /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				099DE0FB28BCDA7E00E9E7EE /* Fruits.swift */,
 				1A76326228BF25C80046C20E /* FruitJuice.swift */,
 				1A76326428BF25DC0046C20E /* JuiceMakerError.swift */,
+				09034F2F28C9952A00F5AF66 /* ButtonID.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
+				09034F3028C9952A00F5AF66 /* ButtonID.swift in Sources */,
 				1A76326528BF25DC0046C20E /* JuiceMakerError.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				1A7632FE28C5F4920046C20E /* ModifyFruitsStockViewController.swift in Sources */,
