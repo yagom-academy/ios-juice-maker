@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         if let orderedJuice = JuiceMaker.Juice(rawValue: sender.tag) {
             do {
                 try juiceMaker.produce(juice: orderedJuice)
-                showOrderSuccessedAlert(juice: orderedJuice)
+                showOrderSucceedAlert(juice: orderedJuice)
             } catch JuiceMakerError.outOfStock {
                 showOrderFailedAlert()
             } catch {
