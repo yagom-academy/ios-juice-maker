@@ -62,6 +62,10 @@ class MainViewController: UIViewController {
             juice = nil
         }
         
+        checkCanMakeJuice(juice)
+    }
+    
+    private func checkCanMakeJuice(_ juice: Juice?) {
         guard let juice = juice else { return }
         
         if juiceMaker.makeJuice(juice) {
