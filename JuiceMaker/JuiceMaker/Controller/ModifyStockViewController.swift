@@ -11,10 +11,16 @@ class ModifyStockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    func setNavigationBar() {
+        self.title = ConstantSentence.modifyStockTitle
+        self.navigationController?.navigationBar.backgroundColor = .lightGray
     }
     
 }

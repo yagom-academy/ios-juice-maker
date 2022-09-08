@@ -18,16 +18,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigation()
+        setNavigationBar()
         settingFruitStockLabel()
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
-        guard let modifyStockVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
+        guard let modifyStockNC = storyboard?.instantiateViewController(withIdentifier: "ToModifyStockNavi") as? UINavigationController else {
             return
         }
-
-        present(modifyStockVC, animated: true, completion: nil)
+        
+        present(modifyStockNC, animated: true, completion: nil)
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {
@@ -75,8 +75,8 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    func setNavigation() {
-        self.title = ConstantSentence.navigationTitle
+    func setNavigationBar() {
+        self.title = ConstantSentence.mainTitle
         self.navigationController?.navigationBar.backgroundColor = .lightGray
     }
     
