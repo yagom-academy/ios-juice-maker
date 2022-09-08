@@ -92,8 +92,6 @@ class ViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let stockEditVC = storyboard.instantiateViewController(identifier: "stockEditNavigation")
         
-        stockEditVC.modalPresentationStyle = .fullScreen
-        
         present(stockEditVC, animated: true, completion: nil)
     }
     
