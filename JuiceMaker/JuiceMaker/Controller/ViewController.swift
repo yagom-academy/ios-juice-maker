@@ -50,13 +50,15 @@ class ViewController: UIViewController {
             do {
                 try juiceMaker.produce(juice: orderedJuice)
                 showOrderSucceedAlert(juice: orderedJuice)
+                orderedJuice.recipe.ingredient.keys.forEach({ fruit in
+                    updateStockLabel(of: fruit)
+                })
             } catch JuiceMakerError.outOfStock {
                 showOrderFailedAlert()
             } catch {
                 print("unexpected error: \(error)")
             }
         }
-        updateAllStockLabels()
     }
     
     private func showOrderSucceedAlert(juice: JuiceMaker.Juice) {
