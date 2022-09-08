@@ -17,58 +17,84 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
     @IBAction private func orderStrawberryJuice(_ sender: UIButton) {
-        showAlert(of: .strawBerry)
-        checkInventory()
+        if juiceMaker.makeJuice(of: .strawBerry) {
+            showSuccessAlert(of: .strawBerry)
+            checkInventory()
+        } else {
+            showFailAlert()
+        }
     }
     
     @IBAction private func orderBananaJuice(_ sender: UIButton) {
-        showAlert(of: .banana)
-        checkInventory()
+        if juiceMaker.makeJuice(of: .banana) {
+            showSuccessAlert(of: .banana)
+            checkInventory()
+        } else {
+            showFailAlert()
+        }
     }
     
     @IBAction private func orderPineappleJuice(_ sender: UIButton) {
-        showAlert(of: .pineApple)
-        checkInventory()
+        if juiceMaker.makeJuice(of: .pineApple) {
+            showSuccessAlert(of: .pineApple)
+            checkInventory()
+        } else {
+            showFailAlert()
+        }
     }
     
     @IBAction private func orderKiwiJuice(_ sender: UIButton) {
-        showAlert(of: .kiwi)
-        checkInventory()
+        if juiceMaker.makeJuice(of: .kiwi) {
+            showSuccessAlert(of: .kiwi)
+            checkInventory()
+        } else {
+            showFailAlert()
+        }
     }
     
     @IBAction private func orderMangoJuice(_ sender: UIButton) {
-        showAlert(of: .mango)
-        checkInventory()
+        if juiceMaker.makeJuice(of: .mango) {
+            showSuccessAlert(of: .mango)
+            checkInventory()
+        } else {
+            showFailAlert()
+        }
     }
     
     @IBAction private func orderStrawberryBananaJuice(_ sender: UIButton) {
-        showAlert(of: .strawBerryBanana)
-        checkInventory()
+        if juiceMaker.makeJuice(of: .strawBerryBanana) {
+            showSuccessAlert(of: .strawBerryBanana)
+            checkInventory()
+        } else {
+            showFailAlert()
+        }
     }
     
     @IBAction private func orderMangoKiwi(_ sender: UIButton) {
-        showAlert(of: .mangoKiwi)
-        checkInventory()
+        if juiceMaker.makeJuice(of: .mangoKiwi) {
+            showSuccessAlert(of: .mangoKiwi)
+            checkInventory()
+        } else {
+            showFailAlert()
+        }
     }
     
-    private func showAlert(of juice: Juice) {
-        if juiceMaker.makeJuice(of: juice) {
-            let alert = UIAlertController(title: "제조 완료", message: "\(juice.rawValue)쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-            
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "재고수정", style: .default, handler: {_ in
-                self.presentChangeInventoryViewController()
-            })
-            let cancel = UIAlertAction(title: "취소", style: .destructive, handler: nil)
-            
-            alert.addAction(cancel)
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
-        }
+    private func showSuccessAlert(of juice: Juice) {
+        let alert = UIAlertController(title: "제조 완료", message: "\(juice.rawValue)쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func showFailAlert() {
+        let alert = UIAlertController(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "재고수정", style: .default, handler: {_ in
+            self.presentChangeInventoryViewController()
+        })
+        let cancel = UIAlertAction(title: "취소", style: .default, handler: nil)
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
     
     private func presentChangeInventoryViewController() {
