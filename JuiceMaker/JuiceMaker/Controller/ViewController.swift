@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         if let orderedJuice = JuiceMaker.Juice(rawValue: sender.tag) {
             do {
                 try juiceMaker.produce(juice: orderedJuice)
-                showOrderedAlert(juice: orderedJuice)
+                showOrderSucceedAlert(juice: orderedJuice)
             } catch JuiceMakerError.outOfStock {
                 showOrderFailedAlert()
             } catch {
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func showOrderedAlert(juice: JuiceMaker.Juice) {
+    private func showOrderSucceedAlert(juice: JuiceMaker.Juice) {
         let message = fetchOrderedAlertMessage(juice: juice)
         let alert = UIAlertController(title: nil,
                                       message: message,
