@@ -1,5 +1,5 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - HomeViewController.swift
 //  Created by Mene, Dragon.
 //  Copyright © yagom academy. All rights reserved.
 // 
@@ -78,17 +78,11 @@ class HomeViewController: UIViewController {
     }
     
     private func checkInventory() {
-        guard let strawberryAmount = juiceMaker.checkStock(of: .strawBerry) else { return }
-        guard let bananaAmount = juiceMaker.checkStock(of: .banana) else { return }
-        guard let pineappleAmount = juiceMaker.checkStock(of: .pineApple) else { return }
-        guard let kiwiAmount = juiceMaker.checkStock(of: .kiwi) else { return }
-        guard let mangoAmount = juiceMaker.checkStock(of: .mango) else { return }
-        
-        strawberryStockLabel.text = strawberryAmount
-        bananaStockLabel.text = bananaAmount
-        pineappleStockLabel.text = pineappleAmount
-        kiwiStockLabel.text = kiwiAmount
-        mangoStockLabel.text = mangoAmount
+        strawberryStockLabel.text = juiceMaker.checkStock(of: .strawBerry)
+        bananaStockLabel.text = juiceMaker.checkStock(of: .banana)
+        pineappleStockLabel.text = juiceMaker.checkStock(of: .pineApple)
+        kiwiStockLabel.text = juiceMaker.checkStock(of: .kiwi)
+        mangoStockLabel.text = juiceMaker.checkStock(of: .mango)
     }
     
     override func viewDidLoad() {
