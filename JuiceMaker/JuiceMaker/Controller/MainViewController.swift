@@ -22,19 +22,33 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mangoButton: UIButton!
     
     let juiceMaker = JuiceMaker()
-    let fruitStock = FruitStore().stock
+    lazy var fruitStock = juiceMaker.store.stock
+    var observation: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelDefaultValue()
+        observation = juiceMaker.store.observe(\.stock, options: [.new], changeHandler: {
+            (object, changes) in
+            guard let newValue = changes.newValue else {
+                return
+            }
+            
+            self.updateStock(newValue)
+            self.setLabelDefaultValue()
+        })
+    }
+    
+    func updateStock(_ newValue: [String: Int]) {
+        fruitStock = newValue
     }
     
     func setLabelDefaultValue() {
-        strawBerryLabel.text = fruitStock[.strawBerry]?.description
-        bananaLabel.text = fruitStock[.banana]?.description
-        pineAppleLabel.text = fruitStock[.pineApple]?.description
-        kiwiLabel.text = fruitStock[.kiwi]?.description
-        mangoLabel.text = fruitStock[.mango]?.description
+        strawBerryLabel.text = juiceMaker.store.stock["딸기"]?.description
+        bananaLabel.text = juiceMaker.store.stock["바나나"]?.description
+        pineAppleLabel.text = juiceMaker.store.stock["파인애플"]?.description
+        kiwiLabel.text = juiceMaker.store.stock["키위"]?.description
+        mangoLabel.text = juiceMaker.store.stock["망고"]?.description
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {

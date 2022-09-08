@@ -52,9 +52,9 @@
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DF56291728C6D7F400525D92 /* StockEditorViewController.swift */,
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
+				DF56291728C6D7F400525D92 /* StockEditorViewController.swift */,
 				C73DAF3A255D0CDD00020D38 /* MainViewController.swift */,
 			);
 			path = Controller;
