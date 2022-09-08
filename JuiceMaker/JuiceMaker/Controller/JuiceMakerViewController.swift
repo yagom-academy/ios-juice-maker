@@ -42,9 +42,9 @@ class JuiceMakerViewController: UIViewController {
             let juice = Juice(rawValue: sender) {
             if juiceMaker.requestStockAvailability(for: juice) {
                 juiceMaker.store.useStockForRecipe(of: juice)
-                present(alertOrderIsReady(juice), animated: true, completion: nil)
+                presentAlertOrderIsReady(juice)
             } else {
-                present(alertNotEnoughStock(), animated: true, completion: nil)
+                presentAlertNotEnoughStock()
             }
         }
     }
@@ -70,16 +70,16 @@ class JuiceMakerViewController: UIViewController {
         self.present(stockEditorViewController, animated: true, completion: nil)
     }
     
-    private func alertOrderIsReady(_ juice: Juice) -> UIAlertController {
+    private func presentAlertOrderIsReady(_ juice: Juice) {
         let alert = UIAlertController(title: "완성!", message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")})
         alert.addAction(ok)
         
-        return alert
+        return present(alert, animated: true, completion: nil)
     }
     
-    private func alertNotEnoughStock() -> UIAlertController {
+    private func presentAlertNotEnoughStock() {
         let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")
@@ -87,10 +87,11 @@ class JuiceMakerViewController: UIViewController {
         })
         let cancle = UIAlertAction(title: "Cancle", style: .default, handler: { _ in
             NSLog("The \"Cancle\" alert occured.")})
-        alert.addAction(ok)
         alert.addAction(cancle)
+        alert.addAction(ok)
         
-        return alert
+        
+        return present(alert, animated: true, completion: nil)
     }
 }
 
