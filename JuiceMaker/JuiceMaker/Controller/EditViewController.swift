@@ -7,18 +7,14 @@ import UIKit
 
 class EditViewController: UIViewController {
     
-    @IBOutlet weak var strawberryCount: UILabel!
-    @IBOutlet weak var bananaCount: UILabel!
-    @IBOutlet weak var pineappleCount: UILabel!
-    @IBOutlet weak var kiwiCount: UILabel!
-    @IBOutlet weak var mangoCount: UILabel!
+    @IBOutlet var fruitCountLabelArray: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate,
-              let delegateStock = delegate.stock else { return }
-        updateStockCount(stock: delegateStock)
-        delegate.stock = nil
+        guard let storageStock = StockStorage.shared.stock else { return }
+        
+        updateStockCount(stock: storageStock)
+        StockStorage.shared.stock = nil
     }
     
     @IBAction private func tappedApplyButton(_ sender: UIButton) {
@@ -30,10 +26,11 @@ class EditViewController: UIViewController {
     }
     
     private func updateStockCount(stock: [Int]) {
-        strawberryCount.text = String(stock[Fruit.strawberry.index])
-        bananaCount.text = String(stock[Fruit.banana.index])
-        pineappleCount.text = String(stock[Fruit.pineapple.index])
-        kiwiCount.text = String(stock[Fruit.kiwi.index])
-        mangoCount.text = String(stock[Fruit.mango.index])
+        var newStock = stock
+        
+        for fruitCountLabel in fruitCountLabelArray {
+            if newStock.isEmpty { return }
+            fruitCountLabel.text = String(newStock.removeFirst())
+        }
     }
 }

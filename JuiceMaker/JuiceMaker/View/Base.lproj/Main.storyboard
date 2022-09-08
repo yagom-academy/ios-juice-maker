@@ -243,11 +243,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="sg6-8c-F3f"/>
-                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="L0v-fa-DZG"/>
-                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="qEo-K6-Aiz"/>
-                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="Gfd-S5-qeM"/>
-                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="WUE-tI-rnX"/>
+                        <outlet property="bananaOrder" destination="y2A-PH-DJY" id="L6c-5k-cxW"/>
+                        <outlet property="kiwiOrder" destination="wcW-7H-RXw" id="imf-82-s8v"/>
+                        <outlet property="mangoKiwiOrder" destination="ngP-kF-Yii" id="ghP-VO-fgc"/>
+                        <outlet property="mangoOrder" destination="q6G-4X-bVm" id="1RC-Gq-Ery"/>
+                        <outlet property="pineappleOrder" destination="BFb-ka-wGA" id="d5I-h9-hTR"/>
+                        <outlet property="strawberryBananaOrder" destination="hrc-2F-fzl" id="IGv-ZG-mVX"/>
+                        <outlet property="strawberryOrder" destination="avd-o5-3JM" id="IcM-Co-Ice"/>
+                        <outletCollection property="fruitCountLabelArray" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="unc-SX-v5H"/>
+                        <outletCollection property="fruitCountLabelArray" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="J9x-gh-bGD"/>
+                        <outletCollection property="fruitCountLabelArray" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="vk8-zI-SuZ"/>
+                        <outletCollection property="fruitCountLabelArray" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="NOc-G2-8fI"/>
+                        <outletCollection property="fruitCountLabelArray" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="rhP-un-3PE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -408,11 +415,11 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="bananaCount" destination="gKu-86-RhI" id="4ee-fw-xmh"/>
-                        <outlet property="kiwiCount" destination="ZDv-1m-HBY" id="lZn-20-FuH"/>
-                        <outlet property="mangoCount" destination="YJI-ER-LJR" id="KUh-ii-Vu8"/>
-                        <outlet property="pineappleCount" destination="MpT-VW-hCb" id="Yv3-XG-c0r"/>
-                        <outlet property="strawberryCount" destination="0yV-kn-zaT" id="Ij6-Mg-YY9"/>
+                        <outletCollection property="fruitCountLabelArray" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="O4Y-b9-xXQ"/>
+                        <outletCollection property="fruitCountLabelArray" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="CK6-4r-7s2"/>
+                        <outletCollection property="fruitCountLabelArray" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="Rl4-ew-eIL"/>
+                        <outletCollection property="fruitCountLabelArray" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="zA8-MC-Nmg"/>
+                        <outletCollection property="fruitCountLabelArray" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="Ygh-KM-cTl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
@@ -435,7 +442,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0uR-o8-s4t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2250.7109004739336" y="90.769230769230759"/>
+            <point key="canvasLocation" x="2110" y="-55"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rv2-9c-jbd">

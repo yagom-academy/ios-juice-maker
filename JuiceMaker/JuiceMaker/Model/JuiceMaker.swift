@@ -44,13 +44,12 @@ struct JuiceMaker {
     init(store: FruitStore) {
         self.store = store
     }
-    
-    @discardableResult
-    func makeJuice(_ juice: Juice) -> String {
+
+    func makeJuice(_ juice: Juice) -> Bool {
         if store.canSupplyRequest(ingredient: juice.ingredient) {
-            return juice.name
+            return true
         } else {
-            return ""
+            return false
         }
     }
 }
