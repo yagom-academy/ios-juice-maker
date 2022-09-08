@@ -43,10 +43,12 @@ class MainViewController: UIViewController {
     
     @IBAction private func tappedModifyBarButton(_ sender: UIBarButtonItem) {
         guard let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "EditNavigationController") as? UINavigationController else { return }
-        guard let viewController = navigationController.viewControllers.first as? EditViewController else { return }
+//        guard let viewController = navigationController.viewControllers.first as? EditViewController else { return }
+//        viewController.stock = store.stock
         navigationController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        
-        viewController.stock = store.stock
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.stock = store.stock
         
         present(navigationController, animated: true)
     }
