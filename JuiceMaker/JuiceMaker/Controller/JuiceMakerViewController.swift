@@ -7,6 +7,7 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var kiwiCountLabel: UILabel!
     @IBOutlet weak private var mangoCountLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,8 +28,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func showJuiceComeOutAlert(fruitJuice: FruitJuice) {
+        let message = "\(fruitJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!"
         let alert = UIAlertController(title: nil,
-                                      message: "\(fruitJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!",
+                                      message: String(format: message),
                                       preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
@@ -38,8 +40,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func showFruitsOutOfStockAlert() {
+        let message = "재료가 모자라요. 재고를 수정할까요?"
         let alert = UIAlertController(title: nil,
-                                      message: "재료가 모자라요. 재고를 수정할까요?",
+                                      message: String(format: message),
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
