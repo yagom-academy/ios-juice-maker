@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func touchUpOrderButton(_ sender: UIButton) {
+    @IBAction func juiceOrderButtonPressed(_ sender: UIButton) {
         if let orderedJuice = JuiceMaker.Juice(rawValue: sender.tag) {
             do {
                 try juiceMaker.produce(juice: orderedJuice)
