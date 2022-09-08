@@ -62,11 +62,11 @@ class ViewController: UIViewController {
     func showFailedAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
-            guard let modifyStockVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
+            guard let modifyStockNC = self.storyboard?.instantiateViewController(withIdentifier: "ToModifyStockNavi") as? UINavigationController else {
                 return
             }
             
-            self.present(modifyStockVC, animated: true, completion: nil)
+            self.present(modifyStockNC, animated: true, completion: nil)
         }
         
         let cancleAction = UIAlertAction(title: "아니오", style: .cancel)

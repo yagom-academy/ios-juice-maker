@@ -401,17 +401,28 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
                         <leftBarButtonItems>
                             <barButtonItem id="ob8-xG-OjC"/>
-                            <barButtonItem title="Item" image="xmark" catalog="system" id="PmZ-aE-VUh"/>
+                            <barButtonItem title="Item" image="xmark" catalog="system" id="PmZ-aE-VUh">
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="Yu1-lM-nqp" id="IMM-8I-kJT"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="B0E-1N-bgf">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="aRK-95-iTx">
-                                <rect key="frame" x="730.33333333333337" y="0.0" width="73" height="32"/>
+                                <rect key="frame" x="711" y="0.0" width="73" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="저장"/>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="4OC-hx-b8d"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="xYe-5M-Tk6"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="YIB-vP-zKV"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="QSA-JZ-q2O"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="EcW-ic-ucH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
