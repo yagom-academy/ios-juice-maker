@@ -236,7 +236,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" id="Roa-6s-bcu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaButton" destination="y2A-PH-DJY" id="ex6-3J-t8c"/>
@@ -260,6 +264,7 @@
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="66L-FI-VI3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DCG-dP-Fms" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wpg-nM-F9y">
@@ -271,7 +276,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="AmB-GK-67P"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="66L-FI-VI3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
@@ -393,12 +397,22 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whc-h1-k1k">
+                                <rect key="frame" x="710.66666666666663" y="56" width="48.333333333333371" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="완료"/>
+                                <connections>
+                                    <action selector="closeModal:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="aPP-cJ-2FU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tHJ-8W-Z5r" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" constant="90" id="7F9-Zb-u99"/>
+                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="whc-h1-k1k" secondAttribute="trailing" constant="41" id="IUC-tJ-Vfq"/>
                             <constraint firstItem="tHJ-8W-Z5r" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="TK8-y4-syK"/>
+                            <constraint firstItem="whc-h1-k1k" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" constant="24" id="i2G-zT-Swd"/>
                             <constraint firstItem="tHJ-8W-Z5r" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="qI5-lf-0qb"/>
                         </constraints>
                     </view>
@@ -406,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1659" y="1172"/>
+            <point key="canvasLocation" x="1658.5308056872036" y="1170.7692307692307"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">

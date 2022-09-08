@@ -14,7 +14,7 @@ class FruitStore {
     
     func checkStockAvailability(of juice: Juice) throws {
         for (fruitName, requiredamount) in juice.recipe {
-            guard let stock = self.stock[fruitName], stock > requiredamount else {
+            guard let stock = self.stock[fruitName], stock >= requiredamount else {
                 throw StockError.notEnoughFruit
             }
         }
