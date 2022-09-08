@@ -5,7 +5,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     
     @IBOutlet weak var strawBerryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -28,10 +28,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelValue()
-        observation = juiceMaker.store.observe(\.stock, options: [.new], changeHandler: {
+        observation = juiceMaker.store.observe(\.stock, options: [.old, .new], changeHandler: {
             (object, changes) in
             guard let newValue = changes.newValue else { return }
-            self.updateStock(to: newValue)
+            guard let oldValue = changes.oldValue else { return }
+            self.updateStock(to: newValue, from: oldValue)
             self.setLabelValue()
         })
     }
@@ -48,8 +49,12 @@ class MainViewController: UIViewController {
         }
     }
     
-    private func updateStock(to newValue: [String: Int]) {
-        fruitStock = newValue
+    private func updateStock(to newValue: [String: Int], from oldValue: [String: Int]) {
+        for fruit in newValue.keys {
+            guard newValue[fruit] != oldValue[fruit],
+                  let newValue = newValue[fruit] else { continue }
+            fruitStock.updateValue(newValue, forKey: fruit)
+        }
     }
     
     private func setLabelValue() {
