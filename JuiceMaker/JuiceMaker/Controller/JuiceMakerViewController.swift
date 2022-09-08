@@ -27,29 +27,37 @@ class JuiceMakerViewController: UIViewController {
         mangoCountLabel.text = String(quantityOfMango)
     }
     
-    private func showJuiceComeOutAlert(fruitJuice: FruitJuice) {
-        let message = "\(fruitJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!"
+    private func handleAlert(fruitJuice: FruitJuice, isJuiceOrderCompleted: Bool) {
         let alert = UIAlertController(title: nil,
-                                      message: String(format: message),
+                                      message: nil,
                                       preferredStyle: .alert)
         
+        if isJuiceOrderCompleted {
+            showJuiceComeOutAlert(alert, fruitJuice: fruitJuice)
+        } else {
+            showFruitsOutOfStockAlert(alert)
+        }
+        
+    }
+    
+    private func showJuiceComeOutAlert(_ alert: UIAlertController, fruitJuice: FruitJuice) {
+        let message = "\(fruitJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!"
+        alert.message = message
         let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
         alert.addAction(okAction)
-        
+
         present(alert, animated: true)
     }
     
-    private func showFruitsOutOfStockAlert() {
+    private func showFruitsOutOfStockAlert(_ alert: UIAlertController) {
         let message = "재료가 모자라요. 재고를 수정할까요?"
-        let alert = UIAlertController(title: nil,
-                                      message: String(format: message),
-                                      preferredStyle: .alert)
+        alert.message = message
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "modifyFruitVC")
             self.present(vc, animated: true, completion: nil)
         }
-        
+
         let cancleAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(okAction)
         alert.addAction(cancleAction)
@@ -82,12 +90,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func order(_ fruitJuice: FruitJuice) {
-        if !JuiceMaker.shared.takeAnOrder(fruitJuice: fruitJuice) {
-            showFruitsOutOfStockAlert()
-        } else {
-            setUpQuantityOfFruits()
-            showJuiceComeOutAlert(fruitJuice: fruitJuice)
-        }
+        let isJuiceOrderCompleted = JuiceMaker.shared.takeAnOrder(fruitJuice: fruitJuice)
+        handleAlert(fruitJuice: fruitJuice, isJuiceOrderCompleted: isJuiceOrderCompleted)
+        setUpQuantityOfFruits()
     }
 }
 
