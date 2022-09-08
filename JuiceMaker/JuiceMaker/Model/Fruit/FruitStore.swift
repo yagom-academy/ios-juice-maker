@@ -1,7 +1,7 @@
 //  Created by 애종,질리,벨라 on 2022/08/30.
 
 class FruitStore {
-    private var fruitStock: [Fruit: Int] = [
+    private var fruitStock: FruitStock = [
         .strawberry: 10,
         .banana: 10,
         .kiwi: 10,
@@ -43,7 +43,7 @@ extension FruitStore: FruitStoreProtocol {
         }
     }
     
-    func sendFruitStockValue() -> [Fruit : Int] {
+    func sendFruitStock() -> FruitStock {
         return fruitStock
     }
 }

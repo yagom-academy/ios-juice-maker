@@ -2,5 +2,5 @@
 
 protocol JuiceMakerProtocol {
     func chooseJuice(juice: Juice)
-    func sendFruitStockValue() -> [Fruit: Int]
+    func getFruitStock() -> FruitStock
 }

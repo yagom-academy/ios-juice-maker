@@ -61,11 +61,11 @@ class FruitJuiceStoreViewController: UIViewController {
         }
     }
     
-    func receiveFruitStock() -> [Fruit: Int] {
-        return juiceMaker.sendFruitStockValue()
+    func receiveFruitStock() -> FruitStock {
+        return juiceMaker.getFruitStock()
     }
     
-    func updateFruitAmountLabel(currentStockValue: [Fruit: Int]) {
+    func updateFruitAmountLabel(currentStockValue: FruitStock) {
         for target in currentStockValue {
             switch target.key {
             case .strawberry:

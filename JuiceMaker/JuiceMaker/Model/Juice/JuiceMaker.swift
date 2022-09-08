@@ -43,7 +43,7 @@ extension JuiceMaker: JuiceMakerProtocol {
         takeOrder(juice: juice)
     }
     
-    func sendFruitStockValue() -> [Fruit : Int] {
-        return fruitStore.sendFruitStockValue()
+    func getFruitStock() -> FruitStock {
+        return fruitStore.sendFruitStock()
     }
 }
