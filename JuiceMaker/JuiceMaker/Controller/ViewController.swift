@@ -57,37 +57,35 @@ class ViewController: UIViewController {
         let result = juiceMaker.makeJuice(juice, total: 1)
         
         switch result {
-        case .success(let message):
-            showSuccessAlert(message: message)
-            viewDidLoad()
+        case.success(let message):
+            showAlert(result: result, message: message)
         case .failure(let error):
-            guard let juiceMakerError = error as? JuiceMakerError else {
-                return showFailureAlert(message: error.localizedDescription)
+            var message: String
+            if let juiceMakerError = error as? JuiceMakerError {
+                message = juiceMakerError.errorDescription
+            } else {
+                message = error.localizedDescription
             }
-            showFailureAlert(message: juiceMakerError.errorDescription)
+            showAlert(result: result, message: message)
         }
     }
     
-    func showSuccessAlert(message: String) {
+    func showAlert(result: Result<String, Error>, message: String) {
+        var okAction: UIAlertAction
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "예", style: .default, handler : nil)
-        
-        alert.addAction(okAction)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func showFailureAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "예", style: .default) { _ in
-            self.moveToFruitStockVC()
+        switch result {
+        case .success:
+            okAction = UIAlertAction(title: "예", style: .default, handler : nil)
+        case .failure:
+            okAction = UIAlertAction(title: "예", style: .default) { _ in
+                self.moveToFruitStockVC()
+            }
+            let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+            
+            alert.addAction(noAction)
         }
         
-        let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-        
-        alert.addAction(noAction)
         alert.addAction(okAction)
         
         present(alert, animated: true, completion: nil)
