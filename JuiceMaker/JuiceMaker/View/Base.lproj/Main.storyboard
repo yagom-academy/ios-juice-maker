@@ -259,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="752" y="1129"/>
+            <point key="canvasLocation" x="786" y="1111"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
@@ -279,7 +279,7 @@
             </objects>
             <point key="canvasLocation" x="786" y="91"/>
         </scene>
-        <!--Edit Stock View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="EditStockViewController" id="Yu1-lM-nqp" customClass="EditStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -306,8 +306,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" restorationIdentifier="strawberryStepper" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="yWb-tj-RtH"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -329,6 +332,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="sX2-Tn-s5Z"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -350,6 +356,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="IcB-am-SOm"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -371,6 +380,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="lQq-Vs-3wo"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -392,32 +404,48 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="120.66666666666669" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="changeFruitStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="FIb-Pr-FWg"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kca-0J-Oic">
-                                <rect key="frame" x="731.66666666666663" y="52" width="48.333333333333371" height="31"/>
-                                <state key="normal" title="Button"/>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RTK-X5-4cN" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="DPn-ih-iyr"/>
+                            <constraint firstItem="RTK-X5-4cN" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="hmG-GX-3ZR"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="9cB-0j-J8D">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kca-0J-Oic">
+                                <rect key="frame" x="730.33333333333337" y="0.0" width="53.666666666666629" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonConfiguration key="configuration" style="plain" title="닫기"/>
                                 <connections>
                                     <action selector="closeButtonTapped:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="btz-qu-1th"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="Kca-0J-Oic" secondAttribute="trailing" constant="20" id="6NT-5C-OxH"/>
-                            <constraint firstItem="RTK-X5-4cN" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="DPn-ih-iyr"/>
-                            <constraint firstItem="Kca-0J-Oic" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" constant="20" id="Lzh-d9-0Ok"/>
-                            <constraint firstItem="RTK-X5-4cN" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="hmG-GX-3ZR"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="EW9-FZ-Cgg"/>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="3Bx-hR-lfp"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="fk9-AI-GaX"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="cqN-pD-InU"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="Jf4-2O-xrK"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="evI-3N-qHt"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="5yb-nl-jWs"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="OhY-Wj-Ad4"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="Bms-Xr-JSV"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="6wn-ke-2qD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

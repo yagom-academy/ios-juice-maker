@@ -39,9 +39,10 @@ class ViewController: UIViewController {
     }
     
     func transitionView(){
-        guard let editStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") else { return }
-        
-        self.present(editStockViewController, animated: true)
+        guard let editStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") as? EditStockViewController else { return }
+        let editStockNavigationController = UINavigationController(rootViewController: editStockViewController)
+        editStockViewController.stock = fruitStore.fruitsStock
+        self.present(editStockNavigationController, animated: true)
     }
     
     func alertSuccess(for juice: Juice) {
