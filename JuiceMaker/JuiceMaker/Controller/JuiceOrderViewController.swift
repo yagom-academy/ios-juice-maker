@@ -23,11 +23,11 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @objc func updateInventory() {
-        let errorValue = -1
-        
-        fruitLabels.forEach {
-            if let fruit = Fruit.init(rawValue: $0.tag) {
-                $0.text = "\(FruitStore.shared.inventoryList[fruit] ?? errorValue)"
+        fruitLabels.forEach { label in
+            if let identifier = label.accessibilityIdentifier,
+               let fruit = Fruit.init(rawValue: identifier),
+               let inventory = FruitStore.shared.inventoryList[fruit] {
+                label.text = "\(inventory)"
             }
         }
     }
@@ -35,8 +35,8 @@ class JuiceOrderViewController: UIViewController {
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         guard let identifier = sender.accessibilityIdentifier,
               let juice = Juice.init(rawValue: identifier) else {
-            return
-        }
+                  return
+              }
         let result = juiceMaker.make(juice)
         switch result {
         case .success(let juice):
