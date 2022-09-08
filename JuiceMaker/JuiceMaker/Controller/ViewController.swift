@@ -59,27 +59,8 @@ class ViewController: UIViewController {
         updateAllStockLabels()
     }
     
-    private func fetchOrderedAlertMessage(juice: JuiceMaker.Juice) -> String {
-        switch juice {
-        case .strawberryJuice:
-            return "딸기쥬스 나왔습니다! 맛있게 드세요!"
-        case .bananaJuice:
-            return "바나나쥬스 나왔습니다! 맛있게 드세요!"
-        case .kiwiJuice:
-            return "키위쥬스 나왔습니다! 맛있게 드세요!"
-        case .mangoJuice:
-            return "망고쥬스 나왔습니다! 맛있게 드세요!"
-        case .mangoKiwiJuice:
-            return "망키쥬스 나왔습니다! 맛있게 드세요!"
-        case .pineappleJuice:
-            return "파인애플쥬스 나왔습니다! 맛있게 드세요!"
-        case .strawberryBananaJuice:
-            return "딸바쥬스 나왔습니다! 맛있게 드세요!"
-        }
-    }
-    
     private func showOrderSucceedAlert(juice: JuiceMaker.Juice) {
-        let message = fetchOrderedAlertMessage(juice: juice)
+        let message = juice.orderSucceedMessage
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
