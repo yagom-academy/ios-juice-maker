@@ -5,7 +5,7 @@
 //
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    let fruitStore = FruitStore.shared
     
     func manufactureJuice(menu juice: Juice) -> Bool {
         guard canManufactureJuice(juice: juice) else {

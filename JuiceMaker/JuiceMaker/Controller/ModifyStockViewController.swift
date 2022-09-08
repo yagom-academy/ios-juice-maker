@@ -13,8 +13,6 @@ class ModifyStockViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
-    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true)
     }
