@@ -66,7 +66,7 @@ class JuiceMakerViewController: UIViewController {
 		let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
 		let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
 			if !isMaked {
-				self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
+                self.presentModiftController()
 			}
 		}
 		
@@ -80,4 +80,12 @@ class JuiceMakerViewController: UIViewController {
 		
 		present(alertController, animated: true)
 	}
+    
+    @IBAction func didTapEditButton(_ sender: UIButton) {
+        presentModiftController()
+    }
+    
+    func presentModiftController() {
+        self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
+    }
 }

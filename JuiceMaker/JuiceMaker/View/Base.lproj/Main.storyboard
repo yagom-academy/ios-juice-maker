@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="presentation" identifier="presentModify" id="Xc3-Ya-Fxb"/>
+                                <action selector="didTapEditButton:" destination="BYZ-38-t0r" id="P0E-FK-RAZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -248,6 +248,7 @@
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="0eh-fV-fiv"/>
                         <outlet property="pineAppleStockLabel" destination="ccQ-Dk-PuY" id="2O5-de-V4a"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="Gsp-UA-3qL"/>
+                        <segue destination="WwV-Td-3Bn" kind="presentation" identifier="presentModifyViewController" id="ceU-jM-LXb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -396,6 +397,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="HaJ-8y-woV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>

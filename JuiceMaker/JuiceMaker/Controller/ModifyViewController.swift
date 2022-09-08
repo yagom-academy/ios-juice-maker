@@ -6,7 +6,7 @@
 import UIKit
 
 class ModifyViewController: UIViewController {
-	static let identifier = "presentModify"
+	static let identifier = "presentModifyViewController"
 	
     override func viewDidLoad() {
         super.viewDidLoad()
