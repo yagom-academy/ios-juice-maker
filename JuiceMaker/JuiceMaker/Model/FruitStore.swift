@@ -22,22 +22,6 @@ class FruitStore {
         }
     }
     
-    func increase(of fruit: Fruit, by amount: Int) {
-        if amount >= 0,
-           let inventory = inventoryList[fruit] {
-            self.inventoryList.updateValue(inventory + amount, forKey: fruit)
-        }
-    }
-    
-    func reduce(of fruit: Fruit, by amount: Int) throws {
-        if hasEnoughInventory(of: fruit, to: amount),
-           let inventory = inventoryList[fruit] {
-            self.inventoryList.updateValue(inventory - amount, forKey: fruit)
-        } else {
-            throw FruitStoreError.insufficientInventory
-        }
-    }
-    
     func reduce(by amount: [Fruit: Int]) throws {
         try amount.forEach { (fruit: Fruit, amount: Int) in
             if !hasEnoughInventory(of: fruit, to: amount) {
