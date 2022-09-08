@@ -28,7 +28,7 @@ struct JuiceMaker {
     private func make(_ juice: Juice) {
         for ingredient in juice.recipe {
             fruitStore.updateFruitStock(
-                fruit: ingredient.name,
+                fruit: ingredient.fruit,
                 variation: .decrease,
                 amount: ingredient.amount
             )

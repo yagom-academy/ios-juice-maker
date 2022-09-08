@@ -24,20 +24,20 @@ class FruitJuiceStoreViewController: UIViewController {
     }
     
     @objc func resultInMakingJuice(_ notice: Notification) {
-        guard let isSuccess: Bool = notice.userInfo?["isMakingSuccess"] as? Bool else { return }
-        guard let juiceName: String = notice.userInfo?["juiceName"] as? String else { return }
+        guard let isSuccess: Bool = notice.userInfo?["isMakingSuccess"] as? Bool,
+              let juiceName: String = notice.userInfo?["juiceName"] as? String else { return }
         
         if isSuccess {
             updateFruitAmountLabel(currentStockValue: receiveFruitStock())
             
-            let succeedAlert = UIAlertController(
+            let successAlert = UIAlertController(
                 title: nil,
                 message: "\(juiceName) 나왔습니다! 맛있게 드세요!",
                 preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
             
-            succeedAlert.addAction(okAction)
-            present(succeedAlert, animated: true, completion: nil)
+            successAlert.addAction(okAction)
+            present(successAlert, animated: true, completion: nil)
         } else {
             let failedAlert = UIAlertController(
                 title: nil,

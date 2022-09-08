@@ -10,26 +10,26 @@ enum Juice: String {
     case mangoKiwiJuice = "망키 쥬스"
     
     struct Recipe {
-        let name: Fruit
+        let fruit: Fruit
         let amount: Int
     }
     
     var recipe: [Recipe] {
         switch self {
         case .strawberryJuice:
-            return [Recipe(name: .strawberry, amount: 16)]
+            return [Recipe(fruit: .strawberry, amount: 16)]
         case .bananaJuice:
-            return [Recipe(name: .banana, amount: 2)]
+            return [Recipe(fruit: .banana, amount: 2)]
         case .kiwiJuice:
-            return [Recipe(name: .kiwi, amount: 3)]
+            return [Recipe(fruit: .kiwi, amount: 3)]
         case .pineappleJuice:
-            return [Recipe(name: .pineapple, amount: 2)]
+            return [Recipe(fruit: .pineapple, amount: 2)]
         case .strawberryBananaJuice:
-            return [Recipe(name: .strawberry, amount: 10), Recipe(name: .banana, amount: 1)]
+            return [Recipe(fruit: .strawberry, amount: 10), Recipe(fruit: .banana, amount: 1)]
         case .mangoJuice:
-            return [Recipe(name: .mango, amount: 3)]
+            return [Recipe(fruit: .mango, amount: 3)]
         case .mangoKiwiJuice:
-            return [Recipe(name: .mango, amount: 2), Recipe(name: .kiwi, amount: 1)]
+            return [Recipe(fruit: .mango, amount: 2), Recipe(fruit: .kiwi, amount: 1)]
         }
     }
 }
