@@ -380,7 +380,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" style="plain" id="i1U-sB-jSs">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" style="done" id="i1U-sB-jSs">
                             <connections>
                                 <action selector="didTapDismissButton:" destination="Yu1-lM-nqp" id="env-Y6-luH"/>
                             </connections>
