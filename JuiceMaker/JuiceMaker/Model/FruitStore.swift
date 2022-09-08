@@ -6,8 +6,6 @@
 import Foundation
 
 class FruitStore {
-    static let shared: FruitStore = FruitStore()
-    
     private(set) var inventoryList: [Fruit: Int] = [:] {
         didSet {
             NotificationCenter.default.post(name: .inventoryChanged,
@@ -16,7 +14,7 @@ class FruitStore {
     }
     let defaultValueOfInventory = 10
     
-    private init() {
+    init() {
         Fruit.allCases.forEach {
             inventoryList[$0] = defaultValueOfInventory
         }

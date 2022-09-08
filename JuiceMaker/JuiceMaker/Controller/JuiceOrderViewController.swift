@@ -26,7 +26,7 @@ class JuiceOrderViewController: UIViewController {
         fruitLabels.forEach { label in
             if let identifier = label.accessibilityIdentifier,
                let fruit = Fruit.init(rawValue: identifier),
-               let inventory = FruitStore.shared.inventoryList[fruit] {
+               let inventory = juiceMaker.fruitStore.inventoryList[fruit] {
                 label.text = "\(inventory)"
             }
         }
