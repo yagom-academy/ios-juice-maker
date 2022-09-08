@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
@@ -23,11 +24,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
-        guard let modifyStockNC = storyboard?.instantiateViewController(withIdentifier: "ToModifyStockNavi") as? UINavigationController else {
+        guard let modifyStockVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
             return
         }
+        modifyStockVC.fruitStock = juiceMaker.fruitStore.fruitStock
         
-        present(modifyStockNC, animated: true, completion: nil)
+        let moveToStockNC = UINavigationController(rootViewController: modifyStockVC)
+        
+        present(moveToStockNC, animated: true, completion: nil)
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {
@@ -62,11 +66,14 @@ class ViewController: UIViewController {
     func showFailedAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
-            guard let modifyStockNC = self.storyboard?.instantiateViewController(withIdentifier: "ToModifyStockNavi") as? UINavigationController else {
+            guard let modifyStockVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
                 return
             }
+            modifyStockVC.fruitStock = self.juiceMaker.fruitStore.fruitStock
             
-            self.present(modifyStockNC, animated: true, completion: nil)
+            let moveToStockNC = UINavigationController(rootViewController: modifyStockVC)
+            
+            self.present(moveToStockNC, animated: true, completion: nil)
         }
         
         let cancleAction = UIAlertAction(title: "아니오", style: .cancel)

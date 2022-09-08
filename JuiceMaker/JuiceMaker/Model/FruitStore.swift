@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var fruitStock: [Fruit : Int] = [:]
+    private(set) var fruitStock: [Fruit : Int] = [:]
     
     init(defaultStock: Int = 10) {
         for fruit in Fruit.allCases {
