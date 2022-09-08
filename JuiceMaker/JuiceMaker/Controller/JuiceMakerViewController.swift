@@ -16,6 +16,7 @@ class JuiceMakerViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        setUpStockLabels(changedStocks: Fruit.beginningStock)
 		receiveStockChangedNoti()
 	}
 	
@@ -55,21 +56,21 @@ class JuiceMakerViewController: UIViewController {
 			return
 		}
 		let result = maker.makeJuice(juice: orderedJuice)
-		showAlertController(isSuccess: result, juice: orderedJuice)
+        showAlertControllerBased(on: result, of: orderedJuice)
 	}
 	
-	private func showAlertController(isSuccess: Bool, juice: Juice) {
-		let titleMessage = isSuccess ? AlertMessages.successTitle : AlertMessages.failureTitle
-		let message = isSuccess ? "\(juice.description) \(AlertMessages.successMessage)" : AlertMessages.failureMessage
-		let confirmMessage = isSuccess ? AlertMessages.successConfirmMessage : AlertMessages.failureConfirmMessage
+	private func showAlertControllerBased(on isMaked: Bool, of juice: Juice) {
+		let titleMessage = isMaked ? AlertMessages.successTitle : AlertMessages.failureTitle
+		let message = isMaked ? "\(juice.description) \(AlertMessages.successMessage)" : AlertMessages.failureMessage
+		let confirmMessage = isMaked ? AlertMessages.successConfirmMessage : AlertMessages.failureConfirmMessage
 		let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
 		let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
-			if !isSuccess {
+			if !isMaked {
 				self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
 			}
 		}
 		
-		if isSuccess {
+		if isMaked {
 			alertController.addAction(okAction)
 		} else {
 			let cancelAction = UIAlertAction(title: AlertMessages.failureCancelMessage, style: .default)
