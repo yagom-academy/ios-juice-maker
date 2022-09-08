@@ -8,7 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let juiceMaker: JuiceMaker = JuiceMaker()
+    private let juiceMaker: JuiceMaker = JuiceMaker()
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -22,13 +22,13 @@ class ViewController: UIViewController {
         updateAllStockLabels()
     }
     
-    func updateAllStockLabels() {
+    private func updateAllStockLabels() {
         Fruit.allCases.forEach({ fruit in
             updateStockLabel(of: fruit)
         })
     }
     
-    func updateStockLabel(of fruit: Fruit) {
+    private func updateStockLabel(of fruit: Fruit) {
         guard let fruitStock = try? juiceMaker.fetchStock(of: fruit) else { return }
         
         switch fruit {
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         updateAllStockLabels()
     }
     
-    func fetchOrderedAlertMessage(juice: JuiceMaker.Juice) -> String {
+    private func fetchOrderedAlertMessage(juice: JuiceMaker.Juice) -> String {
         switch juice {
         case .strawberryJuice:
             return "딸기쥬스 나왔습니다! 맛있게 드세요!"
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showOrderedAlert(juice: JuiceMaker.Juice) {
+    private func showOrderedAlert(juice: JuiceMaker.Juice) {
         let message = fetchOrderedAlertMessage(juice: juice)
         let alert = UIAlertController(title: nil,
                                       message: message,
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func showOrderFailedAlert() {
+    private func showOrderFailedAlert() {
         let message = "재료가 모자라요. 재고를 수정할까요?"
         let alert = UIAlertController(title: nil,
                                       message: message,
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func presentStockEditViewController() {
+    private func presentStockEditViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let stockEditVC = storyboard.instantiateViewController(identifier: "stockEditNavigation")
         
