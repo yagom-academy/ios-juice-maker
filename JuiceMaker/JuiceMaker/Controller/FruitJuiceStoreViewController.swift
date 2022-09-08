@@ -67,23 +67,23 @@ class FruitJuiceStoreViewController: UIViewController {
     
     func updateFruitAmountLabel(currentStockValue: FruitStock) {
         for target in currentStockValue {
-            switch target.key {
-            case .strawberry:
-                updateLabel(amount: target.value, label: strawberryAmountLabel)
-            case .banana:
-                updateLabel(amount: target.value, label: bananaAmountLabel)
-            case .kiwi:
-                updateLabel(amount: target.value, label: kiwiAmountLabel)
-            case .pineapple:
-                updateLabel(amount: target.value, label: pineappleAmountLabel)
-            case .mango:
-                updateLabel(amount: target.value, label: mangoAmountLabel)
-            }
+            updateLabel(amount: target.value, type: target.key)
         }
     }
     
-    func updateLabel(amount: Int, label: UILabel) {
-        label.text = "\(String(amount))"
+    func updateLabel(amount: Int, type: Fruit) {
+        switch type {
+        case .strawberry:
+            strawberryAmountLabel.text = "\(amount)"
+        case .banana:
+            bananaAmountLabel.text = "\(amount)"
+        case .kiwi:
+            kiwiAmountLabel.text = "\(amount)"
+        case .pineapple:
+            pineappleAmountLabel.text = "\(amount)"
+        case .mango:
+            mangoAmountLabel.text = "\(amount)"
+        }
     }
     
     @IBAction func touchUpStrawberryBananaJuiceOrderButton(_ sender: Any) {
