@@ -86,13 +86,12 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func presentModifyingInventoryView() {
-        if let modifyingInventoryViewController = storyboard?.instantiateViewController(withIdentifier: ModifyingInventoryViewController.indentify) as? ModifyingInventoryViewController {
-            modifyingInventoryViewController.modalPresentationStyle = .fullScreen
-            
-            present(modifyingInventoryViewController,
-                    animated: true,
-                    completion: nil)
+        guard let modifyingInventoryViewController = storyboard?.instantiateViewController(withIdentifier: ModifyingInventoryViewController.identifier) as? ModifyingInventoryViewController else {
+            return
         }
+        present(modifyingInventoryViewController,
+                animated: true,
+                completion: nil)
     }
 }
 
