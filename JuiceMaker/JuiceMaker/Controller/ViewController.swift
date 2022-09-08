@@ -25,19 +25,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiJuiceButton: UIButton!
     @IBOutlet weak var mangoJuiceButton: UIButton!
     
+    lazy var fruitLabel: [Fruit: UILabel] = [
+        .strawberry: strawberryStockLabel,
+        .banana: bananaStockLabel,
+        .pineapple: pineappleStockLabel,
+        .kiwi: kiwiStockLabel,
+        .mango: mangoStockLabel
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let fruitLabel: [UILabel: Fruit] = [
-            strawberryStockLabel: .strawberry,
-            bananaStockLabel: .banana,
-            pineappleStockLabel: .pineapple,
-            kiwiStockLabel: .kiwi,
-            mangoStockLabel: .mango,
-        ]
-        
-        for (label, fruit) in fruitLabel {
+        for (fruit, label) in fruitLabel {
             label.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
+        }
+    }
+    
+    func updateFruitStockLabelUsedFor(_ juice: Juice) {
+        for fruit in juice.recipe.keys {
+            guard let validLabel = fruitLabel[fruit] else { return }
+            validLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
         }
     }
     
@@ -59,20 +66,23 @@ class ViewController: UIViewController {
         switch result {
         case.success(let message):
             showAlert(result: result, message: message)
+            updateFruitStockLabelUsedFor(juice)
         case .failure(let error):
             var message: String
+            
             if let juiceMakerError = error as? JuiceMakerError {
                 message = juiceMakerError.errorDescription
             } else {
                 message = error.localizedDescription
             }
+            
             showAlert(result: result, message: message)
         }
     }
     
     func showAlert(result: Result<String, Error>, message: String) {
-        var okAction: UIAlertAction
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        var okAction: UIAlertAction
         
         switch result {
         case .success:
@@ -81,6 +91,7 @@ class ViewController: UIViewController {
             okAction = UIAlertAction(title: "예", style: .default) { _ in
                 self.moveToFruitStockVC()
             }
+            
             let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
             
             alert.addAction(noAction)
