@@ -6,12 +6,7 @@
 import Foundation
 
 class FruitStore {
-    private(set) var inventoryList: [Fruit: Int] = [:] {
-        didSet {
-            NotificationCenter.default.post(name: .inventoryChanged,
-                                            object: nil)
-        }
-    }
+    private(set) var inventoryList: [Fruit: Int] = [:]
     let defaultValueOfInventory = 10
     
     init() {

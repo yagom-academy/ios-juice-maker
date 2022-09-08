@@ -16,13 +16,9 @@ class JuiceOrderViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         updateInventory()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateInventory),
-                                               name: .inventoryChanged,
-                                               object: nil)
     }
     
-    @objc func updateInventory() {
+    func updateInventory() {
         fruitLabels.forEach { label in
             if let identifier = label.accessibilityIdentifier,
                let fruit = Fruit.init(rawValue: identifier),
@@ -40,6 +36,7 @@ class JuiceOrderViewController: UIViewController {
         let result = juiceMaker.make(juice)
         switch result {
         case .success(let juice):
+            updateInventory()
             let successMessage = "\(juice.name) 나왔습니다! 맛있게 드세요!"
             showSuccessAlert(message: successMessage)
         case .failure:
