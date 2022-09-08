@@ -62,42 +62,50 @@ class ViewController: UIViewController {
         guard let juice = juiceButton[sender] else { return }
         
         let result = juiceMaker.makeJuice(juice, total: 1)
+        showAlert(result: result, juice: juice)
+    }
+    
+    func createAlertFor(
+        result: Result<String, Error>,
+        juice: Juice
+    ) -> (message: String, okAction: UIAlertAction, noAction: UIAlertAction?){
+        var okAction: UIAlertAction
+        var noAction: UIAlertAction?
+        var message: String
         
         switch result {
-        case.success(let message):
-            showAlert(result: result, message: message)
+        case.success(let successMesssage):
+            okAction = UIAlertAction(title: "예", style: .default, handler : nil)
+            noAction = nil
+            message = successMesssage
             updateFruitStockLabelUsedFor(juice)
         case .failure(let error):
-            var message: String
-            
             if let juiceMakerError = error as? JuiceMakerError {
                 message = juiceMakerError.errorDescription
             } else {
                 message = error.localizedDescription
             }
-            
-            showAlert(result: result, message: message)
-        }
-    }
-    
-    func showAlert(result: Result<String, Error>, message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        var okAction: UIAlertAction
-        
-        switch result {
-        case .success:
-            okAction = UIAlertAction(title: "예", style: .default, handler : nil)
-        case .failure:
             okAction = UIAlertAction(title: "예", style: .default) { _ in
                 self.moveToFruitStockVC()
             }
-            
-            let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-            
-            alert.addAction(noAction)
+            noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
         }
         
+        return (message: message, okAction: okAction, noAction: noAction)
+    }
+    
+    func showAlert(result: Result<String, Error>, juice: Juice) {
+        let message = createAlertFor(result: result, juice: juice).message
+        let okAction = createAlertFor(result: result, juice: juice).okAction
+        let noAction = createAlertFor(result: result, juice: juice).noAction
+        
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
         alert.addAction(okAction)
+
+        if let validNoAction = noAction {
+            alert.addAction(validNoAction)
+        }
         
         present(alert, animated: true, completion: nil)
     }
