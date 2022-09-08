@@ -13,7 +13,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="JuiceMakerViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,11 +243,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="quantityOfBananaLabel" destination="gvk-pA-Lw5" id="jJp-GN-m5c"/>
-                        <outlet property="quantityOfKiwiLabel" destination="FZq-de-TJG" id="UMF-C8-v8V"/>
-                        <outlet property="quantityOfMangoLabel" destination="3Ce-SU-JeH" id="Pgs-bu-MUH"/>
-                        <outlet property="quantityOfPineappleLabel" destination="ccQ-Dk-PuY" id="CAl-XO-xkJ"/>
-                        <outlet property="quantityOfStrawberryLabel" destination="Qas-vP-td6" id="hyP-Cj-X8J"/>
+                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="jJp-GN-m5c"/>
+                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="UMF-C8-v8V"/>
+                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="Pgs-bu-MUH"/>
+                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="CAl-XO-xkJ"/>
+                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="hyP-Cj-X8J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

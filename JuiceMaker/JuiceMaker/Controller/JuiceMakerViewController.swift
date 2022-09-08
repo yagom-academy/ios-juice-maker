@@ -1,32 +1,32 @@
 import UIKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var quantityOfStrawberryLabel: UILabel!
-    @IBOutlet weak var quantityOfBananaLabel: UILabel!
-    @IBOutlet weak var quantityOfPineappleLabel: UILabel!
-    @IBOutlet weak var quantityOfKiwiLabel: UILabel!
-    @IBOutlet weak var quantityOfMangoLabel: UILabel!
+class JuiceMakerViewController: UIViewController {
+    @IBOutlet weak private var strawberryCountLabel: UILabel!
+    @IBOutlet weak private var bananaCountLabel: UILabel!
+    @IBOutlet weak private var pineappleCountLabel: UILabel!
+    @IBOutlet weak private var kiwiCountLabel: UILabel!
+    @IBOutlet weak private var mangoCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUpQuantityOfFruits()
     }
     
-    func setUpQuantityOfFruits() {
+    private func setUpQuantityOfFruits() {
         guard let quantityOfStrawberry = JuiceMaker.shared.fruitStore.fruitList[.strawberry],
               let quantityOfBanana = JuiceMaker.shared.fruitStore.fruitList[.banana],
               let quantityOfPineapple = JuiceMaker.shared.fruitStore.fruitList[.pineapple],
               let quantityOfKiwi = JuiceMaker.shared.fruitStore.fruitList[.kiwi],
               let quantityOfMango = JuiceMaker.shared.fruitStore.fruitList[.mango] else { return }
-        quantityOfStrawberryLabel.text = String(quantityOfStrawberry)
-        quantityOfBananaLabel.text = String(quantityOfBanana)
-        quantityOfPineappleLabel.text = String(quantityOfPineapple)
-        quantityOfKiwiLabel.text = String(quantityOfKiwi)
-        quantityOfMangoLabel.text = String(quantityOfMango)
+        strawberryCountLabel.text = String(quantityOfStrawberry)
+        bananaCountLabel.text = String(quantityOfBanana)
+        pineappleCountLabel.text = String(quantityOfPineapple)
+        kiwiCountLabel.text = String(quantityOfKiwi)
+        mangoCountLabel.text = String(quantityOfMango)
     }
     
-    func showJuiceComeOutAlert(fruitJuice: FruitJuice) {
+    private func showJuiceComeOutAlert(fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil,
                                       message: "\(fruitJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!",
                                       preferredStyle: .alert)
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func showFruitsOutOfStockAlert() {
+    private func showFruitsOutOfStockAlert() {
         let alert = UIAlertController(title: nil,
                                       message: "재료가 모자라요. 재고를 수정할까요?",
                                       preferredStyle: .alert)
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @IBAction func touchUpFruitJuiceOrderButton(_ sender: UIButton) {
+    @IBAction private func touchUpFruitJuiceOrderButton(_ sender: UIButton) {
         let fruitJuice: FruitJuice
         
         switch sender.restorationIdentifier {
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         order(fruitJuice)
     }
     
-    func order(_ fruitJuice: FruitJuice) {
+    private func order(_ fruitJuice: FruitJuice) {
         if !JuiceMaker.shared.takeAnOrder(fruitJuice: fruitJuice) {
             showFruitsOutOfStockAlert()
         } else {
