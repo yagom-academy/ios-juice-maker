@@ -27,12 +27,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLabelDefaultValue()
+        setLabelValue()
         observation = juiceMaker.store.observe(\.stock, options: [.new], changeHandler: {
             (object, changes) in
             guard let newValue = changes.newValue else { return }
-            self.updateStock(newValue)
-            self.setLabelDefaultValue()
+            self.updateStock(to: newValue)
+            self.setLabelValue()
         })
     }
     
@@ -43,16 +43,16 @@ class MainViewController: UIViewController {
                 juiceMaker.store.useStockForRecipe(of: juice)
                 present(alertOrderIsReady(juice), animated: true, completion: nil)
             } else {
-                present(alertOrderIsNotReady(), animated: true, completion: nil)
+                present(alertNotEnoughStock(), animated: true, completion: nil)
             }
         }
     }
     
-    private func updateStock(_ newValue: [String: Int]) {
+    private func updateStock(to newValue: [String: Int]) {
         fruitStock = newValue
     }
     
-    private func setLabelDefaultValue() {
+    private func setLabelValue() {
         strawBerryLabel.text = juiceMaker.store.stock["딸기"]?.description
         bananaLabel.text = juiceMaker.store.stock["바나나"]?.description
         pineAppleLabel.text = juiceMaker.store.stock["파인애플"]?.description
@@ -60,9 +60,7 @@ class MainViewController: UIViewController {
         mangoLabel.text = juiceMaker.store.stock["망고"]?.description
     }
     
-    
-    
-    private func showStockEditor() {
+    private func presentStockEditorViewController() {
         guard let stockEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditorViewController") else { return }
         self.present(stockEditorViewController, animated: true, completion: nil)
     }
@@ -76,11 +74,11 @@ class MainViewController: UIViewController {
         return alert
     }
     
-    private func alertOrderIsNotReady() -> UIAlertController {
+    private func alertNotEnoughStock() -> UIAlertController {
         let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")
-            self.showStockEditor()
+            self.presentStockEditorViewController()
         })
         let cancle = UIAlertAction(title: "Cancle", style: .default, handler: { _ in
             NSLog("The \"Cancle\" alert occured.")})
