@@ -30,4 +30,23 @@ enum FruitJuice: String, CaseIterable {
             return JuiceIngridients(first: (.mango, 2), second: (.kiwi, 1))
         }
     }
+    
+    var restorationIdentifier: String {
+        switch self {
+        case .strawberryJuice:
+            return "strawberryJuiceOrderButton"
+        case .bananaJuice:
+            return "bananaJuiceOrderButton"
+        case .kiwiJuice:
+            return "kiwiJuiceOrderButton"
+        case .pineappleJuice:
+            return "pineappleJuiceOrderButton"
+        case .mangoJuice:
+            return "mangoJuiceOrderButton"
+        case .strawberryBananaJuice:
+            return "strawberryBananaJuiceOrderButton"
+        case .mangoKiwiJuice:
+            return "mangoKiwiJuiceOrderButton"
+        }
+    }
 }

@@ -6,13 +6,6 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var pineappleCountLabel: UILabel!
     @IBOutlet weak private var kiwiCountLabel: UILabel!
     @IBOutlet weak private var mangoCountLabel: UILabel!
-    @IBOutlet weak private var strawberryBananaJuiceOrderButton : UIButton!
-    @IBOutlet weak private var mangoKiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak private var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak private var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak private var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak private var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak private var mangoJuiceOrderButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,22 +65,25 @@ class JuiceMakerViewController: UIViewController {
     
     @IBAction private func touchUpFruitJuiceOrderButton(_ sender: UIButton) {
         let fruitJuice: FruitJuice
+        guard let fruitJuiceOrderButtonID = sender.restorationIdentifier else {
+            return
+        }
         
-        switch sender {
-        case strawberryBananaJuiceOrderButton:
-            fruitJuice = .strawberryBananaJuice
-        case mangoKiwiJuiceOrderButton:
-            fruitJuice = .mangoKiwiJuice
-        case strawberryJuiceOrderButton:
+        switch fruitJuiceOrderButtonID {
+        case FruitJuice.strawberryJuice.restorationIdentifier:
             fruitJuice = .strawberryJuice
-        case bananaJuiceOrderButton:
-            fruitJuice = .bananaJuice
-        case pineappleJuiceOrderButton:
-            fruitJuice = .pineappleJuice
-        case kiwiJuiceOrderButton:
-            fruitJuice = .kiwiJuice
-        case mangoJuiceOrderButton:
+        case FruitJuice.mangoJuice.restorationIdentifier:
             fruitJuice = .mangoJuice
+        case FruitJuice.kiwiJuice.restorationIdentifier:
+            fruitJuice = .kiwiJuice
+        case FruitJuice.pineappleJuice.restorationIdentifier:
+            fruitJuice = .pineappleJuice
+        case FruitJuice.bananaJuice.restorationIdentifier:
+            fruitJuice = .bananaJuice
+        case FruitJuice.mangoKiwiJuice.restorationIdentifier:
+            fruitJuice = .mangoKiwiJuice
+        case FruitJuice.strawberryBananaJuice.restorationIdentifier:
+            fruitJuice = .strawberryBananaJuice
         default:
             return
         }
