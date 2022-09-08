@@ -10,20 +10,21 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpQuantityOfFruits()
+        setUpFruitsCount()
     }
     
-    private func setUpQuantityOfFruits() {
-        guard let quantityOfStrawberry = JuiceMaker.shared.fruitStore.fruitList[.strawberry],
-              let quantityOfBanana = JuiceMaker.shared.fruitStore.fruitList[.banana],
-              let quantityOfPineapple = JuiceMaker.shared.fruitStore.fruitList[.pineapple],
-              let quantityOfKiwi = JuiceMaker.shared.fruitStore.fruitList[.kiwi],
-              let quantityOfMango = JuiceMaker.shared.fruitStore.fruitList[.mango] else { return }
-        strawberryCountLabel.text = String(quantityOfStrawberry)
-        bananaCountLabel.text = String(quantityOfBanana)
-        pineappleCountLabel.text = String(quantityOfPineapple)
-        kiwiCountLabel.text = String(quantityOfKiwi)
-        mangoCountLabel.text = String(quantityOfMango)
+    private func setUpFruitsCount() {
+        let fruitList = JuiceMaker.shared.requestFruitStore().requestFruitList()
+        guard let strawberryCount = fruitList[.strawberry],
+              let bananaCount = fruitList[.banana],
+              let pineappleCount = fruitList[.pineapple],
+              let kiwiCount = fruitList[.kiwi],
+              let mangoCount = fruitList[.mango] else { return }
+        strawberryCountLabel.text = String(strawberryCount)
+        bananaCountLabel.text = String(bananaCount)
+        pineappleCountLabel.text = String(pineappleCount)
+        kiwiCountLabel.text = String(kiwiCount)
+        mangoCountLabel.text = String(mangoCount)
     }
     
     private func handleAlert(fruitJuice: FruitJuice, isJuiceOrderCompleted: Bool) {
@@ -94,7 +95,7 @@ class JuiceMakerViewController: UIViewController {
     private func order(_ fruitJuice: FruitJuice) {
         let isJuiceOrderCompleted = JuiceMaker.shared.takeAnOrder(fruitJuice: fruitJuice)
         handleAlert(fruitJuice: fruitJuice, isJuiceOrderCompleted: isJuiceOrderCompleted)
-        setUpQuantityOfFruits()
+        setUpFruitsCount()
     }
 }
 

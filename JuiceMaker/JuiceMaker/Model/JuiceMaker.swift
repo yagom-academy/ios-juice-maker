@@ -1,20 +1,24 @@
 class JuiceMaker {
     static let shared: JuiceMaker = JuiceMaker()
-    private(set) var fruitStore = FruitStore(fruitAmount: 10)
+    private var fruitStore = FruitStore(fruitCount: 10)
     
     private init() { }
     
-    func makeFruitJuice(of fruitJuice: FruitJuice) throws {
+    func requestFruitStore() -> FruitStore {
+        return fruitStore
+    }
+    
+    private func makeFruitJuice(of fruitJuice: FruitJuice) throws {
         switch fruitJuice {
         case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
-            let (fruit, amount) = fruitJuice.juiceIngridients.first
-            try fruitStore.use(fruit, of: amount)
+            let (fruit, count) = fruitJuice.juiceIngridients.first
+            try fruitStore.use(fruit, of: count)
         case .strawberryBananaJuice, .mangoKiwiJuice:
-            let (fruit1, amount1) = fruitJuice.juiceIngridients.first
-            guard let (fruit2, amount2) = fruitJuice.juiceIngridients.second else {
+            let (fruit1, count1) = fruitJuice.juiceIngridients.first
+            guard let (fruit2, count2) = fruitJuice.juiceIngridients.second else {
                 throw JuiceMakerError.notExistFruits
             }
-            try fruitStore.use(firstFruit: fruit1, firstAmount: amount1, secondFruit: fruit2, secondAmount: amount2)
+            try fruitStore.use(firstFruit: fruit1, firstCount: count1, secondFruit: fruit2, secondCount: count2)
         }
     }
     

@@ -1,44 +1,48 @@
 struct FruitStore {
-    private(set) var fruitList: [Fruits: Int] = [:]
+    private var fruitList: [Fruits: Int] = [:]
     
-    init(fruitAmount: Int = 10) {
+    init(fruitCount: Int = 10) {
         for fruit in Fruits.allCases {
-            changeAmount(of: fruit, amount: fruitAmount)
+            changeCount(of: fruit, count: fruitCount)
         }
     }
     
-    mutating func changeAmount(of fruit: Fruits, amount: Int) {
-        fruitList[fruit] = amount
+    func requestFruitList() -> [Fruits: Int] {
+        return fruitList
     }
     
-    mutating func use(_ fruit: Fruits, of amount: Int) throws {
-        guard let numberOfFruit = fruitList[fruit] else {
+    mutating private func changeCount(of fruit: Fruits, count: Int) {
+        fruitList[fruit] = count
+    }
+    
+    mutating func use(_ fruit: Fruits, of count: Int) throws {
+        guard let countOfFruit = fruitList[fruit] else {
             throw JuiceMakerError.notExistFruits
         }
         
-        if numberOfFruit - amount < 0 {
+        if countOfFruit - count < 0 {
             throw JuiceMakerError.underFlowOfAmount
         }
         
-        fruitList[fruit] = numberOfFruit - amount
+        fruitList[fruit] = countOfFruit - count
     }
     
     mutating func use(
         firstFruit: Fruits,
-        firstAmount: Int,
+        firstCount: Int,
         secondFruit: Fruits,
-        secondAmount: Int
+        secondCount: Int
     ) throws {
         guard let countOfFruit1 = fruitList[firstFruit],
               let countOfFruit2 = fruitList[secondFruit] else {
             throw JuiceMakerError.notExistFruits
         }
         
-        if countOfFruit1 - firstAmount < 0 || countOfFruit2 - secondAmount < 0 {
+        if countOfFruit1 - firstCount < 0 || countOfFruit2 - secondCount < 0 {
             throw JuiceMakerError.underFlowOfAmount
         }
         
-        fruitList[firstFruit] = countOfFruit1 - firstAmount
-        fruitList[secondFruit] = countOfFruit2 - secondAmount
+        fruitList[firstFruit] = countOfFruit1 - firstCount
+        fruitList[secondFruit] = countOfFruit2 - secondCount
     }
 }
