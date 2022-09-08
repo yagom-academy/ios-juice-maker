@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
-        if let sender = sender.restorationIdentifier,
+        if let sender = sender.titleLabel?.text?.replacingOccurrences(of: " 주문", with: ""),
             let juice = Juice(rawValue: sender) {
             if juiceMaker.requestStockAvailability(for: juice) {
                 juiceMaker.store.useStockForRecipe(of: juice)
