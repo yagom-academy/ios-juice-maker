@@ -33,7 +33,7 @@ extension FruitStore: FruitStoreProtocol {
         }
     }
     
-    func isEnoughStock(juiceRecipe: [Juice.Recipe]) throws {
+    func checkEnoughStock(juiceRecipe: [Juice.Recipe]) throws {
         for ingredient in juiceRecipe {
             guard let fruitStock = getStock(fruit: ingredient.fruit),
                   fruitStock >= ingredient.amount

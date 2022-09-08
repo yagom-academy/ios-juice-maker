@@ -7,7 +7,7 @@ struct JuiceMaker {
     
     private func takeOrder(juice: Juice) {
         do {
-            try fruitStore.isEnoughStock(juiceRecipe: juice.recipe)
+            try fruitStore.checkEnoughStock(juiceRecipe: juice.recipe)
             make(juice)
             noticeResultOfJuiceMaking(isSuccess: true, juiceName: juice.rawValue)
         } catch JuiceMakerError.notEnoughStock {
@@ -20,7 +20,7 @@ struct JuiceMaker {
     
     func noticeResultOfJuiceMaking(isSuccess: Bool, juiceName: String) {
         NotificationCenter.default.post(
-            name: Notification.Name("resultInmakingJuice"),
+            name: .resultInmakingJuice,
             object: nil,
             userInfo: ["isMakingSuccess": isSuccess, "juiceName": juiceName])
     }
@@ -46,4 +46,8 @@ extension JuiceMaker: JuiceMakerProtocol {
     func getFruitStock() -> FruitStock {
         return fruitStore.sendFruitStock()
     }
+}
+
+extension Notification.Name {
+    static let resultInmakingJuice = Notification.Name("resultInmakingJuice")
 }

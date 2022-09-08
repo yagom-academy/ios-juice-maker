@@ -19,7 +19,7 @@ class FruitJuiceStoreViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(resultInMakingJuice),
-            name: Notification.Name("resultInmakingJuice"),
+            name: .resultInmakingJuice,
             object: nil)
     }
     
