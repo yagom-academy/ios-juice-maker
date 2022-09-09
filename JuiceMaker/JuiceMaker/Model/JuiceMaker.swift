@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
+import Foundation
+
 struct JuiceMaker {
     private let fruitStore: FruitStore
     
@@ -11,18 +13,19 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func make(_ juice: Juice) {
+    func make(_ juice: Juice) -> Result<Juice, FruitStoreError> {
         do {
             try fruitStore.checkStockOfIngredients(in: juice.recipe)
             for ingredient in juice.recipe {
                 fruitStore.changeStock(of: ingredient.fruit, by: -ingredient.amount)
             }
         } catch FruitStoreError.notInInventoryFruitList {
-            print(FruitStoreError.notInInventoryFruitList.failureReason)
+            return .failure(.notInInventoryFruitList)
         } catch FruitStoreError.outOfStock {
-            print(FruitStoreError.outOfStock.failureReason)
+            return .failure(.outOfStock)
         } catch {
-            print(error)
+            return .failure(.unexpectedError)
         }
+        return .success(juice)
     }
 }
