@@ -3,7 +3,7 @@
 //  Created by Ash, 미니.
 //
 
-enum Fruit: CaseIterable {
+enum Fruit: Int, CaseIterable {
 	case strawberry
 	case banana
 	case pineapple
