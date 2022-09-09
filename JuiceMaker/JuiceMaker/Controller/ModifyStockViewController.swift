@@ -22,12 +22,11 @@ class ModifyStockViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    lazy var fruitLabel: [(label: UILabel, stepper: UIStepper)] = [(strawberryStockLabel, strawberryStepper),
-        (bananaStockLabel, bananaStepper),
-        (pineappleStockLabel, pineappleStepper),
-        (kiwiStockLabel, kiwiStepper),
-        (mangoStockLabel, mangoStepper),
-        ]
+    lazy var fruitLabel: [Fruit : (label: UILabel, isChange: Bool)] = [.strawberry : (strawberryStockLabel, false),
+                                                                       .banana : (bananaStockLabel, false),
+                                                                       .pineapple : (pineappleStockLabel, false),
+                                                                       .kiwi : (kiwiStockLabel, false),
+                                                                       .mango : (mangoStockLabel, false)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,26 @@ class ModifyStockViewController: UIViewController {
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
-        fruitLabel[sender.tag].label.text = Int(sender.value).description
+        guard let changeFruit = Fruit(rawValue: sender.tag) else {
+            return
+        }
+        
+        fruitLabel[changeFruit]?.label.text = Int(sender.value).description
+        fruitLabel[changeFruit]?.isChange = true
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        var changeFruitStock: [Fruit : Int] = [:]
+        
+        for (key, value) in fruitLabel {
+            guard value.isChange else {
+                continue
+            }
+            
+            changeFruitStock[key] = Int(value.label.text ?? String(ConstantUsageFruit.invalidFruit))
+        }
+        NotificationCenter.default.post(name: Notification.Name.stock, object: nil, userInfo: changeFruitStock)
+        dismiss(animated: true)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

@@ -15,12 +15,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
+
+    lazy var fruitLabel: [Fruit : UILabel] = [.strawberry : strawberryStockLabel,
+                                              .banana : bananaStockLabel,
+                                              .pineapple : pineappleStockLabel,
+                                              .kiwi : kiwiStockLabel,
+                                              .mango : mangoStockLabel]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
         settingFruitStockLabel()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabel), name: Notification.Name.stock, object: nil)
+    }
+    
+    @objc func updateStockLabel(noti: Notification) {
+        guard let changeFruitStock = noti.userInfo as? [Fruit : Int] else {
+            return
+        }
+        
+        for (key, value) in changeFruitStock {
+            self.fruitLabel[key]?.text = String(value)
+            
+        }
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {

@@ -428,6 +428,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="저장"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="Wa0-K9-EMW"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>

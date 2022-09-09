@@ -5,10 +5,10 @@
 //  Created by Kyo, TaeLee on 2022/08/29.
 //
 
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+enum Fruit: Int, CaseIterable {
+    case strawberry = 0
+    case banana = 1
+    case pineapple = 2
+    case kiwi = 3
+    case mango = 4
 }
