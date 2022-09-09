@@ -10,14 +10,29 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateAllFruitsCount()
+    }
+    
+    private func requestUpdateFruitCount(fruitJuice: FruitJuice) {
+        switch fruitJuice.ingridientCount {
+        case 1:
+            let (fruit, _) = fruitJuice.juiceIngridients.first
+            updateFruitCount(fruit: fruit)
+        case 2:
+            let (fruit1, _) = fruitJuice.juiceIngridients.first
+            guard let (fruit2, _) = fruitJuice.juiceIngridients.second else { return }
+            updateFruitCount(fruit: fruit1)
+            updateFruitCount(fruit: fruit2)
+        default:
+            return
+        }
     }
     
     private func updateAllFruitsCount() {
         let fruitList = JuiceMaker.shared.requestFruitStore().requestFruitList()
         fruitList.forEach { fruit, count in
-            setUpFruitCountLabel(fruit: fruit, count: count)
+            updateCountLabel(fruit: fruit, count: count)
         }
     }
     
@@ -28,10 +43,10 @@ class JuiceMakerViewController: UIViewController {
             .requestFruitCount(fruit: fruit) else {
             return
         }
-        setUpFruitCountLabel(fruit: fruit, count: count)
+        updateCountLabel(fruit: fruit, count: count)
     }
     
-    private func setUpFruitCountLabel(fruit: Fruits, count: Int) {
+    private func updateCountLabel(fruit: Fruits, count: Int) {
         switch fruit {
         case .strawberry:
             strawberryCountLabel.text = String(count)
@@ -63,23 +78,23 @@ class JuiceMakerViewController: UIViewController {
     
     private func showJuiceComeOutAlert(_ alert: UIAlertController, fruitJuice: FruitJuice) {
         let message = "\(fruitJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!"
-        alert.message = message
         let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
+        
+        alert.message = message
         alert.addAction(okAction)
-
         present(alert, animated: true)
     }
     
     private func showFruitsOutOfStockAlert(_ alert: UIAlertController) {
         let message = "재료가 모자라요. 재고를 수정할까요?"
-        alert.message = message
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "modifyFruitVC")
             self.present(vc, animated: true, completion: nil)
         }
-
         let cancleAction = UIAlertAction(title: "아니오", style: .default)
+        
+        alert.message = message
         alert.addAction(okAction)
         alert.addAction(cancleAction)
         present(alert, animated: true)
@@ -115,7 +130,7 @@ class JuiceMakerViewController: UIViewController {
     
     private func order(_ fruitJuice: FruitJuice) {
         handleAlert(fruitJuice: fruitJuice)
-        updateAllFruitsCount()
+        requestUpdateFruitCount(fruitJuice: fruitJuice)
     }
 }
 

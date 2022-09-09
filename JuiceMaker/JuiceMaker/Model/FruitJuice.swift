@@ -31,6 +31,15 @@ enum FruitJuice: String, CaseIterable {
         }
     }
     
+    var ingridientCount: Int {
+        switch self {
+        case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
+            return 1
+        case .strawberryBananaJuice, .mangoKiwiJuice:
+            return 2
+        }
+    }
+    
     var orderButtonID: String {
         switch self {
         case .strawberryJuice:
