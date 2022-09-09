@@ -54,7 +54,7 @@ class ViewController: UIViewController {
                     updateStockLabel(of: fruit)
                 })
             } catch JuiceMakerError.outOfStock {
-                showOrderFailedAlert()
+                showOrderFailedAlert(juice: orderedJuice)
             } catch {
                 print("unexpected error: \(error)")
             }
@@ -73,8 +73,8 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    private func showOrderFailedAlert() {
-        let message = "재료가 모자라요. 재고를 수정할까요?"
+    private func showOrderFailedAlert(juice: JuiceMaker.Juice) {
+        let message = juice.orderFailedMessage
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)

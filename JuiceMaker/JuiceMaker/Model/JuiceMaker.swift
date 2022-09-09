@@ -58,6 +58,25 @@ struct JuiceMaker {
                 return "딸바쥬스 나왔습니다! 맛있게 드세요!"
             }
         }
+        
+        var orderFailedMessage: String {
+            switch self {
+            case .strawberryJuice:
+                return "딸기쥬스 재료가 모자라요. 재고를 수정할까요?"
+            case .bananaJuice:
+                return "바나나쥬스 재료가 모자라요. 재고를 수정할까요?"
+            case .kiwiJuice:
+                return "키위쥬스 재료가 모자라요. 재고를 수정할까요?"
+            case .pineappleJuice:
+                return "파인애플쥬스 재료가 모자라요. 재고를 수정할까요?"
+            case .strawberryBananaJuice:
+                return "딸바쥬스 재료가 모자라요. 재고를 수정할까요?"
+            case .mangoJuice:
+                return "망고쥬스 재료가 모자라요. 재고를 수정할까요?"
+            case .mangoKiwiJuice:
+                return "망키쥬스 재료가 모자라요. 재고를 수정할까요?"
+            }
+        }
     }
     
     private let fruitStore = FruitStore()
