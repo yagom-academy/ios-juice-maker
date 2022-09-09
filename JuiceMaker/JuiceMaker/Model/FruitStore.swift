@@ -11,6 +11,10 @@ struct FruitStore {
         return fruitList
     }
     
+    func requestFruitCount(fruit: Fruits) -> Int? {
+        return fruitList[fruit]
+    }
+    
     mutating private func changeCount(of fruit: Fruits, count: Int) {
         fruitList[fruit] = count
     }

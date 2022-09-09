@@ -31,7 +31,7 @@ enum FruitJuice: String, CaseIterable {
         }
     }
     
-    var restorationIdentifier: String {
+    var orderButtonID: String {
         switch self {
         case .strawberryJuice:
             return "strawberryJuiceOrderButton"

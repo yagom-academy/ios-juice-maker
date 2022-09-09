@@ -6,25 +6,44 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var pineappleCountLabel: UILabel!
     @IBOutlet weak private var kiwiCountLabel: UILabel!
     @IBOutlet weak private var mangoCountLabel: UILabel!
+    @IBOutlet weak private var together: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpFruitsCount()
+        updateAllFruitsCount()
     }
     
-    private func setUpFruitsCount() {
+    private func updateAllFruitsCount() {
         let fruitList = JuiceMaker.shared.requestFruitStore().requestFruitList()
-        guard let strawberryCount = fruitList[.strawberry],
-              let bananaCount = fruitList[.banana],
-              let pineappleCount = fruitList[.pineapple],
-              let kiwiCount = fruitList[.kiwi],
-              let mangoCount = fruitList[.mango] else { return }
-        strawberryCountLabel.text = String(strawberryCount)
-        bananaCountLabel.text = String(bananaCount)
-        pineappleCountLabel.text = String(pineappleCount)
-        kiwiCountLabel.text = String(kiwiCount)
-        mangoCountLabel.text = String(mangoCount)
+        fruitList.forEach { fruit, count in
+            setUpFruitCountLabel(fruit: fruit, count: count)
+        }
+    }
+    
+    private func updateFruitCount(fruit: Fruits) {
+        guard let count = JuiceMaker
+            .shared
+            .requestFruitStore()
+            .requestFruitCount(fruit: fruit) else {
+            return
+        }
+        setUpFruitCountLabel(fruit: fruit, count: count)
+    }
+    
+    private func setUpFruitCountLabel(fruit: Fruits, count: Int) {
+        switch fruit {
+        case .strawberry:
+            strawberryCountLabel.text = String(count)
+        case .banana:
+            bananaCountLabel.text = String(count)
+        case .pineapple:
+            pineappleCountLabel.text = String(count)
+        case .kiwi:
+            kiwiCountLabel.text = String(count)
+        case .mango:
+            mangoCountLabel.text = String(count)
+        }
     }
     
     private func handleAlert(fruitJuice: FruitJuice) {
@@ -73,19 +92,19 @@ class JuiceMakerViewController: UIViewController {
         }
         
         switch fruitJuiceOrderButtonID {
-        case FruitJuice.strawberryJuice.restorationIdentifier:
+        case FruitJuice.strawberryJuice.orderButtonID:
             fruitJuice = .strawberryJuice
-        case FruitJuice.mangoJuice.restorationIdentifier:
+        case FruitJuice.mangoJuice.orderButtonID:
             fruitJuice = .mangoJuice
-        case FruitJuice.kiwiJuice.restorationIdentifier:
+        case FruitJuice.kiwiJuice.orderButtonID:
             fruitJuice = .kiwiJuice
-        case FruitJuice.pineappleJuice.restorationIdentifier:
+        case FruitJuice.pineappleJuice.orderButtonID:
             fruitJuice = .pineappleJuice
-        case FruitJuice.bananaJuice.restorationIdentifier:
+        case FruitJuice.bananaJuice.orderButtonID:
             fruitJuice = .bananaJuice
-        case FruitJuice.mangoKiwiJuice.restorationIdentifier:
+        case FruitJuice.mangoKiwiJuice.orderButtonID:
             fruitJuice = .mangoKiwiJuice
-        case FruitJuice.strawberryBananaJuice.restorationIdentifier:
+        case FruitJuice.strawberryBananaJuice.orderButtonID:
             fruitJuice = .strawberryBananaJuice
         default:
             return
@@ -96,7 +115,7 @@ class JuiceMakerViewController: UIViewController {
     
     private func order(_ fruitJuice: FruitJuice) {
         handleAlert(fruitJuice: fruitJuice)
-        setUpFruitsCount()
+        updateAllFruitsCount()
     }
 }
 
