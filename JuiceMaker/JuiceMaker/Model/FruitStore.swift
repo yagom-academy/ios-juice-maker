@@ -8,7 +8,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruitStock: [Fruit:Int] = [:]
+    private var fruitStock: [Fruit: Int] = [:]
     
     init() {
         Fruit.allCases.forEach { fruit in
@@ -41,5 +41,12 @@ class FruitStore {
                 throw JuiceMakerError.outOfStock
             }
         }
+    }
+    
+    func fetchStock(of fruit: Fruit) throws -> Int {
+        guard let fruitStock = fruitStock[fruit] else {
+            throw JuiceMakerError.invalidFruit
+        }
+        return fruitStock
     }
 }
