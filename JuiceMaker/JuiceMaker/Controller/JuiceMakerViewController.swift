@@ -6,7 +6,6 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var pineappleCountLabel: UILabel!
     @IBOutlet weak private var kiwiCountLabel: UILabel!
     @IBOutlet weak private var mangoCountLabel: UILabel!
-    @IBOutlet weak private var together: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +76,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func showJuiceComeOutAlert(_ alert: UIAlertController, fruitJuice: FruitJuice) {
-        let message = "\(fruitJuice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!"
+        let message = String(format: "%@ 나왔습니다! 맛있게 드세요!", fruitJuice.menuName)
         let okAction = UIAlertAction(title: "예", style: .default, handler: nil)
         
         alert.message = message
