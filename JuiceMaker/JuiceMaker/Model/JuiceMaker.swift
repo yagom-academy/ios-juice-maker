@@ -5,18 +5,17 @@
 //
 
 struct JuiceMaker {
-    private let fruitStore: FruitStore = FruitStore()
+    private(set) var fruitStore = FruitStore()
     
-    func make(juice: Juice) throws {
+    func make(_ juice: Juice) -> Result<Juice, FruitStoreError> {
+        let recipe = juice.recipe
+        
         do {
-            let recipe = juice.recipe
-            
-            try recipe.forEach { (fruit: Fruit, amount: Int) in
-                try fruitStore.reduceInventory(of: fruit, by: amount)
-            }
-            
+            try fruitStore.reduce(by: recipe)
         } catch {
-            throw FruitStoreError.insufficientInventory
+            return .failure(FruitStoreError.insufficientInventory)
         }
+        
+        return .success(juice)
     }
 }

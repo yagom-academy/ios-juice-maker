@@ -1,4 +1,4 @@
-enum Fruit: CaseIterable {
+enum Fruit: String, CaseIterable {
     case strawberry
     case banana
     case kiwi
