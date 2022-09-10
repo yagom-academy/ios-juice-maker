@@ -1,9 +1,4 @@
-//
-//  FruitStockUpViewController.swift
-//  JuiceMaker
-//
-//  Created by 정선아 on 2022/09/06.
-//
+//  Created by som, LJ.
 
 import UIKit
 
