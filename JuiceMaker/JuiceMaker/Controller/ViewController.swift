@@ -109,6 +109,16 @@ class ViewController: UIViewController {
         self.present(failedAlert, animated: false)
     }
     
+    func showEmptyStockAlert() {
+        let emptyStockAlert = UIAlertController(title: "재고가 비어있습니다.",
+                                                message: "",
+                                                preferredStyle: .alert)
+        emptyStockAlert.addAction(UIAlertAction(title: "확인",
+                                                style: .default,
+                                                handler: nil))
+        self.present(emptyStockAlert, animated: false)
+    }
+    
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         
         guard let juice = Juice(rawValue: sender.tag) else {
