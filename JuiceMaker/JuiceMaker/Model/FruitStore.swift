@@ -36,11 +36,7 @@ class FruitStore {
         return remainingStock
     }
     
-    func changeFruitStock(to juice: Juice) {
-        for (fruit, amountOfFruit) in juice.recipeOfJuice {
-            if let stock = self.stock[fruit] {
-                self.stock.updateValue(stock - amountOfFruit, forKey: fruit)
-            }
-        }
+    func changeFruitStock(to remainingStock: Int, to fruit: Fruit) {
+        self.stock.updateValue(remainingStock, forKey: fruit)
     }
 }
