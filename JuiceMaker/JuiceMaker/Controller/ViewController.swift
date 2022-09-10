@@ -119,6 +119,16 @@ class ViewController: UIViewController {
         self.present(emptyStockAlert, animated: false)
     }
     
+    func showUnknownErrorAlert() {
+        let emptyStockAlert = UIAlertController(title: "알 수 없는 오류입니다.",
+                                                message: "",
+                                                preferredStyle: .alert)
+        emptyStockAlert.addAction(UIAlertAction(title: "확인",
+                                                style: .default,
+                                                handler: nil))
+        self.present(emptyStockAlert, animated: false)
+    }
+    
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         
         guard let juice = Juice(rawValue: sender.tag) else {

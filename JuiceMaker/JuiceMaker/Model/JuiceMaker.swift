@@ -18,7 +18,7 @@ struct JuiceMaker {
             } catch OrderError.emptyStock {
                 view.showEmptyStockAlert()
             } catch {
-                print("알 수 없는 오류입니다.")
+                view.showUnknownErrorAlert()
             }
         }
     }
