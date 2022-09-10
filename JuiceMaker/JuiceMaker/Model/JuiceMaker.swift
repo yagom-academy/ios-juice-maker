@@ -6,7 +6,7 @@ import Foundation
 struct JuiceMaker {
     let fruitStorage = FruitStore(defaultStock: 10)
     
-    func makeJuice(to order: Juice, in view: ViewController) {
+    func makeJuice(to order: Juice, in view: JuiceMakerViewController) {
         for (fruit, amountOfFruit) in order.recipeOfJuice.ingredient {
             do {
                 let stock = try fruitStorage.checkEmptyStock(to: fruit)

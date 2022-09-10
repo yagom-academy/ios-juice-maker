@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     
     @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
