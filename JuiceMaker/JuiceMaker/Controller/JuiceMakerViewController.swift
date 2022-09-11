@@ -36,15 +36,40 @@ class JuiceMakerViewController: UIViewController {
         })
     }
     
-    @IBAction func orderJuice(_ sender: UIButton) {
-        if let sender = sender.titleLabel?.text?.replacingOccurrences(of: " 주문", with: ""),
-            let juice = Juice(rawValue: sender) {
-            if juiceMaker.requestStockAvailability(for: juice) {
-                juiceMaker.store.useStockForRecipe(of: juice)
-                presentAlertOrderIsReady(juice)
-            } else {
-                presentAlertNotEnoughStock(data: juice.recipe)
-            }
+    @IBAction func tapStrawBerryBananaButton(_ sender: UIButton) {
+        orderJuice(juice: .strawBerryBanana)
+    }
+    
+    @IBAction func tapMangoKiwiButton(_ sender: UIButton) {
+        orderJuice(juice: .mangoKiwi)
+    }
+    
+    @IBAction func tapStrawBerryButton(_ sender: UIButton) {
+        orderJuice(juice: .strawBerry)
+    }
+    
+    @IBAction func tapBananaButton(_ sender: UIButton) {
+        orderJuice(juice: .banana)
+    }
+    
+    @IBAction func tapPineAppleButton(_ sender: UIButton) {
+        orderJuice(juice: .pineApple)
+    }
+    
+    @IBAction func tapKiwiButton(_ sender: UIButton) {
+        orderJuice(juice: .kiwi)
+    }
+    
+    @IBAction func tapMangoButton(_ sender: UIButton) {
+        orderJuice(juice: .mango)
+    }
+    
+    func orderJuice(juice: Juice) {
+        if juiceMaker.requestStockAvailability(for: juice) {
+            juiceMaker.store.useStockForRecipe(of: juice)
+            presentAlertOrderIsReady(juice)
+        } else {
+            presentAlertNotEnoughStock(data: juice.recipe)
         }
     }
     
