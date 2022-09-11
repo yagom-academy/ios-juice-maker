@@ -79,13 +79,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func presentAlertNotEnoughStock(data: [Fruit: Int]) {
-        var result: [String] = []
-        for (fruit, count) in data {
-            if count > juiceMaker.store.stock[fruit.rawValue]! {
-                result.append("\(fruit.rawValue)가 \(count - juiceMaker.store.stock[fruit.rawValue]!)개")
-            }
-        }
-        let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요.\n \(result.joined(separator: "\n"))\n재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요.\n \(getInsufficientFruitInformation(from: data))\n재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")
             self.presentStockEditorViewController()
@@ -95,8 +89,18 @@ class JuiceMakerViewController: UIViewController {
         alert.addAction(cancle)
         alert.addAction(ok)
         
-        
         return present(alert, animated: true, completion: nil)
+    }
+    
+    private func getInsufficientFruitInformation(from data: [Fruit: Int]) -> String {
+        var result: [String] = []
+        for (fruit, count) in data {
+            if count > juiceMaker.store.stock[fruit.rawValue]! {
+                result.append("\(fruit.rawValue)가 \(count - juiceMaker.store.stock[fruit.rawValue]!)개")
+            }
+        }
+        
+        return result.joined(separator: "\n")
     }
 }
 
