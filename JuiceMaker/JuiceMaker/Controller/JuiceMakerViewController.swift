@@ -65,7 +65,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func orderJuice(juice: Juice) {
-        if juiceMaker.requestStockAvailability(for: juice) {
+        if requestStockAvailability(for: juice) {
             juiceMaker.store.useStockForRecipe(of: juice)
             presentAlertOrderIsReady(juice)
         } else {
@@ -126,6 +126,17 @@ class JuiceMakerViewController: UIViewController {
         }
         
         return result.joined(separator: "\n")
+    }
+    private func requestStockAvailability(for juice: Juice) -> Bool {
+        do {
+            try juiceMaker.store.checkStockAvailability(of: juice)
+            return true
+        } catch StockError.notEnoughFruit {
+            print("재고 부족")
+        } catch {
+            print("Unknown Error")
+        }
+        return false
     }
 }
 
