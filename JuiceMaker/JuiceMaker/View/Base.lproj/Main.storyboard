@@ -307,7 +307,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
-                                                <rect key="frame" x="0.0" y="118.66666666666663" width="94" height="27.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="118.66666666666664" width="94" height="27.333333333333329"/>
                                             </stepper>
                                         </subviews>
                                     </stackView>

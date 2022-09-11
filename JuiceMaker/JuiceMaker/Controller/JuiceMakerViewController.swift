@@ -21,8 +21,7 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiButton: UIButton!
     @IBOutlet weak var mangoButton: UIButton!
     
-    private let juiceMaker = JuiceMaker()
-    private lazy var fruitStock = juiceMaker.store.stock
+    private var juiceMaker = JuiceMaker()
     private var observation: NSKeyValueObservation?
     
     override func viewDidLoad() {
@@ -44,7 +43,7 @@ class JuiceMakerViewController: UIViewController {
                 juiceMaker.store.useStockForRecipe(of: juice)
                 presentAlertOrderIsReady(juice)
             } else {
-                presentAlertNotEnoughStock()
+                presentAlertNotEnoughStock(data: juice.recipe)
             }
         }
     }
@@ -53,7 +52,7 @@ class JuiceMakerViewController: UIViewController {
         for fruit in newValue.keys {
             guard newValue[fruit] != oldValue[fruit],
                   let newValue = newValue[fruit] else { continue }
-            fruitStock.updateValue(newValue, forKey: fruit)
+            juiceMaker.store.stock.updateValue(newValue, forKey: fruit)
         }
     }
     
@@ -79,8 +78,14 @@ class JuiceMakerViewController: UIViewController {
         return present(alert, animated: true, completion: nil)
     }
     
-    private func presentAlertNotEnoughStock() {
-        let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
+    private func presentAlertNotEnoughStock(data: [Fruit: Int]) {
+        var result: [String] = []
+        for (fruit, count) in data {
+            if count > juiceMaker.store.stock[fruit.rawValue]! {
+                result.append("\(fruit.rawValue)가 \(count - juiceMaker.store.stock[fruit.rawValue]!)개")
+            }
+        }
+        let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요.\n \(result.joined(separator: "\n"))\n재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")
             self.presentStockEditorViewController()
