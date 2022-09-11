@@ -4,6 +4,5 @@
 //
 
 enum StockError: Error {
-    case outOfFruit
     case notEnoughFruit
 }
