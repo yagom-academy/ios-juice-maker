@@ -29,7 +29,7 @@ class ChangeInventoryViewController: UIViewController {
 //        checkStepperValue(of: sender)
     }
     
-    @IBAction private func closeButton(_ sender: UIButton) {
+    @IBAction func closeButton(_ sender: UIButton) {
         updateInventory()
         dismiss(animated: true,
                 completion: nil)

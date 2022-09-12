@@ -87,7 +87,7 @@ class HomeViewController: UIViewController {
     }
     
     private func presentChangeInventoryViewController() {
-        guard let changeInventoryVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeInventoryViewController") as? ChangeInventoryViewController else { return }
+        guard let changeInventoryVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeInventoryNavigationController") as? UIViewController else { return }
         
         changeInventoryVC.modalPresentationStyle = .fullScreen
         changeInventoryVC.modalTransitionStyle = .coverVertical
