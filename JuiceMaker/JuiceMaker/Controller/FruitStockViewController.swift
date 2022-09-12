@@ -22,9 +22,23 @@ class FruitStockViewController: UIViewController {
         .mango: mangoStockLabel
     ]
     
+    lazy var fruitStepper: [UIStepper: Fruit] = [
+        strawberryStepper: .strawberry,
+        bananaStepper: .banana,
+        pineappleStepper: .pineapple,
+        kiwiStepper: .kiwi,
+        mangoStepper: .mango
+    ]
+    
     func updateFruitStockLabel() {
         for (fruit, label) in fruitLabel {
             label.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
+        }
+    }
+    
+    func assignStepperValue() {
+        for (stepper, fruit) in fruitStepper {
+            stepper.value = Double(FruitStore.sharedFruitStore.fetchStockOf(fruit))
         }
     }
 
@@ -32,6 +46,7 @@ class FruitStockViewController: UIViewController {
         super.viewDidLoad()
         
         updateFruitStockLabel()
+        assignStepperValue()
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
@@ -39,24 +54,13 @@ class FruitStockViewController: UIViewController {
     }
     
     @IBAction func changeFruitStock(_ sender: UIStepper) {
-        let fruitStepper: [UIStepper: Fruit] = [
-            strawberryStepper: .strawberry,
-            bananaStepper: .banana,
-            pineappleStepper: .pineapple,
-            kiwiStepper: .kiwi,
-            mangoStepper: .mango
-        ]
-
-        sender.minimumValue = -1
-        
         guard let fruit = fruitStepper[sender],
               let fruitLabel = fruitLabel[fruit] else { return }
         
-        FruitStore.sharedFruitStore.changeStockOf(fruit: fruit, by: Int(sender.value))
+        let changedValue = Int(sender.value) - FruitStore.sharedFruitStore.fetchStockOf(fruit)
+        FruitStore.sharedFruitStore.changeStockOf(fruit: fruit, by: changedValue)
         
         fruitLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
-        
-        sender.value = 0
     }
     
     
