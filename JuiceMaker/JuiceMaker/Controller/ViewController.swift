@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FruitStoreDelegate {
     
     var fruitStore: FruitStore = .init(inventory: [.strawberry: 10, .banana:10, .kiwi: 10, .mango: 10])
     lazy var juiceMaker: JuiceMaker = .init(fruitStore: fruitStore)
@@ -26,6 +26,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateFruitStockLabel()
     }
     
@@ -106,6 +110,7 @@ class ViewController: UIViewController {
         guard let stockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditViewController") as? StockEditViewController else {
             return
         }
+        stockEditViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: stockEditViewController)
         navigationController.modalTransitionStyle = .coverVertical
         navigationController.modalPresentationStyle = .fullScreen
