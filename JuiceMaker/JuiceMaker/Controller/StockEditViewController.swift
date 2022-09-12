@@ -16,9 +16,16 @@ class StockEditViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
 
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setStockLabelAndStepperValue()
         navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 
@@ -46,4 +53,25 @@ class StockEditViewController: UIViewController {
         mangoStockLabel.text = Int(sender.value).description
     }
     
+    private func setStockLabelAndStepperValue() {
+        fruitStock.forEach({ fruit in
+            switch fruit.key {
+            case .strawberry:
+                strawberryStepper.value = Double(fruit.value)
+                strawberryStockLabel.text = String(fruit.value)
+            case .banana:
+                bananaStepper.value = Double(fruit.value)
+                bananaStockLabel.text = String(fruit.value)
+            case .pineapple:
+                pineappleStepper.value = Double(fruit.value)
+                pineappleStockLabel.text = String(fruit.value)
+            case .kiwi:
+                kiwiStepper.value = Double(fruit.value)
+                kiwiStockLabel.text = String(fruit.value)
+            case .mango:
+                mangoStepper.value = Double(fruit.value)
+                mangoStockLabel.text = String(fruit.value)
+            }
+        })
+    }
 }
