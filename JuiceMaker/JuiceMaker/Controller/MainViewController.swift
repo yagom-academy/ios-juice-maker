@@ -5,67 +5,79 @@
 
 import UIKit
 
-extension NSNotification.Name {
-    static let changedStockCount = NSNotification.Name("changedStockCount")
-    static let madeJuiceAlert = NSNotification.Name("madeJuiceAlert")
-    static let failedAlert = NSNotification.Name("failedAlert")
-}
-
 class MainViewController: UIViewController {
-    private let store = FruitStore(stockCount: 10)
+    @objc let store = FruitStore(stockCount: 10)
     private lazy var juiceMaker = JuiceMaker(store: store)
     
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
+    private var stockChangeObserver: NSKeyValueObservation?
+    
+    @IBOutlet weak var strawberryBananaOrder: UIButton!
+    @IBOutlet weak var mangoKiwiOrder: UIButton!
+    @IBOutlet weak var strawberryOrder: UIButton!
+    @IBOutlet weak var bananaOrder: UIButton!
+    @IBOutlet weak var pineappleOrder: UIButton!
+    @IBOutlet weak var kiwiOrder: UIButton!
+    @IBOutlet weak var mangoOrder: UIButton!
+    @IBOutlet var fruitCountLabelArray: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateStockCount(_:)),
-                                               name: .changedStockCount,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(madeJuiceAlert(_:)),
-                                               name: .madeJuiceAlert,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(failedAlert(_:)),
-                                               name: .failedAlert,
-                                               object: nil)
-        
-        NotificationCenter.default.post(name: .changedStockCount,
-                                        object: nil,
-                                        userInfo: nil)
+        stockChangeObserver = observe(\.store.stock,
+                                       options: [.new, .initial],
+                                       changeHandler: { (object, stock) in
+            guard let newStock = stock.newValue else { return }
+            self.updateStockCount(stock: newStock)
+        })
     }
     
-    @IBAction private func tappedModifyBarButton(_ sender: UIBarButtonItem) {
+    @IBAction private func tappedModifyBarButton(_ sender: Any) {
         guard let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "EditNavigationController") as? UINavigationController else { return }
-        guard let viewController = navigationController.viewControllers.first as? EditViewController else { return }
-        navigationController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        navigationController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        navigationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
-        viewController.stock = store.stock
+        StockStorage.shared.stock = store.stock
         
         present(navigationController, animated: true)
     }
     
     @IBAction private func tappedOrderButton(_ sender: UIButton) {
-        guard let buttonText = sender.titleLabel?.text else { return }
-        let juiceName = buttonText.replacingOccurrences(of: " 주문", with: "")
-        guard let juice = Juice(rawValue: juiceName) else { return }
+        var juice: Juice?
         
-        juiceMaker.makeJuice(juice)
+        switch sender {
+        case strawberryBananaOrder:
+            juice = .strawberryBananaJuice
+        case mangoKiwiOrder:
+            juice = .mangoKiwiJuice
+        case strawberryOrder:
+            juice = .strawberryJuice
+        case bananaOrder:
+            juice = .bananaJuice
+        case pineappleOrder:
+            juice = .pineappleJuice
+        case kiwiOrder:
+            juice = .kiwiJuice
+        case mangoOrder:
+            juice = .mangoKiwiJuice
+        default:
+            juice = nil
+        }
+        
+        checkCanMakeJuice(juice)
     }
     
-    @objc private func madeJuiceAlert(_ noti: Notification) {
-        guard let juiceName = noti.userInfo?["JuiceName"] else { return }
+    private func checkCanMakeJuice(_ juice: Juice?) {
+        guard let juice = juice else { return }
         
+        if juiceMaker.makeJuice(juice) {
+            self.madeJuiceAlert(message: juice.name)
+        } else {
+            self.failedAlert()
+        }
+    }
+    
+    private func madeJuiceAlert(message: String) {
         let alert = UIAlertController(title: nil,
-                                      message: "\(juiceName) 나왔습니다! 맛있게 드세요!",
+                                      message: "\(message) 나왔습니다! 맛있게 드세요!",
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인",
                                      style: .default,
@@ -76,12 +88,18 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc private func failedAlert(_ noti: Notification) {
-        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default, handler: { ACTION in
-            self.tappedModifyBarButton(UIBarButtonItem())
+    private func failedAlert() {
+        let alert = UIAlertController(title: nil,
+                                      message: "재료가 모자라요. 재고를 수정할까요?",
+                                      preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "예",
+                                      style: .default,
+                                      handler: { _ in
+            self.tappedModifyBarButton(())
         })
-        let noAction = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
+        let noAction = UIAlertAction(title: "아니오",
+                                     style: .destructive,
+                                     handler: nil)
         
         alert.addAction(yesAction)
         alert.addAction(noAction)
@@ -89,11 +107,12 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc private func updateStockCount(_ noti: Notification) {
-        strawberryCountLabel.text = String(store.stock[Fruit.strawberry.index])
-        bananaCountLabel.text = String(store.stock[Fruit.banana.index])
-        pineappleCountLabel.text = String(store.stock[Fruit.pineapple.index])
-        kiwiCountLabel.text = String(store.stock[Fruit.kiwi.index])
-        mangoCountLabel.text = String(store.stock[Fruit.mango.index])
+    private func updateStockCount(stock: [Int]) {
+        var newStock = stock
+        
+        for fruitCountLabel in fruitCountLabelArray {
+            if newStock.isEmpty { return }
+            fruitCountLabel.text = String(newStock.removeFirst())
+        }
     }
 }

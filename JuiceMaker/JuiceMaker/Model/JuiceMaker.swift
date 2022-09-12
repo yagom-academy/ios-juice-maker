@@ -44,15 +44,12 @@ struct JuiceMaker {
     init(store: FruitStore) {
         self.store = store
     }
-    
-    func makeJuice(_ juice: Juice) {
+
+    func makeJuice(_ juice: Juice) -> Bool {
         if store.canSupplyRequest(ingredient: juice.ingredient) {
-            NotificationCenter.default.post(name: .madeJuiceAlert,
-                                            object: nil,
-                                            userInfo: ["JuiceName" : juice.name])
+            return true
         } else {
-            NotificationCenter.default.post(name: .failedAlert,
-                                            object: nil)
+            return false
         }
     }
 }

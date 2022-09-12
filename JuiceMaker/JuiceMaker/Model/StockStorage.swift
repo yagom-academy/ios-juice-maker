@@ -1,11 +1,9 @@
 //
-//  StockStorage.swift
+//  StockDelegate.swift
 //  JuiceMaker
 //
-//  Created by Wonbi on 2022/09/09.
+//  Created by Wonbi on 2022/09/08.
 //
-
-import Foundation
 
 class StockStorage {
     static let shared: StockStorage = StockStorage()

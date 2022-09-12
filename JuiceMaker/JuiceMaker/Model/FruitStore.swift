@@ -5,19 +5,12 @@
 
 import Foundation
 
-class FruitStore {
-    private(set) var stock: [Int] {
-        didSet {
-            NotificationCenter.default.post(name: .changedStockCount,
-                                            object: nil,
-                                            userInfo: nil)
-        }
-    }
+class FruitStore: NSObject {
+    @objc dynamic private(set) var stock: [Int]
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
         self.stock = [Int](repeating: stockCount, count: count)
-        print("만들어져벌임...")
     }
     
     private func haveInStock(ingredient: [(Fruit, Int)]) -> Bool {
