@@ -14,8 +14,8 @@ protocol StockEditDelegate {
 class StockEditViewController: UIViewController {
     
     var delegate: StockEditDelegate?
+    private var fruitStock = [Fruit: Int]()
     
-    var fruitStock = [Fruit: Int]()
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
