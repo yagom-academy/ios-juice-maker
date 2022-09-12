@@ -5,8 +5,8 @@
 
 import Foundation
 
-class FruitStore: NSObject {
-    @objc dynamic private(set) var stock: [Int]
+class FruitStore {
+    private(set) var stock: [Int]
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
@@ -24,7 +24,7 @@ class FruitStore: NSObject {
         return true
     }
     
-    private func changeStock(fruit: Fruit, count: Int, isMinus: Bool = false) {
+    func changeStock(fruit: Fruit, count: Int, isMinus: Bool = false) {
         let stockCount = stock[fruit.index]
         
         var computedCount: Int {

@@ -6,10 +6,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    @objc let store = FruitStore(stockCount: 10)
+    let store = FruitStore(stockCount: 10)
     private lazy var juiceMaker = JuiceMaker(store: store)
-    
-    private var stockChangeObserver: NSKeyValueObservation?
     
     @IBOutlet weak var strawberryBananaOrder: UIButton!
     @IBOutlet weak var mangoKiwiOrder: UIButton!
@@ -18,16 +16,14 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pineappleOrder: UIButton!
     @IBOutlet weak var kiwiOrder: UIButton!
     @IBOutlet weak var mangoOrder: UIButton!
-    @IBOutlet var fruitCountLabelArray: [UILabel]!
+    @IBOutlet var fruitCountLabels: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stockChangeObserver = observe(\.store.stock,
-                                       options: [.new, .initial],
-                                       changeHandler: { (object, stock) in
-            guard let newStock = stock.newValue else { return }
-            self.updateStockCount(stock: newStock)
-        })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateStockCount()
     }
     
     @IBAction private func tappedModifyBarButton(_ sender: Any) {
@@ -35,7 +31,8 @@ class MainViewController: UIViewController {
         navigationController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         navigationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
-        StockStorage.shared.stock = store.stock
+        guard let editViewController = navigationController.viewControllers.first as? EditViewController else { return }
+        editViewController.setStore(from: store)
         
         present(navigationController, animated: true)
     }
@@ -69,6 +66,7 @@ class MainViewController: UIViewController {
         guard let juice = juice else { return }
         
         if juiceMaker.makeJuice(juice) {
+            updateStockCount()
             self.madeJuiceAlert(message: juice.name)
         } else {
             self.failedAlert()
@@ -107,10 +105,10 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    private func updateStockCount(stock: [Int]) {
-        var newStock = stock
+    private func updateStockCount() {
+        var newStock = store.stock
         
-        for fruitCountLabel in fruitCountLabelArray {
+        for fruitCountLabel in fruitCountLabels {
             if newStock.isEmpty { return }
             fruitCountLabel.text = String(newStock.removeFirst())
         }

@@ -6,15 +6,13 @@
 import UIKit
 
 class EditViewController: UIViewController {
+    var store: FruitStore?
     
-    @IBOutlet var fruitCountLabelArray: [UILabel]!
+    @IBOutlet var fruitCountLabels: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let storageStock = StockStorage.shared.stock else { return }
-        
-        updateStockCount(stock: storageStock)
-        StockStorage.shared.stock = nil
+        updateStockCount()
     }
     
     @IBAction private func tappedApplyButton(_ sender: UIButton) {
@@ -25,12 +23,16 @@ class EditViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func updateStockCount(stock: [Int]) {
-        var newStock = stock
+    private func updateStockCount() {
+        guard var newStock = store?.stock else { return }
         
-        for fruitCountLabel in fruitCountLabelArray {
+        for fruitCountLabel in fruitCountLabels {
             if newStock.isEmpty { return }
             fruitCountLabel.text = String(newStock.removeFirst())
         }
+    }
+    
+    func setStore(from store: FruitStore) {
+        self.store = store
     }
 }
