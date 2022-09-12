@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import UIKit
+
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
@@ -45,5 +47,15 @@ struct JuiceMaker {
         }
         
         return isEnoughStock
+    }
+    
+    func addNotficationObserver() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.stock, object: nil, queue: nil) { notification in
+            guard let updateStock = notification.userInfo as? [Fruit : Int] else {
+                return
+            }
+            
+            fruitStore.updateFruits(updateStock)
+        }
     }
 }

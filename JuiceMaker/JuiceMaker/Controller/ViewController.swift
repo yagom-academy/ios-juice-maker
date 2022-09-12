@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         setNavigationBar()
         settingFruitStockLabel()
         NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabel), name: Notification.Name.stock, object: nil)
+        juiceMaker.addNotficationObserver()
     }
     
     @objc func updateStockLabel(noti: Notification) {
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         guard let modifyStockVC = storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
             return
         }
+        
         modifyStockVC.fruitStock = juiceMaker.fruitStore.fruitStock
         
         let moveToStockNC = UINavigationController(rootViewController: modifyStockVC)
