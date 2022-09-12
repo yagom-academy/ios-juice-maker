@@ -92,9 +92,17 @@ class JuiceMakerViewController: UIViewController {
     
     private func presentStockEditViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let stockEditVC = storyboard.instantiateViewController(identifier: "stockEditNavigation")
+        guard let stockEditNavigationController = storyboard.instantiateViewController(identifier: "stockEditNavigation") as? UINavigationController,
+              let stockEditVC = stockEditNavigationController.topViewController as? StockEditViewController else {
+                  return
+              }
         
-        present(stockEditVC, animated: true, completion: nil)
+        Fruit.allCases.forEach({ fruit in
+            guard let fruitStock = try? juiceMaker.fetchStock(of: fruit) else { return }
+            
+            stockEditVC.fruitStock[fruit] = fruitStock
+        })
+        present(stockEditNavigationController, animated: true, completion: nil)
     }
     
     @IBAction func stockEditButtonPressed() {

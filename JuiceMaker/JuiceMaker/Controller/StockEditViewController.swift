@@ -9,6 +9,7 @@ import UIKit
 
 class StockEditViewController: UIViewController {
     
+    var fruitStock = [Fruit: Int]()
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
