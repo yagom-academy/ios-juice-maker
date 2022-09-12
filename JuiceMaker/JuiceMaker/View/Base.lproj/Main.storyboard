@@ -70,7 +70,7 @@
                                                 <rect key="frame" x="0.0" y="113.66666666666666" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <nil key="textColor"/>
+                                                <nil key="textColor"/>=
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -418,6 +418,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="dYw-8M-UL8"/>
+                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="yXq-vG-48x"/>
+                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="8K3-7j-oxE"/>
+                        <outlet property="pineAppleLabel" destination="MpT-VW-hCb" id="oKY-ip-2M4"/>
+                        <outlet property="strawBerryLabel" destination="0yV-kn-zaT" id="nAy-hQ-OoW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

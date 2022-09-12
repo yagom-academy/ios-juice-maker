@@ -4,15 +4,15 @@
 //
 
 struct JuiceMaker {
-    let store = FruitStore()
+    static let sharedStore = FruitStore()
     
     func makeJuice(_ juice: Juice) {
-        store.useStockForRecipe(of: juice)
+        JuiceMaker.sharedStore.useStockForRecipe(of: juice)
     }
     
     func requestStockAvailability(for juice: Juice) -> Bool {
         do {
-            try store.checkStockAvailability(of: juice)
+            try JuiceMaker.sharedStore.checkStockAvailability(of: juice)
             return true
         } catch StockError.notEnoughFruit {
             print("재고 부족")

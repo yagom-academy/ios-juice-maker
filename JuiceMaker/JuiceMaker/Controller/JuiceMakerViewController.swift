@@ -21,13 +21,13 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiButton: UIButton!
     @IBOutlet weak var mangoButton: UIButton!
     
-    private var juiceMaker = JuiceMaker()
+//    private var juiceMaker = JuiceMaker()
     private var observation: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelValue()
-        observation = juiceMaker.store.observe(\.stock, options: [.old, .new], changeHandler: {
+        observation = JuiceMaker.sharedStore.observe(\.stock, options: [.old, .new], changeHandler: {
             (object, changes) in
             guard let newValue = changes.newValue else { return }
             guard let oldValue = changes.oldValue else { return }
@@ -66,7 +66,7 @@ class JuiceMakerViewController: UIViewController {
     
     func orderJuice(juice: Juice) {
         if requestStockAvailability(for: juice) {
-            juiceMaker.store.useStockForRecipe(of: juice)
+            JuiceMaker.sharedStore.useStockForRecipe(of: juice)
             presentAlertOrderIsReady(juice)
         } else {
             presentAlertNotEnoughStock(data: juice.recipe)
@@ -77,16 +77,16 @@ class JuiceMakerViewController: UIViewController {
         for fruit in newValue.keys {
             guard newValue[fruit] != oldValue[fruit],
                   let newValue = newValue[fruit] else { continue }
-            juiceMaker.store.stock.updateValue(newValue, forKey: fruit)
+            JuiceMaker.sharedStore.stock.updateValue(newValue, forKey: fruit)
         }
     }
     
     private func setLabelValue() {
-        strawBerryLabel.text = juiceMaker.store.stock["딸기"]?.description
-        bananaLabel.text = juiceMaker.store.stock["바나나"]?.description
-        pineAppleLabel.text = juiceMaker.store.stock["파인애플"]?.description
-        kiwiLabel.text = juiceMaker.store.stock["키위"]?.description
-        mangoLabel.text = juiceMaker.store.stock["망고"]?.description
+        strawBerryLabel.text = JuiceMaker.sharedStore.stock["딸기"]?.description
+        bananaLabel.text = JuiceMaker.sharedStore.stock["바나나"]?.description
+        pineAppleLabel.text = JuiceMaker.sharedStore.stock["파인애플"]?.description
+        kiwiLabel.text = JuiceMaker.sharedStore.stock["키위"]?.description
+        mangoLabel.text = JuiceMaker.sharedStore.stock["망고"]?.description
     }
     
     private func presentStockEditorViewController() {
@@ -120,8 +120,8 @@ class JuiceMakerViewController: UIViewController {
     private func getInsufficientFruitInformation(from data: [Fruit: Int]) -> String {
         var result: [String] = []
         for (fruit, count) in data {
-            if count > juiceMaker.store.stock[fruit.rawValue]! {
-                result.append("\(fruit.rawValue)가 \(count - juiceMaker.store.stock[fruit.rawValue]!)개")
+            if count > JuiceMaker.sharedStore.stock[fruit.rawValue]! {
+                result.append("\(fruit.rawValue)가 \(count - JuiceMaker.sharedStore.stock[fruit.rawValue]!)개")
             }
         }
         
@@ -129,7 +129,7 @@ class JuiceMakerViewController: UIViewController {
     }
     private func requestStockAvailability(for juice: Juice) -> Bool {
         do {
-            try juiceMaker.store.checkStockAvailability(of: juice)
+            try JuiceMaker.sharedStore.checkStockAvailability(of: juice)
             return true
         } catch StockError.notEnoughFruit {
             print("재고 부족")
