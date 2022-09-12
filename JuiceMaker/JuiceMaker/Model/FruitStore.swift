@@ -22,7 +22,6 @@ class FruitStore {
         guard let fruitStock = inventory[fruit] else { return }
         
         if fruitStock < amount {
-            print("수량이 작습니다!")
             return
         }
         
