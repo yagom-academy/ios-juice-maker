@@ -9,7 +9,7 @@ import UIKit
 
 class ModifyStockViewController: UIViewController {
     var fruitStock: [Fruit : Int] = [:]
-    lazy var fruitLabel: [Fruit : (label: UILabel, stepper: UIStepper, isChange: Bool)] =
+    lazy var fruitUIAttribute: [Fruit : (label: UILabel, stepper: UIStepper, isChange: Bool)] =
                                                      [.strawberry : (strawberryStockLabel, strawberryStepper, false),
                                                       .banana : (bananaStockLabel, bananaStepper, false),
                                                       .pineapple : (pineappleStockLabel, pineappleStepper, false),
@@ -40,14 +40,14 @@ class ModifyStockViewController: UIViewController {
             return
         }
         
-        fruitLabel[changeFruit]?.label.text = Int(sender.value).description
-        fruitLabel[changeFruit]?.isChange = true
+        fruitUIAttribute[changeFruit]?.label.text = Int(sender.value).description
+        fruitUIAttribute[changeFruit]?.isChange = true
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         var changeFruitStock: [Fruit : Int] = [:]
         
-        for (key, value) in fruitLabel {
+        for (key, value) in fruitUIAttribute {
             guard value.isChange else {
                 continue
             }
@@ -69,13 +69,13 @@ class ModifyStockViewController: UIViewController {
     }
     
     func setFruitStockLabel() {
-        for (key, value) in fruitLabel {
+        for (key, value) in fruitUIAttribute {
             value.label.text = String(fruitStock[key, default: ConstantUsageFruit.invalidFruit])
         }
     }
     
     func setStepperValue() {
-        for (key, value) in fruitLabel {
+        for (key, value) in fruitUIAttribute {
             value.stepper.value = Double(fruitStock[key, default: ConstantUsageFruit.invalidFruit])
         }
     }
