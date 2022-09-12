@@ -89,6 +89,8 @@ class HomeViewController: UIViewController {
     private func presentChangeInventoryViewController() {
         guard let changeInventoryVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeInventoryViewController") as? ChangeInventoryViewController else { return }
         
+        changeInventoryVC.modalPresentationStyle = .fullScreen
+        changeInventoryVC.modalTransitionStyle = .coverVertical
         self.present(changeInventoryVC, animated: true)
     }
     
@@ -100,8 +102,7 @@ class HomeViewController: UIViewController {
         mangoStockLabel.text = juiceMaker.checkStock(of: .mango)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         checkInventory()
     }
     
