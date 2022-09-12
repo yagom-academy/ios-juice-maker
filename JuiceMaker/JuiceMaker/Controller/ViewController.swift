@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         self.mangoStockLabel.text = "\(fruitStore.fruitsStock[.mango] ?? 0)"
     }
     
-    func transitionView(){
+    func transitionView() {
         guard let editStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") as? EditStockViewController else { return }
         let editStockNavigationController = UINavigationController(rootViewController: editStockViewController)
         editStockViewController.stock = fruitStore.fruitsStock
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
                                                object: nil)
     }
     
-    @objc func didReceivedFruitsAmountChanged(_ noti: Notification){
+    @objc func didReceivedFruitsAmountChanged(_ noti: Notification) {
         guard let userInfo = noti.userInfo?["fruitsStock"],
               let fruitsStock = userInfo as? Dictionary<Fruit,Int> else { return }
         
@@ -106,6 +106,7 @@ class ViewController: UIViewController {
             default:
                 break
             }
+            
             if let juice = juice {
                 try juiceMaker.makeJuice(juice)
                 alertSuccess(for: juice)

@@ -24,12 +24,10 @@ class EditStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         setStepperValue()
         setStockLabel()
         addNotification()
-        
     }
     
     func setStepperValue() {
