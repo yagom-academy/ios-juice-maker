@@ -85,6 +85,7 @@ class JuiceOrderViewController: UIViewController {
     func showModifyingInventoryView() {
         performSegue(withIdentifier: "modifyInventory", sender: nil)
     }
+    
     @IBAction func touchUpModifyButton(_ sender: UIBarButtonItem) {
         self.showModifyingInventoryView()
     }

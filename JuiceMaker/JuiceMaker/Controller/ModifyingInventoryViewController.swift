@@ -10,6 +10,5 @@ class ModifyingInventoryViewController: UIViewController {
     
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
-        
     }
 }
