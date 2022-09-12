@@ -31,6 +31,7 @@ class ViewController: UIViewController, FruitStoreDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateFruitStockLabel()
+        fitText()
     }
     
     @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
@@ -157,6 +158,13 @@ class ViewController: UIViewController, FruitStoreDelegate {
             mangoStockLabel.text = "\(mangoStock)"
         } else {
             mangoStockLabel.text = FruitStoreError.notExist
+        }
+    }
+    
+    func fitText() {
+        let buttons: [UIButton] = [strawberryJuiceOrderButton, bananaJuiceOrderButton, kiwiJuiceOrderButton, pineappleJuiceOrderButton, strawberryBananaMixJuiceOrderButton, mangoJuiceOrderButton, mangoKiwiMixJuiceOrderButton]
+        for button in buttons {
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
         }
     }
 }
