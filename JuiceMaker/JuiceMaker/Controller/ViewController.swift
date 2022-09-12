@@ -25,7 +25,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        settingFruitStockLabel()
+        setFruitStockLabel()
+        setNotification()
+    }
+    
+    func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabel), name: Notification.Name.stock, object: nil)
         juiceMaker.addNotficationObserver()
     }
@@ -37,7 +41,6 @@ class ViewController: UIViewController {
         
         for (key, value) in changeFruitStock {
             self.fruitLabel[key]?.text = String(value)
-            
         }
     }
     
@@ -47,9 +50,7 @@ class ViewController: UIViewController {
         }
         
         modifyStockVC.fruitStock = juiceMaker.fruitStore.fruitStock
-        
         let moveToStockNC = UINavigationController(rootViewController: modifyStockVC)
-        
         present(moveToStockNC, animated: true, completion: nil)
     }
     
@@ -59,20 +60,18 @@ class ViewController: UIViewController {
         }
         
         orderedJuice = orderedJuice.replacingOccurrences(of: " 주문", with: "")
-        
         guard let juice = Juice(rawValue: orderedJuice) else {
             return
         }
                 
         let isMadeJuice =  juiceMaker.manufactureJuice(menu: juice)
-        
         guard isMadeJuice else {
             showFailedAlert(message: ConstantSentence.failedAlertMent)
             return
         }
         
         showSuccessAlert(message: juice.rawValue + ConstantSentence.successAlertMent)
-        settingFruitStockLabel()
+        setFruitStockLabel()
     }
 
     func showSuccessAlert(message: String) {
@@ -88,10 +87,9 @@ class ViewController: UIViewController {
             guard let modifyStockVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
                 return
             }
+            
             modifyStockVC.fruitStock = self.juiceMaker.fruitStore.fruitStock
-            
             let moveToStockNC = UINavigationController(rootViewController: modifyStockVC)
-            
             self.present(moveToStockNC, animated: true, completion: nil)
         }
         
@@ -103,15 +101,13 @@ class ViewController: UIViewController {
     
     func setNavigationBar() {
         self.title = ConstantSentence.mainTitle
-        self.navigationController?.navigationBar.backgroundColor = .lightGray
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
     }
     
-    func settingFruitStockLabel() {
+    func setFruitStockLabel() {
         let fruitStore = juiceMaker.fruitStore
-        self.strawberryStockLabel.text = String(fruitStore.bringValidFruitStock(.strawberry))
-        self.bananaStockLabel.text = String(fruitStore.bringValidFruitStock(.banana))
-        self.pineappleStockLabel.text = String(fruitStore.bringValidFruitStock(.pineapple))
-        self.kiwiStockLabel.text = String(fruitStore.bringValidFruitStock(.kiwi))
-        self.mangoStockLabel.text = String(fruitStore.bringValidFruitStock(.mango))
+        for (key, value) in fruitLabel {
+            value.text = String(fruitStore.bringValidFruitStock(key))
+        }
     }
 }

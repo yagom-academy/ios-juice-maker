@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct JuiceMaker {
     let fruitStore = FruitStore()
@@ -21,7 +21,6 @@ struct JuiceMaker {
     func checkEnoughStock(juice: Juice) throws -> Bool {
         for fruit in juice.recipe {
             let stock = fruitStore.bringValidFruitStock(fruit.name)
-            
             guard stock != ConstantUsageFruit.invalidFruit else {
                 return false
             }

@@ -17,6 +17,7 @@ final class FruitStore {
         guard let fruitAmount = fruitStock[fruit] else {
             throw JuiceMakerError.invalidFruit
         }
+        
         return fruitAmount
     }
     
@@ -29,7 +30,6 @@ final class FruitStore {
     func substractFruits(juice: Juice) {
         for fruit in juice.recipe {
             var fruitAmount = bringValidFruitStock(fruit.name)
-            
             fruitAmount -= fruit.count
             fruitStock[fruit.name] = fruitAmount
         }

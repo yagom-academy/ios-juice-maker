@@ -2,14 +2,20 @@
 //  ModifyStockViewController.swift
 //  JuiceMaker
 //
-//  Created by parkhyo on 2022/09/02.
+//  Created by Kyo, Hamo on 2022/09/02.
 //
 
 import UIKit
 
 class ModifyStockViewController: UIViewController {
     var fruitStock: [Fruit : Int] = [:]
-    
+    lazy var fruitLabel: [Fruit : (label: UILabel, stepper: UIStepper, isChange: Bool)] =
+                                                     [.strawberry : (strawberryStockLabel, strawberryStepper, false),
+                                                      .banana : (bananaStockLabel, bananaStepper, false),
+                                                      .pineapple : (pineappleStockLabel, pineappleStepper, false),
+                                                      .kiwi : (kiwiStockLabel, kiwiStepper, false),
+                                                      .mango : (mangoStockLabel, mangoStepper, false)]
+
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -22,17 +28,11 @@ class ModifyStockViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    lazy var fruitLabel: [Fruit : (label: UILabel, isChange: Bool)] = [.strawberry : (strawberryStockLabel, false),
-                                                                       .banana : (bananaStockLabel, false),
-                                                                       .pineapple : (pineappleStockLabel, false),
-                                                                       .kiwi : (kiwiStockLabel, false),
-                                                                       .mango : (mangoStockLabel, false)]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        settingFruitStockLabel()
-        settingStepperValue()
+        setFruitStockLabel()
+        setStepperValue()
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
@@ -54,6 +54,7 @@ class ModifyStockViewController: UIViewController {
             
             changeFruitStock[key] = Int(value.label.text ?? String(ConstantUsageFruit.invalidFruit))
         }
+        
         NotificationCenter.default.post(name: Notification.Name.stock, object: nil, userInfo: changeFruitStock)
         dismiss(animated: true)
     }
@@ -64,23 +65,19 @@ class ModifyStockViewController: UIViewController {
     
     func setNavigationBar() {
         self.title = ConstantSentence.modifyStockTitle
-        self.navigationController?.navigationBar.backgroundColor = .lightGray
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
     }
     
-    func settingFruitStockLabel() {
-        strawberryStockLabel.text = String(fruitStock[.strawberry, default: ConstantUsageFruit.invalidFruit])
-        bananaStockLabel.text = String(fruitStock[.banana, default: ConstantUsageFruit.invalidFruit])
-        pineappleStockLabel.text = String(fruitStock[.pineapple, default: ConstantUsageFruit.invalidFruit])
-        kiwiStockLabel.text = String(fruitStock[.kiwi, default: ConstantUsageFruit.invalidFruit])
-        mangoStockLabel.text = String(fruitStock[.mango, default: ConstantUsageFruit.invalidFruit])
+    func setFruitStockLabel() {
+        for (key, value) in fruitLabel {
+            value.label.text = String(fruitStock[key, default: ConstantUsageFruit.invalidFruit])
+        }
     }
     
-    func settingStepperValue() {
-        strawberryStepper.value = Double(fruitStock[.strawberry, default: ConstantUsageFruit.invalidFruit])
-        bananaStepper.value = Double(fruitStock[.banana, default: ConstantUsageFruit.invalidFruit])
-        pineappleStepper.value = Double(fruitStock[.pineapple, default: ConstantUsageFruit.invalidFruit])
-        kiwiStepper.value = Double(fruitStock[.kiwi, default: ConstantUsageFruit.invalidFruit])
-        mangoStepper.value = Double(fruitStock[.mango, default: ConstantUsageFruit.invalidFruit])
+    func setStepperValue() {
+        for (key, value) in fruitLabel {
+            value.stepper.value = Double(fruitStock[key, default: ConstantUsageFruit.invalidFruit])
+        }
     }
 }
 
