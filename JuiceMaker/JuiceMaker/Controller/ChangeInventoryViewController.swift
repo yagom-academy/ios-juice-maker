@@ -23,16 +23,16 @@ class ChangeInventoryViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    @IBAction func actionStepper(_ sender: UIStepper) {
-        guard let fruitLabel = takeFruitLabel(of: sender) else { return }
-        fruitLabel.text = Int(sender.value).description
-//        checkStepperValue(of: sender)
-    }
-    
     @IBAction func closeButton(_ sender: UIButton) {
         updateInventory()
         dismiss(animated: true,
                 completion: nil)
+    }
+    
+    @IBAction func actionStepper(_ sender: UIStepper) {
+        guard let fruitLabel = takeFruitLabel(of: sender) else { return }
+        fruitLabel.text = Int(sender.value).description
+        //        checkStepperValue(of: sender)
     }
     
     func takeFruitLabel(of sender: UIStepper) -> UILabel? {
@@ -52,6 +52,23 @@ class ChangeInventoryViewController: UIViewController {
         }
     }
     
+    func takeFruit(of sender: UIStepper) -> Fruit? {
+        switch sender {
+        case strawberryStepper:
+            return .strawBerry
+        case bananaStepper:
+            return .banana
+        case pineappleStepper:
+            return .pineApple
+        case kiwiStepper:
+            return .kiwi
+        case mangoStepper:
+            return .mango
+        default:
+            return nil
+        }
+    }
+    
     func checkStepperValue() {
         guard let strawberryValue = Double(juiceMaker.checkStock(of: .strawBerry) ?? "0") else { return }
         guard let bananaValue = Double(juiceMaker.checkStock(of: .banana) ?? "0") else { return }
@@ -63,9 +80,9 @@ class ChangeInventoryViewController: UIViewController {
         pineappleStepper.value = pineAppleValue
         kiwiStepper.value = kiwiValue
         mangoStepper.value = mangoValue
-   
-//        guard let fruitValue = Double(takeFruitLabel(of: sender)?.text ?? "99" ) else { return }
-//        sender.value = fruitValue
+        
+        //        guard let fruitValue = Double(takeFruitLabel(of: sender)?.text ?? "99" ) else { return }
+        //        sender.value = fruitValue
     }
     
     func updateInventory() {
