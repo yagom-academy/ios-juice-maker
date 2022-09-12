@@ -244,11 +244,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="m7v-z2-Cqd"/>
-                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="RcE-ra-tTz"/>
-                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="0eh-fV-fiv"/>
-                        <outlet property="pineAppleStockLabel" destination="ccQ-Dk-PuY" id="2O5-de-V4a"/>
-                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="Gsp-UA-3qL"/>
+                        <outletCollection property="fruitLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="MfP-oF-vAn"/>
+                        <outletCollection property="fruitLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="Xpu-L2-6Q5"/>
+                        <outletCollection property="fruitLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="CBu-hw-rTH"/>
+                        <outletCollection property="fruitLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="fPQ-0f-MlO"/>
+                        <outletCollection property="fruitLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="UMf-Uk-y53"/>
                         <segue destination="WwV-Td-3Bn" kind="presentation" identifier="presentModifyViewController" id="ceU-jM-LXb"/>
                     </connections>
                 </viewController>
@@ -306,9 +306,6 @@
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                         <rect key="frame" x="0.0" y="38" width="94" height="32"/>
-                                                        <connections>
-                                                            <action selector="didTappedStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="B97-L4-aJ3"/>
-                                                        </connections>
                                                     </stepper>
                                                 </subviews>
                                             </stackView>
@@ -450,16 +447,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="KlP-2d-RZX"/>
-                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="DWh-xL-vLk"/>
-                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="ktV-FG-sqi"/>
-                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="m2I-cW-d8g"/>
-                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="cuN-1d-mat"/>
-                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="KuU-jJ-s1A"/>
-                        <outlet property="pineAppleStepper" destination="Rcr-xr-eqz" id="sZ0-gq-5ix"/>
-                        <outlet property="pineAppleStockLabel" destination="MpT-VW-hCb" id="Exy-mR-Dwc"/>
-                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="pXw-HT-c1F"/>
-                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="ega-sT-OHU"/>
+                        <outletCollection property="fruitLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="T82-MV-TKu"/>
+                        <outletCollection property="fruitLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="ISk-yh-CYJ"/>
+                        <outletCollection property="fruitLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="dGr-wR-R5o"/>
+                        <outletCollection property="fruitLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="RNP-cY-85F"/>
+                        <outletCollection property="fruitLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="7vA-IM-AyP"/>
+                        <outletCollection property="stockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="EPA-ge-tTR"/>
+                        <outletCollection property="stockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="0aG-Ac-P77"/>
+                        <outletCollection property="stockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="e76-Ji-kOP"/>
+                        <outletCollection property="stockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="uPH-aB-QYl"/>
+                        <outletCollection property="stockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="zu0-zB-Zmj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

@@ -5,26 +5,17 @@
 
 import UIKit
 
-protocol Stockable {
+protocol ModifyStockDelegate {
 	func updateValues(changedStock: [Fruit: Int])
 }
 
 class ModifyViewController: UIViewController {
 	static let identifier = "presentModifyViewController"
 	var inventory: [Fruit: Int] = [:]
-	var delegate: Stockable?
-	
-	@IBOutlet weak var strawberryStockLabel: UILabel!
-	@IBOutlet weak var bananaStockLabel: UILabel!
-	@IBOutlet weak var pineAppleStockLabel: UILabel!
-	@IBOutlet weak var kiwiStockLabel: UILabel!
-	@IBOutlet weak var mangoStockLabel: UILabel!
-	
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineAppleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+	var delegate: ModifyStockDelegate?
+    
+    @IBOutlet var fruitLabels: [UILabel]!
+    @IBOutlet var stockSteppers: [UIStepper]!
     
     override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,14 +33,8 @@ class ModifyViewController: UIViewController {
 		dismiss(animated: true)
 	}
 	
-	func setUpLabels() {
-		[
-			strawberryStockLabel,
-			bananaStockLabel,
-			pineAppleStockLabel,
-			kiwiStockLabel,
-			mangoStockLabel,
-		].compactMap { $0 }.forEach {
+	private func setUpLabels() {
+        fruitLabels.compactMap { $0 }.forEach {
             if let fruit = Fruit(rawValue: $0.tag),
                let stock = inventory[fruit]?.description {
                 $0.text = stock
@@ -57,14 +42,8 @@ class ModifyViewController: UIViewController {
 		}
 	}
     
-    func setUpStepper() {
-        [
-            strawberryStepper,
-            bananaStepper,
-            pineAppleStepper,
-            kiwiStepper,
-            mangoStepper,
-        ].compactMap { $0 }.forEach {
+    private func setUpStepper() {
+        stockSteppers.compactMap { $0 }.forEach {
             if let fruit = Fruit(rawValue: $0.tag),
                let stock = inventory[fruit] {
                 $0.value = Double(stock)

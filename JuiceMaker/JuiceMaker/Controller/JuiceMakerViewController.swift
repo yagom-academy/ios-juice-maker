@@ -5,15 +5,11 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController, Stockable {
+class JuiceMakerViewController: UIViewController, ModifyStockDelegate {
 	private let store = FruitStore()
 	lazy var maker = JuiceMaker(store: store)
 	
-	@IBOutlet weak var strawberryStockLabel: UILabel!
-	@IBOutlet weak var bananaStockLabel: UILabel!
-	@IBOutlet weak var pineAppleStockLabel: UILabel!
-	@IBOutlet weak var kiwiStockLabel: UILabel!
-	@IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var fruitLabels: [UILabel]!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -38,13 +34,7 @@ class JuiceMakerViewController: UIViewController, Stockable {
 	}
 	
 	private func setUpStockLabels(changedStocks: [Fruit: Int]) {
-		[
-			strawberryStockLabel,
-			bananaStockLabel,
-			pineAppleStockLabel,
-			kiwiStockLabel,
-			mangoStockLabel,
-		].compactMap { $0 }.forEach {
+		fruitLabels.compactMap { $0 }.forEach {
 			if let fruit = Fruit(rawValue: $0.tag),
 			   let stock = changedStocks[fruit]?.description {
 				$0.text = stock
