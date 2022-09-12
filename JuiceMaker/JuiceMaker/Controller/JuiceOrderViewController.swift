@@ -68,7 +68,7 @@ class JuiceOrderViewController: UIViewController {
         
         let okAction = UIAlertAction(title: "예",
                                      style: .default) { (action) in
-            self.presentModifyingInventoryView()
+            self.showModifyingInventoryView()
         }
         let cancleAction = UIAlertAction(title: "아니오",
                                          style: .default,
@@ -82,13 +82,11 @@ class JuiceOrderViewController: UIViewController {
                 completion: nil)
     }
     
-    func presentModifyingInventoryView() {
-        guard let modifyingInventoryViewController = storyboard?.instantiateViewController(withIdentifier: ModifyingInventoryViewController.identifier) as? ModifyingInventoryViewController else {
-            return
-        }
-        present(modifyingInventoryViewController,
-                animated: true,
-                completion: nil)
+    func showModifyingInventoryView() {
+        performSegue(withIdentifier: "modifyInventory", sender: nil)
+    }
+    @IBAction func touchUpModifyButton(_ sender: UIBarButtonItem) {
+        self.showModifyingInventoryView()
     }
 }
 

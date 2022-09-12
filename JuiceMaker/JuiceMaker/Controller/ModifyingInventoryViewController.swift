@@ -7,4 +7,9 @@ class ModifyingInventoryViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+        
+    }
 }
