@@ -34,7 +34,7 @@ class FruitStockViewController: UIViewController {
         updateFruitStockLabel()
     }
     
-    @IBAction func touchUpDismissButton(_ sender: Any) {
+    @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
     
