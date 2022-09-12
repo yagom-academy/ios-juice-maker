@@ -7,13 +7,13 @@
 import Foundation
 
 struct JuiceMaker {
-    private let store = FruitStore(initialFruitAmount: 10)
+    static let store = FruitStore(initialFruitAmount: 10)
     
     func makeJuice(of juice: Juice) -> Bool {
         let recipe = juice.recipe
         
         for (fruit, _) in recipe {
-            guard let fruitStock = store.inventory[fruit] else { return false }
+            guard let fruitStock = JuiceMaker.store.inventory[fruit] else { return false }
             guard let fruitRequiredNumber = recipe[fruit] else { return false }
             
             if fruitStock < fruitRequiredNumber {
@@ -23,10 +23,10 @@ struct JuiceMaker {
         }
         
         for (fruit, _) in recipe {
-            guard let fruitStock = store.inventory[fruit] else { return false }
+            guard let fruitStock = JuiceMaker.store.inventory[fruit] else { return false }
             guard let fruitRequiredNumber = recipe[fruit] else { return false }
 
-            store.inventory[fruit] = fruitStock - fruitRequiredNumber
+            JuiceMaker.store.inventory[fruit] = fruitStock - fruitRequiredNumber
         }
         
         print("\(juice.rawValue) 쥬스를 만듭니다.")
@@ -34,7 +34,7 @@ struct JuiceMaker {
     }
     
     func checkStock(of fruit: Fruit) -> String? {
-        guard let fruitStock = store.inventory[fruit] else { return nil }
+        guard let fruitStock = JuiceMaker.store.inventory[fruit] else { return nil }
         debugPrint("\(fruit)의 남은 개수는 \(fruitStock)")
         return String(fruitStock)
     }
