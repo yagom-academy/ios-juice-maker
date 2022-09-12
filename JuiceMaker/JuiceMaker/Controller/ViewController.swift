@@ -36,10 +36,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    func updateFruitStockLabel() {
         for (fruit, label) in fruitLabel {
             label.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateFruitStockLabel()
+    }
+    
     
     func updateFruitStockLabelUsedFor(_ juice: Juice) {
         for fruit in juice.recipe.keys {
@@ -113,6 +122,8 @@ class ViewController: UIViewController {
     func moveToFruitStockVC() {
         guard let fruitStoreStockViewController =
                 self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreStockNC") else { return }
+        
+        fruitStoreStockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(fruitStoreStockViewController, animated: true, completion: nil)
     }
     
