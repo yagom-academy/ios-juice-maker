@@ -17,25 +17,25 @@ class ChangeInventoryViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
-    @IBAction func closeButton(_ sender: UIButton) {
+    @IBAction private func closeButton(_ sender: UIButton) {
         dismiss(animated: true,
                 completion: nil)
     }
     
-    @IBAction func setFruitStock(_ sender: UIStepper) {
+    @IBAction private func setFruitStock(_ sender: UIStepper) {
         guard let fruit = takeFruit(of: sender) else { return }
         guard let fruitLabel = takeFruitLabel(of: sender) else { return }
         fruitLabel.text = Int(sender.value).description
         JuiceMaker.store.inventory[fruit] = Int(sender.value)
     }
     
-    func takeFruitLabel(of sender: UIStepper) -> UILabel? {
+    private func takeFruitLabel(of sender: UIStepper) -> UILabel? {
         switch sender {
         case strawberryStepper:
             return strawberryStockLabel
@@ -52,7 +52,7 @@ class ChangeInventoryViewController: UIViewController {
         }
     }
     
-    func takeFruit(of sender: UIStepper) -> Fruit? {
+    private func takeFruit(of sender: UIStepper) -> Fruit? {
         switch sender {
         case strawberryStepper:
             return .strawBerry
@@ -69,7 +69,7 @@ class ChangeInventoryViewController: UIViewController {
         }
     }
     
-    func checkStepperValue() {
+    private func checkStepperValue() {
         strawberryStepper.value = Double(JuiceMaker.store.inventory[.strawBerry] ?? 0)
         bananaStepper.value = Double(JuiceMaker.store.inventory[.banana] ?? 0)
         pineappleStepper.value = Double(JuiceMaker.store.inventory[.pineApple] ?? 0)

@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func takeJuiceMenu(of sender: UIButton) -> Juice? {
+    private func takeJuiceMenu(of sender: UIButton) -> Juice? {
         switch sender {
         case strawberryBananaJuiceOrderButton:
             return .strawBerryBanana
