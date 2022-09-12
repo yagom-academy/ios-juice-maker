@@ -11,7 +11,6 @@ class FruitStore {
     static let shared = FruitStore()
     var fruitsStock: [Fruit : Int] = [:] {
         didSet {
-            print("코딱지")
             NotificationCenter.default.post(name: NSNotification.Name("fruitStockChange"),
                                             object: nil,
                                             userInfo: ["fruitsStock": fruitsStock])
