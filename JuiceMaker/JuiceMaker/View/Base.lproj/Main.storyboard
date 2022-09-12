@@ -70,7 +70,7 @@
                                                 <rect key="frame" x="0.0" y="113.66666666666666" width="132" height="23"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <nil key="textColor"/>=
+                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -309,6 +309,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="118.66666666666664" width="94" height="27.333333333333329"/>
+                                                <connections>
+                                                    <action selector="strawberryPressed:" destination="Yu1-lM-nqp" eventType="valueChanged" id="YJ0-ht-MVN"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -330,6 +333,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="114" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="bananaPressed:" destination="Yu1-lM-nqp" eventType="valueChanged" id="GpE-0N-ySq"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -351,6 +357,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="114" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="pineApplePressed:" destination="Yu1-lM-nqp" eventType="valueChanged" id="lcy-ha-guH"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -372,6 +381,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="114" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="kiwiPressed:" destination="Yu1-lM-nqp" eventType="valueChanged" id="hCV-77-bgd"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -393,6 +405,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="114" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="mangoPressed:" destination="Yu1-lM-nqp" eventType="valueChanged" id="bBN-Z5-U2x"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -401,9 +416,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whc-h1-k1k">
                                 <rect key="frame" x="710.66666666666663" y="56" width="48.333333333333371" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="완료"/>
+                                <buttonConfiguration key="configuration" style="plain" title="닫기"/>
                                 <connections>
-                                    <action selector="closeModal:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="aPP-cJ-2FU"/>
+                                    <action selector="tappedCloseModalButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="iOd-0S-kxw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -420,10 +435,15 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
                         <outlet property="bananaLabel" destination="gKu-86-RhI" id="dYw-8M-UL8"/>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="78p-z7-8dg"/>
                         <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="yXq-vG-48x"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="q8R-Ao-hN8"/>
                         <outlet property="mangoLabel" destination="YJI-ER-LJR" id="8K3-7j-oxE"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="KR2-Hh-uEw"/>
                         <outlet property="pineAppleLabel" destination="MpT-VW-hCb" id="oKY-ip-2M4"/>
+                        <outlet property="pineAppleStepper" destination="Rcr-xr-eqz" id="ghM-vQ-7gY"/>
                         <outlet property="strawBerryLabel" destination="0yV-kn-zaT" id="nAy-hQ-OoW"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="oMM-BV-UKQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
