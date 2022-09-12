@@ -6,11 +6,13 @@
 import UIKit
 
 protocol Stockable {
+	func updateValues(changedStock: [Fruit: Int])
 }
 
 class ModifyViewController: UIViewController {
 	static let identifier = "presentModifyViewController"
-	var inventory: [Fruit: Int] = Fruit.beginningStock
+	var inventory: [Fruit: Int] = [:]
+	var delegate: Stockable?
 	
 	@IBOutlet weak var strawberryStockLabel: UILabel!
 	@IBOutlet weak var bananaStockLabel: UILabel!
@@ -36,6 +38,7 @@ class ModifyViewController: UIViewController {
 	}
 	
 	@IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
+		delegate?.updateValues(changedStock: inventory)
 		dismiss(animated: true)
 	}
 	

@@ -7,7 +7,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-	private var inventory: [Fruit: Int] = Fruit.beginningStock {
+	var inventory: [Fruit: Int] = Fruit.beginningStock {
 		didSet {
 			NotificationCenter.default.post(name: Notification.Name.stockChanged,
 											object: nil,

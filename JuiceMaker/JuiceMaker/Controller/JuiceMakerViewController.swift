@@ -5,8 +5,9 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {
-	private let maker = JuiceMaker()
+class JuiceMakerViewController: UIViewController, Stockable {
+	private let store = FruitStore()
+	lazy var maker = JuiceMaker(store: store)
 	
 	@IBOutlet weak var strawberryStockLabel: UILabel!
 	@IBOutlet weak var bananaStockLabel: UILabel!
@@ -88,4 +89,19 @@ class JuiceMakerViewController: UIViewController {
     func presentModiftController() {
         self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == ModifyViewController.identifier {
+			guard let nabViewController = segue.destination as? UINavigationController,
+				  let controller = nabViewController.viewControllers.first as? ModifyViewController else {
+				return
+			}
+			controller.inventory = store.inventory
+			controller.delegate = self
+		}
+	}
+	
+	func updateValues(changedStock: [Fruit : Int]) {
+		store.inventory = changedStock
+	}
 }
