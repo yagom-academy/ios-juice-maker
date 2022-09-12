@@ -50,6 +50,8 @@ class ViewController: UIViewController, FruitStoreDelegate {
             switch fruitStoreError {
             case .outOfStock:
                 showStockEditAlert(fruitStoreError.localizedDescription)
+            case .notInInventoryFruitList:
+                showAddFruitsAlert(of: juice, fruitStoreError.localizedDescription)
             default:
                 showOkayAlert(fruitStoreError.localizedDescription)
             }
@@ -92,6 +94,17 @@ class ViewController: UIViewController, FruitStoreDelegate {
         let cancelAction = UIAlertAction(title: AlertText.no,
                                          style: .default)
         showAlert(message, alertActions: editAction, cancelAction)
+    }
+    
+    func showAddFruitsAlert(of juice: Juice, _ message: String) {
+        let addAction = UIAlertAction(title: AlertText.yes,
+                                      style: .default) { (action) in
+            self.fruitStore.addFruit(of: juice)
+            self.updateFruitStockLabel()
+        }
+        let cancelAction = UIAlertAction(title: AlertText.no,
+                                         style: .default)
+        showAlert(message, alertActions: addAction, cancelAction)
     }
     
     func showAlert(_ message: String, alertActions: UIAlertAction...) {

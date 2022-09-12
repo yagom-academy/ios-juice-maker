@@ -73,30 +73,35 @@ class StockEditViewController: UIViewController {
             straberryStockStepper.value = Double(strawberryStock)
         } else {
             strawberryStockLabel.text = FruitStoreError.notExist
+            straberryStockStepper.isEnabled = false
         }
         if let bananaStock = try? delegate?.fruitStore.currentStock(of: .banana) {
             bananaStockLabel.text = "\(bananaStock)"
             bananaStockStepper.value = Double(bananaStock)
         } else {
             bananaStockLabel.text = FruitStoreError.notExist
+            bananaStockStepper.isEnabled = false
         }
         if let kiwiStock = try? delegate?.fruitStore.currentStock(of: .kiwi) {
             kiwiStockLabel.text = "\(kiwiStock)"
             kiwiStockStepper.value = Double(kiwiStock)
         } else {
             kiwiStockLabel.text = FruitStoreError.notExist
+            kiwiStockStepper.isEnabled = false
         }
         if let pineappleStock = try? delegate?.fruitStore.currentStock(of: .pineapple) {
             pineappleStockLabel.text = "\(pineappleStock)"
             pineappleStockStepper.value = Double(pineappleStock)
         } else {
             pineappleStockLabel.text = FruitStoreError.notExist
+            pineappleStockStepper.isEnabled = false
         }
         if let mangoStock = try? delegate?.fruitStore.currentStock(of: .mango) {
             mangoStockLabel.text = "\(mangoStock)"
             mangoStockStepper.value = Double(mangoStock)
         } else {
             mangoStockLabel.text = FruitStoreError.notExist
+            mangoStockStepper.isEnabled = false
         }
     }
 }

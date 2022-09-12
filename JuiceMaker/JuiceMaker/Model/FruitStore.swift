@@ -68,4 +68,12 @@ class FruitStore {
         }
         return currentStock
     }
+    
+    func addFruit(of juice: Juice) {
+        for ingredient in juice.recipe {
+            if inventory[ingredient.fruit] == nil {
+                inventory[ingredient.fruit] = 0
+            }
+        }
+    }
 }
