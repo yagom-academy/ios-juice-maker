@@ -34,22 +34,27 @@ class StockEditViewController: UIViewController {
     }
     
     @IBAction func strawberryStepperPressed(_ sender: UIStepper) {
+        fruitStock[.strawberry] = Int(sender.value)
         strawberryStockLabel.text = Int(sender.value).description
     }
     
     @IBAction func bananaStepperPressed(_ sender: UIStepper) {
+        fruitStock[.banana] = Int(sender.value)
         bananaStockLabel.text = Int(sender.value).description
     }
     
     @IBAction func pineappleStepperPressed(_ sender: UIStepper) {
+        fruitStock[.pineapple] = Int(sender.value)
         pineappleStockLabel.text = Int(sender.value).description
     }
     
     @IBAction func kiwiStepperPressed(_ sender: UIStepper) {
+        fruitStock[.kiwi] = Int(sender.value)
         kiwiStockLabel.text = Int(sender.value).description
     }
     
     @IBAction func mangoStepperPressed(_ sender: UIStepper) {
+        fruitStock[.mango] = Int(sender.value)
         mangoStockLabel.text = Int(sender.value).description
     }
     
