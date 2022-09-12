@@ -10,6 +10,11 @@ class ModifyViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeNavBackgroundColor()
+    }
+    
+    func changeNavBackgroundColor() {
+        navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 	
 	@IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
