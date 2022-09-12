@@ -18,10 +18,17 @@ class ModifyViewController: UIViewController {
 	@IBOutlet weak var kiwiStockLabel: UILabel!
 	@IBOutlet weak var mangoStockLabel: UILabel!
 	
-	override func viewDidLoad() {
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineAppleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
+    override func viewDidLoad() {
 		super.viewDidLoad()
 		changeNavBackgroundColor()
 		setUpLabels()
+        setUpStepper()
 	}
 	
 	func changeNavBackgroundColor() {
@@ -40,10 +47,32 @@ class ModifyViewController: UIViewController {
 			kiwiStockLabel,
 			mangoStockLabel,
 		].compactMap { $0 }.forEach {
-			if let fruit = Fruit(rawValue: $0.tag),
-			   let stock = inventory[fruit]?.description {
-				$0.text = stock
-			}
+            if let fruit = Fruit(rawValue: $0.tag),
+               let stock = inventory[fruit]?.description {
+                $0.text = stock
+            }
 		}
 	}
+    
+    func setUpStepper() {
+        [
+            strawberryStepper,
+            bananaStepper,
+            pineAppleStepper,
+            kiwiStepper,
+            mangoStepper,
+        ].compactMap { $0 }.forEach {
+            if let fruit = Fruit(rawValue: $0.tag),
+               let stock = inventory[fruit] {
+                $0.value = Double(stock)
+            }
+        }
+    }
+    
+    @IBAction func didTappedStepper(_ sender: UIStepper) {
+        if let fruit = Fruit(rawValue: sender.tag) {
+            inventory[fruit] = Int(sender.value)
+            setUpLabels()
+        }
+    }
 }
