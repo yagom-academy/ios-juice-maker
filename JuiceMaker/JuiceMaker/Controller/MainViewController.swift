@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
         case kiwiOrder:
             juice = .kiwiJuice
         case mangoOrder:
-            juice = .mangoKiwiJuice
+            juice = .mangoJuice
         default:
             juice = nil
         }
@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: "\(message) 나왔습니다! 맛있게 드세요!",
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인",
+        let okAction = UIAlertAction(title: Response.comfirm,
                                      style: .default,
                                      handler: nil)
         
@@ -90,12 +90,12 @@ class MainViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: "재료가 모자라요. 재고를 수정할까요?",
                                       preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예",
+        let yesAction = UIAlertAction(title: Response.yes,
                                       style: .default,
                                       handler: { _ in
             self.tappedModifyBarButton(())
         })
-        let noAction = UIAlertAction(title: "아니오",
+        let noAction = UIAlertAction(title: Response.no,
                                      style: .destructive,
                                      handler: nil)
         

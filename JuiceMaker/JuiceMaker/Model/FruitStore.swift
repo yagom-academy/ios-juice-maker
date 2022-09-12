@@ -36,7 +36,6 @@ class FruitStore {
     
     func canSupplyRequest(ingredient: [(Fruit, Int)]) -> Bool {
         guard haveInStock(ingredient: ingredient) else {
-            print("재고가 부족합니다.")
             return false
         }
         
