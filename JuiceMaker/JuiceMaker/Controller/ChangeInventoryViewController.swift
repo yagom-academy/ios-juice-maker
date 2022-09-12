@@ -26,6 +26,7 @@ class ChangeInventoryViewController: UIViewController {
     @IBAction func actionStepper(_ sender: UIStepper) {
         guard let fruitLabel = takeFruitLabel(of: sender) else { return }
         fruitLabel.text = Int(sender.value).description
+        checkStepperValue(of: sender)
     }
     
     @IBAction private func closeButton(_ sender: UIButton) {
@@ -50,6 +51,22 @@ class ChangeInventoryViewController: UIViewController {
         }
     }
     
+    func checkStepperValue(of sender: UIStepper) {
+//        guard let strawberryValue = Double(juiceMaker.checkStock(of: .strawBerry) ?? "0") else { return }
+//        guard let bananaValue = Double(juiceMaker.checkStock(of: .banana) ?? "0") else { return }
+//        guard let pineAppleValue = Double(juiceMaker.checkStock(of: .pineApple) ?? "0") else { return }
+//        guard let kiwiValue = Double(juiceMaker.checkStock(of: .kiwi) ?? "0") else { return }
+//        guard let mangoValue = Double(juiceMaker.checkStock(of: .mango) ?? "0") else { return }
+//        strawberryStepper.value = strawberryValue
+//        bananaStepper.value = bananaValue
+//        pineappleStepper.value = pineAppleValue
+//        kiwiStepper.value = kiwiValue
+//        mangoStepper.value = mangoValue
+   
+        guard let fruitValue = Double(takeFruitLabel(of: sender)?.text ?? "99" ) else { return }
+        sender.value = fruitValue
+    }
+    
     private func checkInventory() {
         strawberryStockLabel.text = juiceMaker.checkStock(of: .strawBerry)
         bananaStockLabel.text = juiceMaker.checkStock(of: .banana)
@@ -62,5 +79,4 @@ class ChangeInventoryViewController: UIViewController {
         super.viewDidLoad()
         checkInventory()
     }
-
 }
