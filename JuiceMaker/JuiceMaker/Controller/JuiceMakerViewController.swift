@@ -13,30 +13,13 @@ class JuiceMakerViewController: UIViewController, ModifyStockDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        setUpStockLabels(changedStocks: Fruit.beginningStock)
-		receiveStockChangedNoti()
+        setUpStockLabels()
 	}
 	
-	private func receiveStockChangedNoti() {
-		NotificationCenter.default.addObserver(
-			self,
-			selector: #selector(didChangeStocks(noti:)),
-			name: Notification.Name.stockChanged,
-			object: nil
-		)
-	}
-	
-	@objc func didChangeStocks(noti: Notification) {
-		guard let stocks = noti.userInfo as? [Fruit: Int] else {
-			return
-		}
-		setUpStockLabels(changedStocks: stocks)
-	}
-	
-	private func setUpStockLabels(changedStocks: [Fruit: Int]) {
+	private func setUpStockLabels() {
 		fruitLabels.compactMap { $0 }.forEach {
 			if let fruit = Fruit(rawValue: $0.tag),
-			   let stock = changedStocks[fruit]?.description {
+               let stock = store.inventory[fruit]?.description {
 				$0.text = stock
 			}
 		}
@@ -68,7 +51,7 @@ class JuiceMakerViewController: UIViewController, ModifyStockDelegate {
 			alertController.addAction(cancelAction)
 			alertController.addAction(okAction)
 		}
-		
+		setUpStockLabels()
 		present(alertController, animated: true)
 	}
     
