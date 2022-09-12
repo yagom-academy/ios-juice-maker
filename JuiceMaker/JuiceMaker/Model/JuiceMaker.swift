@@ -4,8 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
-
 struct JuiceMaker {
     private let fruitStore: FruitStore
     
