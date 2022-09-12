@@ -15,4 +15,7 @@ class StockEditViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 
+    @IBAction func dismissButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
 }
