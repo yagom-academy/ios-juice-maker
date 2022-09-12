@@ -19,7 +19,7 @@ class FruitStockViewController: UIViewController {
         .banana: bananaStockLabel,
         .pineapple: pineappleStockLabel,
         .kiwi: kiwiStockLabel,
-        .mango: mangoStockLabel
+        .mango: mangoStockLabel,
     ]
     
     lazy var fruitStepper: [UIStepper: Fruit] = [
@@ -27,7 +27,7 @@ class FruitStockViewController: UIViewController {
         bananaStepper: .banana,
         pineappleStepper: .pineapple,
         kiwiStepper: .kiwi,
-        mangoStepper: .mango
+        mangoStepper: .mango,
     ]
     
     func updateFruitStockLabel() {
@@ -62,8 +62,5 @@ class FruitStockViewController: UIViewController {
         
         fruitLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
     }
-    
-    
-    
-    
+
 }

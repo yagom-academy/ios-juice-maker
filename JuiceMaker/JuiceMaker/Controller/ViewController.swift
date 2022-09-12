@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         .banana: bananaStockLabel,
         .pineapple: pineappleStockLabel,
         .kiwi: kiwiStockLabel,
-        .mango: mangoStockLabel
+        .mango: mangoStockLabel,
     ]
     
     override func viewDidLoad() {
