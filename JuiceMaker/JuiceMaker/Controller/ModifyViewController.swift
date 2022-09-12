@@ -23,26 +23,24 @@ class ModifyViewController: UIViewController {
 		setUpLabels()
         setUpStepper()
 	}
-	
-	func changeNavBackgroundColor() {
-		navigationController?.navigationBar.backgroundColor = .systemGray5
-	}
-	
-	@IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
-		delegate?.updateValues(changedStock: inventory)
-		dismiss(animated: true)
-	}
-	
-	private func setUpLabels() {
+}
+
+// UI 관련 메서드
+private extension ModifyViewController {
+    func changeNavBackgroundColor() {
+        navigationController?.navigationBar.backgroundColor = .systemGray5
+    }
+    
+    func setUpLabels() {
         fruitLabels.compactMap { $0 }.forEach {
             if let fruit = Fruit(rawValue: $0.tag),
                let stock = inventory[fruit]?.description {
                 $0.text = stock
             }
-		}
-	}
+        }
+    }
     
-    private func setUpStepper() {
+    func setUpStepper() {
         stockSteppers.compactMap { $0 }.forEach {
             if let fruit = Fruit(rawValue: $0.tag),
                let stock = inventory[fruit] {
@@ -50,11 +48,22 @@ class ModifyViewController: UIViewController {
             }
         }
     }
-    
+}
+
+// 버튼 관련 메서드
+private extension ModifyViewController {
     @IBAction func didTappedStepper(_ sender: UIStepper) {
         if let fruit = Fruit(rawValue: sender.tag) {
             inventory[fruit] = Int(sender.value)
             setUpLabels()
         }
+    }
+}
+
+// 화면 이동 관련 메서드
+private extension ModifyViewController {
+    @IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
+        delegate?.updateValues(changedStock: inventory)
+        dismiss(animated: true)
     }
 }
