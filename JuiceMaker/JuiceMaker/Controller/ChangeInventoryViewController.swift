@@ -17,9 +17,37 @@ class ChangeInventoryViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBAction private func CloseButton(_ sender: UIButton) {
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
+    @IBAction func actionStepper(_ sender: UIStepper) {
+        guard let fruitLabel = takeFruitLabel(of: sender) else { return }
+        fruitLabel.text = Int(sender.value).description
+    }
+    
+    @IBAction private func closeButton(_ sender: UIButton) {
         dismiss(animated: true,
                 completion: nil)
+    }
+    
+    func takeFruitLabel(of sender: UIStepper) -> UILabel? {
+        switch sender {
+        case strawberryStepper:
+            return strawberryStockLabel
+        case bananaStepper:
+            return bananaStockLabel
+        case pineappleStepper:
+            return pineappleStockLabel
+        case kiwiStepper:
+            return kiwiStockLabel
+        case mangoStepper:
+            return mangoStockLabel
+        default:
+            return nil
+        }
     }
     
     private func checkInventory() {
