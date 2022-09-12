@@ -96,6 +96,7 @@ class JuiceMakerViewController: UIViewController {
               let stockEditVC = stockEditNavigationController.topViewController as? StockEditViewController else {
                   return
               }
+        
         stockEditVC.delegate = self
         Fruit.allCases.forEach({ fruit in
             guard let fruitStock = try? juiceMaker.fetchStock(of: fruit) else { return }
@@ -112,5 +113,7 @@ class JuiceMakerViewController: UIViewController {
 
 extension JuiceMakerViewController: StockEditDelegate {
     func didEndStockEditing(fruitStock: [Fruit : Int]) {
+        juiceMaker.updateAllStock(using: fruitStock)
+        updateAllStockLabels()
     }
 }

@@ -92,4 +92,10 @@ struct JuiceMaker {
     func fetchStock(of fruit: Fruit) throws -> Int {
         return try fruitStore.fetchStock(of: fruit)
     }
+    
+    func updateAllStock(using fruitStock: [Fruit: Int]) {
+        fruitStock.forEach({ (fruit, stock) in
+            fruitStore.updateFruitStock(fruit: fruit, amountOf: stock)
+        })
+    }
 }
