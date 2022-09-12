@@ -11,4 +11,9 @@ class FruitStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func touchUpDismissButton(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
 }

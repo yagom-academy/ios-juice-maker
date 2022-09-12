@@ -112,7 +112,7 @@ class ViewController: UIViewController {
     
     func moveToFruitStockVC() {
         guard let fruitStoreStockViewController =
-                self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreStock") else { return }
+                self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreStockNC") else { return }
         self.present(fruitStoreStockViewController, animated: true, completion: nil)
     }
     
