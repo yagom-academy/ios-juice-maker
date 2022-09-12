@@ -89,5 +89,15 @@ class JuiceOrderViewController: UIViewController {
     @IBAction func touchUpModifyButton(_ sender: UIBarButtonItem) {
         self.showModifyingInventoryView()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as? UINavigationController
+
+        guard let nextViewController = navigationController?.viewControllers.first as? ModifyingInventoryViewController else {
+            return
+        }
+        
+        nextViewController.receivedFruitStore = juiceMaker.fruitStore
+    }
 }
 
