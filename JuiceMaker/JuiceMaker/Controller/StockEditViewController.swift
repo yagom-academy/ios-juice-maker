@@ -24,4 +24,25 @@ class StockEditViewController: UIViewController {
     @IBAction func dismissButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
+    
+    @IBAction func strawberryStepperPressed(_ sender: UIStepper) {
+        strawberryStockLabel.text = Int(sender.value).description
+    }
+    
+    @IBAction func bananaStepperPressed(_ sender: UIStepper) {
+        bananaStockLabel.text = Int(sender.value).description
+    }
+    
+    @IBAction func pineappleStepperPressed(_ sender: UIStepper) {
+        pineappleStockLabel.text = Int(sender.value).description
+    }
+    
+    @IBAction func kiwiStepperPressed(_ sender: UIStepper) {
+        kiwiStockLabel.text = Int(sender.value).description
+    }
+    
+    @IBAction func mangoStepperPressed(_ sender: UIStepper) {
+        mangoStockLabel.text = Int(sender.value).description
+    }
+    
 }
