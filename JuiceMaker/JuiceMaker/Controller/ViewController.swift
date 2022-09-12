@@ -106,9 +106,10 @@ class ViewController: UIViewController {
         guard let stockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditViewController") as? StockEditViewController else {
             return
         }
-        stockEditViewController.modalTransitionStyle = .coverVertical
-        stockEditViewController.modalPresentationStyle = .fullScreen
-        self.present(stockEditViewController,
+        let navigationController = UINavigationController(rootViewController: stockEditViewController)
+        navigationController.modalTransitionStyle = .coverVertical
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController,
                      animated: true,
                      completion: nil)
     }
