@@ -10,12 +10,30 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateAllFruitsCount() 
+        updateAllFruitsCount()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateFruitCount),
+            name: Notification.Name("showFruitCount"),
+            object: nil)
     }
     
-    private func requestUpdateFruitCount(fruitJuice: FruitJuice) {
-        for (fruit, _) in fruitJuice.ingredients {
-            updateFruitCount(fruit: fruit)
+    @objc func updateFruitCount(_ notification: Notification) {
+        let currentFruitList: [Fruits: String?] = [
+            .strawberry: strawberryCountLabel.text,
+            .banana: bananaCountLabel.text,
+            .pineapple: pineappleCountLabel.text,
+            .kiwi: kiwiCountLabel.text,
+            .mango: mangoCountLabel.text
+        ]
+        
+        guard let changedFruitList = notification.object as? [Fruits: Int] else { return }
+        
+        for (fruit, count) in changedFruitList {
+            if currentFruitList[fruit] != String(count) {
+                updateCountLabel(fruit: fruit, count: count)
+            }
         }
     }
     
@@ -24,16 +42,6 @@ class JuiceMakerViewController: UIViewController {
         fruitList.forEach { fruit, count in
             updateCountLabel(fruit: fruit, count: count)
         }
-    }
-    
-    private func updateFruitCount(fruit: Fruits) {
-        guard let count = JuiceMaker
-            .shared
-            .requestFruitStore()
-            .requestFruitCount(fruit: fruit) else {
-            return
-        }
-        updateCountLabel(fruit: fruit, count: count)
     }
     
     private func updateCountLabel(fruit: Fruits, count: Int) {
@@ -120,7 +128,6 @@ class JuiceMakerViewController: UIViewController {
     
     private func order(_ fruitJuice: FruitJuice) {
         handleAlert(fruitJuice: fruitJuice)
-        requestUpdateFruitCount(fruitJuice: fruitJuice)
     }
 }
 
