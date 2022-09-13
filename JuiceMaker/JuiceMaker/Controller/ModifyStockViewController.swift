@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol ModifyStockDelegate: AnyObject {
+    func changeFruitStock(_ changedStock: [Fruit : Int])
+}
+
 class ModifyStockViewController: UIViewController {
     var fruitStock: [Fruit : Int] = [:]
     private var fruitUIAttribute: [Fruit : (label: UILabel, stepper: UIStepper, isChange: Bool)] = [:]
+    weak var delegate: ModifyStockDelegate?
                                                      
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -51,7 +56,7 @@ class ModifyStockViewController: UIViewController {
             changeFruitStock[key] = Int(value.label.text ?? String(ConstantUsageFruit.invalidFruit))
         }
         
-        NotificationCenter.default.post(name: Notification.Name.stock, object: nil, userInfo: changeFruitStock)
+        delegate?.changeFruitStock(changeFruitStock)
         dismiss(animated: true)
     }
     
@@ -83,8 +88,4 @@ class ModifyStockViewController: UIViewController {
             value.stepper.value = Double(fruitStock[key, default: ConstantUsageFruit.invalidFruit])
         }
     }
-}
-
-extension Notification.Name {
-    static let stock = Notification.Name("stock")
 }

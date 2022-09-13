@@ -21,30 +21,6 @@ class ViewController: UIViewController {
         setNavigationBar()
         setFruitLabel()
         setFruitStockLabelText()
-        setNotification()
-    }
-    
-    private func setFruitLabel() {
-        fruitLabel = [.strawberry : strawberryStockLabel,
-                      .banana : bananaStockLabel,
-                      .pineapple : pineappleStockLabel,
-                      .kiwi : kiwiStockLabel,
-                      .mango : mangoStockLabel]
-    }
-    
-    private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabel), name: Notification.Name.stock, object: nil)
-        juiceMaker.addNotficationObserver()
-    }
-    
-    @objc func updateStockLabel(noti: Notification) {
-        guard let changeFruitStock = noti.userInfo as? [Fruit : Int] else {
-            return
-        }
-        
-        for (key, value) in changeFruitStock {
-            self.fruitLabel[key]?.text = String(value)
-        }
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
@@ -53,6 +29,7 @@ class ViewController: UIViewController {
         }
         
         modifyStockVC.fruitStock = juiceMaker.fruitStore.fruitStock
+        modifyStockVC.delegate = self
         let moveToStockNC = UINavigationController(rootViewController: modifyStockVC)
         present(moveToStockNC, animated: true, completion: nil)
     }
@@ -87,6 +64,7 @@ class ViewController: UIViewController {
             }
             
             modifyStockVC.fruitStock = self.juiceMaker.fruitStore.fruitStock
+            modifyStockVC.delegate = self
             let moveToStockNC = UINavigationController(rootViewController: modifyStockVC)
             self.present(moveToStockNC, animated: true, completion: nil)
         }
@@ -95,6 +73,14 @@ class ViewController: UIViewController {
         alert.addAction(confirmAction)
         alert.addAction(cancleAction)
         self.present(alert, animated: true)
+    }
+    
+    private func setFruitLabel() {
+        fruitLabel = [.strawberry : strawberryStockLabel,
+                      .banana : bananaStockLabel,
+                      .pineapple : pineappleStockLabel,
+                      .kiwi : kiwiStockLabel,
+                      .mango : mangoStockLabel]
     }
     
     private func setNavigationBar() {
@@ -107,5 +93,12 @@ class ViewController: UIViewController {
         for (key, value) in fruitLabel {
             value.text = String(fruitStore.bringValidFruitStock(key))
         }
+    }
+}
+
+extension ViewController: ModifyStockDelegate {
+    func changeFruitStock(_ changedStock: [Fruit : Int]) {
+        juiceMaker.passingChangedFruitStock(changedStock)
+        setFruitStockLabelText()
     }
 }

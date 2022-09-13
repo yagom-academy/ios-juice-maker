@@ -18,7 +18,7 @@ struct JuiceMaker {
         return true
     }
     
-    func checkEnoughStock(juice: Juice) throws -> Bool {
+    private func checkEnoughStock(juice: Juice) throws -> Bool {
         for fruit in juice.recipe {
             let stock = fruitStore.bringValidFruitStock(fruit.name)
             guard stock != ConstantUsageFruit.invalidFruit else {
@@ -33,7 +33,7 @@ struct JuiceMaker {
         return true
     }
     
-    func canManufactureJuice(juice: Juice) -> Bool {
+    private func canManufactureJuice(juice: Juice) -> Bool {
         var isEnoughStock: Bool = false
         
         do {
@@ -48,13 +48,7 @@ struct JuiceMaker {
         return isEnoughStock
     }
     
-    func addNotficationObserver() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.stock, object: nil, queue: nil) { notification in
-            guard let updateStock = notification.userInfo as? [Fruit : Int] else {
-                return
-            }
-            
-            fruitStore.updateFruits(updateStock)
-        }
+    func passingChangedFruitStock(_ changedStock: [Fruit : Int]) {
+        fruitStore.updateFruits(changedStock)
     }
 }
