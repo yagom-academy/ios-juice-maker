@@ -5,17 +5,12 @@ import UIKit
 struct JuiceMaker {
     private let fruitStore: FruitStoreProtocol = FruitStore()
     
-    private func takeOrder(juice: Juice) {
-        do {
-            try fruitStore.checkEnoughStock(juiceRecipe: juice.recipe)
-            make(juice)
-            noticeResultOfJuiceMaking(isSuccess: true, juiceName: juice.rawValue)
-        } catch JuiceMakerError.notEnoughStock {
-            debugPrint("재고가 부족하여 제작에 실패하였습니다!")
-            noticeResultOfJuiceMaking(isSuccess: false, juiceName: juice.rawValue)
-        } catch {
-            debugPrint("알 수 없는 오류가 발생하였습니다.")
-        }
+}
+
+extension JuiceMaker: JuiceMakerProtocol {
+    
+    func getFruitStock() -> FruitStock {
+        return fruitStore.sendFruitStock()
     }
     
     func noticeResultOfJuiceMaking(isSuccess: Bool, juiceName: String) {
@@ -25,7 +20,11 @@ struct JuiceMaker {
             userInfo: ["isMakingSuccess": isSuccess, "juiceName": juiceName])
     }
     
-    private func make(_ juice: Juice) {
+    func canMakeJuice(_ recipe: [Juice.Recipe]) throws {
+        return try fruitStore.checkEnoughStock(juiceRecipe: recipe)
+    }
+    
+    func make(_ juice: Juice) {
         for ingredient in juice.recipe {
             fruitStore.updateFruitStock(
                 fruit: ingredient.fruit,
@@ -35,16 +34,6 @@ struct JuiceMaker {
         }
         
         debugPrint("\(juice)를 만들었습니다!")
-    }
-}
-
-extension JuiceMaker: JuiceMakerProtocol {
-    func chooseJuice(juice: Juice) {
-        takeOrder(juice: juice)
-    }
-    
-    func getFruitStock() -> FruitStock {
-        return fruitStore.sendFruitStock()
     }
 }
 
