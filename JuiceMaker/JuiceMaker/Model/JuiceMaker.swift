@@ -7,6 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
+
     static let store = FruitStore(initialFruitAmount: 10)
     
     func makeJuice(of juice: Juice) -> Bool {

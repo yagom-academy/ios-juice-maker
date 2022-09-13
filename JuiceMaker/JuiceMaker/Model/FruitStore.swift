@@ -13,12 +13,12 @@ class FruitStore {
         Fruit.allCases.forEach { inventory[$0] = initialFruitAmount }
     }
     
-    func addToInventory (of fruit: Fruit, by amount: Int) {
+    func addToInventory(of fruit: Fruit, by amount: Int) {
         guard let fruitStock = inventory[fruit] else { return }
         inventory[fruit] = fruitStock + amount
     }
     
-    func removeToInventory (of fruit: Fruit, by amount: Int) {
+    func removeToInventory(of fruit: Fruit, by amount: Int) {
         guard let fruitStock = inventory[fruit] else { return }
         
         if fruitStock < amount {
