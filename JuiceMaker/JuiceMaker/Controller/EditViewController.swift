@@ -10,11 +10,7 @@ class EditViewController: UIViewController {
     var stock: [Int]?
     
     @IBOutlet var fruitCountLabels: [UILabel]!
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet var fruitSteppers: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +19,11 @@ class EditViewController: UIViewController {
     }
     
     @IBAction private func tappedApplyButton(_ sender: UIButton) {
+        guard let newStock = stock else { return }
+        
+        for (fruitIndex, newFruit) in newStock.enumerated() {
+            store?.changeStock(fruitIndex: fruitIndex, count: newFruit)
+        }
         dismiss(animated: true)
     }
     
@@ -30,9 +31,11 @@ class EditViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func strawberryStepper(_ sender: UIStepper) {
-        print(Int(sender.value))
+    @IBAction private func tappedStepper(_ sender: UIStepper) {
+        fruitCountLabels?[sender.tag].text = Int(sender.value).description
+        stock?[sender.tag] = Int(sender.value)
     }
+    
     private func updateStockCount() {
         guard var newStock = stock else { return }
         
@@ -47,12 +50,12 @@ class EditViewController: UIViewController {
         self.stock = store.stock
     }
     
-    func setStepperValue() {
-        strawberryStepper.value = Double(stock?[0] ?? 0)
-        bananaStepper.value = Double(stock?[1] ?? 0)
-        pineappleStepper.value = Double(stock?[2] ?? 0)
-        kiwiStepper.value = Double(stock?[3] ?? 0)
-        mangoStepper.value = Double(stock?[4] ?? 0)
+    private func setStepperValue() {
+        guard let stock = stock else { return }
+        
+        for fruitStepper in fruitSteppers {
+            fruitStepper.value = Double(stock[fruitStepper.tag])
+        }
     }
     
 }

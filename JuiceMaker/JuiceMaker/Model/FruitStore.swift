@@ -23,13 +23,14 @@ class FruitStore {
         }
         return true
     }
+
+    func changeStock(fruitIndex: Int, count: Int) {
+        stock[fruitIndex] = count
+    }
     
-    func changeStock(fruit: Fruit, count: Int, isMinus: Bool = false) {
+    private func removeStock(fruit: Fruit, count: Int) {
         let stockCount = stock[fruit.index]
-        
-        var computedCount: Int {
-            isMinus ? stockCount - count : stockCount + count
-        }
+        let computedCount = stockCount - count
         
         stock[fruit.index] = computedCount
     }
@@ -40,7 +41,7 @@ class FruitStore {
         }
         
         for (fruit, count) in ingredient {
-            changeStock(fruit: fruit, count: count, isMinus: true)
+            removeStock(fruit: fruit, count: count)
         }
         return true
     }
