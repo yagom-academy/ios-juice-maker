@@ -13,12 +13,22 @@ protocol FruitInventoryDelegate: AnyObject {
 
 class JuiceOrderViewController: UIViewController {
     @IBOutlet private var fruitLabels: [UILabel]!
-    
     private let juiceMaker = JuiceMaker()
     
+//MARK: -View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateInventory()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as? UINavigationController
+
+        guard let modifyingInventoryVC = navigationController?.viewControllers.first as? ModifyingInventoryViewController else {
+            return
+        }
+        
+        modifyingInventoryVC.delegater = self
     }
     
     func updateInventory() {
@@ -31,6 +41,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
+//MARK: -Action
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         guard let identifier = sender.accessibilityIdentifier,
               let juice = Juice.init(rawValue: identifier) else {
@@ -47,6 +58,11 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
+    @IBAction func touchUpModifyButton(_ sender: UIBarButtonItem) {
+        self.showModifyingInventoryView()
+    }
+    
+//MARK: -Alert
     func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil,
                                       message: message,
@@ -85,25 +101,13 @@ class JuiceOrderViewController: UIViewController {
                 completion: nil)
     }
     
+//MARK: -Segue
     func showModifyingInventoryView() {
         performSegue(withIdentifier: "modifyInventory", sender: nil)
     }
-    
-    @IBAction func touchUpModifyButton(_ sender: UIBarButtonItem) {
-        self.showModifyingInventoryView()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as? UINavigationController
-
-        guard let modifyingInventoryVC = navigationController?.viewControllers.first as? ModifyingInventoryViewController else {
-            return
-        }
-        
-        modifyingInventoryVC.delegater = self
-    }
 }
 
+//MARK: -Extension Delegate Protocol
 extension JuiceOrderViewController: FruitInventoryDelegate {
     var inventoryList: [Fruit : Int] {
         return self.juiceMaker.fruitStore.inventoryList

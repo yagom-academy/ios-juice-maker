@@ -4,6 +4,7 @@ class ModifyingInventoryViewController: UIViewController {
     weak var delegater: FruitInventoryDelegate?
     var inventoryList: [Fruit: Int] = [:]
     
+//MARK: -View
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
@@ -48,6 +49,7 @@ class ModifyingInventoryViewController: UIViewController {
         }
     }
     
+//MARK: -Action
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
         delegater?.deliver(inventoryList)
         dismiss(animated: true, completion: nil)
