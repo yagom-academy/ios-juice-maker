@@ -46,7 +46,7 @@ private extension JuiceMakerViewController {
         let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
             if !isMaked {
-                self.presentModiftController()
+                self.presentModifyController()
             }
         }
         
@@ -76,10 +76,10 @@ private extension JuiceMakerViewController {
 // 화면 이동 관련 메서드
 private extension JuiceMakerViewController {
     @IBAction func didTapEditButton(_ sender: UIButton) {
-        presentModiftController()
+        presentModifyController()
     }
     
-    func presentModiftController() {
+    func presentModifyController() {
         self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
     }
 }
