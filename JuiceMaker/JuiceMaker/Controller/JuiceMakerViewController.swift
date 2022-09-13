@@ -14,18 +14,20 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func requestUpdateFruitCount(fruitJuice: FruitJuice) {
-        switch fruitJuice.ingridientCount {
-        case 1:
-            let (fruit, _) = fruitJuice.juiceIngridients.first
-            updateFruitCount(fruit: fruit)
-        case 2:
-            let (fruit1, _) = fruitJuice.juiceIngridients.first
-            guard let (fruit2, _) = fruitJuice.juiceIngridients.second else { return }
-            updateFruitCount(fruit: fruit1)
-            updateFruitCount(fruit: fruit2)
-        default:
-            return
-        }
+        
+        
+//        switch fruitJuice.ingridientCount {
+//        case 1:
+//            let (fruit, _) = fruitJuice.juiceIngridients.first
+//            updateFruitCount(fruit: fruit)
+//        case 2:
+//            let (fruit1, _) = fruitJuice.juiceIngridients.first
+//            guard let (fruit2, _) = fruitJuice.juiceIngridients.second else { return }
+//            updateFruitCount(fruit: fruit1)
+//            updateFruitCount(fruit: fruit2)
+//        default:
+//            return
+//        }
     }
     
     private func updateAllFruitsCount() {
