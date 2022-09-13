@@ -35,25 +35,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        updateFruitStockLabel()
     }
     
     func updateFruitStockLabel() {
         for (fruit, label) in fruitLabel {
             label.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateFruitStockLabel()
-    }
-    
-    
-    func updateFruitStockLabelUsedFor(_ juice: Juice) {
-        for fruit in juice.recipe.keys {
-            guard let validLabel = fruitLabel[fruit] else { return }
-            validLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
         }
     }
     
@@ -69,15 +61,31 @@ class ViewController: UIViewController {
         ]
         
         guard let juice = juiceButton[sender] else { return }
-        
         let result = juiceMaker.makeJuice(juice, total: 1)
+        
         showAlert(result: result, juice: juice)
+    }
+    
+    func showAlert(result: Result<String, Error>, juice: Juice) {
+        let message = createAlertFor(result: result, juice: juice).message
+        let okAction = createAlertFor(result: result, juice: juice).okAction
+        let noAction = createAlertFor(result: result, juice: juice).noAction
+        
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        alert.addAction(okAction)
+
+        if let validNoAction = noAction {
+            alert.addAction(validNoAction)
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
     
     func createAlertFor(
         result: Result<String, Error>,
         juice: Juice
-    ) -> (message: String, okAction: UIAlertAction, noAction: UIAlertAction?){
+    ) -> (message: String, okAction: UIAlertAction, noAction: UIAlertAction?) {
         var okAction: UIAlertAction
         var noAction: UIAlertAction?
         var message: String
@@ -103,20 +111,16 @@ class ViewController: UIViewController {
         return (message: message, okAction: okAction, noAction: noAction)
     }
     
-    func showAlert(result: Result<String, Error>, juice: Juice) {
-        let message = createAlertFor(result: result, juice: juice).message
-        let okAction = createAlertFor(result: result, juice: juice).okAction
-        let noAction = createAlertFor(result: result, juice: juice).noAction
-        
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
-        alert.addAction(okAction)
-
-        if let validNoAction = noAction {
-            alert.addAction(validNoAction)
+    func updateFruitStockLabelUsedFor(_ juice: Juice) {
+        for fruit in juice.recipe.keys {
+            guard let validLabel = fruitLabel[fruit] else { return }
+            
+            validLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
         }
-        
-        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func touchUpChangeFruitStockButton(_ sender: UIBarButtonItem) {
+        moveToFruitStockVC()
     }
     
     func moveToFruitStockVC() {
@@ -124,11 +128,8 @@ class ViewController: UIViewController {
                 self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreStockNC") else { return }
         
         fruitStoreStockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        
         self.present(fruitStoreStockViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func touchUpChangeFruitStockButton(_ sender: UIBarButtonItem) {
-        moveToFruitStockVC()
     }
 }
 

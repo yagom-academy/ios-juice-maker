@@ -30,6 +30,13 @@ class FruitStockViewController: UIViewController {
         mangoStepper: .mango,
     ]
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        updateFruitStockLabel()
+        assignStepperValue()
+    }
+    
     func updateFruitStockLabel() {
         for (fruit, label) in fruitLabel {
             label.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
@@ -42,13 +49,6 @@ class FruitStockViewController: UIViewController {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        updateFruitStockLabel()
-        assignStepperValue()
-    }
-    
     @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
@@ -58,9 +58,9 @@ class FruitStockViewController: UIViewController {
               let fruitLabel = fruitLabel[fruit] else { return }
         
         let changedValue = Int(sender.value) - FruitStore.sharedFruitStore.fetchStockOf(fruit)
+        
         FruitStore.sharedFruitStore.changeStockOf(fruit: fruit, by: changedValue)
         
         fruitLabel.text = String(FruitStore.sharedFruitStore.fetchStockOf(fruit))
     }
-
 }
