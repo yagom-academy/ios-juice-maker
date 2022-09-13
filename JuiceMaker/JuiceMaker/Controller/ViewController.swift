@@ -7,8 +7,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     var juiceMaker = JuiceMaker()
+    private var fruitLabel: [Fruit : UILabel] = [:]
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -16,20 +16,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
 
-    lazy var fruitLabel: [Fruit : UILabel] = [.strawberry : strawberryStockLabel,
-                                              .banana : bananaStockLabel,
-                                              .pineapple : pineappleStockLabel,
-                                              .kiwi : kiwiStockLabel,
-                                              .mango : mangoStockLabel]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        setFruitStockLabel()
+        setFruitLabel()
+        setFruitStockLabelText()
         setNotification()
     }
     
-    func setNotification() {
+    private func setFruitLabel() {
+        fruitLabel = [.strawberry : strawberryStockLabel,
+                      .banana : bananaStockLabel,
+                      .pineapple : pineappleStockLabel,
+                      .kiwi : kiwiStockLabel,
+                      .mango : mangoStockLabel]
+    }
+    
+    private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateStockLabel), name: Notification.Name.stock, object: nil)
         juiceMaker.addNotficationObserver()
     }
@@ -55,33 +58,28 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {
-        guard var orderedJuice = sender.currentTitle else {
-            return
-        }
-        
-        orderedJuice = orderedJuice.replacingOccurrences(of: " 주문", with: "")
-        guard let juice = Juice(rawValue: orderedJuice) else {
+        guard let orderedJuice = Juice.findJuiceButtonLocation(tag: sender.tag) else {
             return
         }
                 
-        let isMadeJuice =  juiceMaker.manufactureJuice(menu: juice)
+        let isMadeJuice =  juiceMaker.manufactureJuice(menu: orderedJuice)
         guard isMadeJuice else {
             showFailedAlert(message: ConstantSentence.failedAlertMent)
             return
         }
         
-        showSuccessAlert(message: juice.rawValue + ConstantSentence.successAlertMent)
-        setFruitStockLabel()
+        showSuccessAlert(message: orderedJuice.rawValue + ConstantSentence.successAlertMent)
+        setFruitStockLabelText()
     }
 
-    func showSuccessAlert(message: String) {
+    private func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default)
         alert.addAction(confirmAction)
         self.present(alert, animated: true)
     }
     
-    func showFailedAlert(message: String) {
+    private func showFailedAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
             guard let modifyStockVC = self.storyboard?.instantiateViewController(withIdentifier: "ModifyVC") as? ModifyStockViewController else {
@@ -99,12 +97,12 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    func setNavigationBar() {
+    private func setNavigationBar() {
         self.title = ConstantSentence.mainTitle
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
     }
     
-    func setFruitStockLabel() {
+    private func setFruitStockLabelText() {
         let fruitStore = juiceMaker.fruitStore
         for (key, value) in fruitLabel {
             value.text = String(fruitStore.bringValidFruitStock(key))
