@@ -1,5 +1,16 @@
+import Foundation
+
 struct FruitStore {
-    private var fruitList: [Fruits: Int] = [:]
+    private var fruitList: [Fruits: Int] = [:] {
+        didSet {
+            NotificationCenter.default.post(
+                name: Notification.Name("showFruitCount"),
+                object: fruitList,
+                userInfo: nil)
+        }
+    }
+    
+    
     
     init(fruitCount: Int = 10) {
         for fruit in Fruits.allCases {
