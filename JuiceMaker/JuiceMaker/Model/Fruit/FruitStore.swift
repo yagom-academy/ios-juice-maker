@@ -1,7 +1,7 @@
 //  Created by 애종,질리,벨라 on 2022/08/30.
 
 class FruitStore {
-    private var fruitStock: [Fruit: Int] = [
+    private var fruitStock: FruitStock = [
         .strawberry: 10,
         .banana: 10,
         .kiwi: 10,
@@ -17,7 +17,7 @@ class FruitStore {
         }
     }
     
-    private func updateStock(_ fruit: Fruit, for amount: Int){
+    private func updateStock(_ fruit: Fruit, for amount: Int) {
         fruitStock.updateValue(amount, forKey: fruit)
     }
 }
@@ -33,15 +33,17 @@ extension FruitStore: FruitStoreProtocol {
         }
     }
     
-    func isEnoughStock(juiceRecipe: [Juice.Recipe]) -> Bool {
+    func checkEnoughStock(juiceRecipe: [Juice.Recipe]) throws {
         for ingredient in juiceRecipe {
-            guard let fruitStock = getStock(fruit: ingredient.name),
+            guard let fruitStock = getStock(fruit: ingredient.fruit),
                   fruitStock >= ingredient.amount
             else {
-                return false
+                throw JuiceMakerError.notEnoughStock
             }
         }
-        
-        return true
+    }
+    
+    func sendFruitStock() -> FruitStock {
+        return fruitStock
     }
 }
