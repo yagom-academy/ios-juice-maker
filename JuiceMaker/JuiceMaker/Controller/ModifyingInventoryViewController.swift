@@ -1,8 +1,6 @@
 import UIKit
 
 class ModifyingInventoryViewController: UIViewController {
-    static let identifier: String = "ModifyingInventoryViewController"
-
     weak var delegater: FruitInventoryDelegate?
     var inventoryList: [Fruit: Int] = [:]
     
@@ -20,11 +18,10 @@ class ModifyingInventoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        fetchInventory()
+        setUpInventory()
     }
     
-    func fetchInventory() {
+    func setUpInventory() {
         guard let delegater = delegater else {
             return
         }

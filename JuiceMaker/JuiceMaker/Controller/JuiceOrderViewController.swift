@@ -96,11 +96,11 @@ class JuiceOrderViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigationController = segue.destination as? UINavigationController
 
-        guard let nextViewController = navigationController?.viewControllers.first as? ModifyingInventoryViewController else {
+        guard let modifyingInventoryVC = navigationController?.viewControllers.first as? ModifyingInventoryViewController else {
             return
         }
         
-        nextViewController.delegater = self
+        modifyingInventoryVC.delegater = self
     }
 }
 
@@ -112,6 +112,4 @@ extension JuiceOrderViewController: FruitInventoryDelegate {
     func deliver(_ inventoryList: [Fruit : Int]) {
         self.juiceMaker.fruitStore.update(to: inventoryList)
     }
-    
-    
 }
