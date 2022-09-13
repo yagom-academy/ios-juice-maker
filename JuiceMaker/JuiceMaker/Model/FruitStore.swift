@@ -10,8 +10,6 @@ struct FruitStore {
         }
     }
     
-    
-    
     init(fruitCount: Int = 10) {
         for fruit in Fruits.allCases {
             changeCount(of: fruit, count: fruitCount)
@@ -26,7 +24,7 @@ struct FruitStore {
         return fruitList[fruit]
     }
     
-    mutating private func changeCount(of fruit: Fruits, count: Int) {
+    mutating func changeCount(of fruit: Fruits, count: Int) {
         fruitList[fruit] = count
     }
     

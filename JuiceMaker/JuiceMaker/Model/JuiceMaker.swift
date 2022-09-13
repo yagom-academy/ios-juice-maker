@@ -17,4 +17,8 @@ class JuiceMaker {
             try fruitStore.use(fruit, of: count)
         }
     }
+    
+    func requestModifyFruitCount(fruit: Fruits, count: Int) {
+        fruitStore.changeCount(of: fruit, count: count)
+    }
 }
