@@ -1,44 +1,52 @@
 struct FruitStore {
     private var fruitList: [Fruits: Int] = [:]
     
-    init(fruitAmount: Int = 10) {
+    init(fruitCount: Int = 10) {
         for fruit in Fruits.allCases {
-            changeAmount(of: fruit, amount: fruitAmount)
+            changeCount(of: fruit, count: fruitCount)
         }
     }
     
-    mutating func changeAmount(of fruit: Fruits, amount: Int) {
-        fruitList[fruit] = amount
+    func requestFruitList() -> [Fruits: Int] {
+        return fruitList
     }
     
-    mutating func use(_ fruit: Fruits, of amount: Int) throws {
-        guard let numberOfFruit = fruitList[fruit] else {
+    func requestFruitCount(fruit: Fruits) -> Int? {
+        return fruitList[fruit]
+    }
+    
+    mutating private func changeCount(of fruit: Fruits, count: Int) {
+        fruitList[fruit] = count
+    }
+    
+    mutating func use(_ fruit: Fruits, of count: Int) throws {
+        guard let countOfFruit = fruitList[fruit] else {
             throw JuiceMakerError.notExistFruits
         }
         
-        if numberOfFruit - amount < 0 {
+        if countOfFruit - count < 0 {
             throw JuiceMakerError.underFlowOfAmount
         }
         
-        fruitList[fruit] = numberOfFruit - amount
+        fruitList[fruit] = countOfFruit - count
     }
     
     mutating func use(
         firstFruit: Fruits,
-        firstAmount: Int,
+        firstCount: Int,
         secondFruit: Fruits,
-        secondAmount: Int
+        secondCount: Int
     ) throws {
-        guard let numberOfFruit1 = fruitList[firstFruit],
-              let numberOfFruit2 = fruitList[secondFruit] else {
+        guard let countOfFruit1 = fruitList[firstFruit],
+              let countOfFruit2 = fruitList[secondFruit] else {
             throw JuiceMakerError.notExistFruits
         }
         
-        if numberOfFruit1 - firstAmount < 0 || numberOfFruit2 - secondAmount < 0 {
+        if countOfFruit1 - firstCount < 0 || countOfFruit2 - secondCount < 0 {
             throw JuiceMakerError.underFlowOfAmount
         }
         
-        fruitList[firstFruit] = numberOfFruit1 - firstAmount
-        fruitList[secondFruit] = numberOfFruit2 - secondAmount
+        fruitList[firstFruit] = countOfFruit1 - firstCount
+        fruitList[secondFruit] = countOfFruit2 - secondCount
     }
 }

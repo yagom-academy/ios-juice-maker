@@ -1,4 +1,4 @@
-enum FruitJuice: CaseIterable {
+enum FruitJuice: String, CaseIterable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -6,6 +6,25 @@ enum FruitJuice: CaseIterable {
     case mangoJuice
     case strawberryBananaJuice
     case mangoKiwiJuice
+    
+    var menuName: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기쥬스"
+        case .bananaJuice:
+            return "바나나쥬스"
+        case .kiwiJuice:
+            return "키위쥬스"
+        case .pineappleJuice:
+            return "파인애플쥬스"
+        case .mangoJuice:
+            return "망고쥬스"
+        case .strawberryBananaJuice:
+            return "딸바쥬스"
+        case .mangoKiwiJuice:
+            return "망키쥬스"
+        }
+    }
     
     struct JuiceIngridients {
         let first: (Fruits, Int)
@@ -28,6 +47,34 @@ enum FruitJuice: CaseIterable {
             return JuiceIngridients(first: (.strawberry, 10), second: (.banana, 1))
         case .mangoKiwiJuice:
             return JuiceIngridients(first: (.mango, 2), second: (.kiwi, 1))
+        }
+    }
+    
+    var ingridientCount: Int {
+        switch self {
+        case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
+            return 1
+        case .strawberryBananaJuice, .mangoKiwiJuice:
+            return 2
+        }
+    }
+    
+    var orderButtonID: String {
+        switch self {
+        case .strawberryJuice:
+            return "strawberryJuiceOrderButton"
+        case .bananaJuice:
+            return "bananaJuiceOrderButton"
+        case .kiwiJuice:
+            return "kiwiJuiceOrderButton"
+        case .pineappleJuice:
+            return "pineappleJuiceOrderButton"
+        case .mangoJuice:
+            return "mangoJuiceOrderButton"
+        case .strawberryBananaJuice:
+            return "strawberryBananaJuiceOrderButton"
+        case .mangoKiwiJuice:
+            return "mangoKiwiJuiceOrderButton"
         }
     }
 }
