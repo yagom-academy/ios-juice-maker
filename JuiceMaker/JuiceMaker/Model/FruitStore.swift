@@ -3,8 +3,10 @@
 //  Created by Wonbi, woong
 //
 
+import Foundation
+
 class FruitStore {
-    private var stock: [Int]
+    private(set) var stock: [Int]
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
@@ -22,7 +24,7 @@ class FruitStore {
         return true
     }
     
-    private func changeStock(fruit: Fruit, count: Int, isMinus: Bool = false) {
+    func changeStock(fruit: Fruit, count: Int, isMinus: Bool = false) {
         let stockCount = stock[fruit.index]
         
         var computedCount: Int {
@@ -34,14 +36,12 @@ class FruitStore {
     
     func canSupplyRequest(ingredient: [(Fruit, Int)]) -> Bool {
         guard haveInStock(ingredient: ingredient) else {
-            print("재고가 부족합니다.")
             return false
         }
-        print(stock)
+        
         for (fruit, count) in ingredient {
             changeStock(fruit: fruit, count: count, isMinus: true)
         }
-        print(stock)
         return true
     }
 }
