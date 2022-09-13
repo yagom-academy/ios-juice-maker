@@ -109,9 +109,9 @@ class JuiceMakerViewController: UIViewController {
             NSLog("The \"OK\" alert occured.")
             self.presentStockEditorViewController()
         })
-        let cancle = UIAlertAction(title: "Cancle", style: .default, handler: { _ in
-            NSLog("The \"Cancle\" alert occured.")})
-        alert.addAction(cancle)
+        let cancel = UIAlertAction(title: "Cancle", style: .default, handler: { _ in
+            NSLog("The \"Cancel\" alert occured.")})
+        alert.addAction(cancel)
         alert.addAction(ok)
         
         return present(alert, animated: true, completion: nil)
@@ -127,6 +127,7 @@ class JuiceMakerViewController: UIViewController {
         
         return result.joined(separator: "\n")
     }
+    
     private func requestStockAvailability(for juice: Juice) -> Bool {
         do {
             try JuiceMaker.sharedStore.checkStockAvailability(of: juice)
