@@ -60,7 +60,6 @@
 			children = (
 				B49C79A228BDC64800835BF9 /* Fruit.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
-				B47820C228C0A285001EFE82 /* Variation.swift */,
 			);
 			path = Fruit;
 			sourceTree = "<group>";
@@ -84,6 +83,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		57612E3A28D0259B000653E7 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				B47820C228C0A285001EFE82 /* Variation.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +105,7 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				57612E3A28D0259B000653E7 /* Enum */,
 				043A88E328BF35EB002CBF5F /* Fruit */,
 				043A88E428BF35FF002CBF5F /* Juice */,
 			);

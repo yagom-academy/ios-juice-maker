@@ -8,16 +8,8 @@ struct JuiceMaker {
 }
 
 extension JuiceMaker: JuiceMakerProtocol {
-    
     func getFruitStock() -> FruitStock {
         return fruitStore.sendFruitStock()
-    }
-    
-    func noticeResultOfJuiceMaking(isSuccess: Bool, juiceName: String) {
-        NotificationCenter.default.post(
-            name: .resultInmakingJuice,
-            object: nil,
-            userInfo: ["isMakingSuccess": isSuccess, "juiceName": juiceName])
     }
     
     func canMakeJuice(_ recipe: [Juice.Recipe]) throws {
@@ -32,11 +24,5 @@ extension JuiceMaker: JuiceMakerProtocol {
                 amount: ingredient.amount
             )
         }
-        
-        debugPrint("\(juice)를 만들었습니다!")
     }
-}
-
-extension Notification.Name {
-    static let resultInmakingJuice = Notification.Name("resultInmakingJuice")
 }
