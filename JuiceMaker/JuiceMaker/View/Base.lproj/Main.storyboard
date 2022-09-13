@@ -281,7 +281,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Stock Editor View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="StockEditorViewController" id="Yu1-lM-nqp" customClass="StockEditorViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -459,28 +459,29 @@
                                     <constraint firstItem="0H8-YG-eRM" firstAttribute="width" secondItem="STT-8n-3Rk" secondAttribute="width" id="fEl-HZ-muE"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whc-h1-k1k">
-                                <rect key="frame" x="792.66666666666663" y="68" width="48.333333333333371" height="31"/>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W8u-mq-tP3" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="A9Q-ec-k2l"/>
+                            <constraint firstItem="W8u-mq-tP3" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="QIV-1x-wt0"/>
+                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="W8u-mq-tP3" secondAttribute="trailing" constant="10" id="cIg-AN-dm3"/>
+                            <constraint firstItem="W8u-mq-tP3" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="10" id="fEA-Ng-pfE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Gwu-6j-xOO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="whc-h1-k1k">
+                                <rect key="frame" x="741" y="68" width="100" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="닫기"/>
                                 <connections>
                                     <action selector="tappedCloseModalButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="iOd-0S-kxw"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="W8u-mq-tP3" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="A9Q-ec-k2l"/>
-                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="whc-h1-k1k" secondAttribute="trailing" constant="41" id="IUC-tJ-Vfq"/>
-                            <constraint firstItem="W8u-mq-tP3" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="QIV-1x-wt0"/>
-                            <constraint firstItem="whc-h1-k1k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gcO-Xb-kNs" secondAttribute="leading" symbolic="YES" id="a2S-20-Q5v"/>
-                            <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="W8u-mq-tP3" secondAttribute="trailing" constant="10" id="cIg-AN-dm3"/>
-                            <constraint firstItem="W8u-mq-tP3" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="10" id="fEA-Ng-pfE"/>
-                            <constraint firstItem="whc-h1-k1k" firstAttribute="top" secondItem="gcO-Xb-kNs" secondAttribute="top" constant="24" id="i2G-zT-Swd"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="gKu-86-RhI" id="dYw-8M-UL8"/>
                         <outlet property="bananaStepper" destination="O5s-2N-3iP" id="78p-z7-8dg"/>
@@ -496,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1658.5308056872036" y="1170.7692307692307"/>
+            <point key="canvasLocation" x="1658.0993520518359" y="1170.5607476635514"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
