@@ -8,7 +8,7 @@ import UIKit
 class JuiceMakerViewController: UIViewController {
 	private let store = FruitStore()
 	lazy var maker = JuiceMaker(store: store)
-	
+    
     @IBOutlet var fruitLabels: [UILabel]!
 	
 	override func viewDidLoad() {
@@ -22,11 +22,25 @@ class JuiceMakerViewController: UIViewController {
 				  let controller = nabViewController.viewControllers.first as? ModifyViewController else {
 				return
 			}
-			controller.inventory = store.inventory
 			controller.delegate = self
 		}
 	}
 }
+
+// Delegate 관련 메서드
+extension JuiceMakerViewController: ModifyStockDelegate {
+    var inventory: [Fruit: Int] {
+        get {
+            return store.inventory
+        }
+    }
+    
+    func updateStock(by fruit: Fruit, to stock: Int) {
+        store.inventory[fruit] = stock
+        updateStockLabels()
+    }
+}
+
 
 // UI 관련 메서드
 private extension JuiceMakerViewController {
@@ -84,10 +98,3 @@ private extension JuiceMakerViewController {
     }
 }
 
-// Delegate 관련 메서드
-extension JuiceMakerViewController: ModifyStockDelegate {
-    func updateValues(changedStock: [Fruit : Int]) {
-        store.inventory = changedStock
-        updateStockLabels()
-    }
-}
