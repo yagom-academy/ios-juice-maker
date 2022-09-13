@@ -10,7 +10,7 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateAllFruitsCount()
+        updateAllFruitsCount() 
     }
     
     private func requestUpdateFruitCount(fruitJuice: FruitJuice) {
