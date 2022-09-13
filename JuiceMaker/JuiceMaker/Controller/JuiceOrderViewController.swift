@@ -6,15 +6,18 @@
 
 import UIKit
 
+protocol FruitInventoryDelegate: AnyObject {
+    var inventoryList: [Fruit: Int] { get }
+    func deliver(_ inventoryList: [Fruit: Int])
+}
+
 class JuiceOrderViewController: UIViewController {
     @IBOutlet private var fruitLabels: [UILabel]!
     
     private let juiceMaker = JuiceMaker()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateInventory()
     }
     
@@ -97,7 +100,18 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
-        nextViewController.receivedFruitStore = juiceMaker.fruitStore
+        nextViewController.delegater = self
     }
 }
 
+extension JuiceOrderViewController: FruitInventoryDelegate {
+    var inventoryList: [Fruit : Int] {
+        return self.juiceMaker.fruitStore.inventoryList
+    }
+    
+    func deliver(_ inventoryList: [Fruit : Int]) {
+        self.juiceMaker.fruitStore.update(to: inventoryList)
+    }
+    
+    
+}

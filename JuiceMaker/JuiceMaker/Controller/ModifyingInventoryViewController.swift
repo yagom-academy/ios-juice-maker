@@ -3,6 +3,9 @@ import UIKit
 class ModifyingInventoryViewController: UIViewController {
     static let identifier: String = "ModifyingInventoryViewController"
 
+    weak var delegater: FruitInventoryDelegate?
+    var inventoryList: [Fruit: Int] = [:]
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
@@ -15,8 +18,6 @@ class ModifyingInventoryViewController: UIViewController {
     @IBOutlet weak var pineappleStepper: UIStepper!
     @IBOutlet weak var kiwiStepper: UIStepper!
     
-    var receivedFruitStore: FruitStore?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,11 +25,12 @@ class ModifyingInventoryViewController: UIViewController {
     }
     
     func fetchInventory() {
-        guard let fruitStore = receivedFruitStore else {
+        guard let delegater = delegater else {
             return
         }
+        self.inventoryList = delegater.inventoryList
         
-        fruitStore.inventoryList.forEach { (fruit: Fruit, inventory: Int) in
+        inventoryList.forEach { (fruit: Fruit, inventory: Int) in
             switch fruit {
             case .strawberry:
                 strawberryLabel.text = "\(inventory)"
@@ -50,26 +52,37 @@ class ModifyingInventoryViewController: UIViewController {
     }
     
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
+        delegater?.deliver(inventoryList)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func changeStrawberryInventory(_ sender: UIStepper) {
-        strawberryLabel.text = Int(sender.value).description
+        let value = Int(sender.value)
+        inventoryList[.strawberry] = value
+        strawberryLabel.text = value.description
     }
     
     @IBAction func changeBananaInventory(_ sender: UIStepper) {
-        bananaLabel.text = Int(sender.value).description
+        let value = Int(sender.value)
+        inventoryList[.banana] = value
+        bananaLabel.text = value.description
     }
     
     @IBAction func changeMangoInventory(_ sender: UIStepper) {
-        mangoLabel.text = Int(sender.value).description
+        let value = Int(sender.value)
+        inventoryList[.mango] = value
+        mangoLabel.text = value.description
     }
     
     @IBAction func changePineappleInventory(_ sender: UIStepper) {
-        pineappleLabel.text = Int(sender.value).description
+        let value = Int(sender.value)
+        inventoryList[.pineapple] = value
+        pineappleLabel.text = value.description
     }
     
     @IBAction func changeKiwiInventory(_ sender: UIStepper) {
-        kiwiLabel.text = Int(sender.value).description
+        let value = Int(sender.value)
+        inventoryList[.kiwi] = value
+        kiwiLabel.text = value.description
     }
 }

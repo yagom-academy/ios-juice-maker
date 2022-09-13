@@ -36,4 +36,8 @@ class FruitStore {
         }
         return false
     }
+    
+    func update(to inventoryList: [Fruit: Int]) {
+        self.inventoryList = inventoryList
+    }
 }
