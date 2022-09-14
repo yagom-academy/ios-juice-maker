@@ -32,7 +32,7 @@ class ChangeInventoryViewController: UIViewController {
         guard let fruit = takeFruit(of: sender) else { return }
         guard let fruitLabel = takeFruitLabel(of: sender) else { return }
         fruitLabel.text = Int(sender.value).description
-        JuiceMaker.store.inventory[fruit] = Int(sender.value)
+        juiceMaker.store.inventory[fruit] = Int(sender.value)
     }
     
     private func takeFruitLabel(of sender: UIStepper) -> UILabel? {
@@ -70,11 +70,11 @@ class ChangeInventoryViewController: UIViewController {
     }
     
     private func checkStepperValue() {
-        strawberryStepper.value = Double(JuiceMaker.store.inventory[.strawBerry] ?? 0)
-        bananaStepper.value = Double(JuiceMaker.store.inventory[.banana] ?? 0)
-        pineappleStepper.value = Double(JuiceMaker.store.inventory[.pineApple] ?? 0)
-        kiwiStepper.value = Double(JuiceMaker.store.inventory[.kiwi] ?? 0)
-        mangoStepper.value = Double(JuiceMaker.store.inventory[.mango] ?? 0)
+        strawberryStepper.value = Double(juiceMaker.store.inventory[.strawBerry] ?? 0)
+        bananaStepper.value = Double(juiceMaker.store.inventory[.banana] ?? 0)
+        pineappleStepper.value = Double(juiceMaker.store.inventory[.pineApple] ?? 0)
+        kiwiStepper.value = Double(juiceMaker.store.inventory[.kiwi] ?? 0)
+        mangoStepper.value = Double(juiceMaker.store.inventory[.mango] ?? 0)
     }
     
     private func checkInventory() {
