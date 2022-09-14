@@ -38,10 +38,11 @@ class ViewController: UIViewController {
         self.mangoStockLabel.text = "\(fruitStore.fruitsStock[.mango] ?? 0)"
     }
     
-    func transitionView(){
-        guard let editStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") else { return }
-        
-        self.present(editStockViewController, animated: true)
+    func transitionView() {
+        guard let editStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "EditStockViewController") as? EditStockViewController else { return }
+        let editStockNavigationController = UINavigationController(rootViewController: editStockViewController)
+        editStockViewController.stock = fruitStore.fruitsStock
+        self.present(editStockNavigationController, animated: true)
     }
     
     func alertSuccess(for juice: Juice) {
@@ -66,7 +67,7 @@ class ViewController: UIViewController {
                                                object: nil)
     }
     
-    @objc func didReceivedFruitsAmountChanged(_ noti: Notification){
+    @objc func didReceivedFruitsAmountChanged(_ noti: Notification) {
         guard let userInfo = noti.userInfo?["fruitsStock"],
               let fruitsStock = userInfo as? Dictionary<Fruit,Int> else { return }
         
@@ -89,24 +90,27 @@ class ViewController: UIViewController {
             
             switch sender {
             case strawberryJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.strawberry)
+                juice = .strawberry
             case bananaJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.banana)
+                juice = .banana
             case pineappleJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.pineapple)
+                juice = .pineapple
             case kiwiJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.kiwi)
+                juice = .kiwi
             case mangoJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.mango)
+                juice = .mango
             case strawberryBananaJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.strawberryBanana)
+                juice = .strawberryBanana
             case mangoKiwiJuiceOrderButton:
-                juice = try juiceMaker.makeJuice(.mangoKiwi)
+                juice = .mangoKiwi
             default:
                 break
             }
             
-            if let juice = juice { alertSuccess(for: juice) }
+            if let juice = juice {
+                try juiceMaker.makeJuice(juice)
+                alertSuccess(for: juice)
+            }
             
         } catch {
             alertFailure(for: error)
