@@ -55,11 +55,11 @@ class ChangeInventoryViewController: UIViewController {
     private func takeFruit(of sender: UIStepper) -> Fruit? {
         switch sender {
         case strawberryStepper:
-            return .strawBerry
+            return .strawberry
         case bananaStepper:
             return .banana
         case pineappleStepper:
-            return .pineApple
+            return .pineapple
         case kiwiStepper:
             return .kiwi
         case mangoStepper:
@@ -70,17 +70,17 @@ class ChangeInventoryViewController: UIViewController {
     }
     
     private func checkStepperValue() {
-        strawberryStepper.value = Double(juiceMaker.store.inventory[.strawBerry] ?? 0)
+        strawberryStepper.value = Double(juiceMaker.store.inventory[.strawberry] ?? 0)
         bananaStepper.value = Double(juiceMaker.store.inventory[.banana] ?? 0)
-        pineappleStepper.value = Double(juiceMaker.store.inventory[.pineApple] ?? 0)
+        pineappleStepper.value = Double(juiceMaker.store.inventory[.pineapple] ?? 0)
         kiwiStepper.value = Double(juiceMaker.store.inventory[.kiwi] ?? 0)
         mangoStepper.value = Double(juiceMaker.store.inventory[.mango] ?? 0)
     }
     
     private func checkInventory() {
-        strawberryStockLabel.text = juiceMaker.checkStock(of: .strawBerry)
+        strawberryStockLabel.text = juiceMaker.checkStock(of: .strawberry)
         bananaStockLabel.text = juiceMaker.checkStock(of: .banana)
-        pineappleStockLabel.text = juiceMaker.checkStock(of: .pineApple)
+        pineappleStockLabel.text = juiceMaker.checkStock(of: .pineapple)
         kiwiStockLabel.text = juiceMaker.checkStock(of: .kiwi)
         mangoStockLabel.text = juiceMaker.checkStock(of: .mango)
     }
