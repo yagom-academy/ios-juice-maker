@@ -56,4 +56,8 @@ enum Juice {
             return [Ingredient(fruit: .mango, amount: 2), Ingredient(fruit: .kiwi, amount: 1)]
         }
     }
+    
+    var fruitList: [Fruit] {
+        return recipe.map{ $0.fruit }
+    }
 }

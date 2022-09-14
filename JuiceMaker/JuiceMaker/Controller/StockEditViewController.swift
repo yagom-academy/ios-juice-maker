@@ -62,46 +62,39 @@ class StockEditViewController: UIViewController {
         guard let currentStock = try? delegate?.fruitStore.currentStock(of: fruit) else {
             return nil
         }
-        let stockAmountToChange: Int = Int(stockStepper.value) - currentStock
+        let stockStepperValue: Int = Int(stockStepper.value)
+        let stockAmountToChange: Int = stockStepperValue - currentStock
         delegate?.fruitStore.changeStock(of: fruit, by: stockAmountToChange)
         return currentStock + stockAmountToChange
     }
     
     private func updateFruitStock() {
-        if let strawberryStock = try? delegate?.fruitStore.currentStock(of: .strawberry) {
-            strawberryStockLabel.text = "\(strawberryStock)"
-            strawberryStockStepper.value = Double(strawberryStock)
-        } else {
-            strawberryStockLabel.text = FruitStoreError.notExist
-            strawberryStockStepper.isEnabled = false
+        for fruit in Fruit.allCases {
+            let fruitStock: Int? = try? delegate?.fruitStore.currentStock(of: fruit)
+            updateFruitStockLabel(of: fruit, to: fruitStock)
+            updateFruitStockStepper(of: fruit, to: fruitStock)
         }
-        if let bananaStock = try? delegate?.fruitStore.currentStock(of: .banana) {
-            bananaStockLabel.text = "\(bananaStock)"
-            bananaStockStepper.value = Double(bananaStock)
-        } else {
-            bananaStockLabel.text = FruitStoreError.notExist
-            bananaStockStepper.isEnabled = false
+    }
+    
+    private func updateFruitStockLabel(of fruit: Fruit, to fruitStock: Int?) {
+        guard let label = self.view.viewWithTag(fruit.rawValue) as? UILabel else {
+            return
         }
-        if let kiwiStock = try? delegate?.fruitStore.currentStock(of: .kiwi) {
-            kiwiStockLabel.text = "\(kiwiStock)"
-            kiwiStockStepper.value = Double(kiwiStock)
+        if let stock = fruitStock {
+            label.text = "\(stock)"
         } else {
-            kiwiStockLabel.text = FruitStoreError.notExist
-            kiwiStockStepper.isEnabled = false
+            label.text = FruitStoreError.notExist
         }
-        if let pineappleStock = try? delegate?.fruitStore.currentStock(of: .pineapple) {
-            pineappleStockLabel.text = "\(pineappleStock)"
-            pineappleStockStepper.value = Double(pineappleStock)
-        } else {
-            pineappleStockLabel.text = FruitStoreError.notExist
-            pineappleStockStepper.isEnabled = false
+    }
+    
+    private func updateFruitStockStepper(of fruit: Fruit, to fruitStock: Int?) {
+        guard let stepper = self.view.viewWithTag(-fruit.rawValue) as? UIStepper  else {
+            return
         }
-        if let mangoStock = try? delegate?.fruitStore.currentStock(of: .mango) {
-            mangoStockLabel.text = "\(mangoStock)"
-            mangoStockStepper.value = Double(mangoStock)
+        if let stock = fruitStock {
+            stepper.value = Double(stock)
         } else {
-            mangoStockLabel.text = FruitStoreError.notExist
-            mangoStockStepper.isEnabled = false
+            stepper.isEnabled = false
         }
     }
 }

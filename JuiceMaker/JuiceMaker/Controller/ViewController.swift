@@ -31,7 +31,7 @@ class ViewController: UIViewController, FruitStoreDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateFruitStockLabel()
-        fitText()
+        adjustsFontSizeOfButtonsToFitWidth()
     }
     
     @IBAction private func touchUpEditStockButton(_ sender: UIBarButtonItem) {
@@ -100,7 +100,7 @@ class ViewController: UIViewController, FruitStoreDelegate {
     private func showAddFruitsAlert(of juice: Juice, _ message: String) {
         let addAction = UIAlertAction(title: AlertText.yes,
                                       style: .default) { (action) in
-            self.fruitStore.addFruit(of: juice)
+            self.fruitStore.addNewFruitsOf(juice.fruitList)
             self.updateFruitStockLabel()
         }
         let cancelAction = UIAlertAction(title: AlertText.no,
@@ -161,10 +161,10 @@ class ViewController: UIViewController, FruitStoreDelegate {
         }
     }
     
-    private func fitText() {
+    private func adjustsFontSizeOfButtonsToFitWidth() {
         let buttons: [UIButton] = [strawberryJuiceOrderButton, bananaJuiceOrderButton, kiwiJuiceOrderButton, pineappleJuiceOrderButton, strawberryBananaMixJuiceOrderButton, mangoJuiceOrderButton, mangoKiwiMixJuiceOrderButton]
         for button in buttons {
-            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.textAlignment = .center
         }
     }
 }
