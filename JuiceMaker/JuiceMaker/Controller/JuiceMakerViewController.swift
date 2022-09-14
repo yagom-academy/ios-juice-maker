@@ -81,11 +81,11 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func setLabelValue() {
-        strawBerryLabel.text = JuiceMaker.sharedStore.stock["딸기"]?.description
-        bananaLabel.text = JuiceMaker.sharedStore.stock["바나나"]?.description
-        pineAppleLabel.text = JuiceMaker.sharedStore.stock["파인애플"]?.description
-        kiwiLabel.text = JuiceMaker.sharedStore.stock["키위"]?.description
-        mangoLabel.text = JuiceMaker.sharedStore.stock["망고"]?.description
+        strawBerryLabel.text = JuiceMaker.sharedStore.stock[Fruit.strawBerry.rawValue]?.description
+        bananaLabel.text = JuiceMaker.sharedStore.stock[Fruit.banana.rawValue]?.description
+        pineAppleLabel.text = JuiceMaker.sharedStore.stock[Fruit.pineApple.rawValue]?.description
+        kiwiLabel.text = JuiceMaker.sharedStore.stock[Fruit.kiwi.rawValue]?.description
+        mangoLabel.text = JuiceMaker.sharedStore.stock[Fruit.mango.rawValue]?.description
     }
     
     func presentStockEditorViewController() {
