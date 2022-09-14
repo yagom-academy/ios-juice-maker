@@ -24,7 +24,7 @@ struct JuiceMaker {
         for (fruit, _) in recipe {
             guard let fruitStock = store.inventory[fruit] else { return false }
             guard let fruitRequiredNumber = recipe[fruit] else { return false }
-
+            
             store.inventory[fruit] = fruitStock - fruitRequiredNumber
         }
         

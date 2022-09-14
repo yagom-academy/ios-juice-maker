@@ -7,7 +7,6 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -35,9 +34,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-
     private func takeJuiceMenu(of sender: UIButton) -> Juice? {
-
         switch sender {
         case strawberryBananaJuiceOrderButton:
             return .strawberryBanana
@@ -66,15 +63,17 @@ class HomeViewController: UIViewController {
                                style: .default,
                                handler: {_ in
             if !checkSuccess {
-            self.presentChangeInventoryViewController()
+                self.presentChangeInventoryViewController()
             }
         })
         if !checkSuccess {
             let cancel = UIAlertAction(title: "취소",
                                        style: .cancel,
                                        handler: nil)
+            
             alert.addAction(cancel)
         }
+        
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
@@ -98,5 +97,4 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         checkInventory()
     }
-    
 }

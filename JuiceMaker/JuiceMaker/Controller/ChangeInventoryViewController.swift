@@ -8,7 +8,6 @@
 import UIKit
 
 class ChangeInventoryViewController: UIViewController {
-    
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -44,8 +43,8 @@ class ChangeInventoryViewController: UIViewController {
         }
     }
     
-    private func setFruitStepper(number stepper: Int) -> Array<UIStepper> {
-        var fruitStepperArray:Array<UIStepper> = []
+    private func setFruitStepper(number stepper: Int) -> [UIStepper] {
+        var fruitStepperArray: [UIStepper] = []
         
         for tagNumber in 1...stepper {
             guard let fruitStepper = self.view.viewWithTag(tagNumber) as? UIStepper
@@ -57,7 +56,7 @@ class ChangeInventoryViewController: UIViewController {
     }
     
     private func checkStepperValue() {
-        var fruitStepper:Array<UIStepper> = setFruitStepper(number: 5)
+        var fruitStepper: [UIStepper] = setFruitStepper(number: 5)
         
         for fruit in Fruit.allCases {
             let stepper = fruitStepper.removeFirst()
