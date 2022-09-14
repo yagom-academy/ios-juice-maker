@@ -21,7 +21,6 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiButton: UIButton!
     @IBOutlet weak var mangoButton: UIButton!
     
-//    private var juiceMaker = JuiceMaker()
     private var observation: NSKeyValueObservation?
     
     override func viewDidLoad() {
@@ -89,32 +88,28 @@ class JuiceMakerViewController: UIViewController {
         mangoLabel.text = JuiceMaker.sharedStore.stock["망고"]?.description
     }
     
-    private func presentStockEditorViewController() {
+    func presentStockEditorViewController() {
         guard let stockEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditorViewController") else { return }
-        self.present(stockEditorViewController, animated: true, completion: nil)
+        self.present(stockEditorViewController, animated: true)
     }
     
     private func presentAlertOrderIsReady(_ juice: Juice) {
-        let alert = UIAlertController(title: "완성!", message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
-        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")})
-        alert.addAction(ok)
+        let alert = Alerter(title: "완성",
+                            message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!",
+                            isPresentable: false,
+                            presentOn: self).alertController
         
-        return present(alert, animated: true, completion: nil)
+        return present(alert, animated: true)
     }
     
     private func presentAlertNotEnoughStock(data: [Fruit: Int]) {
-        let alert = UIAlertController(title: "재고 부족!", message: "재료가 모자라요.\n \(getInsufficientFruitInformation(from: data))\n재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
-        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
-            self.presentStockEditorViewController()
-        })
-        let cancel = UIAlertAction(title: "Cancle", style: .default, handler: { _ in
-            NSLog("The \"Cancel\" alert occured.")})
-        alert.addAction(cancel)
-        alert.addAction(ok)
+        let alert = Alerter(title: "Hello!",
+                            message: "재료가 모자라요.\n \(getInsufficientFruitInformation(from: data))\n재고를 수정할까요?",
+                            isPresentable: true,
+                            presentOn: self).alertController
         
-        return present(alert, animated: true, completion: nil)
+        return present(alert, animated: true)
+        
     }
     
     private func getInsufficientFruitInformation(from data: [Fruit: Int]) -> String {
