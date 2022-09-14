@@ -17,64 +17,52 @@ class ChangeInventoryViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBOutlet weak private var strawberryStepper: UIStepper!
-    @IBOutlet weak private var bananaStepper: UIStepper!
-    @IBOutlet weak private var pineappleStepper: UIStepper!
-    @IBOutlet weak private var kiwiStepper: UIStepper!
-    @IBOutlet weak private var mangoStepper: UIStepper!
-    
     @IBAction private func closeButton(_ sender: UIButton) {
         dismiss(animated: true,
                 completion: nil)
     }
     
     @IBAction private func setFruitStock(_ sender: UIStepper) {
-        guard let fruit = takeFruit(of: sender) else { return }
-        guard let fruitLabel = takeFruitLabel(of: sender) else { return }
-        fruitLabel.text = Int(sender.value).description
-        juiceMaker.store.inventory[fruit] = Int(sender.value)
-    }
-    
-    private func takeFruitLabel(of sender: UIStepper) -> UILabel? {
-        switch sender {
-        case strawberryStepper:
-            return strawberryStockLabel
-        case bananaStepper:
-            return bananaStockLabel
-        case pineappleStepper:
-            return pineappleStockLabel
-        case kiwiStepper:
-            return kiwiStockLabel
-        case mangoStepper:
-            return mangoStockLabel
+        switch sender.tag {
+        case 1:
+            strawberryStockLabel.text = Int(sender.value).description
+            juiceMaker.store.inventory[.strawberry] = Int(sender.value)
+        case 2:
+            bananaStockLabel.text = Int(sender.value).description
+            juiceMaker.store.inventory[.banana] = Int(sender.value)
+        case 3:
+            pineappleStockLabel.text = Int(sender.value).description
+            juiceMaker.store.inventory[.pineapple] = Int(sender.value)
+        case 4:
+            kiwiStockLabel.text = Int(sender.value).description
+            juiceMaker.store.inventory[.kiwi] = Int(sender.value)
+        case 5:
+            mangoStockLabel.text = Int(sender.value).description
+            juiceMaker.store.inventory[.mango] = Int(sender.value)
         default:
-            return nil
+            break
         }
     }
     
-    private func takeFruit(of sender: UIStepper) -> Fruit? {
-        switch sender {
-        case strawberryStepper:
-            return .strawberry
-        case bananaStepper:
-            return .banana
-        case pineappleStepper:
-            return .pineapple
-        case kiwiStepper:
-            return .kiwi
-        case mangoStepper:
-            return .mango
-        default:
-            return nil
+    private func setFruitStepper(number stepper: Int) -> Array<UIStepper> {
+        var fruitStepperArray:Array<UIStepper> = []
+        
+        for tagNumber in 1...stepper {
+            guard let fruitStepper = self.view.viewWithTag(tagNumber) as? UIStepper
+            else { break }
+            fruitStepperArray.append(fruitStepper)
         }
+        
+        return fruitStepperArray
     }
     
     private func checkStepperValue() {
-        strawberryStepper.value = Double(juiceMaker.store.inventory[.strawberry] ?? 0)
-        bananaStepper.value = Double(juiceMaker.store.inventory[.banana] ?? 0)
-        pineappleStepper.value = Double(juiceMaker.store.inventory[.pineapple] ?? 0)
-        kiwiStepper.value = Double(juiceMaker.store.inventory[.kiwi] ?? 0)
-        mangoStepper.value = Double(juiceMaker.store.inventory[.mango] ?? 0)
+        var fruitStepper:Array<UIStepper> = setFruitStepper(number: 5)
+        
+        for fruit in Fruit.allCases {
+            let stepper = fruitStepper.removeFirst()
+            stepper.value = Double(juiceMaker.store.inventory[fruit] ?? 0)
+        }
     }
     
     private func checkInventory() {
