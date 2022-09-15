@@ -7,10 +7,6 @@ class JuiceMaker {
     
     private init() { }
     
-    func requestFruitStore() -> FruitStore {
-        return fruitStore
-    }
-    
     func makeFruitJuice(of fruitJuice: FruitJuice) throws {
         if !fruitStore.isFruitListStock(fruitJuice.ingredients) {
             throw JuiceMakerError.underFlowOfAmount
