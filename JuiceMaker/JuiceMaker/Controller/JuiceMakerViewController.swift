@@ -18,6 +18,7 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var pineappleStockLabel: UILabel!
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
+    let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,6 @@ class JuiceMakerViewController: UIViewController {
                                                name: NSNotification.Name("stockChanged"),
                                                object: nil)
     }
-    
-    let juiceMaker = JuiceMaker()
     
     func designateFruitStock() {
         let fruitStock = juiceMaker.fruitStorage.updateFruitStock()
@@ -127,11 +126,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func tappedOrderButton(_ sender: UIButton) {
-        
         guard let juice = Juice(rawValue: sender.tag) else {
             return
         }
-        
         juiceMaker.makeJuice(to: juice, in: self)
     }
 }

@@ -12,7 +12,7 @@ struct JuiceMaker {
                 let stock = try fruitStorage.checkEmptyStock(to: fruit)
                 let remainingStock = try fruitStorage.checkStockAmount(to: stock, with: amountOfFruit)
                 fruitStorage.changeFruitStock(to: remainingStock, to: fruit)
-                view.showSuccessAlert(to: order) // 최종 목적지
+                view.showSuccessAlert(to: order) 
             } catch OrderError.outOfStock {
                 view.showFailedAlert()
             } catch OrderError.emptyStock {
