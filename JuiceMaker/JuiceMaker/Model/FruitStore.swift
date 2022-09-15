@@ -27,16 +27,27 @@ class FruitStore {
         return stock
     }
     
-    func checkStockAmount(to stock: Int, with amountOfFruit: Int) throws -> Int {
-        let remainingStock: Int = stock - amountOfFruit
-        
-        guard remainingStock >= 0 else {
-            throw OrderError.outOfStock
+    func checkStockAmount(to stock: Int, with amountOfFruit: Int) -> Bool {
+        guard stock >= amountOfFruit else {
+            return false
         }
-        return remainingStock
+        return true
     }
     
-    func changeFruitStock(to remainingStock: Int, to fruit: Fruit) {
-        self.stock.updateValue(remainingStock, forKey: fruit)
+    func checkStockBeforeUsed(to stock: Int, with amountOfFruit: Int) -> Bool {
+        var resultOfFruitStock: [Bool] = []
+        let value = checkStockAmount(to: stock, with: amountOfFruit)
+        resultOfFruitStock.append(value)
+        
+        for value in resultOfFruitStock {
+            if value == false {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func changeFruitStock(to stock: Int, to amountOfFruit: Int, of fruit: Fruit) {
+        self.stock.updateValue(stock - amountOfFruit, forKey: fruit)
     }
 }
