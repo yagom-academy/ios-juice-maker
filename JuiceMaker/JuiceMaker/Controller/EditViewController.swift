@@ -32,8 +32,10 @@ class EditViewController: UIViewController {
     }
     
     @IBAction private func tappedStepper(_ sender: UIStepper) {
-        fruitCountLabels?[sender.tag].text = Int(sender.value).description
-        stock?[sender.tag] = Int(sender.value)
+        let fruitIndex = sender.tag, newCount = sender.value
+        
+        fruitCountLabels?[fruitIndex].text = Int(newCount).description
+        stock?[fruitIndex] = Int(newCount)
     }
     
     private func updateStockCount() {
@@ -53,9 +55,10 @@ class EditViewController: UIViewController {
     private func setStepperValue() {
         guard let stock = stock else { return }
         
-        for fruitStepper in fruitSteppers {
-            fruitStepper.value = Double(stock[fruitStepper.tag])
+        fruitSteppers.forEach { fruitStepper in
+            let fruitIndex = fruitStepper.tag
+            
+            fruitStepper.value = Double(stock[fruitIndex])
         }
     }
-    
 }
