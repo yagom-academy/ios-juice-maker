@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
         let alert = UIAlertController(title: nil,
                                       message: isSuccess ? juiceName + AlertMesaage.successMesaage : AlertMesaage.failureMesaage,
                                       preferredStyle: .alert)
-        let comfirmAction = UIAlertAction(title: isSuccess ? AlertMesaage.successComfirm : AlertMesaage.failureComfirm,
+        let comfirmAction = UIAlertAction(title: isSuccess ? AlertMesaage.successConfirm : AlertMesaage.failureConfirm,
                                           style: .default,
                                           handler: isSuccess ? nil : { _ in self.tappedModifyBarButton(()) })
         

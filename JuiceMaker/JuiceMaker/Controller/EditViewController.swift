@@ -7,23 +7,23 @@ import UIKit
 
 class EditViewController: UIViewController {
     private var store: FruitStore?
-    private var stock: [Int]?
     
     @IBOutlet var fruitCountLabels: [UILabel]!
     @IBOutlet var fruitSteppers: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        store?.setQueuedStock()
         updateStockCount()
         setStepperValue()
     }
     
+    func setStore(from store: FruitStore) {
+        self.store = store
+    }
+    
     @IBAction private func tappedApplyButton(_ sender: UIButton) {
-        guard let newStock = stock else { return }
-        
-        for (fruitIndex, newFruit) in newStock.enumerated() {
-            store?.changeStock(fruitIndex: fruitIndex, count: newFruit)
-        }
+        store?.confirmChange()
         dismiss(animated: true)
     }
     
@@ -35,11 +35,11 @@ class EditViewController: UIViewController {
         let fruitIndex = sender.tag, newCount = sender.value
         
         fruitCountLabels?[fruitIndex].text = Int(newCount).description
-        stock?[fruitIndex] = Int(newCount)
+        store?.changeQueueStock(fruitIndex: fruitIndex, count: Int(newCount))
     }
     
     private func updateStockCount() {
-        guard var newStock = stock else { return }
+        guard var newStock = store?.queuedStock else { return }
         
         for fruitCountLabel in fruitCountLabels {
             if newStock.isEmpty { return }
@@ -47,13 +47,8 @@ class EditViewController: UIViewController {
         }
     }
     
-    func setStore(from store: FruitStore) {
-        self.store = store
-        self.stock = store.stock
-    }
-    
     private func setStepperValue() {
-        guard let stock = stock else { return }
+        guard let stock = store?.queuedStock else { return }
         
         fruitSteppers.forEach { fruitStepper in
             let fruitIndex = fruitStepper.tag

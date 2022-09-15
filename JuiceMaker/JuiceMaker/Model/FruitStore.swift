@@ -7,6 +7,7 @@ import Foundation
 
 class FruitStore {
     private(set) var stock: [Int]
+    private(set) var queuedStock = [Int]()
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
@@ -24,8 +25,17 @@ class FruitStore {
         return true
     }
 
-    func changeStock(fruitIndex: Int, count: Int) {
-        stock[fruitIndex] = count
+    func setQueuedStock() {
+        queuedStock = stock
+    }
+    
+    func changeQueueStock(fruitIndex: Int, count: Int) {
+        queuedStock[fruitIndex] = count
+    }
+    
+    func confirmChange() {
+        stock = queuedStock
+        queuedStock = [Int]()
     }
     
     private func removeStock(fruit: Fruit, count: Int) {
