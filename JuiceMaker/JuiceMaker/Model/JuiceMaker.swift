@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import Foundation
+
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
@@ -16,10 +18,9 @@ struct JuiceMaker {
         return true
     }
     
-    func checkEnoughStock(juice: Juice) throws -> Bool {
+    private func checkEnoughStock(juice: Juice) throws -> Bool {
         for fruit in juice.recipe {
             let stock = fruitStore.bringValidFruitStock(fruit.name)
-            
             guard stock != ConstantUsageFruit.invalidFruit else {
                 return false
             }
@@ -32,7 +33,7 @@ struct JuiceMaker {
         return true
     }
     
-    func canManufactureJuice(juice: Juice) -> Bool {
+    private func canManufactureJuice(juice: Juice) -> Bool {
         var isEnoughStock: Bool = false
         
         do {
@@ -45,5 +46,9 @@ struct JuiceMaker {
         }
         
         return isEnoughStock
+    }
+    
+    func passingChangedFruitStock(_ changedStock: [Fruit : Int]) {
+        fruitStore.updateFruits(changedStock)
     }
 }

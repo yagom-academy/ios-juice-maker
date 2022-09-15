@@ -36,4 +36,25 @@ enum Juice: String {
                     (name: .kiwi, count: ConstantUsageFruit.mangoKiwi.kiwi)]
         }
     }
+    
+    static func findJuiceButtonTag(location: Int) -> Juice? {
+        switch location {
+        case 0:
+            return .strawberryJuice
+        case 1:
+            return .bananaJuice
+        case 2:
+            return .pineappleJuice
+        case 3:
+            return .kiwiJuice
+        case 4:
+            return .mangoJuice
+        case 5:
+            return .strawberryBananaJuice
+        case 6:
+            return .mangoKiwiJuice
+        default:
+            return nil
+        }
+    }
 }

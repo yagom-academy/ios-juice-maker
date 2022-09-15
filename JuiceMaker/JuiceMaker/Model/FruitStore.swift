@@ -4,8 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
-    private var fruitStock: [Fruit : Int] = [:]
+final class FruitStore {
+    private(set) var fruitStock: [Fruit : Int] = [:]
     
     init(defaultStock: Int = 10) {
         for fruit in Fruit.allCases {
@@ -17,20 +17,19 @@ class FruitStore {
         guard let fruitAmount = fruitStock[fruit] else {
             throw JuiceMakerError.invalidFruit
         }
+        
         return fruitAmount
     }
     
-    func addFruits(fruit: Fruit, amount: Int) {
-        var fruitAmount = bringValidFruitStock(fruit)
-        
-        fruitAmount += amount
-        fruitStock[fruit] = fruitAmount
+    func updateFruits(_ updateStock: [Fruit : Int]) {
+        for (key, value) in updateStock {
+            fruitStock[key] = value
+        }
     }
     
     func substractFruits(juice: Juice) {
         for fruit in juice.recipe {
             var fruitAmount = bringValidFruitStock(fruit.name)
-            
             fruitAmount -= fruit.count
             fruitStock[fruit.name] = fruitAmount
         }
