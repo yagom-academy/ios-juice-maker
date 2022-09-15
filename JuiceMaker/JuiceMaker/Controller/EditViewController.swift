@@ -6,8 +6,8 @@
 import UIKit
 
 class EditViewController: UIViewController {
-    var store: FruitStore?
-    var stock: [Int]?
+    private var store: FruitStore?
+    private var stock: [Int]?
     
     @IBOutlet var fruitCountLabels: [UILabel]!
     @IBOutlet var fruitSteppers: [UIStepper]!

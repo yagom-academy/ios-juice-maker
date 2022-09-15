@@ -6,7 +6,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    let store = FruitStore(stockCount: 10)
+    private let store = FruitStore(stockCount: 10)
     private lazy var juiceMaker = JuiceMaker(store: store)
     
     @IBOutlet weak var strawberryBananaOrder: UIButton!
@@ -32,6 +32,7 @@ class MainViewController: UIViewController {
         navigationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
         guard let editViewController = navigationController.viewControllers.first as? EditViewController else { return }
+        
         editViewController.setStore(from: store)
         
         present(navigationController, animated: true)
