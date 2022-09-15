@@ -68,40 +68,26 @@ class MainViewController: UIViewController {
         
         if juiceMaker.makeJuice(juice) {
             updateStockCount()
-            self.madeJuiceAlert(message: juice.name)
+            resultAlert(isSuccess: true, juiceName: juice.name)
         } else {
-            self.failedAlert()
+            resultAlert(isSuccess: false)
         }
     }
     
-    private func madeJuiceAlert(message: String) {
+    private func resultAlert(isSuccess: Bool, juiceName: String = "") {
         let alert = UIAlertController(title: nil,
-                                      message: "\(message) 나왔습니다! 맛있게 드세요!",
+                                      message: isSuccess ? juiceName + AlertMesaage.successMesaage : AlertMesaage.failureMesaage,
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: Response.comfirm,
-                                     style: .default,
-                                     handler: nil)
+        let comfirmAction = UIAlertAction(title: isSuccess ? AlertMesaage.successComfirm : AlertMesaage.failureComfirm,
+                                          style: .default,
+                                          handler: isSuccess ? nil : { _ in self.tappedModifyBarButton(()) })
         
-        alert.addAction(okAction)
+        alert.addAction(comfirmAction)
         
-        present(alert, animated: true)
-    }
-    
-    private func failedAlert() {
-        let alert = UIAlertController(title: nil,
-                                      message: "재료가 모자라요. 재고를 수정할까요?",
-                                      preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: Response.yes,
-                                      style: .default,
-                                      handler: { _ in
-            self.tappedModifyBarButton(())
-        })
-        let noAction = UIAlertAction(title: Response.no,
-                                     style: .destructive,
-                                     handler: nil)
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
+        if !isSuccess {
+            let noAction = UIAlertAction(title: AlertMesaage.failureCencel, style: .cancel)
+            alert.addAction(noAction)
+        }
         
         present(alert, animated: true)
     }
