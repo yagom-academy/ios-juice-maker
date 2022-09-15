@@ -4,7 +4,7 @@ class ModifyingInventoryViewController: UIViewController {
     weak var delegate: JuiceOrderViewDelegate?
     var inventoryList: [Fruit: Int] = [:]
     
-//MARK: -View
+    //MARK: -View
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
@@ -23,10 +23,15 @@ class ModifyingInventoryViewController: UIViewController {
     }
     
     func setUpInventory() {
-        guard let delegate = delegate else {
-            return
+        if let delegate = delegate {
+            self.inventoryList = delegate.juiceOrderViewInventoryList
+        } else {
+            let defaultValueOfInventory = 10
+            
+            Fruit.allCases.forEach {
+                self.inventoryList[$0] = defaultValueOfInventory
+            }
         }
-        self.inventoryList = delegate.juiceOrderViewInventoryList
         
         inventoryList.forEach { (fruit: Fruit, inventory: Int) in
             switch fruit {
@@ -49,7 +54,7 @@ class ModifyingInventoryViewController: UIViewController {
         }
     }
     
-//MARK: -Action
+    //MARK: -Action
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
         delegate?.juiceOrderViewDidChangeInventoryList(inventoryList)
         dismiss(animated: true, completion: nil)
