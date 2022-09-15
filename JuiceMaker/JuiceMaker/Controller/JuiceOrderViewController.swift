@@ -6,9 +6,9 @@
 
 import UIKit
 
-protocol FruitInventoryDelegate: AnyObject {
-    var inventoryList: [Fruit: Int] { get }
-    func deliver(_ inventoryList: [Fruit: Int])
+protocol JuiceOrderViewDelegate: AnyObject {
+    var juiceOrderViewInventoryList: [Fruit: Int] { get }
+    func juiceOrderViewDidChangeInventoryList(_ inventoryList: [Fruit: Int])
 }
 
 class JuiceOrderViewController: UIViewController {
@@ -28,7 +28,7 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
-        modifyingInventoryVC.delegater = self
+        modifyingInventoryVC.delegate = self
     }
     
     func updateInventory() {
@@ -108,12 +108,12 @@ class JuiceOrderViewController: UIViewController {
 }
 
 //MARK: -Extension Delegate Protocol
-extension JuiceOrderViewController: FruitInventoryDelegate {
-    var inventoryList: [Fruit : Int] {
+extension JuiceOrderViewController: JuiceOrderViewDelegate {
+    var juiceOrderViewInventoryList: [Fruit : Int] {
         return self.juiceMaker.fruitStore.inventoryList
     }
     
-    func deliver(_ inventoryList: [Fruit : Int]) {
+    func juiceOrderViewDidChangeInventoryList(_ inventoryList: [Fruit : Int]) {
         self.juiceMaker.fruitStore.update(to: inventoryList)
     }
 }
