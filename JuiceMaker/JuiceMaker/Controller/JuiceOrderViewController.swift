@@ -99,17 +99,19 @@ class JuiceOrderViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.juiceOrderViewDelegate = self
         
-        present(navigationController, animated: true)
+        present(navigationController,
+                animated: true,
+                completion: nil)
     }
 }
 
 //MARK: -Extension Delegate Protocol
 extension JuiceOrderViewController: JuiceOrderViewDelegate {
-    var juiceOrderViewInventoryList: [Fruit : Int] {
+    var juiceOrderViewInventoryList: [Fruit: Int] {
         return self.juiceMaker.fruitStore.inventoryList
     }
     
-    func juiceOrderViewDidChangeInventoryList(_ inventoryList: [Fruit : Int]) {
+    func juiceOrderViewDidChangeInventoryList(_ inventoryList: [Fruit: Int]) {
         self.juiceMaker.fruitStore.update(to: inventoryList)
     }
 }

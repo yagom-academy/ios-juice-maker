@@ -1,7 +1,10 @@
 import UIKit
 
 class ModifyingInventoryViewController: UIViewController {
-    var inventoryList: [Fruit: Int] = [:]
+    private var inventoryList: [Fruit: Int] = [:]
+    let stepperMaxValue: Double = 10000
+    let stepperMinValue: Double = 0
+    let stepperStepValue: Double = 1
     
     //MARK: -View
     @IBOutlet weak var strawberryLabel: UILabel!
@@ -55,9 +58,9 @@ class ModifyingInventoryViewController: UIViewController {
     }
     
     func setUpStepper(of stepper: UIStepper, _ value: Double) {
-        stepper.minimumValue = 0
-        stepper.maximumValue = 10000
-        stepper.stepValue = 1
+        stepper.minimumValue = stepperMinValue
+        stepper.maximumValue = stepperMaxValue
+        stepper.stepValue = stepperStepValue
         stepper.value = value
         stepper.autorepeat = true
         stepper.isContinuous = true
