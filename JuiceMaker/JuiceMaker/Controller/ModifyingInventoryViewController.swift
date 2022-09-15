@@ -1,7 +1,6 @@
 import UIKit
 
 class ModifyingInventoryViewController: UIViewController {
-    weak var delegate: JuiceOrderViewDelegate?
     var inventoryList: [Fruit: Int] = [:]
     
     //MARK: -View
@@ -23,7 +22,8 @@ class ModifyingInventoryViewController: UIViewController {
     }
     
     func setUpInventory() {
-        if let delegate = delegate {
+        if let navigationController = navigationController as? ModifyingInventoryNavigationController,
+           let delegate = navigationController.juiceOrderViewDelegate {
             self.inventoryList = delegate.juiceOrderViewInventoryList
         } else {
             let defaultValueOfInventory = 10
@@ -66,7 +66,10 @@ class ModifyingInventoryViewController: UIViewController {
     
     //MARK: -Action
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
-        delegate?.juiceOrderViewDidChangeInventoryList(inventoryList)
+        if let navigationController = navigationController as? ModifyingInventoryNavigationController,
+           let delegate = navigationController.juiceOrderViewDelegate {
+            delegate.juiceOrderViewDidChangeInventoryList(inventoryList)
+        }
         dismiss(animated: true, completion: nil)
     }
     

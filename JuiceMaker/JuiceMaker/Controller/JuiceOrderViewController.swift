@@ -21,16 +21,6 @@ class JuiceOrderViewController: UIViewController {
         updateInventory()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as? UINavigationController
-
-        guard let modifyingInventoryVC = navigationController?.viewControllers.first as? ModifyingInventoryViewController else {
-            return
-        }
-        
-        modifyingInventoryVC.delegate = self
-    }
-    
     func updateInventory() {
         fruitLabels.forEach { label in
             if let identifier = label.accessibilityIdentifier,
@@ -59,7 +49,7 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction func touchUpModifyButton(_ sender: UIBarButtonItem) {
-        self.showModifyingInventoryViewController()
+        self.showModifyingInventoryNavigationController()
     }
     
 //MARK: -Alert
@@ -87,7 +77,7 @@ class JuiceOrderViewController: UIViewController {
         
         let okAction = UIAlertAction(title: "예",
                                      style: .default) { (action) in
-            self.showModifyingInventoryViewController()
+            self.showModifyingInventoryNavigationController()
         }
         let cancleAction = UIAlertAction(title: "아니오",
                                          style: .default,
@@ -101,9 +91,15 @@ class JuiceOrderViewController: UIViewController {
                 completion: nil)
     }
     
-//MARK: -Segue
-    func showModifyingInventoryViewController() {
-        performSegue(withIdentifier: "modifyInventory", sender: nil)
+//MARK: -showView
+    func showModifyingInventoryNavigationController() {
+        guard let navigationController = storyboard?.instantiateViewController(withIdentifier: String(describing: ModifyingInventoryNavigationController.self)) as? ModifyingInventoryNavigationController else {
+            return
+        }
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.juiceOrderViewDelegate = self
+        
+        present(navigationController, animated: true)
     }
 }
 
