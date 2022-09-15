@@ -37,21 +37,31 @@ class ModifyingInventoryViewController: UIViewController {
             switch fruit {
             case .strawberry:
                 strawberryLabel.text = "\(inventory)"
-                strawberryStepper.value = Double(inventory)
+                setUpStepper(of: strawberryStepper, Double(inventory))
             case .banana:
                 bananaLabel.text = "\(inventory)"
-                bananaStepper.value = Double(inventory)
+                setUpStepper(of: bananaStepper, Double(inventory))
             case .kiwi:
                 kiwiLabel.text = "\(inventory)"
-                kiwiStepper.value = Double(inventory)
+                setUpStepper(of: kiwiStepper, Double(inventory))
             case .pineapple:
                 pineappleLabel.text = "\(inventory)"
-                pineappleStepper.value = Double(inventory)
+                setUpStepper(of: pineappleStepper, Double(inventory))
             case .mango:
                 mangoLabel.text = "\(inventory)"
-                mangoStepper.value = Double(inventory)
+                setUpStepper(of: mangoStepper, Double(inventory))
             }
         }
+    }
+    
+    func setUpStepper(of stepper: UIStepper, _ value: Double) {
+        stepper.minimumValue = 0
+        stepper.maximumValue = 10000
+        stepper.stepValue = 1
+        stepper.value = value
+        stepper.autorepeat = true
+        stepper.isContinuous = true
+        stepper.wraps = false
     }
     
     //MARK: -Action
