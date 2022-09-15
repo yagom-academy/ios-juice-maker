@@ -5,14 +5,14 @@
 
 import UIKit
 
-protocol ModifyStockDelegate {
+protocol ModifyStockDelegate: AnyObject {
     var inventory: [Fruit: Int] { get }
 	func updateStock(by fruit: Fruit, to stock: Int)
 }
 
 class ModifyViewController: UIViewController {
 	static let identifier = "presentModifyViewController"
-    var delegate: ModifyStockDelegate?
+    weak var delegate: ModifyStockDelegate?
     
     @IBOutlet var fruitLabels: [UILabel]!
     @IBOutlet var stockSteppers: [UIStepper]!
