@@ -68,4 +68,12 @@ class FruitStore {
         }
         return currentStock
     }
+    
+    func addNewFruitsOf(_ fruitList: [Fruit]) {
+        for fruit in fruitList {
+            if inventory[fruit] == nil {
+                inventory[fruit] = 0
+            }
+        }
+    }
 }

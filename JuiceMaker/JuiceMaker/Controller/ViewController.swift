@@ -6,34 +6,39 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FruitStoreDelegate {
     
     var fruitStore: FruitStore = .init(inventory: [.strawberry: 10, .banana:10, .kiwi: 10, .mango: 10])
-    lazy var juiceMaker: JuiceMaker = .init(fruitStore: fruitStore)
+    private lazy var juiceMaker: JuiceMaker = .init(fruitStore: fruitStore)
     
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryBananaMixJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiMixJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet private weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryBananaMixJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoKiwiMixJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStockLabel()
     }
     
-    @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateFruitStockLabel()
+        adjustsFontSizeOfButtonsToFitWidth()
+    }
+    
+    @IBAction private func touchUpEditStockButton(_ sender: UIBarButtonItem) {
         presentStockEditView()
     }
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+    @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {
         guard let juice: Juice = juice(orderedBy: sender) else {
             return
         }
@@ -46,13 +51,15 @@ class ViewController: UIViewController {
             switch fruitStoreError {
             case .outOfStock:
                 showStockEditAlert(fruitStoreError.localizedDescription)
+            case .notInInventoryFruitList:
+                showAddFruitsAlert(of: juice, fruitStoreError.localizedDescription)
             default:
                 showOkayAlert(fruitStoreError.localizedDescription)
             }
         }
     }
     
-    func juice(orderedBy button: UIButton) -> Juice? {
+    private func juice(orderedBy button: UIButton) -> Juice? {
         switch button {
         case strawberryJuiceOrderButton:
             return .strawberryJuice
@@ -73,14 +80,14 @@ class ViewController: UIViewController {
         }
     }
     
-    func showOkayAlert(_ message: String) {
+    private func showOkayAlert(_ message: String) {
         let okAction = UIAlertAction(title: AlertText.okay,
                                      style: .default,
                                      handler: nil)
         showAlert(message, alertActions: okAction)
     }
     
-    func showStockEditAlert(_ message: String) {
+    private func showStockEditAlert(_ message: String) {
         let editAction = UIAlertAction(title: AlertText.yes,
                                        style: .default) { (action) in
             self.presentStockEditView()
@@ -90,7 +97,18 @@ class ViewController: UIViewController {
         showAlert(message, alertActions: editAction, cancelAction)
     }
     
-    func showAlert(_ message: String, alertActions: UIAlertAction...) {
+    private func showAddFruitsAlert(of juice: Juice, _ message: String) {
+        let addAction = UIAlertAction(title: AlertText.yes,
+                                      style: .default) { (action) in
+            self.fruitStore.addNewFruitsOf(juice.fruitList)
+            self.updateFruitStockLabel()
+        }
+        let cancelAction = UIAlertAction(title: AlertText.no,
+                                         style: .default)
+        showAlert(message, alertActions: addAction, cancelAction)
+    }
+    
+    private func showAlert(_ message: String, alertActions: UIAlertAction...) {
         let alert = UIAlertController(title: nil,
                                       message: message,
                                       preferredStyle: .alert)
@@ -102,18 +120,20 @@ class ViewController: UIViewController {
                 completion: nil)
     }
     
-    func presentStockEditView() {
+    private func presentStockEditView() {
         guard let stockEditViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditViewController") as? StockEditViewController else {
             return
         }
-        stockEditViewController.modalTransitionStyle = .coverVertical
-        stockEditViewController.modalPresentationStyle = .fullScreen
-        self.present(stockEditViewController,
+        stockEditViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: stockEditViewController)
+        navigationController.modalTransitionStyle = .coverVertical
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController,
                      animated: true,
                      completion: nil)
     }
     
-    func updateFruitStockLabel() {
+    private func updateFruitStockLabel() {
         if let strawberryStock = try? fruitStore.currentStock(of: .strawberry) {
             strawberryStockLabel.text = "\(strawberryStock)"
         } else {
@@ -138,6 +158,13 @@ class ViewController: UIViewController {
             mangoStockLabel.text = "\(mangoStock)"
         } else {
             mangoStockLabel.text = FruitStoreError.notExist
+        }
+    }
+    
+    private func adjustsFontSizeOfButtonsToFitWidth() {
+        let buttons: [UIButton] = [strawberryJuiceOrderButton, bananaJuiceOrderButton, kiwiJuiceOrderButton, pineappleJuiceOrderButton, strawberryBananaMixJuiceOrderButton, mangoJuiceOrderButton, mangoKiwiMixJuiceOrderButton]
+        for button in buttons {
+            button.titleLabel?.textAlignment = .center
         }
     }
 }
