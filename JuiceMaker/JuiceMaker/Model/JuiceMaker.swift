@@ -4,18 +4,28 @@
 import Foundation
 
 struct JuiceMaker {
-    private let fruitStorage = FruitStore()
+    let fruitStorage = FruitStore(defaultStock: 10)
     
-    func makeJuice(to order: Juice) {
+    func makeJuice(to order: Juice, in view: JuiceMakerViewController) {
         do {
-            try fruitStorage.checkStockBeUsed(in: order)
+            for (fruit, amountOfFruit) in order.recipeOfJuice.ingredient {
+                let stock = try fruitStorage.checkEmptyStock(to: fruit)
+                try fruitStorage.checkStockAmount(to: stock, with: amountOfFruit)
+            }
+            chooseMenu(to: order)
+            view.showSuccessAlert(to: order)
         } catch OrderError.outOfStock {
-            print(OrderError.outOfStock.message)
+            view.showFailedAlert()
         } catch OrderError.emptyStock {
-            print(OrderError.emptyStock.message)
+            view.showEmptyStockAlert()
         } catch {
-            print("알 수 없는 오류입니다.")
+            view.showUnknownErrorAlert()
         }
-        fruitStorage.changeFruitStock(to: order)
+    }
+    
+    func chooseMenu(to order: Juice) {
+        for (fruit, amountOfFruit) in order.recipeOfJuice.ingredient {
+            fruitStorage.changeFruitStock(to: amountOfFruit, of: fruit)
+        }
     }
 }

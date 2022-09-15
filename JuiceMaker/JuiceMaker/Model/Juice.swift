@@ -2,7 +2,7 @@
 
 import Foundation
 
-enum Juice: String {
+enum Juice: Int {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -30,22 +30,22 @@ enum Juice: String {
         }
     }
     
-    var recipeOfJuice: [Fruit: Int] {
+    var recipeOfJuice: Recipe {
         switch self {
         case .strawberryJuice:
-            return [.strawberry: 16]
+            return Recipe(ingredient: [.strawberry: 16])
         case .bananaJuice:
-            return [.banana: 2]
+            return Recipe(ingredient: [.banana: 2])
         case .kiwiJuice:
-            return [.kiwi: 3]
+            return Recipe(ingredient: [.kiwi: 3])
         case .pineappleJuice:
-            return [.pineapple: 2]
+            return Recipe(ingredient: [.pineapple: 2])
         case .strawberryBananaJuice:
-            return [.strawberry: 10, .banana: 1]
+            return Recipe(ingredient: [.strawberry: 10, .banana: 1])
         case .mangoJuice:
-            return [.mango: 3]
+            return Recipe(ingredient: [.mango: 3])
         case .mangoKiwiJuice:
-            return [.mango: 2, .kiwi: 1]
+            return Recipe(ingredient: [.mango: 2, .kiwi: 1])
         }
     }
 }
