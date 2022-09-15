@@ -6,7 +6,7 @@
 import UIKit
 
 protocol ModifyStockDelegate: AnyObject {
-    var inventory: [Fruit: Int] { get }
+    func readCurrentStock(_ fruit: Fruit) -> Int?
 	func updateStock(by fruit: Fruit, to stock: Int)
 }
 
@@ -32,18 +32,18 @@ private extension ModifyViewController {
     }
     
     func setUpLabels() {
-        fruitLabels.compactMap { $0 }.forEach {
+        fruitLabels.forEach { // 5
             if let fruit = Fruit(rawValue: $0.tag),
-               let stock = delegate?.inventory[fruit]?.description {
-                $0.text = stock
+               let stock = delegate?.readCurrentStock(fruit) {
+                $0.text = stock.description
             }
         }
     }
     
     func setUpStepper() {
-        stockSteppers.compactMap { $0 }.forEach {
+        stockSteppers.forEach {
             if let fruit = Fruit(rawValue: $0.tag),
-               let stock = delegate?.inventory[fruit] {
+               let stock = delegate?.readCurrentStock(fruit) {
                 $0.value = Double(stock)
             }
         }

@@ -29,14 +29,12 @@ class JuiceMakerViewController: UIViewController {
 
 // Delegate 관련 메서드
 extension JuiceMakerViewController: ModifyStockDelegate {
-    var inventory: [Fruit: Int] {
-        get {
-            return store.inventory
-        }
+    func readCurrentStock(_ fruit: Fruit) -> Int? {
+        return store.sendStock(to: fruit)
     }
     
     func updateStock(by fruit: Fruit, to stock: Int) {
-        store.inventory[fruit] = stock
+        store.updateStock(fruit: fruit, to: stock)
         updateStockLabels()
     }
 }
@@ -45,20 +43,20 @@ extension JuiceMakerViewController: ModifyStockDelegate {
 // UI 관련 메서드
 private extension JuiceMakerViewController {
     func updateStockLabels() {
-        fruitLabels.compactMap { $0 }.forEach {
+        fruitLabels.forEach {
             if let fruit = Fruit(rawValue: $0.tag),
-               let stock = store.inventory[fruit]?.description {
-                $0.text = stock
+               let stock = store.sendStock(to: fruit) {
+                $0.text = stock.description
             }
         }
     }
     
     func showAlertControllerBased(on isMaked: Bool, of juice: Juice) {
-        let titleMessage = AlertMessages.title(isMaked)
-        let message = AlertMessages.message(isMaked, juice)
+        let titleMessage = AlertMessages.title(by: isMaked)
+        let message = AlertMessages.message(by: isMaked, for: juice)
         let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
         
-        let confirmMessage = AlertMessages.confirmMessage(isMaked)
+        let confirmMessage = AlertMessages.confirmMessage(by: isMaked)
         let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
             if !isMaked {
                 self.presentModifyController()

@@ -7,7 +7,7 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-	var inventory: [Fruit: Int] = Fruit.beginningStock
+	private var inventory: [Fruit: Int] = Fruit.beginningStock
     
 	func haveStock(for juice: Juice) throws {
 		let needFruitAndStock = juice.needFruitAndStock
@@ -28,4 +28,12 @@ class FruitStore {
 			}
 		}
 	}
+    
+    func sendStock(to fruit: Fruit) -> Int? {
+        return inventory[fruit]
+    }
+    
+    func updateStock(fruit: Fruit, to stock: Int) {
+        inventory[fruit] = stock
+    }
 }
