@@ -1,6 +1,9 @@
 class JuiceMaker {
     static let shared: JuiceMaker = JuiceMaker()
     private var fruitStore = FruitStore(fruitCount: 10)
+    var fruitList: [Fruits: Int] {
+        return fruitStore.fruitList
+    }
     
     private init() { }
     

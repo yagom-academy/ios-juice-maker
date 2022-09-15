@@ -20,7 +20,7 @@ class ModifyFruitsStockViewController: UIViewController {
     }
     
     private func updateAllFruitsCount() {
-        let fruitList = JuiceMaker.shared.requestFruitStore().requestFruitList()
+        let fruitList = JuiceMaker.shared.fruitList
         fruitList.forEach { fruit, count in
             updateCountLabel(fruit: fruit, count: count)
         }

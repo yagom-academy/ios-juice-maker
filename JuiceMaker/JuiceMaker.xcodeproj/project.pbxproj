@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		099DE0FC28BCDA7E00E9E7EE /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099DE0FB28BCDA7E00E9E7EE /* Fruits.swift */; };
+		09F0EC5A28D2C9E200C9B688 /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F0EC5928D2C9E200C9B688 /* CustomStepper.swift */; };
 		1A76326328BF25C80046C20E /* FruitJuice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A76326228BF25C80046C20E /* FruitJuice.swift */; };
 		1A76326528BF25DC0046C20E /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A76326428BF25DC0046C20E /* JuiceMakerError.swift */; };
 		1A7632FE28C5F4920046C20E /* ModifyFruitsStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7632FD28C5F4920046C20E /* ModifyFruitsStockViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		099DE0FB28BCDA7E00E9E7EE /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
+		09F0EC5928D2C9E200C9B688 /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
 		1A76326228BF25C80046C20E /* FruitJuice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitJuice.swift; sourceTree = "<group>"; };
 		1A76326428BF25DC0046C20E /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		1A7632FD28C5F4920046C20E /* ModifyFruitsStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyFruitsStockViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				099DE0FB28BCDA7E00E9E7EE /* Fruits.swift */,
 				1A76326228BF25C80046C20E /* FruitJuice.swift */,
 				1A76326428BF25DC0046C20E /* JuiceMakerError.swift */,
+				09F0EC5928D2C9E200C9B688 /* CustomStepper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09F0EC5A28D2C9E200C9B688 /* CustomStepper.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
 				1A76326528BF25DC0046C20E /* JuiceMakerError.swift in Sources */,

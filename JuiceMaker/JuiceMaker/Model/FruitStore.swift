@@ -1,7 +1,7 @@
 import Foundation
 
 struct FruitStore {
-    private var fruitList: [Fruits: Int] = [:] {
+    private(set) var fruitList: [Fruits: Int] = [:] {
         didSet {
             NotificationCenter.default.post(
                 name: Notification.Name("showFruitCount"),
@@ -14,14 +14,6 @@ struct FruitStore {
         for fruit in Fruits.allCases {
             changeCount(of: fruit, count: fruitCount)
         }
-    }
-    
-    func requestFruitList() -> [Fruits: Int] {
-        return fruitList
-    }
-    
-    func requestFruitCount(fruit: Fruits) -> Int? {
-        return fruitList[fruit]
     }
     
     mutating func changeCount(of fruit: Fruits, count: Int) {
