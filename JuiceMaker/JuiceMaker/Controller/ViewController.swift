@@ -124,12 +124,13 @@ class ViewController: UIViewController {
     }
     
     func moveToFruitStockVC() {
-        guard let fruitStoreStockViewController =
-                self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreStockNC") else { return }
+        guard let fruitStoreStockVC = self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreStock") as? FruitStockViewController else {return}
         
-        fruitStoreStockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        let fruitStockNC = UINavigationController.init(rootViewController: fruitStoreStockVC)
         
-        self.present(fruitStoreStockViewController, animated: true, completion: nil)
+        fruitStockNC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        
+        self.present(fruitStockNC, animated: true, completion: nil)
     }
 }
 
