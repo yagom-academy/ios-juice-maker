@@ -4,8 +4,8 @@
 //
 import Foundation
 
-class FruitStore: NSObject {
-    @objc dynamic var stock: [String: Int] = [
+class FruitStore {
+    var stock: [String: Int] = [
         Fruit.strawBerry.rawValue: 10,
         Fruit.banana.rawValue: 10,
         Fruit.pineApple.rawValue: 10,

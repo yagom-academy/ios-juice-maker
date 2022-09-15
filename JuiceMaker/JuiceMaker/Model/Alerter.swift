@@ -10,8 +10,12 @@ class Alerter {
     var isPresentable: Bool
     var viewController: JuiceMakerViewController?
     var alertController: UIAlertController
+    let okButtonTitle: String
+    let cancelButtonTitle: String
     
     init(title: String, message: String, isPresentable: Bool, presentOn viewController: JuiceMakerViewController?) {
+        self.okButtonTitle = "Ok"
+        self.cancelButtonTitle = "Cancel"
         self.viewController = viewController
         self.title = title
         self.message = message
@@ -19,12 +23,13 @@ class Alerter {
         self.isPresentable = isPresentable
         
         if isPresentable {
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
-            alertController.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            alertController.addAction(UIAlertAction(title: cancelButtonTitle, style: .default))
+            alertController.addAction(UIAlertAction(title: okButtonTitle, style: .default) { _ in
                 self.viewController?.presentStockEditorViewController()
             })
         } else {
-            alertController.addAction(UIAlertAction(title: "Ok", style: .default))
+            alertController.addAction(UIAlertAction(title: okButtonTitle, style: .default))
         }
     }
 }
+

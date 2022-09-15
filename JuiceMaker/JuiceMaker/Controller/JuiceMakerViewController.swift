@@ -5,7 +5,7 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {  
     
     @IBOutlet weak var strawBerryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -26,13 +26,6 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelValue()
-        observation = JuiceMaker.sharedStore.observe(\.stock, options: [.old, .new], changeHandler: {
-            (object, changes) in
-            guard let newValue = changes.newValue else { return }
-            guard let oldValue = changes.oldValue else { return }
-            self.updateStock(to: newValue, from: oldValue)
-            self.setLabelValue()
-        })
     }
     
     @IBAction func tapStrawBerryBananaButton(_ sender: UIButton) {
@@ -70,14 +63,7 @@ class JuiceMakerViewController: UIViewController {
         } else {
             presentAlertNotEnoughStock(data: juice.recipe)
         }
-    }
-    
-    private func updateStock(to newValue: [String: Int], from oldValue: [String: Int]) {
-        for fruit in newValue.keys {
-            guard newValue[fruit] != oldValue[fruit],
-                  let newValue = newValue[fruit] else { continue }
-            JuiceMaker.sharedStore.stock.updateValue(newValue, forKey: fruit)
-        }
+        setLabelValue()
     }
     
     private func setLabelValue() {
@@ -89,7 +75,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func presentStockEditorViewController() {
-        guard let stockEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditorViewController") else { return }
+        guard let stockEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockEditorNavigationViewController") else { return }
         self.present(stockEditorViewController, animated: true)
     }
     

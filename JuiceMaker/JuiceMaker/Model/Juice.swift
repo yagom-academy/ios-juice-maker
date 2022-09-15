@@ -3,6 +3,8 @@
 //
 //
 
+import UIKit
+
 enum Juice: String {
     case strawBerry = "딸기쥬스"
     case banana = "바나나쥬스"

@@ -6,7 +6,7 @@ import UIKit
 
 class StockEditorViewController: UIViewController {
     var myStock = JuiceMaker.sharedStore
-    
+
     @IBOutlet weak var strawBerryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineAppleLabel: UILabel!
