@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     var juiceMaker = JuiceMaker()
     private var fruitLabel: [Fruit : UILabel] = [:]
     
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {
-        guard let orderedJuice = Juice.findJuiceButtonLocation(tag: sender.tag) else {
+        guard let orderedJuice = Juice.findJuiceButtonTag(location: sender.tag) else {
             return
         }
                 
@@ -85,7 +85,10 @@ class ViewController: UIViewController {
     
     private func setNavigationBar() {
         self.title = ConstantSentence.mainTitle
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 242/255,
+                                                                           green: 242/255,
+                                                                           blue: 242/255,
+                                                                           alpha: 1.0)
     }
     
     private func setFruitStockLabelText() {
@@ -96,7 +99,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: ModifyStockDelegate {
+extension JuiceMakerViewController: ModifyStockDelegate {
     func changeFruitStock(_ changedStock: [Fruit : Int]) {
         juiceMaker.passingChangedFruitStock(changedStock)
         setFruitStockLabelText()

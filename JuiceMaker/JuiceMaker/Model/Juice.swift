@@ -37,8 +37,8 @@ enum Juice: String {
         }
     }
     
-    static func findJuiceButtonLocation(tag: Int) -> Juice? {
-        switch tag {
+    static func findJuiceButtonTag(location: Int) -> Juice? {
+        switch location {
         case 0:
             return .strawberryJuice
         case 1:

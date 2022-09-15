@@ -37,8 +37,7 @@ class ModifyStockViewController: UIViewController {
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
-        let buttonLocation = sender.tag
-        guard let changeFruit = Fruit(rawValue: buttonLocation) else {
+        guard let changeFruit = Fruit.findFruiteStepperTag(location: sender.tag) else {
             return
         }
         
@@ -74,7 +73,10 @@ class ModifyStockViewController: UIViewController {
     
     private func setNavigationBar() {
         self.title = ConstantSentence.modifyStockTitle
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 242/255,
+                                                                           green: 242/255,
+                                                                           blue: 242/255,
+                                                                           alpha: 1.0)
     }
     
     private func setFruitStockLabel() {
