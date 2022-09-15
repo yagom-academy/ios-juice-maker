@@ -54,23 +54,22 @@ private extension JuiceMakerViewController {
     }
     
     func showAlertControllerBased(on isMaked: Bool, of juice: Juice) {
-        let titleMessage = isMaked ? AlertMessages.successTitle : AlertMessages.failureTitle
-        let message = isMaked ? "\(juice.description) \(AlertMessages.successMessage)" : AlertMessages.failureMessage
-        let confirmMessage = isMaked ? AlertMessages.successConfirmMessage : AlertMessages.failureConfirmMessage
+        let titleMessage = AlertMessages.title(isMaked)
+        let message = AlertMessages.message(isMaked, juice)
         let alertController = UIAlertController(title: titleMessage, message: message, preferredStyle: .alert)
+        
+        let confirmMessage = AlertMessages.confirmMessage(isMaked)
         let okAction = UIAlertAction(title: confirmMessage, style: .default) { _ in
             if !isMaked {
                 self.presentModifyController()
             }
         }
-        
-        if isMaked {
-            alertController.addAction(okAction)
-        } else {
+        alertController.addAction(okAction)
+        if !isMaked {
             let cancelAction = UIAlertAction(title: AlertMessages.failureCancelMessage, style: .default)
             alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
         }
+        
         updateStockLabels()
         present(alertController, animated: true)
     }
