@@ -44,28 +44,42 @@ class StockEditorViewController: UIViewController {
     }
     
     @IBAction func strawberryPressed(_ sender: UIStepper) {
-        manageValue(of: Fruit.strawBerry.rawValue, and: strawBerryLabel, with: sender)
+        manageValue(of: Fruit.strawBerry, sender: sender)
     }
 
     @IBAction func bananaPressed(_ sender: UIStepper) {
-        manageValue(of: Fruit.banana.rawValue, and: bananaLabel, with: sender)
+        manageValue(of: Fruit.banana, sender: sender)
     }
 
     @IBAction func pineApplePressed(_ sender: UIStepper) {
-        manageValue(of: Fruit.pineApple.rawValue, and: pineAppleLabel, with: sender)
+        manageValue(of: Fruit.pineApple, sender: sender)
     }
 
     @IBAction func kiwiPressed(_ sender: UIStepper) {
-        manageValue(of: Fruit.kiwi.rawValue, and: kiwiLabel, with: sender)
+        manageValue(of: Fruit.kiwi, sender: sender)
     }
     
     @IBAction func mangoPressed(_ sender: UIStepper) {
-        manageValue(of: Fruit.mango.rawValue, and: mangoLabel, with: sender)
+        manageValue(of: Fruit.mango, sender: sender)
     }
     
-    func manageValue(of fruit: String, and label: UILabel, with sender: UIStepper) {
-        label.text = Int(sender.value).description
-        myStock.stock.updateValue(Int(sender.value), forKey: fruit)
+    func manageValue(of fruit: Fruit, sender: UIStepper) {
+        var fruitLabel: UILabel
+        switch fruit {
+        case .strawBerry:
+            fruitLabel = strawBerryLabel
+        case .banana:
+            fruitLabel = bananaLabel
+        case .pineApple:
+            fruitLabel = pineAppleLabel
+        case .kiwi:
+            fruitLabel = kiwiLabel
+        case .mango:
+            fruitLabel = mangoLabel
+        }
+        
+        fruitLabel.text = Int(sender.value).description
+        myStock.stock.updateValue(Int(sender.value), forKey: fruit.rawValue)
     }
     
     @IBAction func tappedCloseModalButton(_ sender: UIButton) {
