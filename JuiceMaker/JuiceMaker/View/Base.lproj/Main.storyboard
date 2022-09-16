@@ -207,7 +207,6 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="tapMangoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iCY-vb-CwA"/>
-                                                            <action selector="tapMangoKiwiButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yna-5E-bla"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
