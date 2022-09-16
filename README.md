@@ -83,7 +83,7 @@
     ![](https://i.imgur.com/QepVkvN.png)
 
 - **2022.09.16**
-    - STEP3 `README.md` 작성 및 PR 발송
+    - STEP3 `README.md` 작성
 
 ## 💻 4. 실행 화면(기능 설명)
 ### 📌 STEP 1
@@ -123,7 +123,6 @@
     - 이 함수는 주스를 만드는 명령을 내리는 함수입니다.
     - 이 함수의 기능은 창고에 재고가 있는지 확인 후 있다고 판단했을 경우에만 창고의 재료를 가져와 음료를 만들 도록 설계하였습니다.
     - 만약, 재고가 없거나 부족한 경우에는 에러를 발생시키도록 하였습니다.
-    <br/>
     ```swift
     func haveStock(of fruits: [Fruit], over stocks: [Int]) throws {
         for (fruit, stock) in zip(fruits, stocks)  {
@@ -137,7 +136,6 @@
     - `haveStock(of:, over:)`은 주스를 만들기 위해서 필요한 재고가 있는지 확인하는 함수입니다.
     - 이 함수를 활용하여서 재고가 없는 경우에 에러를 발생시키도록 구현하였습니다.
     - 만약, 재고가 있다면 함수는 종료되게 되어, 에러를 발생시키지 않기 때문에 `makeJuice(juice:)`함수의 다음 구문이 실행되게 됩니다.
-    <br/>
     ```swift
     func increaseStock(of fruits: [Fruit], by amounts: [Int]) {
         for (fruit, stock) in zip(fruits, amounts) {
