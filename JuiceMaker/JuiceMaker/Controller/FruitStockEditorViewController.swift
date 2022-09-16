@@ -3,7 +3,7 @@
 import UIKit
 
 class FruitStockEditorViewController: UIViewController {
-
+    
     @IBOutlet weak var mutableStrawberryAmountLabel: UILabel!
     @IBOutlet weak var mutableBananaAmountLabel: UILabel!
     @IBOutlet weak var mutablePineappleAmountLabel: UILabel!
@@ -22,8 +22,38 @@ class FruitStockEditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(editingFruitStock)
         
+        updateViewComponent(with: editingFruitStock)
+    }
+    
+    func updateViewComponent(with currentStockValue: FruitStock) {
+        for target in currentStockValue {
+            updateLabelAndStepperValue(amount: target.value, type: target.key)
+        }
+    }
+    
+    func updateLabelAndStepperValue(amount: Int, type: Fruit) {
+        switch type {
+        case .strawberry:
+            mutableStrawberryAmountLabel.text = "\(amount)"
+            updateStepperValue(stepper: strawberryAmountStepper, amount: amount)
+        case .banana:
+            mutableBananaAmountLabel.text = "\(amount)"
+            updateStepperValue(stepper: bananaAmountStepper, amount: amount)
+        case .kiwi:
+            mutableKiwiAmountLabel.text = "\(amount)"
+            updateStepperValue(stepper: kiwiAmountStepper, amount: amount)
+        case .pineapple:
+            mutablePineappleAmountLabel.text = "\(amount)"
+            updateStepperValue(stepper: pineappleAmountStepper, amount: amount)
+        case .mango:
+            mutableMangoAmountLabel.text = "\(amount)"
+            updateStepperValue(stepper: mangoAmountStepper, amount: amount)
+        }
+    }
+    
+    func updateStepperValue(stepper: UIStepper, amount: Int) {
+        stepper.value = Double(amount)
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
@@ -49,5 +79,5 @@ class FruitStockEditorViewController: UIViewController {
     @IBAction func touchupMangoAmountStepper(_ sender: UIStepper) {
         
     }
-
+    
 }
