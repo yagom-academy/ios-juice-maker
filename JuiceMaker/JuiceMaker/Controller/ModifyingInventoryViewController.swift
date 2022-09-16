@@ -65,10 +65,7 @@ class ModifyingInventoryViewController: UIViewController {
     
     //MARK: -Action
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
-        if let navigationController = navigationController as? ModifyingInventoryNavigationController,
-           let delegate = navigationController.juiceOrderViewDelegate {
-            delegate.juiceOrderViewControllerDidChangeInventoryList(fruitStore.inventoryList)
-        }
+        delegate?.juiceOrderViewController(didChange: self.fruitStore)
         dismiss(animated: true, completion: nil)
     }
     

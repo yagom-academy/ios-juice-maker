@@ -7,8 +7,7 @@
 import UIKit
 
 protocol JuiceOrderViewDelegate: AnyObject {
-    var juiceOrderViewInventoryList: [Fruit: Int] { get }
-    func juiceOrderViewControllerDidChangeInventoryList(_ inventoryList: [Fruit: Int])
+    func juiceOrderViewController(didChange fruitStore: FruitStore)
 }
 
 class JuiceOrderViewController: UIViewController {
@@ -16,8 +15,8 @@ class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
 //MARK: -View
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         updateInventory()
     }
     
@@ -97,7 +96,7 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         modifyingInventoryVC.delegate = self
-        modifyingInventoryVC.fruitStore = juiceMaker.fruitStore
+        modifyingInventoryVC.juiceOrderViewControllerFruitStore = juiceMaker.fruitStore
         
         let navigationController = UINavigationController(rootViewController: modifyingInventoryVC)
         navigationController.modalPresentationStyle = .fullScreen
@@ -110,11 +109,10 @@ class JuiceOrderViewController: UIViewController {
 
 //MARK: -Extension Delegate Protocol
 extension JuiceOrderViewController: JuiceOrderViewDelegate {
-    var juiceOrderViewInventoryList: [Fruit: Int] {
-        return self.juiceMaker.fruitStore.inventoryList
-    }
-    
-    func juiceOrderViewControllerDidChangeInventoryList(_ inventoryList: [Fruit: Int]) {
-        self.juiceMaker.fruitStore.update(to: inventoryList)
+    func juiceOrderViewController(didChange fruitStore: FruitStore) {
+        if self.juiceMaker.fruitStore !== fruitStore {
+            self.juiceMaker.fruitStore.update(to: fruitStore.inventoryList)
+        }
+        updateInventory()
     }
 }
