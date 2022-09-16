@@ -22,8 +22,11 @@
 <img src="https://i.imgur.com/L15v4nM.jpg"/>
     
 # 3.**트러블 슈팅**
+
 ### Alert의 재사용성
-    Alert를 생성할떄 title, message, action, addAction등 Alert마다 새로 만들어줘야 하는 것이 마음에 걸려 class 형태로 reuseable Alerter를 구현했습니다. 저희 프로젝트의 Alert 생성은 반복되는 코드가 없고 간단합니다. isPresentable을 true로 지정하게 되면 재고추가 ViewController가 present되는 action이 Ok 버튼에 추가됩니다.
+
+Alert를 생성할떄 title, message, action, addAction등 Alert마다 새로 만들어줘야 하는 것이 마음에 걸려 class 형태로 reuseable Alerter를 구현했습니다. 
+저희 프로젝트의 Alert 생성은 반복되는 코드가 없고 간단합니다. isPresentable을 true로 지정하게 되면 재고추가 ViewController가 present되는 action이 Ok 버튼에 추가됩니다.
     
 ```Swift
 private func presentAlertOrderIsReady(_ juice: Juice) {
@@ -38,7 +41,7 @@ private func presentAlertOrderIsReady(_ juice: Juice) {
     
 ### KVO 삭제 후 Singleton을 사용하게 되면서 쥬스 주문 화면의 Lable이 업데이트가 안되는 문제를 해결할 수 있는 방법에 대해 고민했습니다. 
     
-    해결: 커스텀 Delegate를 생성하면서 dismiss시 레이블을 업데이트 해주도록 구현했습니다.
+해결: 커스텀 Delegate를 생성하면서 dismiss시 레이블을 업데이트 해주도록 구현했습니다.
     
 ```swift
 @IBAction func tappedCloseModalButton(_ sender: UIButton) {
