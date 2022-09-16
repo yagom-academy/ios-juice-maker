@@ -6,10 +6,6 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController, DidDissmissDelegate {
-    func didDismissModal() {
-        setLabelValue()
-    }
-    
     
     @IBOutlet weak var strawBerryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -124,6 +120,9 @@ class JuiceMakerViewController: UIViewController, DidDissmissDelegate {
             print("Unknown Error")
         }
         return false
+    }
+    func didDismissModal() {
+        setLabelValue()
     }
 }
 
