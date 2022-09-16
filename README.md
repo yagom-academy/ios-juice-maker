@@ -70,38 +70,39 @@ extension JuiceMakerError: CustomDebugStringConvertible {
     }
 }
 ```
-```swift=
+```swift
 do {
-        try JuiceMaker.shared.makeFruitJuice(of: fruitJuice)
-            showJuiceComeOutAlert(alert, fruitJuice: fruitJuice)
-        } catch JuiceMakerError.underFlowOfAmount {
-            showFruitsOutOfStockAlert(alert)
-        } catch {
-            debugPrint(error)
-        }
+    try JuiceMaker.shared.makeFruitJuice(of: fruitJuice)
+    showJuiceComeOutAlert(alert, fruitJuice: fruitJuice)
+} catch JuiceMakerError.underFlowOfAmount {
+    showFruitsOutOfStockAlert(alert)
+} catch {
+    debugPrint(error)
+}  
 ```
 - 2 
 FruitJuice의 ingredients 타입을 튜플형으로 구현했었는데 딕셔너리타입을 씀으로 인해 ingredients를 사용하는 코드부분에서 코드수를 굉장히 많이 줄일수있었다. 특히 재료를 2개 받는 딸기바나나와 망고키위의 구현이 더 쉬워졌다.
 [참고문서](https://docs.swift.org/swift-book/LanguageGuide/NestedTypes.html)
-```swift=
+```swift
 var ingredients: [Fruits: Int] {
-        switch self {
-        case .strawberryJuice:
-            return [.strawberry: 16]
-        case .bananaJuice:
-            return [.banana: 2]
-        case .kiwiJuice:
-            return [.kiwi: 3]
-        case .pineappleJuice:
-            return [.pineapple: 2]
-        case .mangoJuice:
-            return [.mango: 2]
-        case .strawberryBananaJuice:
-            return [.strawberry: 10, .banana: 1]
-        case .mangoKiwiJuice:
-            return [.mango: 2, .kiwi: 1]
-        }
+    switch self {
+    case .strawberryJuice:
+        return [.strawberry: 16]
+    case .bananaJuice:
+        return [.banana: 2]
+    case .kiwiJuice:
+        return [.kiwi: 3]
+    case .pineappleJuice:
+        return [.pineapple: 2]
+    case .mangoJuice:
+        return [.mango: 2]
+    case .strawberryBananaJuice:
+        return [.strawberry: 10, .banana: 1]
+    case .mangoKiwiJuice:
+        return [.mango: 2, .kiwi: 1]
     }
+}
+
 ```
 
 - 3
@@ -112,27 +113,29 @@ JuiceMaker 에서 FruitStore의 fruitList를 받아올때
 전자 방식으로 꺼내올때 JuiceMaker.shared.fruitStore.꺼내오는메소드
 후자 방식으로 꺼내올때 JuiceMaker.shared.fruitList 
 이런차이가 있다. 어느방법을 쓸까 고민하다 더 적은코드로 꺼내올수있는 연산프로퍼티를 채택했다.
-```Swift=
+```Swift
 class JuiceMaker {
     static let shared: JuiceMaker = JuiceMaker()
     private var fruitStore = FruitStore(fruitCount: 10)
     var fruitList: [Fruits: Int] {
         return fruitStore.fruitList
     }
+    ...
 ```
 
 - 4
 화면을 보여줄때 과일재고개수를 화면에 띄우는 방법으로 세그(prepare,performSegue)와 delegate를 이용하는법 그리고 Notification을 이용하는법을 떠올렸다. 서로 장단점을 비교한 결과 세그와 delegate로 일일이 데이터를 넘겨주게되면 Notification으로 구현할때보다 코드가 상대적으로 많아지기 때문에 심플하게 코드를 작성할수있는 Notification으로 구현했다.
 다만 Notification은 많이 사용할수록 결합도가 높아진다는 단점이 있기때문에  앞으로 데이터를 가지고 화면을 이동할때 어떤 방법을 쓰는것이 적절한지 고민해봐야겠다.
-```swift=
+```swift
 private(set) var fruitList: [Fruits: Int] = [:] {
-        didSet {
-            NotificationCenter.default.post(
-                name: Notification.Name("showFruitCount"),
-                object: fruitList,
-                userInfo: nil)
-        }
+    didSet {
+        NotificationCenter.default.post(
+            name: Notification.Name("showFruitCount"),
+            object: fruitList,
+            userInfo: nil)
     }
+}
+
 ```
 
 ### 😮알게 된 점
