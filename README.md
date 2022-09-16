@@ -56,7 +56,7 @@
 - 1
 처음 에러처리를 할때 catch에서 에러에 대한 메시지를 출력하게했었는데 이부분을 리뷰어에게 개선해야할부분으로 조언받아서 무슨 방법이 있을까 찾아봤다. CustomStringConvertible 프로토콜을 채택해서 case가 더이상 프린트문을 출력하지 않게 구현했다. catch문 마지막에 debugPrint(error)로 해당하는 에러를 출력한다.
 [참고문서](https://www.advancedswift.com/custom-errors-in-swift/)
-```swift=
+```swift
 extension JuiceMakerError: CustomDebugStringConvertible {
     var debugDescription: String {
         switch self {
