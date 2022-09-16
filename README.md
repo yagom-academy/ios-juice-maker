@@ -1,11 +1,12 @@
-# 쥬스 메이커 
+# 쥬스 메이커
 
 ## 목차
 [1. ✏️ 프로젝트 소개](1.✏️-프로젝트-소개) </br>
 [2. 🧑‍🤝‍🧑 팀원](2.-🧑‍🤝‍🧑-팀원) </br>
-[3. 👩🏻‍💻 실행 예시](3.-👩🏻‍💻-실행-예시) </br>
-[4. 🔥 트러블 슈팅](4.-🔥-트러블-슈팅) </br>
-[5.  🔗 참고 링크](5.-🔗-참고-링크) </br>
+[3. 🔍 프로젝트 구성 - ClassDiagram](3.-🔍-프로젝트-구성(ClassDiagram)) </br>
+[4. 👩🏻‍💻 실행 예시](4.-👩🏻‍💻-실행-예시) </br>
+[5. 🔥 트러블 슈팅](5.-🔥-트러블-슈팅) </br>
+[6.  🔗 참고 링크](6.-🔗-참고-링크) </br>
 
 ---
 
@@ -26,12 +27,22 @@
 
 | SummerCat                                                 | SunnyCookie                                             |
 | --------------------------------------------------------- | ------------------------------------------------------- |
-| <img width="180px" src="https://i.imgur.com/TVKv7PD.png"> | <img width="180" src="https://i.imgur.com/z4FjnKX.png"> |
+| <img width="180px" src="https://i.imgur.com/TVKv7PD.png"> | <img width="180" src="https://i.imgur.com/z4FjnKX.png"> 
+
+---
+
+## 3. 🔍 프로젝트 구성(ClassDiagram)
+
+### 1️⃣ Model
+<img width = 900, src = "https://i.imgur.com/drYww31.png">
+
+### 2️⃣ ViewController + Model
+<img width = 900, src = "https://i.imgur.com/dgYUo8O.png">
 
 ---
 
 
-## 3. 👩🏻‍💻 실행 예시
+## 4. 👩🏻‍💻 실행 예시
 
 ### **1️⃣ [맛있는 쥬스를 만들어드립니다]** View에서 쥬스를 주문
     
@@ -62,9 +73,13 @@
     | |
     |<img width = 400, src = "https://i.imgur.com/1qlXlIb.gif"> |
 
+
+
+
+
 ---
 
-## 4. 🔥 트러블 슈팅
+## 5. 🔥 트러블 슈팅
 
 ### 1️⃣ `enum Juice` 타입에서 사용하는 과일의 종류, 갯수 연결하기
 열거형으로 정리한 쥬스타입의 case마다 레시피로 사용되는 각 과일의 갯수를 연관지어 지정해놓고 싶었습니다. 예를 들어, 딸기바나나쥬스는 딸기 10개 바나나 1개를 사용하기 때문에 `case 딸기바나나쥬스` 에는 딸기 10개, 바나나 1개를 연결하고 싶었습니다.
@@ -308,7 +323,7 @@ Stepper는 크기를 변경할 수 없기 때문에, 세 요소의 너비를 일
 
 ---
 
-## 5.  🔗 참고 링크
+## 6.  🔗 참고 링크
 ### Apple 공식문서
 - [Enumerations](https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html)
 - [Choosing Between Structures and Classes](https://developer.apple.com/documentation/swift/choosing-between-structures-and-classes)
