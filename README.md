@@ -54,7 +54,9 @@
 
 ### 🤔겪었던 문제점, 고민했던 부분 → 😎해결책
 - 1
-처음 에러처리를 할때 catch에서 에러에 대한 메시지를 출력하게했었는데 이부분을 리뷰어에게 개선해야할부분으로 조언받아서 무슨 방법이 있을까 찾아봤다. CustomStringConvertible 프로토콜을 채택해서 case가 더이상 프린트문을 출력하지 않게 구현했다. catch문 마지막에 debugPrint(error)로 해당하는 에러를 출력한다.
+처음 에러처리를 할때 catch에서 에러에 대한 메시지를 출력하게했었는데 이부분을 리뷰어에게 개선해야할부분으로 조언받아서 무슨 방법이 있을까 찾아봤다. 
+CustomStringConvertible 프로토콜을 채택해서 case가 더이상 프린트문을 출력하지 않게 구현했다.
+catch문 마지막에 debugPrint(error)로 해당하는 에러를 출력한다.
 [참고문서](https://www.advancedswift.com/custom-errors-in-swift/)
 ```swift
 extension JuiceMakerError: CustomDebugStringConvertible {
@@ -81,7 +83,8 @@ do {
 }  
 ```
 - 2 
-FruitJuice의 ingredients 타입을 튜플형으로 구현했었는데 딕셔너리타입을 씀으로 인해 ingredients를 사용하는 코드부분에서 코드수를 굉장히 많이 줄일수있었다. 특히 재료를 2개 받는 딸기바나나와 망고키위의 구현이 더 쉬워졌다.
+FruitJuice의 ingredients 타입을 튜플형으로 구현했었는데 딕셔너리타입을 씀으로 인해 ingredients를 사용하는 코드부분에서 코드수를 굉장히 많이 줄일수있었다. 
+특히 재료를 2개 받는 딸기바나나와 망고키위의 구현이 더 쉬워졌다.
 [참고문서](https://docs.swift.org/swift-book/LanguageGuide/NestedTypes.html)
 ```swift
 var ingredients: [Fruits: Int] {
@@ -124,7 +127,8 @@ class JuiceMaker {
 ```
 
 - 4
-화면을 보여줄때 과일재고개수를 화면에 띄우는 방법으로 세그(prepare,performSegue)와 delegate를 이용하는법 그리고 Notification을 이용하는법을 떠올렸다. 서로 장단점을 비교한 결과 세그와 delegate로 일일이 데이터를 넘겨주게되면 Notification으로 구현할때보다 코드가 상대적으로 많아지기 때문에 심플하게 코드를 작성할수있는 Notification으로 구현했다.
+화면을 보여줄때 과일재고개수를 화면에 띄우는 방법으로 세그(prepare,performSegue)와 delegate를 이용하는법 그리고 Notification을 이용하는법을 떠올렸다. 
+서로 장단점을 비교한 결과 세그와 delegate로 일일이 데이터를 넘겨주게되면 Notification으로 구현할때보다 코드가 상대적으로 많아지기 때문에 심플하게 코드를 작성할수있는 Notification으로 구현했다.
 다만 Notification은 많이 사용할수록 결합도가 높아진다는 단점이 있기때문에  앞으로 데이터를 가지고 화면을 이동할때 어떤 방법을 쓰는것이 적절한지 고민해봐야겠다.
 ```swift
 private(set) var fruitList: [Fruits: Int] = [:] {
