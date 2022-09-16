@@ -68,7 +68,7 @@
 - AutoLayout을 적용해 디스플레이 사이즈가 변경되어도 각 view가 변경된 화면의 크기에 맞추어 리사이징됩니다.
     | **iPhone SE 시뮬레이터 예시**                            |
     | ---------------------------------------------------------- |
-    |<img width = 400, src = "https://i.imgur.com/ImLktxf.gif">|
+    |<img width = 400, src = "https://i.imgur.com/Iyac12q.gif">|
     | **iPhone 13 Pro 시뮬레이터 예시**                            |
     | |
     |<img width = 400, src = "https://i.imgur.com/1qlXlIb.gif"> |
