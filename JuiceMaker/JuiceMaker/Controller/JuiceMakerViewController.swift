@@ -96,11 +96,12 @@ class JuiceMakerViewController: UIViewController {
     private func presentStockEditViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let stockEditNavigationController = storyboard.instantiateViewController(identifier: "stockEditNavigation") as? UINavigationController,
-              let stockEditVC = stockEditNavigationController.topViewController as? StockEditViewController else {
+              let stockEditViewController = stockEditNavigationController.topViewController as? StockEditViewController else {
                   return
               }
+        
         stockEditNavigationController.modalPresentationStyle = .fullScreen
-        stockEditVC.setFruitStore(fruitStore: juiceMaker.fetchFruitStore())
+        stockEditViewController.setFruitStore(fruitStore: juiceMaker.fetchFruitStore())
         present(stockEditNavigationController, animated: true, completion: nil)
     }
     
