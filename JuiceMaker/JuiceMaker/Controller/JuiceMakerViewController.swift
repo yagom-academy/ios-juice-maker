@@ -19,6 +19,9 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.backgroundColor = .systemGray5
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         updateAllStockLabels()
     }
     
@@ -96,24 +99,12 @@ class JuiceMakerViewController: UIViewController {
               let stockEditVC = stockEditNavigationController.topViewController as? StockEditViewController else {
                   return
               }
-        
-        stockEditVC.delegate = self
-        Fruit.allCases.forEach({ fruit in
-            guard let fruitStock = try? juiceMaker.fetchStock(of: fruit) else { return }
-            
-            stockEditVC.fruitStock[fruit] = fruitStock
-        })
+        stockEditNavigationController.modalPresentationStyle = .fullScreen
+        stockEditVC.setFruitStore(fruitStore: juiceMaker.fetchFruitStore())
         present(stockEditNavigationController, animated: true, completion: nil)
     }
     
     @IBAction func stockEditButtonPressed() {
         presentStockEditViewController()
-    }
-}
-
-extension JuiceMakerViewController: StockEditDelegate {
-    func didEndStockEditing(fruitStock: [Fruit : Int]) {
-        juiceMaker.updateAllStock(using: fruitStock)
-        updateAllStockLabels()
     }
 }

@@ -98,4 +98,8 @@ struct JuiceMaker {
             fruitStore.updateFruitStock(fruit: fruit, amountOf: stock)
         })
     }
+    
+    func fetchFruitStore() -> FruitStore {
+        return self.fruitStore
+    }
 }
