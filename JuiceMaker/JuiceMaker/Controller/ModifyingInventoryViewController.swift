@@ -1,8 +1,10 @@
 import UIKit
 
 class ModifyingInventoryViewController: UIViewController {
-    private var inventoryList: [Fruit: Int] = [:]
     weak var delegate: JuiceOrderViewDelegate?
+    weak var juiceOrderViewControllerFruitStore: FruitStore?
+    private var fruitStore: FruitStore = FruitStore()
+    
     private let stepperMaxValue: Double = 10000
     private let stepperMinValue: Double = 0
     private let stepperStepValue: Double = 1
@@ -26,18 +28,11 @@ class ModifyingInventoryViewController: UIViewController {
     }
     
     func setUpInventory() {
-        if let navigationController = navigationController as? ModifyingInventoryNavigationController,
-           let delegate = navigationController.juiceOrderViewDelegate {
-            self.inventoryList = delegate.juiceOrderViewInventoryList
-        } else {
-            let defaultValueOfInventory = 10
-            
-            Fruit.allCases.forEach {
-                self.inventoryList[$0] = defaultValueOfInventory
-            }
+        if let receivedFruitStore = juiceOrderViewControllerFruitStore {
+            self.fruitStore = receivedFruitStore
         }
         
-        inventoryList.forEach { (fruit: Fruit, inventory: Int) in
+        fruitStore.inventoryList.forEach { (fruit: Fruit, inventory: Int) in
             switch fruit {
             case .strawberry:
                 strawberryLabel.text = "\(inventory)"
@@ -72,38 +67,38 @@ class ModifyingInventoryViewController: UIViewController {
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
         if let navigationController = navigationController as? ModifyingInventoryNavigationController,
            let delegate = navigationController.juiceOrderViewDelegate {
-            delegate.juiceOrderViewControllerDidChangeInventoryList(inventoryList)
+            delegate.juiceOrderViewControllerDidChangeInventoryList(fruitStore.inventoryList)
         }
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func changeStrawberryInventory(_ sender: UIStepper) {
         let value = Int(sender.value)
-        inventoryList[.strawberry] = value
+        fruitStore.update(of: .strawberry, to: value)
         strawberryLabel.text = value.description
     }
     
     @IBAction func changeBananaInventory(_ sender: UIStepper) {
         let value = Int(sender.value)
-        inventoryList[.banana] = value
+        fruitStore.update(of: .banana, to: value)
         bananaLabel.text = value.description
     }
     
     @IBAction func changeMangoInventory(_ sender: UIStepper) {
         let value = Int(sender.value)
-        inventoryList[.mango] = value
+        fruitStore.update(of: .mango, to: value)
         mangoLabel.text = value.description
     }
     
     @IBAction func changePineappleInventory(_ sender: UIStepper) {
         let value = Int(sender.value)
-        inventoryList[.pineapple] = value
+        fruitStore.update(of: .pineapple, to: value)
         pineappleLabel.text = value.description
     }
     
     @IBAction func changeKiwiInventory(_ sender: UIStepper) {
         let value = Int(sender.value)
-        inventoryList[.kiwi] = value
+        fruitStore.update(of: .kiwi, to: value)
         kiwiLabel.text = value.description
     }
 }

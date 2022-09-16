@@ -97,6 +97,7 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         modifyingInventoryVC.delegate = self
+        modifyingInventoryVC.fruitStore = juiceMaker.fruitStore
         
         let navigationController = UINavigationController(rootViewController: modifyingInventoryVC)
         navigationController.modalPresentationStyle = .fullScreen
