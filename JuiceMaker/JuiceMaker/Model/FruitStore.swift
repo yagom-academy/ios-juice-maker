@@ -7,9 +7,10 @@
 import Foundation
 
 class FruitStore {
-    var inventory: [Fruit: Int] = [:]
+    static let shared = FruitStore.init(initialFruitAmount: 10)
     
-    init(initialFruitAmount: Int) {
+    var inventory: [Fruit: Int] = [:]
+    private init(initialFruitAmount: Int) {
         Fruit.allCases.forEach { inventory[$0] = initialFruitAmount }
     }
     
@@ -22,7 +23,6 @@ class FruitStore {
         guard let fruitStock = inventory[fruit] else { return }
         
         if fruitStock < amount {
-            print("수량이 작습니다!")
             return
         }
         
