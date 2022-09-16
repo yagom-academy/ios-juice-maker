@@ -4,4 +4,5 @@ protocol FruitStoreProtocol {
     func updateFruitStock(fruit: Fruit, variation: Variation, amount: Int)
     func checkEnoughStock(juiceRecipe: [Juice.Recipe]) throws
     func sendFruitStock() -> FruitStock
+    func updateAllFruitStock(fruitStock: FruitStock)
 }

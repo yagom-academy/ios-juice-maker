@@ -25,4 +25,8 @@ extension JuiceMaker: JuiceMakerProtocol {
             )
         }
     }
+    
+    func updateAllFruitStock(fruitStock: FruitStock) {
+        fruitStore.updateAllFruitStock(fruitStock: fruitStock)
+    }
 }

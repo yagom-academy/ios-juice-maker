@@ -4,4 +4,5 @@ protocol JuiceMakerProtocol {
     func getFruitStock() -> FruitStock
     func make(_ juice: Juice)
     func canMakeJuice(_ recipe: [Juice.Recipe]) throws
+    func updateAllFruitStock(fruitStock: FruitStock)
 }

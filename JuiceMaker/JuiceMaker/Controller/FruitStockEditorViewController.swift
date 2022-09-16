@@ -22,7 +22,6 @@ class FruitStockEditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updateViewComponent(with: editingFruitStock)
     }
     
@@ -57,6 +56,7 @@ class FruitStockEditorViewController: UIViewController {
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
+        delegate?.receiveEditedFruitStock(fruitStock: editingFruitStock)
         dismiss(animated: true, completion: nil)
     }
     

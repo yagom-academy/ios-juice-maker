@@ -46,4 +46,10 @@ extension FruitStore: FruitStoreProtocol {
     func sendFruitStock() -> FruitStock {
         return fruitStock
     }
+    
+    func updateAllFruitStock(fruitStock: FruitStock) {
+        for target in fruitStock {
+            updateStock(target.key, for: target.value)
+        }
+    }
 }

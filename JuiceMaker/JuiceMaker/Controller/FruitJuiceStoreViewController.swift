@@ -69,6 +69,11 @@ class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
         return juiceMaker.getFruitStock()
     }
     
+    func receiveEditedFruitStock(fruitStock: FruitStock) {
+        juiceMaker.updateAllFruitStock(fruitStock: fruitStock)
+        updateFruitAmountLabel(currentStockValue: receiveFruitStock())
+    }
+    
     func updateFruitAmountLabel(currentStockValue: FruitStock) {
         for target in currentStockValue {
             updateLabel(amount: target.value, type: target.key)
