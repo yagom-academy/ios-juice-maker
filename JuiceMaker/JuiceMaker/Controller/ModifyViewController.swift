@@ -7,22 +7,22 @@ import UIKit
 
 protocol ModifyStockDelegate: AnyObject {
     func readCurrentStock(_ fruit: Fruit) -> Int?
-	func updateStock(by fruit: Fruit, to stock: Int)
+    func updateStock(by fruit: Fruit, to stock: Int)
 }
 
 class ModifyViewController: UIViewController {
-	static let identifier = "presentModifyViewController"
+    static let identifier = "presentModifyViewController"
     weak var delegate: ModifyStockDelegate?
     
     @IBOutlet var fruitLabels: [UILabel]!
     @IBOutlet var stockSteppers: [UIStepper]!
     
     override func viewDidLoad() {
-		super.viewDidLoad()
-		changeNavBackgroundColor()
-		setUpLabels()
+        super.viewDidLoad()
+        changeNavBackgroundColor()
+        setUpLabels()
         setUpStepper()
-	}
+    }
 }
 
 // UI 관련 메서드

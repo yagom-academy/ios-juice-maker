@@ -6,46 +6,43 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
-	private let store = FruitStore()
-	lazy var maker = JuiceMaker(store: store)
-    
+    private let maker = JuiceMaker()
     @IBOutlet var fruitLabels: [UILabel]!
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-        updateStockLabels()
-	}
     
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == ModifyViewController.identifier {
-			guard let nabViewController = segue.destination as? UINavigationController,
-				  let controller = nabViewController.viewControllers.first as? ModifyViewController else {
-				return
-			}
-			controller.delegate = self
-		}
-	}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateStockLabels()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == ModifyViewController.identifier {
+            guard let nabViewController = segue.destination as? UINavigationController,
+                  let controller = nabViewController.viewControllers.first as? ModifyViewController else {
+                return
+            }
+            controller.delegate = self
+        }
+    }
 }
 
 // Delegate 관련 메서드
 extension JuiceMakerViewController: ModifyStockDelegate {
     func readCurrentStock(_ fruit: Fruit) -> Int? {
-        return store.sendStock(to: fruit)
+        return maker.readStock(fruit)
     }
     
     func updateStock(by fruit: Fruit, to stock: Int) {
-        store.updateStock(fruit: fruit, to: stock)
+        maker.updateStock(fruit, stock)
         updateStockLabels()
     }
 }
-
 
 // UI 관련 메서드
 private extension JuiceMakerViewController {
     func updateStockLabels() {
         fruitLabels.forEach {
             if let fruit = Fruit(rawValue: $0.tag),
-               let stock = store.sendStock(to: fruit) {
+               let stock = maker.readStock(fruit) {
                 $0.text = stock.description
             }
         }
@@ -94,4 +91,3 @@ private extension JuiceMakerViewController {
         self.performSegue(withIdentifier: ModifyViewController.identifier, sender: nil)
     }
 }
-

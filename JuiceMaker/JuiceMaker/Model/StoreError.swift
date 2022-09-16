@@ -4,5 +4,5 @@
 //
 
 enum StoreError: Error {
-	case outOfStock
+    case outOfStock
 }
