@@ -93,11 +93,13 @@ class JuiceOrderViewController: UIViewController {
     
 //MARK: -showView
     func showModifyingInventoryNavigationController() {
-        guard let navigationController = storyboard?.instantiateViewController(withIdentifier: String(describing: ModifyingInventoryNavigationController.self)) as? ModifyingInventoryNavigationController else {
+        guard let modifyingInventoryVC = storyboard?.instantiateViewController(withIdentifier: String(describing: ModifyingInventoryViewController.self)) as? ModifyingInventoryViewController else {
             return
         }
+        modifyingInventoryVC.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: modifyingInventoryVC)
         navigationController.modalPresentationStyle = .fullScreen
-        navigationController.juiceOrderViewDelegate = self
         
         present(navigationController,
                 animated: true,

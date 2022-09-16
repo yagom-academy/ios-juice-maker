@@ -2,6 +2,7 @@ import UIKit
 
 class ModifyingInventoryViewController: UIViewController {
     private var inventoryList: [Fruit: Int] = [:]
+    weak var delegate: JuiceOrderViewDelegate?
     let stepperMaxValue: Double = 10000
     let stepperMinValue: Double = 0
     let stepperStepValue: Double = 1
