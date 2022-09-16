@@ -72,7 +72,7 @@ class ModifyingInventoryViewController: UIViewController {
     @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
         if let navigationController = navigationController as? ModifyingInventoryNavigationController,
            let delegate = navigationController.juiceOrderViewDelegate {
-            delegate.juiceOrderViewDidChangeInventoryList(inventoryList)
+            delegate.juiceOrderViewControllerDidChangeInventoryList(inventoryList)
         }
         dismiss(animated: true, completion: nil)
     }

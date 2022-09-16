@@ -8,7 +8,7 @@ import UIKit
 
 protocol JuiceOrderViewDelegate: AnyObject {
     var juiceOrderViewInventoryList: [Fruit: Int] { get }
-    func juiceOrderViewDidChangeInventoryList(_ inventoryList: [Fruit: Int])
+    func juiceOrderViewControllerDidChangeInventoryList(_ inventoryList: [Fruit: Int])
 }
 
 class JuiceOrderViewController: UIViewController {
@@ -113,7 +113,7 @@ extension JuiceOrderViewController: JuiceOrderViewDelegate {
         return self.juiceMaker.fruitStore.inventoryList
     }
     
-    func juiceOrderViewDidChangeInventoryList(_ inventoryList: [Fruit: Int]) {
+    func juiceOrderViewControllerDidChangeInventoryList(_ inventoryList: [Fruit: Int]) {
         self.juiceMaker.fruitStore.update(to: inventoryList)
     }
 }
