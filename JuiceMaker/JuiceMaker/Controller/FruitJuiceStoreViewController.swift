@@ -2,7 +2,7 @@
 
 import UIKit
 
-class FruitJuiceStoreViewController: UIViewController {
+class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
     
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
@@ -116,5 +116,11 @@ class FruitJuiceStoreViewController: UIViewController {
     
     @IBAction func touchUpMangoKiwiJuiceOrderButton(_ sender: Any) {
         takeOrder(juice: .mangoKiwiJuice)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let fruitStockEditorViewController = segue.destination as?  FruitStockEditorViewController else { return }
+        fruitStockEditorViewController.editingFruitStock = receiveFruitStock()
+        fruitStockEditorViewController.delegate = self
     }
 }

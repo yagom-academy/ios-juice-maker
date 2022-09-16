@@ -16,8 +16,13 @@ class FruitStockEditorViewController: UIViewController {
     @IBOutlet weak var kiwiAmountStepper: UIStepper!
     @IBOutlet weak var mangoAmountStepper: UIStepper!
     
+    var delegate: FruitStockDelegate?
+    
+    var editingFruitStock: FruitStock = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(editingFruitStock)
         
     }
     
@@ -44,4 +49,5 @@ class FruitStockEditorViewController: UIViewController {
     @IBAction func touchupMangoAmountStepper(_ sender: UIStepper) {
         
     }
+
 }
