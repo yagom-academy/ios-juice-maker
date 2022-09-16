@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -260,7 +260,6 @@
                         <outletCollection property="fruitLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="bYG-My-eLD"/>
                         <outletCollection property="fruitLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="2Cw-Gc-1AL"/>
                         <outletCollection property="fruitLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="e90-Lf-afy"/>
-                        <segue destination="WwV-Td-3Bn" kind="presentation" identifier="modifyInventory" modalPresentationStyle="fullScreen" id="hSu-vV-gmF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -315,7 +314,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-nZ-FrY">
                                                 <rect key="frame" x="0.0" y="126.66666666666666" width="132.66666666666666" height="32"/>
                                                 <subviews>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" restorationIdentifier="strawberry" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                         <rect key="frame" x="19.333333333333329" y="0.0" width="94" height="32"/>
                                                         <connections>
                                                             <action selector="changeStrawberryInventory:" destination="Yu1-lM-nqp" eventType="valueChanged" id="i3K-ez-jgd"/>
@@ -344,7 +343,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3dr-nC-zSm">
                                                 <rect key="frame" x="0.0" y="126.66666666666666" width="133" height="32"/>
                                                 <subviews>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="banana" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                         <rect key="frame" x="19.666666666666686" y="0.0" width="94" height="32"/>
                                                         <connections>
                                                             <action selector="changeBananaInventory:" destination="Yu1-lM-nqp" eventType="valueChanged" id="szj-nn-XUo"/>
@@ -373,7 +372,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xdH-LU-C74">
                                                 <rect key="frame" x="0.0" y="126.66666666666666" width="132.66666666666666" height="32"/>
                                                 <subviews>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="mango" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                         <rect key="frame" x="19.333333333333314" y="0.0" width="94" height="32"/>
                                                         <connections>
                                                             <action selector="changeMangoInventory:" destination="Yu1-lM-nqp" eventType="valueChanged" id="CC4-AK-7vQ"/>
@@ -402,7 +401,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8w6-R6-MET">
                                                 <rect key="frame" x="0.0" y="126.66666666666666" width="133" height="32"/>
                                                 <subviews>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="pineapple" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                         <rect key="frame" x="19.333333333333314" y="0.0" width="94" height="32"/>
                                                         <connections>
                                                             <action selector="changePineappleInventory:" destination="Yu1-lM-nqp" eventType="valueChanged" id="rDk-80-9Ka"/>
@@ -431,7 +430,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0yP-00-smq">
                                                 <rect key="frame" x="0.0" y="126.66666666666666" width="132.66666666666666" height="32"/>
                                                 <subviews>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="kiwi" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                         <rect key="frame" x="19.333333333333258" y="0.0" width="94" height="32"/>
                                                         <connections>
                                                             <action selector="changeKiwiInventory:" destination="Yu1-lM-nqp" eventType="valueChanged" id="fRC-ix-bnj"/>
@@ -486,10 +485,10 @@
             </objects>
             <point key="canvasLocation" x="1637" y="901"/>
         </scene>
-        <!--Modifying Inventory Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
             <objects>
-                <navigationController storyboardIdentifier="ModifyingInventoryNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WwV-Td-3Bn" customClass="ModifyingInventoryNavigationController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
