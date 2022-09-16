@@ -61,23 +61,27 @@ class FruitStockEditorViewController: UIViewController {
     }
     
     @IBAction func touchupStrawberryAmountStepper(_ sender: UIStepper) {
-        
+        editingFruitStock.updateValue(Int(sender.value), forKey: .strawberry)
+        mutableStrawberryAmountLabel.text = "\(Int(sender.value))"
     }
     
     @IBAction func touchupBananaAmountStepper(_ sender: UIStepper) {
-        
+        editingFruitStock.updateValue(Int(sender.value), forKey: .banana)
+        mutableBananaAmountLabel.text = "\(Int(sender.value))"
     }
     
     @IBAction func touchupPineappleAmountStepper(_ sender: UIStepper) {
-        
+        editingFruitStock.updateValue(Int(sender.value), forKey: .pineapple)
+        mutablePineappleAmountLabel.text = "\(Int(sender.value))"
     }
     
     @IBAction func touchupKiwiAmountStepper(_ sender: UIStepper) {
-        
+        editingFruitStock.updateValue(Int(sender.value), forKey: .kiwi)
+        mutableKiwiAmountLabel.text = "\(Int(sender.value))"
     }
     
     @IBAction func touchupMangoAmountStepper(_ sender: UIStepper) {
-        
+        editingFruitStock.updateValue(Int(sender.value), forKey: .mango)
+        mutableMangoAmountLabel.text = "\(Int(sender.value))"
     }
-    
 }
