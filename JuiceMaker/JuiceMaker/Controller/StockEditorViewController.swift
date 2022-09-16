@@ -19,6 +19,8 @@ class StockEditorViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
+    weak static var delegate: DidDissmissDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelValue()
@@ -68,5 +70,6 @@ class StockEditorViewController: UIViewController {
     
     @IBAction func tappedCloseModalButton(_ sender: UIButton) {
         self.dismiss(animated: true)
+        StockEditorViewController.delegate?.didDismissModal()
     }
 }

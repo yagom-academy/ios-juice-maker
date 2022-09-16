@@ -5,7 +5,11 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {  
+class JuiceMakerViewController: UIViewController, DidDissmissDelegate {
+    func didDismissModal() {
+        setLabelValue()
+    }
+    
     
     @IBOutlet weak var strawBerryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -25,6 +29,7 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        StockEditorViewController.delegate = self
         setLabelValue()
     }
     
