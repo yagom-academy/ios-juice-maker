@@ -22,6 +22,7 @@ class FruitStockEditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         updateViewComponent(with: editingFruitStock)
     }
     

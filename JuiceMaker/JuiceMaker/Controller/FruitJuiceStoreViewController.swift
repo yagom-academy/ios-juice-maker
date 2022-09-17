@@ -10,12 +10,19 @@ class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
     @IBOutlet weak var kiwiAmountLabel: UILabel!
     @IBOutlet weak var mangoAmountLabel: UILabel!
     
+    @IBOutlet var buttonCollection: [UIButton]!
+    
+    
     let juiceMaker: JuiceMakerProtocol = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateFruitAmountLabel(currentStockValue: receiveFruitStock())
+        
+        for target in buttonCollection {
+            target.titleLabel?.textAlignment = .center
+        }
     }
     
     func takeOrder(juice: Juice) {
@@ -124,7 +131,7 @@ class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let fruitStockEditorViewController = segue.destination as?  FruitStockEditorViewController else { return }
+        guard let fruitStockEditorViewController = segue.destination as? FruitStockEditorViewController else { return }
         fruitStockEditorViewController.editingFruitStock = receiveFruitStock()
         fruitStockEditorViewController.delegate = self
     }
