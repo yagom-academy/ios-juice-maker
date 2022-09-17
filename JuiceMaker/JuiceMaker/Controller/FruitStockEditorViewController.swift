@@ -3,7 +3,6 @@
 import UIKit
 
 class FruitStockEditorViewController: UIViewController {
-    
     @IBOutlet weak var mutableStrawberryAmountLabel: UILabel!
     @IBOutlet weak var mutableBananaAmountLabel: UILabel!
     @IBOutlet weak var mutablePineappleAmountLabel: UILabel!
@@ -17,7 +16,6 @@ class FruitStockEditorViewController: UIViewController {
     @IBOutlet weak var mangoAmountStepper: UIStepper!
     
     var delegate: FruitStockDelegate?
-    
     var editingFruitStock: FruitStock = [:]
     
     override func viewDidLoad() {

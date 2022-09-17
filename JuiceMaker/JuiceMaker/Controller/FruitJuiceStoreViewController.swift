@@ -3,15 +3,13 @@
 import UIKit
 
 class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
-    
     @IBOutlet weak var strawberryAmountLabel: UILabel!
     @IBOutlet weak var bananaAmountLabel: UILabel!
     @IBOutlet weak var pineappleAmountLabel: UILabel!
     @IBOutlet weak var kiwiAmountLabel: UILabel!
     @IBOutlet weak var mangoAmountLabel: UILabel!
     
-    @IBOutlet var buttonCollection: [UIButton]!
-    
+    @IBOutlet var orderButtonCollection: [UIButton]!
     
     let juiceMaker: JuiceMakerProtocol = JuiceMaker()
     
@@ -19,8 +17,11 @@ class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
         super.viewDidLoad()
         
         updateFruitAmountLabel(currentStockValue: receiveFruitStock())
-        
-        for target in buttonCollection {
+        setOrderButtonLabelAlignment()
+    }
+    
+    func setOrderButtonLabelAlignment() {
+        for target in orderButtonCollection {
             target.titleLabel?.textAlignment = .center
         }
     }
@@ -31,7 +32,6 @@ class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
             juiceMaker.make(juice)
             updateFruitAmountLabel(currentStockValue: receiveFruitStock())
             displaySuccessAlert(juiceName: juice.rawValue)
-            
         } catch JuiceMakerError.notEnoughStock {
             displayFailedAlert()
         } catch {
@@ -131,7 +131,8 @@ class FruitJuiceStoreViewController: UIViewController, FruitStockDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let fruitStockEditorViewController = segue.destination as? FruitStockEditorViewController else { return }
+        guard let fruitStockEditorViewController =
+                segue.destination as? FruitStockEditorViewController else { return }
         fruitStockEditorViewController.editingFruitStock = receiveFruitStock()
         fruitStockEditorViewController.delegate = self
     }

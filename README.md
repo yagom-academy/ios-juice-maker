@@ -108,8 +108,7 @@
 ## 5. 실행 화면(기능 설명)
 | 주스 주문 성공 | 주스 주문 실패 |
 |:--:|:--:|
-|![Simulator Screen Recording - iPhone 14 Pro - 2022-09-16 at 14 08 45 복사본](https://user-images.githubusercontent.com/99257965/190573313-5d8e69ea-54f3-47d7-9060-4c121ffca61e.gif)|![Simulator Screen Recording - iPhone 14 Pro - 2022-09-16 at 14 09 53](https://user-images.githubusercontent.com/99257965/190573730-d60af6bf-4874-4dc5-ac8a-d2d19a64f495.gif)|
-
+|![Simulator Screen Recording - iPhone 14 Pro - 2022-09-16 at 14 09 53](https://user-images.githubusercontent.com/99257965/190573730-d60af6bf-4874-4dc5-ac8a-d2d19a64f495.gif)|![Simulator Screen Recording - iPhone 14 Pro - 2022-09-16 at 14 08 45 복사본](https://user-images.githubusercontent.com/99257965/190573313-5d8e69ea-54f3-47d7-9060-4c121ffca61e.gif)|
 
 
 <br>
