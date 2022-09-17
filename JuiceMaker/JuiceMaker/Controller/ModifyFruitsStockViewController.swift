@@ -46,11 +46,11 @@ class ModifyFruitsStockViewController: UIViewController {
         }
     }
     
-    @IBAction func touchUpDismissButton(_ sender: UIBarButtonItem) {
+    @IBAction private func touchUpDismissButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
-    @IBAction func touchUpStepper(sender: UIStepper) {
+    @IBAction private func touchUpStepper(sender: UIStepper) {
         let count = Int(sender.value)
         
         switch sender {
