@@ -9,53 +9,44 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateAllFruitsCount()
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateFruitCount),
-            name: Notification.Name("showFruitCount"),
-            object: nil)
+        print("viewDidLoad")
     }
     
-    @objc func updateFruitCount(_ notification: Notification) {
-        let currentFruitList: [Fruits: String?] = [
-            .strawberry: strawberryCountLabel.text,
-            .banana: bananaCountLabel.text,
-            .pineapple: pineappleCountLabel.text,
-            .kiwi: kiwiCountLabel.text,
-            .mango: mangoCountLabel.text
-        ]
-        
-        guard let changedFruitList = notification.object as? [Fruits: Int] else { return }
-        
-        for (fruit, count) in changedFruitList {
-            if currentFruitList[fruit] != String(count) {
-                updateCountLabel(fruit: fruit, count: count)
-            }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
+        updateAllFruitsCount()
+    }
+    
+    private func updateFruitCount(fruitJuice: FruitJuice) {
+        for (fruit, _) in fruitJuice.ingredients {
+            let count = JuiceMaker.shared.requestFruitCount(fruit: fruit)
+            updateCountLabel(fruitTag: fruit.tagNumber, count: count)
         }
     }
     
     private func updateAllFruitsCount() {
         let fruitList = JuiceMaker.shared.fruitList
         fruitList.forEach { fruit, count in
-            updateCountLabel(fruit: fruit, count: count)
+            updateCountLabel(fruitTag: fruit.tagNumber, count: count)
         }
     }
     
-    private func updateCountLabel(fruit: Fruits, count: Int) {
-        switch fruit {
-        case .strawberry:
+    private func updateCountLabel(fruitTag: Int, count: Int) {
+
+        switch fruitTag {
+        case 1:
             strawberryCountLabel.text = String(count)
-        case .banana:
+        case 2:
             bananaCountLabel.text = String(count)
-        case .pineapple:
+        case 3:
             pineappleCountLabel.text = String(count)
-        case .kiwi:
+        case 4:
             kiwiCountLabel.text = String(count)
-        case .mango:
+        case 5:
             mangoCountLabel.text = String(count)
+        default:
+            return
         }
     }
     
@@ -66,6 +57,7 @@ class JuiceMakerViewController: UIViewController {
         
         do {
             try JuiceMaker.shared.makeFruitJuice(of: fruitJuice)
+            updateFruitCount(fruitJuice: fruitJuice)
             showJuiceComeOutAlert(alert, fruitJuice: fruitJuice)
         } catch JuiceMakerError.underFlowOfAmount {
             showFruitsOutOfStockAlert(alert)
@@ -86,8 +78,10 @@ class JuiceMakerViewController: UIViewController {
     private func showFruitsOutOfStockAlert(_ alert: UIAlertController) {
         let message = "재료가 모자라요. 재고를 수정할까요?"
         let okAction = UIAlertAction(title: "예", style: .default) { _ in
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "modifyFruitVC")
+            guard let vc = self.storyboard?.instantiateViewController(identifier: "modifyFruitVC") else {
+                return
+            }
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }
         let cancleAction = UIAlertAction(title: "아니오", style: .default)
@@ -96,6 +90,14 @@ class JuiceMakerViewController: UIViewController {
         alert.addAction(okAction)
         alert.addAction(cancleAction)
         present(alert, animated: true)
+    }
+    
+    @IBAction private func touchUpModifyFruitsStockButton(_ sender: UIBarButtonItem) {
+        guard let vc = storyboard?.instantiateViewController(identifier: "modifyFruitVC") else {
+            return
+        }
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     @IBAction private func touchUpFruitJuiceOrderButton(_ sender: UIButton) {

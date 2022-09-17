@@ -238,16 +238,16 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="WwV-Td-3Bn" kind="show" id="ujq-Wf-S5L"/>
+                                <action selector="touchUpModifyFruitsStockButton:" destination="BYZ-38-t0r" id="7bM-Rp-R4W"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="jJp-GN-m5c"/>
-                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="UMF-C8-v8V"/>
-                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="Pgs-bu-MUH"/>
-                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="CAl-XO-xkJ"/>
-                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="hyP-Cj-X8J"/>
+                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="Hb8-CS-3Aj"/>
+                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="KxN-VD-P3C"/>
+                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="D5t-Ac-Iye"/>
+                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="yp8-wg-Xmf"/>
+                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="SQB-zA-ffQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

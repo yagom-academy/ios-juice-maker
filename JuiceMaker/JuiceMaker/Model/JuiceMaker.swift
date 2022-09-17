@@ -20,4 +20,11 @@ class JuiceMaker {
     func requestModifyFruitCount(fruit: Fruits, count: Int) {
         fruitStore.changeCount(of: fruit, count: count)
     }
+    
+    func requestFruitCount(fruit: Fruits) -> Int {
+        guard let count = fruitList[fruit] else {
+            return 0
+        }
+        return count
+    }
 }
