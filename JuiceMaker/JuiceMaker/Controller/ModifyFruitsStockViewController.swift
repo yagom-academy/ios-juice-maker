@@ -2,16 +2,16 @@ import UIKit
 
 class ModifyFruitsStockViewController: UIViewController {
     
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryCountLabel: UILabel!
+    @IBOutlet weak private var bananaCountLabel: UILabel!
+    @IBOutlet weak private var pineappleCountLabel: UILabel!
+    @IBOutlet weak private var kiwiCountLabel: UILabel!
+    @IBOutlet weak private var mangoCountLabel: UILabel!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()

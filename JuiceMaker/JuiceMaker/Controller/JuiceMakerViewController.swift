@@ -6,58 +6,56 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var pineappleCountLabel: UILabel!
     @IBOutlet weak private var kiwiCountLabel: UILabel!
     @IBOutlet weak private var mangoCountLabel: UILabel!
+    private lazy var fruitCountLabels: [UILabel] = [
+        strawberryCountLabel,
+        bananaCountLabel,
+        pineappleCountLabel,
+        kiwiCountLabel,
+        mangoCountLabel
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
+        setFruitsCountLabelsTag()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear")
-        updateAllFruitsCount()
+        updateAllFruitsCountLabel()
     }
     
-    private func updateFruitCount(fruitJuice: FruitJuice) {
+    private func setFruitsCountLabelsTag() {
+        for (index, label) in fruitCountLabels.enumerated() {
+            label.tag = index + 1
+        }
+    }
+    
+    private func updateFruitCountLabel(by fruit: Fruits) {
+        guard let label = view.viewWithTag(fruit.tagNumber) as? UILabel else { return }
+        guard let fruitCount = JuiceMaker.shared.fruitList[fruit] else { return }
+        label.text = String(fruitCount)
+    }
+    
+    private func updateFruitCountLabel(by fruitJuice: FruitJuice) {
         for (fruit, _) in fruitJuice.ingredients {
-            let count = JuiceMaker.shared.requestFruitCount(fruit: fruit)
-            updateCountLabel(fruitTag: fruit.tagNumber, count: count)
+            updateFruitCountLabel(by: fruit)
         }
     }
     
-    private func updateAllFruitsCount() {
-        let fruitList = JuiceMaker.shared.fruitList
-        fruitList.forEach { fruit, count in
-            updateCountLabel(fruitTag: fruit.tagNumber, count: count)
+    private func updateAllFruitsCountLabel() {
+        for fruit in Fruits.allCases {
+            updateFruitCountLabel(by: fruit)
         }
     }
     
-    private func updateCountLabel(fruitTag: Int, count: Int) {
-
-        switch fruitTag {
-        case 1:
-            strawberryCountLabel.text = String(count)
-        case 2:
-            bananaCountLabel.text = String(count)
-        case 3:
-            pineappleCountLabel.text = String(count)
-        case 4:
-            kiwiCountLabel.text = String(count)
-        case 5:
-            mangoCountLabel.text = String(count)
-        default:
-            return
-        }
-    }
-    
-    private func handleAlert(fruitJuice: FruitJuice) {
+    private func order(fruitJuice: FruitJuice) {
         let alert = UIAlertController(title: nil,
                                       message: nil,
                                       preferredStyle: .alert)
         
         do {
             try JuiceMaker.shared.makeFruitJuice(of: fruitJuice)
-            updateFruitCount(fruitJuice: fruitJuice)
+            updateFruitCountLabel(by: fruitJuice)
             showJuiceComeOutAlert(alert, fruitJuice: fruitJuice)
         } catch JuiceMakerError.underFlowOfAmount {
             showFruitsOutOfStockAlert(alert)
@@ -125,11 +123,6 @@ class JuiceMakerViewController: UIViewController {
             return
         }
         
-        order(fruitJuice)
-    }
-    
-    private func order(_ fruitJuice: FruitJuice) {
-        handleAlert(fruitJuice: fruitJuice)
+        order(fruitJuice: fruitJuice)
     }
 }
-
