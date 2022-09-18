@@ -6,15 +6,17 @@
 
 import UIKit
 
+protocol JuiceOrderViewDelegate: AnyObject {
+    func juiceOrderViewController(didChange fruitStore: FruitStore)
+}
+
 class JuiceOrderViewController: UIViewController {
     @IBOutlet private var fruitLabels: [UILabel]!
-    
     private let juiceMaker = JuiceMaker()
     
+//MARK: -View
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
         updateInventory()
     }
     
@@ -28,6 +30,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
+//MARK: -Action
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         guard let identifier = sender.accessibilityIdentifier,
               let juice = Juice.init(rawValue: identifier) else {
@@ -44,6 +47,11 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
+    @IBAction func touchUpModifyButton(_ sender: UIBarButtonItem) {
+        self.showModifyingInventoryNavigationController()
+    }
+    
+//MARK: -Alert
     func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil,
                                       message: message,
@@ -68,7 +76,7 @@ class JuiceOrderViewController: UIViewController {
         
         let okAction = UIAlertAction(title: "예",
                                      style: .default) { (action) in
-            self.presentModifyingInventoryView()
+            self.showModifyingInventoryNavigationController()
         }
         let cancleAction = UIAlertAction(title: "아니오",
                                          style: .default,
@@ -82,13 +90,29 @@ class JuiceOrderViewController: UIViewController {
                 completion: nil)
     }
     
-    func presentModifyingInventoryView() {
-        guard let modifyingInventoryViewController = storyboard?.instantiateViewController(withIdentifier: ModifyingInventoryViewController.identifier) as? ModifyingInventoryViewController else {
+//MARK: -showView
+    func showModifyingInventoryNavigationController() {
+        guard let modifyingInventoryVC = storyboard?.instantiateViewController(withIdentifier: String(describing: ModifyingInventoryViewController.self)) as? ModifyingInventoryViewController else {
             return
         }
-        present(modifyingInventoryViewController,
+        modifyingInventoryVC.delegate = self
+        modifyingInventoryVC.juiceOrderViewControllerFruitStore = juiceMaker.fruitStore
+        
+        let navigationController = UINavigationController(rootViewController: modifyingInventoryVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        present(navigationController,
                 animated: true,
                 completion: nil)
     }
 }
 
+//MARK: -Extension Delegate Protocol
+extension JuiceOrderViewController: JuiceOrderViewDelegate {
+    func juiceOrderViewController(didChange fruitStore: FruitStore) {
+        if self.juiceMaker.fruitStore !== fruitStore {
+            self.juiceMaker.fruitStore.update(to: fruitStore.inventoryList)
+        }
+        updateInventory()
+    }
+}

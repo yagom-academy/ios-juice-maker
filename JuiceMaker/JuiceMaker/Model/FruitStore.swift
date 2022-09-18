@@ -36,4 +36,12 @@ class FruitStore {
         }
         return false
     }
+    
+    func update(to inventoryList: [Fruit: Int]) {
+        self.inventoryList = inventoryList
+    }
+    
+    func update(of fruit: Fruit, to amount: Int) {
+        self.inventoryList[fruit] = amount
+    }
 }
