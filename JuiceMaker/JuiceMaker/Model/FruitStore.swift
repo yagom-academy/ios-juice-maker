@@ -4,13 +4,13 @@
 //
 import Foundation
 
-class FruitStore: NSObject {
-    @objc dynamic var stock: [String: Int] = [
-        "딸기": 10,
-        "바나나": 10,
-        "파인애플": 10,
-        "키위": 10,
-        "망고": 10
+class FruitStore {
+    var stock: [String: Int] = [
+        Fruit.strawBerry.rawValue: 10,
+        Fruit.banana.rawValue: 10,
+        Fruit.pineApple.rawValue: 10,
+        Fruit.kiwi.rawValue: 10,
+        Fruit.mango.rawValue: 10
     ]
     
     func checkStockAvailability(of juice: Juice) throws {
