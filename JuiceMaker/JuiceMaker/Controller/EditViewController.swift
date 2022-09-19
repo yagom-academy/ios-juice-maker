@@ -13,7 +13,7 @@ class EditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        store?.setQueuedStock()
+        store?.setTempStock()
         updateStockCount()
         setStepperValue()
     }
@@ -35,11 +35,11 @@ class EditViewController: UIViewController {
         let fruitIndex = sender.tag, newCount = sender.value
         
         fruitCountLabels?[fruitIndex].text = Int(newCount).description
-        store?.changeQueueStock(fruitIndex: fruitIndex, count: Int(newCount))
+        store?.changeTempStock(fruitIndex: fruitIndex, count: Int(newCount))
     }
     
     private func updateStockCount() {
-        guard var newStock = store?.queuedStock else { return }
+        guard var newStock = store?.tempStock else { return }
         
         for fruitCountLabel in fruitCountLabels {
             if newStock.isEmpty { return }
@@ -48,7 +48,7 @@ class EditViewController: UIViewController {
     }
     
     private func setStepperValue() {
-        guard let stock = store?.queuedStock else { return }
+        guard let stock = store?.tempStock else { return }
         
         fruitSteppers.forEach { fruitStepper in
             let fruitIndex = fruitStepper.tag
