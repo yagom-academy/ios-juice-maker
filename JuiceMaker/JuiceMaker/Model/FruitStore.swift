@@ -16,11 +16,8 @@ class FruitStore {
         }
     }
     
-    func add(_ fruit: Fruit, amountOf amount: Int) {
-        if let currentStock = fruitStock[fruit] {
-            let totalStock = currentStock + amount
-            fruitStock.updateValue(totalStock, forKey: fruit)
-        }
+    func updateFruitStock(fruit: Fruit, amountOf amount: Int) {
+        fruitStock.updateValue(amount, forKey: fruit)
     }
     
     func use(_ fruit: Fruit, amountOf amount: Int) {
