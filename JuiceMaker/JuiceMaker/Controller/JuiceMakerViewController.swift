@@ -19,12 +19,9 @@ class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.backgroundColor = .systemGray5
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         updateAllStockLabels()
     }
-    
+
     private func updateAllStockLabels() {
         Fruit.allCases.forEach({ fruit in
             updateStockLabel(of: fruit)
@@ -99,10 +96,17 @@ class JuiceMakerViewController: UIViewController {
             StockEditViewController.init(fruitStore: self.juiceMaker.fetchFruitStore(), coder: coder) })
         let stockEditNavigationController = UINavigationController(rootViewController: stockEditViewController)
         
+        stockEditViewController.delegate = self
         present(stockEditNavigationController, animated: true, completion: nil)
     }
     
     @IBAction func stockEditButtonPressed() {
         presentStockEditViewController()
+    }
+}
+
+extension JuiceMakerViewController: StockEditDelegate {
+    func didEndStockEditing() {
+        updateAllStockLabels()
     }
 }

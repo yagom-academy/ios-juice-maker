@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol StockEditDelegate {
+    func didEndStockEditing()
+}
+
 class StockEditViewController: UIViewController {
     
+    var delegate: StockEditDelegate?
     private var fruitStore: FruitStore
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -40,6 +45,7 @@ class StockEditViewController: UIViewController {
     }
 
     @IBAction func dismissButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.didEndStockEditing()
         dismiss(animated: true)
     }
     
