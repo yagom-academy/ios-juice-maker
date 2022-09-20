@@ -7,6 +7,7 @@ import Foundation
 
 class FruitStore {
     private(set) var stock: [Int]
+    private(set) var tempStock = [Int]()
     
     init(stockCount: Int) {
         let count = Fruit.allCases.count
@@ -23,13 +24,23 @@ class FruitStore {
         }
         return true
     }
+
+    func setTempStock() {
+        tempStock = stock
+    }
     
-    func changeStock(fruit: Fruit, count: Int, isMinus: Bool = false) {
+    func changeTempStock(fruitIndex: Int, count: Int) {
+        tempStock[fruitIndex] = count
+    }
+    
+    func confirmChange() {
+        stock = tempStock
+        tempStock = [Int]()
+    }
+    
+    private func removeStock(fruit: Fruit, count: Int) {
         let stockCount = stock[fruit.index]
-        
-        var computedCount: Int {
-            isMinus ? stockCount - count : stockCount + count
-        }
+        let computedCount = stockCount - count
         
         stock[fruit.index] = computedCount
     }
@@ -40,7 +51,7 @@ class FruitStore {
         }
         
         for (fruit, count) in ingredient {
-            changeStock(fruit: fruit, count: count, isMinus: true)
+            removeStock(fruit: fruit, count: count)
         }
         return true
     }
