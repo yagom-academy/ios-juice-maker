@@ -1,5 +1,14 @@
+import Foundation
+
 struct FruitStore {
-    private var fruitList: [Fruits: Int] = [:]
+    private(set) var fruitList: [Fruits: Int] = [:] {
+        didSet {
+            NotificationCenter.default.post(
+                name: Notification.Name("showFruitCount"),
+                object: fruitList,
+                userInfo: nil)
+        }
+    }
     
     init(fruitCount: Int = 10) {
         for fruit in Fruits.allCases {
@@ -7,15 +16,7 @@ struct FruitStore {
         }
     }
     
-    func requestFruitList() -> [Fruits: Int] {
-        return fruitList
-    }
-    
-    func requestFruitCount(fruit: Fruits) -> Int? {
-        return fruitList[fruit]
-    }
-    
-    mutating private func changeCount(of fruit: Fruits, count: Int) {
+    mutating func changeCount(of fruit: Fruits, count: Int) {
         fruitList[fruit] = count
     }
     
@@ -24,29 +25,15 @@ struct FruitStore {
             throw JuiceMakerError.notExistFruits
         }
         
-        if countOfFruit - count < 0 {
-            throw JuiceMakerError.underFlowOfAmount
-        }
-        
-        fruitList[fruit] = countOfFruit - count
+        changeCount(of: fruit, count: countOfFruit - count)
     }
     
-    mutating func use(
-        firstFruit: Fruits,
-        firstCount: Int,
-        secondFruit: Fruits,
-        secondCount: Int
-    ) throws {
-        guard let countOfFruit1 = fruitList[firstFruit],
-              let countOfFruit2 = fruitList[secondFruit] else {
-            throw JuiceMakerError.notExistFruits
+    func isFruitListStock(_ fruits: [Fruits: Int]) -> Bool {
+        for (fruit, count) in fruits {
+            guard let countOfFruit = fruitList[fruit] else { return false }
+            
+            if countOfFruit - count < 0 { return false }
         }
-        
-        if countOfFruit1 - firstCount < 0 || countOfFruit2 - secondCount < 0 {
-            throw JuiceMakerError.underFlowOfAmount
-        }
-        
-        fruitList[firstFruit] = countOfFruit1 - firstCount
-        fruitList[secondFruit] = countOfFruit2 - secondCount
+        return true
     }
 }

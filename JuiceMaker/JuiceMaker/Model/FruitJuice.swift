@@ -1,4 +1,4 @@
-enum FruitJuice: String, CaseIterable {
+enum FruitJuice: CaseIterable {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -26,36 +26,22 @@ enum FruitJuice: String, CaseIterable {
         }
     }
     
-    struct JuiceIngridients {
-        let first: (Fruits, Int)
-        let second: (Fruits, Int)?
-    }
-    
-    var juiceIngridients: JuiceIngridients {
+    var ingredients: [Fruits: Int] {
         switch self {
         case .strawberryJuice:
-            return JuiceIngridients(first: (.strawberry, 16), second: nil)
+            return [.strawberry: 16]
         case .bananaJuice:
-            return JuiceIngridients(first: (.banana, 2), second: nil)
+            return [.banana: 2]
         case .kiwiJuice:
-            return JuiceIngridients(first: (.kiwi, 3), second: nil)
+            return [.kiwi: 3]
         case .pineappleJuice:
-            return JuiceIngridients(first: (.pineapple, 2), second: nil)
+            return [.pineapple: 2]
         case .mangoJuice:
-            return JuiceIngridients(first: (.mango, 3), second: nil)
+            return [.mango: 2]
         case .strawberryBananaJuice:
-            return JuiceIngridients(first: (.strawberry, 10), second: (.banana, 1))
+            return [.strawberry: 10, .banana: 1]
         case .mangoKiwiJuice:
-            return JuiceIngridients(first: (.mango, 2), second: (.kiwi, 1))
-        }
-    }
-    
-    var ingridientCount: Int {
-        switch self {
-        case .strawberryJuice, .bananaJuice, .kiwiJuice, .pineappleJuice, .mangoJuice:
-            return 1
-        case .strawberryBananaJuice, .mangoKiwiJuice:
-            return 2
+            return [.mango: 2, .kiwi: 1]
         }
     }
     
