@@ -37,9 +37,17 @@ enum JuiceMenu {
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var fruit = FruitStore()
+    var fruitStore = FruitStore()
     
     func makeJuice(juice: JuiceMenu) {
+        let recipe = juice.recipe
         
+        for (fruit, num) in recipe {
+            if fruitStore.checkFruit(fruit: fruit, number: num) {
+                fruitStore.decreaseFruit(fruit: fruit, number: num)
+            } else {
+                print("재고 부족")
+            }
+        }
     }
 }
