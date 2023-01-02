@@ -10,7 +10,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        let juiceMaker: JuiceMaker = JuiceMaker()
+
+        do {
+            try juiceMaker.makeJuice(juice: .strawberryJuice)
+            
+        } catch JuiceMakerError.insufficientStock {
+            print("재고 부족")
+        } catch {
+            print(error)
+        }
+        
+        
     }
 
 

@@ -35,4 +35,14 @@ struct JuiceMaker {
             }
         }
     }
+    
+//    func makeJuice(juice: Juice) {
+//        for (fruit, amount) in fruitStore.stock where juice.cook.keys == fruitStore.stock.keys {
+//            guard juice.cook[fruit] ?? 0 > amount else {
+//                return
+//            }
+//
+//            fruitStore.addFruitStock(fruit: fruit, amount: amount)
+//        }
+//    }
 }

@@ -15,12 +15,22 @@ class FruitStore {
     
     var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .mango: 10]
     
-    func changeFruitStock(fruit: Fruit, amount: Int) {
-        guard var currentStock = stock[fruit] else {
+    func addFruitStock(fruit: Fruit, amount: Int) {
+        guard let currentStock = stock[fruit] else {
             return
         }
-        currentStock += amount
-        stock[fruit] = currentStock
+        stock[fruit] = currentStock + amount
     }
     
+    func subtractFruitStock(fruit: Fruit, amount: Int) throws {
+        guard let currentStock = stock[fruit] else {
+            return
+        }
+        
+        guard currentStock >= amount else {
+            throw JuiceMakerError.insufficientStock
+        }
+        
+        stock[fruit] = currentStock - amount
+    }
 }
