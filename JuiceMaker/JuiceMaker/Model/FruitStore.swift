@@ -14,6 +14,7 @@ class FruitStore {
     var kiwi: Int = 10
     var mango: Int = 10
     
+    
     func buyStrawberry(howMany: Int) {
         strawberry += howMany
     }
