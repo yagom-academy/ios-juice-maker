@@ -6,7 +6,17 @@
 
 import Foundation
 
+enum JuiceMenu {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
+}
+
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    
+    FruitStore()
 }
