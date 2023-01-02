@@ -24,6 +24,7 @@ enum Fruit {
 
 enum JuiceError: Error {
     case lackedInventory
+    case noExistInventory
 }
 
 // 과일 저장소 타입
@@ -44,14 +45,12 @@ class FruitStore {
         self.fruits[fruit] = storedFruit - number
     }
     
-    func checkFruit(fruit: Fruit, number: Int) throws -> Bool {
+    func checkFruit(fruit: Fruit, number: Int) throws {
         guard let storedFruit = self.fruits[fruit] else {
-            return false
+            throw JuiceError.noExistInventory
         }
         guard storedFruit >= number else {
             throw JuiceError.lackedInventory
         }
-        
-        return true
     }
 }
