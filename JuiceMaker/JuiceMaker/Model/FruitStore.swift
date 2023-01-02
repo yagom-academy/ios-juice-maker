@@ -1,7 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
+//  Created by Andrew, 혜모리 on 2023.01.02
 //
 
 // 과일 저장소 타입
@@ -10,11 +9,10 @@ class FruitStore {
         case strawberry
         case banana
         case pineapple
+        case kiwi
         case mango
     }
     
     var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .mango: 10]
-    
-    
     
 }
