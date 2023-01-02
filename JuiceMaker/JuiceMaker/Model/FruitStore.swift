@@ -12,7 +12,7 @@ class FruitStore {
     
     func addOne(selectedFruit: String) -> Result<Int, ErrorMessage> {
         guard var number = fruits[selectedFruit] else {
-            return .failure(.outOfRangeAdd)
+            return .failure(.outOfRange)
         }
         number += 1
         return .success(number)
@@ -20,7 +20,7 @@ class FruitStore {
     
     func minusOne(selectedFruit: String) -> Result<Int, ErrorMessage> {
         guard var number = fruits[selectedFruit] else {
-            return .failure(.outOfRangeMinus)
+            return .failure(.outOfRange)
         }
         number -= 1
         return .success(number)
