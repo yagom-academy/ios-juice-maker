@@ -24,7 +24,24 @@ struct JuiceMaker {
     }
     
     func makeJuice(juice: Juice) {
-        
+        switch juice {
+        case .strawberryJuice:
+            fruitStore.useFruits(fruits: .strawberry, count: Recipe.usingStrawberry)
+        case .bananaJuice:
+            fruitStore.useFruits(fruits: .banana, count: Recipe.usingBanana)
+        case .pineappleJuice:
+            fruitStore.useFruits(fruits: .pineapple, count: Recipe.usingPineapple)
+        case .kiwiJuice:
+            fruitStore.useFruits(fruits: .kiwi, count: Recipe.usingKiwi)
+        case .mangoJuice:
+            fruitStore.useFruits(fruits: .mango, count: Recipe.usingMango)
+        case .strawberryBananaJuice:
+            fruitStore.useFruits(fruits: .strawberry, count: Recipe.usingMixStrawberry)
+            fruitStore.useFruits(fruits: .banana, count: Recipe.usingMixBanana)
+        case .mangoKiwiJuice:
+            fruitStore.useFruits(fruits: .mango, count: Recipe.usingMixMango)
+            fruitStore.useFruits(fruits: .kiwi, count: Recipe.usingMixKiwi)
+        }
     }
     
 }

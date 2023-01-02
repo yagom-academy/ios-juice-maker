@@ -17,23 +17,25 @@ class FruitStore {
     static let shared = FruitStore()
     private init() {}
     
-    func buyStrawberry(howMany: Int) {
-        strawberry += howMany
+    func useFruits(fruits: Fruit, count: Int) {
+        switch fruits {
+        case .strawberry: strawberry -= count
+        case .banana: banana -= count
+        case .pineapple: pineapple -= count
+        case .kiwi: kiwi -= count
+        case .mango: mango -= count
+        default: return
+        }
     }
     
-    func buyBanana(howMany: Int) {
-        banana += howMany
-    }
-    
-    func buyPineapple(howMany: Int) {
-        pineapple += howMany
-    }
-    
-    func buyKiwi(howMany: Int) {
-        kiwi += howMany
-    }
-    
-    func buyMango(howMany: Int) {
-        mango += howMany
+    func buyFruits(fruits: Fruit, count: Int) {
+        switch fruits {
+        case .strawberry: strawberry += count
+        case .banana: banana += count
+        case .pineapple: pineapple += count
+        case .kiwi: kiwi += count
+        case .mango: mango += count
+        default: return
+        }
     }
 }
