@@ -9,15 +9,7 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     
-    enum Menu {
-        case strawberryJuice
-        case bananaJuice
-        case pineappleJuice
-        case kiwiJuice
-        case mangoJuice
-        case strawberryBananaJuice
-        case mangoKiwiJuice
-    }
+    let fruitStore = FruitStore.shared
     
     enum Recipe {
         static let usingStrawberry = 16
@@ -31,5 +23,8 @@ struct JuiceMaker {
         static let usingMixKiwi = 1
     }
     
+    func makeJuice(juice: Juice) {
+        
+    }
     
 }

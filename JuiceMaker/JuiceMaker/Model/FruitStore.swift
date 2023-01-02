@@ -14,6 +14,8 @@ class FruitStore {
     var kiwi: Int = 10
     var mango: Int = 10
     
+    static let shared = FruitStore()
+    private init() {}
     
     func buyStrawberry(howMany: Int) {
         strawberry += howMany
