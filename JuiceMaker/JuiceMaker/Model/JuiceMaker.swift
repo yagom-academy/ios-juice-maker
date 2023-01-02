@@ -1,8 +1,6 @@
-//
 //  JuiceMaker - JuiceMaker.swift
 //  Created by 송준, Rowan. 
 //  Copyright © yagom academy. All rights reserved.
-// 
 
 import Foundation
 
@@ -14,7 +12,7 @@ struct JuiceMaker {
         case mango = "망고", pineapple = "파인애플", banana = "바나나", kiwi = "키위", strawberry = "딸기"
         case strawberryBanana = "딸바", mangoKiwi = "망고키위"
         
-        var name: [String:Int] {
+        var ingredients: [String:Int] {
             switch self {
             case .mango: return ["망고":3]
             case .pineapple: return ["파인애플":2]
@@ -27,6 +25,17 @@ struct JuiceMaker {
         }
     }
     
-    
-    
+    func make(juice: Recipe) {
+        let first = juice.ingredients
+        
+        for (key, value) in first {
+            let fruitName = songroFruit.findFruit(fruitName: key)
+            songroFruit.changeInventory(fruit: fruitName!, number: value)
+        }
+        
+        print("주문하신 \(juice.rawValue)쥬스가 나왔습니다!")
+        songroFruit.checkStock(fruit: songroFruit.strawberry)
+        songroFruit.checkStock(fruit: songroFruit.banana)
+    }
 }
+

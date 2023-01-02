@@ -24,8 +24,25 @@ class FruitStore {
     let pineapple = Fruit(name: "파인애플")
     let mango = Fruit(name: "망고")
     
+    //MARK: 배열선언을 안하고 싶은데 굳이 해야되는 사태 발생
+    func makeFruitsList() -> [Fruit] {
+        let fruitsList = [self.strawberry, self.banana, self.kiwi, self.pineapple, self.mango]
+        return fruitsList
+    }
+    
+    
+    
     func changeInventory(fruit: Fruit, number: Int) {
         fruit.stock -= number
+    }
+    
+    func findFruit(fruitName: String) -> Fruit? {
+        for i in 0..<makeFruitsList().count {
+            if makeFruitsList()[i].name == fruitName {
+                return makeFruitsList()[i]
+            }
+        }
+        return nil
     }
     
     func checkStock(fruit: Fruit) {
