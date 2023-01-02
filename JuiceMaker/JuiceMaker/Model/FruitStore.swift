@@ -25,5 +25,25 @@ class FruitStore {
         number -= 1
         fruits[selectedFruit] = number
     }
+    
+    func addError(selectedFruit: String) {
+        do {
+            try addOne(selectedFruit: selectedFruit)
+        } catch ErrorMessage.outOfRange {
+            print(ErrorMessage.outOfRange.rawValue)
+        } catch {
+            print("unknown error")
+        }
+    }
+    
+    func minusError(selectedFruit: String) {
+        do {
+            try minusOne(selectedFruit: selectedFruit)
+        } catch ErrorMessage.outOfRange {
+            print(ErrorMessage.outOfRange.rawValue)
+        } catch {
+            print("unknown error")
+        }
+    }
 }
 
