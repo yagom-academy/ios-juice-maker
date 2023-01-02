@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by 송준, Rowan. 
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -11,6 +11,11 @@ class FruitStore {
     class Fruit {
         let name: String
         var stock = 10
+        
+        init(name: String, stock: Int = 10) {
+            self.name = name
+            self.stock = stock
+        }
     }
     
     let strawberry = Fruit(name: "딸기")
