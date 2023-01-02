@@ -18,4 +18,7 @@ class FruitStore {
     let pineapple = Fruit()
     let mango = Fruit()
     
+    func changeInventory(fruit: Fruit, number: Int) {
+        fruit.stock -= number
+    }
 }
