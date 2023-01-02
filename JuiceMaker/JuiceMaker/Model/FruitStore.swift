@@ -12,12 +12,20 @@ class FruitStore {
     var fruits: [Fruit: Int] = [.strawberry: 10, .banana: 10, .kiwi: 10, .mango: 10, .pineapple: 10]
     
     func increaseFruit(fruit: Fruit, number: Int) {
-        guard let self.fruits[fruit] else {
+        guard let storedFruit = self.fruits[fruit] else {
             return
         }
+        self.fruits[fruit] = storedFruit + number
     }
     
-    func decreaseFruit(number: Int) {
+    func decreaseFruit(fruit: Fruit, number: Int) {
+        guard let storedFruit = self.fruits[fruit] else {
+            return
+        }
+        guard storedFruit >= number else {
+            return
+        }
         
+        self.fruits[fruit] = storedFruit - number
     }
 }
