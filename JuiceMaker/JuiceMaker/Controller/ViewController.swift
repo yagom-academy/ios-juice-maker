@@ -10,7 +10,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let fruitStore = FruitStore()
+        fruitStore.subtractionStock(fruit: .strawberry, amount: 5)
+        print(fruitStore.stockList)
     }
 
 
