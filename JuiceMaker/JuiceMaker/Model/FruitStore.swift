@@ -43,6 +43,20 @@ class FruitStore {
         
         fruitStock.updateValue(selectedFruitStock - amount, forKey: fruit)
     }
+    
+    func isStocked(recipe: [Fruit: Int]) -> Bool {
+        for ingredient in recipe {
+            guard let currentStock = fruitStock[ingredient.key] else {
+                return false
+            }
+            
+            if currentStock < ingredient.value {
+                return false
+            }
+        }
+        
+        return true
+    }
 }
 
 

@@ -7,27 +7,27 @@
 
 import Foundation
 
-struct Recipe {
-    let strawberryJuice: [Fruit: Int] = [
+enum Recipe {
+    static let strawberryJuice: [Fruit: Int] = [
         .strawberry: 16
     ]
-    let bananaJuice: [Fruit: Int] = [
+    static let bananaJuice: [Fruit: Int] = [
         .banana: 2
     ]
-    let kiwiJuice: [Fruit: Int] = [
+    static let kiwiJuice: [Fruit: Int] = [
         .kiwi: 3
     ]
-    let pineappleJuice: [Fruit: Int] = [
+    static let pineappleJuice: [Fruit: Int] = [
         .pineapple: 2
     ]
-    let strawberryBananaJuice: [Fruit: Int] = [
+    static let strawberryBananaJuice: [Fruit: Int] = [
         .strawberry: 10,
         .banana: 1
     ]
-    let mangoJuice: [Fruit: Int] = [
+    static let mangoJuice: [Fruit: Int] = [
         .mango: 3
     ]
-    let mangoKiwiJuice: [Fruit: Int] = [
+    static let mangoKiwiJuice: [Fruit: Int] = [
         .mango: 2,
         .kiwi: 1
     ]
