@@ -12,15 +12,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let juiceMaker: JuiceMaker = JuiceMaker()
-
-        do {
-            try juiceMaker.makeJuice(juice: .strawberryJuice)
-            
-        } catch JuiceMakerError.insufficientStock {
-            print("재고 부족")
-        } catch {
-            print(error)
-        }
+        juiceMaker.fruitStore.addFruitStock(fruit: .strawberry, amount: 100)
+        juiceMaker.makeJuice(juice: .strawberryBananaJuice)
+        
+        print(juiceMaker.fruitStore.stock[.strawberry])
+        print(juiceMaker.fruitStore.stock[.banana])
         
         
     }

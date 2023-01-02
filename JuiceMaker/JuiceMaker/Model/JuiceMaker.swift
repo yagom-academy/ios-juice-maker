@@ -36,13 +36,16 @@ struct JuiceMaker {
         }
     }
     
-//    func makeJuice(juice: Juice) {
-//        for (fruit, amount) in fruitStore.stock where juice.cook.keys == fruitStore.stock.keys {
-//            guard juice.cook[fruit] ?? 0 > amount else {
-//                return
-//            }
-//
-//            fruitStore.addFruitStock(fruit: fruit, amount: amount)
-//        }
-//    }
+    func makeJuice(juice: Juice) {
+        for (fruit, amount) in juice.cook {
+            do {
+                try fruitStore.subtractFruitStock(fruit: fruit, amount: amount)
+                print(fruitStore.stock)
+            } catch JuiceMakerError.insufficientStock {
+                print("재고 부족")
+            } catch {
+                print(error)
+            }
+        }
+    }
 }
