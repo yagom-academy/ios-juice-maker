@@ -15,4 +15,12 @@ class FruitStore {
     
     var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .mango: 10]
     
+    func changeFruitStock(fruit: Fruit, amount: Int) {
+        guard var currentStock = stock[fruit] else {
+            return
+        }
+        currentStock += amount
+        stock[fruit] = currentStock
+    }
+    
 }
