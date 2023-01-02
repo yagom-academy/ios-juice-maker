@@ -10,39 +10,39 @@ import Foundation
 class FruitStore {
     var fruits = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
     
-    func addOne(selectedFruit: String) throws {
+    func addOne(selectedFruit: String) -> Result<Int, ErrorMessage> {
         guard var number = fruits[selectedFruit] else {
-            throw ErrorMessage.outOfRange
+            return .failure(.outOfRangeAdd)
         }
         number += 1
-        fruits[selectedFruit] = number
+        return .success(number)
     }
     
-    func minusOne(selectedFruit: String) throws {
+    func minusOne(selectedFruit: String) -> Result<Int, ErrorMessage> {
         guard var number = fruits[selectedFruit] else {
-            throw ErrorMessage.outOfRange
+            return .failure(.outOfRangeMinus)
         }
         number -= 1
-        fruits[selectedFruit] = number
+        return .success(number)
     }
     
-    func addError(selectedFruit: String) {
-        do {
-            try addOne(selectedFruit: selectedFruit)
-        } catch ErrorMessage.outOfRange {
-            print(ErrorMessage.outOfRange.rawValue)
-        } catch {
-            print("unknown error")
+    func add(selectedFruit: String) {
+        let add = addOne(selectedFruit: selectedFruit)
+        switch add {
+        case .success(let number):
+            fruits[selectedFruit] = number
+        case .failure(let error):
+            print(error.rawValue)
         }
     }
     
-    func minusError(selectedFruit: String) {
-        do {
-            try minusOne(selectedFruit: selectedFruit)
-        } catch ErrorMessage.outOfRange {
-            print(ErrorMessage.outOfRange.rawValue)
-        } catch {
-            print("unknown error")
+    func minus(selectedFruit: String) {
+        let minus = minusOne(selectedFruit: selectedFruit)
+        switch minus {
+        case .success(let number):
+            fruits[selectedFruit] = number
+        case .failure(let error):
+            print(error.rawValue)
         }
     }
 }

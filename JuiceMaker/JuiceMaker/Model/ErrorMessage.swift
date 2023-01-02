@@ -8,5 +8,6 @@
 import Foundation
 
 enum ErrorMessage: String, Error {
-    case outOfRange = "과일을 잘못 선택하셨습니다"
+    case outOfRangeAdd = "과일을 잘못 선택하셨습니다"
+    case outOfRangeMinus = "과일을 잘못 선택하셨습니다."
 }
