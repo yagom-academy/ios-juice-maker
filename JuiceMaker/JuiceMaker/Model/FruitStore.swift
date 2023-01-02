@@ -31,6 +31,14 @@ class FruitStore {
         
         fruitStock.updateValue(selectedFruitStock + amount, forKey: fruit)
     }
+    
+    func subtractStock(fruit: Fruit, amount: Int) {
+        guard let selectedFruitStock = fruitStock[fruit], selectedFruitStock >= amount else {
+            return
+        }
+        
+        fruitStock.updateValue(selectedFruitStock - amount, forKey: fruit)
+    }
 }
 
 
