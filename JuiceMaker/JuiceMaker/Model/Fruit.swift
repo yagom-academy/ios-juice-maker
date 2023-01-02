@@ -1,9 +1,9 @@
 //
-//  Fruit.swift
-//  JuiceMaker
+//  JuiceMaker - Fruit.swift
+//  Created by 릴라, 세홍, 무리
+//  Copyright © yagom academy. All rights reserved.
 //
-//  Created by 박소연 on 2023/01/02.
-//
+
 
 enum Fruit {
     case strawberry
