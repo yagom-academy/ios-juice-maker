@@ -1,8 +1,5 @@
-//
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
-//  Copyright © yagom academy. All rights reserved.
-// 
+//  Created by Vetto, 레옹아범 on 2023.1.2
 
 import Foundation
 
@@ -37,17 +34,22 @@ enum JuiceMenu {
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var fruitStore = FruitStore()
+    let fruitStore = FruitStore()
     
     func makeJuice(juice: JuiceMenu) {
         let recipe = juice.recipe
         
-        do {
-            for (fruit, num) in recipe {
+        for (fruit, num) in recipe {
+            do {
                 try fruitStore.checkFruit(fruit: fruit, number: num)
+                fruitStore.decreaseFruit(fruit: fruit, number: num)
+            } catch FruitStoreError.noExistInventory {
+                print("해당 과일 존재하지 않음")
+            } catch FruitStoreError.lackedInventory {
+                print("\(fruit.name)과일 재고 부족")
+            } catch {
+                print(error)
             }
-        } catch JuiceError. {
-            
         }
     }
 }
