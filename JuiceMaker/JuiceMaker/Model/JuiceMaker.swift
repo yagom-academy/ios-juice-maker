@@ -20,7 +20,7 @@ struct JuiceMaker {
                 print(error.localizedDescription)
             }
         case false:
-            print("제고 부족으로 쥬스를 만들 수 없습니다.")
+            print("재고 부족으로 쥬스를 만들 수 없습니다.")
         }
     }
 }
