@@ -45,5 +45,16 @@ class FruitStore {
             print(error.rawValue)
         }
     }
+    
+    func isStocked(selectedFruit: String) -> Bool {
+        guard let fruitStock = fruits[selectedFruit] else {
+            return false
+        }
+        if fruitStock >= 0 {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
