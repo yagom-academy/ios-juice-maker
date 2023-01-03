@@ -10,8 +10,12 @@ struct JuiceMaker {
     let fruitStore = FruitStore.shared
     
     func makeJuice(recipe: [Fruit: Int]) throws {
-        guard fruitStore.isStocked(recipe: recipe) else {
-            throw JuiceMakerError.outOfStock
+        do {
+            guard try fruitStore.isStocked(recipe: recipe) else {
+                throw JuiceMakerError.outOfStock
+            }
+        } catch FruitStoreError.invalidFruitInput {
+            print("FruitStoreError.invalidFruitInput")
         }
         
         for ingrediant in recipe {

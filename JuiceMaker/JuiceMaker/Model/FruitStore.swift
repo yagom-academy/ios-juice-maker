@@ -9,7 +9,7 @@ import Foundation
 class FruitStore {
     static let shared = FruitStore()
     
-    var fruitStock: [Fruit: Int] = [
+    private var fruitStock: [Fruit: Int] = [
         .strawberry: 10,
         .banana: 10,
         .pineapple: 10,
@@ -39,10 +39,10 @@ class FruitStore {
         fruitStock.updateValue(selectedFruitStock - amount, forKey: fruit)
     }
     
-    func isStocked(recipe: [Fruit: Int]) -> Bool {
+    func isStocked(recipe: [Fruit: Int]) throws -> Bool {
         for ingredient in recipe {
             guard let currentStock = fruitStock[ingredient.key] else {
-                return false
+                throw FruitStoreError.invalidFruitInput
             }
             
             if currentStock < ingredient.value {
