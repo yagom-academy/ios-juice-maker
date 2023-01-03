@@ -12,6 +12,7 @@ struct JuiceMaker {
             do {
                 try fruitStore.checkFruit(fruit: fruit, number: num)
                 fruitStore.decreaseFruit(fruit: fruit, number: num)
+                print(fruitStore.fruits)
             } catch FruitStoreError.noExistInventory {
                 print("해당 과일 존재하지 않음")
             } catch FruitStoreError.lackedInventory {
