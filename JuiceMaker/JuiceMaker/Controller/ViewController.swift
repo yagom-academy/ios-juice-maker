@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         x.makeJuice(juice: .mangoJuice)
         x.makeJuice(juice: .pineappleJuice)
         x.makeJuice(juice: .kiwiJuice)
+        x.makeJuice(juice: .strawberryJuice)
+        x.makeJuice(juice: .kiwiJuice)
     }
 
 
