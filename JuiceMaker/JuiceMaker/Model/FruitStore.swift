@@ -5,9 +5,17 @@
 //
 
 class FruitStore {
+    var fruits: [Fruit : Int] = [:]
     static let shared = FruitStore()
-    private init() {}
     
+    private init() {
+        initializeDefaultStock()
+    }
     
-    
+    private func initializeDefaultStock() {
+        let defaultStock = 10
+        for fruit in Fruit.allCases {
+            fruits[fruit] = defaultStock
+        }
+    }
 }
