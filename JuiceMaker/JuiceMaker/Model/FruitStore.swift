@@ -18,4 +18,17 @@ class FruitStore {
             fruits[fruit] = defaultStock
         }
     }
+    
+    func isStocked(recipe: [Fruit : Int]) -> Result<Bool, JuiceMakeError> {
+        for fruit in Fruit.allCases {
+            guard let stock = fruits[fruit], let ingredient = recipe[fruit] else {
+                continue
+            }
+            guard stock - ingredient >= 0 else {
+                return .failure(.outOfStock)
+            }
+        }
+        
+        return .success(true)
+    }
 }
