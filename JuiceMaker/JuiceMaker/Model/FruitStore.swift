@@ -31,4 +31,15 @@ class FruitStore {
         }
         return .success(true)
     }
+    
+    func useFruit(recipe: [Fruit : Int]) {
+        for fruit in Fruit.allCases {
+            guard let stock = fruits[fruit],
+                  let ingredient = recipe[fruit] else {
+                continue
+            }
+            let remain = stock - ingredient
+            fruits[fruit] = remain
+        }
+    }
 }
