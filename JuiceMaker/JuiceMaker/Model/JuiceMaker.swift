@@ -30,17 +30,14 @@ struct JuiceMaker {
         
         do {
             for (key, value) in ingredients {
-                try songroFruit.changeInventory(fruit: key, number: value)
+                try songroFruit.subtractInventory(fruit: key, number: value)
                 songroFruit.checkStock(fruit: key)
             }
+            print("주문하신 \(juice.rawValue)쥬스가 나왔습니다!")
         } catch stockError.outOfStock {
             print("재고가 부족합니다.")
         } catch {
             print(error)
         }
-        
-        print("주문하신 \(juice.rawValue)쥬스가 나왔습니다!")
-        
     }
 }
-
