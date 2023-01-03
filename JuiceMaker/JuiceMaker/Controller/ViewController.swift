@@ -12,7 +12,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let juiceMaker: JuiceMaker = JuiceMaker()
-        juiceMaker.fruitStore.addFruitStock(fruit: .strawberry, amount: 100)
+        juiceMaker.fruitStore.addStock(fruit: .strawberry, amount: 100)
         juiceMaker.makeJuice(juice: .strawberryBananaJuice)
         
         print(juiceMaker.fruitStore.stock[.strawberry])

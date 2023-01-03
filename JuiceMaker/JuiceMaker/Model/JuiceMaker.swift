@@ -3,7 +3,6 @@
 //  Created by Andrew, 혜모리 on 2023.01.02
 //
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
@@ -16,7 +15,7 @@ struct JuiceMaker {
         case mangoJuice
         case mangoKiwiJuice
         
-        var cook: [FruitStore.Fruit: Int] {
+        var recipe: [FruitStore.Fruit: Int] {
             switch self {
             case .strawberryJuice:
                 return [.strawberry: 16]
@@ -37,10 +36,9 @@ struct JuiceMaker {
     }
     
     func makeJuice(juice: Juice) {
-        for (fruit, amount) in juice.cook {
+        for (fruit, amount) in juice.recipe {
             do {
-                try fruitStore.subtractFruitStock(fruit: fruit, amount: amount)
-                print(fruitStore.stock)
+                try fruitStore.subtractStock(fruit: fruit, amount: amount)
             } catch JuiceMakerError.insufficientStock {
                 print("재고 부족")
             } catch {
