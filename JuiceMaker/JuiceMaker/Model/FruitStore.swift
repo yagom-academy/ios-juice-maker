@@ -21,6 +21,34 @@ class FruitStore {
         kiwi = 10
         mango = 10
     }
+    
+    func addFruit(of fruit: Fruit) {
+        switch fruit {
+        case .strawberry:
+            strawberry += 1
+        case .banana:
+            banana += 1
+        case .pineapple:
+            pineapple += 1
+        case .kiwi:
+            kiwi += 1
+        case .mango:
+            mango += 1
+        }
+    }
+    
+    func reduceFruit(of fruit: Fruit) {
+        switch fruit {
+        case .strawberry:
+            strawberry -= 1
+        case .banana:
+            banana -= 1
+        case .pineapple:
+            pineapple -= 1
+        case .kiwi:
+            kiwi -= 1
+        case .mango:
+            mango -= 1
+        }
+    }
 }
-
-
