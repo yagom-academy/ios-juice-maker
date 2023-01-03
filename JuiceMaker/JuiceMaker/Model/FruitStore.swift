@@ -21,5 +21,21 @@ class FruitStore {
             fruitStock[key] = newStock
         }
     }
+    
+    func isStocked(juice: Recipe) -> Bool {
+        var isAvailable = true
+        let recipe = Recipe.selectRecipe(recipe: juice)
+        for (key, value) in recipe {
+            guard let stock = fruitStock[key] else {
+                return false
+            }
+            let amount = value
+            let newStock = stock - amount
+            if newStock < 0 {
+                isAvailable = false
+            }
+        }
+        return isAvailable
+    }
 }
 
