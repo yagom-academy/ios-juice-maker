@@ -15,9 +15,6 @@ class ViewController: UIViewController {
         juiceMaker.fruitStore.addStock(fruit: .strawberry, amount: 100)
         juiceMaker.makeJuice(juice: .strawberryBananaJuice)
         
-        print(juiceMaker.fruitStore.stock[.strawberry])
-        print(juiceMaker.fruitStore.stock[.banana])
-        
         
     }
 
