@@ -14,3 +14,13 @@ enum Fruit {
     case kiwi
     case mango
 }
+
+enum FruitJuice {
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
+}

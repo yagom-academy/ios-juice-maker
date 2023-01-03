@@ -8,11 +8,11 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var strawberry: Int
-    var banana: Int
-    var pineapple: Int
-    var kiwi: Int
-    var mango: Int
+    private var strawberry: Int
+    private var banana: Int
+    private var pineapple: Int
+    private var kiwi: Int
+    private var mango: Int
     
     init(number: Int) {
         strawberry = 10
@@ -51,4 +51,41 @@ class FruitStore {
             mango -= 1
         }
     }
+    
+    func checkFruit(name: Fruit, count: Int) -> Bool {
+        switch name {
+        case .strawberry:
+            if strawberry >= count {
+                return true
+            } else {
+                return false
+            }
+        case .banana:
+            if banana >= count {
+                return true
+            } else {
+                return false
+            }
+        case .pineapple:
+            if pineapple >= count {
+                return true
+            } else {
+                return false
+            }
+        case .kiwi:
+            if kiwi >= count {
+                return true
+            } else {
+                return false
+            }
+        case .mango:
+            if mango >= count {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
+    
 }
