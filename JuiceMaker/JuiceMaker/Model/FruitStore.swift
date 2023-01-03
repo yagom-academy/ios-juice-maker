@@ -15,11 +15,11 @@ class FruitStore {
     private var mango: Int
     
     init(number: Int) {
-        strawberry = 10
-        banana = 10
-        pineapple = 10
-        kiwi = 10
-        mango = 10
+        strawberry = number
+        banana = number
+        pineapple = number
+        kiwi = number
+        mango = number
     }
     
     func addFruit(of fruit: Fruit) {
@@ -55,37 +55,36 @@ class FruitStore {
     func checkFruit(name: Fruit, count: Int) -> Bool {
         switch name {
         case .strawberry:
-            if strawberry >= count {
-                return true
-            } else {
-                return false
-            }
+            return strawberry >= count ? true : false
         case .banana:
-            if banana >= count {
-                return true
-            } else {
-                return false
-            }
+            return banana >= count ? true : false
         case .pineapple:
-            if pineapple >= count {
-                return true
-            } else {
-                return false
-            }
+            return pineapple >= count ? true : false
         case .kiwi:
-            if kiwi >= count {
-                return true
-            } else {
-                return false
-            }
+            return kiwi >= count ? true : false
         case .mango:
-            if mango >= count {
-                return true
-            } else {
-                return false
-            }
+            return mango >= count ? true : false
         }
     }
     
-    
+    func reduceFruitOfJuice(of fruitJuice: FruitJuice) {
+        switch fruitJuice {
+        case .strawberryJuice:
+            strawberry -= 16
+        case .bananaJuice:
+            banana -= 2
+        case .pineappleJuice:
+            pineapple -= 2
+        case .kiwiJuice:
+            kiwi -= 3
+        case .mangoJuice:
+            mango -= 3
+        case .strawberryBananaJuice:
+            strawberry -= 10
+            banana -= 1
+        case .mangoKiwiJuice:
+            mango -= 2
+            kiwi -= 1
+        }
+    }
 }
