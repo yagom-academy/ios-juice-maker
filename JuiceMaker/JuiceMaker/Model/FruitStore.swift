@@ -28,4 +28,11 @@ class FruitStore {
         }
         stockList[fruit] = fruitStock - amount
     }
+    
+    func printStock(fruit: Fruits) {
+        guard let fruitStock = stockList[fruit] else {
+            return
+        }
+        print("\(fruit)의 재고는 \(fruitStock)개 입니다.")
+    }
 }
