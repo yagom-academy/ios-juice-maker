@@ -10,12 +10,11 @@ import Foundation
 class FruitStore {
     var fruitsStock = ["딸기":10, "망고":10, "바나나":10, "키위":10, "파인애플":10]
     
-    func changeInventory(fruit: String, number: Int) {
-        guard var selectedStock = self.fruitsStock[fruit],
+    func changeInventory(fruit: String, number: Int) throws {
+        guard var selectedStock = self.fruitsStock[fruit], // 두근두근
               selectedStock > 0 else {
-            return 
+            throw stockError.outOfStock
         }
-        
         selectedStock -= number
     }
     

@@ -26,16 +26,21 @@ struct JuiceMaker {
     }
     
     func make(juice: Recipe) {
-        let first = juice.ingredients
+        let ingredients = juice.ingredients
         
-        for (key, value) in first {
-            let fruitName = songroFruit.findFruit(fruitName: key)
-            songroFruit.changeInventory(fruit: fruitName!, number: value)
+        do {
+            for (key, value) in ingredients {
+                try songroFruit.changeInventory(fruit: key, number: value)
+                songroFruit.checkStock(fruit: key)
+            }
+        } catch stockError.outOfStock {
+            print("재고가 부족합니다.")
+        } catch {
+            print(error)
         }
         
         print("주문하신 \(juice.rawValue)쥬스가 나왔습니다!")
-        songroFruit.checkStock(fruit: songroFruit.strawberry)
-        songroFruit.checkStock(fruit: songroFruit.banana)
+        
     }
 }
 
