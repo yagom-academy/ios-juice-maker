@@ -13,9 +13,9 @@ struct JuiceMaker {
     func makeJuice(select juiceMenu: JuiceMenu) {
         let receipe = juiceMenu.receipe
         
-        for (key, value) in receipe {
-            fruitStore.subtractionStock(fruit: key, amount: value)
-            fruitStore.printStock(fruit: key)
+        for (fruit, stock) in receipe {
+            fruitStore.subtractStock(fruit: fruit, amount: stock)
+            fruitStore.printStock(fruit: fruit)
         }
     }
 }

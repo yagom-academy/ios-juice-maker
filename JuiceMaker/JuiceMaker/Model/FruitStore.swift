@@ -9,28 +9,28 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     
-    var stockList: [Fruits : Int] = [ : ]
+    var fruitStocks: [Fruits : Int] = [ : ]
     
     init() {
-        Fruits.allCases.forEach { stockList[$0] = 10 }
+        Fruits.allCases.forEach { fruitStocks[$0] = 10 }
     }
     
     func addStock(fruit: Fruits, amount: Int) {
-        guard let fruitStock = stockList[fruit] else {
+        guard let fruitStock = fruitStocks[fruit] else {
             return
         }
-        stockList[fruit] = fruitStock + amount
+        fruitStocks[fruit] = fruitStock + amount
     }
     
-    func subtractionStock(fruit: Fruits, amount: Int) {
-        guard let fruitStock = stockList[fruit], fruitStock >= amount else {
+    func subtractStock(fruit: Fruits, amount: Int) {
+        guard let fruitStock = fruitStocks[fruit], fruitStock >= amount else {
             return
         }
-        stockList[fruit] = fruitStock - amount
+        fruitStocks[fruit] = fruitStock - amount
     }
     
     func printStock(fruit: Fruits) {
-        guard let fruitStock = stockList[fruit] else {
+        guard let fruitStock = fruitStocks[fruit] else {
             return
         }
         print("\(fruit)의 재고는 \(fruitStock)개 입니다.")
