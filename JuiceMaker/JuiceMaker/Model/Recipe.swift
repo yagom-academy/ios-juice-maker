@@ -2,7 +2,7 @@
 //  Recipe.swift
 //  JuiceMaker
 //
-//  Created by Harry on 2023/01/02.
+//  Created by Harry, kokkilE.
 //
 
 import Foundation
