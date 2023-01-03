@@ -1,13 +1,7 @@
-//
-//  Error.swift
-//  JuiceMaker
-//
-//  Created by kimseongjun on 2023/01/03.
-//
+//  JuiceMaker - Error.swift
+//  Created by 송준, Rowan on 2023/01/03.
+//  Copyright © yagom academy. All rights reserved.
 
-import Foundation
-
-enum stockError: Error {
+enum StockError: Error {
     case outOfStock
-    case notInFruitsList
 }

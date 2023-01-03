@@ -2,9 +2,6 @@
 //  Created by 송준, Rowan. 
 //  Copyright © yagom academy. All rights reserved.
 
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
     let songroFruit = FruitStore()
     
@@ -34,7 +31,7 @@ struct JuiceMaker {
                 songroFruit.checkStock(fruit: key)
             }
             print("주문하신 \(juice.rawValue)쥬스가 나왔습니다!")
-        } catch stockError.outOfStock {
+        } catch StockError.outOfStock {
             print("재고가 부족합니다.")
         } catch {
             print(error)
