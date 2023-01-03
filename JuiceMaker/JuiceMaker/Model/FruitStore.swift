@@ -22,9 +22,7 @@ class FruitStore {
     func isStocked(recipe: [Fruit : Int]) -> Result<Bool, JuiceMakeError> {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
-                  let ingredient = recipe[fruit] else {
-                continue
-            }
+                  let ingredient = recipe[fruit] else { continue }
             guard stock - ingredient >= 0 else {
                 return .failure(.outOfStock)
             }
@@ -35,11 +33,16 @@ class FruitStore {
     func useFruit(recipe: [Fruit : Int]) {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
-                  let ingredient = recipe[fruit] else {
-                continue
-            }
+                  let ingredient = recipe[fruit] else { continue }
             let remain = stock - ingredient
             fruits[fruit] = remain
+        }
+    }
+    
+    func checkRemainStock() {
+        for fruit in Fruit.allCases {
+            guard let stock = fruits[fruit] else { return }
+            print("\(fruit.rawValue)이(가) \(stock)개 남았습니다.")
         }
     }
 }
