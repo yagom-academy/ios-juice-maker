@@ -5,12 +5,12 @@ struct JuiceMaker {
     private let fruitStore = FruitStore()
     
     func makeJuice(_ juice: Juice) {
-        if checkFruitInJuice(juice) {
+        if checkFruitInStore(juice) {
             useFruit(juice)
         }
     }
     
-    private func checkFruitInJuice(_ juice: Juice) -> Bool {
+    private func checkFruitInStore(_ juice: Juice) -> Bool {
         for (fruit, num) in juice.recipe {
             do {
                 try fruitStore.check(fruit: fruit, by: num)
