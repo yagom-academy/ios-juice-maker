@@ -1,31 +1,19 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
-    func makeJuice(juice: JuiceMenu) {
-//        do {
-//            try checkFruitInJuice(juice: juice)
-//            useFruit(juice: juice)
-//            print(fruitStore.fruits)
-//        } catch FruitStoreError.noExistInventory {
-//            print("해당 과일 존재하지 않음")
-//        } catch FruitStoreError.lackedInventory {
-//            print("과일 재고 부족")
-//        } catch {
-//            print(error)
-//        }
-        if checkFruitInJuice(juice: juice) {
-            useFruit(juice: juice)
+    func makeJuice(_ juice: Juice) {
+        if checkFruitInJuice(juice) {
+            useFruit(juice)
         }
     }
     
-    func checkFruitInJuice(juice: JuiceMenu) -> Bool {
+    private func checkFruitInJuice(_ juice: Juice) -> Bool {
         for (fruit, num) in juice.recipe {
             do {
-                try fruitStore.checkFruit(fruit: fruit, number: num)
+                try fruitStore.check(fruit: fruit, by: num)
             } catch FruitStoreError.noExistInventory {
                 print("해당 과일 존재하지 않음")
                 return false
@@ -40,9 +28,9 @@ struct JuiceMaker {
         return true
     }
     
-    func useFruit(juice: JuiceMenu) {
+    private func useFruit(_ juice: Juice) {
         for (fruit, num) in juice.recipe {
-            fruitStore.decreaseFruit(fruit: fruit, number: num)
+            fruitStore.decrease(fruit: fruit, by: num)
         }
     }
 }

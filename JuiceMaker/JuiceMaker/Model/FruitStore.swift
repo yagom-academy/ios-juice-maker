@@ -1,29 +1,28 @@
 //  JuiceMaker - FruitStore.swift
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
-// 과일 저장소 타입
 class FruitStore {
-    var fruits: [Fruit: Int] = [.strawberry: 10, .banana: 10, .kiwi: 10, .mango: 10, .pineapple: 10]
+    private var fruits: [Fruit: Int] = [.strawberry: 10, .banana: 10, .kiwi: 10, .mango: 10, .pineapple: 10]
     
-    func increaseFruit(fruit: Fruit, number: Int) {
+    func increase(fruit: Fruit, by amount: Int) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
-        self.fruits[fruit] = storedFruit + number
+        self.fruits[fruit] = storedFruit + amount
     }
     
-    func decreaseFruit(fruit: Fruit, number: Int) {
+    func decrease(fruit: Fruit, by amount: Int) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
-        self.fruits[fruit] = storedFruit - number
+        self.fruits[fruit] = storedFruit - amount
     }
     
-    func checkFruit(fruit: Fruit, number: Int) throws {
+    func check(fruit: Fruit, by amount: Int) throws {
         guard let storedFruit = self.fruits[fruit] else {
             throw FruitStoreError.noExistInventory
         }
-        guard storedFruit >= number else {
+        guard storedFruit >= amount else {
             throw FruitStoreError.lackedInventory
         }
     }

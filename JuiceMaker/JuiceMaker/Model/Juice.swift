@@ -1,7 +1,7 @@
 //  JuiceMaker - JuiceMenu.swift
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
-enum JuiceMenu {
+enum Juice {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
