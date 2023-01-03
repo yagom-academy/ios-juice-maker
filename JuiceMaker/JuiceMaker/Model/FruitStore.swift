@@ -19,17 +19,21 @@ class FruitStore {
     
     private init() {}
     
-    func addStock(fruit: Fruit, amount: Int) {
+    func addStock(fruit: Fruit, amount: Int) throws {
         guard let selectedFruitStock = fruitStock[fruit] else {
-            return
+            throw FruitStoreError.invalidFruitInput
         }
         
         fruitStock.updateValue(selectedFruitStock + amount, forKey: fruit)
     }
     
-    func subtractStock(fruit: Fruit, amount: Int) {
-        guard let selectedFruitStock = fruitStock[fruit], selectedFruitStock >= amount else {
-            return
+    func subtractStock(fruit: Fruit, amount: Int) throws {
+        guard let selectedFruitStock = fruitStock[fruit] else {
+            throw FruitStoreError.invalidFruitInput
+        }
+        
+        guard selectedFruitStock >= amount else {
+            throw FruitStoreError.belowZeroAmount
         }
         
         fruitStock.updateValue(selectedFruitStock - amount, forKey: fruit)

@@ -9,14 +9,19 @@ import Foundation
 struct JuiceMaker {
     let fruitStore = FruitStore.shared
     
-    func makeJuice(recipe: [Fruit: Int]) {
+    func makeJuice(recipe: [Fruit: Int]) throws {
         guard fruitStore.isStocked(recipe: recipe) else {
-            return
+            throw JuiceMakerError.outOfStock
         }
         
         for ingrediant in recipe {
-            fruitStore.subtractStock(fruit: ingrediant.key, amount: ingrediant.value)
+            do {
+                try fruitStore.subtractStock(fruit: ingrediant.key, amount: ingrediant.value)
+            } catch FruitStoreError.invalidFruitInput {
+                print("FruitStoreError.invalidFruitInput")
+            } catch FruitStoreError.belowZeroAmount {
+                print("FruitStoreError.belowZeroAmount")
+            }
         }
-        //print(fruitStore.fruitStock)
     }
 }
