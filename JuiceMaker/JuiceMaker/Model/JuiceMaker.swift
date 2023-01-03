@@ -9,6 +9,29 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     let juiceName = FruitStore()
+    let recipe: Recipe
+    
+    func useFruits(selectedFruits: String) throws {
+        for key in recipe.values.keys {
+            guard let amount = recipe.values[key] else {
+                throw
+            }
+            for _ in 0..<amount {
+                juiceName.minus(selectedFruit: key)
+            }
+        }
+        
+//        if let amountFirst = recipe.values.first[key] {
+//            for _ in 0..<amountFirst {
+//                juiceName.minus(selectedFruit: selectedFruits)
+//            }
+//        }
+//        if let amountSecond = recipe.values.second?[selectedFruits] {
+//            for _ in 0..<amountSecond {
+//                juiceName.minus(selectedFruit: selectedFruits)
+//            }
+//        }
+    }
     
     func makeJuice(selectedJuice: String) {
         switch selectedJuice {
