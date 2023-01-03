@@ -9,13 +9,13 @@ struct JuiceMaker {
     
     func makeJuice(juice: Juice) {
         let checkedStock = fruitStore.isStocked(recipe: juice.recipe)
-        guard handleStockError(input: checkedStock) != false else { return }
+        guard handleStockError(checkedStockResult: checkedStock) != false else { return }
         fruitStore.useFruit(recipe: juice.recipe)
-        completeOrder(menu: juice.menuName)
+        completeOrder(menu: juice.menu)
     }
     
-    func handleStockError(input: Result<Bool, JuiceMakeError>) -> Bool {
-        switch input {
+    func handleStockError(checkedStockResult: Result<Bool, JuiceMakeError>) -> Bool {
+        switch checkedStockResult {
         case .failure(let error):
             print(error.errorMessage)
             return false

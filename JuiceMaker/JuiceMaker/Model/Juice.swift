@@ -32,7 +32,7 @@ enum Juice {
         }
     }
     
-    var menuName: String {
+    var menu: String {
         switch self {
         case .strawberryJuice:
             return "딸기쥬스"

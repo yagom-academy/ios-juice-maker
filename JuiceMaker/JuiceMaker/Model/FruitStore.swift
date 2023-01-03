@@ -4,8 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
-    var fruits: [Fruit : Int] = [:]
+final class FruitStore {
+    private(set) var fruits: [Fruit : Int] = [:]
     static let shared = FruitStore()
     
     private init() {
