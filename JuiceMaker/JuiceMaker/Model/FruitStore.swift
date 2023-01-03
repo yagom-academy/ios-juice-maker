@@ -10,7 +10,7 @@ import Foundation
 class FruitStore {
     var fruitStock:[FruitType: Int] = [.딸기: 10, .바나나: 10, .파인애플: 10, .키위: 10, .망고: 10]
     
-    func makeJuice(juice: Recipe) throws {
+    func useFruit(juice: Recipe) throws {
         let recipe = Recipe.selectRecipe(recipe: juice)
         for (key, value) in recipe {
             guard let stock = fruitStock[key] else {
