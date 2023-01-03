@@ -13,57 +13,57 @@ enum Juice {
 enum Recipe {
     case 딸기, 바나나, 파인애플, 키위, 망고
     
-    static func pickFruits(stock: Int, type: Juice) -> Recipe? {
+    static func pickFruits(stock: Recipe, type: Juice) -> Int? {
         if type == .딸기쥬스 {
             switch stock {
-            case 16:
-                return .딸기
+            case .딸기:
+                return 16
             default:
                 return nil
             }
         } else if type == .바나나쥬스 {
             switch stock {
-            case 2:
-                return .바나나
+            case .바나나:
+                return 2
             default:
                 return nil
             }
         } else if type == .키위쥬스 {
             switch stock {
-            case 3:
-                return .키위
+            case .키위:
+                return 3
             default:
                 return nil
             }
         } else if type == .파인애플쥬스 {
             switch stock {
-            case 2:
-                return .파인애플
+            case .파인애플:
+                return 2
             default:
                 return nil
             }
         } else if type == .딸바쥬스 {
             switch stock {
-            case 10:
-                return .딸기
-            case 1:
-                return .바나나
+            case .딸기:
+                return 10
+            case .바나나:
+                return 1
             default:
                 return nil
             }
         } else if type == .망고쥬스 {
             switch stock {
-            case 3:
-                return .망고
+            case .망고:
+                return 3
             default:
                 return nil
             }
         } else if type == .망고키위쥬스 {
             switch stock {
-            case 2:
-                return .망고
-            case 1:
-                return .키위
+            case .망고:
+                return 2
+            case .키위:
+                return 1
             default:
                 return nil
             }
