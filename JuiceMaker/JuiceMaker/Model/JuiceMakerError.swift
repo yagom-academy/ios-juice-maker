@@ -9,6 +9,6 @@ enum JuiceMakerError: Error {
 }
 
 enum FruitStoreError: Error {
-    case belowZeroAmount
+    case belowZeroQuantity
     case invalidFruitInput
 }

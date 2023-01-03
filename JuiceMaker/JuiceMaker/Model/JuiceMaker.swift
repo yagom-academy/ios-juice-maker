@@ -20,10 +20,10 @@ struct JuiceMaker {
         
         for ingrediant in recipe {
             do {
-                try fruitStore.subtractStock(fruit: ingrediant.key, amount: ingrediant.value)
+                try fruitStore.subtractStock(fruit: ingrediant.key, quantity: ingrediant.value)
             } catch FruitStoreError.invalidFruitInput {
                 print("FruitStoreError.invalidFruitInput")
-            } catch FruitStoreError.belowZeroAmount {
+            } catch FruitStoreError.belowZeroQuantity {
                 print("FruitStoreError.belowZeroAmount")
             }
         }

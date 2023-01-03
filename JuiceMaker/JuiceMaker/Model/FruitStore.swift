@@ -9,34 +9,36 @@ import Foundation
 class FruitStore {
     static let shared = FruitStore()
     
-    private var fruitStock: [Fruit: Int] = [
-        .strawberry: 10,
-        .banana: 10,
-        .pineapple: 10,
-        .kiwi: 10,
-        .mango: 10
-    ]
+    private var fruitStock: [Fruit: Int]
     
-    private init() {}
-    
-    func addStock(fruit: Fruit, amount: Int) throws {
-        guard let selectedFruitStock = fruitStock[fruit] else {
-            throw FruitStoreError.invalidFruitInput
-        }
-        
-        fruitStock.updateValue(selectedFruitStock + amount, forKey: fruit)
+    private init() {
+        fruitStock = [
+            .strawberry: 10,
+            .banana: 10,
+            .pineapple: 10,
+            .kiwi: 10,
+            .mango: 10
+        ]
     }
     
-    func subtractStock(fruit: Fruit, amount: Int) throws {
+    func addStock(fruit: Fruit, quantity: Int) throws {
         guard let selectedFruitStock = fruitStock[fruit] else {
             throw FruitStoreError.invalidFruitInput
         }
         
-        guard selectedFruitStock >= amount else {
-            throw FruitStoreError.belowZeroAmount
+        fruitStock.updateValue(selectedFruitStock + quantity, forKey: fruit)
+    }
+    
+    func subtractStock(fruit: Fruit, quantity: Int) throws {
+        guard let selectedFruitStock = fruitStock[fruit] else {
+            throw FruitStoreError.invalidFruitInput
         }
         
-        fruitStock.updateValue(selectedFruitStock - amount, forKey: fruit)
+        guard selectedFruitStock >= quantity else {
+            throw FruitStoreError.belowZeroQuantity
+        }
+        
+        fruitStock.updateValue(selectedFruitStock - quantity, forKey: fruit)
     }
     
     func isStocked(recipe: [Fruit: Int]) throws -> Bool {
