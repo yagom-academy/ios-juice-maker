@@ -8,83 +8,39 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private var strawberry: Int
-    private var banana: Int
-    private var pineapple: Int
-    private var kiwi: Int
-    private var mango: Int
+    private var fruitsBasket : [Fruit: Int] = [.strawberry: 0, .banana: 0, .pineapple: 0, .kiwi: 0, .mango: 0]
     
     init(number: Int) {
-        strawberry = number
-        banana = number
-        pineapple = number
-        kiwi = number
-        mango = number
+        fruitsBasket = fruitsBasket.mapValues{ $0 + number }
     }
     
-    func addFruit(of fruit: Fruit) {
-        switch fruit {
-        case .strawberry:
-            strawberry += 1
-        case .banana:
-            banana += 1
-        case .pineapple:
-            pineapple += 1
-        case .kiwi:
-            kiwi += 1
-        case .mango:
-            mango += 1
+    func addOne(of fruit: Fruit) {
+        if let currentFruitCount = fruitsBasket[fruit] {
+            let addedFruitCount = currentFruitCount + 1
+            fruitsBasket[fruit] = addedFruitCount
         }
     }
     
-    func reduceFruit(of fruit: Fruit) {
-        switch fruit {
-        case .strawberry:
-            strawberry -= 1
-        case .banana:
-            banana -= 1
-        case .pineapple:
-            pineapple -= 1
-        case .kiwi:
-            kiwi -= 1
-        case .mango:
-            mango -= 1
+    func reduceOne(of fruit: Fruit) {
+        guard let currentFruitCount = fruitsBasket[fruit],
+              currentFruitCount >= 0 else {
+            return
         }
+        let reducedFruitCount = currentFruitCount - 1
+        fruitsBasket[fruit] = reducedFruitCount
     }
     
     func checkFruit(name: Fruit, count: Int) -> Bool {
-        switch name {
-        case .strawberry:
-            return strawberry >= count ? true : false
-        case .banana:
-            return banana >= count ? true : false
-        case .pineapple:
-            return pineapple >= count ? true : false
-        case .kiwi:
-            return kiwi >= count ? true : false
-        case .mango:
-            return mango >= count ? true : false
+        if let currentFruitCount = fruitsBasket[name] {
+            return currentFruitCount >= count ? true : false
         }
+        return false
     }
     
-    func reduceFruitOfJuice(of fruitJuice: FruitJuice) {
-        switch fruitJuice {
-        case .strawberryJuice:
-            strawberry -= 16
-        case .bananaJuice:
-            banana -= 2
-        case .pineappleJuice:
-            pineapple -= 2
-        case .kiwiJuice:
-            kiwi -= 3
-        case .mangoJuice:
-            mango -= 3
-        case .strawberryBananaJuice:
-            strawberry -= 10
-            banana -= 1
-        case .mangoKiwiJuice:
-            mango -= 2
-            kiwi -= 1
+    func reduceStock(of fruit: Fruit, count: Int) {
+        if let currentFruitCount = fruitsBasket[fruit] {
+            let reducedCount = (currentFruitCount - count)
+            fruitsBasket[fruit] = reducedCount
         }
     }
 }

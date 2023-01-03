@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum Fruit {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
+enum Fruit: String {
+    case strawberry = "딸기"
+    case banana = "바나나"
+    case pineapple = "파인애플"
+    case kiwi = "키위"
+    case mango = "망고"
 }
 
 enum FruitJuice {
@@ -23,4 +23,23 @@ enum FruitJuice {
     case mangoJuice
     case strawberryBananaJuice
     case mangoKiwiJuice
+    
+    var ingredient: [Fruit: Int] {
+        switch self {
+        case .strawberryJuice:
+            return [.strawberry: 16]
+        case .bananaJuice:
+            return [.strawberry: 2]
+        case .pineappleJuice:
+            return [.strawberry: 2]
+        case .kiwiJuice:
+            return [.strawberry: 3]
+        case .mangoJuice:
+            return [.strawberry: 3]
+        case .strawberryBananaJuice:
+            return [.strawberry: 10, .banana: 1]
+        case .mangoKiwiJuice:
+            return [.mango: 2, .kiwi: 1]
+        }
+    }
 }
