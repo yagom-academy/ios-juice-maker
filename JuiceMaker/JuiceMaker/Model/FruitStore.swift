@@ -12,7 +12,7 @@ class FruitStore {
         }
     }
     
-    func subtractInventory(fruit: Fruits, number: Int) throws {
+    func subtractStock(of fruit: Fruits, count number: Int) throws {
         guard let selectedStock = self.fruitsStock[fruit],
               selectedStock - number >= 0 else {
             throw StockError.outOfStock
@@ -21,7 +21,7 @@ class FruitStore {
         fruitsStock[fruit] = selectedStock - number
     }
     
-    func addInventory(fruit: Fruits, number: Int) {
+    func addStock(of fruit: Fruits, count number: Int) {
         if let selectedStock = self.fruitsStock[fruit] {
             fruitsStock[fruit] = selectedStock + number
         }
