@@ -7,16 +7,16 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore.shared
     
-    func makeJuice(recipe: [Fruit: Int]) throws {
+    func makeJuice(for juice: Juice) throws {
         do {
-            guard try fruitStore.isStocked(for: recipe) else {
+            guard try fruitStore.isStocked(for: juice) else {
                 throw JuiceMakerError.outOfStock
             }
         } catch FruitStoreError.invalidFruitInput {
             print("FruitStoreError.invalidFruitInput")
         }
         
-        for ingrediant in recipe {
+        for ingrediant in juice.recipe {
             do {
                 try fruitStore.subtractStock(fruit: ingrediant.key, quantity: ingrediant.value)
             } catch FruitStoreError.invalidFruitInput {

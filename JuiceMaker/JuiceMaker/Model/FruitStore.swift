@@ -35,8 +35,8 @@ class FruitStore {
         fruitStock.updateValue(selectedFruitStock - quantity, forKey: fruit)
     }
     
-    func isStocked(for recipe: [Fruit: Int]) throws -> Bool {
-        for ingredient in recipe {
+    func isStocked(for juice: Juice) throws -> Bool {
+        for ingredient in juice.recipe {
             guard let currentStock = fruitStock[ingredient.key] else {
                 throw FruitStoreError.invalidFruitInput
             }

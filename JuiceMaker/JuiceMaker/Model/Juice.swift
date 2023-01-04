@@ -1,5 +1,5 @@
 //
-//  Recipe.swift
+//  Juice.swift
 //  JuiceMaker
 //
 //  Created by Harry, kokkilE.
