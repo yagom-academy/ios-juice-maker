@@ -27,7 +27,7 @@ class FruitStore {
         }
     }
     
-    func checkStock(fruit: Fruits) {
+    func checkStock(of fruit: Fruits) {
         if let stock = fruitsStock[fruit] {
             let resultMessage = "\(fruit)의 재고는 \(stock)개입니다."
             print(resultMessage)
