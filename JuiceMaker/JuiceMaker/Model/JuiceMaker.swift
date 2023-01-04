@@ -6,14 +6,14 @@
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    enum Juice {
-        case strawberryJuice
-        case bananaJuice
-        case pineappleJuice
-        case kiwiJuice
-        case strawberryBananaJuice
-        case mangoJuice
-        case mangoKiwiJuice
+    enum Juice: String {
+        case strawberryJuice = "딸기쥬스"
+        case bananaJuice = "바나나쥬스"
+        case pineappleJuice = "파인애플 쥬스"
+        case kiwiJuice = "키위쥬스"
+        case strawberryBananaJuice = "딸바쥬스"
+        case mangoJuice = "망고쥬스"
+        case mangoKiwiJuice = "망고키위 쥬스"
         
         var recipe: [FruitStore.Fruit: Int] {
             switch self {
@@ -35,33 +35,42 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(_ juice: Juice) {
-        do {
-            try checkFruitStore(for: juice)
-            try useFruit(for: juice)
-        } catch JuiceMakerError.insufficientStock {
-            print("재고 부족")
-        } catch JuiceMakerError.noFruit {
-            print("없는 과일입니다.")
-        } catch {
-            print(error)
-        }
-    }
-    
-    func checkFruitStore(for juice: Juice) throws {
+    func checkFruitStore(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            let currentStock = try fruitStore.checkCurrentStock(fruit: fruit, amount: amount)
-            
+            let currentStock = try fruitStore.checkStock(fruit: fruit, amount: amount)
+
             guard currentStock >= amount else {
                 throw JuiceMakerError.insufficientStock
             }
         }
     }
     
-    func useFruit(for juice: Juice) throws {
+    func subtractStock(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            let currentStock = try fruitStore.checkCurrentStock(fruit: fruit, amount: amount)
+            let currentStock = try fruitStore.checkStock(fruit: fruit, amount: amount)
+            
             fruitStore.stock[fruit] = currentStock - amount
+        }
+    }
+    
+    func makeJuice(_ juice: Juice) -> Result<String, Error> {
+        do {
+            try checkFruitStore(juice: juice)
+            try subtractStock(juice: juice)
+            return .success(juice.rawValue)
+        } catch let error {
+            return .failure(error)
+        }
+    }
+    
+    func orderJuice(_ juice: Juice) -> String {
+        let order = makeJuice(juice)
+        
+        switch order {
+        case .success(let juice):
+            return "주문하신 \(juice) 나왔습니다."
+        case .failure(let error):
+            return error.localizedDescription
         }
     }
 }
