@@ -11,7 +11,6 @@ struct JuiceMaker {
     }
     
     private func checkFruitInStore(_ juice: Juice) -> Bool {
-        print(fruitStore.fruits)
         for (fruit, num) in juice.recipe {
             do {
                 try fruitStore.checkFruit(fruit, by: num)
