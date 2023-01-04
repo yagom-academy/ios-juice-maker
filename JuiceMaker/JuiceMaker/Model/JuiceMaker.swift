@@ -2,18 +2,18 @@
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore()
+    private let fruitStore = FruitStore(amount: 10)
     
     func makeJuice(_ juice: Juice) {
         if checkFruitInStore(juice) {
-            useFruit(juice)
+            useFruit(in: juice)
         }
     }
     
     private func checkFruitInStore(_ juice: Juice) -> Bool {
         for (fruit, num) in juice.recipe {
             do {
-                try fruitStore.check(fruit: fruit, by: num)
+                try fruitStore.checkFruit(fruit, by: num)
             } catch FruitStoreError.noExistInventory {
                 print("해당 과일 존재하지 않음")
                 return false
@@ -28,9 +28,9 @@ struct JuiceMaker {
         return true
     }
     
-    private func useFruit(_ juice: Juice) {
+    private func useFruit(in juice: Juice) {
         for (fruit, num) in juice.recipe {
-            fruitStore.decrease(fruit: fruit, by: num)
+            fruitStore.decreaseFruit(fruit, by: num)
         }
     }
 }

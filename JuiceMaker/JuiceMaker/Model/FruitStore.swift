@@ -16,21 +16,21 @@ class FruitStore {
         self.init(strawberry: amount, banana: amount, kiwi: amount, mango: amount, pineapple: amount)
     }
     
-    func increase(fruit: Fruit, by amount: Int) {
+    func increaseFruit(_ fruit: Fruit, by amount: Int) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
         self.fruits[fruit] = storedFruit + amount
     }
     
-    func decrease(fruit: Fruit, by amount: Int) {
+    func decreaseFruit(_ fruit: Fruit, by amount: Int) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
         self.fruits[fruit] = storedFruit - amount
     }
     
-    func check(fruit: Fruit, by amount: Int) throws {
+    func checkFruit(_ fruit: Fruit, by amount: Int) throws {
         guard let storedFruit = self.fruits[fruit] else {
             throw FruitStoreError.noExistInventory
         }
