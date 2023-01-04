@@ -21,7 +21,7 @@ class FruitStore {
         stock[fruit] = currentStock + amount
     }
     
-    func checkStock(fruit: Fruit, amount: Int) throws -> Int {
+    func checkCurrentStock(fruit: Fruit, amount: Int) throws -> Int {
         guard let currentStock = stock[fruit] else {
             throw JuiceMakerError.noFruit
         }

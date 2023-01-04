@@ -13,11 +13,11 @@ class ViewController: UIViewController {
         
         let juiceMaker = JuiceMaker()
         
-        juiceMaker.makeJuice(juice: .strawberryBananaJuice)
+        juiceMaker.makeJuice(.strawberryBananaJuice)
         
         print(juiceMaker.fruitStore.stock)
         
-        juiceMaker.makeJuice(juice: .strawberryBananaJuice)
+        juiceMaker.makeJuice(.strawberryBananaJuice)
         
         print(juiceMaker.fruitStore.stock)
     }

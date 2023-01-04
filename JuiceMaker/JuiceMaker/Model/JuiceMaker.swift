@@ -35,10 +35,10 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(juice: Juice) {
+    func makeJuice(_ juice: Juice) {
         do {
-            try checkFruitStore(juice: juice)
-            try subtractStock(juice: juice)
+            try checkFruitStore(for: juice)
+            try useFruit(for: juice)
         } catch JuiceMakerError.insufficientStock {
             print("재고 부족")
         } catch JuiceMakerError.noFruit {
@@ -48,9 +48,9 @@ struct JuiceMaker {
         }
     }
     
-    func checkFruitStore(juice: Juice) throws {
+    func checkFruitStore(for juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            let currentStock = try fruitStore.checkStock(fruit: fruit, amount: amount)
+            let currentStock = try fruitStore.checkCurrentStock(fruit: fruit, amount: amount)
             
             guard currentStock >= amount else {
                 throw JuiceMakerError.insufficientStock
@@ -58,10 +58,9 @@ struct JuiceMaker {
         }
     }
     
-    func subtractStock(juice: Juice) throws {
+    func useFruit(for juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            let currentStock = try fruitStore.checkStock(fruit: fruit, amount: amount)
-            
+            let currentStock = try fruitStore.checkCurrentStock(fruit: fruit, amount: amount)
             fruitStore.stock[fruit] = currentStock - amount
         }
     }
