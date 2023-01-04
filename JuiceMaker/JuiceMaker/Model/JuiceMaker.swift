@@ -15,10 +15,14 @@ struct JuiceMaker {
             do {
                 try fruitStore.checkFruit(fruit, by: num)
             } catch FruitStoreError.noExistInventory {
-                print("해당 과일 존재하지 않음")
+                if let error = FruitStoreError.noExistInventory.errorDescription {
+                    print(error)
+                }
                 return false
             } catch FruitStoreError.lackedInventory {
-                print("과일 재고 부족")
+                if let error = FruitStoreError.lackedInventory.errorDescription {
+                    print(error)
+                }
                 return false
             } catch {
                 print(error)
