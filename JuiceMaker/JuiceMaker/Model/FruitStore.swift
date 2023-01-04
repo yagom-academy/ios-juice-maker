@@ -4,6 +4,18 @@
 class FruitStore {
     private var fruits: [Fruit: Int] = [.strawberry: 10, .banana: 10, .kiwi: 10, .mango: 10, .pineapple: 10]
     
+    init(strawberry: Int, banana: Int, kiwi: Int, mango: Int, pineapple: Int) {
+        self.fruits[.strawberry] = strawberry
+        self.fruits[.banana] = banana
+        self.fruits[.kiwi] = kiwi
+        self.fruits[.mango] = mango
+        self.fruits[.pineapple] = pineapple
+    }
+    
+    convenience init(amount: Int) {
+        self.init(strawberry: amount, banana: amount, kiwi: amount, mango: amount, pineapple: amount)
+    }
+    
     func increase(fruit: Fruit, by amount: Int) {
         guard let storedFruit = self.fruits[fruit] else {
             return
