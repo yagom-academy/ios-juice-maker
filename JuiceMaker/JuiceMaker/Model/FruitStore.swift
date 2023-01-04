@@ -32,14 +32,10 @@ class FruitStore {
             throw FruitStoreError.invalidFruitInput
         }
         
-        guard selectedFruitStock >= quantity else {
-            throw FruitStoreError.belowZeroQuantity
-        }
-        
         fruitStock.updateValue(selectedFruitStock - quantity, forKey: fruit)
     }
     
-    func isStocked(recipe: [Fruit: Int]) throws -> Bool {
+    func isStocked(for recipe: [Fruit: Int]) throws -> Bool {
         for ingredient in recipe {
             guard let currentStock = fruitStock[ingredient.key] else {
                 throw FruitStoreError.invalidFruitInput
