@@ -11,21 +11,19 @@ struct JuiceMaker {
     }
     
     private func checkFruitInStore(_ juice: Juice) -> Bool {
+        print(fruitStore.fruits)
         for (fruit, num) in juice.recipe {
             do {
                 try fruitStore.checkFruit(fruit, by: num)
-            } catch FruitStoreError.noExistInventory {
-                if let error = FruitStoreError.noExistInventory.errorDescription {
-                    print(error)
+            } catch let error as FruitStoreError {
+                if let message = error.errorDescription {
+                    print(message)
                 }
-                return false
-            } catch FruitStoreError.lackedInventory {
-                if let error = FruitStoreError.lackedInventory.errorDescription {
-                    print(error)
-                }
+
                 return false
             } catch {
                 print(error)
+                
                 return false
             }
         }

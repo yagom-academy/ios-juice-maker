@@ -2,7 +2,7 @@
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
 class FruitStore {
-    private var fruits: [Fruit: Int] = [.strawberry: 10, .banana: 10, .kiwi: 10, .mango: 10, .pineapple: 10]
+    var fruits: [Fruit: Int] = [.strawberry: 10, .banana: 10, .kiwi: 10, .mango: 10, .pineapple: 10]
     
     init(strawberry: Int, banana: Int, kiwi: Int, mango: Int, pineapple: Int) {
         self.fruits[.strawberry] = strawberry
@@ -35,7 +35,7 @@ class FruitStore {
             throw FruitStoreError.noExistInventory
         }
         guard storedFruit >= amount else {
-            throw FruitStoreError.lackedInventory
+            throw FruitStoreError.lackedInventory(fruit: fruit, lackedAmount: amount - storedFruit)
         }
     }
 }
