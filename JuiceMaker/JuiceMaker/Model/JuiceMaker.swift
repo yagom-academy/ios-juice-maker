@@ -22,7 +22,7 @@ struct JuiceMaker {
                 return
             }
         }
-        reducedList.forEach{ fruitStore.reduceStock(of: $0.key, count: $0.value) }
+        reducedList.forEach { fruitStore.reduceStock(of: $0.key, count: $0.value) }
         print("\(fruitJuice)주스 생성성공")
     }
 }
