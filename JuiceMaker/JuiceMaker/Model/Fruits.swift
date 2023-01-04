@@ -2,7 +2,7 @@
 //  Fruits.swift
 //  JuiceMaker
 //
-//  Created by kaki on 2023/01/02.
+//  Created by riji, kaki on 2023/01/02.
 //
 enum Fruits: CaseIterable {
     case strawberry
