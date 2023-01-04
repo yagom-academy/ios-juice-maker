@@ -5,26 +5,27 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore.shared
     
-    func makeJuice(juice: Juice) {
-        let checkedStock = fruitStore.isStocked(recipe: juice.recipe)
+    func makeJuice(ordered juice: Juice) {
+        let checkedStock = fruitStore.isStocked(juiceIngredients: juice.recipe)
         guard handleStockError(checkedStockResult: checkedStock) != false else { return }
-        fruitStore.useFruit(recipe: juice.recipe)
-        completeOrder(menu: juice.menu)
+        fruitStore.useFruit(juiceIngredients: juice.recipe)
+        printCompleteMessage(menu: juice.name)
     }
     
     func handleStockError(checkedStockResult: Result<Bool, JuiceMakeError>) -> Bool {
         switch checkedStockResult {
+        case .success(let verifiedValue):
+            return verifiedValue
+            
         case .failure(let error):
             print(error.errorMessage)
             return false
-        case .success(let result):
-            return result
         }
     }
     
-    func completeOrder(menu: String) {
+    func printCompleteMessage(menu: String) {
         print("주문하신 \(menu) 나왔습니다.")
     }
 }

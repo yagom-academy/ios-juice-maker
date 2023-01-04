@@ -5,7 +5,7 @@
 //
 
 final class FruitStore {
-    private(set) var fruits: [Fruit : Int] = [:]
+    private(set) var fruits: [Fruit: Int] = [:]
     static let shared = FruitStore()
     
     private init() {
@@ -19,7 +19,7 @@ final class FruitStore {
         }
     }
     
-    func isStocked(recipe: [Fruit : Int]) -> Result<Bool, JuiceMakeError> {
+    func isStocked(juiceIngredients recipe: [Fruit: Int]) -> Result<Bool, JuiceMakeError> {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
                   let ingredient = recipe[fruit] else { continue }
@@ -30,7 +30,7 @@ final class FruitStore {
         return .success(true)
     }
     
-    func useFruit(recipe: [Fruit : Int]) {
+    func useFruit(juiceIngredients recipe: [Fruit: Int]) {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
                   let ingredient = recipe[fruit] else { continue }
