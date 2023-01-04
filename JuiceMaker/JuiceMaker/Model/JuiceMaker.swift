@@ -12,17 +12,15 @@ struct JuiceMaker {
             guard try fruitStore.isStocked(for: juice) else {
                 throw JuiceMakerError.outOfStock
             }
-        } catch FruitStoreError.invalidFruitInput {
-            print("FruitStoreError.invalidFruitInput")
+        } catch JuiceMakerError.nonExistentFruit {
+            print(JuiceMakerError.nonExistentFruit.errorMessage)
         }
         
         for ingrediant in juice.recipe {
             do {
                 try fruitStore.subtractStock(fruit: ingrediant.key, quantity: ingrediant.value)
-            } catch FruitStoreError.invalidFruitInput {
-                print("FruitStoreError.invalidFruitInput")
-            } catch FruitStoreError.belowZeroQuantity {
-                print("FruitStoreError.belowZeroAmount")
+            } catch JuiceMakerError.nonExistentFruit {
+                print(JuiceMakerError.nonExistentFruit.errorMessage)
             }
         }
     }

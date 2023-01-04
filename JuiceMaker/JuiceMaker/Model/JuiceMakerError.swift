@@ -7,9 +7,14 @@
 
 enum JuiceMakerError: Error {
     case outOfStock
-}
-
-enum FruitStoreError: Error {
-    case belowZeroQuantity
-    case invalidFruitInput
+    case nonExistentFruit
+    
+    var errorMessage: String {
+        switch self {
+        case .outOfStock:
+            return "재고가 없습니다."
+        case .nonExistentFruit:
+            return "없는 과일 입니다."
+        }
+    }
 }

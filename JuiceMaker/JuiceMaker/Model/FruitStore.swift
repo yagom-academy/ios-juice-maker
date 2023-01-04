@@ -21,7 +21,7 @@ class FruitStore {
     
     func addStock(fruit: Fruit, quantity: Int) throws {
         guard let selectedFruitStock = fruitStock[fruit] else {
-            throw FruitStoreError.invalidFruitInput
+            throw JuiceMakerError.nonExistentFruit
         }
         
         fruitStock.updateValue(selectedFruitStock + quantity, forKey: fruit)
@@ -29,7 +29,7 @@ class FruitStore {
     
     func subtractStock(fruit: Fruit, quantity: Int) throws {
         guard let selectedFruitStock = fruitStock[fruit] else {
-            throw FruitStoreError.invalidFruitInput
+            throw JuiceMakerError.nonExistentFruit
         }
         
         fruitStock.updateValue(selectedFruitStock - quantity, forKey: fruit)
@@ -38,7 +38,7 @@ class FruitStore {
     func isStocked(for juice: Juice) throws -> Bool {
         for ingredient in juice.recipe {
             guard let currentStock = fruitStock[ingredient.key] else {
-                throw FruitStoreError.invalidFruitInput
+                throw JuiceMakerError.nonExistentFruit
             }
             
             if currentStock < ingredient.value {
