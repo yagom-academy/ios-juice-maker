@@ -5,11 +5,11 @@
 //  Created by Rhode, Christy on 2023/01/03.
 //
 
-enum FruitType: CaseIterable {
+enum Fruit: CaseIterable {
     case 딸기, 바나나, 파인애플, 키위, 망고
 }
 
-enum Recipe {
+enum Juice {
     case 딸기쥬스
     case 바나나쥬스
     case 키위쥬스
@@ -18,7 +18,7 @@ enum Recipe {
     case 망고쥬스
     case 망고키위쥬스
     
-    static func selectRecipe(recipe: Recipe) -> [FruitType:Int] {
+    static func selectRecipe(recipe: Juice) -> [Fruit: Int] {
         switch recipe {
         case .딸기쥬스:
             return [.딸기: 16]

@@ -8,7 +8,7 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    func makeJuice(juiceName: Recipe) {
+    func makeJuice(juiceName: Juice) {
         let stockAvailable = FruitStore().isStocked(juice: juiceName)
         switch stockAvailable {
         case true:
