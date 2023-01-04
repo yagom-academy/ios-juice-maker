@@ -10,9 +10,10 @@ import Foundation
 class FruitStore {
     
     var fruitStocks: [Fruits : Int] = [ : ]
+    let initialStock = 10
     
     init() {
-        Fruits.allCases.forEach { fruitStocks[$0] = 10 }
+        Fruits.allCases.forEach { fruitStocks[$0] = initialStock }
     }
     
     func addStock(fruit: Fruits, amount: Int) {
@@ -22,9 +23,9 @@ class FruitStore {
         fruitStocks[fruit] = fruitStock + amount
     }
     
-    func subtractStock(fruit: Fruits, amount: Int) {
+    func subtractStock(fruit: Fruits, amount: Int) throws {
         guard let fruitStock = fruitStocks[fruit], fruitStock >= amount else {
-            return
+            throw JuiceMakerError.outOfStock
         }
         fruitStocks[fruit] = fruitStock - amount
     }

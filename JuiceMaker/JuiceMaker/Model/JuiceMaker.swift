@@ -13,9 +13,15 @@ struct JuiceMaker {
     func makeJuice(select juiceMenu: JuiceMenu) {
         let receipe = juiceMenu.receipe
         
-        for (fruit, stock) in receipe {
-            fruitStore.subtractStock(fruit: fruit, amount: stock)
-            fruitStore.printStock(fruit: fruit)
+        do {
+            for (fruit, stock) in receipe {
+                try fruitStore.subtractStock(fruit: fruit, amount: stock)
+                fruitStore.printStock(fruit: fruit)
+            }
+        } catch JuiceMakerError.outOfStock {
+            print("재고가 부족합니다.")
+        } catch {
+            print(error)
         }
     }
 }
