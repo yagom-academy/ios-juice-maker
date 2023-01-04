@@ -3,7 +3,7 @@
 //  Copyright © yagom academy. All rights reserved.
 
 struct JuiceMaker {
-    let songroFruit = FruitStore()
+    let fruitStorage = FruitStore()
     
     enum Juice: String {
         case mango = "망고쥬스", pineapple = "파인애플쥬스", banana = "바나나쥬스", kiwi = "키위쥬스", strawberry = "딸기쥬스"
@@ -27,8 +27,8 @@ struct JuiceMaker {
         
         do {
             for (key, value) in ingredients {
-                try songroFruit.subtractStock(of: key, count: value)
-                songroFruit.checkStock(of: key)
+                try fruitStorage.subtractStock(of: key, count: value)
+                fruitStorage.checkStock(of: key)
             }
             print("주문하신 \(juice.rawValue)가 나왔습니다!")
         } catch StockError.outOfStock {
