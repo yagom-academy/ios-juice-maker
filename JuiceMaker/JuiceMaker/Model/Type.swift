@@ -29,13 +29,13 @@ enum FruitJuice {
         case .strawberryJuice:
             return [.strawberry: 16]
         case .bananaJuice:
-            return [.strawberry: 2]
+            return [.banana: 2]
         case .pineappleJuice:
-            return [.strawberry: 2]
+            return [.pineapple: 2]
         case .kiwiJuice:
-            return [.strawberry: 3]
+            return [.kiwi: 3]
         case .mangoJuice:
-            return [.strawberry: 3]
+            return [.mango: 3]
         case .strawberryBananaJuice:
             return [.strawberry: 10, .banana: 1]
         case .mangoKiwiJuice:
