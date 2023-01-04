@@ -4,6 +4,7 @@
 //
 //  Created by Harry, kokkilE.
 //
+
 enum Recipe {
     static let strawberryJuice: [Fruit: Int] = [
         .strawberry: 16

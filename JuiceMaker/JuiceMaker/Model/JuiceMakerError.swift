@@ -4,6 +4,7 @@
 //
 //  Created by Harry, kokkilE.
 //
+
 enum JuiceMakerError: Error {
     case outOfStock
 }
