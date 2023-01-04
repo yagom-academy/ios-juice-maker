@@ -10,8 +10,8 @@ import Foundation
 class FruitStore {
     private var fruitsBasket : [Fruit: Int] = [.strawberry: 0, .banana: 0, .pineapple: 0, .kiwi: 0, .mango: 0]
     
-    init(number: Int) {
-        fruitsBasket = fruitsBasket.mapValues{ $0 + number }
+    init(initialStockNumber: Int) {
+        fruitsBasket = fruitsBasket.mapValues{ $0 + initialStockNumber }
     }
     
     func addOne(of fruit: Fruit) {

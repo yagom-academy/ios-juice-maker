@@ -9,7 +9,7 @@ import Foundation
 // 쥬스 메이커 타입
 struct JuiceMaker {
     
-    let fruitStore = FruitStore(number: 10)
+    let fruitStore = FruitStore(initialStockNumber: 10)
     
     func make(_ fruitJuice: FruitJuice) {
         let ingredient = fruitJuice.ingredient
