@@ -18,11 +18,9 @@ struct JuiceMaker {
                 if let message = error.errorDescription {
                     print(message)
                 }
-
                 return false
             } catch {
                 print(error)
-                
                 return false
             }
         }
