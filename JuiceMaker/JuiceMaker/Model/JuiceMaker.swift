@@ -36,14 +36,24 @@ struct JuiceMaker {
     }
     
     func makeJuice(juice: Juice) {
+        do {
+//            guard try fruitStore.checkStock(fruit: , amount: <#T##Int#>) > 0 else {
+//                throw JuiceMakerError.insufficientStock
+//            }
+            
+            try subtractStock(juice: juice)
+        } catch JuiceMakerError.insufficientStock {
+            print("재고 부족")
+        } catch {
+            print(error)
+        }
+    }
+    
+    func subtractStock(juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            do {
-                try fruitStore.subtractStock(fruit: fruit, amount: amount)
-            } catch JuiceMakerError.insufficientStock {
-                print("재고 부족")
-            } catch {
-                print(error)
-            }
+            let currentStock = try fruitStore.checkStock(fruit: fruit, amount: amount)
+            
+            fruitStore.stock[fruit] = currentStock - amount
         }
     }
 }

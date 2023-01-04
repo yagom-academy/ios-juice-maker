@@ -5,4 +5,5 @@
 
 enum JuiceMakerError: Error {
     case insufficientStock
+    case noFruit
 }
