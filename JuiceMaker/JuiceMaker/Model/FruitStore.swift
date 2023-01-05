@@ -19,7 +19,7 @@ final class FruitStore {
         }
     }
     
-    func isStocked(juiceIngredients recipe: [Fruit: Int]) -> Result<Bool, JuiceMakeError> {
+    func checkStock(forRecipe recipe: [Fruit: Int]) -> Result<Bool, JuiceMakeError> {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
                   let ingredient = recipe[fruit] else { continue }
@@ -30,7 +30,7 @@ final class FruitStore {
         return .success(true)
     }
     
-    func useFruit(juiceIngredients recipe: [Fruit: Int]) {
+    func useFruit(forRecipe recipe: [Fruit: Int]) {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
                   let ingredient = recipe[fruit] else { continue }
