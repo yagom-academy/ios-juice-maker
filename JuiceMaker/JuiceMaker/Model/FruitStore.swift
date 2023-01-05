@@ -12,14 +12,14 @@ class FruitStore {
         self.fruits[.pineapple] = amount
     }
     
-    func increaseFruit(_ fruit: Fruit, by amount: Int) {
+    func increaseFruit(_ fruit: Fruit, by amount: Int = 1) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
         self.fruits[fruit] = storedFruit + amount
     }
     
-    func decreaseFruit(_ fruit: Fruit, by amount: Int) {
+    func decreaseFruit(_ fruit: Fruit, by amount: Int = 1) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
