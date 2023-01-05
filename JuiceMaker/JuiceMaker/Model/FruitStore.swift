@@ -22,6 +22,7 @@ class FruitStore {
             }
             return fruitStock
         case .failure(let error):
+            print(error.rawValue)
             return nil
         }
     }
