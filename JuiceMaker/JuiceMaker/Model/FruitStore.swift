@@ -18,7 +18,7 @@ class FruitStore {
         switch fruitRemainder {
         case .success(let remainder):
             for fruit in remainder {
-                fruitStock[fruit.0] = fruit.1
+                fruitStock[fruit.fruit] = fruit.stock
             }
             return fruitStock
         case .failure(let error):
@@ -35,7 +35,7 @@ class FruitStore {
         stock += amount
     }
     
-    func isStocked(juice: Juice) -> Result<[(Fruit, Int)], JuiceMakerError> {
+    func isStocked(juice: Juice) -> Result<[(fruit: Fruit, stock: Int)], JuiceMakerError> {
         let juice = juice.selectRecipe
         var fruitList: [(Fruit, Int)] = []
         for (fruit, amount) in juice {
