@@ -14,13 +14,8 @@ struct JuiceMaker {
         for (fruit, num) in juice.recipe {
             do {
                 try fruitStore.checkFruit(fruit, by: num)
-            } catch let error as FruitStoreError {
-                if let message = error.errorDescription {
-                    print(message)
-                }
-                return false
             } catch {
-                print(error)
+                print(error.localizedDescription)
                 return false
             }
         }
