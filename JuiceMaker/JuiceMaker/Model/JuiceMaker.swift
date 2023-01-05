@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore()
+    let fruitStore = FruitStore()
     
     func makeJuice(_ juiceMenu: JuiceMenu) {
         let receipe = juiceMenu.receipe
@@ -22,4 +22,10 @@ struct JuiceMaker {
             print("알 수 없는 오류가 발생했습니다.")
         }
     }
+    
+    func currentFruitStock(of fruit: Fruits) -> String {
+        guard let fruitStock = fruitStore.fruitStocks[fruit] else { return "" }
+        return String(fruitStock)
+    }
 }
+

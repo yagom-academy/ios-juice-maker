@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var fruitStocks: [Fruits: Int] = [:]
+    var fruitStocks: [Fruits: Int] = [:]
     
     init(initialStock: Int = 10) {
         Fruits.allCases.forEach { fruitStocks[$0] = initialStock }
