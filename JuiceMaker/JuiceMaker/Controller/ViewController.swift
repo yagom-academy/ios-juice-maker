@@ -12,6 +12,15 @@ final class ViewController: UIViewController {
         juiceMaker.make(juice: .strawberryBanana)
     }
     
+    let csvc = ChangeStockViewController()
+    
+    @IBAction func ClickChangeStock(_ sender: Any) {
+//        self.navigationController?.pushViewController(csvc, animated: true)
+        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStock") as! ChangeStockViewController
+        self.navigationController?.pushViewController(nextVC, animated: false)
+    }
+    
     
 }
+
 
