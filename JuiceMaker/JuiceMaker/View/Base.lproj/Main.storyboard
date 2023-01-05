@@ -244,10 +244,10 @@
             </objects>
             <point key="canvasLocation" x="111" y="32"/>
         </scene>
-        <!--Fruit Basket View Controller-->
+        <!--Fruit Store View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="FruitBasketViewController" id="Yu1-lM-nqp" customClass="FruitBasketViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FruitBasketViewController" id="Yu1-lM-nqp" customClass="FruitStoreViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -374,8 +374,8 @@
                         <outlet property="kiwiStepper" destination="klA-59-Nu4" id="YcT-KZ-0ck"/>
                         <outlet property="mangoLabel" destination="YJI-ER-LJR" id="ue8-ga-7C8"/>
                         <outlet property="mangoStepper" destination="xbn-6P-grO" id="MEz-hA-V1E"/>
-                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="XAW-VV-GZB"/>
-                        <outlet property="pineapppleStepper" destination="Rcr-xr-eqz" id="ho5-0O-kZb"/>
+                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="wgQ-gg-zV2"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="bnB-to-f7t"/>
                         <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="J1e-wO-Lvb"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="J56-N8-s7C"/>
                     </connections>

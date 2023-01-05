@@ -6,7 +6,9 @@
 //
 import UIKit
 
-final class FruitBasketViewController: UIViewController {
+final class FruitStoreViewController: UIViewController {
+    
+    let fruitStore = FruitStore.shared
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -16,7 +18,7 @@ final class FruitBasketViewController: UIViewController {
     
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineapppleStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
@@ -27,7 +29,7 @@ final class FruitBasketViewController: UIViewController {
     }
 
     func setUpStepper() {
-        [strawberryStepper, bananaStepper, pineapppleStepper, kiwiStepper, mangoStepper].forEach {
+        [strawberryStepper, bananaStepper, pineappleStepper, kiwiStepper, mangoStepper].forEach {
             $0.wraps = true
             $0.maximumValue = 1000
             $0.minimumValue = 0
@@ -36,7 +38,7 @@ final class FruitBasketViewController: UIViewController {
     
     func setUpLabel() {
         [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
-            $0?.sizeToFit()
+            $0.sizeToFit()
         }
     }
     
@@ -49,7 +51,7 @@ final class FruitBasketViewController: UIViewController {
         case bananaStepper:
             bananaLabel.text = Int(sender.value).description
             bananaLabel.sizeToFit()
-        case pineapppleStepper:
+        case pineappleStepper:
             pineappleLabel.text = Int(sender.value).description
             pineappleLabel.sizeToFit()
         case kiwiStepper:
@@ -59,7 +61,7 @@ final class FruitBasketViewController: UIViewController {
             mangoLabel.text = Int(sender.value).description
             mangoLabel.sizeToFit()
         default:
-            print("no")
+            break
         }
     }
 }
