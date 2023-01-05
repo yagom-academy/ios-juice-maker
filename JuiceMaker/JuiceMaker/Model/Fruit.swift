@@ -5,7 +5,7 @@
 //  Created by Rhode, Christy on 2023/01/03.
 //
 
-enum Fruit: CaseIterable {
+enum Fruit {
     case 딸기, 바나나, 파인애플, 키위, 망고
 }
 
