@@ -8,7 +8,7 @@
 enum JuiceMenu  {
     case strawberryJuice, bananaJuice, kiwiJuice, pineappleJuice, strawberryBananaJuice, mangoJuice, mangoKiwiJuice
     
-    var receipe: [Fruits: Int] {
+    var receipe: [Fruit: Int] {
         switch self {
         case .strawberryJuice:
             return [.strawberry: 16]

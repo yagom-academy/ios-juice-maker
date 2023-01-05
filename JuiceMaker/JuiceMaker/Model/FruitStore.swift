@@ -5,13 +5,13 @@
 //
 
 class FruitStore {
-    var fruitStocks: [Fruits: Int] = [:]
+    var fruitStocks: [Fruit: Int] = [:]
     
     init(initialStock: Int = 10) {
-        Fruits.allCases.forEach { fruitStocks[$0] = initialStock }
+        Fruit.allCases.forEach { fruitStocks[$0] = initialStock }
     }
     
-    func addStock(of fruit: Fruits, amount: Int) throws {
+    func addStock(of fruit: Fruit, amount: Int) throws {
         guard let fruitStock = fruitStocks[fruit] else {
             throw JuiceMakerError.fruitError
         }
@@ -20,7 +20,7 @@ class FruitStore {
         try checkOutStock(of: fruit)
     }
     
-    func subtractStock(of fruit: Fruits, amount: Int) throws {
+    func subtractStock(of fruit: Fruit, amount: Int) throws {
         guard let fruitStock = fruitStocks[fruit], fruitStock >= amount else {
             throw JuiceMakerError.outOfStock
         }
@@ -29,7 +29,7 @@ class FruitStore {
         try checkOutStock(of: fruit)
     }
     
-    func checkOutStock(of fruit: Fruits) throws {
+    func checkOutStock(of fruit: Fruit) throws {
         guard let fruitStock = fruitStocks[fruit] else {
             throw JuiceMakerError.fruitError
         }

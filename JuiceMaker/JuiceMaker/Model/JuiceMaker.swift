@@ -8,7 +8,7 @@ struct JuiceMaker {
     let fruitStore = FruitStore()
     
     func makeJuice(_ juiceMenu: JuiceMenu) {
-        let receipe = juiceMenu.receipe
+        let receipe = juiceMenu.receipe.sorted { $0.1 > $1.1 }
         
         do {
             for (fruit, stock) in receipe {
@@ -23,7 +23,7 @@ struct JuiceMaker {
         }
     }
     
-    func currentFruitStock(of fruit: Fruits) -> String {
+    func currentFruitStock(of fruit: Fruit) -> String {
         guard let fruitStock = fruitStore.fruitStocks[fruit] else { return "" }
         return String(fruitStock)
     }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1615DC6E296500D6001DD022 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1615DC6D296500D6001DD022 /* JuiceMakerError.swift */; };
-		16518CEB2962D5F7004B09E2 /* Fruits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16518CEA2962D5F7004B09E2 /* Fruits.swift */; };
+		16518CEB2962D5F7004B09E2 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16518CEA2962D5F7004B09E2 /* Fruit.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
 		C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */; };
@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		1615DC6D296500D6001DD022 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
-		16518CEA2962D5F7004B09E2 /* Fruits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruits.swift; sourceTree = "<group>"; };
+		16518CEA2962D5F7004B09E2 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73DAF36255D0CDD00020D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
-				16518CEA2962D5F7004B09E2 /* Fruits.swift */,
+				16518CEA2962D5F7004B09E2 /* Fruit.swift */,
 				FB20AA0A296418220010F180 /* JuiceMenu.swift */,
 				1615DC6D296500D6001DD022 /* JuiceMakerError.swift */,
 			);
@@ -180,7 +180,7 @@
 				FB20AA0B296418220010F180 /* JuiceMenu.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
-				16518CEB2962D5F7004B09E2 /* Fruits.swift in Sources */,
+				16518CEB2962D5F7004B09E2 /* Fruit.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
