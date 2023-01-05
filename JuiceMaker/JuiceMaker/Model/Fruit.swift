@@ -18,8 +18,8 @@ enum Juice {
     case 망고쥬스
     case 망고키위쥬스
     
-    static func selectRecipe(recipe: Juice) -> [Fruit: Int] {
-        switch recipe {
+    var selectRecipe: [Fruit: Int] {
+        switch self {
         case .딸기쥬스:
             return [.딸기: 16]
         case .바나나쥬스:
