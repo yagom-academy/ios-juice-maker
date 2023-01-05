@@ -45,18 +45,16 @@ struct JuiceMaker {
         }
     }
     
-    private func useFruit(juice: Juice) throws {
+    private func useFruit(for juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            let currentStock = try fruitStore.checkStock(fruit: fruit, amount: amount)
-            
-            fruitStore.stock[fruit] = currentStock - amount
+            try fruitStore.substractFruit(fruit: fruit, amount: amount)
         }
     }
     
     private func makeJuice(_ juice: Juice) -> Result<String, Error> {
         do {
             try checkFruitStore(for: juice)
-            try useFruit(juice: juice)
+            try useFruit(for: juice)
             return .success(juice.rawValue)
         } catch let error {
             return .failure(error)

@@ -12,7 +12,7 @@ class FruitStore {
         case mango
     }
     
-    var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    private var stock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     private func addStock(fruit: Fruit, amount: Int) throws {
         guard let currentStock = stock[fruit] else {
@@ -21,6 +21,12 @@ class FruitStore {
         stock[fruit] = currentStock + amount
     }
     
+    func substractFruit(fruit: Fruit, amount: Int) throws {
+        let currentStock = try checkStock(fruit: fruit, amount: amount)
+        
+        stock[fruit] = currentStock - amount
+    }
+
     func checkStock(fruit: Fruit, amount: Int) throws -> Int {
         guard let currentStock = stock[fruit] else {
             throw JuiceMakerError.noFruit
