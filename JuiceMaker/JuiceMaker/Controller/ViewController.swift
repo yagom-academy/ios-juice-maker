@@ -7,12 +7,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    private let juiceMaker = JuiceMaker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        print(juiceMaker.orderJuice(.strawberryBananaJuice))
     }
-
-
 }
 
