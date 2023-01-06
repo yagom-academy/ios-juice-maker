@@ -1,6 +1,6 @@
 # 🥤 Juice Maker
 * 과일재고값의 변경을 받아와 필요한 과일만큼을 소진해 과일주스를 만드는 프로젝트
-1. 프로젝트 인원: [goatt](), [Brody]()
+1. 프로젝트 인원: [goatt](https://github.com/Goatt8), [Brody](https://github.com/seunghyunCheon)
 2. 프로젝트 기간: 2023.01.02 - 23.01.20
 3. Grouped Rules
     - 스크럼
