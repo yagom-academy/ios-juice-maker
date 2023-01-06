@@ -16,12 +16,18 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
+    @IBOutlet weak var strawberryCountLabel: UILabel!
+    @IBOutlet weak var bananaCountLabel: UILabel!
+    @IBOutlet weak var kiwiCountLabel: UILabel!
+    @IBOutlet weak var pineappleCountLabel: UILabel!
+    @IBOutlet weak var mangoCountLabel: UILabel!
+    
     let juiceMaker = JuiceMaker()
     let fruitStore = FruitStore.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureFruitCountLabels()
     }
     
     @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
@@ -35,10 +41,19 @@ class JuiceMakerViewController: UIViewController {
             try juiceMaker.makeJuice(for: juice)
         } catch {
             presentOrderFailureAlert()
+            return
         }
         presentOrderSuccessAlert(juice: juice, sender: sender)
         
-        print(fruitStore.fruitStock)
+        configureFruitCountLabels()
+    }
+    
+    func configureFruitCountLabels() {
+        strawberryCountLabel.text = String(fruitStore.fruitStock[Fruit.strawberry]!)
+        bananaCountLabel.text = String(fruitStore.fruitStock[Fruit.banana]!)
+        kiwiCountLabel.text = String(fruitStore.fruitStock[Fruit.kiwi]!)
+        pineappleCountLabel.text = String(fruitStore.fruitStock[Fruit.pineapple]!)
+        mangoCountLabel.text = String(fruitStore.fruitStock[Fruit.mango]!)
     }
     
     func presentStockManager() {

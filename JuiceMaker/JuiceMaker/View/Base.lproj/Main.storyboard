@@ -243,12 +243,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaCountLabel" destination="gvk-pA-Lw5" id="A6q-bd-PTZ"/>
                         <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="r3U-nM-ocC"/>
+                        <outlet property="kiwiCountLabel" destination="FZq-de-TJG" id="fWX-2b-1Ks"/>
                         <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="MnR-2w-i7D"/>
+                        <outlet property="mangoCountLabel" destination="3Ce-SU-JeH" id="TMX-Qv-aLK"/>
                         <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="vbI-t2-d6g"/>
                         <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="6xG-vJ-Dv2"/>
+                        <outlet property="pineappleCountLabel" destination="ccQ-Dk-PuY" id="2e9-Q7-qwq"/>
                         <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="Lcy-Nl-JUK"/>
                         <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="Ov8-1B-moD"/>
+                        <outlet property="strawberryCountLabel" destination="Qas-vP-td6" id="o1C-NH-03v"/>
                         <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="cIJ-Pn-7ml"/>
                     </connections>
                 </viewController>
@@ -377,6 +382,15 @@
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stepper>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3i-JR-0CQ">
+                                <rect key="frame" x="395" y="264" width="54" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="뒤로"/>
+                                <connections>
+                                    <action selector="touchUpDismissButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="BWJ-oG-a1O"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
