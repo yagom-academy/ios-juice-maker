@@ -35,5 +35,29 @@ class ViewController: UIViewController {
         pineappleLabel.text = String(pineapple)
         mangoLabel.text = String(mango)
     }
+    
+    func showSuccessAlert(message: String) {
+        let alert = UIAlertController(title: "\(message) 나왔습니다 맛있게 드세요", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: false) {
+            self.updateLabel(juice: self.juiceMaker.getFruitsInStore())
+        }
+    }
+    
+    func showFailureAlert() {
+        let alert = UIAlertController(title: "재료가 모자라요 재료를 수정할까요?", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "네", style: .default) { (action) in
+            // 추후 수정
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .default)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: false)
+    }
 }
 
