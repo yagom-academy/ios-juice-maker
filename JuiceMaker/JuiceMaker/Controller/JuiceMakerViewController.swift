@@ -25,6 +25,12 @@ class JuiceMakerViewController: UIViewController {
         presentStockManager()
     }
     
+    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+        
+        //presentOrderSuccessAlert(sender: sender)
+        presentOrderFailureAlert()
+    }
+    
     func presentStockManager() {
         guard let stockManagerNC = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNavigationController") as? UINavigationController else { return }
                         
@@ -71,9 +77,19 @@ class JuiceMakerViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+    func presentOrderFailureAlert() {
+        let alert = UIAlertController(title: "알림",
+                                      message: "재료가 모자라요. 재고를 수정할까요?",
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default) { _ in
+            self.presentStockManager()
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .destructive)
         
-        presentOrderSuccessAlert(sender: sender)
-    }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }    
 }
 
