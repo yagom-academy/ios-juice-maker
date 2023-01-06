@@ -31,38 +31,68 @@ class ViewController: UIViewController {
     }
     
     @IBAction func ddalbaJuiceButtonTapped(_ sender: UIButton) {
-        juiceMaker.makeJuice(.strawberryBananaJuice)
+        let orderedJuice: JuiceMenu = .strawberryBananaJuice
+        juiceMaker.makeJuice(orderedJuice)
         updateStockLabel()
+        successAlert(name: orderedJuice.juiceName)
     }
     
     @IBAction func strawberryJuiceButtonTapped(_ sender: UIButton) {
-        juiceMaker.makeJuice(.strawberryJuice)
+        let orderedJuice: JuiceMenu = .strawberryJuice
+        juiceMaker.makeJuice(orderedJuice)
         updateStockLabel()
+        successAlert(name: orderedJuice.juiceName)
     }
     
     @IBAction func bananaJuiceButtonTapped(_ sender: UIButton) {
-        juiceMaker.makeJuice(.bananaJuice)
+        let orderedJuice: JuiceMenu = .bananaJuice
+        juiceMaker.makeJuice(orderedJuice)
         updateStockLabel()
+        successAlert(name: orderedJuice.juiceName)
     }
     
     @IBAction func pineappleJuieButtonTapped(_ sender: UIButton) {
-        juiceMaker.makeJuice(.pineappleJuice)
+        let orderedJuice: JuiceMenu = .pineappleJuice
+        juiceMaker.makeJuice(orderedJuice)
         updateStockLabel()
+        successAlert(name: orderedJuice.juiceName)
     }
     
     @IBAction func kiwiJuiceButtonTapped(_ sender: UIButton) {
-        juiceMaker.makeJuice(.kiwiJuice)
+        let orderedJuice: JuiceMenu = .kiwiJuice
+        juiceMaker.makeJuice(orderedJuice)
         updateStockLabel()
+        successAlert(name: orderedJuice.juiceName)
     }
     
     @IBAction func mangoJuiceButtonTapped(_ sender: UIButton) {
-        juiceMaker.makeJuice(.mangoJuice)
+        let orderedJuice: JuiceMenu = .mangoJuice
+        juiceMaker.makeJuice(orderedJuice)
         updateStockLabel()
+        successAlert(name: orderedJuice.juiceName)
     }
     
     @IBAction func mankiJuiceButtonTapped(_ sender: UIButton) {
-        juiceMaker.makeJuice(.mangoKiwiJuice)
+        let orderedJuice: JuiceMenu = .mangoKiwiJuice
+        juiceMaker.makeJuice(orderedJuice)
         updateStockLabel()
+        successAlert(name: orderedJuice.juiceName)
+    }
+    
+    func successAlert(name: String) {
+        let alert = UIAlertController(title: "\(name) 나왔습니다! 맛있게 드세요!",message: nil, preferredStyle: UIAlertController.Style.alert)
+        let cancel = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func failAlert() {
+        let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: UIAlertController.Style.alert)
+        let ok = UIAlertAction(title: "예", style: .default, handler: nil)
+        let cancel = UIAlertAction(title: "아니오", style: .default)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     
 }
