@@ -15,7 +15,7 @@ struct JuiceMaker {
         case mangoJuice = "망고쥬스"
         case mangoKiwiJuice = "망고키위 쥬스"
         
-        fileprivate var recipe: [FruitStore.Fruit: Int] {
+        var recipe: [FruitStore.Fruit: Int] {
             switch self {
             case .strawberryJuice:
                 return [.strawberry: 16]
@@ -51,24 +51,13 @@ struct JuiceMaker {
         }
     }
     
-    private func makeJuice(_ juice: Juice) -> Result<String, Error> {
+    func makeJuice(_ juice: Juice) -> Result<String, Error> {
         do {
             try checkFruitStore(for: juice)
             try useFruit(for: juice)
             return .success(juice.rawValue)
         } catch let error {
             return .failure(error)
-        }
-    }
-    
-    func orderJuice(_ juice: Juice) -> String {
-        let order = makeJuice(juice)
-        
-        switch order {
-        case .success(let juice):
-            return "주문하신 \(juice) 나왔습니다."
-        case .failure(let error):
-            return error.localizedDescription
         }
     }
 }
