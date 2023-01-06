@@ -12,15 +12,38 @@ final class ViewController: UIViewController {
         juiceMaker.make(juice: .strawberryBanana)
     }
     
-    let csvc = ChangeStockViewController()
+    @IBOutlet weak var stockOfStrawberry: UILabel!
+    @IBOutlet weak var stockOfBanana: UILabel!
+    @IBOutlet weak var stockOfPineApple: UILabel!
+    @IBOutlet weak var stockOfKiwi: UILabel!
+    @IBOutlet weak var stockOfMango: UILabel!
     
     @IBAction func ClickChangeStock(_ sender: Any) {
-//        self.navigationController?.pushViewController(csvc, animated: true)
         let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStock") as! ChangeStockViewController
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     
-    
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
+    @IBAction func order(_ sender: UIButton) {
+        
+    }
 }
 
 
