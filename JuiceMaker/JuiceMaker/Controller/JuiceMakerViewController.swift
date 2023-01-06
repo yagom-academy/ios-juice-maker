@@ -16,6 +16,9 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoJuiceButton: UIButton!
     @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
+    let juiceMaker = JuiceMaker()
+    let fruitStore = FruitStore.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,9 +29,16 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+        guard let juice = decideJuice(by: sender) else { return }
         
-        //presentOrderSuccessAlert(sender: sender)
-        presentOrderFailureAlert()
+        do {
+            try juiceMaker.makeJuice(for: juice)
+        } catch {
+            presentOrderFailureAlert()
+        }
+        presentOrderSuccessAlert(juice: juice, sender: sender)
+        
+        print(fruitStore.fruitStock)
     }
     
     func presentStockManager() {
@@ -37,36 +47,9 @@ class JuiceMakerViewController: UIViewController {
         self.present(stockManagerNC, animated: true)
     }
     
-    func presentOrderSuccessAlert(sender: UIButton) {
-        var juice: Juice
-        var message = " 나왔습니다!"
-
-        switch sender {
-        case strawberryJuiceButton:
-            juice = .strawberryJuice
-            message = juice.rawValue + message
-        case bananaJuiceButton:
-            juice = .bananaJuice
-            message = juice.rawValue + message
-        case kiwiJuiceButton:
-            juice = .kiwiJuice
-            message = juice.rawValue + message
-        case pineappleJuiceButton:
-            juice = .pineappleJuice
-            message = juice.rawValue + message
-        case strawberryBananaJuiceButton:
-            juice = .strawberryBananaJuice
-            message = juice.rawValue + message
-        case mangoJuiceButton:
-            juice = .mangoJuice
-            message = juice.rawValue + message
-        case mangoKiwiJuiceButton:
-            juice = .mangoKiwiJuice
-            message = juice.rawValue + message
-        default:
-            break
-        }
-                    
+    func presentOrderSuccessAlert(juice: Juice, sender: UIButton) {
+        let message = "\(juice.rawValue) 나왔습니다! 맛있게 드세요!"
+               
         let alert = UIAlertController(title: "알림",
                                       message: message,
                                       preferredStyle: .alert)
@@ -90,6 +73,26 @@ class JuiceMakerViewController: UIViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-    }    
+    }
+    
+    func decideJuice(by sender: UIButton) -> Juice? {
+        switch sender {
+        case strawberryJuiceButton:
+            return .strawberryJuice
+        case bananaJuiceButton:
+            return .bananaJuice
+        case kiwiJuiceButton:
+            return .kiwiJuice
+        case pineappleJuiceButton:
+            return .pineappleJuice
+        case strawberryBananaJuiceButton:
+            return .strawberryBananaJuice
+        case mangoJuiceButton:
+            return .mangoJuice
+        case mangoKiwiJuiceButton:
+            return .mangoKiwiJuice
+        default:
+            return nil
+        }
+    }
 }
-

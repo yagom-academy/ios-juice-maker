@@ -7,7 +7,7 @@
 class FruitStore {
     static let shared = FruitStore()
     
-    private var fruitStock: [Fruit: Int]
+    var fruitStock: [Fruit: Int]
     
     private init() {
         fruitStock = [
