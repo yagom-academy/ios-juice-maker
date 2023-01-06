@@ -73,25 +73,31 @@ class ViewController: UIViewController {
         setButton(juiceName: .망고쥬스)
     }
     
+    func makeAlertJuiceDidMade(juice: Juice) {
+        let alertJuiceDidMade = UIAlertController(title: "성공", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
+        let takeJuice = UIAlertAction(title: "쥬스 받기", style: .default)
+        alertJuiceDidMade.addAction(takeJuice)
+        present(alertJuiceDidMade, animated: false, completion: nil)
+    }
+    
+    func makeAlertOutOfStock() {
+        let alertOutOfStock = UIAlertController(title: "실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
+        let modifyYes = UIAlertAction(title: "예", style: .default) { (action) in
+            guard let stockModifyButton = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else { return }
+            self.navigationController?.pushViewController(stockModifyButton, animated: true)
+        }
+        let modifyNo = UIAlertAction(title: "아니오", style: .cancel)
+        alertOutOfStock.addAction(modifyYes)
+        alertOutOfStock.addAction(modifyNo)
+        present(alertOutOfStock, animated: false, completion: nil)
+    }
+    
     func setButton(juiceName: Juice) {
         let juiceMaker = JuiceMaker()
         if let juice = juiceMaker.makeJuice(juiceName: juiceName) {
-            let alertJuiceDidMade = UIAlertController(title: "성공", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
-            let takeJuice = UIAlertAction(title: "쥬스 받기", style: .default)
-            alertJuiceDidMade.addAction(takeJuice)
-            present(alertJuiceDidMade, animated: false, completion: nil)
+            makeAlertJuiceDidMade(juice: juice)
         } else {
-            let alertOutOfStock = UIAlertController(title: "실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
-            let modifyYes = UIAlertAction(title: "예", style: .default) { (action) in
-                guard let stockModifyButton = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
-                    return
-                }
-                self.navigationController?.pushViewController(stockModifyButton, animated: true)
-            }
-            let modifyNo = UIAlertAction(title: "아니오", style: .cancel)
-            alertOutOfStock.addAction(modifyYes)
-            alertOutOfStock.addAction(modifyNo)
-            present(alertOutOfStock, animated: false, completion: nil)
+            makeAlertOutOfStock()
         }
         if let strawberryStocks = fruitStore.fruitStock[.딸기] {
             strawberryStock.text = String(strawberryStocks)
