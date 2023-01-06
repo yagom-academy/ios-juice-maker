@@ -221,10 +221,17 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="iGK-HT-Sal"/>
+                        <outlet property="kiwiLabel" destination="FZq-de-TJG" id="rfF-Ni-mWv"/>
+                        <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="9Xh-rP-U1w"/>
+                        <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="Vhf-CW-ZyK"/>
+                        <outlet property="strawberryLabel" destination="Qas-vP-td6" id="1vd-75-SJ0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923" y="92"/>
+            <point key="canvasLocation" x="884" y="92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
