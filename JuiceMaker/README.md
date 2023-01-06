@@ -21,7 +21,7 @@
 
 # 프로젝트 소개
 
-**STEP1 : 쥬스메이커의 Model 구현**
+**STEP1 : 쥬스메이커의 Model 구현** </br>
 과일의 종류와 재고를 담당하는 FruitStore와 정해진 레시피에 따라 필요한 과일과 갯수를 확인하여 쥬스를 만드는 JuiceMaker를 구현하는 프로젝트
 
 <br/>
@@ -57,7 +57,7 @@
 
 1. JuiceMaker 앱 실행 시 초기 재고 10개가 각 과일 아래에 표시됨.
 
-![앱실행화면](https://i.imgur.com/zK9Ynxn.png)
+<img src ="https://i.imgur.com/zK9Ynxn.png" width="600">
 
 
 ### 2. 쥬스 주문 버튼 실행
