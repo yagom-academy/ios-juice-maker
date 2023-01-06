@@ -37,4 +37,11 @@ class FruitStore {
         }
         return currentStock
     }
+    
+    func checkStockValue(fruit: Fruit) -> Int {
+        guard let currentStock = stock[fruit] else {
+            return 0
+        }
+        return currentStock
+    }
 }
