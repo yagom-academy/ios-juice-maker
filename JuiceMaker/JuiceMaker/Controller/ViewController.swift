@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    var juiceMaker = JuiceMaker()
    
     override func viewDidLoad() {
        super.viewDidLoad()

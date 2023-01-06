@@ -6,11 +6,11 @@
 
 struct JuiceMaker {
     let fruitStore = FruitStore()
+    var receipe: [Dictionary<Fruit, Int>.Element] = []
     
-    func makeJuice(_ juiceMenu: JuiceMenu) {
-        let receipe = juiceMenu.receipe.sorted { $0.1 > $1.1 }
-        
+    mutating func makeJuice(_ juiceMenu: JuiceMenu) {
         do {
+            try checkCurrentStock(juiceMenu)
             for (fruit, stock) in receipe {
                 try fruitStore.subtractStock(of: fruit, amount: stock)
             }
@@ -20,6 +20,16 @@ struct JuiceMaker {
             print("과일 선택 오류입니다.")
         } catch {
             print("알 수 없는 오류가 발생했습니다.")
+        }
+    }
+    
+    mutating func checkCurrentStock(_ juiceMenu: JuiceMenu) throws {
+        for fruit in juiceMenu.receipe.keys {
+            if fruitStore.fruitStocks[fruit] == 0 {
+                throw JuiceMakerError.outOfStock
+            } else {
+                receipe = juiceMenu.receipe.sorted { $0.1 > $1.1 }
+            }
         }
     }
     
