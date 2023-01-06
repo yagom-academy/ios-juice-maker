@@ -11,7 +11,7 @@ struct JuiceMaker {
     let fruitStore = FruitStore.shared
 
     func makeJuice(juiceName: Juice) -> Juice? {
-        if let _ = fruitStore.useFruit(juice: juiceName) {
+        if fruitStore.useFruit(juice: juiceName) != nil {
             return juiceName
         }
         return nil
