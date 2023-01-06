@@ -47,67 +47,66 @@ class ViewController: UIViewController {
     
     @IBAction func strawberryBananaTapped(_ sender: UIButton) {
         setButton(juiceName: .딸바쥬스)
-        if let strawberryStocks = fruitStore.fruitStock[.딸기] {
-            strawberryStock.text = String(strawberryStocks)
-        }
-        if let bananaStocks = fruitStore.fruitStock[.바나나] {
-            bananaStock.text = String(bananaStocks)
-        }
-        
     }
     
     @IBAction func strawberryTapped(_ sender: UIButton) {
         setButton(juiceName: .딸기쥬스)
-        if let strawberryStocks = fruitStore.fruitStock[.딸기] {
-            strawberryStock.text = String(strawberryStocks)
-        }
     }
     
     @IBAction func bananaTapped(_ sender: UIButton) {
         setButton(juiceName: .바나나쥬스)
-        if let bananaStocks = fruitStore.fruitStock[.바나나] {
-            bananaStock.text = String(bananaStocks)
-        }
     }
     
     @IBAction func pineappleTapped(_ sender: UIButton) {
         setButton(juiceName: .파인애플쥬스)
-        if let pineappleStocks = fruitStore.fruitStock[.파인애플] {
-            pineappleStock.text = String(pineappleStocks)
-        }
     }
     
     @IBAction func mangoKiwiTapped(_ sender: UIButton) {
         setButton(juiceName: .망고키위쥬스)
-        if let mangoStocks = fruitStore.fruitStock[.망고] {
-            mangoStock.text = String(mangoStocks)
-        }
-        if let kiwiStocks = fruitStore.fruitStock[.키위] {
-            kiwiStock.text = String(kiwiStocks)
-        }
     }
     
     @IBAction func kiwiTapped(_ sender: UIButton) {
         setButton(juiceName: .키위쥬스)
-        if let kiwiStocks = fruitStore.fruitStock[.키위] {
-            kiwiStock.text = String(kiwiStocks)
-        }
     }
     
     @IBAction func mangoTapped(_ sender: UIButton) {
         setButton(juiceName: .망고쥬스)
-        if let mangoStocks = fruitStore.fruitStock[.망고] {
-            mangoStock.text = String(mangoStocks)
-        }
     }
     
     func setButton(juiceName: Juice) {
         let juiceMaker = JuiceMaker()
         if let juice = juiceMaker.makeJuice(juiceName: juiceName) {
-            let alert = UIAlertController(title: "성공", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
+            let alertJuiceDidMade = UIAlertController(title: "성공", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
             let takeJuice = UIAlertAction(title: "쥬스 받기", style: .default)
-            alert.addAction(takeJuice)
-            present(alert, animated: false, completion: nil)
+            alertJuiceDidMade.addAction(takeJuice)
+            present(alertJuiceDidMade, animated: false, completion: nil)
+        } else {
+            let alertOutOfStock = UIAlertController(title: "실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
+            let modifyYes = UIAlertAction(title: "예", style: .default) { (action) in
+                guard let stockModifyButton = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
+                    return
+                }
+                self.navigationController?.pushViewController(stockModifyButton, animated: true)
+            }
+            let modifyNo = UIAlertAction(title: "아니오", style: .cancel)
+            alertOutOfStock.addAction(modifyYes)
+            alertOutOfStock.addAction(modifyNo)
+            present(alertOutOfStock, animated: false, completion: nil)
+        }
+        if let strawberryStocks = fruitStore.fruitStock[.딸기] {
+            strawberryStock.text = String(strawberryStocks)
+        }
+        if let bananaStocks = fruitStore.fruitStock[.바나나] {
+            bananaStock.text = String(bananaStocks)
+        }
+        if let pineappleStocks = fruitStore.fruitStock[.파인애플] {
+            pineappleStock.text = String(pineappleStocks)
+        }
+        if let kiwiStocks = fruitStore.fruitStock[.키위] {
+            kiwiStock.text = String(kiwiStocks)
+        }
+        if let mangoStocks = fruitStore.fruitStock[.망고] {
+            mangoStock.text = String(mangoStocks)
         }
     }
     
