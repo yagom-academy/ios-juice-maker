@@ -57,7 +57,7 @@
 
 1. JuiceMaker 앱 실행 시 초기 재고 10개가 각 과일 아래에 표시됨.
 
-<img src ="https://i.imgur.com/zK9Ynxn.png" width="800">
+<img src ="https://i.imgur.com/zK9Ynxn.png" width="750">
 
 
 ### 2. 쥬스 주문 버튼 실행
