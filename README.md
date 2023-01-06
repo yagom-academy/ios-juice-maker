@@ -1,25 +1,53 @@
 # 쥬스 메이커
 
-# 소개
+# 목차
+[1. 프로젝트 소개](#1.-프로젝트-소개)
+[2. 팀원](#2.-팀원)
+[3. 타임라인](#3.-타임라인)
+[4. 시각화된 프로젝트 구조](#4.-시각화된-프로젝트-구조)
+[5. 실행 화면](#5.-실행-화면)
+[6. 트러블 슈팅](#6.-트러블-슈팅)
+[7. 참고 링크](#7.-참고-링크)
 
-# 팀원
+
+# 1. 프로젝트 소개
+- 쥬스 메이커 앱에서는 버튼을 통해 원하는 쥬스를 선택하여 만들 수 있습니다.
+- 쥬스를 만들때 과일 가게에서 재고를 확인하고 사용한 재료의 개수만큼 차감됩니다.
+- 재고 수정 버튼을 터치하여 과일 가게의 재고를 수정하는 화면으로 이동해 재고의 수량을 조절할 수 있습니다.
+
+# 2. 팀원
 
 | Harry | kokkilE  |
 |:----:| :----: |
 | <img src="https://i.imgur.com/BYdaDjU.png" width="130" height="130"/> | <img src="https://i.imgur.com/4I8bNFT.png" width="130" height="130"/>     |
 | 드라이버, 내비게이터 |드라이버, 내비게이터 |
 
-# 타임라인
+# 3. 타임라인
 
 - 23.01.02(화) ~ 23.01.04(목)
     - 과일 가게 클래스 구현
     - 쥬스 메이커 구조체 구현
 
-# 시각화된 프로젝트 구조 <br/>
-
-# 실행 화면
-
-# 트러블 슈팅
+# 4. 시각화된 프로젝트 구조
+```
+├── Controller
+|   ├── AppDelegate
+|   ├── SceneDelegate
+|   ├── JuiceMakeViewController
+|   └── StockManagerViewController
+├── Model
+|   ├── FruitStore
+|   ├── JuiceMaker
+|   ├── Juice
+|   ├── JuiceMakerError
+|   └── Fruit
+└── View
+    ├── Main
+    └── Assets
+```
+# 5. 실행 화면
+todo...
+# 6. 트러블 슈팅
  
 ## 에러처리 (옵셔널 바인딩)
 ```swift
@@ -70,6 +98,8 @@ enum Juice {
 - 이전에는 주스 레시피를 case를 사용하지 않고 static let 키워드로 사용해 딕셔너리를 저장했다.
 - 주스의 레시피는 메서드의 파라미터로 들어가기 때문에 하나의 타입으로써 표현하는 것이 메서드를 사용하기에 더 좋을 것 같아주스 각각의 메뉴명을 케이스로 지정하고 연산 프로퍼티를 통해 딕셔너리를 반환하는 방식으로 바꾸었다.
 
-# 참고 링크
-
-# 팀회고
+# 7. 참고 링크
+- [Swift Language Guide - Type Casting](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)
+- [Swift Language Guide - Access Control](https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html)
+- [Swift Langauge Guide - Nested Types](https://docs.swift.org/swift-book/LanguageGuide/NestedTypes.html)
+- [Swift Language Guide - Error Handling](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html)
