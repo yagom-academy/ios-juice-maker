@@ -25,18 +25,10 @@ final class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpStepper()
         setUpLabel()
-        matchLabel()
+        setUpStepper()
     }
-    
-    func matchLabel() {
-        strawberryLabel.text = currentFruitBasket[.strawberry]?.description
-        bananaLabel.text = currentFruitBasket[.banana]?.description
-        pineappleLabel.text = currentFruitBasket[.pineapple]?.description
-        kiwiLabel.text = currentFruitBasket[.kiwi]?.description
-        mangoLabel.text = currentFruitBasket[.mango]?.description
-    }
+
     
     func setUpStepper() {
         if let strawBerryValue = currentFruitBasket[.strawberry],
@@ -57,6 +49,11 @@ final class FruitStoreViewController: UIViewController {
         }
 
     func setUpLabel() {
+        strawberryLabel.text = currentFruitBasket[.strawberry]?.description
+        bananaLabel.text = currentFruitBasket[.banana]?.description
+        pineappleLabel.text = currentFruitBasket[.pineapple]?.description
+        kiwiLabel.text = currentFruitBasket[.kiwi]?.description
+        mangoLabel.text = currentFruitBasket[.mango]?.description
         [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
             $0.sizeToFit()
         }
@@ -98,19 +95,21 @@ final class FruitStoreViewController: UIViewController {
         guard let targetFruit = stepperTarget(sender) else {
             return
         }
+        
         guard let fruitCount = currentFruitBasket[targetFruit] else {
             return
         }
+        
         if Int(sender.value) > fruitCount {
             fruitStore.addOne(of: targetFruit)
             currentFruitBasket[targetFruit]! += 1
         } else {
-            fruitStore.reduceOne(of: .strawberry)
+            fruitStore.reduceOne(of: targetFruit)
             currentFruitBasket[targetFruit]! -= 1
         }
         
         let fruitLabel = fruitLabel(targetFruit)
-        fruitLabel.text = fruitCount.description
+        fruitLabel.text = currentFruitBasket[targetFruit]?.description
         fruitLabel.sizeToFit()
     }
 }
