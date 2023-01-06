@@ -23,14 +23,14 @@
 *(아직 프로젝트 실행화면이 미완성되어 미제작)*
 
 ## 5. 트러블 슈팅
-- **과일과 재고 수량을 함께 담는 방법?**
+- **과일과 재고 수량을 함께 담는 방법?** <br/> 
 과일과 과일의 재고 수량을 담는 방법을 고민하다가 `Dictionary`를 사용하여 과일은 중복될 일이 없고 과일과 재고를 묶어 사용하는 것이 효율적이라 판단하여 과일(key), 재고 수량(value)을 한번에 담았습니다.
 이와 같은 의도로 각 쥬스의 레시피도 `Dictionary`를 사용하였습니다.
 
-- **쥬스를 만드는 기능(`makeJuice` 메서드)과 과일을 빼는 기능(`substractFruit` 메서드)**
+- **쥬스를 만드는 기능(`makeJuice` 메서드)과 과일을 빼는 기능(`substractFruit` 메서드)** <br/> 
 처음엔 `makeJuice` 메서드에 `FruitStore`의 재고 정보를 가져와서 함께 비교하려고 하였는데, 역할을 나누고자 `FruitStore` 타입에서 재고 정보와 필요한 과일의 개수를 비교하여 사용한 과일의 개수를 빼주는 `substractFruit` 메서드를 구현하였습니다.
 
-- **Result Type 사용 시 에러처리?**
+- **Result Type 사용 시 에러처리?** <br/> 
 에러처리를 위해 만든 열거형 `JuiceMakerError`가 Error 프로토콜을 채택할 뿐이라 마지막에 catch한 error와 함께 `failure`의 Error로 묶을 수가 없었습니다. 그래서 extension을 이용하여 `LocalizedError` 프로토콜을 수정하였고 하나의 error로 사용할 수 있게 됐습니다. 또한 `LocalizedError`의 `localizedDescription` 기능으로 오류에 대한 문구 출력도 간편해졌습니다.
 
 ## 6. 참고 링크
