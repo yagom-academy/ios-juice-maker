@@ -22,24 +22,19 @@ struct JuiceMaker {
         }
     }
     
-    func make(juice: Juice) {
+    func make(juice: Juice) throws {
         let ingredients = juice.ingredients
         
-        do {
-            for (key, value) in ingredients {
-               try fruitStorage.isEnoughStock(of: key, count: value)
-                print(fruitStorage.fruitsStock[key]!)
+        for (key, value) in ingredients {
+            guard fruitStorage.isEnoughStock(of: key, count: value) else {
+                throw StockError.outOfStock
             }
-            
-            for (key, value) in ingredients {
-                fruitStorage.subtractStock(of: key, count: value)
-                print(fruitStorage.fruitsStock[key]!)
-            }
-            print("주문하신 \(juice.rawValue)가 나왔습니다!")
-        } catch StockError.outOfStock {
-            print("재고가 부족합니다.")
-        } catch {
-            print(error)
+        }
+
+        for (key, value) in ingredients {
+            fruitStorage.subtractStock(of: key, count: value)
+        
+        print("주문하신 \(juice.rawValue)가 나왔습니다!")
         }
     }
 }

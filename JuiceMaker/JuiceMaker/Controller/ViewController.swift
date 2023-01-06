@@ -26,7 +26,13 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func order(_ sender: UIButton) {
-        
+        do {
+            try juiceMaker.make(juice: .strawberry)
+        } catch StockError.outOfStock {
+            let Alret: UIAlertController()
+        } catch {
+            print(error)
+        }
     }
 //    @IBAction func order(_ sender: UIButton) {
 //
