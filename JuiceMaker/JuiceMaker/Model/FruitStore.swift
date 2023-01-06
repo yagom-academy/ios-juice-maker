@@ -27,7 +27,6 @@ class FruitStore {
     func isEnoughStock(of fruit: Fruits, count number: Int) -> Bool {
         guard let selectedStock = self.fruitsStock[fruit],
               selectedStock - number >= 0 else {
-            print(self.fruitsStock[fruit]!)
             return false
         }
         return true
