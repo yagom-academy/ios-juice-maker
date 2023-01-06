@@ -5,7 +5,7 @@
 ## 1. 팀원 소개
 |Andrew|혜모리|
 |---|---|
-|<img src="링크" width="250">|<img src="링크" width="250">|
+|<img src="https://github.com/Andrew-0411/ios-juice-maker/blob/step1/images/Andrew.png" width="250">|<img src="https://github.com/Andrew-0411/ios-juice-maker/blob/step1/images/hyemory.png" width="250">|
 
 ## 2. 타임라인 (23.01.02. ~ 23.01.20.)
 |날짜|진행 내용|
