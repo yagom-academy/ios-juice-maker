@@ -23,7 +23,7 @@
       > * 각 과일의 수량 n개를 변경하는 메서드
       > * 각 과일의 재고를 확인하는 메서드
     - **JuiceMaker struct**
-      FruitStore의 과일을 사용해 과일을 제조하는 구조체 정의
+      FruitStore의 과일을 사용해 과일쥬스를 제조하는 구조체 정의
       <br/>
       > * 각 쥬스 별 들어가는 과일의 개수를 기록하는 Nested Type Juice 열거체
       > * 쥬스를 만드는 make 메서드 
