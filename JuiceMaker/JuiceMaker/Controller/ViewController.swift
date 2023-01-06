@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by Rhode, christy
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoKiwiButton: UIButton!
     @IBOutlet weak var kiwiButton: UIButton!
     @IBOutlet weak var mangoButton: UIButton!
+    
+    @IBOutlet weak var stockModifyButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,5 +110,13 @@ class ViewController: UIViewController {
             present(alert, animated: false, completion: nil)
         }
     }
+    
+    @IBAction func stockModifyTapped(_ sender: UIBarButtonItem) {
+        guard let stockModifyButton = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
+            return
+        }
+        self.navigationController?.pushViewController(stockModifyButton, animated: true)
+    }
+    
 }
 
