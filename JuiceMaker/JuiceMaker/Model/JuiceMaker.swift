@@ -27,8 +27,13 @@ struct JuiceMaker {
         
         do {
             for (key, value) in ingredients {
-                try fruitStorage.subtractStock(of: key, count: value)
-                fruitStorage.checkStock(of: key)
+               try fruitStorage.isEnoughStock(of: key, count: value)
+                print(fruitStorage.fruitsStock[key]!)
+            }
+            
+            for (key, value) in ingredients {
+                fruitStorage.subtractStock(of: key, count: value)
+                print(fruitStorage.fruitsStock[key]!)
             }
             print("주문하신 \(juice.rawValue)가 나왔습니다!")
         } catch StockError.outOfStock {

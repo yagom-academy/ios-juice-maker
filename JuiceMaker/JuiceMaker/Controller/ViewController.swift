@@ -10,6 +10,8 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         juiceMaker.make(juice: .strawberryBanana)
+        juiceMaker.make(juice: .strawberryBanana)
+        juiceMaker.make(juice: .strawberryBanana)
     }
     
     @IBOutlet weak var stockOfStrawberry: UILabel!
@@ -26,24 +28,24 @@ final class ViewController: UIViewController {
     @IBAction func order(_ sender: UIButton) {
         
     }
-    @IBAction func order(_ sender: UIButton) {
-        
-    }
-    @IBAction func order(_ sender: UIButton) {
-        
-    }
-    @IBAction func order(_ sender: UIButton) {
-        
-    }
-    @IBAction func order(_ sender: UIButton) {
-        
-    }
-    @IBAction func order(_ sender: UIButton) {
-        
-    }
-    @IBAction func order(_ sender: UIButton) {
-        
-    }
+//    @IBAction func order(_ sender: UIButton) {
+//
+//    }
+//    @IBAction func order(_ sender: UIButton) {
+//
+//    }
+//    @IBAction func order(_ sender: UIButton) {
+//
+//    }
+//    @IBAction func order(_ sender: UIButton) {
+//
+//    }
+//    @IBAction func order(_ sender: UIButton) {
+//
+//    }
+//    @IBAction func order(_ sender: UIButton) {
+//
+//    }
 }
 
 
