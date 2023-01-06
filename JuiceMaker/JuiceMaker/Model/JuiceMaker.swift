@@ -4,9 +4,12 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore(amount: 10)
     
-    func makeJuice(_ juice: Juice) {
+    func makeJuice(_ juice: Juice) -> Bool {
         if checkFruitInStore(juice) {
             useFruit(in: juice)
+            return true
+        } else {
+            return false
         }
     }
     

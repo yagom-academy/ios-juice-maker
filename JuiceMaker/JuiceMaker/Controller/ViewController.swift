@@ -29,19 +29,47 @@ class ViewController: UIViewController {
         
         switch title {
         case "딸바쥬스 주문":
-            juiceMaker.makeJuice(.strawberryBananaJuice)
+            if juiceMaker.makeJuice(.strawberryBananaJuice) {
+                showSuccessAlert(message: Juice.strawberryBananaJuice.name)
+            } else {
+                showFailureAlert()
+            }
         case "딸기쥬스 주문":
-            juiceMaker.makeJuice(.strawberryJuice)
+            if juiceMaker.makeJuice(.strawberryJuice) {
+                showSuccessAlert(message: Juice.strawberryJuice.name)
+            } else {
+                showFailureAlert()
+            }
         case "바나나쥬스 주문":
-            juiceMaker.makeJuice(.bananaJuice)
+            if juiceMaker.makeJuice(.bananaJuice) {
+                showSuccessAlert(message: Juice.bananaJuice.name)
+            } else {
+                showFailureAlert()
+            }
         case "파인애플쥬스 주문":
-            juiceMaker.makeJuice(.pineappleJuice)
+            if juiceMaker.makeJuice(.pineappleJuice) {
+                showSuccessAlert(message: Juice.pineappleJuice.name)
+            } else {
+                showFailureAlert()
+            }
         case "망키쥬스 주문":
-            juiceMaker.makeJuice(.mangoKiwiJuice)
+            if juiceMaker.makeJuice(.mangoKiwiJuice) {
+                showSuccessAlert(message: Juice.mangoKiwiJuice.name)
+            } else {
+                showFailureAlert()
+            }
         case "키위쥬스 주문":
-            juiceMaker.makeJuice(.kiwiJuice)
+            if juiceMaker.makeJuice(.kiwiJuice) {
+                showSuccessAlert(message: Juice.kiwiJuice.name)
+            } else {
+                showFailureAlert()
+            }
         case "망고쥬스 주문":
-            juiceMaker.makeJuice(.mangoJuice)
+            if juiceMaker.makeJuice(.mangoJuice) {
+                showSuccessAlert(message: Juice.mangoJuice.name)
+            } else {
+                showFailureAlert()
+            }
         default:
             return
         }
