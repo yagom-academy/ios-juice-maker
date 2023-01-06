@@ -9,14 +9,17 @@ import Foundation
 // 과일 저장소 타입
 class FruitStore {
     
-    static let shared = FruitStore(initialStockNumber: 10)
-    
+    private var fruitsBasket : [Fruit: Int] = [.strawberry: 0, .banana: 0, .pineapple: 0, .kiwi: 0, .mango: 0]
+
     private init(initialStockNumber: Int) {
         fruitsBasket = fruitsBasket.mapValues { $0 + initialStockNumber }
     }
     
-    private var fruitsBasket : [Fruit: Int] = [.strawberry: 0, .banana: 0, .pineapple: 0, .kiwi: 0, .mango: 0]
-
+    static let shared = FruitStore(initialStockNumber: 10)
+    
+    func shareFruitBasket() -> [Fruit: Int] {
+        return fruitsBasket
+    }
     
     func addOne(of fruit: Fruit) {
         if let currentFruitCount = fruitsBasket[fruit] {

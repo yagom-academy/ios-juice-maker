@@ -26,3 +26,4 @@ struct JuiceMaker {
         print("\(fruitJuice)주스 생성성공")
     }
 }
+
