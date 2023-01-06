@@ -3,13 +3,17 @@
 
 class FruitStore {
     private var fruits: [Fruit: Int] = [.strawberry: 0, .banana: 0, .kiwi: 0, .mango: 0, .pineapple: 0]
-    
+
     init(amount: Int) {
         self.fruits[.strawberry] = amount
         self.fruits[.banana] = amount
         self.fruits[.kiwi] = amount
         self.fruits[.mango] = amount
         self.fruits[.pineapple] = amount
+    }
+    
+    func getFruits() -> [Fruit: Int] {
+        return fruits
     }
     
     func increaseFruit(_ fruit: Fruit, by amount: Int = 1) {
