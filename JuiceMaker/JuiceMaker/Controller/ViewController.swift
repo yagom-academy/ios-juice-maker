@@ -6,9 +6,13 @@ import UIKit
 
 final class ViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
+    private var fruitsStock: [Fruits: Int] {
+        return FruitStore.shared.fruitsStock
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        displayStock()
     }
     
     @IBOutlet weak var stockOfStrawberry: UILabel!
@@ -16,6 +20,12 @@ final class ViewController: UIViewController {
     @IBOutlet weak var stockOfPineApple: UILabel!
     @IBOutlet weak var stockOfKiwi: UILabel!
     @IBOutlet weak var stockOfMango: UILabel!
+    
+    func displayStock() {
+        if let stock = fruitsStock[.strawberry]  {
+            stockOfStrawberry.text = String(stock)
+        }
+    }
     
     @IBAction func ClickChangeStock(_ sender: Any) {
         moveToChangeStockViewController()
@@ -49,6 +59,7 @@ final class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: .strawberryBanana)
             setSuccessAlert(juiceName: .strawberryBanana)
+            displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
         } catch {

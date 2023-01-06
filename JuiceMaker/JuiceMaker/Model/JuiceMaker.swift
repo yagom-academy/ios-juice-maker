@@ -3,7 +3,7 @@
 //  Copyright © yagom academy. All rights reserved.
 
 struct JuiceMaker {
-    private let fruitStorage = FruitStore()
+    let fruitStorage = FruitStore.shared
     
     enum Juice {
         case mango, pineapple, banana, kiwi, strawberry
