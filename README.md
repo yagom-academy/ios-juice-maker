@@ -139,5 +139,9 @@ private func checkFruitInStore(_ juice: Juice) -> Bool {
 </details>
 
 ## 참고링크
-[swift-Initialization](https://docs.swift.org/swift-book/LanguageGuide/Initialization.html)
-[swift-Error Handling](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html)
+[Swift API Design Guidelines](https://www.swift.org/documentation/api-design-guidelines/)  
+[Swift Language Guide - Initialization](https://docs.swift.org/swift-book/LanguageGuide/Initialization.html)  
+[Swift Language Guide - Error Handling](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html)  
+[Swift Language Guide - Access Control](https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html)  
+[Swift Language Guide - Nested Types](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)  
+[Swift Language Guide - Type Casting](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)  
