@@ -1,13 +1,13 @@
 # 🧃 JuiceMaker
 
 ## 목차
-[소개](#소개)  
-[팀원](#팀원)  
-[프로젝트 구조](#프로젝트-구조)  
-[타임라인](#타임라인)  
-[트러블 슈팅](#트러블-슈팅)  
-[참고 링크](#참고-링크)  
-[2팀 회고](#2팀-회고)  
+* [소개](#소개)
+* [팀원](#팀원)
+* [프로젝트 구조](#프로젝트-구조)
+* [타임라인](#타임라인)
+* [트러블 슈팅](#트러블-슈팅)
+* [참고 링크](#참고-링크)
+* [2팀 회고](#2팀-회고)
 
 ## 소개
 ### 프로젝트 기간: 23.01.02 ~ 23.01.20
@@ -20,7 +20,7 @@
 
 |⭐️Vetto|⭐️레옹아범|
 | :--------: | :--------: |
-|<img src="https://cdn.discordapp.com/attachments/535779947118329866/1055718870951940146/1671110054020-0.jpg" width="180" height="180">|<img height="180px" src="https://raw.githubusercontent.com/Rhode-park/ios-rock-paper-scissors/step02/image/leonFather.jpeg">|
+|<img src="https://cdn.discordapp.com/attachments/535779947118329866/1055718870951940146/1671110054020-0.jpg" width="150" height="180">|<img height="180px" src="https://raw.githubusercontent.com/Rhode-park/ios-rock-paper-scissors/step02/image/leonFather.jpeg">|
 
 ### 팀 규칙
 #### 코드 컨벤션
@@ -135,6 +135,82 @@ private func checkFruitInStore(_ juice: Juice) -> Bool {
 }
 ```
 * checkFruitInStore라는 메소드를 생성하여 여러개의 재료를 받을 경우 두개의 재료가 전부 다 있을 경우 true / 두개 중 하나의 재료라도 없을 시 false를 반환하게 만들어 makeJuice메소드에서 true값일 경우 쥬스를 생성할 수 있게 만들었습니다.
+
+### enum Error
+#### 문제점
+* 에러가 발생했을 때 do-try-catch문으로 에러처리를 하고 그 catch문 안에서 print문을 사용하였는데 그렇게 하면 새로운 에러가 추가 될 때 출력문을 찾아가야 한다는 단점이 생겼습니다.
+```swift
+enum FruitStoreError: Error {
+    case lackedInventory
+    case noExistInventory
+}
+
+do {
+    try fruitStore.checkFruit(fruit, by: num)
+} catch FruitStoreError.noExistInventory {
+    print("해당 과일 존재하지 않음")
+    if let error = FruitStoreError.noExistInventory.errorDescription {
+        print(error)
+    }
+    return false
+} catch FruitStoreError.lackedInventory {
+    print("과일 재고 부족")
+    if let error = FruitStoreError.lackedInventory.errorDescription {
+        print(error)
+    }
+    return false
+} catch {
+    print(error)
+}
+```
+    
+#### 해결 법
+* 리뷰어의 조언대로 Error로 처리하여 출력문을 찾아가는 방식이 아닌 LocalizedError를 사용하여 에러가 발생한 이유를 출력하는 방식으로 코드를 리팩토링 하였습니다.
+* 이를 토대로 각각의 case에 해당하는 catch문을 쓰던 방식에서 하나의 catch문만을 사용하여 코드를 작성할 수 있었습니다.
+```swift
+enum FruitStoreError: LocalizedError {
+    case lackedInventory(fruit: Fruit, lackedAmount: Int)
+    case noExistInventory
+    
+    var errorDescription: String? {
+        switch self {
+        case .lackedInventory(let fruit, let amount):
+            return "\(fruit) 과일 \(amount)개 부족"
+        case .noExistInventory:
+            return "과일 존재하지 않음"
+        }
+    }
+}
+
+do {
+    try fruitStore.checkFruit(fruit, by: num)
+} catch {
+    print(error.localizedDescription)
+}
+```
+
+### Naming    
+#### 문제점
+* 클래스 메서드라 생각하여 동사로만 이루어진 짧은 이름의 함수명을 지었습니다. 그러나 다른 코드에서는 동사 + 명사인 함수명이 있었고 통일성이 맞지 않아 코드의 가독성이 좋지 않았습니다.
+
+```swift
+func increase(fruit: Fruit, by amount: Int) {
+}
+
+func checkFruitInStore(_ juice: Juice) -> Bool {
+}
+```
+
+#### 해결한점
+* 동사와 목적어를 함께 쓰는 함수명으로 전부 통일했으며, 함수 인자의 경우 함수명과 중복되는 점이 있어서 argument Label을 "_"로 만들어 가독성을 높였습니다.
+    
+```swift
+func increaseFruit(_ fruit: Fruit, by amount: Int = 1) {
+}
+    
+func checkFruitInStore(_ juice: Juice) -> Bool {
+}
+```
 
 </details>
 
