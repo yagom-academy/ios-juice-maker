@@ -22,6 +22,31 @@ class ViewController: UIViewController {
         updateLabel(juice: juiceMaker.getFruitsInStore())
     }
     
+    @IBAction func clickButton(_ sender: UIButton) {
+        guard let title = sender.titleLabel?.text else {
+            return
+        }
+        
+        switch title {
+        case "딸바쥬스 주문":
+            juiceMaker.makeJuice(.strawberryBananaJuice)
+        case "딸기쥬스 주문":
+            juiceMaker.makeJuice(.strawberryJuice)
+        case "바나나쥬스 주문":
+            juiceMaker.makeJuice(.bananaJuice)
+        case "파인애플쥬스 주문":
+            juiceMaker.makeJuice(.pineappleJuice)
+        case "망키쥬스 주문":
+            juiceMaker.makeJuice(.mangoKiwiJuice)
+        case "키위쥬스 주문":
+            juiceMaker.makeJuice(.kiwiJuice)
+        case "망고쥬스 주문":
+            juiceMaker.makeJuice(.mangoJuice)
+        default:
+            return
+        }
+    }
+    
     func updateLabel(juice: [Fruit: Int]) {
         guard let strawberry = juice[.strawberry],
               let banana = juice[.banana],
