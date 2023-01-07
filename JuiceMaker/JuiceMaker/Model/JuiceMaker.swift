@@ -2,16 +2,15 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by riji, kaki
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 struct JuiceMaker {
     let fruitStore = FruitStore()
-    var receipe: [Dictionary<Fruit, Int>.Element] = []
     
-    mutating func makeJuice(_ juiceMenu: JuiceMenu) -> Bool {
+    func makeJuice(_ juiceMenu: JuiceMenu) -> Bool {
         do {
             try checkCurrentStock(juiceMenu)
-            for (fruit, stock) in receipe {
+            for (fruit, stock) in juiceMenu.receipe {
                 try fruitStore.subtractStock(of: fruit, amount: stock)
             }
             return true
@@ -27,12 +26,16 @@ struct JuiceMaker {
         }
     }
     
-    mutating func checkCurrentStock(_ juiceMenu: JuiceMenu) throws {
+    func checkCurrentStock(_ juiceMenu: JuiceMenu) throws {
         for fruit in juiceMenu.receipe.keys {
-            if fruitStore.fruitStocks[fruit] == 0 {
+            guard let requiredAmount = juiceMenu.receipe[fruit] else {
+                throw JuiceMakerError.fruitError
+            }
+            guard let currentStock = fruitStore.fruitStocks[fruit] else {
+                throw JuiceMakerError.fruitError
+            }
+            if requiredAmount > currentStock {
                 throw JuiceMakerError.outOfStock
-            } else {
-                receipe = juiceMenu.receipe.sorted { $0.1 > $1.1 }
             }
         }
     }
@@ -42,4 +45,3 @@ struct JuiceMaker {
         return String(fruitStock)
     }
 }
-
