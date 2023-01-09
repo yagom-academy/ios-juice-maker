@@ -8,12 +8,19 @@ import UIKit
 
 final class JuiceMakeViewController: UIViewController {
 
+    @IBOutlet weak var strawberryLabel: UILabel!
+    @IBOutlet weak var bananaLabel: UILabel!
+    @IBOutlet weak var pineappleLabel: UILabel!
+    @IBOutlet weak var kiwilabel: UILabel!
+    @IBOutlet weak var mangoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let juiceMaker = JuiceMaker()
         juiceMaker.make(.mangoKiwiJuice)
-    }
+        
+   }
 
 
 }
