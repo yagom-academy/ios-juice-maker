@@ -17,7 +17,6 @@ class FruitStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabel(juice: fruitStore.getFruits())
-        fruitStore.decreaseFruit(.kiwi, by: 3)
     }
     
     func updateLabel(juice: [Fruit: Int]) {
