@@ -8,9 +8,9 @@ struct JuiceMaker {
     private let fruitStore = FruitStore.shared
     
     func makeJuice(_ juice: Juice) {
-        let checkedStock = fruitStore.checkStock(forRecipe: juice.recipe)
+        let checkedStock = fruitStore.checkStock(forRecipe: juice)
         guard handleStockError(checkedStockResult: checkedStock) != false else { return }
-        fruitStore.useFruit(forRecipe: juice.recipe)
+        fruitStore.useFruit(forRecipe: juice)
         printCompleteMessage(menu: juice.name)
     }
     

@@ -23,25 +23,26 @@ final class FruitStore {
         }
     }
     
-    func checkStock(forRecipe recipe: [Fruit: Int]) -> Result<Bool, JuiceMakeError> {
+    func checkStock(forRecipe juice: Juice) -> Result<Bool, JuiceMakeError> {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
-                  let ingredient = recipe[fruit] else { continue }
+                  let ingredient = juice.recipe[fruit] else { continue }
             guard stock - ingredient >= 0 else {
+                notificationCenter.post(name: .failureUseFruit, object: nil, userInfo: ["fruitName": fruit.rawValue, "count": ingredient - stock])
                 return .failure(.outOfStock)
             }
         }
         return .success(true)
     }
     
-    func useFruit(forRecipe recipe: [Fruit: Int]) {
+    func useFruit(forRecipe juice: Juice) {
         for fruit in Fruit.allCases {
             guard let stock = fruits[fruit],
-                  let ingredient = recipe[fruit] else { continue }
+                  let ingredient = juice.recipe[fruit] else { continue }
             let remain = stock - ingredient
             fruits[fruit] = remain
-            notificationCenter.post(name: .useFruitEvent, object: nil)
         }
+        notificationCenter.post(name: .successUseFruit, object: nil, userInfo: ["juiceName": juice.name])
     }
     
     func checkRemainStock() {

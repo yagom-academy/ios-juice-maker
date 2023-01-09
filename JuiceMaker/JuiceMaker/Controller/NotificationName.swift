@@ -7,6 +7,7 @@
 import Foundation
 
 extension Notification.Name {
-    static let useFruitEvent = Notification.Name("useFruitEvent")
+    static let successUseFruit = Notification.Name("successUseFruit")
+    static let failureUseFruit = Notification.Name("failureUseFruit")
     static let updateFruitStockEvent = Notification.Name("updateFruitStockEvent")
 }
