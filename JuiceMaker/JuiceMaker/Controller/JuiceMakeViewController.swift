@@ -7,7 +7,7 @@
 import UIKit
 
 final class JuiceMakeViewController: UIViewController {
-
+    
     let fruitStore = FruitStore.shared
     
     var currentFruitBasket: [Fruit: Int] {
@@ -26,10 +26,13 @@ final class JuiceMakeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let juiceMaker = JuiceMaker()
-        juiceMaker.make(.mangoKiwiJuice)
+        do {
+            try juiceMaker.make(.mangoKiwiJuice)
+            setUpLabel()
+        } catch {
+            
+        }
         
-   }
-        setUpLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +75,28 @@ final class JuiceMakeViewController: UIViewController {
         }
     }
     
+    func showSuccessAlert(with targetJuice: FruitJuice) {
+        let successAlert = UIAlertController(title: "주스 제조성공", message: "\(targetJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default)
+        successAlert.addAction(alertAction)
+        self.present(successAlert, animated: true)
+    }
+    
+    func showFailureAlert() {
+        let failureAlert = UIAlertController(title: "주스 제조실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let okAlertAction = UIAlertAction(title: "네", style: .default) { _ in
+            guard let FruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else {
+                return
+            }
+            self.navigationController?.pushViewController(FruitStoreVC, animated: true)
+        }
+        let cancelAlertAction = UIAlertAction(title: "아니오", style: .destructive)
+        
+        failureAlert.addAction(okAlertAction)
+        failureAlert.addAction(cancelAlertAction)
+        self.present(failureAlert, animated: true)
+    }
+    
     @IBAction func orderButtonTapped(_ sender: UIButton) {
         guard let targetJuice = buttonTarget(sender) else {
             return
@@ -79,14 +104,14 @@ final class JuiceMakeViewController: UIViewController {
         do {
             try juiceMaker.make(targetJuice)
             setUpLabel()
-            print("주스 생성성공")
+            showSuccessAlert(with: targetJuice)
         } catch juiceMakeError.outOfStock {
-            print("주스 재고가 부족합니다")
+            showFailureAlert()
         } catch {
             print("알 수 없는 에러가 발생했습니다")
         }
-        
     }
-    
 }
+
+
 

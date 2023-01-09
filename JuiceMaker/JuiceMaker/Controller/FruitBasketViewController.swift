@@ -6,7 +6,7 @@
 //
 import UIKit
 
-final class FruitBasketViewController: UIViewController {
+final class FruitStoreViewController: UIViewController {
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -22,45 +22,6 @@ final class FruitBasketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpStepper()
-        setUpLabel()
-    }
-
-    func setUpStepper() {
-        [strawberryStepper, bananaStepper, pineapppleStepper, kiwiStepper, mangoStepper].forEach {
-            $0.wraps = true
-            $0.maximumValue = 1000
-            $0.minimumValue = 0
-        }
-    }
-    
-    func setUpLabel() {
-        [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
-            $0?.sizeToFit()
-        }
-    }
-    
-    @IBAction func stepperChanged(_ sender: UIStepper) {
-    
-        switch sender {
-        case strawberryStepper:
-            strawberryLabel.text = Int(sender.value).description
-            strawberryLabel.sizeToFit()
-        case bananaStepper:
-            bananaLabel.text = Int(sender.value).description
-            bananaLabel.sizeToFit()
-        case pineapppleStepper:
-            pineappleLabel.text = Int(sender.value).description
-            pineappleLabel.sizeToFit()
-        case kiwiStepper:
-            kiwiLabel.text = Int(sender.value).description
-            kiwiLabel.sizeToFit()
-        case mangoStepper:
-            mangoLabel.text = Int(sender.value).description
-            mangoLabel.sizeToFit()
-        default:
-            print("no")
-        }
     }
 }
 

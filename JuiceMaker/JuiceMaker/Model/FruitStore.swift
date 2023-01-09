@@ -10,8 +10,14 @@ import Foundation
 class FruitStore {
     private var fruitsBasket : [Fruit: Int] = [.strawberry: 0, .banana: 0, .pineapple: 0, .kiwi: 0, .mango: 0]
     
-    init(initialStockNumber: Int) {
+    static let shared = FruitStore(initialStockNumber: 10)
+    
+    private init(initialStockNumber: Int) {
         fruitsBasket = fruitsBasket.mapValues { $0 + initialStockNumber }
+    }
+    
+    func shareFruitBasket() -> [Fruit: Int] {
+        return fruitsBasket
     }
     
     func addOne(of fruit: Fruit) {
