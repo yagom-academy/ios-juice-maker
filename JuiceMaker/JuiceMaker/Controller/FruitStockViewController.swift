@@ -1,9 +1,6 @@
-//
-//  FruitStockViewController.swift
-//  JuiceMaker
-//
-//  Created by 이주명 on 2023/01/06.
-//
+//  JuiceMaker - FruitStockViewController.swift
+//  Created by Vetto, 레옹아범 on 2023.01.06
+
 
 import UIKit
 
