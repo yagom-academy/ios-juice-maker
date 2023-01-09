@@ -8,13 +8,13 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
 
-    @IBOutlet weak var strawberryJuiceButton: UIButton!
-    @IBOutlet weak var bananaJuiceButton: UIButton!
-    @IBOutlet weak var kiwiJuiceButton: UIButton!
-    @IBOutlet weak var pineappleJuiceButton: UIButton!
-    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
-    @IBOutlet weak var mangoJuiceButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var strawberryJuiceButton: JuiceOrderButton!
+    @IBOutlet weak var bananaJuiceButton: JuiceOrderButton!
+    @IBOutlet weak var kiwiJuiceButton: JuiceOrderButton!
+    @IBOutlet weak var pineappleJuiceButton: JuiceOrderButton!
+    @IBOutlet weak var strawberryBananaJuiceButton: JuiceOrderButton!
+    @IBOutlet weak var mangoJuiceButton: JuiceOrderButton!
+    @IBOutlet weak var mangoKiwiJuiceButton: JuiceOrderButton!
     
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
@@ -27,6 +27,8 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        assignJuiceTypeAtJuiceOrderButton()
         configureFruitCountLabels()
     }
     
@@ -34,8 +36,8 @@ class JuiceMakerViewController: UIViewController {
         presentStockManager()
     }
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        guard let juice = decideJuice(by: sender) else { return }
+    @IBAction func touchUpJuiceOrderButton(_ sender: JuiceOrderButton) {
+        guard let juice = sender.juice else { return }
         
         do {
             try juiceMaker.makeJuice(for: juice)
@@ -43,9 +45,18 @@ class JuiceMakerViewController: UIViewController {
             presentOrderFailureAlert()
             return
         }
-        presentOrderSuccessAlert(juice: juice, sender: sender)
-        
+        presentOrderSuccessAlert(juice: juice)
         configureFruitCountLabels()
+    }
+    
+    func assignJuiceTypeAtJuiceOrderButton() {
+        strawberryJuiceButton.juice = .strawberryJuice
+        bananaJuiceButton.juice = .bananaJuice
+        kiwiJuiceButton.juice = .kiwiJuice
+        pineappleJuiceButton.juice = .pineappleJuice
+        strawberryBananaJuiceButton.juice = .strawberryBananaJuice
+        mangoJuiceButton.juice = .mangoJuice
+        mangoKiwiJuiceButton.juice = .mangoKiwiJuice
     }
     
     func configureFruitCountLabels() {
@@ -62,7 +73,7 @@ class JuiceMakerViewController: UIViewController {
         self.present(stockManagerNC, animated: true)
     }
     
-    func presentOrderSuccessAlert(juice: Juice, sender: UIButton) {
+    func presentOrderSuccessAlert(juice: Juice) {
         let message = "\(juice.rawValue) 나왔습니다! 맛있게 드세요!"
                
         let alert = UIAlertController(title: "알림",
@@ -89,25 +100,8 @@ class JuiceMakerViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
-    func decideJuice(by sender: UIButton) -> Juice? {
-        switch sender {
-        case strawberryJuiceButton:
-            return .strawberryJuice
-        case bananaJuiceButton:
-            return .bananaJuice
-        case kiwiJuiceButton:
-            return .kiwiJuice
-        case pineappleJuiceButton:
-            return .pineappleJuice
-        case strawberryBananaJuiceButton:
-            return .strawberryBananaJuice
-        case mangoJuiceButton:
-            return .mangoJuice
-        case mangoKiwiJuiceButton:
-            return .mangoKiwiJuice
-        default:
-            return nil
-        }
-    }
+}
+
+class JuiceOrderButton: UIButton {
+    var juice: Juice?
 }
