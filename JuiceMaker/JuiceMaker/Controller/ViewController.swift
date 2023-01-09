@@ -22,8 +22,16 @@ final class ViewController: UIViewController {
     @IBOutlet weak var stockOfMango: UILabel!
     
     func displayStock() {
-        if let stock = fruitsStock[.strawberry]  {
-            stockOfStrawberry.text = String(stock)
+        if let strawberryStock = fruitsStock[.strawberry],
+           let bananaStock = fruitsStock[.banana],
+           let pineappleStock = fruitsStock[.pineapple],
+           let kiwiStock = fruitsStock[.kiwi],
+           let mangoStock = fruitsStock[.mango] {
+            stockOfStrawberry.text = String(strawberryStock)
+            stockOfBanana.text = String(bananaStock)
+            stockOfPineApple.text = String(pineappleStock)
+            stockOfKiwi.text = String(kiwiStock)
+            stockOfMango.text = String(mangoStock)
         }
     }
     
@@ -71,6 +79,7 @@ final class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: .strawberry)
             setSuccessAlert(juiceName: .strawberry)
+            displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
         } catch {
@@ -82,6 +91,7 @@ final class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: .banana)
             setSuccessAlert(juiceName: .banana)
+            displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
         } catch {
@@ -93,6 +103,7 @@ final class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: .pineapple)
             setSuccessAlert(juiceName: .pineapple)
+            displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
         } catch {
@@ -104,6 +115,7 @@ final class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: .kiwi)
             setSuccessAlert(juiceName: .kiwi)
+            displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
         } catch {
@@ -115,6 +127,7 @@ final class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: .mango)
             setSuccessAlert(juiceName: .mango)
+            displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
         } catch {
@@ -126,6 +139,7 @@ final class ViewController: UIViewController {
         do {
             try juiceMaker.make(juice: .mangoKiwi)
             setSuccessAlert(juiceName: .mangoKiwi)
+            displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
         } catch {
