@@ -14,7 +14,7 @@ extension JuiceMakerError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .insufficientStock:
-            return "재고가 부족합니다."
+            return "재고가 모자라요. 재고를 수정할까요?"
         case .noFruit:
             return "스토어에서 취급하지 않는 과일입니다."
         }

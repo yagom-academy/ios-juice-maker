@@ -51,11 +51,11 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(_ juice: Juice) -> Result<String, Error> {
+    func makeJuice(_ juice: Juice) -> Result<Juice, Error> {
         do {
             try checkFruitStore(for: juice)
             try useFruit(for: juice)
-            return .success(juice.rawValue)
+            return .success(juice)
         } catch let error {
             return .failure(error)
         }
