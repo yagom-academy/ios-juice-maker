@@ -103,9 +103,9 @@ class ViewController: UIViewController {
     func showFailureAlert() {
         let alert = UIAlertController(title: "재료가 모자라요 재료를 수정할까요?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "네", style: .default) { (action) in
-            guard let fruitStockVC = self.storyboard?
+            guard let fruitStockViewController = self.storyboard?
                 .instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
-            self.navigationController?.pushViewController(fruitStockVC, animated: false)
+            self.navigationController?.pushViewController(fruitStockViewController, animated: false)
         }
         let cancelAction = UIAlertAction(title: "아니오", style: .default)
         
