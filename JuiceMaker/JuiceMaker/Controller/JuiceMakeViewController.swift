@@ -14,6 +14,8 @@ final class JuiceMakeViewController: UIViewController {
         return FruitStore.shared.shareFruitBasket()
     }
     
+    let juiceMaker = JuiceMaker()
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -22,7 +24,6 @@ final class JuiceMakeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let juiceMaker = JuiceMaker()
         setUpLabel()
     }
     
@@ -40,7 +41,37 @@ final class JuiceMakeViewController: UIViewController {
             $0.sizeToFit()
         }
     }
-
-
+    
+    func buttonTarget(_ sender: UIButton) -> FruitJuice? {
+        guard let titleLabel = sender.titleLabel?.text else {
+            return nil
+        }
+        
+        switch titleLabel {
+        case "딸기쥬스 주문":
+            return FruitJuice.strawberryJuice
+        case "바나나쥬스 주문":
+            return FruitJuice.bananaJuice
+        case "파인애플쥬스 주문":
+            return FruitJuice.pineappleJuice
+        case "키위쥬스 주문":
+            return FruitJuice.kiwiJuice
+        case "망고쥬스 주문":
+            return FruitJuice.mangoJuice
+        case "딸바쥬스 주문":
+            return FruitJuice.strawberryBananaJuice
+        case "망키쥬스 주문":
+            return FruitJuice.mangoKiwiJuice
+        default:
+            return nil
+        }
+    }
+    
+    @IBAction func orderButtonTapped(_ sender: UIButton) {
+        guard let targetJuice = buttonTarget(sender) else {
+            return
+        }
+    }
+    
 }
 
