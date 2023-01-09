@@ -1,9 +1,6 @@
-//
-//  ChangeStockViewController.swift
-//  JuiceMaker
-//
-//  Created by 김경준 on 2023/01/05.
-//
+//  JuiceMaker - ChangeStockViewController.swift
+//  Created by 송준, Rowan on 2023/01/05.
+//  Copyright © yagom academy. All rights reserved.
 
 import UIKit
 
