@@ -25,11 +25,32 @@ class JuiceMakerViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     let fruitStore = FruitStore.shared
     
+    var buttonDic: [Juice: JuiceOrderButton] = [:]
+    var labelDic: [Fruit: UILabel] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         assignJuiceTypeAtJuiceOrderButton()
         configureFruitCountLabels()
+        
+        buttonDic = [
+            .strawberryJuice: strawberryJuiceButton,
+            .bananaJuice: bananaJuiceButton,
+            .kiwiJuice: kiwiJuiceButton,
+            .pineappleJuice: pineappleJuiceButton,
+            .mangoKiwiJuice: mangoKiwiJuiceButton,
+            .mangoJuice: mangoJuiceButton,
+            .strawberryBananaJuice: strawberryBananaJuiceButton
+        ]
+        
+        labelDic = [
+            .strawberry: strawberryCountLabel,
+            .banana: bananaCountLabel,
+            .kiwi: kiwiCountLabel,
+            .pineapple: pineappleCountLabel,
+            .mango: mangoCountLabel
+        ]
     }
     
     @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
@@ -46,7 +67,8 @@ class JuiceMakerViewController: UIViewController {
             return
         }
         presentOrderSuccessAlert(juice: juice)
-        configureFruitCountLabels()
+        //configureFruitCountLabels()
+        updateFruitCountLabels(juice: juice)
     }
     
     func assignJuiceTypeAtJuiceOrderButton() {
@@ -65,6 +87,12 @@ class JuiceMakerViewController: UIViewController {
         kiwiCountLabel.text = fruitStore.getStockCountToString(of: .kiwi)
         pineappleCountLabel.text = fruitStore.getStockCountToString(of: .pineapple)
         mangoCountLabel.text = fruitStore.getStockCountToString(of: .mango)
+    }
+    
+    func updateFruitCountLabels(juice: Juice) {
+        for fruit in juice.recipe.keys {
+            labelDic[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
+        }
     }
     
     func presentStockManager() {
