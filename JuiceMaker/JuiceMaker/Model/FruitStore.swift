@@ -19,6 +19,14 @@ class FruitStore {
         ]
     }
     
+    func getStockCountToString(of fruit: Fruit) -> String? {
+        guard let count = fruitStock[fruit] else {
+            return nil
+        }
+        
+        return String(count)
+    }
+    
     func addStock(fruit: Fruit, quantity: Int) throws {
         guard let selectedFruitStock = fruitStock[fruit] else {
             throw JuiceMakerError.nonExistentFruit

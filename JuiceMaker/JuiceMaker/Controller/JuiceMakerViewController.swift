@@ -49,18 +49,11 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func configureFruitCountLabels() {
-        guard let strawberryCount = fruitStore.fruitStock[Fruit.strawberry],
-              let bananaCount = fruitStore.fruitStock[Fruit.banana],
-              let kiwiCount = fruitStore.fruitStock[Fruit.kiwi],
-              let pineappleCount = fruitStore.fruitStock[Fruit.pineapple],
-              let mangoCount = fruitStore.fruitStock[Fruit.mango] else {
-            return
-        }
-        strawberryCountLabel.text = String(strawberryCount)
-        bananaCountLabel.text = String(bananaCount)
-        kiwiCountLabel.text = String(kiwiCount)
-        pineappleCountLabel.text = String(pineappleCount)
-        mangoCountLabel.text = String(mangoCount)
+        strawberryCountLabel.text = fruitStore.getStockCountToString(of: .strawberry)
+        bananaCountLabel.text = fruitStore.getStockCountToString(of: .banana)
+        kiwiCountLabel.text = fruitStore.getStockCountToString(of: .kiwi)
+        pineappleCountLabel.text = fruitStore.getStockCountToString(of: .pineapple)
+        mangoCountLabel.text = fruitStore.getStockCountToString(of: .mango)
     }
     
     func presentStockManager() {
