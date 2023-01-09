@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by 릴라, 세홍, 무리
 //  Copyright © yagom academy. All rights reserved.
 // 
 
@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func updateStockLabel() {
+    private func updateStockLabel() {
         let fruits = fruitStore.fruits.mapValues{ String($0) }
         
         strawberryLabel.text = fruits[Fruit.strawberry]
@@ -30,6 +30,15 @@ class ViewController: UIViewController {
         kiwiLabel.text = fruits[Fruit.kiwi]
         mangoLabel.text = fruits[Fruit.mango]
     }
-
+    
+    @IBAction func editStockTapped(_ sender: UIBarButtonItem) {
+        changeStockView()
+    }
+    
+    func changeStockView() {
+        guard let editStockView = self.storyboard?.instantiateViewController( withIdentifier:
+                                                                                "EditStockViewController") else { return }
+        self.navigationController?.pushViewController(editStockView, animated: true)
+    }
 }
 
