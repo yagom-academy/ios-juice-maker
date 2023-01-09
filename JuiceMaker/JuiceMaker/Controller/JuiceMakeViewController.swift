@@ -24,15 +24,7 @@ final class JuiceMakeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let juiceMaker = JuiceMaker()
-        do {
-            try juiceMaker.make(.mangoKiwiJuice)
-            setUpLabel()
-        } catch {
-            
-        }
-        
+        setUpLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
