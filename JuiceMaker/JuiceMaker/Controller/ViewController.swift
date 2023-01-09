@@ -121,6 +121,7 @@ class ViewController: UIViewController {
             return
         }
         self.navigationController?.pushViewController(stockModifyButton, animated: true)
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = "돌아가기"
     }
     
 }
