@@ -1,12 +1,12 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - JuiceMakerViewController.swift
 //  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     
     let juiceMaker = JuiceMaker()
     
@@ -27,6 +27,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        informCurrentStock()
+    }
+    
+    func informCurrentStock() {
         for (fruit, value) in fruitStockValue {
             value.text = String(juiceMaker.fruitStore.checkStockValue(fruit: fruit))
         }
@@ -37,10 +41,18 @@ class ViewController: UIViewController {
         
         switch order {
         case .success(let juice):
+            informCurrentStock()
             completedOrderAlert(juice: juice)
         case .failure(let error):
             incompletedOrderAlert(error: error)
         }
+    }
+    
+    func moveScreen(to viewControllerIdentifier: String) {
+        guard let button = self.storyboard?
+            .instantiateViewController(withIdentifier: viewControllerIdentifier)
+        else { return }
+        self.navigationController?.pushViewController(button, animated: true)
     }
     
     func completedOrderAlert(juice: JuiceMaker.Juice) {
@@ -56,20 +68,14 @@ class ViewController: UIViewController {
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "예", style: .default) { _ in
-            guard let button = self.storyboard?
-                .instantiateViewController(withIdentifier: "FruitStoreViewController")
-            else { return }
-            self.navigationController?.pushViewController(button, animated: true)
+            self.moveScreen(to: "FruitStoreViewController")
         })
         alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
         return present(alert, animated: true, completion: nil)
     }
     
     @IBAction func reviseStockButton(_ sender: UIBarButtonItem) {
-        guard let button = self.storyboard?
-            .instantiateViewController(withIdentifier: "FruitStoreViewController")
-        else { return }
-        self.navigationController?.pushViewController(button, animated: true)
+        moveScreen(to: "FruitStoreViewController")
     }
     
     @IBAction func strawberryBananaJuiceOrderButton(_ sender: UIButton) {
