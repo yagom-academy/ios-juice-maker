@@ -9,7 +9,10 @@ import UIKit
 final class FruitStoreViewController: UIViewController {
     
     let fruitStore = FruitStore.shared
-    lazy var currentFruitBasket = fruitStore.shareFruitBasket()
+    
+    var currentFruitBasket: [Fruit: Int] {
+        return FruitStore.shared.shareFruitBasket()
+    }
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -28,7 +31,7 @@ final class FruitStoreViewController: UIViewController {
         setUpLabel()
         setUpStepper()
     }
-
+    
     
     func setUpStepper() {
         if let strawBerryValue = currentFruitBasket[.strawberry],
@@ -100,13 +103,7 @@ final class FruitStoreViewController: UIViewController {
             return
         }
         
-        if Int(sender.value) > fruitCount {
-            fruitStore.addOne(of: targetFruit)
-            currentFruitBasket[targetFruit]! += 1
-        } else {
-            fruitStore.reduceOne(of: targetFruit)
-            currentFruitBasket[targetFruit]! -= 1
-        }
+        Int(sender.value) > fruitCount ? fruitStore.addOne(of: targetFruit) : fruitStore.reduceOne(of: targetFruit)
         
         let fruitLabel = fruitLabel(targetFruit)
         fruitLabel.text = currentFruitBasket[targetFruit]?.description
