@@ -9,24 +9,40 @@ import UIKit
 
 class StockManagerViewController: UIViewController {
 
+    @IBOutlet weak var strawberryCountLabel: UILabel!
+    @IBOutlet weak var bananaCountLabel: UILabel!
+    @IBOutlet weak var pineappleCountLabel: UILabel!
+    @IBOutlet weak var kiwiCountLabel: UILabel!
+    @IBOutlet weak var mangoCountLabel: UILabel!
+    
+    let fruitStore = FruitStore.shared
+    
+    var fruitLabelsDictionary: [Fruit: UILabel] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        defineDictionary()
+        configureFruitCountLabels()
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)        
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func defineDictionary() {
+        fruitLabelsDictionary = [
+            .strawberry: strawberryCountLabel,
+            .banana: bananaCountLabel,
+            .kiwi: kiwiCountLabel,
+            .pineapple: pineappleCountLabel,
+            .mango: mangoCountLabel
+        ]
     }
-    */
 
+    func configureFruitCountLabels() {
+        for fruit in Fruit.allCases {
+            fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
+        }
+    }
 }
