@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+final class FruitStore {
     var fruitStocks: [Fruit: Int] = [:]
     
     init(initialStock: Int = 10) {
@@ -29,7 +29,7 @@ class FruitStore {
         try checkOutStock(of: fruit)
     }
     
-    func checkOutStock(of fruit: Fruit) throws {
+    private func checkOutStock(of fruit: Fruit) throws {
         guard let fruitStock = fruitStocks[fruit] else {
             throw JuiceMakerError.fruitError
         }

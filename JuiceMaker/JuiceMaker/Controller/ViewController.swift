@@ -111,7 +111,7 @@ class ViewController: UIViewController {
     
     func failAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: UIAlertController.Style.alert)
-        let ok = UIAlertAction(title: "예", style: .default, handler: nil)
+        let ok = UIAlertAction(title: "예", style: .default, handler: { action in self.performSegue(withIdentifier: "toSecondVC", sender: nil) })
         let cancel = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(ok)
         alert.addAction(cancel)

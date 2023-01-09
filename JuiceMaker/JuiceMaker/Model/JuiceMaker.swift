@@ -9,7 +9,7 @@ struct JuiceMaker {
     
     private init() {}
     
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func makeJuice(_ juiceMenu: JuiceMenu) -> Bool {
         do {
@@ -30,7 +30,7 @@ struct JuiceMaker {
         }
     }
     
-    func checkCurrentStock(_ juiceMenu: JuiceMenu) throws {
+    private func checkCurrentStock(_ juiceMenu: JuiceMenu) throws {
         for fruit in juiceMenu.receipe.keys {
             guard let requiredAmount = juiceMenu.receipe[fruit] else {
                 throw JuiceMakerError.fruitError
