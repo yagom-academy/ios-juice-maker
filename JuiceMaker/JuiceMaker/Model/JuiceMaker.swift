@@ -11,18 +11,16 @@ struct JuiceMaker {
     
     let fruitStore = FruitStore(initialStockNumber: 10)
     
-    func make(_ fruitJuice: FruitJuice) {
+    func make(_ fruitJuice: FruitJuice) throws {
         let ingredient = fruitJuice.ingredient
         var reducedList: [Fruit: Int] = [:]
         for (fruit, count) in ingredient {
             if fruitStore.checkFruit(name: fruit, count: count) {
                 reducedList[fruit] = count
             } else {
-                print("\(fruitJuice)주스 생성실패")
-                return
+                throw juiceMakeError.outOfStock
             }
         }
         reducedList.forEach { fruitStore.reduceStock(of: $0.key, count: $0.value) }
-        print("\(fruitJuice)주스 생성성공")
     }
 }

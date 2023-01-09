@@ -76,6 +76,16 @@ final class JuiceMakeViewController: UIViewController {
         guard let targetJuice = buttonTarget(sender) else {
             return
         }
+        do {
+            try juiceMaker.make(targetJuice)
+            setUpLabel()
+            print("주스 생성성공")
+        } catch juiceMakeError.outOfStock {
+            print("주스 재고가 부족합니다")
+        } catch {
+            print("알 수 없는 에러가 발생했습니다")
+        }
+        
     }
     
 }
