@@ -28,10 +28,7 @@ class ViewController: UIViewController {
                                        selector: #selector(didReceiveFailureOrder),
                                        name: .failureUseFruit,
                                        object: nil)
-        // Do any additional setup after loading the view.
     }
-    
-
     
     private func updateStockLabel() {
         let fruits = fruitStore.fruits.mapValues{ String($0) }
@@ -41,8 +38,6 @@ class ViewController: UIViewController {
         pineappleLabel.text = fruits[Fruit.pineapple]
         kiwiLabel.text = fruits[Fruit.kiwi]
         mangoLabel.text = fruits[Fruit.mango]
-        
-        
     }
     
     @IBAction func editStockTapped(_ sender: UIBarButtonItem) {
@@ -50,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     func changeStockView() {
-        guard let editStockView = self.storyboard?.instantiateViewController( withIdentifier:
+        guard let editStockView = self.storyboard?.instantiateViewController(withIdentifier:
                                                                                 "EditStockViewController") else { return }
         self.navigationController?.pushViewController(editStockView, animated: true)
     }
