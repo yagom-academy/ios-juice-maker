@@ -1,8 +1,8 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import UIKit
 
@@ -13,8 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    var juiceMaker = JuiceMaker()
    
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -23,16 +21,16 @@ class ViewController: UIViewController {
     }
     
     func updateStockLabel() {
-        strawberryStockLabel.text = juiceMaker.currentFruitStock(of: .strawberry)
-        bananaStockLabel.text = juiceMaker.currentFruitStock(of: .banana)
-        pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple)
-        kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi)
-        mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango)
+        strawberryStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .strawberry)
+        bananaStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .banana)
+        pineappleStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .pineapple)
+        kiwiStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .kiwi)
+        mangoStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .mango)
     }
     
     @IBAction func ddalbaJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .strawberryBananaJuice
-        if juiceMaker.makeJuice(orderedJuice) {
+        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
         } else {
@@ -42,7 +40,7 @@ class ViewController: UIViewController {
     
     @IBAction func strawberryJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .strawberryJuice
-        if juiceMaker.makeJuice(orderedJuice) {
+        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
         } else {
@@ -52,7 +50,7 @@ class ViewController: UIViewController {
     
     @IBAction func bananaJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .bananaJuice
-        if juiceMaker.makeJuice(orderedJuice) {
+        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
         } else {
@@ -62,7 +60,7 @@ class ViewController: UIViewController {
     
     @IBAction func pineappleJuieButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .pineappleJuice
-        if juiceMaker.makeJuice(orderedJuice) {
+        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
         } else {
@@ -72,7 +70,7 @@ class ViewController: UIViewController {
     
     @IBAction func kiwiJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .kiwiJuice
-        if juiceMaker.makeJuice(orderedJuice) {
+        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
         } else {
@@ -82,7 +80,7 @@ class ViewController: UIViewController {
     
     @IBAction func mangoJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .mangoJuice
-        if juiceMaker.makeJuice(orderedJuice) {
+        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
         } else {
@@ -92,7 +90,7 @@ class ViewController: UIViewController {
     
     @IBAction func mankiJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .mangoKiwiJuice
-        if juiceMaker.makeJuice(orderedJuice) {
+        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
         } else {
@@ -116,4 +114,5 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
 

@@ -5,6 +5,10 @@
 //
 
 struct JuiceMaker {
+    static let sharedJuiceMaker = JuiceMaker()
+    
+    private init() {}
+    
     let fruitStore = FruitStore()
     
     func makeJuice(_ juiceMenu: JuiceMenu) -> Bool {
@@ -34,7 +38,7 @@ struct JuiceMaker {
             guard let currentStock = fruitStore.fruitStocks[fruit] else {
                 throw JuiceMakerError.fruitError
             }
-            if requiredAmount > currentStock {
+            if currentStock < requiredAmount {
                 throw JuiceMakerError.outOfStock
             }
         }
@@ -45,3 +49,5 @@ struct JuiceMaker {
         return String(fruitStock)
     }
 }
+
+
