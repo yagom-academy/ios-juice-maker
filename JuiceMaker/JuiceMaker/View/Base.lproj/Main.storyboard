@@ -223,7 +223,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="JZN-yp-wKt"/>
-                        <outlet property="kiwilabel" destination="FZq-de-TJG" id="U12-3i-43S"/>
+                        <outlet property="kiwiLabel" destination="FZq-de-TJG" id="b46-Iw-lYA"/>
                         <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="TUx-D0-S6F"/>
                         <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="jCF-ii-HqE"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="Ncv-Sg-3xf"/>
