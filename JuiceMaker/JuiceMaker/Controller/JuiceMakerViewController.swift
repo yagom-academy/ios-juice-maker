@@ -8,13 +8,13 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
 
-    @IBOutlet weak var strawberryJuiceButton: JuiceOrderButton!
-    @IBOutlet weak var bananaJuiceButton: JuiceOrderButton!
-    @IBOutlet weak var kiwiJuiceButton: JuiceOrderButton!
-    @IBOutlet weak var pineappleJuiceButton: JuiceOrderButton!
-    @IBOutlet weak var strawberryBananaJuiceButton: JuiceOrderButton!
-    @IBOutlet weak var mangoJuiceButton: JuiceOrderButton!
-    @IBOutlet weak var mangoKiwiJuiceButton: JuiceOrderButton!
+    @IBOutlet weak var strawberryJuiceButton: UIButton!
+    @IBOutlet weak var bananaJuiceButton: UIButton!
+    @IBOutlet weak var kiwiJuiceButton: UIButton!
+    @IBOutlet weak var pineappleJuiceButton: UIButton!
+    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet weak var mangoJuiceButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
     
     @IBOutlet weak var strawberryCountLabel: UILabel!
     @IBOutlet weak var bananaCountLabel: UILabel!
@@ -25,40 +25,22 @@ class JuiceMakerViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     let fruitStore = FruitStore.shared
     
-    var buttonDic: [Juice: JuiceOrderButton] = [:]
-    var labelDic: [Fruit: UILabel] = [:]
+    var juiceButtonsDictionary: [UIButton: Juice] = [:]
+    var fruitLabelsDictionary: [Fruit: UILabel] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        assignJuiceTypeAtJuiceOrderButton()
+        defineDictionary()
         configureFruitCountLabels()
-        
-        buttonDic = [
-            .strawberryJuice: strawberryJuiceButton,
-            .bananaJuice: bananaJuiceButton,
-            .kiwiJuice: kiwiJuiceButton,
-            .pineappleJuice: pineappleJuiceButton,
-            .mangoKiwiJuice: mangoKiwiJuiceButton,
-            .mangoJuice: mangoJuiceButton,
-            .strawberryBananaJuice: strawberryBananaJuiceButton
-        ]
-        
-        labelDic = [
-            .strawberry: strawberryCountLabel,
-            .banana: bananaCountLabel,
-            .kiwi: kiwiCountLabel,
-            .pineapple: pineappleCountLabel,
-            .mango: mangoCountLabel
-        ]
     }
     
     @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
         presentStockManager()
     }
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: JuiceOrderButton) {
-        guard let juice = sender.juice else { return }
+    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+        guard let juice = juiceButtonsDictionary[sender] else { return }
         
         do {
             try juiceMaker.makeJuice(for: juice)
@@ -67,31 +49,38 @@ class JuiceMakerViewController: UIViewController {
             return
         }
         presentOrderSuccessAlert(juice: juice)
-        //configureFruitCountLabels()
         updateFruitCountLabels(juice: juice)
     }
     
-    func assignJuiceTypeAtJuiceOrderButton() {
-        strawberryJuiceButton.juice = .strawberryJuice
-        bananaJuiceButton.juice = .bananaJuice
-        kiwiJuiceButton.juice = .kiwiJuice
-        pineappleJuiceButton.juice = .pineappleJuice
-        strawberryBananaJuiceButton.juice = .strawberryBananaJuice
-        mangoJuiceButton.juice = .mangoJuice
-        mangoKiwiJuiceButton.juice = .mangoKiwiJuice
+    func defineDictionary() {
+        juiceButtonsDictionary = [
+            strawberryJuiceButton: .strawberryJuice,
+            bananaJuiceButton: .bananaJuice,
+            kiwiJuiceButton: .kiwiJuice,
+            pineappleJuiceButton: .pineappleJuice,
+            mangoKiwiJuiceButton: .mangoKiwiJuice,
+            mangoJuiceButton: .mangoJuice,
+            strawberryBananaJuiceButton: .strawberryBananaJuice
+        ]
+        
+        fruitLabelsDictionary = [
+            .strawberry: strawberryCountLabel,
+            .banana: bananaCountLabel,
+            .kiwi: kiwiCountLabel,
+            .pineapple: pineappleCountLabel,
+            .mango: mangoCountLabel
+        ]
     }
     
     func configureFruitCountLabels() {
-        strawberryCountLabel.text = fruitStore.getStockCountToString(of: .strawberry)
-        bananaCountLabel.text = fruitStore.getStockCountToString(of: .banana)
-        kiwiCountLabel.text = fruitStore.getStockCountToString(of: .kiwi)
-        pineappleCountLabel.text = fruitStore.getStockCountToString(of: .pineapple)
-        mangoCountLabel.text = fruitStore.getStockCountToString(of: .mango)
+        for fruit in Fruit.allCases {
+            fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
+        }
     }
     
     func updateFruitCountLabels(juice: Juice) {
         for fruit in juice.recipe.keys {
-            labelDic[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
+            fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
         }
     }
     
@@ -128,8 +117,4 @@ class JuiceMakerViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-}
-
-class JuiceOrderButton: UIButton {
-    var juice: Juice?
 }
