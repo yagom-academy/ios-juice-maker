@@ -43,3 +43,7 @@ enum FruitJuice {
         }
     }
 }
+
+enum juiceMakeError: Error {
+    case outOfStock
+}
