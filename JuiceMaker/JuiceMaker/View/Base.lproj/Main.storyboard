@@ -283,7 +283,7 @@
         <!--Stock Modify View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="stockModifyViewController" id="Yu1-lM-nqp" customClass="StockModifyViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="stockModifyViewController" id="Yu1-lM-nqp" customClass="StockModifyViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
