@@ -4,9 +4,13 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import Foundation
+
 final class FruitStore {
     private(set) var fruits: [Fruit: Int] = [:]
     static let shared = FruitStore()
+    
+    let notificationCenter = NotificationCenter.default
     
     private init() {
         initializeDefaultStock()
@@ -36,6 +40,7 @@ final class FruitStore {
                   let ingredient = recipe[fruit] else { continue }
             let remain = stock - ingredient
             fruits[fruit] = remain
+            notificationCenter.post(name: .useFruitEvent, object: nil)
         }
     }
     
