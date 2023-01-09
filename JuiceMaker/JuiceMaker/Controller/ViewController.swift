@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom.
+//  Created by riji, kaki
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -96,6 +96,10 @@ class ViewController: UIViewController {
         } else {
             failAlert()
         }
+    }
+    
+    @IBAction func barButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toSecondVC", sender: self)
     }
     
     func successAlert(name: String) {

@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by riji, kaki. 
+//  Created by riji, kaki
 //  Copyright © yagom academy. All rights reserved.
 //
 
