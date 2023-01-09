@@ -15,14 +15,14 @@ enum Fruit: String {
     case mango = "망고"
 }
 
-enum FruitJuice {
-    case strawberryJuice
-    case bananaJuice
-    case pineappleJuice
-    case kiwiJuice
-    case mangoJuice
-    case strawberryBananaJuice
-    case mangoKiwiJuice
+enum FruitJuice: String {
+    case strawberryJuice = "딸기쥬스"
+    case bananaJuice = "바나나쥬스"
+    case pineappleJuice = "파인애플쥬스"
+    case kiwiJuice = "키위쥬스"
+    case mangoJuice = "망고쥬스"
+    case strawberryBananaJuice = "딸바쥬스"
+    case mangoKiwiJuice = "망키쥬스"
     
     var ingredient: [Fruit: Int] {
         switch self {
