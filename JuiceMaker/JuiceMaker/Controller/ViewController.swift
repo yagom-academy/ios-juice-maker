@@ -23,56 +23,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clickButton(_ sender: UIButton) {
-        guard let title = sender.titleLabel?.text else {
+        guard let buttonLabel = sender.titleLabel?.text,
+        let juice = decideOrderJuice(buttonLabel) else {
             return
         }
         
-        switch title {
-        case "딸바쥬스 주문":
-            if juiceMaker.makeJuice(.strawberryBananaJuice) {
-                showSuccessAlert(message: Juice.strawberryBananaJuice.name)
-            } else {
-                showFailureAlert()
-            }
-        case "딸기쥬스 주문":
-            if juiceMaker.makeJuice(.strawberryJuice) {
-                showSuccessAlert(message: Juice.strawberryJuice.name)
-            } else {
-                showFailureAlert()
-            }
-        case "바나나쥬스 주문":
-            if juiceMaker.makeJuice(.bananaJuice) {
-                showSuccessAlert(message: Juice.bananaJuice.name)
-            } else {
-                showFailureAlert()
-            }
-        case "파인애플쥬스 주문":
-            if juiceMaker.makeJuice(.pineappleJuice) {
-                showSuccessAlert(message: Juice.pineappleJuice.name)
-            } else {
-                showFailureAlert()
-            }
-        case "망키쥬스 주문":
-            if juiceMaker.makeJuice(.mangoKiwiJuice) {
-                showSuccessAlert(message: Juice.mangoKiwiJuice.name)
-            } else {
-                showFailureAlert()
-            }
-        case "키위쥬스 주문":
-            if juiceMaker.makeJuice(.kiwiJuice) {
-                showSuccessAlert(message: Juice.kiwiJuice.name)
-            } else {
-                showFailureAlert()
-            }
-        case "망고쥬스 주문":
-            if juiceMaker.makeJuice(.mangoJuice) {
-                showSuccessAlert(message: Juice.mangoJuice.name)
-            } else {
-                showFailureAlert()
-            }
-        default:
-            return
-        }
+        tryMakeJuice(juice)
     }
     
     func updateLabel(juice: [Fruit: Int]) {
@@ -113,6 +69,35 @@ class ViewController: UIViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: false)
+    }
+    
+    func decideOrderJuice(_ juice: String) -> Juice? {
+        switch juice {
+        case "딸바쥬스 주문":
+            return .strawberryBananaJuice
+        case "딸기쥬스 주문":
+            return .strawberryJuice
+        case "바나나쥬스 주문":
+            return .bananaJuice
+        case "파인애플쥬스 주문":
+            return .pineappleJuice
+        case "망키쥬스 주문":
+            return .mangoKiwiJuice
+        case "키위쥬스 주문":
+            return .kiwiJuice
+        case "망고쥬스 주문":
+            return .mangoJuice
+        default:
+            return nil
+        }
+    }
+    
+    func tryMakeJuice(_ juice: Juice) {
+        if juiceMaker.makeJuice(juice) {
+            showSuccessAlert(message: juice.name)
+        } else {
+            showFailureAlert()
+        }
     }
 }
 
