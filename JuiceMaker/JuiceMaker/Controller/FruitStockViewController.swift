@@ -9,21 +9,31 @@ import UIKit
 
 class FruitStockViewController: UIViewController {
 
+    @IBOutlet weak var strawberryLabel: UILabel!
+    @IBOutlet weak var bananaLabel: UILabel!
+    @IBOutlet weak var pineappleLabel: UILabel!
+    @IBOutlet weak var kiwiLabel: UILabel!
+    @IBOutlet weak var mangoLabel: UILabel!
+    
+    private let fruitStore = FruitStore.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateLabel(juice: fruitStore.getFruits())
+        fruitStore.decreaseFruit(.kiwi, by: 3)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func updateLabel(juice: [Fruit: Int]) {
+        guard let strawberry = juice[.strawberry],
+              let banana = juice[.banana],
+              let kiwi = juice[.kiwi],
+              let pineapple = juice[.pineapple],
+              let mango = juice[.mango] else { return }
+        
+        strawberryLabel.text = String(strawberry)
+        bananaLabel.text = String(banana)
+        kiwiLabel.text = String(kiwi)
+        pineappleLabel.text = String(pineapple)
+        mangoLabel.text = String(mango)
     }
-    */
-
 }

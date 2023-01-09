@@ -22,6 +22,12 @@ class ViewController: UIViewController {
         updateLabel(juice: juiceMaker.getFruitsInStore())
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateLabel(juice: juiceMaker.getFruitsInStore())
+    }
+    
     @IBAction func clickButton(_ sender: UIButton) {
         guard let buttonLabel = sender.titleLabel?.text,
         let juice = decideOrderJuice(buttonLabel) else {

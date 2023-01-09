@@ -4,7 +4,9 @@
 class FruitStore {
     private var fruits: [Fruit: Int] = [.strawberry: 0, .banana: 0, .kiwi: 0, .mango: 0, .pineapple: 0]
 
-    init(amount: Int) {
+    static let shared = FruitStore(amount: 10)
+    
+    private init(amount: Int) {
         self.fruits[.strawberry] = amount
         self.fruits[.banana] = amount
         self.fruits[.kiwi] = amount
