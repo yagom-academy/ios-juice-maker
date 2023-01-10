@@ -6,27 +6,27 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController {
 
-    @IBOutlet weak var strawberryJuiceButton: UIButton!
-    @IBOutlet weak var bananaJuiceButton: UIButton!
-    @IBOutlet weak var kiwiJuiceButton: UIButton!
-    @IBOutlet weak var pineappleJuiceButton: UIButton!
-    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
-    @IBOutlet weak var mangoJuiceButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak private var strawberryJuiceButton: UIButton!
+    @IBOutlet weak private var bananaJuiceButton: UIButton!
+    @IBOutlet weak private var kiwiJuiceButton: UIButton!
+    @IBOutlet weak private var pineappleJuiceButton: UIButton!
+    @IBOutlet weak private var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet weak private var mangoJuiceButton: UIButton!
+    @IBOutlet weak private var mangoKiwiJuiceButton: UIButton!
     
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
+    @IBOutlet weak private var strawberryCountLabel: UILabel!
+    @IBOutlet weak private var bananaCountLabel: UILabel!
+    @IBOutlet weak private var kiwiCountLabel: UILabel!
+    @IBOutlet weak private var pineappleCountLabel: UILabel!
+    @IBOutlet weak private var mangoCountLabel: UILabel!
     
-    let juiceMaker = JuiceMaker()
-    let fruitStore = FruitStore.shared
+    private let juiceMaker = JuiceMaker()
+    private let fruitStore = FruitStore.shared
     
-    var juiceButtonsDictionary: [UIButton: Juice] = [:]
-    var fruitLabelsDictionary: [Fruit: UILabel] = [:]
+    private var juiceButtonsDictionary: [UIButton: Juice] = [:]
+    private var fruitLabelsDictionary: [Fruit: UILabel] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +35,11 @@ class JuiceMakerViewController: UIViewController {
         configureFruitCountLabels()
     }
     
-    @IBAction func touchUpEditStockButton(_ sender: UIBarButtonItem) {
+    @IBAction private func touchUpEditStockButton(_ sender: UIBarButtonItem) {
         presentStockManager()
     }
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+    @IBAction private func touchUpJuiceOrderButton(_ sender: UIButton) {
         guard let juice = juiceButtonsDictionary[sender] else { return }
         
         do {
@@ -52,7 +52,7 @@ class JuiceMakerViewController: UIViewController {
         updateFruitCountLabels(juice: juice)
     }
     
-    func defineDictionary() {
+    private func defineDictionary() {
         juiceButtonsDictionary = [
             strawberryJuiceButton: .strawberryJuice,
             bananaJuiceButton: .bananaJuice,
@@ -72,25 +72,25 @@ class JuiceMakerViewController: UIViewController {
         ]
     }
     
-    func configureFruitCountLabels() {
+    private func configureFruitCountLabels() {
         for fruit in Fruit.allCases {
             fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
         }
     }
     
-    func updateFruitCountLabels(juice: Juice) {
+    private func updateFruitCountLabels(juice: Juice) {
         for fruit in juice.recipe.keys {
             fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
         }
     }
     
-    func presentStockManager() {
+    private func presentStockManager() {
         guard let stockManagerNC = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNavigationController") as? UINavigationController else { return }
                         
         self.present(stockManagerNC, animated: true)
     }
     
-    func presentOrderSuccessAlert(juice: Juice) {
+    private func presentOrderSuccessAlert(juice: Juice) {
         let message = "\(juice.rawValue) 나왔습니다! 맛있게 드세요!"
                
         let alert = UIAlertController(title: "알림",
@@ -103,7 +103,7 @@ class JuiceMakerViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    func presentOrderFailureAlert() {
+    private func presentOrderFailureAlert() {
         let alert = UIAlertController(title: "알림",
                                       message: "재료가 모자라요. 재고를 수정할까요?",
                                       preferredStyle: .alert)

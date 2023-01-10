@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+final class FruitStore {
     static let shared = FruitStore()
     
     private var fruitStock: [Fruit: Int]

@@ -7,17 +7,17 @@
 
 import UIKit
 
-class StockManagerViewController: UIViewController {
+final class StockManagerViewController: UIViewController {
 
-    @IBOutlet weak var strawberryCountLabel: UILabel!
-    @IBOutlet weak var bananaCountLabel: UILabel!
-    @IBOutlet weak var pineappleCountLabel: UILabel!
-    @IBOutlet weak var kiwiCountLabel: UILabel!
-    @IBOutlet weak var mangoCountLabel: UILabel!
+    @IBOutlet weak private var strawberryCountLabel: UILabel!
+    @IBOutlet weak private var bananaCountLabel: UILabel!
+    @IBOutlet weak private var pineappleCountLabel: UILabel!
+    @IBOutlet weak private var kiwiCountLabel: UILabel!
+    @IBOutlet weak private var mangoCountLabel: UILabel!
     
-    let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore.shared
     
-    var fruitLabelsDictionary: [Fruit: UILabel] = [:]
+    private var fruitLabelsDictionary: [Fruit: UILabel] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +26,11 @@ class StockManagerViewController: UIViewController {
         configureFruitCountLabels()
     }
     
-    @IBAction func touchUpDismissButton(_ sender: UIButton) {
+    @IBAction private func touchUpDismissButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)        
     }
     
-    func defineDictionary() {
+    private func defineDictionary() {
         fruitLabelsDictionary = [
             .strawberry: strawberryCountLabel,
             .banana: bananaCountLabel,
@@ -40,7 +40,7 @@ class StockManagerViewController: UIViewController {
         ]
     }
 
-    func configureFruitCountLabels() {
+    private func configureFruitCountLabels() {
         for fruit in Fruit.allCases {
             fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
         }

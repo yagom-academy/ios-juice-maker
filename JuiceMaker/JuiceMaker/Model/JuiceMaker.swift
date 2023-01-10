@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore.shared
     
     func makeJuice(for juice: Juice) throws {
         do {
