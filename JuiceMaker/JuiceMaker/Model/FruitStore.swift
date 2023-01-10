@@ -3,6 +3,7 @@
 //  Copyright © yagom academy. All rights reserved.
 
 class FruitStore {
+    static let shared = FruitStore()
     
     var fruitsStock = [Fruits: Int]()
     
@@ -12,29 +13,27 @@ class FruitStore {
         }
     }
     
-    func subtractStock(of fruit: Fruits, count number: Int) throws {
-        guard let selectedStock = self.fruitsStock[fruit],
-              selectedStock - number >= 0 else {
-            throw StockError.outOfStock
+    func subtractStock(of fruit: Fruits, count number: Int) {
+        if let selectedStock = fruitsStock[fruit] {
+            fruitsStock[fruit] = selectedStock - number
         }
-        
-        fruitsStock[fruit] = selectedStock - number
     }
     
     func addStock(of fruit: Fruits, count number: Int) {
-        if let selectedStock = self.fruitsStock[fruit] {
+        if let selectedStock = fruitsStock[fruit] {
             fruitsStock[fruit] = selectedStock + number
         }
     }
     
-    func checkStock(of fruit: Fruits) {
-        if let stock = fruitsStock[fruit] {
-            let resultMessage = "\(fruit)의 재고는 \(stock)개입니다."
-            print(resultMessage)
+    func isEnoughStock(of fruit: Fruits, count number: Int) -> Bool {
+        guard let selectedStock = fruitsStock[fruit],
+              selectedStock - number >= 0 else {
+            return false
         }
+        return true
     }
     
-    init() {
+    private init() {
         self.fillFruitsStock()
     }
 }
