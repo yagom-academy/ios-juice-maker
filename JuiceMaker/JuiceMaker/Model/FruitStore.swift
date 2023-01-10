@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+final class FruitStore {
     static let shared = FruitStore()
     
     private var fruitStock: [Fruit: Int]
@@ -17,6 +17,14 @@ class FruitStore {
             .kiwi: 10,
             .mango: 10
         ]
+    }
+    
+    func getStockCountToString(of fruit: Fruit) -> String? {
+        guard let count = fruitStock[fruit] else {
+            return nil
+        }
+        
+        return String(count)
     }
     
     func addStock(fruit: Fruit, quantity: Int) throws {
