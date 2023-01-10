@@ -35,6 +35,7 @@ final class StockManagerViewController: UIViewController {
     }
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) {
+        updateFruitStrock()
         self.dismiss(animated: true)
     }
     
@@ -42,7 +43,6 @@ final class StockManagerViewController: UIViewController {
         guard let fruit = fruitSteppersDictionary[sender] else { return }
         
         fruitLabelsDictionary[fruit]?.text = Int(sender.value).description
-        
     }
     
     private func defineDictionary() {
@@ -75,6 +75,12 @@ final class StockManagerViewController: UIViewController {
                   let countToDouble = Double(count)
             else { return }
             stepper.value = countToDouble
+        }
+    }
+    
+    private func updateFruitStrock() {
+        let _ = fruitSteppersDictionary.map { (stepper, fruit) in
+            fruitStore.updateFruitStock(fruit: fruit, quantity: Int(stepper.value))
         }
     }
 }

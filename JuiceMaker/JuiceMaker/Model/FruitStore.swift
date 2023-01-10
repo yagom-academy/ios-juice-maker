@@ -27,12 +27,10 @@ final class FruitStore {
         return String(count)
     }
     
-    func addStock(fruit: Fruit, quantity: Int) throws {
-        guard let selectedFruitStock = fruitStock[fruit] else {
-            throw JuiceMakerError.nonExistentFruit
-        }
+    func updateFruitStock(fruit: Fruit, quantity: Int) {
+        guard quantity >= 0 else { return }
         
-        fruitStock.updateValue(selectedFruitStock + quantity, forKey: fruit)
+        fruitStock[fruit] = quantity
     }
     
     func subtractStock(fruit: Fruit, quantity: Int) throws {
