@@ -1,14 +1,15 @@
 //  JuiceMaker - ViewController.swift
-//  Created by yagom.
+//  Created by 송준, Rowan on 2023/01/05.
 //  Copyright © yagom academy. All rights reserved.
 
 import UIKit
+import Foundation
 
 final class ViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private var fruitsStock: [Fruits: Int] {
         return FruitStore.shared.fruitsStock
-    }
+    } //copy on write 왜 찾아보라고 하셨을까..?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,12 @@ final class ViewController: UIViewController {
     @IBOutlet weak var stockOfPineApple: UILabel!
     @IBOutlet weak var stockOfKiwi: UILabel!
     @IBOutlet weak var stockOfMango: UILabel!
+    
+    @IBOutlet weak var strawberryButton: UIButton!
+    
+    enum OrderButton {
+        case strawberryButton
+    }
     
     func displayStock() {
         if let strawberryStock = fruitsStock[.strawberry],
@@ -147,3 +154,6 @@ final class ViewController: UIViewController {
         }
     }
 }
+
+
+address(of:)
