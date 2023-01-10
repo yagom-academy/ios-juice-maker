@@ -75,16 +75,24 @@ final class JuiceMakeViewController: UIViewController {
     func showFailureAlert() {
         let failureAlert = UIAlertController(title: "주스 제조실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let okAlertAction = UIAlertAction(title: "네", style: .default) { _ in
-            guard let FruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else {
-                return
-            }
-            self.navigationController?.pushViewController(FruitStoreVC, animated: true)
+            self.presentFruitStoreVC()
         }
         let cancelAlertAction = UIAlertAction(title: "아니오", style: .destructive)
         
         failureAlert.addAction(okAlertAction)
         failureAlert.addAction(cancelAlertAction)
         self.present(failureAlert, animated: true)
+    }
+    
+    func presentFruitStoreVC() {
+        guard let FruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else {
+            return
+        }
+        self.present(FruitStoreVC, animated: true)
+    }
+    
+    @IBAction func FruitStoreVCButtonTapped(_ sender: UIButton) {
+        presentFruitStoreVC()
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {

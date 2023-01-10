@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="show" id="Sbb-sf-5wm"/>
+                                <action selector="FruitStoreVCButtonTapped:" destination="BYZ-38-t0r" id="69a-Rh-Byu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -252,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="31"/>
+            <point key="canvasLocation" x="792" y="31"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LzN-aE-P5w">
@@ -410,7 +410,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1419.6682464454975" y="910.76923076923072"/>
+            <point key="canvasLocation" x="875" y="865"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OND-6z-AC8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="noc-D0-Kav" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Se-wZ-VVV">
+                        <rect key="frame" x="0.0" y="47" width="844" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="w47-kF-JAY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HsY-4f-SeN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="181" y="865"/>
         </scene>
     </scenes>
     <resources>
