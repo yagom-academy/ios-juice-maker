@@ -21,12 +21,6 @@ class FruitStockViewController: UIViewController {
     
     private let fruitStore = FruitStore.shared
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        updateLabel(juice: fruitStore.getFruits())
-//        updateStepper()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -95,5 +89,9 @@ class FruitStockViewController: UIViewController {
         default:
             return nil
         }
+    }
+    
+    @IBAction func touchUpDismissButton(_ sender: UIButton) {
+            dismiss(animated: true, completion: nil)
     }
 }
