@@ -28,42 +28,29 @@ final class OrderJuiceViewController: UIViewController {
         mangoStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .mango)
     }
     
-    @IBAction private func ddalbaJuiceButtonTapped(_ sender: UIButton) {
-        let orderedJuice: JuiceMenu = .strawberryBananaJuice
-        showsAlert(of: orderedJuice)
+    @IBAction private func orderJuiceButtonTapped(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            completeOrder(of: .strawberryBananaJuice)
+        case 2:
+            completeOrder(of: .mangoKiwiJuice)
+        case 3:
+            completeOrder(of: .strawberryJuice)
+        case 4:
+            completeOrder(of: .bananaJuice)
+        case 5:
+            completeOrder(of: .pineappleJuice)
+        case 6:
+            completeOrder(of: .kiwiJuice)
+        case 7:
+            completeOrder(of: .mangoJuice)
+        default:
+            print("선택오류")
+        }
     }
     
-    @IBAction private func strawberryJuiceButtonTapped(_ sender: UIButton) {
-        let orderedJuice: JuiceMenu = .strawberryJuice
-        showsAlert(of: orderedJuice)
-    }
     
-    @IBAction private func bananaJuiceButtonTapped(_ sender: UIButton) {
-        let orderedJuice: JuiceMenu = .bananaJuice
-        showsAlert(of: orderedJuice)
-    }
-    
-    @IBAction private func pineappleJuieButtonTapped(_ sender: UIButton) {
-        let orderedJuice: JuiceMenu = .pineappleJuice
-        showsAlert(of: orderedJuice)
-    }
-    
-    @IBAction private func kiwiJuiceButtonTapped(_ sender: UIButton) {
-        let orderedJuice: JuiceMenu = .kiwiJuice
-        showsAlert(of: orderedJuice)
-    }
-    
-    @IBAction private func mangoJuiceButtonTapped(_ sender: UIButton) {
-        let orderedJuice: JuiceMenu = .mangoJuice
-        showsAlert(of: orderedJuice)
-    }
-    
-    @IBAction private func mankiJuiceButtonTapped(_ sender: UIButton) {
-        let orderedJuice: JuiceMenu = .mangoKiwiJuice
-        showsAlert(of: orderedJuice)
-    }
-    
-    private func showsAlert(of orderedJuice: JuiceMenu) {
+    private func completeOrder(of orderedJuice: JuiceMenu) {
         do {
             try JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice)
             updateStockLabel()
