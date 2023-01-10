@@ -66,18 +66,26 @@ final class JuiceMakeViewController: UIViewController {
     }
     
     func showSuccessAlert(with targetJuice: FruitJuice) {
-        let successAlert = UIAlertController(title: "주스 제조성공", message: "\(targetJuice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let successAlert = UIAlertController(
+            title: "주스 제조성공",
+            message: "\(targetJuice.rawValue) 나왔습니다! 맛있게 드세요!",
+            preferredStyle: .alert
+        )
         let alertAction = UIAlertAction(title: "OK", style: .default)
         successAlert.addAction(alertAction)
         self.present(successAlert, animated: true)
     }
     
     func showFailureAlert() {
-        let failureAlert = UIAlertController(title: "주스 제조실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let failureAlert = UIAlertController(
+            title: "주스 제조실패",
+            message: "재료가 모자라요. 재고를 수정할까요?",
+            preferredStyle: .alert
+        )
         let okAlertAction = UIAlertAction(title: "네", style: .default) { _ in
             self.presentFruitStoreVC()
         }
-        let cancelAlertAction = UIAlertAction(title: "아니오", style: .destructive)
+        let cancelAlertAction = UIAlertAction(title: "아니오", style: .cancel)
         
         failureAlert.addAction(okAlertAction)
         failureAlert.addAction(cancelAlertAction)
