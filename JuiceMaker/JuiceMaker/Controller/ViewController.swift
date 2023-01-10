@@ -53,7 +53,7 @@ final class ViewController: UIViewController {
         }
     }
     
-    func selectJuiceButton(tag: Int) {
+    private func selectJuiceButton(tag: Int) {
         let juiceMaker = JuiceMaker()
         switch tag {
         case 1:
@@ -90,14 +90,14 @@ final class ViewController: UIViewController {
         displayStocks()
     }
     
-    func presentAlertJuiceDidMade(juice: Juice) {
+    private func presentAlertJuiceDidMade(juice: Juice) {
         let alertJuiceDidMade = UIAlertController(title: "성공", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
         let takeJuice = UIAlertAction(title: "쥬스 받기", style: .default)
         alertJuiceDidMade.addAction(takeJuice)
         present(alertJuiceDidMade, animated: false, completion: nil)
     }
     
-    func presentAlertOutOfStock() {
+    private func presentAlertOutOfStock() {
         let alertOutOfStock = UIAlertController(title: "실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { (action) in
             guard let stockModifyButton = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else { return }
