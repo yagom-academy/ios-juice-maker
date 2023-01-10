@@ -8,8 +8,6 @@ import UIKit
 
 final class JuiceMakeViewController: UIViewController {
     
-    let fruitStore = FruitStore.shared
-    
     var currentFruitBasket: [Fruit: Int] {
         return FruitStore.shared.fruitsBasket
     }
