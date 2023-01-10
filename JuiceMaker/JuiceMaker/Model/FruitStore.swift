@@ -14,19 +14,19 @@ class FruitStore {
     }
     
     func subtractStock(of fruit: Fruits, count number: Int) {
-        if let selectedStock = FruitStore.shared.fruitsStock[fruit] {
+        if let selectedStock = fruitsStock[fruit] {
             fruitsStock[fruit] = selectedStock - number
         }
     }
     
     func addStock(of fruit: Fruits, count number: Int) {
-        if let selectedStock = FruitStore.shared.fruitsStock[fruit] {
+        if let selectedStock = fruitsStock[fruit] {
             fruitsStock[fruit] = selectedStock + number
         }
     }
     
     func isEnoughStock(of fruit: Fruits, count number: Int) -> Bool {
-        guard let selectedStock = FruitStore.shared.fruitsStock[fruit],
+        guard let selectedStock = fruitsStock[fruit],
               selectedStock - number >= 0 else {
             return false
         }

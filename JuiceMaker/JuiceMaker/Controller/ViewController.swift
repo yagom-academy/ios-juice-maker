@@ -3,7 +3,6 @@
 //  Copyright © yagom academy. All rights reserved.
 
 import UIKit
-import Foundation
 
 final class ViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
@@ -21,12 +20,6 @@ final class ViewController: UIViewController {
     @IBOutlet weak var stockOfPineApple: UILabel!
     @IBOutlet weak var stockOfKiwi: UILabel!
     @IBOutlet weak var stockOfMango: UILabel!
-    
-    @IBOutlet weak var strawberryButton: UIButton!
-    
-    enum OrderButton {
-        case strawberryButton
-    }
     
     enum AlertMessege {
         static let confirm = "확인"
@@ -61,9 +54,9 @@ final class ViewController: UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     
-    func setSuccessAlert(juiceName: JuiceMaker.Juice) {
+    func setSuccessAlert(juice: JuiceMaker.Juice) {
         let successAlert = UIAlertController(title: AlertMessege.success,
-                                             message: juiceName.name + AlertMessege.madeJuice,
+                                             message: juice.name + AlertMessege.madeJuice,
                                              preferredStyle: UIAlertController.Style.alert)
         let offAction = UIAlertAction(title: AlertMessege.confirm,
                                       style: UIAlertAction.Style.default,
@@ -93,7 +86,7 @@ final class ViewController: UIViewController {
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
         do {
             try juiceMaker.make(juice: .strawberryBanana)
-            setSuccessAlert(juiceName: .strawberryBanana)
+            setSuccessAlert(juice: .strawberryBanana)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
@@ -105,7 +98,7 @@ final class ViewController: UIViewController {
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
         do {
             try juiceMaker.make(juice: .strawberry)
-            setSuccessAlert(juiceName: .strawberry)
+            setSuccessAlert(juice: .strawberry)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
@@ -117,7 +110,7 @@ final class ViewController: UIViewController {
     @IBAction func orderBananaJuice(_ sender: UIButton) {
         do {
             try juiceMaker.make(juice: .banana)
-            setSuccessAlert(juiceName: .banana)
+            setSuccessAlert(juice: .banana)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
@@ -129,7 +122,7 @@ final class ViewController: UIViewController {
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
         do {
             try juiceMaker.make(juice: .pineapple)
-            setSuccessAlert(juiceName: .pineapple)
+            setSuccessAlert(juice: .pineapple)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
@@ -141,7 +134,7 @@ final class ViewController: UIViewController {
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
         do {
             try juiceMaker.make(juice: .kiwi)
-            setSuccessAlert(juiceName: .kiwi)
+            setSuccessAlert(juice: .kiwi)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
@@ -153,7 +146,7 @@ final class ViewController: UIViewController {
     @IBAction func orderMangoJuice(_ sender: UIButton) {
         do {
             try juiceMaker.make(juice: .mango)
-            setSuccessAlert(juiceName: .mango)
+            setSuccessAlert(juice: .mango)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
@@ -165,7 +158,7 @@ final class ViewController: UIViewController {
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
         do {
             try juiceMaker.make(juice: .mangoKiwi)
-            setSuccessAlert(juiceName: .mangoKiwi)
+            setSuccessAlert(juice: .mangoKiwi)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
