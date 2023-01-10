@@ -30,66 +30,40 @@ class OrderJuiceViewController: UIViewController {
     
     @IBAction private func ddalbaJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .strawberryBananaJuice
-        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
-            updateStockLabel()
-            successAlert(name: orderedJuice.juiceName)
-        } else {
-            failAlert()
-        }
+        showsAlert(of: orderedJuice)
     }
     
     @IBAction private func strawberryJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .strawberryJuice
-        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
-            updateStockLabel()
-            successAlert(name: orderedJuice.juiceName)
-        } else {
-            failAlert()
-        }
+        showsAlert(of: orderedJuice)
     }
     
     @IBAction private func bananaJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .bananaJuice
-        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
-            updateStockLabel()
-            successAlert(name: orderedJuice.juiceName)
-        } else {
-            failAlert()
-        }
+        showsAlert(of: orderedJuice)
     }
     
     @IBAction private func pineappleJuieButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .pineappleJuice
-        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
-            updateStockLabel()
-            successAlert(name: orderedJuice.juiceName)
-        } else {
-            failAlert()
-        }
+        showsAlert(of: orderedJuice)
     }
     
     @IBAction private func kiwiJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .kiwiJuice
-        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
-            updateStockLabel()
-            successAlert(name: orderedJuice.juiceName)
-        } else {
-            failAlert()
-        }
+        showsAlert(of: orderedJuice)
     }
     
     @IBAction private func mangoJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .mangoJuice
-        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
-            updateStockLabel()
-            successAlert(name: orderedJuice.juiceName)
-        } else {
-            failAlert()
-        }
+        showsAlert(of: orderedJuice)
     }
     
     @IBAction private func mankiJuiceButtonTapped(_ sender: UIButton) {
         let orderedJuice: JuiceMenu = .mangoKiwiJuice
+        showsAlert(of: orderedJuice)
+    }
+    
+    private func showsAlert(of orderedJuice: JuiceMenu) {
         if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
             updateStockLabel()
             successAlert(name: orderedJuice.juiceName)
@@ -103,15 +77,17 @@ class OrderJuiceViewController: UIViewController {
     }
     
     private func successAlert(name: String) {
-        let alert = UIAlertController(title: "\(name) 나왔습니다! 맛있게 드세요!",message: nil, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "\(name) 나왔습니다! 맛있게 드세요!",message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "확인", style: .default)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
     
     private func failAlert() {
-        let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: UIAlertController.Style.alert)
-        let ok = UIAlertAction(title: "예", style: .default, handler: { action in self.performSegue(withIdentifier: "toManageVC", sender: nil) })
+        let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "예", style: .default, handler: { action in
+            self.performSegue(withIdentifier: "toManageVC", sender: nil)
+        })
         let cancel = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(ok)
         alert.addAction(cancel)
