@@ -104,7 +104,7 @@ final class JuiceMakeViewController: UIViewController {
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {
-        guard let targetJuice = buttonTarget(sender) else {
+        guard let targetJuice = createButtonTarget(sender) else {
             return
         }
         do {
