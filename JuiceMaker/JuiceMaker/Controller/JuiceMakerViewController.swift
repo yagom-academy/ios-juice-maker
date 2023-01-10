@@ -27,24 +27,24 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        informCurrentStock()
+        configureCurrentStock()
     }
     
-    func informCurrentStock() {
+    func configureCurrentStock() {
         for (fruit, value) in fruitStockValue {
             value.text = String(juiceMaker.fruitStore.checkStockValue(fruit: fruit))
         }
     }
     
     func orderJuice(_ juice: JuiceMaker.Juice) {
-        let order = juiceMaker.makeJuice(juice)
+        let juice = juiceMaker.makeJuice(juice)
         
-        switch order {
+        switch juice {
         case .success(let juice):
-            informCurrentStock()
-            completedOrderAlert(juice: juice)
+            configureCurrentStock()
+            sendSuccessfulOrderAlert(juice: juice)
         case .failure(let error):
-            incompletedOrderAlert(error: error)
+            sendFailedOrderAlert(error: error)
         }
     }
     
@@ -55,7 +55,7 @@ class JuiceMakerViewController: UIViewController {
         self.navigationController?.pushViewController(button, animated: true)
     }
     
-    func completedOrderAlert(juice: JuiceMaker.Juice) {
+    func sendSuccessfulOrderAlert(juice: JuiceMaker.Juice) {
         let alert = UIAlertController(title: "제조 성공!",
                                       message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!",
                                       preferredStyle: .alert)
@@ -63,7 +63,7 @@ class JuiceMakerViewController: UIViewController {
         return present(alert, animated: true, completion: nil)
     }
     
-    func incompletedOrderAlert(error: Error) {
+    func sendFailedOrderAlert(error: Error) {
         let alert = UIAlertController(title: "제조 실패!",
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
@@ -74,35 +74,35 @@ class JuiceMakerViewController: UIViewController {
         return present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func reviseStockButton(_ sender: UIBarButtonItem) {
+    @IBAction func didTapReviseStock(_ sender: UIBarButtonItem) {
         moveScreen(to: "FruitStoreViewController")
     }
     
-    @IBAction func strawberryBananaJuiceOrderButton(_ sender: UIButton) {
+    @IBAction func didTapStrawberryBananaJuiceOrder(_ sender: UIButton) {
         orderJuice(.strawberryBananaJuice)
     }
     
-    @IBAction func mangokiwiJuiceOrderButton(_ sender: UIButton) {
+    @IBAction func didTapMangokiwiJuiceOrder(_ sender: UIButton) {
         orderJuice(.mangoKiwiJuice)
     }
     
-    @IBAction func strawberryJuiceOrderButton(_ sender: UIButton) {
+    @IBAction func didTapStrawberryJuiceOrder(_ sender: UIButton) {
         orderJuice(.strawberryJuice)
     }
     
-    @IBAction func bananaJuiceOrderButton(_ sender: UIButton) {
+    @IBAction func didTapBananaJuiceOrder(_ sender: UIButton) {
         orderJuice(.bananaJuice)
     }
     
-    @IBAction func pineappleJuiceOrderButton(_ sender: UIButton) {
+    @IBAction func didTapPineappleJuiceOrder(_ sender: UIButton) {
         orderJuice(.pineappleJuice)
     }
     
-    @IBAction func kiwiJuiceOrderButton(_ sender: UIButton) {
+    @IBAction func didTapKiwiJuiceOrder(_ sender: UIButton) {
         orderJuice(.kiwiJuice)
     }
     
-    @IBAction func mangoJuiceOrderButton(_ sender: UIButton) {
+    @IBAction func didTapMangoJuiceOrder(_ sender: UIButton) {
         orderJuice(.mangoJuice)
     }
 }
