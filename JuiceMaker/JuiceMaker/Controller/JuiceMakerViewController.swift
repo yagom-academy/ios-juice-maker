@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController, UpdateLabelsDelegate {
 
     @IBOutlet weak private var strawberryJuiceButton: UIButton!
     @IBOutlet weak private var bananaJuiceButton: UIButton!
@@ -71,7 +71,7 @@ final class JuiceMakerViewController: UIViewController {
         ]
     }
     
-    private func configureFruitCountLabels() {
+    func configureFruitCountLabels() {
         for fruit in Fruit.allCases {
             fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
         }
@@ -85,7 +85,11 @@ final class JuiceMakerViewController: UIViewController {
     
     private func presentStockManager() {
         guard let stockManagerNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNavigationController") as? UINavigationController else { return }
-                        
+        
+        guard let stockManagerViewController = stockManagerNavigationController.viewControllers.first as? StockManagerViewController else { return }
+
+        stockManagerViewController.delegate = self
+        
         self.present(stockManagerNavigationController, animated: true)
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A481C49296D49F90061C14E /* UpdateLabelsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A481C48296D49F90061C14E /* UpdateLabelsDelegate.swift */; };
 		4AB2A3132962C22700E1974D /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB2A3122962C22700E1974D /* Juice.swift */; };
 		4AB2A3152963BF4F00E1974D /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB2A3142963BF4F00E1974D /* Fruit.swift */; };
 		AA4EEE832963C2480089CCD7 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EEE822963C2480089CCD7 /* JuiceMakerError.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A481C48296D49F90061C14E /* UpdateLabelsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLabelsDelegate.swift; sourceTree = "<group>"; };
 		4AB2A3122962C22700E1974D /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		4AB2A3142963BF4F00E1974D /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		AA4EEE822963C2480089CCD7 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				4AB2A3122962C22700E1974D /* Juice.swift */,
 				4AB2A3142963BF4F00E1974D /* Fruit.swift */,
 				AA4EEE822963C2480089CCD7 /* JuiceMakerError.swift */,
+				4A481C48296D49F90061C14E /* UpdateLabelsDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				4AB2A3132962C22700E1974D /* Juice.swift in Sources */,
 				4AB2A3152963BF4F00E1974D /* Fruit.swift in Sources */,
+				4A481C49296D49F90061C14E /* UpdateLabelsDelegate.swift in Sources */,
 				AAF021862967A67C00326597 /* StockManagerViewController.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,

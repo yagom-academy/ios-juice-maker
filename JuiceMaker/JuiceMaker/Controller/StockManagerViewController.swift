@@ -26,6 +26,8 @@ final class StockManagerViewController: UIViewController {
     private var fruitLabelsDictionary: [Fruit: UILabel] = [:]
     private var fruitSteppersDictionary: [UIStepper: Fruit] = [:]
     
+    var delegate: UpdateLabelsDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +38,7 @@ final class StockManagerViewController: UIViewController {
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) {
         updateFruitStrock()
+        delegate?.configureFruitCountLabels()
         self.dismiss(animated: true)
     }
     
