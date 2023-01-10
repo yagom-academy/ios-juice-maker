@@ -13,7 +13,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="OrderJuiceViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <action selector="barButtonTapped:" destination="BYZ-38-t0r" id="ezB-MX-3tD"/>
+                                <action selector="manageStockBarButtonTapped:" destination="BYZ-38-t0r" id="wI1-g5-493"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -248,7 +248,7 @@
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="0uV-NZ-3DX"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="OyG-1n-5Gh"/>
                         <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="wkK-fo-KWg"/>
-                        <segue destination="WwV-Td-3Bn" kind="presentation" identifier="toSecondVC" id="Jbn-Rk-RNF"/>
+                        <segue destination="WwV-Td-3Bn" kind="presentation" identifier="toManageVC" id="Jbn-Rk-RNF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -273,10 +273,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Manage Stock View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" customClass="SecondViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="ManageStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -383,7 +383,7 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r">
                         <barButtonItem key="leftBarButtonItem" title="뒤로가기" id="yj2-Ss-Q0g">
                             <connections>
-                                <action selector="barButtonTapped:" destination="Yu1-lM-nqp" id="GUI-83-NNl"/>
+                                <action selector="closeViewBarButtonTapped:" destination="Yu1-lM-nqp" id="VbP-sQ-ze7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
