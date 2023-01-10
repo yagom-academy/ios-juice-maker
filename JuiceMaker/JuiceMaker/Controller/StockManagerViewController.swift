@@ -30,19 +30,16 @@ final class StockManagerViewController: UIViewController {
         super.viewDidLoad()
         
         defineDictionary()
+        configureStepperDefaultValue()
         configureFruitCountLabels()
-        
-        //strawberryStepper.value = Double(fruitStore.getStockCountToString(of: .strawberry)!)!
     }
     
     @IBAction private func touchUpDismissButton(_ sender: UIButton) {
-        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
     
     @IBAction private func touchUpStepper(_ sender: UIStepper) {
-        guard let fruit = fruitSteppersDictionary[sender] else {
-            return
-        }
+        guard let fruit = fruitSteppersDictionary[sender] else { return }
         
         fruitLabelsDictionary[fruit]?.text = Int(sender.value).description
         
@@ -69,6 +66,15 @@ final class StockManagerViewController: UIViewController {
     private func configureFruitCountLabels() {
         for fruit in Fruit.allCases {
             fruitLabelsDictionary[fruit]?.text = fruitStore.getStockCountToString(of: fruit)
+        }
+    }
+    
+    private func configureStepperDefaultValue() {
+        let _ = fruitSteppersDictionary.map { (stepper, fruit) in
+            guard let count = fruitStore.getStockCountToString(of: fruit),
+                  let countToDouble = Double(count)
+            else { return }
+            stepper.value = countToDouble
         }
     }
 }
