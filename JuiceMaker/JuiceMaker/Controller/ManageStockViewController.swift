@@ -15,6 +15,8 @@ final class ManageStockViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
+    private let juiceMaker = JuiceMaker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,11 +24,11 @@ final class ManageStockViewController: UIViewController {
     }
     
     private func updateStockLabel() {
-        strawberryStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .strawberry)
-        bananaStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .banana)
-        pineappleStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .pineapple)
-        kiwiStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .kiwi)
-        mangoStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .mango)
+        strawberryStockLabel.text = juiceMaker.currentFruitStock(of: .strawberry)
+        bananaStockLabel.text = juiceMaker.currentFruitStock(of: .banana)
+        pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple)
+        kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi)
+        mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango)
     }
     
     @IBAction private func closeViewBarButtonTapped(_ sender: UIBarButtonItem) {

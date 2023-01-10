@@ -5,11 +5,7 @@
 //
 
 struct JuiceMaker {
-    static let sharedJuiceMaker = JuiceMaker()
-    
-    private init() {}
-    
-    private let fruitStore = FruitStore()
+    private let fruitStore = FruitStore.sharedFruitStore
     
     func makeJuice(_ juiceMenu: JuiceMenu) throws {
         try checkCurrentStock(juiceMenu)

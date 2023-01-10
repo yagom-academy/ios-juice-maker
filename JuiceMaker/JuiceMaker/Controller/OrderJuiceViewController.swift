@@ -13,19 +13,21 @@ final class OrderJuiceViewController: UIViewController {
     @IBOutlet weak private var pineappleStockLabel: UILabel!
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
+    
+    private let juiceMaker = JuiceMaker()
    
     override func viewDidLoad() {
-       super.viewDidLoad()
+        super.viewDidLoad()
         
         updateStockLabel()
     }
     
     private func updateStockLabel() {
-        strawberryStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .strawberry)
-        bananaStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .banana)
-        pineappleStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .pineapple)
-        kiwiStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .kiwi)
-        mangoStockLabel.text = JuiceMaker.sharedJuiceMaker.currentFruitStock(of: .mango)
+        strawberryStockLabel.text = juiceMaker.currentFruitStock(of: .strawberry)
+        bananaStockLabel.text = juiceMaker.currentFruitStock(of: .banana)
+        pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple)
+        kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi)
+        mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango)
     }
     
     @IBAction private func orderJuiceButtonTapped(_ sender: UIButton) {
@@ -52,7 +54,7 @@ final class OrderJuiceViewController: UIViewController {
     
     private func completeOrder(of orderedJuice: JuiceMenu) {
         do {
-            try JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice)
+            try juiceMaker.makeJuice(orderedJuice)
             updateStockLabel()
             successAlert(name: orderedJuice.name)
         } catch JuiceMakerError.outOfStock {
