@@ -31,33 +31,52 @@ final class ViewController: UIViewController {
         displayStocks()
     }
     
-    @IBAction func strawberryBananaTapped(_ sender: UIButton) {
-        setButton(juiceName: .딸바쥬스)
+//    @IBAction func strawberryBananaTapped(_ sender: UIButton) {
+//        setButton(juiceName: .딸바쥬스)
+//    }
+    
+    
+    
+    @IBAction func touchJuiceButton(_ sender: UIButton) {
+        let juiceMaker = JuiceMaker()
+        switch sender.tag {
+        case 1:
+            if juiceMaker.makeJuice(juiceName: .딸바쥬스) != nil {
+                makeAlertJuiceDidMade(juice: .딸바쥬스)
+            } else { makeAlertOutOfStock() }
+        case 2:
+            if juiceMaker.makeJuice(juiceName: .딸기쥬스) != nil {
+                makeAlertJuiceDidMade(juice: .딸기쥬스)
+            } else { makeAlertOutOfStock() }
+        case 3:
+            if juiceMaker.makeJuice(juiceName: .바나나쥬스) != nil {
+                makeAlertJuiceDidMade(juice: .바나나쥬스)
+            } else { makeAlertOutOfStock() }
+        case 4:
+            if juiceMaker.makeJuice(juiceName: .파인애플쥬스) != nil {
+                makeAlertJuiceDidMade(juice: .파인애플쥬스)
+            } else { makeAlertOutOfStock() }
+        case 5:
+            if juiceMaker.makeJuice(juiceName: .망고키위쥬스) != nil {
+                makeAlertJuiceDidMade(juice: .망고키위쥬스)
+            } else { makeAlertOutOfStock() }
+        case 6:
+            if juiceMaker.makeJuice(juiceName: .키위쥬스) != nil {
+                makeAlertJuiceDidMade(juice: .키위쥬스)
+            } else { makeAlertOutOfStock() }
+        case 7:
+            if juiceMaker.makeJuice(juiceName: .망고쥬스) != nil {
+                makeAlertJuiceDidMade(juice: .망고쥬스)
+            } else { makeAlertOutOfStock() }
+        default:
+            break
+        }
+        displayStocks()
+        
     }
     
-    @IBAction func strawberryTapped(_ sender: UIButton) {
-        setButton(juiceName: .딸기쥬스)
-    }
     
-    @IBAction func bananaTapped(_ sender: UIButton) {
-        setButton(juiceName: .바나나쥬스)
-    }
     
-    @IBAction func pineappleTapped(_ sender: UIButton) {
-        setButton(juiceName: .파인애플쥬스)
-    }
-    
-    @IBAction func mangoKiwiTapped(_ sender: UIButton) {
-        setButton(juiceName: .망고키위쥬스)
-    }
-    
-    @IBAction func kiwiTapped(_ sender: UIButton) {
-        setButton(juiceName: .키위쥬스)
-    }
-    
-    @IBAction func mangoTapped(_ sender: UIButton) {
-        setButton(juiceName: .망고쥬스)
-    }
     
     func makeAlertJuiceDidMade(juice: Juice) {
         let alertJuiceDidMade = UIAlertController(title: "성공", message: "\(juice) 나왔습니다! 맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
@@ -78,15 +97,15 @@ final class ViewController: UIViewController {
         present(alertOutOfStock, animated: false, completion: nil)
     }
     
-    func setButton(juiceName: Juice) {
-        let juiceMaker = JuiceMaker()
-        if let juice = juiceMaker.makeJuice(juiceName: juiceName) {
-            makeAlertJuiceDidMade(juice: juice)
-        } else {
-            makeAlertOutOfStock()
-        }
-        displayStocks()
-    }
+//    func setButton(juiceName: Juice) {
+//        let juiceMaker = JuiceMaker()
+//        if let juice = juiceMaker.makeJuice(juiceName: juiceName) {
+//            makeAlertJuiceDidMade(juice: juice)
+//        } else {
+//            makeAlertOutOfStock()
+//        }
+//        displayStocks()
+//    }
     
     func displayStocks() {
         if let strawberry = fruitStore.fruitStock[.딸기] {
