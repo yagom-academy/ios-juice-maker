@@ -23,7 +23,15 @@ class FruitStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        updateLabel(juice: fruitStore.getFruits())
+//        updateStepper()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         updateLabel(juice: fruitStore.getFruits())
+        updateStepper()
     }
     
     func updateLabel(juice: [Fruit: Int]) {
@@ -55,14 +63,37 @@ class FruitStockViewController: UIViewController {
     }
     
     @IBAction func clickStepper(_ sender: UIStepper) {
-        let fruit = decideStpeer(sender)
+        guard let fruit = decideStepper(sender) else {
+            return
+        }
+        
+        guard let currentStock = fruitStore.getFruits()[fruit] else {
+            return
+        }
+        
+        if Int(pineappleStepper.value) > currentStock {
+            fruitStore.increaseFruit(fruit)
+        } else {
+            fruitStore.decreaseFruit(fruit)
+        }
+        
+        updateLabel(juice: fruitStore.getFruits())
     }
     
-    func decideStpeer(_ sender: UIStepper) -> Fruit {
+    func decideStepper(_ sender: UIStepper) -> Fruit? {
         switch sender {
         case strawberryStepper:
-            return Fruit.strawberry
+            return .strawberry
         case bananaStepper:
+            return .banana
+        case pineappleStepper:
+            return .pineapple
+        case kiwiStepper:
+            return .kiwi
+        case mangoStepper:
+            return .mango
+        default:
+            return nil
         }
     }
 }
