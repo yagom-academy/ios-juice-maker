@@ -92,6 +92,6 @@ class FruitStockViewController: UIViewController {
     }
     
     @IBAction func touchUpDismissButton(_ sender: UIButton) {
-            dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }
