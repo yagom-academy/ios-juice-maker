@@ -27,7 +27,7 @@ enum JuiceMenu  {
         }
     }
     
-    var juiceName: String {
+    var name: String {
         switch self {
         case .strawberryJuice:
             return "딸기쥬스"

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class OrderJuiceViewController: UIViewController {
+final class OrderJuiceViewController: UIViewController {
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
     @IBOutlet weak private var bananaStockLabel: UILabel!
@@ -64,11 +64,17 @@ class OrderJuiceViewController: UIViewController {
     }
     
     private func showsAlert(of orderedJuice: JuiceMenu) {
-        if JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice) {
+        do {
+            try JuiceMaker.sharedJuiceMaker.makeJuice(orderedJuice)
             updateStockLabel()
-            successAlert(name: orderedJuice.juiceName)
-        } else {
+            successAlert(name: orderedJuice.name)
+        } catch JuiceMakerError.outOfStock {
+            print(JuiceMakerError.outOfStock.message)
             failAlert()
+        } catch JuiceMakerError.fruitError {
+            print(JuiceMakerError.fruitError.message)
+        } catch {
+            print("알 수 없는 오류가 발생했습니다.")
         }
     }
     
