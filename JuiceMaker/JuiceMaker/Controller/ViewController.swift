@@ -6,15 +6,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     let fruitStore = FruitStore.shared
     
-    @IBOutlet weak var strawberryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    @IBOutlet weak var strawberryStockUILabel: UILabel!
+    @IBOutlet weak var bananaStockUILabel: UILabel!
+    @IBOutlet weak var pineappleStockUILabel: UILabel!
+    @IBOutlet weak var kiwiStockUILabel: UILabel!
+    @IBOutlet weak var mangoStockUILabel: UILabel!
     
     @IBOutlet weak var strawberryBananaButton: UIButton!
     @IBOutlet weak var strawberryButton: UIButton!
@@ -28,21 +28,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let strawberry = fruitStore.fruitStock[.딸기] {
-            strawberryStock.text = String(strawberry)
-        }
-        if let banana = fruitStore.fruitStock[.바나나] {
-            bananaStock.text = String(banana)
-        }
-        if let pineapple = fruitStore.fruitStock[.파인애플] {
-            pineappleStock.text = String(pineapple)
-        }
-        if let kiwi = fruitStore.fruitStock[.키위] {
-            kiwiStock.text = String(kiwi)
-        }
-        if let mango = fruitStore.fruitStock[.망고] {
-            mangoStock.text = String(mango)
-        }
+        displayStocks()
     }
     
     @IBAction func strawberryBananaTapped(_ sender: UIButton) {
@@ -99,20 +85,24 @@ class ViewController: UIViewController {
         } else {
             makeAlertOutOfStock()
         }
-        if let strawberryStocks = fruitStore.fruitStock[.딸기] {
-            strawberryStock.text = String(strawberryStocks)
+        displayStocks()
+    }
+    
+    func displayStocks() {
+        if let strawberry = fruitStore.fruitStock[.딸기] {
+            strawberryStockUILabel.text = String(strawberry)
         }
-        if let bananaStocks = fruitStore.fruitStock[.바나나] {
-            bananaStock.text = String(bananaStocks)
+        if let banana = fruitStore.fruitStock[.바나나] {
+            bananaStockUILabel.text = String(banana)
         }
-        if let pineappleStocks = fruitStore.fruitStock[.파인애플] {
-            pineappleStock.text = String(pineappleStocks)
+        if let pineapple = fruitStore.fruitStock[.파인애플] {
+            pineappleStockUILabel.text = String(pineapple)
         }
-        if let kiwiStocks = fruitStore.fruitStock[.키위] {
-            kiwiStock.text = String(kiwiStocks)
+        if let kiwi = fruitStore.fruitStock[.키위] {
+            kiwiStockUILabel.text = String(kiwi)
         }
-        if let mangoStocks = fruitStore.fruitStock[.망고] {
-            mangoStock.text = String(mangoStocks)
+        if let mango = fruitStore.fruitStock[.망고] {
+            mangoStockUILabel.text = String(mango)
         }
     }
     
