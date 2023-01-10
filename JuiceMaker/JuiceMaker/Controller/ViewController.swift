@@ -8,7 +8,7 @@ final class ViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     private var fruitsStock: [Fruits: Int] {
         return FruitStore.shared.fruitsStock
-    } //copy on write 왜 찾아보라고 하셨을까..?
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,13 @@ final class ViewController: UIViewController {
     @IBOutlet weak var stockOfPineApple: UILabel!
     @IBOutlet weak var stockOfKiwi: UILabel!
     @IBOutlet weak var stockOfMango: UILabel!
+    @IBOutlet weak var orderStrawberryBanana: UIButton!
+    @IBOutlet weak var orderMangoKiwi: UIButton!
+    @IBOutlet weak var orderStrawberry: UIButton!
+    @IBOutlet weak var orderBanana: UIButton!
+    @IBOutlet weak var orderPineapple: UIButton!
+    @IBOutlet weak var orderKiwi: UIButton!
+    @IBOutlet weak var orderMango: UIButton!
     
     enum AlertMessege {
         static let confirm = "확인"
@@ -83,82 +90,29 @@ final class ViewController: UIViewController {
     
     
     
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.make(juice: .strawberryBanana)
-            setSuccessAlert(juice: .strawberryBanana)
-            displayStock()
-        } catch StockError.outOfStock {
-            setFailAlert()
-        } catch {
-            print(error)
+    @IBAction func pushOrderButton(_ sender: UIButton) {
+        guard let selectedJuice = identifyJuice(of: sender) else { return }
+        
+        order(selectedJuice)
+    }
+    
+    func identifyJuice(of button: UIButton) -> JuiceMaker.Juice? {
+        switch button {
+        case orderStrawberry: return .strawberry
+        case orderBanana: return .banana
+        case orderPineapple: return .pineapple
+        case orderKiwi: return .kiwi
+        case orderMango: return .mango
+        case orderStrawberryBanana: return .strawberryBanana
+        case orderMangoKiwi: return .mangoKiwi
+        default: return nil
         }
     }
     
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
+    func order(_ juice: JuiceMaker.Juice) {
         do {
-            try juiceMaker.make(juice: .strawberry)
-            setSuccessAlert(juice: .strawberry)
-            displayStock()
-        } catch StockError.outOfStock {
-            setFailAlert()
-        } catch {
-            print(error)
-        }
-    }
-    
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.make(juice: .banana)
-            setSuccessAlert(juice: .banana)
-            displayStock()
-        } catch StockError.outOfStock {
-            setFailAlert()
-        } catch {
-            print(error)
-        }
-    }
-    
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.make(juice: .pineapple)
-            setSuccessAlert(juice: .pineapple)
-            displayStock()
-        } catch StockError.outOfStock {
-            setFailAlert()
-        } catch {
-            print(error)
-        }
-    }
-    
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.make(juice: .kiwi)
-            setSuccessAlert(juice: .kiwi)
-            displayStock()
-        } catch StockError.outOfStock {
-            setFailAlert()
-        } catch {
-            print(error)
-        }
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.make(juice: .mango)
-            setSuccessAlert(juice: .mango)
-            displayStock()
-        } catch StockError.outOfStock {
-            setFailAlert()
-        } catch {
-            print(error)
-        }
-    }
-    
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.make(juice: .mangoKiwi)
-            setSuccessAlert(juice: .mangoKiwi)
+            try juiceMaker.make(juice: juice)
+            setSuccessAlert(juice: juice)
             displayStock()
         } catch StockError.outOfStock {
             setFailAlert()
@@ -167,5 +121,3 @@ final class ViewController: UIViewController {
         }
     }
 }
-
-
