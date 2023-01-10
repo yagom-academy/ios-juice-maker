@@ -24,4 +24,3 @@ final class FruitStoreViewController: UIViewController {
         super.viewDidLoad()
     }
 }
-
