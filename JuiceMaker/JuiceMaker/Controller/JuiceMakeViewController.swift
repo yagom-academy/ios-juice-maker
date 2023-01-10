@@ -40,7 +40,7 @@ final class JuiceMakeViewController: UIViewController {
         }
     }
     
-    func buttonTarget(_ sender: UIButton) -> FruitJuice? {
+    func createButtonTarget(_ sender: UIButton) -> FruitJuice? {
         guard let titleLabel = sender.titleLabel?.text else {
             return nil
         }
