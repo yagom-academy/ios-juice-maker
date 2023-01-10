@@ -4,7 +4,7 @@
 
 import UIKit
 
-class ChangeStockViewController: UIViewController {
+final class ChangeStockViewController: UIViewController {
     
     @IBOutlet weak var numberOfStrawberry: UILabel!
     @IBOutlet weak var numberOfBanana: UILabel!

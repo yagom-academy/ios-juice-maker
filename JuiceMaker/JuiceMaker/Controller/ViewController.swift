@@ -28,6 +28,16 @@ final class ViewController: UIViewController {
         case strawberryButton
     }
     
+    enum AlertMessege {
+        static let confirm = "확인"
+        static let yes = "예"
+        static let no = "아니오"
+        static let madeJuice = "가 나왔습니다. 맛있게 드세요!"
+        static let lackOfStock = "재료가 모자라요. 재고를 수정할까요?"
+        static let success = "성공"
+        static let failure = "실패"
+    }
+    
     func displayStock() {
         if let strawberryStock = fruitsStock[.strawberry],
            let bananaStock = fruitsStock[.banana],
@@ -52,23 +62,33 @@ final class ViewController: UIViewController {
     }
     
     func setSuccessAlert(juiceName: JuiceMaker.Juice) {
-        let successAlert = UIAlertController(title: "\(juiceName.name)가 나왔습니다 맛있게 드세요", message: nil, preferredStyle: UIAlertController.Style.alert)
-        let offAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+        let successAlert = UIAlertController(title: AlertMessege.success,
+                                             message: juiceName.name + AlertMessege.madeJuice,
+                                             preferredStyle: UIAlertController.Style.alert)
+        let offAction = UIAlertAction(title: AlertMessege.confirm,
+                                      style: UIAlertAction.Style.default,
+                                      handler: nil)
         successAlert.addAction(offAction)
         present(successAlert, animated: true, completion: nil)
     }
     
     func setFailAlert() {
-        let failAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: UIAlertController.Style.alert)
-        let yesAction = UIAlertAction(title: "예",
+        let failAlert = UIAlertController(title: AlertMessege.failure,
+                                          message: AlertMessege.lackOfStock,
+                                          preferredStyle: UIAlertController.Style.alert)
+        let yesAction = UIAlertAction(title: AlertMessege.yes,
                                       style: UIAlertAction.Style.default,
                                       handler: { Action in self.moveToChangeStockViewController() })
         
-        let noAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.default, handler: nil)
+        let noAction = UIAlertAction(title: AlertMessege.no,
+                                     style: UIAlertAction.Style.default,
+                                     handler: nil)
         failAlert.addAction(yesAction)
         failAlert.addAction(noAction)
         present(failAlert, animated: true, completion: nil)
     }
+    
+    
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
         do {
@@ -156,4 +176,3 @@ final class ViewController: UIViewController {
 }
 
 
-address(of:)
