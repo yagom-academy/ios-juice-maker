@@ -44,12 +44,11 @@ final class JuiceMakerViewController: UIViewController {
         
         do {
             try juiceMaker.makeJuice(for: juice)
+            presentOrderSuccessAlert(juice: juice)
+            updateFruitCountLabels(juice: juice)
         } catch {
             presentOrderFailureAlert()
-            return
         }
-        presentOrderSuccessAlert(juice: juice)
-        updateFruitCountLabels(juice: juice)
     }
     
     private func defineDictionary() {
