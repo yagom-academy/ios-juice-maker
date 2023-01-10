@@ -100,7 +100,7 @@ class JuiceMakerViewController: UIViewController {
         
         alert.addAction(okAction)
         
-        present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true)
     }
     
     func presentOrderFailureAlert() {
@@ -115,6 +115,6 @@ class JuiceMakerViewController: UIViewController {
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         
-        present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true)
     }
 }
