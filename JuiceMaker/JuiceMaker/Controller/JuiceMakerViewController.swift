@@ -84,9 +84,9 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func presentStockManager() {
-        guard let stockManagerNC = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNavigationController") as? UINavigationController else { return }
+        guard let stockManagerNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "StockManagerNavigationController") as? UINavigationController else { return }
                         
-        self.present(stockManagerNC, animated: true)
+        self.present(stockManagerNavigationController, animated: true)
     }
     
     private func presentOrderSuccessAlert(juice: Juice) {
