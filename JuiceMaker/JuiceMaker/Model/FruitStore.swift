@@ -8,9 +8,11 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private var fruitsBasket : [Fruit: Int] = [.strawberry: 0, .banana: 0, .pineapple: 0, .kiwi: 0, .mango: 0]
+    private(set) var fruitsBasket : [Fruit: Int] = [.strawberry: 0, .banana: 0, .pineapple: 0, .kiwi: 0, .mango: 0]
     
-    init(initialStockNumber: Int) {
+    static let shared = FruitStore(initialStockNumber: 10)
+    
+    private init(initialStockNumber: Int) {
         fruitsBasket = fruitsBasket.mapValues { $0 + initialStockNumber }
     }
     
