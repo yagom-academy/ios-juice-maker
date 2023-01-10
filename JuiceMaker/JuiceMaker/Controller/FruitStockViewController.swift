@@ -71,7 +71,7 @@ class FruitStockViewController: UIViewController {
             return
         }
         
-        if Int(pineappleStepper.value) > currentStock {
+        if Int(sender.value) > currentStock {
             fruitStore.increaseFruit(fruit)
         } else {
             fruitStore.decreaseFruit(fruit)
