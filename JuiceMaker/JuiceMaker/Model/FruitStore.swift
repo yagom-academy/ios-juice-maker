@@ -35,7 +35,7 @@ class FruitStore {
         stock += amount
     }
     
-    func isStocked(juice: Juice) -> Result<[(fruit: Fruit, stock: Int)], JuiceMakerError> {
+    private func isStocked(juice: Juice) -> Result<[(fruit: Fruit, stock: Int)], JuiceMakerError> {
         let juice = juice.selectRecipe
         var fruitList: [(Fruit, Int)] = []
         for (fruit, amount) in juice {
