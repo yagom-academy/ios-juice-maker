@@ -62,7 +62,7 @@ final class ViewController: UIViewController {
     
     private func changeStockView() {
         guard let editStockView = self.storyboard?.instantiateViewController(withIdentifier:
-                                                                                "EditStockViewController") else { return }
+                                                                                EditStockViewController.identifier ) else { return }
         self.navigationController?.pushViewController(editStockView, animated: true)
     }
     
