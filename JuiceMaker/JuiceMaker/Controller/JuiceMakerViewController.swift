@@ -1,9 +1,9 @@
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - JuiceMakerViewController.swift
 //  Created by Vetto, 레옹아범 on 2023.01.03
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     
