@@ -58,7 +58,7 @@ final class ViewController: UIViewController {
     
     func moveToChangeStockViewController() {
         guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStock") as? ChangeStockViewController else { return }
-        self.navigationController?.pushViewController(nextVC, animated: false)
+        self.navigationController?.present(nextVC, animated: true)
     }
     
     func setSuccessAlert(juice: JuiceMaker.Juice) {
