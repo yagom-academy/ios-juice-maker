@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-enum Juice {
+enum Juice: Int, CaseIterable {
     case strawberryJuice
     case bananaJuice
     case pineappleJuice
