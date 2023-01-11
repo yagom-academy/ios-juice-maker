@@ -32,7 +32,7 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func touchJuiceButton(_ sender: UIButton) {
-        selectJuiceButton(tag: sender.tag)
+        selectJuiceButton(titleName: sender.titleLabel?.text)
     }
     
     func displayStocks() {
@@ -53,34 +53,34 @@ final class ViewController: UIViewController {
         }
     }
     
-    private func selectJuiceButton(tag: Int) {
+    private func selectJuiceButton(titleName: String?) {
         let juiceMaker = JuiceMaker()
-        switch tag {
-        case 1:
+        switch titleName {
+        case "딸바쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .딸바쥬스) != nil {
                 presentAlertJuiceDidMade(juice: .딸바쥬스)
             } else { presentAlertOutOfStock() }
-        case 2:
+        case "딸기쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .딸기쥬스) != nil {
                 presentAlertJuiceDidMade(juice: .딸기쥬스)
             } else { presentAlertOutOfStock() }
-        case 3:
+        case "바나나쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .바나나쥬스) != nil {
                 presentAlertJuiceDidMade(juice: .바나나쥬스)
             } else { presentAlertOutOfStock() }
-        case 4:
+        case "파인애플쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .파인애플쥬스) != nil {
                 presentAlertJuiceDidMade(juice: .파인애플쥬스)
             } else { presentAlertOutOfStock() }
-        case 5:
+        case "망키쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .망고키위쥬스) != nil {
                 presentAlertJuiceDidMade(juice: .망고키위쥬스)
             } else { presentAlertOutOfStock() }
-        case 6:
+        case "키위쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .키위쥬스) != nil {
                 presentAlertJuiceDidMade(juice: .키위쥬스)
             } else { presentAlertOutOfStock() }
-        case 7:
+        case "망고쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .망고쥬스) != nil {
                 presentAlertJuiceDidMade(juice: .망고쥬스)
             } else { presentAlertOutOfStock() }
