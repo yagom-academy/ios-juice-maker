@@ -13,6 +13,16 @@ class ViewController: UIViewController {
     @IBOutlet private weak var kiwiLabel: UILabel!
     @IBOutlet private weak var mangoLabel: UILabel!
     
+    @IBOutlet private weak var makeStrawberryJuiceButton: UIButton!
+    @IBOutlet private weak var makeBananaJuiceButton: UIButton!
+    @IBOutlet private weak var makePineappleJuiceButton: UIButton!
+    @IBOutlet private weak var makeMangoJuiceButton: UIButton!
+    @IBOutlet private weak var makeKiwiJuiceButton: UIButton!
+    @IBOutlet private weak var makeMangoKiwiJuiceButton: UIButton!
+    @IBOutlet private weak var makeStrawberryBananaJuiceButton: UIButton!
+    
+    
+    
     private let fruitStore = FruitStore.shared
     private let notificationCenter = NotificationCenter.default
     
@@ -44,37 +54,36 @@ class ViewController: UIViewController {
         changeStockView()
     }
     
-    func changeStockView() {
+    private func changeStockView() {
         guard let editStockView = self.storyboard?.instantiateViewController(withIdentifier:
                                                                                 "EditStockViewController") else { return }
         self.navigationController?.pushViewController(editStockView, animated: true)
     }
     
-    @IBAction func makeJuiceTapped(_ sender: UIButton) {
+    @IBAction func makeJuiceButtonDidTap(_ sender: UIButton) {
         let juiceMaker = JuiceMaker()
         
-        guard let senderID = sender.restorationIdentifier else { return }
-        switch senderID {
-        case "OrderStrawberryBanana":
+        switch sender {
+        case makeStrawberryBananaJuiceButton:
             juiceMaker.makeJuice(.strawberryBananaJuice)
-        case "OrderStrawberry":
+        case makeStrawberryJuiceButton:
             juiceMaker.makeJuice(.strawberryJuice)
-        case "OrderBanana":
+        case makeBananaJuiceButton:
             juiceMaker.makeJuice(.bananaJuice)
-        case "OrderPineapple":
+        case makePineappleJuiceButton:
             juiceMaker.makeJuice(.pineappleJuice)
-        case "OrderKiwi":
+        case makeKiwiJuiceButton:
             juiceMaker.makeJuice(.kiwiJuice)
-        case "OrderMango":
+        case makeMangoJuiceButton:
             juiceMaker.makeJuice(.mangoJuice)
-        case "OrderMangoKiwi":
+        case makeMangoKiwiJuiceButton:
             juiceMaker.makeJuice(.mangoKiwiJuice)
         default:
             return
         }
     }
     
-    func successAlert(_ juiceName: String) {
+    func presentSuccessAlert(_ juiceName: String) {
         let alert = UIAlertController(title: nil,
                                       message: "\(juiceName) 나왔습니다. 맛있게 드세요",
                                       preferredStyle: .alert)
@@ -86,11 +95,11 @@ class ViewController: UIViewController {
     
     @objc private func didReceiveSuccessOrder(_ notification: Notification) {
         guard let juiceName = notification.userInfo?["juiceName"] as? String else { return }
-        successAlert(juiceName)
+        presentSuccessAlert(juiceName)
         updateStockLabel()
     }
     
-    func failureAlert(at fruitName: String, count: Int) {
+    func presentFailureAlert(at fruitName: String, count: Int) {
         let alert = UIAlertController(title: nil,
                                       message: "\(fruitName)이/가 \(count)개 부족합니다. 재고를 수정할까요?",
                                       preferredStyle: .alert)
@@ -107,8 +116,9 @@ class ViewController: UIViewController {
         guard let fruitName = notification.userInfo?["fruitName"] as? String,
               let count = notification.userInfo?["count"] as? Int else { return }
         
-        failureAlert(at: fruitName, count: count)
+        presentFailureAlert(at: fruitName, count: count)
         updateStockLabel()
     }
 }
+
 

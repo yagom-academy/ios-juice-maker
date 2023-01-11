@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -245,6 +245,13 @@
                     <connections>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="M4X-CN-jUC"/>
                         <outlet property="kiwiLabel" destination="FZq-de-TJG" id="46v-DR-Ekd"/>
+                        <outlet property="makeBananaJuiceButton" destination="y2A-PH-DJY" id="6rR-mF-52J"/>
+                        <outlet property="makeKiwiJuiceButton" destination="wcW-7H-RXw" id="fmd-2X-PGs"/>
+                        <outlet property="makeMangoJuiceButton" destination="q6G-4X-bVm" id="kIj-xh-I6d"/>
+                        <outlet property="makeMangoKiwiJuiceButton" destination="ngP-kF-Yii" id="JIh-bH-25W"/>
+                        <outlet property="makePineappleJuiceButton" destination="BFb-ka-wGA" id="r47-1Q-3XR"/>
+                        <outlet property="makeStrawberryBananaJuiceButton" destination="hrc-2F-fzl" id="ZoG-aB-YLP"/>
+                        <outlet property="makeStrawberryJuiceButton" destination="avd-o5-3JM" id="7SF-Qg-F6Q"/>
                         <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="r2z-Td-C3W"/>
                         <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="7dM-7O-LuM"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="AKq-4U-97B"/>
