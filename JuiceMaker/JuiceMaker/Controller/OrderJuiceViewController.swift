@@ -52,11 +52,10 @@ final class OrderJuiceViewController: UIViewController {
             return JuiceMenu.mangoKiwiJuice
         default:
             return nil
-            
         }
     }
 
-    @IBAction func orderButtonTapped(_ sender: UIButton) {
+    @IBAction private func orderButtonTapped(_ sender: UIButton) {
         guard let orderedJuice = setButton(sender) else {
             return
         }

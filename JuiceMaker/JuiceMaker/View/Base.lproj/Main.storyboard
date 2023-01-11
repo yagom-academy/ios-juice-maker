@@ -273,7 +273,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--재고 추가-->
+        <!--Manage Stock View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController id="Yu1-lM-nqp" customClass="ManageStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -458,7 +458,7 @@
                             <constraint firstItem="PXI-si-XeI" firstAttribute="top" secondItem="tKV-4l-Vtc" secondAttribute="topMargin" constant="20" id="kIH-5c-DUs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                    <navigationItem key="navigationItem" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="E1P-qz-CL7">
                             <connections>
                                 <action selector="closeViewBarButtonTapped:" destination="Yu1-lM-nqp" id="vYZ-OP-ErU"/>
@@ -487,16 +487,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                         </textAttributes>
-                        <navigationBarAppearance key="standardAppearance">
-                            <textAttributes key="titleTextAttributes">
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                            </textAttributes>
-                            <textAttributes key="largeTitleTextAttributes">
-                                <fontDescription key="fontDescription" name=".SFUI-Regular" family=".AppleSystemUIFont" pointSize="1"/>
-                            </textAttributes>
-                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

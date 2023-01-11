@@ -21,6 +21,7 @@ final class ManageStockViewController: UIViewController {
         super.viewDidLoad()
 
         updateStockLabel()
+        initTitle()
     }
     
     private func updateStockLabel() {
@@ -29,6 +30,17 @@ final class ManageStockViewController: UIViewController {
         pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple)
         kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi)
         mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango)
+    }
+    
+    private func initTitle() {
+        let navigationTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        
+        navigationTitle.numberOfLines = 1
+        navigationTitle.textAlignment = .center
+        navigationTitle.font = UIFont.systemFont(ofSize: 30)
+        navigationTitle.text = "재고 추가"
+        
+        self.navigationItem.titleView = navigationTitle
     }
     
     @IBAction private func closeViewBarButtonTapped(_ sender: UIBarButtonItem) {
