@@ -4,10 +4,10 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
-extension Notification.Name {
-    static let successUseFruit = Notification.Name("successUseFruit")
-    static let failureUseFruit = Notification.Name("failureUseFruit")
-    static let updateFruitStockEvent = Notification.Name("updateFruitStockEvent")
-}
+//import Foundation
+//
+//extension Notification.Name {
+//    static let successUseFruit = Notification.Name("successUseFruit")
+//    static let failureUseFruit = Notification.Name("failureUseFruit")
+//    static let updateFruitStockEvent = Notification.Name("updateFruitStockEvent")
+//}

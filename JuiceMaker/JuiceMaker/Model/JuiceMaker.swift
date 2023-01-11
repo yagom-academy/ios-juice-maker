@@ -7,11 +7,11 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore.shared
     
-    func makeJuice(_ juice: Juice) {
+    func makeJuice(_ juice: Juice) -> Bool {
         let checkedStock = fruitStore.checkStock(forRecipe: juice)
-        guard handleStockError(checkedStockResult: checkedStock) != false else { return }
+        guard handleStockError(checkedStockResult: checkedStock) != false else { return false }
         fruitStore.useFruit(forRecipe: juice)
-        printCompleteMessage(menu: juice.name)
+        return true
     }
     
     func handleStockError(checkedStockResult: Result<Bool, JuiceMakeError>) -> Bool {
@@ -19,13 +19,8 @@ struct JuiceMaker {
         case .success(let verifiedValue):
             return verifiedValue
             
-        case .failure(let error):
-            print(error.errorMessage)
+        case .failure(_):
             return false
         }
-    }
-    
-    func printCompleteMessage(menu: String) {
-        print("주문하신 \(menu) 나왔습니다.")
     }
 }
