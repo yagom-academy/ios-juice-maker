@@ -25,7 +25,7 @@ final class ViewController: UIViewController {
         updateLabel(juice: juiceMaker.getFruitsInStore())
     }
     
-    @IBAction private func clickButton(_ sender: UIButton) {
+    @IBAction private func didTapJuiceOrderButton(_ sender: UIButton) {
         guard let buttonLabel = sender.titleLabel?.text,
         let juice = decideOrderJuice(buttonLabel) else {
             return
@@ -41,11 +41,11 @@ final class ViewController: UIViewController {
               let pineapple = juice[.pineapple],
               let mango = juice[.mango] else { return }
         
-        strawberryLabel.text = String(strawberry)
-        bananaLabel.text = String(banana)
-        kiwiLabel.text = String(kiwi)
-        pineappleLabel.text = String(pineapple)
-        mangoLabel.text = String(mango)
+        strawberryLabel.text = "\(strawberry)"
+        bananaLabel.text = "\(banana)"
+        kiwiLabel.text = "\(kiwi)"
+        pineappleLabel.text = "\(pineapple)"
+        mangoLabel.text = "\(mango)"
     }
     
     private func showSuccessAlert(message: String) {
@@ -63,7 +63,7 @@ final class ViewController: UIViewController {
         let alert = UIAlertController(title: "재료가 모자라요 재료를 수정할까요?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "네", style: .default) { (action) in
             guard let fruitStockViewController = self.storyboard?
-                .instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
+                .instantiateViewController(withIdentifier: FruitStockViewController.identifier) else { return }
             self.navigationController?.pushViewController(fruitStockViewController, animated: false)
         }
         let cancelAction = UIAlertAction(title: "아니오", style: .default)

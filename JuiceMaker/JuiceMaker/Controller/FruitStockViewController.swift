@@ -5,6 +5,8 @@
 import UIKit
 
 final class FruitStockViewController: UIViewController {
+    
+    static let identifier = "FruitStockViewController"
 
     @IBOutlet weak private var strawberryLabel: UILabel!
     @IBOutlet weak private var bananaLabel: UILabel!
@@ -26,10 +28,10 @@ final class FruitStockViewController: UIViewController {
               let pineapple = juice[.pineapple],
               let mango = juice[.mango] else { return }
         
-        strawberryLabel.text = String(strawberry)
-        bananaLabel.text = String(banana)
-        kiwiLabel.text = String(kiwi)
-        pineappleLabel.text = String(pineapple)
-        mangoLabel.text = String(mango)
+        strawberryLabel.text = "\(strawberry)"
+        bananaLabel.text = "\(banana)"
+        kiwiLabel.text = "\(kiwi)"
+        pineappleLabel.text = "\(pineapple)"
+        mangoLabel.text = "\(mango)"
     }
 }
