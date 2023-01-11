@@ -4,19 +4,19 @@
 
 import UIKit
 
-class FruitStockViewController: UIViewController {
+final class FruitStockViewController: UIViewController {
 
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet weak private var strawberryLabel: UILabel!
+    @IBOutlet weak private var bananaLabel: UILabel!
+    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet weak private var kiwiLabel: UILabel!
+    @IBOutlet weak private var mangoLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
     private let fruitStore = FruitStore.shared
     
@@ -33,7 +33,7 @@ class FruitStockViewController: UIViewController {
         updateStepper()
     }
     
-    func updateLabel(juice: [Fruit: Int]) {
+    private func updateLabel(juice: [Fruit: Int]) {
         guard let strawberry = juice[.strawberry],
               let banana = juice[.banana],
               let kiwi = juice[.kiwi],
@@ -47,7 +47,7 @@ class FruitStockViewController: UIViewController {
         mangoLabel.text = String(mango)
     }
     
-    func updateStepper() {
+    private func updateStepper() {
         guard let strawberryStock = fruitStore.getFruits()[.strawberry],
         let bananaStock = fruitStore.getFruits()[.banana],
         let pineappleStock = fruitStore.getFruits()[.pineapple],
@@ -61,7 +61,7 @@ class FruitStockViewController: UIViewController {
         mangoStepper.value = Double(mangoStock)
     }
     
-    @IBAction func clickStepper(_ sender: UIStepper) {
+    @IBAction private func clickStepper(_ sender: UIStepper) {
         guard let fruit = decideStepper(sender) else {
             return
         }
@@ -79,7 +79,7 @@ class FruitStockViewController: UIViewController {
         updateLabel(juice: fruitStore.getFruits())
     }
     
-    func decideStepper(_ sender: UIStepper) -> Fruit? {
+    private func decideStepper(_ sender: UIStepper) -> Fruit? {
         switch sender {
         case strawberryStepper:
             return .strawberry
@@ -96,7 +96,7 @@ class FruitStockViewController: UIViewController {
         }
     }
     
-    @IBAction func touchUpDismissButton(_ sender: UIButton) {
+    @IBAction private func touchUpDismissButton(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 }

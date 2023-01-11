@@ -3,15 +3,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet weak private var strawberryLabel: UILabel!
+    @IBOutlet weak private var bananaLabel: UILabel!
+    @IBOutlet weak private var kiwiLabel: UILabel!
+    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet weak private var mangoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         updateLabel(juice: juiceMaker.getFruitsInStore())
     }
     
-    func updateLabel(juice: [Fruit: Int]) {
+    private func updateLabel(juice: [Fruit: Int]) {
         guard let strawberry = juice[.strawberry],
               let banana = juice[.banana],
               let kiwi = juice[.kiwi],
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         mangoLabel.text = String(mango)
     }
     
-    @IBAction func clickButton(_ sender: UIButton) {
+    @IBAction private func clickButton(_ sender: UIButton) {
         guard let buttonLabel = sender.titleLabel?.text,
         let juice = decideOrderJuice(buttonLabel) else {
             return
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         tryMakeJuice(juice)
     }
     
-    func decideOrderJuice(_ juice: String) -> Juice? {
+    private func decideOrderJuice(_ juice: String) -> Juice? {
         switch juice {
         case "딸바쥬스 주문":
             return .strawberryBananaJuice
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func tryMakeJuice(_ juice: Juice) {
+    private func tryMakeJuice(_ juice: Juice) {
         if juiceMaker.makeJuice(juice) {
             showSuccessAlert(message: juice.name)
         } else {
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showSuccessAlert(message: String) {
+    private func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: "\(message) 나왔습니다 맛있게 드세요", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default)
         
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showFailureAlert() {
+    private func showFailureAlert() {
         let alert = UIAlertController(title: "재료가 모자라요 재료를 수정할까요?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "네", style: .default) { (action) in
             guard let fruitStockViewController = self.storyboard?
