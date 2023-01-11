@@ -4,13 +4,13 @@
 
 import UIKit
 
-class FruitStockViewController: UIViewController {
+final class FruitStockViewController: UIViewController {
 
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet weak private var strawberryLabel: UILabel!
+    @IBOutlet weak private var bananaLabel: UILabel!
+    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet weak private var kiwiLabel: UILabel!
+    @IBOutlet weak private var mangoLabel: UILabel!
     
     private let fruitStore = FruitStore.shared
     
@@ -19,7 +19,7 @@ class FruitStockViewController: UIViewController {
         updateLabel(juice: fruitStore.getFruits())
     }
     
-    func updateLabel(juice: [Fruit: Int]) {
+   private func updateLabel(juice: [Fruit: Int]) {
         guard let strawberry = juice[.strawberry],
               let banana = juice[.banana],
               let kiwi = juice[.kiwi],
