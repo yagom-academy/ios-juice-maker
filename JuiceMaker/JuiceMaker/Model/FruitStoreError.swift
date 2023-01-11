@@ -3,7 +3,7 @@
 
 import Foundation
 
-enum FruitStoreError: Error, LocalizedError {
+enum FruitStoreError: LocalizedError {
     case lackedInventory(fruit: Fruit, lackedAmount: Int)
     case noExistInventory
     

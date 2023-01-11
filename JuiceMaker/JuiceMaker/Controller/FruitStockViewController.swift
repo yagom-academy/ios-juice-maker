@@ -1,0 +1,37 @@
+//  JuiceMaker - FruitStockViewController.swift
+//  Created by Vetto, 레옹아범 on 2023.01.06
+
+
+import UIKit
+
+final class FruitStockViewController: UIViewController {
+    
+    static let identifier = "FruitStockViewController"
+
+    @IBOutlet weak private var strawberryLabel: UILabel!
+    @IBOutlet weak private var bananaLabel: UILabel!
+    @IBOutlet weak private var pineappleLabel: UILabel!
+    @IBOutlet weak private var kiwiLabel: UILabel!
+    @IBOutlet weak private var mangoLabel: UILabel!
+    
+    private let fruitStore = FruitStore.shared
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateLabel(juice: fruitStore.getFruits())
+    }
+    
+   private func updateLabel(juice: [Fruit: Int]) {
+        guard let strawberry = juice[.strawberry],
+              let banana = juice[.banana],
+              let kiwi = juice[.kiwi],
+              let pineapple = juice[.pineapple],
+              let mango = juice[.mango] else { return }
+        
+        strawberryLabel.text = "\(strawberry)"
+        bananaLabel.text = "\(banana)"
+        kiwiLabel.text = "\(kiwi)"
+        pineappleLabel.text = "\(pineapple)"
+        mangoLabel.text = "\(mango)"
+    }
+}

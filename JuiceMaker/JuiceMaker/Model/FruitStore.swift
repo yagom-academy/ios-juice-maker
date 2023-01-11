@@ -3,27 +3,29 @@
 
 class FruitStore {
     private var fruits: [Fruit: Int] = [.strawberry: 0, .banana: 0, .kiwi: 0, .mango: 0, .pineapple: 0]
+
+    static let shared = FruitStore(amount: 10)
     
-    init(strawberry: Int, banana: Int, kiwi: Int, mango: Int, pineapple: Int) {
-        self.fruits[.strawberry] = strawberry
-        self.fruits[.banana] = banana
-        self.fruits[.kiwi] = kiwi
-        self.fruits[.mango] = mango
-        self.fruits[.pineapple] = pineapple
+    private init(amount: Int) {
+        self.fruits[.strawberry] = amount
+        self.fruits[.banana] = amount
+        self.fruits[.kiwi] = amount
+        self.fruits[.mango] = amount
+        self.fruits[.pineapple] = amount
     }
     
-    convenience init(amount: Int) {
-        self.init(strawberry: amount, banana: amount, kiwi: amount, mango: amount, pineapple: amount)
+    func getFruits() -> [Fruit: Int] {
+        return fruits
     }
     
-    func increaseFruit(_ fruit: Fruit, by amount: Int) {
+    func increaseFruit(_ fruit: Fruit, by amount: Int = 1) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
         self.fruits[fruit] = storedFruit + amount
     }
     
-    func decreaseFruit(_ fruit: Fruit, by amount: Int) {
+    func decreaseFruit(_ fruit: Fruit, by amount: Int = 1) {
         guard let storedFruit = self.fruits[fruit] else {
             return
         }
