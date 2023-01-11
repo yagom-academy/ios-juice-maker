@@ -306,6 +306,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="28" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="VO6-RC-7nI"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -470,6 +473,7 @@
                         <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="YEG-kC-gr2"/>
                         <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="4Yr-hy-JRx"/>
                         <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="y2P-Cg-YX8"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="2kZ-JF-Jka"/>
                         <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="Cvg-zm-hVh"/>
                     </connections>
                 </viewController>

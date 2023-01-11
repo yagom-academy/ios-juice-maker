@@ -20,6 +20,14 @@ final class OrderJuiceViewController: UIViewController {
         super.viewDidLoad()
         
         updateStockLabel()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didDismissManageStockView(_:)), name: NSNotification.Name("dismiss"), object: nil)
+    }
+    
+    @objc func didDismissManageStockView(_ notification: Notification) {
+        DispatchQueue.main.async {
+            self.updateStockLabel()
+        }
     }
     
     private func updateStockLabel() {
@@ -61,7 +69,6 @@ final class OrderJuiceViewController: UIViewController {
         }
         completeOrder(of: orderedJuice)
     }
-    
     
     private func completeOrder(of orderedJuice: JuiceMenu) {
         do {

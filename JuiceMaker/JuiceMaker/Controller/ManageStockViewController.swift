@@ -15,6 +15,7 @@ final class ManageStockViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var strawberryStepper: UIStepper!
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
@@ -22,6 +23,7 @@ final class ManageStockViewController: UIViewController {
 
         updateStockLabel()
         initTitle()
+        setStepper()
     }
     
     private func updateStockLabel() {
@@ -45,5 +47,25 @@ final class ManageStockViewController: UIViewController {
     
     @IBAction private func closeViewBarButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func setStepper() {
+        strawberryStepper.autorepeat = true
+
+        guard let value = FruitStore.sharedFruitStore.fruitStocks[.strawberry] else {
+            return
+        }
+        strawberryStepper.value = Double(value)
+    }
+    
+    @IBAction func stepperTapped(_ sender: UIStepper) {
+        strawberryStockLabel.text = Int(sender.value).description
+        
+        FruitStore.sharedFruitStore.fruitStocks[.strawberry] = Int(sender.value)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: NSNotification.Name("dismiss"), object: nil)
     }
 }
