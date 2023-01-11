@@ -30,25 +30,37 @@ final class OrderJuiceViewController: UIViewController {
         mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango)
     }
     
-    @IBAction private func orderJuiceButtonTapped(_ sender: UIButton) {
-        switch sender.tag {
-        case 1:
-            completeOrder(of: .strawberryBananaJuice)
-        case 2:
-            completeOrder(of: .mangoKiwiJuice)
-        case 3:
-            completeOrder(of: .strawberryJuice)
-        case 4:
-            completeOrder(of: .bananaJuice)
-        case 5:
-            completeOrder(of: .pineappleJuice)
-        case 6:
-            completeOrder(of: .kiwiJuice)
-        case 7:
-            completeOrder(of: .mangoJuice)
-        default:
-            print("선택오류")
+    private func setButton(_ sender: UIButton) -> JuiceMenu? {
+        guard let buttonTitle = sender.titleLabel?.text else {
+            return nil
         }
+        
+        switch buttonTitle {
+        case "딸기쥬스 주문":
+            return JuiceMenu.strawberryJuice
+        case "딸바쥬스 주문":
+            return JuiceMenu.strawberryBananaJuice
+        case "바나나쥬스 주문":
+            return JuiceMenu.bananaJuice
+        case "파인애플쥬스 주문":
+            return JuiceMenu.pineappleJuice
+        case "키위쥬스 주문":
+            return JuiceMenu.kiwiJuice
+        case "망고쥬스 주문":
+            return JuiceMenu.mangoJuice
+        case "망키쥬스 주문":
+            return JuiceMenu.mangoKiwiJuice
+        default:
+            return nil
+            
+        }
+    }
+
+    @IBAction func orderButtonTapped(_ sender: UIButton) {
+        guard let orderedJuice = setButton(sender) else {
+            return
+        }
+        completeOrder(of: orderedJuice)
     }
     
     
