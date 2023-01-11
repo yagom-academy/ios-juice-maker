@@ -7,6 +7,8 @@
 import UIKit
 
 final class EditStockViewController: UIViewController {
+    static let identifier = "EditStockViewController"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
