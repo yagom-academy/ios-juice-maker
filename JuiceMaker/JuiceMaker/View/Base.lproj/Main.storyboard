@@ -342,9 +342,6 @@
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                 <rect key="frame" x="352" y="207" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="stepperChanged:" destination="Yu1-lM-nqp" eventType="valueChanged" id="zGU-EB-37s"/>
-                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
                                 <rect key="frame" x="120" y="175" width="27" height="23"/>
@@ -403,7 +400,7 @@
                         <outlet property="mangoLabel" destination="YJI-ER-LJR" id="ue8-ga-7C8"/>
                         <outlet property="mangoStepper" destination="xbn-6P-grO" id="MEz-hA-V1E"/>
                         <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="XAW-VV-GZB"/>
-                        <outlet property="pineapppleStepper" destination="Rcr-xr-eqz" id="ho5-0O-kZb"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="Z0T-tn-kre"/>
                         <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="J1e-wO-Lvb"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="J56-N8-s7C"/>
                     </connections>
