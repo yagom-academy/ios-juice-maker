@@ -89,20 +89,20 @@ final class JuiceMakerViewController: UIViewController {
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "예", style: .default) { _ in
-            self.moveScreen(to: "FruitStoreViewController")
+            self.moveScreen(to: "FruitStoreNavigationController")
         })
         alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
         present(alert, animated: true, completion: nil)
     }
     
-    private func moveScreen(to viewControllerIdentifier: String) {
-        guard let button = self.storyboard?
-            .instantiateViewController(withIdentifier: viewControllerIdentifier)
-        else { return }
-        self.navigationController?.pushViewController(button, animated: true)
+    private func moveScreen(to navigationControlleridentifier: String) {
+        
+        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: navigationControlleridentifier) as? UINavigationController else { return }
+        fruitStoreVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        return present(fruitStoreVC, animated: true, completion: nil)
     }
     
     @IBAction private func didTapReviseStock(_ sender: UIBarButtonItem) {
-        moveScreen(to: "FruitStoreViewController")
+        moveScreen(to: "FruitStoreNavigationController")
     }
 }
