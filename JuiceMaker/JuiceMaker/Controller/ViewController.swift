@@ -13,11 +13,14 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayStock()
+        print("뷰디드로드요~")
     }
+    
+    
     
     @IBOutlet weak var stockOfStrawberry: UILabel!
     @IBOutlet weak var stockOfBanana: UILabel!
-    @IBOutlet weak var stockOfPineApple: UILabel!
+    @IBOutlet weak var stockOfPineapple: UILabel!
     @IBOutlet weak var stockOfKiwi: UILabel!
     @IBOutlet weak var stockOfMango: UILabel!
     @IBOutlet weak var orderStrawberryBanana: UIButton!
@@ -46,7 +49,7 @@ final class ViewController: UIViewController {
            let mangoStock = fruitsStock[.mango] {
             stockOfStrawberry.text = String(strawberryStock)
             stockOfBanana.text = String(bananaStock)
-            stockOfPineApple.text = String(pineappleStock)
+            stockOfPineapple.text = String(pineappleStock)
             stockOfKiwi.text = String(kiwiStock)
             stockOfMango.text = String(mangoStock)
         }
