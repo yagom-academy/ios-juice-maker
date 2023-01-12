@@ -59,4 +59,52 @@ final class FruitStoreViewController: UIViewController {
             $0.minimumValue = 0
         }
     }
+    func fruitLabel(_ fruit: Fruit) -> UILabel {
+            switch fruit {
+            case .strawberry:
+                return strawberryLabel
+            case .banana:
+                return bananaLabel
+            case .pineapple:
+                return pineappleLabel
+            case .kiwi:
+                return kiwiLabel
+            case .mango:
+                return mangoLabel
+            }
+        }
+        
+        func stepperTarget(_ stepper: UIStepper)  -> Fruit? {
+            switch stepper {
+            case strawberryStepper:
+                return Fruit.strawberry
+            case bananaStepper:
+                return Fruit.banana
+            case pineappleStepper:
+                return Fruit.pineapple
+            case kiwiStepper:
+                return Fruit.kiwi
+            case mangoStepper:
+                return Fruit.mango
+            default:
+                return nil
+            }
+        }
+        
+        @IBAction func stepperChanged(_ sender: UIStepper) {
+            guard let targetFruit = stepperTarget(sender) else {
+                return
+            }
+            
+            guard let fruitCount = currentFruitBasket[targetFruit] else {
+                return
+            }
+            
+            Int(sender.value) > fruitCount ? fruitStore.addOne(of: targetFruit) : fruitStore.reduceOne(of: targetFruit)
+            
+            let fruitLabel = fruitLabel(targetFruit)
+            fruitLabel.text = currentFruitBasket[targetFruit]?.description
+            fruitLabel.sizeToFit()
+        }
 }
+
