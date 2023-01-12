@@ -13,6 +13,7 @@ final class ChangeStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayStock()
+        initializeSteppers()
     }
     
     @IBOutlet weak var stockOfStrawberry: UILabel!
@@ -26,6 +27,31 @@ final class ChangeStockViewController: UIViewController {
     @IBOutlet weak var pineappleStepper: UIStepper!
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
+    
+    @IBOutlet var steppers: [UIStepper]!
+    
+    func initializeSteppers() {
+        for stepper in steppers {
+            if let selectedFruit = identifyRelatedFruit(of: stepper),
+               let initialValue = fruitsStock[selectedFruit] {
+                stepper.maximumValue = 100
+                stepper.minimumValue = 0
+                stepper.stepValue = 1
+                stepper.value = Double(initialValue)
+            }
+        }
+    }
+    
+    func identifyRelatedFruit(of stepper: UIStepper) -> Fruits? {
+        switch stepper {
+        case strawberryStepper: return .strawberry
+        case bananaStepper: return .banana
+        case pineappleStepper: return .pineapple
+        case kiwiStepper: return .kiwi
+        case mangoStepper: return .mango
+        default: return nil
+        }
+    }
     
     func displayStock() {
         if let strawberryStock = fruitsStock[.strawberry],

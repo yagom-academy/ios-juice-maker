@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -491,6 +491,11 @@
                         <outlet property="stockOfPineapple" destination="mhC-tN-ZWQ" id="l2k-fO-Wdl"/>
                         <outlet property="stockOfStrawberry" destination="0yV-kn-zaT" id="U41-qv-D5Y"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="bbE-FQ-hil"/>
+                        <outletCollection property="Steppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="8j3-Lq-XOj"/>
+                        <outletCollection property="Steppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="K7T-0f-Iec"/>
+                        <outletCollection property="Steppers" destination="fSD-DF-u7o" collectionClass="NSMutableArray" id="VYp-R6-iZi"/>
+                        <outletCollection property="Steppers" destination="DnZ-NO-X4Y" collectionClass="NSMutableArray" id="nix-Ou-kyd"/>
+                        <outletCollection property="Steppers" destination="aDz-cj-Hhe" collectionClass="NSMutableArray" id="FWg-xr-XXq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

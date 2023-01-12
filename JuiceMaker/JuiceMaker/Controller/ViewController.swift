@@ -16,8 +16,6 @@ final class ViewController: UIViewController {
         print("뷰디드로드요~")
     }
     
-    
-    
     @IBOutlet weak var stockOfStrawberry: UILabel!
     @IBOutlet weak var stockOfBanana: UILabel!
     @IBOutlet weak var stockOfPineapple: UILabel!
