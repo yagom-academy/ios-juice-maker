@@ -2,6 +2,8 @@ import UIKit
 
 final class FruitStoreViewController: UIViewController {
     
+    private let center: NotificationCenter = NotificationCenter.default
+    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -49,6 +51,12 @@ final class FruitStoreViewController: UIViewController {
         setFruitStepper()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        center.post(name: .stockNotification, object: nil, userInfo: ["newStock": addStockListByStepper()])
+        print(addStockListByStepper())
+    }
+    
     private func configureUI() {
         let fruitLabelList: [UILabel] = [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel,
                                          mangoLabel]
@@ -80,5 +88,16 @@ final class FruitStoreViewController: UIViewController {
     }
     @IBAction func changeMangoStock(_ sender: UIStepper) {
         mangoLabel.text = Int(sender.value).description
+    }
+    
+    private func addStockListByStepper() -> [FruitStore.Fruit: Int] {
+        var stockList: [FruitStore.Fruit: Int] = [:]
+        for (fruit, value) in fruitStockValue {
+            guard let quantityAdded = value.text, let stockToBeAdded = Int(quantityAdded) else {
+                return addStockListByStepper()
+            }
+            stockList[fruit] = stockToBeAdded
+        }
+        return stockList
     }
 }

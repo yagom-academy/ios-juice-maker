@@ -6,9 +6,14 @@
 
 import UIKit
 
+extension Notification.Name {
+    static let stockNotification = Notification.Name("stock")
+}
+
 final class JuiceMakerViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
+    private let center: NotificationCenter = NotificationCenter.default
     
     @IBOutlet private weak var strawberryStockValue: UILabel!
     @IBOutlet private weak var bananaStockValue: UILabel!
@@ -28,6 +33,37 @@ final class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         configureCurrentStock()
         self.navigationController?.navigationBar.backgroundColor = .systemGray4
+        
+        center.addObserver(self, selector: #selector(updateStock(_:)), name: .stockNotification, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureCurrentStock()
+        print(FruitStore.shared.checkStockValue(fruit: .strawberry))
+    }
+    
+    deinit {
+        center.removeObserver(self, name: .stockNotification, object: nil)
+    }
+    
+    @objc private func updateStock(_ noti: Notification) {
+        guard let addStockList = noti.userInfo?["newStock"] as? [FruitStore.Fruit: Int] else {
+            return
+        }
+        for (fruit, afterStock) in addStockList {
+            let beforeStock = FruitStore.shared.checkStockValue(fruit: fruit)
+            if beforeStock != afterStock {
+                let finalStock = afterStock - beforeStock
+                do {
+                    try FruitStore.shared.addStock(fruit: fruit, amount: finalStock)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            
+        }
+        
     }
     
     private func configureCurrentStock() {
