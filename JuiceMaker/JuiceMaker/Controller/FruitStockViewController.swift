@@ -64,11 +64,8 @@ final class FruitStockViewController: UIViewController {
     }
     
     @IBAction private func didTapFruitStepper(_ sender: UIStepper) {
-        guard let fruit = decideStepper(sender) else {
-            return
-        }
-        
-        guard let currentStock = fruitStore.getFruits()[fruit] else {
+        guard let fruit = decideStepper(sender),
+              let currentStock = fruitStore.getFruits()[fruit] else {
             return
         }
         
