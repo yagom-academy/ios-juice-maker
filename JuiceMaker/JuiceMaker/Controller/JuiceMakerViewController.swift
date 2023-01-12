@@ -75,24 +75,7 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func decideOrderJuice(_ juice: String) -> Juice? {
-        switch juice {
-        case "딸바쥬스 주문":
-            return .strawberryBananaJuice
-        case "딸기쥬스 주문":
-            return .strawberryJuice
-        case "바나나쥬스 주문":
-            return .bananaJuice
-        case "파인애플쥬스 주문":
-            return .pineappleJuice
-        case "망키쥬스 주문":
-            return .mangoKiwiJuice
-        case "키위쥬스 주문":
-            return .kiwiJuice
-        case "망고쥬스 주문":
-            return .mangoJuice
-        default:
-            return nil
-        }
+        return Juice.allCases.first { juice == "\($0.name) 주문" }
     }
     
     private func tryMakeJuice(_ juice: Juice) {
