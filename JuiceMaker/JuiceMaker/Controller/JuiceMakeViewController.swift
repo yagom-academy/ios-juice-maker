@@ -76,20 +76,33 @@ final class JuiceMakeViewController: UIViewController {
         self.present(successAlert, animated: true)
     }
     
-    func showFailureAlert() {
-        let failureAlert = UIAlertController(
-            title: "주스 제조실패",
-            message: "재료가 모자라요. 재고를 수정할까요?",
-            preferredStyle: .alert
-        )
-        let okAlertAction = UIAlertAction(title: "네", style: .default) { _ in
-            self.presentFruitStoreVC()
-        }
-        let cancelAlertAction = UIAlertAction(title: "아니오", style: .cancel)
+    func showFailureAlert(_ error: juiceMakeError) {
+       
+        if error == juiceMakeError.outOfStockError {
+            let failureAlert = UIAlertController(
+                title: "주스 제조실패",
+                message: "재료가 모자라요. 재고를 수정할까요?",
+                preferredStyle: .alert
+            )
+            let okAlertAction = UIAlertAction(title: "네", style: .default) { _ in
+                self.presentFruitStoreVC()
+            }
+            let cancelAlertAction = UIAlertAction(title: "아니오", style: .cancel)
+            
+            failureAlert.addAction(okAlertAction)
+            failureAlert.addAction(cancelAlertAction)
+            self.present(failureAlert, animated: true)
         
-        failureAlert.addAction(okAlertAction)
-        failureAlert.addAction(cancelAlertAction)
-        self.present(failureAlert, animated: true)
+        } else if error == juiceMakeError.unknwonError {
+            let failureAlert = UIAlertController(
+                title: "알 수 없는 에러",
+                message: "알 수 없는 에러가 발생했습니다. 앱을 다시 실행해주세요",
+                preferredStyle: .alert
+            )
+            let okAlertAction = UIAlertAction(title: "네", style: .default)
+            failureAlert.addAction(okAlertAction)
+            self.present(failureAlert, animated: true)
+        }
     }
     
     func presentFruitStoreVC() {
@@ -113,10 +126,10 @@ final class JuiceMakeViewController: UIViewController {
             try juiceMaker.make(targetJuice)
             setUpLabel()
             showSuccessAlert(with: targetJuice)
-        } catch juiceMakeError.outOfStock {
-            showFailureAlert()
+        } catch juiceMakeError.outOfStockError {
+            showFailureAlert(juiceMakeError.outOfStockError)
         } catch {
-            print("알 수 없는 에러가 발생했습니다")
+            showFailureAlert(juiceMakeError.unknwonError)
         }
     }
 }

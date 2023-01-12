@@ -45,5 +45,6 @@ enum FruitJuice: String {
 }
 
 enum juiceMakeError: Error {
-    case outOfStock
+    case outOfStockError
+    case unknwonError
 }
