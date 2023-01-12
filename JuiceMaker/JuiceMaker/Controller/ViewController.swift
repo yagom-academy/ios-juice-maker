@@ -10,8 +10,6 @@ final class ViewController: UIViewController {
         return FruitStore.shared.fruitsStock
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         displayStock()
@@ -34,7 +32,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var orderKiwi: UIButton!
     @IBOutlet weak var orderMango: UIButton!
     
-    enum AlertMessege {
+    private enum AlertMessege {
         static let confirm = "확인"
         static let yes = "예"
         static let no = "아니오"
@@ -71,9 +69,11 @@ final class ViewController: UIViewController {
         let successAlert = UIAlertController(title: AlertMessege.success,
                                              message: juice.name + AlertMessege.madeJuice,
                                              preferredStyle: UIAlertController.Style.alert)
+        
         let offAction = UIAlertAction(title: AlertMessege.confirm,
                                       style: UIAlertAction.Style.default,
                                       handler: nil)
+        
         successAlert.addAction(offAction)
         present(successAlert, animated: true, completion: nil)
     }
@@ -82,6 +82,7 @@ final class ViewController: UIViewController {
         let failAlert = UIAlertController(title: AlertMessege.failure,
                                           message: AlertMessege.lackOfStock,
                                           preferredStyle: UIAlertController.Style.alert)
+        
         let yesAction = UIAlertAction(title: AlertMessege.yes,
                                       style: UIAlertAction.Style.default,
                                       handler: { Action in self.moveToChangeStockViewController() })
@@ -89,12 +90,11 @@ final class ViewController: UIViewController {
         let noAction = UIAlertAction(title: AlertMessege.no,
                                      style: UIAlertAction.Style.default,
                                      handler: nil)
+        
         failAlert.addAction(yesAction)
         failAlert.addAction(noAction)
         present(failAlert, animated: true, completion: nil)
     }
-    
-    
     
     @IBAction func pushOrderButton(_ sender: UIButton) {
         guard let selectedJuice = identifyJuice(of: sender) else { return }
@@ -127,6 +127,3 @@ final class ViewController: UIViewController {
         }
     }
 }
-
-
-// viewcontroller -> observer // singleton notification을 보내는 친구들

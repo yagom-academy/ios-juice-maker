@@ -6,8 +6,6 @@ import Foundation
 
 let center: NotificationCenter = NotificationCenter.default
 
-
-
 extension Notification.Name {
     static let fruitStockChanged = Notification.Name("과일재고변경")
 }

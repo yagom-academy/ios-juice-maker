@@ -6,7 +6,6 @@ import UIKit
 
 final class ChangeStockViewController: UIViewController {
     
-    
     private var fruitsStock: [Fruits: Int] {
         return FruitStore.shared.fruitsStock
     }
@@ -93,6 +92,5 @@ final class ChangeStockViewController: UIViewController {
         
         let noti = Notification(name: Notification.Name.fruitStockChanged, object: nil)
         center.post(noti)
-        
     }
 }
