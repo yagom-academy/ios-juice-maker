@@ -63,7 +63,7 @@ final class FruitStockViewController: UIViewController {
         mangoStepper.value = Double(mangoStock)
     }
     
-    @IBAction private func clickStepper(_ sender: UIStepper) {
+    @IBAction private func didTapFruitStepper(_ sender: UIStepper) {
         guard let fruit = decideStepper(sender) else {
             return
         }
@@ -98,7 +98,7 @@ final class FruitStockViewController: UIViewController {
         }
     }
     
-    @IBAction private func touchUpDismissButton(_ sender: UIButton) {
+    @IBAction private func didTapDismissButton(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 }
