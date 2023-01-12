@@ -10,10 +10,15 @@ final class ViewController: UIViewController {
         return FruitStore.shared.fruitsStock
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         displayStock()
-        print("뷰디드로드요~")
+        center.addObserver(self,
+                           selector: #selector(displayStock),
+                           name: Notification.Name.fruitStockChanged,
+                           object: nil)
     }
     
     @IBOutlet weak var stockOfStrawberry: UILabel!
@@ -39,7 +44,7 @@ final class ViewController: UIViewController {
         static let failure = "실패"
     }
     
-    func displayStock() {
+    @objc func displayStock() {
         if let strawberryStock = fruitsStock[.strawberry],
            let bananaStock = fruitsStock[.banana],
            let pineappleStock = fruitsStock[.pineapple],
@@ -122,3 +127,6 @@ final class ViewController: UIViewController {
         }
     }
 }
+
+
+// viewcontroller -> observer // singleton notification을 보내는 친구들

@@ -6,6 +6,7 @@ import UIKit
 
 final class ChangeStockViewController: UIViewController {
     
+    
     private var fruitsStock: [Fruits: Int] {
         return FruitStore.shared.fruitsStock
     }
@@ -34,6 +35,7 @@ final class ChangeStockViewController: UIViewController {
         for stepper in steppers {
             if let selectedFruit = identifyRelatedFruit(of: stepper),
                let initialValue = fruitsStock[selectedFruit] {
+                stepper.transform = stepper.transform.scaledBy(x: 1.1, y: 1.25)
                 stepper.maximumValue = 100
                 stepper.minimumValue = 0
                 stepper.stepValue = 1
@@ -88,5 +90,9 @@ final class ChangeStockViewController: UIViewController {
         
         FruitStore.shared.fruitsStock[fruit] = Int(sender.value)
         fruitsLabel.text = Int(sender.value).description
+        
+        let noti = Notification(name: Notification.Name.fruitStockChanged, object: nil)
+        center.post(noti)
+        
     }
 }
