@@ -30,6 +30,12 @@ class StockModifyViewController: UIViewController {
         setStock()
     }
     
+    
+    @IBAction func touchFruitStockStepper(_ sender: UIStepper) {
+        modifyStockTapped(tag: sender.tag)
+    }
+    
+    
     func displayStocks() {
         if let strawberry = fruitStore.fruitStock[.딸기] {
             strawberryStockUILabel.text = String(strawberry)
@@ -65,6 +71,30 @@ class StockModifyViewController: UIViewController {
             mangoStepper.value = Double(mango)
         }
     }
+    
+    func modifyStockTapped(tag: Int) {
+        switch tag {
+        case 0:
+            fruitStore.modifyFruitStocks(fruit: .딸기, amount: Int(strawberryStepper.value))
+            strawberryStockUILabel.text = String(Int(strawberryStepper.value))
+        case 1:
+            fruitStore.modifyFruitStocks(fruit: .바나나, amount: Int(bananaStepper.value))
+            bananaStockUILabel.text = String(Int(bananaStepper.value))
+        case 2:
+            fruitStore.modifyFruitStocks(fruit: .파인애플, amount: Int(pineappleStepper.value))
+            pineappleStockUILabel.text = String(Int(pineappleStepper.value))
+        case 3:
+            fruitStore.modifyFruitStocks(fruit: .키위, amount: Int(kiwiStepper.value))
+            kiwiStockUILabel.text = String(Int(kiwiStepper.value))
+        case 4:
+            fruitStore.modifyFruitStocks(fruit: .망고, amount: Int(mangoStepper.value))
+            mangoStockUILabel.text = String(Int(mangoStepper.value))
+        default:
+            break
+        }
+        
+    }
+    
     
     
 }

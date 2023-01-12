@@ -28,11 +28,8 @@ class FruitStore {
     }
     
 
-    private func addFruit(fruit: Fruit, amount: Int) throws {
-        guard var stock = fruitStock[fruit] else {
-            throw JuiceMakerError.invalidFruit
-        }
-        stock += amount
+    func modifyFruitStocks(fruit: Fruit, amount: Int) {
+        fruitStock[fruit] = amount
     }
     
     private func isStocked(juice: Juice) -> Result<[(fruit: Fruit, stock: Int)], JuiceMakerError> {

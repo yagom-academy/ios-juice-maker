@@ -31,6 +31,11 @@ final class ViewController: UIViewController {
         displayStocks()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        displayStocks()
+    }
+    
     @IBAction func touchJuiceButton(_ sender: UIButton) {
         selectJuiceButton(titleName: sender.titleLabel?.text)
     }
