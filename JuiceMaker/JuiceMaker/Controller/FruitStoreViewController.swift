@@ -49,9 +49,6 @@ final class FruitStoreViewController: UIViewController {
         pineappleLabel.text = currentFruitBasket[.pineapple]?.description
         kiwiLabel.text = currentFruitBasket[.kiwi]?.description
         mangoLabel.text = currentFruitBasket[.mango]?.description
-        [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
-            $0.sizeToFit()
-        }
     }
     
     func setUpStepper() {
@@ -118,7 +115,6 @@ final class FruitStoreViewController: UIViewController {
         
         let fruitLabel = fruitLabel(targetFruit)
         fruitLabel.text = currentFruitBasket[targetFruit]?.description
-//        fruitLabel.sizeToFit()
     }
 }
 
