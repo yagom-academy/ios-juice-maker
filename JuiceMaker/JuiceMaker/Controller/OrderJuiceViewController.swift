@@ -31,11 +31,11 @@ final class OrderJuiceViewController: UIViewController {
     }
     
     private func updateStockLabel() {
-        strawberryStockLabel.text = juiceMaker.currentFruitStock(of: .strawberry)
-        bananaStockLabel.text = juiceMaker.currentFruitStock(of: .banana)
-        pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple)
-        kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi)
-        mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango)
+        strawberryStockLabel.text = juiceMaker.currentFruitStock(of: .strawberry).description
+        bananaStockLabel.text = juiceMaker.currentFruitStock(of: .banana).description
+        pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple).description
+        kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi).description
+        mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango).description
     }
     
     private func setButton(_ sender: UIButton) -> JuiceMenu? {

@@ -344,6 +344,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="28" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="vP2-gF-Qna"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -375,6 +378,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="28" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="m0S-Oe-chA"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -407,6 +413,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="28" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="1GX-Wj-9Dr"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -439,6 +448,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="28" y="146.66666666666666" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="stepperTapped:" destination="Yu1-lM-nqp" eventType="valueChanged" id="XSe-QX-H2E"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                         <constraints>
@@ -469,9 +481,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaStepper" destination="O5s-2N-3iP" id="TYL-3R-m8m"/>
                         <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="kcv-mn-4sc"/>
+                        <outlet property="kiwiStepper" destination="klA-59-Nu4" id="dsW-WX-ePa"/>
                         <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="YEG-kC-gr2"/>
+                        <outlet property="mangoStepper" destination="xbn-6P-grO" id="BS4-Uy-zXd"/>
                         <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="4Yr-hy-JRx"/>
+                        <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="b3l-hP-G1B"/>
                         <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="y2P-Cg-YX8"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="2kZ-JF-Jka"/>
                         <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="Cvg-zm-hVh"/>
