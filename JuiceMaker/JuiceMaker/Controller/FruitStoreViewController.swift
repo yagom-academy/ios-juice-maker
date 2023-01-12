@@ -27,7 +27,20 @@ final class FruitStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpLabel()
+        setUpStepper()
     }
+    
+    func setUpLabel() {
+            strawberryLabel.text = currentFruitBasket[.strawberry]?.description
+            bananaLabel.text = currentFruitBasket[.banana]?.description
+            pineappleLabel.text = currentFruitBasket[.pineapple]?.description
+            kiwiLabel.text = currentFruitBasket[.kiwi]?.description
+            mangoLabel.text = currentFruitBasket[.mango]?.description
+            [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
+                $0.sizeToFit()
+            }
+        }
     
     func setUpStepper() {
         if let strawBerryValue = currentFruitBasket[.strawberry],
