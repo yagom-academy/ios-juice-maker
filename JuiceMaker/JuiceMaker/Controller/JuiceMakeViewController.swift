@@ -92,7 +92,7 @@ final class JuiceMakeViewController: UIViewController {
             failureAlert.addAction(cancelAlertAction)
             self.present(failureAlert, animated: true)
         
-        } else if error == juiceMakeError.unknwonError {
+        } else if error == juiceMakeError.unknownError {
             let failureAlert = UIAlertController(
                 title: "알 수 없는 에러",
                 message: "알 수 없는 에러가 발생했습니다. 앱을 다시 실행해주세요",
@@ -128,7 +128,7 @@ final class JuiceMakeViewController: UIViewController {
         } catch juiceMakeError.outOfStockError {
             showFailureAlert(juiceMakeError.outOfStockError)
         } catch {
-            showFailureAlert(juiceMakeError.unknwonError)
+            showFailureAlert(juiceMakeError.unknownError)
         }
     }
 }

@@ -42,7 +42,6 @@ final class FruitStoreViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    
     func setUpLabel() {
         strawberryLabel.text = currentFruitBasket[.strawberry]?.description
         bananaLabel.text = currentFruitBasket[.banana]?.description
