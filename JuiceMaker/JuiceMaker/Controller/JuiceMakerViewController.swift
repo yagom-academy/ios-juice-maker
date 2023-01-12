@@ -10,11 +10,11 @@ final class JuiceMakerViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockValue: UILabel!
-    @IBOutlet weak var bananaStockValue: UILabel!
-    @IBOutlet weak var pineappleStockValue: UILabel!
-    @IBOutlet weak var kiwiStockValue: UILabel!
-    @IBOutlet weak var mangoStockValue: UILabel!
+    @IBOutlet private weak var strawberryStockValue: UILabel!
+    @IBOutlet private weak var bananaStockValue: UILabel!
+    @IBOutlet private weak var pineappleStockValue: UILabel!
+    @IBOutlet private weak var kiwiStockValue: UILabel!
+    @IBOutlet private weak var mangoStockValue: UILabel!
     
     private lazy var fruitStockValue: [FruitStore.Fruit: UILabel] = [
         .strawberry: strawberryStockValue,
@@ -36,31 +36,31 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapStrawberryBananaJuiceOrder(_ sender: UIButton) {
+    @IBAction private func didTapStrawberryBananaJuiceOrder(_ sender: UIButton) {
         orderJuice(.strawberryBananaJuice)
     }
     
-    @IBAction func didTapMangokiwiJuiceOrder(_ sender: UIButton) {
+    @IBAction private func didTapMangokiwiJuiceOrder(_ sender: UIButton) {
         orderJuice(.mangoKiwiJuice)
     }
     
-    @IBAction func didTapStrawberryJuiceOrder(_ sender: UIButton) {
+    @IBAction private func didTapStrawberryJuiceOrder(_ sender: UIButton) {
         orderJuice(.strawberryJuice)
     }
     
-    @IBAction func didTapBananaJuiceOrder(_ sender: UIButton) {
+    @IBAction private func didTapBananaJuiceOrder(_ sender: UIButton) {
         orderJuice(.bananaJuice)
     }
     
-    @IBAction func didTapPineappleJuiceOrder(_ sender: UIButton) {
+    @IBAction private func didTapPineappleJuiceOrder(_ sender: UIButton) {
         orderJuice(.pineappleJuice)
     }
     
-    @IBAction func didTapKiwiJuiceOrder(_ sender: UIButton) {
+    @IBAction private func didTapKiwiJuiceOrder(_ sender: UIButton) {
         orderJuice(.kiwiJuice)
     }
     
-    @IBAction func didTapMangoJuiceOrder(_ sender: UIButton) {
+    @IBAction private func didTapMangoJuiceOrder(_ sender: UIButton) {
         orderJuice(.mangoJuice)
     }
     
@@ -102,7 +102,7 @@ final class JuiceMakerViewController: UIViewController {
         self.navigationController?.pushViewController(button, animated: true)
     }
     
-    @IBAction func didTapReviseStock(_ sender: UIBarButtonItem) {
+    @IBAction private func didTapReviseStock(_ sender: UIBarButtonItem) {
         moveScreen(to: "FruitStoreViewController")
     }
 }
