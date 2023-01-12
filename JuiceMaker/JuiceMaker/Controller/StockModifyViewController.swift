@@ -29,6 +29,7 @@ class StockModifyViewController: UIViewController {
         super.viewDidLoad()
         displayStocks()
         setStock()
+        setStepperSize()
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +37,15 @@ class StockModifyViewController: UIViewController {
 //        displayStocks()
 //        setStock()
 //    }
+    
+    
+    func setStepperSize() {
+        strawberryStepper.transform = strawberryStepper.transform.scaledBy(x: 1.25, y: 1.25)
+        bananaStepper.transform = bananaStepper.transform.scaledBy(x: 1.25, y: 1.25)
+        pineappleStepper.transform = pineappleStepper.transform.scaledBy(x: 1.25, y: 1.25)
+        kiwiStepper.transform = kiwiStepper.transform.scaledBy(x: 1.25, y: 1.25)
+        mangoStepper.transform = mangoStepper.transform.scaledBy(x: 1.25, y: 1.25)
+    }
     
     @IBAction func touchFruitStockStepper(_ sender: UIStepper) {
         modifyStockTapped(tag: sender.tag)
