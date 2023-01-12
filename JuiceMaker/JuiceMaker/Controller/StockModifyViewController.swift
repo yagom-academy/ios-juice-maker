@@ -25,16 +25,19 @@ class StockModifyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.backButtonTitle = "돌아가기"
         displayStocks()
         setStock()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        displayStocks()
+//        setStock()
+//    }
     
     @IBAction func touchFruitStockStepper(_ sender: UIStepper) {
         modifyStockTapped(tag: sender.tag)
     }
-    
     
     func displayStocks() {
         if let strawberry = fruitStore.fruitStock[.딸기] {
@@ -92,9 +95,5 @@ class StockModifyViewController: UIViewController {
         default:
             break
         }
-        
     }
-    
-    
-    
 }
