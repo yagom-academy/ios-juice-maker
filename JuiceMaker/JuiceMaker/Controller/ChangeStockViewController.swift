@@ -83,7 +83,10 @@ final class ChangeStockViewController: UIViewController {
     }
     
     @IBAction func pushStepper(_ sender: UIStepper) {
-        guard let fruitsLabel = identifyRelatedLabel(of: sender) else { return }
+        guard let fruitsLabel = identifyRelatedLabel(of: sender),
+              let fruit = identifyRelatedFruit(of: sender) else { return }
+        
+        FruitStore.shared.fruitsStock[fruit] = Int(sender.value)
         fruitsLabel.text = Int(sender.value).description
     }
 }
