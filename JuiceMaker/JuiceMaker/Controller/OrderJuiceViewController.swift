@@ -15,7 +15,7 @@ final class OrderJuiceViewController: UIViewController {
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
     private let juiceMaker = JuiceMaker()
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +25,7 @@ final class OrderJuiceViewController: UIViewController {
     }
     
     @objc func didDismissManageStockView(_ notification: Notification) {
-        DispatchQueue.main.async {
-            self.updateStockLabel()
-        }
+        self.updateStockLabel()
     }
     
     private func updateStockLabel() {
@@ -63,13 +61,6 @@ final class OrderJuiceViewController: UIViewController {
         }
     }
 
-    @IBAction private func orderButtonTapped(_ sender: UIButton) {
-        guard let orderedJuice = setButton(sender) else {
-            return
-        }
-        completeOrder(of: orderedJuice)
-    }
-    
     private func completeOrder(of orderedJuice: JuiceMenu) {
         do {
             try juiceMaker.makeJuice(orderedJuice)
@@ -84,11 +75,7 @@ final class OrderJuiceViewController: UIViewController {
             print("알 수 없는 오류가 발생했습니다.")
         }
     }
-    
-    @IBAction private func manageStockBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toManageVC", sender: self)
-    }
-    
+ 
     private func successAlert(name: String) {
         let alert = UIAlertController(title: "\(name) 나왔습니다! 맛있게 드세요!",message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "확인", style: .default)
@@ -105,6 +92,17 @@ final class OrderJuiceViewController: UIViewController {
         alert.addAction(ok)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction private func orderButtonTapped(_ sender: UIButton) {
+        guard let orderedJuice = setButton(sender) else {
+            return
+        }
+        completeOrder(of: orderedJuice)
+    }
+    
+    @IBAction private func manageStockBarButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toManageVC", sender: self)
     }
 }
 
