@@ -77,7 +77,6 @@ final class JuiceMakeViewController: UIViewController {
     }
     
     func showFailureAlert(_ error: juiceMakeError) {
-       
         if error == juiceMakeError.outOfStockError {
             let failureAlert = UIAlertController(
                 title: "주스 제조실패",
@@ -106,7 +105,7 @@ final class JuiceMakeViewController: UIViewController {
     }
     
     func presentFruitStoreVC() {
-        guard let fruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreNavigationController") as? UINavigationController else {
+        guard let fruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: Identifier.fruitStoreNavigationController.rawValue) as? UINavigationController else {
             return
         }
         

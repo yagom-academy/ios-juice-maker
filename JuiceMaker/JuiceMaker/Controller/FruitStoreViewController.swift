@@ -118,7 +118,7 @@ final class FruitStoreViewController: UIViewController {
         
         let fruitLabel = fruitLabel(targetFruit)
         fruitLabel.text = currentFruitBasket[targetFruit]?.description
-        fruitLabel.sizeToFit()
+//        fruitLabel.sizeToFit()
     }
 }
 

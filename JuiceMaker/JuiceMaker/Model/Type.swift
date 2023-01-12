@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum Identifier: String {
+    case fruitStoreNavigationController = "fruitStoreNavigationController"
+}
+
 enum Fruit: String {
     case strawberry = "딸기"
     case banana = "바나나"
