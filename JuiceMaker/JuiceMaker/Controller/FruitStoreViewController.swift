@@ -22,9 +22,23 @@ final class FruitStoreViewController: UIViewController {
         .mango: mangoLabel
     ]
     
+    private lazy var fruitStockStepper: [FruitStore.Fruit: UIStepper] = [
+        .strawberry: strawberryStepper,
+        .banana: bananaStepper,
+        .pineapple: pineappleStepper,
+        .kiwi: kiwiStepper,
+        .mango: mangoStepper
+    ]
+    
     private func configureCurrentStock() {
         for (fruit, value) in fruitStockValue {
             value.text = String(FruitStore.shared.checkStockValue(fruit: fruit))
+        }
+    }
+    
+    private func setFruitStepper() {
+        for (fruit, stepper) in fruitStockStepper {
+            stepper.value = Double(FruitStore.shared.checkStockValue(fruit: fruit))
         }
     }
     
@@ -32,27 +46,25 @@ final class FruitStoreViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureCurrentStock()
+        setFruitStepper()
     }
     
     private func configureUI() {
+        let fruitLabelList: [UILabel] = [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel,
+                                         mangoLabel]
+        let cornerRadiusValue: CGFloat = 7
+        
         self.navigationController?.navigationBar.backgroundColor = .systemGray4
-        strawberryLabel.layer.cornerRadius = 7
-        strawberryLabel.clipsToBounds = true
-        bananaLabel.layer.cornerRadius = 7
-        bananaLabel.clipsToBounds = true
-        pineappleLabel.layer.cornerRadius = 7
-        pineappleLabel.clipsToBounds = true
-        kiwiLabel.layer.cornerRadius = 7
-        kiwiLabel.clipsToBounds = true
-        mangoLabel.layer.cornerRadius = 7
-        mangoLabel.clipsToBounds = true
+        
+        for label in fruitLabelList {
+            label.layer.cornerRadius = cornerRadiusValue
+            label.clipsToBounds = true
+        }
     }
-    
     
     @IBAction func touchUpDissmisButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func changeStrawberryStock(_ sender: UIStepper) {
         strawberryLabel.text = Int(sender.value).description
@@ -69,7 +81,4 @@ final class FruitStoreViewController: UIViewController {
     @IBAction func changeMangoStock(_ sender: UIStepper) {
         mangoLabel.text = Int(sender.value).description
     }
-    
-    
-    
 }
