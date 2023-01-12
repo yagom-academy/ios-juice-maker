@@ -4,7 +4,6 @@
 //
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
     
     enum Juice: String {
         case strawberryJuice = "딸기쥬스"
@@ -37,7 +36,7 @@ struct JuiceMaker {
     
     private func checkFruitStore(for juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            let currentStock = try fruitStore.checkStock(fruit: fruit, amount: amount)
+            let currentStock = try FruitStore.shared.checkStock(fruit: fruit, amount: amount)
 
             guard currentStock >= amount else {
                 throw JuiceMakerError.insufficientStock
@@ -47,7 +46,7 @@ struct JuiceMaker {
     
     private func useFruit(for juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            try fruitStore.substractFruit(fruit: fruit, amount: amount)
+            try FruitStore.shared.substractFruit(fruit: fruit, amount: amount)
         }
     }
     

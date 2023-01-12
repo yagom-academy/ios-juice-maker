@@ -26,13 +26,13 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureCurrentStock()
+        self.navigationController?.navigationBar.backgroundColor = .systemGray4
     }
     
     private func configureCurrentStock() {
         for (fruit, value) in fruitStockValue {
-            value.text = String(juiceMaker.fruitStore.checkStockValue(fruit: fruit))
+            value.text = String(FruitStore.shared.checkStockValue(fruit: fruit))
         }
     }
     
