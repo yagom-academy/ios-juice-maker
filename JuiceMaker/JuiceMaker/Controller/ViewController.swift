@@ -54,7 +54,7 @@ final class ViewController: UIViewController {
         mangoLabel.text = fruits[Fruit.mango]
     }
     
-    
+   
     // MARK: - 화면전환
     @IBAction private func editStockTapped(_ sender: UIBarButtonItem) {
         changeStockView()
