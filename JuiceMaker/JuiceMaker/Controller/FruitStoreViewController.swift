@@ -54,7 +54,6 @@ final class FruitStoreViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         center.post(name: .stockNotification, object: nil, userInfo: ["newStock": addStockListByStepper()])
-        print(addStockListByStepper())
     }
     
     private func configureUI() {

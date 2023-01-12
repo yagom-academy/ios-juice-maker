@@ -40,7 +40,6 @@ final class JuiceMakerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureCurrentStock()
-        print(FruitStore.shared.checkStockValue(fruit: .strawberry))
     }
     
     deinit {
