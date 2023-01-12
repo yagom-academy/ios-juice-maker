@@ -93,10 +93,12 @@ final class JuiceMakeViewController: UIViewController {
     }
     
     func presentFruitStoreVC() {
-        guard let FruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else {
+        guard let fruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "fruitStoreNavigationController") as? UINavigationController else {
             return
         }
-        self.present(FruitStoreVC, animated: true)
+        
+        fruitStoreVC.modalPresentationStyle = .fullScreen
+        self.present(fruitStoreVC, animated: true)
     }
     
     @IBAction func FruitStoreVCButtonTapped(_ sender: UIButton) {

@@ -415,7 +415,7 @@
         <!--Navigation Controller-->
         <scene sceneID="OND-6z-AC8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="noc-D0-Kav" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="fruitStoreNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="noc-D0-Kav" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Se-wZ-VVV">
                         <rect key="frame" x="0.0" y="47" width="844" height="32"/>
