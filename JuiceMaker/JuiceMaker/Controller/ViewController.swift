@@ -105,11 +105,7 @@ final class ViewController: UIViewController {
     private func presentAlertOutOfStock() {
         let alertOutOfStock = UIAlertController(title: "실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { (action) in
-            guard let stockModifyViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
-                return
-            }
-            stockModifyViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-            self.present(stockModifyViewController, animated: true, completion: nil)
+            self.presentModal()
         }
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         alertOutOfStock.addAction(yesAction)
@@ -118,10 +114,15 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func stockModifyTapped(_ sender: UIBarButtonItem) {
+        presentModal()
+    }
+    
+    func presentModal() {
         guard let stockModifyViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
             return
         }
-        stockModifyViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        present(stockModifyViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: stockModifyViewController)
+        navigationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        present(navigationController, animated: true, completion: nil)
     }
 }

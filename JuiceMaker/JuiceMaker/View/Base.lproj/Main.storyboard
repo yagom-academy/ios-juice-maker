@@ -219,19 +219,22 @@
                                     <constraint firstItem="ngP-kF-Yii" firstAttribute="trailing" secondItem="q6G-4X-bVm" secondAttribute="trailing" id="IRM-sD-zPp"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ih7-cT-Bxl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ih7-cT-Bxl">
                                 <rect key="frame" x="0.0" y="0.0" width="852" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Ih7-cT-Bxl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3qv-2x-0t5"/>
                             <constraint firstItem="vaj-6k-c2D" firstAttribute="leading" secondItem="zaq-m5-IIF" secondAttribute="leading" id="4Ki-Xs-fjI"/>
+                            <constraint firstAttribute="trailing" secondItem="Ih7-cT-Bxl" secondAttribute="trailing" id="4xx-J0-N2E"/>
                             <constraint firstItem="zaq-m5-IIF" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="35%" id="5ly-0F-l0U"/>
                             <constraint firstItem="Pnn-0B-qbM" firstAttribute="trailing" secondItem="dgU-OE-25m" secondAttribute="trailing" id="6U9-bI-g7g"/>
+                            <constraint firstItem="Ih7-cT-Bxl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="JC8-lx-Zns"/>
                             <constraint firstItem="hrc-2F-fzl" firstAttribute="trailing" secondItem="G4B-kp-2Jo" secondAttribute="trailing" id="JP9-5g-NDg"/>
+                            <constraint firstItem="zaq-m5-IIF" firstAttribute="top" secondItem="Ih7-cT-Bxl" secondAttribute="bottom" id="SNl-pU-wUg"/>
                             <constraint firstItem="zaq-m5-IIF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Vlw-OR-dfY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vaj-6k-c2D" secondAttribute="bottom" constant="20" id="ea1-Np-zdi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zaq-m5-IIF" secondAttribute="trailing" constant="16" id="f8U-FF-gSK"/>
@@ -293,9 +296,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O6k-qQ-maS">
-                                <rect key="frame" x="0.0" y="0.0" width="852" height="66.333333333333329"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="O6k-qQ-maS">
+                                <rect key="frame" x="0.0" y="0.0" width="852" height="59"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBY-Dj-aoC">
                                         <rect key="frame" x="778.33333333333348" y="20.000000000000004" width="53.666666666666629" height="34.333333333333343"/>
@@ -317,7 +319,7 @@
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th8-3y-6Kk">
-                                <rect key="frame" x="86" y="71.666666666666686" width="680" height="250"/>
+                                <rect key="frame" x="86" y="59" width="680" height="250"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iwp-dU-Gkq">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="250"/>
@@ -581,8 +583,12 @@
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="th8-3y-6Kk" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="Osz-nM-z8m"/>
-                            <constraint firstItem="th8-3y-6Kk" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="jhJ-GZ-Bua"/>
+                            <constraint firstItem="th8-3y-6Kk" firstAttribute="top" secondItem="O6k-qQ-maS" secondAttribute="bottom" id="HWE-l0-Be2"/>
+                            <constraint firstItem="O6k-qQ-maS" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="K2P-uC-Ggx"/>
+                            <constraint firstItem="O6k-qQ-maS" firstAttribute="top" secondItem="tKV-4l-Vtc" secondAttribute="top" id="ikm-YG-uvN"/>
+                            <constraint firstItem="th8-3y-6Kk" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="o3B-Cn-dGm"/>
+                            <constraint firstItem="O6k-qQ-maS" firstAttribute="height" secondItem="tKV-4l-Vtc" secondAttribute="height" multiplier="0.15" id="tDc-fO-Z1X"/>
+                            <constraint firstAttribute="trailing" secondItem="O6k-qQ-maS" secondAttribute="trailing" id="xCj-38-jrP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
