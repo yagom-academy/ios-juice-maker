@@ -54,17 +54,13 @@ final class JuiceMakerViewController: UIViewController {
         
         alert.addAction(okAction)
         
-        present(alert, animated: false) {
-            self.updateLabel(juice: self.juiceMaker.getFruitsInStore())
-        }
+        present(alert, animated: false)
     }
     
     private func showFailureAlert() {
         let alert = UIAlertController(title: "재료가 모자라요 재료를 수정할까요?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "네", style: .default) { (action) in
-            guard let fruitStockViewController = self.storyboard?
-                .instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
-            self.navigationController?.pushViewController(fruitStockViewController, animated: false)
+            self.pushFruitStockViewController()
         }
         let cancelAction = UIAlertAction(title: "아니오", style: .default)
         
@@ -74,6 +70,12 @@ final class JuiceMakerViewController: UIViewController {
         present(alert, animated: false)
     }
     
+    private func pushFruitStockViewController() {
+        guard let fruitStockViewController = self.storyboard?
+            .instantiateViewController(withIdentifier: FruitStockViewController.identifier) else { return }
+        self.navigationController?.pushViewController(fruitStockViewController, animated: false)
+    }
+    
     private func decideOrderJuice(_ juice: String) -> Juice? {
         return Juice.allCases.first { juice == "\($0.name) 주문" }
     }
@@ -81,6 +83,7 @@ final class JuiceMakerViewController: UIViewController {
     private func tryMakeJuice(_ juice: Juice) {
         if juiceMaker.makeJuice(juice) {
             showSuccessAlert(message: juice.name)
+            updateLabel(juice: juiceMaker.getFruitsInStore())
         } else {
             showFailureAlert()
         }

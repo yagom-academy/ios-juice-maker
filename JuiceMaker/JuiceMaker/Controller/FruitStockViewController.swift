@@ -5,6 +5,8 @@
 import UIKit
 
 final class FruitStockViewController: UIViewController {
+    
+    static let identifier = "FruitStockViewController"
 
     @IBOutlet weak private var strawberryLabel: UILabel!
     @IBOutlet weak private var bananaLabel: UILabel!
