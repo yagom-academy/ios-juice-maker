@@ -42,10 +42,7 @@ final class ChangeStockViewController: UIViewController {
         for stepper in steppers {
             if let selectedFruit = identifyRelatedFruit(of: stepper),
                let initialValue = fruitsStock[selectedFruit] {
-                stepper.transform = stepper.transform.scaledBy(x: 1.1, y: 1.25)
-                stepper.maximumValue = 100
-                stepper.minimumValue = 0
-                stepper.stepValue = 1
+                stepper.transform = stepper.transform.scaledBy(x: 1.0, y: 1.0)
                 stepper.value = Double(initialValue)
             }
         }
