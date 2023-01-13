@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     private var fruitsStock: [Fruits: Int] {
