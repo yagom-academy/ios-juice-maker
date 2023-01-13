@@ -74,32 +74,33 @@
 - 쥬스 주문 시 재고가 있다면 해당 쥬스가 성공적으로 만들어졌다는 alert창 실행. 이후 현재 재고 다시 표시.
 - 쥬스 주문 시 재고가 부족하다면 재고가 부족하다는 alert창 실행.
   
-![쥬스주문하기](https://user-images.githubusercontent.com/114971172/210932923-06b5dc53-2833-4327-bdc4-b26fe0684091.gif)
+<img src = "https://user-images.githubusercontent.com/114971172/210932923-06b5dc53-2833-4327-bdc4-b26fe0684091.gif" width="600">
 <br>
 
 ### 3. 재고 수정 alert 창 예 / 아니오 버튼 실행
 - 예 버튼 클릭시 재고수정 화면으로 이동
 - 아니오 버튼 클릭시 화면 변화 없음
 
-![3번 실행화면](https://user-images.githubusercontent.com/114971172/212245503-9d688023-8ee5-4bb2-97cb-c568b94fd85a.gif)
+<img src = "https://user-images.githubusercontent.com/114971172/212245503-9d688023-8ee5-4bb2-97cb-c568b94fd85a.gif" width="600">
 
 ### 4. 화면이동
 - 재고수정 버튼을 누르면 재고 추가 화면으로 이동
 - 닫기 버튼을 누르면 주문 화면으로 이동
 
-![화면이동](https://user-images.githubusercontent.com/114971172/212246436-fd4eae4d-b25b-45f0-9e12-6e7d9d20cf2d.gif)
+<Img src = "https://user-images.githubusercontent.com/114971172/212246436-fd4eae4d-b25b-45f0-9e12-6e7d9d20cf2d.gif" width="600">
 
 
 ### 5. 재고 추가 화면에서 Stepper를 이용한 재고 변경
 
 - stepper의 + 를 누르면 재고가 +1씩 증가하고 - 를 누르면 -1씩 감소하도록 구현
-![4번 실행](https://user-images.githubusercontent.com/114971172/212245970-cc170377-1b33-42ca-b4eb-8eadabe03031.gif)
+
+<img src = "https://user-images.githubusercontent.com/114971172/212245970-cc170377-1b33-42ca-b4eb-8eadabe03031.gif" width ="600">
 
 ### 6. 주문 화면으로 돌아오면 주문 화면의 재고 업데이트
 
 - 재고를 업데이트하고 닫기를 누르면 주문 화면에서 변경된 재고가 업데이트 되도록 구현
 
-![5번 실행](https://user-images.githubusercontent.com/114971172/212245976-8b99d1ea-d6cb-4628-9acf-62919ec2f8e6.gif)
+<img src = "https://user-images.githubusercontent.com/114971172/212245976-8b99d1ea-d6cb-4628-9acf-62919ec2f8e6.gif" width ="600">
 
 
 # 트러블 슈팅 
