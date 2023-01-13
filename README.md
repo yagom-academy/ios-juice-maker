@@ -7,6 +7,7 @@
 * [타임라인](#타임라인)
 * [트러블 슈팅](#트러블-슈팅)
 * [참고 링크](#참고-링크)
+* [팀 규칙](#팀-규칙)
 * [2팀 회고](#2팀-회고)
 
 ## 소개
@@ -377,6 +378,16 @@ if Int(sender.value) > currentStock {
                                               
 </details>
 
+## 참고 링크
+[Swift API Design Guidelines](https://www.swift.org/documentation/api-design-guidelines/)  
+[Swift Language Guide - Initialization](https://docs.swift.org/swift-book/LanguageGuide/Initialization.html)  
+[Swift Language Guide - Error Handling](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html)  
+[Swift Language Guide - Access Control](https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html)  
+[Swift Language Guide - Nested Types](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)  
+[Swift Language Guide - Type Casting](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)  
+[delegate - Apple Developer Documentation](https://developer.apple.com/documentation/uikit/uiapplication/1622936-delegate)
+[managing-a-shared-resource-using-a-singleton](https://developer.apple.com/documentation/swift/managing-a-shared-resource-using-a-singleton)
+    
 ## 팀 규칙
 #### 코드 컨벤션
 * 짝 프로그래밍
@@ -407,12 +418,5 @@ fix: 열거형 추가
 fix
 ```
 
-## 참고 링크
-[Swift API Design Guidelines](https://www.swift.org/documentation/api-design-guidelines/)  
-[Swift Language Guide - Initialization](https://docs.swift.org/swift-book/LanguageGuide/Initialization.html)  
-[Swift Language Guide - Error Handling](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html)  
-[Swift Language Guide - Access Control](https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html)  
-[Swift Language Guide - Nested Types](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)  
-[Swift Language Guide - Type Casting](https://docs.swift.org/swift-book/LanguageGuide/TypeCasting.html)  
-[delegate - Apple Developer Documentation](https://developer.apple.com/documentation/uikit/uiapplication/1622936-delegate)
-[managing-a-shared-resource-using-a-singleton](https://developer.apple.com/documentation/swift/managing-a-shared-resource-using-a-singleton)
+## 2팀 회고
+* 1.20.(금) 작성예정
