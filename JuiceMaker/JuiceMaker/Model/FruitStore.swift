@@ -40,4 +40,9 @@ final class FruitStore {
             fruits[fruit] = remain
         }
     }
+    
+    func returnFruitStock(of fruit: Fruit) -> Int {
+        guard let stock = fruits[fruit] else { return -1 }
+        return stock
+    }
 }
