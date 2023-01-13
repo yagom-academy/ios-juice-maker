@@ -35,9 +35,9 @@ final class JuiceMakeViewController: UIViewController {
         pineappleLabel.text = currentFruitBasket[.pineapple]?.description
         kiwiLabel.text = currentFruitBasket[.kiwi]?.description
         mangoLabel.text = currentFruitBasket[.mango]?.description
-        [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
-            $0.sizeToFit()
-        }
+//        [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
+//            $0.sizeToFit()
+//        }
     }
     
     func createButtonTarget(_ sender: UIButton) -> FruitJuice? {
@@ -66,41 +66,27 @@ final class JuiceMakeViewController: UIViewController {
     }
     
     func showSuccessAlert(with targetJuice: FruitJuice) {
-        let successAlert = UIAlertController(
-            title: "주스 제조성공",
-            message: "\(targetJuice.rawValue) 나왔습니다! 맛있게 드세요!",
-            preferredStyle: .alert
-        )
-        let alertAction = UIAlertAction(title: "OK", style: .default)
-        successAlert.addAction(alertAction)
+        let builder = AlertBuilder()
+        let alertDirector = AlertDirector()
+        let successAlert = alertDirector.buildSuccessAlert(builder, with: targetJuice)
+        
         self.present(successAlert, animated: true)
     }
     
     func showFailureAlert(_ error: juiceMakeError) {
+        let builder = AlertBuilder()
+        let alertDirector = AlertDirector()
         if error == juiceMakeError.outOfStockError {
-            let failureAlert = UIAlertController(
-                title: "주스 제조실패",
-                message: "재료가 모자라요. 재고를 수정할까요?",
-                preferredStyle: .alert
-            )
-            let okAlertAction = UIAlertAction(title: "네", style: .default) { _ in
+            let outOfStockAlert = alertDirector.buildOutOfStockAlert(builder) {
                 self.presentFruitStoreVC()
             }
-            let cancelAlertAction = UIAlertAction(title: "아니오", style: .cancel)
             
-            failureAlert.addAction(okAlertAction)
-            failureAlert.addAction(cancelAlertAction)
-            self.present(failureAlert, animated: true)
-        
+            self.present(outOfStockAlert, animated: true)
+
         } else if error == juiceMakeError.unknownError {
-            let failureAlert = UIAlertController(
-                title: "알 수 없는 에러",
-                message: "알 수 없는 에러가 발생했습니다. 앱을 다시 실행해주세요",
-                preferredStyle: .alert
-            )
-            let okAlertAction = UIAlertAction(title: "네", style: .default)
-            failureAlert.addAction(okAlertAction)
-            self.present(failureAlert, animated: true)
+            let unknownAlert = alertDirector.buildUnknownAlert(builder)
+            
+            self.present(unknownAlert, animated: true)
         }
     }
     
