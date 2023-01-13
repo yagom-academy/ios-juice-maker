@@ -20,7 +20,7 @@ final class FruitStockViewController: UIViewController {
     @IBOutlet weak private var kiwiStepper: UIStepper!
     @IBOutlet weak private var mangoStepper: UIStepper!
     
-    var fruitStore: FruitStore = FruitStore(amount: 0)
+    var fruitStore: FruitStore = FruitStore()
     var getFruits: [Fruit: Int] {
         return fruitStore.getFruits()
     }
@@ -35,29 +35,29 @@ final class FruitStockViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateLabel(juice: getFruits)
-        updateStepper()
+        setDefaultLabel(juice: getFruits)
+        setDefaultStepperValue()
     }
     
     func setFruits(_ fruits: FruitStore) {
         self.fruitStore = fruits
     }
     
-    private func updateLabel(juice: [Fruit: Int]) {
+    private func setDefaultLabel(juice: [Fruit: Int]) {
         guard let strawberry = juice[.strawberry],
               let banana = juice[.banana],
               let kiwi = juice[.kiwi],
               let pineapple = juice[.pineapple],
               let mango = juice[.mango] else { return }
         
-        strawberryLabel.text = String(strawberry)
-        bananaLabel.text = String(banana)
-        kiwiLabel.text = String(kiwi)
-        pineappleLabel.text = String(pineapple)
-        mangoLabel.text = String(mango)
+        strawberryLabel.text = "\(strawberry)"
+        bananaLabel.text = "\(banana)"
+        kiwiLabel.text = "\(kiwi)"
+        pineappleLabel.text = "\(pineapple)"
+        mangoLabel.text = "\(mango)"
     }
     
-    private func updateStepper() {
+    private func setDefaultStepperValue() {
         guard let strawberryStock = getFruits[.strawberry],
         let bananaStock = getFruits[.banana],
         let pineappleStock = getFruits[.pineapple],
@@ -77,7 +77,7 @@ final class FruitStockViewController: UIViewController {
     }
     
     @IBAction private func didTapFruitStepper(_ sender: UIStepper) {
-        guard let fruit = decideStepper(sender),
+        guard let (fruit, label) = decideStepper(sender),
               let currentStock = getFruits[fruit] else {
             return
         }
@@ -88,24 +88,29 @@ final class FruitStockViewController: UIViewController {
             fruitStore.decreaseFruit(fruit)
         }
         
-        updateLabel(juice: getFruits)
+        updateLabel(fruit: fruit, label: label)
     }
     
-    private func decideStepper(_ sender: UIStepper) -> Fruit? {
+    private func decideStepper(_ sender: UIStepper) -> (Fruit, UILabel)? {
         switch sender {
         case strawberryStepper:
-            return .strawberry
+            return (.strawberry, strawberryLabel)
         case bananaStepper:
-            return .banana
+            return (.banana, bananaLabel)
         case pineappleStepper:
-            return .pineapple
+            return (.pineapple, pineappleLabel)
         case kiwiStepper:
-            return .kiwi
+            return (.kiwi, kiwiLabel)
         case mangoStepper:
-            return .mango
+            return (.mango, mangoLabel)
         default:
             return nil
         }
     }
     
+    private func updateLabel(fruit: Fruit, label: UILabel) {
+        guard let changedStock = getFruits[fruit] else { return }
+        
+        label.text = "\(changedStock)"
+    }
 }
