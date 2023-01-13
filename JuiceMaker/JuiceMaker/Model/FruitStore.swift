@@ -6,7 +6,11 @@
 
 import Foundation
 
-final class FruitStore {
+final class FruitStore: DataDelgate {
+    func delegateFruitStock(_ fruitStock: [Fruit : Int]) {
+        fruits = fruitStock
+    }
+    
     private(set) var fruits: [Fruit: Int] = [:]
     static let shared = FruitStore()
         

@@ -9,6 +9,7 @@ import UIKit
 final class EditStockViewController: UIViewController {
     static let identifier = "EditStockViewController"
     let fruitStore = FruitStore.shared
+    var delegate: DataDelgate?
     
     // MARK: - 과일 재고 Label Outlet
     @IBOutlet private weak var strawberryLabel: UILabel!
@@ -32,9 +33,10 @@ final class EditStockViewController: UIViewController {
         
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     
+        delegate?.delegateFruitStock(<#T##fruitStock: [Fruit : Int]##[Fruit : Int]#>)
     }
     
     //MARK: - 화면 Label에 재고 Update
@@ -78,8 +80,6 @@ final class EditStockViewController: UIViewController {
             fruitStepper.autorepeat = true
         }
     }
-    
-   
 
     //MARK: - Stepper Action
     @IBAction func stepperPressed(_ sender: UIStepper) {
@@ -91,9 +91,4 @@ final class EditStockViewController: UIViewController {
             label.text = stock.description
         }
     }
-    
-    
-    
-  
-    
 }
