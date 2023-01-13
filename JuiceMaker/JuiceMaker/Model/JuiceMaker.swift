@@ -2,7 +2,7 @@
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore(amount: 10)
+    private var fruitStore = FruitStore(amount: 10)
     
     func makeJuice(_ juice: Juice) -> Bool {
         if checkFruitInStore(juice) {
@@ -13,12 +13,12 @@ struct JuiceMaker {
         }
     }
     
-    func getFruitsInStore() -> [Fruit: Int] {
-        return fruitStore.getFruits()
+    func getFruitStore() -> FruitStore {
+        return self.fruitStore
     }
     
-    func setFruitsInStore(_ fruits: [Fruit: Int]) {
-        self.fruitStore.setFruits(fruits)
+    mutating func setFruitStore(_ fruits: FruitStore) {
+        fruitStore = fruits
     }
     
     private func checkFruitInStore(_ juice: Juice) -> Bool {

@@ -20,7 +20,10 @@ final class FruitStockViewController: UIViewController {
     @IBOutlet weak private var kiwiStepper: UIStepper!
     @IBOutlet weak private var mangoStepper: UIStepper!
     
-    var fruitStock: [Fruit: Int] = [:]
+    var fruitStore: FruitStore = FruitStore(amount: 0)
+    var getFruits: [Fruit: Int] {
+        return fruitStore.getFruits()
+    }
     var delegate: Delegate?
     
     override func viewDidLoad() {
@@ -32,8 +35,12 @@ final class FruitStockViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateLabel(juice: fruitStock)
+        updateLabel(juice: getFruits)
         updateStepper()
+    }
+    
+    func setFruits(_ fruits: FruitStore) {
+        self.fruitStore = fruits
     }
     
     private func updateLabel(juice: [Fruit: Int]) {
@@ -51,11 +58,11 @@ final class FruitStockViewController: UIViewController {
     }
     
     private func updateStepper() {
-        guard let strawberryStock = fruitStock[.strawberry],
-        let bananaStock = fruitStock[.banana],
-        let pineappleStock = fruitStock[.pineapple],
-        let kiwiStock = fruitStock[.kiwi],
-        let mangoStock = fruitStock[.mango] else { return }
+        guard let strawberryStock = getFruits[.strawberry],
+        let bananaStock = getFruits[.banana],
+        let pineappleStock = getFruits[.pineapple],
+        let kiwiStock = getFruits[.kiwi],
+        let mangoStock = getFruits[.mango] else { return }
         
         strawberryStepper.value = Double(strawberryStock)
         bananaStepper.value = Double(bananaStock)
@@ -64,19 +71,24 @@ final class FruitStockViewController: UIViewController {
         mangoStepper.value = Double(mangoStock)
     }
     
+    @IBAction private func didTapDismissButton(_ sender: UIButton) {
+        self.delegate?.updateStock(changeStock: self.fruitStore)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction private func didTapFruitStepper(_ sender: UIStepper) {
         guard let fruit = decideStepper(sender),
-              let currentStock = fruitStock[fruit] else {
+              let currentStock = getFruits[fruit] else {
             return
         }
         
         if Int(sender.value) > currentStock {
-            fruitStock[fruit] = currentStock + 1
-        } else {
-            fruitStock[fruit] = currentStock - 1
+            fruitStore.increaseFruit(fruit)
+        } else if Int(sender.value) < currentStock {
+            fruitStore.decreaseFruit(fruit)
         }
         
-        updateLabel(juice: fruitStock)
+        updateLabel(juice: getFruits)
     }
     
     private func decideStepper(_ sender: UIStepper) -> Fruit? {
@@ -96,12 +108,4 @@ final class FruitStockViewController: UIViewController {
         }
     }
     
-    func setFruits(_ fruits: [Fruit: Int]) {
-        self.fruitStock = fruits
-    }
-    
-    @IBAction private func didTapDismissButton(_ sender: UIButton) {
-        self.delegate?.updateStock(changeStock: self.fruitStock)
-        self.navigationController?.popViewController(animated: true)
-    }
 }

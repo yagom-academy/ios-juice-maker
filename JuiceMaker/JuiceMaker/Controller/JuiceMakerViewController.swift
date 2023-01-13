@@ -5,7 +5,7 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     
-    private let juiceMaker = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryLabel: UILabel!
     @IBOutlet weak private var bananaLabel: UILabel!
@@ -16,13 +16,13 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateLabel(juice: juiceMaker.getFruitsInStore())
+        updateLabel(juice: juiceMaker.getFruitStore().getFruits())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateLabel(juice: juiceMaker.getFruitsInStore())
+        updateLabel(juice: juiceMaker.getFruitStore().getFruits())
     }
     
     @IBAction func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
@@ -78,7 +78,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let fruitStockViewController = self.storyboard?
             .instantiateViewController(withIdentifier: FruitStockViewController.identifier) as? FruitStockViewController else { return }
         
-        fruitStockViewController.setFruits(juiceMaker.getFruitsInStore())
+        fruitStockViewController.setFruits(juiceMaker.getFruitStore())
         fruitStockViewController.delegate = self
         
         self.navigationController?.pushViewController(fruitStockViewController, animated: true)
@@ -91,7 +91,7 @@ final class JuiceMakerViewController: UIViewController {
     private func tryMakeJuice(_ juice: Juice) {
         if juiceMaker.makeJuice(juice) {
             showSuccessAlert(message: juice.name)
-            updateLabel(juice: juiceMaker.getFruitsInStore())
+            updateLabel(juice: juiceMaker.getFruitStore().getFruits())
         } else {
             showFailureAlert()
         }
@@ -99,7 +99,7 @@ final class JuiceMakerViewController: UIViewController {
 }
 
 extension JuiceMakerViewController: Delegate {
-    func updateStock(changeStock: [Fruit : Int]) {
-        self.juiceMaker.setFruitsInStore(changeStock)
+    func updateStock(changeStock: FruitStore) {
+        self.juiceMaker.setFruitStore(changeStock)
     }
 }
