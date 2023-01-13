@@ -17,6 +17,11 @@ final class ChangeStockViewController: UIViewController {
         setUpNavigationItem()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        center.post(name: Notification.Name.fruitStockChanged, object: nil)
+    }
+    
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     @IBOutlet weak var stockOfStrawberry: UILabel!
@@ -87,7 +92,6 @@ final class ChangeStockViewController: UIViewController {
         
         FruitStore.shared.fruitsStock[fruit] = Int(sender.value)
         fruitsLabel.text = Int(sender.value).description
-        center.post(name: Notification.Name.fruitStockChanged, object: nil)
     }
     
     func identifyRelatedLabel(of stepper: UIStepper) -> UILabel? {
