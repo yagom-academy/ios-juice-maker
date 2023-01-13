@@ -1,7 +1,6 @@
 //
 //  JuiceMaker - JuiceMakerViewController.swift
-//  Created by yagom.
-//  Copyright © yagom academy. All rights reserved.
+//  Created by Andrew, 혜모리 on 2023.01.02
 //
 
 import UIKit
@@ -11,30 +10,32 @@ extension Notification.Name {
 }
 
 final class JuiceMakerViewController: UIViewController {
-    
     private let juiceMaker = JuiceMaker()
     private let center: NotificationCenter = NotificationCenter.default
     
-    @IBOutlet private weak var strawberryStockValue: UILabel!
-    @IBOutlet private weak var bananaStockValue: UILabel!
-    @IBOutlet private weak var pineappleStockValue: UILabel!
-    @IBOutlet private weak var kiwiStockValue: UILabel!
-    @IBOutlet private weak var mangoStockValue: UILabel!
+    @IBOutlet private weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var bananaLabel: UILabel!
+    @IBOutlet private weak var pineappleLabel: UILabel!
+    @IBOutlet private weak var kiwiLabel: UILabel!
+    @IBOutlet private weak var mangoLabel: UILabel!
     
     private lazy var fruitStockValue: [FruitStore.Fruit: UILabel] = [
-        .strawberry: strawberryStockValue,
-        .banana: bananaStockValue,
-        .pineapple: pineappleStockValue,
-        .kiwi: kiwiStockValue,
-        .mango: mangoStockValue
+        .strawberry: strawberryLabel,
+        .banana: bananaLabel,
+        .pineapple: pineappleLabel,
+        .kiwi: kiwiLabel,
+        .mango: mangoLabel
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrentStock()
         self.navigationController?.navigationBar.backgroundColor = .systemGray4
-        
         center.addObserver(self, selector: #selector(updateStock(_:)), name: .stockNotification, object: nil)
+    }
+    
+    deinit {
+        center.removeObserver(self, name: .stockNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,32 +43,24 @@ final class JuiceMakerViewController: UIViewController {
         configureCurrentStock()
     }
     
-    deinit {
-        center.removeObserver(self, name: .stockNotification, object: nil)
+    private func configureCurrentStock() {
+        for (fruit, value) in fruitStockValue {
+            value.text = String(FruitStore.shared.checkStockValue(fruit: fruit))
+        }
     }
     
     @objc private func updateStock(_ noti: Notification) {
         guard let addStockList = noti.userInfo?["newStock"] as? [FruitStore.Fruit: Int] else {
             return
         }
+        
         for (fruit, afterStock) in addStockList {
             let beforeStock = FruitStore.shared.checkStockValue(fruit: fruit)
+            
             if beforeStock != afterStock {
                 let finalStock = afterStock - beforeStock
-                do {
-                    try FruitStore.shared.addStock(fruit: fruit, amount: finalStock)
-                } catch {
-                    print(error.localizedDescription)
-                }
+                try? FruitStore.shared.addStock(fruit: fruit, amount: finalStock)
             }
-            
-        }
-        
-    }
-    
-    private func configureCurrentStock() {
-        for (fruit, value) in fruitStockValue {
-            value.text = String(FruitStore.shared.checkStockValue(fruit: fruit))
         }
     }
     
@@ -131,10 +124,11 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func moveScreen(to navigationControlleridentifier: String) {
-        
-        guard let fruitStoreVC = storyboard?.instantiateViewController(identifier: navigationControlleridentifier) as? UINavigationController else { return }
+        guard let fruitStoreVC = storyboard?
+            .instantiateViewController(identifier: navigationControlleridentifier) as?
+                UINavigationController else { return }
         fruitStoreVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        return present(fruitStoreVC, animated: true, completion: nil)
+        present(fruitStoreVC, animated: true, completion: nil)
     }
     
     @IBAction private func didTapReviseStock(_ sender: UIBarButtonItem) {

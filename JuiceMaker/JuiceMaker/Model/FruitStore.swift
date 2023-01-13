@@ -4,12 +4,9 @@
 //
 
 class FruitStore {
-    
     static let shared = FruitStore()
     
-    private init() {
-        
-    }
+    private init() { }
     
     enum Fruit {
         case strawberry
