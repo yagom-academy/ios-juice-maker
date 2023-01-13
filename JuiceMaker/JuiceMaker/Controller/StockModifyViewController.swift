@@ -23,7 +23,7 @@ class StockModifyViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var closeButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +51,10 @@ class StockModifyViewController: UIViewController {
         modifyStockTapped(tag: sender.tag)
     }
     
-    @IBAction func touchCloseButton(_ sender: UIButton) {
+    @IBAction func touchCloseButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
+    
     
     func displayStocks() {
         if let strawberry = fruitStore.fruitStock[.딸기] {

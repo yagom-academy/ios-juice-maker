@@ -219,22 +219,14 @@
                                     <constraint firstItem="ngP-kF-Yii" firstAttribute="trailing" secondItem="q6G-4X-bVm" secondAttribute="trailing" id="IRM-sD-zPp"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ih7-cT-Bxl">
-                                <rect key="frame" x="0.0" y="0.0" width="852" height="60"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ih7-cT-Bxl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3qv-2x-0t5"/>
                             <constraint firstItem="vaj-6k-c2D" firstAttribute="leading" secondItem="zaq-m5-IIF" secondAttribute="leading" id="4Ki-Xs-fjI"/>
-                            <constraint firstAttribute="trailing" secondItem="Ih7-cT-Bxl" secondAttribute="trailing" id="4xx-J0-N2E"/>
                             <constraint firstItem="zaq-m5-IIF" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="35%" id="5ly-0F-l0U"/>
                             <constraint firstItem="Pnn-0B-qbM" firstAttribute="trailing" secondItem="dgU-OE-25m" secondAttribute="trailing" id="6U9-bI-g7g"/>
-                            <constraint firstItem="Ih7-cT-Bxl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="JC8-lx-Zns"/>
                             <constraint firstItem="hrc-2F-fzl" firstAttribute="trailing" secondItem="G4B-kp-2Jo" secondAttribute="trailing" id="JP9-5g-NDg"/>
-                            <constraint firstItem="zaq-m5-IIF" firstAttribute="top" secondItem="Ih7-cT-Bxl" secondAttribute="bottom" id="SNl-pU-wUg"/>
                             <constraint firstItem="zaq-m5-IIF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Vlw-OR-dfY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vaj-6k-c2D" secondAttribute="bottom" constant="20" id="ea1-Np-zdi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zaq-m5-IIF" secondAttribute="trailing" constant="16" id="f8U-FF-gSK"/>
@@ -288,7 +280,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Stock Modify View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="stockModifyViewController" id="Yu1-lM-nqp" customClass="StockModifyViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -296,29 +288,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="O6k-qQ-maS">
-                                <rect key="frame" x="0.0" y="0.0" width="852" height="59"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBY-Dj-aoC">
-                                        <rect key="frame" x="778.33333333333348" y="20.000000000000004" width="53.666666666666629" height="34.333333333333343"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="닫기"/>
-                                        <connections>
-                                            <action selector="touchCloseButton:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="ZvQ-yg-sZx"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="재고 추가" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMG-u6-Zo6">
-                                        <rect key="frame" x="385.33333333333337" y="20" width="81.333333333333314" height="26.333333333333329"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th8-3y-6Kk">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="th8-3y-6Kk">
                                 <rect key="frame" x="86" y="59" width="680" height="250"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iwp-dU-Gkq">
@@ -583,19 +553,20 @@
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="th8-3y-6Kk" firstAttribute="top" secondItem="O6k-qQ-maS" secondAttribute="bottom" id="HWE-l0-Be2"/>
-                            <constraint firstItem="O6k-qQ-maS" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="K2P-uC-Ggx"/>
-                            <constraint firstItem="O6k-qQ-maS" firstAttribute="top" secondItem="tKV-4l-Vtc" secondAttribute="top" id="ikm-YG-uvN"/>
                             <constraint firstItem="th8-3y-6Kk" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="o3B-Cn-dGm"/>
-                            <constraint firstItem="O6k-qQ-maS" firstAttribute="height" secondItem="tKV-4l-Vtc" secondAttribute="height" multiplier="0.15" id="tDc-fO-Z1X"/>
-                            <constraint firstAttribute="trailing" secondItem="O6k-qQ-maS" secondAttribute="trailing" id="xCj-38-jrP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="fjc-Bh-UcL">
+                            <connections>
+                                <action selector="touchCloseButton:" destination="Yu1-lM-nqp" id="nHu-Jj-JSV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bananaStepper" destination="O5s-2N-3iP" id="6Eg-Tm-8x6"/>
                         <outlet property="bananaStockUILabel" destination="gKu-86-RhI" id="DEa-Yh-eF7"/>
-                        <outlet property="closeButton" destination="UBY-Dj-aoC" id="LrX-RL-PPc"/>
+                        <outlet property="closeButton" destination="fjc-Bh-UcL" id="Ivc-uG-TkT"/>
                         <outlet property="kiwiStepper" destination="klA-59-Nu4" id="GfP-Q1-8P9"/>
                         <outlet property="kiwiStockUILabel" destination="ZDv-1m-HBY" id="nnj-SV-re7"/>
                         <outlet property="mangoStepper" destination="xbn-6P-grO" id="M3M-Ke-zLN"/>
@@ -608,7 +579,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636.6197183098593" y="900"/>
+            <point key="canvasLocation" x="1637" y="824"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAf-jL-tPK">
