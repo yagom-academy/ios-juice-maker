@@ -5,6 +5,7 @@
 import UIKit
 
 final class ViewController: UIViewController {
+    
     private let juiceMaker = JuiceMaker()
     private var fruitsStock: [Fruits: Int] {
         return FruitStore.shared.fruitsStock
@@ -24,6 +25,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var stockOfPineapple: UILabel!
     @IBOutlet weak var stockOfKiwi: UILabel!
     @IBOutlet weak var stockOfMango: UILabel!
+    
     @IBOutlet weak var orderStrawberryBanana: UIButton!
     @IBOutlet weak var orderMangoKiwi: UIButton!
     @IBOutlet weak var orderStrawberry: UIButton!

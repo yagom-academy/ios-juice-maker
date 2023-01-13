@@ -18,6 +18,7 @@ final class ChangeStockViewController: UIViewController {
     }
     
     @IBOutlet weak var navigationBar: UINavigationItem!
+    
     @IBOutlet weak var stockOfStrawberry: UILabel!
     @IBOutlet weak var stockOfBanana: UILabel!
     @IBOutlet weak var stockOfPineapple: UILabel!
@@ -99,6 +100,4 @@ final class ChangeStockViewController: UIViewController {
         default: return nil
         }
     }
-    
-    
 }
