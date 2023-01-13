@@ -32,12 +32,20 @@ final class ChangeStockViewController: UIViewController {
     
     @IBOutlet var steppers: [UIStepper]!
     
-    func setUpNavigationItem() {
-        navigationBar.title = "재고 추가"
-        let dismissButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(dismissCurrentView))
-        navigationBar.rightBarButtonItem = dismissButton
+    func displayStock() {
+        if let strawberryStock = fruitsStock[.strawberry],
+           let bananaStock = fruitsStock[.banana],
+           let pineappleStock = fruitsStock[.pineapple],
+           let kiwiStock = fruitsStock[.kiwi],
+           let mangoStock = fruitsStock[.mango] {
+            stockOfStrawberry.text = String(strawberryStock)
+            stockOfBanana.text = String(bananaStock)
+            stockOfPineapple.text = String(pineappleStock)
+            stockOfKiwi.text = String(kiwiStock)
+            stockOfMango.text = String(mangoStock)
+        }
     }
-
+    
     func initializeSteppers() {
         for stepper in steppers {
             if let selectedFruit = identifyRelatedFruit(of: stepper),
@@ -59,22 +67,26 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    func displayStock() {
-        if let strawberryStock = fruitsStock[.strawberry],
-           let bananaStock = fruitsStock[.banana],
-           let pineappleStock = fruitsStock[.pineapple],
-           let kiwiStock = fruitsStock[.kiwi],
-           let mangoStock = fruitsStock[.mango] {
-            stockOfStrawberry.text = String(strawberryStock)
-            stockOfBanana.text = String(bananaStock)
-            stockOfPineapple.text = String(pineappleStock)
-            stockOfKiwi.text = String(kiwiStock)
-            stockOfMango.text = String(mangoStock)
-        }
+    func setUpNavigationItem() {
+        navigationBar.title = "재고 추가"
+        let dismissButton = UIBarButtonItem(title: "닫기",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(dismissCurrentView))
+        navigationBar.rightBarButtonItem = dismissButton
     }
     
     @objc func dismissCurrentView() {
         self.dismiss(animated: true)
+    }
+
+    @IBAction func pushStepper(_ sender: UIStepper) {
+        guard let fruitsLabel = identifyRelatedLabel(of: sender),
+              let fruit = identifyRelatedFruit(of: sender) else { return }
+        
+        FruitStore.shared.fruitsStock[fruit] = Int(sender.value)
+        fruitsLabel.text = Int(sender.value).description
+        center.post(name: Notification.Name.fruitStockChanged, object: nil)
     }
     
     func identifyRelatedLabel(of stepper: UIStepper) -> UILabel? {
@@ -88,14 +100,5 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    @IBAction func pushStepper(_ sender: UIStepper) {
-        guard let fruitsLabel = identifyRelatedLabel(of: sender),
-              let fruit = identifyRelatedFruit(of: sender) else { return }
-        
-        FruitStore.shared.fruitsStock[fruit] = Int(sender.value)
-        fruitsLabel.text = Int(sender.value).description
-        
-        let noti = Notification(name: Notification.Name.fruitStockChanged, object: nil)
-        center.post(noti)
-    }
+    
 }
