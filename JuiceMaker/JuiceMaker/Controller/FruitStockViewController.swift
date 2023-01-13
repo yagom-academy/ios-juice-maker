@@ -21,6 +21,7 @@ final class FruitStockViewController: UIViewController {
     @IBOutlet weak private var mangoStepper: UIStepper!
     
     var fruitStock: [Fruit: Int] = [:]
+    var delegate: Delegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +101,7 @@ final class FruitStockViewController: UIViewController {
     }
     
     @IBAction private func didTapDismissButton(_ sender: UIButton) {
+        self.delegate?.updateStock(changeStock: self.fruitStock)
         self.navigationController?.popViewController(animated: true)
     }
 }

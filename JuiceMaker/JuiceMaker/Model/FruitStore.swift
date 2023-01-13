@@ -16,6 +16,10 @@ class FruitStore {
         return fruits
     }
     
+    func setFruits(_ fruits: [Fruit: Int]) {
+        self.fruits = fruits
+    }
+    
     func increaseFruit(_ fruit: Fruit, by amount: Int = 1) {
         guard let storedFruit = self.fruits[fruit] else {
             return

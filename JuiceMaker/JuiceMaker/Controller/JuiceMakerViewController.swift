@@ -25,6 +25,10 @@ final class JuiceMakerViewController: UIViewController {
         updateLabel(juice: juiceMaker.getFruitsInStore())
     }
     
+    @IBAction func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
+        pushFruitStockViewController()
+    }
+    
     @IBAction private func didTapJuiceOrderButton(_ sender: UIButton) {
         guard let buttonLabel = sender.titleLabel?.text,
         let juice = decideOrderJuice(buttonLabel) else {
@@ -75,8 +79,9 @@ final class JuiceMakerViewController: UIViewController {
             .instantiateViewController(withIdentifier: FruitStockViewController.identifier) as? FruitStockViewController else { return }
         
         fruitStockViewController.setFruits(juiceMaker.getFruitsInStore())
+        fruitStockViewController.delegate = self
         
-        self.navigationController?.pushViewController(fruitStockViewController, animated: false)
+        self.navigationController?.pushViewController(fruitStockViewController, animated: true)
     }
     
     private func decideOrderJuice(_ juice: String) -> Juice? {
@@ -93,3 +98,8 @@ final class JuiceMakerViewController: UIViewController {
     }
 }
 
+extension JuiceMakerViewController: Delegate {
+    func updateStock(changeStock: [Fruit : Int]) {
+        self.juiceMaker.setFruitsInStore(changeStock)
+    }
+}

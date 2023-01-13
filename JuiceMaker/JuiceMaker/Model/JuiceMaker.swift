@@ -17,6 +17,10 @@ struct JuiceMaker {
         return fruitStore.getFruits()
     }
     
+    func setFruitsInStore(_ fruits: [Fruit: Int]) {
+        self.fruitStore.setFruits(fruits)
+    }
+    
     private func checkFruitInStore(_ juice: Juice) -> Bool {
         for (fruit, num) in juice.recipe {
             do {
