@@ -72,7 +72,10 @@ final class JuiceMakerViewController: UIViewController {
     
     private func pushFruitStockViewController() {
         guard let fruitStockViewController = self.storyboard?
-            .instantiateViewController(withIdentifier: FruitStockViewController.identifier) else { return }
+            .instantiateViewController(withIdentifier: FruitStockViewController.identifier) as? FruitStockViewController else { return }
+        
+        fruitStockViewController.setFruits(juiceMaker.getFruitsInStore())
+        
         self.navigationController?.pushViewController(fruitStockViewController, animated: false)
     }
     
