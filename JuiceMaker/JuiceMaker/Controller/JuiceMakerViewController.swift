@@ -6,6 +6,9 @@ import UIKit
 final class JuiceMakerViewController: UIViewController {
     
     private var juiceMaker = JuiceMaker()
+    var getFruits: [Fruit: Int] {
+        return juiceMaker.getFruitStore().getFruits()
+    }
     
     @IBOutlet weak private var strawberryLabel: UILabel!
     @IBOutlet weak private var bananaLabel: UILabel!
@@ -16,13 +19,13 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateLabel(juice: juiceMaker.getFruitStore().getFruits())
+        setDefaultLabel(juice: getFruits)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateLabel(juice: juiceMaker.getFruitStore().getFruits())
+        setDefaultLabel(juice: getFruits)
     }
     
     @IBAction func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
@@ -38,18 +41,18 @@ final class JuiceMakerViewController: UIViewController {
         tryMakeJuice(juice)
     }
     
-    private func updateLabel(juice: [Fruit: Int]) {
+    private func setDefaultLabel(juice: [Fruit: Int]) {
         guard let strawberry = juice[.strawberry],
               let banana = juice[.banana],
               let kiwi = juice[.kiwi],
               let pineapple = juice[.pineapple],
               let mango = juice[.mango] else { return }
         
-        strawberryLabel.text = String(strawberry)
-        bananaLabel.text = String(banana)
-        kiwiLabel.text = String(kiwi)
-        pineappleLabel.text = String(pineapple)
-        mangoLabel.text = String(mango)
+        strawberryLabel.text = "\(strawberry)"
+        bananaLabel.text = "\(banana)"
+        kiwiLabel.text = "\(kiwi)"
+        pineappleLabel.text = "\(pineapple)"
+        mangoLabel.text = "\(mango)"
     }
     
     private func showSuccessAlert(message: String) {
@@ -91,7 +94,7 @@ final class JuiceMakerViewController: UIViewController {
     private func tryMakeJuice(_ juice: Juice) {
         if juiceMaker.makeJuice(juice) {
             showSuccessAlert(message: juice.name)
-            updateLabel(juice: juiceMaker.getFruitStore().getFruits())
+            setDefaultLabel(juice: getFruits)
         } else {
             showFailureAlert()
         }
