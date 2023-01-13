@@ -26,7 +26,6 @@ class FruitStore {
             return nil
         }
     }
-    
 
     func modifyFruitStocks(fruit: Fruit, amount: Int) {
         fruitStock[fruit] = amount
@@ -48,4 +47,3 @@ class FruitStore {
         return .success(fruitList)
     }
 }
-
