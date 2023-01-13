@@ -88,7 +88,8 @@ final class JuiceMakerViewController: UIViewController, UpdateLabelsDelegate {
         
         guard let stockManagerViewController = stockManagerNavigationController.viewControllers.first as? StockManagerViewController else { return }
 
-        stockManagerViewController.delegate = self
+        stockManagerViewController.delegate = self        
+        stockManagerNavigationController.modalPresentationStyle = .fullScreen
         
         self.present(stockManagerNavigationController, animated: true)
     }
