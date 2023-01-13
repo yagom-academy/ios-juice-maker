@@ -24,6 +24,7 @@ final class EditStockViewController: UIViewController {
     @IBOutlet private weak var kiwiStepper: UIStepper!
     @IBOutlet private weak var mangoStepper: UIStepper!
     
+    //MARK: - ViewState Method
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStockLabel()
@@ -31,15 +32,40 @@ final class EditStockViewController: UIViewController {
         
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+    
+    }
+    
     //MARK: - 화면 Label에 재고 Update
     private func updateStockLabel() {
         let fruits = fruitStore.fruits.mapValues{ String($0) }
-        
-        strawberryLabel.text = fruits[Fruit.strawberry]
-        bananaLabel.text = fruits[Fruit.banana]
-        pineappleLabel.text = fruits[Fruit.pineapple]
-        kiwiLabel.text = fruits[Fruit.kiwi]
-        mangoLabel.text = fruits[Fruit.mango]
+       
+        for fruit in Fruit.allCases {
+            guard let label = returnLabel(of: fruit) else { return }
+            label.text = fruits[fruit]
+        }
+    }
+    
+    //MARK: - 과일에 맞는 label, stepper 반환
+    func returnLabel(of fruit: Fruit) -> UILabel? {
+        let labelDictionary: [Fruit: UILabel] = [.strawberry: strawberryLabel,
+                                                     .banana: bananaLabel,
+                                                     .pineapple: pineappleLabel,
+                                                     .mango: mangoLabel,
+                                                     .kiwi: kiwiLabel]
+        guard let label = labelDictionary[fruit] else { return nil }
+        return label
+    }
+    
+    func returnStepper(of fruit: Fruit) -> UIStepper? {
+        let stepperDictionary: [Fruit: UIStepper] = [.strawberry: strawberryStepper,
+                                                     .banana: bananaStepper,
+                                                     .pineapple: pineappleStepper,
+                                                     .mango: mangoStepper,
+                                                     .kiwi: kiwiStepper]
+        guard let stepper = stepperDictionary[fruit] else { return nil }
+        return stepper
     }
     
     //MARK: - Stepper 초기 설정
@@ -53,15 +79,7 @@ final class EditStockViewController: UIViewController {
         }
     }
     
-    func returnStepper(of fruit: Fruit) -> UIStepper? {
-        let stepperDictionary: [Fruit: UIStepper] = [.strawberry: strawberryStepper,
-                                                     .banana: bananaStepper,
-                                                     .pineapple: pineappleStepper,
-                                                     .mango: mangoStepper,
-                                                     .kiwi: kiwiStepper]
-        guard let stepper = stepperDictionary[fruit] else { return nil }
-        return stepper
-    }
+   
 
     //MARK: - Stepper Action
     @IBAction func stepperPressed(_ sender: UIStepper) {
@@ -74,19 +92,8 @@ final class EditStockViewController: UIViewController {
         }
     }
     
-    func returnLabel(of fruit: Fruit) -> UILabel? {
-        let labelDictionary: [Fruit: UILabel] = [.strawberry: strawberryLabel,
-                                                     .banana: bananaLabel,
-                                                     .pineapple: pineappleLabel,
-                                                     .mango: mangoLabel,
-                                                     .kiwi: kiwiLabel]
-        guard let label = labelDictionary[fruit] else { return nil }
-        return label
-    }
     
-    //MARK: -
-    override func viewWillDisappear(_ animated: Bool) {
     
-    }
+  
     
 }
