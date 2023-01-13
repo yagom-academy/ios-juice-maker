@@ -26,10 +26,16 @@ final class ViewController: UIViewController {
     
     private let fruitStore = FruitStore.shared
     
+    // MARK: - ViewState Method
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStockLabel()
         allocateButtonTag()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStockLabel()
     }
 
     // MARK: - 버튼에 태그 할당

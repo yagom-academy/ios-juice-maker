@@ -6,10 +6,7 @@
 
 import Foundation
 
-final class FruitStore: DataDelgate {
-    func delegateFruitStock(_ fruitStock: [Fruit : Int]) {
-        fruits = fruitStock
-    }
+final class FruitStore {
     
     private(set) var fruits: [Fruit: Int] = [:]
     static let shared = FruitStore()
@@ -48,5 +45,9 @@ final class FruitStore: DataDelgate {
     func returnFruitStock(of fruit: Fruit) -> Int {
         guard let stock = fruits[fruit] else { return -1 }
         return stock
+    }
+    
+    func updateFruitStock(_ fruitStock: [Fruit: Int]) {
+        fruits = fruitStock
     }
 }

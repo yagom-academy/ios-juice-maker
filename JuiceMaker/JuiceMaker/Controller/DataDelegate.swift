@@ -4,6 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-protocol DataDelgate {
+protocol DataDelegate {
     func delegateFruitStock(_ fruitStock: [Fruit: Int])
 }

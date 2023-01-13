@@ -9,7 +9,6 @@ import UIKit
 final class EditStockViewController: UIViewController {
     static let identifier = "EditStockViewController"
     let fruitStore = FruitStore.shared
-    var delegate: DataDelgate?
     
     // MARK: - 과일 재고 Label Outlet
     @IBOutlet private weak var strawberryLabel: UILabel!
@@ -35,8 +34,8 @@ final class EditStockViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-    
-        delegate?.delegateFruitStock(<#T##fruitStock: [Fruit : Int]##[Fruit : Int]#>)
+        let fruitStock = makeFruitStockDictionary()
+        fruitStore.updateFruitStock(fruitStock)
     }
     
     //MARK: - 화면 Label에 재고 Update
@@ -90,5 +89,15 @@ final class EditStockViewController: UIViewController {
 
             label.text = stock.description
         }
+    }
+    
+    func makeFruitStockDictionary() -> [Fruit: Int] {
+        let fruitStock: [Fruit: Int] = [.strawberry: Int(strawberryStepper.value),
+                                        .banana: Int(bananaStepper.value),
+                                        .pineapple: Int(pineappleStepper.value),
+                                        .mango: Int(mangoStepper.value),
+                                        .kiwi: Int(kiwiStepper.value)]
+        
+        return fruitStock
     }
 }
