@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -287,33 +287,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8c-KA-XG9">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="65"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUD-By-EDw">
-                                        <rect key="frame" x="385" y="20.666666666666671" width="74.333333333333314" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5G-MA-arm">
-                                        <rect key="frame" x="760.33333333333337" y="15.333333333333332" width="53.666666666666629" height="34.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="닫기"/>
-                                        <connections>
-                                            <action selector="pushCloseButton" destination="Yu1-lM-nqp" eventType="touchUpInside" id="DJF-Pt-u0m"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="gUD-By-EDw" firstAttribute="centerY" secondItem="b8c-KA-XG9" secondAttribute="centerY" id="Hbb-dt-QxJ"/>
-                                    <constraint firstItem="gUD-By-EDw" firstAttribute="centerX" secondItem="b8c-KA-XG9" secondAttribute="centerX" id="ZQ4-7W-vcX"/>
-                                    <constraint firstItem="f5G-MA-arm" firstAttribute="centerX" secondItem="b8c-KA-XG9" secondAttribute="centerX" constant="365" id="aNS-Fs-e1F"/>
-                                    <constraint firstItem="f5G-MA-arm" firstAttribute="centerY" secondItem="b8c-KA-XG9" secondAttribute="centerY" id="cKW-qe-FVe"/>
-                                    <constraint firstAttribute="height" constant="65" id="f6P-ub-W0X"/>
-                                </constraints>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="588-bf-dxo">
                                 <rect key="frame" x="72" y="92.000000000000014" width="700" height="206.33333333333337"/>
                                 <subviews>
@@ -469,14 +442,18 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vel-Zv-bQE">
+                                <rect key="frame" x="0.0" y="0.0" width="844" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="ZGO-uQ-vcf"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="588-bf-dxo" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="IdH-lb-QiG"/>
-                            <constraint firstItem="b8c-KA-XG9" firstAttribute="trailing" secondItem="tKV-4l-Vtc" secondAttribute="trailing" id="MPu-Ej-BCD"/>
-                            <constraint firstItem="b8c-KA-XG9" firstAttribute="top" secondItem="tKV-4l-Vtc" secondAttribute="top" id="ONC-hf-olc"/>
-                            <constraint firstItem="b8c-KA-XG9" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="U4P-rN-GIC"/>
                             <constraint firstItem="588-bf-dxo" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="wHN-zG-TXO"/>
                         </constraints>
                     </view>
@@ -484,6 +461,7 @@
                         <outlet property="bananaStepper" destination="O5s-2N-3iP" id="eCJ-bi-snY"/>
                         <outlet property="kiwiStepper" destination="DnZ-NO-X4Y" id="qwa-9c-fiY"/>
                         <outlet property="mangoStepper" destination="aDz-cj-Hhe" id="SGY-bz-bQf"/>
+                        <outlet property="navigationBar" destination="ZGO-uQ-vcf" id="Ref-GR-plm"/>
                         <outlet property="pineappleStepper" destination="fSD-DF-u7o" id="AaG-nV-J7X"/>
                         <outlet property="stockOfBanana" destination="gKu-86-RhI" id="FWd-pT-RMk"/>
                         <outlet property="stockOfKiwi" destination="2C4-Un-lbA" id="YEB-bJ-B5M"/>

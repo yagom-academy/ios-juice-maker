@@ -14,8 +14,10 @@ final class ChangeStockViewController: UIViewController {
         super.viewDidLoad()
         displayStock()
         initializeSteppers()
+        setUpNavigationItem()
     }
     
+    @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var stockOfStrawberry: UILabel!
     @IBOutlet weak var stockOfBanana: UILabel!
     @IBOutlet weak var stockOfPineapple: UILabel!
@@ -30,6 +32,12 @@ final class ChangeStockViewController: UIViewController {
     
     @IBOutlet var steppers: [UIStepper]!
     
+    func setUpNavigationItem() {
+        navigationBar.title = "재고 추가"
+        let dismissButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(dismissCurrentView))
+        navigationBar.rightBarButtonItem = dismissButton
+    }
+
     func initializeSteppers() {
         for stepper in steppers {
             if let selectedFruit = identifyRelatedFruit(of: stepper),
@@ -68,7 +76,7 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    @IBAction func pushCloseButton() {
+    @objc func dismissCurrentView() {
         self.dismiss(animated: true)
     }
     
