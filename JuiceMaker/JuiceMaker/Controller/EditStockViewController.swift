@@ -27,6 +27,7 @@ final class EditStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStockLabel()
+        settingStepper()
         
     }
     
@@ -60,6 +61,32 @@ final class EditStockViewController: UIViewController {
                                                      .kiwi: kiwiStepper]
         guard let stepper = stepperDictionary[fruit] else { return nil }
         return stepper
+    }
+
+    //MARK: - Stepper Action
+    @IBAction func stepperPressed(_ sender: UIStepper) {
+        for fruit in Fruit.allCases {
+            let stock = Int(sender.value)
+            guard sender == returnStepper(of: fruit),
+                  let label = returnLabel(of: fruit) else { continue }
+
+            label.text = stock.description
+        }
+    }
+    
+    func returnLabel(of fruit: Fruit) -> UILabel? {
+        let labelDictionary: [Fruit: UILabel] = [.strawberry: strawberryLabel,
+                                                     .banana: bananaLabel,
+                                                     .pineapple: pineappleLabel,
+                                                     .mango: mangoLabel,
+                                                     .kiwi: kiwiLabel]
+        guard let label = labelDictionary[fruit] else { return nil }
+        return label
+    }
+    
+    //MARK: -
+    override func viewWillDisappear(_ animated: Bool) {
+    
     }
     
 }
