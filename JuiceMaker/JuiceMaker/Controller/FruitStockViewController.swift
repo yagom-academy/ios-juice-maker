@@ -43,7 +43,9 @@ final class FruitStockViewController: UIViewController {
         self.fruitStore = fruits
     }
     
+
     private func setDefaultLabel(juice: [Fruit: Int]) {
+
         guard let strawberry = juice[.strawberry],
               let banana = juice[.banana],
               let kiwi = juice[.kiwi],
