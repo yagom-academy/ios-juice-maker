@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class JuiceMakeViewController: UIViewController {
+final class JuiceMakeViewController: UIViewController, AlertDelegate {
     
     var currentFruitBasket: [Fruit: Int] {
         return FruitStore.shared.fruitsBasket
@@ -35,9 +35,6 @@ final class JuiceMakeViewController: UIViewController {
         pineappleLabel.text = currentFruitBasket[.pineapple]?.description
         kiwiLabel.text = currentFruitBasket[.kiwi]?.description
         mangoLabel.text = currentFruitBasket[.mango]?.description
-//        [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
-//            $0.sizeToFit()
-//        }
     }
     
     func createButtonTarget(_ sender: UIButton) -> FruitJuice? {
@@ -75,17 +72,13 @@ final class JuiceMakeViewController: UIViewController {
     
     func showFailureAlert(_ error: juiceMakeError) {
         let builder = AlertBuilder()
+        builder.delegate = self
         let alertDirector = AlertDirector()
         if error == juiceMakeError.outOfStockError {
-           alertDirector.buildOutOfStockAlert(builder) {
-                self.presentFruitStoreVC()
-            }
-            
+           alertDirector.buildOutOfStockAlert(builder)
             self.present(builder.buildAlert(), animated: true)
-
         } else if error == juiceMakeError.unknownError {
             alertDirector.buildUnknownAlert(builder)
-            
             self.present(builder.buildAlert(), animated: true)
         }
     }
