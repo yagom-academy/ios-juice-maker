@@ -6,41 +6,113 @@ import UIKit
 
 final class ChangeStockViewController: UIViewController {
     
-    @IBOutlet weak var numberOfStrawberry: UILabel!
-    @IBOutlet weak var numberOfBanana: UILabel!
-    @IBOutlet weak var numberOfPineapple: UILabel!
-    @IBOutlet weak var numberOfKiwi: UILabel!
-    @IBOutlet weak var numberOfMango: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
-    @IBAction func pushPlusStrawberry(_ sender: Any) {
-        //
+    @IBOutlet weak var stockOfStrawberry: UILabel!
+    @IBOutlet weak var stockOfBanana: UILabel!
+    @IBOutlet weak var stockOfPineapple: UILabel!
+    @IBOutlet weak var stockOfKiwi: UILabel!
+    @IBOutlet weak var stockOfMango: UILabel!
+    
+    @IBOutlet weak var strawberryStepper: UIStepper!
+    @IBOutlet weak var bananaStepper: UIStepper!
+    @IBOutlet weak var pineappleStepper: UIStepper!
+    @IBOutlet weak var kiwiStepper: UIStepper!
+    @IBOutlet weak var mangoStepper: UIStepper!
+    
+    @IBOutlet var steppers: [UIStepper]!
+    
+    private var fruitsStock: [Fruits: Int] {
+        return FruitStore.shared.fruitsStock
     }
-    @IBAction func pushMinusStrawberry(_ sender: Any) {
-        //
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        displayStock()
+        initializeSteppers()
+        setUpNavigationBar()
     }
-    @IBAction func pushPlusBanana(_ sender: Any) {
-        //
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        NotificationCenter.default.post(name: Notification.Name.fruitStockChanged, object: nil)
     }
-    @IBAction func pushMinusBanana(_ sender: Any) {
-        //
+    
+    private func displayStock() {
+        if let strawberryStock = fruitsStock[.strawberry],
+           let bananaStock = fruitsStock[.banana],
+           let pineappleStock = fruitsStock[.pineapple],
+           let kiwiStock = fruitsStock[.kiwi],
+           let mangoStock = fruitsStock[.mango] {
+            stockOfStrawberry.text = String(strawberryStock)
+            stockOfBanana.text = String(bananaStock)
+            stockOfPineapple.text = String(pineappleStock)
+            stockOfKiwi.text = String(kiwiStock)
+            stockOfMango.text = String(mangoStock)
+        }
     }
-    @IBAction func pushPlusPineApple(_ sender: Any) {
-        //
+    
+    private func initializeSteppers() {
+        for stepper in steppers {
+            if let selectedFruit = identifyRelatedFruit(of: stepper),
+               let initialValue = fruitsStock[selectedFruit] {
+                stepper.value = Double(initialValue)
+            }
+        }
     }
-    @IBAction func pushMinusPineApple(_ sender: Any) {
-        //
+    
+    private func identifyRelatedFruit(of stepper: UIStepper) -> Fruits? {
+        switch stepper {
+        case strawberryStepper:
+            return .strawberry
+        case bananaStepper:
+            return .banana
+        case pineappleStepper:
+            return .pineapple
+        case kiwiStepper:
+            return .kiwi
+        case mangoStepper:
+            return .mango
+        default:
+            return nil
+        }
     }
-    @IBAction func pushPlusKiwi(_ sender: Any) {
-        //
+    
+    private func setUpNavigationBar() {
+        navigationBar.title = "재고 추가"
+        let dismissButton = UIBarButtonItem(title: "닫기",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(dismissCurrentView))
+        navigationBar.rightBarButtonItem = dismissButton
     }
-    @IBAction func pushMinusKiwi(_ sender: Any) {
-        //
+    
+    @objc private func dismissCurrentView() {
+        self.dismiss(animated: true)
     }
-    @IBAction func pushPlusMango(_ sender: Any) {
-        //
+
+    @IBAction func pushStepper(_ sender: UIStepper) {
+        guard let fruitsLabel = identifyRelatedLabel(of: sender),
+              let fruit = identifyRelatedFruit(of: sender) else { return }
+        
+        FruitStore.shared.fruitsStock[fruit] = Int(sender.value)
+        fruitsLabel.text = Int(sender.value).description
     }
-    @IBAction func pushMinusMango(_ sender: Any) {
-        //
+    
+    private func identifyRelatedLabel(of stepper: UIStepper) -> UILabel? {
+        switch stepper {
+        case strawberryStepper:
+            return stockOfStrawberry
+        case bananaStepper:
+            return stockOfBanana
+        case pineappleStepper:
+            return stockOfPineapple
+        case kiwiStepper:
+            return stockOfKiwi
+        case mangoStepper:
+            return stockOfMango
+        default:
+            return nil
+        }
     }
-   
 }

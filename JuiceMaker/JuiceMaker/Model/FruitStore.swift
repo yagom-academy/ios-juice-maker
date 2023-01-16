@@ -7,7 +7,7 @@ class FruitStore {
     
     var fruitsStock = [Fruits: Int]()
     
-    func fillFruitsStock() {
+    private func fillFruitsStock() {
         for fruit in Fruits.allCases {
             fruitsStock[fruit] = 10
         }
