@@ -288,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="1cN-g1-myO">
-                                <rect key="frame" x="16" y="107" width="812" height="162"/>
+                                <rect key="frame" x="16" y="114" width="812" height="162"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="88" placeholderIntrinsicHeight="142" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WUj-F2-WLL">
                                         <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="162"/>
@@ -446,9 +446,10 @@
                         <constraints>
                             <constraint firstItem="1cN-g1-myO" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="9pU-Ez-qsj" userLabel="Stack View.leading = Safe Area.leading + 16"/>
                             <constraint firstAttribute="trailing" secondItem="yLe-7R-3p2" secondAttribute="trailing" id="BpG-cV-faC"/>
-                            <constraint firstItem="1cN-g1-myO" firstAttribute="top" secondItem="yLe-7R-3p2" secondAttribute="bottom" constant="75" id="DeS-Ct-TUD"/>
                             <constraint firstItem="yLe-7R-3p2" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="Mho-yW-r9w"/>
                             <constraint firstItem="gcO-Xb-kNs" firstAttribute="trailing" secondItem="1cN-g1-myO" secondAttribute="trailing" constant="16" id="ggh-d8-oJ4" userLabel="Safe Area.trailing = Stack View.trailing + 16"/>
+                            <constraint firstItem="1cN-g1-myO" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="hgo-Ev-Awr"/>
+                            <constraint firstItem="1cN-g1-myO" firstAttribute="centerX" secondItem="tKV-4l-Vtc" secondAttribute="centerX" id="pVB-kC-yJP"/>
                             <constraint firstItem="yLe-7R-3p2" firstAttribute="top" secondItem="tKV-4l-Vtc" secondAttribute="top" id="wct-cq-dZm"/>
                         </constraints>
                     </view>
