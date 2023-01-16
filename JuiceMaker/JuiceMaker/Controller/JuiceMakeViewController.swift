@@ -74,13 +74,12 @@ final class JuiceMakeViewController: UIViewController, AlertDelegate {
         let builder = AlertBuilder()
         builder.delegate = self
         let alertDirector = AlertDirector()
-        if error == juiceMakeError.outOfStockError {
-           alertDirector.buildOutOfStockAlert(builder)
-            self.present(builder.buildAlert(), animated: true)
-        } else if error == juiceMakeError.unknownError {
-            alertDirector.buildUnknownAlert(builder)
-            self.present(builder.buildAlert(), animated: true)
-        }
+        
+        error == juiceMakeError.outOfStockError ?
+        alertDirector.buildOutOfStockAlert(builder) :
+        alertDirector.buildUnknownAlert(builder)
+        
+        self.present(builder.buildAlert(), animated: true)
     }
     
     func presentFruitStoreVC() {

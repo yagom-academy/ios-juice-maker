@@ -34,7 +34,12 @@ final class FruitStoreViewController: UIViewController {
     
     private func setUpNavigationItem() {
         self.title = "재고 추가"
-        let rightButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(goBackJuiceMakeView))
+        let rightButton = UIBarButtonItem(
+            title: "닫기",
+            style: .plain,
+            target: self,
+            action: #selector(goBackJuiceMakeView)
+        )
         self.navigationItem.rightBarButtonItem = rightButton
     }
     
