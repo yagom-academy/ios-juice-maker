@@ -68,25 +68,25 @@ final class JuiceMakeViewController: UIViewController {
     func showSuccessAlert(with targetJuice: FruitJuice) {
         let builder = AlertBuilder()
         let alertDirector = AlertDirector()
-        let successAlert = alertDirector.buildSuccessAlert(builder, with: targetJuice)
+        alertDirector.buildSuccessAlert(builder, with: targetJuice)
         
-        self.present(successAlert, animated: true)
+        self.present(builder.buildAlert(), animated: true)
     }
     
     func showFailureAlert(_ error: juiceMakeError) {
         let builder = AlertBuilder()
         let alertDirector = AlertDirector()
         if error == juiceMakeError.outOfStockError {
-            let outOfStockAlert = alertDirector.buildOutOfStockAlert(builder) {
+           alertDirector.buildOutOfStockAlert(builder) {
                 self.presentFruitStoreVC()
             }
             
-            self.present(outOfStockAlert, animated: true)
+            self.present(builder.buildAlert(), animated: true)
 
         } else if error == juiceMakeError.unknownError {
-            let unknownAlert = alertDirector.buildUnknownAlert(builder)
+            alertDirector.buildUnknownAlert(builder)
             
-            self.present(unknownAlert, animated: true)
+            self.present(builder.buildAlert(), animated: true)
         }
     }
     

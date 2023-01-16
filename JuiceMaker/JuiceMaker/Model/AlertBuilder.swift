@@ -8,19 +8,28 @@
 
 import UIKit
 
-final class AlertBuilder {
+protocol Builder {
+    var alert: UIAlertController {get}
     
+    func setTitle(_ title: String) -> Builder
+    func setMessage(_ mesasge: String) -> Builder
+    func setAlertAction(title: String, style: UIAlertAction.Style, completion: (() -> ())?) -> Builder
+}
+
+final class AlertBuilder: Builder {
     var alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
     
-    func setTitle(_ title: String) {
+    func setTitle(_ title: String) -> Builder {
         alert.title = title
+        return self
     }
     
-    func setMessage(_ message: String) {
+    func setMessage(_ message: String) -> Builder {
         alert.message = message
+        return self
     }
     
-    func setAlertAction(title: String, style: UIAlertAction.Style, completion: (() -> ())? = nil) {
+    func setAlertAction(title: String, style: UIAlertAction.Style, completion: (() -> ())? = nil) -> Builder {
         let alertAction = UIAlertAction(
             title: title,
             style: style,
@@ -28,9 +37,9 @@ final class AlertBuilder {
             completion?()
         })
         alert.addAction(alertAction)
+        return self
     }
 
-    
     func buildAlert() -> UIAlertController {
         return alert
     }
