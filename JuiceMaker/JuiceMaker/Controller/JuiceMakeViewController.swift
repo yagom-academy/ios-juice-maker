@@ -8,11 +8,11 @@ import UIKit
 
 final class JuiceMakeViewController: UIViewController, AlertDelegate {
     
-    var currentFruitBasket: [Fruit: Int] {
+    private var currentFruitBasket: [Fruit: Int] {
         return FruitStore.shared.fruitsBasket
     }
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -29,7 +29,7 @@ final class JuiceMakeViewController: UIViewController, AlertDelegate {
         setUpLabel()
     }
     
-    func setUpLabel() {
+    private func setUpLabel() {
         strawberryLabel.text = currentFruitBasket[.strawberry]?.description
         bananaLabel.text = currentFruitBasket[.banana]?.description
         pineappleLabel.text = currentFruitBasket[.pineapple]?.description
@@ -37,7 +37,7 @@ final class JuiceMakeViewController: UIViewController, AlertDelegate {
         mangoLabel.text = currentFruitBasket[.mango]?.description
     }
     
-    func createButtonTarget(_ sender: UIButton) -> FruitJuice? {
+    private func createButtonTarget(_ sender: UIButton) -> FruitJuice? {
         guard let titleLabel = sender.titleLabel?.text else {
             return nil
         }
@@ -62,7 +62,7 @@ final class JuiceMakeViewController: UIViewController, AlertDelegate {
         }
     }
     
-    func showSuccessAlert(with targetJuice: FruitJuice) {
+    private func showSuccessAlert(with targetJuice: FruitJuice) {
         let builder = AlertBuilder()
         let alertDirector = AlertDirector()
         alertDirector.buildSuccessAlert(builder, with: targetJuice)
@@ -70,7 +70,7 @@ final class JuiceMakeViewController: UIViewController, AlertDelegate {
         self.present(builder.buildAlert(), animated: true)
     }
     
-    func showFailureAlert(_ error: juiceMakeError) {
+    private func showFailureAlert(_ error: juiceMakeError) {
         let builder = AlertBuilder()
         builder.delegate = self
         let alertDirector = AlertDirector()

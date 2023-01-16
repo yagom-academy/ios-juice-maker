@@ -7,9 +7,9 @@
 import UIKit
 
 final class FruitStoreViewController: UIViewController {
-    let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore.shared
     
-    var currentFruitBasket: [Fruit: Int] {
+    private var currentFruitBasket: [Fruit: Int] {
         return FruitStore.shared.fruitsBasket
     }
     
@@ -32,17 +32,17 @@ final class FruitStoreViewController: UIViewController {
         setUpStepper()
     }
     
-    func setUpNavigationItem() {
+    private func setUpNavigationItem() {
         self.title = "재고 추가"
         let rightButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(goBackJuiceMakeView))
         self.navigationItem.rightBarButtonItem = rightButton
     }
     
-    @objc func goBackJuiceMakeView() {
+    @objc private func goBackJuiceMakeView() {
         self.dismiss(animated: true)
     }
     
-    func setUpLabel() {
+    private func setUpLabel() {
         strawberryLabel.text = currentFruitBasket[.strawberry]?.description
         bananaLabel.text = currentFruitBasket[.banana]?.description
         pineappleLabel.text = currentFruitBasket[.pineapple]?.description
@@ -50,7 +50,7 @@ final class FruitStoreViewController: UIViewController {
         mangoLabel.text = currentFruitBasket[.mango]?.description
     }
     
-    func setUpStepper() {
+    private func setUpStepper() {
         if let strawBerryValue = currentFruitBasket[.strawberry],
            let bananaValue = currentFruitBasket[.banana],
            let pineappleValue = currentFruitBasket[.pineapple],
@@ -69,7 +69,7 @@ final class FruitStoreViewController: UIViewController {
         }
     }
     
-    func fruitLabel(_ fruit: Fruit) -> UILabel {
+    private func fruitLabel(_ fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
             return strawberryLabel
@@ -84,7 +84,7 @@ final class FruitStoreViewController: UIViewController {
         }
     }
     
-    func stepperTarget(_ stepper: UIStepper)  -> Fruit? {
+    private func stepperTarget(_ stepper: UIStepper)  -> Fruit? {
         switch stepper {
         case strawberryStepper:
             return Fruit.strawberry
