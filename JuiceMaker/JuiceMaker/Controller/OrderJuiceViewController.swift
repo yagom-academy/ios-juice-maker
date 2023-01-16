@@ -14,6 +14,14 @@ final class OrderJuiceViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
+    @IBOutlet weak private var ddalbaJuiceOrderButton: UIButton!
+    @IBOutlet weak private var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak private var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak private var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak private var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak private var mangoJuiceOrderButton: UIButton!
+    @IBOutlet weak private var mangkiJuiceOrderButton: UIButton!
+    
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
@@ -36,25 +44,21 @@ final class OrderJuiceViewController: UIViewController {
         mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango).description
     }
     
-    private func setButton(_ sender: UIButton) -> JuiceMenu? {
-        guard let buttonTitle = sender.titleLabel?.text else {
-            return nil
-        }
-        
-        switch buttonTitle {
-        case "딸기쥬스 주문":
+    private func takeOrders(_ sender: UIButton) -> JuiceMenu? {
+        switch sender {
+        case strawberryJuiceOrderButton:
             return JuiceMenu.strawberryJuice
-        case "딸바쥬스 주문":
+        case ddalbaJuiceOrderButton:
             return JuiceMenu.strawberryBananaJuice
-        case "바나나쥬스 주문":
+        case bananaJuiceOrderButton:
             return JuiceMenu.bananaJuice
-        case "파인애플쥬스 주문":
+        case pineappleJuiceOrderButton:
             return JuiceMenu.pineappleJuice
-        case "키위쥬스 주문":
+        case kiwiJuiceOrderButton:
             return JuiceMenu.kiwiJuice
-        case "망고쥬스 주문":
+        case mangoJuiceOrderButton:
             return JuiceMenu.mangoJuice
-        case "망키쥬스 주문":
+        case mangkiJuiceOrderButton:
             return JuiceMenu.mangoKiwiJuice
         default:
             return nil
@@ -95,7 +99,7 @@ final class OrderJuiceViewController: UIViewController {
     }
     
     @IBAction private func orderButtonTapped(_ sender: UIButton) {
-        guard let orderedJuice = setButton(sender) else {
+        guard let orderedJuice = takeOrders(sender) else {
             return
         }
         completeOrder(of: orderedJuice)

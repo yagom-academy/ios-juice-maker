@@ -15,11 +15,11 @@ final class ManageStockViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
     private let juiceMaker = JuiceMaker()
     
@@ -27,8 +27,13 @@ final class ManageStockViewController: UIViewController {
         super.viewDidLoad()
 
         updateStockLabel()
-        initTitle()
-        setStepper()
+        initNavigationTitle()
+        setUpStepper()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: NSNotification.Name("dismiss"), object: nil)
     }
     
     private func updateStockLabel() {
@@ -39,16 +44,15 @@ final class ManageStockViewController: UIViewController {
         mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango).description
     }
     
-    private func initTitle() {
+    private func initNavigationTitle() {
         let navigationTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-        navigationTitle.numberOfLines = 1
         navigationTitle.textAlignment = .center
         navigationTitle.font = UIFont.systemFont(ofSize: 30)
         navigationTitle.text = "재고 추가"
         self.navigationItem.titleView = navigationTitle
     }
     
-    private func setStepper() {
+    private func setUpStepper() {
         let stepperList: [UIStepper] = [strawberryStepper, bananaStepper, pineappleStepper, kiwiStepper, mangoStepper]
         
         for stepper in stepperList {
@@ -78,12 +82,7 @@ final class ManageStockViewController: UIViewController {
             return (nil, nil)
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.post(name: NSNotification.Name("dismiss"), object: nil)
-    }
-    
+   
     @IBAction private func stepperTapped(_ sender: UIStepper) {
         guard let fruit = matchStepperAndFruit(sender).fruit,
         let label = matchStepperAndFruit(sender).label else { return }
