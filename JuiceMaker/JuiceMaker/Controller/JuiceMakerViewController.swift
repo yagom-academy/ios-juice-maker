@@ -124,11 +124,11 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func moveScreen(to navigationControlleridentifier: String) {
-        guard let fruitStoreVC = storyboard?
+        guard let viewController = storyboard?
             .instantiateViewController(identifier: navigationControlleridentifier) as?
                 UINavigationController else { return }
-        fruitStoreVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        present(fruitStoreVC, animated: true, completion: nil)
+        viewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction private func didTapReviseStock(_ sender: UIBarButtonItem) {

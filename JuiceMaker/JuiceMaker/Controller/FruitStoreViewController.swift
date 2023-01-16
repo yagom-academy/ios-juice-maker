@@ -39,7 +39,7 @@ final class FruitStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrentStock()
-        setFruitStepper()
+        configureFruitStepper()
         configureUI()
     }
     
@@ -55,7 +55,7 @@ final class FruitStoreViewController: UIViewController {
         }
     }
     
-    private func setFruitStepper() {
+    private func configureFruitStepper() {
         for (fruit, stepper) in fruitStockStepper {
             stepper.value = Double(FruitStore.shared.checkStockValue(fruit: fruit))
         }
@@ -105,7 +105,8 @@ final class FruitStoreViewController: UIViewController {
         return stockList
     }
     
-    @IBAction private func touchUpDissmisButton(_ sender: UIButton) {
+    @IBAction private func didTapDissmisButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+
 }
