@@ -62,12 +62,12 @@ final class MainViewController: UIViewController {
         moveToChangeStockViewController()
     }
     
-    func moveToChangeStockViewController() {
+    private func moveToChangeStockViewController() {
         guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStock") as? ChangeStockViewController else { return }
         self.navigationController?.present(nextVC, animated: true)
     }
     
-    func setSuccessAlert(juice: JuiceMaker.Juice) {
+    private func setSuccessAlert(juice: JuiceMaker.Juice) {
         let successAlert = UIAlertController(title: AlertMessege.success,
                                              message: juice.name + AlertMessege.madeJuice,
                                              preferredStyle: UIAlertController.Style.alert)
@@ -80,7 +80,7 @@ final class MainViewController: UIViewController {
         present(successAlert, animated: true, completion: nil)
     }
     
-    func setFailAlert() {
+    private func setFailAlert() {
         let failAlert = UIAlertController(title: AlertMessege.failure,
                                           message: AlertMessege.lackOfStock,
                                           preferredStyle: UIAlertController.Style.alert)
@@ -104,7 +104,7 @@ final class MainViewController: UIViewController {
         order(selectedJuice)
     }
     
-    func identifyJuice(of button: UIButton) -> JuiceMaker.Juice? {
+    private func identifyJuice(of button: UIButton) -> JuiceMaker.Juice? {
         switch button {
         case orderStrawberry:
             return .strawberry
@@ -125,7 +125,7 @@ final class MainViewController: UIViewController {
         }
     }
     
-    func order(_ juice: JuiceMaker.Juice) {
+    private func order(_ juice: JuiceMaker.Juice) {
         do {
             try juiceMaker.make(juice: juice)
             setSuccessAlert(juice: juice)

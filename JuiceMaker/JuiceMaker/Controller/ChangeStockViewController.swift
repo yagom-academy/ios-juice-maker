@@ -38,7 +38,7 @@ final class ChangeStockViewController: UIViewController {
         center.post(name: Notification.Name.fruitStockChanged, object: nil)
     }
     
-    func displayStock() {
+    private func displayStock() {
         if let strawberryStock = fruitsStock[.strawberry],
            let bananaStock = fruitsStock[.banana],
            let pineappleStock = fruitsStock[.pineapple],
@@ -52,7 +52,7 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    func initializeSteppers() {
+    private func initializeSteppers() {
         for stepper in steppers {
             if let selectedFruit = identifyRelatedFruit(of: stepper),
                let initialValue = fruitsStock[selectedFruit] {
@@ -61,7 +61,7 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    func identifyRelatedFruit(of stepper: UIStepper) -> Fruits? {
+    private func identifyRelatedFruit(of stepper: UIStepper) -> Fruits? {
         switch stepper {
         case strawberryStepper:
             return .strawberry
@@ -78,7 +78,7 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    func setUpNavigationBar() {
+    private func setUpNavigationBar() {
         navigationBar.title = "재고 추가"
         let dismissButton = UIBarButtonItem(title: "닫기",
                                             style: .plain,
@@ -87,7 +87,7 @@ final class ChangeStockViewController: UIViewController {
         navigationBar.rightBarButtonItem = dismissButton
     }
     
-    @objc func dismissCurrentView() {
+    @objc private func dismissCurrentView() {
         self.dismiss(animated: true)
     }
 
@@ -99,7 +99,7 @@ final class ChangeStockViewController: UIViewController {
         fruitsLabel.text = Int(sender.value).description
     }
     
-    func identifyRelatedLabel(of stepper: UIStepper) -> UILabel? {
+    private func identifyRelatedLabel(of stepper: UIStepper) -> UILabel? {
         switch stepper {
         case strawberryStepper:
             return stockOfStrawberry
