@@ -497,6 +497,11 @@
                         <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="y2P-Cg-YX8"/>
                         <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="2kZ-JF-Jka"/>
                         <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="Cvg-zm-hVh"/>
+                        <outletCollection property="stepperList" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="pgj-eA-TLQ"/>
+                        <outletCollection property="stepperList" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="2NP-kD-1RZ"/>
+                        <outletCollection property="stepperList" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="8aM-MI-UJR"/>
+                        <outletCollection property="stepperList" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="MUL-hx-mKj"/>
+                        <outletCollection property="stepperList" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="4eT-Fg-HtL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

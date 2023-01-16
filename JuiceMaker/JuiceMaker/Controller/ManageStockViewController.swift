@@ -21,6 +21,8 @@ final class ManageStockViewController: UIViewController {
     @IBOutlet weak private var kiwiStepper: UIStepper!
     @IBOutlet weak private var mangoStepper: UIStepper!
     
+    @IBOutlet private var stepperList: [UIStepper]!
+    
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
@@ -45,16 +47,14 @@ final class ManageStockViewController: UIViewController {
     }
     
     private func initNavigationTitle() {
-        let navigationTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        let navigationTitle = UILabel()
         navigationTitle.textAlignment = .center
-        navigationTitle.font = UIFont.systemFont(ofSize: 30)
+        navigationTitle.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         navigationTitle.text = "재고 추가"
         self.navigationItem.titleView = navigationTitle
     }
     
     private func setUpStepper() {
-        let stepperList: [UIStepper] = [strawberryStepper, bananaStepper, pineappleStepper, kiwiStepper, mangoStepper]
-        
         for stepper in stepperList {
             guard let fruit = matchStepperAndFruit(stepper).fruit else { return }
             stepper.value = Double(juiceMaker.currentFruitStock(of: fruit))

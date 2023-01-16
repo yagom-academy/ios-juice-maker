@@ -28,12 +28,7 @@ final class OrderJuiceViewController: UIViewController {
         super.viewDidLoad()
         
         updateStockLabel()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didDismissManageStockView(_:)), name: NSNotification.Name("dismiss"), object: nil)
-    }
-    
-    @objc func didDismissManageStockView(_ notification: Notification) {
-        self.updateStockLabel()
+        setUpNotificationObserver()
     }
     
     private func updateStockLabel() {
@@ -42,6 +37,14 @@ final class OrderJuiceViewController: UIViewController {
         pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple).description
         kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi).description
         mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango).description
+    }
+    
+    private func setUpNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didDismissManageStockView(_:)), name: NSNotification.Name("dismiss"), object: nil)
+    }
+    
+    @objc private func didDismissManageStockView(_ notification: Notification) {
+        self.updateStockLabel()
     }
     
     private func takeOrders(_ sender: UIButton) -> JuiceMenu? {
@@ -69,10 +72,10 @@ final class OrderJuiceViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(orderedJuice)
             updateStockLabel()
-            successAlert(name: orderedJuice.name)
+            showSuccessAlert(name: orderedJuice.name)
         } catch JuiceMakerError.outOfStock {
             print(JuiceMakerError.outOfStock.message)
-            failAlert()
+            showFailAlert()
         } catch JuiceMakerError.fruitError {
             print(JuiceMakerError.fruitError.message)
         } catch {
@@ -80,14 +83,14 @@ final class OrderJuiceViewController: UIViewController {
         }
     }
  
-    private func successAlert(name: String) {
+    private func showSuccessAlert(name: String) {
         let alert = UIAlertController(title: "\(name) 나왔습니다! 맛있게 드세요!",message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "확인", style: .default)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
     
-    private func failAlert() {
+    private func showFailAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let ok = UIAlertAction(title: "예", style: .default, handler: { action in
             self.performSegue(withIdentifier: "toManageVC", sender: nil)
