@@ -1,4 +1,4 @@
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - JuiceMakerViewController.swift
 //  Created by Vetto, 레옹아범 on 2023.01.03
 
 import UIKit
@@ -7,7 +7,7 @@ final class JuiceMakerViewController: UIViewController {
     
     private var juiceMaker = JuiceMaker()
     var getFruits: [Fruit: Int] {
-        return juiceMaker.getFruitStore().getFruits()
+        return juiceMaker.getFruitStore().fruits
     }
     
     @IBOutlet weak private var strawberryLabel: UILabel!

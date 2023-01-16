@@ -22,7 +22,7 @@ final class FruitStockViewController: UIViewController {
     
     var fruitStore: FruitStore = FruitStore()
     var getFruits: [Fruit: Int] {
-        return fruitStore.getFruits()
+        return fruitStore.fruits
     }
     weak var delegate: UpdatableFruitStock?
     

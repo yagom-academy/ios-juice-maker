@@ -2,7 +2,7 @@
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
 class FruitStore {
-    private var fruits: [Fruit: Int] = [:]
+    private(set) var fruits: [Fruit: Int] = [:]
 
     init(amount: Int = 0) {
         self.fruits[.strawberry] = amount
@@ -10,10 +10,6 @@ class FruitStore {
         self.fruits[.kiwi] = amount
         self.fruits[.mango] = amount
         self.fruits[.pineapple] = amount
-    }
-    
-    func getFruits() -> [Fruit: Int] {
-        return fruits
     }
     
     func setFruits(_ fruits: [Fruit: Int]) {
