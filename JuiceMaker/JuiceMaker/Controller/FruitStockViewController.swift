@@ -32,7 +32,7 @@ final class FruitStockViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setDefaultLabel(fruits)
+        setDefaultLabel()
         setDefaultStepperValue()
     }
     
@@ -40,7 +40,7 @@ final class FruitStockViewController: UIViewController {
         self.fruits = fruits
     }
     
-    private func setDefaultLabel(_ fruits: [Fruit: Int]) {
+    private func setDefaultLabel() {
         guard let strawberry = fruits[.strawberry],
               let banana = fruits[.banana],
               let kiwi = fruits[.kiwi],
@@ -56,10 +56,10 @@ final class FruitStockViewController: UIViewController {
     
     private func setDefaultStepperValue() {
         guard let strawberryStock = fruits[.strawberry],
-        let bananaStock = fruits[.banana],
-        let pineappleStock = fruits[.pineapple],
-        let kiwiStock = fruits[.kiwi],
-        let mangoStock = fruits[.mango] else { return }
+              let bananaStock = fruits[.banana],
+              let pineappleStock = fruits[.pineapple],
+              let kiwiStock = fruits[.kiwi],
+              let mangoStock = fruits[.mango] else { return }
         
         strawberryStepper.value = Double(strawberryStock)
         bananaStepper.value = Double(bananaStock)
@@ -74,14 +74,9 @@ final class FruitStockViewController: UIViewController {
     }
     
     @IBAction private func didTapFruitStepper(_ sender: UIStepper) {
-        guard let (fruit, label) = decideStepper(sender),
-              let currentStock = fruits[fruit] else { return }
+        guard let (fruit, label) = decideStepper(sender) else { return }
         
-        if Int(sender.value) > currentStock {
-            fruits[fruit] = currentStock + 1
-        } else if Int(sender.value) < currentStock {
-            fruits[fruit] = currentStock - 1
-        }
+        fruits[fruit] = Int(sender.value)
         
         updateLabel(label: label, stepper: sender)
     }

@@ -39,13 +39,7 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setDefaultLabel(juice: getFruits)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setDefaultLabel(juice: getFruits)
+        setLabel(getFruits)
     }
     
     @IBAction func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
@@ -61,18 +55,12 @@ final class JuiceMakerViewController: UIViewController {
         tryMakeJuice(juice)
     }
     
-    private func setDefaultLabel(juice: [Fruit: Int]) {
-        guard let strawberry = juice[.strawberry],
-              let banana = juice[.banana],
-              let kiwi = juice[.kiwi],
-              let pineapple = juice[.pineapple],
-              let mango = juice[.mango] else { return }
-        
-        strawberryLabel.text = "\(strawberry)"
-        bananaLabel.text = "\(banana)"
-        kiwiLabel.text = "\(kiwi)"
-        pineappleLabel.text = "\(pineapple)"
-        mangoLabel.text = "\(mango)"
+    private func setLabel(_ fruits: [Fruit: Int]) {
+        strawberryLabel.text = "\(strawberryAmount)"
+        bananaLabel.text = "\(bananaAmount)"
+        kiwiLabel.text = "\(kiwiAmount)"
+        pineappleLabel.text = "\(pineappleAmount)"
+        mangoLabel.text = "\(mangoAmount)"
     }
     
     private func showSuccessAlert(message: String) {
@@ -143,5 +131,6 @@ final class JuiceMakerViewController: UIViewController {
 extension JuiceMakerViewController: UpdatableFruitStock {
     func updateStock(changeStock: [Fruit: Int]) {
         self.juiceMaker.setFruitStore(changeStock)
+        setLabel(changeStock)
     }
 }
