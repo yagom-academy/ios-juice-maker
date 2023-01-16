@@ -14,7 +14,7 @@ final class ChangeStockViewController: UIViewController {
         super.viewDidLoad()
         displayStock()
         initializeSteppers()
-        setUpNavigationItem()
+        setUpNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,7 +56,6 @@ final class ChangeStockViewController: UIViewController {
         for stepper in steppers {
             if let selectedFruit = identifyRelatedFruit(of: stepper),
                let initialValue = fruitsStock[selectedFruit] {
-                stepper.transform = stepper.transform.scaledBy(x: 1.0, y: 1.0)
                 stepper.value = Double(initialValue)
             }
         }
@@ -64,16 +63,22 @@ final class ChangeStockViewController: UIViewController {
     
     func identifyRelatedFruit(of stepper: UIStepper) -> Fruits? {
         switch stepper {
-        case strawberryStepper: return .strawberry
-        case bananaStepper: return .banana
-        case pineappleStepper: return .pineapple
-        case kiwiStepper: return .kiwi
-        case mangoStepper: return .mango
-        default: return nil
+        case strawberryStepper:
+            return .strawberry
+        case bananaStepper:
+            return .banana
+        case pineappleStepper:
+            return .pineapple
+        case kiwiStepper:
+            return .kiwi
+        case mangoStepper:
+            return .mango
+        default:
+            return nil
         }
     }
     
-    func setUpNavigationItem() {
+    func setUpNavigationBar() {
         navigationBar.title = "재고 추가"
         let dismissButton = UIBarButtonItem(title: "닫기",
                                             style: .plain,
@@ -96,12 +101,18 @@ final class ChangeStockViewController: UIViewController {
     
     func identifyRelatedLabel(of stepper: UIStepper) -> UILabel? {
         switch stepper {
-        case strawberryStepper: return stockOfStrawberry
-        case bananaStepper: return stockOfBanana
-        case pineappleStepper: return stockOfPineapple
-        case kiwiStepper: return stockOfKiwi
-        case mangoStepper: return stockOfMango
-        default: return nil
+        case strawberryStepper:
+            return stockOfStrawberry
+        case bananaStepper:
+            return stockOfBanana
+        case pineappleStepper:
+            return stockOfPineapple
+        case kiwiStepper:
+            return stockOfKiwi
+        case mangoStepper:
+            return stockOfMango
+        default:
+            return nil
         }
     }
 }

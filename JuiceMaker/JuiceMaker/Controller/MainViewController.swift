@@ -106,14 +106,22 @@ final class MainViewController: UIViewController {
     
     func identifyJuice(of button: UIButton) -> JuiceMaker.Juice? {
         switch button {
-        case orderStrawberry: return .strawberry
-        case orderBanana: return .banana
-        case orderPineapple: return .pineapple
-        case orderKiwi: return .kiwi
-        case orderMango: return .mango
-        case orderStrawberryBanana: return .strawberryBanana
-        case orderMangoKiwi: return .mangoKiwi
-        default: return nil
+        case orderStrawberry:
+            return .strawberry
+        case orderBanana:
+            return .banana
+        case orderPineapple:
+            return .pineapple
+        case orderKiwi:
+            return .kiwi
+        case orderMango:
+            return .mango
+        case orderStrawberryBanana:
+            return .strawberryBanana
+        case orderMangoKiwi:
+            return .mangoKiwi
+        default:
+            return nil
         }
     }
     
