@@ -32,7 +32,7 @@ final class StockManagerViewController: UIViewController {
         super.viewDidLoad()
         
         defineDictionary()
-        configureStepperDefaultValue()
+        configureStepperCurrentValue()
         configureFruitCountLabels()
     }
     
@@ -72,17 +72,17 @@ final class StockManagerViewController: UIViewController {
         }
     }
     
-    private func configureStepperDefaultValue() {
-        let _ = fruitSteppersDictionary.map { (stepper, fruit) in
+    private func configureStepperCurrentValue() {
+        for (stepper, fruit) in fruitSteppersDictionary {
             guard let count = fruitStore.getStockCountToString(of: fruit),
-                  let countToDouble = Double(count)
+                  let stepperValue = Double(count)
             else { return }
-            stepper.value = countToDouble
+            stepper.value = stepperValue
         }
     }
     
     private func updateFruitStrock() {
-        let _ = fruitSteppersDictionary.map { (stepper, fruit) in
+        for (stepper, fruit) in fruitSteppersDictionary {
             fruitStore.updateFruitStock(fruit: fruit, quantity: Int(stepper.value))
         }
     }
