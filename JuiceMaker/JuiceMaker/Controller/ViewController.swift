@@ -69,7 +69,8 @@ final class ViewController: UIViewController {
     private func changeStockView() {
         guard let editStockView = self.storyboard?.instantiateViewController(withIdentifier:
                                                                                 EditStockViewController.identifier ) else { return }
-        self.navigationController?.pushViewController(editStockView, animated: true)
+        editStockView.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(editStockView, animated: true)
     }
     
     @IBAction private func makeJuiceButtonDidTap(_ sender: UIButton) {

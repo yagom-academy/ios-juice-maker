@@ -100,4 +100,9 @@ final class EditStockViewController: UIViewController {
         
         return fruitStock
     }
+    
+    //MARK: - 네비게이터 버튼
+    @IBAction func dismissButtonDidTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
 }
