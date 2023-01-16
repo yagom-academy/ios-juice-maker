@@ -6,22 +6,6 @@ import UIKit
 
 final class ChangeStockViewController: UIViewController {
     
-    private var fruitsStock: [Fruits: Int] {
-        return FruitStore.shared.fruitsStock
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        displayStock()
-        initializeSteppers()
-        setUpNavigationBar()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        center.post(name: Notification.Name.fruitStockChanged, object: nil)
-    }
-    
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     @IBOutlet weak var stockOfStrawberry: UILabel!
@@ -37,6 +21,22 @@ final class ChangeStockViewController: UIViewController {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     @IBOutlet var steppers: [UIStepper]!
+    
+    private var fruitsStock: [Fruits: Int] {
+        return FruitStore.shared.fruitsStock
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        displayStock()
+        initializeSteppers()
+        setUpNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        center.post(name: Notification.Name.fruitStockChanged, object: nil)
+    }
     
     func displayStock() {
         if let strawberryStock = fruitsStock[.strawberry],
