@@ -7,32 +7,32 @@
 
 import UIKit
 
-class StockModifyViewController: UIViewController {
+final class StockModifyViewController: UIViewController {
     
-    let fruitStore = FruitStore.shared
+    private let fruitStore = FruitStore.shared
     
-    @IBOutlet weak var strawberryStockUILabel: UILabel!
-    @IBOutlet weak var bananaStockUILabel: UILabel!
-    @IBOutlet weak var pineappleStockUILabel: UILabel!
-    @IBOutlet weak var kiwiStockUILabel: UILabel!
-    @IBOutlet weak var mangoStockUILabel: UILabel!
+    @IBOutlet weak private var strawberryStockUILabel: UILabel!
+    @IBOutlet weak private var bananaStockUILabel: UILabel!
+    @IBOutlet weak private var pineappleStockUILabel: UILabel!
+    @IBOutlet weak private var kiwiStockUILabel: UILabel!
+    @IBOutlet weak private var mangoStockUILabel: UILabel!
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet weak private var strawberryStepper: UIStepper!
+    @IBOutlet weak private var bananaStepper: UIStepper!
+    @IBOutlet weak private var pineappleStepper: UIStepper!
+    @IBOutlet weak private var kiwiStepper: UIStepper!
+    @IBOutlet weak private var mangoStepper: UIStepper!
     
-    @IBOutlet weak var closeButton: UIBarButtonItem!
+    @IBOutlet weak private var closeButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayStocks()
-        setStock()
+        setLabelStock()
+        setStepperStock()
         setStepperSize()
     }
    
-    private func displayStocks() {
+    private func setLabelStock() {
         if let strawberry = fruitStore.fruitStock[.딸기] {
             strawberryStockUILabel.text = String(strawberry)
         }
@@ -50,7 +50,7 @@ class StockModifyViewController: UIViewController {
         }
     }
     
-    private func setStock() {
+    private func setStepperStock() {
         if let strawberry = fruitStore.fruitStock[.딸기] {
             strawberryStepper.value = Double(strawberry)
         }
@@ -76,7 +76,7 @@ class StockModifyViewController: UIViewController {
         mangoStepper.transform = mangoStepper.transform.scaledBy(x: 1.25, y: 1.25)
     }
     
-    @IBAction func touchFruitStockStepper(_ sender: UIStepper) {
+    @IBAction private func touchFruitStockStepper(_ sender: UIStepper) {
         modifyStockTapped(tag: sender.tag)
     }
     
@@ -86,23 +86,33 @@ class StockModifyViewController: UIViewController {
     
     private func modifyStockTapped(tag: Int) {
         switch tag {
-        case 0:
+        case Tag.딸기.rawValue:
             fruitStore.modifyFruitStocks(fruit: .딸기, amount: Int(strawberryStepper.value))
             strawberryStockUILabel.text = String(Int(strawberryStepper.value))
-        case 1:
+        case Tag.바나나.rawValue:
             fruitStore.modifyFruitStocks(fruit: .바나나, amount: Int(bananaStepper.value))
             bananaStockUILabel.text = String(Int(bananaStepper.value))
-        case 2:
+        case Tag.파인애플.rawValue:
             fruitStore.modifyFruitStocks(fruit: .파인애플, amount: Int(pineappleStepper.value))
             pineappleStockUILabel.text = String(Int(pineappleStepper.value))
-        case 3:
+        case Tag.키위.rawValue:
             fruitStore.modifyFruitStocks(fruit: .키위, amount: Int(kiwiStepper.value))
             kiwiStockUILabel.text = String(Int(kiwiStepper.value))
-        case 4:
+        case Tag.망고.rawValue:
             fruitStore.modifyFruitStocks(fruit: .망고, amount: Int(mangoStepper.value))
             mangoStockUILabel.text = String(Int(mangoStepper.value))
         default:
             break
         }
+    }
+}
+
+extension StockModifyViewController {
+    enum Tag: Int {
+        case 딸기
+        case 바나나
+        case 파인애플
+        case 키위
+        case 망고
     }
 }

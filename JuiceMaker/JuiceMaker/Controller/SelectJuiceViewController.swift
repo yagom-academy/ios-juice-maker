@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class SelectJuiceViewController: UIViewController {
 
     let fruitStore = FruitStore.shared
     
@@ -117,7 +117,7 @@ final class ViewController: UIViewController {
         presentModal()
     }
     
-    func presentModal() {
+    private func presentModal() {
         guard let stockModifyViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
             return
         }
