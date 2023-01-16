@@ -9,6 +9,26 @@ final class JuiceMakerViewController: UIViewController {
     var getFruits: [Fruit: Int] {
         return juiceMaker.getFruitStore().fruits
     }
+    var strawberryAmount: Int {
+        guard let amount = getFruits[.strawberry] else { return 0 }
+        return amount
+    }
+    var bananaAmount: Int {
+        guard let amount = getFruits[.banana] else { return 0 }
+        return amount
+    }
+    var pineappleAmount: Int {
+        guard let amount = getFruits[.pineapple] else { return 0 }
+        return amount
+    }
+    var kiwiAmount: Int {
+        guard let amount = getFruits[.kiwi] else { return 0 }
+        return amount
+    }
+    var mangoAmount: Int {
+        guard let amount = getFruits[.mango] else { return 0 }
+        return amount
+    }
     
     @IBOutlet weak private var strawberryLabel: UILabel!
     @IBOutlet weak private var bananaLabel: UILabel!
@@ -34,7 +54,7 @@ final class JuiceMakerViewController: UIViewController {
     
     @IBAction private func didTapJuiceOrderButton(_ sender: UIButton) {
         guard let buttonLabel = sender.titleLabel?.text,
-        let juice = decideOrderJuice(buttonLabel) else {
+              let juice = decideOrderJuice(buttonLabel) else {
             return
         }
         
@@ -94,9 +114,28 @@ final class JuiceMakerViewController: UIViewController {
     private func tryMakeJuice(_ juice: Juice) {
         if juiceMaker.makeJuice(juice) {
             showSuccessAlert(message: juice.name)
-            setDefaultLabel(juice: getFruits)
+            updateLabel(juice)
         } else {
             showFailureAlert()
+        }
+    }
+    
+    private func updateLabel(_ juice: Juice) {
+        let recipe = juice.recipe
+        
+        for (fruit, _) in recipe {
+            switch fruit {
+            case .strawberry:
+                strawberryLabel.text = "\(strawberryAmount)"
+            case .banana:
+                bananaLabel.text = "\(bananaAmount)"
+            case .pineapple:
+                pineappleLabel.text = "\(pineappleAmount)"
+            case .kiwi:
+                kiwiLabel.text = "\(kiwiAmount)"
+            case .mango:
+                mangoLabel.text = "\(mangoAmount)"
+            }
         }
     }
 }
