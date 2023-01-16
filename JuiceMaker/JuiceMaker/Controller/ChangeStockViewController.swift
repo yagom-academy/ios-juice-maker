@@ -35,7 +35,7 @@ final class ChangeStockViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        center.post(name: Notification.Name.fruitStockChanged, object: nil)
+        NotificationCenter.default.post(name: Notification.Name.fruitStockChanged, object: nil)
     }
     
     private func displayStock() {

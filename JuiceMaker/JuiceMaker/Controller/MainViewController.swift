@@ -38,7 +38,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayStock()
-        center.addObserver(self,
+        NotificationCenter.default.addObserver(self,
                            selector: #selector(displayStock),
                            name: Notification.Name.fruitStockChanged,
                            object: nil)
