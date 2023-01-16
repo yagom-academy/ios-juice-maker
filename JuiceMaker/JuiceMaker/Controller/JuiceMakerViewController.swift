@@ -101,7 +101,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let fruitStockViewController = self.storyboard?
             .instantiateViewController(withIdentifier: FruitStockViewController.identifier) as? FruitStockViewController else { return }
         
-        fruitStockViewController.setFruits(juiceMaker.getFruitStore())
+        fruitStockViewController.setFruits(getFruits)
         fruitStockViewController.delegate = self
         
         self.navigationController?.pushViewController(fruitStockViewController, animated: true)
