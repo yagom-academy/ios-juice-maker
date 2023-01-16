@@ -6,13 +6,13 @@
 
 import UIKit
 
-final class JuiceMakeViewController: UIViewController {
+final class JuiceMakeViewController: UIViewController, AlertDelegate {
     
-    var currentFruitBasket: [Fruit: Int] {
+    private var currentFruitBasket: [Fruit: Int] {
         return FruitStore.shared.fruitsBasket
     }
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -29,18 +29,15 @@ final class JuiceMakeViewController: UIViewController {
         setUpLabel()
     }
     
-    func setUpLabel() {
+    private func setUpLabel() {
         strawberryLabel.text = currentFruitBasket[.strawberry]?.description
         bananaLabel.text = currentFruitBasket[.banana]?.description
         pineappleLabel.text = currentFruitBasket[.pineapple]?.description
         kiwiLabel.text = currentFruitBasket[.kiwi]?.description
         mangoLabel.text = currentFruitBasket[.mango]?.description
-        [strawberryLabel, bananaLabel, pineappleLabel, kiwiLabel, mangoLabel].forEach {
-            $0.sizeToFit()
-        }
     }
     
-    func createButtonTarget(_ sender: UIButton) -> FruitJuice? {
+    private func createButtonTarget(_ sender: UIButton) -> FruitJuice? {
         guard let titleLabel = sender.titleLabel?.text else {
             return nil
         }
@@ -65,38 +62,33 @@ final class JuiceMakeViewController: UIViewController {
         }
     }
     
-    func showSuccessAlert(with targetJuice: FruitJuice) {
-        let successAlert = UIAlertController(
-            title: "주스 제조성공",
-            message: "\(targetJuice.rawValue) 나왔습니다! 맛있게 드세요!",
-            preferredStyle: .alert
-        )
-        let alertAction = UIAlertAction(title: "OK", style: .default)
-        successAlert.addAction(alertAction)
-        self.present(successAlert, animated: true)
+    private func showSuccessAlert(with targetJuice: FruitJuice) {
+        let builder = AlertBuilder()
+        let alertDirector = AlertDirector()
+        alertDirector.buildSuccessAlert(builder, with: targetJuice)
+        
+        self.present(builder.buildAlert(), animated: true)
     }
     
-    func showFailureAlert() {
-        let failureAlert = UIAlertController(
-            title: "주스 제조실패",
-            message: "재료가 모자라요. 재고를 수정할까요?",
-            preferredStyle: .alert
-        )
-        let okAlertAction = UIAlertAction(title: "네", style: .default) { _ in
-            self.presentFruitStoreVC()
-        }
-        let cancelAlertAction = UIAlertAction(title: "아니오", style: .cancel)
+    private func showFailureAlert(_ error: juiceMakeError) {
+        let builder = AlertBuilder()
+        builder.delegate = self
+        let alertDirector = AlertDirector()
         
-        failureAlert.addAction(okAlertAction)
-        failureAlert.addAction(cancelAlertAction)
-        self.present(failureAlert, animated: true)
+        error == juiceMakeError.outOfStockError ?
+        alertDirector.buildOutOfStockAlert(builder) :
+        alertDirector.buildUnknownAlert(builder)
+        
+        self.present(builder.buildAlert(), animated: true)
     }
     
     func presentFruitStoreVC() {
-        guard let FruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else {
+        guard let fruitStoreVC = self.storyboard?.instantiateViewController(withIdentifier: Identifier.fruitStoreNavigationController.rawValue) as? UINavigationController else {
             return
         }
-        self.present(FruitStoreVC, animated: true)
+        
+        fruitStoreVC.modalPresentationStyle = .fullScreen
+        self.present(fruitStoreVC, animated: true)
     }
     
     @IBAction func FruitStoreVCButtonTapped(_ sender: UIButton) {
@@ -111,10 +103,10 @@ final class JuiceMakeViewController: UIViewController {
             try juiceMaker.make(targetJuice)
             setUpLabel()
             showSuccessAlert(with: targetJuice)
-        } catch juiceMakeError.outOfStock {
-            showFailureAlert()
+        } catch juiceMakeError.outOfStockError {
+            showFailureAlert(juiceMakeError.outOfStockError)
         } catch {
-            print("알 수 없는 에러가 발생했습니다")
+            showFailureAlert(juiceMakeError.unknownError)
         }
     }
 }

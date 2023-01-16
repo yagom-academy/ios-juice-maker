@@ -18,7 +18,7 @@ struct JuiceMaker {
             if fruitStore.checkFruit(name: fruit, count: count) {
                 reducedList[fruit] = count
             } else {
-                throw juiceMakeError.outOfStock
+                throw juiceMakeError.outOfStockError
             }
         }
         reducedList.forEach { fruitStore.reduceStock(of: $0.key, count: $0.value) }

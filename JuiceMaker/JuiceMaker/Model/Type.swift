@@ -7,6 +7,21 @@
 
 import Foundation
 
+enum Identifier: String {
+    case fruitStoreNavigationController = "fruitStoreNavigationController"
+}
+
+enum AlertMessage {
+    static let yes = "네"
+    static let no = "아니오"
+    static let makeJuiceMessage = " 나왔습니다. 맛있게 드세요!"
+    static let outOfStockMessage = "재료가 모자라요. 재고를 수정할까요?"
+    static let success = "주스제조 성공"
+    static let failure = "주스제조 실패"
+    static let unknownError = "알 수 없는에러"
+    static let unknwonErrorMessage = "알 수 없는에러가 발생했습니다 앱을 다시 실행해 주세요"
+}
+
 enum Fruit: String {
     case strawberry = "딸기"
     case banana = "바나나"
@@ -45,5 +60,8 @@ enum FruitJuice: String {
 }
 
 enum juiceMakeError: Error {
-    case outOfStock
+    case outOfStockError
+    case unknownError
 }
+
+
