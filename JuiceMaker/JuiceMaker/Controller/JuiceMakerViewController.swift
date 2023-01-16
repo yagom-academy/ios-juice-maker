@@ -102,7 +102,7 @@ final class JuiceMakerViewController: UIViewController {
 }
 
 extension JuiceMakerViewController: UpdatableFruitStock {
-    func updateStock(changeStock: FruitStore) {
+    func updateStock(changeStock: [Fruit: Int]) {
         self.juiceMaker.setFruitStore(changeStock)
     }
 }

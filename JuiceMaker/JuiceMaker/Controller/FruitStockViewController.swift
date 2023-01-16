@@ -74,7 +74,7 @@ final class FruitStockViewController: UIViewController {
     }
     
     @IBAction private func didTapDismissButton(_ sender: UIButton) {
-        self.delegate?.updateStock(changeStock: self.fruitStore)
+        self.delegate?.updateStock(changeStock: self.getFruits)
         self.navigationController?.popViewController(animated: true)
     }
     

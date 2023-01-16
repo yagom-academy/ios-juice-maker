@@ -17,8 +17,8 @@ struct JuiceMaker {
         return self.fruitStore
     }
     
-    mutating func setFruitStore(_ fruits: FruitStore) {
-        fruitStore = fruits
+    mutating func setFruitStore(_ fruits: [Fruit: Int]) {
+        fruitStore.setFruits(fruits)
     }
     
     private func checkFruitInStore(_ juice: Juice) -> Bool {
