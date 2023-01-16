@@ -101,7 +101,7 @@ final class JuiceMakerViewController: UIViewController {
     }
 }
 
-extension JuiceMakerViewController: Delegate {
+extension JuiceMakerViewController: UpdatableFruitStock {
     func updateStock(changeStock: FruitStore) {
         self.juiceMaker.setFruitStore(changeStock)
     }

@@ -24,7 +24,7 @@ final class FruitStockViewController: UIViewController {
     var getFruits: [Fruit: Int] {
         return fruitStore.getFruits()
     }
-    var delegate: Delegate?
+    weak var delegate: UpdatableFruitStock?
     
     override func viewDidLoad() {
         super.viewDidLoad()

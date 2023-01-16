@@ -2,7 +2,7 @@
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
 class FruitStore {
-    private var fruits: [Fruit: Int] = [.strawberry: 0, .banana: 0, .kiwi: 0, .mango: 0, .pineapple: 0]
+    private var fruits: [Fruit: Int] = [:]
 
     init(amount: Int = 0) {
         self.fruits[.strawberry] = amount
