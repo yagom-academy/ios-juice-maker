@@ -6,26 +6,26 @@ import UIKit
 final class JuiceMakerViewController: UIViewController {
     
     private var juiceMaker = JuiceMaker()
-    var getFruits: [Fruit: Int] {
+    private var getFruits: [Fruit: Int] {
         return juiceMaker.getFruitStore().fruits
     }
-    var strawberryAmount: Int {
+    private var strawberryAmount: Int {
         guard let amount = getFruits[.strawberry] else { return 0 }
         return amount
     }
-    var bananaAmount: Int {
+    private var bananaAmount: Int {
         guard let amount = getFruits[.banana] else { return 0 }
         return amount
     }
-    var pineappleAmount: Int {
+    private var pineappleAmount: Int {
         guard let amount = getFruits[.pineapple] else { return 0 }
         return amount
     }
-    var kiwiAmount: Int {
+    private var kiwiAmount: Int {
         guard let amount = getFruits[.kiwi] else { return 0 }
         return amount
     }
-    var mangoAmount: Int {
+    private var mangoAmount: Int {
         guard let amount = getFruits[.mango] else { return 0 }
         return amount
     }
@@ -42,7 +42,7 @@ final class JuiceMakerViewController: UIViewController {
         setLabel(getFruits)
     }
     
-    @IBAction func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
+    @IBAction private func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
         pushFruitStockViewController()
     }
     

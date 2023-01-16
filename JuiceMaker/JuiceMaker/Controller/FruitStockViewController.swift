@@ -25,41 +25,28 @@ final class FruitStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.navigationItem.hidesBackButton = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        setDefaultLabel()
-        setDefaultStepperValue()
+        setLabelAndStepperValue()
     }
     
     func setFruits(_ fruits: [Fruit: Int]) {
         self.fruits = fruits
     }
     
-    private func setDefaultLabel() {
-        guard let strawberry = fruits[.strawberry],
-              let banana = fruits[.banana],
-              let kiwi = fruits[.kiwi],
-              let pineapple = fruits[.pineapple],
-              let mango = fruits[.mango] else { return }
-        
-        strawberryLabel.text = "\(strawberry)"
-        bananaLabel.text = "\(banana)"
-        kiwiLabel.text = "\(kiwi)"
-        pineappleLabel.text = "\(pineapple)"
-        mangoLabel.text = "\(mango)"
-    }
-    
-    private func setDefaultStepperValue() {
+    private func setLabelAndStepperValue() {
         guard let strawberryStock = fruits[.strawberry],
               let bananaStock = fruits[.banana],
-              let pineappleStock = fruits[.pineapple],
               let kiwiStock = fruits[.kiwi],
+              let pineappleStock = fruits[.pineapple],
               let mangoStock = fruits[.mango] else { return }
+        
+        strawberryLabel.text = "\(strawberryStock)"
+        bananaLabel.text = "\(bananaStock)"
+        kiwiLabel.text = "\(kiwiStock)"
+        pineappleLabel.text = "\(pineappleStock)"
+        mangoLabel.text = "\(mangoStock)"
         
         strawberryStepper.value = Double(strawberryStock)
         bananaStepper.value = Double(bananaStock)
@@ -67,6 +54,34 @@ final class FruitStockViewController: UIViewController {
         kiwiStepper.value = Double(kiwiStock)
         mangoStepper.value = Double(mangoStock)
     }
+    
+//    private func setLabel() {
+//        guard let strawberryStock = fruits[.strawberry],
+//              let bananaStock = fruits[.banana],
+//              let kiwiStock = fruits[.kiwi],
+//              let pineappleStock = fruits[.pineapple],
+//              let mangoStock = fruits[.mango] else { return }
+//
+//        strawberryLabel.text = "\(strawberryStock)"
+//        bananaLabel.text = "\(bananaStock)"
+//        kiwiLabel.text = "\(kiwiStock)"
+//        pineappleLabel.text = "\(pineappleStock)"
+//        mangoLabel.text = "\(mangoStock)"
+//    }
+//
+//    private func setStepperValue() {
+//        guard let strawberryStock = fruits[.strawberry],
+//              let bananaStock = fruits[.banana],
+//              let pineappleStock = fruits[.pineapple],
+//              let kiwiStock = fruits[.kiwi],
+//              let mangoStock = fruits[.mango] else { return }
+//
+//        strawberryStepper.value = Double(strawberryStock)
+//        bananaStepper.value = Double(bananaStock)
+//        pineappleStepper.value = Double(pineappleStock)
+//        kiwiStepper.value = Double(kiwiStock)
+//        mangoStepper.value = Double(mangoStock)
+//    }
     
     @IBAction private func didTapDismissButton(_ sender: UIButton) {
         self.delegate?.updateStock(changeStock: fruits)
