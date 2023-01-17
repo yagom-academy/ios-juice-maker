@@ -5,10 +5,9 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     
-    private var juiceMaker = JuiceMaker()
-    private var getFruits: [Fruit: Int] {
-        return juiceMaker.getFruitStore().fruits
-    }
+    private var juiceMaker: JuiceMaker
+    private var fruitStore: FruitStore
+    
     private var strawberryAmount: Int {
         guard let amount = getFruits[.strawberry] else { return 0 }
         return amount
@@ -35,6 +34,12 @@ final class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var kiwiLabel: UILabel!
     @IBOutlet weak private var pineappleLabel: UILabel!
     @IBOutlet weak private var mangoLabel: UILabel!
+    
+    required init?(coder: NSCoder) {
+        fruitStore = FruitStore()
+        juiceMaker = JuiceMaker(fruitStore: fruitStore)
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,7 +134,7 @@ final class JuiceMakerViewController: UIViewController {
 }
 
 extension JuiceMakerViewController: UpdatableFruitStock {
-    func updateStock(changeStock: [Fruit: Int]) {
+    func updateStockDelegate(changeStock: [Fruit: Int]) {
         self.juiceMaker.setFruitStore(changeStock)
         setLabel(changeStock)
     }

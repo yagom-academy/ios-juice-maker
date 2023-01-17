@@ -55,36 +55,8 @@ final class FruitStockViewController: UIViewController {
         mangoStepper.value = Double(mangoStock)
     }
     
-//    private func setLabel() {
-//        guard let strawberryStock = fruits[.strawberry],
-//              let bananaStock = fruits[.banana],
-//              let kiwiStock = fruits[.kiwi],
-//              let pineappleStock = fruits[.pineapple],
-//              let mangoStock = fruits[.mango] else { return }
-//
-//        strawberryLabel.text = "\(strawberryStock)"
-//        bananaLabel.text = "\(bananaStock)"
-//        kiwiLabel.text = "\(kiwiStock)"
-//        pineappleLabel.text = "\(pineappleStock)"
-//        mangoLabel.text = "\(mangoStock)"
-//    }
-//
-//    private func setStepperValue() {
-//        guard let strawberryStock = fruits[.strawberry],
-//              let bananaStock = fruits[.banana],
-//              let pineappleStock = fruits[.pineapple],
-//              let kiwiStock = fruits[.kiwi],
-//              let mangoStock = fruits[.mango] else { return }
-//
-//        strawberryStepper.value = Double(strawberryStock)
-//        bananaStepper.value = Double(bananaStock)
-//        pineappleStepper.value = Double(pineappleStock)
-//        kiwiStepper.value = Double(kiwiStock)
-//        mangoStepper.value = Double(mangoStock)
-//    }
-    
     @IBAction private func didTapDismissButton(_ sender: UIButton) {
-        self.delegate?.updateStock(changeStock: fruits)
+        self.delegate?.updateStockDelegate(changeStock: fruits)
         self.navigationController?.popViewController(animated: true)
     }
     
