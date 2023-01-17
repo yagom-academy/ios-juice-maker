@@ -6,7 +6,22 @@
 
 import UIKit
 
-final class SelectJuiceViewController: UIViewController {
+protocol FruitStockDelegate {
+    var fruitStore: FruitStore { get }
+}
+
+extension FruitStockDelegate {
+    func fetchStock(fruit: Fruit) -> Int? {
+        let stock = fruitStore.fruitStock[fruit]
+        return stock
+    }
+}
+
+protocol FruitStock {
+    var delegate: FruitStockDelegate? { get set }
+}
+
+final class SelectJuiceViewController: UIViewController, FruitStockDelegate {
 
     let fruitStore = FruitStore.shared
     
@@ -118,9 +133,10 @@ final class SelectJuiceViewController: UIViewController {
     }
     
     private func presentModal() {
-        guard let stockModifyViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
+        guard let stockModifyViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") as? StockModifyViewController else {
             return
         }
+        stockModifyViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: stockModifyViewController)
         navigationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         present(navigationController, animated: true, completion: nil)

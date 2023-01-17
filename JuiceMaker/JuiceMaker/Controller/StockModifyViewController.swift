@@ -7,9 +7,10 @@
 
 import UIKit
 
-final class StockModifyViewController: UIViewController {
+final class StockModifyViewController: UIViewController, FruitStock {
     
-    private let fruitStore = FruitStore.shared
+//    private let fruitStore = FruitStore.shared
+    var delegate: FruitStockDelegate?
     
     @IBOutlet weak private var strawberryStockUILabel: UILabel!
     @IBOutlet weak private var bananaStockUILabel: UILabel!
@@ -33,37 +34,37 @@ final class StockModifyViewController: UIViewController {
     }
    
     private func setLabelStock() {
-        if let strawberry = fruitStore.fruitStock[.딸기] {
+        if let strawberry = delegate?.fetchStock(fruit: .딸기) {
             strawberryStockUILabel.text = String(strawberry)
         }
-        if let banana = fruitStore.fruitStock[.바나나] {
+        if let banana = delegate?.fetchStock(fruit: .바나나) {
             bananaStockUILabel.text = String(banana)
         }
-        if let pineapple = fruitStore.fruitStock[.파인애플] {
+        if let pineapple = delegate?.fetchStock(fruit: .파인애플) {
             pineappleStockUILabel.text = String(pineapple)
         }
-        if let kiwi = fruitStore.fruitStock[.키위] {
+        if let kiwi = delegate?.fetchStock(fruit: .키위) {
             kiwiStockUILabel.text = String(kiwi)
         }
-        if let mango = fruitStore.fruitStock[.망고] {
+        if let mango = delegate?.fetchStock(fruit: .망고) {
             mangoStockUILabel.text = String(mango)
         }
     }
     
     private func setStepperStock() {
-        if let strawberry = fruitStore.fruitStock[.딸기] {
+        if let strawberry = delegate?.fetchStock(fruit: .딸기) {
             strawberryStepper.value = Double(strawberry)
         }
-        if let banana = fruitStore.fruitStock[.바나나] {
+        if let banana = delegate?.fetchStock(fruit: .바나나) {
             bananaStepper.value = Double(banana)
         }
-        if let pineapple = fruitStore.fruitStock[.파인애플] {
+        if let pineapple = delegate?.fetchStock(fruit: .파인애플) {
             pineappleStepper.value = Double(pineapple)
         }
-        if let kiwi = fruitStore.fruitStock[.키위] {
+        if let kiwi = delegate?.fetchStock(fruit: .키위) {
             kiwiStepper.value = Double(kiwi)
         }
-        if let mango = fruitStore.fruitStock[.망고] {
+        if let mango = delegate?.fetchStock(fruit: .망고) {
             mangoStepper.value = Double(mango)
         }
     }
@@ -87,19 +88,19 @@ final class StockModifyViewController: UIViewController {
     private func modifyStockTapped(tag: Int) {
         switch tag {
         case Tag.딸기.rawValue:
-            fruitStore.modifyFruitStocks(fruit: .딸기, amount: Int(strawberryStepper.value))
+            delegate?.fruitStore.modifyFruitStocks(fruit: .딸기, amount: Int(strawberryStepper.value))
             strawberryStockUILabel.text = String(Int(strawberryStepper.value))
         case Tag.바나나.rawValue:
-            fruitStore.modifyFruitStocks(fruit: .바나나, amount: Int(bananaStepper.value))
+            delegate?.fruitStore.modifyFruitStocks(fruit: .바나나, amount: Int(bananaStepper.value))
             bananaStockUILabel.text = String(Int(bananaStepper.value))
         case Tag.파인애플.rawValue:
-            fruitStore.modifyFruitStocks(fruit: .파인애플, amount: Int(pineappleStepper.value))
+            delegate?.fruitStore.modifyFruitStocks(fruit: .파인애플, amount: Int(pineappleStepper.value))
             pineappleStockUILabel.text = String(Int(pineappleStepper.value))
         case Tag.키위.rawValue:
-            fruitStore.modifyFruitStocks(fruit: .키위, amount: Int(kiwiStepper.value))
+            delegate?.fruitStore.modifyFruitStocks(fruit: .키위, amount: Int(kiwiStepper.value))
             kiwiStockUILabel.text = String(Int(kiwiStepper.value))
         case Tag.망고.rawValue:
-            fruitStore.modifyFruitStocks(fruit: .망고, amount: Int(mangoStepper.value))
+            delegate?.fruitStore.modifyFruitStocks(fruit: .망고, amount: Int(mangoStepper.value))
             mangoStockUILabel.text = String(Int(mangoStepper.value))
         default:
             break
