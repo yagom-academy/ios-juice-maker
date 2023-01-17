@@ -26,10 +26,16 @@ final class ViewController: UIViewController {
     
     private let fruitStore = FruitStore.shared
     
+    // MARK: - ViewState Method
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStockLabel()
         allocateButtonTag()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStockLabel()
     }
 
     // MARK: - 버튼에 태그 할당
@@ -54,7 +60,7 @@ final class ViewController: UIViewController {
         mangoLabel.text = fruits[Fruit.mango]
     }
     
-    
+   
     // MARK: - 화면전환
     @IBAction private func editStockTapped(_ sender: UIBarButtonItem) {
         changeStockView()
@@ -63,7 +69,8 @@ final class ViewController: UIViewController {
     private func changeStockView() {
         guard let editStockView = self.storyboard?.instantiateViewController(withIdentifier:
                                                                                 EditStockViewController.identifier ) else { return }
-        self.navigationController?.pushViewController(editStockView, animated: true)
+        editStockView.modalPresentationStyle = .fullScreen
+        self.present(editStockView, animated: true)
     }
     
     @IBAction private func makeJuiceButtonDidTap(_ sender: UIButton) {

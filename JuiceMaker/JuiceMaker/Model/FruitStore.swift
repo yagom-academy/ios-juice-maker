@@ -7,6 +7,7 @@
 import Foundation
 
 final class FruitStore {
+    
     private(set) var fruits: [Fruit: Int] = [:]
     static let shared = FruitStore()
         
@@ -39,5 +40,9 @@ final class FruitStore {
             let remain = stock - ingredient
             fruits[fruit] = remain
         }
+    }
+    
+    func updateFruitStock(_ fruitStock: [Fruit: Int]) {
+        fruits = fruitStock
     }
 }
