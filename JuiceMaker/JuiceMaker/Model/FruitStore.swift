@@ -5,13 +5,11 @@
 //
 
 final class FruitStore {
-    static let sharedFruitStore = FruitStore(initialStock: 10)
-    
-    private init() {}
+    static let sharedFruitStore = FruitStore()
     
     var fruitStocks: [Fruit: Int] = [:]
     
-    init(initialStock: Int) {
+    private init(initialStock: Int = 10) {
         Fruit.allCases.forEach { fruitStocks[$0] = initialStock }
     }
     

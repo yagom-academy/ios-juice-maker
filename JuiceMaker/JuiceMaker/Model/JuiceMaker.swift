@@ -28,9 +28,9 @@ struct JuiceMaker {
         }
     }
     
-    func currentFruitStock(of fruit: Fruit) -> String {
-        guard let fruitStock = fruitStore.fruitStocks[fruit] else { return "" }
-        return String(fruitStock)
+    func currentFruitStock(of fruit: Fruit) -> Int {
+        guard let fruitStock = fruitStore.fruitStocks[fruit] else { return 0 }
+        return fruitStock
     }
 }
 

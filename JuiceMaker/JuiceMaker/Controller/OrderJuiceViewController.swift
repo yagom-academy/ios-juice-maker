@@ -14,52 +14,71 @@ final class OrderJuiceViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
+    @IBOutlet weak private var ddalbaJuiceOrderButton: UIButton!
+    @IBOutlet weak private var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak private var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak private var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak private var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak private var mangoJuiceOrderButton: UIButton!
+    @IBOutlet weak private var mangkiJuiceOrderButton: UIButton!
+    
     private let juiceMaker = JuiceMaker()
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateStockLabel()
+        setUpNotificationObserver()
     }
     
     private func updateStockLabel() {
-        strawberryStockLabel.text = juiceMaker.currentFruitStock(of: .strawberry)
-        bananaStockLabel.text = juiceMaker.currentFruitStock(of: .banana)
-        pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple)
-        kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi)
-        mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango)
+        strawberryStockLabel.text = juiceMaker.currentFruitStock(of: .strawberry).description
+        bananaStockLabel.text = juiceMaker.currentFruitStock(of: .banana).description
+        pineappleStockLabel.text = juiceMaker.currentFruitStock(of: .pineapple).description
+        kiwiStockLabel.text = juiceMaker.currentFruitStock(of: .kiwi).description
+        mangoStockLabel.text = juiceMaker.currentFruitStock(of: .mango).description
     }
     
-    @IBAction private func orderJuiceButtonTapped(_ sender: UIButton) {
-        switch sender.tag {
-        case 1:
-            completeOrder(of: .strawberryBananaJuice)
-        case 2:
-            completeOrder(of: .mangoKiwiJuice)
-        case 3:
-            completeOrder(of: .strawberryJuice)
-        case 4:
-            completeOrder(of: .bananaJuice)
-        case 5:
-            completeOrder(of: .pineappleJuice)
-        case 6:
-            completeOrder(of: .kiwiJuice)
-        case 7:
-            completeOrder(of: .mangoJuice)
+    private func setUpNotificationObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didDismissManageStockView(_:)),
+                                               name: NSNotification.Name("dismiss"),
+                                               object: nil)
+    }
+    
+    @objc private func didDismissManageStockView(_ notification: Notification) {
+        self.updateStockLabel()
+    }
+    
+    private func takeOrders(_ sender: UIButton) -> JuiceMenu? {
+        switch sender {
+        case strawberryJuiceOrderButton:
+            return JuiceMenu.strawberryJuice
+        case ddalbaJuiceOrderButton:
+            return JuiceMenu.strawberryBananaJuice
+        case bananaJuiceOrderButton:
+            return JuiceMenu.bananaJuice
+        case pineappleJuiceOrderButton:
+            return JuiceMenu.pineappleJuice
+        case kiwiJuiceOrderButton:
+            return JuiceMenu.kiwiJuice
+        case mangoJuiceOrderButton:
+            return JuiceMenu.mangoJuice
+        case mangkiJuiceOrderButton:
+            return JuiceMenu.mangoKiwiJuice
         default:
-            print("선택오류")
+            return nil
         }
     }
-    
     
     private func completeOrder(of orderedJuice: JuiceMenu) {
         do {
             try juiceMaker.makeJuice(orderedJuice)
             updateStockLabel()
-            successAlert(name: orderedJuice.name)
+            showSuccessAlert(name: orderedJuice.name)
         } catch JuiceMakerError.outOfStock {
             print(JuiceMakerError.outOfStock.message)
-            failAlert()
+            showFailAlert()
         } catch JuiceMakerError.fruitError {
             print(JuiceMakerError.fruitError.message)
         } catch {
@@ -67,18 +86,14 @@ final class OrderJuiceViewController: UIViewController {
         }
     }
     
-    @IBAction private func manageStockBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "toManageVC", sender: self)
-    }
-    
-    private func successAlert(name: String) {
+    private func showSuccessAlert(name: String) {
         let alert = UIAlertController(title: "\(name) 나왔습니다! 맛있게 드세요!",message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "확인", style: .default)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
     
-    private func failAlert() {
+    private func showFailAlert() {
         let alert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: nil, preferredStyle: .alert)
         let ok = UIAlertAction(title: "예", style: .default, handler: { action in
             self.performSegue(withIdentifier: "toManageVC", sender: nil)
@@ -87,6 +102,17 @@ final class OrderJuiceViewController: UIViewController {
         alert.addAction(ok)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction private func orderButtonTapped(_ sender: UIButton) {
+        guard let orderedJuice = takeOrders(sender) else {
+            return
+        }
+        completeOrder(of: orderedJuice)
+    }
+    
+    @IBAction private func manageStockBarButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "toManageVC", sender: self)
     }
 }
 
