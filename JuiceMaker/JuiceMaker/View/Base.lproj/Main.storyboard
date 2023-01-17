@@ -313,16 +313,12 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="0yV-kn-zaT" firstAttribute="leading" secondItem="fYz-Ba-My3" secondAttribute="leading" id="eiF-yl-297"/>
-                                            <constraint firstAttribute="trailing" secondItem="0yV-kn-zaT" secondAttribute="trailing" id="txx-NK-1Ne"/>
-                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mu3-WR-znC">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mu3-WR-znC">
                                         <rect key="frame" x="125" y="0.0" width="94" height="162"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y33-ND-gz2">
-                                                <rect key="frame" x="9.6666666666666856" y="0.0" width="75" height="83.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="83.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -341,16 +337,12 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="gKu-86-RhI" secondAttribute="trailing" id="lsD-QT-06V"/>
-                                            <constraint firstItem="gKu-86-RhI" firstAttribute="leading" secondItem="mu3-WR-znC" secondAttribute="leading" id="mZ9-uP-ike"/>
-                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8en-wU-plz">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8en-wU-plz">
                                         <rect key="frame" x="250" y="0.0" width="94" height="162"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rac-Ji-vZK">
-                                                <rect key="frame" x="9.6666666666666856" y="0.0" width="75" height="83.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="83.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -369,16 +361,12 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="MpT-VW-hCb" secondAttribute="trailing" id="sd0-67-6wZ"/>
-                                            <constraint firstItem="MpT-VW-hCb" firstAttribute="leading" secondItem="8en-wU-plz" secondAttribute="leading" id="uhR-VK-dJb"/>
-                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-Ce-vDA">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-Ce-vDA">
                                         <rect key="frame" x="375" y="0.0" width="94" height="162"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EHe-D1-1xN">
-                                                <rect key="frame" x="9.6666666666666856" y="0.0" width="75" height="83.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="83.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -397,16 +385,12 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="ZDv-1m-HBY" firstAttribute="leading" secondItem="H9b-Ce-vDA" secondAttribute="leading" id="8CR-qh-cyj"/>
-                                            <constraint firstAttribute="trailing" secondItem="ZDv-1m-HBY" secondAttribute="trailing" id="xSN-yh-IFK"/>
-                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mFx-Rz-cnw">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mFx-Rz-cnw">
                                         <rect key="frame" x="500" y="0.0" width="94" height="162"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="w1F-9o-qJR">
-                                                <rect key="frame" x="9.6666666666666288" y="0.0" width="75" height="83.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="83.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -425,10 +409,6 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="YJI-ER-LJR" firstAttribute="leading" secondItem="mFx-Rz-cnw" secondAttribute="leading" id="3CA-ZK-DZt"/>
-                                            <constraint firstAttribute="trailing" secondItem="YJI-ER-LJR" secondAttribute="trailing" id="xVr-nH-Ush"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
