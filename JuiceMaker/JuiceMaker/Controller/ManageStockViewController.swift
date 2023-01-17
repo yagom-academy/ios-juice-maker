@@ -8,7 +8,7 @@
 import UIKit
 
 final class ManageStockViewController: UIViewController {
-
+    
     @IBOutlet weak private var strawberryStockLabel: UILabel!
     @IBOutlet weak private var bananaStockLabel: UILabel!
     @IBOutlet weak private var pineappleStockLabel: UILabel!
@@ -27,7 +27,7 @@ final class ManageStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateStockLabel()
         initNavigationTitle()
         setUpStepper()
@@ -55,12 +55,9 @@ final class ManageStockViewController: UIViewController {
     }
     
     private func setUpStepper() {
-        for stepper in stepperList {
-            guard let fruit = matchStepperAndFruit(stepper).fruit else { return }
-            stepper.value = Double(juiceMaker.currentFruitStock(of: fruit))
-        }
-        
         stepperList.forEach {
+            guard let fruit = matchStepperAndFruit($0).fruit else { return }
+            $0.value = Double(juiceMaker.currentFruitStock(of: fruit))
             $0.autorepeat = true
             $0.maximumValue = 150
         }
@@ -82,10 +79,10 @@ final class ManageStockViewController: UIViewController {
             return (nil, nil)
         }
     }
-   
+    
     @IBAction private func stepperTapped(_ sender: UIStepper) {
         guard let fruit = matchStepperAndFruit(sender).fruit,
-        let label = matchStepperAndFruit(sender).label else { return }
+              let label = matchStepperAndFruit(sender).label else { return }
         label.text = Int(sender.value).description
         FruitStore.sharedFruitStore.fruitStocks[fruit] = Int(sender.value)
     }

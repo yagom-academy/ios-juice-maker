@@ -40,7 +40,10 @@ final class OrderJuiceViewController: UIViewController {
     }
     
     private func setUpNotificationObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didDismissManageStockView(_:)), name: NSNotification.Name("dismiss"), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didDismissManageStockView(_:)),
+                                               name: NSNotification.Name("dismiss"),
+                                               object: nil)
     }
     
     @objc private func didDismissManageStockView(_ notification: Notification) {
@@ -67,7 +70,7 @@ final class OrderJuiceViewController: UIViewController {
             return nil
         }
     }
-
+    
     private func completeOrder(of orderedJuice: JuiceMenu) {
         do {
             try juiceMaker.makeJuice(orderedJuice)
@@ -82,7 +85,7 @@ final class OrderJuiceViewController: UIViewController {
             print("알 수 없는 오류가 발생했습니다.")
         }
     }
- 
+    
     private func showSuccessAlert(name: String) {
         let alert = UIAlertController(title: "\(name) 나왔습니다! 맛있게 드세요!",message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "확인", style: .default)
