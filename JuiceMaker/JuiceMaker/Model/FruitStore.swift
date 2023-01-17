@@ -2,11 +2,9 @@
 //  Created by Vetto, 레옹아범 on 2023.1.2
 
 class FruitStore {
-    private var fruits: [Fruit: Int] = [.strawberry: 0, .banana: 0, .kiwi: 0, .mango: 0, .pineapple: 0]
+    private(set) var fruits: [Fruit: Int] = [:]
 
-    static let shared = FruitStore(amount: 10)
-    
-    private init(amount: Int) {
+    init(amount: Int = 0) {
         self.fruits[.strawberry] = amount
         self.fruits[.banana] = amount
         self.fruits[.kiwi] = amount
@@ -14,15 +12,8 @@ class FruitStore {
         self.fruits[.pineapple] = amount
     }
     
-    func getFruits() -> [Fruit: Int] {
-        return fruits
-    }
-    
-    func increaseFruit(_ fruit: Fruit, by amount: Int = 1) {
-        guard let storedFruit = self.fruits[fruit] else {
-            return
-        }
-        self.fruits[fruit] = storedFruit + amount
+    func setFruits(_ fruits: [Fruit: Int]) {
+        self.fruits = fruits
     }
     
     func decreaseFruit(_ fruit: Fruit, by amount: Int = 1) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26CBFBD22970FBC9009B5B38 /* JuiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CBFBD12970FBC9009B5B38 /* JuiceProtocol.swift */; };
 		26FCCFF92962C9880003B126 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FCCFF82962C9880003B126 /* Fruit.swift */; };
 		26FCCFFB2962C9A90003B126 /* FruitStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FCCFFA2962C9A90003B126 /* FruitStoreError.swift */; };
 		26FCCFFD2962C9DF0003B126 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FCCFFC2962C9DF0003B126 /* Juice.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26CBFBD12970FBC9009B5B38 /* JuiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceProtocol.swift; sourceTree = "<group>"; };
 		26FCCFF82962C9880003B126 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		26FCCFFA2962C9A90003B126 /* FruitStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreError.swift; sourceTree = "<group>"; };
 		26FCCFFC2962C9DF0003B126 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				26FCCFF82962C9880003B126 /* Fruit.swift */,
 				26FCCFFA2962C9A90003B126 /* FruitStoreError.swift */,
 				26FCCFFC2962C9DF0003B126 /* Juice.swift */,
+				26CBFBD12970FBC9009B5B38 /* JuiceProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
 				26FCCFFB2962C9A90003B126 /* FruitStoreError.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				26CBFBD22970FBC9009B5B38 /* JuiceProtocol.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 				26FCCFFD2962C9DF0003B126 /* Juice.swift in Sources */,
