@@ -26,7 +26,7 @@ final class StockManagerViewController: UIViewController {
     private var fruitLabelsDictionary: [Fruit: UILabel] = [:]
     private var fruitSteppersDictionary: [UIStepper: Fruit] = [:]
     
-    var juiceMakerViewControllerDelegate: UpdateLabelsDelegate?
+    weak var juiceMakerViewControllerDelegate: UpdateLabelsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
