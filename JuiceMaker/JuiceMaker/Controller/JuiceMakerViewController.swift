@@ -9,24 +9,19 @@ final class JuiceMakerViewController: UIViewController {
     private var fruitStore: FruitStore
     
     private var strawberryAmount: Int {
-        guard let amount = getFruits[.strawberry] else { return 0 }
-        return amount
+        return fruitStore.fruits[.strawberry] ?? 0
     }
     private var bananaAmount: Int {
-        guard let amount = getFruits[.banana] else { return 0 }
-        return amount
+        return fruitStore.fruits[.banana] ?? 0
     }
     private var pineappleAmount: Int {
-        guard let amount = getFruits[.pineapple] else { return 0 }
-        return amount
+        return fruitStore.fruits[.pineapple] ?? 0
     }
     private var kiwiAmount: Int {
-        guard let amount = getFruits[.kiwi] else { return 0 }
-        return amount
+        return fruitStore.fruits[.kiwi] ?? 0
     }
     private var mangoAmount: Int {
-        guard let amount = getFruits[.mango] else { return 0 }
-        return amount
+        return fruitStore.fruits[.mango] ?? 0
     }
     
     @IBOutlet weak private var strawberryLabel: UILabel!
@@ -36,7 +31,7 @@ final class JuiceMakerViewController: UIViewController {
     @IBOutlet weak private var mangoLabel: UILabel!
     
     required init?(coder: NSCoder) {
-        fruitStore = FruitStore()
+        fruitStore = FruitStore(amount: 10)
         juiceMaker = JuiceMaker(fruitStore: fruitStore)
         super.init(coder: coder)
     }
@@ -44,7 +39,7 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setLabel(fruitStore.fruits)
+        setLabel()
     }
     
     @IBAction private func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
@@ -60,7 +55,7 @@ final class JuiceMakerViewController: UIViewController {
         tryMakeJuice(juice)
     }
     
-    private func setLabel(_ fruits: [Fruit: Int]) {
+    private func setLabel() {
         strawberryLabel.text = "\(strawberryAmount)"
         bananaLabel.text = "\(bananaAmount)"
         kiwiLabel.text = "\(kiwiAmount)"
@@ -136,6 +131,6 @@ final class JuiceMakerViewController: UIViewController {
 extension JuiceMakerViewController: UpdatableFruitStock {
     func updateStockDelegate(changeStock: [Fruit: Int]) {
         fruitStore.setFruits(changeStock)
-        setLabel(changeStock)
+        setLabel()
     }
 }
