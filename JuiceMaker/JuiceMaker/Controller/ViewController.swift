@@ -69,7 +69,7 @@ final class ViewController: UIViewController {
     private func changeStockView() {
         guard let editStockView = self.storyboard?.instantiateViewController(withIdentifier:
                                                                                 EditStockViewController.identifier ) else { return }
-        editStockView.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        editStockView.modalPresentationStyle = .fullScreen
         self.present(editStockView, animated: true)
     }
     

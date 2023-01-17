@@ -28,7 +28,7 @@ final class EditStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateStockLabel()
-        settingStepper()
+        setStepper()
         
     }
     
@@ -39,27 +39,25 @@ final class EditStockViewController: UIViewController {
     }
     
     //MARK: - 화면 Label에 재고 Update
-    private func updateStockLabel() {
-        let fruits = fruitStore.fruits.mapValues{ String($0) }
-       
-        for fruit in Fruit.allCases {
-            guard let label = returnLabel(of: fruit) else { return }
-            label.text = fruits[fruit]
-        }
+    private func updateStockLabel() {  
+        fruitStore.fruits.forEach { fruit, stock in
+             guard let label = findEachFruitLabel(of: fruit) else { return }
+             label.text = "\(stock)"
+         }
     }
     
     //MARK: - 과일에 맞는 label, stepper 반환
-    func returnLabel(of fruit: Fruit) -> UILabel? {
+    func findEachFruitLabel(of fruit: Fruit) -> UILabel? {
         let labelDictionary: [Fruit: UILabel] = [.strawberry: strawberryLabel,
-                                                     .banana: bananaLabel,
-                                                     .pineapple: pineappleLabel,
-                                                     .mango: mangoLabel,
-                                                     .kiwi: kiwiLabel]
+                                                 .banana: bananaLabel,
+                                                 .pineapple: pineappleLabel,
+                                                 .mango: mangoLabel,
+                                                 .kiwi: kiwiLabel]
         guard let label = labelDictionary[fruit] else { return nil }
         return label
     }
     
-    func returnStepper(of fruit: Fruit) -> UIStepper? {
+    func findEachFruitStepper(of fruit: Fruit) -> UIStepper? {
         let stepperDictionary: [Fruit: UIStepper] = [.strawberry: strawberryStepper,
                                                      .banana: bananaStepper,
                                                      .pineapple: pineappleStepper,
@@ -70,11 +68,11 @@ final class EditStockViewController: UIViewController {
     }
     
     //MARK: - Stepper 초기 설정
-    func settingStepper() {
-        for fruit in Fruit.allCases {
-            guard let fruitStepper = returnStepper(of: fruit) else { return }
-            let stock = fruitStore.returnFruitStock(of: fruit)
-            fruitStepper.value = Double(stock)
+    func setStepper() {
+        fruitStore.fruits.forEach { fruit, amount in
+            guard let fruitStepper = findEachFruitStepper(of: fruit) else { return }
+            
+            fruitStepper.value = Double(amount)
             fruitStepper.minimumValue = 0
             fruitStepper.autorepeat = true
         }
@@ -84,8 +82,8 @@ final class EditStockViewController: UIViewController {
     @IBAction func stepperPressed(_ sender: UIStepper) {
         for fruit in Fruit.allCases {
             let stock = Int(sender.value)
-            guard sender == returnStepper(of: fruit),
-                  let label = returnLabel(of: fruit) else { continue }
+            guard sender == findEachFruitStepper(of: fruit),
+                  let label = findEachFruitLabel(of: fruit) else { continue }
 
             label.text = stock.description
         }
@@ -103,6 +101,6 @@ final class EditStockViewController: UIViewController {
     
     //MARK: - 네비게이터 버튼
     @IBAction func dismissButtonDidTapped(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: true)
     }
 }
