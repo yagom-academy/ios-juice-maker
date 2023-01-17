@@ -44,7 +44,7 @@ final class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setLabel(getFruits)
+        setLabel(fruitStore.fruits)
     }
     
     @IBAction private func didTapChangeFruitStock(_ sender: UIBarButtonItem) {
@@ -94,7 +94,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let fruitStockViewController = self.storyboard?
             .instantiateViewController(withIdentifier: FruitStockViewController.identifier) as? FruitStockViewController else { return }
         
-        fruitStockViewController.setFruits(getFruits)
+        fruitStockViewController.setFruits(fruitStore.fruits)
         fruitStockViewController.delegate = self
         
         self.navigationController?.pushViewController(fruitStockViewController, animated: true)
@@ -135,7 +135,7 @@ final class JuiceMakerViewController: UIViewController {
 
 extension JuiceMakerViewController: UpdatableFruitStock {
     func updateStockDelegate(changeStock: [Fruit: Int]) {
-        self.juiceMaker.setFruitStore(changeStock)
+        fruitStore.setFruits(changeStock)
         setLabel(changeStock)
     }
 }
