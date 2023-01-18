@@ -6,8 +6,8 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController, StockUpdateableDelegate {
-    let juiceMaker = JuiceMaker()
-    var currentStockList: [FruitStore.Fruit: Int] = [:]
+    private let juiceMaker = JuiceMaker()
+    private var currentStockList: [FruitStore.Fruit: Int] = [:]
     
     @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
