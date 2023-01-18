@@ -5,13 +5,9 @@
 
 import UIKit
 
-extension Notification.Name {
-    static let stockNotification = Notification.Name("stock")
-}
-
-final class JuiceMakerViewController: UIViewController {
-    private let juiceMaker = JuiceMaker()
-    private let center: NotificationCenter = NotificationCenter.default
+final class JuiceMakerViewController: UIViewController, StockUpdateableDelegate {
+    let juiceMaker = JuiceMaker()
+    var currentStockList: [FruitStore.Fruit: Int] = [:]
     
     @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
@@ -31,36 +27,12 @@ final class JuiceMakerViewController: UIViewController {
         super.viewDidLoad()
         configureCurrentStock()
         self.navigationController?.navigationBar.backgroundColor = .systemGray4
-        center.addObserver(self, selector: #selector(updateStock(_:)), name: .stockNotification, object: nil)
-    }
-    
-    deinit {
-        center.removeObserver(self, name: .stockNotification, object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        configureCurrentStock()
     }
     
     private func configureCurrentStock() {
         for (fruit, value) in fruitStockValue {
-            value.text = String(FruitStore.shared.checkStockValue(fruit: fruit))
-        }
-    }
-    
-    @objc private func updateStock(_ noti: Notification) {
-        guard let addStockList = noti.userInfo?["newStock"] as? [FruitStore.Fruit: Int] else {
-            return
-        }
-        
-        for (fruit, afterStock) in addStockList {
-            let beforeStock = FruitStore.shared.checkStockValue(fruit: fruit)
-            
-            if beforeStock != afterStock {
-                let finalStock = afterStock - beforeStock
-                try? FruitStore.shared.addStock(fruit: fruit, amount: finalStock)
-            }
+            value.text = String(juiceMaker.fruitStore.checkStockValue(fruit: fruit))
+            currentStockList[fruit] = Int(value.text ?? "0")
         }
     }
     
@@ -117,21 +89,27 @@ final class JuiceMakerViewController: UIViewController {
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "예", style: .default) { _ in
-            self.moveScreen(to: "FruitStoreNavigationController")
+            self.moveScreen()
         })
         alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
         present(alert, animated: true, completion: nil)
     }
     
-    private func moveScreen(to navigationControlleridentifier: String) {
-        guard let viewController = storyboard?
-            .instantiateViewController(identifier: navigationControlleridentifier) as?
-                UINavigationController else { return }
-        viewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        present(viewController, animated: true, completion: nil)
+    private func moveScreen() {
+        guard let fruitStoreVC = storyboard?
+            .instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else { return }
+        fruitStoreVC.delegate = self
+        fruitStoreVC.currentStockList = currentStockList
+        fruitStoreVC.modalPresentationStyle = .fullScreen
+        present(fruitStoreVC, animated: true, completion: nil)
     }
     
     @IBAction private func didTapReviseStock(_ sender: UIBarButtonItem) {
-        moveScreen(to: "FruitStoreNavigationController")
+        moveScreen()
+    }
+    
+    func updateStock(to stockList: [FruitStore.Fruit : Int]) {
+        juiceMaker.fruitStore.updateStock(to: stockList)
+        configureCurrentStock()
     }
 }

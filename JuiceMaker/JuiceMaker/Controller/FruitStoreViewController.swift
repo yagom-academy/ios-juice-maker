@@ -6,7 +6,8 @@
 import UIKit
 
 final class FruitStoreViewController: UIViewController {
-    private let center: NotificationCenter = NotificationCenter.default
+    weak var delegate: StockUpdateableDelegate?
+    var currentStockList: [FruitStore.Fruit: Int] = [:]
     
     @IBOutlet private weak var strawberryLabel: UILabel!
     @IBOutlet private weak var bananaLabel: UILabel!
@@ -43,21 +44,15 @@ final class FruitStoreViewController: UIViewController {
         configureUI()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        center.post(name: .stockNotification, object: nil,
-                    userInfo: ["newStock": addStockListByStepper()])
-    }
-    
     private func configureCurrentStock() {
         for (fruit, value) in fruitStockValue {
-            value.text = String(FruitStore.shared.checkStockValue(fruit: fruit))
+            value.text = String(currentStockList[fruit] ?? 0)
         }
     }
     
     private func configureFruitStepper() {
         for (fruit, stepper) in fruitStockStepper {
-            stepper.value = Double(FruitStore.shared.checkStockValue(fruit: fruit))
+            stepper.value = Double(currentStockList[fruit] ?? 0)
         }
     }
     
@@ -106,7 +101,7 @@ final class FruitStoreViewController: UIViewController {
     }
     
     @IBAction private func didTapDissmisButton(_ sender: UIButton) {
+        delegate?.updateStock(to: addStockListByStepper())
         dismiss(animated: true, completion: nil)
     }
-
 }
