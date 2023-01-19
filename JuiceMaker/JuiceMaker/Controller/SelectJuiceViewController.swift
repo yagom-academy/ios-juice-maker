@@ -18,10 +18,6 @@ extension FruitStockDelegate {
     }
 }
 
-//protocol FruitStock {
-//    var delegate: FruitStockDelegate? { get set }
-//}
-
 final class SelectJuiceViewController: UIViewController, FruitStockDelegate {
 
     let fruitStore = FruitStore()
