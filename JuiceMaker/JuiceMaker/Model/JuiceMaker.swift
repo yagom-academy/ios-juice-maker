@@ -4,7 +4,7 @@
 //
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    let fruitStore: FruitStore = FruitStore()
     
     enum Juice: String {
         case strawberryJuice = "딸기쥬스"

@@ -1,38 +1,38 @@
 //
 //  JuiceMaker - JuiceMakerViewController.swift
-//  Created by yagom.
-//  Copyright © yagom academy. All rights reserved.
+//  Created by Andrew, 혜모리 on 2023.01.02
 //
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController {
-    
+final class JuiceMakerViewController: UIViewController, StockUpdateableDelegate {
     private let juiceMaker = JuiceMaker()
+    private var currentStockList: [FruitStore.Fruit: Int] = [:]
     
-    @IBOutlet private weak var strawberryStockValue: UILabel!
-    @IBOutlet private weak var bananaStockValue: UILabel!
-    @IBOutlet private weak var pineappleStockValue: UILabel!
-    @IBOutlet private weak var kiwiStockValue: UILabel!
-    @IBOutlet private weak var mangoStockValue: UILabel!
+    @IBOutlet private weak var strawberryLabel: UILabel!
+    @IBOutlet private weak var bananaLabel: UILabel!
+    @IBOutlet private weak var pineappleLabel: UILabel!
+    @IBOutlet private weak var kiwiLabel: UILabel!
+    @IBOutlet private weak var mangoLabel: UILabel!
     
     private lazy var fruitStockValue: [FruitStore.Fruit: UILabel] = [
-        .strawberry: strawberryStockValue,
-        .banana: bananaStockValue,
-        .pineapple: pineappleStockValue,
-        .kiwi: kiwiStockValue,
-        .mango: mangoStockValue
+        .strawberry: strawberryLabel,
+        .banana: bananaLabel,
+        .pineapple: pineappleLabel,
+        .kiwi: kiwiLabel,
+        .mango: mangoLabel
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureCurrentStock()
+        self.navigationController?.navigationBar.backgroundColor = .systemGray4
     }
     
     private func configureCurrentStock() {
         for (fruit, value) in fruitStockValue {
             value.text = String(juiceMaker.fruitStore.checkStockValue(fruit: fruit))
+            currentStockList[fruit] = Int(value.text ?? "0")
         }
     }
     
@@ -89,20 +89,27 @@ final class JuiceMakerViewController: UIViewController {
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "예", style: .default) { _ in
-            self.moveScreen(to: "FruitStoreViewController")
+            self.moveFruitStoreViewController()
         })
         alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
         present(alert, animated: true, completion: nil)
     }
     
-    private func moveScreen(to viewControllerIdentifier: String) {
-        guard let button = self.storyboard?
-            .instantiateViewController(withIdentifier: viewControllerIdentifier)
-        else { return }
-        self.navigationController?.pushViewController(button, animated: true)
+    private func moveFruitStoreViewController() {
+        guard let fruitStoreVC = storyboard?
+            .instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else { return }
+        fruitStoreVC.delegate = self
+        fruitStoreVC.currentStockList = currentStockList
+        fruitStoreVC.modalPresentationStyle = .fullScreen
+        present(fruitStoreVC, animated: true, completion: nil)
     }
     
     @IBAction private func didTapReviseStock(_ sender: UIBarButtonItem) {
-        moveScreen(to: "FruitStoreViewController")
+        moveFruitStoreViewController()
+    }
+    
+    func updateStock(to stockList: [FruitStore.Fruit : Int]) {
+        juiceMaker.fruitStore.updateStock(to: stockList)
+        configureCurrentStock()
     }
 }
