@@ -8,8 +8,13 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore = FruitStore.shared
 
+    let fruitStore: FruitStore
+    
+    init(_ fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
+    }
+    
     func makeJuice(juiceName: Juice) -> Juice? {
         if fruitStore.useFruit(juice: juiceName) != nil {
             return juiceName

@@ -10,9 +10,6 @@ import Foundation
 class FruitStore {
     var fruitStock = [Fruit.딸기: 10, .바나나: 10, .파인애플: 10, .키위: 10, .망고: 10]
     
-    static let shared = FruitStore()
-    private init() {}
-    
     func useFruit(juice: Juice) -> [Fruit: Int]? {
         let fruitRemainder = isStocked(juice: juice)
         switch fruitRemainder {

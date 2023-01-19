@@ -8,6 +8,7 @@ import UIKit
 
 protocol FruitStockDelegate {
     var fruitStore: FruitStore { get }
+    func fetchStock(fruit: Fruit) -> Int?
 }
 
 extension FruitStockDelegate {
@@ -17,13 +18,13 @@ extension FruitStockDelegate {
     }
 }
 
-protocol FruitStock {
-    var delegate: FruitStockDelegate? { get set }
-}
+//protocol FruitStock {
+//    var delegate: FruitStockDelegate? { get set }
+//}
 
 final class SelectJuiceViewController: UIViewController, FruitStockDelegate {
 
-    let fruitStore = FruitStore.shared
+    let fruitStore = FruitStore()
     
     @IBOutlet weak var strawberryStockUILabel: UILabel!
     @IBOutlet weak var bananaStockUILabel: UILabel!
@@ -74,7 +75,7 @@ final class SelectJuiceViewController: UIViewController, FruitStockDelegate {
     }
     
     private func selectJuiceButton(titleName: String?) {
-        let juiceMaker = JuiceMaker()
+        let juiceMaker = JuiceMaker(fruitStore)
         switch titleName {
         case "딸바쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .딸바쥬스) != nil {

@@ -7,9 +7,8 @@
 
 import UIKit
 
-final class StockModifyViewController: UIViewController, FruitStock {
-    
-//    private let fruitStore = FruitStore.shared
+final class StockModifyViewController: UIViewController {
+
     var delegate: FruitStockDelegate?
     
     @IBOutlet weak private var strawberryStockUILabel: UILabel!
