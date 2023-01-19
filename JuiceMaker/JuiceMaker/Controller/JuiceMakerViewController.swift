@@ -89,13 +89,13 @@ final class JuiceMakerViewController: UIViewController, StockUpdateableDelegate 
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "예", style: .default) { _ in
-            self.moveScreen()
+            self.moveFruitStoreViewController()
         })
         alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
         present(alert, animated: true, completion: nil)
     }
     
-    private func moveScreen() {
+    private func moveFruitStoreViewController() {
         guard let fruitStoreVC = storyboard?
             .instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else { return }
         fruitStoreVC.delegate = self
@@ -105,7 +105,7 @@ final class JuiceMakerViewController: UIViewController, StockUpdateableDelegate 
     }
     
     @IBAction private func didTapReviseStock(_ sender: UIBarButtonItem) {
-        moveScreen()
+        moveFruitStoreViewController()
     }
     
     func updateStock(to stockList: [FruitStore.Fruit : Int]) {
