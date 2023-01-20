@@ -6,9 +6,21 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+protocol FruitStockDelegate {
+    var fruitStore: FruitStore { get }
+    func fetchStock(fruit: Fruit) -> Int?
+}
 
-    let fruitStore = FruitStore.shared
+extension FruitStockDelegate {
+    func fetchStock(fruit: Fruit) -> Int? {
+        let stock = fruitStore.fruitStock[fruit]
+        return stock
+    }
+}
+
+final class SelectJuiceViewController: UIViewController, FruitStockDelegate {
+
+    let fruitStore = FruitStore()
     
     @IBOutlet weak var strawberryStockUILabel: UILabel!
     @IBOutlet weak var bananaStockUILabel: UILabel!
@@ -28,6 +40,11 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        displayStocks()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         displayStocks()
     }
     
@@ -54,7 +71,7 @@ final class ViewController: UIViewController {
     }
     
     private func selectJuiceButton(titleName: String?) {
-        let juiceMaker = JuiceMaker()
+        let juiceMaker = JuiceMaker(fruitStore)
         switch titleName {
         case "딸바쥬스 주문":
             if juiceMaker.makeJuice(juiceName: .딸바쥬스) != nil {
@@ -100,8 +117,7 @@ final class ViewController: UIViewController {
     private func presentAlertOutOfStock() {
         let alertOutOfStock = UIAlertController(title: "실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         let yesAction = UIAlertAction(title: "예", style: .default) { (action) in
-            guard let stockModifyButton = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else { return }
-            self.navigationController?.pushViewController(stockModifyButton, animated: true)
+            self.presentModal()
         }
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         alertOutOfStock.addAction(yesAction)
@@ -110,10 +126,16 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func stockModifyTapped(_ sender: UIBarButtonItem) {
-        guard let stockModifyButton = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") else {
+        presentModal()
+    }
+    
+    private func presentModal() {
+        guard let stockModifyViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockModifyViewController") as? StockModifyViewController else {
             return
         }
-        self.navigationController?.pushViewController(stockModifyButton, animated: true)
+        stockModifyViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: stockModifyViewController)
+        navigationController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        present(navigationController, animated: true, completion: nil)
     }
 }
-
