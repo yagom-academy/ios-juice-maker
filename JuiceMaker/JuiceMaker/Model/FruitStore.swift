@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct Fruit {
+fileprivate struct Fruit {
     var name: String
     var stock: Int
 }
@@ -48,9 +48,8 @@ class FruitStore {
         case "망코":
             mango.stock = number
         default:
-            throw InputError.invalidInputError
+            throw InputError.nameError
         }
     }
 }
 
-feat: 입력 함수 삭제 및 Fruit 구조체 생성, 재고 변수 생성, 재고 변경 함수 생성

@@ -8,5 +8,6 @@
 import Foundation
 
 enum InputError: Error {
-    case invalidInputError
+    case nameError
+    case stockError
 }
