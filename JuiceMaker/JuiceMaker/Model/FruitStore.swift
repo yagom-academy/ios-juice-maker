@@ -27,4 +27,13 @@ class FruitStore {
             return nil
         }
     }
+    
+    func consumeStock(of fruit: Fruit, by amount: Int) throws {
+        if var stock = inventory[fruit] {
+            stock -= amount
+            inventory[fruit] = stock
+        } else {
+            // 에러 종류
+        }
+    }
 }
