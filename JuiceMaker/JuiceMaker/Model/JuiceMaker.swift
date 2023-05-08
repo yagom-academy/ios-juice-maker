@@ -11,16 +11,9 @@ struct JuiceMaker {
     let fruitStore: FruitStore
     
     func makeJuice(_ juiceName: String) {
-        if fruitStore.strawBerry <= 16 {
-            fruitStore.removeFruitJuice(juiceName)
-        } else if fruitStore.banana <= 2 {
-            fruitStore.removeFruitJuice(juiceName)
-        } else if fruitStore.kiwi <= 3 {
-            fruitStore.removeFruitJuice(juiceName)
-        } else if fruitStore.pineApple <= 2 {
-            
-        }
+        fruitStore.error(juiceName)
     }
 }
+
 
 
