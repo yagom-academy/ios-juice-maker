@@ -16,26 +16,28 @@ class FruitStore {
     ]
     
     func checkStock(of fruit: Fruit) -> Int? {
-        if let stock = inventory[fruit] {
-            return stock
-        } else {
-            return nil
-        }
+        inventory[fruit]
     }
     
-    func consumeStock(of fruit: Fruit, by amount: Int) throws {
-        if let currentStock = inventory[fruit] {
+    func updateStock(of fruit: Fruit, by amount: Int, operation: StockUpdate) -> Result<Int, FruitJuiceError> {
+        guard let currentStock = inventory[fruit] else {
+            return .failure(.notFoundFruitInformation)
+        }
+        
+        switch operation {
+        case .consume:
+            if currentStock < amount {
+                return .failure(.insufficientFruitStock)
+            }
             inventory[fruit] = currentStock - amount
-        } else {
-            throw FruitJuiceError.notFoundFruitInformation
-        }
-    }
-    
-    func orderFruits(of fruit: Fruit, by amount: Int) throws {
-        if let currentStock = inventory[fruit] {
+        case .order:
             inventory[fruit] = currentStock + amount
-        } else {
-            throw FruitJuiceError.notFoundFruitInformation
         }
+        
+        guard let updateStock = inventory[fruit] else {
+            return .failure(.notFoundFruitInformation)
+        }
+        
+        return .success(updateStock)
     }
 }

@@ -25,3 +25,7 @@ enum FruitJuiceError: Error {
     case insufficientFruitStock
     case notFoundFruitInformation
 }
+
+enum StockUpdate {
+    case consume, order
+}
