@@ -22,10 +22,7 @@ struct JuiceMaker {
     private func useFruits(_ fruit: Fruit, _ amount: Int) throws {
         let stockUpdateResult = fruitStore.updateStock(of: fruit, by: amount, operation: .consume)
         
-        switch stockUpdateResult {
-        case .success:
-            break
-        case .failure(let error):
+        if case .failure(let error) = stockUpdateResult {
             throw error
         }
     }
