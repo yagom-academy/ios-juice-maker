@@ -8,16 +8,30 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    var fruits: [String: Int] = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위":10, "망고": 10]
+    var fruitsDictionary: [String: Int] = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
     
-    func inputFruit() {
-        print("과일을 입력해주세요: ", terminator: "")
-        var fruit: String = readLine()
+    func getUserInput() -> String {
+        guard let userInput: String = readLine() else { return "" }
         
-        guard let fruits[fruit]
+        return userInput
     }
-    func addFruit(_ fruit: String) {
+    
+    func inputFruit() -> String {
+        print("과일을 입력해주세요: ", terminator: "")
+        let fruit: String = getUserInput()
+        guard let _ = fruitsDictionary[fruit] else { return "" }
         
+        return fruit
+    }
+    
+    func changeFruitsNumber() {
+        let inputFruits = inputFruit()
+        
+        print("변경할 개수를 입력해주세요.: ", terminator: "")
+        let userInput = getUserInput()
+        guard let number = Int(userInput) else { return }
+        fruitsDictionary[inputFruits] = number
     }
 }
 
+feat: changeFruitsNumber() 및 getUserInput() 함수 생성
