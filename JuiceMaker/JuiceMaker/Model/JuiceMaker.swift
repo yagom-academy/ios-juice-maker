@@ -40,6 +40,19 @@ struct JuiceMaker {
         }
     }
     
+    private func canMakeJuice(_ juice: Juice, orderCount: Int) -> Bool {
+        guard let recipes = juiceRecipes[juice] else {
+            return false
+        }
+        
+        for (fruit, recipeAmount) in recipes {
+            guard let stock = fruitStore.checkStock(of: fruit), stock >= recipeAmount * orderCount else {
+                return false
+            }
+        }
+        return true
+    }
+    
     func takeOrder(_ juice: Juice, count: Int) {
         var successfulJuicesCount = 0
         
