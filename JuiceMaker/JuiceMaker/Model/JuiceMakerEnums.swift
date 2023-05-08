@@ -12,19 +12,19 @@ enum Fruit {
 }
 
 enum Juice: String {
-    case strawberry = "딸기",
-         banana = "바나나",
-         kiwi = "키위",
-         pineapple = "파인애플",
-         strawNana = "딸바",
-         mango = "망고",
-         mangKi = "망키"
+    case strawberryJuice = "딸기",
+         bananaJuice = "바나나",
+         kiwiJuice = "키위",
+         pineappleJuice = "파인애플",
+         strawNanaJuice = "딸바",
+         mangoJuice = "망고",
+         mangKiJuice = "망키"
 }
 
 enum FruitJuiceError: Error {
     case insufficientFruitStock
     case notFoundFruitInformation
-    case notFountJuiceRecipe
+    case notFoundJuiceRecipe
 }
 
 enum StockUpdate {

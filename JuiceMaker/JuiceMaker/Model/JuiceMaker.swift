@@ -10,13 +10,13 @@ struct JuiceMaker {
     private let fruitStore = FruitStore()
     
     private let juiceRecipes: [Juice: [Fruit: Int]] = [
-        .strawberry: [.strawberry: 16],
-        .banana: [.banana: 2],
-        .kiwi: [.kiwi: 3],
-        .pineapple: [.pineapple: 2],
-        .strawNana: [.strawberry: 10, .banana: 1],
-        .mango: [.mango: 3],
-        .mangKi: [.mango: 2, .kiwi: 1]
+        .strawberryJuice: [.strawberry: 16],
+        .bananaJuice: [.banana: 2],
+        .kiwiJuice: [.kiwi: 3],
+        .pineappleJuice: [.pineapple: 2],
+        .strawNanaJuice: [.strawberry: 10, .banana: 1],
+        .mangoJuice: [.mango: 3],
+        .mangKiJuice: [.mango: 2, .kiwi: 1]
     ]
 
     private func useFruits(_ fruit: Fruit, _ amount: Int) throws {
@@ -29,7 +29,7 @@ struct JuiceMaker {
     
     private func makeJuice(_ juice: Juice) throws {
         guard let recipe = juiceRecipes[juice] else {
-            throw FruitJuiceError.notFountJuiceRecipe
+            throw FruitJuiceError.notFoundJuiceRecipe
         }
         
         for (fruit, amount) in recipe {
@@ -47,6 +47,7 @@ struct JuiceMaker {
                 return false
             }
         }
+        
         return true
     }
     
