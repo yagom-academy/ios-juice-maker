@@ -6,12 +6,7 @@
 
 import Foundation
 
-enum Fruit {
-    case strawberry, banana, pineapple, kiwi, mango
-}
-
-// 과일 저장소 타입
-class FruitStore {
+class FruitStore {    
     private var inventory: [Fruit: Int] = [
         .strawberry: 10,
         .banana: 10,
@@ -29,11 +24,18 @@ class FruitStore {
     }
     
     func consumeStock(of fruit: Fruit, by amount: Int) throws {
-        if var stock = inventory[fruit] {
-            stock -= amount
-            inventory[fruit] = stock
+        if let currentStock = inventory[fruit] {
+            inventory[fruit] = currentStock - amount
         } else {
-            // 에러 종류
+            throw FruitJuiceError.notFoundFruitInformation
+        }
+    }
+    
+    func orderFruits(of fruit: Fruit, by amount: Int) throws {
+        if let currentStock = inventory[fruit] {
+            inventory[fruit] = currentStock + amount
+        } else {
+            throw FruitJuiceError.notFoundFruitInformation
         }
     }
 }
