@@ -40,7 +40,7 @@ struct JuiceMaker {
         }
     }
     
-    private func canMakeJuice(_ juice: Juice, orderCount: Int) -> Bool {
+    private func canMakeJuice(_ juice: Juice, _ orderCount: Int) -> Bool {
         guard let recipes = juiceRecipes[juice] else {
             return false
         }
@@ -53,18 +53,18 @@ struct JuiceMaker {
         return true
     }
     
-    func takeOrder(_ juice: Juice, count: Int) {
-        var successfulJuicesCount = 0
-        
-        for _ in 1...count {
-            let juiceMakingResult = makeJuice(juice)
-            
-            do {
-                try makeJuice(juice)
-                print("\(juice.rawValue)쥬스 \(count)잔 나왔습니다.")
-            } catch {
-                print("Error: \(error)")
+    func takeOrder(_ juice: Juice, orderCount: Int) {
+        if canMakeJuice(juice, orderCount) {
+            for _ in 1...orderCount {
+                do {
+                    try makeJuice(juice)
+                } catch {
+                    print("Error: \(error)")
+                }
             }
+            print("\(juice.rawValue)쥬스 \(orderCount)잔 나왔습니다.")
+        } else {
+            print("재고가 부족하여 주문을 받을 수 없습니다.")
         }
     }
 }
