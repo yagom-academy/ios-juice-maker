@@ -41,4 +41,11 @@ struct JuiceMaker {
             try useFruits(.kiwi, 1)
         }
     }
+    
+    func takeOrder(_ juice: Juice, count: Int) {
+        for _ in 1...count {
+            try makeJuice(juice)
+            print("\(juice.rawValue)쥬스 \(count)잔 나왔습니다.")
+        }
+    }
 }
