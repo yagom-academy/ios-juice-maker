@@ -8,44 +8,50 @@ import Foundation
 
 struct JuiceMaker {
     private let fruitStore = FruitStore()
+    
+    private let juiceRecipes: [Juice: [Fruit: Int]] = [
+        .strawberry: [.strawberry: 16],
+        .banana: [.banana: 2],
+        .kiwi: [.kiwi: 3],
+        .pineapple: [.pineapple: 2],
+        .strawNana: [.strawberry: 10, .banana: 1],
+        .mango: [.mango: 3],
+        .mangKi: [.mango: 2, .kiwi: 1]
+    ]
 
     private func useFruits(_ fruit: Fruit, _ amount: Int) throws {
-        guard let stock = fruitStore.checkStock(of: fruit) else {
-            throw FruitJuiceError.notFoundFruitInformation
-        }
+        let stockUpdateResult = fruitStore.updateStock(of: fruit, by: amount, operation: .consume)
         
-        if stock < amount {
-            throw FruitJuiceError.insufficientFruitStock
+        switch stockUpdateResult {
+        case .success:
+            break
+        case .failure(let error):
+            throw error
         }
-        
-        try fruitStore.consumeStock(of: fruit, by: amount)
     }
     
     private func makeJuice(_ juice: Juice) throws {
-        switch juice {
-        case .strawberry:
-            try useFruits(.strawberry, 16)
-        case .banana:
-            try useFruits(.banana, 2)
-        case .kiwi:
-            try useFruits(.kiwi, 3)
-        case .pineapple:
-            try useFruits(.pineapple, 2)
-        case .strawNana:
-            try useFruits(.strawberry, 10)
-            try useFruits(.banana, 1)
-        case .mango:
-            try useFruits(.mango, 3)
-        case .mangKi:
-            try useFruits(.mango, 2)
-            try useFruits(.kiwi, 1)
+        guard let recipe = juiceRecipes[juice] else {
+            throw FruitJuiceError.notFountJuiceRecipe
+        }
+        
+        for (fruit, amount) in recipe {
+            try useFruits(fruit, amount)
         }
     }
     
     func takeOrder(_ juice: Juice, count: Int) {
+        var successfulJuicesCount = 0
+        
         for _ in 1...count {
-            try makeJuice(juice)
-            print("\(juice.rawValue)쥬스 \(count)잔 나왔습니다.")
+            let juiceMakingResult = makeJuice(juice)
+            
+            do {
+                try makeJuice(juice)
+                print("\(juice.rawValue)쥬스 \(count)잔 나왔습니다.")
+            } catch {
+                print("Error: \(error)")
+            }
         }
     }
 }

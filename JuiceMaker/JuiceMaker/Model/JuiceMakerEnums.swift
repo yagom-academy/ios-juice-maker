@@ -24,6 +24,7 @@ enum Juice: String {
 enum FruitJuiceError: Error {
     case insufficientFruitStock
     case notFoundFruitInformation
+    case notFountJuiceRecipe
 }
 
 enum StockUpdate {
