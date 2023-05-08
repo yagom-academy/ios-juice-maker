@@ -30,4 +30,25 @@ struct JuiceMaker {
         
         try fruitStore.consumeStock(of: fruit, by: amount)
     }
+    
+    private func makeJuice(_ juice: Juice) throws {
+        switch juice {
+        case .strawberry:
+            try useFruits(.strawberry, 16)
+        case .banana:
+            try useFruits(.banana, 2)
+        case .kiwi:
+            try useFruits(.kiwi, 3)
+        case .pineapple:
+            try useFruits(.pineapple, 2)
+        case .strawNana:
+            try useFruits(.strawberry, 10)
+            try useFruits(.banana, 1)
+        case .mango:
+            try useFruits(.mango, 3)
+        case .mangKi:
+            try useFruits(.mango, 2)
+            try useFruits(.kiwi, 1)
+        }
+    }
 }
