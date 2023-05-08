@@ -6,59 +6,51 @@
 
 import Foundation
 
+struct Fruit {
+    var name: String
+    var stock: Int
+}
+
 // 과일 저장소 타입
 class FruitStore {
-    var fruitsDictionary: [String: Int] = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
+    private var strawberry = Fruit(name: "딸기", stock: 10)
+    private var banana = Fruit(name: "바나나", stock: 10)
+    private var pineapple = Fruit(name: "파인애플", stock: 10)
+    private var kiwi = Fruit(name: "키위", stock: 10)
+    private var mango = Fruit(name: "망고", stock: 10)
     
-    func printErrorMessage() {
-        do { try getUserInput()
-        } catch InputError.invalidInputError {
-            print("잘못된 입력입니다.")
-        } catch {
-            print("알수없는 오류가 발생하였습니다.")
+    var strawberryStock: Int {
+        return strawberry.stock
+    }
+    var bananaStock: Int {
+        return banana.stock
+    }
+    var pineappleStock: Int {
+        return pineapple.stock
+    }
+    var kiwiStock: Int {
+        return kiwi.stock
+    }
+    var mangoStock: Int {
+        return mango.stock
+    }
+
+    func changeStock(_ fruit: String, to number: Int) throws {
+        switch fruit {
+        case "딸기":
+            strawberry.stock = number
+        case "바나나":
+            banana.stock = number
+        case "파인애플":
+            pineapple.stock = number
+        case "키위":
+            kiwi.stock = number
+        case "망코":
+            mango.stock = number
+        default:
+            throw InputError.invalidInputError
         }
-        
-        do { try inputFruit()
-        } catch InputError.invalidInputError {
-            print("잘못된 입력입니다.")
-        } catch {
-            print("알수없는 오류가 발생하였습니다.")
-        }
-        
-        do { try changeFruitsNumber()
-        } catch InputError.invalidInputError {
-            print("잘못된 입력입니다.")
-        } catch {
-            print("알수없는 오류가 발생하였습니다.")
-        }
-    }
-    
-    func getUserInput() throws -> String {
-        guard let userInput: String = readLine() else { throw InputError.invalidInputError }
-        
-        return userInput
-    }
-    
-    func inputFruit() throws -> String {
-        print("과일을 입력해주세요: ", terminator: "")
-        let fruit: String = try getUserInput()
-        guard let _ = fruitsDictionary[fruit] else { throw InputError.invalidInputError }
-        
-        return fruit
-    }
-    
-    func changeFruitsNumber() throws {
-        let inputFruits = try inputFruit()
-        
-        print("변경할 개수를 입력해주세요.: ", terminator: "")
-        let userInput = try getUserInput()
-        guard let number = Int(userInput) else { throw InputError.invalidInputError }
-        fruitsDictionary[inputFruits] = number
-    }
-    
-    func checkStoock() {
-        
     }
 }
 
-
+feat: 입력 함수 삭제 및 Fruit 구조체 생성, 재고 변수 생성, 재고 변경 함수 생성
