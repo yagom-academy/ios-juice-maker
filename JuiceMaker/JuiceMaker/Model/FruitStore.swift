@@ -22,4 +22,14 @@ class FruitStore {
         currentCount += addCount
         fruits[fruit] = currentCount
     }
+    
+    func reduceFruitCount(at fruit: FruitType, with reduceCount: Int) {
+        guard let fruitStock = fruits[fruit] else {
+            return
+        }
+        guard fruitStock > reduceCount else {
+            return //빼기 불가능
+        }
+        fruits[fruit] = fruitStock - reduceCount
+    }
 }
