@@ -24,7 +24,7 @@ class FruitStore {
             throw FruitStoreError.notFoundKey(usedFruit.fruit)
         }
         
-        if currentAmount < usedFruit.amount {
+        guard currentAmount > usedFruit.amount else {
             throw FruitStoreError.notEnoughStock(usedFruit.fruit)
         }
     }
