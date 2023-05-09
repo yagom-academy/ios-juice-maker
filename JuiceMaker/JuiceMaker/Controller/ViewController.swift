@@ -11,8 +11,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let fruitStore = FruitStore()
+        let juiceMaker = JuiceMaker(fruitStore: fruitStore)
+        
+        juiceMaker.blendFruitJuice(fruitJuice: .bananaJuice)
+        juiceMaker.blendFruitJuice(fruitJuice: .strawberryJuice)
     }
-
-
+    
 }
 

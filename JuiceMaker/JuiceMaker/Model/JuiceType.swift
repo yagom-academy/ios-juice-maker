@@ -2,10 +2,8 @@
 //  JuiceType.swift
 //  JuiceMaker
 //
-//  Created by Yena on 2023/05/09.
+//  Created by dasan & kyungmin on 2023/05/09.
 //
-
-import Foundation
 
 enum JuiceType {
     case strawberryJuice
@@ -16,26 +14,22 @@ enum JuiceType {
     case mangoJuice
     case mangoKiwiJuice
     
-    struct Recipe {
-        let first: (FruitType, Int), second: (FruitType, Int)?
-    }
-    
-    var recipe: Recipe {
+    var recipe: [FruitType: Int] {
         switch self {
         case .strawberryJuice:
-            return Recipe(first: (.strawberry, 16), second: nil)
+            return [.strawberry: 16]
         case .bananaJuice:
-            return Recipe(first: (.banana, 2), second: nil)
+            return [.banana: 2]
         case .kiwiJuice:
-            return Recipe(first: (.kiwi, 3), second: nil)
+            return [.kiwi: 3]
         case .pineappleJuice:
-            return Recipe(first: (.pineapple, 2), second: nil)
+            return [.pineapple: 2]
         case .strawberryBananaJuice:
-            return Recipe(first: (.strawberry, 10), second: (.banana, 1))
+            return [.strawberry: 10, .banana: 1]
         case .mangoJuice:
-            return Recipe(first: (.mango, 3), second: nil)
+            return [.mango: 3]
         case .mangoKiwiJuice:
-            return Recipe(first: (.mango, 2), second: (.kiwi, 1))
+            return [.mango: 2,.kiwi: 1]
         }
     }
 }
