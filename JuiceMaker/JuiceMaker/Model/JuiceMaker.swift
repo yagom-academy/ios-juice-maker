@@ -6,7 +6,6 @@
 
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
-    var fruitName: FruitName
     var juiceName: JuiceName
     
     mutating func makeJuice(_ input: String) {

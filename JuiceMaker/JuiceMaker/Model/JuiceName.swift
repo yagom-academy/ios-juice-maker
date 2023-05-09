@@ -2,7 +2,7 @@
 //  JuiceName.swift
 //  JuiceMaker
 //
-//  Created by 1 on 2023/05/09.
+//  Created by hemg on 2023/05/09.
 //
 
 enum JuiceName: String {
