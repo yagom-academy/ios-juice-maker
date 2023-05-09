@@ -11,12 +11,8 @@ class FruitStore {
     private var fruitStock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     func useValidStock(usedFruits: (fruit: Fruit, amount: Int)...) throws {
-        for usedFruit in usedFruits {
-            try checkStock(usedFruit: usedFruit)
-        }
-        for usedFruit in usedFruits {
-            updateStock(usedFruit: usedFruit)
-        }
+        try usedFruits.forEach { try checkStock(usedFruit: $0) }
+        usedFruits.forEach { updateStock(usedFruit: $0) }
     }
     
     private func checkStock(usedFruit: (fruit: Fruit, amount: Int)) throws {
