@@ -27,21 +27,33 @@ struct JuiceMaker {
     func makeFruitJuice(menu: Menu) {
         switch menu {
         case .strawberryJuice:
-            store.changeFruitCount(.strawberry, count: 16)
+            makeJuice(menu: .strawberry, count: 16)
         case .bananaJuice:
-            store.changeFruitCount(.banana, count: 2)
+            makeJuice(menu: .banana, count: 2)
         case .pineappleJuice:
-            store.changeFruitCount(.pineapple, count: 2)
+            makeJuice(menu: .pineapple, count: 2)
         case .strawberryAndBananaJuice:
-            store.changeFruitCount(.strawberry, count: 10)
-            store.changeFruitCount(.banana, count: 2)
+            makeCollaborateJuice(main: (.strawberry, 10), sub: (.banana, 1))
         case .kiwiJuice:
-            store.changeFruitCount(.kiwi, count: 3)
+            makeJuice(menu: .kiwi, count: 3)
         case .mangoJuice:
-            store.changeFruitCount(.mango, count: 3)
+            makeJuice(menu: .mango, count: 3)
         case .mangoAndKiwiJuice:
-            store.changeFruitCount(.mango, count: 2)
-            store.changeFruitCount(.kiwi, count: 1)
+            makeCollaborateJuice(main: (.mango, 2), sub: (.kiwi, 1))
+        }
+    }
+    
+    func makeJuice(menu: Fruit, count: Int) {
+        if store.verifyFruitCount(menu, count: count) {
+            store.changeFruitCount(menu, count: count)
+        }
+    }
+    
+    func makeCollaborateJuice(main: (fruit: Fruit, count: Int), sub: (fruit: Fruit, count: Int)) {
+        if store.verifyFruitCount(main.fruit, count: main.count) &&
+            store.verifyFruitCount(sub.fruit, count: sub.count) {
+            store.changeFruitCount(main.fruit, count: main.count)
+            store.changeFruitCount(sub.fruit, count: sub.count)
         }
     }
 }
