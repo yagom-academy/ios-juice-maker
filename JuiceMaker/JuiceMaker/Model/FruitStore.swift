@@ -13,6 +13,8 @@ class FruitStore {
     func useValidStock(usedFruits: (fruit: Fruit, amount: Int)...) throws {
         for usedFruit in usedFruits {
             try checkStock(usedFruit: usedFruit)
+        }
+        for usedFruit in usedFruits {
             updateStock(usedFruit: usedFruit)
         }
     }

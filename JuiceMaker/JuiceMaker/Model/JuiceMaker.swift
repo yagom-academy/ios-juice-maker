@@ -33,9 +33,9 @@ struct JuiceMaker {
                 try fruitStore.useValidStock(usedFruits: (fruit: .mango, amount: 2), (fruit: .kiwi, amount: 1))
             }
         } catch FruitStoreError.notFoundKey(let fruit) {
-            print("\(fruit)을 찾을 수 없습니다.")
+            print("\(fruit.rawValue)을/를 찾을 수 없습니다.")
         } catch FruitStoreError.notEnoughStock(let fruit) {
-            print("\(fruit) 재고가 없습니다.")
+            print("\(fruit.rawValue) 재고가 없습니다.")
         } catch {
             print("알 수 없는 에러")
         }
