@@ -18,6 +18,13 @@ class FruitStore {
 	
 	private var inventory: Dictionary<Fruit, Int> = Fruit.allCases.reduce(into: Dictionary<Fruit, Int>()) { $0[$1] = 10 }
 	
+    func isEnoughStock(of fruit: Fruit, amount: Int) -> Bool {
+        guard let fruitStock = inventory[fruit] else { return false }
+        guard fruitStock > amount else { return false }
+        
+        return true
+    }
+    
 	func changeStock(of fruit: Fruit, minus amount: Int) {
 		guard let fruitStock = inventory[fruit] else { return }
 		guard fruitStock > amount else { return }
