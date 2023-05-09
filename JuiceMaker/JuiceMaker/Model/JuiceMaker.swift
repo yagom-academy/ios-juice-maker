@@ -22,13 +22,12 @@ struct JuiceMaker {
     
     private func checkFruitStock(_ recipe: [FruitNameAndAmount]) -> Result<Bool, BuyError> {
         for ingredient in recipe {
-            guard let stock = fruitStore.fruitStock[ingredient.name],
-                  stock >= ingredient.amount else {
-                return .failure(BuyError.ingredientShortage)
-            }
+            guard let stock = fruitStore.fruitStock[ingredient.name] else { return .failure(BuyError.unknown) }
+            guard stock >= ingredient.amount else { return .failure(BuyError.ingredientShortage) }
         }
         return .success(true)
     }
+
     
     private func makeJuice(with recipe: [FruitNameAndAmount]) {
         recipe.forEach { fruitStore.useStock(fruit: $0) }
