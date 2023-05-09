@@ -14,7 +14,7 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    private func makeJuice(juice: Juice, fruitStock: [Fruit: Int])  {
+    private func makeJuice(juice: Juice, fruitStock: [Fruit: Int]) {
         do {
             switch juice {
             case .strawberryJuice:

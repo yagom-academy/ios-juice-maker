@@ -12,5 +12,3 @@ enum Fruit: String {
     case kiwi = "키위"
     case mango = "망고"
 }
-
-
