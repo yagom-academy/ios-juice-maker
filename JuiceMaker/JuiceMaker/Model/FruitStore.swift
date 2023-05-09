@@ -19,4 +19,9 @@ class FruitStore {
               currentStock + quantity >= 0 else { throw FruitStoreError.insufficientError }
         fruitInventory[fruit] = currentStock + quantity
     }
+    
+    func getCurrentStock(of fruit: Fruit) -> Int {
+        guard let currentStock = fruitInventory[fruit] else { return 0 }
+        return currentStock
+    }
 }
