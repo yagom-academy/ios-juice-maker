@@ -12,6 +12,8 @@ class FruitStore {
     var kiwi: Int
     var mango: Int
     
+    var requiredFruitQuantity: RequiredFruitQuantity = RequiredFruitQuantity()
+    
     init(strawBerry: Int = 10, banana: Int = 10, pineApple: Int = 10, kiwi: Int = 10, mango: Int = 10) {
         self.strawBerry = strawBerry
         self.banana = banana
@@ -74,6 +76,48 @@ class FruitStore {
             self.kiwi -= 1
         default:
             print("")
+        }
+    }
+    
+    func checkFruitStock(_ juiceName: String) throws {
+        switch juiceName {
+        case "딸기주스":
+            requiredFruitQuantity.change(juiceName)
+            guard self.strawBerry > requiredFruitQuantity.strawBerry else {
+                throw FruitStoreError.countError
+            }
+        case "바나나주스":
+            requiredFruitQuantity.change(juiceName)
+            guard self.banana > requiredFruitQuantity.banana else {
+                throw FruitStoreError.countError
+            }
+        case "키위주스":
+            requiredFruitQuantity.change(juiceName)
+            guard self.kiwi > requiredFruitQuantity.kiwi else {
+                throw FruitStoreError.countError
+            }
+        case "파인애플주스":
+            requiredFruitQuantity.change(juiceName)
+            guard self.pineApple > requiredFruitQuantity.pineApple else {
+                throw FruitStoreError.countError
+            }
+        case "딸바주스":
+            requiredFruitQuantity.change(juiceName)
+            guard self.strawBerry > requiredFruitQuantity.strawBerry, self.banana > requiredFruitQuantity.banana else {
+                throw FruitStoreError.countError
+            }
+        case "망고주스":
+            requiredFruitQuantity.change(juiceName)
+            guard self.mango > requiredFruitQuantity.mango else {
+                throw FruitStoreError.countError
+            }
+        case "망고키위주스":
+            requiredFruitQuantity.change(juiceName)
+            guard self.mango > requiredFruitQuantity.mango, self.kiwi > requiredFruitQuantity.kiwi else {
+                throw FruitStoreError.countError
+            }
+        default:
+            print("없는 주스입니다.")
         }
     }
 }
