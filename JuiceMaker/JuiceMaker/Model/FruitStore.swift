@@ -16,15 +16,21 @@ class FruitStore {
     
     func checkStock(fruit: Fruit, by count: Int) throws {
         guard let currentAmount = fruitStock[fruit] else {
-            throw FruitStoreError.notFoundKey
+            throw FruitStoreError.notFoundKey(fruit)
         }
         
         if currentAmount < count {
             throw FruitStoreError.notEnoughStock(fruit)
         }
     }
+    
+    func updateStock(fruit: Fruit, amount: Int) {
+        if let currentAmount = fruitStock[fruit] {
+            fruitStock[fruit] = currentAmount - amount
+        }
+    }
 }
 
 enum FruitStoreError: Error {
-    case notFoundKey, notEnoughStock(FruitStore.Fruit)
+    case notFoundKey(FruitStore.Fruit), notEnoughStock(FruitStore.Fruit)
 }
