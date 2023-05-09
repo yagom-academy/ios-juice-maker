@@ -4,24 +4,35 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
+    var fruitName: FruitName
+    var juiceName: JuiceName
     
-    func start(_ juiceName: String) {
+    mutating func makeJuice(_ input: String) {
+    
         do {
-            try makeJuice("딸기주스")
-        } catch FruitStoreError.countError {
-            print("재고가 부족합니다.")
+            try checkJuiceName(input)
+        } catch FruitStoreError.invalidJuiceNameError {
+            print("해당하는 주스가 없습니다.")
+        } catch {
+            print(error)
+        }
+                
+        do {
+            try fruitStore.checkFruitStock(self.juiceName)
+            fruitStore.removeFruit(self.juiceName)
+        } catch FruitStoreError.lackOfStockError {
+            print("과일의 재고가 부족합니다.")
         } catch {
             print(error)
         }
     }
-    
-    private func makeJuice(_ juiceName: String) throws {
-        try checkFruitStock(juiceName)
-        fruitStore.removeFruit(juiceName)
+        
+    private mutating func checkJuiceName(_ name: String) throws {
+        guard let juiceName = JuiceName(rawValue: name) else {
+            throw FruitStoreError.invalidJuiceNameError
+        }
+        self.juiceName = juiceName
     }
-    
-
 }

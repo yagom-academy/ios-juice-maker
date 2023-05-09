@@ -12,26 +12,24 @@ struct RequiredFruitQuantity {
     var kiwi: Int = 3
     var mango: Int = 3
     
-    mutating func change(_ juiceName: String) {
+    mutating func change(_ juiceName: JuiceName) {
         switch juiceName {
-        case "딸기주스":
+        case .strawBerryJuice:
             self.strawBerry = 16
-        case "바나나주스":
+        case .bananaJuice:
             self.banana = 2
-        case "키위주스":
+        case .kiwiJuice:
             self.kiwi = 3
-        case "파인애플주스":
+        case .pineAppleJuice:
             self.pineApple = 2
-        case "딸바주스":
+        case .strawBerryBananaJuice:
             self.strawBerry = 10
             self.banana = 1
-        case "망고주스":
+        case .mangoJuice:
             self.mango = 3
-        case "망고키위주스":
+        case .mangoKiwiJuice:
             self.mango = 2
             self.kiwi = 1
-        default:
-            print("오류")
         }
     }
 }

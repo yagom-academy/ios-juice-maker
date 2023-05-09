@@ -4,120 +4,111 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// 과일 저장소 타입
 class FruitStore {
-    var strawBerry: Int
-    var banana: Int
-    var pineApple: Int
-    var kiwi: Int
-    var mango: Int
+    private var strawBerryStock: Int
+    private var bananaStock: Int
+    private var pineAppleStock: Int
+    private var kiwiStock: Int
+    private var mangoStock: Int
     
     var requiredFruitQuantity: RequiredFruitQuantity = RequiredFruitQuantity()
     
-    init(strawBerry: Int = 10, banana: Int = 10, pineApple: Int = 10, kiwi: Int = 10, mango: Int = 10) {
-        self.strawBerry = strawBerry
-        self.banana = banana
-        self.pineApple = pineApple
-        self.kiwi = kiwi
-        self.mango = mango
+    init(strawBerryStock: Int = 10, bananaStock: Int = 10, pineAppleStock: Int = 10, kiwiStock: Int = 10, mangoStock: Int = 10) {
+        self.strawBerryStock = strawBerryStock
+        self.bananaStock = bananaStock
+        self.pineAppleStock = pineAppleStock
+        self.kiwiStock = kiwiStock
+        self.mangoStock = mangoStock
     }
     
-    private func addStoredFruit(_ fruit: String, _ stock: Int) {
-        switch fruit {
-        case "딸기":
-            self.strawBerry += stock
-        case "바나나":
-            self.banana += stock
-        case "파인애플":
-            self.pineApple += stock
-        case "키위":
-            self.kiwi += stock
-        case "망고":
-            self.mango += stock
-        default:
-            print("없는 과일")
+    private func increaseFruitStock(_ fruitName: FruitName, _ stock: Int) {
+        switch fruitName {
+        case .strawBerry :
+            self.strawBerryStock += stock
+        case .banana:
+            self.bananaStock += stock
+        case .pineApple:
+            self.pineAppleStock += stock
+        case .kiwi:
+            self.kiwiStock += stock
+        case .mango:
+            self.mangoStock += stock
         }
     }
     
-    private func removeStoredFruit(_ fruit: String, _ stock: Int) {
-        switch fruit {
-        case "딸기":
-            self.strawBerry -= stock
-        case "바나나":
-            self.banana -= stock
-        case "파인애플":
-            self.pineApple -= stock
-        case "키위":
-            self.kiwi -= stock
-        case "망고":
-            self.mango -= stock
-        default:
-            print("없는 과일")
+    private func decreaseFruitStock(_ fruitName: FruitName, _ stock: Int) {
+        switch fruitName {
+        case .strawBerry:
+            self.strawBerryStock -= stock
+        case .banana:
+            self.bananaStock -= stock
+        case .pineApple:
+            self.pineAppleStock -= stock
+        case .kiwi:
+            self.kiwiStock -= stock
+        case .mango:
+            self.mangoStock -= stock
         }
     }
     
-    func removeFruit(_ juice: String) {
-        switch juice {
-        case "딸기주스":
-            self.strawBerry -= 16
-        case "바나나주스":
-            self.banana -= 2
-        case "키위주스":
-            self.kiwi -= 3
-        case "파인애플주스":
-            self.pineApple -= 2
-        case "딸바주스":
-            self.strawBerry -= 10
-            self.banana -= 1
-        case "망고주스":
-            self.mango -= 3
-        case "망고키위주스":
-            self.mango -= 2
-            self.kiwi -= 1
-        default:
-            print("")
-        }
-    }
-    
-    func checkFruitStock(_ juiceName: String) throws {
+    func removeFruit(_ juiceName: JuiceName) {
         switch juiceName {
-        case "딸기주스":
+        case .strawBerryJuice:
+            self.strawBerryStock -= requiredFruitQuantity.strawBerry
+        case .bananaJuice:
+            self.bananaStock -= requiredFruitQuantity.banana
+        case .kiwiJuice:
+            self.kiwiStock -= requiredFruitQuantity.kiwi
+        case .pineAppleJuice:
+            self.pineAppleStock -= requiredFruitQuantity.pineApple
+        case .strawBerryBananaJuice:
+            self.strawBerryStock -= requiredFruitQuantity.strawBerry
+            self.bananaStock -= requiredFruitQuantity.banana
+        case .mangoJuice:
+            self.mangoStock -= requiredFruitQuantity.mango
+        case .mangoKiwiJuice:
+            self.mangoStock -= requiredFruitQuantity.mango
+            self.kiwiStock -= requiredFruitQuantity.kiwi
+        }
+    }
+    
+    func checkFruitStock(_ juiceName: JuiceName) throws {
+        switch juiceName {
+        case .strawBerryJuice:
             requiredFruitQuantity.change(juiceName)
-            guard self.strawBerry > requiredFruitQuantity.strawBerry else {
-                throw FruitStoreError.countError
+            guard self.strawBerryStock >= requiredFruitQuantity.strawBerry else {
+                throw FruitStoreError.lackOfStockError
             }
-        case "바나나주스":
+        case .bananaJuice:
             requiredFruitQuantity.change(juiceName)
-            guard self.banana > requiredFruitQuantity.banana else {
-                throw FruitStoreError.countError
+            guard self.bananaStock >= requiredFruitQuantity.banana else {
+                throw FruitStoreError.lackOfStockError
             }
-        case "키위주스":
+        case .kiwiJuice:
             requiredFruitQuantity.change(juiceName)
-            guard self.kiwi > requiredFruitQuantity.kiwi else {
-                throw FruitStoreError.countError
+            guard self.kiwiStock >= requiredFruitQuantity.kiwi else {
+                throw FruitStoreError.lackOfStockError
             }
-        case "파인애플주스":
+        case .pineAppleJuice:
             requiredFruitQuantity.change(juiceName)
-            guard self.pineApple > requiredFruitQuantity.pineApple else {
-                throw FruitStoreError.countError
+            guard self.pineAppleStock >= requiredFruitQuantity.pineApple else {
+                throw FruitStoreError.lackOfStockError
             }
-        case "딸바주스":
+        case .strawBerryBananaJuice:
             requiredFruitQuantity.change(juiceName)
-            guard self.strawBerry > requiredFruitQuantity.strawBerry, self.banana > requiredFruitQuantity.banana else {
-                throw FruitStoreError.countError
+            guard self.strawBerryStock >= requiredFruitQuantity.strawBerry, self.bananaStock >= requiredFruitQuantity.banana else {
+                throw FruitStoreError.lackOfStockError
             }
-        case "망고주스":
+        case .mangoJuice:
             requiredFruitQuantity.change(juiceName)
-            guard self.mango > requiredFruitQuantity.mango else {
-                throw FruitStoreError.countError
+            guard self.mangoStock >= requiredFruitQuantity.mango else {
+                throw FruitStoreError.lackOfStockError
             }
-        case "망고키위주스":
+        case .mangoKiwiJuice:
             requiredFruitQuantity.change(juiceName)
-            guard self.mango > requiredFruitQuantity.mango, self.kiwi > requiredFruitQuantity.kiwi else {
-                throw FruitStoreError.countError
+            guard self.mangoStock >= requiredFruitQuantity.mango, self.kiwiStock >= requiredFruitQuantity.kiwi else {
+                throw FruitStoreError.lackOfStockError
             }
-        default:
-            print("없는 주스입니다.")
         }
     }
 }
