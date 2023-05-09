@@ -18,18 +18,19 @@ class FruitStore {
 	
 	private var inventory: Dictionary<Fruit, Int> = Fruit.allCases.reduce(into: Dictionary<Fruit, Int>()) { $0[$1] = 10 }
 	
-    func isEnoughStock(_ recipes: Array<Recipe>) throws -> Bool {
+    func checkStock(_ recipes: Array<Recipe>) throws -> Array<Recipe> {
+		var chagedStock: Array<Recipe> = []
 		for recipe in recipes {
-            guard let fruitStock = inventory[recipe.fruit] else { throw StockError.fruitNotFound }
+			guard let fruitStock = inventory[recipe.fruit] else { throw StockError.fruitNotFound }
             guard fruitStock > recipe.amount else { throw StockError.outOfStock }
+			chagedStock.append((fruit: recipe.fruit, amount: fruitStock - recipe.amount))
 		}
-        return true
+        return chagedStock
     }
     
-	func changeStock(of fruit: Fruit, minus amount: Int) throws {
-        guard let fruitStock = inventory[fruit] else { throw StockError.fruitNotFound }
-		guard fruitStock > amount else { throw StockError.outOfStock }
+	func changeStock(of fruit: Fruit, quantity: Int) {
+        guard let _ = inventory[fruit] else { return }
 		
-		inventory[fruit] = fruitStock - amount
+		inventory[fruit] = quantity
 	}
 }

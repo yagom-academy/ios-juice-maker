@@ -68,8 +68,9 @@ struct JuiceMaker {
 	func makeFruitJuice(menu: FruitJuice) {
 		let recipe = menu.juiceRecipe
         do {
-            guard try fruitStore.isEnoughStock(recipe) else { return }
-            try recipe.forEach { try fruitStore.changeStock(of: $0.fruit, minus: $0.amount) }
+            let quantityToChange = try fruitStore.checkStock(recipe)
+			quantityToChange.forEach { fruitStore.changeStock(of: $0.fruit, quantity: $0.amount) }
+			print("\(menu.name) 제조가 완료되었습니다.")
         } catch StockError.fruitNotFound {
             print(StockError.fruitNotFound.errorMessage)
         } catch StockError.outOfStock {
@@ -77,7 +78,5 @@ struct JuiceMaker {
         } catch {
             print(StockError.unKnown.errorMessage)
         }
-		print("\(menu.name) 제조가 완료되었습니다.")
 	}
-	
 }
