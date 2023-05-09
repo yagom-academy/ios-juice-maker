@@ -5,6 +5,8 @@
 //  Created by Yetti, yy-ss99, Mary.
 //
 
+typealias IngredientAndAmount = (name: Fruits, amount: Int)
+
 enum Juice: CustomStringConvertible {
     case strawberryJuice
     case bananaJuice
@@ -30,6 +32,25 @@ enum Juice: CustomStringConvertible {
             return "망고쥬스"
         case .mangoKiwiJuice:
             return "망고키위쥬스"
+        }
+    }
+    
+    func checkRecipe() -> [IngredientAndAmount] {
+        switch self {
+        case .strawberryJuice:
+            return [(.strawberry, 16)]
+        case .bananaJuice:
+            return [(.banana, 2)]
+        case .kiwiJuice:
+            return [(.kiwi, 3)]
+        case .pineappleJuice:
+            return [(.pineapple, 2)]
+        case .strawberryBananaJuice:
+            return [(.strawberry, 10), (.banana, 1)]
+        case .mangoJuice:
+            return [(.mango, 3)]
+        case .mangoKiwiJuice:
+            return [(.mango, 2), (.kiwi, 1)]
         }
     }
 }
