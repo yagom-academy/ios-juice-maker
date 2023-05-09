@@ -14,7 +14,13 @@ class FruitStore {
     private(set) var kiwi: Fruit = Fruit(name: "키위", quantity: 10)
     private(set) var mango: Fruit = Fruit(name: "망고", quantity: 10)
     
-    func changeStock(of fruits: Fruit..., by quantity: Int...) {
+    func changeStock(of fruits: Fruit..., by quantity: Int...) throws {
+        for index in fruits.indices {
+            guard fruits[index].quantity < quantity[index] else {
+                throw FruitStoreError.shortageOfStock(fruit: fruits[index])
+            }
+        }
+        
         for index in fruits.indices {
             fruits[index].quantity -= quantity[index]
         }
