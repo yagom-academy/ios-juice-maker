@@ -7,20 +7,20 @@
 struct JuiceMaker {
     let fruitStore: FruitStore
     
-    func make(_ juiceType: Juice) {
-        let recipe = juiceType.checkRecipe()
-        let checkFruit = checkFruit(recipe)
+    func takeOrder(_ juiceType: Juice) {
+        let recipe = juiceType.giveRecipe()
+        let check = checkFruitStock(recipe)
         
-        switch checkFruit {
+        switch check {
         case .success:
-            print("\(juiceType)이(가) 준비되었습니다.")
-            makeJuice(recipe)
+            makeJuice(with: recipe)
+            print("\(juiceType)가(이) 준비되었습니다.")
         case .failure(let error):
             print(error)
         }
     }
     
-    private func checkFruit(_ recipe: [IngredientAndAmount]) -> Result<Bool, BuyError> {
+    private func checkFruitStock(_ recipe: [FruitNameAndAmount]) -> Result<Bool, BuyError> {
         for ingredient in recipe {
             guard let stock = fruitStore.fruitStock[ingredient.name],
                   stock >= ingredient.amount else {
@@ -30,7 +30,7 @@ struct JuiceMaker {
         return .success(true)
     }
     
-    private func makeJuice(_ recipe: [IngredientAndAmount]) {
+    private func makeJuice(with recipe: [FruitNameAndAmount]) {
         recipe.forEach { fruitStore.useStock(fruit: $0) }
     }
 }

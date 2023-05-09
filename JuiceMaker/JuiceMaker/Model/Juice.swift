@@ -5,7 +5,7 @@
 //  Created by Yetti, yy-ss99, Mary.
 //
 
-typealias IngredientAndAmount = (name: Fruits, amount: Int)
+typealias FruitNameAndAmount = (name: Fruits, amount: Int)
 
 enum Juice: CustomStringConvertible {
     case strawberryJuice
@@ -35,7 +35,7 @@ enum Juice: CustomStringConvertible {
         }
     }
     
-    func checkRecipe() -> [IngredientAndAmount] {
+    func giveRecipe() -> [FruitNameAndAmount] {
         switch self {
         case .strawberryJuice:
             return [(.strawberry, 16)]
