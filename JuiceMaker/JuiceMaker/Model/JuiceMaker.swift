@@ -12,11 +12,11 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func blendFruitJuice(fruitJuice: JuiceType) {
+    func blendFruitJuice(menu fruitJuice: JuiceType) {
         var isEnoughStock: Bool = true
         
         fruitJuice.recipe.forEach {
-            isEnoughStock = fruitStore.checkFruitStock(fruit: $0.key , amount: $0.value)
+            isEnoughStock = fruitStore.checkStock(fruit: $0.key , amount: $0.value)
         }
         
         guard isEnoughStock else {
@@ -25,7 +25,7 @@ struct JuiceMaker {
         }
         
         fruitJuice.recipe.forEach {
-            fruitStore.reduceFruitCount(at: $0.key, with: $0.value)
+            fruitStore.reduceStock(fruit: $0.key , reduceCount: $0.value)
         }
         print("주문하신 \(fruitJuice)가 나왔습니다.")
     }
