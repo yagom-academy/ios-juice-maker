@@ -16,4 +16,3 @@ class FruitStore {
         fruitStock[item]? += amount
     }
 }
-
