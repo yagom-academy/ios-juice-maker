@@ -4,8 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
 enum Fruit {
     case strawberry
     case banana
@@ -14,8 +12,6 @@ enum Fruit {
     case mango
 }
 
-
-// 과일 저장소 타입
 class FruitStore {
     private var strawberry: Int = 10
     private var banana: Int = 10
