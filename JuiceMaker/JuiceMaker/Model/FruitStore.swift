@@ -16,7 +16,7 @@ class FruitStore {
     
     func changeStock(of fruits: Fruit..., by quantity: Int...) throws {
         for index in fruits.indices {
-            guard fruits[index].quantity < quantity[index] else {
+            guard fruits[index].quantity >= quantity[index] else {
                 throw FruitStoreError.shortageOfStock(fruit: fruits[index])
             }
         }
