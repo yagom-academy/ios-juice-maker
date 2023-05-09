@@ -11,4 +11,13 @@ struct JuiceMaker {
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
     }
+    
+    private func canProduceJuice(_ juice: Juice) -> Bool {
+        for (fruit, amount) in juice.recipe {
+            if fruitStore.getCurrentStock(of: fruit) < amount {
+                return false
+            }
+        }
+        return true
+    }
 }
