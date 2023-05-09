@@ -20,4 +20,14 @@ struct JuiceMaker {
         }
         return true
     }
+    
+    func produceJuice(_ juice: Juice) throws -> Bool {
+        if canProduceJuice(juice) {
+            for (fruit, amount) in juice.recipe {
+                try fruitStore.update(fruit, by: -amount)
+            }
+            return true
+        }
+        throw FruitStoreError.insufficientError
+    }
 }
