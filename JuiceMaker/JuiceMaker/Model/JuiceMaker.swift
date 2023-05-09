@@ -6,12 +6,11 @@
 
 import Foundation
 
-typealias Recipe = (fruit: FruitStore.Fruit, amount: Int)
+typealias Recipe = (fruit: FruitStore.Fruit, quantity: Int)
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-	
-	enum FruitJuice: CaseIterable {
+	enum FruitJuice {
 		case strawberryJuice
 		case bananaJuice
 		case kiwiJuice
@@ -42,19 +41,19 @@ struct JuiceMaker {
 		var juiceRecipe: Array<Recipe> {
 			switch self {
 			case .strawberryJuice:
-				return [(fruit: FruitStore.Fruit.strawberry, amount: 16)]
+				return [(fruit: FruitStore.Fruit.strawberry, quantity: 16)]
 			case .bananaJuice:
-				return [(fruit: FruitStore.Fruit.banana, amount: 2)]
+				return [(fruit: FruitStore.Fruit.banana, quantity: 2)]
 			case .kiwiJuice:
-				return [(fruit: FruitStore.Fruit.kiwi, amount: 3)]
+				return [(fruit: FruitStore.Fruit.kiwi, quantity: 3)]
 			case .pineappleJuice:
-				return [(fruit: FruitStore.Fruit.pineapple, amount: 2)]
+				return [(fruit: FruitStore.Fruit.pineapple, quantity: 2)]
 			case .strawberryBananaJuice:
-				return [(fruit: FruitStore.Fruit.strawberry, amount: 10), (fruit: FruitStore.Fruit.banana, amount: 1)]
+				return [(fruit: FruitStore.Fruit.strawberry, quantity: 10), (fruit: FruitStore.Fruit.banana, quantity: 1)]
 			case .mangoJuice:
-				return [(fruit: FruitStore.Fruit.mango, amount: 3)]
+				return [(fruit: FruitStore.Fruit.mango, quantity: 3)]
 			case .mangoKiwiJuice:
-				return [(fruit: FruitStore.Fruit.mango, amount: 2), (fruit: FruitStore.Fruit.kiwi, amount: 1)]
+				return [(fruit: FruitStore.Fruit.mango, quantity: 2), (fruit: FruitStore.Fruit.kiwi, quantity: 1)]
 			}
 		}
 	}
@@ -66,10 +65,14 @@ struct JuiceMaker {
 	}
 	
 	func makeFruitJuice(menu: FruitJuice) {
-		let recipe = menu.juiceRecipe
+		let recipes = menu.juiceRecipe
+        var chagedStock: Array<Recipe> = []
         do {
-            let quantityToChange = try fruitStore.checkStock(recipe)
-			quantityToChange.forEach { fruitStore.changeStock(of: $0.fruit, quantity: $0.amount) }
+            for recipe in recipes {
+                let changedQuantity = try fruitStore.calculateStock(for: recipe.fruit, quantity: recipe.quantity)
+                chagedStock.append((fruit: recipe.fruit, quantity: changedQuantity))
+            }
+            chagedStock.forEach { fruitStore.changeStock(of: $0.fruit, quantity: $0.quantity) }
 			print("\(menu.name) 제조가 완료되었습니다.")
         } catch StockError.fruitNotFound {
             print(StockError.fruitNotFound.errorMessage)
