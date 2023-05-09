@@ -15,8 +15,8 @@ class ViewController: UIViewController {
         let fruitStore = FruitStore()
         let juiceMaker = JuiceMaker(fruitStore: fruitStore)
         
-        juiceMaker.blendFruitJuice(fruitJuice: .bananaJuice)
-        juiceMaker.blendFruitJuice(fruitJuice: .strawberryJuice)
+        juiceMaker.blendFruitJuice(menu: .bananaJuice)
+        juiceMaker.blendFruitJuice(menu: .strawberryJuice)
     }
     
 }
