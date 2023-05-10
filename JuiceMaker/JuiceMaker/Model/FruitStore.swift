@@ -4,7 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-// Todo 과일 늘리고 줄이고,
 struct FruitStore {
     enum Fruit {
         case strawberry, banana, pineapple, mango, kiwi
@@ -25,7 +24,7 @@ struct FruitStore {
         if let currentAmount = fruitInventory[fruit] {
             fruitInventory[fruit] = currentAmount + amount
         } else {
-            //오류처리
+            //오류처리, throws로 바꾸기
         }
     }
     
@@ -33,7 +32,7 @@ struct FruitStore {
         if let currentAmount = fruitInventory[fruit] {
             fruitInventory[fruit] = currentAmount - amount
         } else {
-            //오류처리
+            //오류처리, throws로 바꾸기
         }
     }
 }
