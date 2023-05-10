@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var fruitInventory: [Fruit: Int] = Dictionary<Fruit, Int>()
+    private var fruitInventory: [Fruit: Int] = [:]
     
     init(stock: Int = 10) {
         Fruit.allCases.forEach {
