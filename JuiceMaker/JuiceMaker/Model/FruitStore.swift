@@ -8,21 +8,11 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
-    private(set) var strawberry: Fruit = Fruit(name: "딸기", quantity: 10)
-    private(set) var banana: Fruit = Fruit(name: "바나나", quantity: 10)
-    private(set) var pineapple: Fruit = Fruit(name: "파인애플", quantity: 10)
-    private(set) var kiwi: Fruit = Fruit(name: "키위", quantity: 10)
-    private(set) var mango: Fruit = Fruit(name: "망고", quantity: 10)
+    private(set) var stockList: [Fruit: Int] = [:]
     
-    func changeStock(of fruits: [Fruit], by quantity: [Int]) throws {
-        for index in fruits.indices {
-            guard fruits[index].quantity >= quantity[index] else {
-                throw FruitStoreError.shortageOfStock(fruit: fruits[index])
-            }
-        }
-        
-        for index in fruits.indices {
-            fruits[index].quantity -= quantity[index]
+    init(stockQuantity: Int = 10) {
+        for fruit in Fruit.allCases {
+            stockList[fruit] = stockQuantity
         }
     }
 }

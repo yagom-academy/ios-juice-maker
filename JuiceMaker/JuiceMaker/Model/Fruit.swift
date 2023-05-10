@@ -7,12 +7,10 @@
 
 import Foundation
 
-class Fruit {
-    var name: String
-    var quantity: Int
-    
-    init(name: String, quantity: Int) {
-        self.name = name
-        self.quantity = quantity
-    }
+enum Fruit: CaseIterable {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
 }
