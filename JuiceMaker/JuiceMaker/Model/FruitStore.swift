@@ -14,6 +14,10 @@ class FruitStore {
         .mango: 10,
     ]
     
+    init(fruits: [Fruit : Int]) {
+        self.fruits = fruits
+    }
+    
     func add(fruit: Fruit, amount: Int) {
         guard let stock = fruits[fruit] else {
             return
