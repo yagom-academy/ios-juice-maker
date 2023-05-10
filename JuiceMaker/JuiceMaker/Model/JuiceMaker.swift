@@ -8,9 +8,9 @@ enum Menu {
     case strawberryJuice
     case bananaJuice
     case pineappleJuice
-    case strawberryAndBananaJuice
     case kiwiJuice
     case mangoJuice
+    case strawberryAndBananaJuice
     case mangoAndKiwiJuice
 }
 
