@@ -34,18 +34,20 @@ class FruitStore {
         }
     }
     
-    func changeFruitCount(_ fruit: Fruit, count: Int) {
+    func changeFruitCount(_ fruit: Fruit, count: Int, isUseFruit: Bool = true) {
+        let fruitCount = isUseFruit ? count * (-1) : count
+        
         switch fruit {
         case .strawberry:
-            strawberry -= count
+            strawberry += fruitCount
         case .banana:
-            banana -= count
+            banana += fruitCount
         case .pineapple:
-            pineapple -= count
+            pineapple += fruitCount
         case .kiwi:
-            kiwi -= count
+            kiwi += fruitCount
         case .mango:
-            mango -= count
+            mango += fruitCount
         }
     }
 }

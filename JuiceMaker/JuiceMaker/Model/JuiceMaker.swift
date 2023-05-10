@@ -26,17 +26,17 @@ struct JuiceMaker {
         
         switch menu {
         case .strawberryJuice:
-            isSuccess = makeJuice(menu: .strawberry, count: 16)
+            isSuccess = makeBasicJuice(menu: .strawberry, count: 16)
         case .bananaJuice:
-            isSuccess = makeJuice(menu: .banana, count: 2)
+            isSuccess = makeBasicJuice(menu: .banana, count: 2)
         case .pineappleJuice:
-            isSuccess = makeJuice(menu: .pineapple, count: 2)
+            isSuccess = makeBasicJuice(menu: .pineapple, count: 2)
         case .strawberryAndBananaJuice:
             isSuccess = makeCollaborateJuice(main: (.strawberry, 10), sub: (.banana, 1))
         case .kiwiJuice:
-            isSuccess = makeJuice(menu: .kiwi, count: 3)
+            isSuccess = makeBasicJuice(menu: .kiwi, count: 3)
         case .mangoJuice:
-            isSuccess = makeJuice(menu: .mango, count: 3)
+            isSuccess = makeBasicJuice(menu: .mango, count: 3)
         case .mangoAndKiwiJuice:
             isSuccess = makeCollaborateJuice(main: (.mango, 2), sub: (.kiwi, 1))
         }
@@ -49,7 +49,7 @@ struct JuiceMaker {
 
 // MARK: - Make Juice
 extension JuiceMaker {
-    private func makeJuice(menu: Fruit, count: Int) -> Bool {
+    private func makeBasicJuice(menu: Fruit, count: Int) -> Bool {
         guard store.verifyFruitCount(menu, count: count) else {
             return false
         }
