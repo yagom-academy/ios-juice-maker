@@ -13,4 +13,8 @@ enum Juice: String {
     case strawberryBananaJuice = "딸바쥬스"
     case mangoJuice = "망고쥬스"
     case mangoKiwiJuice = "망고키위쥬스"
+    
+    var name: String {
+        self.rawValue
+    }
 }
