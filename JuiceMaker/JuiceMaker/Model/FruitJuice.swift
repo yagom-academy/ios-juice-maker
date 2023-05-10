@@ -1,8 +1,7 @@
 //
-//  FruitJuice.swift
-//  JuiceMaker
-//
+//  JuiceMaker - FruitJuice.swift
 //  Created by Minseong Kang on 2023/05/10.
+//  last modified by maxhyunm, kobe
 //
 
 enum FruitJuice {

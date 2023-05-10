@@ -2,14 +2,12 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
-
-import Foundation
+//  last modified by maxhyunm, kobe
+//
 
 typealias Ingredient = (fruit: Fruit, quantity: Int)
 typealias Recipe = [Ingredient]
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
 
 	private var fruitStore: FruitStore
@@ -20,13 +18,16 @@ struct JuiceMaker {
 	
 	mutating func makeFruitJuice(menu: FruitJuice) {
 		let recipes = menu.juiceRecipe
-        var chagedStock: Recipe = []
+        var changedStock: Recipe = []
         do {
             for recipe in recipes {
-                let changedQuantity = try fruitStore.calculateStock(of: recipe.fruit, quantity: recipe.quantity)
-                chagedStock.append((fruit: recipe.fruit, quantity: changedQuantity))
+                let changedQuantity = try fruitStore.calculateStock(of: recipe.fruit,
+                                                                    quantity: recipe.quantity)
+                changedStock.append((fruit: recipe.fruit, quantity: changedQuantity))
             }
-            chagedStock.forEach { fruitStore.changeStock(of: $0.fruit, quantity: $0.quantity) }
+            changedStock.forEach {
+                fruitStore.changeStock(of: $0.fruit, quantity: $0.quantity)
+            }
 			print("\(menu.name) 제조가 완료되었습니다.")
         } catch StockError.fruitNotFound {
             print(StockError.fruitNotFound.message)

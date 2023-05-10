@@ -1,11 +1,9 @@
 //
-//  Error.swift
-//  JuiceMaker
-//
+//  JuiceMaker - Error.swift
 //  Created by Min Hyun on 2023/05/09.
+//  last modified by maxhyunm, kobe
 //
 
-import Foundation
 
 enum StockError: Error {
     case outOfStock
