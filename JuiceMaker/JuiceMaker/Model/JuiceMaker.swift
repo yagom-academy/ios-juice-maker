@@ -4,9 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-// 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore: FruitStore
+    private let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
@@ -16,7 +15,7 @@ struct JuiceMaker {
         var isEnoughStock: Bool = true
         
         fruitJuice.recipe.forEach {
-            isEnoughStock = fruitStore.checkStock(fruit: $0.key , amount: $0.value)
+            isEnoughStock = fruitStore.checkStock(fruit: $0.key, amount: $0.value)
         }
         
         guard isEnoughStock else {
@@ -25,7 +24,7 @@ struct JuiceMaker {
         }
         
         fruitJuice.recipe.forEach {
-            fruitStore.reduceStock(fruit: $0.key , reduceCount: $0.value)
+            fruitStore.reduceStock(fruit: $0.key, reduceCount: $0.value)
         }
         print("주문하신 \(fruitJuice)가 나왔습니다.")
     }
