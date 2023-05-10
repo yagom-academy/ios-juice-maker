@@ -7,9 +7,12 @@
 import Foundation
 
 // 과일 저장소 타입
-class FruitStore {
-
-	private var inventory: [Fruit: Int] = Fruit.allCases.reduce(into: [:]) { $0[$1] = 10 }
+struct FruitStore {
+    private var inventory: [Fruit: Int] = [:]
+    
+    init(baseStock: Int) {
+        self.inventory = Fruit.allCases.reduce(into: [:]) { $0[$1] = baseStock }
+    }
 	
     func calculateStock(for fruit: Fruit, quantity: Int) throws -> Int {
         guard let fruitStock = inventory[fruit] else { throw StockError.fruitNotFound }
@@ -18,7 +21,7 @@ class FruitStore {
         return fruitStock - quantity
     }
     
-	func changeStock(of fruit: Fruit, quantity: Int) {
+	mutating func changeStock(of fruit: Fruit, quantity: Int) {
         guard let _ = inventory[fruit] else { return }
 		inventory[fruit] = quantity
 	}

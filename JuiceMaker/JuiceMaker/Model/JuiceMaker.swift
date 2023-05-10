@@ -11,13 +11,13 @@ typealias Recipe = (fruit: Fruit, quantity: Int)
 // 쥬스 메이커 타입
 struct JuiceMaker {
 
-	var fruitStore: FruitStore
+	private var fruitStore: FruitStore
 	
 	init(fruitStore: FruitStore) {
 		self.fruitStore = fruitStore
 	}
 	
-	func makeFruitJuice(menu: FruitJuice) {
+	mutating func makeFruitJuice(menu: FruitJuice) {
 		let recipes = menu.juiceRecipe
         var chagedStock: Array<Recipe> = []
         do {
