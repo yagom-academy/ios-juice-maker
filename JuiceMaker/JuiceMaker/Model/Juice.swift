@@ -35,7 +35,7 @@ enum Juice: CustomStringConvertible {
         }
     }
     
-    func giveRecipe() -> [FruitNameAndAmount] {
+    func receiveRecipe() -> [FruitNameAndAmount] {
         switch self {
         case .strawberryJuice:
             return [(.strawberry, 16)]

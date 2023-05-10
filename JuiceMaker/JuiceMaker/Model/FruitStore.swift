@@ -5,8 +5,8 @@
 //  last modified by Yetti, yy-ss99, Mary.
 
 class FruitStore {
-    static let initialStock = 10
-    var fruitStock: [Fruits: Int] = [
+    let initialStock = 10
+    lazy var fruitStock: [Fruits: Int] = [
         .strawberry: initialStock, .banana: initialStock,
         .pineapple: initialStock, .mango: initialStock,
         .kiwi: initialStock
