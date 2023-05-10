@@ -6,5 +6,6 @@
 //
 
 enum FruitStoreError: Error {
-    case notFoundKey(Fruit), notEnoughStock(Fruit)
+    case notFoundKey(Fruit)
+    case notEnoughStock(Fruit)
 }
