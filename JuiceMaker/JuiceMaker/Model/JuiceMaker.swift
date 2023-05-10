@@ -6,7 +6,8 @@
 
 import Foundation
 
-typealias Recipe = (fruit: Fruit, quantity: Int)
+typealias Ingredient = (fruit: Fruit, quantity: Int)
+typealias Recipe = [Ingredient]
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
@@ -19,10 +20,10 @@ struct JuiceMaker {
 	
 	mutating func makeFruitJuice(menu: FruitJuice) {
 		let recipes = menu.juiceRecipe
-        var chagedStock: Array<Recipe> = []
+        var chagedStock: Recipe = []
         do {
             for recipe in recipes {
-                let changedQuantity = try fruitStore.calculateStock(for: recipe.fruit, quantity: recipe.quantity)
+                let changedQuantity = try fruitStore.calculateStock(of: recipe.fruit, quantity: recipe.quantity)
                 chagedStock.append((fruit: recipe.fruit, quantity: changedQuantity))
             }
             chagedStock.forEach { fruitStore.changeStock(of: $0.fruit, quantity: $0.quantity) }

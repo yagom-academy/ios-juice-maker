@@ -33,7 +33,7 @@ enum FruitJuice {
 		}
 	}
 	
-	var juiceRecipe: Array<Recipe> {
+	var juiceRecipe: Recipe {
 		switch self {
 		case .strawberryJuice:
 			return [(fruit: .strawberry, quantity: 16)]
