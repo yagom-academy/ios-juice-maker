@@ -15,7 +15,7 @@ class FruitStore {
     
     func update(_ fruit: Fruit, by quantity: Int) throws {
         guard let currentStock = fruitInventory[fruit],
-              currentStock + quantity >= 0 else { throw FruitStoreError.insufficientError }
+              currentStock + quantity >= 0 else { throw FruitStoreError.outOfStock }
         fruitInventory[fruit] = currentStock + quantity
     }
     

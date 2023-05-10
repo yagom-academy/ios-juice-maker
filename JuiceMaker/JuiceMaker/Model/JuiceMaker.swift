@@ -27,6 +27,6 @@ struct JuiceMaker {
             }
             return true
         }
-        throw FruitStoreError.insufficientError
+        throw FruitStoreError.outOfStock
     }
 }
