@@ -5,12 +5,10 @@
 //
 
 class FruitStore {
-    private var fruitInventory: [Fruit: Int] = [:]
+    private var fruitInventory: [Fruit: Int]
     
-    init(stock: Int = 10) {
-        Fruit.allCases.forEach {
-            fruitInventory[$0] = stock
-        }
+    init(fruitInventory: [Fruit: Int]) {
+        self.fruitInventory = fruitInventory
     }
     
     func update(_ fruit: Fruit, by quantity: Int) throws {
