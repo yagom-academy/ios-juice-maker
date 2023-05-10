@@ -23,7 +23,7 @@ struct JuiceMaker {
     func produceJuice(_ juice: Juice) throws -> Bool {
         if canProduceJuice(juice) {
             for (fruit, amount) in juice.recipe {
-                try fruitStore.update(fruit, by: -amount)
+                try fruitStore.changeStock(of: fruit, by: -amount)
             }
             return true
         }
