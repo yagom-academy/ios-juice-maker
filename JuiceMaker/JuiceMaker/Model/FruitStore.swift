@@ -17,8 +17,8 @@ class FruitStore {
         fruitInventory[fruit] = currentStock + quantity
     }
     
-    func getCurrentStock(of fruit: Fruit) -> Int {
-        guard let currentStock = fruitInventory[fruit] else { return 0 }
+    func getCurrentStock(of fruit: Fruit) -> Int? {
+        guard let currentStock = fruitInventory[fruit] else { return nil }
         return currentStock
     }
 }
