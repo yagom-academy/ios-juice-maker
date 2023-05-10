@@ -21,24 +21,34 @@ struct JuiceMaker {
         self.store = fruitStore
     }
     
+    typealias Recipe = [(Fruit, Int)]
+    
+    let strawberryJuiceRecipe: Recipe = [(.strawberry, 16)]
+    let bananaJuiceRecipe: Recipe = [(.banana, 2)]
+    let pineappleJuiceRecipe: Recipe = [(.pineapple, 2)]
+    let kiwiJuiceRecipe: Recipe = [(.kiwi, 3)]
+    let mangoJuiceRecipe: Recipe = [(.mango, 3)]
+    let strawberryAndBananaJuice: Recipe = [(.strawberry, 10), (.banana, 1)]
+    let mangoAndKiwiJuice: Recipe = [(.mango, 2), (.kiwi, 1)]
+    
     func makeJuice(menu: Menu) -> Bool {
         let isSuccess: Bool
         
         switch menu {
         case .strawberryJuice:
-            isSuccess = followReceipe([(.strawberry, 16)])
+            isSuccess = followRecipe(strawberryJuiceRecipe)
         case .bananaJuice:
-            isSuccess = followReceipe([(.banana, 2)])
+            isSuccess = followRecipe(bananaJuiceRecipe)
         case .pineappleJuice:
-            isSuccess = followReceipe([(.pineapple, 2)])
-        case .strawberryAndBananaJuice:
-            isSuccess = followReceipe([(.strawberry, 10), (.banana, 1)])
+            isSuccess = followRecipe(pineappleJuiceRecipe)
         case .kiwiJuice:
-            isSuccess = followReceipe([(.kiwi, 3)])
+            isSuccess = followRecipe(kiwiJuiceRecipe)
         case .mangoJuice:
-            isSuccess = followReceipe([(.mango, 3)])
+            isSuccess = followRecipe(mangoJuiceRecipe)
+        case .strawberryAndBananaJuice:
+            isSuccess = followRecipe(strawberryAndBananaJuice)
         case .mangoAndKiwiJuice:
-            isSuccess = followReceipe([(.mango, 2), (.kiwi, 1)])
+            isSuccess = followRecipe(mangoAndKiwiJuice)
         }
         
         return isSuccess
@@ -47,7 +57,7 @@ struct JuiceMaker {
 
 // MARK: - Make Juice
 extension JuiceMaker {
-    private func followReceipe(_ receipe: [(fruit: Fruit, count: Int)]) -> Bool {
+    private func followRecipe(_ receipe: [(fruit: Fruit, count: Int)]) -> Bool {
         guard receipe.allSatisfy({ store.verifyFruitCount($0, count: $1) }) else { return false }
 
         receipe.forEach { store.changeFruitCount($0, count: $1) }
