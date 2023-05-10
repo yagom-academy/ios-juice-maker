@@ -26,17 +26,50 @@ class FruitStore {
     }
     
     
-    func checkFruitStock(_ juice: Juice) throws -> Bool {
+    func checkFruitStock(_ juice: Juice) -> Bool {
         let recipe: [Fruit: Int] = juice.recipe
         
-        let filterRecipe = recipe.filter{ (key, value) -> Bool in
-            if let stockCompare = self.stock[key], value < stockCompare {
+        let stock = recipe.filter { (key, value)  in
+            if let stockCompare = self.stock[key], value <= stockCompare {
                 return true
             }
             return false
         }
-        return
+        
+        if stock.count != recipe.count {
+            return false
+        } else {
+            return true
+        }
     }
+    
+    func checkFruitStock2(_ juice: Juice) throws -> Bool {
+        let recipe: [Fruit: Int] = juice.recipe
+        var stockCheck: Bool = false
+        
+        for (key, value) in recipe {
+            if let stock = self.stock[key], value <= stock {
+                stockCheck = true
+            } else {
+                stockCheck = false
+                break
+            }
+        }
+        return stockCheck
+    }
+    
+//    func checkFruitStock2(_ juice: Juice) throws -> Bool {
+//        var recipe: [Fruit: Int] = juice.recipe
+//        var stockCheck: Bool = false
+//
+//        recipe.forEach { (key: Fruit, value: Int) in
+//            if let stock = self.stock[key], value <= stock {
+//                stockCheck = true
+//            } else {
+//                stockCheck = false
+//            }
+//        }
+//        return stockCheck
+//    }
 }
 
-var aa: [Fruit: [Int]] = [:]
