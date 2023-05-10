@@ -2,11 +2,8 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
-import Foundation
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
     private let fruitStore: FruitStore
     
@@ -14,24 +11,9 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    private func makeJuice(juice: Juice, fruitStock: [Fruit: Int]) {
+    private func makeJuice(juiceRecipe: JuiceRecipe...) {
         do {
-            switch juice {
-            case .strawberryJuice:
-                try fruitStore.useValidStock(usedFruits: (fruit: .strawberry, amount: 16))
-            case .bananaJuice:
-                try fruitStore.useValidStock(usedFruits: (fruit: .banana, amount: 2))
-            case .kiwiJuice:
-                try fruitStore.useValidStock(usedFruits: (fruit: .kiwi, amount: 3))
-            case .pineappleJuice:
-                try fruitStore.useValidStock(usedFruits: (fruit: .pineapple, amount: 2))
-            case .strawberryBananaJuice:
-                try fruitStore.useValidStock(usedFruits: (fruit: .strawberry, amount: 10), (fruit: .banana, amount: 1))
-            case .mangoJuice:
-                try fruitStore.useValidStock(usedFruits: (fruit: .mango, amount: 3))
-            case .mangoKiwiJuice:
-                try fruitStore.useValidStock(usedFruits: (fruit: .mango, amount: 2), (fruit: .kiwi, amount: 1))
-            }
+            try fruitStore.useValidStock(usedFruits:  juiceRecipe)
         } catch FruitStoreError.notFoundKey(let fruit) {
             print("\(fruit.rawValue)을/를 찾을 수 없습니다.")
         } catch FruitStoreError.notEnoughStock(let fruit) {
