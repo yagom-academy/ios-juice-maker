@@ -12,7 +12,7 @@ enum StockError: Error {
     case fruitNotFound
     case unKnown
 
-    var errorMessage: String {
+    var message: String {
         switch self {
         case .outOfStock:
             return "재고가 부족합니다."

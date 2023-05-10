@@ -6,58 +6,11 @@
 
 import Foundation
 
-typealias Recipe = (fruit: FruitStore.Fruit, quantity: Int)
+typealias Recipe = (fruit: Fruit, quantity: Int)
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-	enum FruitJuice {
-		case strawberryJuice
-		case bananaJuice
-		case kiwiJuice
-		case pineappleJuice
-		case strawberryBananaJuice
-		case mangoJuice
-		case mangoKiwiJuice
-		
-		var name: String {
-			switch self {
-			case .strawberryJuice:
-				return "딸기쥬스"
-			case .bananaJuice:
-				return "바나나쥬스"
-			case .kiwiJuice:
-				return "키위쥬스"
-			case .pineappleJuice:
-				return "파인애플쥬스"
-			case .strawberryBananaJuice:
-				return "딸바쥬스"
-			case .mangoJuice:
-				return "망고쥬스"
-			case .mangoKiwiJuice:
-				return "망고키위쥬스"
-			}
-		}
-		
-		var juiceRecipe: Array<Recipe> {
-			switch self {
-			case .strawberryJuice:
-				return [(fruit: FruitStore.Fruit.strawberry, quantity: 16)]
-			case .bananaJuice:
-				return [(fruit: FruitStore.Fruit.banana, quantity: 2)]
-			case .kiwiJuice:
-				return [(fruit: FruitStore.Fruit.kiwi, quantity: 3)]
-			case .pineappleJuice:
-				return [(fruit: FruitStore.Fruit.pineapple, quantity: 2)]
-			case .strawberryBananaJuice:
-				return [(fruit: FruitStore.Fruit.strawberry, quantity: 10), (fruit: FruitStore.Fruit.banana, quantity: 1)]
-			case .mangoJuice:
-				return [(fruit: FruitStore.Fruit.mango, quantity: 3)]
-			case .mangoKiwiJuice:
-				return [(fruit: FruitStore.Fruit.mango, quantity: 2), (fruit: FruitStore.Fruit.kiwi, quantity: 1)]
-			}
-		}
-	}
-	
+
 	var fruitStore: FruitStore
 	
 	init(fruitStore: FruitStore) {
@@ -75,11 +28,11 @@ struct JuiceMaker {
             chagedStock.forEach { fruitStore.changeStock(of: $0.fruit, quantity: $0.quantity) }
 			print("\(menu.name) 제조가 완료되었습니다.")
         } catch StockError.fruitNotFound {
-            print(StockError.fruitNotFound.errorMessage)
+            print(StockError.fruitNotFound.message)
         } catch StockError.outOfStock {
-            print(StockError.outOfStock.errorMessage)
+            print(StockError.outOfStock.message)
         } catch {
-            print(StockError.unKnown.errorMessage)
+            print(StockError.unKnown.message)
         }
 	}
 }
