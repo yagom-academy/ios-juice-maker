@@ -13,41 +13,27 @@ enum Fruit {
 }
 
 class FruitStore {
-    private var strawberry: Int = 10
-    private var banana: Int = 10
-    private var pineapple: Int = 10
-    private var kiwi: Int = 10
-    private var mango: Int = 10
+    private var fruitStocks: [Fruit : Int] = [.strawberry : 10,
+                                             .banana : 10,
+                                             .pineapple : 10,
+                                             .kiwi : 10,
+                                             .mango : 10]
     
     func verifyFruitCount(_ fruit: Fruit, count: Int) -> Bool {
-        switch fruit {
-        case .strawberry:
-            return strawberry >= count ? true : false
-        case .banana:
-            return banana >= count ? true : false
-        case .pineapple:
-            return pineapple >= count ? true : false
-        case .kiwi:
-            return kiwi >= count ? true : false
-        case .mango:
-            return mango >= count ? true : false
+        guard let stock = fruitStocks[fruit] else {
+            return false
         }
+        
+        return stock >= count ? true : false
     }
     
     func changeFruitCount(_ fruit: Fruit, count: Int, isUseFruit: Bool = true) {
-        let amount = isUseFruit ? (count * -1) : count
-        
-        switch fruit {
-        case .strawberry:
-            strawberry += amount
-        case .banana:
-            banana += amount
-        case .pineapple:
-            pineapple += amount
-        case .kiwi:
-            kiwi += amount
-        case .mango:
-            mango += amount
+        guard let stock = fruitStocks[fruit] else {
+            return
         }
+        
+        let fruitAmount = isUseFruit ? (count * -1) : count
+        
+        fruitStocks[fruit] = stock + fruitAmount
     }
 }

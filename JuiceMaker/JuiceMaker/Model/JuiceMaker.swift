@@ -22,7 +22,7 @@ struct JuiceMaker {
         self.store = fruitStore
     }
 
-    private func getRecipe(_ menu: Menu) -> Recipe {
+    private func provideRecipe(_ menu: Menu) -> Recipe {
         switch menu {
             case .strawberryJuice:
                 return [(.strawberry, 16)]
@@ -42,7 +42,7 @@ struct JuiceMaker {
     }
     
     func makeJuice(menu: Menu) -> Bool {
-        let recipe = getRecipe(menu)
+        let recipe = provideRecipe(menu)
         
         guard recipe.allSatisfy({ store.verifyFruitCount($0, count: $1) }) else { return false }
 
