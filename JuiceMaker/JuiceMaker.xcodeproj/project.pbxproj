@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		785090FF2A0921F60077F4E3 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785090FE2A0921F60077F4E3 /* Fruit.swift */; };
-		785091012A0935910077F4E3 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785091002A0935910077F4E3 /* Recipe.swift */; };
+		785091012A0935910077F4E3 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785091002A0935910077F4E3 /* Juice.swift */; };
 		78DB59ED2A09E90C00FD8C22 /* FruitStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DB59EC2A09E90C00FD8C22 /* FruitStoreError.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
 		C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF36255D0CDD00020D38 /* AppDelegate.swift */; };
@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		785090FE2A0921F60077F4E3 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
-		785091002A0935910077F4E3 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		785091002A0935910077F4E3 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		78DB59EC2A09E90C00FD8C22 /* FruitStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreError.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		C73DAF33255D0CDD00020D38 /* JuiceMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuiceMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
-				785091002A0935910077F4E3 /* Recipe.swift */,
+				785091002A0935910077F4E3 /* Juice.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				78DB59EC2A09E90C00FD8C22 /* FruitStoreError.swift */,
 				785090FE2A0921F60077F4E3 /* Fruit.swift */,
@@ -180,7 +180,7 @@
 				785090FF2A0921F60077F4E3 /* Fruit.swift in Sources */,
 				78DB59ED2A09E90C00FD8C22 /* FruitStoreError.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
-				785091012A0935910077F4E3 /* Recipe.swift in Sources */,
+				785091012A0935910077F4E3 /* Juice.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
