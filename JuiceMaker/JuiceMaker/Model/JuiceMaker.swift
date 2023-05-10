@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by Zion, Mint.
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -21,51 +21,36 @@ struct JuiceMaker {
         self.store = fruitStore
     }
     
-    func orderJuice(menu: Menu) -> Bool {
+    func makeJuice(menu: Menu) -> Bool {
         let isSuccess: Bool
         
         switch menu {
         case .strawberryJuice:
-            isSuccess = makeBasicJuice(menu: .strawberry, count: 16)
+            isSuccess = followReceipe([(.strawberry, 16)])
         case .bananaJuice:
-            isSuccess = makeBasicJuice(menu: .banana, count: 2)
+            isSuccess = followReceipe([(.banana, 2)])
         case .pineappleJuice:
-            isSuccess = makeBasicJuice(menu: .pineapple, count: 2)
+            isSuccess = followReceipe([(.pineapple, 2)])
         case .strawberryAndBananaJuice:
-            isSuccess = makeCollaborateJuice(main: (.strawberry, 10), sub: (.banana, 1))
+            isSuccess = followReceipe([(.strawberry, 10), (.banana, 1)])
         case .kiwiJuice:
-            isSuccess = makeBasicJuice(menu: .kiwi, count: 3)
+            isSuccess = followReceipe([(.kiwi, 3)])
         case .mangoJuice:
-            isSuccess = makeBasicJuice(menu: .mango, count: 3)
+            isSuccess = followReceipe([(.mango, 3)])
         case .mangoAndKiwiJuice:
-            isSuccess = makeCollaborateJuice(main: (.mango, 2), sub: (.kiwi, 1))
+            isSuccess = followReceipe([(.mango, 2), (.kiwi, 1)])
         }
         
         return isSuccess
     }
-    
-
 }
 
 // MARK: - Make Juice
 extension JuiceMaker {
-    private func makeBasicJuice(menu: Fruit, count: Int) -> Bool {
-        guard store.verifyFruitCount(menu, count: count) else {
-            return false
-        }
-        
-        store.changeFruitCount(menu, count: count)
-        return true
-    }
-    
-    private func makeCollaborateJuice(main: (fruit: Fruit, count: Int), sub: (fruit: Fruit, count: Int)) -> Bool {
-        guard store.verifyFruitCount(main.fruit, count: main.count),
-              store.verifyFruitCount(sub.fruit, count: sub.count) else {
-            return false
-        }
-        
-        store.changeFruitCount(main.fruit, count: main.count)
-        store.changeFruitCount(sub.fruit, count: sub.count)
+    private func followReceipe(_ receipe: [(fruit: Fruit, count: Int)]) -> Bool {
+        guard receipe.allSatisfy({ store.verifyFruitCount($0, count: $1) }) else { return false }
+
+        receipe.forEach { store.changeFruitCount($0, count: $1) }
         return true
     }
 }
