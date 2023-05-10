@@ -8,9 +8,13 @@
 struct FruitStore {
     private var inventory: [Fruit: Int] = [:]
     
-    init(baseStock: Int) {
+    init(stock: [Fruit: Int]) {
+        self.inventory = stock
+    }
+    
+    init(equalizedStock: Int) {
         self.inventory = Fruit.allCases.reduce(into: [:]) {
-            $0[$1] = baseStock
+            $0[$1] = equalizedStock
         }
     }
 	
