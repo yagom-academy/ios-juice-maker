@@ -15,4 +15,22 @@ class FruitStore {
             stockList[fruit] = stockQuantity
         }
     }
+    
+    func decreaseIngredient(with recipe: [(fruit: Fruit, quantity: Int)]) throws {
+        try inspectStock(recipe)
+        
+        for index in recipe.indices {
+            guard let currentStock = stockList[recipe[index].fruit] else { return }
+            
+            stockList[recipe[index].fruit] = currentStock - recipe[index].quantity
+        }
+    }
+
+    private func inspectStock(_ recipe: [(fruit: Fruit, quantity: Int)]) throws {
+        for index in recipe.indices {
+            guard let currentStock = stockList[recipe[index].fruit], currentStock >= recipe[index].quantity else {
+                throw FruitStoreError.shortageOfStock(fruit: recipe[index].fruit)
+            }
+        }
+    }
 }
