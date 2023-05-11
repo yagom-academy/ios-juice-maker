@@ -12,11 +12,11 @@ class FruitStore {
         .kiwi: initialStock
     ]
     
-    func addStock(fruit: FruitNameAndAmount) {
-        fruitStock[fruit.name]? += fruit.amount
+    func addStock(fruit: Fruits, quantity: Int) {
+        fruitStock[fruit]? += quantity
     }
     
-    func useStock(fruit: FruitNameAndAmount) {
-        fruitStock[fruit.name]? -= fruit.amount
+    func useStock(fruit: Fruits, quantity: Int) {
+        fruitStock[fruit]? -= quantity
     }
 }
