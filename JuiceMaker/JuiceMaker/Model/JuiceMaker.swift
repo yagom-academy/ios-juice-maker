@@ -29,8 +29,8 @@ struct JuiceMaker {
                 try fruitStore.increaseFruitStock(fruit, amount: amount)
             } else {
                 try fruitStore.decreaseFruitStock(fruit, amount: amount)
-                print("\(juice.name) 쥬스가 완성되었습니다.")
             }
         }
+        print("\(juice.name) 쥬스가 완성되었습니다.")
     }
 }
