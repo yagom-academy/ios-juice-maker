@@ -4,7 +4,6 @@
 //  last modified by maxhyunm, kobe
 //
 
-
 enum StockError: Error {
     case outOfStock
     case fruitNotFound

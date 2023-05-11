@@ -22,7 +22,7 @@ struct FruitStore {
         guard let fruitStock = inventory[fruit] else {
             throw StockError.fruitNotFound
         }
-        guard fruitStock > quantity else {
+        guard fruitStock >= quantity else {
             throw StockError.outOfStock
         }
         

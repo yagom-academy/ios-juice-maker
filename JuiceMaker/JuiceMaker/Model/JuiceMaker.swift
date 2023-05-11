@@ -9,7 +9,6 @@ typealias Ingredient = (fruit: Fruit, quantity: Int)
 typealias Recipe = [Ingredient]
 
 struct JuiceMaker {
-
 	private var fruitStore: FruitStore
 	
 	init(fruitStore: FruitStore) {
@@ -17,13 +16,13 @@ struct JuiceMaker {
 	}
 	
 	mutating func makeFruitJuice(menu: FruitJuice) {
-		let recipes = menu.juiceRecipe
+		let recipe = menu.juiceRecipe
         var changedStock: Recipe = []
         do {
-            for recipe in recipes {
-                let changedQuantity = try fruitStore.calculateStock(of: recipe.fruit,
-                                                                    quantity: recipe.quantity)
-                changedStock.append((fruit: recipe.fruit, quantity: changedQuantity))
+            for ingredient in recipe {
+                let changedQuantity = try fruitStore.calculateStock(of: ingredient.fruit,
+                                                                    quantity: ingredient.quantity)
+                changedStock.append((fruit: ingredient.fruit, quantity: changedQuantity))
             }
             changedStock.forEach {
                 fruitStore.changeStock(of: $0.fruit, quantity: $0.quantity)
