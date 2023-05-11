@@ -18,17 +18,17 @@ class FruitStore {
     }
     
     func useValidStock(juiceRecipes: Recipe) throws {
-        try juiceRecipes.forEach { try validateStock(juiceIngrediant: $0) }
+        try juiceRecipes.forEach { try validateStock(juiceIngredient: $0) }
         juiceRecipes.forEach { spendStock(amount: $0.amount, at: $0.fruit)}
     }
     
-    private func validateStock(juiceIngrediant: Ingredient) throws {
-        guard let currentAmount = fruitStock[juiceIngrediant.fruit] else {
-            throw FruitStoreError.notFoundFruit(juiceIngrediant.fruit)
+    private func validateStock(juiceIngredient: Ingredient) throws {
+        guard let currentAmount = fruitStock[juiceIngredient.fruit] else {
+            throw FruitStoreError.notFoundFruit(juiceIngredient.fruit)
         }
         
-        guard currentAmount >= juiceIngrediant.amount else {
-            throw FruitStoreError.notEnoughStock(juiceIngrediant.fruit)
+        guard currentAmount >= juiceIngredient.amount else {
+            throw FruitStoreError.notEnoughStock(juiceIngredient.fruit)
         }
     }
     
