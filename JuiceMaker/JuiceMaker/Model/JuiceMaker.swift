@@ -28,8 +28,8 @@ struct JuiceMaker {
     private func useIngredient(_ juice: Juice) throws {
         let ingredient = try getIngredient(juice)
         
-        for (fruit, useStock) in ingredient {
-            try fruitStore.useFruits(useStock, fruit)
+        for (fruit, amount) in ingredient {
+            try fruitStore.useFruits(amount, to: fruit)
         }
     }
     
@@ -48,3 +48,4 @@ struct JuiceMaker {
     }
 }
 
+refact: (addStock, useStock) -> amount /(addFruit, useFruit)-> fruit 네이밍 수정

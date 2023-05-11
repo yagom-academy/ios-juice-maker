@@ -16,23 +16,23 @@ class FruitStore {
         return stock
     }
     
-    private func compare(_ stock: Int, and useStock: Int) throws {
-        guard stock >= useStock else { throw JuiceMakerError.outOfStockError }
+    private func compare(_ stock: Int, and amount: Int) throws {
+        guard stock >= amount else { throw JuiceMakerError.outOfStockError }
     }
     
-    func addFruits(_ addStock: Int, _ addFruit: Fruit) throws {
-        var stock = try getStock(addFruit)
-        stock += addStock
+    func addFruits(_ amount: Int, to fruit: Fruit) throws {
+        var stock = try getStock(fruit)
+        stock += amount
             
-        fruitsStock[addFruit] = stock
+        fruitsStock[fruit] = stock
     }
     
-    func useFruits(_ useStock: Int, _ useFruit: Fruit) throws {
-        var stock = try getStock(useFruit)
-        try compare(stock, and: useStock)
-        stock -= useStock
+    func useFruits(_ amount: Int, to fruit: Fruit) throws {
+        var stock = try getStock(fruit)
+        try compare(stock, and: amount)
+        stock -= amount
         
-        fruitsStock[useFruit] = stock
+        fruitsStock[fruit] = stock
     }
 }
 
