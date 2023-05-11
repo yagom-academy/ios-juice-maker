@@ -13,63 +13,27 @@ class FruitStore {
         .mango: 10
     ]
     
-    
-    
-    var requiredFruitQuantity: RequiredFruitQuantity = RequiredFruitQuantity()
-    
-    private func increase(_ fruit: Fruit, _ stock: Int) {
+    private func change(_ fruit: Fruit, _ stock: Int) {
         self.stock[fruit, default: 0] += stock
     }
     
-    private func decrease(_ fruit: Fruit, _ stock: Int) {
-        self.stock[fruit, default: 0] -= stock
-    }
-    
-    
-    func checkFruitStock(_ juice: Juice) -> Bool {
+    func decreaseStock(with juice: Juice) {
         let recipe: [Fruit: Int] = juice.recipe
-        
-        let stock = recipe.filter { (key, value)  in
-            if let stockCompare = self.stock[key], value <= stockCompare {
-                return true
-            }
-            return false
-        }
-        
-        if stock.count != recipe.count {
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    func checkFruitStock2(_ juice: Juice) throws -> Bool {
-        let recipe: [Fruit: Int] = juice.recipe
-        var stockCheck: Bool = false
-        
-        for (key, value) in recipe {
-            if let stock = self.stock[key], value <= stock {
-                stockCheck = true
-            } else {
-                stockCheck = false
-                break
+        for (fruit, quantity) in recipe {
+            if let stock = self.stock[fruit] {
+                self.stock[fruit] = stock - quantity
             }
         }
-        return stockCheck
     }
     
-//    func checkFruitStock2(_ juice: Juice) throws -> Bool {
-//        var recipe: [Fruit: Int] = juice.recipe
-//        var stockCheck: Bool = false
-//
-//        recipe.forEach { (key: Fruit, value: Int) in
-//            if let stock = self.stock[key], value <= stock {
-//                stockCheck = true
-//            } else {
-//                stockCheck = false
-//            }
-//        }
-//        return stockCheck
-//    }
+    func checkStock(with juice: Juice) throws {
+        let recipe: [Fruit: Int] = juice.recipe
+        
+        for (fruit, quantity) in recipe {
+            guard let stock = self.stock[fruit], quantity <= stock else {
+                throw FruitStoreError.outOfStock
+            }
+        }
+    }
 }
 

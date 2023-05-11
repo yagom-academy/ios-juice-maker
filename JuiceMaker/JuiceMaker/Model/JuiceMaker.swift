@@ -6,14 +6,15 @@
 
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore()
-
     
-    mutating func makeJuice(_ input: String) {
-    
-    }
-        
-    private mutating func check(_ juice: Juice) throws {
-        let recipe: [Fruit: Int] = juice.recipe
-        
+    func make(_ juice: Juice) {
+        do {
+            try fruitStore.checkStock(with: juice)
+            fruitStore.decreaseStock(with: juice)
+        } catch FruitStoreError.outOfStock {
+            print("재고가 부족합니다.")
+        } catch {
+            print(error)
+        }
     }
 }

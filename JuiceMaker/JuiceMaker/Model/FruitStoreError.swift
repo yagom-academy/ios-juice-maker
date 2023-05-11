@@ -6,7 +6,5 @@
 //
 
 enum FruitStoreError: Error {
-    case lackOfStockError
-    case invalidJuiceNameError
-    case invalidFruitNameError
+    case outOfStock
 }
