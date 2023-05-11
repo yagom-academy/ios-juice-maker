@@ -23,7 +23,7 @@ class FruitStore {
     }
     
     private func validateStock(juiceIngredient: Ingredient) throws {
-        guard let currentAmount = fruitStock[juiceIngredient.fruit] else {
+        guard let currentAmount = self.fruitStock[juiceIngredient.fruit] else {
             throw FruitStoreError.notFoundFruit(juiceIngredient.fruit)
         }
         
@@ -33,7 +33,7 @@ class FruitStore {
     }
     
     private func spendStock(amount value: Int, at key: Fruit) {
-        if let currentAmount = fruitStock[key] {
+        if let currentAmount = self.fruitStock[key] {
             fruitStock[key] = currentAmount - value
         }
     }
