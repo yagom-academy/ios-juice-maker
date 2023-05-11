@@ -5,6 +5,6 @@
 //  Created by qoocrab, Whales on 2023/05/11.
 //
 
-struct Fruit: Hashable {
-    let name: String
+enum Fruit: Hashable {
+    case strawberry, banana, pineapple, mango, kiwi
 }
