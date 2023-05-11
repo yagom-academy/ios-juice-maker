@@ -4,20 +4,21 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-struct JuiceMaker {
-    private let store: FruitStore
-    private let juiceRecipeBook: [Juice]
+struct JuiceMaker { // 주문받기, 쥬스만들기, 필요한 과일 개수 확인, 재고랑 비교하기
+    private var fruitStore: FruitStore
     
     init(store: FruitStore) {
-        self.store = store
-        self.juiceRecipeBook = [
-            Juice(name: "딸기", recipe: [.strawberry: 16]),
-            Juice(name: "바나나", recipe: [.banana: 2]),
-            Juice(name: "키위", recipe: [.kiwi: 3]),
-            Juice(name: "파인애플", recipe: [.pineapple: 2]),
-            Juice(name: "망고", recipe: [.mango: 3]),
-            Juice(name: "딸바", recipe: [.strawberry: 10, .banana: 1]),
-            Juice(name: "망키", recipe: [.mango: 2, .kiwi: 1])
-        ]
+        self.fruitStore = store
+    }
+    
+    mutating func makeJuice(_ juice: Juice) throws {
+        for (fruit, amount) in juice.recipe {
+            if !fruitStore.compareAmount(fruit, with: amount) {
+                try fruitStore.increaseFruitStock(fruit, amount: amount)
+            } else {
+                try fruitStore.decreaseFruitStock(fruit, amount: amount)
+                print("\(juice.name) 쥬스가 완성되었습니다.")
+            }
+        }
     }
 }
