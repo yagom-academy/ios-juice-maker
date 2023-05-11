@@ -18,6 +18,7 @@ struct JuiceMaker {
         }
         
         receiveFruitStock(menu: fruitJuice)
+        
         print("주문하신 \(fruitJuice)가 나왔습니다.")
     }
     

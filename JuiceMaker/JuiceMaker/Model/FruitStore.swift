@@ -5,27 +5,27 @@
 //
 
 class FruitStore {
-    private(set) var fruitInventory: [FruitType: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
+    let fruitInitialStock: Int = 10
+    var fruitInventory: [Int]
+
+    init() {
+        fruitInventory = Array(repeating: fruitInitialStock,
+                               count: FruitType.allCases.count)
+    }
     
     func checkStock(fruit: FruitType, amount: Int) -> Bool {
-        guard let fruitStock = fruitInventory[fruit],
-              fruitStock >= amount else {
+        guard fruitInventory[fruit.rawValue] >= amount else {
             return false
         }
+        
         return true
     }
     
     func addStock(fruit: FruitType, amount: Int) {
-        guard let fruitStock = fruitInventory[fruit] else {
-            return
-        }
-        fruitInventory[fruit] = fruitStock + amount
+        fruitInventory[fruit.rawValue] += amount
     }
     
     func reduceStock(fruit: FruitType, amount: Int) {
-        guard let fruitStock = fruitInventory[fruit] else {
-            return
-        }
-        fruitInventory[fruit] = fruitStock - amount
+        fruitInventory[fruit.rawValue] -= amount
     }
 }
