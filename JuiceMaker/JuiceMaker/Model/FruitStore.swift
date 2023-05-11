@@ -6,17 +6,9 @@
 
 import Foundation
 
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
 // 과일 저장소 타입
 class FruitStore {
-    var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
+    private var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
     
     func getStock(_ fruit: Fruit) throws -> Int {
         guard let stock = fruitsStock[fruit] else { throw JuiceMakerError.nonExistentFruitError }
@@ -24,7 +16,7 @@ class FruitStore {
         return stock
     }
     
-    func compare(_ stock: Int, and useStock: Int) throws {
+    private func compare(_ stock: Int, and useStock: Int) throws {
         guard stock >= useStock else { throw JuiceMakerError.outOfStockError }
     }
     

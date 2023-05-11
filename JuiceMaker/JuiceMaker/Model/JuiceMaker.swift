@@ -6,20 +6,10 @@
 
 import Foundation
 
-enum Juice {
-    case strawberryJuice
-    case bananaJuice
-    case pineappleJuice
-    case kiwiJuice
-    case mangoJuice
-    case strawberryBananaJuice
-    case mangoKiwiJuice
-}
-
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore()
-    let juiceRecipe: [Juice: [Fruit: Int]] = [
+    private let fruitStore: FruitStore = FruitStore()
+    private let juiceRecipe: [Juice: [Fruit: Int]] = [
         Juice.strawberryJuice: [Fruit.strawberry: 16],
         Juice.bananaJuice: [Fruit.banana: 2],
         Juice.kiwiJuice: [Fruit.kiwi: 3],
@@ -29,9 +19,32 @@ struct JuiceMaker {
         Juice.mangoKiwiJuice: [Fruit.mango: 2, Fruit.kiwi: 1]
     ]
     
-    func makeJuice(_ juice: String) throws {
+    private func getIngredient(_ juice: Juice) throws -> [Fruit: Int]{
+        guard let ingredient = juiceRecipe[juice] else { throw JuiceMakerError.nonExistentJuiceError }
         
+        return ingredient
+    }
+    
+    private func useIngredient(_ juice: Juice) throws {
+        let ingredient = try getIngredient(juice)
+        
+        for (fruit, useStock) in ingredient {
+            try fruitStore.useFruits(useStock, fruit)
+        }
+    }
+    
+    func makeJuice(_ juice: Juice) {
+        do {
+            try useIngredient(juice)
+        } catch JuiceMakerError.nonExistentFruitError {
+            print("없는 과일입니다.")
+        } catch JuiceMakerError.outOfStockError {
+            print("재고가 부족합니다.")
+        } catch JuiceMakerError.nonExistentJuiceError {
+            print("없는 쥬스입니다.")
+        } catch {
+            print("알수없는 에러: \(error.localizedDescription)")
+        }
     }
 }
 
-refactor: Juice 열거형 생성, Juice를 키로 가지는 JuiceRecipe 생성

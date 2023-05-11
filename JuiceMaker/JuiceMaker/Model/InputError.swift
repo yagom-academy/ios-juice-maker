@@ -10,4 +10,5 @@ import Foundation
 enum JuiceMakerError: Error {
     case nonExistentFruitError
     case outOfStockError
+    case nonExistentJuiceError
 }
