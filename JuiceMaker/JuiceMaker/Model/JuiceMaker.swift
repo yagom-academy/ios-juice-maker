@@ -2,63 +2,36 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import Foundation
 
+enum Juice {
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
+}
+
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var fruitStore: FruitStore = FruitStore()
+    let fruitStore: FruitStore = FruitStore()
+    let juiceRecipe: [Juice: [Fruit: Int]] = [
+        Juice.strawberryJuice: [Fruit.strawberry: 16],
+        Juice.bananaJuice: [Fruit.banana: 2],
+        Juice.kiwiJuice: [Fruit.kiwi: 3],
+        Juice.pineappleJuice: [Fruit.pineapple: 2],
+        Juice.strawberryBananaJuice: [Fruit.strawberry: 10, Fruit.banana: 1],
+        Juice.mangoJuice: [Fruit.mango: 3],
+        Juice.mangoKiwiJuice: [Fruit.mango: 2, Fruit.kiwi: 1]
+    ]
     
     func makeJuice(_ juice: String) throws {
         
-        switch juice {
-        case "딸기쥬스":
-            guard fruitStore.strawberryStock >= 16 else { throw InputError.stockError }
-            let changeNumber = fruitStore.strawberryStock - 16
-            try fruitStore.changeStock("딸기", to: changeNumber)
-        case "바나나쥬스":
-            guard fruitStore.bananaStock >= 2 else { throw InputError.stockError }
-            let changeFirstNumber = fruitStore.bananaStock - 2
-            try fruitStore.changeStock("바나나", to: changeFirstNumber)
-        case "키위쥬스":
-            guard fruitStore.kiwiStock >= 3 else { throw InputError.stockError }
-            let changeFirstNumber = fruitStore.kiwiStock - 3
-            try fruitStore.changeStock("키위", to: changeFirstNumber)
-        case "파인애플쥬스":
-            guard fruitStore.pineappleStock >= 2 else { throw InputError.stockError }
-            let changeFirstNumber = fruitStore.pineappleStock - 2
-            try fruitStore.changeStock("파인애플", to: changeFirstNumber)
-        case "딸바쥬스":
-            guard fruitStore.strawberryStock >= 10 && fruitStore.bananaStock >= 1 else { throw InputError.stockError }
-            let changeFirstNumber = fruitStore.strawberryStock - 10
-            try fruitStore.changeStock("딸기", to: changeFirstNumber)
-            let changeSecondNumber = fruitStore.bananaStock - 1
-            try fruitStore.changeStock("바나나", to: changeSecondNumber)
-        case "망고쥬스":
-            guard fruitStore.mangoStock >= 3 else { throw InputError.stockError }
-            let changeFirstNumber = fruitStore.mangoStock - 3
-            try fruitStore.changeStock("망고", to: changeFirstNumber)
-        case "망고키위쥬스":
-            guard fruitStore.mangoStock >= 2 && fruitStore.kiwiStock >= 1 else { throw InputError.stockError }
-            let changeFirstNumber = fruitStore.mangoStock - 2
-            try fruitStore.changeStock("망고", to: changeFirstNumber)
-            let changeSecondNumber = fruitStore.kiwiStock - 1
-            try fruitStore.changeStock("키위", to: changeSecondNumber)
-        default:
-            throw InputError.nameError
-        }
-    }
-    
-    func printError(_ juice: String) {
-        do {
-            try makeJuice(juice)
-        } catch InputError.stockError {
-            print("재고가 부족합니다.")
-        } catch InputError.nameError {
-            print("잘못된 이름입니다.")
-        } catch {
-            print("알수없는 오류")
-        }
     }
 }
+
+refactor: Juice 열거형 생성, Juice를 키로 가지는 JuiceRecipe 생성

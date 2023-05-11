@@ -19,24 +19,28 @@ class FruitStore {
     var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
     
     func getStock(_ fruit: Fruit) throws -> Int {
-        guard let stock = fruitsStock[fruit] else { throw InputError.nameError }
+        guard let stock = fruitsStock[fruit] else { throw JuiceMakerError.nonExistentFruitError }
         
         return stock
     }
     
-    func addFruits(_ addStock: Int, _ addFruit: Fruit) throws -> Int {
+    func compare(_ stock: Int, and useStock: Int) throws {
+        guard stock >= useStock else { throw JuiceMakerError.outOfStockError }
+    }
+    
+    func addFruits(_ addStock: Int, _ addFruit: Fruit) throws {
         var stock = try getStock(addFruit)
         stock += addStock
-        
-        return stock
+            
+        fruitsStock[addFruit] = stock
     }
     
-    func useFruits(_ useStock: Int, _ useFruit: Fruit) throws -> Int {
+    func useFruits(_ useStock: Int, _ useFruit: Fruit) throws {
         var stock = try getStock(useFruit)
+        try compare(stock, and: useStock)
         stock -= useStock
         
-        return stock
+        fruitsStock[useFruit] = stock
     }
 }
-
 

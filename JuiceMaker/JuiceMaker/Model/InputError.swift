@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum InputError: Error {
-    case nameError
-    case stockError
+enum JuiceMakerError: Error {
+    case nonExistentFruitError
+    case outOfStockError
 }
