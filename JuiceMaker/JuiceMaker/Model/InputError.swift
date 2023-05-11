@@ -2,13 +2,13 @@
 //  InputError.swift
 //  JuiceMaker
 //
-//  Created by 표현수 on 2023/05/08.
+//  Created by Erick, JusBug on 2023/05/08.
 //
 
 import Foundation
 
 enum JuiceMakerError: Error {
-    case nonExistentFruitError
-    case outOfStockError
-    case nonExistentJuiceError
+    case nonExistentFruit
+    case outOfStock
+    case nonExistentJuice
 }

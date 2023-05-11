@@ -2,7 +2,7 @@
 //  Fruit.swift
 //  JuiceMaker
 //
-//  Created by 표현수 on 2023/05/11.
+//  Created by Erick, JusBug on 2023/05/11.
 //
 
 import Foundation

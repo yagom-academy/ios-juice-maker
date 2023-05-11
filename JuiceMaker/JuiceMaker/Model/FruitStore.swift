@@ -11,13 +11,13 @@ class FruitStore {
     private var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
     
     func getStock(_ fruit: Fruit) throws -> Int {
-        guard let stock = fruitsStock[fruit] else { throw JuiceMakerError.nonExistentFruitError }
+        guard let stock = fruitsStock[fruit] else { throw JuiceMakerError.nonExistentFruit }
         
         return stock
     }
     
     private func compare(_ stock: Int, and amount: Int) throws {
-        guard stock >= amount else { throw JuiceMakerError.outOfStockError }
+        guard stock >= amount else { throw JuiceMakerError.outOfStock }
     }
     
     func addFruits(_ amount: Int, to fruit: Fruit) throws {
