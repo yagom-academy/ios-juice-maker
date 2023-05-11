@@ -12,7 +12,9 @@ struct FruitStore {
     }
     
     mutating func decreaseStock(witch fruit: Fruit, by quantity: Int) {
-        stockList[fruit]? -= quantity
+        guard let currentStock = stockList[fruit] else { return }
+        
+        stockList[fruit] = currentStock - quantity
     }
 
     func checkStock(witch fruit: Fruit, by quantity: Int) throws {
