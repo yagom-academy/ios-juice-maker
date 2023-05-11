@@ -8,29 +8,37 @@ class FruitStore {
     private var fruitStock: [Fruit: Int] = [
         .strawberry: 10,
         .banana: 10,
-        .pineapple: 10,
+        .mango: 10,
         .kiwi: 10,
-        .mango: 10
+        .pineapple: 10
     ]
     
-    func useValidStock(juiceRecipes: [JuiceRecipe]) throws {
-        try juiceRecipes.forEach { try validateStock(juiceRecipe: $0) }
-        juiceRecipes.forEach { calculateStock(amount: $0.amount * -1, at: $0.fruit)}
+    init(fruitStock: [Fruit: Int]) {
+        self.fruitStock = fruitStock
     }
     
-    private func validateStock(juiceRecipe: JuiceRecipe) throws {
-        guard let currentAmount = fruitStock[juiceRecipe.fruit] else {
-            throw FruitStoreError.notFoundFruit(juiceRecipe.fruit)
+    func useValidStock(juiceRecipes: Recipe) throws {
+        try juiceRecipes.forEach { try validateStock(juiceIngrediant: $0) }
+        juiceRecipes.forEach { spendStock(amount: $0.amount, at: $0.fruit)}
+    }
+    
+    private func validateStock(juiceIngrediant: Ingredient) throws {
+        guard let currentAmount = fruitStock[juiceIngrediant.fruit] else {
+            throw FruitStoreError.notFoundFruit(juiceIngrediant.fruit)
         }
         
-        guard currentAmount >= juiceRecipe.amount else {
-            throw FruitStoreError.notEnoughStock(juiceRecipe.fruit)
+        guard currentAmount >= juiceIngrediant.amount else {
+            throw FruitStoreError.notEnoughStock(juiceIngrediant.fruit)
         }
     }
     
-    private func calculateStock(amount value: Int, at key: Fruit) {
+    private func spendStock(amount value: Int, at key: Fruit) {
         if let currentAmount = fruitStock[key] {
-            fruitStock[key] = currentAmount + value
+            fruitStock[key] = currentAmount - value
         }
     }
+    
+    func updateStock(newValue: Int, at key: Fruit) {
+        self.fruitStock.updateValue(newValue, forKey: key)
+    }    
 }

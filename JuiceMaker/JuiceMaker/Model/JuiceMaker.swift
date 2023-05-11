@@ -11,9 +11,9 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    private func makeJuice(juiceRecipe: JuiceRecipe...) {
+    private func makeJuice(juice: Juice) {
         do {
-            try fruitStore.useValidStock(juiceRecipes: juiceRecipe)
+            try fruitStore.useValidStock(juiceRecipes: juice.recipe)
         } catch FruitStoreError.notFoundFruit(let fruit) {
             print("\(fruit.name)을/를 찾을 수 없습니다.")
         } catch FruitStoreError.notEnoughStock(let fruit) {
