@@ -5,15 +5,15 @@
 //
 
 class FruitStore {
-    private var fruitStock: [Fruit: Int] = [
+    private var fruitStock: [Fruit: Int]
+    
+    init(fruitStock: [Fruit: Int] = [
         .strawberry: 10,
         .banana: 10,
         .mango: 10,
         .kiwi: 10,
         .pineapple: 10
-    ]
-    
-    init(fruitStock: [Fruit: Int]) {
+    ]) {
         self.fruitStock = fruitStock
     }
     
