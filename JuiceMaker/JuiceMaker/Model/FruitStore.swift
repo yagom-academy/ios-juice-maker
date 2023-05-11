@@ -15,17 +15,17 @@ class FruitStore {
         return true
     }
     
-    func addStock(fruit: FruitType, addCount: Int) {
+    func addStock(fruit: FruitType, amount: Int) {
         guard let fruitStock = fruitInventory[fruit] else {
             return
         }
-        fruitInventory[fruit] = fruitStock + addCount
+        fruitInventory[fruit] = fruitStock + amount
     }
     
-    func reduceStock(fruit: FruitType, reduceCount: Int) {
+    func reduceStock(fruit: FruitType, amount: Int) {
         guard let fruitStock = fruitInventory[fruit] else {
             return
         }
-        fruitInventory[fruit] = fruitStock - reduceCount
+        fruitInventory[fruit] = fruitStock - amount
     }
 }
