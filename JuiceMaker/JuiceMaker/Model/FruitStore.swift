@@ -6,50 +6,17 @@
 
 import Foundation
 
-fileprivate struct Fruit {
-    var name: String
-    var stock: Int
+enum Fruit: CaseIterable {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
 }
 
 // 과일 저장소 타입
 class FruitStore {
-    private var strawberry = Fruit(name: "딸기", stock: 10)
-    private var banana = Fruit(name: "바나나", stock: 10)
-    private var pineapple = Fruit(name: "파인애플", stock: 10)
-    private var kiwi = Fruit(name: "키위", stock: 10)
-    private var mango = Fruit(name: "망고", stock: 10)
-    
-    var strawberryStock: Int {
-        return strawberry.stock
-    }
-    var bananaStock: Int {
-        return banana.stock
-    }
-    var pineappleStock: Int {
-        return pineapple.stock
-    }
-    var kiwiStock: Int {
-        return kiwi.stock
-    }
-    var mangoStock: Int {
-        return mango.stock
-    }
-
-    func changeStock(_ fruit: String, to number: Int) throws {
-        switch fruit {
-        case "딸기":
-            strawberry.stock = number
-        case "바나나":
-            banana.stock = number
-        case "파인애플":
-            pineapple.stock = number
-        case "키위":
-            kiwi.stock = number
-        case "망코":
-            mango.stock = number
-        default:
-            throw InputError.nameError
-        }
-    }
+    var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
 }
+
 
