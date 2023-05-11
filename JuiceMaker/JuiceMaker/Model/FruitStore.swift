@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+struct FruitStore {
     private var stockList: [Fruit: Int] = [:]
     
     init(stockQuantity: Int = 10) {
@@ -13,8 +13,8 @@ class FruitStore {
         }
     }
     
-    func decreaseIngredient(with recipe: [Ingredient] ) throws {
-        try inspectStock(recipe)
+    mutating func decreaseIngredient(with recipe: [Ingredient]) throws {
+        try checkStock(recipe)
         
         for index in recipe.indices {
             guard let currentStock = stockList[recipe[index].name] else { return }
@@ -23,12 +23,12 @@ class FruitStore {
         }
     }
 
-    private func inspectStock(_ recipe: [Ingredient]) throws {
+    private func checkStock(_ recipe: [Ingredient]) throws {
         for index in recipe.indices {
             guard let currentStock = stockList[recipe[index].name],
                   currentStock >= recipe[index].quantity
             else {
-                throw FruitStoreError.shortageOfStock(fruit: recipe[index].name)
+                throw FruitStoreError.outOfStock(fruit: recipe[index].name)
             }
         }
     }
