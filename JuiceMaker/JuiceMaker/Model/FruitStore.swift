@@ -4,6 +4,9 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+typealias Recipe = [Ingredient]
+typealias Ingredient = (fruit: Fruit, amount: Int)
+
 class FruitStore {
     private var fruitStock: [Fruit: Int]
     
@@ -17,28 +20,28 @@ class FruitStore {
         self.fruitStock = fruitStock
     }
     
-    func useValidStock(juiceRecipes: Recipe) throws {
-        try juiceRecipes.forEach { try validateStock(juiceIngredient: $0) }
-        juiceRecipes.forEach { spendStock(amount: $0.amount, at: $0.fruit)}
+    func useValidStock(juiceRecipe: Recipe) throws {
+        try juiceRecipe.forEach { try validateStock(ingredient: $0) }
+        juiceRecipe.forEach { spendStock(of: $0.fruit, by: $0.amount)}
     }
     
-    private func validateStock(juiceIngredient: Ingredient) throws {
-        guard let currentAmount = self.fruitStock[juiceIngredient.fruit] else {
-            throw FruitStoreError.notFoundFruit(juiceIngredient.fruit)
+    private func validateStock(ingredient: Ingredient) throws {
+        guard let currentAmount = self.fruitStock[ingredient.fruit] else {
+            throw FruitStoreError.notFoundFruit(ingredient.fruit)
         }
         
-        guard currentAmount >= juiceIngredient.amount else {
-            throw FruitStoreError.notEnoughStock(juiceIngredient.fruit)
+        guard currentAmount >= ingredient.amount else {
+            throw FruitStoreError.notEnoughStock(ingredient.fruit)
         }
     }
     
-    private func spendStock(amount value: Int, at key: Fruit) {
-        if let currentAmount = self.fruitStock[key] {
-            fruitStock[key] = currentAmount - value
+    private func spendStock(of fruit: Fruit, by amount: Int) {
+        if let currentAmount = self.fruitStock[fruit] {
+            fruitStock[fruit] = currentAmount - amount
         }
     }
     
-    func updateStock(newValue: Int, at key: Fruit) {
-        self.fruitStock.updateValue(newValue, forKey: key)
+    func updateStock(of fruit: Fruit, by amount: Int) {
+        self.fruitStock.updateValue(amount, forKey: fruit)
     }    
 }
