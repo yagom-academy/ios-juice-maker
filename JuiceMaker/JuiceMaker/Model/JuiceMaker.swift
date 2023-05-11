@@ -19,10 +19,12 @@ struct JuiceMaker {
             }
         } catch {
             switch error {
-            case JuiceError.test:
-                print("test")
+            case JuiceError.noFruitInFruitStore:
+                print("FruitStore에 해당 Fruit이 없습니다.")
+            case JuiceError.notEnoughFruitStock:
+                print("Fruit의 수량이 부족합니다.")
             default:
-                print("default")
+                print("알 수 없는 에러")
             }
         }
     }
@@ -30,13 +32,11 @@ struct JuiceMaker {
     func validIngredients(by recipe: [Ingredient]) throws -> [(Fruit, Int)] {
         let availableFruitAndAmountList = try recipe.map { ingredient in
             guard let fruit = fruitStore.fruits.first(where: { $0.key == ingredient.fruit }) else {
-                // TODO: fruitStore에 fruit 없음
-                throw JuiceError.test
+                throw JuiceError.noFruitInFruitStore
             }
             
             guard fruit.value - ingredient.amount >= 0 else {
-                // TODO: fruit stock 부족
-                throw JuiceError.test
+                throw JuiceError.notEnoughFruitStock
             }
             
             let availableFruitAndAmount = (fruit.key, ingredient.amount)
@@ -46,8 +46,4 @@ struct JuiceMaker {
         
         return availableFruitAndAmountList
     }
-}
-
-enum JuiceError: Error {
-    case test
 }
