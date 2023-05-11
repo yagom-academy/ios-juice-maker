@@ -2,9 +2,7 @@
 //  JuiceMaker - JuiceMaker.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
-
-import Foundation
+//
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
@@ -29,7 +27,7 @@ struct JuiceMaker {
         }
     }
     
-    func validIngredients(by recipe: [Ingredient]) throws -> [(Fruit, Int)] {
+    private func validIngredients(by recipe: [Ingredient]) throws -> [(Fruit, Int)] {
         let availableFruitAndAmountList = try recipe.map { ingredient in
             guard let fruit = fruitStore.fruits.first(where: { $0.key == ingredient.fruit }) else {
                 throw JuiceError.noFruitInFruitStore
