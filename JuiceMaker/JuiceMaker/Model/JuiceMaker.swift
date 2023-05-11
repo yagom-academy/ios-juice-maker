@@ -12,7 +12,7 @@ struct JuiceMaker {
             let availableFruitAndAmountList = try validIngredients(by: menu.recipe)
             
             availableFruitAndAmountList.forEach { (fruit, amount) in
-                fruitStore.subtract(fruit: fruit, amount: amount)
+                fruitStore.useStock(of: fruit, amount: amount)
             }
         } catch {
             switch error {

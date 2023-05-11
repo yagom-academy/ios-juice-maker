@@ -19,7 +19,7 @@ class FruitStore {
         }
     }
     
-    func add(fruit: Fruit, amount: Int) {
+    func addStock(of fruit: Fruit, amount: Int) {
         guard let stock = fruits[fruit] else {
             return
         }
@@ -27,7 +27,7 @@ class FruitStore {
         fruits.updateValue(stock + amount, forKey: fruit)
     }
     
-    func subtract(fruit: Fruit, amount: Int) {
+    func useStock(of fruit: Fruit, amount: Int) {
         guard let stock = fruits[fruit] else {
             return
         }
