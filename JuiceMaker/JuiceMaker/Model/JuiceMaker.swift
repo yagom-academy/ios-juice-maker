@@ -10,8 +10,10 @@ struct JuiceMaker {
     mutating func makeOrder(juice: Juice) {
         do {
             for ingredient in juice.recipe {
-                try fruitStore.decreaseStock(witch: ingredient.name, by: ingredient.quantity)
+                try fruitStore.checkStock(witch: ingredient.name, by: ingredient.quantity)
             }
+            
+            juice.recipe.forEach { fruitStore.decreaseStock(witch: $0.name, by: $0.quantity) }
         } catch FruitStoreError.outOfStock(let fruit) {
             print("\(fruit)의 재고가 부족합니다.")
         } catch {

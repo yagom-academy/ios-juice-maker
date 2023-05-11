@@ -11,16 +11,13 @@ struct FruitStore {
         Fruit.allCases.forEach { stockList[$0] = stockQuantity }
     }
     
-    mutating func decreaseStock(witch fruit: Fruit, by quantity: Int) throws {
-        let currentStock = try checkStock(witch: fruit, by: quantity)
-        stockList[fruit] = currentStock - quantity
+    mutating func decreaseStock(witch fruit: Fruit, by quantity: Int) {
+        stockList[fruit]? -= quantity
     }
 
-    private func checkStock(witch fruit: Fruit, by quantity: Int) throws -> Int {
+    func checkStock(witch fruit: Fruit, by quantity: Int) throws {
         guard let currentStock = stockList[fruit], currentStock >= quantity else {
             throw FruitStoreError.outOfStock(fruit: fruit)
         }
-        
-        return currentStock
     }
 }
