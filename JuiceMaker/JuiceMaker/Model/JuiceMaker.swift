@@ -4,17 +4,16 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
+enum JuiceMakerError: Error {
+    case outOfFruitStock(menu: JuiceType)
+}
+
 struct JuiceMaker {
-    private let fruitStore: FruitStore
+    private let fruitStore: FruitStore = FruitStore()
     
-    init(fruitStore: FruitStore) {
-        self.fruitStore = fruitStore
-    }
-    
-    func blendFruitJuice(menu fruitJuice: JuiceType) {
+    func blendFruitJuice(menu fruitJuice: JuiceType) throws {
         guard requestFruitStock(menu: fruitJuice) else {
-            print("\(fruitJuice) 재료가 부족합니다ㅠㅠ")
-            return
+            throw JuiceMakerError.outOfFruitStock(menu: fruitJuice)
         }
         
         receiveFruitStock(menu: fruitJuice)
@@ -22,7 +21,7 @@ struct JuiceMaker {
         print("주문하신 \(fruitJuice)가 나왔습니다.")
     }
     
-    func requestFruitStock(menu fruitJuice: JuiceType) -> Bool {
+    private func requestFruitStock(menu fruitJuice: JuiceType) -> Bool {
         var isEnoughStock: Bool = Bool()
         
         fruitJuice.recipe.forEach {
@@ -32,7 +31,7 @@ struct JuiceMaker {
         return isEnoughStock
     }
     
-    func receiveFruitStock(menu fruitJuice: JuiceType) {
+    private func receiveFruitStock(menu fruitJuice: JuiceType) {
         fruitJuice.recipe.forEach {
             fruitStore.reduceStock(fruit: $0.key, amount: $0.value)
         }

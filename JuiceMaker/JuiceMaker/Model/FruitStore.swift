@@ -5,8 +5,8 @@
 //
 
 class FruitStore {
-    let fruitInitialStock: Int = 10
-    var fruitInventory: [Int]
+    private let fruitInitialStock: Int = 10
+    private(set) var fruitInventory: [Int]
 
     init() {
         fruitInventory = Array(repeating: fruitInitialStock,
