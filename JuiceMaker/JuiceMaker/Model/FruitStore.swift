@@ -8,28 +8,19 @@ struct FruitStore {
     private var stockList: [Fruit: Int] = [:]
     
     init(stockQuantity: Int = 10) {
-        for fruit in Fruit.allCases {
-            stockList[fruit] = stockQuantity
-        }
+        Fruit.allCases.forEach { stockList[$0] = stockQuantity }
     }
     
-    mutating func decreaseIngredient(with recipe: [Ingredient]) throws {
-        try checkStock(recipe)
-        
-        for index in recipe.indices {
-            guard let currentStock = stockList[recipe[index].name] else { return }
-            
-            stockList[recipe[index].name] = currentStock - recipe[index].quantity
-        }
+    mutating func decreaseStock(witch fruit: Fruit, by quantity: Int) throws {
+        let currentStock = try checkStock(witch: fruit, by: quantity)
+        stockList[fruit] = currentStock - quantity
     }
 
-    private func checkStock(_ recipe: [Ingredient]) throws {
-        for index in recipe.indices {
-            guard let currentStock = stockList[recipe[index].name],
-                  currentStock >= recipe[index].quantity
-            else {
-                throw FruitStoreError.outOfStock(fruit: recipe[index].name)
-            }
+    private func checkStock(witch fruit: Fruit, by quantity: Int) throws -> Int {
+        guard let currentStock = stockList[fruit], currentStock >= quantity else {
+            throw FruitStoreError.outOfStock(fruit: fruit)
         }
+        
+        return currentStock
     }
 }

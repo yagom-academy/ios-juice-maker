@@ -14,6 +14,11 @@ enum Juice {
     case mangoJuice
     case mangoKiwiJuice
     
+    struct Ingredient {
+        let name: Fruit
+        let quantity: Int
+    }
+    
     var recipe: [Ingredient] {
         switch self {
         case .strawberryJuice:
