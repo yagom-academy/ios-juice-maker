@@ -13,7 +13,7 @@ struct JuiceMaker {
     
     func makeJuice(juice: Juice) {
         do {
-            try self.fruitStore.useValidStock(juiceRecipes: juice.recipe)
+            try self.fruitStore.useValidStock(juiceRecipe: juice.recipe)
         } catch FruitStoreError.notFoundFruit(let fruit) {
             print("\(fruit.name)을/를 찾을 수 없습니다.")
         } catch FruitStoreError.notEnoughStock(let fruit) {
