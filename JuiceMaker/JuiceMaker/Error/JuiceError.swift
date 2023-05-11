@@ -6,6 +6,6 @@
 //
 
 enum JuiceError: Error {
-    case noFruitInFruitStore
-    case notEnoughFruitStock
+    case nonexistentFruit
+    case shortageFruitStock
 }

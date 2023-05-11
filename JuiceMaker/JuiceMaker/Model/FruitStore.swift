@@ -19,19 +19,23 @@ class FruitStore {
         }
     }
     
-    func addStock(of fruit: Fruit, amount: Int) {
-        guard let stock = fruits[fruit] else {
-            return
-        }
+    func addStock(of fruit: Fruit, amount: Int) throws {
+        let stock = try receiveStock(of: fruit)
         
         fruits.updateValue(stock + amount, forKey: fruit)
     }
     
-    func useStock(of fruit: Fruit, amount: Int) {
-        guard let stock = fruits[fruit] else {
-            return
-        }
+    func useStock(of fruit: Fruit, amount: Int) throws {
+        let stock = try receiveStock(of: fruit)
         
         fruits.updateValue(stock - amount, forKey: fruit)
+    }
+    
+    private func receiveStock(of fruit: Fruit) throws -> Int {
+        guard let stock = fruits[fruit] else {
+            throw JuiceError.nonexistentFruit
+        }
+        
+        return stock
     }
 }
