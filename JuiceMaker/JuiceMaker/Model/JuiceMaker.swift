@@ -9,10 +9,10 @@ struct JuiceMaker {
     
     func make(juice menu: JuiceMenu) {
         do {
-            let availableFruitAndAmountList = try validIngredients(by: menu.recipe)
+            let availableIngredients = try validIngredients(by: menu.recipe)
             
-            try availableFruitAndAmountList.forEach { (fruit, amount) in
-                try fruitStore.useStock(of: fruit, amount: amount)
+            try availableIngredients.forEach {
+                try fruitStore.useStock(of: $0.fruit, amount: $0.amount)
             }
         } catch {
             switch error {
@@ -26,21 +26,17 @@ struct JuiceMaker {
         }
     }
     
-    private func validIngredients(by recipe: [Ingredient]) throws -> [(Fruit, Int)] {
-        let availableFruitAndAmountList = try recipe.map { ingredient in
-            guard let fruit = fruitStore.fruits.first(where: { $0.key == ingredient.fruit }) else {
-                throw JuiceError.nonexistentFruit
-            }
+    private func validIngredients(by recipe: [Ingredient]) throws -> [Ingredient] {
+        let availableIngredients = try recipe.map { ingredient in
+            let fruitStock = try fruitStore.receiveStock(of: ingredient.fruit)
             
-            guard fruit.value - ingredient.amount >= 0 else {
+            guard fruitStock - ingredient.amount >= 0 else {
                 throw JuiceError.shortageFruitStock
             }
             
-            let availableFruitAndAmount = (fruit.key, ingredient.amount)
-            
-            return availableFruitAndAmount
+            return ingredient
         }
         
-        return availableFruitAndAmountList
+        return availableIngredients
     }
 }

@@ -28,10 +28,14 @@ class FruitStore {
     func useStock(of fruit: Fruit, amount: Int) throws {
         let stock = try receiveStock(of: fruit)
         
+        guard stock - amount >= 0 else {
+            throw JuiceError.shortageFruitStock
+        }
+        
         fruits.updateValue(stock - amount, forKey: fruit)
     }
     
-    private func receiveStock(of fruit: Fruit) throws -> Int {
+    func receiveStock(of fruit: Fruit) throws -> Int {
         guard let stock = fruits[fruit] else {
             throw JuiceError.nonexistentFruit
         }
