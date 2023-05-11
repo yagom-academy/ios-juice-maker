@@ -4,35 +4,23 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-enum Fruit {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
-
-class FruitStore {
-    private var fruitStocks: [Fruit : Int] = [.strawberry : 10,
-                                             .banana : 10,
-                                             .pineapple : 10,
-                                             .kiwi : 10,
-                                             .mango : 10]
+final class FruitStore {
+    private var fruitStocks: [Fruit : Int] 
     
-    func verifyFruitCount(_ fruit: Fruit, count: Int) -> Bool {
-        guard let stock = fruitStocks[fruit] else {
-            return false
-        }
+    init(fruitStocks: [Fruit : Int]) {
+        self.fruitStocks = fruitStocks
+    }
+    
+    func isEnoughFruits(_ fruit: Fruit, count: Int) -> Bool {
+        guard let stock = fruitStocks[fruit] else { return false }
         
-        return stock >= count ? true : false
+        return stock >= count
     }
     
     func changeFruitCount(_ fruit: Fruit, count: Int, isUseFruit: Bool = true) {
-        guard let stock = fruitStocks[fruit] else {
-            return
-        }
+        guard let stock = fruitStocks[fruit] else { return }
         
-        let fruitAmount = isUseFruit ? (count * -1) : count
+        let fruitAmount = isUseFruit ? -count : count
         
         fruitStocks[fruit] = stock + fruitAmount
     }

@@ -1,21 +1,21 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by Zion, Mint.
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
-enum Menu {
-    case strawberryJuice
-    case bananaJuice
-    case pineappleJuice
-    case kiwiJuice
-    case mangoJuice
-    case strawberryAndBananaJuice
-    case mangoAndKiwiJuice
-}
-
 struct JuiceMaker {
-    typealias Recipe = [(Fruit, Int)]
+    enum Menu {
+        case strawberryJuice
+        case bananaJuice
+        case pineappleJuice
+        case kiwiJuice
+        case mangoJuice
+        case strawberryAndBananaJuice
+        case mangoAndKiwiJuice
+    }
+    
+    typealias Recipe = [(fruit: Fruit, amount: Int)]
     private let store: FruitStore
     
     init(fruitStore: FruitStore) {
@@ -41,10 +41,10 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(menu: Menu) -> Bool {
+    func canMakeJuice(menu: Menu) -> Bool {
         let recipe = provideRecipe(menu)
         
-        guard recipe.allSatisfy({ store.verifyFruitCount($0, count: $1) }) else { return false }
+        guard recipe.allSatisfy({ store.isEnoughFruits($0, count: $1) }) else { return false }
 
         recipe.forEach { store.changeFruitCount($0, count: $1) }
         return true
