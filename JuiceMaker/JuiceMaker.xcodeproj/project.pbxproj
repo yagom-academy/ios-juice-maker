@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		455EE74B2A08A05A00894E4C /* InputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455EE74A2A08A05A00894E4C /* InputError.swift */; };
+		455EE74B2A08A05A00894E4C /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455EE74A2A08A05A00894E4C /* JuiceMakerError.swift */; };
 		45A577682A0C9AFE0040C9C5 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A577672A0C9AFE0040C9C5 /* Fruit.swift */; };
 		45A5776A2A0C9B180040C9C5 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A577692A0C9B180040C9C5 /* Juice.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		455EE74A2A08A05A00894E4C /* InputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputError.swift; sourceTree = "<group>"; };
+		455EE74A2A08A05A00894E4C /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		45A577672A0C9AFE0040C9C5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		45A577692A0C9B180040C9C5 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				455EE74A2A08A05A00894E4C /* InputError.swift */,
+				455EE74A2A08A05A00894E4C /* JuiceMakerError.swift */,
 				45A577672A0C9AFE0040C9C5 /* Fruit.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
 				45A577692A0C9B180040C9C5 /* Juice.swift */,
@@ -177,7 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
-				455EE74B2A08A05A00894E4C /* InputError.swift in Sources */,
+				455EE74B2A08A05A00894E4C /* JuiceMakerError.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				45A577682A0C9AFE0040C9C5 /* Fruit.swift in Sources */,
