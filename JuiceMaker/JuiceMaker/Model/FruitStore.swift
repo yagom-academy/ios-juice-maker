@@ -5,9 +5,9 @@
 //
 
 final class FruitStore {
-    private var fruitStocks: [Fruit : Int] 
+    private var fruitStocks: [Fruit: Int] 
     
-    init(fruitStocks: [Fruit : Int]) {
+    init(fruitStocks: [Fruit: Int]) {
         self.fruitStocks = fruitStocks
     }
     
