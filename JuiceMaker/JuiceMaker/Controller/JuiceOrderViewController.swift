@@ -21,4 +21,3 @@ class JuiceOrderViewController: UIViewController {
         guard let juice = JuiceMaker.Menu(rawValue: sender.tag) else { return }
     }
 }
-

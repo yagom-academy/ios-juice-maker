@@ -8,8 +8,6 @@
 import UIKit
 
 class FruitStockViewController: UIViewController {
-    
-    
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet var bananaLabel: UIView!
     @IBOutlet weak var pineappleLabel: UILabel!
@@ -19,9 +17,4 @@ class FruitStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    @IBAction func test(_ sender: UIStepper) {
-        print(sender.value)
-    }
-    
 }

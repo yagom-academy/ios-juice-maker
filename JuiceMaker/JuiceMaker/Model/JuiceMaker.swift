@@ -6,7 +6,7 @@
 
 struct JuiceMaker {
     enum Menu: Int {
-        case strawberryJuice = 1
+        case strawberryJuice
         case bananaJuice
         case pineappleJuice
         case kiwiJuice
