@@ -16,19 +16,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiJuice: UIButton!
     @IBOutlet weak var mangoJuice: UIButton!
 	
-	@IBOutlet var strawberryStock: UILabel!
+	@IBOutlet weak var strawberryStock: UILabel!
 	@IBOutlet weak var bananaStock: UILabel!
 	@IBOutlet weak var pineappleStock: UILabel!
 	@IBOutlet weak var kiwiStock: UILabel!
-	@IBOutlet weak var manggoStock: UILabel!
-	
-	let fruitStore = FruitStore(equalizedStock: 10)
+    @IBOutlet weak var mangoStock: UILabel!
+    
+    let fruitStore = FruitStore(equalizedStock: 10)
 	lazy var juiceMaker = JuiceMaker(fruitStore: fruitStore)
 	lazy var fruitToButton: [Fruit: UILabel] = [.strawberry: strawberryStock,
 												.banana: bananaStock,
 												.pineapple: pineappleStock,
 												.kiwi: kiwiStock,
-												.mango: manggoStock]
+												.mango: mangoStock]
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,13 +72,19 @@ class ViewController: UIViewController {
     }
     
     private func orderJuice(_ menuName: FruitJuice) {
+        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") else { return }
+        
         do {
             try juiceMaker.makeFruitJuice(menu: menuName)
             showStock()
+            let alert = UIAlertController(title: "\(menuName.name) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "야호!", style: .default, handler: nil)
+            
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
         } catch StockError.fruitNotFound {
             print(StockError.fruitNotFound.message)
         } catch StockError.outOfStock {
-            guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") else { return }
             let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
             let ok = UIAlertAction(title: "예", style: .default, handler: { _ in
                 self.navigationController?.show(stockViewController, sender: self)
@@ -87,7 +93,6 @@ class ViewController: UIViewController {
             
             alert.addAction(ok)
             alert.addAction(cancel)
-            
             present(alert, animated: true, completion: nil)
         } catch {
             print(StockError.unKnown.message)

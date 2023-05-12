@@ -226,9 +226,9 @@
                         <outlet property="bananaStock" destination="gvk-pA-Lw5" id="x2M-h3-emz"/>
                         <outlet property="kiwiJuice" destination="wcW-7H-RXw" id="Zhd-HM-Xs3"/>
                         <outlet property="kiwiStock" destination="FZq-de-TJG" id="dow-db-NG4"/>
-                        <outlet property="manggoStock" destination="3Ce-SU-JeH" id="OOD-LF-02j"/>
                         <outlet property="mangoJuice" destination="q6G-4X-bVm" id="2Md-Ey-qty"/>
                         <outlet property="mangoKiwiJuice" destination="ngP-kF-Yii" id="PyW-YX-NcT"/>
+                        <outlet property="mangoStock" destination="3Ce-SU-JeH" id="wDg-7x-nm6"/>
                         <outlet property="pineappleJuice" destination="BFb-ka-wGA" id="TWU-a1-6M0"/>
                         <outlet property="pineappleStock" destination="ccQ-Dk-PuY" id="1Wb-Am-CBY"/>
                         <outlet property="strawberryBananaJuice" destination="hrc-2F-fzl" id="7Rs-eh-MxK"/>
