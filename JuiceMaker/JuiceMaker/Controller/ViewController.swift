@@ -33,4 +33,10 @@ class ViewController: UIViewController {
     }
     @IBAction func mangoJuiceOrderButton(_ sender: UIButton) {
     }
+    
+    
+    @IBAction func fixStockButton(_ sender: UIBarButtonItem) {
+        guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "FixStockViewControllerID") else { return }
+        self.navigationController?.pushViewController(pushVC, animated: true)
+    }
 }
