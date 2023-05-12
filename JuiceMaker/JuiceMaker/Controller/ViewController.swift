@@ -31,25 +31,25 @@ class ViewController: UIViewController {
     }
     
     @IBAction func strawberrybananaJuiceOrderButton(_ sender: UIButton) {
-        orderSuccessMessage()
+        orderJuice(.strawberryBananaJuice)
     }
     @IBAction func mangokiwiJuiceOrderButton(_ sender: UIButton) {
-        orderFailMessage()
+        orderJuice(.mangoKiwiJuice)
     }
     @IBAction func strawberryJuiceOrderButton(_ sender: UIButton) {
-        orderFailMessage()
+        orderJuice(.strawberryJuice)
     }
     @IBAction func bananaJuiceOrderButton(_ sender: UIButton) {
-        orderFailMessage()
+        orderJuice(.bananaJuice)
     }
     @IBAction func pineappleJuiceOrderButton(_ sender: UIButton) {
-        orderFailMessage()
+        orderJuice(.pineappleJuice)
     }
     @IBAction func kiwiJuiceOrderButton(_ sender: UIButton) {
-        orderFailMessage()
+        orderJuice(.kiwiJuice)
     }
     @IBAction func mangoJuiceOrderButton(_ sender: UIButton) {
-        orderFailMessage()
+        orderJuice(.mangoJuice)
     }
     
     @IBAction func fixStockButton(_ sender: UIBarButtonItem) {
@@ -57,25 +57,35 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(pushVC, animated: true)
     }
     
+    func orderJuice(_ juice: Juice) {
+        do {
+            try juiceMaker.makeJuice(juice)
+            orderSuccessMessage(juice)
+            showStock()
+        } catch JuiceMakerError.outOfStock {
+            orderFailMessage()
+        } catch JuiceMakerError.nonExistentJuice {
+            print("쥬스가 없습니다.")
+        } catch JuiceMakerError.nonExistentFruit {
+            print("과일이 없습니다.")
+        } catch {
+            print("알 수 없는 에러입니다.")
+        }
+    }
+    
     func orderFailMessage() {
         let alertMessage = UIAlertController(title: "주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default) { _ in
+        alertMessage.addAction(UIAlertAction(title: "예", style: .default) { _ in
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "FixStockViewControllerID") else { return }
             self.navigationController?.pushViewController(pushVC, animated: true)
-        }
-        let noAction = UIAlertAction(title: "아니오", style: .default)
-        
-        alertMessage.addAction(yesAction)
-        alertMessage.addAction(noAction)
+        })
+        alertMessage.addAction(UIAlertAction(title: "아니오", style: .default))
         present(alertMessage, animated: true)
     }
     
-    func orderSuccessMessage() {
-        let alertMessage = UIAlertController(title: "주문 성공", message: "쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default)
-        
-        alertMessage.addAction(yesAction)
+    func orderSuccessMessage(_ juice: Juice) {
+        let alertMessage = UIAlertController(title: "주문 성공", message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: "예", style: .default))
         present(alertMessage, animated: true)
     }
 }
-
