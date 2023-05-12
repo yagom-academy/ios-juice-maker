@@ -4,9 +4,24 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
-// 과일 저장소 타입
-class FruitStore {
+final class FruitStore {
+    private var fruitStocks: [Fruit: Int] 
     
+    init(fruitStocks: [Fruit: Int]) {
+        self.fruitStocks = fruitStocks
+    }
+    
+    func isEnoughFruits(_ fruit: Fruit, count: Int) -> Bool {
+        guard let stock = fruitStocks[fruit] else { return false }
+        
+        return stock >= count
+    }
+    
+    func changeFruitCount(_ fruit: Fruit, count: Int, isUseFruit: Bool = true) {
+        guard let stock = fruitStocks[fruit] else { return }
+        
+        let fruitAmount = isUseFruit ? -count : count
+        
+        fruitStocks[fruit] = stock + fruitAmount
+    }
 }
