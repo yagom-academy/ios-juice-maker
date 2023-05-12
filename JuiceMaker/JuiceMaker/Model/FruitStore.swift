@@ -11,7 +11,7 @@ final class FruitStore {
         self.fruitInventory = fruitInventory
     }
     
-    func changeStock(of fruit: Fruit, by quantity: Int) throws {
+    func changeStock(of fruit: Fruit, by quantity: Int) {
         guard let currentStock = fruitInventory[fruit] else { return }
         fruitInventory[fruit] = currentStock + quantity
     }

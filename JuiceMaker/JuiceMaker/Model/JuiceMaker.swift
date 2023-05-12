@@ -18,13 +18,17 @@ struct JuiceMaker {
         return .success(true)
     }
     
-    func make(_ juice: Juice) throws -> Juice? {
-        if canMake(juice) {
+    func make(_ juice: Juice) -> Result<Juice, FruitStoreError> {
+        let result = canMake(juice)
+        
+        switch result {
+        case .success(_):
             for (fruit, amount) in juice.recipe {
-                try fruitStore.changeStock(of: fruit, by: -amount)
+                fruitStore.changeStock(of: fruit, by: -amount)
             }
-            return juice
+            return .success(juice)
+        case .failure(let error):
+            return .failure(error)
         }
-        return nil
     }
 }
