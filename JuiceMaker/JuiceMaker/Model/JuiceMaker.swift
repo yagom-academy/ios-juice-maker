@@ -8,10 +8,14 @@ struct JuiceMaker {
     let fruitStore: FruitStore
     
     func takeOrder(_ juice: Juice) {
-        let recipe = juice.receiveRecipe()
-        let checked = checkFruitStock(recipe)
+        let check = checkFruitStock(juice.recipe)
         
-        make(juice, with: recipe, if: checked)
+        switch check {
+        case .success:
+            make(juice)
+        case .failure(let error):
+            print(error)
+        }
     }
     
     private func checkFruitStock(_ recipe: [Recipe]) -> Result<Void, JuiceMakerError> {
@@ -22,17 +26,12 @@ struct JuiceMaker {
         return .success(())
     }
 
-    private func takeStock(with recipe: [Recipe]) {
-        recipe.forEach { fruitStore.useStock(fruit: $0.name, quantity: $0.quantity) }
+    private func make(_ juice: Juice) {
+        takeOutStock(for: juice.recipe)
+        print("\(juice)가(이) 준비되었습니다.")
     }
     
-    private func make(_ juice: Juice, with recipe: [Recipe], if checked: Result<Void, JuiceMakerError>) {
-        switch checked {
-        case .success:
-            takeStock(with: recipe)
-            print("\(juice)가(이) 준비되었습니다.")
-        case .failure(let error):
-            print(error)
-        }
+    private func takeOutStock(for recipe: [Recipe]) {
+        recipe.forEach { fruitStore.useStock(fruit: $0.name, quantity: $0.quantity) }
     }
 }
