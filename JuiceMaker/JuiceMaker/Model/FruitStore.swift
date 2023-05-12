@@ -5,27 +5,25 @@
 //
 
 class FruitStore {
-    private let fruitInitialStock: Int = 10
     private(set) var fruitInventory: [Int]
 
-    init() {
-        fruitInventory = Array(repeating: fruitInitialStock,
-                               count: FruitType.allCases.count)
+    init(initialStock: Int = 10) {
+        fruitInventory = Array(repeating: initialStock,
+                               count: Fruit.allCases.count)
     }
     
-    func checkStock(fruit: FruitType, amount: Int) -> Bool {
-        guard fruitInventory[fruit.rawValue] >= amount else {
-            return false
+    func hasEnoughStock(fruit: Fruit, amount: Int) -> Bool {
+        if fruitInventory[fruit.inventoryIndex] >= amount {
+            return true
         }
-        
-        return true
+        return false
     }
     
-    func addStock(fruit: FruitType, amount: Int) {
-        fruitInventory[fruit.rawValue] += amount
+    func addStock(fruit: Fruit, amount: Int) {
+        fruitInventory[fruit.inventoryIndex] += amount
     }
     
-    func reduceStock(fruit: FruitType, amount: Int) {
-        fruitInventory[fruit.rawValue] -= amount
+    func reduceStock(fruit: Fruit, amount: Int) {
+        fruitInventory[fruit.inventoryIndex] -= amount
     }
 }
