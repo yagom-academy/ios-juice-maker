@@ -14,9 +14,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
 
+    let juiceMaker = JuiceMaker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        showStock()
+    }
+    
+    func showStock() {
+        strawberryStockLabel.text = "\(juiceMaker.getFruitStock(.strawberry)!)"
+        bananaStockLabel.text = "\(juiceMaker.getFruitStock(.banana)!)"
+        pineappleStockLabel.text = "\(juiceMaker.getFruitStock(.pineapple)!)"
+        kiwiStockLabel.text = "\(juiceMaker.getFruitStock(.kiwi)!)"
+        mangoStockLabel.text = "\(juiceMaker.getFruitStock(.mango)!)"
     }
     
     @IBAction func strawberrybananaJuiceOrderButton(_ sender: UIButton) {

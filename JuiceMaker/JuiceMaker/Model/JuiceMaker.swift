@@ -18,6 +18,20 @@ struct JuiceMaker {
         }
     }
     
+    func getFruitStock(_ fruit: Fruit) -> Int? {
+        var stock: Int?
+        
+        do {
+            stock = try fruitStore.getStock(fruit)
+        } catch JuiceMakerError.nonExistentFruit {
+            print("없는 과일입니다.")
+        } catch {
+            print("알수없는 에러: (error.localizedDescription)")
+        }
+        
+        return stock
+    }
+    
     func makeJuice(_ juice: Juice) {
         do {
             try useIngredient(juice)
@@ -32,4 +46,3 @@ struct JuiceMaker {
         }
     }
 }
-
