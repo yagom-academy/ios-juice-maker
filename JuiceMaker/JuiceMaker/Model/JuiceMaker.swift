@@ -25,12 +25,13 @@ struct JuiceMaker {
     
     mutating func makeJuice(_ juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            if !fruitStore.compareAmount(fruit, with: amount) {
-                try fruitStore.increaseFruitStock(fruit, amount: amount)
-            } else {
+            if fruitStore.isStockSufficient(fruit, with: amount) {
                 try fruitStore.decreaseFruitStock(fruit, amount: amount)
+            } else {
+                try fruitStore.increaseFruitStock(fruit, amount: amount)
             }
         }
         print("\(juice.name) 쥬스가 완성되었습니다.")
     }
 }
+
