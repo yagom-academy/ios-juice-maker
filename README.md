@@ -19,7 +19,7 @@
 ## 👨‍💻 팀원
 | MINT | Zion |
 | :--------: | :--------: |
-| <Img src = "https://hackmd.io/_uploads/Sy9xMBsVh.png"  width="200"> |<Img src= "https://hackmd.io/_uploads/rJqMfSoVn.png" width="200"> |
+| <Img src = "https://hackmd.io/_uploads/SJ6F7HjE2.png"  width="200"> |<Img src= "https://hackmd.io/_uploads/rJqMfSoVn.png" width="200"> |
 |[Github Profile](https://github.com/mint3382) |[Github Profile](https://github.com/LeeZion94) |
 
 
