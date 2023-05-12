@@ -44,9 +44,11 @@ struct JuiceMaker {
     func canMakeJuice(menu: Menu) -> Bool {
         let recipe = provideRecipe(menu)
         
-        guard recipe.allSatisfy({ store.isEnoughFruits($0, count: $1) }) else { return false }
+        guard recipe.allSatisfy({ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }) else { return false }
 
-        recipe.forEach { store.changeFruitCount($0, count: $1) }
+        recipe.forEach { fruit, amount in
+            store.changeFruitCount(fruit, count: amount)
+        }
         return true
     }
 }
