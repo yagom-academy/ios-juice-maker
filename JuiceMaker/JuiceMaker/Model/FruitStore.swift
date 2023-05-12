@@ -13,10 +13,6 @@ class FruitStore {
         .mango: 10
     ]
     
-    private func changeStock(for fruit: Fruit, by stock: Int) {
-        self.stock[fruit, default: 0] += stock
-    }
-    
     func decreaseStock(with fruits: [Fruit: Int]) {
         for (fruit, quantity) in fruits {
             if let stock = self.stock[fruit] {
