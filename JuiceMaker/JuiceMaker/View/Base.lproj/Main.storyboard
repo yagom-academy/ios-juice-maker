@@ -268,10 +268,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--View Controller-->
+        <!--Fruit Stock View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="FruitStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -370,12 +370,22 @@
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="test:" destination="Yu1-lM-nqp" eventType="valueChanged" id="sir-SV-1do"/>
+                                </connections>
                             </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="bananaLabel" destination="tKV-4l-Vtc" id="mSu-M6-Vtw"/>
+                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="atp-8L-iaL"/>
+                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="Fmd-f6-iIf"/>
+                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="eqw-jE-JOI"/>
+                        <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="jbA-dj-W9l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
