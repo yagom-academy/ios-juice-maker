@@ -13,23 +13,17 @@ class FruitStore {
         .mango: 10
     ]
     
-    private func change(_ fruit: Fruit, _ stock: Int) {
-        self.stock[fruit, default: 0] += stock
-    }
-    
-    func decreaseStock(with juice: Juice) {
-        let recipe: [Fruit: Int] = juice.recipe
-        for (fruit, quantity) in recipe {
+    func decreaseStock(with fruits: [Fruit: Int]) {
+        for (fruit, quantity) in fruits {
             if let stock = self.stock[fruit] {
                 self.stock[fruit] = stock - quantity
+                print("\(self.stock[fruit]!)남은수량 \(stock) 재고 \(quantity) 필요수량")
             }
         }
     }
     
-    func checkStock(with juice: Juice) throws {
-        let recipe: [Fruit: Int] = juice.recipe
-        
-        for (fruit, quantity) in recipe {
+    func checkStock(with fruits: [Fruit: Int]) throws {
+        for (fruit, quantity) in fruits {
             guard let stock = self.stock[fruit], quantity <= stock else {
                 throw FruitStoreError.outOfStock
             }
