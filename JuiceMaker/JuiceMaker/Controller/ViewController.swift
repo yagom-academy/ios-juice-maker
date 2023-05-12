@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     
     let fruitStore = FruitStore(equalizedStock: 10)
 	lazy var juiceMaker = JuiceMaker(fruitStore: fruitStore)
-	lazy var fruitToButton: [Fruit: UILabel] = [.strawberry: strawberryStock,
+	lazy var fruitToLabel: [Fruit: UILabel] = [.strawberry: strawberryStock,
 												.banana: bananaStock,
 												.pineapple: pineappleStock,
 												.kiwi: kiwiStock,
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
 	
 	func showStock() {
 		let fruitStock: [Fruit: Int] = fruitStore.getInventoryStatus()
-		for (fruit, stockLabel) in fruitToButton {
+		for (fruit, stockLabel) in fruitToLabel {
 			guard let stock = fruitStock[fruit] else { return }
 			stockLabel.text = String(stock)
 		}
@@ -72,24 +72,35 @@ class ViewController: UIViewController {
     }
     
     private func orderJuice(_ menuName: FruitJuice) {
-        guard let stockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") else { return }
+        guard let stockViewController =
+				self.storyboard?.instantiateViewController(identifier: "StockViewController") else { return }
         
         do {
             try juiceMaker.makeFruitJuice(menu: menuName)
             showStock()
-            let alert = UIAlertController(title: "\(menuName.name) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "야호!", style: .default, handler: nil)
+            let alert = UIAlertController(title: "\(menuName.name) 나왔습니다!",
+										  message: "맛있게 드세요!",
+										  preferredStyle: .alert)
+            let ok = UIAlertAction(title: "야호!",
+								   style: .default,
+								   handler: nil)
             
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         } catch StockError.fruitNotFound {
             print(StockError.fruitNotFound.message)
         } catch StockError.outOfStock {
-            let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "예", style: .default, handler: { _ in
+            let alert = UIAlertController(title: "재료가 모자라요.",
+										  message: "재고를 수정할까요?",
+										  preferredStyle: .alert)
+            let ok = UIAlertAction(title: "예",
+								   style: .default,
+								   handler: { _ in
                 self.navigationController?.show(stockViewController, sender: self)
             })
-            let cancel = UIAlertAction(title: "아니오", style: .default, handler: nil)
+            let cancel = UIAlertAction(title: "아니오",
+									   style: .default,
+									   handler: nil)
             
             alert.addAction(ok)
             alert.addAction(cancel)
