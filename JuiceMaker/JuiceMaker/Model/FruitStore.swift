@@ -5,7 +5,7 @@
 //  last modified by maxhyunm, kobe
 //
 
-struct FruitStore {
+class FruitStore {
     private var inventory: [Fruit: Int] = [:]
     
     init(stock: [Fruit: Int]) {
@@ -18,6 +18,10 @@ struct FruitStore {
         }
     }
 	
+	func getInventoryStatus() -> [Fruit: Int] {
+		return self.inventory
+	}
+	
     func calculateStock(of fruit: Fruit, quantity: Int) throws -> Int {
         guard let fruitStock = inventory[fruit] else {
             throw StockError.fruitNotFound
@@ -29,7 +33,7 @@ struct FruitStore {
         return fruitStock - quantity
     }
     
-	mutating func changeStock(of fruit: Fruit, quantity: Int) {
+	func changeStock(of fruit: Fruit, quantity: Int) {
         guard let _ = inventory[fruit] else { return }
 		inventory[fruit] = quantity
 	}

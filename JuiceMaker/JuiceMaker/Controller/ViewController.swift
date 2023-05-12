@@ -24,9 +24,15 @@ class ViewController: UIViewController {
 	
 	let fruitStore = FruitStore(equalizedStock: 10)
 	lazy var juiceMaker = JuiceMaker(fruitStore: fruitStore)
+	lazy var fruitToButton: [Fruit: UILabel] = [.strawberry: strawberryStock,
+												.banana: bananaStock,
+												.pineapple: pineappleStock,
+												.kiwi: kiwiStock,
+												.mango: manggoStock]
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+		showStock()
         strawberryBananaJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
         mangoKiwiJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
         strawberryJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
@@ -35,6 +41,14 @@ class ViewController: UIViewController {
         kiwiJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
         mangoJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
     }
+	
+	func showStock() {
+		let fruitStock: [Fruit: Int] = fruitStore.getInventoryStatus()
+		for (fruit, stockLabel) in fruitToButton {
+			guard let stock = fruitStock[fruit] else { return }
+			stockLabel.text = String(stock)
+		}
+	}
     
 	@objc func orderMenu(_ sender: UIButton) {
         switch sender {
@@ -60,7 +74,7 @@ class ViewController: UIViewController {
     private func orderJuice(_ menuName: FruitJuice) {
         do {
             try juiceMaker.makeFruitJuice(menu: menuName)
-            
+            showStock()
         } catch StockError.fruitNotFound {
             print(StockError.fruitNotFound.message)
         } catch StockError.outOfStock {

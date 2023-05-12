@@ -15,7 +15,7 @@ struct JuiceMaker {
 		self.fruitStore = fruitStore
 	}
 	
-	mutating func makeFruitJuice(menu: FruitJuice) throws {
+	func makeFruitJuice(menu: FruitJuice) throws {
 		let recipe = menu.juiceRecipe
         var changedStock: Recipe = []
         do {
