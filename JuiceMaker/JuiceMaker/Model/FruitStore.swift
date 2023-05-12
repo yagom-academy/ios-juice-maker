@@ -4,9 +4,42 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
+final class FruitStore {
+    private(set) var fruits: [Fruit : Int] = [:]
 
-// 과일 저장소 타입
-class FruitStore {
+    init() {
+        Fruit.allCases.forEach {
+            fruits[$0] = 10
+        }
+    }
     
+    init(stock: Int) {
+        Fruit.allCases.forEach {
+            fruits[$0] = stock
+        }
+    }
+    
+    func addStock(of fruit: Fruit, amount: Int) throws {
+        let stock = try receiveStock(of: fruit)
+        
+        fruits.updateValue(stock + amount, forKey: fruit)
+    }
+    
+    func useStock(of fruit: Fruit, amount: Int) throws {
+        let stock = try receiveStock(of: fruit)
+        
+        guard stock - amount >= 0 else {
+            throw JuiceError.shortageFruitStock
+        }
+        
+        fruits.updateValue(stock - amount, forKey: fruit)
+    }
+    
+    func receiveStock(of fruit: Fruit) throws -> Int {
+        guard let stock = fruits[fruit] else {
+            throw JuiceError.nonexistentFruit
+        }
+        
+        return stock
+    }
 }
