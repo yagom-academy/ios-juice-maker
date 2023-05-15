@@ -38,5 +38,26 @@ class JuiceOrderViewController: UIViewController {
     @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
         pushStockChangeViewController()
     }
+    
+    private func presentInsufficientStockAlert(with message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let confirmButton = UIAlertAction(title: "예", style: .default) { _ in
+            self.pushStockChangeViewController()
+        }
+        let cancelButton = UIAlertAction(title: "아니오", style: .cancel)
+        
+        alert.addAction(confirmButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true)
+    }
+    
+    private func presentJuiceReadyAlert(with juice: Juice) {
+        let message = "\(juice.description) 나왔습니다! 맛있게 드세요!"
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let confirmButton = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(confirmButton)
+        present(alert, animated: true)
+    }
 }
 
