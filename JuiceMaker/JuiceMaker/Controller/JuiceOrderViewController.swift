@@ -18,6 +18,15 @@ class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFruitStockLabels()
+    }
+    
+    private func updateFruitStockLabels() {
+        for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
+            guard let fruit = Fruit(rawValue: index) else { return }
+            guard let fruitCount = juiceMaker.fruitStore.getCurrentStock(of: fruit) else { return }
+            fruitStockLabel.text = "\(fruitCount)"
+        }
     }
 }
 
