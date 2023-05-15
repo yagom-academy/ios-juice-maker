@@ -1,5 +1,5 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - MainViewController.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
 //  last modified by maxhyunm, kobe
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     @IBOutlet private weak var strawberryJuiceButton: UIButton!
