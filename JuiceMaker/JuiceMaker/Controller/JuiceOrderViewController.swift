@@ -13,8 +13,22 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
+    let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
+    lazy var yagombucks = JuiceMaker(fruitStore: fruitStore)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        yagombucks.delegate = self
+        showFirstStock()
+    }
+    
+    func showFirstStock() {
+        strawberryLabel.text = String(fruitStore.provideFruitStock(.strawberry))
+        bananaLabel.text = String(fruitStore.provideFruitStock(.banana))
+        kiwiLabel.text = String(fruitStore.provideFruitStock(.kiwi))
+        mangoLabel.text = String(fruitStore.provideFruitStock(.mango))
+        pineappleLabel.text = String(fruitStore.provideFruitStock(.pineapple))
     }
 }
 
@@ -22,6 +36,8 @@ class JuiceOrderViewController: UIViewController {
 extension JuiceOrderViewController {
     @IBAction func orderButtonTapped(_ sender: UIButton) {
         guard let juice = JuiceMaker.Menu(rawValue: sender.tag) else { return }
+        
+        yagombucks.makeJuice(menu: juice)
     }
     
     @IBAction func changeStockButtonTapped(_ sender: Any) {
