@@ -79,8 +79,10 @@ class MainViewController: UIViewController {
     }
     
     private func showAlert(alertType: AlertSetting) {
-        guard let stockViewController =
-                self.storyboard?.instantiateViewController(identifier: "StockViewController") else { return }
+        guard let stockViewController = self.storyboard?
+            .instantiateViewController(identifier: "StockViewController") else {
+            return
+        }
         
         switch alertType {
         case .menuOut:
