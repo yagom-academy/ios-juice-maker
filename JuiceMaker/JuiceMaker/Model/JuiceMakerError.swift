@@ -6,5 +6,5 @@
 //
 
 enum JuiceMakerError: Error {
-    case invalidFruit, invalidJuice
+    case invalidFruit, invalidJuice, insufficientFruit
 }
