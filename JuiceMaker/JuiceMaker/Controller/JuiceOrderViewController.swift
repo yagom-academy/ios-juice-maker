@@ -6,24 +6,24 @@
 
 import UIKit
 
-class JuiceOrderViewController: UIViewController {
+final class JuiceOrderViewController: UIViewController {
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
-    lazy var yagombucks = JuiceMaker(fruitStore: fruitStore)
+    private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
+    private lazy var yagombucks = JuiceMaker(fruitStore: fruitStore)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         yagombucks.delegate = self
-        showFirstStock()
+        loadFruitStock()
     }
     
-    func showFirstStock() {
+    private func loadFruitStock() {
         strawberryLabel.text = String(fruitStore.provideFruitStock(.strawberry))
         bananaLabel.text = String(fruitStore.provideFruitStock(.banana))
         kiwiLabel.text = String(fruitStore.provideFruitStock(.kiwi))
@@ -42,6 +42,7 @@ extension JuiceOrderViewController {
     
     @IBAction func changeStockButtonTapped(_ sender: Any) {
         let pushJuiceOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController")
+        
         self.navigationController?.pushViewController(pushJuiceOrderViewController!, animated: true)
     }
 }

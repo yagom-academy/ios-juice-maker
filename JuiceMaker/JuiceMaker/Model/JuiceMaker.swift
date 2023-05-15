@@ -51,16 +51,16 @@ struct JuiceMaker {
     func makeJuice(menu: Menu) {
         let recipe = provideRecipe(menu)
         
-        guard canMakeJuice(recipe) else { return }
+        guard canMakeJuice(recipe) else {
+            delegate?.failJuiceMake()
+            return
+        }
         
         consumeFruit(recipe)
     }
     
     private func canMakeJuice(_ recipe: Recipe ) -> Bool {
-        guard recipe.allSatisfy({ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }) else {
-            delegate?.failJuiceMake()
-            return false
-        }
+        guard recipe.allSatisfy({ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }) else { return false }
         
         return true
     }

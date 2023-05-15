@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FruitStockViewController: UIViewController {
+final class FruitStockViewController: UIViewController {
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet var bananaLabel: UIView!
     @IBOutlet weak var pineappleLabel: UILabel!
