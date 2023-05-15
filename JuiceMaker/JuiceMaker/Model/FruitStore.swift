@@ -6,11 +6,11 @@
 
 class FruitStore {
     var stock: [Fruit: Int] = [
-        .strawBerry: 10,
-        .banana: 10,
-        .pineApple: 10,
-        .kiwi: 10,
-        .mango: 10
+        .strawBerry: 15,
+        .banana: 11,
+        .pineApple: 12,
+        .kiwi: 13,
+        .mango: 14
     ]
     
     func decreaseStock(with fruits: [Fruit: Int]) {
