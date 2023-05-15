@@ -63,8 +63,8 @@
 				3C33ABB62A12CCE80009FA60 /* Fruit.swift */,
 				3C33ABBA2A12CD880009FA60 /* Juice.swift */,
 				3C33ABBC2A12CEA70009FA60 /* JuiceMakerError.swift */,
-				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
