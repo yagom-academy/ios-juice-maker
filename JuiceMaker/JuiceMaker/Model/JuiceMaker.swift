@@ -15,12 +15,7 @@ struct JuiceMaker {
     
     func takeOrder(_ juice: Juice) {
         do {
-            if try canMake(juice) {
-                try consumeFruit(for: juice)
-                print("\(juice.name) 쥬스가 완성되었습니다.")
-            } else {
-                print("과일의 재고가 부족하여 쥬스를 만들 수 없습니다.")
-            }
+            try makeJuice(juice)
         } catch JuiceMakerError.invalidFruit {
             print("올바르지 않은 과일 이름입니다.")
         } catch JuiceMakerError.invalidJuice {
@@ -29,6 +24,15 @@ struct JuiceMaker {
             print("과일의 재고가 부족하여 쥬스를 만들 수 없습니다.")
         } catch {
             print("알 수 없는 에러입니다.")
+        }
+    }
+    
+    func makeJuice(_ juice: Juice) throws {
+        if try canMake(juice) {
+            try consumeFruit(for: juice)
+            print("\(juice.name) 쥬스가 완성되었습니다.")
+        } else {
+            throw JuiceMakerError.insufficientFruit
         }
     }
     
