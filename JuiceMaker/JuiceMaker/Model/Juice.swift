@@ -5,7 +5,7 @@
 //  Created by 훈맹구 on 2023/05/08.
 //
 
-enum Juice {
+enum Juice: Int {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
