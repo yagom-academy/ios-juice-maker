@@ -33,4 +33,3 @@ class FruitStore {
         fruitInventory[fruit] = currentAmount + amount
     }
 }
-

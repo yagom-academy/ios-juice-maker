@@ -5,15 +5,22 @@
 // 
 
 struct JuiceMaker {
-    private var fruitStore: FruitStore
+    private let fruitStore = FruitStore(fruitInventory: [
+        .strawberry: 10,
+        .banana: 10,
+        .pineapple: 10,
+        .kiwi: 10,
+        .mango: 10
+    ])
     
-    init(store: FruitStore) {
-        self.fruitStore = store
-    }
-    
-    mutating func takeOrder(_ juice: Juice) {
+    func takeOrder(_ juice: Juice) {
         do {
-            try makeJuice(juice)
+            if try canMake(juice) {
+                try consumeFruit(for: juice)
+                print("\(juice.name) 쥬스가 완성되었습니다.")
+            } else {
+                print("과일의 재고가 부족하여 쥬스를 만들 수 없습니다.")
+            }
         } catch JuiceMakerError.invalidFruit {
             print("올바르지 않은 과일 이름입니다.")
         } catch JuiceMakerError.invalidJuice {
@@ -25,14 +32,18 @@ struct JuiceMaker {
         }
     }
     
-    mutating func makeJuice(_ juice: Juice) throws {
+    private func canMake(_ juice: Juice) throws -> Bool {
         for (fruit, amount) in juice.recipe {
-            if try fruitStore.isStockSufficient(fruit, with: amount) {
-                try fruitStore.decreaseFruitStock(fruit, amount: amount)
-            } else {
-                throw JuiceMakerError.insufficientFruit
+            if !(try fruitStore.isStockSufficient(fruit, with: amount)) {
+                return false
             }
         }
-        print("\(juice.name) 쥬스가 완성되었습니다.")
+        return true
+    }
+    
+    private func consumeFruit(for juice: Juice) throws {
+        for (fruit, amount) in juice.recipe {
+            try fruitStore.decreaseFruitStock(fruit, amount: amount)
+        }
     }
 }
