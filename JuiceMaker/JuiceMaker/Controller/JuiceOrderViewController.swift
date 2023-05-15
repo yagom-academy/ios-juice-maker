@@ -28,5 +28,15 @@ class JuiceOrderViewController: UIViewController {
             fruitStockLabel.text = "\(fruitCount)"
         }
     }
+    
+    private func pushStockChangeViewController() {
+        guard let stockChangeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
+        
+        self.navigationController?.pushViewController(stockChangeVC, animated: true)
+    }
+    
+    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
+        pushStockChangeViewController()
+    }
 }
 
