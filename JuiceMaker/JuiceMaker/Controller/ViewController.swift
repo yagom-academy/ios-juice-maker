@@ -8,62 +8,70 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var strawberryBananaJuice: UIButton!
-    @IBOutlet weak var mangoKiwiJuice: UIButton!
-    @IBOutlet weak var strawberryJuice: UIButton!
-    @IBOutlet weak var bananaJuice: UIButton!
-    @IBOutlet weak var pineappleJuice: UIButton!
-    @IBOutlet weak var kiwiJuice: UIButton!
-    @IBOutlet weak var mangoJuice: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceButton: UIButton!
+    @IBOutlet private weak var bananaJuiceButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceButton: UIButton!
+    @IBOutlet private weak var mangoJuiceButton: UIButton!
 	
-	@IBOutlet weak var strawberryStock: UILabel!
-	@IBOutlet weak var bananaStock: UILabel!
-	@IBOutlet weak var pineappleStock: UILabel!
-	@IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+	@IBOutlet private weak var strawberryStockLabel: UILabel!
+	@IBOutlet private weak var bananaStockLabel: UILabel!
+	@IBOutlet private weak var pineappleStockLabel: UILabel!
+	@IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
 
 	let juiceMaker = JuiceMaker(equalizedStock: 10)
-	lazy var fruitToLabel: [Fruit: UILabel] = [.strawberry: strawberryStock,
-												.banana: bananaStock,
-												.pineapple: pineappleStock,
-												.kiwi: kiwiStock,
-												.mango: mangoStock]
-
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		showStock()
-        strawberryBananaJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-        mangoKiwiJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-        strawberryJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-        bananaJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-        pineappleJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-        kiwiJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-        mangoJuice.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+        addButtonAction()
     }
 	
-	func showStock() {
+	private func showStock() {
+		
 		let fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
-		for (fruit, stockLabel) in fruitToLabel {
-			guard let stock = fruitStock[fruit] else { return }
-			stockLabel.text = String(stock)
-		}
+		guard let strawberryStock = fruitStock[.strawberry],
+			  let bananaStock = fruitStock[.banana],
+			  let pineappleStock = fruitStock[.pineapple],
+			  let kiwiStock = fruitStock[.kiwi],
+			  let mangoStock = fruitStock[.mango]
+		else { return }
+		
+		strawberryStockLabel.text = String(strawberryStock)
+		bananaStockLabel.text = String(bananaStock)
+		pineappleStockLabel.text = String(pineappleStock)
+		kiwiStockLabel.text = String(kiwiStock)
+		mangoStockLabel.text = String(mangoStock)
+	}
+	
+	private func addButtonAction() {
+		strawberryBananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		mangoKiwiJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		strawberryJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		bananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		pineappleJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		kiwiJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		mangoJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
 	}
     
-	@objc func orderMenu(_ sender: UIButton) {
+	@objc private func orderMenu(_ sender: UIButton) {
         switch sender {
-        case strawberryBananaJuice:
+        case strawberryBananaJuiceButton:
             orderJuice(.strawberryBananaJuice)
-        case mangoKiwiJuice:
+        case mangoKiwiJuiceButton:
             orderJuice(.mangoKiwiJuice)
-        case strawberryJuice:
+        case strawberryJuiceButton:
             orderJuice(.strawberryJuice)
-        case bananaJuice:
+        case bananaJuiceButton:
             orderJuice(.bananaJuice)
-        case pineappleJuice:
+        case pineappleJuiceButton:
             orderJuice(.pineappleJuice)
-        case kiwiJuice:
+        case kiwiJuiceButton:
             orderJuice(.kiwiJuice)
-        case mangoJuice:
+        case mangoJuiceButton:
             orderJuice(.mangoJuice)
         default:
             break
