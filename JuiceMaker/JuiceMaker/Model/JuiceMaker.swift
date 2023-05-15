@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //  last modified by Yetti, yy-ss99, Mary.
 
@@ -20,9 +20,14 @@ struct JuiceMaker {
     
     private func checkFruitStock(_ recipe: [Recipe]) -> Result<Void, JuiceMakerError> {
         for fruit in recipe {
-            guard let stock = fruitStore.fruitStock[fruit.name] else { return .failure(JuiceMakerError.notExistFruit) }
-            guard stock >= fruit.quantity else { return .failure(JuiceMakerError.ingredientShortage) }
+            guard let stock = fruitStore.fruitStock[fruit.name] else {
+                return .failure(JuiceMakerError.notExistFruit(fruit: fruit.name))
+            }
+            guard stock >= fruit.quantity else {
+                return .failure(JuiceMakerError.outOfStock(fruit: fruit.name))
+            }
         }
+        
         return .success(())
     }
 
