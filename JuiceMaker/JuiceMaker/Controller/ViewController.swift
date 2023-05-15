@@ -23,33 +23,35 @@ class ViewController: UIViewController {
     }
     
     func showStock() {
-        strawberryStockLabel.text = try? String(juiceMaker.fruitStore.getStock(.strawberry))
-        bananaStockLabel.text = try? String(juiceMaker.fruitStore.getStock(.banana))
-        pineappleStockLabel.text = try? String(juiceMaker.fruitStore.getStock(.pineapple))
-        kiwiStockLabel.text = try? String(juiceMaker.fruitStore.getStock(.kiwi))
-        mangoStockLabel.text = try? String(juiceMaker.fruitStore.getStock(.mango))
+        strawberryStockLabel.text = String(juiceMaker.fruitStore.getStock(.strawberry))
+        bananaStockLabel.text = String(juiceMaker.fruitStore.getStock(.banana))
+        pineappleStockLabel.text = String(juiceMaker.fruitStore.getStock(.pineapple))
+        kiwiStockLabel.text = String(juiceMaker.fruitStore.getStock(.kiwi))
+        mangoStockLabel.text = String(juiceMaker.fruitStore.getStock(.mango))
     }
     
-    @IBAction func strawberrybananaJuiceOrderButton(_ sender: UIButton) {
-        orderJuice(.strawberryBananaJuice)
-    }
-    @IBAction func mangokiwiJuiceOrderButton(_ sender: UIButton) {
-        orderJuice(.mangoKiwiJuice)
-    }
-    @IBAction func strawberryJuiceOrderButton(_ sender: UIButton) {
-        orderJuice(.strawberryJuice)
-    }
-    @IBAction func bananaJuiceOrderButton(_ sender: UIButton) {
-        orderJuice(.bananaJuice)
-    }
-    @IBAction func pineappleJuiceOrderButton(_ sender: UIButton) {
-        orderJuice(.pineappleJuice)
-    }
-    @IBAction func kiwiJuiceOrderButton(_ sender: UIButton) {
-        orderJuice(.kiwiJuice)
-    }
-    @IBAction func mangoJuiceOrderButton(_ sender: UIButton) {
-        orderJuice(.mangoJuice)
+    @IBAction func orderJuiceButton(_ sender: UIButton) {
+        
+        guard let title = sender.currentTitle else { fatalError("버튼이 설정되지 않았습니다.") }
+        
+        switch title {
+        case "딸기쥬스 주문":
+            orderJuice(.strawberryJuice)
+        case "바나나쥬스 주문":
+            orderJuice(.bananaJuice)
+        case "파인애플쥬스 주문":
+            orderJuice(.pineappleJuice)
+        case "키위쥬스 주문":
+            orderJuice(.kiwiJuice)
+        case "망고쥬스 주문":
+            orderJuice(.mangoJuice)
+        case "딸바쥬스 주문":
+            orderJuice(.strawberryBananaJuice)
+        case "망키쥬스 주문":
+            orderJuice(.mangoKiwiJuice)
+        default:
+            break
+        }
     }
     
     @IBAction func fixStockButton(_ sender: UIBarButtonItem) {
@@ -64,10 +66,6 @@ class ViewController: UIViewController {
             showStock()
         } catch JuiceMakerError.outOfStock {
             orderFailMessage()
-        } catch JuiceMakerError.nonExistentJuice {
-            print("쥬스가 없습니다.")
-        } catch JuiceMakerError.nonExistentFruit {
-            print("과일이 없습니다.")
         } catch {
             print("알 수 없는 에러입니다.")
         }
