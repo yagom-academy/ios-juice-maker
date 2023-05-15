@@ -7,27 +7,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    private let juiceMaker = JuiceMaker()
+
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-
-    let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showStock()
-    }
-    
-    func showStock() {
-        strawberryStockLabel.text = String(juiceMaker.fruitStore.getStock(.strawberry))
-        bananaStockLabel.text = String(juiceMaker.fruitStore.getStock(.banana))
-        pineappleStockLabel.text = String(juiceMaker.fruitStore.getStock(.pineapple))
-        kiwiStockLabel.text = String(juiceMaker.fruitStore.getStock(.kiwi))
-        mangoStockLabel.text = String(juiceMaker.fruitStore.getStock(.mango))
     }
     
     @IBAction func orderJuiceButton(_ sender: UIButton) {
@@ -55,11 +46,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func fixStockButton(_ sender: UIBarButtonItem) {
-        guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "FixStockViewControllerID") else { return }
-        self.navigationController?.pushViewController(pushVC, animated: true)
+        pushFixStockViewController()
     }
     
-    func orderJuice(_ juice: Juice) {
+    private func showStock() {
+        strawberryStockLabel.text = String(juiceMaker.fruitStore.getStock(.strawberry))
+        bananaStockLabel.text = String(juiceMaker.fruitStore.getStock(.banana))
+        pineappleStockLabel.text = String(juiceMaker.fruitStore.getStock(.pineapple))
+        kiwiStockLabel.text = String(juiceMaker.fruitStore.getStock(.kiwi))
+        mangoStockLabel.text = String(juiceMaker.fruitStore.getStock(.mango))
+    }
+    
+    private func orderJuice(_ juice: Juice) {
         do {
             try juiceMaker.makeJuice(juice)
             orderSuccessMessage(juice)
@@ -71,19 +69,23 @@ class ViewController: UIViewController {
         }
     }
     
-    func orderFailMessage() {
-        let alertMessage = UIAlertController(title: "주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "예", style: .default) { _ in
-            guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "FixStockViewControllerID") else { return }
-            self.navigationController?.pushViewController(pushVC, animated: true)
-        })
-        alertMessage.addAction(UIAlertAction(title: "아니오", style: .default))
+    private func pushFixStockViewController() {
+        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockCorrectionViewController") else { fatalError("해당 뷰컨트롤러ID를 가진 뷰컨트롤러가 스토리보드에 없습니다.") }
+        self.navigationController?.pushViewController(pushViewController, animated: true)
+    }
+    
+    private func orderSuccessMessage(_ juice: Juice) {
+        let alertMessage = UIAlertController(title: "주문 성공", message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: "예", style: .default))
         present(alertMessage, animated: true)
     }
     
-    func orderSuccessMessage(_ juice: Juice) {
-        let alertMessage = UIAlertController(title: "주문 성공", message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "예", style: .default))
+    private func orderFailMessage() {
+        let alertMessage = UIAlertController(title: "주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: "예", style: .default) { _ in
+            self.pushFixStockViewController()
+        })
+        alertMessage.addAction(UIAlertAction(title: "아니오", style: .default))
         present(alertMessage, animated: true)
     }
 }
