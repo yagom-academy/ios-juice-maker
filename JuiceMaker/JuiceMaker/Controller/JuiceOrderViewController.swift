@@ -59,5 +59,18 @@ class JuiceOrderViewController: UIViewController {
         alert.addAction(confirmButton)
         present(alert, animated: true)
     }
+    
+    @IBAction func orderJuice(_ sender: UIButton) {
+        guard let selectedJuice = Juice(rawValue: sender.tag) else { return }
+        let result = juiceMaker.make(selectedJuice)
+        
+        switch result {
+        case .success(let juice):
+            presentJuiceReadyAlert(with: juice)
+            updateFruitStockLabels()
+        case .failure(let error):
+            presentInsufficientStockAlert(with: error.description)
+        }
+    }
 }
 
