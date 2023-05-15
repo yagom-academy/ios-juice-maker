@@ -26,13 +26,13 @@ class ViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		showStock()
+        replaceStockLabel()
         addButtonAction()
     }
 	
-	private func showStock() {
-		
+	private func replaceStockLabel() {
 		let fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
+        
 		guard let strawberryStock = fruitStock[.strawberry],
 			  let bananaStock = fruitStock[.banana],
 			  let pineappleStock = fruitStock[.pineapple],
@@ -78,40 +78,50 @@ class ViewController: UIViewController {
         }
     }
     
-    private func orderJuice(_ menuName: FruitJuice) {
+    private func showAlert(alertType: AlertSetting) {
         guard let stockViewController =
-				self.storyboard?.instantiateViewController(identifier: "StockViewController") else { return }
+                self.storyboard?.instantiateViewController(identifier: "StockViewController") else { return }
         
-        do {
-            try juiceMaker.makeFruitJuice(menu: menuName)
-            showStock()
-            let alert = UIAlertController(title: "\(menuName.name) 나왔습니다!",
-										  message: "맛있게 드세요!",
-										  preferredStyle: .alert)
-            let ok = UIAlertAction(title: "야호!",
-								   style: .default,
-								   handler: nil)
+        switch alertType {
+        case .menuOut:
+            let alert = UIAlertController(title: alertType.title,
+                                          message: alertType.message,
+                                          preferredStyle: .alert)
+            let ok = UIAlertAction(title: AlertActionTitle.interjection.title,
+                                   style: .default,
+                                   handler: nil)
             
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-        } catch StockError.fruitNotFound {
-            print(StockError.fruitNotFound.message)
-        } catch StockError.outOfStock {
-            let alert = UIAlertController(title: "재료가 모자라요.",
-										  message: "재고를 수정할까요?",
-										  preferredStyle: .alert)
-            let ok = UIAlertAction(title: "예",
-								   style: .default,
-								   handler: { _ in
+        case .outOfStock:
+            let alert = UIAlertController(title: alertType.title,
+                                          message: alertType.message,
+                                          preferredStyle: .alert)
+            let ok = UIAlertAction(title: AlertActionTitle.ok.title,
+                                   style: .default,
+                                   handler: { _ in
                 self.navigationController?.show(stockViewController, sender: self)
             })
-            let cancel = UIAlertAction(title: "아니오",
-									   style: .default,
-									   handler: nil)
+            let cancel = UIAlertAction(title: AlertActionTitle.cancel.title,
+                                       style: .default,
+                                       handler: nil)
             
             alert.addAction(ok)
             alert.addAction(cancel)
             present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    private func orderJuice(_ menuName: FruitJuice) {
+        do {
+            try juiceMaker.makeFruitJuice(menu: menuName)
+            replaceStockLabel()
+            showAlert(alertType: .menuOut(menu: menuName.name))
+        } catch StockError.fruitNotFound {
+            print(StockError.fruitNotFound.message)
+        } catch StockError.outOfStock {
+            showAlert(alertType: .outOfStock)
         } catch {
             print(StockError.unKnown.message)
         }
