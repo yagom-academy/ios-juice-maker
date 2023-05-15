@@ -5,14 +5,14 @@
 //  Created by Karen, myungsun on 2023/05/09.
 //
 
-enum Juice: CustomStringConvertible {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
+enum Juice: Int, CustomStringConvertible {
+    case strawberry = 2
+    case banana = 3
+    case kiwi = 5
+    case pineapple = 4
+    case strawberryBanana = 0
+    case mango = 6
+    case mangoKiwi = 1
     
     var recipe: [Fruit: Int] {
         switch self {
