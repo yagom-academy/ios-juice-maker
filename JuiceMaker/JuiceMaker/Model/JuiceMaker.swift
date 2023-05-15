@@ -4,6 +4,12 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+protocol JuiceMakeDelegate {
+    func successJuiceMake()
+    func failJuiceMake()
+    func changeFruitStock(fruit: Fruit, amount: String)
+}
+
 struct JuiceMaker {
     enum Menu: Int {
         case strawberryJuice
@@ -17,6 +23,7 @@ struct JuiceMaker {
     
     typealias Recipe = [(fruit: Fruit, amount: Int)]
     private let store: FruitStore
+    var delegate: JuiceMakeDelegate?
     
     init(fruitStore: FruitStore) {
         self.store = fruitStore
@@ -44,17 +51,28 @@ struct JuiceMaker {
     func makeJuice(menu: Menu) {
         let recipe = provideRecipe(menu)
         
-        canMakeJuice(recipe)
+        guard canMakeJuice(recipe) else { return }
+        
         consumeFruit(recipe)
     }
     
-    func canMakeJuice(_ recipe: Recipe ) {
-        guard recipe.allSatisfy({ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }) else { return }
+    func canMakeJuice(_ recipe: Recipe ) -> Bool {
+        guard recipe.allSatisfy({ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }) else {
+            delegate?.failJuiceMake()
+            return false
+        }
+        
+        return true
     }
     
     func consumeFruit(_ recipe: Recipe) {
         recipe.forEach { fruit, amount in
+            let leftFruitStock = store.provideFruitStock(fruit) - amount
+            
+            delegate?.changeFruitStock(fruit: fruit, amount: String(leftFruitStock))
             store.changeFruitCount(fruit, count: amount)
         }
+        
+        delegate?.successJuiceMake()
     }
 }

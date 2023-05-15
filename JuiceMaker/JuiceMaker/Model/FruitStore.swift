@@ -24,4 +24,10 @@ final class FruitStore {
         
         fruitStocks[fruit] = stock + fruitAmount
     }
+    
+    func provideFruitStock(_ fruit: Fruit) -> Int {
+        guard let stock = fruitStocks[fruit] else { return 0 }
+        
+        return stock
+    }
 }
