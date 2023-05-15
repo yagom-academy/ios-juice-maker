@@ -21,9 +21,8 @@ class ViewController: UIViewController {
 	@IBOutlet weak var pineappleStock: UILabel!
 	@IBOutlet weak var kiwiStock: UILabel!
     @IBOutlet weak var mangoStock: UILabel!
-    
-    let fruitStore = FruitStore(equalizedStock: 10)
-	lazy var juiceMaker = JuiceMaker(fruitStore: fruitStore)
+
+	let juiceMaker = JuiceMaker(equalizedStock: 10)
 	lazy var fruitToLabel: [Fruit: UILabel] = [.strawberry: strawberryStock,
 												.banana: bananaStock,
 												.pineapple: pineappleStock,
@@ -43,7 +42,7 @@ class ViewController: UIViewController {
     }
 	
 	func showStock() {
-		let fruitStock: [Fruit: Int] = fruitStore.getInventoryStatus()
+		let fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
 		for (fruit, stockLabel) in fruitToLabel {
 			guard let stock = fruitStock[fruit] else { return }
 			stockLabel.text = String(stock)
