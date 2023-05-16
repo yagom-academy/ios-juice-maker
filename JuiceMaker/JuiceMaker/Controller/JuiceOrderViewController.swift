@@ -8,6 +8,8 @@ import UIKit
 
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabels: [UILabel] = []
+    @IBOutlet var juiceOrderButtons: [UIButton] = []
+    
     let juiceMaker = JuiceMaker(fruitStore: FruitStore(fruitInventory: [.strawberry: 10,
                                                                         .banana: 10,
                                                                         .pineapple: 10,
@@ -17,6 +19,7 @@ final class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockLabels()
+        setJuiceOrderButtonTag()
     }
     
     private func updateFruitStockLabels() {
@@ -24,6 +27,12 @@ final class JuiceOrderViewController: UIViewController {
             guard let fruit = Fruit(rawValue: index),
                   let fruitCount = juiceMaker.fruitStore.getCurrentStock(of: fruit) else { return }
             fruitStockLabel.text = "\(fruitCount)"
+        }
+    }
+    
+    private func setJuiceOrderButtonTag() {
+        for (tag, juiceOrderButton) in juiceOrderButtons.enumerated() {
+            juiceOrderButton.tag = tag
         }
     }
     
