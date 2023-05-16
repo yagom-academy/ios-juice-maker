@@ -21,23 +21,16 @@ enum JuiceMakerError: Error, CustomStringConvertible {
 struct JuiceMaker {
     let fruitStore: FruitStore = FruitStore(initialStock: 10)
     
-    func blendFruitJuice(menu fruitJuice: Juice) {
-        do {
-            try requestFruitStock(menu: fruitJuice)
-            receiveFruitStock(menu: fruitJuice)
-            print("주문하신 \(fruitJuice)가 나왔습니다.")
-        } catch JuiceMakerError.outOfFruitStock {
-            print(JuiceMakerError.outOfFruitStock)
-        } catch {
-            print(JuiceMakerError.unknownError)
-        }
+    func blendFruitJuice(menu fruitJuice: Juice) throws {
+        try requestFruitStock(menu: fruitJuice)
+        receiveFruitStock(menu: fruitJuice)
     }
     
     private func requestFruitStock(menu fruitJuice: Juice) throws {
-        var isEnoughStock: Bool = Bool()
+        var isEnoughStock: Bool = true
         
         fruitJuice.recipe.forEach {
-            isEnoughStock = fruitStore.hasEnoughStock(fruit: $0.key, amount: $0.value)
+            isEnoughStock = fruitStore.hasEnoughStock(fruit: $0.key, amount: $0.value) && isEnoughStock
         }
         
         if isEnoughStock == false {
