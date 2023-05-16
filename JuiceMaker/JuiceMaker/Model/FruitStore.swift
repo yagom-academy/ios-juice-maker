@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import Foundation
+
 typealias Recipe = [Ingredient]
 typealias Ingredient = (fruit: Fruit, amount: Int)
 
@@ -23,6 +25,7 @@ class FruitStore {
     func useValidStock(juiceRecipe: Recipe) throws {
         try juiceRecipe.forEach { try validateStock(ingredient: $0) }
         juiceRecipe.forEach { spendStock(of: $0.fruit, by: $0.amount)}
+        NotificationCenter.default.post(name: NSNotification.Name("updatedStock"), object: nil, userInfo: ["fruitStock" : fruitStock])
     }
     
     private func validateStock(ingredient: Ingredient) throws {

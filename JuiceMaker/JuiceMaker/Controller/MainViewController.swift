@@ -18,6 +18,17 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLabel()
+        NotificationCenter.default.addObserver(self, selector: #selector(onChangedStock(_:)), name: Notification.Name("updatedStock"), object: nil)
+    }
+    
+    @objc private func onChangedStock(_ notification: NSNotification) {
+        if let stock = notification.userInfo!["fruitStock"], let fruitStock = stock as? [Fruit: Int] {
+            self.strawberryStockLabel.text = String(fruitStock[.strawberry]!)
+            self.bananaStockLabel.text = String(fruitStock[.banana]!)
+            self.pineappleStockLabel.text = String(fruitStock[.pineapple]!)
+            self.kiwiStockLabel.text = String(fruitStock[.kiwi]!)
+            self.mangoStockLabel.text = String(fruitStock[.mango]!)
+        }
     }
     
     private func configureLabel() {
@@ -26,7 +37,6 @@ class MainViewController: UIViewController {
         self.pineappleStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.pineapple]!)
         self.kiwiStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.kiwi]!)
         self.mangoStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.mango]!)
-        
     }
     
     @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
