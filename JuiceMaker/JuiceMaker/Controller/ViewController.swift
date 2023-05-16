@@ -7,11 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var fruitStockLabels: [UILabel]!
     private var juiceMaker: JuiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
@@ -56,15 +52,8 @@ class ViewController: UIViewController {
     }
     
     private func changeStockLabel() {
-        strawberryStockLabel.text = juiceMaker
-            .fruitStore.showRemainStock(of: .strawberry)
-        bananaStockLabel.text = juiceMaker
-            .fruitStore.showRemainStock(of: .banana)
-        pineappleStockLabel.text = juiceMaker
-            .fruitStore.showRemainStock(of: .pineapple)
-        kiwiStockLabel.text = juiceMaker
-            .fruitStore.showRemainStock(of: .kiwi)
-        mangoStockLabel.text = juiceMaker
-            .fruitStore.showRemainStock(of: .mango)
+        for (fruitStockLabel, fruit) in zip(fruitStockLabels, Fruit.allCases) {
+            fruitStockLabel.text = juiceMaker.fruitStore.showRemainStock(of: fruit)
+        }
     }
 }
