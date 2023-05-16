@@ -16,10 +16,11 @@ struct JuiceMaker {
     func takeOrder(_ juice: Juice) {
         do {
             try makeJuice(juice)
+            print("\(juice.name) 나왔습니다! 맛있게 드세요!")
         } catch FruitStoreError.invalidFruit {
             print("올바르지 않은 과일 이름입니다.")
         } catch FruitStoreError.insufficientFruit {
-            print("과일의 재고가 부족하여 쥬스를 만들 수 없습니다.")
+            print("재료가 모자라요. 재고를 수정할까요?")
         } catch {
             print("알 수 없는 에러입니다.")
         }
