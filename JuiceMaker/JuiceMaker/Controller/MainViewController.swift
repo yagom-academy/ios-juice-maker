@@ -26,9 +26,30 @@ class MainViewController: UIViewController {
         }
         self.navigationController?.present(vcStock, animated: true)
     }
-
-    @IBAction func onTouchMangoButton(_ sender: UIButton) {
-        switch self.juiceMaker.makeJuice(juice: .mangoJuice) {
+    
+    @IBAction func onTouchOderButton(_ sender: UIButton) {
+        var result: Result<Juice, FruitStoreError> = .failure(.unknown)
+        
+        switch sender.titleLabel?.text {
+        case "딸바쥬스 주문":
+            result = self.juiceMaker.makeJuice(juice: .strawberryBananaJuice)
+        case "망키쥬스 주문":
+            result = self.juiceMaker.makeJuice(juice: .mangoKiwiJuice)
+        case "딸기쥬스 주문":
+            result = self.juiceMaker.makeJuice(juice: .strawberryJuice)
+        case "바나나쥬스 주문":
+            result = self.juiceMaker.makeJuice(juice: .bananaJuice)
+        case "파인애플쥬스 주문":
+            result = self.juiceMaker.makeJuice(juice: .pineappleJuice)
+        case "키위쥬스 주문":
+            result = self.juiceMaker.makeJuice(juice: .kiwiJuice)
+        case "망고쥬스 주문":
+            result = self.juiceMaker.makeJuice(juice: .mangoKiwiJuice)
+        default:
+            print("알 수 없는 주문")
+        }
+        
+        switch result {
         case .success(let juice):
             let alert = UIAlertController(title: "주문", message: "\(juice.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
