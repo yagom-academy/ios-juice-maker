@@ -11,4 +11,8 @@ class StockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func goBackPreviousView(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
 }

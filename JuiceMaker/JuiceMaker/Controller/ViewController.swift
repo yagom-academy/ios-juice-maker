@@ -12,10 +12,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    var juiceMaker: JuiceMaker = JuiceMaker()
+    private var juiceMaker: JuiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeStockLabel()
     }
 
     @IBAction func orderJuiceButton(_ sender: UIButton) {
@@ -24,20 +25,21 @@ class ViewController: UIViewController {
         }
         
         if juiceMaker.makeOrder(juice) {
+            changeStockLabel()
             showSuccessAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!")
         } else {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         }
     }
     
-    func showSuccessAlert(message: String) {
+    private func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default)
         alert.addAction(confirmAction)
         present(alert, animated: true)
     }
     
-    func showFailureAlert(message: String) {
+    private func showFailureAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
             self.performSegue(withIdentifier: "goToStockViewController", sender: nil)
@@ -46,6 +48,19 @@ class ViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(confirmAction)
         present(alert, animated: true)
+    }
+    
+    private func changeStockLabel() {
+        strawberryStockLabel.text = juiceMaker
+            .fruitStore.showRemainStock(of: .strawberry)
+        bananaStockLabel.text = juiceMaker
+            .fruitStore.showRemainStock(of: .banana)
+        pineappleStockLabel.text = juiceMaker
+            .fruitStore.showRemainStock(of: .pineapple)
+        kiwiStockLabel.text = juiceMaker
+            .fruitStore.showRemainStock(of: .kiwi)
+        mangoStockLabel.text = juiceMaker
+            .fruitStore.showRemainStock(of: .mango)
     }
 }
 

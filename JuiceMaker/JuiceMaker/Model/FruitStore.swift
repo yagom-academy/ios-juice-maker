@@ -22,4 +22,8 @@ struct FruitStore {
             throw FruitStoreError.outOfStock(fruit: fruit)
         }
     }
+    
+    func showRemainStock(of fruit: Fruit) -> String {
+        return String(stockList[fruit] ?? 0)
+    }
 }
