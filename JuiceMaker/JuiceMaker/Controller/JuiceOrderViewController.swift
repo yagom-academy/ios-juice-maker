@@ -69,7 +69,8 @@ class JuiceOrderViewController: UIViewController {
             presentJuiceReadyAlert(with: juice)
             updateFruitStockLabels()
         case .failure(let error):
-            presentInsufficientStockAlert(with: error.description)
+            guard let errorMessage = error.errorDescription else { return }
+            presentInsufficientStockAlert(with: errorMessage)
         }
     }
 }
