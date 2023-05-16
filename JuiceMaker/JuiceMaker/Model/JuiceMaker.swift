@@ -5,21 +5,22 @@
 //
 
 struct JuiceMaker {
-    private let fruitStore: FruitStore
+    let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
     }
     
-    func makeJuice(juice: Juice) {
+    func makeJuice(juice: Juice) -> Result<Juice, FruitStoreError> {
         do {
             try self.fruitStore.useValidStock(juiceRecipe: juice.recipe)
+            return .success(juice)
         } catch FruitStoreError.notFoundFruit(let fruit) {
-            print("\(fruit.name)을/를 찾을 수 없습니다.")
+            return .failure(FruitStoreError.notFoundFruit(fruit))
         } catch FruitStoreError.notEnoughStock(let fruit) {
-            print("\(fruit.name) 재고가 없습니다.")
+            return .failure(FruitStoreError.notEnoughStock(fruit))
         } catch {
-            print("알 수 없는 에러")
+            return .failure(FruitStoreError.unknown)
         }
     }
 }

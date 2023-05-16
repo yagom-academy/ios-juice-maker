@@ -8,4 +8,5 @@
 enum FruitStoreError: Error {
     case notFoundFruit(Fruit)
     case notEnoughStock(Fruit)
+    case unknown
 }

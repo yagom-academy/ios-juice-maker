@@ -8,7 +8,7 @@ typealias Recipe = [Ingredient]
 typealias Ingredient = (fruit: Fruit, amount: Int)
 
 class FruitStore {
-    private var fruitStock: [Fruit: Int]
+    var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit: Int] = [
         .strawberry: 10,
