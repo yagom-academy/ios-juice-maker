@@ -49,8 +49,8 @@ extension JuiceOrderViewController {
 
 // MARK: - JuiceMake Delegate
 extension JuiceOrderViewController: JuiceMakeDelegate {
-    func successJuiceMake() {
-        let successAlert = UIAlertController(title: "주스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: .alert)
+    func successJuiceMake(_ menu: JuiceMaker.Menu) {
+        let successAlert = UIAlertController(title: "주문 성공!", message: "\(menu.koreanName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "확인", style: .default)
         
         successAlert.addAction(okButton)
@@ -58,7 +58,7 @@ extension JuiceOrderViewController: JuiceMakeDelegate {
     }
     
     func failJuiceMake() {
-        let failAlert = UIAlertController(title: "재고가 없습니다.", message: "재고를 추가할까요?", preferredStyle: .alert)
+        let failAlert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         let noButton = UIAlertAction(title: "아니오", style: .default)
         let yesButton = UIAlertAction(title: "예", style: .default, handler: yesButtonTapped)
         
