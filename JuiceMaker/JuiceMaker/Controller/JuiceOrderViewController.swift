@@ -35,7 +35,12 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func placeAnOrder(for juice: Juice) {
-        guard let juice = juiceMaker.takeOrder(juice) else { return }
+        if let juice = juiceMaker.takeOrder(juice) {
+            showSuccessMessage(juice: juice)
+        } else {
+            showFailureMessage()
+        }
+        updateStockLabel()
     }
     
     func findJuice(by tag: Int) -> Juice? {
@@ -70,11 +75,22 @@ class JuiceOrderViewController: UIViewController {
     func showFailureMessage() {
         let failureMessage = "재료가 모자라요. 재고를 수정할까요?"
         let alert = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "예", style: .default)
+        let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in
+            self.pushStockViewController()
+        })
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         
         alert.addAction(yesAction)
         alert.addAction(noAction)
         present(alert, animated: true)
+    }
+    
+    @IBAction func moveToStockView(_ sender: UIBarButtonItem) {
+        pushStockViewController()
+    }
+    
+    func pushStockViewController() {
+        guard let view = self.storyboard?.instantiateViewController(withIdentifier: "StockView") else { return }
+        self.navigationController?.pushViewController(view, animated: true)
     }
 }
