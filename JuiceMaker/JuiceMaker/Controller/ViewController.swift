@@ -103,7 +103,7 @@ class ViewController: UIViewController {
     }
     
     func alertJuiceReady(menu: JuiceMenu) -> UIAlertController {
-        let juiceAlert = UIAlertController(title: "제조 완료", message: "\(menu) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let juiceAlert = UIAlertController(title: "제조 완료", message: "\(menu.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         
         juiceAlert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in print("yes 클릭") }))
 
