@@ -5,16 +5,18 @@
 //  last modified by Yetti, yy-ss99, Mary.
 
 struct JuiceMaker {
-    let fruitStore: FruitStore
+    let fruitStore =  FruitStore.shared
     
-    func takeOrder(_ juice: Juice) {
+    func takeOrder(_ juice: Juice) -> Juice? {
         let check = checkFruitStock(juice.recipe)
         
         switch check {
         case .success:
             make(juice)
+            return juice
         case .failure(let error):
             print(error)
+            return nil
         }
     }
     
