@@ -37,7 +37,7 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func pushStockChangeViewController() {
-        guard let stockChangeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
+        guard let stockChangeVC = storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
         
         self.navigationController?.pushViewController(stockChangeVC, animated: true)
     }
