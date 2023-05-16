@@ -381,7 +381,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="뒤로가기"/>
                                 <connections>
-                                    <action selector="goback:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="gbq-SN-l3P"/>
+                                    <action selector="goBackPreviousView:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="Jja-jM-dy8"/>
                                 </connections>
                             </button>
                         </subviews>

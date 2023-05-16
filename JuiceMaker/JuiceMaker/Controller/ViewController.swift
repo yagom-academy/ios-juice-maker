@@ -20,15 +20,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func orderJuiceButton(_ sender: UIButton) {
-        guard let juice = Juice(rawValue: sender.tag) else {
-            return
-        }
+        guard let juice = Juice(rawValue: sender.tag) else { return }
         
-        if juiceMaker.makeOrder(juice) {
+        do {
+            try juiceMaker.makeOrder(juice)
             changeStockLabel()
             showSuccessAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!")
-        } else {
+        } catch FruitStoreError.outOfStock {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+        } catch {
+            print("알 수 없는 오류 발생.")
         }
     }
     
@@ -63,4 +64,3 @@ class ViewController: UIViewController {
             .fruitStore.showRemainStock(of: .mango)
     }
 }
-

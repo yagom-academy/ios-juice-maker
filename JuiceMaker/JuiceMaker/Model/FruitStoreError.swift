@@ -6,5 +6,5 @@
 //
 
 enum FruitStoreError: Error {
-    case outOfStock(fruit: Fruit)
+    case outOfStock
 }
