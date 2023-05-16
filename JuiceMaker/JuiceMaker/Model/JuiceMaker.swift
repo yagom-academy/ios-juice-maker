@@ -19,8 +19,6 @@ struct JuiceMaker {
     }
     
     func make(_ juice: Juice) -> Result<Juice, FruitStoreError> {
-        let result = canMake(juice)
-        
         if canMake(juice) {
             for (fruit, amount) in juice.recipe {
                 fruitStore.changeStock(of: fruit, by: -amount)

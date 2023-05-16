@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceOrderViewController: UIViewController {
+final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabels: [UILabel] = []
     let juiceMaker = JuiceMaker(fruitStore: FruitStore(fruitInventory: [
         .strawberry: 10,
