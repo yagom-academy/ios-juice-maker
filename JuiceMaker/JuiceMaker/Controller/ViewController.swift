@@ -64,9 +64,9 @@ class ViewController: UIViewController {
     }
     
     func showFailureAlert(message: String) {
-        
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let addAction = UIAlertAction(title: "예", style: .default) { (action) in self.presentModifyStockView()
+        let addAction = UIAlertAction(title: "예", style: .default) { (action) in
+            self.presentModifyStockView()
         }
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         
@@ -76,10 +76,9 @@ class ViewController: UIViewController {
     }
     
     func presentModifyStockView() {
-        guard let nextViewController =
-                self.storyboard?.instantiateViewController(identifier: "ModifyStockViewController")
-                as? ModifyStockViewController
-        else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: "ModifyStockViewController")
+        
         self.present(nextViewController, animated: true, completion: nil)
     }
 }
