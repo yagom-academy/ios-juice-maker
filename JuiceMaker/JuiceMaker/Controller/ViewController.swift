@@ -22,64 +22,14 @@ class ViewController: UIViewController {
         setFruitStockLabel()
     }
     
-    @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        if juiceMaker.make(juice: .strawberryJuice) {
-            setFruitStockLabel()
-            present(alertJuiceReady(menu: .strawberryJuice), animated: true)
-        } else {
-            present(alertShortageStock(), animated: true)
+    @IBAction func orderJuice(_ sender: UIButton) {
+        guard let menu = JuiceMenu(rawValue: sender.tag) else {
+            return
         }
-    }
-    
-    @IBAction func orderBananaJuice(_ sender: UIButton) {
-        if juiceMaker.make(juice: .bananaJuice) {
+        
+        if juiceMaker.make(juice: menu) {
             setFruitStockLabel()
-            present(alertJuiceReady(menu: .bananaJuice), animated: true)
-        } else {
-            present(alertShortageStock(), animated: true)
-        }
-    }
-    
-    @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        if juiceMaker.make(juice: .pineappleJuice) {
-            setFruitStockLabel()
-            present(alertJuiceReady(menu: .pineappleJuice), animated: true)
-        } else {
-            present(alertShortageStock(), animated: true)
-        }
-    }
-    
-    @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        if juiceMaker.make(juice: .kiwiJuice) {
-            setFruitStockLabel()
-            present(alertJuiceReady(menu: .kiwiJuice), animated: true)
-        } else {
-            present(alertShortageStock(), animated: true)
-        }
-    }
-    
-    @IBAction func orderMangoJuice(_ sender: UIButton) {
-        if juiceMaker.make(juice: .mangoJuice) {
-            setFruitStockLabel()
-            present(alertJuiceReady(menu: .mangoJuice), animated: true)
-        } else {
-            present(alertShortageStock(), animated: true)
-        }
-    }
-    
-    @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        if juiceMaker.make(juice: .strawberryBananaJuice) {
-            setFruitStockLabel()
-            present(alertJuiceReady(menu: .strawberryBananaJuice), animated: true)
-        } else {
-            present(alertShortageStock(), animated: true)
-        }
-    }
-    
-    @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        if juiceMaker.make(juice: .mangoKiwiJuice) {
-            setFruitStockLabel()
-            present(alertJuiceReady(menu: .mangoKiwiJuice), animated: true)
+            present(alertJuiceReady(menu: menu), animated: true)
         } else {
             present(alertShortageStock(), animated: true)
         }
