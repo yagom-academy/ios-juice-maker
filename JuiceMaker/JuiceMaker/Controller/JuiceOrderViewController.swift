@@ -7,7 +7,6 @@
 import UIKit
 
 final class JuiceOrderViewController: UIViewController {
-    
     @IBOutlet var fruitLabel: [UILabel]!
     
     private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
@@ -27,6 +26,12 @@ final class JuiceOrderViewController: UIViewController {
             fruit.text = String(fruitStore.provideFruitStock(pick))
         }
     }
+    
+    private func moveToFruitStockViewController() {
+        let pushJuiceOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController")
+        
+        self.navigationController?.pushViewController(pushJuiceOrderViewController!, animated: true)
+    }
 }
 
 // MARK: - Button Action
@@ -38,16 +43,13 @@ extension JuiceOrderViewController {
     }
     
     @IBAction func changeStockButtonTapped(_ sender: Any) {
-        let pushJuiceOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController")
-        
-        self.navigationController?.pushViewController(pushJuiceOrderViewController!, animated: true)
+        moveToFruitStockViewController()
     }
 }
 
 // MARK: - JuiceMake Delegate
 extension JuiceOrderViewController: JuiceMakeDelegate {
     func successJuiceMake() {
-        // Alert
         let successAlert = UIAlertController(title: "주스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "확인", style: .default)
         
@@ -56,10 +58,9 @@ extension JuiceOrderViewController: JuiceMakeDelegate {
     }
     
     func failJuiceMake() {
-        // Alert
         let failAlert = UIAlertController(title: "재고가 없습니다.", message: "재고를 추가할까요?", preferredStyle: .alert)
         let noButton = UIAlertAction(title: "아니오", style: .default)
-        let yesButton = UIAlertAction(title: "예", style: .default)
+        let yesButton = UIAlertAction(title: "예", style: .default, handler: yesButtonTapped)
         
         failAlert.addAction(noButton)
         failAlert.addAction(yesButton)
@@ -70,5 +71,12 @@ extension JuiceOrderViewController: JuiceMakeDelegate {
         let fruitIndex = fruit.rawValue
         
         fruitLabel[fruitIndex].text = amount
+    }
+}
+
+// MARK: - Alert Handler
+extension JuiceOrderViewController {
+    private func yesButtonTapped(action: UIAlertAction) {
+        moveToFruitStockViewController()
     }
 }
