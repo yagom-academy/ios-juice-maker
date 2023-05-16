@@ -7,7 +7,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    let juiceMaker = JuiceMaker(fruitStore: FruitStore())
+    let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -22,56 +22,50 @@ class MainViewController: UIViewController {
     }
     
     private func configureLabel() {
-        self.strawberryStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.strawberry]!)
-        self.bananaStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.banana]!)
-        self.pineappleStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.pineapple]!)
-        self.kiwiStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.kiwi]!)
-        self.mangoStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.mango]!)
+        self.strawberryStockLabel.text = juiceMaker.getStock(fruit: .strawberry).toString
+        self.bananaStockLabel.text = juiceMaker.getStock(fruit: .banana).toString
+        self.pineappleStockLabel.text = juiceMaker.getStock(fruit: .pineapple).toString
+        self.kiwiStockLabel.text = juiceMaker.getStock(fruit: .kiwi).toString
+        self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
     }
     
     private func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onChangedStock(_:)), name: Notification.Name("updatedStock"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onChangedStock), name: Notification.Name.updatedStock, object: nil)
     }
     
-    @objc private func onChangedStock(_ notification: NSNotification) {
-        if let stock = notification.userInfo!["fruitStock"], let fruitStock = stock as? [Fruit: Int] {
-            self.strawberryStockLabel.text = String(fruitStock[.strawberry]!)
-            self.bananaStockLabel.text = String(fruitStock[.banana]!)
-            self.pineappleStockLabel.text = String(fruitStock[.pineapple]!)
-            self.kiwiStockLabel.text = String(fruitStock[.kiwi]!)
-            self.mangoStockLabel.text = String(fruitStock[.mango]!)
-        }
+    @objc private func onChangedStock() {
+        configureLabel()
     }
     
     @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
-        guard let vcStock = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
+        guard let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
             return
         }
-        self.navigationController?.present(vcStock, animated: true)
+        self.navigationController?.present(StockViewController, animated: true)
     }
     
-    @IBAction func onTouchOrderButton(_ sender: UIButton) {
-        var result: Result<Juice, FruitStoreError> = .failure(.unknown)
-        
+    @IBAction func onTouchOrderButton(_ sender: UIButton) {        
         switch sender.titleLabel?.text {
         case "딸바쥬스 주문":
-            result = self.juiceMaker.makeJuice(juice: .strawberryBananaJuice)
+            showAlert(result: self.juiceMaker.makeJuice(juice: .strawberryBananaJuice))
         case "망키쥬스 주문":
-            result = self.juiceMaker.makeJuice(juice: .mangoKiwiJuice)
+            showAlert(result: self.juiceMaker.makeJuice(juice: .mangoKiwiJuice))
         case "딸기쥬스 주문":
-            result = self.juiceMaker.makeJuice(juice: .strawberryJuice)
+            showAlert(result: self.juiceMaker.makeJuice(juice: .strawberryJuice))
         case "바나나쥬스 주문":
-            result = self.juiceMaker.makeJuice(juice: .bananaJuice)
+            showAlert(result: self.juiceMaker.makeJuice(juice: .bananaJuice))
         case "파인애플쥬스 주문":
-            result = self.juiceMaker.makeJuice(juice: .pineappleJuice)
+            showAlert(result: self.juiceMaker.makeJuice(juice: .pineappleJuice))
         case "키위쥬스 주문":
-            result = self.juiceMaker.makeJuice(juice: .kiwiJuice)
+            showAlert(result: self.juiceMaker.makeJuice(juice: .kiwiJuice))
         case "망고쥬스 주문":
-            result = self.juiceMaker.makeJuice(juice: .mangoJuice)
+            showAlert(result: self.juiceMaker.makeJuice(juice: .mangoJuice))
         default:
-            result = .failure(.unknown)
+            showAlert(result: .failure(.unknown))
         }
-        
+    }
+    
+    private func showAlert(result: Result<Juice, FruitStoreError>) {
         switch result {
         case .success(let juice):
             let alert = UIAlertController(title: "주문", message: "\(juice.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
@@ -81,13 +75,13 @@ class MainViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             
         case .failure(let error):
-            let alert = UIAlertController(title: "재고 부족", message: error.errorDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: error.errorTitle, message: error.errorDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "예", style: .default, handler: { _ in
-                guard let vcStock = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
+                guard let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
                     return
                 }
-                self.navigationController?.present(vcStock, animated: true)
+                self.navigationController?.present(StockViewController, animated: true)
             }))
             self.present(alert, animated: true, completion: nil)
         }

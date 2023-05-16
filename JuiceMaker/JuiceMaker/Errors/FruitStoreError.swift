@@ -8,20 +8,26 @@
 import Foundation
 
 enum FruitStoreError: Error {
-    case notFoundFruit(Fruit)
     case notEnoughStock(Fruit)
     case unknown
 }
 
 extension FruitStoreError: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
-        case .notFoundFruit(let fruit):
-            return "\(fruit)을 찾을 수 없습니다."
         case .notEnoughStock(_):
             return "재료가 모자라요. 재고를 수정할까요?"
         case .unknown:
             return "알 수 없는 에러입니다."
+        }
+    }
+    
+    var errorTitle: String {
+        switch self {
+        case .notEnoughStock(_):
+            return "재고 부족"
+        case .unknown:
+            return "시스템 에러"
         }
     }
 }
