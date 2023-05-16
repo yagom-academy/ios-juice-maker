@@ -19,9 +19,13 @@ class ViewController: UIViewController {
         changeStockLabel()
     }
 
-    @IBAction func orderJuiceButton(_ sender: UIButton) {
-        guard let juice = Juice(rawValue: sender.tag) else { return }
-        
+    @IBAction func touchUpOrderButton(_ sender: UIButton) {
+        guard let title = sender.title(for: .normal),
+              let juice = Juice(rawValue: title)
+        else {
+            return
+        }
+
         do {
             try juiceMaker.makeOrder(juice)
             changeStockLabel()

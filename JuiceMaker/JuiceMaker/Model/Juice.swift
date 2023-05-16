@@ -5,14 +5,14 @@
 //  Created by 훈맹구 on 2023/05/08.
 //
 
-enum Juice: Int {
-    case strawberryJuice
-    case bananaJuice
-    case kiwiJuice
-    case pineappleJuice
-    case strawberryBananaJuice
-    case mangoJuice
-    case mangoKiwiJuice
+enum Juice: String {
+    case strawberryJuice = "딸기쥬스 주문"
+    case bananaJuice = "바나나쥬스 주문"
+    case pineappleJuice = "파인애플쥬스 주문"
+    case kiwiJuice = "키위쥬스 주문"
+    case mangoJuice = "망고쥬스 주문"
+    case strawberryBananaJuice = "딸바쥬스 주문"
+    case mangoKiwiJuice = "망키쥬스 주문"
     
     struct Ingredient {
         let name: Fruit
