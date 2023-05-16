@@ -11,24 +11,22 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    private func canMake(_ juice: Juice) -> Result<Bool, FruitStoreError> {
+    private func canMake(_ juice: Juice) -> Bool {
         for (fruit, amount) in juice.recipe {
-            guard fruitStore.checkStock(of: fruit, for: amount) else { return .failure(FruitStoreError.outOfStock) }
+            guard fruitStore.checkStock(of: fruit, for: amount) else { return false }
         }
-        return .success(true)
+        return true
     }
     
     func make(_ juice: Juice) -> Result<Juice, FruitStoreError> {
         let result = canMake(juice)
         
-        switch result {
-        case .success(_):
+        if canMake(juice) {
             for (fruit, amount) in juice.recipe {
                 fruitStore.changeStock(of: fruit, by: -amount)
             }
             return .success(juice)
-        case .failure(let error):
-            return .failure(error)
         }
+        return .failure(FruitStoreError.outOfStock)
     }
 }
