@@ -127,7 +127,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="strawBerryBananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9sd-M0-iya"/>
+                                                    <action selector="strawBerryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wH5-yi-KTi"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
@@ -142,7 +142,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="mangoKiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nf7-gE-2i8"/>
+                                                    <action selector="mangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ah5-mZ-zXf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -161,7 +161,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="strawBerryJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MRn-Eu-n19"/>
+                                                            <action selector="strawBerryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rtl-FO-Ehq"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
@@ -172,7 +172,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="bananaJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="309-6a-XuV"/>
+                                                            <action selector="bananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ABp-K1-UsR"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
@@ -183,7 +183,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="pineappleJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vmw-pq-0HG"/>
+                                                            <action selector="pineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eeG-I9-j7e"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -194,7 +194,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="kiwiJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vNO-MT-3WY"/>
+                                                            <action selector="kiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lhA-ex-uWB"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
@@ -205,7 +205,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="mangoJuice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dCc-IL-eZb"/>
+                                                            <action selector="mangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W0g-SF-bzp"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -238,29 +238,24 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <action selector="changeStock:" destination="BYZ-38-t0r" id="mw8-Xz-JpI"/>
+                                <action selector="changeStockBarButton:" destination="BYZ-38-t0r" id="9cQ-bz-Yhg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bananaJuice" destination="y2A-PH-DJY" id="bTX-fq-axD"/>
-                        <outlet property="bananaStock" destination="gvk-pA-Lw5" id="EOl-OO-f4M"/>
-                        <outlet property="changeStock" destination="C3q-Te-cNT" id="Wiq-Tn-MLp"/>
-                        <outlet property="kiwiJuice" destination="wcW-7H-RXw" id="2aN-bD-G1m"/>
-                        <outlet property="kiwiStock" destination="FZq-de-TJG" id="Ip7-WJ-eFc"/>
-                        <outlet property="mangoJuice" destination="q6G-4X-bVm" id="IrU-Ro-qot"/>
-                        <outlet property="mangoKiwiJuice" destination="ngP-kF-Yii" id="AH3-Mi-1Qz"/>
-                        <outlet property="mangoStock" destination="3Ce-SU-JeH" id="e4b-2V-Ih7"/>
-                        <outlet property="pineappleJuice" destination="BFb-ka-wGA" id="CQd-pE-soa"/>
-                        <outlet property="pineappleStock" destination="ccQ-Dk-PuY" id="pn8-ju-u31"/>
-                        <outlet property="strawBerryBananaJuice" destination="hrc-2F-fzl" id="zyC-qP-quw"/>
-                        <outlet property="strawBerryJuice" destination="avd-o5-3JM" id="W61-6G-mNa"/>
-                        <outlet property="strawBerryStock" destination="Qas-vP-td6" id="dmw-l7-GsN"/>
-                        <outletCollection property="stocks" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="gW2-mz-yfd"/>
-                        <outletCollection property="stocks" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="H78-16-RRe"/>
-                        <outletCollection property="stocks" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="giY-bN-mNw"/>
-                        <outletCollection property="stocks" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="4pa-Q4-qFX"/>
-                        <outletCollection property="stocks" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="G3V-lm-7Wi"/>
+                        <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="bTX-fq-axD"/>
+                        <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="EOl-OO-f4M"/>
+                        <outlet property="changeStockButton" destination="C3q-Te-cNT" id="Wiq-Tn-MLp"/>
+                        <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="2aN-bD-G1m"/>
+                        <outlet property="kiwiStockLabel" destination="FZq-de-TJG" id="Ip7-WJ-eFc"/>
+                        <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="IrU-Ro-qot"/>
+                        <outlet property="mangoKiwiJuiceButton" destination="ngP-kF-Yii" id="AH3-Mi-1Qz"/>
+                        <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="e4b-2V-Ih7"/>
+                        <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="CQd-pE-soa"/>
+                        <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="pn8-ju-u31"/>
+                        <outlet property="strawBerryBananaJuiceButton" destination="hrc-2F-fzl" id="zyC-qP-quw"/>
+                        <outlet property="strawBerryJuiceButton" destination="avd-o5-3JM" id="W61-6G-mNa"/>
+                        <outlet property="strawBerryStockLabel" destination="Qas-vP-td6" id="dmw-l7-GsN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -285,7 +280,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Change Stock View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="ChangeStockViewController" id="Yu1-lM-nqp" customClass="ChangeStockViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -304,7 +299,7 @@
                                 <rect key="frame" x="580" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="mangoStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="3rd-PQ-PZ6"/>
+                                    <action selector="fruitStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="99G-v6-CaO"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EHe-D1-1xN">
@@ -326,7 +321,7 @@
                                 <rect key="frame" x="410" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="kiwiStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="sdA-tf-g0c"/>
+                                    <action selector="fruitStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="hS5-X6-XH0"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rac-Ji-vZK">
@@ -348,7 +343,7 @@
                                 <rect key="frame" x="261" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="pineappleStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="6BQ-0r-GdA"/>
+                                    <action selector="fruitStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="bnb-44-7da"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y33-ND-gz2">
@@ -362,17 +357,9 @@
                                 <rect key="frame" x="154" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="bananaStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="p4T-GC-e4d"/>
+                                    <action selector="fruitStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Bfb-YN-gw8"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
-                                <rect key="frame" x="82" y="159" width="30" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dCK-AJ-zGU">
                                 <rect key="frame" x="60" y="73" width="75" height="83.666666666666671"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -392,7 +379,7 @@
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="strawBerryStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Vca-hj-Fwm"/>
+                                    <action selector="fruitStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Xkb-oQ-zCE"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
@@ -403,28 +390,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
+                                <rect key="frame" x="76" y="157" width="42" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r">
-                        <barButtonItem key="leftBarButtonItem" title="수정 확인" id="zlc-Hf-aXY">
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="수정 확인" id="zlc-Hf-aXY">
                             <connections>
-                                <action selector="changeConfirm:" destination="Yu1-lM-nqp" id="SCy-Z5-sFC"/>
+                                <action selector="changeConfirm:" destination="Yu1-lM-nqp" id="Snv-3V-iLQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="banana" destination="gKu-86-RhI" id="Jjn-KS-fIX"/>
+                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="Jjn-KS-fIX"/>
                         <outlet property="bananaStepper" destination="O5s-2N-3iP" id="Sqt-Dg-kOw"/>
-                        <outlet property="changeConfirm" destination="zlc-Hf-aXY" id="Dd8-vv-l6t"/>
-                        <outlet property="kiwi" destination="ZDv-1m-HBY" id="nxa-ee-CzI"/>
+                        <outlet property="changeConfirmBarButton" destination="zlc-Hf-aXY" id="Dd8-vv-l6t"/>
+                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="nxa-ee-CzI"/>
                         <outlet property="kiwiStepper" destination="klA-59-Nu4" id="xha-E8-nt4"/>
-                        <outlet property="mango" destination="YJI-ER-LJR" id="amv-cj-jEQ"/>
+                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="amv-cj-jEQ"/>
                         <outlet property="mangoStepper" destination="xbn-6P-grO" id="dCv-sW-p5M"/>
-                        <outlet property="pineapple" destination="MpT-VW-hCb" id="28j-nn-hdD"/>
+                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="28j-nn-hdD"/>
                         <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="oQ8-DF-rUo"/>
-                        <outlet property="strawBerry" destination="0yV-kn-zaT" id="yaA-k9-1La"/>
+                        <outlet property="strawBerryLabel" destination="0yV-kn-zaT" id="yaA-k9-1La"/>
                         <outlet property="strawBerryStepper" destination="ZQk-f4-zrz" id="OOB-Y1-KZA"/>
                     </connections>
                 </viewController>

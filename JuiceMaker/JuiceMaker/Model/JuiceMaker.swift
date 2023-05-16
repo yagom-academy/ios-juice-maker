@@ -7,7 +7,7 @@
 import UIKit
 
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore()
+    let fruitStore: FruitStore = FruitStore.shard
     private var recipe: [Fruit: Int] = [:]
     
     mutating func order(_ juice: Juice) -> Bool {
@@ -15,7 +15,7 @@ struct JuiceMaker {
         
         do {
             try fruitStore.checkStock(with: self.recipe)
-            fruitStore.decreaseStock(with: self.recipe)
+            fruitStore.changeStock(with: self.recipe)
             return true
         } catch FruitStoreError.outOfStock {
             print("재고가 부족합니다.")

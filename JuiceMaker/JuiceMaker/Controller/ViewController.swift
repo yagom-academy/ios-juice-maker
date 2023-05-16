@@ -7,107 +7,105 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawBerryJuice: UIButton!
-    @IBOutlet weak var strawBerryBananaJuice: UIButton!
-    @IBOutlet weak var bananaJuice: UIButton!
-    @IBOutlet weak var pineappleJuice: UIButton!
-    @IBOutlet weak var kiwiJuice: UIButton!
-    @IBOutlet weak var mangoKiwiJuice: UIButton!
-    @IBOutlet weak var mangoJuice: UIButton!
-    @IBOutlet weak var changeStock: UIBarButtonItem!
+    private var juiceMaker: JuiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawBerryStock: UILabel!
-    @IBOutlet weak var bananaStock: UILabel!
-    @IBOutlet weak var pineappleStock: UILabel!
-    @IBOutlet weak var kiwiStock: UILabel!
-    @IBOutlet weak var mangoStock: UILabel!
+    private var fruitStock: [Fruit: Int] = [:]
     
-    @IBOutlet var stocks: [UILabel]!
+    @IBOutlet weak var strawBerryJuiceButton: UIButton!
+    @IBOutlet weak var strawBerryBananaJuiceButton: UIButton!
+    @IBOutlet weak var bananaJuiceButton: UIButton!
+    @IBOutlet weak var pineappleJuiceButton: UIButton!
+    @IBOutlet weak var kiwiJuiceButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet weak var mangoJuiceButton: UIButton!
+    @IBOutlet weak var changeStockButton: UIBarButtonItem!
+    
+    @IBOutlet weak var strawBerryStockLabel: UILabel!
+    @IBOutlet weak var bananaStockLabel: UILabel!
+    @IBOutlet weak var pineappleStockLabel: UILabel!
+    @IBOutlet weak var kiwiStockLabel: UILabel!
+    @IBOutlet weak var mangoStockLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      showStock()
+        showFruitStockOnLabel()
     }
     
-    func showStock() {
-        guard let stock = juiceMaker.fruitStore.stock[.strawBerry] else { return }
-        strawBerryStock.text = "\(stock)"
-        
-        guard let stock = juiceMaker.fruitStore.stock[.banana] else { return }
-        bananaStock.text = "\(stock)"
-        
-        guard let stock = juiceMaker.fruitStore.stock[.pineApple] else { return }
-        pineappleStock.text = "\(stock)"
-        
-        guard let stock = juiceMaker.fruitStore.stock[.kiwi] else { return }
-        kiwiStock.text = "\(stock)"
-        
-        guard let stock = juiceMaker.fruitStore.stock[.mango] else { return }
-        mangoStock.text = "\(stock)"
+    private func showFruitStockOnLabel() {
+        fruitStock = juiceMaker.fruitStore.receiveFruitStock()
+        strawBerryStockLabel.text = self.fruitStock[.strawBerry]?.description
+        bananaStockLabel.text = self.fruitStock[.banana]?.description
+        pineappleStockLabel.text = self.fruitStock[.pineApple]?.description
+        kiwiStockLabel.text = self.fruitStock[.kiwi]?.description
+        mangoStockLabel.text = self.fruitStock[.mango]?.description
     }
     
     
-    @IBAction func strawBerryJuice(_ sender: Any) {
+    @IBAction func strawBerryJuiceButton(_ sender: Any) {
         if juiceMaker.order(.strawBerryJuice) == true {
-            재고있을때()
+            showFruitStockOnLabel()
+            enoughFruitStock()
         } else {
-            재고없을때()
+            notEnoughFruitStock()
         }
     }
     
-    @IBAction func strawBerryBananaJuice(_ sender: Any) {
+    @IBAction func strawBerryBananaJuiceButton(_ sender: Any) {
         if juiceMaker.order(.strawBerryBananaJuice) == true {
-            재고있을때()
+            showFruitStockOnLabel()
+            enoughFruitStock()
         } else {
-            재고없을때()
+            notEnoughFruitStock()
         }
     }
     
-    @IBAction func bananaJuice(_ sender: Any) {
+    @IBAction func bananaJuiceButton(_ sender: Any) {
         if juiceMaker.order(.bananaJuice) == true {
-            재고있을때()
+            showFruitStockOnLabel()
+            enoughFruitStock()
         } else {
-            재고없을때()
+            notEnoughFruitStock()
         }
     }
     
-    @IBAction func pineappleJuice(_ sender: Any) {
+    @IBAction func pineappleJuiceButton(_ sender: Any) {
         if juiceMaker.order(.pineAppleJuice) == true {
-            재고있을때()
+            showFruitStockOnLabel()
+            enoughFruitStock()
         } else {
-            재고없을때()
+            notEnoughFruitStock()
         }
     }
     
-    @IBAction func kiwiJuice(_ sender: Any) {
+    @IBAction func kiwiJuiceButton(_ sender: Any) {
         if juiceMaker.order(.kiwiJuice) == true {
-            재고있을때()
+            showFruitStockOnLabel()
+            enoughFruitStock()
         } else {
-            재고없을때()
+            notEnoughFruitStock()
         }
     }
     
-    @IBAction func mangoKiwiJuice(_ sender: Any) {
+    @IBAction func mangoKiwiJuiceButton(_ sender: Any) {
         if juiceMaker.order(.mangoKiwiJuice) == true {
-            재고있을때()
+            showFruitStockOnLabel()
+            enoughFruitStock()
         } else {
-            재고없을때()
+            notEnoughFruitStock()
         }
     }
     
-    @IBAction func mangoJuice(_ sender: Any) {
+    @IBAction func mangoJuiceButton(_ sender: Any) {
         if juiceMaker.order(.mangoJuice) == true {
-            재고있을때()
+            showFruitStockOnLabel()
+            enoughFruitStock()
         } else {
-            재고없을때()
+            notEnoughFruitStock()
         }
     }
     
-    
-    
-    func 재고있을때() {
+    private func enoughFruitStock() {
         let alert = UIAlertController(title: "쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler :nil)
         
@@ -115,11 +113,11 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func 재고없을때() {
+    private func notEnoughFruitStock() {
         let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정 할까요?", preferredStyle: UIAlertController.Style.alert)
         let result = UIAlertAction(title: "아니요", style: .destructive)
         let okAction = UIAlertAction(title: "예", style: .default, handler : { action in
-            self.secondViewPresent()
+            self.ChangeStockViewControllerPresent()
         } )
         
         alert.addAction(result)
@@ -128,17 +126,22 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func secondViewPresent() {
-        guard let changeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
+    private func ChangeStockViewControllerPresent() {
+        guard let changeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
         let navigationController = UINavigationController(rootViewController: changeStockViewController)
+        changeStockViewController.delegate = self
         self.present(navigationController, animated: true)
     }
     
     
-    @IBAction func changeStock(_ sender: Any) {
-        guard let changeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
-        let navigationController = UINavigationController(rootViewController: changeStockViewController)
-        self.present(navigationController, animated: true)
+    @IBAction func changeStockBarButton(_ sender: Any) {
+        ChangeStockViewControllerPresent()
     }
 }
 
+
+extension ViewController: FruitStockDelegate {
+    func addStock(_ value: [Fruit : Int]) {
+        showFruitStockOnLabel()
+    }
+}
