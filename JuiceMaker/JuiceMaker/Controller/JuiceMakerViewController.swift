@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
 
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -30,14 +30,14 @@ class ViewController: UIViewController {
             
             try juiceMaker.make(juice: menu)
             setFruitStockLabel()
-            present(alertJuiceReady(menu: menu), animated: true)
+            alertJuiceReady(menu)
         } catch {
             switch error {
             case JuiceError.nonexistentFruit:
                 print("FruitStore에 해당 Fruit이 없습니다.")
             case JuiceError.shortageFruitStock:
                 print("Fruit의 수량이 부족합니다.")
-                present(alertShortageStock(), animated: true)
+                alertShortageStockFruit()
             case JuiceError.nonexistentJuiceMenu:
                 print("JuiceMenu에 해당 메뉴가 없습니다.")
             default:
@@ -63,21 +63,21 @@ class ViewController: UIViewController {
         }
     }
     
-    func alertJuiceReady(menu: JuiceMenu) -> UIAlertController {
+    func alertJuiceReady(_ menu: JuiceMenu) {
         let juiceAlert = UIAlertController(title: "제조 완료", message: "\(menu.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         
         juiceAlert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in print("yes 클릭") }))
 
-        return juiceAlert
+        present(juiceAlert, animated: true)
     }
     
-    func alertShortageStock() -> UIAlertController {
-        let juiceAlert = UIAlertController(title: "Juice", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+    func alertShortageStockFruit() {
+        let stockAlert = UIAlertController(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         
-        juiceAlert.addAction(UIAlertAction(title: "예", style: .destructive, handler: { _ in self.moveToFruitStoreViewController() }))
-        juiceAlert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: { _ in print("no 클릭") }))
+        stockAlert.addAction(UIAlertAction(title: "예", style: .destructive, handler: { _ in self.moveToFruitStoreViewController() }))
+        stockAlert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: { _ in print("no 클릭") }))
         
-        return juiceAlert
+        present(stockAlert, animated: true)
     }
     
     func moveToFruitStoreViewController() {
