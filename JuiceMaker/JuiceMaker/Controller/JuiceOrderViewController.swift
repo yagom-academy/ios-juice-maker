@@ -36,20 +36,20 @@ final class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func pushStockChangeViewController() {
-        guard let stockChangeVC = storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
+    private func presentStockChangeViewController() {
+        guard let stockChangeViewController = storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
         
-        self.navigationController?.pushViewController(stockChangeVC, animated: true)
+        present(stockChangeViewController, animated: true)
     }
     
     @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
-        pushStockChangeViewController()
+        presentStockChangeViewController()
     }
     
     private func presentInsufficientStockAlert(with message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
-            self.pushStockChangeViewController()
+            self.presentStockChangeViewController()
         }
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         
