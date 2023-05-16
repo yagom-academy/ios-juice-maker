@@ -50,20 +50,20 @@ struct JuiceMaker {
 
     private func provideRecipe(_ menu: Menu) -> Recipe {
         switch menu {
-            case .strawberryJuice:
-                return [(.strawberry, 16)]
-            case .bananaJuice:
-                return [(.banana, 2)]
-            case .pineappleJuice:
-                return [(.pineapple, 2)]
-            case .kiwiJuice:
-                return [(.kiwi, 3)]
-            case .mangoJuice:
-                return [(.mango, 3)]
-            case .strawberryAndBananaJuice:
-                return [(.strawberry, 10), (.banana, 1)]
-            case .mangoAndKiwiJuice:
-                return [(.mango, 2), (.kiwi, 1)]
+        case .strawberryJuice:
+            return [(.strawberry, 16)]
+        case .bananaJuice:
+            return [(.banana, 2)]
+        case .pineappleJuice:
+            return [(.pineapple, 2)]
+        case .kiwiJuice:
+            return [(.kiwi, 3)]
+        case .mangoJuice:
+            return [(.mango, 3)]
+        case .strawberryAndBananaJuice:
+            return [(.strawberry, 10), (.banana, 1)]
+        case .mangoAndKiwiJuice:
+            return [(.mango, 2), (.kiwi, 1)]
         }
     }
     

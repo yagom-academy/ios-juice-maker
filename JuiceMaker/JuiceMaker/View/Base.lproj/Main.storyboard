@@ -381,7 +381,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
-                        <outlet property="bananaLabel" destination="tKV-4l-Vtc" id="mSu-M6-Vtw"/>
+                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="0Sb-Mk-LcP"/>
                         <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="atp-8L-iaL"/>
                         <outlet property="mangoLabel" destination="YJI-ER-LJR" id="Fmd-f6-iIf"/>
                         <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="eqw-jE-JOI"/>

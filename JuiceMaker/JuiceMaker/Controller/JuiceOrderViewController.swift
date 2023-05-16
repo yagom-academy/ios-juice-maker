@@ -29,7 +29,7 @@ final class JuiceOrderViewController: UIViewController {
     
     private func moveToFruitStockViewController() {
         let pushJuiceOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController")
-        
+ 
         self.navigationController?.pushViewController(pushJuiceOrderViewController!, animated: true)
     }
 }
@@ -58,7 +58,7 @@ extension JuiceOrderViewController: JuiceMakeDelegate {
     }
     
     func failJuiceMake() {
-        let failAlert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
+        let failAlert = UIAlertController(title: "주문 실패!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let noButton = UIAlertAction(title: "아니오", style: .default)
         let yesButton = UIAlertAction(title: "예", style: .default, handler: yesButtonTapped)
         
