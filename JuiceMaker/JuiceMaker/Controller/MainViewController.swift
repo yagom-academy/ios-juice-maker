@@ -21,10 +21,10 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
-        guard let vcStock = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? StockViewController else {
+        guard let vcStock = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
             return
         }
-        self.navigationController?.pushViewController(vcStock, animated: true)
+        self.navigationController?.present(vcStock, animated: true)
     }
 
     @IBAction func onTouchMangoButton(_ sender: UIButton) {
