@@ -106,9 +106,19 @@ class ViewController: UIViewController {
     func alertShortageStock() -> UIAlertController {
         let juiceAlert = UIAlertController(title: "Juice", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         
-        juiceAlert.addAction(UIAlertAction(title: "예", style: .destructive, handler: { _ in print("yes 클릭") }))
+        juiceAlert.addAction(UIAlertAction(title: "예", style: .destructive, handler: { _ in self.moveToFruitStoreViewController() }))
         juiceAlert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: { _ in print("no 클릭") }))
         
         return juiceAlert
+    }
+    
+    func moveToFruitStoreViewController() {
+        guard let fruitStoreViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else {
+            return
+        }
+        
+        fruitStoreViewController.modalTransitionStyle = .coverVertical
+        
+        self.present(fruitStoreViewController, animated: true)
     }
 }
