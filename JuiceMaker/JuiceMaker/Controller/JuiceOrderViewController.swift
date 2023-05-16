@@ -59,7 +59,7 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func presentJuiceReadyAlert(with juice: Juice) {
-        let message = "\(juice.description) 나왔습니다! 맛있게 드세요!"
+        let message = "\(juice) 나왔습니다! 맛있게 드세요!"
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default)
         
