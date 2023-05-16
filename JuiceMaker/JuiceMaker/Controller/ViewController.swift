@@ -23,15 +23,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
-        guard let menu = JuiceMenu(rawValue: sender.tag) else {
-            return
-        }
-        
-        if juiceMaker.make(juice: menu) {
+        do {
+            guard let menu = JuiceMenu(rawValue: sender.tag) else {
+                throw JuiceError.nonexistentJuiceMenu
+            }
+            
+            try juiceMaker.make(juice: menu)
             setFruitStockLabel()
             present(alertJuiceReady(menu: menu), animated: true)
-        } else {
-            present(alertShortageStock(), animated: true)
+        } catch {
+            switch error {
+            case JuiceError.nonexistentFruit:
+                print("FruitStore에 해당 Fruit이 없습니다.")
+            case JuiceError.shortageFruitStock:
+                print("Fruit의 수량이 부족합니다.")
+                present(alertShortageStock(), animated: true)
+            case JuiceError.nonexistentJuiceMenu:
+                print("JuiceMenu에 해당 메뉴가 없습니다.")
+            default:
+                print("알 수 없는 에러")
+            }
         }
     }
     
