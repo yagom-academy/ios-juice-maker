@@ -6,7 +6,7 @@
 
 import UIKit
 
-enum AlertSetting {
+enum AlertText {
     case menuOut(menu: String)
     case outOfStock
     
@@ -29,7 +29,7 @@ enum AlertSetting {
     }
 }
 
-enum AlertActionTitle {
+enum AlertActionText {
     case ok
     case cancel
     case interjection

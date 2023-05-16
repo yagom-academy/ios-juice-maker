@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
 	@IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
 
-	let juiceMaker = JuiceMaker(equalizedStock: 10)
+	private let juiceMaker = JuiceMaker(equalizedStock: 10)
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,52 +78,50 @@ class MainViewController: UIViewController {
         }
     }
     
-    private func showAlert(alertType: AlertSetting) {
-        guard let stockViewController = self.storyboard?
-            .instantiateViewController(identifier: "StockViewController") else {
+    private func showAlert(type: AlertText) {
+        guard let stockViewController = self.storyboard?.instantiateViewController(
+            identifier: "StockViewController"
+        ) else {
             return
         }
+        stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
-        switch alertType {
+        let alert = UIAlertController(title: type.title,
+                                      message: type.message,
+                                      preferredStyle: .alert)
+        
+        switch type {
         case .menuOut:
-            let alert = UIAlertController(title: alertType.title,
-                                          message: alertType.message,
-                                          preferredStyle: .alert)
-            let ok = UIAlertAction(title: AlertActionTitle.interjection.title,
+            let ok = UIAlertAction(title: AlertActionText.interjection.title,
                                    style: .default,
                                    handler: nil)
-            
+    
             alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
         case .outOfStock:
-            let alert = UIAlertController(title: alertType.title,
-                                          message: alertType.message,
-                                          preferredStyle: .alert)
-            let ok = UIAlertAction(title: AlertActionTitle.ok.title,
+            let ok = UIAlertAction(title: AlertActionText.ok.title,
                                    style: .default,
                                    handler: { _ in
-                self.navigationController?.show(stockViewController, sender: self)
+                self.navigationController?.present(stockViewController, animated: true)
             })
-            let cancel = UIAlertAction(title: AlertActionTitle.cancel.title,
+            let cancel = UIAlertAction(title: AlertActionText.cancel.title,
                                        style: .default,
                                        handler: nil)
             
             alert.addAction(ok)
             alert.addAction(cancel)
-            present(alert, animated: true, completion: nil)
         }
+        present(alert, animated: true, completion: nil)
     }
-    
     
     private func orderJuice(_ menuName: FruitJuice) {
         do {
             try juiceMaker.makeFruitJuice(menu: menuName)
             replaceStockLabel()
-            showAlert(alertType: .menuOut(menu: menuName.name))
+            showAlert(type: .menuOut(menu: menuName.name))
         } catch StockError.fruitNotFound {
             print(StockError.fruitNotFound.message)
         } catch StockError.outOfStock {
-            showAlert(alertType: .outOfStock)
+            showAlert(type: .outOfStock)
         } catch {
             print(StockError.unKnown.message)
         }
