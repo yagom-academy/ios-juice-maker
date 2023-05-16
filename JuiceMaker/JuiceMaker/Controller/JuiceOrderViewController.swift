@@ -7,11 +7,8 @@
 import UIKit
 
 final class JuiceOrderViewController: UIViewController {
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    
+    @IBOutlet var fruitLabel: [UILabel]!
     
     private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
     private lazy var yagombucks = JuiceMaker(fruitStore: fruitStore)
@@ -24,11 +21,11 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func loadFruitStock() {
-        strawberryLabel.text = String(fruitStore.provideFruitStock(.strawberry))
-        bananaLabel.text = String(fruitStore.provideFruitStock(.banana))
-        kiwiLabel.text = String(fruitStore.provideFruitStock(.kiwi))
-        mangoLabel.text = String(fruitStore.provideFruitStock(.mango))
-        pineappleLabel.text = String(fruitStore.provideFruitStock(.pineapple))
+        for (index, fruit) in fruitLabel.enumerated() {
+            guard let pick = Fruit(rawValue: index) else { return }
+
+            fruit.text = String(fruitStore.provideFruitStock(pick))
+        }
     }
 }
 
@@ -51,24 +48,27 @@ extension JuiceOrderViewController {
 extension JuiceOrderViewController: JuiceMakeDelegate {
     func successJuiceMake() {
         // Alert
+        let successAlert = UIAlertController(title: "주스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "확인", style: .default)
+        
+        successAlert.addAction(okButton)
+        present(successAlert, animated: false)
     }
     
     func failJuiceMake() {
         // Alert
+        let failAlert = UIAlertController(title: "재고가 없습니다.", message: "재고를 추가할까요?", preferredStyle: .alert)
+        let noButton = UIAlertAction(title: "아니오", style: .default)
+        let yesButton = UIAlertAction(title: "예", style: .default)
+        
+        failAlert.addAction(noButton)
+        failAlert.addAction(yesButton)
+        present(failAlert, animated: false)
     }
     
     func changeFruitStock(fruit: Fruit, amount: String) {
-        switch fruit {
-            case .strawberry:
-                strawberryLabel.text = amount
-            case .banana:
-                bananaLabel.text = amount
-            case .kiwi:
-                kiwiLabel.text = amount
-            case .mango:
-                mangoLabel.text = amount
-            case .pineapple:
-                pineappleLabel.text = amount
-        }
+        let fruitIndex = fruit.rawValue
+        
+        fruitLabel[fruitIndex].text = amount
     }
 }
