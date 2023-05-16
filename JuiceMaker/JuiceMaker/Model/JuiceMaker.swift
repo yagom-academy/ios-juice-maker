@@ -4,18 +4,9 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-enum JuiceMakerError: Error, CustomStringConvertible {
+enum JuiceMakerError: Error {
     case outOfFruitStock
     case unknownError
-    
-    var description: String {
-        switch self {
-        case .outOfFruitStock:
-            return "재고가 부족하여 음료 제조가 불가능 합니다."
-        case .unknownError:
-            return "알 수 없는 오류"
-        }
-    }
 }
 
 struct JuiceMaker {

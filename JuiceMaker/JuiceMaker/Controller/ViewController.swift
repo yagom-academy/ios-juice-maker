@@ -12,7 +12,6 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         updateFruitStockLabel()
     }
@@ -48,21 +47,40 @@ class ViewController: UIViewController {
     func order(juice: Juice) {
         do {
             try juiceMaker.blendFruitJuice(menu: juice)
-            showSucessAlert(message: "\(juice.description)나왔습니다. 맛있게 드세요!")
+            showSuccessAlert(message: "\(juice.description)나왔습니다. 맛있게 드세요!")
         } catch JuiceMakerError.outOfFruitStock {
-            
+            showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         } catch {
-            
+            print("unknown")
         }
     }
     
-    func showSucessAlert(message: String) {
+    func showSuccessAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let sucesssAction = UIAlertAction(title: "닫기", style: .cancel)
+        let successAction = UIAlertAction(title: "닫기", style: .cancel)
         
-        
-        alert.addAction(sucesssAction)
+        alert.addAction(successAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func showFailureAlert(message: String) {
+        
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let addAction = UIAlertAction(title: "예", style: .default) { (action) in self.presentModifyStockView()
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
+        
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func presentModifyStockView() {
+        guard let nextViewController =
+                self.storyboard?.instantiateViewController(identifier: "ModifyStockViewController")
+                as? ModifyStockViewController
+        else { return }
+        self.present(nextViewController, animated: true, completion: nil)
     }
 }
 
