@@ -7,18 +7,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
-    
     var juiceMaker: JuiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func orderJuiceButton(_ sender: UIButton) {
@@ -42,7 +39,9 @@ class ViewController: UIViewController {
     
     func showFailureAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "예", style: .default)
+        let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
+            self.performSegue(withIdentifier: "goToStockViewController", sender: nil)
+        }
         let cancelAction = UIAlertAction(title: "아니오", style: .destructive)
         alert.addAction(cancelAction)
         alert.addAction(confirmAction)
