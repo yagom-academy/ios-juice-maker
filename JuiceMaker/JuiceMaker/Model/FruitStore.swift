@@ -5,16 +5,15 @@
 //  last modified by Yetti, yy-ss99, Mary.
 
 class FruitStore {
-    private let initialStock: Int
+    static let shared = FruitStore()
+    private let initialStock: Int = 10
     private(set) lazy var fruitStock: [Fruits: Int] = [
         .strawberry: initialStock, .banana: initialStock,
         .pineapple: initialStock, .mango: initialStock,
         .kiwi: initialStock
     ]
     
-    init(initialStock: Int) {
-        self.initialStock = initialStock
-    }
+    private init() { }
     
     func addStock(fruit: Fruits, quantity: Int) {
         guard let oldValue = fruitStock[fruit] else {
