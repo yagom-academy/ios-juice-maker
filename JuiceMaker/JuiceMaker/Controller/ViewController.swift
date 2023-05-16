@@ -7,31 +7,42 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
-    
-    
+    let juiceMaker = JuiceMaker()
+    @IBOutlet var fruitStockLabels: [UILabel]!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
-        updateFruitStockLabel()
         
+        updateFruitStockLabel()
+    }
+    
+    @IBAction func touchUpOrderButton(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            print("프린트0")
+        case 1:
+            print("프린트1")
+        case 2:
+            print("프린트2")
+        case 3:
+            print("프린트3")
+        case 4:
+            print("프린트4")
+        case 5:
+            print("프린트5")
+        case 6:
+            print("프린트6")
+        default:
+            print("-----")
+        }
     }
     
     func updateFruitStockLabel() {
-        let juiceMaker = JuiceMaker()
-        juiceMaker.blendFruitJuice(menu: .bananaJuice)
-        juiceMaker.blendFruitJuice(menu: .strawberryJuice)
-        strawberryStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[0])
-        bananaStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[1])
-        pineappleStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[2])
-        kiwiStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[3])
-        mangoStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[4])
+        for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
+            print(fruitStockLabel.tag)
+            fruitStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[index])
+        }
     }
 }
 
