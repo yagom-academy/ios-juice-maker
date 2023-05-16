@@ -15,6 +15,12 @@ class FruitStore {
     
     private init() { }
     
+    func bringQuantity(of fruit: Fruits) -> Int {
+        guard let quantity = fruitStock[fruit] else { return 0 }
+        
+        return quantity
+    }
+    
     func addStock(fruit: Fruits, quantity: Int) {
         guard let oldValue = fruitStock[fruit] else {
             fruitStock[fruit] = quantity
