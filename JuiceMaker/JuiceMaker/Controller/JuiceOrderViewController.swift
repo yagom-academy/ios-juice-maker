@@ -7,7 +7,6 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    let fruitStore = FruitStore.shared
     let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
@@ -22,28 +21,14 @@ class JuiceOrderViewController: UIViewController {
     }
     
     func updateStockLabel() {
-        strawberryStockLabel.text = "\(fruitStore.bringQuantity(of: .strawberry))"
-        bananaStockLabel.text = "\(fruitStore.bringQuantity(of: .banana))"
-        pineappleStockLabel.text = "\(fruitStore.bringQuantity(of: .pineapple))"
-        kiwiStockLabel.text = "\(fruitStore.bringQuantity(of: .kiwi))"
-        mangoStockLabel.text = "\(fruitStore.bringQuantity(of: .mango))"
+        strawberryStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .strawberry))"
+        bananaStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .banana))"
+        pineappleStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .pineapple))"
+        kiwiStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .kiwi))"
+        mangoStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .mango))"
     }
     
-    @IBAction func hitJuiceOrderButton(_ sender: UIButton) {
-        guard let choosedJuice = findJuice(by: sender.tag) else { return }
-        placeAnOrder(for: choosedJuice)
-    }
-    
-    func placeAnOrder(for juice: Juice) {
-        if let juice = juiceMaker.takeOrder(juice) {
-            showSuccessMessage(juice: juice)
-        } else {
-            showFailureMessage()
-        }
-        updateStockLabel()
-    }
-    
-    func findJuice(by tag: Int) -> Juice? {
+    func searchJuice(by tag: Int) -> Juice? {
         switch tag {
         case 1:
             return .strawberryJuice
@@ -64,20 +49,29 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func showSuccessMessage(juice: Juice) {
-        let alert = UIAlertController(title: "\(juice) 쥬스가 나왔습니다. 맛있게 드세요", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default)
+    func placeAnOrder(for juice: Juice) {
+        if let juice = juiceMaker.takeOrder(juice) {
+            presentSuccessAlert(juice: juice)
+        } else {
+            presentFailureAlert()
+        }
+        updateStockLabel()
+    }
+    
+    func presentSuccessAlert(juice: Juice) {
+        let successMessage = "\(juice)가 나왔습니다! 맛있게 드세요!"
+        let alert = UIAlertController(title: successMessage, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
         
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
-    func showFailureMessage() {
+    func presentFailureAlert() {
         let failureMessage = "재료가 모자라요. 재고를 수정할까요?"
         let alert = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in
-            self.pushStockViewController()
-        })
+            self.pushChangeStockViewController() })
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         
         alert.addAction(yesAction)
@@ -85,12 +79,18 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @IBAction func moveToStockView(_ sender: UIBarButtonItem) {
-        pushStockViewController()
+    func pushChangeStockViewController() {
+        guard let view = self.storyboard?
+            .instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
+        self.navigationController?.pushViewController(view, animated: true)
     }
     
-    func pushStockViewController() {
-        guard let view = self.storyboard?.instantiateViewController(withIdentifier: "StockView") else { return }
-        self.navigationController?.pushViewController(view, animated: true)
+    @IBAction func hitJuiceOrderButton(_ sender: UIButton) {
+        guard let choosedJuice = searchJuice(by: sender.tag) else { return }
+        placeAnOrder(for: choosedJuice)
+    }
+    
+    @IBAction func hitChangeStockButton(_ sender: UIBarButtonItem) {
+        pushChangeStockViewController()
     }
 }

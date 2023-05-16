@@ -5,7 +5,7 @@
 //  last modified by Yetti, yy-ss99, Mary.
 
 struct JuiceMaker {
-    let fruitStore =  FruitStore.shared
+    let fruitStore =  FruitStore()
     
     func takeOrder(_ juice: Juice) -> Juice? {
         let check = checkFruitStock(juice.recipe)
