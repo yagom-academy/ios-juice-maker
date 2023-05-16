@@ -11,6 +11,10 @@ class StockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigation()
+    }
+    
+    private func configureNavigation() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "닫기",
             style: .plain,
