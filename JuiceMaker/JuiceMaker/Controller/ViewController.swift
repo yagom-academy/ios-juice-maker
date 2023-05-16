@@ -23,25 +23,25 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func takeOrderStrawberryJuiceButton(_ sender: UIButton) {
+    @IBAction func didTabStrawberryJuiceButton(_ sender: UIButton) {
         juiceMaker.takeOrder(.strawberryJuice)
     }
-    @IBAction func takeOrderBananaJuiceButton(_ sender: UIButton) {
+    @IBAction func didTabBananaJuiceButton(_ sender: UIButton) {
         juiceMaker.takeOrder(.bananaJuice)
     }
-    @IBAction func takeOrderPineappleJuiceButton(_ sender: UIButton) {
+    @IBAction func didTabPineappleJuiceButton(_ sender: UIButton) {
         juiceMaker.takeOrder(.pineappleJuice)
     }
-    @IBAction func takeOrderKiwiJuiceButton(_ sender: UIButton) {
+    @IBAction func didTabKiwiJuiceButton(_ sender: UIButton) {
         juiceMaker.takeOrder(.kiwiJuice)
     }
-    @IBAction func takeOrderMangoJuiceButton(_ sender: UIButton) {
+    @IBAction func didTabMangoJuiceButton(_ sender: UIButton) {
         juiceMaker.takeOrder(.mangoJuice)
     }
-    @IBAction func takeOrderStrawberryBananaJuiceButton(_ sender: UIButton) {
+    @IBAction func didTabStrawberryBananaJuiceButton(_ sender: UIButton) {
         juiceMaker.takeOrder(.strawberryBananaJuice)
     }
-    @IBAction func takeOrderMangoKiwiJuiceButton(_ sender: UIButton) {
+    @IBAction func didTabMangoKiwiJuiceButton(_ sender: UIButton) {
         juiceMaker.takeOrder(.mangoKiwiJuice)
     }
     
