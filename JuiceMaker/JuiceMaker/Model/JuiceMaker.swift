@@ -19,7 +19,7 @@ enum JuiceMakerError: Error, CustomStringConvertible {
 }
 
 struct JuiceMaker {
-    private let fruitStore: FruitStore = FruitStore(initialStock: 20)
+    let fruitStore: FruitStore = FruitStore(initialStock: 10)
     
     func blendFruitJuice(menu fruitJuice: Juice) {
         do {
