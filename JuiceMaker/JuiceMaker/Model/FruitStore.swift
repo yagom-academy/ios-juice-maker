@@ -10,7 +10,7 @@ import Foundation
 class FruitStore {
     private var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
     
-    func getStock(_ fruit: Fruit) -> Int {
+    func stock(_ fruit: Fruit) -> Int {
         guard let stock = fruitsStock[fruit] else { fatalError("과일이 없습니다.") }
         
         return stock
@@ -21,14 +21,14 @@ class FruitStore {
     }
     
     func addFruits(_ amount: Int, to fruit: Fruit) {
-        var stock = getStock(fruit)
+        var stock = stock(fruit)
         stock += amount
             
         fruitsStock[fruit] = stock
     }
     
     func useFruits(_ amount: Int, to fruit: Fruit) throws {
-        var stock = getStock(fruit)
+        var stock = stock(fruit)
         try compare(stock, and: amount)
         stock -= amount
         
