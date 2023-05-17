@@ -16,11 +16,7 @@ protocol FruitStoreDelegate: NSObject {
 class FruitStore {
     weak var delegate: FruitStoreDelegate?
     
-    var fruitStock: [Fruit: Int] {
-        didSet {
-            delegate?.onChangeStock()
-        }
-    }
+    private var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit: Int] = [
         .strawberry: 10,
@@ -35,6 +31,7 @@ class FruitStore {
     func useValidStock(juiceRecipe: Recipe) throws {
         try juiceRecipe.forEach { try validateStock(ingredient: $0) }
         juiceRecipe.forEach { spendStock(of: $0.fruit, by: $0.amount)}
+        delegate?.onChangeStock()
     }
     
     private func validateStock(ingredient: Ingredient) throws {
