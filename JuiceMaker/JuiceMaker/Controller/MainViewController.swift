@@ -23,16 +23,24 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var mangoStockLabel: UILabel!
 
 	private let juiceMaker = JuiceMaker(equalizedStock: 10)
+    private lazy var fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        watchFruitStockChange()
+    }
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-        replaceStockLabel()
         addButtonAction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        replaceStockLabel()
     }
 	
 	private func replaceStockLabel() {
-		let fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
-        
 		guard let strawberryStock = fruitStock[.strawberry],
 			  let bananaStock = fruitStock[.banana],
 			  let pineappleStock = fruitStock[.pineapple],
@@ -102,6 +110,8 @@ class MainViewController: UIViewController {
             
             alert.addAction(ok)
             alert.addAction(cancel)
+        default:
+            break
         }
         present(alert, animated: true, completion: nil)
     }
@@ -109,6 +119,7 @@ class MainViewController: UIViewController {
     private func orderJuice(_ menuName: FruitJuice) {
         do {
             try juiceMaker.makeFruitJuice(menu: menuName)
+            fruitStock = juiceMaker.getFruitInventoryStatus()
             replaceStockLabel()
             showAlert(type: .menuOut(menu: menuName.name))
         } catch StockError.fruitNotFound {
@@ -129,11 +140,28 @@ class MainViewController: UIViewController {
 		}
 		stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
 		
-		NotificationCenter.default.post(name: NSNotification.Name("stockChange"),
+        NotificationCenter.default.post(name: NSNotification.Name.stockChangeStart,
 										object: nil,
-										userInfo: ["fruitStock": fruitStock])
+                                        userInfo: [NotificationKey.fruitStock: fruitStock])
 		
 		self.navigationController?.present(stockViewController, animated: true)
 	}
+    
+    private func watchFruitStockChange() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(callChangeFruitStock(notification:)),
+                                               name: NSNotification.Name.stockChangeEnd,
+                                               object: nil)
+    }
+    
+    @objc private func callChangeFruitStock(notification: NSNotification) {
+        guard let fruitStockStatus = notification.userInfo?[NotificationKey.fruitStock] as? [Fruit: Int] else {
+            return
+        }
+        for (fruit, quantity) in fruitStockStatus {
+            self.juiceMaker.changeFruitStock(of: fruit, quantity: quantity)
+        }
+        fruitStock = fruitStockStatus
+    }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA1303262A14A5BD00E1AF29 /* NotificationKeyEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1303252A14A5BD00E1AF29 /* NotificationKeyEnum.swift */; };
+		BA1303282A14A60100E1AF29 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1303272A14A60100E1AF29 /* Extensions.swift */; };
 		BA14720A2A09E3EF00AE9E9B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1472092A09E3EF00AE9E9B /* Error.swift */; };
 		BA5AFA742A0C7EE7005ABD23 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5AFA732A0C7EE7005ABD23 /* StockViewController.swift */; };
 		BAD01DB42A0B20DB00268E9F /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD01DB32A0B20DB00268E9F /* Fruit.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA1303252A14A5BD00E1AF29 /* NotificationKeyEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeyEnum.swift; sourceTree = "<group>"; };
+		BA1303272A14A60100E1AF29 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BA1472092A09E3EF00AE9E9B /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		BA5AFA732A0C7EE7005ABD23 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		BAD01DB32A0B20DB00268E9F /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 				BAD01DB32A0B20DB00268E9F /* Fruit.swift */,
 				BAD01DB52A0B215A00268E9F /* FruitJuice.swift */,
 				BAED1B682A11C6BF000A9A59 /* AlertEnum.swift */,
+				BA1303252A14A5BD00E1AF29 /* NotificationKeyEnum.swift */,
+				BA1303272A14A60100E1AF29 /* Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,7 +193,9 @@
 				C73DAF3B255D0CDD00020D38 /* MainViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
+				BA1303262A14A5BD00E1AF29 /* NotificationKeyEnum.swift in Sources */,
 				BAD01DB42A0B20DB00268E9F /* Fruit.swift in Sources */,
+				BA1303282A14A60100E1AF29 /* Extensions.swift in Sources */,
 				BAD01DB62A0B215A00268E9F /* FruitJuice.swift in Sources */,
 				BA14720A2A09E3EF00AE9E9B /* Error.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
