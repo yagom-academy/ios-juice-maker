@@ -15,13 +15,25 @@ class ViewController: UIViewController {
     @IBOutlet var mangoJuiceButton: UIButton!
     @IBOutlet var strawberryBananaJuiceButton: UIButton!
     @IBOutlet var mangoKiwiJuiceButton: UIButton!
+    
     @IBOutlet var stockChangeButton: UIBarButtonItem!
+    
+    @IBOutlet var strawberryStock: UILabel!
+    @IBOutlet var bananaStock: UILabel!
+    @IBOutlet var pineappleStock: UILabel!
+    @IBOutlet var kiwiStock: UILabel!
+    @IBOutlet var mangoStock: UILabel!
     
     let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        strawberryStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .strawberry))
+        bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
+        pineappleStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .pineapple))
+        kiwiStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .kiwi))
+        mangoStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .mango))
     }
 
     @IBAction func didTabStockChangeButton(_ sender: UIBarButtonItem) {
@@ -41,6 +53,7 @@ class ViewController: UIViewController {
             let closeAction = UIAlertAction(title: "닫기", style: UIAlertAction.Style.default)
             juiceCompletionAlert.addAction(closeAction)
             present(juiceCompletionAlert, animated: true, completion: nil)
+            bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
         } else {
             let juiceFailureAlert = UIAlertController(title: nil,
                                           message: "재료가 모자라요. 재고를 수정할까요?",
