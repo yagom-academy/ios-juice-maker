@@ -59,8 +59,8 @@ class ViewController: UIViewController {
                                           message: "재료가 모자라요. 재고를 수정할까요?",
                                           preferredStyle: UIAlertController.Style.alert)
             let stockChangeAction = UIAlertAction(title: "예",
-                                                  style: UIAlertAction.Style.destructive,
-                                                  handler: { stockChangeAction in self.didTabStockChangeButton(self.stockChangeButton) })
+                                                  style: UIAlertAction.Style.destructive)
+            { stockChangeAction in self.didTabStockChangeButton(self.stockChangeButton) }
             let closeAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.cancel)
             juiceFailureAlert.addAction(stockChangeAction)
             juiceFailureAlert.addAction(closeAction)
