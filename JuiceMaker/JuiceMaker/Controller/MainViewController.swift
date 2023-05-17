@@ -79,13 +79,6 @@ class MainViewController: UIViewController {
     }
     
     private func showAlert(type: AlertText) {
-        guard let stockViewController = self.storyboard?.instantiateViewController(
-            identifier: "StockViewController"
-        ) else {
-            return
-        }
-        stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        
         let alert = UIAlertController(title: type.title,
                                       message: type.message,
                                       preferredStyle: .alert)
@@ -101,7 +94,7 @@ class MainViewController: UIViewController {
             let ok = UIAlertAction(title: AlertActionText.ok.title,
                                    style: .default,
                                    handler: { _ in
-                self.navigationController?.present(stockViewController, animated: true)
+				self.presentStockViewController()
             })
             let cancel = UIAlertAction(title: AlertActionText.cancel.title,
                                        style: .default,
@@ -126,5 +119,21 @@ class MainViewController: UIViewController {
             print(StockError.unKnown.message)
         }
     }
+	
+	@IBAction private func presentStockViewController() {
+		let fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
+		guard let stockViewController = self.storyboard?.instantiateViewController(
+			identifier: "StockViewController"
+		) else {
+			return
+		}
+		stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+		
+		NotificationCenter.default.post(name: NSNotification.Name("stockChange"),
+										object: nil,
+										userInfo: ["fruitStock": fruitStock])
+		
+		self.navigationController?.present(stockViewController, animated: true)
+	}
 }
 
