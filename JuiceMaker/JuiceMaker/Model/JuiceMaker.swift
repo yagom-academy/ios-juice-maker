@@ -26,7 +26,7 @@ struct JuiceMaker {
         return fruitStore.getStock(fruit: fruit)
     }
     
-    func setDelegate<T: FruitStoreDelegate>(delegator: T) {
+    func setDelegate<T: FruitStoreDelegate>(by delegator: T) {
         fruitStore.delegate = delegator
     }
 }

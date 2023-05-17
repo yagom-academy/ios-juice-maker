@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.juiceMaker.setDelegate(delegator: self)
+        self.juiceMaker.setDelegate(by: self)
         configureLabel()
     }
     
@@ -63,21 +63,36 @@ class MainViewController: UIViewController {
                 message: "\(juice.name) 나왔습니다! 맛있게 드세요!",
                 preferredStyle: .alert
             )
+            
             alert.addAction(UIAlertAction(
                 title: "잘먹겠습니다❤️",
                 style: .default,
-                handler: { _ in
-                NSLog("The \"OK\" alert occured.")
-            }))
+                handler: nil
+            ))
+            
             self.present(alert, animated: true, completion: nil)
             
         case .failure(let error):
-            let alert = UIAlertController(title: error.errorTitle, message: error.errorDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "예", style: .default, handler: { _ in
+            let alert = UIAlertController(
+                title: error.errorTitle,
+                message: error.errorDescription,
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(
+                title: "아니오",
+                style: .default,
+                handler: nil
+            ))
+            
+            alert.addAction(UIAlertAction(
+                title: "예",
+                style: .default,
+                handler: { _ in
                 let stockViewController = StockViewController.instantiate()
                 self.navigationController?.present(stockViewController, animated: true)
             }))
+            
             self.present(alert, animated: true, completion: nil)
         }
     }

@@ -9,7 +9,6 @@ import UIKit
 
 class StockViewController: UIViewController, Storyboardable {
     
-    
     @IBOutlet weak private var viewControllerTitle: UILabel!
     
     override func viewDidLoad() {

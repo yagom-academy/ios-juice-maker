@@ -7,6 +7,6 @@
 
 extension Int {
     var toString: String {
-        self.description
+        return self.description
     }
 }

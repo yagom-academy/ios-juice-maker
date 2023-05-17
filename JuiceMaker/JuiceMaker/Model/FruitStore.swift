@@ -14,7 +14,6 @@ protocol FruitStoreDelegate: NSObject {
 }
 
 class FruitStore {
-    
     weak var delegate: FruitStoreDelegate?
     
     var fruitStock: [Fruit: Int] {
