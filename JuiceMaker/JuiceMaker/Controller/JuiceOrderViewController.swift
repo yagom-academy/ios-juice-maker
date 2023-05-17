@@ -21,6 +21,24 @@ final class JuiceOrderViewController: UIViewController {
         updateFruitStockLabels()
         setJuiceOrderButtonTag()
     }
+
+    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
+        presentStockChangeViewController()
+    }
+    
+    @IBAction func orderJuice(_ sender: UIButton) {
+        guard let selectedJuice = Juice(rawValue: sender.tag) else { return }
+        let result = juiceMaker.make(selectedJuice)
+        
+        switch result {
+        case .success(let juice):
+            presentJuiceReadyAlert(with: juice)
+            updateFruitStockLabels()
+        case .failure(let error):
+            guard let errorMessage = error.errorDescription else { return }
+            presentInsufficientStockAlert(with: errorMessage)
+        }
+    }
     
     private func updateFruitStockLabels() {
         for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
@@ -42,8 +60,13 @@ final class JuiceOrderViewController: UIViewController {
         present(stockChangeViewController, animated: true)
     }
     
-    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
-        presentStockChangeViewController()
+    private func presentJuiceReadyAlert(with juice: Juice) {
+        let message = "\(juice) 나왔습니다! 맛있게 드세요!"
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(confirmAction)
+        present(alert, animated: true)
     }
     
     private func presentInsufficientStockAlert(with message: String) {
@@ -56,29 +79,6 @@ final class JuiceOrderViewController: UIViewController {
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
-    }
-    
-    private func presentJuiceReadyAlert(with juice: Juice) {
-        let message = "\(juice) 나왔습니다! 맛있게 드세요!"
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "확인", style: .default)
-        
-        alert.addAction(confirmAction)
-        present(alert, animated: true)
-    }
-    
-    @IBAction func orderJuice(_ sender: UIButton) {
-        guard let selectedJuice = Juice(rawValue: sender.tag) else { return }
-        let result = juiceMaker.make(selectedJuice)
-        
-        switch result {
-        case .success(let juice):
-            presentJuiceReadyAlert(with: juice)
-            updateFruitStockLabels()
-        case .failure(let error):
-            guard let errorMessage = error.errorDescription else { return }
-            presentInsufficientStockAlert(with: errorMessage)
-        }
     }
 }
 
