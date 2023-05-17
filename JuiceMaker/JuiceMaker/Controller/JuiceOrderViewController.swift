@@ -10,7 +10,7 @@ final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabels: [UILabel] = []
     @IBOutlet var juiceOrderButtons: [UIButton] = []
     
-    let juiceMaker = JuiceMaker(fruitStore: FruitStore(fruitInventory: [.strawberry: 10,
+    private let juiceMaker = JuiceMaker(fruitStore: FruitStore(fruitInventory: [.strawberry: 10,
                                                                         .banana: 10,
                                                                         .pineapple: 10,
                                                                         .kiwi: 10,
