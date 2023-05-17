@@ -243,11 +243,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outletCollection property="fruitStockLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="Ql8-Zb-QTJ"/>
-                        <outletCollection property="fruitStockLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="1d8-tY-0xP"/>
-                        <outletCollection property="fruitStockLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="T0M-FZ-YAb"/>
-                        <outletCollection property="fruitStockLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="U9E-Nc-8NM"/>
-                        <outletCollection property="fruitStockLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="teF-cv-lvX"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="Ql8-Zb-QTJ"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="1d8-tY-0xP"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="T0M-FZ-YAb"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="U9E-Nc-8NM"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="teF-cv-lvX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

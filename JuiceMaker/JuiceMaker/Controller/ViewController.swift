@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var fruitStockLabels: [UILabel]!
+    @IBOutlet var fruitStockLabelCollection: [UILabel]!
     private var juiceMaker: JuiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
-        guard let title = sender.title(for: .normal),
+        guard let title = sender.titleLabel?.text,
               let juice = Juice(rawValue: title)
         else {
             return
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     }
     
     private func changeStockLabel() {
-        for (fruitStockLabel, fruit) in zip(fruitStockLabels, Fruit.allCases) {
+        for (fruitStockLabel, fruit) in zip(fruitStockLabelCollection, Fruit.allCases) {
             fruitStockLabel.text = juiceMaker.showRemainStock(of: fruit)
         }
     }
