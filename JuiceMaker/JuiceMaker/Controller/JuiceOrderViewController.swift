@@ -7,7 +7,7 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -20,7 +20,7 @@ class JuiceOrderViewController: UIViewController {
         updateStockLabel()
     }
     
-    func updateStockLabel() {
+    private func updateStockLabel() {
         strawberryStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .strawberry))"
         bananaStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .banana))"
         pineappleStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .pineapple))"
@@ -28,7 +28,7 @@ class JuiceOrderViewController: UIViewController {
         mangoStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .mango))"
     }
     
-    func searchJuice(by tag: Int) -> Juice? {
+    private func searchJuice(by tag: Int) -> Juice? {
         switch tag {
         case 1:
             return .strawberryJuice
@@ -49,7 +49,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func placeAnOrder(for juice: Juice) {
+    private func placeAnOrder(for juice: Juice) {
         if let juice = juiceMaker.takeOrder(juice) {
             presentSuccessAlert(juice: juice)
         } else {
@@ -58,7 +58,7 @@ class JuiceOrderViewController: UIViewController {
         updateStockLabel()
     }
     
-    func presentSuccessAlert(juice: Juice) {
+    private func presentSuccessAlert(juice: Juice) {
         let successMessage = "\(juice)가 나왔습니다! 맛있게 드세요!"
         let alert = UIAlertController(title: successMessage, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
@@ -66,8 +66,8 @@ class JuiceOrderViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
-    func presentFailureAlert() {
+
+    private func presentFailureAlert() {
         let failureMessage = "재료가 모자라요. 재고를 수정할까요?"
         let alert = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in
@@ -79,18 +79,18 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func pushChangeStockViewController() {
+    private func pushChangeStockViewController() {
         guard let view = self.storyboard?
             .instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
         self.navigationController?.pushViewController(view, animated: true)
     }
     
-    @IBAction func hitJuiceOrderButton(_ sender: UIButton) {
+    @IBAction private func hitJuiceOrderButton(_ sender: UIButton) {
         guard let choosedJuice = searchJuice(by: sender.tag) else { return }
         placeAnOrder(for: choosedJuice)
     }
     
-    @IBAction func hitChangeStockButton(_ sender: UIBarButtonItem) {
+    @IBAction private func hitChangeStockButton(_ sender: UIBarButtonItem) {
         pushChangeStockViewController()
     }
 }

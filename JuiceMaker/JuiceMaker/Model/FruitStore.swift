@@ -7,14 +7,15 @@
 class FruitStore {
     private let initialStock: Int = 10
     private(set) lazy var fruitStock: [Fruits: Int] = [
-        .strawberry: initialStock, .banana: initialStock,
-        .pineapple: initialStock, .mango: initialStock,
+        .strawberry: initialStock,
+        .banana: initialStock,
+        .pineapple: initialStock,
+        .mango: initialStock,
         .kiwi: initialStock
     ]
     
     func bringQuantity(of fruit: Fruits) -> Int {
         guard let quantity = fruitStock[fruit] else { return 0 }
-        
         return quantity
     }
     
