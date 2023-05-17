@@ -9,10 +9,17 @@ import Foundation
 typealias Recipe = [Ingredient]
 typealias Ingredient = (fruit: Fruit, amount: Int)
 
+protocol FruitStoreDelegate: NSObject {
+    func onChangeStock()
+}
+
 class FruitStore {
+    
+    weak var delegate: FruitStoreDelegate?
+    
     var fruitStock: [Fruit: Int] {
         didSet {
-            NotificationCenter.default.post(name: NSNotification.Name.updatedStock, object: nil)
+            delegate?.onChangeStock()
         }
     }
     

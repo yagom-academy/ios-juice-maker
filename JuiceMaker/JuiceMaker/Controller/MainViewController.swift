@@ -17,8 +17,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.juiceMaker.setDelegate(delegator: self)
         configureLabel()
-        addObserver()
     }
     
     private func configureLabel() {
@@ -27,14 +27,6 @@ class MainViewController: UIViewController {
         self.pineappleStockLabel.text = juiceMaker.getStock(fruit: .pineapple).toString
         self.kiwiStockLabel.text = juiceMaker.getStock(fruit: .kiwi).toString
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
-    }
-    
-    private func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onChangedStock), name: Notification.Name.updatedStock, object: nil)
-    }
-    
-    @objc private func onChangedStock() {
-        configureLabel()
     }
     
     @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
@@ -88,5 +80,11 @@ class MainViewController: UIViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension MainViewController: FruitStoreDelegate {
+    func onChangeStock() {
+        self.configureLabel()
     }
 }
