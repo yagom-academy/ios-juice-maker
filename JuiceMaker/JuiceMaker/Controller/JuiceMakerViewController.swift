@@ -35,13 +35,16 @@ final class JuiceMakerViewController: UIViewController {
             switch error {
             case JuiceError.nonexistentFruit:
                 print("FruitStore에 해당 Fruit이 없습니다.")
+                showNonexistentFruitAlert()
             case JuiceError.shortageFruitStock:
                 print("Fruit의 수량이 부족합니다.")
                 showShortageFruitStockAlert()
             case JuiceError.nonexistentJuiceMenu:
                 print("JuiceMenu에 해당 메뉴가 없습니다.")
+                showNonexistentJuiceMenuAlert()
             default:
                 print("알 수 없는 에러")
+                showUnknownErrorAlert()
             }
         }
     }
@@ -57,8 +60,10 @@ final class JuiceMakerViewController: UIViewController {
             switch error {
             case JuiceError.nonexistentFruit:
                 print("FruitStore에 해당 Fruit이 없습니다.")
+                showNonexistentFruitAlert()
             default:
                 print("알 수 없는 에러")
+                showUnknownErrorAlert()
             }
         }
     }
@@ -78,6 +83,30 @@ final class JuiceMakerViewController: UIViewController {
         stockAlert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: { _ in print("no 클릭") }))
         
         present(stockAlert, animated: true)
+    }
+    
+    private func showNonexistentFruitAlert() {
+        let alert = UIAlertController(title: nil, message: "해당하는 과일 종류가 없습니다.", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        
+        present(alert, animated: true)
+    }
+    
+    private func showNonexistentJuiceMenuAlert() {
+        let alert = UIAlertController(title: nil, message: "해당하는 쥬스 메뉴가 없습니다.", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        
+        present(alert, animated: true)
+    }
+    
+    private func showUnknownErrorAlert() {
+        let alert = UIAlertController(title: nil, message: "알 수 없는 에러 발생", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        
+        present(alert, animated: true)
     }
     
     private func showFruitStoreViewController() {
