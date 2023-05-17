@@ -23,7 +23,7 @@ struct FruitStore {
         }
     }
     
-    func showRemainStock(of fruit: Fruit) -> String {
+    func getRemainStock(of fruit: Fruit) -> String {
         return String(stockList[fruit] ?? 0)
     }
 }

@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     
     private func changeStockLabel() {
         for (fruitStockLabel, fruit) in zip(fruitStockLabels, Fruit.allCases) {
-            fruitStockLabel.text = juiceMaker.fruitStore.showRemainStock(of: fruit)
+            fruitStockLabel.text = juiceMaker.showRemainStock(of: fruit)
         }
     }
 }
