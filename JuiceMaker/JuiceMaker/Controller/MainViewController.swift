@@ -38,10 +38,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
-        guard let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
-            return
+        if let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockNavigationViewController") {
+            self.navigationController?.present(StockViewController, animated: true)
         }
-        self.navigationController?.present(StockViewController, animated: true)
     }
     
     @IBAction func onTouchOrderButton(_ sender: UIButton) {        
