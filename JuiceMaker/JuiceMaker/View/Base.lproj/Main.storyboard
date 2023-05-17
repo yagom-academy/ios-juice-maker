@@ -128,6 +128,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="didTabStrawberryBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UaX-0x-9My"/>
+                                                    <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vN1-08-h6m"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
@@ -143,6 +144,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="didTabMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T4M-P5-AcD"/>
+                                                    <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ue2-Zs-dFf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -162,6 +164,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="didTabStrawberryJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hFE-xU-lSX"/>
+                                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcq-l2-cg3"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
@@ -173,6 +176,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="didTabBananaJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bW3-pZ-VFo"/>
+                                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9O4-as-3R3"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
@@ -184,6 +188,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="didTabPineappleJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7XW-k3-Rgn"/>
+                                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IxD-DX-6D5"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -195,6 +200,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="didTabKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R6c-gJ-ntK"/>
+                                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xv4-Tb-T6a"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
@@ -206,6 +212,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="didTabMangoJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cP6-wt-GL0"/>
+                                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOu-PD-82P"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

@@ -38,12 +38,15 @@ class ViewController: UIViewController {
 
     @IBAction func didTabStockChangeButton(_ sender: UIBarButtonItem) {
         if let pushStockChangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChange") {
-            self.navigationController?.pushViewController(pushStockChangeViewController, animated: true)
+            self.navigationController?.pushViewController(pushStockChangeViewController,
+                                                          animated: true)
         }
     }
     
     @IBAction func didTabStrawberryJuiceButton(_ sender: UIButton) {
-//        juiceMaker.takeOrder(.strawberryJuice)
+        let juice: Juice = .strawberryJuice
+        showAlert(of: juice)
+        strawberryStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .strawberry))
     }
     @IBAction func didTabBananaJuiceButton(_ sender: UIButton) {
         let juice: Juice = .bananaJuice
@@ -52,19 +55,31 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTabPineappleJuiceButton(_ sender: UIButton) {
-//        juiceMaker.takeOrder(.pineappleJuice)
+        let juice: Juice = .pineappleJuice
+        showAlert(of: juice)
+        pineappleStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .pineapple))
     }
     @IBAction func didTabKiwiJuiceButton(_ sender: UIButton) {
-//        juiceMaker.takeOrder(.kiwiJuice)
+        let juice: Juice = .kiwiJuice
+        showAlert(of: juice)
+        kiwiStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .kiwi))
     }
     @IBAction func didTabMangoJuiceButton(_ sender: UIButton) {
-//        juiceMaker.takeOrder(.mangoJuice)
+        let juice: Juice = .mangoJuice
+        showAlert(of: juice)
+        mangoStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .mango))
     }
     @IBAction func didTabStrawberryBananaJuiceButton(_ sender: UIButton) {
-//        juiceMaker.takeOrder(.strawberryBananaJuice)
+        let juice: Juice = .strawberryBananaJuice
+        showAlert(of: juice)
+        strawberryStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .strawberry))
+        bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
     }
     @IBAction func didTabMangoKiwiJuiceButton(_ sender: UIButton) {
-//        juiceMaker.takeOrder(.mangoKiwiJuice)
+        let juice: Juice = .mangoKiwiJuice
+        showAlert(of: juice)
+        mangoStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .mango))
+        kiwiStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .kiwi))
     }
     
     func showAlert(of juice: Juice) {
