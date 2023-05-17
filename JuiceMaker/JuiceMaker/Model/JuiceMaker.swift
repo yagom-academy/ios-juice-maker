@@ -43,32 +43,21 @@ struct JuiceMaker {
     typealias Recipe = [(fruit: Fruit, amount: Int)]
     private let store: FruitStore
     var delegate: JuiceMakeDelegate?
+    var recipe: [Menu: Recipe]
     
-    init(fruitStore: FruitStore) {
+    init(_ fruitStore: FruitStore, _ recipe: [Menu: Recipe]) {
         self.store = fruitStore
+        self.recipe = recipe
     }
 
-    private func provideRecipe(_ menu: Menu) -> Recipe {
-        switch menu {
-        case .strawberryJuice:
-            return [(.strawberry, 16)]
-        case .bananaJuice:
-            return [(.banana, 2)]
-        case .pineappleJuice:
-            return [(.pineapple, 2)]
-        case .kiwiJuice:
-            return [(.kiwi, 3)]
-        case .mangoJuice:
-            return [(.mango, 3)]
-        case .strawberryAndBananaJuice:
-            return [(.strawberry, 10), (.banana, 1)]
-        case .mangoAndKiwiJuice:
-            return [(.mango, 2), (.kiwi, 1)]
-        }
+    private func provideRecipe(_ menu: Menu) -> Recipe? {
+        guard let juiceRecipe = recipe[menu] else { return nil }
+        
+        return juiceRecipe
     }
     
     func makeJuice(menu: Menu) {
-        let recipe = provideRecipe(menu)
+        guard let recipe = provideRecipe(menu) else { return }
         
         guard canMakeJuice(recipe) else {
             delegate?.failJuiceMake()

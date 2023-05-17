@@ -9,8 +9,17 @@ import UIKit
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitLabel: [UILabel]!
     
+    let recipe: [JuiceMaker.Menu: [(Fruit, Int)]] =
+    ([.strawberryJuice         : [(.strawberry, 16)],
+      .bananaJuice             : [(.banana, 2)],
+      .pineappleJuice          : [(.pineapple, 2)],
+      .kiwiJuice               : [(.kiwi, 3)],
+      .mangoJuice              : [(.mango, 3)],
+      .strawberryAndBananaJuice: [(.strawberry, 10), (.banana, 1)],
+      .mangoAndKiwiJuice       : [(.mango, 2), (.kiwi, 1)]])
+    
     private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
-    private lazy var yagombucks = JuiceMaker(fruitStore: fruitStore)
+    private lazy var yagombucks = JuiceMaker(fruitStore, recipe)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +37,9 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func moveToFruitStockViewController() {
-        let pushJuiceOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController")
+        guard let pushJuiceOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
  
-        self.navigationController?.pushViewController(pushJuiceOrderViewController!, animated: true)
+        self.navigationController?.pushViewController(pushJuiceOrderViewController, animated: true)
     }
 }
 
@@ -69,6 +78,8 @@ extension JuiceOrderViewController: JuiceMakeDelegate {
     
     func changeFruitStock(fruit: Fruit, amount: String) {
         let fruitIndex = fruit.rawValue
+        
+        guard fruitIndex < fruitLabel.count else { return }
         
         fruitLabel[fruitIndex].text = amount
     }
