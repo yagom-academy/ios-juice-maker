@@ -2,7 +2,7 @@
 //  FruitStockViewController.swift
 //  JuiceMaker
 //
-//  Created by Hyungmin Lee on 2023/05/12.
+//  Created by Zion, Mint = 형민트 on 2023/05/12.
 //
 
 import UIKit

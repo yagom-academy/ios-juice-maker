@@ -127,7 +127,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mfg-Dz-xPI"/>
+                                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mfg-Dz-xPI"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E2-H9-FXr">
@@ -142,7 +142,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="orderButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VPh-kf-dH9"/>
+                                                    <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VPh-kf-dH9"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -161,7 +161,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4D0-uK-Y4N"/>
+                                                            <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4D0-uK-Y4N"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
@@ -172,7 +172,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0WR-Su-nLw"/>
+                                                            <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0WR-Su-nLw"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
@@ -183,7 +183,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ogK-3R-hCy"/>
+                                                            <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ogK-3R-hCy"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
@@ -194,7 +194,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OC5-xk-9H4"/>
+                                                            <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OC5-xk-9H4"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
@@ -205,7 +205,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="orderButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uzv-jz-KUD"/>
+                                                            <action selector="tappedOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uzv-jz-KUD"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -238,16 +238,16 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <action selector="changeStockButtonTapped:" destination="BYZ-38-t0r" id="RaK-3U-STQ"/>
+                                <action selector="tappedChangeStockButton:" destination="BYZ-38-t0r" id="RaK-3U-STQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outletCollection property="fruitLabel" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="BVL-Ig-UDY"/>
-                        <outletCollection property="fruitLabel" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="xYL-hS-asY"/>
-                        <outletCollection property="fruitLabel" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="Dc7-9I-x9W"/>
-                        <outletCollection property="fruitLabel" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="g5x-0Z-zfC"/>
-                        <outletCollection property="fruitLabel" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="tUj-9Z-oFF"/>
+                        <outletCollection property="fruitLabels" destination="Qas-vP-td6" collectionClass="NSMutableArray" id="BVL-Ig-UDY"/>
+                        <outletCollection property="fruitLabels" destination="gvk-pA-Lw5" collectionClass="NSMutableArray" id="xYL-hS-asY"/>
+                        <outletCollection property="fruitLabels" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="Dc7-9I-x9W"/>
+                        <outletCollection property="fruitLabels" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="g5x-0Z-zfC"/>
+                        <outletCollection property="fruitLabels" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="tUj-9Z-oFF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -390,25 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="901"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cAf-jL-tPK">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WwV-Td-3Bn" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufw-7J-6hD">
-                        <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Yu1-lM-nqp" kind="relationship" relationship="rootViewController" id="wH1-3A-cBm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2s5-lS-967" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1637" y="21"/>
+            <point key="canvasLocation" x="762" y="908"/>
         </scene>
     </scenes>
     <resources>

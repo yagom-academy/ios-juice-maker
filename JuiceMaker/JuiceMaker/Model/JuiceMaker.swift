@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-protocol JuiceMakeDelegate {
+protocol JuiceMakerDelegate {
     func successJuiceMake(_ menu: JuiceMaker.Menu)
     func failJuiceMake()
     func changeFruitStock(fruit: Fruit, amount: String)
@@ -42,8 +42,8 @@ struct JuiceMaker {
     
     typealias Recipe = [(fruit: Fruit, amount: Int)]
     private let store: FruitStore
-    var delegate: JuiceMakeDelegate?
-    var recipe: [Menu: Recipe]
+    var delegate: JuiceMakerDelegate?
+    let recipe: [Menu: Recipe]
     
     init(_ fruitStore: FruitStore, _ recipe: [Menu: Recipe]) {
         self.store = fruitStore
