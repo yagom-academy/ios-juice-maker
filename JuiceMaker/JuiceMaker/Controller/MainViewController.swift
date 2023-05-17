@@ -77,8 +77,8 @@ class MainViewController: UIViewController {
     
     private func showFailureAlert(error: FruitStoreError) {
         let alert = UIAlertController(
-            title: error.errorTitle,
-            message: error.errorDescription,
+            title: error.title,
+            message: error.description,
             preferredStyle: .alert
         )
         

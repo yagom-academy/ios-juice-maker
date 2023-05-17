@@ -13,7 +13,7 @@ enum FruitStoreError: Error {
 }
 
 extension FruitStoreError: LocalizedError {
-    var errorDescription: String? {
+    var description: String? {
         switch self {
         case .notEnoughStock(_):
             return "재료가 모자라요. 재고를 수정할까요?"
@@ -22,7 +22,7 @@ extension FruitStoreError: LocalizedError {
         }
     }
     
-    var errorTitle: String {
+    var title: String {
         switch self {
         case .notEnoughStock(_):
             return "재고 부족"
