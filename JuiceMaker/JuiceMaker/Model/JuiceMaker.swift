@@ -42,8 +42,8 @@ struct JuiceMaker {
     
     typealias Recipe = [(fruit: Fruit, amount: Int)]
     private let store: FruitStore
+    private let recipe: [Menu: Recipe]
     var delegate: JuiceMakerDelegate?
-    let recipe: [Menu: Recipe]
     
     init(_ fruitStore: FruitStore, _ recipe: [Menu: Recipe]) {
         self.store = fruitStore
