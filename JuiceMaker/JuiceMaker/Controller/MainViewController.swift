@@ -6,14 +6,14 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+class MainViewController: UIViewController, Storyboardable {
+    private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel!
+    @IBOutlet weak private var bananaStockLabel: UILabel!
+    @IBOutlet weak private var pineappleStockLabel: UILabel!
+    @IBOutlet weak private var kiwiStockLabel: UILabel!
+    @IBOutlet weak private var mangoStockLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +38,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
-        if let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockNavigationViewController") {
-            self.navigationController?.present(StockViewController, animated: true)
-        }
+        let stockViewController = StockViewController.instantiate()
+        self.navigationController?.present(stockViewController, animated: true)
     }
     
     @IBAction func onTouchOrderButton(_ sender: UIButton) {        
@@ -67,8 +66,15 @@ class MainViewController: UIViewController {
     private func showAlert(result: Result<Juice, FruitStoreError>) {
         switch result {
         case .success(let juice):
-            let alert = UIAlertController(title: "주문", message: "\(juice.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "잘먹겠습니다❤️", style: .default, handler: { _ in
+            let alert = UIAlertController(
+                title: "주문",
+                message: "\(juice.name) 나왔습니다! 맛있게 드세요!",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(
+                title: "잘먹겠습니다❤️",
+                style: .default,
+                handler: { _ in
                 NSLog("The \"OK\" alert occured.")
             }))
             self.present(alert, animated: true, completion: nil)
@@ -77,10 +83,8 @@ class MainViewController: UIViewController {
             let alert = UIAlertController(title: error.errorTitle, message: error.errorDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "예", style: .default, handler: { _ in
-                guard let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
-                    return
-                }
-                self.navigationController?.present(StockViewController, animated: true)
+                let stockViewController = StockViewController.instantiate()
+                self.navigationController?.present(stockViewController, animated: true)
             }))
             self.present(alert, animated: true, completion: nil)
         }

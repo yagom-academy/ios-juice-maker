@@ -7,24 +7,21 @@
 
 import UIKit
 
-class StockViewController: UIViewController {
-
+class StockViewController: UIViewController, Storyboardable {
+    
+    
+    @IBOutlet weak private var viewControllerTitle: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigation()
+        configureTitle()
     }
     
-    private func configureNavigation() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "닫기",
-            style: .plain,
-            target: self,
-            action: #selector(onTouchCloseButton)
-        )
-        self.navigationItem.title = "재고추가"
+    private func configureTitle() {
+        self.viewControllerTitle.text = "재고추가"
     }
     
-    @objc private func onTouchCloseButton() {
+    @IBAction private func onTouchCloseButton() {
         self.dismiss(animated: true)
     }
 }
