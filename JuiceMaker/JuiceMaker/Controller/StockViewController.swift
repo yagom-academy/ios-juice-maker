@@ -14,6 +14,12 @@ class StockViewController: UIViewController {
 	@IBOutlet private weak var kiwiStockLabel: UILabel!
 	@IBOutlet private weak var mangoStockLabel: UILabel!
     @IBOutlet private weak var closeBarButtonItem: UIBarButtonItem!
+	
+	@IBOutlet private weak var strawberryStepper: UIStepper!
+	@IBOutlet private weak var bananaStepper: UIStepper!
+	@IBOutlet private weak var pineappleStepper: UIStepper!
+	@IBOutlet private weak var kiwiStepper: UIStepper!
+	@IBOutlet private weak var mangoStepper: UIStepper!
     
 	private var fruitStock: [Fruit: Int] = [:]
 	
@@ -29,7 +35,13 @@ class StockViewController: UIViewController {
         super.viewDidLoad()
 		replaceStockLabel()
         setUpCloseBarButtonItem()
+		setUpStepper()
     }
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.setUpNotificationPost()
+	}
 	
 	private func replaceStockLabel() {
 		guard let strawberryStock = fruitStock[.strawberry],
@@ -72,10 +84,7 @@ class StockViewController: UIViewController {
             let ok = UIAlertAction(title: AlertActionText.ok.title,
                                    style: .default,
                                    handler: { _ in
-                self.dismiss(animated: true) {
-                    // 메모리 관리, 순환 참조
-                    self.setUpNotificationPost()
-                }
+                self.dismiss(animated: true)
             })
             let cancel = UIAlertAction(title: AlertActionText.cancel.title,
                                        style: .default,
@@ -95,4 +104,47 @@ class StockViewController: UIViewController {
                                         object: nil,
                                         userInfo: [NotificationKey.fruitStock: fruitStock])
     }
+	
+	@IBAction private func touchUpStepper(_ sender: UIStepper) {
+		sender.minimumValue = 0.0
+		sender.stepValue = 1.0
+		sender.isContinuous = true
+		sender.autorepeat = true
+		
+		switch sender {
+		case strawberryStepper:
+			fruitStock[.strawberry] = Int(sender.value)
+			strawberryStockLabel.text = String(Int(sender.value))
+		case bananaStepper:
+			fruitStock[.banana] = Int(sender.value)
+			bananaStockLabel.text = String(Int(sender.value))
+		case pineappleStepper:
+			fruitStock[.pineapple] = Int(sender.value)
+			pineappleStockLabel.text = String(Int(sender.value))
+		case kiwiStepper:
+			fruitStock[.kiwi] = Int(sender.value)
+			kiwiStockLabel.text = String(Int(sender.value))
+		case mangoStepper:
+			fruitStock[.mango] = Int(sender.value)
+			mangoStockLabel.text = String(Int(sender.value))
+		default:
+			break
+		}
+	}
+	
+	private func setUpStepper() {
+		guard let strawberryStock = fruitStock[.strawberry],
+			  let bananaStock = fruitStock[.banana],
+			  let pineappleStock = fruitStock[.pineapple],
+			  let kiwiStock = fruitStock[.kiwi],
+			  let mangoStock = fruitStock[.mango] else {
+			return
+		}
+		
+		strawberryStepper.value = Double(strawberryStock)
+		bananaStepper.value = Double(bananaStock)
+		pineappleStepper.value = Double(pineappleStock)
+		kiwiStepper.value = Double(kiwiStock)
+		mangoStepper.value = Double(mangoStock)
+	}
 }
