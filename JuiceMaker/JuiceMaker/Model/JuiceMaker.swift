@@ -30,7 +30,7 @@ struct JuiceMaker {
         }
     }
     
-    private func makeJuice(_ juice: Juice) throws {
+    func makeJuice(_ juice: Juice) throws {
         try verifyStock(for: juice)
         try consumeFruit(for: juice)
     }

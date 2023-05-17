@@ -46,27 +46,11 @@ class ViewController: UIViewController {
 //        juiceMaker.takeOrder(.strawberryJuice)
     }
     @IBAction func didTabBananaJuiceButton(_ sender: UIButton) {
-        if juiceMaker.takeOrder(.bananaJuice) {
-            let juiceCompletionAlert = UIAlertController(title: nil,
-                                          message: "바나나 쥬스가 나왔습니다! 맛있게 드세요!",
-                                          preferredStyle: UIAlertController.Style.alert)
-            let closeAction = UIAlertAction(title: "닫기", style: UIAlertAction.Style.default)
-            juiceCompletionAlert.addAction(closeAction)
-            present(juiceCompletionAlert, animated: true, completion: nil)
-            bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
-        } else {
-            let juiceFailureAlert = UIAlertController(title: nil,
-                                          message: "재료가 모자라요. 재고를 수정할까요?",
-                                          preferredStyle: UIAlertController.Style.alert)
-            let stockChangeAction = UIAlertAction(title: "예",
-                                                  style: UIAlertAction.Style.destructive)
-            { stockChangeAction in self.didTabStockChangeButton(self.stockChangeButton) }
-            let closeAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.cancel)
-            juiceFailureAlert.addAction(stockChangeAction)
-            juiceFailureAlert.addAction(closeAction)
-            present(juiceFailureAlert, animated: true, completion: nil)
-        }
+        let juice: Juice = .bananaJuice
+        showAlert(of: juice)
+        bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
     }
+    
     @IBAction func didTabPineappleJuiceButton(_ sender: UIButton) {
 //        juiceMaker.takeOrder(.pineappleJuice)
     }
@@ -83,6 +67,34 @@ class ViewController: UIViewController {
 //        juiceMaker.takeOrder(.mangoKiwiJuice)
     }
     
+    func showAlert(of juice: Juice) {
+        if juiceMaker.takeOrder(juice) {
+            showCompletionAlert(for: juice)
+        } else {
+            showFailureAlert()
+        }
+    }
     
+    func showCompletionAlert(for juice: Juice) {
+        let juiceCompletionAlert = UIAlertController(title: nil,
+                                                     message: "\(juice.name)가 나왔습니다! 맛있게 드세요!",
+                                      preferredStyle: UIAlertController.Style.alert)
+        let closeAction = UIAlertAction(title: "닫기", style: UIAlertAction.Style.default)
+        juiceCompletionAlert.addAction(closeAction)
+        present(juiceCompletionAlert, animated: true, completion: nil)
+    }
+    
+    func showFailureAlert() {
+        let juiceFailureAlert = UIAlertController(title: nil,
+                                      message: "재료가 모자라요. 재고를 수정할까요?",
+                                      preferredStyle: UIAlertController.Style.alert)
+        let stockChangeAction = UIAlertAction(title: "예",
+                                              style: UIAlertAction.Style.destructive)
+        { stockChangeAction in self.didTabStockChangeButton(self.stockChangeButton) }
+        let closeAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.cancel)
+        juiceFailureAlert.addAction(stockChangeAction)
+        juiceFailureAlert.addAction(closeAction)
+        present(juiceFailureAlert, animated: true, completion: nil)
+    }
 }
 
