@@ -25,7 +25,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didTabStockChangeButton(_ sender: UIBarButtonItem) {
-        
+        if let pushStockChangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChange") {
+            self.navigationController?.pushViewController(pushStockChangeViewController, animated: true)
+        }
     }
     
     @IBAction func didTabStrawberryJuiceButton(_ sender: UIButton) {
