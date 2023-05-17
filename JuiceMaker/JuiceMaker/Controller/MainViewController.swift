@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, Storyboardable {
+class MainViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
