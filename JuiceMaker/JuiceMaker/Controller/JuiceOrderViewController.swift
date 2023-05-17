@@ -25,7 +25,7 @@ final class JuiceOrderViewController: UIViewController {
     private func updateFruitStockLabels() {
         for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
             guard let fruit = Fruit(rawValue: index),
-                  let fruitCount = juiceMaker.fruitStore.getCurrentStock(of: fruit) else { return }
+                  let fruitCount = juiceMaker.getCurrentStock(of: fruit) else { return }
             fruitStockLabel.text = "\(fruitCount)"
         }
     }

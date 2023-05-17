@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private(set) var fruitStore: FruitStore
+    private let fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore
@@ -26,5 +26,9 @@ struct JuiceMaker {
             return .success(juice)
         }
         return .failure(FruitStoreError.outOfStock)
+    }
+    
+    func getCurrentStock(of fruit: Fruit) -> Int? {
+        return fruitStore.getCurrentStock(of: fruit)
     }
 }
