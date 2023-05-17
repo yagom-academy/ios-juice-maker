@@ -11,15 +11,8 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func makeJuice(juice: Juice) -> Result<Juice, FruitStoreError> {
-        do {
-            try self.fruitStore.useValidStock(juiceRecipe: juice.recipe)
-            return .success(juice)
-        } catch FruitStoreError.notEnoughStock(let fruit) {
-            return .failure(FruitStoreError.notEnoughStock(fruit))
-        } catch {
-            return .failure(FruitStoreError.unknown)
-        }
+    func makeJuice(juice: Juice) throws {        
+        try self.fruitStore.useValidStock(juiceRecipe: juice.recipe)
     }
     
     func getStock(fruit: Fruit) -> Int {
