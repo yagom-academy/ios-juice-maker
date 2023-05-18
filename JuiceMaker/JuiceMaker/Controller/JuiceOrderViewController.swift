@@ -27,22 +27,32 @@ final class JuiceOrderViewController: UIViewController {
         kiwiStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .kiwi))"
         mangoStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .mango))"
     }
-
+    
+    private enum ButtonTitle {
+        static let strawberryJuiceOrder = "딸기쥬스 주문"
+        static let bananaJuiceOrder = "바나나쥬스 주문"
+        static let pineappleJuiceOrder = "파인애플쥬스 주문"
+        static let kiwiJuiceOrder = "키위쥬스 주문"
+        static let mangoJuiceOrder = "망고쥬스 주문"
+        static let strawberryBananaJuiceOrder = "딸바쥬스 주문"
+        static let mangoKiwiJuiceOrder = "망키쥬스 주문"
+    }
+    
     private func searchJuice(by buttonTitle: String) -> Juice? {
         switch buttonTitle {
-        case "딸기쥬스 주문":
+        case ButtonTitle.strawberryJuiceOrder:
             return .strawberryJuice
-        case "바나나쥬스 주문":
+        case ButtonTitle.bananaJuiceOrder:
             return .bananaJuice
-        case "파인애플쥬스 주문":
+        case ButtonTitle.pineappleJuiceOrder:
             return .pineappleJuice
-        case "키위쥬스 주문":
+        case ButtonTitle.kiwiJuiceOrder:
             return .kiwiJuice
-        case "망고쥬스 주문":
+        case ButtonTitle.mangoJuiceOrder:
             return .mangoJuice
-        case "딸바쥬스 주문":
+        case ButtonTitle.strawberryBananaJuiceOrder:
             return .strawberryBananaJuice
-        case "망키쥬스 주문":
+        case ButtonTitle.mangoKiwiJuiceOrder:
             return .mangoKiwiJuice
         default:
             return nil
@@ -66,7 +76,7 @@ final class JuiceOrderViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-
+    
     private func presentFailureAlert() {
         let failureMessage = "재료가 모자라요. 재고를 수정할까요?"
         let alert = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
