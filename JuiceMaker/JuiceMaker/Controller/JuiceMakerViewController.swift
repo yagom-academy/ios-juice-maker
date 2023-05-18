@@ -24,9 +24,7 @@ final class JuiceMakerViewController: UIViewController {
     
     @IBAction private func tapOrderJuice(_ sender: UIButton) {
         do {
-            guard let menu = JuiceMenu(rawValue: sender.tag) else {
-                throw JuiceError.nonexistentJuiceMenu
-            }
+            let menu = try matchJuiceMenu(by: sender.tag)
             
             try juiceMaker.make(juice: menu)
             setFruitStockLabel()
@@ -117,5 +115,26 @@ final class JuiceMakerViewController: UIViewController {
         fruitStoreViewController.modalTransitionStyle = .coverVertical
         
         self.present(fruitStoreViewController, animated: true)
+    }
+    
+    private func matchJuiceMenu(by tag: Int) throws -> JuiceMenu {
+        switch tag {
+        case 0:
+            return .strawberryJuice
+        case 1:
+            return .bananaJuice
+        case 2:
+            return .kiwiJuice
+        case 3:
+            return .pineappleJuice
+        case 4:
+            return .strawberryBananaJuice
+        case 5:
+            return .mangoJuice
+        case 6:
+            return .mangoKiwiJuice
+        default:
+            throw JuiceError.nonexistentJuiceMenu
+        }
     }
 }
