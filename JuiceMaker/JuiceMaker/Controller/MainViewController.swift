@@ -33,12 +33,31 @@ class MainViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         addButtonAction()
+		setUpButtonUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         replaceStockLabel()
     }
+	
+	private func setUpButtonUI() {
+		strawberryBananaJuiceButton.titleLabel?.textAlignment = .center
+		mangoKiwiJuiceButton.titleLabel?.textAlignment = .center
+		strawberryJuiceButton.titleLabel?.textAlignment = .center
+		bananaJuiceButton.titleLabel?.textAlignment = .center
+		pineappleJuiceButton.titleLabel?.textAlignment = .center
+		kiwiJuiceButton.titleLabel?.textAlignment = .center
+		mangoJuiceButton.titleLabel?.textAlignment = .center
+		
+		strawberryBananaJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
+		mangoKiwiJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
+		strawberryJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
+		bananaJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
+		pineappleJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
+		kiwiJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
+		mangoJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
+	}
 	
 	private func replaceStockLabel() {
 		guard let strawberryStock = fruitStock[.strawberry],
