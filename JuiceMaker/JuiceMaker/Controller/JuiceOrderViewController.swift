@@ -27,22 +27,22 @@ final class JuiceOrderViewController: UIViewController {
         kiwiStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .kiwi))"
         mangoStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .mango))"
     }
-    
-    private func searchJuice(by tag: Int) -> Juice? {
-        switch tag {
-        case 1:
+
+    private func searchJuice(by buttonTitle: String) -> Juice? {
+        switch buttonTitle {
+        case "딸기쥬스 주문":
             return .strawberryJuice
-        case 2:
+        case "바나나쥬스 주문":
             return .bananaJuice
-        case 3:
+        case "파인애플쥬스 주문":
             return .pineappleJuice
-        case 4:
+        case "키위쥬스 주문":
             return .kiwiJuice
-        case 5:
+        case "망고쥬스 주문":
             return .mangoJuice
-        case 6:
+        case "딸바쥬스 주문":
             return .strawberryBananaJuice
-        case 7:
+        case "망키쥬스 주문":
             return .mangoKiwiJuice
         default:
             return nil
@@ -86,7 +86,8 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction private func hitJuiceOrderButton(_ sender: UIButton) {
-        guard let choosedJuice = searchJuice(by: sender.tag) else { return }
+        guard let buttonTitle = sender.currentTitle,
+                let choosedJuice = searchJuice(by: buttonTitle) else { return }
         placeAnOrder(for: choosedJuice)
     }
     
