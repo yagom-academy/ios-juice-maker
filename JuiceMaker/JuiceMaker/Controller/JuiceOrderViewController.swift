@@ -8,26 +8,29 @@ import UIKit
 
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
+    @IBOutlet var orderJuiceButtonCollection: [UIButton]!
     private var juiceMaker: JuiceMaker = JuiceMaker()
     
-    enum AlertType {
+    private enum AlertType {
         case onlyConfirm
         case canCancel
+    }
+    
+    private enum JuiceError: Error {
+        case outOfMenu
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fillStockLabel()
+        fillJuiceButtonIdentifier()
     }
 
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
-        guard let title = sender.titleLabel?.text,
-              let juice = Juice(rawValue: title)
-        else {
-            return
-        }
-
+        guard let buttonIdentifier = sender.accessibilityIdentifier else { return }
+        
         do {
+            let juice: Juice = try matchJuiceMenu(with: buttonIdentifier)
             try juiceMaker.makeOrder(juice)
             fillStockLabel()
             showAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!", alertType: .onlyConfirm)
@@ -35,6 +38,27 @@ final class JuiceOrderViewController: UIViewController {
             showAlert(message: "재료가 모자라요. 재고를 수정할까요?", alertType: .canCancel)
         } catch {
             print("알 수 없는 오류 발생.")
+        }
+    }
+    
+    private func matchJuiceMenu(with buttonIdentifier: String) throws -> Juice {
+        switch buttonIdentifier {
+        case "strawberryJuice":
+            return .strawberryJuice
+        case "bananaJuice":
+            return .bananaJuice
+        case "pineappleJuice":
+            return .pineappleJuice
+        case "kiwiJuice":
+            return .kiwiJuice
+        case "mangoJuice":
+            return .mangoJuice
+        case "strawberryBananaJuice":
+            return .strawberryBananaJuice
+        case "mangoKiwiJuice":
+            return .mangoKiwiJuice
+        default:
+            throw JuiceError.outOfMenu
         }
     }
     
@@ -62,6 +86,12 @@ final class JuiceOrderViewController: UIViewController {
         
         for index in fruitStockLabelCollection.indices {
             fruitStockLabelCollection[index].text = currentStockList[index]
+        }
+    }
+    
+    private func fillJuiceButtonIdentifier() {
+        for index in orderJuiceButtonCollection.indices {
+            orderJuiceButtonCollection[index].accessibilityIdentifier = Juice.allCases[index].name
         }
     }
 }

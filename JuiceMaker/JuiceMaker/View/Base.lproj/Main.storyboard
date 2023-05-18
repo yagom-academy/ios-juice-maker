@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -247,6 +248,13 @@
                         <outletCollection property="fruitStockLabelCollection" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="T0M-FZ-YAb"/>
                         <outletCollection property="fruitStockLabelCollection" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="U9E-Nc-8NM"/>
                         <outletCollection property="fruitStockLabelCollection" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="teF-cv-lvX"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="DY6-PF-VdD"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="pED-3U-K4F"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="Hvv-NZ-Dsx"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="Rtx-gJ-yHL"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="YgL-lG-sFX"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="6he-FV-kiA"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="Rzj-ky-IR6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

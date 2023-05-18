@@ -5,14 +5,14 @@
 //  Created by 훈맹구 on 2023/05/08.
 //
 
-enum Juice: String {
-    case strawberryJuice = "딸기쥬스 주문"
-    case bananaJuice = "바나나쥬스 주문"
-    case pineappleJuice = "파인애플쥬스 주문"
-    case kiwiJuice = "키위쥬스 주문"
-    case mangoJuice = "망고쥬스 주문"
-    case strawberryBananaJuice = "딸바쥬스 주문"
-    case mangoKiwiJuice = "망키쥬스 주문"
+enum Juice: CaseIterable {
+    case strawberryJuice
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
     
     struct Ingredient {
         let name: Fruit
@@ -56,6 +56,25 @@ enum Juice: String {
             return "망고"
         case .mangoKiwiJuice:
             return "망키"
+        }
+    }
+    
+    var name: String {
+        switch self {
+        case .strawberryJuice:
+            return "strawberryJuice"
+        case .bananaJuice:
+            return "bananaJuice"
+        case .pineappleJuice:
+            return "pineappleJuice"
+        case .kiwiJuice:
+            return "kiwiJuice"
+        case .mangoJuice:
+            return "mangoJuice"
+        case .strawberryBananaJuice:
+            return "strawberryBananaJuice"
+        case .mangoKiwiJuice:
+            return "mangoKiwiJuice"
         }
     }
 }
