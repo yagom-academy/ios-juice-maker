@@ -18,11 +18,11 @@ class JuiceMakerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateStock()
+        composeText()
     }
     
-    @IBAction private func orderJuiceButtonTapped(_ sender: UIButton) {
-        guard let title = sender.currentTitle else { fatalError("버튼이 설정되지 않았습니다.") }
+    @IBAction private func orderJuiceButtonTap(_ sender: UIButton) {
+        guard let title = sender.currentTitle else { print("버튼이 설정되지 않았습니다."); return }
         
         switch title {
         case "딸기쥬스 주문":
@@ -44,11 +44,11 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction private func fixStockButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func changeStockButtonTap(_ sender: UIBarButtonItem) {
         pushChangeStockViewController()
     }
     
-    private func updateStock() {
+    private func composeText() {
         strawberryStockLabel.text = String(juiceMaker.fruitStore.bringStock(.strawberry))
         bananaStockLabel.text = String(juiceMaker.fruitStore.bringStock(.banana))
         pineappleStockLabel.text = String(juiceMaker.fruitStore.bringStock(.pineapple))
@@ -60,7 +60,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             try juiceMaker.makeJuice(juice)
             popUpSuccessMessage(juice)
-            updateStock()
+            composeText()
         } catch JuiceMakerError.outOfStock {
             popUpFailMessage()
         } catch {
@@ -69,7 +69,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func pushChangeStockViewController() {
-        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewControllerID") else { fatalError("해당 뷰컨트롤러ID를 가진 뷰컨트롤러가 스토리보드에 없습니다.") }
+        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewControllerID") else { print("해당 뷰컨트롤러ID를 가진 뷰컨트롤러가 스토리보드에 없습니다."); return }
         self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     

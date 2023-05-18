@@ -11,7 +11,7 @@ class FruitStore {
     private var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
     
     func bringStock(_ fruit: Fruit) -> Int {
-        guard let stock = fruitsStock[fruit] else { fatalError("과일이 없습니다.") }
+        guard let stock = fruitsStock[fruit] else { return 0 }
         
         return stock
     }
