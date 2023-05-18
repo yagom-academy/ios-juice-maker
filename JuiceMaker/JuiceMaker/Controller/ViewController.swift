@@ -9,45 +9,33 @@ import UIKit
 class ViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     @IBOutlet var fruitStockLabels: [UILabel]!
+    @IBOutlet var orderButtons: [UIButton]!
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateFruitStockLabel()
+        
     }
     
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
-        switch sender.tag {
-        case 0:
-            order(juice: .strawberryJuice)
-        case 1:
-            order(juice: .bananaJuice)
-        case 2:
-            order(juice: .kiwiJuice)
-        case 3:
-            order(juice: .pineappleJuice)
-        case 4:
-            order(juice: .strawberryBananaJuice)
-        case 5:
-            order(juice: .mangoJuice)
-        case 6:
-            order(juice: .mangoKiwiJuice)
-        default:
-            print("unknown")
+        if let buttonIndex = orderButtons.firstIndex(of: sender){
+            order(juice: Juice.allCases[buttonIndex])
         }
+        
         updateFruitStockLabel()
     }
     
     func updateFruitStockLabel() {
-        for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
-            fruitStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[index])
+        for fruitStockLabel in fruitStockLabels {
+            fruitStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[fruitStockLabel.tag])
         }
     }
     
     func order(juice: Juice) {
         do {
             try juiceMaker.blendFruitJuice(menu: juice)
-            showSuccessAlert(message: "\(juice.description)나왔습니다. 맛있게 드세요!")
+            showSuccessAlert(message: "\(juice)나왔습니다. 맛있게 드세요!")
         } catch JuiceMakerError.outOfFruitStock {
             showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
         } catch {

@@ -18,20 +18,16 @@ struct JuiceMaker {
     }
     
     private func requestFruitStock(menu fruitJuice: Juice) throws {
-        var isEnoughStock: Bool = true
-        
-        fruitJuice.recipe.forEach {
-            isEnoughStock = fruitStore.hasEnoughStock(fruit: $0.key, amount: $0.value) && isEnoughStock
-        }
-        
-        if isEnoughStock == false {
-            throw JuiceMakerError.outOfFruitStock
+        for ingredient in fruitJuice.recipe {
+            guard fruitStore.hasEnoughStock(fruit: ingredient.fruit, amount: ingredient.amount) else {
+                throw JuiceMakerError.outOfFruitStock
+            }
         }
     }
     
     private func receiveFruitStock(menu fruitJuice: Juice) {
         fruitJuice.recipe.forEach {
-            fruitStore.reduceStock(fruit: $0.key, amount: $0.value)
+            fruitStore.reduceStock(fruit: $0.fruit, amount: $0.amount)
         }
     }
 }
