@@ -48,22 +48,11 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func setFruitStockLabel() {
-        do {
-            strawberryStockLabel.text = try String(juiceMaker.fruitStore.receiveStock(of: .strawberry))
-            bananaStockLabel.text = try String(juiceMaker.fruitStore.receiveStock(of: .banana))
-            pineappleStockLabel.text = try String(juiceMaker.fruitStore.receiveStock(of: .pineapple))
-            kiwiStockLabel.text = try String(juiceMaker.fruitStore.receiveStock(of: .kiwi))
-            mangoStockLabel.text = try String(juiceMaker.fruitStore.receiveStock(of: .mango))
-        } catch {
-            switch error {
-            case JuiceError.nonexistentFruit:
-                print("FruitStore에 해당 Fruit이 없습니다.")
-                showNonexistentFruitAlert()
-            default:
-                print("알 수 없는 에러")
-                showUnknownErrorAlert()
-            }
-        }
+        strawberryStockLabel.text = String(juiceMaker.fruitStore.fruits[.strawberry] ?? 0)
+        bananaStockLabel.text = String(juiceMaker.fruitStore.fruits[.banana] ?? 0)
+        pineappleStockLabel.text = String(juiceMaker.fruitStore.fruits[.pineapple] ?? 0)
+        kiwiStockLabel.text = String(juiceMaker.fruitStore.fruits[.kiwi] ?? 0)
+        mangoStockLabel.text = String(juiceMaker.fruitStore.fruits[.mango] ?? 0)
     }
     
     private func showJuiceReadyAlert(_ menu: JuiceMenu) {
