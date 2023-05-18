@@ -4,13 +4,11 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import UIKit
-
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore.shard
+    let fruitStore: FruitStore = FruitStore()
     private var recipe: [Fruit: Int] = [:]
     
-    mutating func order(_ juice: Juice) -> Bool {
+    mutating func make(_ juice: Juice) -> Bool {
         self.recipe = juice.recipe
         
         do {
@@ -25,9 +23,4 @@ struct JuiceMaker {
             return false
         }
     }
-    
-    
-    
-    
-    
 }

@@ -6,7 +6,7 @@
 
 class FruitStore {
     static var shard = FruitStore()
-    private init() {}
+//    private init() {}
     private var stock: [Fruit: Int] = [
         .strawBerry: 25,
         .banana: 11,
@@ -15,7 +15,7 @@ class FruitStore {
         .mango: 14
     ]
     
-    func receiveFruitStock() -> [Fruit: Int] {
+    func updateFruitStock() -> [Fruit: Int] {
         return self.stock
     }
     
