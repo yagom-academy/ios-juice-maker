@@ -10,6 +10,11 @@ final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
     private var juiceMaker: JuiceMaker = JuiceMaker()
     
+    enum AlertType {
+        case onlyConfirm
+        case canCancel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeStockLabel()
@@ -25,28 +30,29 @@ final class JuiceOrderViewController: UIViewController {
         do {
             try juiceMaker.makeOrder(juice)
             changeStockLabel()
-            showSuccessAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!")
+            showAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!", alertType: .onlyConfirm)
         } catch FruitStoreError.outOfStock {
-            showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            showAlert(message: "재료가 모자라요. 재고를 수정할까요?", alertType: .canCancel)
         } catch {
             print("알 수 없는 오류 발생.")
         }
     }
     
-    private func showSuccessAlert(message: String) {
+    private func showAlert(message: String, alertType: AlertType) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(confirmAction)
-        present(alert, animated: true)
-    }
-    
-    private func showFailureAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "예", style: .default) { _ in
-            self.performSegue(withIdentifier: "goToStockViewController", sender: nil)
+        var confirmAction: UIAlertAction = UIAlertAction(title: "확인", style: .default)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "아니오", style: .destructive)
+                
+        switch alertType {
+        case .onlyConfirm:
+            break
+        case .canCancel:
+            confirmAction = UIAlertAction(title: "예", style: .default) { _ in
+                self.performSegue(withIdentifier: "goToStockViewController", sender: nil)
+            }
+            alert.addAction(cancelAction)
         }
-        let cancelAction = UIAlertAction(title: "아니오", style: .destructive)
-        alert.addAction(cancelAction)
+        
         alert.addAction(confirmAction)
         present(alert, animated: true)
     }
