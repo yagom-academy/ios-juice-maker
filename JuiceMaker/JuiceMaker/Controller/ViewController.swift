@@ -8,32 +8,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var strawberryJuiceButton: UIButton!
-    @IBOutlet var bananaJuiceButton: UIButton!
-    @IBOutlet var pineappleJuiceButton: UIButton!
-    @IBOutlet var kiwiJuiceButton: UIButton!
-    @IBOutlet var mangoJuiceButton: UIButton!
-    @IBOutlet var strawberryBananaJuiceButton: UIButton!
-    @IBOutlet var mangoKiwiJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceButton: UIButton!
+    @IBOutlet private weak var bananaJuiceButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceButton: UIButton!
+    @IBOutlet private weak var mangoJuiceButton: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     
-    @IBOutlet var stockChangeButton: UIBarButtonItem!
+    @IBOutlet private weak var stockChangeButton: UIBarButtonItem!
     
-    @IBOutlet var strawberryStock: UILabel!
-    @IBOutlet var bananaStock: UILabel!
-    @IBOutlet var pineappleStock: UILabel!
-    @IBOutlet var kiwiStock: UILabel!
-    @IBOutlet var mangoStock: UILabel!
+    @IBOutlet private weak var strawberryStock: UILabel!
+    @IBOutlet private weak var bananaStock: UILabel!
+    @IBOutlet private weak var pineappleStock: UILabel!
+    @IBOutlet private weak var kiwiStock: UILabel!
+    @IBOutlet private weak var mangoStock: UILabel!
     
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        strawberryStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .strawberry))
-        bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
-        pineappleStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .pineapple))
-        kiwiStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .kiwi))
-        mangoStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .mango))
     }
 
     @IBAction func didTabStockChangeButton(_ sender: UIBarButtonItem) {
@@ -46,40 +41,31 @@ class ViewController: UIViewController {
     @IBAction func didTabStrawberryJuiceButton(_ sender: UIButton) {
         let juice: Juice = .strawberryJuice
         showAlert(of: juice)
-        strawberryStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .strawberry))
     }
     @IBAction func didTabBananaJuiceButton(_ sender: UIButton) {
         let juice: Juice = .bananaJuice
         showAlert(of: juice)
-        bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
     }
     
     @IBAction func didTabPineappleJuiceButton(_ sender: UIButton) {
         let juice: Juice = .pineappleJuice
         showAlert(of: juice)
-        pineappleStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .pineapple))
     }
     @IBAction func didTabKiwiJuiceButton(_ sender: UIButton) {
         let juice: Juice = .kiwiJuice
         showAlert(of: juice)
-        kiwiStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .kiwi))
     }
     @IBAction func didTabMangoJuiceButton(_ sender: UIButton) {
         let juice: Juice = .mangoJuice
         showAlert(of: juice)
-        mangoStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .mango))
     }
     @IBAction func didTabStrawberryBananaJuiceButton(_ sender: UIButton) {
         let juice: Juice = .strawberryBananaJuice
         showAlert(of: juice)
-        strawberryStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .strawberry))
-        bananaStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .banana))
     }
     @IBAction func didTabMangoKiwiJuiceButton(_ sender: UIButton) {
         let juice: Juice = .mangoKiwiJuice
         showAlert(of: juice)
-        mangoStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .mango))
-        kiwiStock.text = String(juiceMaker.fruitStore.readCurrentStock(for: .kiwi))
     }
     
     func showAlert(of juice: Juice) {
