@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceOrderViewController: UIViewController {
+final class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
@@ -52,10 +52,10 @@ class JuiceOrderViewController: UIViewController {
     private func placeAnOrder(for juice: Juice) {
         if let juice = juiceMaker.takeOrder(juice) {
             presentSuccessAlert(juice: juice)
+            updateStockLabel()
         } else {
             presentFailureAlert()
         }
-        updateStockLabel()
     }
     
     private func presentSuccessAlert(juice: Juice) {
@@ -80,9 +80,9 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func pushChangeStockViewController() {
-        guard let view = self.storyboard?
-            .instantiateViewController(withIdentifier: "ChangeStockViewController") else { return }
-        self.navigationController?.pushViewController(view, animated: true)
+        guard let view = storyboard?
+            .instantiateViewController(identifier: "ChangeStockViewController") else { return }
+        navigationController?.pushViewController(view, animated: true)
     }
     
     @IBAction private func hitJuiceOrderButton(_ sender: UIButton) {
