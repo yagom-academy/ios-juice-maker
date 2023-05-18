@@ -17,7 +17,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.juiceMaker.setDelegate(by: self)
         configureLabel()
     }
     
@@ -50,12 +49,13 @@ class MainViewController: UIViewController {
         
         let inputString = label
         let targetWord = "주문"
-
+        
         var words = inputString.components(separatedBy: " ")
         words.removeAll { $0 == targetWord }
         let outputString = words.joined(separator: " ")
         
         guard let juice = Juice(rawValue: outputString) else { fatalError("쥬스를 찾을 수 없습니다.")}
+        
         return juice
     }
     
@@ -69,7 +69,9 @@ class MainViewController: UIViewController {
         alert.addAction(UIAlertAction(
             title: "잘먹겠습니다❤️",
             style: .default,
-            handler: nil
+            handler: { _ in
+                self.configureLabel()
+            }
         ))
         
         self.present(alert, animated: true, completion: nil)
@@ -92,16 +94,10 @@ class MainViewController: UIViewController {
             title: "예",
             style: .default,
             handler: { _ in
-            let stockViewController = StockViewController.instantiate()
-            self.navigationController?.present(stockViewController, animated: true)
-        }))
+                let stockViewController = StockViewController.instantiate()
+                self.navigationController?.present(stockViewController, animated: true)
+            }))
         
         self.present(alert, animated: true, completion: nil)
-    }
-}
-
-extension MainViewController: FruitStoreDelegate {
-    func onChangeStock() {
-        self.configureLabel()
     }
 }
