@@ -97,12 +97,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func mangoJuiceButton(_ sender: UIButton) {
-            if juiceMaker.order(.mangoJuice) == true {
-                showFruitStockOnLabel()
-                enoughFruitStock(sender)
-            } else {
-                notEnoughFruitStock()
-            }
+        if juiceMaker.order(.mangoJuice) == true {
+            showFruitStockOnLabel()
+            enoughFruitStock(sender)
+        } else {
+            notEnoughFruitStock()
+        }
     }
     
     private func enoughFruitStock(_ sender: UIButton) {

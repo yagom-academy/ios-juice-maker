@@ -6,7 +6,7 @@
 
 class FruitStore {
     static var shard = FruitStore()
-        private init() {}
+    private init() {}
     private var stock: [Fruit: Int] = [
         .strawBerry: 25,
         .banana: 11,
