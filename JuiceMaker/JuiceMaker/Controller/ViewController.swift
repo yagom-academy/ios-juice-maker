@@ -18,19 +18,38 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var stockChangeButton: UIBarButtonItem!
     
-    @IBOutlet private weak var strawberryStock: UILabel!
-    @IBOutlet private weak var bananaStock: UILabel!
-    @IBOutlet private weak var pineappleStock: UILabel!
-    @IBOutlet private weak var kiwiStock: UILabel!
-    @IBOutlet private weak var mangoStock: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        configureStockLabel()
     }
-
+    
+    func configureStockLabel() {
+        let fruitInventory = juiceMaker.readFruitInventory()
+        
+        guard let strawberryStock = fruitInventory[.strawberry],
+              let bananaStock = fruitInventory[.banana],
+              let pineappleStock = fruitInventory[.pineapple],
+              let mangoStock = fruitInventory[.mango],
+              let kiwiStock = fruitInventory[.kiwi]
+        else {
+            return
+        }
+        strawberryStockLabel.text = String(strawberryStock)
+        bananaStockLabel.text = String(bananaStock)
+        pineappleStockLabel.text = String(pineappleStock)
+        mangoStockLabel.text = String(mangoStock)
+        kiwiStockLabel.text = String(kiwiStock)
+    }
+    
     @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
         if let pushStockChangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChange") {
             self.navigationController?.pushViewController(pushStockChangeViewController,
@@ -45,27 +64,33 @@ class ViewController: UIViewController {
     @IBAction func didTapBananaJuiceButton(_ sender: UIButton) {
         let juice: Juice = .bananaJuice
         showAlert(of: juice)
+        configureStockLabel()
     }
     
     @IBAction func didTapPineappleJuiceButton(_ sender: UIButton) {
         let juice: Juice = .pineappleJuice
         showAlert(of: juice)
+        configureStockLabel()
     }
     @IBAction func didTapKiwiJuiceButton(_ sender: UIButton) {
         let juice: Juice = .kiwiJuice
         showAlert(of: juice)
+        configureStockLabel()
     }
     @IBAction func didTapMangoJuiceButton(_ sender: UIButton) {
         let juice: Juice = .mangoJuice
         showAlert(of: juice)
+        configureStockLabel()
     }
     @IBAction func didTapStrawberryBananaJuiceButton(_ sender: UIButton) {
         let juice: Juice = .strawberryBananaJuice
         showAlert(of: juice)
+        configureStockLabel()
     }
     @IBAction func didTapMangoKiwiJuiceButton(_ sender: UIButton) {
         let juice: Juice = .mangoKiwiJuice
         showAlert(of: juice)
+        configureStockLabel()
     }
     
     func showAlert(of juice: Juice) {
