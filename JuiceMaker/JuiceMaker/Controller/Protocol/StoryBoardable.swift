@@ -1,5 +1,5 @@
 //
-//  StoryBoardable+.swift
+//  StoryBoardable.swift
 //  JuiceMaker
 //
 //  Created by Minsup, Serena on 2023/05/17.

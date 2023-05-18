@@ -17,10 +17,16 @@ class StockViewController: UIViewController, Storyboardable {
     }
     
     private func configureTitle() {
-        self.viewControllerTitle.text = "재고추가"
+        self.viewControllerTitle.text = Namespace.title
     }
     
     @IBAction private func onTouchCloseButton() {
         self.dismiss(animated: true)
+    }
+}
+
+extension StockViewController {
+    enum Namespace {
+        static let title = "재고추가"
     }
 }

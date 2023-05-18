@@ -28,12 +28,12 @@ class MainViewController: UIViewController {
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
     }
     
-    @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
+    @IBAction func tapStockButton(_ sender: UIBarButtonItem) {
         let stockViewController = StockViewController.instantiate()
         self.navigationController?.present(stockViewController, animated: true)
     }
     
-    @IBAction func onTouchOrderButton(_ sender: UIButton) {
+    @IBAction func tapOrderButton(_ sender: UIButton) {
         do {
             let juice = self.convertButtonLabelToJuice(label: sender.titleLabel?.text)
             try self.juiceMaker.makeJuice(juice: juice)
@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
         guard let label = label else { fatalError("버튼을 찾을 수 없습니다.") }
         
         let inputString = label
-        let targetWord = "주문"
+        let targetWord = Namespace.order
         
         var words = inputString.components(separatedBy: " ")
         words.removeAll { $0 == targetWord }
@@ -61,13 +61,13 @@ class MainViewController: UIViewController {
     
     private func showSuccessAlert(juice: Juice) {
         let alert = UIAlertController(
-            title: "주문",
-            message: "\(juice.name) 나왔습니다! 맛있게 드세요!",
+            title: Namespace.order,
+            message: "\(juice.name) " + Namespace.orderMessage,
             preferredStyle: .alert
         )
         
         alert.addAction(UIAlertAction(
-            title: "잘먹겠습니다❤️",
+            title: Namespace.thankYou,
             style: .default,
             handler: { _ in
                 self.configureLabel()
@@ -85,13 +85,13 @@ class MainViewController: UIViewController {
         )
         
         alert.addAction(UIAlertAction(
-            title: "아니오",
+            title: Namespace.no,
             style: .default,
             handler: nil
         ))
         
         alert.addAction(UIAlertAction(
-            title: "예",
+            title: Namespace.yes,
             style: .default,
             handler: { _ in
                 let stockViewController = StockViewController.instantiate()
@@ -99,5 +99,15 @@ class MainViewController: UIViewController {
             }))
         
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController {
+    enum Namespace {
+        static let yes = "예"
+        static let no = "아니오"
+        static let order = "주문"
+        static let orderMessage = "나왔습니다! 맛있게 드세요!"
+        static let thankYou = "잘먹겠습니다❤️"
     }
 }
