@@ -31,39 +31,39 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func didTabStockChangeButton(_ sender: UIBarButtonItem) {
+    @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
         if let pushStockChangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "stockChange") {
             self.navigationController?.pushViewController(pushStockChangeViewController,
                                                           animated: true)
         }
     }
     
-    @IBAction func didTabStrawberryJuiceButton(_ sender: UIButton) {
+    @IBAction func didTapStrawberryJuiceButton(_ sender: UIButton) {
         let juice: Juice = .strawberryJuice
         showAlert(of: juice)
     }
-    @IBAction func didTabBananaJuiceButton(_ sender: UIButton) {
+    @IBAction func didTapBananaJuiceButton(_ sender: UIButton) {
         let juice: Juice = .bananaJuice
         showAlert(of: juice)
     }
     
-    @IBAction func didTabPineappleJuiceButton(_ sender: UIButton) {
+    @IBAction func didTapPineappleJuiceButton(_ sender: UIButton) {
         let juice: Juice = .pineappleJuice
         showAlert(of: juice)
     }
-    @IBAction func didTabKiwiJuiceButton(_ sender: UIButton) {
+    @IBAction func didTapKiwiJuiceButton(_ sender: UIButton) {
         let juice: Juice = .kiwiJuice
         showAlert(of: juice)
     }
-    @IBAction func didTabMangoJuiceButton(_ sender: UIButton) {
+    @IBAction func didTapMangoJuiceButton(_ sender: UIButton) {
         let juice: Juice = .mangoJuice
         showAlert(of: juice)
     }
-    @IBAction func didTabStrawberryBananaJuiceButton(_ sender: UIButton) {
+    @IBAction func didTapStrawberryBananaJuiceButton(_ sender: UIButton) {
         let juice: Juice = .strawberryBananaJuice
         showAlert(of: juice)
     }
-    @IBAction func didTabMangoKiwiJuiceButton(_ sender: UIButton) {
+    @IBAction func didTapMangoKiwiJuiceButton(_ sender: UIButton) {
         let juice: Juice = .mangoKiwiJuice
         showAlert(of: juice)
     }
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
                                       preferredStyle: UIAlertController.Style.alert)
         let stockChangeAction = UIAlertAction(title: "예",
                                               style: UIAlertAction.Style.destructive)
-        { stockChangeAction in self.didTabStockChangeButton(self.stockChangeButton) }
+        { stockChangeAction in self.didTapStockChangeButton(self.stockChangeButton) }
         let closeAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.cancel)
         juiceFailureAlert.addAction(stockChangeAction)
         juiceFailureAlert.addAction(closeAction)
