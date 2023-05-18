@@ -9,13 +9,7 @@ import Foundation
 typealias Recipe = [Ingredient]
 typealias Ingredient = (fruit: Fruit, amount: Int)
 
-protocol FruitStoreDelegate: NSObject {
-    func onChangeStock()
-}
-
 class FruitStore {
-    weak var delegate: FruitStoreDelegate?
-    
     private var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit: Int] = [
@@ -31,7 +25,6 @@ class FruitStore {
     func useValidStock(juiceRecipe: Recipe) throws {
         try juiceRecipe.forEach { try validateStock(ingredient: $0) }
         juiceRecipe.forEach { spendStock(of: $0.fruit, by: $0.amount)}
-        delegate?.onChangeStock()
     }
     
     private func validateStock(ingredient: Ingredient) throws {
@@ -52,6 +45,7 @@ class FruitStore {
     
     func getStock(fruit: Fruit) -> Int {
         guard let stock = self.fruitStock[fruit] else { return 0 }
+        
         return stock
     }
 }
