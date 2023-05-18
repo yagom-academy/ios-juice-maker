@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore = FruitStore(fruitInventory: [
+    private let fruitStore = FruitStore(fruitInventory: [
         .strawberry: 10,
         .banana: 10,
         .pineapple: 10,
@@ -13,20 +13,20 @@ struct JuiceMaker {
         .mango: 10
     ])
     
+    func readFruitInventory() -> [Fruit: Int] {
+        return fruitStore.readFruitInventory()
+    }
+    
     func takeOrder(_ juice: Juice) -> Bool {
         do {
             try makeJuice(juice)
             return true
-//            print("\(juice.name) 나왔습니다! 맛있게 드세요!")
         } catch FruitStoreError.invalidFruit {
             return false
-//            print("올바르지 않은 과일 이름입니다.")
         } catch FruitStoreError.insufficientFruit {
             return false
-//            print("재료가 모자라요. 재고를 수정할까요?")
         } catch {
             return false
-//            print("알 수 없는 에러입니다.")
         }
     }
     
