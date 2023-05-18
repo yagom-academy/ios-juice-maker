@@ -28,22 +28,35 @@ final class JuiceMakerViewController: UIViewController {
             
             try juiceMaker.make(juice: menu)
             setFruitStockLabel()
-            showJuiceReadyAlert(menu)
+
+            let message = "\(menu.name) 나왔습니다! 맛있게 드세요!"
+            let actions = [UIAlertAction(title: "Yes!", style: .default)]
+            
+            showAlert(title: "제조 완료", message: message, actions: actions)
         } catch {
+            var title: String? = nil
+            var message = "쥬스를 만들 수 없습니다."
+            var actions = [UIAlertAction(title: "Yes!", style: .default)]
+            
             switch error {
             case JuiceError.nonexistentFruit:
                 print("FruitStore에 해당 Fruit이 없습니다.")
-                showNonexistentFruitAlert()
             case JuiceError.shortageFruitStock:
                 print("Fruit의 수량이 부족합니다.")
-                showShortageFruitStockAlert()
+                
+                title = "재고 부족"
+                message = "재료가 모자라요. 재고를 수정할까요?"
+                actions = [
+                    UIAlertAction(title: "예", style: .destructive, handler: { _ in self.showFruitStoreViewController() }),
+                    UIAlertAction(title: "아니오", style: .cancel)
+                ]
             case JuiceError.nonexistentJuiceMenu:
                 print("JuiceMenu에 해당 메뉴가 없습니다.")
-                showNonexistentJuiceMenuAlert()
             default:
                 print("알 수 없는 에러")
-                showUnknownErrorAlert()
             }
+            
+            showAlert(title: title, message: message, actions: actions)
         }
     }
     
@@ -55,43 +68,14 @@ final class JuiceMakerViewController: UIViewController {
         mangoStockLabel.text = String(juiceMaker.fruitStore.fruits[.mango] ?? 0)
     }
     
-    private func showJuiceReadyAlert(_ menu: JuiceMenu) {
-        let juiceAlert = UIAlertController(title: "제조 완료", message: "\(menu.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+    private func showAlert(title: String?, message: String?, actions: [UIAlertAction]?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        juiceAlert.addAction(UIAlertAction(title: "Yes!", style: .default, handler: { _ in print("yes 클릭") }))
-
-        present(juiceAlert, animated: true)
-    }
-    
-    private func showShortageFruitStockAlert() {
-        let stockAlert = UIAlertController(title: "재고 부족", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        
-        stockAlert.addAction(UIAlertAction(title: "예", style: .destructive, handler: { _ in self.showFruitStoreViewController() }))
-        stockAlert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: { _ in print("no 클릭") }))
-        
-        present(stockAlert, animated: true)
-    }
-    
-    private func showNonexistentFruitAlert() {
-        let alert = UIAlertController(title: nil, message: "해당하는 과일 종류가 없습니다.", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
-        
-        present(alert, animated: true)
-    }
-    
-    private func showNonexistentJuiceMenuAlert() {
-        let alert = UIAlertController(title: nil, message: "해당하는 쥬스 메뉴가 없습니다.", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
-        
-        present(alert, animated: true)
-    }
-    
-    private func showUnknownErrorAlert() {
-        let alert = UIAlertController(title: nil, message: "알 수 없는 에러 발생", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        if let actions, !actions.isEmpty {
+            actions.forEach {
+                alert.addAction($0)
+            }
+        }
         
         present(alert, animated: true)
     }
