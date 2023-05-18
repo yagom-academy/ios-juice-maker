@@ -58,23 +58,4 @@ enum Juice: CaseIterable {
             return "망키"
         }
     }
-    
-    var name: String {
-        switch self {
-        case .strawberryJuice:
-            return "strawberryJuice"
-        case .bananaJuice:
-            return "bananaJuice"
-        case .pineappleJuice:
-            return "pineappleJuice"
-        case .kiwiJuice:
-            return "kiwiJuice"
-        case .mangoJuice:
-            return "mangoJuice"
-        case .strawberryBananaJuice:
-            return "strawberryBananaJuice"
-        case .mangoKiwiJuice:
-            return "mangoKiwiJuice"
-        }
-    }
 }

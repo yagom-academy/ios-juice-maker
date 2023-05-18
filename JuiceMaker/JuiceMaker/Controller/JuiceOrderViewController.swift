@@ -6,31 +6,30 @@
 
 import UIKit
 
+final class CustomButton: UIButton {
+    var customIdentifier: Juice?
+}
+
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
-    @IBOutlet var orderJuiceButtonCollection: [UIButton]!
+    @IBOutlet var orderJuiceButtonCollection: [CustomButton]!
     private var juiceMaker: JuiceMaker = JuiceMaker()
     
     private enum AlertType {
         case onlyConfirm
         case canCancel
     }
-    
-    private enum JuiceError: Error {
-        case outOfMenu
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fillStockLabel()
-        fillJuiceButtonIdentifier()
+        fillJuiceButtonCustomIdentifier()
     }
 
-    @IBAction func touchUpOrderButton(_ sender: UIButton) {
-        guard let buttonIdentifier = sender.accessibilityIdentifier else { return }
+    @IBAction func touchUpOrderButton(_ sender: CustomButton) {
+        guard let juice = sender.customIdentifier else { return }
         
         do {
-            let juice: Juice = try matchJuiceMenu(with: buttonIdentifier)
             try juiceMaker.makeOrder(juice)
             fillStockLabel()
             showAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!", alertType: .onlyConfirm)
@@ -38,27 +37,6 @@ final class JuiceOrderViewController: UIViewController {
             showAlert(message: "재료가 모자라요. 재고를 수정할까요?", alertType: .canCancel)
         } catch {
             print("알 수 없는 오류 발생.")
-        }
-    }
-    
-    private func matchJuiceMenu(with buttonIdentifier: String) throws -> Juice {
-        switch buttonIdentifier {
-        case "strawberryJuice":
-            return .strawberryJuice
-        case "bananaJuice":
-            return .bananaJuice
-        case "pineappleJuice":
-            return .pineappleJuice
-        case "kiwiJuice":
-            return .kiwiJuice
-        case "mangoJuice":
-            return .mangoJuice
-        case "strawberryBananaJuice":
-            return .strawberryBananaJuice
-        case "mangoKiwiJuice":
-            return .mangoKiwiJuice
-        default:
-            throw JuiceError.outOfMenu
         }
     }
     
@@ -89,9 +67,9 @@ final class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func fillJuiceButtonIdentifier() {
+    private func fillJuiceButtonCustomIdentifier() {
         for index in orderJuiceButtonCollection.indices {
-            orderJuiceButtonCollection[index].accessibilityIdentifier = Juice.allCases[index].name
+            orderJuiceButtonCollection[index].customIdentifier = Juice.allCases[index]
         }
     }
 }

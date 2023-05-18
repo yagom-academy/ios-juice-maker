@@ -119,7 +119,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zzl-05-bVq">
                                         <rect key="frame" x="0.0" y="0.0" width="718" height="66"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-2F-fzl">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-2F-fzl" customClass="CustomButton" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="277.66666666666669" height="66"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -134,7 +134,7 @@
                                                 <rect key="frame" x="293.66666666666669" y="0.0" width="130.66666666666669" height="66"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-kF-Yii" customClass="CustomButton" customModule="JuiceMaker" customModuleProvider="target">
                                                 <rect key="frame" x="440.33333333333326" y="0.0" width="277.66666666666674" height="66"/>
                                                 <color key="backgroundColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -153,7 +153,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-e6-NWs">
                                                 <rect key="frame" x="0.0" y="0.0" width="718" height="66.333333333333329"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avd-o5-3JM" customClass="CustomButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="130.66666666666666" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -164,7 +164,7 @@
                                                             <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h5F-Yz-XhM"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY" customClass="CustomButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="146.66666666666666" y="0.0" width="130.99999999999997" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -175,7 +175,7 @@
                                                             <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hga-28-MZe"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA" customClass="CustomButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="293.66666666666669" y="0.0" width="130.66666666666669" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -186,7 +186,7 @@
                                                             <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pbg-zN-QPw"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw" customClass="CustomButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="440.33333333333331" y="0.0" width="130.99999999999994" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -197,7 +197,7 @@
                                                             <action selector="touchUpOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ol-lh-md9"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm" customClass="CustomButton" customModule="JuiceMaker" customModuleProvider="target">
                                                         <rect key="frame" x="587.33333333333337" y="0.0" width="130.66666666666663" height="66.333333333333329"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -248,13 +248,13 @@
                         <outletCollection property="fruitStockLabelCollection" destination="ccQ-Dk-PuY" collectionClass="NSMutableArray" id="T0M-FZ-YAb"/>
                         <outletCollection property="fruitStockLabelCollection" destination="FZq-de-TJG" collectionClass="NSMutableArray" id="U9E-Nc-8NM"/>
                         <outletCollection property="fruitStockLabelCollection" destination="3Ce-SU-JeH" collectionClass="NSMutableArray" id="teF-cv-lvX"/>
-                        <outletCollection property="orderJuiceButtonCollection" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="DY6-PF-VdD"/>
-                        <outletCollection property="orderJuiceButtonCollection" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="pED-3U-K4F"/>
-                        <outletCollection property="orderJuiceButtonCollection" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="Hvv-NZ-Dsx"/>
-                        <outletCollection property="orderJuiceButtonCollection" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="Rtx-gJ-yHL"/>
-                        <outletCollection property="orderJuiceButtonCollection" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="YgL-lG-sFX"/>
-                        <outletCollection property="orderJuiceButtonCollection" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="6he-FV-kiA"/>
-                        <outletCollection property="orderJuiceButtonCollection" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="Rzj-ky-IR6"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="avd-o5-3JM" collectionClass="NSMutableArray" id="j01-0U-IWG"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="y2A-PH-DJY" collectionClass="NSMutableArray" id="Io3-i5-IXr"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="BFb-ka-wGA" collectionClass="NSMutableArray" id="hC7-18-6Qb"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="wcW-7H-RXw" collectionClass="NSMutableArray" id="Xa0-81-0JQ"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="q6G-4X-bVm" collectionClass="NSMutableArray" id="skg-Ne-0m3"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="hrc-2F-fzl" collectionClass="NSMutableArray" id="ITr-D9-rcd"/>
+                        <outletCollection property="orderJuiceButtonCollection" destination="ngP-kF-Yii" collectionClass="NSMutableArray" id="zkh-gF-QwL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
