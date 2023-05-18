@@ -50,9 +50,9 @@ class MainViewController: UIViewController {
         let inputString = label
         let targetWord = Namespace.order
         
-        var words = inputString.components(separatedBy: " ")
-        words.removeAll { $0 == targetWord }
-        let outputString = words.joined(separator: " ")
+        let outputString = inputString
+            .replacingOccurrences(of: targetWord, with: "")
+            .trimmingCharacters(in: .whitespaces)
         
         guard let juice = Juice(rawValue: outputString) else { fatalError("쥬스를 찾을 수 없습니다.")}
         
