@@ -15,7 +15,7 @@ struct JuiceMaker {
         juice.recipe.forEach { fruitStore.decreaseStock(witch: $0.name, by: $0.quantity) }
     }
     
-    func showRemainStock(of fruit: Fruit) -> String {
-        return fruitStore.getRemainStock(of: fruit)
+    func showRemainStock() -> [String] {
+        return fruitStore.getRemainStock()
     }
 }

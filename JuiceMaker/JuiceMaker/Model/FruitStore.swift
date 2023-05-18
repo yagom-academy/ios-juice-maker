@@ -23,7 +23,14 @@ struct FruitStore {
         }
     }
     
-    func getRemainStock(of fruit: Fruit) -> String {
-        return String(stockList[fruit] ?? 0)
+    func getRemainStock() -> [String] {
+        var fruitStockList: [String] = []
+        
+        for fruit in Fruit.allCases {
+            let currentStock: Int = stockList[fruit] ?? 0
+            fruitStockList.append(String(currentStock))
+        }
+        
+        return fruitStockList
     }
 }

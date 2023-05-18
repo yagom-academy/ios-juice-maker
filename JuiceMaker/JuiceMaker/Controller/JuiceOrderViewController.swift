@@ -17,7 +17,7 @@ final class JuiceOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeStockLabel()
+        fillStockLabel()
     }
 
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
@@ -29,7 +29,7 @@ final class JuiceOrderViewController: UIViewController {
 
         do {
             try juiceMaker.makeOrder(juice)
-            changeStockLabel()
+            fillStockLabel()
             showAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!", alertType: .onlyConfirm)
         } catch FruitStoreError.outOfStock {
             showAlert(message: "재료가 모자라요. 재고를 수정할까요?", alertType: .canCancel)
@@ -57,9 +57,11 @@ final class JuiceOrderViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    private func changeStockLabel() {
-        for (fruitStockLabel, fruit) in zip(fruitStockLabelCollection, Fruit.allCases) {
-            fruitStockLabel.text = juiceMaker.showRemainStock(of: fruit)
+    private func fillStockLabel() {
+        let currentStockList: [String] = juiceMaker.showRemainStock()
+        
+        for index in fruitStockLabelCollection.indices {
+            fruitStockLabelCollection[index].text = currentStockList[index]
         }
     }
 }
