@@ -4,9 +4,9 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+final class FruitStore {
     static let shared = FruitStore()
-    private init() {}
+    
     private var stock: [Fruit: Int] = [
         .strawBerry: 25,
         .banana: 11,
@@ -15,15 +15,15 @@ class FruitStore {
         .mango: 14
     ]
     
-    func updateFruitStock() -> [Fruit: Int] {
+    var currentFruitStock: [Fruit: Int] {
         return self.stock
     }
     
-    func changeStock(with fruits: [Fruit: Int]) {
-        for (fruit, quantity) in fruits {
-            if let stock = self.stock[fruit] {
-                self.stock[fruit] = stock - quantity
-            }
+    private init() {}
+    
+    func changeStock(with fruits: Fruit, _ quantity: Int) {
+        if let stock = self.stock[fruits] {
+            self.stock[fruits] = stock - quantity
         }
     }
     

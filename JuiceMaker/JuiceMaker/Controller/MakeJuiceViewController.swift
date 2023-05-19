@@ -8,9 +8,7 @@ import UIKit
 
 final class MakeJuiceViewController: UIViewController {
     
-    private var juiceMaker: JuiceMaker = JuiceMaker()
-    
-    private var fruitStock: [Fruit: Int] = [:]
+    var juiceMaker: JuiceMaker = JuiceMaker()
     
     @IBOutlet weak var strawBerryJuiceButton: UIButton!
     @IBOutlet weak var strawBerryBananaJuiceButton: UIButton!
@@ -33,7 +31,7 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     private func modifyFruitStockOnLabel() {
-        fruitStock = juiceMaker.fruitStore.updateFruitStock()
+        let fruitStock = FruitStore.shared.currentFruitStock
         
         let fruitAndLabels: [Fruit: UILabel] = [
             .strawBerry: strawBerryStockLabel,
@@ -44,7 +42,7 @@ final class MakeJuiceViewController: UIViewController {
         ]
         
         for (fruit, label) in  fruitAndLabels {
-            guard let stock = self.fruitStock[fruit] else { return }
+            guard let stock = fruitStock[fruit] else { return }
             label.text = String(stock)
         }
     }
@@ -55,36 +53,35 @@ final class MakeJuiceViewController: UIViewController {
         
         switch juiceNameFromSendTitle {
         case "딸기":
-            showOrderedAlert(sender, by:.strawBerryJuice)
+            showOrderedAlert(juiceNameFromSendTitle, by:.strawBerryJuice)
         case "딸바":
-            showOrderedAlert(sender, by:.strawBerryBananaJuice)
+            showOrderedAlert(juiceNameFromSendTitle, by:.strawBerryBananaJuice)
         case "바나나":
-            showOrderedAlert(sender, by:.bananaJuice)
+            showOrderedAlert(juiceNameFromSendTitle, by:.bananaJuice)
         case "파인애플":
-            showOrderedAlert(sender, by:.pineAppleJuice)
+            showOrderedAlert(juiceNameFromSendTitle, by:.pineAppleJuice)
         case "키위":
-            showOrderedAlert(sender, by:.kiwiJuice)
+            showOrderedAlert(juiceNameFromSendTitle, by:.kiwiJuice)
         case "망키":
-            showOrderedAlert(sender, by:.mangoKiwiJuice)
+            showOrderedAlert(juiceNameFromSendTitle, by:.mangoKiwiJuice)
         case "망고":
-            showOrderedAlert(sender, by:.mangoJuice)
+            showOrderedAlert(juiceNameFromSendTitle, by:.mangoJuice)
         default:
             print("없는 메뉴입니다.")
         }
         modifyFruitStockOnLabel()
     }
     
-    private func showOrderedAlert(_ sender: UIButton, by juice: Juice) {
-        if juiceMaker.make(juice) {
-            guard let buttonText = sender.titleLabel?.text,
-                  let juiceName = buttonText.components(separatedBy: "쥬스").first else { return }
-            let alert = showAlert(title: "\(juiceName)쥬스 나왔습니다.", message: "맛있게 드세요!")
+    private func showOrderedAlert(_ sender: String?, by juice: Juice) {
+        if let _ = juiceMaker.make(juice) {
+            guard let sender = sender else { return }
+            let alert = UIAlertController(title: "\(sender)쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
             
             alert.addAction(okAction)
             present(alert, animated: true)
         } else {
-            let alert = showAlert(title: "재료가 모자라요.", message: "재고를 수정 할까요?")
+            let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정 할까요?", preferredStyle: UIAlertController.Style.alert)
             let result = UIAlertAction(title: "아니요", style: .cancel)
             let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
                 self.presentChangeStockViewController()
@@ -96,14 +93,9 @@ final class MakeJuiceViewController: UIViewController {
         }
     }
     
-    private func showAlert(title: String, message: String) -> UIAlertController {
-        return UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-    }
-    
     private func presentChangeStockViewController() {
-        guard let changeStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
-        let navigationController = UINavigationController(rootViewController: changeStockViewController)
-        self.present(navigationController, animated: true)
+        guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") else { return }
+        present(changeStockNavigationController, animated: true)
     }
     
     @IBAction func changeStockBarButton(_ sender: Any) {

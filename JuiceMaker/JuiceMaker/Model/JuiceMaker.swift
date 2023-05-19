@@ -5,20 +5,21 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore.shared
     
-    mutating func make(_ juice: Juice) -> Bool {
+    mutating func make(_ juice: Juice) -> Juice? {
         
         do {
-            try fruitStore.checkStock(with: juice.recipe)
-            fruitStore.changeStock(with: juice.recipe)
-            return true
+            try FruitStore.shared.checkStock(with: juice.recipe)
+            juice.recipe.forEach { key, value in
+                FruitStore.shared.changeStock(with: key, value)
+            }
+            return juice
         } catch FruitStoreError.outOfStock {
-            print("재고가 부족합니다.")
-            return false
+            print(FruitStoreError.outOfStock.localized)
+            return nil
         } catch {
-            print(error)
-            return false
+            print(error.localizedDescription)
+            return nil
         }
     }
 }
