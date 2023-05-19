@@ -48,11 +48,11 @@ class MainViewController: UIViewController {
         guard let buttonTitle = buttonTitle else { throw StoryboardError.notFoundComponent }
         
         let targetWord = "주문"
-        let outputString = buttonTitle
+        let processedWord = buttonTitle
             .replacingOccurrences(of: targetWord, with: "")
             .trimmingCharacters(in: .whitespaces)
         
-        guard let juice = Juice(rawValue: outputString) else { throw JuiceMakerError.notFoundJuice }
+        guard let juice = Juice(rawValue: processedWord) else { throw JuiceMakerError.notFoundJuice }
         
         return juice
     }
