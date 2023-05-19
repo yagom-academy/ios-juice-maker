@@ -8,7 +8,8 @@
 import UIKit
 
 class ChangeStockViewController: UIViewController {
-    var fruitStore = FruitStore()
+    static let id = "ChangeStockViewControllerID"
+    private var fruitStore = FruitStore.shared
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!

@@ -8,7 +8,10 @@ import Foundation
 
 // 과일 저장소 타입
 class FruitStore {
+    static let shared = FruitStore()
     private var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
+    
+    private init() { }
     
     func bringStock(_ fruit: Fruit) -> Int {
         guard let stock = fruitsStock[fruit] else { return 0 }
@@ -32,4 +35,3 @@ class FruitStore {
         fruitsStock[fruit] = stock
     }
 }
-

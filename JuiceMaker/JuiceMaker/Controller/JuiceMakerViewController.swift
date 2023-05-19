@@ -78,12 +78,12 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func pushChangeStockViewController() {
-        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewControllerID") as? ChangeStockViewController else {
+        let pushViewControllerID = ChangeStockViewController.id
+        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: pushViewControllerID) as? ChangeStockViewController else {
             print("해당 뷰컨트롤러ID를 가진 뷰컨트롤러가 스토리보드에 없습니다.")
             return
         }
         pushViewController.navigationItem.hidesBackButton = true
-        pushViewController.fruitStore = juiceMaker.fruitStore
         self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     
