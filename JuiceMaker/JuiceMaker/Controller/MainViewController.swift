@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
             .replacingOccurrences(of: targetWord, with: "")
             .trimmingCharacters(in: .whitespaces)
         
-        guard let juice = Juice(rawValue: outputString) else { fatalError("쥬스를 찾을 수 없습니다.")}
+        guard let juice = Juice(rawValue: outputString) else { fatalError("쥬스를 찾을 수 없습니다.") }
         
         return juice
     }

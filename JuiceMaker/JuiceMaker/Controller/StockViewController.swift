@@ -20,7 +20,7 @@ class StockViewController: UIViewController, Storyboardable {
         self.viewControllerTitle.text = Namespace.title
     }
     
-    @IBAction private func onTouchCloseButton() {
+    @IBAction private func tapCloseButton() {
         self.dismiss(animated: true)
     }
 }
