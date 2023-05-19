@@ -1,12 +1,12 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - JuiceMakerViewController.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import UIKit
 
-class ViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController {
     let juiceMaker = JuiceMaker()
     @IBOutlet var fruitStockLabels: [UILabel]!
     @IBOutlet var orderButtons: [UIButton]!
@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         updateFruitStockLabel()
-        
     }
     
     @IBAction func touchUpOrderButton(_ sender: UIButton) {

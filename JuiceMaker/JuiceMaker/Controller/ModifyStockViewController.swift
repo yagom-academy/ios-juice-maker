@@ -11,6 +11,9 @@ class ModifyStockViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
+    @IBAction func dismissModal(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 }
