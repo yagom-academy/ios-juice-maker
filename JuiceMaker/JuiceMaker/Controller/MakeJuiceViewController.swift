@@ -49,7 +49,6 @@ final class MakeJuiceViewController: UIViewController {
         }
     }
     
-    
     @IBAction func orderJuice(_ sender: UIButton) {
         guard let senderTitle = sender.titleLabel?.text else { return }
         let juiceNameFromSendTitle = senderTitle.components(separatedBy: "쥬스").first

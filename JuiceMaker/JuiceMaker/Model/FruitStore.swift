@@ -5,8 +5,8 @@
 //
 
 class FruitStore {
-    static var shard = FruitStore()
-//    private init() {}
+    static let shared = FruitStore()
+    private init() {}
     private var stock: [Fruit: Int] = [
         .strawBerry: 25,
         .banana: 11,
