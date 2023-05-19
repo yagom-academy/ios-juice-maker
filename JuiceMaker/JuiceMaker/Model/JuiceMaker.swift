@@ -11,7 +11,8 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func makeJuice(juice: Juice) throws {        
+    func makeJuice(juice: Juice) throws {
+        if juice == .unknown { throw JuiceMakerError.notFoundJuice(juice)}
         try self.fruitStore.useValidStock(juiceRecipe: juice.recipe)
     }
     

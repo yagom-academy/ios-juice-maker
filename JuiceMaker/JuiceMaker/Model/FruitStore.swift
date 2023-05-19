@@ -30,6 +30,10 @@ class FruitStore {
     private func validateStock(ingredient: Ingredient) throws {
         let currentStock = getStock(fruit: ingredient.fruit)
         
+        guard currentStock != -1 else {
+            throw FruitStoreError.notFoundFruit
+        }
+        
         guard currentStock >= ingredient.amount else {
             throw FruitStoreError.notEnoughStock(ingredient.fruit)
         }
@@ -44,7 +48,7 @@ class FruitStore {
     }
     
     func getStock(fruit: Fruit) -> Int {
-        guard let stock = self.fruitStock[fruit] else { return 0 }
+        guard let stock = self.fruitStock[fruit] else { return -1 }
         
         return stock
     }

@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
     }
     
     private func convertButtonLabelToJuice(label: String?) -> Juice {
-        guard let label = label else { fatalError("버튼을 찾을 수 없습니다.") }
+        guard let label = label else { return .unknown }
         
         let inputString = label
         let targetWord = Namespace.order
@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
             .replacingOccurrences(of: targetWord, with: "")
             .trimmingCharacters(in: .whitespaces)
         
-        guard let juice = Juice(rawValue: outputString) else { fatalError("쥬스를 찾을 수 없습니다.") }
+        guard let juice = Juice(rawValue: outputString) else { return .unknown }
         
         return juice
     }

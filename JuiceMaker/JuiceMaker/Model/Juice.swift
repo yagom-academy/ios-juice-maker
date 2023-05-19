@@ -13,6 +13,7 @@ enum Juice: String {
     case strawberryBananaJuice = "딸바쥬스"
     case mangoJuice = "망고쥬스"
     case mangoKiwiJuice = "망키쥬스"
+    case unknown
     
     var name: String {
         self.rawValue
@@ -34,6 +35,8 @@ enum Juice: String {
             return [(fruit: .mango, amount: 3)]
         case .mangoKiwiJuice:
             return [(fruit: .mango, amount: 2), (fruit: .kiwi, amount: 1)]
+        case .unknown:
+            return []
         }
     }
 }

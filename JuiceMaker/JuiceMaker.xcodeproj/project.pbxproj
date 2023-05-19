@@ -20,6 +20,7 @@
 		C73DAF40255D0CDE00020D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF3F255D0CDE00020D38 /* Assets.xcassets */; };
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
+		D26186B52A17480F00BB685E /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26186B42A17480F00BB685E /* JuiceMakerError.swift */; };
 		D2737DC02A126AC80075C8A6 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2737DBF2A126AC80075C8A6 /* StockViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		C73DAF42255D0CDF00020D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
+		D26186B42A17480F00BB685E /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		D2737DBF2A126AC80075C8A6 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				1F055BB62A0A140500B7D604 /* FruitStoreError.swift */,
+				D26186B42A17480F00BB685E /* JuiceMakerError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				1FCB80102A149A65003B3D02 /* StoryBoardable.swift in Sources */,
 				1F055BB52A0A13B900B7D604 /* Juice.swift in Sources */,
+				D26186B52A17480F00BB685E /* JuiceMakerError.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* MainViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				1FBFD1122A13631600A849D1 /* Int+.swift in Sources */,
