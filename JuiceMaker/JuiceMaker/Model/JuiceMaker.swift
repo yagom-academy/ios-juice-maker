@@ -5,8 +5,8 @@
 //
 
 protocol JuiceMakerDelegate {
-    func succeedJuiceMake(_ menu: JuiceMaker.Menu)
-    func failJuiceMake()
+    func successJuiceMaking(_ menu: JuiceMaker.Menu)
+    func failJuiceMaking()
     func changeFruitStock(fruit: Fruit, amount: Int)
 }
 
@@ -60,12 +60,12 @@ struct JuiceMaker {
         guard let recipe = provideRecipe(menu) else { return }
         
         guard canMakeJuice(recipe) else {
-            delegate?.failJuiceMake()
+            delegate?.failJuiceMaking()
             return
         }
         
         consumeFruit(recipe)
-        delegate?.succeedJuiceMake(menu)
+        delegate?.successJuiceMaking(menu)
     }
     
     private func canMakeJuice(_ recipe: Recipe ) -> Bool {

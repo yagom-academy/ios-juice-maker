@@ -26,7 +26,7 @@ final class FruitStore {
     }
     
     func provideFruitStock(_ fruit: Fruit) -> Int? {
-        guard let stock = fruitStocks[fruit] else { return nil }
+        let stock = fruitStocks[fruit]
         
         return stock
     }

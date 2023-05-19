@@ -14,29 +14,29 @@ final class JuiceOrderViewController: UIViewController {
     @IBOutlet weak var mangoLabel: UILabel!
     
     private let recipe: [JuiceMaker.Menu: JuiceMaker.Recipe] = [.strawberryJuice         : [(.strawberry, 16)],
-                                                                 .bananaJuice             : [(.banana, 2)],
-                                                                 .pineappleJuice          : [(.pineapple, 2)],
-                                                                 .kiwiJuice               : [(.kiwi, 3)],
-                                                                 .mangoJuice              : [(.mango, 3)],
-                                                                 .strawberryAndBananaJuice: [(.strawberry, 10), (.banana, 1)],
-                                                                 .mangoAndKiwiJuice       : [(.mango, 2), (.kiwi, 1)]]
+                                                                .bananaJuice             : [(.banana, 2)],
+                                                                .pineappleJuice          : [(.pineapple, 2)],
+                                                                .kiwiJuice               : [(.kiwi, 3)],
+                                                                .mangoJuice              : [(.mango, 3)],
+                                                                .strawberryAndBananaJuice: [(.strawberry, 10), (.banana, 1)],
+                                                                .mangoAndKiwiJuice       : [(.mango, 2), (.kiwi, 1)]]
     
     private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
-    private lazy var yagomJuiceStore = JuiceMaker(fruitStore, recipe)
+    private lazy var juiceStore = JuiceMaker(fruitStore, recipe)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        yagomJuiceStore.delegate = self
+        juiceStore.delegate = self
         setUpFruitLabelsText()
     }
     
     private func provideStockLabelText(fruit: Fruit) -> String {
-        guard let stockLabelText = fruitStore.provideFruitStock(fruit) else {
+        guard let stock = fruitStore.provideFruitStock(fruit) else {
             return "x"
         }
         
-        return String(stockLabelText)
+        return String(stock)
     }
     
     private func setUpFruitLabelsText() {
@@ -59,7 +59,7 @@ extension JuiceOrderViewController {
     @IBAction func tappedOrderButton(_ sender: UIButton) {
         guard let juice = JuiceMaker.Menu(rawValue: sender.tag) else { return }
         
-        yagomJuiceStore.makeJuice(menu: juice)
+        juiceStore.makeJuice(menu: juice)
     }
     
     @IBAction func tappedChangeStockButton(_ sender: Any) {
@@ -69,7 +69,7 @@ extension JuiceOrderViewController {
 
 // MARK: - JuiceMake Delegate
 extension JuiceOrderViewController: JuiceMakerDelegate {
-    func succeedJuiceMake(_ menu: JuiceMaker.Menu) {
+    func successJuiceMaking(_ menu: JuiceMaker.Menu) {
         let successAlert = UIAlertController(title: "주문 성공!", message: "\(menu.koreanName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "확인", style: .default)
         
@@ -77,7 +77,7 @@ extension JuiceOrderViewController: JuiceMakerDelegate {
         present(successAlert, animated: false)
     }
     
-    func failJuiceMake() {
+    func failJuiceMaking() {
         let failAlert = UIAlertController(title: "주문 실패!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let noButton = UIAlertAction(title: "아니오", style: .default)
         let yesButton = UIAlertAction(title: "예", style: .default, handler: tappedYesButton)
