@@ -11,7 +11,7 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    func makeJuice(juice: Juice) throws {        
+    func makeJuice(juice: Juice) throws {
         try self.fruitStore.useValidStock(juiceRecipe: juice.recipe)
     }
     

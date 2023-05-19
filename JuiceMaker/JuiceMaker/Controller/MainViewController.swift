@@ -35,39 +35,37 @@ class MainViewController: UIViewController {
     
     @IBAction func tapOrderButton(_ sender: UIButton) {
         do {
-            let juice = self.convertButtonLabelToJuice(label: sender.titleLabel?.text)
+            let juice = try self.convertButtonLabelToJuice(buttonTitle: sender.titleLabel?.text)
             try self.juiceMaker.makeJuice(juice: juice)
             showSuccessAlert(juice: juice)
-        } catch {
-            guard let error = error as? FruitStoreError else { return }
+        } catch  {
+            guard let error = error as? ErrorExplainable else { return }
             self.showFailureAlert(error: error)
         }
     }
     
-    private func convertButtonLabelToJuice(label: String?) -> Juice {
-        guard let label = label else { fatalError("버튼을 찾을 수 없습니다.") }
+    private func convertButtonLabelToJuice(buttonTitle: String?) throws -> Juice {
+        guard let buttonTitle = buttonTitle else { throw StoryboardError.notFoundComponent }
         
-        let inputString = label
-        let targetWord = Namespace.order
-        
-        let outputString = inputString
+        let targetWord = "주문"
+        let processedWord = buttonTitle
             .replacingOccurrences(of: targetWord, with: "")
             .trimmingCharacters(in: .whitespaces)
         
-        guard let juice = Juice(rawValue: outputString) else { fatalError("쥬스를 찾을 수 없습니다.") }
+        guard let juice = Juice(rawValue: processedWord) else { throw JuiceMakerError.notFoundJuice }
         
         return juice
     }
     
     private func showSuccessAlert(juice: Juice) {
         let alert = UIAlertController(
-            title: Namespace.order,
-            message: "\(juice.name) " + Namespace.orderMessage,
+            title: Alert.title,
+            message: "\(juice.name) " + Alert.orderSuccessMessage,
             preferredStyle: .alert
         )
         
         alert.addAction(UIAlertAction(
-            title: Namespace.thankYou,
+            title: Alert.orderSuccessConfirm,
             style: .default,
             handler: { _ in
                 self.configureLabel()
@@ -77,37 +75,45 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func showFailureAlert(error: FruitStoreError) {
+    private func showFailureAlert(error: ErrorExplainable) {
         let alert = UIAlertController(
             title: error.title,
             message: error.description,
             preferredStyle: .alert
         )
         
-        alert.addAction(UIAlertAction(
-            title: Namespace.no,
-            style: .default,
-            handler: nil
-        ))
-        
-        alert.addAction(UIAlertAction(
-            title: Namespace.yes,
-            style: .default,
-            handler: { _ in
-                let stockViewController = StockViewController.instantiate()
-                self.navigationController?.present(stockViewController, animated: true)
-            }))
-        
+        if error is FruitStoreError {
+            alert.addAction(UIAlertAction(
+                title: Alert.no,
+                style: .default,
+                handler: nil
+            ))
+            
+            alert.addAction(UIAlertAction(
+                title: Alert.yes,
+                style: .default,
+                handler: { _ in
+                    let stockViewController = StockViewController.instantiate()
+                    self.navigationController?.present(stockViewController, animated: true)
+                }))
+        } else {
+            alert.addAction(UIAlertAction(
+                title: Alert.confirm,
+                style: .default,
+                handler: nil
+            ))
+        }
         self.present(alert, animated: true, completion: nil)
     }
 }
 
 extension MainViewController {
-    enum Namespace {
+    enum Alert {
         static let yes = "예"
         static let no = "아니오"
-        static let order = "주문"
-        static let orderMessage = "나왔습니다! 맛있게 드세요!"
-        static let thankYou = "잘먹겠습니다❤️"
+        static let confirm = "확인"
+        static let title = "주문"
+        static let orderSuccessMessage = "나왔습니다! 맛있게 드세요!"
+        static let orderSuccessConfirm = "잘먹겠습니다❤️"
     }
 }

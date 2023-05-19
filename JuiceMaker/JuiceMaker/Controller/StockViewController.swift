@@ -17,7 +17,7 @@ class StockViewController: UIViewController, Storyboardable {
     }
     
     private func configureTitle() {
-        self.viewControllerTitle.text = Namespace.title
+        self.viewControllerTitle.text = Navigation.title
     }
     
     @IBAction private func tapCloseButton() {
@@ -26,7 +26,7 @@ class StockViewController: UIViewController, Storyboardable {
 }
 
 extension StockViewController {
-    enum Namespace {
+    enum Navigation {
         static let title = "재고추가"
     }
 }

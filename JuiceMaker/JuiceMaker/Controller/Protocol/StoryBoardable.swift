@@ -29,17 +29,8 @@ extension Storyboardable where Self: UIViewController {
     }
     
     static func instantiate() -> Self {
-        guard let viewController =
-                UIStoryboard(
-                    name: storyboardName,
-                    bundle: storyboardBundle
-                )
-                .instantiateViewController(withIdentifier: storyboardIdentifier) as? Self
-        else {
-            fatalError("스토리보드에서 \(storyboardIdentifier)를 찾을 수 없습니다.")
-        }
-
-        return viewController
+        return UIStoryboard(name: storyboardName, bundle: storyboardBundle)
+                .instantiateViewController(identifier: storyboardIdentifier)
     }
 }
 
