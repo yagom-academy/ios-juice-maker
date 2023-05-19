@@ -263,8 +263,9 @@
       <br/>
     
     - 해당 과일 쥬스를 만들기 위해서 필요한 과일이 부족한 경우 
-    <br/>
-    <img src="https://github.com/yagom-academy/ios-juice-maker/assets/74762699/f0c2b5a2-10ff-463e-80eb-4e23155bc26d" style="zoom:50%;" />
+    
+      <br/>
+      <img src="https://github.com/yagom-academy/ios-juice-maker/assets/74762699/f0c2b5a2-10ff-463e-80eb-4e23155bc26d" style="zoom:50%;" />	
     
     
 ---
