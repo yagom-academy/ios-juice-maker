@@ -137,7 +137,7 @@ class MainViewController: UIViewController {
             creator: { coder in
                 return StockViewController(coder: coder, fruitStock: self.fruitStock)
             }) else {
-                fatalError("StockViewController Init Error")
+                return
             }
         
 		stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
