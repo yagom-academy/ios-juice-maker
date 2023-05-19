@@ -10,11 +10,7 @@ typealias Recipe = [Ingredient]
 typealias Ingredient = (fruit: Fruit, amount: Int)
 
 class FruitStore {
-    var fruitStock: [Fruit: Int] {
-        didSet {
-            NotificationCenter.default.post(name: NSNotification.Name.updatedStock, object: nil)
-        }
-    }
+    private var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit: Int] = [
         .strawberry: 10,
@@ -49,6 +45,7 @@ class FruitStore {
     
     func getStock(fruit: Fruit) -> Int {
         guard let stock = self.fruitStock[fruit] else { return 0 }
+        
         return stock
     }
 }

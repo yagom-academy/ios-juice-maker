@@ -7,18 +7,17 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet weak private var strawberryStockLabel: UILabel!
+    @IBOutlet weak private var bananaStockLabel: UILabel!
+    @IBOutlet weak private var pineappleStockLabel: UILabel!
+    @IBOutlet weak private var kiwiStockLabel: UILabel!
+    @IBOutlet weak private var mangoStockLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLabel()
-        addObserver()
     }
     
     private func configureLabel() {
@@ -29,61 +28,86 @@ class MainViewController: UIViewController {
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
     }
     
-    private func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onChangedStock), name: Notification.Name.updatedStock, object: nil)
+    @IBAction func tapStockButton(_ sender: UIBarButtonItem) {
+        let stockViewController = StockViewController.instantiate()
+        self.navigationController?.present(stockViewController, animated: true)
     }
     
-    @objc private func onChangedStock() {
-        configureLabel()
-    }
-    
-    @IBAction func onTouchStockButton(_ sender: UIBarButtonItem) {
-        guard let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
-            return
-        }
-        self.navigationController?.present(StockViewController, animated: true)
-    }
-    
-    @IBAction func onTouchOrderButton(_ sender: UIButton) {        
-        switch sender.titleLabel?.text {
-        case "딸바쥬스 주문":
-            showAlert(result: self.juiceMaker.makeJuice(juice: .strawberryBananaJuice))
-        case "망키쥬스 주문":
-            showAlert(result: self.juiceMaker.makeJuice(juice: .mangoKiwiJuice))
-        case "딸기쥬스 주문":
-            showAlert(result: self.juiceMaker.makeJuice(juice: .strawberryJuice))
-        case "바나나쥬스 주문":
-            showAlert(result: self.juiceMaker.makeJuice(juice: .bananaJuice))
-        case "파인애플쥬스 주문":
-            showAlert(result: self.juiceMaker.makeJuice(juice: .pineappleJuice))
-        case "키위쥬스 주문":
-            showAlert(result: self.juiceMaker.makeJuice(juice: .kiwiJuice))
-        case "망고쥬스 주문":
-            showAlert(result: self.juiceMaker.makeJuice(juice: .mangoJuice))
-        default:
-            showAlert(result: .failure(.unknown))
+    @IBAction func tapOrderButton(_ sender: UIButton) {
+        do {
+            let juice = self.convertButtonLabelToJuice(label: sender.titleLabel?.text)
+            try self.juiceMaker.makeJuice(juice: juice)
+            showSuccessAlert(juice: juice)
+        } catch {
+            guard let error = error as? FruitStoreError else { return }
+            self.showFailureAlert(error: error)
         }
     }
     
-    private func showAlert(result: Result<Juice, FruitStoreError>) {
-        switch result {
-        case .success(let juice):
-            let alert = UIAlertController(title: "주문", message: "\(juice.name) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "잘먹겠습니다❤️", style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
+    private func convertButtonLabelToJuice(label: String?) -> Juice {
+        guard let label = label else { fatalError("버튼을 찾을 수 없습니다.") }
+        
+        let inputString = label
+        let targetWord = Namespace.order
+        
+        let outputString = inputString
+            .replacingOccurrences(of: targetWord, with: "")
+            .trimmingCharacters(in: .whitespaces)
+        
+        guard let juice = Juice(rawValue: outputString) else { fatalError("쥬스를 찾을 수 없습니다.") }
+        
+        return juice
+    }
+    
+    private func showSuccessAlert(juice: Juice) {
+        let alert = UIAlertController(
+            title: Namespace.order,
+            message: "\(juice.name) " + Namespace.orderMessage,
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(
+            title: Namespace.thankYou,
+            style: .default,
+            handler: { _ in
+                self.configureLabel()
+            }
+        ))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showFailureAlert(error: FruitStoreError) {
+        let alert = UIAlertController(
+            title: error.title,
+            message: error.description,
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(
+            title: Namespace.no,
+            style: .default,
+            handler: nil
+        ))
+        
+        alert.addAction(UIAlertAction(
+            title: Namespace.yes,
+            style: .default,
+            handler: { _ in
+                let stockViewController = StockViewController.instantiate()
+                self.navigationController?.present(stockViewController, animated: true)
             }))
-            self.present(alert, animated: true, completion: nil)
-            
-        case .failure(let error):
-            let alert = UIAlertController(title: error.errorTitle, message: error.errorDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "예", style: .default, handler: { _ in
-                guard let StockViewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") as? UINavigationController else {
-                    return
-                }
-                self.navigationController?.present(StockViewController, animated: true)
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController {
+    enum Namespace {
+        static let yes = "예"
+        static let no = "아니오"
+        static let order = "주문"
+        static let orderMessage = "나왔습니다! 맛있게 드세요!"
+        static let thankYou = "잘먹겠습니다❤️"
     }
 }
