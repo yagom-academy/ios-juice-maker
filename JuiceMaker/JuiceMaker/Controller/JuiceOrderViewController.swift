@@ -21,21 +21,9 @@ final class JuiceOrderViewController: UIViewController {
                                                                  .strawberryAndBananaJuice: [(.strawberry, 10), (.banana, 1)],
                                                                  .mangoAndKiwiJuice       : [(.mango, 2), (.kiwi, 1)]]
     
-    private let fruitStore: FruitStore// = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
-    private var yagomJuiceStore: JuiceMaker// = JuiceMaker(fruitStore, recipe)
-    
-//    init() {
-//        fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
-//        yagomJuiceStore = JuiceMaker(fruitStore, recipe)
-//    }
+    private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
+    private lazy var yagomJuiceStore = JuiceMaker(fruitStore, recipe)
 
-    required init?(coder: NSCoder) {
-        fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
-        yagomJuiceStore = JuiceMaker(fruitStore, recipe)
-        
-        super.init(coder: coder)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
