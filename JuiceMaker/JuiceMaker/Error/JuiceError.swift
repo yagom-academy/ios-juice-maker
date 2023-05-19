@@ -7,5 +7,6 @@
 
 enum JuiceError: Error {
     case nonexistentFruit
+    case nonexistentJuiceMenu
     case shortageFruitStock
 }

@@ -7,22 +7,11 @@
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
-    func make(juice menu: JuiceMenu) {
-        do {
-            let availableIngredients = try validIngredients(by: menu.recipe)
-            
-            try availableIngredients.forEach {
-                try fruitStore.useStock(of: $0.fruit, amount: $0.amount)
-            }
-        } catch {
-            switch error {
-            case JuiceError.nonexistentFruit:
-                print("FruitStore에 해당 Fruit이 없습니다.")
-            case JuiceError.shortageFruitStock:
-                print("Fruit의 수량이 부족합니다.")
-            default:
-                print("알 수 없는 에러")
-            }
+    func make(juice menu: JuiceMenu) throws {
+        let availableIngredients = try validIngredients(by: menu.recipe)
+        
+        try availableIngredients.forEach {
+            try fruitStore.useStock(of: $0.fruit, amount: $0.amount)
         }
     }
     
