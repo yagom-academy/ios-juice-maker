@@ -43,12 +43,20 @@ final class JuiceOrderViewController: UIViewController {
         setUpFruitLabelsText()
     }
     
+    private func provideStockLabelText(fruit: Fruit) -> String {
+        guard let stockLabelText = fruitStore.provideFruitStock(fruit) else {
+            return "x"
+        }
+        
+        return String(stockLabelText)
+    }
+    
     private func setUpFruitLabelsText() {
-        strawberryLabel.text = String(fruitStore.provideFruitStock(.strawberry))
-        bananaLabel.text = String(fruitStore.provideFruitStock(.banana))
-        pineappleLabel.text = String(fruitStore.provideFruitStock(.pineapple))
-        kiwiLabel.text = String(fruitStore.provideFruitStock(.kiwi))
-        mangoLabel.text = String(fruitStore.provideFruitStock(.mango))
+        strawberryLabel.text = provideStockLabelText(fruit: .strawberry)
+        bananaLabel.text = provideStockLabelText(fruit: .banana)
+        pineappleLabel.text = provideStockLabelText(fruit: .pineapple)
+        kiwiLabel.text = provideStockLabelText(fruit: .kiwi)
+        mangoLabel.text = provideStockLabelText(fruit: .mango)
     }
     
     private func navigateToFruitStockViewController() {
@@ -73,7 +81,7 @@ extension JuiceOrderViewController {
 
 // MARK: - JuiceMake Delegate
 extension JuiceOrderViewController: JuiceMakerDelegate {
-    func successJuiceMake(_ menu: JuiceMaker.Menu) {
+    func succeedJuiceMake(_ menu: JuiceMaker.Menu) {
         let successAlert = UIAlertController(title: "주문 성공!", message: "\(menu.koreanName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "확인", style: .default)
         
