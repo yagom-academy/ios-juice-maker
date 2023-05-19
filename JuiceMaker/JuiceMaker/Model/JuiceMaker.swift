@@ -4,8 +4,14 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+protocol JuiceMakerDelegate {
+    func successJuiceMaking(_ menu: JuiceMaker.Menu)
+    func failJuiceMaking()
+    func changeFruitStock(fruit: Fruit, amount: Int)
+}
+
 struct JuiceMaker {
-    enum Menu {
+    enum Menu: Int {
         case strawberryJuice
         case bananaJuice
         case pineappleJuice
@@ -13,47 +19,65 @@ struct JuiceMaker {
         case mangoJuice
         case strawberryAndBananaJuice
         case mangoAndKiwiJuice
+        
+        var koreanName: String {
+            switch self {
+            case .strawberryJuice:
+                return "딸기쥬스"
+            case .bananaJuice:
+                return "바나나쥬스"
+            case .pineappleJuice:
+                return "파인애플쥬스"
+            case .kiwiJuice:
+                return "키위쥬스"
+            case .mangoJuice:
+                return "망고쥬스"
+            case .strawberryAndBananaJuice:
+                return "딸바쥬스"
+            case .mangoAndKiwiJuice:
+                return "망키쥬스"
+            }
+        }
     }
     
     typealias Recipe = [(fruit: Fruit, amount: Int)]
     private let store: FruitStore
+    private let recipe: [Menu: Recipe]
+    var delegate: JuiceMakerDelegate?
     
-    init(fruitStore: FruitStore) {
+    init(_ fruitStore: FruitStore, _ recipe: [Menu: Recipe]) {
         self.store = fruitStore
+        self.recipe = recipe
     }
 
-    private func provideRecipe(_ menu: Menu) -> Recipe {
-        switch menu {
-            case .strawberryJuice:
-                return [(.strawberry, 16)]
-            case .bananaJuice:
-                return [(.banana, 2)]
-            case .pineappleJuice:
-                return [(.pineapple, 2)]
-            case .kiwiJuice:
-                return [(.kiwi, 3)]
-            case .mangoJuice:
-                return [(.mango, 3)]
-            case .strawberryAndBananaJuice:
-                return [(.strawberry, 10), (.banana, 1)]
-            case .mangoAndKiwiJuice:
-                return [(.mango, 2), (.kiwi, 1)]
-        }
+    private func provideRecipe(_ menu: Menu) -> Recipe? {
+        guard let juiceRecipe = recipe[menu] else { return nil }
+        
+        return juiceRecipe
     }
     
     func makeJuice(menu: Menu) {
-        let recipe = provideRecipe(menu)
+        guard let recipe = provideRecipe(menu) else { return }
         
-        canMakeJuice(recipe)
+        guard canMakeJuice(recipe) else {
+            delegate?.failJuiceMaking()
+            return
+        }
+        
         consumeFruit(recipe)
+        delegate?.successJuiceMaking(menu)
     }
     
-    func canMakeJuice(_ recipe: Recipe ) {
-        guard recipe.allSatisfy({ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }) else { return }
+    private func canMakeJuice(_ recipe: Recipe ) -> Bool {
+        return recipe.allSatisfy{ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }
     }
     
-    func consumeFruit(_ recipe: Recipe) {
+    private func consumeFruit(_ recipe: Recipe) {
         recipe.forEach { fruit, amount in
+            guard let fruitStock = store.provideFruitStock(fruit) else { return }
+            let leftFruitStock = fruitStock - amount
+            
+            delegate?.changeFruitStock(fruit: fruit, amount: leftFruitStock)
             store.changeFruitCount(fruit, count: amount)
         }
     }

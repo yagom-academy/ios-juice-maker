@@ -24,4 +24,10 @@ final class FruitStore {
         
         fruitStocks[fruit] = stock + fruitAmount
     }
+    
+    func provideFruitStock(_ fruit: Fruit) -> Int? {
+        let stock = fruitStocks[fruit]
+        
+        return stock
+    }
 }
