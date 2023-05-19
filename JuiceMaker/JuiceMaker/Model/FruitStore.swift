@@ -5,9 +5,9 @@
 //
 
 final class FruitStore {
-    private var fruitStocks: [Fruit : Int] 
+    private var fruitStocks: [Fruit: Int] 
     
-    init(fruitStocks: [Fruit : Int]) {
+    init(fruitStocks: [Fruit: Int]) {
         self.fruitStocks = fruitStocks
     }
     
@@ -23,5 +23,11 @@ final class FruitStore {
         let fruitAmount = isUseFruit ? -count : count
         
         fruitStocks[fruit] = stock + fruitAmount
+    }
+    
+    func provideFruitStock(_ fruit: Fruit) -> Int? {
+        let stock = fruitStocks[fruit]
+        
+        return stock
     }
 }
