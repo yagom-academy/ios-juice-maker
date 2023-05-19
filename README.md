@@ -256,13 +256,16 @@
 ## 6. 실행 화면📱
 - 특정 과일 쥬스 주문 버튼을 누르면 현재 과일의 재고에 따라서 `Alert`이 화면에 나타난다.
     - 해당 과일 쥬스를 만들기 위해서 필요한 과일이 충분한 경우
-    <br/>
-    <img src="https://github.com/yagom-academy/ios-juice-maker/assets/74762699/781f411a-3b5f-4e36-802a-0a48fd532c4e" style="zoom:50%;" />
-    <br/>
+    
+      <br/>
+      <img src="https://github.com/yagom-academy/ios-juice-maker/assets/74762699/781f411a-3b5f-4e36-802a-0a48fd532c4e" style="zoom:50%;" />
+    
+      <br/>
+    
     - 해당 과일 쥬스를 만들기 위해서 필요한 과일이 부족한 경우 
     <br/>
     <img src="https://github.com/yagom-academy/ios-juice-maker/assets/74762699/f0c2b5a2-10ff-463e-80eb-4e23155bc26d" style="zoom:50%;" />
-
+    
     
 ---
 </br>
