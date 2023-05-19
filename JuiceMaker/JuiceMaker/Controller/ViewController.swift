@@ -57,42 +57,31 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapStrawberryJuiceButton(_ sender: UIButton) {
-        let juice: Juice = .strawberryJuice
-        showAlert(of: juice)
-    }
-    @IBAction func didTapBananaJuiceButton(_ sender: UIButton) {
-        let juice: Juice = .bananaJuice
-        showAlert(of: juice)
-        configureStockLabel()
-    }
-    
-    @IBAction func didTapPineappleJuiceButton(_ sender: UIButton) {
-        let juice: Juice = .pineappleJuice
-        showAlert(of: juice)
-        configureStockLabel()
-    }
-    @IBAction func didTapKiwiJuiceButton(_ sender: UIButton) {
-        let juice: Juice = .kiwiJuice
-        showAlert(of: juice)
-        configureStockLabel()
-    }
-    @IBAction func didTapMangoJuiceButton(_ sender: UIButton) {
-        let juice: Juice = .mangoJuice
-        showAlert(of: juice)
-        configureStockLabel()
-    }
-    @IBAction func didTapStrawberryBananaJuiceButton(_ sender: UIButton) {
-        let juice: Juice = .strawberryBananaJuice
+    @IBAction func didTapOrderButton(_ sender: UIButton) {
+        let juice: Juice
+
+        switch sender {
+        case strawberryJuiceButton:
+            juice = .strawberryJuice
+        case bananaJuiceButton:
+            juice = .bananaJuice
+        case pineappleJuiceButton:
+            juice = .pineappleJuice
+        case mangoJuiceButton:
+            juice = .mangoJuice
+        case kiwiJuiceButton:
+            juice = .kiwiJuice
+        case strawberryBananaJuiceButton:
+            juice = .strawberryBananaJuice
+        case mangoKiwiJuiceButton:
+            juice = .mangoKiwiJuice
+        default:
+            return
+        }
         showAlert(of: juice)
         configureStockLabel()
     }
-    @IBAction func didTapMangoKiwiJuiceButton(_ sender: UIButton) {
-        let juice: Juice = .mangoKiwiJuice
-        showAlert(of: juice)
-        configureStockLabel()
-    }
-    
+     
     func showAlert(of juice: Juice) {
         if juiceMaker.takeOrder(juice) {
             showCompletionAlert(for: juice)
