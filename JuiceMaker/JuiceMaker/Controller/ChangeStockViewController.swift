@@ -8,7 +8,8 @@
 import UIKit
 
 class ChangeStockViewController: UIViewController {
-
+    private let juiceMaker = JuiceMaker()
+    
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
     @IBOutlet private weak var pineappleStockLabel: UILabel!
@@ -17,27 +18,36 @@ class ChangeStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        composeText()
     }
     
-    @IBAction func closeButtonTap(_ sender: UIBarButtonItem) {
+    @IBAction private func closeButtonTap(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
-    @IBAction func stockStepper(_ sender: UIStepper) {
+    @IBAction private func changeStockStepper(_ sender: UIStepper) {
         switch sender.tag {
         case 0:
-            break
+            strawberryStockLabel.text = Int(sender.value).description
         case 1:
-            break
+            bananaStockLabel.text = Int(sender.value).description
         case 2:
-            break
+            pineappleStockLabel.text = Int(sender.value).description
         case 3:
-            break
+            kiwiStockLabel.text = Int(sender.value).description
         case 4:
-            break
+            mangoStockLabel.text = Int(sender.value).description
         default:
             break
         }
+    }
+    
+    private func composeText() {
+        strawberryStockLabel.text = String(juiceMaker.fruitStore.bringStock(.strawberry))
+        bananaStockLabel.text = String(juiceMaker.fruitStore.bringStock(.banana))
+        pineappleStockLabel.text = String(juiceMaker.fruitStore.bringStock(.pineapple))
+        kiwiStockLabel.text = String(juiceMaker.fruitStore.bringStock(.kiwi))
+        mangoStockLabel.text = String(juiceMaker.fruitStore.bringStock(.mango))
     }
 }
