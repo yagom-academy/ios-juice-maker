@@ -47,7 +47,7 @@
 
 ### Flowchart
 <p align="center">
-<img width="800" src="https://hackmd.io/_uploads/S1PZZ-zrh.png">
+<img width="800" src="https://hackmd.io/_uploads/ry47pK4Bh.png">
 </p>
 
 ## 💻 실행 화면 
