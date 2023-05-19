@@ -21,6 +21,12 @@ class JuiceMakerViewController: UIViewController {
         composeText()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        composeText()
+    }
+    
     @IBAction private func orderJuiceButtonTap(_ sender: UIButton) {
         guard let title = sender.currentTitle else {
             print("버튼이 설정되지 않았습니다.")
@@ -82,17 +88,15 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func popUpSuccessMessage(_ juice: Juice) {
-        let alertMessage = UIAlertController(title: "주문 성공", message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "예", style: .default))
+        let alertMessage = makeAlertMessage("주문 성공", "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", actionTitle: "예", actionType: .default)
         present(alertMessage, animated: true)
     }
     
     private func popUpFailMessage() {
-        let alertMessage = UIAlertController(title: "주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "예", style: .default) { _ in
+        let alertMessage = makeAlertMessage("주문 실패", "재료가 모자라요. 재고를 수정할까요?", actionTitle: "아니오", actionType: .destructive)
+        alertMessage.addAction(UIAlertAction(title: "예", style: .cancel) { _ in
             self.pushChangeStockViewController()
         })
-        alertMessage.addAction(UIAlertAction(title: "아니오", style: .default))
         present(alertMessage, animated: true)
     }
 }

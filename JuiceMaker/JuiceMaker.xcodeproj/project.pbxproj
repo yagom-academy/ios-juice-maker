@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		454E8F062A171193003A0BBF /* ChangeStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E8F052A171193003A0BBF /* ChangeStockViewController.swift */; };
+		454E8F082A1727A6003A0BBF /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E8F072A1727A6003A0BBF /* UIViewController+Extensions.swift */; };
 		455EE74B2A08A05A00894E4C /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455EE74A2A08A05A00894E4C /* JuiceMakerError.swift */; };
 		45A577682A0C9AFE0040C9C5 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A577672A0C9AFE0040C9C5 /* Fruit.swift */; };
 		45A5776A2A0C9B180040C9C5 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A577692A0C9B180040C9C5 /* Juice.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		454E8F052A171193003A0BBF /* ChangeStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeStockViewController.swift; sourceTree = "<group>"; };
+		454E8F072A1727A6003A0BBF /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		455EE74A2A08A05A00894E4C /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		45A577672A0C9AFE0040C9C5 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		45A577692A0C9B180040C9C5 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */,
 				454E8F052A171193003A0BBF /* ChangeStockViewController.swift */,
+				454E8F072A1727A6003A0BBF /* UIViewController+Extensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				454E8F062A171193003A0BBF /* ChangeStockViewController.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				45A5776A2A0C9B180040C9C5 /* Juice.swift in Sources */,
+				454E8F082A1727A6003A0BBF /* UIViewController+Extensions.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

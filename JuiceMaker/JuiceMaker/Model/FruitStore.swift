@@ -20,11 +20,8 @@ class FruitStore {
         guard stock >= amount else { throw JuiceMakerError.outOfStock }
     }
     
-    func addFruits(_ amount: Int, to fruit: Fruit) {
-        var stock = bringStock(fruit)
-        stock += amount
-            
-        fruitsStock[fruit] = stock
+    func changeStock(_ amount: Int, to fruit: Fruit) {
+        fruitsStock[fruit] = amount
     }
     
     func useFruits(_ amount: Int, to fruit: Fruit) throws {

@@ -34,20 +34,24 @@ class ChangeStockViewController: UIViewController {
     }
     
     @IBAction private func changeStockStepper(_ sender: UIStepper) {
+        let amount = Int(sender.value)
+        
         switch sender.tag {
         case 0:
-            strawberryStockLabel.text = Int(sender.value).description
+            fruitStore.changeStock(amount, to: .strawberry)
         case 1:
-            bananaStockLabel.text = Int(sender.value).description
+            fruitStore.changeStock(amount, to: .banana)
         case 2:
-            pineappleStockLabel.text = Int(sender.value).description
+            fruitStore.changeStock(amount, to: .pineapple)
         case 3:
-            kiwiStockLabel.text = Int(sender.value).description
+            fruitStore.changeStock(amount, to: .kiwi)
         case 4:
-            mangoStockLabel.text = Int(sender.value).description
+            fruitStore.changeStock(amount, to: .mango)
         default:
             break
         }
+        
+        composeText()
     }
     
     private func composeText() {
