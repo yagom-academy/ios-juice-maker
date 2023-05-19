@@ -6,8 +6,8 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {
-    private let juiceMaker = JuiceMaker()
+class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
+    private var juiceMaker = JuiceMaker()
 
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -21,11 +21,11 @@ class JuiceMakerViewController: UIViewController {
         composeText()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        composeText()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        composeText()
+//    }
     
     @IBAction private func orderJuiceButtonTap(_ sender: UIButton) {
         guard let title = sender.currentTitle else {
@@ -77,6 +77,11 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
+    func changeStock(fruitStore: FruitStore) {
+        self.juiceMaker.fruitStore = fruitStore
+        composeText()
+    }
+    
     private func pushChangeStockViewController() {
         let pushViewControllerID = ChangeStockViewController.id
         guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: pushViewControllerID) as? ChangeStockViewController else {
@@ -84,6 +89,8 @@ class JuiceMakerViewController: UIViewController {
             return
         }
         pushViewController.navigationItem.hidesBackButton = true
+        pushViewController.fruitStore = juiceMaker.fruitStore
+        pushViewController.delegate = self
         self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     

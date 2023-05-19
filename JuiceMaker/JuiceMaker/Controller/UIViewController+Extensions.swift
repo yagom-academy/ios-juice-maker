@@ -2,7 +2,7 @@
 //  makeAlert.swift
 //  JuiceMaker
 //
-//  Created by 표현수 on 2023/05/19.
+//  Created by Erick, JusBug on 2023/05/19.
 //
 
 import UIKit

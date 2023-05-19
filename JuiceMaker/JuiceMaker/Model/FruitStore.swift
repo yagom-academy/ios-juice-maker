@@ -7,11 +7,11 @@
 import Foundation
 
 // 과일 저장소 타입
-class FruitStore {
-    static let shared = FruitStore()
+struct FruitStore {
+//    static let shared = FruitStore()
     private var fruitsStock: [Fruit: Int] = Dictionary(uniqueKeysWithValues: Fruit.allCases.map{ ($0, 10) })
     
-    private init() { }
+//    private init() { }
     
     func bringStock(_ fruit: Fruit) -> Int {
         guard let stock = fruitsStock[fruit] else { return 0 }
@@ -23,11 +23,11 @@ class FruitStore {
         guard stock >= amount else { throw JuiceMakerError.outOfStock }
     }
     
-    func changeStock(_ amount: Int, to fruit: Fruit) {
+    mutating func changeStock(_ amount: Int, to fruit: Fruit) {
         fruitsStock[fruit] = amount
     }
     
-    func useFruits(_ amount: Int, to fruit: Fruit) throws {
+    mutating func useFruits(_ amount: Int, to fruit: Fruit) throws {
         var stock = bringStock(fruit)
         try compare(stock, and: amount)
         stock -= amount

@@ -2,14 +2,19 @@
 //  ChangeStockViewController.swift
 //  JuiceMaker
 //
-//  Created by 표현수 on 2023/05/19.
+//  Created by Erick, JusBug on 2023/05/19.
 //
 
 import UIKit
 
+protocol ChangeStockProtocol {
+    func changeStock(fruitStore: FruitStore)
+}
+
 class ChangeStockViewController: UIViewController {
     static let id = "ChangeStockViewControllerID"
-    private var fruitStore = FruitStore.shared
+    var fruitStore = FruitStore()
+    var delegate: ChangeStockProtocol?
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -31,6 +36,7 @@ class ChangeStockViewController: UIViewController {
     }
     
     @IBAction private func closeButtonTap(_ sender: UIBarButtonItem) {
+        self.delegate?.changeStock(fruitStore: fruitStore)
         self.navigationController?.popViewController(animated: true)
     }
     
