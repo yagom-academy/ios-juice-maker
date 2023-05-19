@@ -438,10 +438,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="uX0-99-gbN"/>
+                        <outlet property="bananaStockStepper" destination="O5s-2N-3iP" id="lo9-Xt-gzh"/>
                         <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="wZj-Pk-qiz"/>
+                        <outlet property="kiwiStockStepper" destination="klA-59-Nu4" id="x4D-mJ-Jvp"/>
                         <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="7O7-dv-Ie6"/>
+                        <outlet property="mangoStockStepper" destination="xbn-6P-grO" id="7Cz-xV-dOR"/>
                         <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="NTC-lk-2pb"/>
+                        <outlet property="pineappleStockStepper" destination="Rcr-xr-eqz" id="Z8w-nu-uBe"/>
                         <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="CVt-uf-uBo"/>
+                        <outlet property="strawberryStockStepper" destination="ZQk-f4-zrz" id="j4U-nC-o9H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

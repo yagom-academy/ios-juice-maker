@@ -8,7 +8,7 @@
 import UIKit
 
 class ChangeStockViewController: UIViewController {
-    private let juiceMaker = JuiceMaker()
+    var fruitStore = FruitStore()
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -16,10 +16,17 @@ class ChangeStockViewController: UIViewController {
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
     
+    @IBOutlet private weak var strawberryStockStepper: UIStepper!
+    @IBOutlet private weak var bananaStockStepper: UIStepper!
+    @IBOutlet private weak var pineappleStockStepper: UIStepper!
+    @IBOutlet private weak var kiwiStockStepper: UIStepper!
+    @IBOutlet private weak var mangoStockStepper: UIStepper!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         composeText()
+        setStepperValue()
     }
     
     @IBAction private func closeButtonTap(_ sender: UIBarButtonItem) {
@@ -44,10 +51,18 @@ class ChangeStockViewController: UIViewController {
     }
     
     private func composeText() {
-        strawberryStockLabel.text = String(juiceMaker.fruitStore.bringStock(.strawberry))
-        bananaStockLabel.text = String(juiceMaker.fruitStore.bringStock(.banana))
-        pineappleStockLabel.text = String(juiceMaker.fruitStore.bringStock(.pineapple))
-        kiwiStockLabel.text = String(juiceMaker.fruitStore.bringStock(.kiwi))
-        mangoStockLabel.text = String(juiceMaker.fruitStore.bringStock(.mango))
+        strawberryStockLabel.text = String(fruitStore.bringStock(.strawberry))
+        bananaStockLabel.text = String(fruitStore.bringStock(.banana))
+        pineappleStockLabel.text = String(fruitStore.bringStock(.pineapple))
+        kiwiStockLabel.text = String(fruitStore.bringStock(.kiwi))
+        mangoStockLabel.text = String(fruitStore.bringStock(.mango))
+    }
+    
+    private func setStepperValue() {
+        strawberryStockStepper.value = Double(fruitStore.bringStock(.strawberry))
+        bananaStockStepper.value = Double(fruitStore.bringStock(.banana))
+        pineappleStockStepper.value = Double(fruitStore.bringStock(.pineapple))
+        kiwiStockStepper.value = Double(fruitStore.bringStock(.kiwi))
+        mangoStockStepper.value = Double(fruitStore.bringStock(.mango))
     }
 }
