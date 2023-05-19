@@ -22,13 +22,14 @@ class StockViewController: UIViewController {
 	@IBOutlet private weak var mangoStepper: UIStepper!
     
 	private var fruitStock: [Fruit: Int] = [:]
-	
+    
+    init?(coder: NSCoder, fruitStock: [Fruit: Int]) {
+        self.fruitStock = fruitStock
+        super.init(coder: coder)
+    }
+    
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		NotificationCenter.default.addObserver(self,
-											   selector: #selector(initializeFruitStock(notification:)),
-                                               name: NSNotification.Name.stockChangeStart,
-											   object: nil)
 	}
 
     override func viewDidLoad() {
@@ -37,11 +38,6 @@ class StockViewController: UIViewController {
         setUpCloseBarButtonItem()
 		setUpStepper()
     }
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		self.setUpNotificationPost()
-	}
 	
 	private func replaceStockLabel() {
 		guard let strawberryStock = fruitStock[.strawberry],
@@ -56,13 +52,6 @@ class StockViewController: UIViewController {
 		pineappleStockLabel.text = String(pineappleStock)
 		kiwiStockLabel.text = String(kiwiStock)
 		mangoStockLabel.text = String(mangoStock)
-	}
-	
-	@objc private func initializeFruitStock(notification: NSNotification) {
-		guard let fruitStockStatus = notification.userInfo?[NotificationKey.fruitStock] as? [Fruit: Int] else {
-			return
-		}
-		fruitStock = fruitStockStatus
 	}
     
     private func setUpCloseBarButtonItem() {
@@ -84,12 +73,12 @@ class StockViewController: UIViewController {
             let ok = UIAlertAction(title: AlertActionText.ok.title,
                                    style: .default,
                                    handler: { _ in
-                self.dismiss(animated: true)
+                self.removeStockViewController(isChange: true)
             })
             let cancel = UIAlertAction(title: AlertActionText.cancel.title,
                                        style: .default,
                                        handler: { _ in
-                self.dismiss(animated: true)
+                self.removeStockViewController(isChange: false)
             })
             alert.addAction(ok)
             alert.addAction(cancel)
@@ -99,18 +88,22 @@ class StockViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func setUpNotificationPost() {
-        NotificationCenter.default.post(name: NSNotification.Name.stockChangeEnd,
+    private func removeStockViewController(isChange: Bool) {
+        guard isChange else {
+            self.dismiss(animated: true)
+            return
+        }
+        self.postStockChangeNotification()
+        self.dismiss(animated: true)
+    }
+    
+    private func postStockChangeNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name.changedStock,
                                         object: nil,
                                         userInfo: [NotificationKey.fruitStock: fruitStock])
     }
 	
 	@IBAction private func touchUpStepper(_ sender: UIStepper) {
-		sender.minimumValue = 0.0
-		sender.stepValue = 1.0
-		sender.isContinuous = true
-		sender.autorepeat = true
-		
 		switch sender {
 		case strawberryStepper:
 			fruitStock[.strawberry] = Int(sender.value)

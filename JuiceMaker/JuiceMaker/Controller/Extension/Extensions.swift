@@ -7,7 +7,7 @@
 import Foundation
 
 extension NSNotification.Name {
-    static let stockChangeStart = NSNotification.Name("stockChangeStart")
-    static let stockChangeEnd = NSNotification.Name("stockChangeEnd")
+    static let currentStock = NSNotification.Name("currentStock")
+    static let changedStock = NSNotification.Name("changedStock")
 }
 

@@ -27,37 +27,18 @@ class MainViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        watchFruitStockChange()
+        addStockChangeNotification()
     }
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
         addButtonAction()
-		setUpButtonUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         replaceStockLabel()
     }
-	
-	private func setUpButtonUI() {
-		strawberryBananaJuiceButton.titleLabel?.textAlignment = .center
-		mangoKiwiJuiceButton.titleLabel?.textAlignment = .center
-		strawberryJuiceButton.titleLabel?.textAlignment = .center
-		bananaJuiceButton.titleLabel?.textAlignment = .center
-		pineappleJuiceButton.titleLabel?.textAlignment = .center
-		kiwiJuiceButton.titleLabel?.textAlignment = .center
-		mangoJuiceButton.titleLabel?.textAlignment = .center
-		
-		strawberryBananaJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
-		mangoKiwiJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
-		strawberryJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
-		bananaJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
-		pineappleJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
-		kiwiJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
-		mangoJuiceButton.titleLabel?.lineBreakMode = .byCharWrapping
-	}
 	
 	private func replaceStockLabel() {
 		guard let strawberryStock = fruitStock[.strawberry],
@@ -151,35 +132,30 @@ class MainViewController: UIViewController {
     }
 	
 	@IBAction private func presentStockViewController() {
-		let fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
-		guard let stockViewController = self.storyboard?.instantiateViewController(
-			identifier: "StockViewController"
-		) else {
-			return
-		}
+        guard let stockViewController = self.storyboard?.instantiateViewController(
+            identifier: "StockViewController",
+            creator: { coder in
+                return StockViewController(coder: coder, fruitStock: self.fruitStock)
+            }) else {
+                fatalError("StockViewController Init Error")
+            }
+        
 		stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-		
-        NotificationCenter.default.post(name: NSNotification.Name.stockChangeStart,
-										object: nil,
-                                        userInfo: [NotificationKey.fruitStock: fruitStock])
-		
 		self.navigationController?.present(stockViewController, animated: true)
 	}
     
-    private func watchFruitStockChange() {
+    private func addStockChangeNotification() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(callChangeFruitStock(notification:)),
-                                               name: NSNotification.Name.stockChangeEnd,
+                                               selector: #selector(changeFruitInventory(notification:)),
+                                               name: NSNotification.Name.changedStock,
                                                object: nil)
     }
     
-    @objc private func callChangeFruitStock(notification: NSNotification) {
+    @objc private func changeFruitInventory(notification: NSNotification) {
         guard let fruitStockStatus = notification.userInfo?[NotificationKey.fruitStock] as? [Fruit: Int] else {
             return
         }
-        for (fruit, quantity) in fruitStockStatus {
-            self.juiceMaker.changeFruitStock(of: fruit, quantity: quantity)
-        }
+        self.juiceMaker.changeFruitStock(fruitStockStatus)
         fruitStock = fruitStockStatus
     }
 }
