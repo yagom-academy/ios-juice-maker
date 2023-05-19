@@ -31,6 +31,8 @@ class ChangeStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.hidesBackButton = true
+        
         composeText()
         setStepperValue()
     }
@@ -41,23 +43,10 @@ class ChangeStockViewController: UIViewController {
     }
     
     @IBAction private func changeStockStepper(_ sender: UIStepper) {
+        guard let fruit = Fruit(rawValue: sender.tag) else { return }
         let amount = Int(sender.value)
         
-        switch sender.tag {
-        case 0:
-            fruitStore.changeStock(amount, to: .strawberry)
-        case 1:
-            fruitStore.changeStock(amount, to: .banana)
-        case 2:
-            fruitStore.changeStock(amount, to: .pineapple)
-        case 3:
-            fruitStore.changeStock(amount, to: .kiwi)
-        case 4:
-            fruitStore.changeStock(amount, to: .mango)
-        default:
-            break
-        }
-        
+        fruitStore.changeStock(amount, to: fruit)
         composeText()
     }
     

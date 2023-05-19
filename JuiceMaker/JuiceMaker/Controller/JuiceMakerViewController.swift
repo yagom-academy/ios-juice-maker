@@ -17,15 +17,9 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         composeText()
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        composeText()
-//    }
     
     @IBAction private func orderJuiceButtonTap(_ sender: UIButton) {
         guard let title = sender.currentTitle else {
@@ -88,7 +82,6 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
             print("해당 뷰컨트롤러ID를 가진 뷰컨트롤러가 스토리보드에 없습니다.")
             return
         }
-        pushViewController.navigationItem.hidesBackButton = true
         pushViewController.fruitStore = juiceMaker.fruitStore
         pushViewController.delegate = self
         self.navigationController?.pushViewController(pushViewController, animated: true)
