@@ -76,6 +76,7 @@ class JuiceMakerViewController: UIViewController {
             print("해당 뷰컨트롤러ID를 가진 뷰컨트롤러가 스토리보드에 없습니다.")
             return
         }
+        pushViewController.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     
