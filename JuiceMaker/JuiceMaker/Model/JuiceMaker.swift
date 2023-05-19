@@ -7,7 +7,7 @@
 protocol JuiceMakerDelegate {
     func successJuiceMake(_ menu: JuiceMaker.Menu)
     func failJuiceMake()
-    func changeFruitStock(fruit: Fruit, amount: String)
+    func changeFruitStock(fruit: Fruit, amount: Int)
 }
 
 struct JuiceMaker {
@@ -78,7 +78,7 @@ struct JuiceMaker {
         recipe.forEach { fruit, amount in
             let leftFruitStock = store.provideFruitStock(fruit) - amount
             
-            delegate?.changeFruitStock(fruit: fruit, amount: String(leftFruitStock))
+            delegate?.changeFruitStock(fruit: fruit, amount: leftFruitStock)
             store.changeFruitCount(fruit, count: amount)
         }
     }
