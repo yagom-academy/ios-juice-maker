@@ -48,8 +48,7 @@ class FruitStore {
     }
     
     func getStock(fruit: Fruit) -> Int {
-        guard let stock = self.fruitStock[fruit] else { return -1 }
-        
+        guard let stock = self.fruitStock[fruit] else { return -1 }        
         return stock
     }
 }
