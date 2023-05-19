@@ -22,29 +22,13 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
     }
     
     @IBAction private func orderJuiceButtonTap(_ sender: UIButton) {
-        guard let title = sender.currentTitle else {
+        guard let title = sender.currentTitle,
+              let juice = Juice(rawValue: title) else {
             print("버튼이 설정되지 않았습니다.")
             return
         }
         
-        switch title {
-        case "딸기쥬스 주문":
-            orderJuice(.strawberryJuice)
-        case "바나나쥬스 주문":
-            orderJuice(.bananaJuice)
-        case "파인애플쥬스 주문":
-            orderJuice(.pineappleJuice)
-        case "키위쥬스 주문":
-            orderJuice(.kiwiJuice)
-        case "망고쥬스 주문":
-            orderJuice(.mangoJuice)
-        case "딸바쥬스 주문":
-            orderJuice(.strawberryBananaJuice)
-        case "망키쥬스 주문":
-            orderJuice(.mangoKiwiJuice)
-        default:
-            break
-        }
+        orderJuice(juice)
     }
     
     @IBAction private func changeStockButtonTap(_ sender: UIBarButtonItem) {

@@ -46,6 +46,12 @@ class ChangeStockViewController: UIViewController {
         guard let fruit = Fruit(rawValue: sender.tag) else { return }
         let amount = Int(sender.value)
         
+        guard amount >= 0 else {
+            sender.value = 0
+            popUpNonChangeableMessage()
+            return
+        }
+        
         fruitStore.changeStock(amount, to: fruit)
         composeText()
     }
@@ -64,5 +70,16 @@ class ChangeStockViewController: UIViewController {
         pineappleStockStepper.value = Double(fruitStore.bringStock(.pineapple))
         kiwiStockStepper.value = Double(fruitStore.bringStock(.kiwi))
         mangoStockStepper.value = Double(fruitStore.bringStock(.mango))
+        
+        strawberryStockStepper.minimumValue = -1
+        bananaStockStepper.minimumValue = -1
+        pineappleStockStepper.minimumValue = -1
+        kiwiStockStepper.minimumValue = -1
+        mangoStockStepper.minimumValue = -1
+    }
+    
+    private func popUpNonChangeableMessage() {
+        let alertMessage = makeAlertMessage("변경불가", "재고가 이미 0입니다.", actionTitle: "예", actionType: .default)
+        present(alertMessage, animated: true)
     }
 }
