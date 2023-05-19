@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import Foundation
+
 typealias Recipe = [Ingredient]
 typealias Ingredient = (fruit: Fruit, amount: Int)
 
@@ -26,22 +28,27 @@ class FruitStore {
     }
     
     private func validateStock(ingredient: Ingredient) throws {
-        guard let currentAmount = self.fruitStock[ingredient.fruit] else {
-            throw FruitStoreError.notFoundFruit(ingredient.fruit)
+        let currentStock = getStock(fruit: ingredient.fruit)
+        
+        guard currentStock != -1 else {
+            throw FruitStoreError.notFoundFruit
         }
         
-        guard currentAmount >= ingredient.amount else {
+        guard currentStock >= ingredient.amount else {
             throw FruitStoreError.notEnoughStock(ingredient.fruit)
         }
     }
     
     private func spendStock(of fruit: Fruit, by amount: Int) {
-        if let currentAmount = self.fruitStock[fruit] {
-            fruitStock[fruit] = currentAmount - amount
-        }
+        self.fruitStock[fruit] = getStock(fruit: fruit) - amount
     }
     
     func updateStock(of fruit: Fruit, by amount: Int) {
         self.fruitStock.updateValue(amount, forKey: fruit)
-    }    
+    }
+    
+    func getStock(fruit: Fruit) -> Int {
+        guard let stock = self.fruitStock[fruit] else { return -1 }        
+        return stock
+    }
 }
