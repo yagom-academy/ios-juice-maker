@@ -79,14 +79,14 @@ final class MakeJuiceViewController: UIViewController {
             guard let buttonText = sender.titleLabel?.text,
                   let juiceName = buttonText.components(separatedBy: "쥬스").first else { return }
             let alert = showAlert(title: "\(juiceName)쥬스 나왔습니다.", message: "맛있게 드세요!")
-            let okAction = UIAlertAction(title: "확인", style: .default, handler :nil)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
             
             alert.addAction(okAction)
             present(alert, animated: true)
         } else {
             let alert = showAlert(title: "재료가 모자라요.", message: "재고를 수정 할까요?")
             let result = UIAlertAction(title: "아니요", style: .cancel)
-            let okAction = UIAlertAction(title: "예", style: .default, handler : { _ in
+            let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
                 self.presentChangeStockViewController()
             })
             
