@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController {
+final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
 
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -90,6 +90,7 @@ final class JuiceMakerViewController: UIViewController {
         }
         
         fruitStoreViewController.modalTransitionStyle = .coverVertical
+        fruitStoreViewController.delegate = self
         
         self.present(fruitStoreViewController, animated: true)
     }
@@ -113,5 +114,9 @@ final class JuiceMakerViewController: UIViewController {
         default:
             throw JuiceError.nonexistentJuiceMenu
         }
+    }
+    
+    func changeStock() {
+        
     }
 }

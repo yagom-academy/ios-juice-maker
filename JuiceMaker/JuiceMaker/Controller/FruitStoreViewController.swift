@@ -7,13 +7,21 @@
 
 import UIKit
 
+protocol FruitStoreDelegate: AnyObject {
+    func changeStock()
+}
+
 final class FruitStoreViewController: UIViewController {
 
+    weak var delegate: FruitStoreDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func tabClose(_ sender: UIBarButtonItem) {
+        delegate?.changeStock()
+        
         dismiss(animated: true)
     }
 }
