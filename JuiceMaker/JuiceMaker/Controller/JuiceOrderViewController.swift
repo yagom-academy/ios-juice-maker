@@ -6,8 +6,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class JuiceOrderViewController: UIViewController {
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
+    
     @IBOutlet private weak var strawberryJuiceButton: UIButton!
     @IBOutlet private weak var bananaJuiceButton: UIButton!
     @IBOutlet private weak var pineappleJuiceButton: UIButton!
@@ -18,17 +23,10 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var stockChangeButton: UIBarButtonItem!
     
-    @IBOutlet private weak var strawberryStockLabel: UILabel!
-    @IBOutlet private weak var bananaStockLabel: UILabel!
-    @IBOutlet private weak var pineappleStockLabel: UILabel!
-    @IBOutlet private weak var kiwiStockLabel: UILabel!
-    @IBOutlet private weak var mangoStockLabel: UILabel!
-    
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         configureStockLabel()
     }
     
@@ -43,6 +41,7 @@ class ViewController: UIViewController {
         else {
             return
         }
+        
         strawberryStockLabel.text = String(strawberryStock)
         bananaStockLabel.text = String(bananaStock)
         pineappleStockLabel.text = String(pineappleStock)
@@ -59,7 +58,7 @@ class ViewController: UIViewController {
     
     @IBAction func didTapOrderButton(_ sender: UIButton) {
         let juice: Juice
-
+        
         switch sender {
         case strawberryJuiceButton:
             juice = .strawberryJuice
@@ -78,10 +77,11 @@ class ViewController: UIViewController {
         default:
             return
         }
+        
         showAlert(of: juice)
         configureStockLabel()
     }
-     
+    
     func showAlert(of juice: Juice) {
         if juiceMaker.takeOrder(juice) {
             showCompletionAlert(for: juice)
@@ -91,25 +91,42 @@ class ViewController: UIViewController {
     }
     
     func showCompletionAlert(for juice: Juice) {
-        let juiceCompletionAlert = UIAlertController(title: nil,
-                                                     message: "\(juice.name)가 나왔습니다! 맛있게 드세요!",
-                                      preferredStyle: UIAlertController.Style.alert)
-        let closeAction = UIAlertAction(title: "닫기", style: UIAlertAction.Style.default)
+        let juiceCompletionAlert = UIAlertController(
+            title: nil,
+            message: "\(juice.name)가 나왔습니다! 맛있게 드세요!",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        
+        let closeAction = UIAlertAction(
+            title: "닫기",
+            style: UIAlertAction.Style.default
+        )
+        
         juiceCompletionAlert.addAction(closeAction)
         present(juiceCompletionAlert, animated: true, completion: nil)
     }
     
     func showFailureAlert() {
-        let juiceFailureAlert = UIAlertController(title: nil,
-                                      message: "재료가 모자라요. 재고를 수정할까요?",
-                                      preferredStyle: UIAlertController.Style.alert)
-        let stockChangeAction = UIAlertAction(title: "예",
-                                              style: UIAlertAction.Style.destructive)
-        { stockChangeAction in self.didTapStockChangeButton(self.stockChangeButton) }
-        let closeAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.cancel)
+        let juiceFailureAlert = UIAlertController(
+            title: nil,
+            message: "재료가 모자라요. 재고를 수정할까요?",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        
+        let stockChangeAction = UIAlertAction(
+            title: "예",
+            style: UIAlertAction.Style.destructive
+        ) { _ in
+            self.didTapStockChangeButton(self.stockChangeButton)
+        }
+        
+        let closeAction = UIAlertAction(
+            title: "아니오",
+            style: UIAlertAction.Style.cancel
+        )
+        
         juiceFailureAlert.addAction(stockChangeAction)
         juiceFailureAlert.addAction(closeAction)
         present(juiceFailureAlert, animated: true, completion: nil)
     }
 }
-
