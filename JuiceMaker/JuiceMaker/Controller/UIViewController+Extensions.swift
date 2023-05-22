@@ -8,9 +8,9 @@
 import UIKit
 
 extension UIViewController {
-    func makeAlertMessage(_ alertTitle: String, _ alertMessage: String, actionTitle: String, actionType: UIAlertAction.Style) -> UIAlertController {
-        let alertMessage = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: actionTitle, style: actionType))
+    func makeAlertMessage(_ alertTitle: String?, _ alertMessage: String?, actionTitle: String?, actionType: UIAlertAction.Style) -> UIAlertController {
+        let alertMessage = UIAlertController(title: alertTitle ?? "", message: alertMessage ?? "", preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: actionTitle ?? "", style: actionType))
         
         return alertMessage
     }

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController, ChangeStockDelegate {
+class JuiceMakerViewController: UIViewController {
     private var juiceMaker = JuiceMaker()
 
     @IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -55,11 +55,6 @@ class JuiceMakerViewController: UIViewController, ChangeStockDelegate {
         }
     }
     
-    func changeStock(fruitStore: FruitStore) {
-        self.juiceMaker.fruitStore = fruitStore
-        setText()
-    }
-    
     private func pushChangeStockViewController() {
         let pushViewControllerID = ChangeStockViewController.id
         guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: pushViewControllerID) as? ChangeStockViewController else {
@@ -82,5 +77,12 @@ class JuiceMakerViewController: UIViewController, ChangeStockDelegate {
             self.pushChangeStockViewController()
         })
         present(alertMessage, animated: true)
+    }
+}
+
+extension JuiceMakerViewController: ChangeStockDelegate {
+    func changeStock(fruitStore: FruitStore) {
+        self.juiceMaker.fruitStore = fruitStore
+        setText()
     }
 }

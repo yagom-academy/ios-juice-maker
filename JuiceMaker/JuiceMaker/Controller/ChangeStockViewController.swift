@@ -31,6 +31,7 @@ class ChangeStockViewController: UIViewController {
         
         setText()
         setStepperValue()
+        setStepperTag()
     }
     
     @IBAction private func tapCloseButton(_ sender: UIBarButtonItem) {
@@ -72,6 +73,14 @@ class ChangeStockViewController: UIViewController {
         pineappleStockStepper.minimumValue = -1
         kiwiStockStepper.minimumValue = -1
         mangoStockStepper.minimumValue = -1
+    }
+    
+    private func setStepperTag() {
+        strawberryStockStepper.tag = 0
+        bananaStockStepper.tag = 1
+        pineappleStockStepper.tag = 2
+        kiwiStockStepper.tag = 3
+        mangoStockStepper.tag = 4
     }
     
     private func popUpNonChangeableAlert() {
