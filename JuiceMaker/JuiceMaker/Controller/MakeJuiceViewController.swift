@@ -94,11 +94,18 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     private func presentChangeStockViewController() {
-        guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") else { return }
+        guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") as? ChangeStockViewController else { return }
+        changeStockNavigationController.delegate = self
         present(changeStockNavigationController, animated: true)
     }
     
     @IBAction func changeStockBarButton(_ sender: Any) {
         presentChangeStockViewController()
+    }
+}
+
+extension MakeJuiceViewController: FruitStockDelegate {
+    func addStock(_ value: [Fruit : Int]) {
+        modifyFruitStockOnLabel()
     }
 }
