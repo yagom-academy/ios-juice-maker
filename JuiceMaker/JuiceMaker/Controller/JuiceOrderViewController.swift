@@ -84,6 +84,11 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
+        order(juice)
+        configureStockLabel()
+    }
+    
+    func order(_ juice: Juice) {
         do {
             try juiceMaker.takeOrder(juice)
             showCompletionAlert(for: juice)
@@ -92,8 +97,6 @@ class JuiceOrderViewController: UIViewController {
         } catch {
             
         }
-        
-        configureStockLabel()
     }
     
     func showCompletionAlert(for juice: Juice) {
