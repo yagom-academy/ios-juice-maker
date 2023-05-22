@@ -31,4 +31,12 @@ struct JuiceMaker {
     func getCurrentStock(of fruit: Fruit) -> Int? {
         return fruitStore.getCurrentStock(of: fruit)
     }
+    
+    func getFruitStore() -> FruitStore {
+        return fruitStore
+    }
+    
+    func update(with fruitInventory: [Fruit: Int]) {
+        fruitStore.update(with: fruitInventory)
+    }
 }
