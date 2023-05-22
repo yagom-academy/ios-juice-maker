@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FruitStoreError: Error, LocalizedError {
+enum FruitStoreError: LocalizedError {
     case outOfStock
     
     var errorDescription: String? {
