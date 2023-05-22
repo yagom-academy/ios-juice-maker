@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChangeStockViewController: UIViewController {
+final class ChangeStockViewController: UIViewController {
     static let id = "ChangeStockViewControllerID"
     var fruitStore = FruitStore()
     var delegate: ChangeStockDelegate?
