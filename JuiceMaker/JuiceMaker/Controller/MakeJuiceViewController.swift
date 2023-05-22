@@ -72,10 +72,10 @@ final class MakeJuiceViewController: UIViewController {
         modifyFruitStockOnLabel()
     }
     
-    private func showOrderedAlert(_ sender: String?, by juice: Juice) {
+    private func showOrderedAlert(_ juiceName: String?, by juice: Juice) {
         if let _ = juiceMaker.make(juice) {
-            guard let sender = sender else { return }
-            let alert = UIAlertController(title: "\(sender)쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
+            guard let juiceName = juiceName else { return }
+            let alert = UIAlertController(title: "\(juiceName)쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
             
             alert.addAction(okAction)
