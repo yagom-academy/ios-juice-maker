@@ -22,7 +22,7 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
         setFruitStockLabel()
     }
     
-    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
+    @IBAction private func tapStockChangeButton(_ sender: UIBarButtonItem) {
         showFruitStoreViewController()
     }
     

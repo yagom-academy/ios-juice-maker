@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Alert {
+final class Alert {
     static let `default` = Alert()
     
     private init() {}
