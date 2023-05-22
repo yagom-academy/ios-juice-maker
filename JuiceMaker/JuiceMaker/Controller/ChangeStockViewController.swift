@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol ChangeStockProtocol {
-    func changeStock(fruitStore: FruitStore)
-}
-
 class ChangeStockViewController: UIViewController {
     static let id = "ChangeStockViewControllerID"
     var fruitStore = FruitStore()
-    var delegate: ChangeStockProtocol?
+    var delegate: ChangeStockDelegate?
     
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -33,11 +29,11 @@ class ChangeStockViewController: UIViewController {
         
         self.navigationItem.hidesBackButton = true
         
-        composeText()
+        setText()
         setStepperValue()
     }
     
-    @IBAction private func closeButtonTap(_ sender: UIBarButtonItem) {
+    @IBAction private func tapCloseButton(_ sender: UIBarButtonItem) {
         self.delegate?.changeStock(fruitStore: fruitStore)
         self.navigationController?.popViewController(animated: true)
     }
@@ -48,15 +44,15 @@ class ChangeStockViewController: UIViewController {
         
         guard amount >= 0 else {
             sender.value = 0
-            popUpNonChangeableMessage()
+            popUpNonChangeableAlert()
             return
         }
         
         fruitStore.changeStock(amount, to: fruit)
-        composeText()
+        setText()
     }
     
-    private func composeText() {
+    private func setText() {
         strawberryStockLabel.text = String(fruitStore.bringStock(.strawberry))
         bananaStockLabel.text = String(fruitStore.bringStock(.banana))
         pineappleStockLabel.text = String(fruitStore.bringStock(.pineapple))
@@ -78,7 +74,7 @@ class ChangeStockViewController: UIViewController {
         mangoStockStepper.minimumValue = -1
     }
     
-    private func popUpNonChangeableMessage() {
+    private func popUpNonChangeableAlert() {
         let alertMessage = makeAlertMessage("변경불가", "재고가 이미 0입니다.", actionTitle: "예", actionType: .default)
         present(alertMessage, animated: true)
     }

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
+class JuiceMakerViewController: UIViewController, ChangeStockDelegate {
     private var juiceMaker = JuiceMaker()
 
     @IBOutlet private weak var strawberryStockLabel: UILabel!
@@ -18,10 +18,10 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        composeText()
+        setText()
     }
     
-    @IBAction private func orderJuiceButtonTap(_ sender: UIButton) {
+    @IBAction private func tapOrderJuiceButton(_ sender: UIButton) {
         guard let title = sender.currentTitle,
               let juice = Juice(rawValue: title) else {
             print("버튼이 설정되지 않았습니다.")
@@ -31,11 +31,11 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
         orderJuice(juice)
     }
     
-    @IBAction private func changeStockButtonTap(_ sender: UIBarButtonItem) {
+    @IBAction private func tapChangeStockButton(_ sender: UIBarButtonItem) {
         pushChangeStockViewController()
     }
     
-    private func composeText() {
+    private func setText() {
         strawberryStockLabel.text = String(juiceMaker.fruitStore.bringStock(.strawberry))
         bananaStockLabel.text = String(juiceMaker.fruitStore.bringStock(.banana))
         pineappleStockLabel.text = String(juiceMaker.fruitStore.bringStock(.pineapple))
@@ -46,10 +46,10 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
     private func orderJuice(_ juice: Juice) {
         do {
             try juiceMaker.makeJuice(juice)
-            popUpSuccessMessage(juice)
-            composeText()
+            popUpSuccessAlert(juice)
+            setText()
         } catch JuiceMakerError.outOfStock {
-            popUpFailMessage()
+            popUpFailAlert()
         } catch {
             print("알 수 없는 에러입니다.")
         }
@@ -57,7 +57,7 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
     
     func changeStock(fruitStore: FruitStore) {
         self.juiceMaker.fruitStore = fruitStore
-        composeText()
+        setText()
     }
     
     private func pushChangeStockViewController() {
@@ -71,12 +71,12 @@ class JuiceMakerViewController: UIViewController, ChangeStockProtocol {
         self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     
-    private func popUpSuccessMessage(_ juice: Juice) {
+    private func popUpSuccessAlert(_ juice: Juice) {
         let alertMessage = makeAlertMessage("주문 성공", "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", actionTitle: "예", actionType: .default)
         present(alertMessage, animated: true)
     }
     
-    private func popUpFailMessage() {
+    private func popUpFailAlert() {
         let alertMessage = makeAlertMessage("주문 실패", "재료가 모자라요. 재고를 수정할까요?", actionTitle: "아니오", actionType: .destructive)
         alertMessage.addAction(UIAlertAction(title: "예", style: .cancel) { _ in
             self.pushChangeStockViewController()
