@@ -6,10 +6,6 @@
 
 import UIKit
 
-final class CustomButton: UIButton {
-    var customIdentifier: Juice?
-}
-
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
     @IBOutlet var orderJuiceButtonCollection: [CustomButton]!
@@ -22,8 +18,8 @@ final class JuiceOrderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillStockLabel()
-        fillJuiceButtonCustomIdentifier()
+        configureStockLabel()
+        configureJuiceButtonCustomIdentifier()
     }
 
     @IBAction func touchUpOrderButton(_ sender: CustomButton) {
@@ -31,7 +27,7 @@ final class JuiceOrderViewController: UIViewController {
         
         do {
             try juiceMaker.makeOrder(juice)
-            fillStockLabel()
+            configureStockLabel()
             showAlert(message: "\(juice.koreanName) 쥬스 나왔습니다!", alertType: .onlyConfirm)
         } catch FruitStoreError.outOfStock {
             showAlert(message: "재료가 모자라요. 재고를 수정할까요?", alertType: .canCancel)
@@ -59,7 +55,7 @@ final class JuiceOrderViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    private func fillStockLabel() {
+    private func configureStockLabel() {
         let currentStockList: [String] = juiceMaker.showRemainStock()
         
         for index in fruitStockLabelCollection.indices {
@@ -67,7 +63,7 @@ final class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func fillJuiceButtonCustomIdentifier() {
+    private func configureJuiceButtonCustomIdentifier() {
         for index in orderJuiceButtonCollection.indices {
             orderJuiceButtonCollection[index].customIdentifier = Juice.allCases[index]
         }
