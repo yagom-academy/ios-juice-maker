@@ -19,7 +19,18 @@ struct FruitStore {
 
     func checkStock(witch fruit: Fruit, by quantity: Int) throws {
         guard let currentStock = stockList[fruit], currentStock >= quantity else {
-            throw FruitStoreError.outOfStock(fruit: fruit)
+            throw FruitStoreError.outOfStock
         }
+    }
+    
+    func getRemainStock() -> [String] {
+        var fruitStockList: [String] = []
+        
+        for fruit in Fruit.allCases {
+            let currentStock: Int = stockList[fruit] ?? 0
+            fruitStockList.append(String(currentStock))
+        }
+        
+        return fruitStockList
     }
 }
