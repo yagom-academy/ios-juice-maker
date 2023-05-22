@@ -301,6 +301,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="124" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="tapChangeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Agw-fA-IeB"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -320,8 +323,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="124" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="tapChangeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Mak-g8-ZSi"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -341,8 +347,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="124" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="tapChangeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="UeS-O4-VaJ"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -362,8 +371,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="124" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="tapChangeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="qX2-bJ-UUK"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -383,8 +395,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="124" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="tapChangeStock:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Rb5-6T-T7S"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -412,6 +427,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="pDO-4K-npM"/>
+                        <outlet property="bananaStockStepper" destination="O5s-2N-3iP" id="RHg-Yj-Y8a"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="d56-Er-gbs"/>
+                        <outlet property="kiwiStockStepper" destination="klA-59-Nu4" id="VGX-CE-Wkc"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="5RL-N2-EoA"/>
+                        <outlet property="mangoStockStepper" destination="xbn-6P-grO" id="MKi-HF-C0q"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="dqE-eU-Kp6"/>
+                        <outlet property="pineappleStockStepper" destination="Rcr-xr-eqz" id="24h-MO-iCt"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="tuB-VF-5GA"/>
+                        <outlet property="strawberryStockStepper" destination="ZQk-f4-zrz" id="8p4-HT-G8S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

@@ -91,6 +91,7 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
         
         fruitStoreViewController.modalTransitionStyle = .coverVertical
         fruitStoreViewController.delegate = self
+        fruitStoreViewController.fruits = juiceMaker.fruitStore.fruits
         
         self.present(fruitStoreViewController, animated: true)
     }
