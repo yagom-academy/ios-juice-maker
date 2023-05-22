@@ -19,7 +19,7 @@ final class FruitStore {
         }
     }
     
-    func change(_ fruits: [Fruit : Int]) {
+    func changeStock(_ fruits: [Fruit : Int]) {
         self.fruits = fruits
     }
     

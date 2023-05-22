@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FruitStoreDelegate: AnyObject {
-    func change(_ fruits: [Fruit : Int])
+    func changeStock(_ fruits: [Fruit : Int])
 }
 
 final class FruitStoreViewController: UIViewController {
@@ -36,7 +36,7 @@ final class FruitStoreViewController: UIViewController {
     
     @IBAction private func tabCloseButton(_ sender: UIBarButtonItem) {
         if let fruits {
-            delegate?.change(fruits)
+            delegate?.changeStock(fruits)
         }
         
         dismiss(animated: true)
