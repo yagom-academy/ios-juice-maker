@@ -36,7 +36,7 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
             let message = "\(menu.name) 나왔습니다! 맛있게 드세요!"
             let actions = [UIAlertAction(title: "Yes!", style: .default)]
             
-            showAlert(title: "제조 완료", message: message, actions: actions)
+            Alert.default.showAlert(self, title: "제조 완료", message: message, actions: actions)
         } catch {
             var title: String? = nil
             var message = "쥬스를 만들 수 없습니다."
@@ -60,7 +60,7 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
                 print("알 수 없는 에러")
             }
             
-            showAlert(title: title, message: message, actions: actions)
+            Alert.default.showAlert(self, title: title, message: message, actions: actions)
         }
     }
     
@@ -70,18 +70,6 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
         pineappleStockLabel.text = String(juiceMaker.fruitStore.fruits[.pineapple] ?? 0)
         kiwiStockLabel.text = String(juiceMaker.fruitStore.fruits[.kiwi] ?? 0)
         mangoStockLabel.text = String(juiceMaker.fruitStore.fruits[.mango] ?? 0)
-    }
-    
-    private func showAlert(title: String?, message: String?, actions: [UIAlertAction]?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        if let actions, !actions.isEmpty {
-            actions.forEach {
-                alert.addAction($0)
-            }
-        }
-        
-        present(alert, animated: true)
     }
     
     private func showFruitStoreViewController() {

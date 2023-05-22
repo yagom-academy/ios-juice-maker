@@ -52,7 +52,7 @@ final class FruitStoreViewController: UIViewController {
             let message = "과일 수량 변경에 실패했습니다."
             let actions = [UIAlertAction(title: "확인", style: .default)]
             
-            showAlert(title: title, message: message, actions: actions)
+            Alert.default.showAlert(self, title: title, message: message, actions: actions)
         }
     }
     
@@ -93,17 +93,5 @@ final class FruitStoreViewController: UIViewController {
         default:
             throw JuiceError.nonexistentFruit
         }
-    }
-    
-    private func showAlert(title: String?, message: String?, actions: [UIAlertAction]?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        if let actions, !actions.isEmpty {
-            actions.forEach {
-                alert.addAction($0)
-            }
-        }
-        
-        present(alert, animated: true)
     }
 }
