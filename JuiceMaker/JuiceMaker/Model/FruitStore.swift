@@ -5,7 +5,7 @@
 //
 
 final class FruitStore {
-    private var fruitInventory: [Fruit: Int]
+    private(set) var fruitInventory: [Fruit: Int]
     
     init(fruitInventory: [Fruit: Int]) {
         self.fruitInventory = fruitInventory
@@ -25,5 +25,13 @@ final class FruitStore {
         guard let currentStock = fruitInventory[fruit],
               currentStock >= amount else { return false }
         return true
+    }
+    
+    func update(with fruitInventory: [Fruit: Int]) {
+        self.fruitInventory = fruitInventory
+    }
+    
+    func updateStock(of fruit: Fruit, to quantity: Int) {
+        fruitInventory[fruit] = quantity
     }
 }
