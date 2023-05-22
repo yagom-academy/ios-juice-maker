@@ -34,7 +34,7 @@ final class FruitStoreViewController: UIViewController {
         setFruitStock()
     }
     
-    @IBAction func tabClose(_ sender: UIBarButtonItem) {
+    @IBAction func tabCloseButton(_ sender: UIBarButtonItem) {
         if let fruits {
             delegate?.change(fruits)
         }
@@ -42,7 +42,7 @@ final class FruitStoreViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func tapChangeStock(_ sender: UIStepper) {
+    @IBAction func tapStockChangeStepper(_ sender: UIStepper) {
         do {
             let fruit = try matchFruit(by: sender.tag)
             fruits?[fruit] = Int(sender.value)

@@ -22,11 +22,11 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
         setFruitStockLabel()
     }
     
-    @IBAction func tapChangeStock(_ sender: UIBarButtonItem) {
+    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
         showFruitStoreViewController()
     }
     
-    @IBAction private func tapOrderJuice(_ sender: UIButton) {
+    @IBAction private func tapJuiceOrderButton(_ sender: UIButton) {
         do {
             let menu = try matchJuiceMenu(by: sender.tag)
             
