@@ -4,12 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-protocol JuiceMakerDelegate {
-    func successJuiceMaking(_ menu: JuiceMaker.Menu)
-    func failJuiceMaking()
-    func changeFruitStock(fruit: Fruit, amount: Int)
-}
-
 struct JuiceMaker {
     enum Menu: Int {
         case strawberryJuice
@@ -43,41 +37,34 @@ struct JuiceMaker {
     typealias Recipe = [(fruit: Fruit, amount: Int)]
     private let store: FruitStore
     private let recipe: [Menu: Recipe]
-    var delegate: JuiceMakerDelegate?
     
     init(_ fruitStore: FruitStore, _ recipe: [Menu: Recipe]) {
         self.store = fruitStore
         self.recipe = recipe
     }
 
+    func isMakeJuice(menu: Menu) -> Bool {
+        guard let recipe = provideRecipe(menu) else { return false }
+        
+        guard canMakeJuice(recipe) else { return false }
+        
+        consumeFruit(recipe)
+        return true
+    }
+    
     private func provideRecipe(_ menu: Menu) -> Recipe? {
         guard let juiceRecipe = recipe[menu] else { return nil }
         
         return juiceRecipe
     }
     
-    func makeJuice(menu: Menu) {
-        guard let recipe = provideRecipe(menu) else { return }
-        
-        guard canMakeJuice(recipe) else {
-            delegate?.failJuiceMaking()
-            return
-        }
-        
-        consumeFruit(recipe)
-        delegate?.successJuiceMaking(menu)
-    }
     
-    private func canMakeJuice(_ recipe: Recipe ) -> Bool {
-        return recipe.allSatisfy{ fruit, amount in return store.isEnoughFruits(fruit, count: amount) }
+    private func canMakeJuice(_ recipe: Recipe) -> Bool {
+        return recipe.allSatisfy { fruit, amount in return store.isEnoughFruits(fruit, count: amount) }
     }
     
     private func consumeFruit(_ recipe: Recipe) {
         recipe.forEach { fruit, amount in
-            guard let fruitStock = store.provideFruitStock(fruit) else { return }
-            let leftFruitStock = fruitStock - amount
-            
-            delegate?.changeFruitStock(fruit: fruit, amount: leftFruitStock)
             store.changeFruitCount(fruit, count: amount)
         }
     }
