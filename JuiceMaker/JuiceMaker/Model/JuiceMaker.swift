@@ -17,7 +17,7 @@ struct JuiceMaker {
         return fruitStore.readFruitInventory()
     }
     
-    private func takeOrder(_ juice: Juice) throws {
+    func takeOrder(_ juice: Juice) throws {
         try verifyStock(for: juice)
         try consumeFruit(for: juice)
     }
