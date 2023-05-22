@@ -48,9 +48,9 @@ final class FruitStoreViewController: UIViewController {
             fruits?[fruit] = Int(sender.value)
             setFruitStock()
         } catch {
-            var title: String? = nil
-            var message = "과일 수량 변경에 실패했습니다."
-            var actions = [UIAlertAction(title: "확인", style: .default)]
+            let title: String? = nil
+            let message = "과일 수량 변경에 실패했습니다."
+            let actions = [UIAlertAction(title: "확인", style: .default)]
             
             showAlert(title: title, message: message, actions: actions)
         }
