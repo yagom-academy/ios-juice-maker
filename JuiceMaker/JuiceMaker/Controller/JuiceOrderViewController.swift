@@ -82,3 +82,10 @@ final class JuiceOrderViewController: UIViewController {
     }
 }
 
+extension JuiceOrderViewController: StockChangeDelegate {
+    func changeStock(with fruitInventory: [Fruit : Int]) {
+        juiceMaker.update(with: fruitInventory)
+        updateFruitStockLabels()
+    }
+}
+
