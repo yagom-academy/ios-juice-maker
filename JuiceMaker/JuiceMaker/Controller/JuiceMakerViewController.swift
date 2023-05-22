@@ -34,39 +34,27 @@ final class JuiceMakerViewController: UIViewController {
     func order(juice: Juice) {
         do {
             try juiceMaker.blendFruitJuice(menu: juice)
-            showSuccessAlert(message: "\(juice)나왔습니다. 맛있게 드세요!")
+            showAlert(message: "\(juice)나왔습니다. 맛있게 드세요!",
+                      actions: UIAlertAction(title: "닫기", style: .cancel))
         } catch JuiceMakerError.outOfFruitStock {
-            showFailureAlert(message: "재료가 모자라요. 재고를 수정할까요?")
+            showAlert(message: "재료가 모자라요. 재고를 수정할까요?",
+                      actions: UIAlertAction(title: "예", style: .default) {
+                                action in self.presentModifyStockView() },
+                      UIAlertAction(title: "아니오", style: .default))
         } catch {
             print("unknown")
         }
     }
     
-    func showSuccessAlert(message: String) {
+    func showAlert(message: String, actions: UIAlertAction...) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let successAction = UIAlertAction(title: "닫기", style: .cancel)
-        
-        alert.addAction(successAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func showFailureAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let addAction = UIAlertAction(title: "예", style: .default) { (action) in
-            self.presentModifyStockView()
+        for action in actions {
+            alert.addAction(action)
         }
-        let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
-        
-        alert.addAction(addAction)
-        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
     
     func presentModifyStockView() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: "ModifyStockViewController")
-        
-        self.present(nextViewController, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "modifyStockViewSegue", sender: nil)
     }
 }
-
