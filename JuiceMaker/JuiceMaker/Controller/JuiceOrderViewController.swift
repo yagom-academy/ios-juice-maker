@@ -50,14 +50,14 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
-        guard let pushStockChangeViewController = self.storyboard?.instantiateViewController(
-            withIdentifier: "stockChangeViewController"
+        guard let nextStockChangeViewController = self.storyboard?.instantiateViewController(
+            identifier: "stockChangeViewController"
         ) else {
             return
         }
         
-        self.navigationController?.pushViewController(
-            pushStockChangeViewController,
+        self.present(
+            nextStockChangeViewController,
             animated: true
         )
     }
