@@ -7,8 +7,13 @@
 
 import UIKit
 
-final class StockChangeViewController: UIViewController {
+protocol StockChangeDelegate: AnyObject {
+    func changeStock(with fruitInventory: [Fruit: Int])
+}
 
+final class StockChangeViewController: UIViewController {
+    weak var delegate: StockChangeDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
