@@ -68,4 +68,17 @@ final class JuiceOrderViewController: UIViewController {
             orderJuiceButtonCollection[index].customIdentifier = Juice.allCases[index]
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is StockManagementViewController {
+            guard let stockManagementViewController =
+                    segue.destination as? StockManagementViewController
+            else {
+                return
+            }
+            
+            let currentStockList: [String] = juiceMaker.showRemainStock()
+            stockManagementViewController.setStockList(with: currentStockList)
+        }
+    }
 }
