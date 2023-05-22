@@ -12,6 +12,9 @@ protocol StockChangeDelegate: AnyObject {
 }
 
 final class StockChangeViewController: UIViewController {
+    @IBOutlet var fruitStockLabels: [UILabel] = []
+    @IBOutlet var stockSteppers: [UIStepper] = []
+    var fruitStore: FruitStore?
     weak var delegate: StockChangeDelegate?
     
     override func viewDidLoad() {
