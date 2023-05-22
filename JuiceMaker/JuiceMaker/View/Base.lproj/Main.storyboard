@@ -236,7 +236,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
-                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT"/>
+                        <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
+                            <connections>
+                                <action selector="tapChangeStock:" destination="BYZ-38-t0r" id="phK-cv-8Qc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bananaStockLabel" destination="gvk-pA-Lw5" id="kWe-xf-H8Y"/>
@@ -283,7 +287,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="156"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dCK-AJ-zGU">
-                                                <rect key="frame" x="9.6666666666666714" y="0.0" width="74.999999999999986" height="85.666666666666671"/>
+                                                <rect key="frame" x="9.6666666666666714" y="0.0" width="75" height="85.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -391,7 +395,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="재고 추가" id="4Ci-jC-Dlo">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="v2W-so-5HY"/>
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="v2W-so-5HY">
+                                            <connections>
+                                                <action selector="tabClose:" destination="Yu1-lM-nqp" id="1to-Tl-XBT"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
