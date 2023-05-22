@@ -20,6 +20,7 @@ final class StockChangeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeComponents()
+        setStockStepperTag()
     }
     
     private func initializeComponents() {
@@ -28,6 +29,12 @@ final class StockChangeViewController: UIViewController {
                   let fruitCount = fruitStore?.getCurrentStock(of: fruit) else { return }
             fruitStockLabel.text = "\(fruitCount)"
             stockStepper.value = Double(fruitCount)
+        }
+    }
+    
+    private func setStockStepperTag() {
+        for (tag, stockStepper) in stockSteppers.enumerated() {
+            stockStepper.tag = tag
         }
     }
 }
