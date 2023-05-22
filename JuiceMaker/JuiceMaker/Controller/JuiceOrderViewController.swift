@@ -11,17 +11,17 @@ final class JuiceOrderViewController: UIViewController {
     @IBOutlet var juiceOrderButtons: [UIButton] = []
     
     private let juiceMaker = JuiceMaker(fruitStore: FruitStore(fruitInventory: [.strawberry: 10,
-                                                                        .banana: 10,
-                                                                        .pineapple: 10,
-                                                                        .kiwi: 10,
-                                                                        .mango: 10]))
+                                                                                .banana: 10,
+                                                                                .pineapple: 10,
+                                                                                .kiwi: 10,
+                                                                                .mango: 10]))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockLabels()
         setJuiceOrderButtonTag()
     }
-
+    
     @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
         presentStockChangeViewController()
     }
@@ -56,8 +56,11 @@ final class JuiceOrderViewController: UIViewController {
     
     private func presentStockChangeViewController() {
         guard let stockChangeViewController = storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
+        let navigationController = UINavigationController(rootViewController: stockChangeViewController)
         
-        present(stockChangeViewController, animated: true)
+        stockChangeViewController.fruitStore = juiceMaker.getFruitStore()
+        stockChangeViewController.delegate = self
+        present(navigationController, animated: true)
     }
     
     private func presentJuiceReadyAlert(with juice: Juice) {
