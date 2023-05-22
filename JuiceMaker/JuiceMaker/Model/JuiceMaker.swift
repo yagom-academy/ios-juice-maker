@@ -17,17 +17,8 @@ struct JuiceMaker {
         return fruitStore.readFruitInventory()
     }
     
-    func takeOrder(_ juice: Juice) -> Bool {
-        do {
-            try makeJuice(juice)
-            return true
-        } catch FruitStoreError.invalidFruit {
-            return false
-        } catch FruitStoreError.insufficientFruit {
-            return false
-        } catch {
-            return false
-        }
+    func takeOrder(_ juice: Juice) throws {
+        try makeJuice(juice)
     }
     
     private func makeJuice(_ juice: Juice) throws {

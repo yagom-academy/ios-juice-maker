@@ -84,16 +84,16 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
-        showAlert(of: juice)
-        configureStockLabel()
-    }
-    
-    func showAlert(of juice: Juice) {
-        if juiceMaker.takeOrder(juice) {
+        do {
+            try juiceMaker.takeOrder(juice)
             showCompletionAlert(for: juice)
-        } else {
+        } catch FruitStoreError.insufficientFruit {
             showFailureAlert()
+        } catch {
+            
         }
+        
+        configureStockLabel()
     }
     
     func showCompletionAlert(for juice: Juice) {
