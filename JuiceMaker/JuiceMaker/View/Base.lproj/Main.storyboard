@@ -421,7 +421,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" id="SzY-br-TJN"/>
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="SzY-br-TJN">
+                            <connections>
+                                <action selector="tapCloseButton:" destination="Yu1-lM-nqp" id="D2G-Vh-qbE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="gZx-dK-Cpg"/>
