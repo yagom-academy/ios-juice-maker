@@ -51,7 +51,7 @@ class JuiceOrderViewController: UIViewController {
     
     @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
         guard let pushStockChangeViewController = self.storyboard?.instantiateViewController(
-            withIdentifier: "stockChange"
+            withIdentifier: "stockChangeViewController"
         ) else {
             return
         }
@@ -85,12 +85,12 @@ class JuiceOrderViewController: UIViewController {
         }
         
         order(juice)
-        configureStockLabel()
     }
     
     func order(_ juice: Juice) {
         do {
             try juiceMaker.takeOrder(juice)
+            configureStockLabel()
             showCompletionAlert(for: juice)
         } catch FruitStoreError.insufficientFruit {
             showFailureAlert()
