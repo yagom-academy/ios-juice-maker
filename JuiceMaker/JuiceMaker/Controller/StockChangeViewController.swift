@@ -19,5 +19,15 @@ final class StockChangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeComponents()
+    }
+    
+    private func initializeComponents() {
+        for (index, (fruitStockLabel, stockStepper)) in zip(fruitStockLabels, stockSteppers).enumerated() {
+            guard let fruit = Fruit(rawValue: index),
+                  let fruitCount = fruitStore?.getCurrentStock(of: fruit) else { return }
+            fruitStockLabel.text = "\(fruitCount)"
+            stockStepper.value = Double(fruitCount)
+        }
     }
 }
