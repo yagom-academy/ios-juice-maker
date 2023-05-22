@@ -48,7 +48,11 @@ final class FruitStoreViewController: UIViewController {
             fruits?[fruit] = Int(sender.value)
             setFruitStock()
         } catch {
-            // TODO: 에러 처리
+            var title: String? = nil
+            var message = "과일 수량 변경에 실패했습니다."
+            var actions = [UIAlertAction(title: "확인", style: .default)]
+            
+            showAlert(title: title, message: message, actions: actions)
         }
     }
     
@@ -89,5 +93,17 @@ final class FruitStoreViewController: UIViewController {
         default:
             throw JuiceError.nonexistentFruit
         }
+    }
+    
+    private func showAlert(title: String?, message: String?, actions: [UIAlertAction]?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        if let actions, !actions.isEmpty {
+            actions.forEach {
+                alert.addAction($0)
+            }
+        }
+        
+        present(alert, animated: true)
     }
 }
