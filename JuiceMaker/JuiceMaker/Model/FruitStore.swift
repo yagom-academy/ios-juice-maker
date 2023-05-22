@@ -23,12 +23,6 @@ final class FruitStore {
         self.fruits = fruits
     }
     
-    func addStock(of fruit: Fruit, amount: Int) throws {
-        let stock = try receiveStock(of: fruit)
-
-        fruits.updateValue(stock + amount, forKey: fruit)
-    }
-    
     func useStock(of fruit: Fruit, amount: Int) throws {
         let stock = try receiveStock(of: fruit)
         
