@@ -23,9 +23,9 @@ final class JuiceOrderViewController: UIViewController {
     
     private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
     private lazy var juiceMaker = JuiceMaker(fruitStore, recipe)
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         setUpFruitLabelsText()
     }
@@ -47,7 +47,9 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func navigateToFruitStockViewController() {
-        guard let fruitStockViewController = storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
+        guard let fruitStockViewController = storyboard?.instantiateViewController(identifier: "FruitStockViewController", creator: { coder in
+            FruitStockViewController(coder: coder, fruitStore: self.fruitStore)
+        }) else { return }
         
         navigationController?.pushViewController(fruitStockViewController, animated: true)
     }

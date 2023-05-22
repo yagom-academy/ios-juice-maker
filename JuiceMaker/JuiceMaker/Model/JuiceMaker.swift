@@ -65,7 +65,7 @@ struct JuiceMaker {
     
     private func consumeFruit(_ recipe: Recipe) {
         recipe.forEach { fruit, amount in
-            store.changeFruitCount(fruit, count: amount)
+            store.changeFruitCount(fruit, amount: -amount)
         }
     }
 }
