@@ -15,8 +15,9 @@ class FruitStore {
     func hasEnoughStock(fruit: Fruit, amount: Int) -> Bool {
         if fruitInventory[fruit.inventoryIndex] >= amount {
             return true
+        } else {
+            return false
         }
-        return false
     }
     
     func addStock(fruit: Fruit, amount: Int) {
