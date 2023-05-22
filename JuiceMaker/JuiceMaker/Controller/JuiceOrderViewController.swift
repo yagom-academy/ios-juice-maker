@@ -9,11 +9,7 @@ import UIKit
 final class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var stockLabels: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +17,9 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func updateStockLabel() {
-        strawberryStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .strawberry))"
-        bananaStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .banana))"
-        pineappleStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .pineapple))"
-        kiwiStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .kiwi))"
-        mangoStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .mango))"
+        for (index, label) in stockLabels.enumerated() {
+            label.text = "\(juiceMaker.fruitStore.bringQuantity(of: Fruits.allCases[index]))"
+        }
     }
     
     private enum ButtonTitle {
@@ -61,38 +55,39 @@ final class JuiceOrderViewController: UIViewController {
     
     private func placeAnOrder(for juice: Juice) {
         if let juice = juiceMaker.takeOrder(juice) {
-            presentSuccessAlert(juice: juice)
+            presentSuccessAlertController(juice: juice)
             updateStockLabel()
         } else {
-            presentFailureAlert()
+            presentFailureAlertController()
         }
     }
     
-    private func presentSuccessAlert(juice: Juice) {
+    private func presentSuccessAlertController(juice: Juice) {
         let successMessage = "\(juice)가 나왔습니다! 맛있게 드세요!"
-        let alert = UIAlertController(title: successMessage, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: successMessage, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         
-        alert.addAction(okAction)
-        present(alert, animated: true)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
     
-    private func presentFailureAlert() {
+    private func presentFailureAlertController() {
         let failureMessage = "재료가 모자라요. 재고를 수정할까요?"
-        let alert = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in
-            self.pushChangeStockViewController() })
+            self.presentChangeStockViewController() })
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        present(alert, animated: true)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true)
     }
     
-    private func pushChangeStockViewController() {
-        guard let view = storyboard?
+    private func presentChangeStockViewController() {
+        guard let viewController = storyboard?
             .instantiateViewController(identifier: "ChangeStockViewController") else { return }
-        navigationController?.pushViewController(view, animated: true)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
     }
     
     @IBAction private func hitJuiceOrderButton(_ sender: UIButton) {
@@ -102,6 +97,6 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction private func hitChangeStockButton(_ sender: UIBarButtonItem) {
-        pushChangeStockViewController()
+        presentChangeStockViewController()
     }
 }
