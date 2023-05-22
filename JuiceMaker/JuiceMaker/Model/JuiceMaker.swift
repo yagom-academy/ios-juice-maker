@@ -11,7 +11,7 @@ struct JuiceMaker {
         do {
             try FruitStore.shared.checkStock(with: juice.recipe)
             juice.recipe.forEach { key, value in
-                FruitStore.shared.changeStock(with: key, value)
+                FruitStore.shared.changeStock(with: key, -value)
             }
             return juice
         } catch FruitStoreError.outOfStock {

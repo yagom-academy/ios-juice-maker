@@ -26,7 +26,6 @@ final class FruitStore {
             self.stock[fruits] = stock + quantity
         }
     }
-    //25 재고수정화면 -> 25
     
     func checkStock(with fruits: [Fruit: Int]) throws {
         for (fruit, quantity) in fruits {

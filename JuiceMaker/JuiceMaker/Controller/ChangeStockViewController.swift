@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol FruitStockDelegate: AnyObject {
-    func addStock(_ value: [Fruit: Int])
-}
-
 final class ChangeStockViewController: UIViewController {
-    
-    weak var delegate: FruitStockDelegate?
     
     @IBOutlet weak var strawBerryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -34,7 +28,6 @@ final class ChangeStockViewController: UIViewController {
     }
     
     private func showFruitStockOnLabel() {
-        let fruitStock = FruitStore.shared.currentFruitStock
         
         let fruitAndLabel: [Fruit : UILabel] = [
             .strawBerry: strawBerryStockLabel,
@@ -45,13 +38,12 @@ final class ChangeStockViewController: UIViewController {
         ]
         
         for (fruit, label) in fruitAndLabel {
-            guard let stock = fruitStock[fruit] else { return }
+            guard let stock = FruitStore.shared.currentFruitStock[fruit] else { return }
             label.text = String(stock)
         }
     }
     
     private func changeFruitStockStepper() {
-        let fruitStock = FruitStore.shared.currentFruitStock
         let fruitAndStepper: [Fruit : UIStepper] = [
             .strawBerry: strawBerryStepper,
             .banana: bananaStepper,
@@ -61,7 +53,7 @@ final class ChangeStockViewController: UIViewController {
         ]
         
         for (fruit, stepper) in fruitAndStepper {
-            guard let stock = fruitStock[fruit] else { return }
+            guard let stock = FruitStore.shared.currentFruitStock[fruit] else { return }
             stepper.value = Double(stock)
         }
     }
@@ -94,7 +86,7 @@ final class ChangeStockViewController: UIViewController {
             guard let text = label.text, let intText = Int(text) else { return }
             FruitStore.shared.changeStock(with: fruit, intText - stock)
         }
-        delegate?.addStock(FruitStore.shared.currentFruitStock)
+        
         self.dismiss(animated: true)
     }
 }

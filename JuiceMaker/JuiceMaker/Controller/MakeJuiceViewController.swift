@@ -30,8 +30,29 @@ final class MakeJuiceViewController: UIViewController {
         modifyFruitStockOnLabel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
+        modifyFruitStockOnLabel()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDidDisappear")
+    }
+    
+    
     private func modifyFruitStockOnLabel() {
-        let fruitStock = FruitStore.shared.currentFruitStock
         
         let fruitAndLabels: [Fruit: UILabel] = [
             .strawBerry: strawBerryStockLabel,
@@ -42,7 +63,7 @@ final class MakeJuiceViewController: UIViewController {
         ]
         
         for (fruit, label) in  fruitAndLabels {
-            guard let stock = fruitStock[fruit] else { return }
+            guard let stock = FruitStore.shared.currentFruitStock[fruit] else { return }
             label.text = String(stock)
         }
     }
@@ -95,19 +116,11 @@ final class MakeJuiceViewController: UIViewController {
     
     private func presentChangeStockViewController() {
         guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") else { return }
-        
-        
-        
+        changeStockNavigationController.modalPresentationStyle = .fullScreen
         present(changeStockNavigationController, animated: true)
     }
     
     @IBAction func changeStockBarButton(_ sender: Any) {
         presentChangeStockViewController()
-    }
-}
-
-extension MakeJuiceViewController: FruitStockDelegate {
-    func addStock(_ value: [Fruit : Int]) {
-        modifyFruitStockOnLabel()
     }
 }
