@@ -12,7 +12,7 @@ final class StockManagementViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func goBackPreviousView(_ sender: UIButton) {
+    @IBAction func goBackPreviousView(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
 }
