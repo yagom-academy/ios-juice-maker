@@ -117,7 +117,8 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
         }
     }
     
-    func changeStock() {
-        
+    func change(_ fruits: [Fruit : Int]) {
+        juiceMaker.fruitStore.change(fruits)
+        setFruitStockLabel()
     }
 }
