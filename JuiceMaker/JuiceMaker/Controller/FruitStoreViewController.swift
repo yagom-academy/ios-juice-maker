@@ -52,6 +52,13 @@ final class FruitStoreViewController: UIViewController {
             let message = "과일 수량 변경에 실패했습니다."
             let actions = [UIAlertAction(title: "확인", style: .default)]
             
+            switch error {
+            case JuiceError.nonexistentFruit:
+                print("FruitStore에 해당 Fruit이 없습니다.")
+            default:
+                print("알 수 없는 에러")
+            }
+            
             Alert.default.showAlert(self, title: title, message: message, actions: actions)
         }
     }
