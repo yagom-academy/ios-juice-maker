@@ -33,6 +33,13 @@ final class StockChangeViewController: UIViewController {
         fruitStore?.updateStock(of: fruit, to: quantity)
     }
     
+    @IBAction func tapCloseButton(_ sender: UIBarButtonItem) {
+        guard let fruitStore = fruitStore else { return }
+        
+        delegate?.changeStock(with: fruitStore.fruitInventory)
+        dismiss(animated: true)
+    }
+    
     private func initializeComponents() {
         for (index, (fruitStockLabel, stockStepper)) in zip(fruitStockLabels, stockSteppers).enumerated() {
             guard let fruit = Fruit(rawValue: index),
