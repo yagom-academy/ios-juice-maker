@@ -23,6 +23,16 @@ final class StockChangeViewController: UIViewController {
         setStockStepperTag()
     }
     
+    @IBAction func updateFruitStock(_ sender: UIStepper) {
+        let index = sender.tag
+        let fruitStockLabel = fruitStockLabels[index]
+        let quantity = Int(sender.value)
+        guard let fruit = Fruit(rawValue: index) else { return }
+        
+        fruitStockLabel.text = "\(quantity)"
+        fruitStore?.updateStock(of: fruit, to: quantity)
+    }
+    
     private func initializeComponents() {
         for (index, (fruitStockLabel, stockStepper)) in zip(fruitStockLabels, stockSteppers).enumerated() {
             guard let fruit = Fruit(rawValue: index),
