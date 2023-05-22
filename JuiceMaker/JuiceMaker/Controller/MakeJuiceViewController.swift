@@ -94,8 +94,10 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     private func presentChangeStockViewController() {
-        guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") as? ChangeStockViewController else { return }
-        changeStockNavigationController.delegate = self
+        guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") else { return }
+        
+        
+        
         present(changeStockNavigationController, animated: true)
     }
     

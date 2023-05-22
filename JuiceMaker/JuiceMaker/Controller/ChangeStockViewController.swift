@@ -27,8 +27,6 @@ final class ChangeStockViewController: UIViewController {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         showFruitStockOnLabel()
@@ -82,9 +80,6 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    
-    
-    
     @IBAction func changeConfirm(_ sender: Any) {
         let fruitLabels: [Fruit: UILabel] = [
             .strawBerry: strawBerryStockLabel,
@@ -97,11 +92,8 @@ final class ChangeStockViewController: UIViewController {
         for (fruit, label) in fruitLabels {
             guard let stock = FruitStore.shared.currentFruitStock[fruit] else { return }
             guard let text = label.text, let intText = Int(text) else { return }
-            
-            FruitStore.shared.changeStock(with: fruit, stock - intText)
+            FruitStore.shared.changeStock(with: fruit, intText - stock)
         }
-        
-        
         delegate?.addStock(FruitStore.shared.currentFruitStock)
         self.dismiss(animated: true)
     }
