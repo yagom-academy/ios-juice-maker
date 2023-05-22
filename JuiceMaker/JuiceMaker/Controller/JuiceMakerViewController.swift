@@ -7,13 +7,23 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
+    var delegate: StockReceivable?
     let juiceMaker = JuiceMaker()
     @IBOutlet var fruitStockLabels: [UILabel]!
     @IBOutlet var orderButtons: [UIButton]!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateFruitStockLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let stock = delegate?.getStock() else {
+            return
+        }
+        delegate = nil
+        juiceMaker.fruitStore.fruitInventory = stock
         updateFruitStockLabel()
     }
     
@@ -23,6 +33,14 @@ final class JuiceMakerViewController: UIViewController {
         }
         
         updateFruitStockLabel()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let modifyStockViewController = segue.destination as? ModifyStockViewController else {
+            return
+        }
+        delegate = modifyStockViewController
+        delegate?.setStock(stocks: juiceMaker.fruitStore.fruitInventory)
     }
     
     func updateFruitStockLabel() {
