@@ -95,7 +95,7 @@ class JuiceOrderViewController: UIViewController {
         } catch FruitStoreError.insufficientFruit {
             showFailureAlert()
         } catch {
-            
+            showErrorAlert()
         }
     }
     
@@ -137,5 +137,21 @@ class JuiceOrderViewController: UIViewController {
         juiceFailureAlert.addAction(stockChangeAction)
         juiceFailureAlert.addAction(closeAction)
         present(juiceFailureAlert, animated: true, completion: nil)
+    }
+    
+    func showErrorAlert() {
+        let errorAlert = UIAlertController(
+            title: nil,
+            message: "알 수 없는 에러가 발생하였습니다. \n 다시 시도해주시기 바랍니다.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        
+        let closeAction = UIAlertAction(
+            title: "닫기",
+            style: UIAlertAction.Style.default
+        )
+        
+        errorAlert.addAction(closeAction)
+        present(errorAlert, animated: true, completion: nil)
     }
 }
