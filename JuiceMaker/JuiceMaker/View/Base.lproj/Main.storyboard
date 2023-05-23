@@ -493,7 +493,6 @@
                             <constraint firstItem="eoY-dQ-AXU" firstAttribute="leading" secondItem="tKV-4l-Vtc" secondAttribute="leading" id="zKw-Q3-jgD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
                         <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="f4u-Wg-Cta"/>
                         <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="PWD-hP-lW5"/>
