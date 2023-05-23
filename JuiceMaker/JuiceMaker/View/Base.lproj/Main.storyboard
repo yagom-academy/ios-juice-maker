@@ -455,16 +455,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="844" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="재고 추가" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-Yr-vfk">
-                                        <rect key="frame" x="322" y="9.9999999999999982" width="200" height="20.333333333333329"/>
+                                        <rect key="frame" x="322" y="10" width="200" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="iRT-iI-gRQ"/>
+                                            <constraint firstAttribute="height" constant="20" id="ThO-my-geB"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="iRT-iI-gRQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKB-J8-ERz">
-                                        <rect key="frame" x="740.33333333333337" y="3" width="53.666666666666629" height="34.333333333333336"/>
+                                        <rect key="frame" x="740.33333333333337" y="10" width="53.666666666666629" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="qiT-FA-hPd"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="닫기"/>
                                         <connections>
@@ -477,6 +481,7 @@
                                 <constraints>
                                     <constraint firstItem="OBM-Yr-vfk" firstAttribute="centerY" secondItem="eoY-dQ-AXU" secondAttribute="centerY" id="HQt-Xt-plS"/>
                                     <constraint firstItem="OBM-Yr-vfk" firstAttribute="centerX" secondItem="eoY-dQ-AXU" secondAttribute="centerX" id="Kpw-Tv-gxD"/>
+                                    <constraint firstItem="NKB-J8-ERz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OBM-Yr-vfk" secondAttribute="trailing" constant="8" symbolic="YES" id="PYm-ec-ysh"/>
                                     <constraint firstItem="NKB-J8-ERz" firstAttribute="centerY" secondItem="eoY-dQ-AXU" secondAttribute="centerY" id="hya-KC-Ukl"/>
                                     <constraint firstAttribute="height" constant="40" id="kUU-3t-Wcw"/>
                                     <constraint firstAttribute="trailing" secondItem="NKB-J8-ERz" secondAttribute="trailing" constant="50" id="pzo-rc-Cca"/>
