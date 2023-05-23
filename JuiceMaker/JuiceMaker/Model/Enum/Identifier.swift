@@ -1,8 +1,7 @@
 //
-//  Identifier.swift
-//  JuiceMaker
-//
+//  JuiceMaker - Identifier.swift
 //  Created by Minseong Kang on 2023/05/23.
+//  last modified by maxhyunm, kobe
 //
 
 enum Identifier {

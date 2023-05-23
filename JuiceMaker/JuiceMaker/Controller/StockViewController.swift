@@ -1,8 +1,7 @@
 //
-//  StockViewController.swift
-//  JuiceMaker
-//
+//  JuiceMaker - StockViewController.swift
 //  Created by Minseong Kang on 2023/05/11.
+//  last modified by maxhyunm, kobe
 //
 
 import UIKit
@@ -22,9 +21,11 @@ class StockViewController: UIViewController {
 	@IBOutlet private weak var mangoStepper: UIStepper!
     
 	private var fruitStock: [Fruit: Int] = [:]
+    weak var delegate: MainViewControllerDelegate?
     
-    init?(coder: NSCoder, fruitStock: [Fruit: Int]) {
+    init?(coder: NSCoder, fruitStock: [Fruit: Int], mainViewController: MainViewController) {
         self.fruitStock = fruitStock
+        self.delegate = mainViewController
         super.init(coder: coder)
     }
     
@@ -106,17 +107,11 @@ class StockViewController: UIViewController {
     
     private func removeStockViewController(isChange: Bool) {
         if isChange {
-			self.postStockChangeNotification()
+            delegate?.changeFruitInventory(fruitStockStatus: fruitStock)
         }
         self.dismiss(animated: true)
     }
     
-    private func postStockChangeNotification() {
-        NotificationCenter.default.post(name: NSNotification.Name.changedStock,
-                                        object: nil,
-                                        userInfo: [NotificationKey.fruitStock: fruitStock])
-    }
-	
 	@IBAction private func touchUpStepper(_ sender: UIStepper) {
 		switch sender {
 		case strawberryStepper:

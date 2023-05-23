@@ -7,7 +7,11 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+protocol MainViewControllerDelegate: AnyObject {
+    func changeFruitInventory(fruitStockStatus: [Fruit: Int])
+}
+
+class MainViewController: UIViewController, MainViewControllerDelegate {
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     @IBOutlet private weak var strawberryJuiceButton: UIButton!
@@ -27,7 +31,6 @@ class MainViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        addStockChangeNotification()
     }
 	
 	override func viewDidLoad() {
@@ -40,20 +43,10 @@ class MainViewController: UIViewController {
         replaceStockLabel()
     }
 	
-	private func addStockChangeNotification() {
-		NotificationCenter.default.addObserver(self,
-											   selector: #selector(changeFruitInventory(notification:)),
-											   name: NSNotification.Name.changedStock,
-											   object: nil)
-	}
-	
-	@objc private func changeFruitInventory(notification: NSNotification) {
-		guard let fruitStockStatus = notification.userInfo?[NotificationKey.fruitStock] as? [Fruit: Int] else {
-			return
-		}
-		juiceMaker.changeFruitStock(fruitStockStatus)
-		fruitStock = fruitStockStatus
-	}
+    func changeFruitInventory(fruitStockStatus: [Fruit: Int]) {
+        juiceMaker.changeFruitStock(fruitStockStatus)
+        fruitStock = fruitStockStatus
+    }
 	
 	private func addButtonAction() {
 		strawberryBananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
@@ -151,7 +144,7 @@ class MainViewController: UIViewController {
         let stockViewController = storyboard.instantiateViewController(
 			identifier: Identifier.stockViewController.name,
             creator: { coder in
-                return StockViewController(coder: coder, fruitStock: self.fruitStock)
+                return StockViewController(coder: coder, fruitStock: self.fruitStock, mainViewController: self)
             })
         
 		stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
