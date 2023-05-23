@@ -55,8 +55,8 @@ final class FruitStockViewController: UIViewController {
         }
     }
 }
-    
-    // MARK: - Button Action
+
+// MARK: - Button Action
 extension FruitStockViewController {
     @IBAction func tappedFruitStepper(_ sender: UIStepper) {
         guard fruitStockLabels.count > sender.tag else { return }

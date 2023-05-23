@@ -47,16 +47,11 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func navigateToFruitStockViewController() {
-//        guard let fruitStockViewController = storyboard?.instantiateViewController(identifier: "FruitStockViewController", creator: { coder in
-//            FruitStockViewController(coder: coder, fruitStore: self.fruitStore)
-//        }) else { return }
-//
-//        navigationController?.pushViewController(fruitStockViewController, animated: true)
-        
         guard let fruitStockViewController = self.storyboard?.instantiateViewController(identifier: "FruitStockViewController", creator: { coder in
             FruitStockViewController(coder: coder, fruitStore: self.fruitStore)
         }) else { return }
         
+        fruitStockViewController.modalPresentationStyle = .fullScreen
         present(fruitStockViewController, animated: true)
     }
 }
