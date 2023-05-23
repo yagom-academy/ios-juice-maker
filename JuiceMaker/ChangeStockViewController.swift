@@ -5,9 +5,25 @@
 
 import UIKit
 
-class ChangeStockViewController: UIViewController {
+protocol StockDelegate: AnyObject {
+    func getCurrentStock() -> [Int]
+}
 
+class ChangeStockViewController: UIViewController {
+    @IBOutlet var stockChangeLabels: [UILabel]!
+    @IBOutlet var stockChangeSteppers: [UIStepper]!
+    
+    weak var delegate: StockDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeStockLabel()
+    }
+    
+    private func initializeStockLabel() {
+        guard let initialStock = delegate?.getCurrentStock() else { return }
+        for (index, label) in stockChangeLabels.enumerated() {
+            label.text = "\(initialStock[index])"
+        }
     }
 }

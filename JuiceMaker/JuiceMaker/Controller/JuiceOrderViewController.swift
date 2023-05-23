@@ -85,7 +85,8 @@ final class JuiceOrderViewController: UIViewController {
     
     private func presentChangeStockViewController() {
         guard let viewController = storyboard?
-            .instantiateViewController(identifier: "ChangeStockViewController") else { return }
+            .instantiateViewController(identifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
+        viewController.delegate = self
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
     }
@@ -98,5 +99,11 @@ final class JuiceOrderViewController: UIViewController {
     
     @IBAction private func hitChangeStockButton(_ sender: UIBarButtonItem) {
         presentChangeStockViewController()
+    }
+}
+
+extension JuiceOrderViewController: StockDelegate {
+    func getCurrentStock() -> [Int] {
+        return Fruits.allCases.map { juiceMaker.fruitStore.bringQuantity(of: $0) }
     }
 }

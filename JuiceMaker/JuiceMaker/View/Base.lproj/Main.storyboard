@@ -371,6 +371,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outletCollection property="stockChangeLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="HUd-eN-RhK"/>
+                        <outletCollection property="stockChangeLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="aMU-fR-5Cf"/>
+                        <outletCollection property="stockChangeLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="egp-mE-7hH"/>
+                        <outletCollection property="stockChangeLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="rrJ-RW-6uE"/>
+                        <outletCollection property="stockChangeLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="hFh-S7-1DR"/>
+                        <outletCollection property="stockChangeSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="Huu-LI-6v3"/>
+                        <outletCollection property="stockChangeSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="1aK-sd-7LC"/>
+                        <outletCollection property="stockChangeSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="tc2-vF-mgs"/>
+                        <outletCollection property="stockChangeSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="BhK-JE-oIO"/>
+                        <outletCollection property="stockChangeSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="2Ac-gj-DjT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
