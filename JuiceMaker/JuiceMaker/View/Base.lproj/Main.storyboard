@@ -426,6 +426,13 @@
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="FP3-44-jsv"/>
                     </navigationItem>
+                    <connections>
+                        <outletCollection property="fruitStockLabelCollection" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="Cbw-oU-Ocf"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="nim-dP-WKg"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="Gi8-FD-TQW"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="iMh-p8-6s9"/>
+                        <outletCollection property="fruitStockLabelCollection" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="DAP-bF-gwI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
