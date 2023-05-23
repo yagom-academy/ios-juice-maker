@@ -281,10 +281,10 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--View Controller-->
+        <!--Stock Change View Controller-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
-                <viewController storyboardIdentifier="stockChangeViewController" id="Yu1-lM-nqp" sceneMemberID="viewController">
+                <viewController id="Yu1-lM-nqp" customClass="StockChangeViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -390,7 +390,11 @@
                                 <color key="barTintColor" red="0.86470162750000001" green="0.86470162750000001" blue="0.86470162750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="재고 추가" id="52g-ZT-Ue9">
-                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Iw0-fp-Ga5"/>
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="Iw0-fp-Ga5">
+                                            <connections>
+                                                <action selector="didTapCloseButton:" destination="Yu1-lM-nqp" id="eNf-Ng-7G3"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -399,6 +403,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <connections>
+                        <outlet property="closeButton" destination="Iw0-fp-Ga5" id="nZC-mc-3UJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>

@@ -56,8 +56,8 @@
 			children = (
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
-				C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */,
 				3C7887762A1CD9FE00A36B12 /* JuiceOrderResult.swift */,
+				C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */,
 				3C7887782A1D383D00A36B12 /* StockChangeViewController.swift */,
 			);
 			path = Controller;
