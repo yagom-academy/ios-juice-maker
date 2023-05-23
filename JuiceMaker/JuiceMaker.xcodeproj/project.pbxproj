@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		BA1303262A14A5BD00E1AF29 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1303252A14A5BD00E1AF29 /* NotificationKey.swift */; };
-		BA1303282A14A60100E1AF29 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1303272A14A60100E1AF29 /* Extensions.swift */; };
+		BA1303282A14A60100E1AF29 /* NSNotification.Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1303272A14A60100E1AF29 /* NSNotification.Name+.swift */; };
 		BA14720A2A09E3EF00AE9E9B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1472092A09E3EF00AE9E9B /* Error.swift */; };
 		BA5AFA742A0C7EE7005ABD23 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5AFA732A0C7EE7005ABD23 /* StockViewController.swift */; };
+		BA6A8F902A1C499C0007704E /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A8F8F2A1C499C0007704E /* Identifier.swift */; };
 		BAD01DB42A0B20DB00268E9F /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD01DB32A0B20DB00268E9F /* Fruit.swift */; };
 		BAD01DB62A0B215A00268E9F /* FruitJuice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD01DB52A0B215A00268E9F /* FruitJuice.swift */; };
 		BAED1B692A11C6BF000A9A59 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAED1B682A11C6BF000A9A59 /* Alert.swift */; };
@@ -26,9 +27,10 @@
 
 /* Begin PBXFileReference section */
 		BA1303252A14A5BD00E1AF29 /* NotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
-		BA1303272A14A60100E1AF29 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BA1303272A14A60100E1AF29 /* NSNotification.Name+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name+.swift"; sourceTree = "<group>"; };
 		BA1472092A09E3EF00AE9E9B /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		BA5AFA732A0C7EE7005ABD23 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
+		BA6A8F8F2A1C499C0007704E /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		BAD01DB32A0B20DB00268E9F /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		BAD01DB52A0B215A00268E9F /* FruitJuice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitJuice.swift; sourceTree = "<group>"; };
 		BAED1B682A11C6BF000A9A59 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -58,7 +60,7 @@
 		BACA89E42A16FED10010FA3C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				BA1303272A14A60100E1AF29 /* Extensions.swift */,
+				BA1303272A14A60100E1AF29 /* NSNotification.Name+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -71,6 +73,7 @@
 				BAD01DB52A0B215A00268E9F /* FruitJuice.swift */,
 				BAED1B682A11C6BF000A9A59 /* Alert.swift */,
 				BA1303252A14A5BD00E1AF29 /* NotificationKey.swift */,
+				BA6A8F8F2A1C499C0007704E /* Identifier.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -207,11 +210,12 @@
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				BA5AFA742A0C7EE7005ABD23 /* StockViewController.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* MainViewController.swift in Sources */,
+				BA6A8F902A1C499C0007704E /* Identifier.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				BA1303262A14A5BD00E1AF29 /* NotificationKey.swift in Sources */,
 				BAD01DB42A0B20DB00268E9F /* Fruit.swift in Sources */,
-				BA1303282A14A60100E1AF29 /* Extensions.swift in Sources */,
+				BA1303282A14A60100E1AF29 /* NSNotification.Name+.swift in Sources */,
 				BAD01DB62A0B215A00268E9F /* FruitJuice.swift in Sources */,
 				BA14720A2A09E3EF00AE9E9B /* Error.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,

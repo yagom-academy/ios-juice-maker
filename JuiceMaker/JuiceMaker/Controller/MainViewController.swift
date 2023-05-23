@@ -40,6 +40,31 @@ class MainViewController: UIViewController {
         replaceStockLabel()
     }
 	
+	private func addStockChangeNotification() {
+		NotificationCenter.default.addObserver(self,
+											   selector: #selector(changeFruitInventory(notification:)),
+											   name: NSNotification.Name.changedStock,
+											   object: nil)
+	}
+	
+	@objc private func changeFruitInventory(notification: NSNotification) {
+		guard let fruitStockStatus = notification.userInfo?[NotificationKey.fruitStock] as? [Fruit: Int] else {
+			return
+		}
+		juiceMaker.changeFruitStock(fruitStockStatus)
+		fruitStock = fruitStockStatus
+	}
+	
+	private func addButtonAction() {
+		strawberryBananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		mangoKiwiJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		strawberryJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		bananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		pineappleJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		kiwiJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+		mangoJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+	}
+	
 	private func replaceStockLabel() {
 		guard let strawberryStock = fruitStock[.strawberry],
 			  let bananaStock = fruitStock[.banana],
@@ -55,37 +80,42 @@ class MainViewController: UIViewController {
 		mangoStockLabel.text = String(mangoStock)
 	}
 	
-	private func addButtonAction() {
-		strawberryBananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-		mangoKiwiJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-		strawberryJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-		bananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-		pineappleJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-		kiwiJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
-		mangoJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
+	@objc private func orderMenu(_ sender: UIButton) {
+		switch sender {
+		case strawberryBananaJuiceButton:
+			orderJuice(.strawberryBananaJuice)
+		case mangoKiwiJuiceButton:
+			orderJuice(.mangoKiwiJuice)
+		case strawberryJuiceButton:
+			orderJuice(.strawberryJuice)
+		case bananaJuiceButton:
+			orderJuice(.bananaJuice)
+		case pineappleJuiceButton:
+			orderJuice(.pineappleJuice)
+		case kiwiJuiceButton:
+			orderJuice(.kiwiJuice)
+		case mangoJuiceButton:
+			orderJuice(.mangoJuice)
+		default:
+			break
+		}
 	}
     
-	@objc private func orderMenu(_ sender: UIButton) {
-        switch sender {
-        case strawberryBananaJuiceButton:
-            orderJuice(.strawberryBananaJuice)
-        case mangoKiwiJuiceButton:
-            orderJuice(.mangoKiwiJuice)
-        case strawberryJuiceButton:
-            orderJuice(.strawberryJuice)
-        case bananaJuiceButton:
-            orderJuice(.bananaJuice)
-        case pineappleJuiceButton:
-            orderJuice(.pineappleJuice)
-        case kiwiJuiceButton:
-            orderJuice(.kiwiJuice)
-        case mangoJuiceButton:
-            orderJuice(.mangoJuice)
-        default:
-            break
-        }
-    }
-    
+	private func orderJuice(_ menuName: FruitJuice) {
+		do {
+			try juiceMaker.makeFruitJuice(menu: menuName)
+			fruitStock = juiceMaker.getFruitInventoryStatus()
+			replaceStockLabel()
+			showAlert(type: .menuOut(menu: menuName.name))
+		} catch StockError.fruitNotFound {
+			print(StockError.fruitNotFound.message)
+		} catch StockError.outOfStock {
+			showAlert(type: .outOfStock)
+		} catch {
+			print(StockError.unKnown.message)
+		}
+	}
+	
     private func showAlert(type: AlertText) {
         let alert = UIAlertController(title: type.title,
                                       message: type.message,
@@ -93,70 +123,39 @@ class MainViewController: UIViewController {
         
         switch type {
         case .menuOut:
-            let ok = UIAlertAction(title: AlertActionText.interjection.title,
+            let okAlertAction = UIAlertAction(title: AlertActionText.interjection.title,
                                    style: .default,
                                    handler: nil)
     
-            alert.addAction(ok)
+            alert.addAction(okAlertAction)
         case .outOfStock:
-            let ok = UIAlertAction(title: AlertActionText.ok.title,
+            let okAlertAction = UIAlertAction(title: AlertActionText.ok.title,
                                    style: .default,
                                    handler: { _ in
 				self.presentStockViewController()
             })
-            let cancel = UIAlertAction(title: AlertActionText.cancel.title,
+            let cancelAlertAction = UIAlertAction(title: AlertActionText.cancel.title,
                                        style: .default,
                                        handler: nil)
             
-            alert.addAction(ok)
-            alert.addAction(cancel)
+            alert.addAction(okAlertAction)
+            alert.addAction(cancelAlertAction)
         default:
             break
         }
         present(alert, animated: true, completion: nil)
     }
-    
-    private func orderJuice(_ menuName: FruitJuice) {
-        do {
-            try juiceMaker.makeFruitJuice(menu: menuName)
-            fruitStock = juiceMaker.getFruitInventoryStatus()
-            replaceStockLabel()
-            showAlert(type: .menuOut(menu: menuName.name))
-        } catch StockError.fruitNotFound {
-            print(StockError.fruitNotFound.message)
-        } catch StockError.outOfStock {
-            showAlert(type: .outOfStock)
-        } catch {
-            print(StockError.unKnown.message)
-        }
-    }
 	
 	@IBAction private func presentStockViewController() {
-        guard let stockViewController = self.storyboard?.instantiateViewController(
-            identifier: "StockViewController",
+		let storyboard = UIStoryboard(name: Identifier.mainStoryboard.name, bundle: nil)
+        let stockViewController = storyboard.instantiateViewController(
+			identifier: Identifier.stockViewController.name,
             creator: { coder in
                 return StockViewController(coder: coder, fruitStock: self.fruitStock)
-            }) else {
-                return
-            }
+            })
         
 		stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
 		self.navigationController?.present(stockViewController, animated: true)
 	}
-    
-    private func addStockChangeNotification() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(changeFruitInventory(notification:)),
-                                               name: NSNotification.Name.changedStock,
-                                               object: nil)
-    }
-    
-    @objc private func changeFruitInventory(notification: NSNotification) {
-        guard let fruitStockStatus = notification.userInfo?[NotificationKey.fruitStock] as? [Fruit: Int] else {
-            return
-        }
-        self.juiceMaker.changeFruitStock(fruitStockStatus)
-        fruitStock = fruitStockStatus
-    }
 }
 

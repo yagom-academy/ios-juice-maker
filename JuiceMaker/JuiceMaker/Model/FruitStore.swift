@@ -19,7 +19,7 @@ class FruitStore {
     }
 	
 	func getInventoryStatus() -> [Fruit: Int] {
-		return self.inventory
+		return inventory
 	}
 	
     func calculateStock(of fruit: Fruit, quantity: Int) throws -> Int {

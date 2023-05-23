@@ -35,8 +35,8 @@ class StockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		replaceStockLabel()
-        setUpCloseBarButtonItem()
 		setUpStepper()
+        setUpCloseBarButtonItem()
     }
 	
 	private func replaceStockLabel() {
@@ -52,6 +52,22 @@ class StockViewController: UIViewController {
 		pineappleStockLabel.text = String(pineappleStock)
 		kiwiStockLabel.text = String(kiwiStock)
 		mangoStockLabel.text = String(mangoStock)
+	}
+	
+	private func setUpStepper() {
+		guard let strawberryStock = fruitStock[.strawberry],
+			  let bananaStock = fruitStock[.banana],
+			  let pineappleStock = fruitStock[.pineapple],
+			  let kiwiStock = fruitStock[.kiwi],
+			  let mangoStock = fruitStock[.mango] else {
+			return
+		}
+		
+		strawberryStepper.value = Double(strawberryStock)
+		bananaStepper.value = Double(bananaStock)
+		pineappleStepper.value = Double(pineappleStock)
+		kiwiStepper.value = Double(kiwiStock)
+		mangoStepper.value = Double(mangoStock)
 	}
     
     private func setUpCloseBarButtonItem() {
@@ -70,18 +86,18 @@ class StockViewController: UIViewController {
         
         switch type {
         case .confirmStockChange:
-            let ok = UIAlertAction(title: AlertActionText.ok.title,
+            let okAlertAction = UIAlertAction(title: AlertActionText.ok.title,
                                    style: .default,
                                    handler: { _ in
                 self.removeStockViewController(isChange: true)
             })
-            let cancel = UIAlertAction(title: AlertActionText.cancel.title,
+            let cancelAlertAction = UIAlertAction(title: AlertActionText.cancel.title,
                                        style: .default,
                                        handler: { _ in
                 self.removeStockViewController(isChange: false)
             })
-            alert.addAction(ok)
-            alert.addAction(cancel)
+            alert.addAction(okAlertAction)
+            alert.addAction(cancelAlertAction)
         default:
             break
         }
@@ -89,11 +105,9 @@ class StockViewController: UIViewController {
     }
     
     private func removeStockViewController(isChange: Bool) {
-        guard isChange else {
-            self.dismiss(animated: true)
-            return
+        if isChange {
+			self.postStockChangeNotification()
         }
-        self.postStockChangeNotification()
         self.dismiss(animated: true)
     }
     
@@ -123,21 +137,5 @@ class StockViewController: UIViewController {
 		default:
 			break
 		}
-	}
-	
-	private func setUpStepper() {
-		guard let strawberryStock = fruitStock[.strawberry],
-			  let bananaStock = fruitStock[.banana],
-			  let pineappleStock = fruitStock[.pineapple],
-			  let kiwiStock = fruitStock[.kiwi],
-			  let mangoStock = fruitStock[.mango] else {
-			return
-		}
-		
-		strawberryStepper.value = Double(strawberryStock)
-		bananaStepper.value = Double(bananaStock)
-		pineappleStepper.value = Double(pineappleStock)
-		kiwiStepper.value = Double(kiwiStock)
-		mangoStepper.value = Double(mangoStock)
 	}
 }
