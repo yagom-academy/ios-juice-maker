@@ -7,9 +7,9 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
-
     private var delegate: Stock?
     let juiceMaker = JuiceMaker()
+    
     @IBOutlet var fruitStockLabels: [UILabel]!
     @IBOutlet var orderButtons: [UIButton]!
     

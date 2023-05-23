@@ -12,35 +12,48 @@ protocol Stock {
     func getStock() -> [Int]
 }
 
-class ModifyStockViewController: UIViewController, Stock {
-
+class ModifyStockViewController: UIViewController {
     var fruitStocks: [Int] = [Int]()
+    
     @IBOutlet var fruitStockLabels: [UILabel]!
+    @IBOutlet var fruitStockStepper: [UIStepper]!
         
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockLabel()
+        initializeStepperValue()
+    }
+    
+    @IBAction func touchUpStepper(_ sender: UIStepper) {
+        if let stepperIndex = fruitStockStepper.firstIndex(of: sender){
+            fruitStockLabels[stepperIndex].text = String(Int(sender.value))
+            fruitStocks[stepperIndex] = Int(sender.value)
+        }
     }
     
     @IBAction func dismissModal(_ sender: UIButton) {
-        // stepper 구현 예정
-        for i in 0..<fruitStocks.count {
-            fruitStocks[i] += 100
-        }
         dismiss(animated: true, completion: nil)
-    }
-
-    func setStock(stocks: [Int]) {
-        fruitStocks = stocks
-    }
-    
-    func getStock() -> [Int] {
-        return fruitStocks
     }
     
     func updateFruitStockLabel() {
         for fruitStockLabel in fruitStockLabels {
             fruitStockLabel.text = String(fruitStocks[fruitStockLabel.tag])
         }
+    }
+    
+    func initializeStepperValue() {
+        for fruitStockStepper in fruitStockStepper {
+            fruitStockStepper.value = Double(fruitStocks[fruitStockStepper.tag])
+        }
+    }
+}
+
+extension ModifyStockViewController: Stock {
+    func setStock(stocks: [Int]) {
+        fruitStocks = stocks
+    }
+    
+    func getStock() -> [Int] {
+        return fruitStocks
     }
 }

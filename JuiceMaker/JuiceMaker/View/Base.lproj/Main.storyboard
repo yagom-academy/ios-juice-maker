@@ -297,6 +297,9 @@
                             <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                 <rect key="frame" x="580" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="YlQ-1q-5jl"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🥝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EHe-D1-1xN">
                                 <rect key="frame" x="429" y="65" width="75" height="83.666666666666671"/>
@@ -316,6 +319,9 @@
                             <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                 <rect key="frame" x="410" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="FM1-XG-vT6"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rac-Ji-vZK">
                                 <rect key="frame" x="271" y="65" width="75" height="83.666666666666671"/>
@@ -335,6 +341,9 @@
                             <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                 <rect key="frame" x="261" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Jbz-L5-SZ1"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🍌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y33-ND-gz2">
                                 <rect key="frame" x="165" y="73" width="75" height="83.666666666666671"/>
@@ -346,6 +355,9 @@
                             <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                 <rect key="frame" x="154" y="187" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="yTz-aK-ZQT"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
                                 <rect key="frame" x="72" y="161" width="51" height="23"/>
@@ -373,6 +385,9 @@
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="touchUpStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="xJg-om-vdU"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
                                 <rect key="frame" x="606" y="156" width="43" height="23"/>
@@ -409,6 +424,11 @@
                         <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="cfa-xG-4hX"/>
                         <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="RWy-yd-W1h"/>
                         <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="7I6-Z0-L8o"/>
+                        <outletCollection property="fruitStockStepper" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="ahN-Ec-Kkl"/>
+                        <outletCollection property="fruitStockStepper" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="kGS-qL-xPY"/>
+                        <outletCollection property="fruitStockStepper" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="vXL-qk-l95"/>
+                        <outletCollection property="fruitStockStepper" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="Nqe-iH-DzN"/>
+                        <outletCollection property="fruitStockStepper" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="sbw-Xk-RhY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
