@@ -310,7 +310,7 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.012636187429999999" green="0.28998711919999998" blue="0.01221021993" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="0yV-kn-zaT" firstAttribute="leading" secondItem="KhY-NY-WBy" secondAttribute="leading" id="emK-9b-cAa"/>
                                             <constraint firstAttribute="trailing" secondItem="0yV-kn-zaT" secondAttribute="trailing" id="xeo-wh-tG5"/>
@@ -343,7 +343,7 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.033527863880000001" green="0.76942896839999997" blue="0.032397635280000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="gKu-86-RhI" secondAttribute="trailing" id="PFi-Kw-UEN"/>
                                             <constraint firstItem="gKu-86-RhI" firstAttribute="leading" secondItem="NGr-xi-xjk" secondAttribute="leading" id="jcB-6U-kI0"/>
@@ -376,7 +376,7 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.48934554540000003" green="0.91564062680000002" blue="0.94238272219999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="MpT-VW-hCb" firstAttribute="leading" secondItem="2uh-m8-5rb" secondAttribute="leading" id="9CH-oP-1OO"/>
                                             <constraint firstAttribute="trailing" secondItem="MpT-VW-hCb" secondAttribute="trailing" id="9bz-1L-x0n"/>
@@ -409,7 +409,7 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.40695345570000002" green="0.39588068720000003" blue="0.95454416880000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ZDv-1m-HBY" secondAttribute="trailing" id="6jN-fT-Mra"/>
                                             <constraint firstItem="ZDv-1m-HBY" firstAttribute="leading" secondItem="Dsy-9Q-d8x" secondAttribute="leading" id="Jug-ec-XO6"/>
@@ -442,14 +442,14 @@
                                                 </connections>
                                             </stepper>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.6337720684" green="0.79268529099999996" blue="0.95454416880000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YJI-ER-LJR" secondAttribute="trailing" id="8KY-fE-8qT"/>
                                             <constraint firstItem="YJI-ER-LJR" firstAttribute="leading" secondItem="xNx-FZ-BWk" secondAttribute="leading" id="etW-Dm-CpC"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90634571490000004" green="0.7955601028" blue="0.95742110680000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
@@ -461,16 +461,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
-                        <outletCollection property="fruitStockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="dup-5T-XeF"/>
                         <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="f4u-Wg-Cta"/>
                         <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="PWD-hP-lW5"/>
-                        <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="jIZ-cw-4J5"/>
                         <outletCollection property="fruitStockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="eri-by-6WH"/>
-                        <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="3CQ-j5-3vR"/>
-                        <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="8n3-xZ-8kg"/>
                         <outletCollection property="fruitStockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="WHV-Dp-whe"/>
                         <outletCollection property="fruitStockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="dHI-oM-DvU"/>
-                        <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="tED-fF-WGK"/>
+                        <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="ZUN-2I-UIc"/>
+                        <outletCollection property="fruitStockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="A64-lF-2X4"/>
+                        <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="cgV-fY-nA2"/>
+                        <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="Miv-bw-1qP"/>
+                        <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="PYt-bj-jeg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
