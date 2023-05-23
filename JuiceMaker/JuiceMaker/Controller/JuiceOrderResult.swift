@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ResultAlert: Equatable {
+enum JuiceOrderResult: Equatable {
     case completion(Juice)
     case failure
     case error

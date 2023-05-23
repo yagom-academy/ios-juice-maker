@@ -99,19 +99,19 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func showAlert(_ resultAlert: ResultAlert) {
+    func showAlert(_ result: JuiceOrderResult) {
         let alert = UIAlertController(
             title: nil,
-            message: resultAlert.message,
+            message: result.message,
             preferredStyle: UIAlertController.Style.alert
         )
         
         let closeAction = UIAlertAction(
-            title: resultAlert.closeActionTitle,
+            title: result.closeActionTitle,
             style: UIAlertAction.Style.default
         )
         
-        if resultAlert == .failure {
+        if result == .failure {
             let stockChangeAction = UIAlertAction(
                 title: "예",
                 style: UIAlertAction.Style.destructive
