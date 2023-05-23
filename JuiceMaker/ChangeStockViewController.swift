@@ -7,6 +7,7 @@ import UIKit
 
 protocol StockDelegate: AnyObject {
     func getCurrentStock() -> [Int]
+    func addStock(quantities: [Int])
 }
 
 class ChangeStockViewController: UIViewController {
@@ -25,5 +26,9 @@ class ChangeStockViewController: UIViewController {
         for (index, label) in stockChangeLabels.enumerated() {
             label.text = "\(initialStock[index])"
         }
+    }
+    
+    @IBAction func closeStockView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
     }
 }

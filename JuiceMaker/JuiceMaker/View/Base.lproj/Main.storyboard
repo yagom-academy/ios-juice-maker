@@ -366,6 +366,19 @@
                                 <rect key="frame" x="50" y="192" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stepper>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWa-p7-JX0">
+                                <rect key="frame" x="0.0" y="0.0" width="844" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="재고 추가" id="fZg-RQ-KVS">
+                                        <barButtonItem key="rightBarButtonItem" title="닫기" id="5KT-eC-2qi">
+                                            <connections>
+                                                <action selector="closeStockView:" destination="Yu1-lM-nqp" id="3XS-Yd-UDY"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

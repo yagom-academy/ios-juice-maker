@@ -106,4 +106,10 @@ extension JuiceOrderViewController: StockDelegate {
     func getCurrentStock() -> [Int] {
         return Fruits.allCases.map { juiceMaker.fruitStore.bringQuantity(of: $0) }
     }
+    
+    func addStock(quantities: [Int]) {
+        for (index, fruit) in Fruits.allCases.enumerated() {
+            juiceMaker.fruitStore.addStock(fruit: fruit, quantity: quantities[index])
+        }
+    }
 }
