@@ -22,13 +22,29 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction private func tapOrderJuiceButton(_ sender: UIButton) {
-        guard let title = sender.currentTitle,
-              let juice = Juice(rawValue: title) else {
+        guard let title = sender.currentTitle else {
             print("버튼이 설정되지 않았습니다.")
             return
         }
         
-        orderJuice(juice)
+        switch title {
+        case "딸기쥬스 주문":
+            orderJuice(.strawberryJuice)
+        case "바나나쥬스 주문":
+            orderJuice(.bananaJuice)
+        case "파인애플쥬스 주문":
+            orderJuice(.pineappleJuice)
+        case "키위쥬스 주문":
+            orderJuice(.kiwiJuice)
+        case "망고쥬스 주문":
+            orderJuice(.mangoJuice)
+        case "딸바쥬스 주문":
+            orderJuice(.strawberryBananaJuice)
+        case "망키쥬스 주문":
+            orderJuice(.mangoKiwiJuice)
+        default:
+            break
+        }
     }
     
     @IBAction private func tapChangeStockButton(_ sender: UIBarButtonItem) {
@@ -67,7 +83,7 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func popUpSuccessAlert(_ juice: Juice) {
-        let alertMessage = makeAlertMessage("주문 성공", "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", actionTitle: "예", actionType: .default)
+        let alertMessage = makeAlertMessage("주문 성공", "\(juice.name) 나왔습니다! 맛있게 드세요!", actionTitle: "예", actionType: .default)
         present(alertMessage, animated: true)
     }
     
