@@ -67,4 +67,8 @@ extension FruitStockViewController {
         fruitStockLabels[sender.tag].text = "\(amount)"
         fruitStore.changeFruitCount(fruit, amount)
     }
+    
+    @IBAction func tappedDismissButton(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }
