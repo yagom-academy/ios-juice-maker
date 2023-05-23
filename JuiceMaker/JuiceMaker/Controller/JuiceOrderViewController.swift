@@ -11,8 +11,8 @@ final class JuiceOrderViewController: UIViewController {
     
     @IBOutlet var stockLabels: [UILabel]!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         updateStockLabel()
     }
     
