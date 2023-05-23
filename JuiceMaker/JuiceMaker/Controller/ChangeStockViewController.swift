@@ -23,13 +23,13 @@ final class ChangeStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showFruitStockOnLabel()
-        changeFruitStockStepper()
+        modifyFruitStockOnLabel()
+        modifyFruitStockOnStepper()
     }
     
-    private func showFruitStockOnLabel() {
+    private func modifyFruitStockOnLabel() {
         
-        let fruitAndLabel: [Fruit : UILabel] = [
+        let fruitAndLabels: [Fruit: UILabel] = [
             .strawBerry: strawBerryStockLabel,
             .banana: bananaStockLabel,
             .pineApple: pineappleStockLabel,
@@ -37,14 +37,14 @@ final class ChangeStockViewController: UIViewController {
             .mango: mangoStockLabel
         ]
         
-        for (fruit, label) in fruitAndLabel {
+        for (fruit, label) in fruitAndLabels {
             guard let stock = FruitStore.shared.currentFruitStock[fruit] else { return }
             label.text = String(stock)
         }
     }
     
-    private func changeFruitStockStepper() {
-        let fruitAndStepper: [Fruit : UIStepper] = [
+    private func modifyFruitStockOnStepper() {
+        let fruitAndStepper: [Fruit: UIStepper] = [
             .strawBerry: strawBerryStepper,
             .banana: bananaStepper,
             .pineApple: pineappleStepper,
@@ -58,7 +58,7 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    @IBAction func fruitStockStepper(_ sender: UIStepper) {
+    @IBAction func changeStockOnLabel(by sender: UIStepper) {
         let stepperAndLabel: [UIStepper: UILabel] = [
             strawBerryStepper: strawBerryStockLabel,
             bananaStepper: bananaStockLabel,
@@ -72,8 +72,8 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    @IBAction func changeConfirm(_ sender: Any) {
-        let fruitLabels: [Fruit: UILabel] = [
+    @IBAction func confirmChangedFruitStock(_ sender: UIBarButtonItem) {
+        let fruitAndLabels: [Fruit: UILabel] = [
             .strawBerry: strawBerryStockLabel,
             .banana: bananaStockLabel,
             .pineApple: pineappleStockLabel,
@@ -81,10 +81,10 @@ final class ChangeStockViewController: UIViewController {
             .mango: mangoStockLabel
         ]
         
-        for (fruit, label) in fruitLabels {
+        for (fruit, label) in fruitAndLabels {
             guard let stock = FruitStore.shared.currentFruitStock[fruit] else { return }
-            guard let text = label.text, let intText = Int(text) else { return }
-            FruitStore.shared.changeStock(with: fruit, intText - stock)
+            guard let changedStock = label.text, let changedStock = Int(changedStock) else { return }
+            FruitStore.shared.changeStock(with: fruit, changedStock - stock)
         }
         
         self.dismiss(animated: true)
