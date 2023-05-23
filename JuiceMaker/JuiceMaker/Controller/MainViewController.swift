@@ -2,7 +2,7 @@
 //  JuiceMaker - ViewController.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import UIKit
 
@@ -15,8 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureLabel()
     }
     
@@ -30,6 +30,8 @@ class MainViewController: UIViewController {
     
     @IBAction func tapStockButton(_ sender: UIBarButtonItem) {
         let stockViewController = StockViewController.instantiate()
+        stockViewController.juiceMaker = self.juiceMaker
+        stockViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.present(stockViewController, animated: true)
     }
     
