@@ -19,7 +19,7 @@ final class StockManagementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureStockLabel()
-        configureStockManagementStepperCustomIdentifier()
+        configureStockManagementStepper()
     }
     
     @IBAction func goBackPreviousView(_ sender: UIBarButtonItem) {
@@ -59,8 +59,11 @@ final class StockManagementViewController: UIViewController {
         }
     }
     
-    private func configureStockManagementStepperCustomIdentifier() {
+    private func configureStockManagementStepper() {
         for index in stockManagementStepperCollection.indices {
+            guard let currentStock = Double(stockList[index]) else { return }
+            
+            stockManagementStepperCollection[index].value = currentStock
             stockManagementStepperCollection[index].customIdentifier = Fruit.allCases[index]
         }
     }
