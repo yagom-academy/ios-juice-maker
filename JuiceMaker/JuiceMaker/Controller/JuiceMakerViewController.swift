@@ -1,13 +1,13 @@
 //
 //  JuiceMaker - ViewController.swift
-//  Created by yagom. 
+//  Created by jusbug, Erick.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController {
-    private let juiceMaker = JuiceMaker()
+final class JuiceMakerViewController: UIViewController {
+    private var juiceMaker = JuiceMaker()
 
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -17,11 +17,11 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        composeText()
+
+        setText()
     }
     
-    @IBAction private func orderJuiceButtonTap(_ sender: UIButton) {
+    @IBAction private func tapOrderJuiceButton(_ sender: UIButton) {
         guard let title = sender.currentTitle else {
             print("버튼이 설정되지 않았습니다.")
             return
@@ -47,11 +47,11 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction private func changeStockButtonTap(_ sender: UIBarButtonItem) {
+    @IBAction private func tapChangeStockButton(_ sender: UIBarButtonItem) {
         pushChangeStockViewController()
     }
     
-    private func composeText() {
+    private func setText() {
         strawberryStockLabel.text = String(juiceMaker.fruitStore.bringStock(.strawberry))
         bananaStockLabel.text = String(juiceMaker.fruitStore.bringStock(.banana))
         pineappleStockLabel.text = String(juiceMaker.fruitStore.bringStock(.pineapple))
@@ -62,35 +62,43 @@ class JuiceMakerViewController: UIViewController {
     private func orderJuice(_ juice: Juice) {
         do {
             try juiceMaker.makeJuice(juice)
-            popUpSuccessMessage(juice)
-            composeText()
+            popUpSuccessAlert(juice)
+            setText()
         } catch JuiceMakerError.outOfStock {
-            popUpFailMessage()
+            popUpFailAlert()
         } catch {
             print("알 수 없는 에러입니다.")
         }
     }
     
     private func pushChangeStockViewController() {
-        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangeStockViewControllerID") else {
+        let pushViewControllerID = ChangeStockViewController.id
+        guard let pushViewController = self.storyboard?.instantiateViewController(withIdentifier: pushViewControllerID) as? ChangeStockViewController else {
             print("해당 뷰컨트롤러ID를 가진 뷰컨트롤러가 스토리보드에 없습니다.")
             return
         }
+        pushViewController.fruitStore = juiceMaker.fruitStore
+        pushViewController.delegate = self
         self.navigationController?.pushViewController(pushViewController, animated: true)
     }
     
-    private func popUpSuccessMessage(_ juice: Juice) {
-        let alertMessage = UIAlertController(title: "주문 성공", message: "\(juice.rawValue) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "예", style: .default))
+    private func popUpSuccessAlert(_ juice: Juice) {
+        let alertMessage = makeAlertMessage("주문 성공", "\(juice.name) 나왔습니다! 맛있게 드세요!", actionTitle: "예", actionType: .default)
         present(alertMessage, animated: true)
     }
     
-    private func popUpFailMessage() {
-        let alertMessage = UIAlertController(title: "주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "예", style: .default) { _ in
+    private func popUpFailAlert() {
+        let alertMessage = makeAlertMessage("주문 실패", "재료가 모자라요. 재고를 수정할까요?", actionTitle: "아니오", actionType: .destructive)
+        alertMessage.addAction(UIAlertAction(title: "예", style: .cancel) { _ in
             self.pushChangeStockViewController()
         })
-        alertMessage.addAction(UIAlertAction(title: "아니오", style: .default))
         present(alertMessage, animated: true)
+    }
+}
+
+extension JuiceMakerViewController: ChangeStockDelegate {
+    func changeStock(fruitStore: FruitStore) {
+        self.juiceMaker.fruitStore = fruitStore
+        setText()
     }
 }

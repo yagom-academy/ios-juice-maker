@@ -8,9 +8,9 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore()
+    var fruitStore = FruitStore()
     
-    func makeJuice(_ juice: Juice) throws {
+    mutating func makeJuice(_ juice: Juice) throws {
         let ingredient = juice.ingredients
         
         for (fruit, amount) in ingredient {
