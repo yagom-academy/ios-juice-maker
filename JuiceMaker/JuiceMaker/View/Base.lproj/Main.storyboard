@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" identifier="modifyStockViewSegue" modalPresentationStyle="fullScreen" id="2Me-lx-FY7"/>
+                                <segue destination="Yu1-lM-nqp" kind="presentation" identifier="modifyStockViewSegue" id="2Me-lx-FY7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -410,7 +410,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="닫기"/>
                                 <connections>
-                                    <action selector="dismissModal:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="cFK-IT-hOG"/>
+                                    <segue destination="h5a-b1-bMx" kind="unwind" unwindAction="unwindToJuiceMakerViewController:" id="qzh-MZ-LbS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -432,8 +432,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
+                <exit id="h5a-b1-bMx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="761.37440758293837" y="1136.9230769230769"/>
+            <point key="canvasLocation" x="762" y="1091"/>
         </scene>
     </scenes>
     <resources>

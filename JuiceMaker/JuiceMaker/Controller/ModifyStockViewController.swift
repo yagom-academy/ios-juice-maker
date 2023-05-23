@@ -31,10 +31,6 @@ class ModifyStockViewController: UIViewController {
         }
     }
     
-    @IBAction func dismissModal(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     func updateFruitStockLabel() {
         for fruitStockLabel in fruitStockLabels {
             fruitStockLabel.text = String(fruitStocks[fruitStockLabel.tag])

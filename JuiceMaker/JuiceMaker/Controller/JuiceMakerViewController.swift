@@ -18,15 +18,6 @@ final class JuiceMakerViewController: UIViewController {
         updateFruitStockLabel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let modifiedFruitStocks = delegate?.getStock() {
-            juiceMaker.fruitStore.fruitInventory = modifiedFruitStocks
-        }
-        delegate = nil
-        updateFruitStockLabel()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let modifyStockViewController = segue.destination as? ModifyStockViewController else {
             return
@@ -35,11 +26,19 @@ final class JuiceMakerViewController: UIViewController {
         delegate?.setStock(stocks: juiceMaker.fruitStore.fruitInventory)
     }
     
-    @IBAction func touchUpOrderButton(_ sender: UIButton) {
-        if let buttonIndex = orderButtons.firstIndex(of: sender){
-            order(juice: Juice.allCases[buttonIndex])
+    @IBAction func unwindToJuiceMakerViewController(_ segue: UIStoryboardSegue) {
+        guard let modifiedFruitStocks = delegate?.getStock() else {
+            return
         }
-        
+        juiceMaker.fruitStore.fruitInventory = modifiedFruitStocks
+        updateFruitStockLabel()
+    }
+    
+    @IBAction func touchUpOrderButton(_ sender: UIButton) {
+        guard let buttonIndex = orderButtons.firstIndex(of: sender) else {
+            return
+        }
+        order(juice: Juice.allCases[buttonIndex])
         updateFruitStockLabel()
     }
     
@@ -75,4 +74,6 @@ final class JuiceMakerViewController: UIViewController {
     func presentModifyStockView() {
         self.performSegue(withIdentifier: "modifyStockViewSegue", sender: nil)
     }
+    
+
 }
