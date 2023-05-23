@@ -91,67 +91,47 @@ class JuiceOrderViewController: UIViewController {
         do {
             try juiceMaker.takeOrder(juice)
             configureStockLabel()
-            showCompletionAlert(for: juice)
+            showAlert(.completion, juice)
         } catch FruitStoreError.insufficientFruit {
-            showFailureAlert()
+            showAlert(.failure, juice)
         } catch {
-            showErrorAlert()
+            showAlert(.error, juice)
         }
     }
     
-    func showCompletionAlert(for juice: Juice) {
-        let juiceCompletionAlert = UIAlertController(
-            title: nil,
-            message: "\(juice.name)가 나왔습니다! 맛있게 드세요!",
-            preferredStyle: UIAlertController.Style.alert
-        )
+    func showAlert(_ resultAlert: ResultAlert, _ juice: Juice) {
+        var alert: UIAlertController
         
         let closeAction = UIAlertAction(
-            title: "닫기",
+            title: resultAlert.closeActionTitle,
             style: UIAlertAction.Style.default
         )
         
-        juiceCompletionAlert.addAction(closeAction)
-        present(juiceCompletionAlert, animated: true, completion: nil)
-    }
-    
-    func showFailureAlert() {
-        let juiceFailureAlert = UIAlertController(
-            title: nil,
-            message: "재료가 모자라요. 재고를 수정할까요?",
-            preferredStyle: UIAlertController.Style.alert
-        )
-        
-        let stockChangeAction = UIAlertAction(
-            title: "예",
-            style: UIAlertAction.Style.destructive
-        ) { _ in
-            self.didTapStockChangeButton(self.stockChangeButton)
+        if resultAlert == .completion {
+            alert = UIAlertController(
+                title: nil,
+                message: "\(juice.name) \(resultAlert.message)",
+                preferredStyle: UIAlertController.Style.alert
+            )
+        } else {
+            alert = UIAlertController(
+                title: nil,
+                message: resultAlert.message,
+                preferredStyle: UIAlertController.Style.alert
+            )
         }
         
-        let closeAction = UIAlertAction(
-            title: "아니오",
-            style: UIAlertAction.Style.cancel
-        )
+        if resultAlert == .failure {
+            let stockChangeAction = UIAlertAction(
+                title: "예",
+                style: UIAlertAction.Style.destructive
+            ) { _ in
+                self.didTapStockChangeButton(self.stockChangeButton)
+            }
+            alert.addAction(stockChangeAction)
+        }
         
-        juiceFailureAlert.addAction(stockChangeAction)
-        juiceFailureAlert.addAction(closeAction)
-        present(juiceFailureAlert, animated: true, completion: nil)
-    }
-    
-    func showErrorAlert() {
-        let errorAlert = UIAlertController(
-            title: nil,
-            message: "알 수 없는 에러가 발생하였습니다. \n 다시 시도해주시기 바랍니다.",
-            preferredStyle: UIAlertController.Style.alert
-        )
-        
-        let closeAction = UIAlertAction(
-            title: "닫기",
-            style: UIAlertAction.Style.default
-        )
-        
-        errorAlert.addAction(closeAction)
-        present(errorAlert, animated: true, completion: nil)
+        alert.addAction(closeAction)
+        present(alert, animated: true, completion: nil)
     }
 }
