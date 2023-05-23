@@ -396,11 +396,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
-                        <outlet property="bananaLabel" destination="gKu-86-RhI" id="0Sb-Mk-LcP"/>
-                        <outlet property="kiwiLabel" destination="ZDv-1m-HBY" id="atp-8L-iaL"/>
-                        <outlet property="mangoLabel" destination="YJI-ER-LJR" id="Fmd-f6-iIf"/>
-                        <outlet property="pineappleLabel" destination="MpT-VW-hCb" id="eqw-jE-JOI"/>
-                        <outlet property="strawberryLabel" destination="0yV-kn-zaT" id="jbA-dj-W9l"/>
+                        <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="3CQ-j5-3vR"/>
+                        <outletCollection property="fruitStockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="dup-5T-XeF"/>
+                        <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="jIZ-cw-4J5"/>
+                        <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="8n3-xZ-8kg"/>
+                        <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="tED-fF-WGK"/>
+                        <outletCollection property="fruitStockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="eri-by-6WH"/>
+                        <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="f4u-Wg-Cta"/>
+                        <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="PWD-hP-lW5"/>
+                        <outletCollection property="fruitStockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="WHV-Dp-whe"/>
+                        <outletCollection property="fruitStockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="dHI-oM-DvU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

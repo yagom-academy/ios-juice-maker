@@ -8,11 +8,8 @@
 import UIKit
 
 final class FruitStockViewController: UIViewController {
-    @IBOutlet weak var strawberryLabel: UILabel!
-    @IBOutlet weak var bananaLabel: UILabel!
-    @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
-    @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet var fruitStockLabels: [UILabel]!
+    @IBOutlet var fruitStockSteppers: [UIStepper]!
     
     private var fruitStore: FruitStore
     
@@ -30,6 +27,7 @@ final class FruitStockViewController: UIViewController {
         super.viewDidLoad()
         
         setUpFruitLabelsText()
+        setUpFruitStockStepper()
     }
     
     private func provideStockLabelText(fruit: Fruit) -> String {
@@ -41,19 +39,32 @@ final class FruitStockViewController: UIViewController {
     }
     
     private func setUpFruitLabelsText() {
-        strawberryLabel.text = provideStockLabelText(fruit: .strawberry)
-        bananaLabel.text = provideStockLabelText(fruit: .banana)
-        pineappleLabel.text = provideStockLabelText(fruit: .pineapple)
-        kiwiLabel.text = provideStockLabelText(fruit: .kiwi)
-        mangoLabel.text = provideStockLabelText(fruit: .mango)
+        for (index, fruitLabel) in fruitStockLabels.enumerated() {
+            guard let fruit = Fruit(rawValue: index) else { return }
+
+            fruitLabel.text = provideStockLabelText(fruit: fruit)
+        }
+    }
+    
+    private func setUpFruitStockStepper() {
+        for (index, fruitStockStepper) in fruitStockSteppers.enumerated() {
+            guard let fruit = Fruit(rawValue: index),
+                    let amount = fruitStore.provideFruitStock(fruit) else { return }
+            
+            fruitStockStepper.value = Double(amount)
+        }
     }
 }
     
     // MARK: - Button Action
 extension FruitStockViewController {
     @IBAction func tappedFruitStepper(_ sender: UIStepper) {
+        guard fruitStockLabels.count > sender.tag else { return }
         guard let fruit = Fruit(rawValue: sender.tag) else { return }
         
-        fruitStore.changeFruitCount(fruit, amount: Int(sender.stepValue))
+        let amount = Int(sender.value)
+        
+        fruitStockLabels[sender.tag].text = "\(amount)"
+        fruitStore.changeFruitCount(fruit, amount)
     }
 }
