@@ -6,6 +6,10 @@
 
 import UIKit
 
+protocol Configurable {
+    mutating func assignLabelText()
+}
+
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
     @IBOutlet var orderJuiceButtonCollection: [CustomButton]!
@@ -76,7 +80,12 @@ final class JuiceOrderViewController: UIViewController {
             return
         }
         
-        let currentStockList: [String] = juiceMaker.showRemainStock()
-        stockManagementViewController.setStockList(with: currentStockList)
+        stockManagementViewController.configurationDelegate = self
+    }
+}
+
+extension JuiceOrderViewController: Configurable {
+    func assignLabelText() {
+        configureStockLabel()
     }
 }

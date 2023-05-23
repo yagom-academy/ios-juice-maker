@@ -8,7 +8,8 @@
 import UIKit
 
 final class StockManagementViewController: UIViewController {
-    private var stockList: [String] = []
+    private var fruitStore: FruitStore = FruitStore()
+    var configurationDelegate: Configurable?
     @IBOutlet var strawberryStockLabel: UILabel!
     @IBOutlet var bananaStockLabel: UILabel!
     @IBOutlet var pineappleStockLabel: UILabel!
@@ -20,6 +21,11 @@ final class StockManagementViewController: UIViewController {
         super.viewDidLoad()
         configureStockLabel()
         configureStockManagementStepper()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        configurationDelegate?.assignLabelText()
     }
     
     @IBAction func goBackPreviousView(_ sender: UIBarButtonItem) {
@@ -43,11 +49,8 @@ final class StockManagementViewController: UIViewController {
         }
     }
     
-    func setStockList(with stockList: [String]) {
-        self.stockList = stockList
-    }
-    
     private func configureStockLabel() {
+        let stockList = fruitStore.getRemainStock()
         let fruitStockLabelCollection: [UILabel] = [strawberryStockLabel,
                                                     bananaStockLabel,
                                                     pineappleStockLabel,
@@ -60,6 +63,8 @@ final class StockManagementViewController: UIViewController {
     }
     
     private func configureStockManagementStepper() {
+        let stockList = fruitStore.getRemainStock()
+        
         for index in stockManagementStepperCollection.indices {
             guard let currentStock = Double(stockList[index]) else { return }
             
