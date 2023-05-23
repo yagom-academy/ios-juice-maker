@@ -5,9 +5,10 @@
 //
 
 class FruitStore {
+    static let shared: FruitStore = FruitStore()
     private var stockList: [Fruit: Int] = [:]
     
-    init(stockQuantity: Int = 10) {
+    private init(stockQuantity: Int = 10) {
         Fruit.allCases.forEach { stockList[$0] = stockQuantity }
     }
     

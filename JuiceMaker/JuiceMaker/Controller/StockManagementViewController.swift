@@ -8,7 +8,7 @@
 import UIKit
 
 final class StockManagementViewController: UIViewController {
-    private var fruitStore: FruitStore = FruitStore()
+    private var fruitStore: FruitStore = FruitStore.shared
     var configurationDelegate: Configurable?
     @IBOutlet var strawberryStockLabel: UILabel!
     @IBOutlet var bananaStockLabel: UILabel!
