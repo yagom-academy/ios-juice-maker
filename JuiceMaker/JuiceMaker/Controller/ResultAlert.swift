@@ -7,15 +7,15 @@
 
 import UIKit
 
-enum ResultAlert {
-    case completion
+enum ResultAlert: Equatable {
+    case completion(Juice)
     case failure
     case error
     
     var message: String {
         switch self {
-        case .completion:
-            return "나왔습니다! 맛있게 드세요!"
+        case .completion(let juice):
+            return "\(juice.name) 나왔습니다! 맛있게 드세요!"
         case .failure:
             return "재료가 모자라요. 재고를 수정할까요?"
         case .error:

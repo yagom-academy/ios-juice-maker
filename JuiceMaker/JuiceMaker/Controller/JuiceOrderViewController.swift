@@ -91,35 +91,25 @@ class JuiceOrderViewController: UIViewController {
         do {
             try juiceMaker.takeOrder(juice)
             configureStockLabel()
-            showAlert(.completion, juice)
+            showAlert(.completion(juice))
         } catch FruitStoreError.insufficientFruit {
-            showAlert(.failure, juice)
+            showAlert(.failure)
         } catch {
-            showAlert(.error, juice)
+            showAlert(.error)
         }
     }
     
-    func showAlert(_ resultAlert: ResultAlert, _ juice: Juice) {
-        var alert: UIAlertController
+    func showAlert(_ resultAlert: ResultAlert) {
+        let alert = UIAlertController(
+            title: nil,
+            message: resultAlert.message,
+            preferredStyle: UIAlertController.Style.alert
+        )
         
         let closeAction = UIAlertAction(
             title: resultAlert.closeActionTitle,
             style: UIAlertAction.Style.default
         )
-        
-        if resultAlert == .completion {
-            alert = UIAlertController(
-                title: nil,
-                message: "\(juice.name) \(resultAlert.message)",
-                preferredStyle: UIAlertController.Style.alert
-            )
-        } else {
-            alert = UIAlertController(
-                title: nil,
-                message: resultAlert.message,
-                preferredStyle: UIAlertController.Style.alert
-            )
-        }
         
         if resultAlert == .failure {
             let stockChangeAction = UIAlertAction(
@@ -128,6 +118,7 @@ class JuiceOrderViewController: UIViewController {
             ) { _ in
                 self.didTapStockChangeButton(self.stockChangeButton)
             }
+            
             alert.addAction(stockChangeAction)
         }
         
