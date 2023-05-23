@@ -7,41 +7,40 @@
 
 import UIKit
 
-protocol StockReceivable: AnyObject {
+protocol Stock {
     func setStock(stocks: [Int])
     func getStock() -> [Int]
 }
 
-class ModifyStockViewController: UIViewController, StockReceivable {
+class ModifyStockViewController: UIViewController, Stock {
 
+    var fruitStocks: [Int] = [Int]()
     @IBOutlet var fruitStockLabels: [UILabel]!
-    var stocks: [Int]?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let stocks = stocks else {
-            return
-        }
-        for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
-            fruitStockLabel.text = String(stocks[index])
-        }
-    }   
+        updateFruitStockLabel()
+    }
     
     @IBAction func dismissModal(_ sender: UIButton) {
-        guard let stocks = stocks else {
-            return
-        }
-        for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
-            fruitStockLabel.text = String(stocks[index] + 123)
+        // stepper 구현 예정
+        for i in 0..<fruitStocks.count {
+            fruitStocks[i] += 100
         }
         dismiss(animated: true, completion: nil)
     }
-    
+
     func setStock(stocks: [Int]) {
-        self.stocks = stocks
+        fruitStocks = stocks
     }
     
     func getStock() -> [Int] {
-        return fruitStockLabels.compactMap{ $0.text }.compactMap{ Int($0) }
+        return fruitStocks
+    }
+    
+    func updateFruitStockLabel() {
+        for fruitStockLabel in fruitStockLabels {
+            fruitStockLabel.text = String(fruitStocks[fruitStockLabel.tag])
+        }
     }
 }
