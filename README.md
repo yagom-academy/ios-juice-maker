@@ -10,6 +10,8 @@
 5. [실행 화면(기능 설명)](#5.)
 6. [트러블 슈팅](#6.)
 7. [참고 링크](#7.)
+8. [팀 회고](#8.)
+
 
 <a id="1."></a>
 ## 1. 소개 
@@ -39,10 +41,32 @@
     - 과일 가게 프로퍼트
     - 주문하는, 쥬스 만드는, 재고를 확인하는, 과일을 소모하는 함수 생성
 
+**2023.05.16 (화)**
+- README 작성
+- 뷰에 있는 버튼들을 뷰컨트롤러의 코드와 연결
+- 버튼에 함수 넣기
+
+**2023.05.17 (수)**
+- 쥬스 주문 버튼 함수 수정
+- Alert 창
+    - 쥬스 완성
+    - 재료 부족 -> `예` 클릭 시 재고 수정 뷰로 화면 전환
+- 재고량 레이블에 현재 재고량 띄우기
+- 쥬스 주문 버튼 함수 기능 분리
+    - `조건문` / `성공 alert` / `실패 alert` 함수로 분리
+    - 버튼 함수 : 조건문 함수 호출 및 재고량 띄우기
+
+**2023.05.18 (목)**
+- 은닉화
+    - 과일 재고함 은닉화 -> 과일 재고함 불러오는 함수 생성
+    - 쥬스메이커의 과일 가게 프로퍼티 은닉화 -> 과일 가게의 과일 재고함 불러오는 함수 생성
+    - 뷰 컨트롤러 변수들
+- 레이블에 현재 재고량 넣어주는 함수 생성
+
 <br>
 
 <a id="4."></a>
-## 4. 클래스 다이어그램
+## 4. 다이어그램
 (다음 step 진행 후 업데이트 할 예정입니다.)
 <br>
 
@@ -53,6 +77,8 @@
 
 <a id="6."></a>
 ## 6. 트러블 슈팅
+
+Step1
 ### 🔥 전반적인 그림에 대한 고민
 - 사실 아직은 앱을 만드는 부분이나 UI부분이 낯설어서 step을 진행하며 전처럼 요구사항만 읽고 로직을 짜는데 집중했습니다. 그러다보니 진행하면서 넣을까 말까 고민하는 기능들, 넣고나니 더 꼬이기만 하는 기능들, 충돌되던 컨셉들을 발견하며 탁탁 막히는 느낌을 받았습니다.
 - 프로젝트를 진행하며 `Main.storyboard`라는 부분을 보게 되었는데 이제까지 하던 고민이 결국 이로 이어지는 고민들이라는 것을 깨닫게 되었습니다. 이미 구성되어 있는 화면을 보며 타입 안에 필요한 프로퍼티나 메서드 등을 고민하고 구현 과정을 계획했다면 갈팡질팡 했던 긴 고민의 시간이 줄었을 것 같다는 생각을 했고, 앞으로 그런 방향도 같이 고려해서 로직을 짠다면 좀 더 효율적이고 완성도가 높은 코드를 구현하는데 큰 도움이 될 것 같다는 깨달음을 얻었습니다.
@@ -95,6 +121,9 @@
 - 변수 네이밍 중 특히 `get`의 사용을 고민했다거나, 동사가 빠져있다거나 하는 경우가 많았었습니다. 그래서 이를 대체하는 동사를 고민을 많이 했습니다.
 - `get`과 같은 예약어들은 사용처가 정해져 있기에 대체 단어가 있다면 피하는 게 좋고 make로 시작하는 `method`들은 보는 사람으로 하여금 `factory method`를 떠올리게 할 수 있어 피하는게 좋다는 걸 다시 숙지하였습니다.
 
+Step2
+### 🔥 
+
 <br>
 
 <a id="7."></a> 
@@ -103,3 +132,6 @@
 - [APPLE Developer - Hashable](https://developer.apple.com/documentation/swift/hashable)
 - [블로그 - Hashable](https://babbab2.tistory.com/149)
 - [Docs.swift - Properties - static](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/properties/)
+- [APPLE Developer - UsingSegues](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/UsingSegues.html)
+- [블로그 - unrecognized selector sent to instance 오류](https://yeniful.tistory.com/51)
+- [APPLE Developer - UIAlertAction.Style](https://developer.apple.com/documentation/uikit/uialertaction/style)

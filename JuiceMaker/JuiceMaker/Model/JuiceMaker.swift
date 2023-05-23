@@ -13,19 +13,11 @@ struct JuiceMaker {
         .mango: 10
     ])
     
-    func takeOrder(_ juice: Juice) {
-        do {
-            try makeJuice(juice)
-        } catch FruitStoreError.invalidFruit {
-            print("올바르지 않은 과일 이름입니다.")
-        } catch FruitStoreError.insufficientFruit {
-            print("과일의 재고가 부족하여 쥬스를 만들 수 없습니다.")
-        } catch {
-            print("알 수 없는 에러입니다.")
-        }
+    func readFruitInventory() -> [Fruit: Int] {
+        return fruitStore.readFruitInventory()
     }
     
-    private func makeJuice(_ juice: Juice) throws {
+    func takeOrder(_ juice: Juice) throws {
         try verifyStock(for: juice)
         try consumeFruit(for: juice)
     }
@@ -38,7 +30,7 @@ struct JuiceMaker {
         
     private func consumeFruit(for juice: Juice) throws {
         for (fruit, amount) in juice.recipe {
-            try fruitStore.decreaseFruitStock(fruit, by: amount)
+            fruitStore.decreaseFruitStock(fruit, by: amount)
         }
     }
 }

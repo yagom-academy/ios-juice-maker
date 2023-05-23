@@ -11,27 +11,21 @@ class FruitStore {
         self.fruitInventory = fruitInventory
     }
     
-    private func readCurrentStock(for fruit: Fruit) throws -> Int {
-        guard let currentAmount = fruitInventory[fruit] else {
-            throw FruitStoreError.invalidFruit
-        }
-        return currentAmount
+    func readFruitInventory() -> [Fruit: Int] {
+        return fruitInventory
     }
     
     func isStockSufficient(_ fruit: Fruit, with requiredAmount: Int) throws {
-        let currentStock = try readCurrentStock(for: fruit)
-        guard currentStock >= requiredAmount else {
+        guard let currentStock = fruitInventory[fruit],
+              currentStock >= requiredAmount else {
             throw FruitStoreError.insufficientFruit
         }
     }
     
-    func decreaseFruitStock(_ fruit: Fruit, by amount: Int) throws {
-        let currentAmount = try readCurrentStock(for: fruit)
-        fruitInventory[fruit] = currentAmount - amount
-    }
-    
-    func increaseFruitStock(_ fruit: Fruit, by amount: Int) throws {
-        let currentAmount = try readCurrentStock(for: fruit)
-        fruitInventory[fruit] = currentAmount + amount
+    func decreaseFruitStock(_ fruit: Fruit, by amount: Int) {
+        guard let currentStock = fruitInventory[fruit] else {
+            return
+        }
+        fruitInventory[fruit] = currentStock - amount
     }
 }

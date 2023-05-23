@@ -6,5 +6,5 @@
 //
 
 enum FruitStoreError: Error {
-    case invalidFruit, insufficientFruit
+    case insufficientFruit
 }
