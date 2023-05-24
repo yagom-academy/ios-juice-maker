@@ -19,5 +19,4 @@ enum Identifier {
 			return "Main"
 		}
 	}
-	
 }

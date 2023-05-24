@@ -12,6 +12,7 @@ class StockViewController: UIViewController {
 	@IBOutlet private weak var pineappleStockLabel: UILabel!
 	@IBOutlet private weak var kiwiStockLabel: UILabel!
 	@IBOutlet private weak var mangoStockLabel: UILabel!
+	
     @IBOutlet private weak var closeBarButtonItem: UIBarButtonItem!
 	
 	@IBOutlet private weak var strawberryStepper: UIStepper!
@@ -23,9 +24,8 @@ class StockViewController: UIViewController {
 	private var fruitStock: [Fruit: Int] = [:]
     weak var delegate: MainViewControllerDelegate?
     
-    init?(coder: NSCoder, fruitStock: [Fruit: Int], mainViewController: MainViewController) {
+    init?(coder: NSCoder, fruitStock: [Fruit: Int]) {
         self.fruitStock = fruitStock
-        self.delegate = mainViewController
         super.init(coder: coder)
     }
     
@@ -45,8 +45,9 @@ class StockViewController: UIViewController {
 			  let bananaStock = fruitStock[.banana],
 			  let pineappleStock = fruitStock[.pineapple],
 			  let kiwiStock = fruitStock[.kiwi],
-			  let mangoStock = fruitStock[.mango]
-		else { return }
+			  let mangoStock = fruitStock[.mango] else {
+			return
+		}
 		
 		strawberryStockLabel.text = String(strawberryStock)
 		bananaStockLabel.text = String(bananaStock)
@@ -80,30 +81,30 @@ class StockViewController: UIViewController {
         showAlert(type: .confirmStockChange)
     }
     
-    private func showAlert(type: AlertText) {
-        let alert = UIAlertController(title: type.title,
-                                      message: type.message,
-                                      preferredStyle: .alert)
-        
-        switch type {
-        case .confirmStockChange:
-            let okAlertAction = UIAlertAction(title: AlertActionText.ok.title,
-                                   style: .default,
-                                   handler: { _ in
-                self.removeStockViewController(isChange: true)
-            })
-            let cancelAlertAction = UIAlertAction(title: AlertActionText.cancel.title,
-                                       style: .default,
-                                       handler: { _ in
-                self.removeStockViewController(isChange: false)
-            })
-            alert.addAction(okAlertAction)
-            alert.addAction(cancelAlertAction)
-        default:
-            break
-        }
-        present(alert, animated: true, completion: nil)
-    }
+	private func showAlert(type: AlertText) {
+		let alert = UIAlertController(title: type.title,
+									  message: type.message,
+									  preferredStyle: .alert)
+		
+		switch type {
+		case .confirmStockChange:
+			let okAlertAction = UIAlertAction(title: AlertActionText.ok.title,
+											  style: .default,
+											  handler: { _ in
+				self.removeStockViewController(isChange: true)
+			})
+			let cancelAlertAction = UIAlertAction(title: AlertActionText.cancel.title,
+												  style: .default,
+												  handler: { _ in
+				self.removeStockViewController(isChange: false)
+			})
+			alert.addAction(okAlertAction)
+			alert.addAction(cancelAlertAction)
+		default:
+			break
+		}
+		present(alert, animated: true, completion: nil)
+	}
     
     private func removeStockViewController(isChange: Bool) {
         if isChange {

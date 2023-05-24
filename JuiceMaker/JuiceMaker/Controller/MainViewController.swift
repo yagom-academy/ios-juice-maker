@@ -11,7 +11,7 @@ protocol MainViewControllerDelegate: AnyObject {
     func changeFruitInventory(fruitStockStatus: [Fruit: Int])
 }
 
-class MainViewController: UIViewController, MainViewControllerDelegate {
+class MainViewController: UIViewController {
     @IBOutlet private weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet private weak var mangoKiwiJuiceButton: UIButton!
     @IBOutlet private weak var strawberryJuiceButton: UIButton!
@@ -43,11 +43,6 @@ class MainViewController: UIViewController, MainViewControllerDelegate {
         replaceStockLabel()
     }
 	
-    func changeFruitInventory(fruitStockStatus: [Fruit: Int]) {
-        juiceMaker.changeFruitStock(fruitStockStatus)
-        fruitStock = fruitStockStatus
-    }
-	
 	private func addButtonAction() {
 		strawberryBananaJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
 		mangoKiwiJuiceButton.addTarget(self, action: #selector(orderMenu(_:)), for: .touchUpInside)
@@ -63,8 +58,9 @@ class MainViewController: UIViewController, MainViewControllerDelegate {
 			  let bananaStock = fruitStock[.banana],
 			  let pineappleStock = fruitStock[.pineapple],
 			  let kiwiStock = fruitStock[.kiwi],
-			  let mangoStock = fruitStock[.mango]
-		else { return }
+			  let mangoStock = fruitStock[.mango] else {
+			return
+		}
 		
 		strawberryStockLabel.text = String(strawberryStock)
 		bananaStockLabel.text = String(bananaStock)
@@ -144,11 +140,18 @@ class MainViewController: UIViewController, MainViewControllerDelegate {
         let stockViewController = storyboard.instantiateViewController(
 			identifier: Identifier.stockViewController.name,
             creator: { coder in
-                return StockViewController(coder: coder, fruitStock: self.fruitStock, mainViewController: self)
+                return StockViewController(coder: coder, fruitStock: self.fruitStock)
             })
+		stockViewController.delegate = self
         
 		stockViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
 		self.navigationController?.present(stockViewController, animated: true)
 	}
 }
 
+extension MainViewController: MainViewControllerDelegate {
+	func changeFruitInventory(fruitStockStatus: [Fruit: Int]) {
+		juiceMaker.changeFruitStock(fruitStockStatus)
+		fruitStock = fruitStockStatus
+	}
+}
