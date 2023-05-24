@@ -63,7 +63,7 @@ extension FruitStockViewController {
         guard let fruit = Fruit(rawValue: sender.tag) else { return }
         
         let amount = Int(sender.value)
-        
+        print("\(amount)")
         fruitStockLabels[sender.tag].text = "\(amount)"
         fruitStore.changeFruitCount(fruit, amount)
     }

@@ -306,7 +306,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="166.33333333333331" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="pzF-k3-osR"/>
+                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="DJC-39-BUJ"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -329,7 +329,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
                                                 <rect key="frame" x="0.0" y="110" width="94" height="26.333333333333343"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -339,7 +339,7 @@
                                             <stepper opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="166.33333333333331" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="b6P-CZ-FSz"/>
+                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="rk8-nT-iGo"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -362,7 +362,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
                                                 <rect key="frame" x="0.0" y="110" width="94" height="26.333333333333343"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -372,7 +372,7 @@
                                             <stepper opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="166.33333333333331" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="278-my-Bnu"/>
+                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="8qw-Yy-qn4"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -395,7 +395,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
                                                 <rect key="frame" x="0.0" y="110" width="94" height="26.333333333333343"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -405,7 +405,7 @@
                                             <stepper opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="166.33333333333331" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="oEZ-jG-nnW"/>
+                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="MbU-Nq-10J"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -428,7 +428,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
                                                 <rect key="frame" x="0.0" y="110" width="94" height="26.333333333333343"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -438,7 +438,7 @@
                                             <stepper opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="166.33333333333331" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="alI-Zy-u44"/>
+                                                    <action selector="tappedFruitStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Iod-a6-GKq"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -499,16 +499,16 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="f4u-Wg-Cta"/>
-                        <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="PWD-hP-lW5"/>
-                        <outletCollection property="fruitStockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="eri-by-6WH"/>
-                        <outletCollection property="fruitStockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="WHV-Dp-whe"/>
-                        <outletCollection property="fruitStockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="dHI-oM-DvU"/>
-                        <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="ZUN-2I-UIc"/>
-                        <outletCollection property="fruitStockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="A64-lF-2X4"/>
-                        <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="cgV-fY-nA2"/>
-                        <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="Miv-bw-1qP"/>
-                        <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="PYt-bj-jeg"/>
+                        <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="VMV-AR-7BU"/>
+                        <outletCollection property="fruitStockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="4MG-nz-6dA"/>
+                        <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="zTX-Sg-gk3"/>
+                        <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="xem-G3-qHP"/>
+                        <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="99J-j1-mib"/>
+                        <outletCollection property="fruitStockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="Ur8-4y-6t3"/>
+                        <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="UvF-uu-hzw"/>
+                        <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="1bb-yu-6C7"/>
+                        <outletCollection property="fruitStockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="mZb-Su-4du"/>
+                        <outletCollection property="fruitStockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="te6-Zp-J4h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
