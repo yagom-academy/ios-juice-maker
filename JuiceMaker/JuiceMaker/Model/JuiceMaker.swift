@@ -43,13 +43,14 @@ struct JuiceMaker {
         self.recipe = recipe
     }
 
-    func isMakeJuice(menu: Menu) -> Bool {
-        guard let recipe = provideRecipe(menu) else { return false }
+    func makeJuice(menuNumber: Int) -> Menu? {
+        guard let menu = Menu(rawValue: menuNumber),
+              let recipe = provideRecipe(menu) else { return nil }
         
-        guard canMakeJuice(recipe) else { return false }
+        guard canMakeJuice(recipe) else { return nil }
         
         consumeFruit(recipe)
-        return true
+        return menu
     }
     
     private func provideRecipe(_ menu: Menu) -> Recipe? {
@@ -65,7 +66,7 @@ struct JuiceMaker {
     
     private func consumeFruit(_ recipe: Recipe) {
         recipe.forEach { fruit, amount in
-            fruitStore.consumeFruitCount(fruit, amount: amount)
+            fruitStore.changeFruitCount(fruit, -amount)
         }
     }
 }

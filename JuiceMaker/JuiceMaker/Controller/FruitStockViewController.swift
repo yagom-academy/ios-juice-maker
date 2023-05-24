@@ -55,18 +55,26 @@ final class FruitStockViewController: UIViewController {
             fruitStockStepper.value = Double(amount)
         }
     }
+    
+    private func refreshFruitLabelText(index: Int) {
+        guard fruitStockLabels.count > index else { return }
+        guard let fruit = Fruit(rawValue: index),
+              let amount = fruitStore.provideFruitStock(fruit) else { return }
+        
+        fruitStockLabels[index].text = "\(amount)"
+    }
 }
 
 // MARK: - Button Action
 extension FruitStockViewController {
     @IBAction func tappedFruitStepper(_ sender: UIStepper) {
-        guard fruitStockLabels.count > sender.tag else { return }
         guard let fruit = Fruit(rawValue: sender.tag) else { return }
+        guard let oldAmount = fruitStore.provideFruitStock(fruit) else { return }
         
-        let amount = Int(sender.value)
-        print("\(amount)")
-        fruitStockLabels[sender.tag].text = "\(amount)"
-        fruitStore.changeFruitCount(fruit, amount)
+        let gapAmount = sender.value - Double(oldAmount) > 0 ? sender.stepValue : -sender.stepValue
+        
+        fruitStore.changeFruitCount(fruit, Int(gapAmount))
+        refreshFruitLabelText(index: sender.tag)
     }
     
     @IBAction func tappedDismissButton(_ sender: Any) {

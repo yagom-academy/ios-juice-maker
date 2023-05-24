@@ -59,9 +59,7 @@ final class JuiceOrderViewController: UIViewController {
 // MARK: - Button Action
 extension JuiceOrderViewController {
     @IBAction func tappedOrderButton(_ sender: UIButton) {
-        guard let juice = JuiceMaker.Menu(rawValue: sender.tag) else { return }
-        
-        if juiceMaker.isMakeJuice(menu: juice) {
+        if let juice = juiceMaker.makeJuice(menuNumber: sender.tag) {
             successJuiceMaking(juice)
             setUpFruitLabelsText()
         } else {
