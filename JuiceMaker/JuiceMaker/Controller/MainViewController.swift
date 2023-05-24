@@ -28,10 +28,6 @@ class MainViewController: UIViewController {
 
 	private let juiceMaker = JuiceMaker(equalizedStock: 10)
     private lazy var fruitStock: [Fruit: Int] = juiceMaker.getFruitInventoryStatus()
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
