@@ -5,7 +5,7 @@
 //
 
 final class FruitStore {
-    private(set) var fruitInventory: [Fruit: Int]
+    private var fruitInventory: [Fruit: Int]
     
     init(fruitInventory: [Fruit: Int]) {
         self.fruitInventory = fruitInventory
