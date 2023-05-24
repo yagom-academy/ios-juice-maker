@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController, FruitStockDelegate {
+final class JuiceMakerViewController: UIViewController {
 
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -104,7 +104,9 @@ final class JuiceMakerViewController: UIViewController, FruitStockDelegate {
             throw JuiceError.nonexistentJuiceMenu
         }
     }
-    
+}
+
+extension JuiceMakerViewController: FruitStockDelegate {
     func chage(_ fruitStock: [Fruit : Int]) {
         juiceMaker.fruitStore.changeStock(fruitStock)
         setFruitStockLabel()
