@@ -35,11 +35,11 @@ struct JuiceMaker {
     }
     
     typealias Recipe = [(fruit: Fruit, amount: Int)]
-    private let store: FruitStore
+    private let fruitStore: FruitStore
     private let recipe: [Menu: Recipe]
     
     init(_ fruitStore: FruitStore, _ recipe: [Menu: Recipe]) {
-        self.store = fruitStore
+        self.fruitStore = fruitStore
         self.recipe = recipe
     }
 
@@ -60,12 +60,12 @@ struct JuiceMaker {
     
     
     private func canMakeJuice(_ recipe: Recipe) -> Bool {
-        return recipe.allSatisfy { fruit, amount in return store.isEnoughFruits(fruit, count: amount) }
+        return recipe.allSatisfy { fruit, amount in return fruitStore.isEnoughFruits(fruit, count: amount) }
     }
     
     private func consumeFruit(_ recipe: Recipe) {
         recipe.forEach { fruit, amount in
-            store.consumeFruitCount(fruit, amount: amount)
+            fruitStore.consumeFruitCount(fruit, amount: amount)
         }
     }
 }

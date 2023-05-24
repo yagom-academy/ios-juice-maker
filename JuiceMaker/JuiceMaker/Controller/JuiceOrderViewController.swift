@@ -47,7 +47,7 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func navigateToFruitStockViewController() {
-        guard let fruitStockViewController = self.storyboard?.instantiateViewController(identifier: "FruitStockViewController", creator: { coder in
+        guard let fruitStockViewController = storyboard?.instantiateViewController(identifier: "FruitStockViewController", creator: { coder in
             FruitStockViewController(coder: coder, fruitStore: self.fruitStore)
         }) else { return }
         

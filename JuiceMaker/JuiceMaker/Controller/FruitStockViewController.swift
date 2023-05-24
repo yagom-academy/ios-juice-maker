@@ -11,7 +11,7 @@ final class FruitStockViewController: UIViewController {
     @IBOutlet var fruitStockLabels: [UILabel]!
     @IBOutlet var fruitStockSteppers: [UIStepper]!
     
-    private var fruitStore: FruitStore
+    private let fruitStore: FruitStore
     
     init?(coder: NSCoder, fruitStore: FruitStore) {
         self.fruitStore = fruitStore
@@ -19,6 +19,7 @@ final class FruitStockViewController: UIViewController {
         super.init(coder: coder)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -49,7 +50,7 @@ final class FruitStockViewController: UIViewController {
     private func setUpFruitStockStepper() {
         for (index, fruitStockStepper) in fruitStockSteppers.enumerated() {
             guard let fruit = Fruit(rawValue: index),
-                    let amount = fruitStore.provideFruitStock(fruit) else { return }
+                  let amount = fruitStore.provideFruitStock(fruit) else { return }
             
             fruitStockStepper.value = Double(amount)
         }
