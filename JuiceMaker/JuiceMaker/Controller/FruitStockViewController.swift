@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FruitStockDelegate: AnyObject {
-    func changeStock(_ fruits: [Fruit : Int])
+    func chage(_ fruitStock: [Fruit : Int])
 }
 
 final class FruitStockViewController: UIViewController {
@@ -36,7 +36,7 @@ final class FruitStockViewController: UIViewController {
     
     @IBAction private func tabCloseButton(_ sender: UIBarButtonItem) {
         if let fruits {
-            delegate?.changeStock(fruits)
+            delegate?.chage(fruits)
         }
         
         dismiss(animated: true)
