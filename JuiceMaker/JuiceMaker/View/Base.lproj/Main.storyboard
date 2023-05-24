@@ -280,7 +280,7 @@
                                     <navigationItem title="재고 추가" id="fZg-RQ-KVS">
                                         <barButtonItem key="rightBarButtonItem" title="닫기" id="5KT-eC-2qi">
                                             <connections>
-                                                <action selector="closeStockView:" destination="Yu1-lM-nqp" id="3XS-Yd-UDY"/>
+                                                <action selector="hitDismissButton:" destination="Yu1-lM-nqp" id="3XS-Yd-UDY"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -426,15 +426,10 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <size key="freeformSize" width="844" height="390"/>
                     <connections>
-                        <outletCollection property="stockChangeSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="Huu-LI-6v3"/>
                         <outletCollection property="stockChangeLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="HUd-eN-RhK"/>
-                        <outletCollection property="stockChangeSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="1aK-sd-7LC"/>
                         <outletCollection property="stockChangeLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="aMU-fR-5Cf"/>
-                        <outletCollection property="stockChangeSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="tc2-vF-mgs"/>
                         <outletCollection property="stockChangeLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="egp-mE-7hH"/>
                         <outletCollection property="stockChangeLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="rrJ-RW-6uE"/>
-                        <outletCollection property="stockChangeSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="BhK-JE-oIO"/>
-                        <outletCollection property="stockChangeSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="2Ac-gj-DjT"/>
                         <outletCollection property="stockChangeLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="hFh-S7-1DR"/>
                     </connections>
                 </viewController>

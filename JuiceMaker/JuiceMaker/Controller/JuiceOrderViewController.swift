@@ -104,7 +104,8 @@ final class JuiceOrderViewController: UIViewController {
 
 extension JuiceOrderViewController: StockDelegate {
     func getCurrentStock() -> [Int] {
-        return Fruits.allCases.map { juiceMaker.fruitStore.bringQuantity(of: $0) }
+        return Fruits.allCases.map { fruits in
+            juiceMaker.fruitStore.bringQuantity(of: fruits) }
     }
     
     func addStock(quantities: [Int]) {
