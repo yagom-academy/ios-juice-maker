@@ -56,7 +56,6 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
-        configureStockLabel()
         nextStockChangeViewController.strawberryStock = strawberryStockLabel.text ?? ""
         nextStockChangeViewController.bananaStock = bananaStockLabel.text ?? ""
         nextStockChangeViewController.pineappleStock = pineappleStockLabel.text ?? ""
