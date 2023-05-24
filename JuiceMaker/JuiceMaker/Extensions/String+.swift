@@ -7,6 +7,6 @@
 
 extension String {
     var toInt: Int {
-        Int(self) ?? 0
+        return Int(self) ?? 0
     }
 }

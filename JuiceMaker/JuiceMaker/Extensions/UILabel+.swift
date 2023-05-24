@@ -9,6 +9,6 @@ import UIKit
 
 extension UILabel {
     var unwrappedText: String {
-        self.text ?? ""
+        return self.text ?? ""
     }
 }

@@ -13,6 +13,6 @@ enum Fruit: String {
     case mango = "망고"
     
     var name: String {
-        self.rawValue
+        return self.rawValue
     }
 }

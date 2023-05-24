@@ -15,7 +15,7 @@ enum Juice: String {
     case mangoKiwiJuice = "망키쥬스"
     
     var name: String {
-        self.rawValue
+        return self.rawValue
     }
     
     var recipe: Recipe {

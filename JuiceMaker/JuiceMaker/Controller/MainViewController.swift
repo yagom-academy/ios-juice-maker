@@ -108,7 +108,7 @@ class MainViewController: UIViewController {
         guard let stockViewController = self
                                         .storyboard?
                                         .instantiateViewController(
-                                            identifier: "StockViewController",
+                                            identifier: String(describing: StockViewController.self),
                                             creator: { coder in
                                                 StockViewController(juiceMaker: self.juiceMaker, coder: coder)
                                             }
