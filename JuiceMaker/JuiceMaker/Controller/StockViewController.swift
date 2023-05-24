@@ -87,11 +87,14 @@ class StockViewController: UIViewController, Storyboardable {
     }
     
     private func updateStock() {
-        juiceMaker?.updateStock(fruit: .strawberry, amount: self.strawberryStockLabel.unwrappedText.toInt)
-        juiceMaker?.updateStock(fruit: .banana, amount: self.bananaStockLabel.unwrappedText.toInt)
-        juiceMaker?.updateStock(fruit: .pineapple, amount: self.pineappleStockLabel.unwrappedText.toInt)
-        juiceMaker?.updateStock(fruit: .kiwi, amount: self.kiwiStockLabel.unwrappedText.toInt)
-        juiceMaker?.updateStock(fruit: .mango, amount: self.mangoStockLabel.unwrappedText.toInt)
+        let newStock: [Fruit: Int] = [
+            .strawberry: self.strawberryStockLabel.unwrappedText.toInt,
+            .banana: self.bananaStockLabel.unwrappedText.toInt,
+            .pineapple: self.pineappleStockLabel.unwrappedText.toInt,
+            .kiwi: self.kiwiStockLabel.unwrappedText.toInt,
+            .mango: self.mangoStockLabel.unwrappedText.toInt
+        ]
+        juiceMaker?.updateStock(to: newStock)
     }
 }
 

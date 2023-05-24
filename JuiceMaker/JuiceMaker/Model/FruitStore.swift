@@ -43,8 +43,8 @@ class FruitStore {
         self.fruitStock[fruit] = getStock(fruit: fruit) - amount
     }
     
-    func updateStock(of fruit: Fruit, by amount: Int) {
-        self.fruitStock.updateValue(amount, forKey: fruit)
+    func updateStock(to newStock: [Fruit: Int]) {
+        self.fruitStock = newStock
     }
     
     func getStock(fruit: Fruit) -> Int {
