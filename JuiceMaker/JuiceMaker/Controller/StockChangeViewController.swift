@@ -19,8 +19,7 @@ final class StockChangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeComponents()
-        setStockStepperTag()
+        setComponentsData()
     }
     
     @IBAction func updateFruitStock(_ sender: UIStepper) {
@@ -40,18 +39,14 @@ final class StockChangeViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func initializeComponents() {
+    private func setComponentsData() {
         for (index, (fruitStockLabel, stockStepper)) in zip(fruitStockLabels, stockSteppers).enumerated() {
             guard let fruit = Fruit(rawValue: index),
                   let fruitCount = fruitStore?.getCurrentStock(of: fruit) else { return }
+            
             fruitStockLabel.text = "\(fruitCount)"
             stockStepper.value = Double(fruitCount)
-        }
-    }
-    
-    private func setStockStepperTag() {
-        for (tag, stockStepper) in stockSteppers.enumerated() {
-            stockStepper.tag = tag
+            stockStepper.tag = index
         }
     }
 }
