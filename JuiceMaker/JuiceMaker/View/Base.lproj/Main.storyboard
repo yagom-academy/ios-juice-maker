@@ -204,10 +204,27 @@
                                                         <color key="backgroundColor" name="AccentColor"/>
                                                         <state key="normal">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="파인애플쥬스 주문">
+                                                                <fragment content="파인애플쥬스">
+                                                                    <attributes>
+                                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSOriginalFont" metaFont="system" size="15"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                                <fragment content=" ">
                                                                     <attributes>
                                                                         <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <font key="NSFont" metaFont="system" size="15"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                                <fragment content="주문">
+                                                                    <attributes>
+                                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSOriginalFont" metaFont="system" size="15"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
                                                             </attributedString>
@@ -363,9 +380,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-f4-zrz">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                <connections>
+                                                    <action selector="strawberryStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="5E3-dX-vi8"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -385,8 +405,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="bananaStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="OLo-s8-YCz"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -406,8 +429,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="pineappleStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="trF-7J-TUi"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -427,8 +453,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="kiwiStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="3Q5-Y5-QDx"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -448,8 +477,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="mangoStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Jm8-kq-paa"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
