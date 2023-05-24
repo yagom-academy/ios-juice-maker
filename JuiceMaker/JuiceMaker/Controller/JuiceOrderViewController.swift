@@ -50,11 +50,18 @@ class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
-        guard let nextStockChangeViewController = self.storyboard?.instantiateViewController(
+        guard let nextStockChangeViewController = storyboard?.instantiateViewController(
             identifier: "StockChangeViewController"
-        ) else {
+        ) as? StockChangeViewController else {
             return
         }
+        
+        configureStockLabel()
+        nextStockChangeViewController.strawberryStock = strawberryStockLabel.text ?? ""
+        nextStockChangeViewController.bananaStock = bananaStockLabel.text ?? ""
+        nextStockChangeViewController.pineappleStock = pineappleStockLabel.text ?? ""
+        nextStockChangeViewController.mangoStock = mangoStockLabel.text ?? ""
+        nextStockChangeViewController.kiwiStock = kiwiStockLabel.text ?? ""
         
         self.present(
             nextStockChangeViewController,
