@@ -14,12 +14,21 @@ final class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
     
+    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
+    
     private let juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setFruitStockLabel()
+        setJuiceOrderButtonTag()
     }
     
     @IBAction private func tapStockChangeButton(_ sender: UIBarButtonItem) {
@@ -82,6 +91,16 @@ final class JuiceMakerViewController: UIViewController {
         fruitStockViewController.fruitStock = juiceMaker.fruitStore.fruitStock
         
         self.present(fruitStockViewController, animated: true)
+    }
+    
+    private func setJuiceOrderButtonTag() {
+        strawberryJuiceOrderButton.tag = 0
+        bananaJuiceOrderButton.tag = 1
+        kiwiJuiceOrderButton.tag = 2
+        pineappleJuiceOrderButton.tag = 3
+        strawberryBananaJuiceOrderButton.tag = 4
+        mangoJuiceOrderButton.tag = 5
+        mangoKiwiJuiceOrderButton.tag = 6
     }
     
     private func matchJuiceMenu(by tag: Int) throws -> JuiceMenu {

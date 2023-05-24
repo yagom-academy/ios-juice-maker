@@ -28,6 +28,7 @@ final class FruitStockViewController: UIViewController {
         super.viewDidLoad()
         
         setFruitStock()
+        setStepperTag()
     }
     
     @IBAction private func tabCloseButton(_ sender: UIBarButtonItem) {
@@ -75,6 +76,14 @@ final class FruitStockViewController: UIViewController {
         pineappleStockStepper.value = Double(pineappleStock)
         kiwiStockStepper.value = Double(kiwiStock)
         mangoStockStepper.value = Double(mangoStock)
+    }
+    
+    private func setStepperTag() {
+        strawberryStockStepper.tag = 0
+        bananaStockStepper.tag = 1
+        pineappleStockStepper.tag = 2
+        kiwiStockStepper.tag = 3
+        mangoStockStepper.tag = 4
     }
     
     private func matchFruit(by tag: Int) throws -> Fruit {
