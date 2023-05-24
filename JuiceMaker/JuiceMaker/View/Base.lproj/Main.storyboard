@@ -404,7 +404,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
+                        <outlet property="bananaStockLabel" destination="gKu-86-RhI" id="6OT-dy-2rO"/>
                         <outlet property="closeButton" destination="Iw0-fp-Ga5" id="nZC-mc-3UJ"/>
+                        <outlet property="kiwiStockLabel" destination="ZDv-1m-HBY" id="Hky-xr-CLc"/>
+                        <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="WZe-DL-va8"/>
+                        <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="Scc-sk-fGG"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="Be8-Ba-ilW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
