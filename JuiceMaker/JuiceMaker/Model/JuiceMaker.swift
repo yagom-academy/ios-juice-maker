@@ -35,8 +35,4 @@ struct JuiceMaker {
     func getFruitStore() -> FruitStore {
         return fruitStore
     }
-    
-    func update(with fruitInventory: [Fruit: Int]) {
-        fruitStore.update(with: fruitInventory)
-    }
 }

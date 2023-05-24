@@ -27,10 +27,6 @@ final class FruitStore {
         return true
     }
     
-    func update(with fruitInventory: [Fruit: Int]) {
-        self.fruitInventory = fruitInventory
-    }
-    
     func updateStock(of fruit: Fruit, to quantity: Int) {
         fruitInventory[fruit] = quantity
     }
