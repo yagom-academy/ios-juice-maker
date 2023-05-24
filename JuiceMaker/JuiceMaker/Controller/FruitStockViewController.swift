@@ -43,10 +43,6 @@ final class FruitStockViewController: UIViewController {
             fruitStock[fruit] = Int(sender.value)
             setFruitStock()
         } catch {
-            let title: String? = nil
-            let message = "과일 수량 변경에 실패했습니다."
-            let actions = [UIAlertAction(title: "확인", style: .default)]
-            
             switch error {
             case JuiceError.nonexistentFruit:
                 print("FruitStore에 해당 Fruit이 없습니다.")
@@ -54,7 +50,12 @@ final class FruitStockViewController: UIViewController {
                 print("알 수 없는 에러")
             }
             
-            Alert.default.showAlert(self, title: title, message: message, actions: actions)
+            let alert = AlertBuilder()
+                .setMessage("과일 수량 변경에 실패했습니다.")
+                .addAction(title: "확인", style: .default)
+                .build()
+            
+            present(alert, animated: true)
         }
     }
     

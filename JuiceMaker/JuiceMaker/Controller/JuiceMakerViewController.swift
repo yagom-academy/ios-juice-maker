@@ -42,34 +42,41 @@ final class JuiceMakerViewController: UIViewController {
             try juiceMaker.make(juice: menu)
             setFruitStockLabel()
 
-            let message = "\(menu.name) 나왔습니다! 맛있게 드세요!"
-            let actions = [UIAlertAction(title: "Yes!", style: .default)]
+            let alert = AlertBuilder()
+                .setMessage("\(menu.name) 나왔습니다! 맛있게 드세요!")
+                .addAction(title: "Yes!", style: .default)
+                .build()
             
-            Alert.default.showAlert(self, title: "제조 완료", message: message, actions: actions)
+            present(alert, animated: true)
         } catch {
-            var title: String? = nil
-            var message = "쥬스를 만들 수 없습니다."
-            var actions = [UIAlertAction(title: "Yes!", style: .default)]
-            
             switch error {
-            case JuiceError.nonexistentFruit:
-                print("FruitStore에 해당 Fruit이 없습니다.")
             case JuiceError.shortageFruitStock:
                 print("Fruit의 수량이 부족합니다.")
                 
-                title = "재고 부족"
-                message = "재료가 모자라요. 재고를 수정할까요?"
-                actions = [
-                    UIAlertAction(title: "예", style: .destructive, handler: { _ in self.showFruitStockViewController() }),
-                    UIAlertAction(title: "아니오", style: .cancel)
-                ]
+                let alert = AlertBuilder()
+                    .setTitle("재고 부족")
+                    .setMessage("재료가 모자라요. 재고를 수정할까요?")
+                    .addAction(title: "예", style: .destructive) { _ in self.showFruitStockViewController() }
+                    .addAction(title: "아니오", style: .cancel)
+                    .build()
+                
+                present(alert, animated: true)
+                
+                return
+            case JuiceError.nonexistentFruit:
+                print("FruitStore에 해당 Fruit이 없습니다.")
             case JuiceError.nonexistentJuiceMenu:
                 print("JuiceMenu에 해당 메뉴가 없습니다.")
             default:
                 print("알 수 없는 에러")
             }
             
-            Alert.default.showAlert(self, title: title, message: message, actions: actions)
+            let alert = AlertBuilder()
+                .setMessage("쥬스를 만들 수 없습니다.")
+                .addAction(title: "Yes!", style: .default)
+                .build()
+            
+            present(alert, animated: true)
         }
     }
     
