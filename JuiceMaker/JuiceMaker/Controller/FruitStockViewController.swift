@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol FruitStockDelegate: AnyObject {
-    func chage(_ fruitStock: [Fruit : Int])
-}
-
 final class FruitStockViewController: UIViewController {
 
     @IBOutlet weak var strawberryStockLabel: UILabel!
