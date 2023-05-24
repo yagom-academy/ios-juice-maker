@@ -40,6 +40,7 @@ class ModifyStockViewController: UIViewController {
     func initializeStepperValue() {
         for fruitStockStepper in fruitStockStepper {
             fruitStockStepper.value = Double(fruitStocks[fruitStockStepper.tag])
+            fruitStockStepper.minimumValue = Double(fruitStocks[fruitStockStepper.tag])
         }
     }
 }
