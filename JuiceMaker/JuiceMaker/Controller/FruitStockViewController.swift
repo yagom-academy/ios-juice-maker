@@ -21,7 +21,7 @@ final class FruitStockViewController: UIViewController {
     @IBOutlet weak var kiwiStockStepper: UIStepper!
     @IBOutlet weak var mangoStockStepper: UIStepper!
     
-    var fruitStock: [Fruit : Int]?
+    var fruitStock: [Fruit : Int] = [:]
     weak var delegate: FruitStockDelegate?
     
     override func viewDidLoad() {
@@ -31,9 +31,7 @@ final class FruitStockViewController: UIViewController {
     }
     
     @IBAction private func tabCloseButton(_ sender: UIBarButtonItem) {
-        if let fruitStock {
-            delegate?.chage(fruitStock)
-        }
+        delegate?.chage(fruitStock)
         
         dismiss(animated: true)
     }
@@ -41,7 +39,7 @@ final class FruitStockViewController: UIViewController {
     @IBAction private func tapStockChangeStepper(_ sender: UIStepper) {
         do {
             let fruit = try matchFruit(by: sender.tag)
-            fruitStock?[fruit] = Int(sender.value)
+            fruitStock[fruit] = Int(sender.value)
             setFruitStock()
         } catch {
             let title: String? = nil
@@ -60,25 +58,23 @@ final class FruitStockViewController: UIViewController {
     }
     
     private func setFruitStock() {
-        if let fruitStock, !fruitStock.isEmpty {
-            let strawberryStock = fruitStock[.strawberry] ?? 0
-            let bananaStock = fruitStock[.banana] ?? 0
-            let pineappleStock = fruitStock[.pineapple] ?? 0
-            let kiwiStock = fruitStock[.kiwi] ?? 0
-            let mangoStock = fruitStock[.mango] ?? 0
-            
-            strawberryStockLabel.text = String(strawberryStock)
-            bananaStockLabel.text = String(bananaStock)
-            pineappleStockLabel.text = String(pineappleStock)
-            kiwiStockLabel.text = String(kiwiStock)
-            mangoStockLabel.text = String(mangoStock)
-            
-            strawberryStockStepper.value = Double(strawberryStock)
-            bananaStockStepper.value = Double(bananaStock)
-            pineappleStockStepper.value = Double(pineappleStock)
-            kiwiStockStepper.value = Double(kiwiStock)
-            mangoStockStepper.value = Double(mangoStock)
-        }
+        let strawberryStock = fruitStock[.strawberry] ?? 0
+        let bananaStock = fruitStock[.banana] ?? 0
+        let pineappleStock = fruitStock[.pineapple] ?? 0
+        let kiwiStock = fruitStock[.kiwi] ?? 0
+        let mangoStock = fruitStock[.mango] ?? 0
+        
+        strawberryStockLabel.text = String(strawberryStock)
+        bananaStockLabel.text = String(bananaStock)
+        pineappleStockLabel.text = String(pineappleStock)
+        kiwiStockLabel.text = String(kiwiStock)
+        mangoStockLabel.text = String(mangoStock)
+        
+        strawberryStockStepper.value = Double(strawberryStock)
+        bananaStockStepper.value = Double(bananaStock)
+        pineappleStockStepper.value = Double(pineappleStock)
+        kiwiStockStepper.value = Double(kiwiStock)
+        mangoStockStepper.value = Double(mangoStock)
     }
     
     private func matchFruit(by tag: Int) throws -> Fruit {
