@@ -5,22 +5,22 @@
 //
 
 final class FruitStore {
-    private(set) var fruits: [Fruit : Int] = [:]
+    private(set) var fruitStock: [Fruit : Int] = [:]
 
     init() {
         Fruit.allCases.forEach {
-            fruits[$0] = 10
+            fruitStock[$0] = 10
         }
     }
     
     init(stock: Int) {
         Fruit.allCases.forEach {
-            fruits[$0] = stock
+            fruitStock[$0] = stock
         }
     }
     
-    func changeStock(_ fruits: [Fruit : Int]) {
-        self.fruits = fruits
+    func changeStock(_ fruitStock: [Fruit : Int]) {
+        self.fruitStock = fruitStock
     }
     
     func useStock(of fruit: Fruit, amount: Int) throws {
@@ -30,11 +30,11 @@ final class FruitStore {
             throw JuiceError.shortageFruitStock
         }
         
-        fruits.updateValue(stock - amount, forKey: fruit)
+        fruitStock.updateValue(stock - amount, forKey: fruit)
     }
     
     func receiveStock(of fruit: Fruit) throws -> Int {
-        guard let stock = fruits[fruit] else {
+        guard let stock = fruitStock[fruit] else {
             throw JuiceError.nonexistentFruit
         }
         

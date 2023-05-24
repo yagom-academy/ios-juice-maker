@@ -65,11 +65,11 @@ final class JuiceMakerViewController: UIViewController, FruitStockDelegate {
     }
     
     private func setFruitStockLabel() {
-        strawberryStockLabel.text = String(juiceMaker.fruitStore.fruits[.strawberry] ?? 0)
-        bananaStockLabel.text = String(juiceMaker.fruitStore.fruits[.banana] ?? 0)
-        pineappleStockLabel.text = String(juiceMaker.fruitStore.fruits[.pineapple] ?? 0)
-        kiwiStockLabel.text = String(juiceMaker.fruitStore.fruits[.kiwi] ?? 0)
-        mangoStockLabel.text = String(juiceMaker.fruitStore.fruits[.mango] ?? 0)
+        strawberryStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.strawberry] ?? 0)
+        bananaStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.banana] ?? 0)
+        pineappleStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.pineapple] ?? 0)
+        kiwiStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.kiwi] ?? 0)
+        mangoStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.mango] ?? 0)
     }
     
     private func showFruitStockViewController() {
@@ -79,7 +79,7 @@ final class JuiceMakerViewController: UIViewController, FruitStockDelegate {
         
         fruitStockViewController.modalTransitionStyle = .coverVertical
         fruitStockViewController.delegate = self
-        fruitStockViewController.fruits = juiceMaker.fruitStore.fruits
+        fruitStockViewController.fruitStock = juiceMaker.fruitStore.fruitStock
         
         self.present(fruitStockViewController, animated: true)
     }
