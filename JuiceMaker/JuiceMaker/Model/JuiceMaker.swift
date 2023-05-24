@@ -18,4 +18,8 @@ struct JuiceMaker {
     func getStock(fruit: Fruit) -> Int {
         return fruitStore.getStock(fruit: fruit)
     }
+    
+    func updateStock(fruit: Fruit,amount: Int) {
+        self.fruitStore.updateStock(of: fruit, by: amount)
+    }
 }

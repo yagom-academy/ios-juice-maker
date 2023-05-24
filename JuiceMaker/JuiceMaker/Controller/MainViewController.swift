@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
         self.pineappleStockLabel.text = juiceMaker.getStock(fruit: .pineapple).toString
         self.kiwiStockLabel.text = juiceMaker.getStock(fruit: .kiwi).toString
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
+        print("나는 configurelbael")
     }
     
     @IBAction func tapStockButton(_ sender: UIBarButtonItem) {
@@ -96,6 +97,8 @@ class MainViewController: UIViewController {
                 style: .default,
                 handler: { _ in
                     let stockViewController = StockViewController.instantiate()
+                    stockViewController.juiceMaker = self.juiceMaker
+                    stockViewController.modalPresentationStyle = .fullScreen
                     self.navigationController?.present(stockViewController, animated: true)
                 }))
         } else {

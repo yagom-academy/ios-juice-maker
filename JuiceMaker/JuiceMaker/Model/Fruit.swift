@@ -11,6 +11,7 @@ enum Fruit: String {
     case pineapple = "파인애플"
     case kiwi = "키위"
     case mango = "망고"
+    case none = ""
     
     var name: String {
         self.rawValue
