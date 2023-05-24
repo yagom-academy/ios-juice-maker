@@ -105,8 +105,15 @@ class MainViewController: UIViewController {
     }
     
     private func presentToStockViewController() {
-        let stockViewController = StockViewController.instantiate()
-        stockViewController.juiceMaker = self.juiceMaker
+        guard let stockViewController = self
+                                        .storyboard?
+                                        .instantiateViewController(
+                                            identifier: "StockViewController",
+                                            creator: { coder in
+                                                StockViewController(juiceMaker: self.juiceMaker, coder: coder)
+                                            }
+                                        ) else { return }
+        
         stockViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.present(stockViewController, animated: true)
     }

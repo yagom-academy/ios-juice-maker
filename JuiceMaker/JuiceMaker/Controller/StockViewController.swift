@@ -7,9 +7,9 @@
 
 import UIKit
 
-class StockViewController: UIViewController, Storyboardable {
+class StockViewController: UIViewController {
     
-    var juiceMaker: JuiceMaker?
+    var juiceMaker: JuiceMaker
     
     @IBOutlet weak private var viewControllerTitle: UILabel!
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -24,6 +24,15 @@ class StockViewController: UIViewController, Storyboardable {
     @IBOutlet weak private var kiwiStepper: UIStepper!
     @IBOutlet weak private var mangoStepper: UIStepper!
     
+    init?(juiceMaker: JuiceMaker, coder:NSCoder) {
+        self.juiceMaker = juiceMaker
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureStepperTag()
@@ -33,8 +42,6 @@ class StockViewController: UIViewController, Storyboardable {
     }
     
     private func configureLabel() {
-        guard let juiceMaker = juiceMaker else { return }
-        
         self.strawberryStockLabel.text = juiceMaker.getStock(fruit: .strawberry).toString
         self.bananaStockLabel.text = juiceMaker.getStock(fruit: .banana).toString
         self.pineappleStockLabel.text = juiceMaker.getStock(fruit: .pineapple).toString
@@ -55,8 +62,6 @@ class StockViewController: UIViewController, Storyboardable {
     }
     
     private func configureStepper() {
-        guard let juiceMaker = juiceMaker else { return }
-        
         self.strawberryStepper.value = juiceMaker.getStock(fruit: .strawberry).toDouble
         self.bananaStepper.value = juiceMaker.getStock(fruit: .banana).toDouble
         self.pineappleStepper.value = juiceMaker.getStock(fruit: .pineapple).toDouble
@@ -94,7 +99,7 @@ class StockViewController: UIViewController, Storyboardable {
             .kiwi: self.kiwiStockLabel.unwrappedText.toInt,
             .mango: self.mangoStockLabel.unwrappedText.toInt
         ]
-        juiceMaker?.updateStock(to: newStock)
+        juiceMaker.updateStock(to: newStock)
     }
 }
 
