@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
+final class JuiceMakerViewController: UIViewController, FruitStockDelegate {
 
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
@@ -23,7 +23,7 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
     }
     
     @IBAction private func tapStockChangeButton(_ sender: UIBarButtonItem) {
-        showFruitStoreViewController()
+        showFruitStockViewController()
     }
     
     @IBAction private func tapJuiceOrderButton(_ sender: UIButton) {
@@ -51,7 +51,7 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
                 title = "재고 부족"
                 message = "재료가 모자라요. 재고를 수정할까요?"
                 actions = [
-                    UIAlertAction(title: "예", style: .destructive, handler: { _ in self.showFruitStoreViewController() }),
+                    UIAlertAction(title: "예", style: .destructive, handler: { _ in self.showFruitStockViewController() }),
                     UIAlertAction(title: "아니오", style: .cancel)
                 ]
             case JuiceError.nonexistentJuiceMenu:
@@ -72,16 +72,16 @@ final class JuiceMakerViewController: UIViewController, FruitStoreDelegate {
         mangoStockLabel.text = String(juiceMaker.fruitStore.fruits[.mango] ?? 0)
     }
     
-    private func showFruitStoreViewController() {
-        guard let fruitStoreViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStoreViewController") as? FruitStoreViewController else {
+    private func showFruitStockViewController() {
+        guard let fruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
             return
         }
         
-        fruitStoreViewController.modalTransitionStyle = .coverVertical
-        fruitStoreViewController.delegate = self
-        fruitStoreViewController.fruits = juiceMaker.fruitStore.fruits
+        fruitStockViewController.modalTransitionStyle = .coverVertical
+        fruitStockViewController.delegate = self
+        fruitStockViewController.fruits = juiceMaker.fruitStore.fruits
         
-        self.present(fruitStoreViewController, animated: true)
+        self.present(fruitStockViewController, animated: true)
     }
     
     private func matchJuiceMenu(by tag: Int) throws -> JuiceMenu {

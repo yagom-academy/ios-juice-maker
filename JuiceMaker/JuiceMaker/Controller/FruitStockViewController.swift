@@ -1,5 +1,5 @@
 //
-//  FruitStoreViewController.swift
+//  FruitStockViewController.swift
 //  JuiceMaker
 //
 //  Created by EtialMoon, 비모 on 2023/05/16.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol FruitStoreDelegate: AnyObject {
+protocol FruitStockDelegate: AnyObject {
     func changeStock(_ fruits: [Fruit : Int])
 }
 
-final class FruitStoreViewController: UIViewController {
+final class FruitStockViewController: UIViewController {
 
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -26,7 +26,7 @@ final class FruitStoreViewController: UIViewController {
     @IBOutlet weak var mangoStockStepper: UIStepper!
     
     var fruits: [Fruit : Int]?
-    weak var delegate: FruitStoreDelegate?
+    weak var delegate: FruitStockDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
