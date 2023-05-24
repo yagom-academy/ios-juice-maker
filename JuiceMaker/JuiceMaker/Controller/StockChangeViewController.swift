@@ -8,7 +8,7 @@
 import UIKit
 
 protocol StockChangeDelegate: AnyObject {
-    func changeStock(with fruitInventory: [Fruit: Int])
+    func changeStockViewControllerWillDismiss()
 }
 
 final class StockChangeViewController: UIViewController {
@@ -36,7 +36,7 @@ final class StockChangeViewController: UIViewController {
     @IBAction func tapCloseButton(_ sender: UIBarButtonItem) {
         guard let fruitStore = fruitStore else { return }
         
-        delegate?.changeStock(with: fruitStore.fruitInventory)
+        delegate?.changeStockViewControllerWillDismiss()
         dismiss(animated: true)
     }
     
