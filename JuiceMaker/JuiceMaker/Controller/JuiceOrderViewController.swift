@@ -7,12 +7,13 @@
 import UIKit
 
 protocol Configurable {
-    mutating func assignLabelText()
+    func assignLabelText()
 }
 
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
     @IBOutlet var orderJuiceButtonCollection: [CustomButton]!
+    
     private var juiceMaker: JuiceMaker = JuiceMaker()
     
     private enum AlertType {
@@ -84,6 +85,7 @@ final class JuiceOrderViewController: UIViewController {
     }
 }
 
+//MARK: - Extension
 extension JuiceOrderViewController: Configurable {
     func assignLabelText() {
         configureStockLabel()

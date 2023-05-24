@@ -8,14 +8,15 @@
 import UIKit
 
 final class StockManagementViewController: UIViewController {
-    private var fruitStore: FruitStore = FruitStore.shared
-    var configurationDelegate: Configurable?
     @IBOutlet var strawberryStockLabel: UILabel!
     @IBOutlet var bananaStockLabel: UILabel!
     @IBOutlet var pineappleStockLabel: UILabel!
     @IBOutlet var kiwiStockLabel: UILabel!
     @IBOutlet var mangoStockLabel: UILabel!
     @IBOutlet var stockManagementStepperCollection: [CustomStepper]!
+    
+    private var fruitStore: FruitStore = FruitStore.shared
+    var configurationDelegate: Configurable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +36,24 @@ final class StockManagementViewController: UIViewController {
     
     @IBAction func touchUpStockStepper(_ sender: CustomStepper) {
         guard let fruit = sender.customIdentifier else { return }
-
+        
+        let currentStepperValue: String = Int(sender.value).description
+        let selectedFruitStockLabel = selectFruitStockLabel(with: fruit)
+        selectedFruitStockLabel.text = currentStepperValue
+    }
+    
+    private func selectFruitStockLabel(with fruit: Fruit) -> UILabel {
         switch fruit {
         case .strawberry:
-            strawberryStockLabel.text = Int(sender.value).description
+            return strawberryStockLabel
         case .banana:
-            bananaStockLabel.text = Int(sender.value).description
+            return bananaStockLabel
         case .pineapple:
-            pineappleStockLabel.text = Int(sender.value).description
+            return pineappleStockLabel
         case .kiwi:
-            kiwiStockLabel.text = Int(sender.value).description
+            return kiwiStockLabel
         case .mango:
-            mangoStockLabel.text = Int(sender.value).description
+            return mangoStockLabel
         }
     }
     
@@ -58,8 +65,8 @@ final class StockManagementViewController: UIViewController {
                                                     kiwiStockLabel,
                                                     mangoStockLabel]
         
-        for (fruit, label) in zip(Fruit.allCases, fruitStockLabelCollection) {
-            currentStockList[fruit] = Int(label.text ?? "0")
+        for (fruit, stockLabel) in zip(Fruit.allCases, fruitStockLabelCollection) {
+            currentStockList[fruit] = Int(stockLabel.text ?? "0")
         }
         
         fruitStore.setStockList(with: currentStockList)
