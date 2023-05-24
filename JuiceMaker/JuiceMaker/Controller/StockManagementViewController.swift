@@ -25,6 +25,7 @@ final class StockManagementViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        changeStockList()
         configurationDelegate?.assignLabelText()
     }
     
@@ -47,6 +48,21 @@ final class StockManagementViewController: UIViewController {
         case .mango:
             mangoStockLabel.text = Int(sender.value).description
         }
+    }
+    
+    private func changeStockList() {
+        var currentStockList: [Fruit: Int] = [:]
+        let fruitStockLabelCollection: [UILabel] = [strawberryStockLabel,
+                                                    bananaStockLabel,
+                                                    pineappleStockLabel,
+                                                    kiwiStockLabel,
+                                                    mangoStockLabel]
+        
+        for (fruit, label) in zip(Fruit.allCases, fruitStockLabelCollection) {
+            currentStockList[fruit] = Int(label.text ?? "0")
+        }
+        
+        fruitStore.setStockList(with: currentStockList)
     }
     
     private func configureStockLabel() {

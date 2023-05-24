@@ -12,6 +12,10 @@ class FruitStore {
         Fruit.allCases.forEach { stockList[$0] = stockQuantity }
     }
     
+    func setStockList(with currentStockList: [Fruit: Int]) {
+        stockList = currentStockList
+    }
+    
     func decreaseStock(witch fruit: Fruit, by quantity: Int) {
         guard let currentStock = stockList[fruit] else { return }
         
