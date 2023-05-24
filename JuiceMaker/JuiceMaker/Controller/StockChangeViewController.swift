@@ -34,46 +34,41 @@ class StockChangeViewController: UIViewController {
         strawberryStockLabel.text = strawberryStock
         bananaStockLabel.text = bananaStock
         pineappleStockLabel.text = pineappleStock
-        mangoStockLabel.text = mangoStock
         kiwiStockLabel.text = kiwiStock
+        mangoStockLabel.text = mangoStock
     }
     
     @IBAction func didTapCloseButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
 
-    @IBAction func strawberryStockChangeStepper(_ sender: UIStepper) {
-        guard let strawberryStock = Int(strawberryStock) else {
+    @IBAction func didTapStockChangeStepper(_ sender: UIStepper) {
+        let stock: String
+        let stockLabel: UILabel
+        
+        switch sender {
+        case strawberryStockStepper:
+            stock = strawberryStock
+            stockLabel = strawberryStockLabel
+        case bananaStockStepper:
+            stock = bananaStock
+            stockLabel = bananaStockLabel
+        case pineappleStockStepper:
+            stock = pineappleStock
+            stockLabel = pineappleStockLabel
+        case kiwiStockStepper:
+            stock = kiwiStock
+            stockLabel = kiwiStockLabel
+        case mangoStockStepper:
+            stock = mangoStock
+            stockLabel = mangoStockLabel
+        default:
             return
         }
-        strawberryStockLabel.text = String(strawberryStock + Int(sender.value))
-    }
-    
-    @IBAction func bananaStockChangeStepper(_ sender: UIStepper) {
-        guard let bananaStock = Int(bananaStock) else {
+        
+        guard let stock = Int(stock) else {
             return
         }
-        bananaStockLabel.text = String(bananaStock + Int(sender.value))
-    }
-    @IBAction func pineappleStockChangeStepper(_ sender: UIStepper) {
-        guard let pineappleStock = Int(pineappleStock) else {
-            return
-        }
-        pineappleStockLabel.text = String(pineappleStock + Int(sender.value))
-    }
-    
-    @IBAction func kiwiStockChangeStepper(_ sender: UIStepper) {
-        guard let kiwiStock = Int(kiwiStock) else {
-            return
-        }
-        kiwiStockLabel.text = String(kiwiStock + Int(sender.value))
-    }
-    
-    
-    @IBAction func mangoStockChangeStepper(_ sender: UIStepper) {
-        guard let mangoStock = Int(mangoStock) else {
-            return
-        }
-        mangoStockLabel.text = String(mangoStock + Int(sender.value))
+        stockLabel.text = String(stock + Int(sender.value))
     }
 }

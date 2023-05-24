@@ -207,7 +207,7 @@
                                                                 <fragment content="파인애플쥬스">
                                                                     <attributes>
                                                                         <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSFont" metaFont="system" size="15"/>
                                                                         <font key="NSOriginalFont" metaFont="system" size="15"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
@@ -222,7 +222,7 @@
                                                                 <fragment content="주문">
                                                                     <attributes>
                                                                         <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSFont" metaFont="system" size="15"/>
                                                                         <font key="NSOriginalFont" metaFont="system" size="15"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
@@ -384,7 +384,7 @@
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 <connections>
-                                                    <action selector="strawberryStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="5E3-dX-vi8"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="rSi-YZ-r7m"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -408,7 +408,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="bananaStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="OLo-s8-YCz"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="5hS-ew-saU"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -432,7 +432,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="pineappleStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="trF-7J-TUi"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="r2h-ke-7sf"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -456,7 +456,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="kiwiStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="3Q5-Y5-QDx"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="fWv-EH-J59"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -480,7 +480,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="mangoStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Jm8-kq-paa"/>
+                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="QbL-8h-AFT"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>

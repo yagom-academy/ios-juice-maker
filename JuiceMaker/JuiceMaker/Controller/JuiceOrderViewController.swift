@@ -36,8 +36,8 @@ class JuiceOrderViewController: UIViewController {
         guard let strawberryStock = fruitInventory[.strawberry],
               let bananaStock = fruitInventory[.banana],
               let pineappleStock = fruitInventory[.pineapple],
-              let mangoStock = fruitInventory[.mango],
-              let kiwiStock = fruitInventory[.kiwi]
+              let kiwiStock = fruitInventory[.kiwi],
+              let mangoStock = fruitInventory[.mango]
         else {
             return
         }
@@ -45,8 +45,8 @@ class JuiceOrderViewController: UIViewController {
         strawberryStockLabel.text = String(strawberryStock)
         bananaStockLabel.text = String(bananaStock)
         pineappleStockLabel.text = String(pineappleStock)
-        mangoStockLabel.text = String(mangoStock)
         kiwiStockLabel.text = String(kiwiStock)
+        mangoStockLabel.text = String(mangoStock)
     }
     
     @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
@@ -59,8 +59,8 @@ class JuiceOrderViewController: UIViewController {
         nextStockChangeViewController.strawberryStock = strawberryStockLabel.text ?? ""
         nextStockChangeViewController.bananaStock = bananaStockLabel.text ?? ""
         nextStockChangeViewController.pineappleStock = pineappleStockLabel.text ?? ""
-        nextStockChangeViewController.mangoStock = mangoStockLabel.text ?? ""
         nextStockChangeViewController.kiwiStock = kiwiStockLabel.text ?? ""
+        nextStockChangeViewController.mangoStock = mangoStockLabel.text ?? ""
         
         self.present(
             nextStockChangeViewController,
@@ -78,10 +78,10 @@ class JuiceOrderViewController: UIViewController {
             juice = .bananaJuice
         case pineappleJuiceButton:
             juice = .pineappleJuice
-        case mangoJuiceButton:
-            juice = .mangoJuice
         case kiwiJuiceButton:
             juice = .kiwiJuice
+        case mangoJuiceButton:
+            juice = .mangoJuice
         case strawberryBananaJuiceButton:
             juice = .strawberryBananaJuice
         case mangoKiwiJuiceButton:
