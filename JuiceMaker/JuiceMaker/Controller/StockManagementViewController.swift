@@ -38,7 +38,7 @@ final class StockManagementViewController: UIViewController {
         guard let fruit = sender.customIdentifier else { return }
         
         let currentStepperValue: String = Int(sender.value).description
-        let selectedFruitStockLabel = selectFruitStockLabel(with: fruit)
+        let selectedFruitStockLabel: UILabel = selectFruitStockLabel(with: fruit)
         selectedFruitStockLabel.text = currentStepperValue
     }
     
@@ -73,7 +73,7 @@ final class StockManagementViewController: UIViewController {
     }
     
     private func configureStockLabel() {
-        let stockList = fruitStore.getRemainStock()
+        let stockList: [String] = fruitStore.getRemainStock()
         let fruitStockLabelCollection: [UILabel] = [strawberryStockLabel,
                                                     bananaStockLabel,
                                                     pineappleStockLabel,
@@ -86,7 +86,7 @@ final class StockManagementViewController: UIViewController {
     }
     
     private func configureStockManagementStepper() {
-        let stockList = fruitStore.getRemainStock()
+        let stockList: [String] = fruitStore.getRemainStock()
         
         for index in stockManagementStepperCollection.indices {
             guard let currentStock = Double(stockList[index]) else { return }
