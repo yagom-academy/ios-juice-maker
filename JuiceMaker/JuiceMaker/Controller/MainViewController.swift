@@ -26,14 +26,10 @@ class MainViewController: UIViewController {
         self.pineappleStockLabel.text = juiceMaker.getStock(fruit: .pineapple).toString
         self.kiwiStockLabel.text = juiceMaker.getStock(fruit: .kiwi).toString
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
-        print("나는 configurelbael")
     }
     
     @IBAction func tapStockButton(_ sender: UIBarButtonItem) {
-        let stockViewController = StockViewController.instantiate()
-        stockViewController.juiceMaker = self.juiceMaker
-        stockViewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.present(stockViewController, animated: true)
+        self.presentToStockViewController()
     }
     
     @IBAction func tapOrderButton(_ sender: UIButton) {
@@ -96,10 +92,7 @@ class MainViewController: UIViewController {
                 title: Alert.yes,
                 style: .default,
                 handler: { _ in
-                    let stockViewController = StockViewController.instantiate()
-                    stockViewController.juiceMaker = self.juiceMaker
-                    stockViewController.modalPresentationStyle = .fullScreen
-                    self.navigationController?.present(stockViewController, animated: true)
+                    self.presentToStockViewController()
                 }))
         } else {
             alert.addAction(UIAlertAction(
@@ -109,6 +102,13 @@ class MainViewController: UIViewController {
             ))
         }
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func presentToStockViewController() {
+        let stockViewController = StockViewController.instantiate()
+        stockViewController.juiceMaker = self.juiceMaker
+        stockViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(stockViewController, animated: true)
     }
 }
 

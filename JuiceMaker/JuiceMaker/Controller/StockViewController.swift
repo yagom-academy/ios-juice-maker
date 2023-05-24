@@ -57,38 +57,41 @@ class StockViewController: UIViewController, Storyboardable {
     private func configureStepper() {
         guard let juiceMaker = juiceMaker else { return }
         
-        self.strawberryStepper.value = Double(juiceMaker.getStock(fruit: .strawberry))
-        self.bananaStepper.value = Double(juiceMaker.getStock(fruit: .banana))
-        self.pineappleStepper.value = Double(juiceMaker.getStock(fruit: .pineapple))
-        self.kiwiStepper.value = Double(juiceMaker.getStock(fruit: .kiwi))
-        self.mangoStepper.value = Double(juiceMaker.getStock(fruit: .mango))
+        self.strawberryStepper.value = juiceMaker.getStock(fruit: .strawberry).toDouble
+        self.bananaStepper.value = juiceMaker.getStock(fruit: .banana).toDouble
+        self.pineappleStepper.value = juiceMaker.getStock(fruit: .pineapple).toDouble
+        self.kiwiStepper.value = juiceMaker.getStock(fruit: .kiwi).toDouble
+        self.mangoStepper.value = juiceMaker.getStock(fruit: .mango).toDouble
     }
     
     @IBAction private func tapCloseButton() {
+        self.updateStock()
         self.dismiss(animated: true)
     }
     
     @IBAction func tapStepper(_ sender: UIStepper) {
-        let fruit = findFruit(identifier: sender.tag)
-        juiceMaker?.updateStock(fruit: fruit, amount: Int(sender.value))
-        configureLabel()
+        switch sender.tag {
+        case 0:
+            self.strawberryStockLabel.text = sender.value.toString
+        case 1:
+            self.bananaStockLabel.text = sender.value.toString
+        case 2:
+            self.pineappleStockLabel.text = sender.value.toString
+        case 3:
+            self.kiwiStockLabel.text = sender.value.toString
+        case 4:
+            self.mangoStockLabel.text = sender.value.toString
+        default:
+            return
+        }
     }
     
-    func findFruit(identifier: Int) -> Fruit {
-        switch identifier {
-        case 0:
-            return .strawberry
-        case 1:
-            return .banana
-        case 2:
-            return .pineapple
-        case 3:
-            return .kiwi
-        case 4:
-            return .mango
-        default:
-            return .none
-        }
+    private func updateStock() {
+        juiceMaker?.updateStock(fruit: .strawberry, amount: self.strawberryStockLabel.unwrappedText.toInt)
+        juiceMaker?.updateStock(fruit: .banana, amount: self.bananaStockLabel.unwrappedText.toInt)
+        juiceMaker?.updateStock(fruit: .pineapple, amount: self.pineappleStockLabel.unwrappedText.toInt)
+        juiceMaker?.updateStock(fruit: .kiwi, amount: self.kiwiStockLabel.unwrappedText.toInt)
+        juiceMaker?.updateStock(fruit: .mango, amount: self.mangoStockLabel.unwrappedText.toInt)
     }
 }
 

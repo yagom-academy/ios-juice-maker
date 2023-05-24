@@ -9,4 +9,7 @@ extension Int {
     var toString: String {
         return self.description
     }
+    var toDouble: Double {
+        return Double(self)
+    }
 }
