@@ -11,6 +11,14 @@ final class ChangeStockViewController: UIViewController {
     
     let currentFruitStock = FruitStore.shared.currentFruitStock
     
+    lazy var fruitAndLabel: [Fruit: UILabel] = [
+        .strawberry: strawberryStockLabel,
+        .banana: bananaStockLabel,
+        .pineapple: pineappleStockLabel,
+        .kiwi: kiwiStockLabel,
+        .mango: mangoStockLabel
+    ]
+    
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
@@ -30,14 +38,6 @@ final class ChangeStockViewController: UIViewController {
     }
     
     private func updateFruitStockOnLabel() {
-        let fruitAndLabel: [Fruit: UILabel] = [
-            .strawberry: strawberryStockLabel,
-            .banana: bananaStockLabel,
-            .pineapple: pineappleStockLabel,
-            .kiwi: kiwiStockLabel,
-            .mango: mangoStockLabel
-        ]
-        
         for (fruit, label) in fruitAndLabel {
             guard let stock = currentFruitStock[fruit] else { return }
             label.text = String(stock)
@@ -79,14 +79,6 @@ final class ChangeStockViewController: UIViewController {
     }
     
     private func changedFruitStock() {
-        let fruitAndLabel: [Fruit: UILabel] = [
-            .strawberry: strawberryStockLabel,
-            .banana: bananaStockLabel,
-            .pineapple: pineappleStockLabel,
-            .kiwi: kiwiStockLabel,
-            .mango: mangoStockLabel
-        ]
-        
         for (fruit, label) in fruitAndLabel {
             guard let stock = currentFruitStock[fruit] else { return }
             guard let changedStock = label.text, let changedStock = Int(changedStock) else { return }
