@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DCG-dP-Fms">
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -253,9 +253,9 @@
                         <outlet property="mangoStockLabel" destination="3Ce-SU-JeH" id="e4b-2V-Ih7"/>
                         <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="CQd-pE-soa"/>
                         <outlet property="pineappleStockLabel" destination="ccQ-Dk-PuY" id="pn8-ju-u31"/>
-                        <outlet property="strawBerryBananaJuiceButton" destination="hrc-2F-fzl" id="zyC-qP-quw"/>
-                        <outlet property="strawBerryJuiceButton" destination="avd-o5-3JM" id="W61-6G-mNa"/>
-                        <outlet property="strawBerryStockLabel" destination="Qas-vP-td6" id="dmw-l7-GsN"/>
+                        <outlet property="strawberryBananaJuiceButton" destination="hrc-2F-fzl" id="zyC-qP-quw"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="W61-6G-mNa"/>
+                        <outlet property="strawberryStockLabel" destination="Qas-vP-td6" id="dmw-l7-GsN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -301,8 +301,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-kn-zaT">
-                                                <rect key="frame" x="40.333333333333343" y="92.666666666666671" width="13.333333333333336" height="26.333333333333329"/>
+                                                <rect key="frame" x="2" y="92.666666666666671" width="90" height="26.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="T7e-E6-MK6"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -325,8 +328,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gKu-86-RhI">
-                                                <rect key="frame" x="40.333333333333314" y="94.666666666666671" width="13.333333333333336" height="26.333333333333329"/>
+                                                <rect key="frame" x="2" y="94.666666666666671" width="90" height="26.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="Prm-ET-Sxz"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -349,8 +355,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-VW-hCb">
-                                                <rect key="frame" x="40.333333333333314" y="90.666666666666671" width="13.333333333333336" height="26.333333333333329"/>
+                                                <rect key="frame" x="2" y="90.666666666666671" width="90" height="26.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="ENP-IJ-MNX"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -373,8 +382,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-1m-HBY">
-                                                <rect key="frame" x="40.333333333333371" y="90.666666666666671" width="13.333333333333336" height="26.333333333333329"/>
+                                                <rect key="frame" x="2" y="90.666666666666671" width="90" height="26.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="jOn-Yr-G43"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -397,8 +409,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJI-ER-LJR">
-                                                <rect key="frame" x="40.333333333333371" y="90.666666666666671" width="13.333333333333336" height="26.333333333333329"/>
+                                                <rect key="frame" x="2" y="90.666666666666671" width="90" height="26.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="90" id="bCh-Kf-mc4"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -422,9 +437,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
-                        <barButtonItem key="rightBarButtonItem" title="수정 확인" id="zlc-Hf-aXY">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="zlc-Hf-aXY">
                             <connections>
-                                <action selector="confirmChangedFruitStock:" destination="Yu1-lM-nqp" id="wi3-PU-ufi"/>
+                                <action selector="closeViewBarButton:" destination="Yu1-lM-nqp" id="HwH-hb-jVP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -437,8 +452,8 @@
                         <outlet property="mangoStockLabel" destination="YJI-ER-LJR" id="2CT-G8-20Z"/>
                         <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="VXT-Cm-nxa"/>
                         <outlet property="pineappleStockLabel" destination="MpT-VW-hCb" id="Tee-8Q-Qlc"/>
-                        <outlet property="strawBerryStepper" destination="ZQk-f4-zrz" id="IVp-ad-Oxx"/>
-                        <outlet property="strawBerryStockLabel" destination="0yV-kn-zaT" id="6sb-OP-wtw"/>
+                        <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="IVp-ad-Oxx"/>
+                        <outlet property="strawberryStockLabel" destination="0yV-kn-zaT" id="6sb-OP-wtw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

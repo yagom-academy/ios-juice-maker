@@ -8,9 +8,9 @@ final class FruitStore {
     static let shared = FruitStore()
     
     private var stock: [Fruit: Int] = [
-        .strawBerry: 25,
+        .strawberry: 25,
         .banana: 11,
-        .pineApple: 12,
+        .pineapple: 12,
         .kiwi: 13,
         .mango: 14
     ]

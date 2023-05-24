@@ -10,8 +10,8 @@ final class MakeJuiceViewController: UIViewController {
     
     var juiceMaker: JuiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawBerryJuiceButton: UIButton!
-    @IBOutlet weak var strawBerryBananaJuiceButton: UIButton!
+    @IBOutlet weak var strawberryJuiceButton: UIButton!
+    @IBOutlet weak var strawberryBananaJuiceButton: UIButton!
     @IBOutlet weak var bananaJuiceButton: UIButton!
     @IBOutlet weak var pineappleJuiceButton: UIButton!
     @IBOutlet weak var kiwiJuiceButton: UIButton!
@@ -19,7 +19,7 @@ final class MakeJuiceViewController: UIViewController {
     @IBOutlet weak var mangoJuiceButton: UIButton!
     @IBOutlet weak var changeStockButton: UIBarButtonItem!
     
-    @IBOutlet weak var strawBerryStockLabel: UILabel!
+    @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
     @IBOutlet weak var pineappleStockLabel: UILabel!
     @IBOutlet weak var kiwiStockLabel: UILabel!
@@ -34,18 +34,17 @@ final class MakeJuiceViewController: UIViewController {
         super.viewWillAppear(animated)
         modifyFruitStockOnLabel()
     }
-
+    
     private func modifyFruitStockOnLabel() {
-        
-        let fruitAndLabels: [Fruit: UILabel] = [
-            .strawBerry: strawBerryStockLabel,
+        let fruitAndLabel: [Fruit: UILabel] = [
+            .strawberry: strawberryStockLabel,
             .banana: bananaStockLabel,
-            .pineApple: pineappleStockLabel,
+            .pineapple: pineappleStockLabel,
             .kiwi: kiwiStockLabel,
             .mango: mangoStockLabel
         ]
         
-        for (fruit, label) in  fruitAndLabels {
+        for (fruit, label) in  fruitAndLabel {
             guard let stock = FruitStore.shared.currentFruitStock[fruit] else { return }
             label.text = String(stock)
         }
@@ -57,53 +56,62 @@ final class MakeJuiceViewController: UIViewController {
         
         switch juiceNameFromSendTitle {
         case "딸기":
-            showOrderedAlert(juiceNameFromSendTitle, by:.strawBerryJuice)
+            showOrderedAlert(by:.strawberryJuice)
         case "딸바":
-            showOrderedAlert(juiceNameFromSendTitle, by:.strawBerryBananaJuice)
+            showOrderedAlert(by:.strawberryBananaJuice)
         case "바나나":
-            showOrderedAlert(juiceNameFromSendTitle, by:.bananaJuice)
+            showOrderedAlert(by:.bananaJuice)
         case "파인애플":
-            showOrderedAlert(juiceNameFromSendTitle, by:.pineAppleJuice)
+            showOrderedAlert(by:.pineappleJuice)
         case "키위":
-            showOrderedAlert(juiceNameFromSendTitle, by:.kiwiJuice)
+            showOrderedAlert(by:.kiwiJuice)
         case "망키":
-            showOrderedAlert(juiceNameFromSendTitle, by:.mangoKiwiJuice)
+            showOrderedAlert(by:.mangoKiwiJuice)
         case "망고":
-            showOrderedAlert(juiceNameFromSendTitle, by:.mangoJuice)
+            showOrderedAlert(by:.mangoJuice)
         default:
             print("없는 메뉴입니다.")
         }
         modifyFruitStockOnLabel()
     }
     
-    private func showOrderedAlert(_ juiceName: String?, by juice: Juice) {
+    private func showOrderedAlert(by juice: Juice) {
         if let _ = juiceMaker.make(juice) {
-            guard let juiceName = juiceName else { return }
-            let alert = UIAlertController(title: "\(juiceName)쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            
-            alert.addAction(okAction)
-            present(alert, animated: true)
+            showMakeJuiceAlert(juice)
         } else {
-            let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정 할까요?", preferredStyle: UIAlertController.Style.alert)
-            let result = UIAlertAction(title: "아니요", style: .cancel)
-            let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
-                self.presentChangeStockViewController()
-            })
-            
-            alert.addAction(result)
-            alert.addAction(okAction)
-            present(alert, animated: true)
+            showInsufficientStockAlert()
         }
     }
     
+    private func showMakeJuiceAlert(_ juice: Juice) {
+        let alert = UIAlertController(title: "\(juice.rawValue)쥬스 나왔습니다.", message: "맛있게 드세요!", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func showInsufficientStockAlert() {
+        let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정 할까요?", preferredStyle: UIAlertController.Style.alert)
+        let result = UIAlertAction(title: "아니요", style: .cancel)
+        let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
+            self.presentChangeStockViewController()
+        })
+        
+        alert.addAction(result)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    
     private func presentChangeStockViewController() {
         guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") else { return }
+        
         changeStockNavigationController.modalPresentationStyle = .fullScreen
         present(changeStockNavigationController, animated: true)
     }
     
-    @IBAction func changeStockBarButton(_ sender: Any) {
+    @IBAction func changeStockBarButton(_ sender: UIBarButtonItem) {
         presentChangeStockViewController()
     }
 }
