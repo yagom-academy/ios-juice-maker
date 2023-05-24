@@ -5,11 +5,13 @@
 //  Created by Yetti, yy-ss99, Mary.
 //
 
-enum JuiceMakerError: Error, CustomStringConvertible {
+import Foundation
+
+enum JuiceMakerError: LocalizedError {
     case outOfStock(fruit: Fruits)
     case notExistFruit(fruit: Fruits)
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .outOfStock(let fruit):
             return "\(fruit)가(이) 부족합니다."
