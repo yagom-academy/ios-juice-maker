@@ -130,7 +130,7 @@ final class JuiceMakerViewController: UIViewController {
         fruitStockViewController.delegate = self
         fruitStockViewController.fruitStock = juiceMaker.getFruitStock()
         
-        self.present(fruitStockViewController, animated: true)
+        present(fruitStockViewController, animated: true)
     }
 }
 
