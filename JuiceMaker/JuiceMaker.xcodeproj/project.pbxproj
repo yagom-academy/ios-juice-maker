@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DCABF7A2A1F02030001D970 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCABF792A1F02030001D970 /* Configurable.swift */; };
 		78232D3E2A1C9EE300D2BB42 /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78232D3D2A1C9EE300D2BB42 /* CustomStepper.swift */; };
 		785090FF2A0921F60077F4E3 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785090FE2A0921F60077F4E3 /* Fruit.swift */; };
 		785091012A0935910077F4E3 /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785091002A0935910077F4E3 /* Juice.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5DCABF792A1F02030001D970 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		78232D3D2A1C9EE300D2BB42 /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
 		785090FE2A0921F60077F4E3 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		785091002A0935910077F4E3 /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DCABF762A1F01650001D970 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				5DCABF792A1F02030001D970 /* Configurable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
+				5DCABF762A1F01650001D970 /* Protocol */,
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
@@ -192,6 +203,7 @@
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				78715C9E2A1B13E5009AEBE5 /* CustomButton.swift in Sources */,
 				785091012A0935910077F4E3 /* Juice.swift in Sources */,
+				5DCABF7A2A1F02030001D970 /* Configurable.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceOrderViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				78232D3E2A1C9EE300D2BB42 /* CustomStepper.swift in Sources */,

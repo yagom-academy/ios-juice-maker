@@ -6,10 +6,6 @@
 
 import UIKit
 
-protocol Configurable {
-    func assignLabelText()
-}
-
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
     @IBOutlet var orderJuiceButtonCollection: [CustomButton]!
@@ -25,6 +21,16 @@ final class JuiceOrderViewController: UIViewController {
         super.viewDidLoad()
         configureStockLabel()
         configureJuiceButtonCustomIdentifier()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let stockManagementViewController =
+                segue.destination as? StockManagementViewController
+        else {
+            return
+        }
+        
+        stockManagementViewController.configurationDelegate = self
     }
 
     @IBAction func touchUpOrderButton(_ sender: CustomButton) {
@@ -72,16 +78,6 @@ final class JuiceOrderViewController: UIViewController {
         for index in orderJuiceButtonCollection.indices {
             orderJuiceButtonCollection[index].customIdentifier = Juice.allCases[index]
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let stockManagementViewController =
-                segue.destination as? StockManagementViewController
-        else {
-            return
-        }
-        
-        stockManagementViewController.configurationDelegate = self
     }
 }
 
