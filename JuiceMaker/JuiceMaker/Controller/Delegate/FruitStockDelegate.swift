@@ -6,5 +6,5 @@
 //
 
 protocol FruitStockDelegate: AnyObject {
-    func chage(_ fruitStock: [Fruit : Int])
+    func change(_ fruitStock: [Fruit : Int])
 }

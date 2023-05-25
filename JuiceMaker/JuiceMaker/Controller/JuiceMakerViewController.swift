@@ -133,7 +133,7 @@ final class JuiceMakerViewController: UIViewController {
 }
 
 extension JuiceMakerViewController: FruitStockDelegate {
-    func chage(_ fruitStock: [Fruit : Int]) {
+    func change(_ fruitStock: [Fruit : Int]) {
         juiceMaker.fruitStore.changeStock(fruitStock)
         setFruitStockLabel()
     }

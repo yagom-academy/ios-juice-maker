@@ -32,7 +32,7 @@ final class FruitStockViewController: UIViewController {
     }
     
     @IBAction private func tabCloseButton(_ sender: UIBarButtonItem) {
-        delegate?.chage(fruitStock)
+        delegate?.change(fruitStock)
         
         dismiss(animated: true)
     }
