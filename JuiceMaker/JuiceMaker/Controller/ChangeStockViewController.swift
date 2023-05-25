@@ -70,9 +70,8 @@ final class ChangeStockViewController: UIViewController {
             mangoStepper: mangoStockLabel
         ]
         
-        if let label = stepperAndLabel[sender] {
-            label.text = String(Int(sender.value))
-        }
+        guard let label = stepperAndLabel[sender] else { return }
+        label.text = String(Int(sender.value))
     }
     
     @IBAction func closeViewBarButton(_ sender: UIBarButtonItem) {
@@ -84,10 +83,10 @@ final class ChangeStockViewController: UIViewController {
         let currentFruitStock = FruitStore.shared.currentFruitStock
         
         for (fruit, label) in fruitAndLabel {
-            guard let stock = currentFruitStock[fruit] else { return }
-            guard let changedStock = label.text, let changedStock = Int(changedStock) else { return }
-            FruitStore.shared.changeStock(with: fruit, changedStock - stock)
+            guard let stock = currentFruitStock[fruit],
+                  let changedStock = label.text,
+                  let changedStockToInt = Int(changedStock) else { return }
+            FruitStore.shared.changeStock(with: fruit, changedStockToInt - stock)
         }
     }
 }
-

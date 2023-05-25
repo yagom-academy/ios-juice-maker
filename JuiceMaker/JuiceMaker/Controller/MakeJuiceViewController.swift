@@ -31,7 +31,6 @@ final class MakeJuiceViewController: UIViewController {
         super.viewDidLoad()
         configureButtonTitleLabel()
         modifyFruitStockOnLabel()
-
     }
     
     private func configureButtonTitleLabel() {
@@ -47,8 +46,6 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     private func modifyFruitStockOnLabel() {
-        
-        
         let fruitAndLabel: [Fruit: UILabel] = [
             .strawberry: strawberryStockLabel,
             .banana: bananaStockLabel,
@@ -66,34 +63,23 @@ final class MakeJuiceViewController: UIViewController {
     @IBAction func orderJuice(_ sender: UIButton) {
         guard let senderTitle = sender.titleLabel?.text else { return }
         let juiceNameFromSendTitle = senderTitle.components(separatedBy: "쥬스").first
+        let juices = Juice.allCases
         
-        switch juiceNameFromSendTitle {
-        case "딸기":
-            showOrderedAlert(by:.strawberryJuice)
-        case "딸바":
-            showOrderedAlert(by:.strawberryBananaJuice)
-        case "바나나":
-            showOrderedAlert(by:.bananaJuice)
-        case "파인애플":
-            showOrderedAlert(by:.pineappleJuice)
-        case "키위":
-            showOrderedAlert(by:.kiwiJuice)
-        case "망키":
-            showOrderedAlert(by:.mangoKiwiJuice)
-        case "망고":
-            showOrderedAlert(by:.mangoJuice)
-        default:
-            print("없는 메뉴입니다.")
+        for juice in juices {
+            guard juiceNameFromSendTitle == juice.rawValue else {
+                continue
+            }
+            showOrderedAlert(by: juice)
         }
         modifyFruitStockOnLabel()
     }
     
     private func showOrderedAlert(by juice: Juice) {
-        if let _ = juiceMaker.make(juice) {
-            showMakeJuiceAlert(juice)
-        } else {
+        guard let juice = juiceMaker.make(juice) else {
             showInsufficientStockAlert()
+            return
         }
+        showMakeJuiceAlert(juice)
     }
     
     private func showMakeJuiceAlert(_ juice: Juice) {
@@ -106,16 +92,15 @@ final class MakeJuiceViewController: UIViewController {
     
     private func showInsufficientStockAlert() {
         let alert = UIAlertController(title: "재료가 모자라요.", message: "재고를 수정 할까요?", preferredStyle: UIAlertController.Style.alert)
-        let result = UIAlertAction(title: "아니요", style: .cancel)
+        let cancelAction = UIAlertAction(title: "아니요", style: .cancel)
         let okAction = UIAlertAction(title: "예", style: .default, handler: { _ in
             self.presentChangeStockViewController()
         })
         
-        alert.addAction(result)
+        alert.addAction(cancelAction)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
     
     private func presentChangeStockViewController() {
         guard let changeStockNavigationController = storyboard?.instantiateViewController(withIdentifier: "ChangeStockNavigationController") else { return }

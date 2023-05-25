@@ -8,7 +8,6 @@
 enum FruitStoreError: Error {
     case outOfStock
     
-    
     var localized: String {
         switch self {
         case .outOfStock:

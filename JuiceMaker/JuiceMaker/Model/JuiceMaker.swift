@@ -6,7 +6,7 @@
 
 struct JuiceMaker {
     
-    mutating func make(_ juice: Juice) -> Juice? {
+    func make(_ juice: Juice) -> Juice? {
         do {
             try FruitStore.shared.checkStock(with: juice.recipe)
             juice.recipe.forEach { fruit, stock in
