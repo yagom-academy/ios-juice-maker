@@ -81,4 +81,24 @@ class StockChangeViewController: UIViewController {
         stockLabel.text = String(changedStock)
     }
     
+    func changeFruitInventory() {
+        guard let strawberryChangedStock = Int(strawberryStockLabel.text ?? ""),
+              let bananaChangedStock = Int(bananaStockLabel.text ?? ""),
+              let pineappleChangedStock = Int(pineappleStockLabel.text ?? ""),
+              let kiwiChangedStock = Int(kiwiStockLabel.text ?? ""),
+              let mangoChangedStock = Int(mangoStockLabel.text ?? "")
+        else {
+            return
+        }
+        
+        changeFruitStock(.strawberry, amount: strawberryChangedStock)
+        changeFruitStock(.banana, amount: bananaChangedStock)
+        changeFruitStock(.pineapple, amount: pineappleChangedStock)
+        changeFruitStock(.kiwi, amount: kiwiChangedStock)
+        changeFruitStock(.mango, amount: mangoChangedStock)
+    }
+    
+    func changeFruitStock(_ fruit: Fruit, amount: Int) {
+        fruitStore.changeFruitStock(fruit, by: amount)
+    }
 }
