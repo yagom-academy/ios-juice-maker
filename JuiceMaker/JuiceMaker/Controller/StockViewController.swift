@@ -21,7 +21,7 @@ class StockViewController: UIViewController {
 	@IBOutlet private weak var kiwiStepper: UIStepper!
 	@IBOutlet private weak var mangoStepper: UIStepper!
     
-	private var fruitStock: [Fruit: Int] = [:]
+	private var fruitStock: [Fruit: Int]
     weak var delegate: MainViewControllerDelegate?
     
     init?(coder: NSCoder, fruitStock: [Fruit: Int]) {
@@ -29,9 +29,9 @@ class StockViewController: UIViewController {
         super.init(coder: coder)
     }
     
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-	}
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
