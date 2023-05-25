@@ -9,8 +9,6 @@ import UIKit
 
 final class ChangeStockViewController: UIViewController {
     
-    let currentFruitStock = FruitStore.shared.currentFruitStock
-    
     lazy var fruitAndLabel: [Fruit: UILabel] = [
         .strawberry: strawberryStockLabel,
         .banana: bananaStockLabel,
@@ -38,6 +36,8 @@ final class ChangeStockViewController: UIViewController {
     }
     
     private func updateFruitStockOnLabel() {
+        let currentFruitStock = FruitStore.shared.currentFruitStock
+        
         for (fruit, label) in fruitAndLabel {
             guard let stock = currentFruitStock[fruit] else { return }
             label.text = String(stock)
@@ -52,6 +52,8 @@ final class ChangeStockViewController: UIViewController {
             .kiwi: kiwiStepper,
             .mango: mangoStepper
         ]
+        
+        let currentFruitStock = FruitStore.shared.currentFruitStock
         
         for (fruit, stepper) in fruitAndStepper {
             guard let stock = currentFruitStock[fruit] else { return }
@@ -79,6 +81,8 @@ final class ChangeStockViewController: UIViewController {
     }
     
     private func changedFruitStock() {
+        let currentFruitStock = FruitStore.shared.currentFruitStock
+        
         for (fruit, label) in fruitAndLabel {
             guard let stock = currentFruitStock[fruit] else { return }
             guard let changedStock = label.text, let changedStock = Int(changedStock) else { return }
