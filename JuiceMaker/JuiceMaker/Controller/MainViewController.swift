@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, StockViewControllerDelegate {
+class MainViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     
@@ -110,25 +110,26 @@ class MainViewController: UIViewController, StockViewControllerDelegate {
             .instantiateViewController(
                 identifier: String(describing: StockViewController.self),
                 creator: { coder in
-                    StockViewController(fruitStockLabels: [self.strawberryStockLabel.text,
-                                                     self.bananaStockLabel.text,
-                                                     self.pineappleStockLabel.text,
-                                                     self.kiwiStockLabel.text,
-                                                     self.mangoStockLabel.text], coder: coder)
+                    StockViewController(fruitStockLabel: (
+                        strawberry: self.strawberryStockLabel.text,
+                        banana: self.bananaStockLabel.text,
+                        pineapple: self.pineappleStockLabel.text,
+                        kiwi: self.kiwiStockLabel.text,
+                        mango: self.mangoStockLabel.text
+                    ), coder: coder)
                 }
             ) else { return }
         
-        stockViewController.modalPresentationStyle = .fullScreen
         stockViewController.delegate = self
+        stockViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.present(stockViewController, animated: true)
     }
-    
-    func sendStock(changedStockLabels: [String?]) {
-        self.strawberryStockLabel.text = changedStockLabels[0]
-        self.bananaStockLabel.text = changedStockLabels[1]
-        self.pineappleStockLabel.text = changedStockLabels[2]
-        self.kiwiStockLabel.text = changedStockLabels[3]
-        self.mangoStockLabel.text = changedStockLabels[4]
+}
+
+extension MainViewController: StockViewControllerDelegate {
+    func changeStock(changedStock: [Fruit: Int]) {
+        self.juiceMaker.updateStock(to: changedStock)
+        self.configureLabel()
     }
 }
 

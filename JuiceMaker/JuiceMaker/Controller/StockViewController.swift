@@ -7,9 +7,11 @@
 
 import UIKit
 
+typealias FruitStockLabel = (strawberry: String?, banana: String?, pineapple: String?, kiwi: String?, mango: String?)
+
 class StockViewController: UIViewController {
     
-    var fruitStockLabels: [String?]
+    var fruitStockLabel: FruitStockLabel
     var delegate: StockViewControllerDelegate?
     
     @IBOutlet weak private var viewControllerTitle: UILabel!
@@ -25,8 +27,8 @@ class StockViewController: UIViewController {
     @IBOutlet weak private var kiwiStepper: UIStepper!
     @IBOutlet weak private var mangoStepper: UIStepper!
     
-    init?(fruitStockLabels: [String?], coder:NSCoder) {
-        self.fruitStockLabels = fruitStockLabels
+    init?(fruitStockLabel: FruitStockLabel, coder:NSCoder) {
+        self.fruitStockLabel = fruitStockLabel
         super.init(coder: coder)
     }
     
@@ -47,19 +49,19 @@ class StockViewController: UIViewController {
     }
     
     private func configureLabel() {
-        self.strawberryStockLabel.text = self.fruitStockLabels[0]
-        self.bananaStockLabel.text = self.fruitStockLabels[1]
-        self.pineappleStockLabel.text = self.fruitStockLabels[2]
-        self.kiwiStockLabel.text = self.fruitStockLabels[3]
-        self.mangoStockLabel.text = self.fruitStockLabels[4]
+        self.strawberryStockLabel.text = self.fruitStockLabel.strawberry
+        self.bananaStockLabel.text = self.fruitStockLabel.banana
+        self.pineappleStockLabel.text = self.fruitStockLabel.pineapple
+        self.kiwiStockLabel.text = self.fruitStockLabel.kiwi
+        self.mangoStockLabel.text = self.fruitStockLabel.mango
     }
     
     private func configureStepper() {
-        self.strawberryStepper.value = self.fruitStockLabels[0].toDouble ?? 0.0
-        self.bananaStepper.value = self.fruitStockLabels[1].toDouble ?? 0.0
-        self.pineappleStepper.value = self.fruitStockLabels[2].toDouble ?? 0.0
-        self.kiwiStepper.value = self.fruitStockLabels[3].toDouble ?? 0.0
-        self.mangoStepper.value = self.fruitStockLabels[4].toDouble ?? 0.0
+        self.strawberryStepper.value = self.fruitStockLabel.strawberry.toDouble ?? 0.0
+        self.bananaStepper.value = self.fruitStockLabel.banana.toDouble ?? 0.0
+        self.pineappleStepper.value = self.fruitStockLabel.pineapple.toDouble ?? 0.0
+        self.kiwiStepper.value = self.fruitStockLabel.kiwi.toDouble ?? 0.0
+        self.mangoStepper.value = self.fruitStockLabel.mango.toDouble ?? 0.0
     }
     
     private func configureStepperTag() {
@@ -93,11 +95,15 @@ class StockViewController: UIViewController {
     }
     
     private func updateStock() {
-        self.delegate?.sendStock(changedStockLabels: [self.strawberryStockLabel.text,
-                                                      self.bananaStockLabel.text,
-                                                      self.pineappleStockLabel.text,
-                                                      self.kiwiStockLabel.text,
-                                                      self.mangoStockLabel.text])
+        self.delegate?.changeStock(
+            changedStock: [
+                .strawberry: self.strawberryStockLabel.text.toInt ?? 0,
+                .banana: self.bananaStockLabel.text.toInt ?? 0,
+                .pineapple: self.pineappleStockLabel.text.toInt ?? 0,
+                .kiwi: self.kiwiStockLabel.text.toInt ?? 0,
+                .mango: self.mangoStockLabel.text.toInt ?? 0
+            ]
+        )
     }
     
 }

@@ -7,6 +7,6 @@
 
 extension Double {
     var toString: String {
-        return Int(self).toString
+        return String(Int(self))
     }
 }

@@ -13,8 +13,10 @@ extension Optional<String> {
     }
     
     var toDouble: Double? {
-        guard let self = self.toInt else { return nil }
+        guard let unwrappedString = self,
+              let generatedInteger = Int(unwrappedString)
+        else { return nil }
         
-        return Double(self)
+        return Double(generatedInteger)
     }
 }

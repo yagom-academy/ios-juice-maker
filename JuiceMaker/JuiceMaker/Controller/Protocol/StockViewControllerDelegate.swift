@@ -8,5 +8,5 @@
 import Foundation
 
 protocol StockViewControllerDelegate {
-    func sendStock(changedStockLabels: [String?])
+    func changeStock(changedStock: [Fruit: Int])
 }
