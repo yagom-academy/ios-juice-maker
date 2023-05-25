@@ -14,16 +14,19 @@ final class AlertBuilder {
     
     func setTitle(_ title: String) -> AlertBuilder {
         self.title = title
+        
         return self
     }
     
     func setMessage(_ message: String) -> AlertBuilder {
         self.message = message
+        
         return self
     }
     
     func addAction(title: String, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil) -> AlertBuilder {
         actions.append(UIAlertAction(title: title, style: style, handler: handler))
+        
         return self
     }
     

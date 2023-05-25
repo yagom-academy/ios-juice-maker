@@ -21,8 +21,8 @@ final class FruitStockViewController: UIViewController {
     @IBOutlet weak var kiwiStockStepper: UIStepper!
     @IBOutlet weak var mangoStockStepper: UIStepper!
     
-    var fruitStock: [Fruit : Int] = [:]
     weak var delegate: FruitStockDelegate?
+    var fruitStock: [Fruit : Int] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,7 @@ final class FruitStockViewController: UIViewController {
     @IBAction private func tapStockChangeStepper(_ sender: UIStepper) {
         do {
             let fruit = try matchFruit(by: sender.tag)
+            
             fruitStock[fruit] = Int(sender.value)
             setFruitStock()
         } catch {

@@ -56,7 +56,9 @@ final class JuiceMakerViewController: UIViewController {
                 let alert = AlertBuilder()
                     .setTitle("재고 부족")
                     .setMessage("재료가 모자라요. 재고를 수정할까요?")
-                    .addAction(title: "예", style: .destructive) { _ in self.showFruitStockViewController() }
+                    .addAction(title: "예", style: .destructive) { _ in
+                        self.showFruitStockViewController()
+                    }
                     .addAction(title: "아니오", style: .cancel)
                     .build()
                 
@@ -88,18 +90,6 @@ final class JuiceMakerViewController: UIViewController {
         mangoStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.mango] ?? 0)
     }
     
-    private func showFruitStockViewController() {
-        guard let fruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
-            return
-        }
-        
-        fruitStockViewController.modalTransitionStyle = .coverVertical
-        fruitStockViewController.delegate = self
-        fruitStockViewController.fruitStock = juiceMaker.fruitStore.fruitStock
-        
-        self.present(fruitStockViewController, animated: true)
-    }
-    
     private func setJuiceOrderButtonTag() {
         strawberryJuiceOrderButton.tag = 0
         bananaJuiceOrderButton.tag = 1
@@ -129,6 +119,18 @@ final class JuiceMakerViewController: UIViewController {
         default:
             throw JuiceError.nonexistentJuiceMenu
         }
+    }
+    
+    private func showFruitStockViewController() {
+        guard let fruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
+            return
+        }
+        
+        fruitStockViewController.modalTransitionStyle = .coverVertical
+        fruitStockViewController.delegate = self
+        fruitStockViewController.fruitStock = juiceMaker.fruitStore.fruitStock
+        
+        self.present(fruitStockViewController, animated: true)
     }
 }
 
