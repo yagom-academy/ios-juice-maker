@@ -7,6 +7,14 @@
 struct JuiceMaker {
     let fruitStore = FruitStore()
     
+    func getFruitStock() -> [Fruit : Int] {
+        return fruitStore.fruitStock
+    }
+    
+    func changeRequest(of fruitStock: [Fruit : Int]) {
+        fruitStore.changeStock(fruitStock)
+    }
+    
     func make(juice menu: JuiceMenu) throws {
         let availableIngredients = try validIngredients(by: menu.recipe)
         
