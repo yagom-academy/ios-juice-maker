@@ -14,13 +14,13 @@ final class JuiceMakerViewController: UIViewController {
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryJuiceOrderButton: UIButton!
-    @IBOutlet weak var bananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var kiwiJuiceOrderButton: UIButton!
-    @IBOutlet weak var pineappleJuiceOrderButton: UIButton!
-    @IBOutlet weak var strawberryBananaJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoJuiceOrderButton: UIButton!
-    @IBOutlet weak var mangoKiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryJuiceOrderButton: UIButton!
+    @IBOutlet private weak var bananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var kiwiJuiceOrderButton: UIButton!
+    @IBOutlet private weak var pineappleJuiceOrderButton: UIButton!
+    @IBOutlet private weak var strawberryBananaJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoJuiceOrderButton: UIButton!
+    @IBOutlet private weak var mangoKiwiJuiceOrderButton: UIButton!
     
     private let juiceMaker = JuiceMaker()
     

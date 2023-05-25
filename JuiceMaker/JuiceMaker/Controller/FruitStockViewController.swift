@@ -9,17 +9,17 @@ import UIKit
 
 final class FruitStockViewController: UIViewController {
 
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private weak var strawberryStockLabel: UILabel!
+    @IBOutlet private weak var bananaStockLabel: UILabel!
+    @IBOutlet private weak var pineappleStockLabel: UILabel!
+    @IBOutlet private weak var kiwiStockLabel: UILabel!
+    @IBOutlet private weak var mangoStockLabel: UILabel!
     
-    @IBOutlet weak var strawberryStockStepper: UIStepper!
-    @IBOutlet weak var bananaStockStepper: UIStepper!
-    @IBOutlet weak var pineappleStockStepper: UIStepper!
-    @IBOutlet weak var kiwiStockStepper: UIStepper!
-    @IBOutlet weak var mangoStockStepper: UIStepper!
+    @IBOutlet private weak var strawberryStockStepper: UIStepper!
+    @IBOutlet private weak var bananaStockStepper: UIStepper!
+    @IBOutlet private weak var pineappleStockStepper: UIStepper!
+    @IBOutlet private weak var kiwiStockStepper: UIStepper!
+    @IBOutlet private weak var mangoStockStepper: UIStepper!
     
     weak var delegate: FruitStockDelegate?
     var fruitStock: [Fruit : Int] = [:]
