@@ -24,12 +24,6 @@ class StockChangeViewController: UIViewController {
     
     var fruitStore: FruitStore = FruitStore()
     
-    var strawberryStock: String = ""
-    var bananaStock: String = ""
-    var pineappleStock: String = ""
-    var kiwiStock: String = ""
-    var mangoStock: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureStockLabel()
@@ -59,32 +53,32 @@ class StockChangeViewController: UIViewController {
     }
     
     @IBAction func didTapStockChangeStepper(_ sender: UIStepper) {
-        let stock: String
+        let fruit: Fruit
         let stockLabel: UILabel
         
         switch sender {
         case strawberryStockStepper:
-            stock = strawberryStock
+            fruit = .strawberry
             stockLabel = strawberryStockLabel
         case bananaStockStepper:
-            stock = bananaStock
+            fruit = .banana
             stockLabel = bananaStockLabel
         case pineappleStockStepper:
-            stock = pineappleStock
+            fruit = .pineapple
             stockLabel = pineappleStockLabel
         case kiwiStockStepper:
-            stock = kiwiStock
+            fruit = .kiwi
             stockLabel = kiwiStockLabel
         case mangoStockStepper:
-            stock = mangoStock
+            fruit = .mango
             stockLabel = mangoStockLabel
         default:
             return
         }
         
-        guard let stock = Int(stock) else {
-            return
-        }
-        stockLabel.text = String(stock + Int(sender.value))
+        let stock: Int = fruitStore.readFruitInventory()[fruit] ?? 0
+        let changedStock = stock + Int(sender.value)
+        stockLabel.text = String(changedStock)
     }
+    
 }
