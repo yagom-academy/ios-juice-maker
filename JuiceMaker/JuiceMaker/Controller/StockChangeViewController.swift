@@ -48,10 +48,6 @@ class StockChangeViewController: UIViewController {
         mangoStockLabel.text = String(mangoStock)
     }
     
-    @IBAction func didTapCloseButton(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true)
-    }
-    
     @IBAction func didTapStockChangeStepper(_ sender: UIStepper) {
         let fruit: Fruit
         let stockLabel: UILabel
@@ -79,6 +75,15 @@ class StockChangeViewController: UIViewController {
         let stock: Int = fruitStore.readFruitInventory()[fruit] ?? 0
         let changedStock = stock + Int(sender.value)
         stockLabel.text = String(changedStock)
+    }
+    
+    @IBAction func didTapCloseButton(_ sender: UIBarButtonItem) {
+        let previousViewController = self.presentingViewController as? JuiceOrderViewController
+        
+        changeFruitInventory()
+        previousViewController?.fruitStore = self.fruitStore
+        
+        self.presentingViewController?.dismiss(animated: true)
     }
     
     func changeFruitInventory() {
