@@ -25,9 +25,20 @@ final class MakeJuiceViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
+    @IBOutlet var orderButton: [UIButton]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureButtonTitleLabel()
         modifyFruitStockOnLabel()
+
+    }
+    
+    private func configureButtonTitleLabel() {
+        for button in orderButton {
+            button.titleLabel?.numberOfLines = 0
+            button.titleLabel?.textAlignment = .center
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +47,8 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     private func modifyFruitStockOnLabel() {
+        
+        
         let fruitAndLabel: [Fruit: UILabel] = [
             .strawberry: strawberryStockLabel,
             .banana: bananaStockLabel,
