@@ -24,6 +24,7 @@
 		C73DAF43255D0CDF00020D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */; };
 		C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */; };
 		D26186B52A17480F00BB685E /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26186B42A17480F00BB685E /* JuiceMakerError.swift */; };
+		D26300AE2A1F980600B427F1 /* StockViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26300AD2A1F980600B427F1 /* StockViewControllerDelegate.swift */; };
 		D2737DC02A126AC80075C8A6 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2737DBF2A126AC80075C8A6 /* StockViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		C73DAF44255D0CDF00020D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
 		D26186B42A17480F00BB685E /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
+		D26300AD2A1F980600B427F1 /* StockViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewControllerDelegate.swift; sourceTree = "<group>"; };
 		D2737DBF2A126AC80075C8A6 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D26300AC2A1F97E600B427F1 /* Protocol */,
 				C73DAF3A255D0CDD00020D38 /* MainViewController.swift */,
 				D2737DBF2A126AC80075C8A6 /* StockViewController.swift */,
 			);
@@ -157,6 +160,14 @@
 				1F3E8D382A174BC200251AF9 /* StoryboardError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		D26300AC2A1F97E600B427F1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D26300AD2A1F980600B427F1 /* StockViewControllerDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +254,7 @@
 				1FBFD1122A13631600A849D1 /* Int+.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				1F3E8D3D2A174DF200251AF9 /* ErrorExplainable.swift in Sources */,
+				D26300AE2A1F980600B427F1 /* StockViewControllerDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

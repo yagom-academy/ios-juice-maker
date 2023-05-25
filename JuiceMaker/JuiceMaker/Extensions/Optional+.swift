@@ -11,4 +11,10 @@ extension Optional<String> {
         
         return Int(self)
     }
+    
+    var toDouble: Double? {
+        guard let self = self.toInt else { return nil }
+        
+        return Double(self)
+    }
 }

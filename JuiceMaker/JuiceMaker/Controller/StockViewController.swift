@@ -9,7 +9,8 @@ import UIKit
 
 class StockViewController: UIViewController {
     
-    private let juiceMaker: JuiceMaker
+    var fruitStockLabels: [String?]
+    var delegate: StockViewControllerDelegate?
     
     @IBOutlet weak private var viewControllerTitle: UILabel!
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -24,13 +25,13 @@ class StockViewController: UIViewController {
     @IBOutlet weak private var kiwiStepper: UIStepper!
     @IBOutlet weak private var mangoStepper: UIStepper!
     
-    init?(juiceMaker: JuiceMaker, coder:NSCoder) {
-        self.juiceMaker = juiceMaker
+    init?(fruitStockLabels: [String?], coder:NSCoder) {
+        self.fruitStockLabels = fruitStockLabels
         super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     override func viewDidLoad() {
@@ -46,19 +47,19 @@ class StockViewController: UIViewController {
     }
     
     private func configureLabel() {
-        self.strawberryStockLabel.text = juiceMaker.getStock(fruit: .strawberry).toString
-        self.bananaStockLabel.text = juiceMaker.getStock(fruit: .banana).toString
-        self.pineappleStockLabel.text = juiceMaker.getStock(fruit: .pineapple).toString
-        self.kiwiStockLabel.text = juiceMaker.getStock(fruit: .kiwi).toString
-        self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
+        self.strawberryStockLabel.text = self.fruitStockLabels[0]
+        self.bananaStockLabel.text = self.fruitStockLabels[1]
+        self.pineappleStockLabel.text = self.fruitStockLabels[2]
+        self.kiwiStockLabel.text = self.fruitStockLabels[3]
+        self.mangoStockLabel.text = self.fruitStockLabels[4]
     }
     
     private func configureStepper() {
-        self.strawberryStepper.value = juiceMaker.getStock(fruit: .strawberry).toDouble
-        self.bananaStepper.value = juiceMaker.getStock(fruit: .banana).toDouble
-        self.pineappleStepper.value = juiceMaker.getStock(fruit: .pineapple).toDouble
-        self.kiwiStepper.value = juiceMaker.getStock(fruit: .kiwi).toDouble
-        self.mangoStepper.value = juiceMaker.getStock(fruit: .mango).toDouble
+        self.strawberryStepper.value = self.fruitStockLabels[0].toDouble ?? 0.0
+        self.bananaStepper.value = self.fruitStockLabels[1].toDouble ?? 0.0
+        self.pineappleStepper.value = self.fruitStockLabels[2].toDouble ?? 0.0
+        self.kiwiStepper.value = self.fruitStockLabels[3].toDouble ?? 0.0
+        self.mangoStepper.value = self.fruitStockLabels[4].toDouble ?? 0.0
     }
     
     private func configureStepperTag() {
@@ -92,15 +93,13 @@ class StockViewController: UIViewController {
     }
     
     private func updateStock() {
-        let newStock: [Fruit: Int] = [
-            .strawberry: self.strawberryStockLabel.text.toInt ?? 0,
-            .banana: self.bananaStockLabel.text.toInt ?? 0,
-            .pineapple: self.pineappleStockLabel.text.toInt ?? 0,
-            .kiwi: self.kiwiStockLabel.text.toInt ?? 0,
-            .mango: self.mangoStockLabel.text.toInt ?? 0
-        ]
-        juiceMaker.updateStock(to: newStock)
+        self.delegate?.sendStock(changedStockLabels: [self.strawberryStockLabel.text,
+                                                      self.bananaStockLabel.text,
+                                                      self.pineappleStockLabel.text,
+                                                      self.kiwiStockLabel.text,
+                                                      self.mangoStockLabel.text])
     }
+    
 }
 
 extension StockViewController {

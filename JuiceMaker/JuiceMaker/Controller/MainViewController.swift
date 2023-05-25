@@ -6,7 +6,8 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, StockViewControllerDelegate {
+    
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -15,8 +16,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
         configureLabel()
     }
     
@@ -110,12 +110,25 @@ class MainViewController: UIViewController {
             .instantiateViewController(
                 identifier: String(describing: StockViewController.self),
                 creator: { coder in
-                    StockViewController(juiceMaker: self.juiceMaker, coder: coder)
+                    StockViewController(fruitStockLabels: [self.strawberryStockLabel.text,
+                                                     self.bananaStockLabel.text,
+                                                     self.pineappleStockLabel.text,
+                                                     self.kiwiStockLabel.text,
+                                                     self.mangoStockLabel.text], coder: coder)
                 }
             ) else { return }
         
         stockViewController.modalPresentationStyle = .fullScreen
+        stockViewController.delegate = self
         self.navigationController?.present(stockViewController, animated: true)
+    }
+    
+    func sendStock(changedStockLabels: [String?]) {
+        self.strawberryStockLabel.text = changedStockLabels[0]
+        self.bananaStockLabel.text = changedStockLabels[1]
+        self.pineappleStockLabel.text = changedStockLabels[2]
+        self.kiwiStockLabel.text = changedStockLabels[3]
+        self.mangoStockLabel.text = changedStockLabels[4]
     }
 }
 
