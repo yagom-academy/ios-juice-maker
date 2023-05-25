@@ -83,11 +83,11 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func setFruitStockLabel() {
-        strawberryStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.strawberry] ?? 0)
-        bananaStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.banana] ?? 0)
-        pineappleStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.pineapple] ?? 0)
-        kiwiStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.kiwi] ?? 0)
-        mangoStockLabel.text = String(juiceMaker.fruitStore.fruitStock[.mango] ?? 0)
+        strawberryStockLabel.text = String(juiceMaker.getFruitStock()[.strawberry] ?? 0)
+        bananaStockLabel.text = String(juiceMaker.getFruitStock()[.banana] ?? 0)
+        pineappleStockLabel.text = String(juiceMaker.getFruitStock()[.pineapple] ?? 0)
+        kiwiStockLabel.text = String(juiceMaker.getFruitStock()[.kiwi] ?? 0)
+        mangoStockLabel.text = String(juiceMaker.getFruitStock()[.mango] ?? 0)
     }
     
     private func setJuiceOrderButtonTag() {
@@ -128,7 +128,7 @@ final class JuiceMakerViewController: UIViewController {
         
         fruitStockViewController.modalTransitionStyle = .coverVertical
         fruitStockViewController.delegate = self
-        fruitStockViewController.fruitStock = juiceMaker.fruitStore.fruitStock
+        fruitStockViewController.fruitStock = juiceMaker.getFruitStock()
         
         self.present(fruitStockViewController, animated: true)
     }
@@ -136,7 +136,7 @@ final class JuiceMakerViewController: UIViewController {
 
 extension JuiceMakerViewController: FruitStockDelegate {
     func change(_ fruitStock: [Fruit : Int]) {
-        juiceMaker.fruitStore.changeStock(fruitStock)
+        juiceMaker.changeRequest(of: fruitStock)
         setFruitStockLabel()
     }
 }

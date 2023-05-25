@@ -5,7 +5,7 @@
 //
 
 struct JuiceMaker {
-    let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     func getFruitStock() -> [Fruit : Int] {
         return fruitStore.fruitStock
