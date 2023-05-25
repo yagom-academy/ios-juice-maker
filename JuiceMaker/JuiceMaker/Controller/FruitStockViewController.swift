@@ -57,8 +57,8 @@ final class FruitStockViewController: UIViewController {
     }
     
     private func refreshFruitLabelText(index: Int) {
-        guard fruitStockLabels.count > index else { return }
-        guard let fruit = Fruit(rawValue: index),
+        guard fruitStockLabels.count > index,
+              let fruit = Fruit(rawValue: index),
               let amount = fruitStore.provideFruitStock(fruit) else { return }
         
         fruitStockLabels[index].text = "\(amount)"
@@ -68,8 +68,8 @@ final class FruitStockViewController: UIViewController {
 // MARK: - Button Action
 extension FruitStockViewController {
     @IBAction func tappedFruitStepper(_ sender: UIStepper) {
-        guard let fruit = Fruit(rawValue: sender.tag) else { return }
-        guard let oldAmount = fruitStore.provideFruitStock(fruit) else { return }
+        guard let fruit = Fruit(rawValue: sender.tag),
+              let oldAmount = fruitStore.provideFruitStock(fruit) else { return }
         
         let gapAmount = sender.value - Double(oldAmount) > 0 ? sender.stepValue : -sender.stepValue
         

@@ -20,7 +20,6 @@ final class JuiceOrderViewController: UIViewController {
                                                                 .mangoJuice              : [(.mango, 3)],
                                                                 .strawberryAndBananaJuice: [(.strawberry, 10), (.banana, 1)],
                                                                 .mangoAndKiwiJuice       : [(.mango, 2), (.kiwi, 1)]]
-    
     private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
     private lazy var juiceMaker = JuiceMaker(fruitStore, recipe)
     
@@ -46,7 +45,7 @@ final class JuiceOrderViewController: UIViewController {
         mangoLabel.text = provideStockLabelText(fruit: .mango)
     }
     
-    private func navigateToFruitStockViewController() {
+    private func presentFruitStockViewController() {
         guard let fruitStockViewController = storyboard?.instantiateViewController(identifier: "FruitStockViewController", creator: { coder in
             FruitStockViewController(coder: coder, fruitStore: self.fruitStore)
         }) else { return }
@@ -59,16 +58,17 @@ final class JuiceOrderViewController: UIViewController {
 // MARK: - Button Action
 extension JuiceOrderViewController {
     @IBAction func tappedOrderButton(_ sender: UIButton) {
-        if let juice = juiceMaker.makeJuice(menuNumber: sender.tag) {
-            successJuiceMaking(juice)
-            setUpFruitLabelsText()
-        } else {
+        guard let juice = juiceMaker.makeJuice(menuNumber: sender.tag) else {
             failJuiceMaking()
+            return
         }
+        
+        successJuiceMaking(juice)
+        setUpFruitLabelsText()
     }
     
     @IBAction func tappedChangeStockButton(_ sender: Any) {
-        navigateToFruitStockViewController()
+        presentFruitStockViewController()
     }
 }
 
@@ -76,23 +76,23 @@ extension JuiceOrderViewController {
 extension JuiceOrderViewController {
     private func successJuiceMaking(_ menu: JuiceMaker.Menu) {
         let successAlert = UIAlertController(title: "주문 성공!", message: "\(menu.koreanName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "확인", style: .default)
+        let okButtonAction = UIAlertAction(title: "확인", style: .default)
         
-        successAlert.addAction(okButton)
+        successAlert.addAction(okButtonAction)
         present(successAlert, animated: false)
     }
     
     private func failJuiceMaking() {
         let failAlert = UIAlertController(title: "주문 실패!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let noButton = UIAlertAction(title: "아니오", style: .default)
-        let yesButton = UIAlertAction(title: "예", style: .default, handler: tappedYesButton)
+        let noButtonAction = UIAlertAction(title: "아니오", style: .default)
+        let yesButtonAction = UIAlertAction(title: "예", style: .default, handler: tappedYesButton)
         
-        failAlert.addAction(noButton)
-        failAlert.addAction(yesButton)
+        failAlert.addAction(noButtonAction)
+        failAlert.addAction(yesButtonAction)
         present(failAlert, animated: false)
     }
     
     private func tappedYesButton(action: UIAlertAction) {
-        navigateToFruitStockViewController()
+        presentFruitStockViewController()
     }
 }
