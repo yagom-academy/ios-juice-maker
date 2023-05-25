@@ -9,7 +9,7 @@ import UIKit
 
 class StockViewController: UIViewController {
     
-    var juiceMaker: JuiceMaker
+    private let juiceMaker: JuiceMaker
     
     @IBOutlet weak private var viewControllerTitle: UILabel!
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -35,10 +35,14 @@ class StockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureStepperTag()
-        configureStepper()
         configureTitle()
         configureLabel()
+        configureStepper()
+        configureStepperTag()
+    }
+    
+    private func configureTitle() {
+        self.viewControllerTitle.text = Navigation.title
     }
     
     private func configureLabel() {
@@ -49,18 +53,6 @@ class StockViewController: UIViewController {
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
     }
     
-    private func configureTitle() {
-        self.viewControllerTitle.text = Navigation.title
-    }
-    
-    private func configureStepperTag() {
-        self.strawberryStepper.tag = 0
-        self.bananaStepper.tag = 1
-        self.pineappleStepper.tag = 2
-        self.kiwiStepper.tag = 3
-        self.mangoStepper.tag = 4
-    }
-    
     private func configureStepper() {
         self.strawberryStepper.value = juiceMaker.getStock(fruit: .strawberry).toDouble
         self.bananaStepper.value = juiceMaker.getStock(fruit: .banana).toDouble
@@ -69,22 +61,30 @@ class StockViewController: UIViewController {
         self.mangoStepper.value = juiceMaker.getStock(fruit: .mango).toDouble
     }
     
+    private func configureStepperTag() {
+        self.strawberryStepper.tag = FruitTag.strawberry
+        self.bananaStepper.tag = FruitTag.banana
+        self.pineappleStepper.tag = FruitTag.pineapple
+        self.kiwiStepper.tag = FruitTag.kiwi
+        self.mangoStepper.tag = FruitTag.mango
+    }
+    
     @IBAction private func tapCloseButton() {
         self.updateStock()
         self.dismiss(animated: true)
     }
     
-    @IBAction func tapStepper(_ sender: UIStepper) {
+    @IBAction private func tapStockEditButton(_ sender: UIStepper) {
         switch sender.tag {
-        case 0:
+        case FruitTag.strawberry:
             self.strawberryStockLabel.text = sender.value.toString
-        case 1:
+        case FruitTag.banana:
             self.bananaStockLabel.text = sender.value.toString
-        case 2:
+        case FruitTag.pineapple:
             self.pineappleStockLabel.text = sender.value.toString
-        case 3:
+        case FruitTag.kiwi:
             self.kiwiStockLabel.text = sender.value.toString
-        case 4:
+        case FruitTag.mango:
             self.mangoStockLabel.text = sender.value.toString
         default:
             return
@@ -93,11 +93,11 @@ class StockViewController: UIViewController {
     
     private func updateStock() {
         let newStock: [Fruit: Int] = [
-            .strawberry: self.strawberryStockLabel.unwrappedText.toInt,
-            .banana: self.bananaStockLabel.unwrappedText.toInt,
-            .pineapple: self.pineappleStockLabel.unwrappedText.toInt,
-            .kiwi: self.kiwiStockLabel.unwrappedText.toInt,
-            .mango: self.mangoStockLabel.unwrappedText.toInt
+            .strawberry: self.strawberryStockLabel.text.toInt ?? 0,
+            .banana: self.bananaStockLabel.text.toInt ?? 0,
+            .pineapple: self.pineappleStockLabel.text.toInt ?? 0,
+            .kiwi: self.kiwiStockLabel.text.toInt ?? 0,
+            .mango: self.mangoStockLabel.text.toInt ?? 0
         ]
         juiceMaker.updateStock(to: newStock)
     }
@@ -106,5 +106,12 @@ class StockViewController: UIViewController {
 extension StockViewController {
     enum Navigation {
         static let title = "재고추가"
+    }
+    enum FruitTag {
+        static let strawberry = 0
+        static let banana = 1
+        static let pineapple = 2
+        static let kiwi = 3
+        static let mango = 4
     }
 }

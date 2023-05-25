@@ -28,11 +28,11 @@ class MainViewController: UIViewController {
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
     }
     
-    @IBAction func tapStockButton(_ sender: UIBarButtonItem) {
-        self.presentToStockViewController()
+    @IBAction private func tapStockEditButton(_ sender: UIBarButtonItem) {
+        self.presentStockViewController()
     }
     
-    @IBAction func tapOrderButton(_ sender: UIButton) {
+    @IBAction private func tapOrderButton(_ sender: UIButton) {
         do {
             let juice = try self.convertButtonLabelToJuice(buttonTitle: sender.titleLabel?.text)
             try self.juiceMaker.makeJuice(juice: juice)
@@ -92,7 +92,7 @@ class MainViewController: UIViewController {
                 title: Alert.yes,
                 style: .default,
                 handler: { _ in
-                    self.presentToStockViewController()
+                    self.presentStockViewController()
                 }))
         } else {
             alert.addAction(UIAlertAction(
@@ -104,15 +104,15 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func presentToStockViewController() {
+    private func presentStockViewController() {
         guard let stockViewController = self
-                                        .storyboard?
-                                        .instantiateViewController(
-                                            identifier: String(describing: StockViewController.self),
-                                            creator: { coder in
-                                                StockViewController(juiceMaker: self.juiceMaker, coder: coder)
-                                            }
-                                        ) else { return }
+            .storyboard?
+            .instantiateViewController(
+                identifier: String(describing: StockViewController.self),
+                creator: { coder in
+                    StockViewController(juiceMaker: self.juiceMaker, coder: coder)
+                }
+            ) else { return }
         
         stockViewController.modalPresentationStyle = .fullScreen
         self.navigationController?.present(stockViewController, animated: true)
