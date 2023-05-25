@@ -5,7 +5,6 @@
 // 
 
 struct JuiceMaker {
-    
     func make(_ juice: Juice) -> Juice? {
         do {
             try FruitStore.shared.checkStock(with: juice.recipe)

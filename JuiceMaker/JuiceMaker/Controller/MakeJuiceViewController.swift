@@ -61,16 +61,11 @@ final class MakeJuiceViewController: UIViewController {
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
-        guard let senderTitle = sender.titleLabel?.text else { return }
-        let juiceNameFromSendTitle = senderTitle.components(separatedBy: "쥬스").first
-        let juices = Juice.allCases
+        guard let senderTitle = sender.titleLabel?.text,
+              let juiceNameFromSendTitle = senderTitle.components(separatedBy: "쥬스").first,
+              let juice = Juice(rawValue: juiceNameFromSendTitle) else { return }
         
-        for juice in juices {
-            guard juiceNameFromSendTitle == juice.rawValue else {
-                continue
-            }
-            showOrderedAlert(by: juice)
-        }
+        showOrderedAlert(by: juice)
         modifyFruitStockOnLabel()
     }
     

@@ -9,13 +9,13 @@ import UIKit
 
 final class ChangeStockViewController: UIViewController {
     
-    lazy var fruitAndLabel: [Fruit: UILabel] = [
-        .strawberry: strawberryStockLabel,
-        .banana: bananaStockLabel,
-        .pineapple: pineappleStockLabel,
-        .kiwi: kiwiStockLabel,
-        .mango: mangoStockLabel
-    ]
+    typealias FruitComponent = (fruit: Fruit, label: UILabel, stepper: UIStepper)
+    
+    lazy var fruitComponents: [FruitComponent] = [(.strawberry, strawberryStockLabel, strawberryStepper),
+                                                  (.banana, bananaStockLabel, bananaStepper),
+                                                  (.pineapple, pineappleStockLabel, pineappleStepper),
+                                                  (.kiwi, kiwiStockLabel, kiwiStepper),
+                                                  (.mango, mangoStockLabel, mangoStepper)]
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -31,62 +31,37 @@ final class ChangeStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateFruitStockOnLabel()
-        updateFruitStockOnStepper()
+        configureFruitStockOnLabel()
     }
     
-    private func updateFruitStockOnLabel() {
+    private func configureFruitStockOnLabel() {
         let currentFruitStock = FruitStore.shared.currentFruitStock
         
-        for (fruit, label) in fruitAndLabel {
-            guard let stock = currentFruitStock[fruit] else { return }
-            label.text = String(stock)
-        }
-    }
-    
-    private func updateFruitStockOnStepper() {
-        let fruitAndStepper: [Fruit: UIStepper] = [
-            .strawberry: strawberryStepper,
-            .banana: bananaStepper,
-            .pineapple: pineappleStepper,
-            .kiwi: kiwiStepper,
-            .mango: mangoStepper
-        ]
-        
-        let currentFruitStock = FruitStore.shared.currentFruitStock
-        
-        for (fruit, stepper) in fruitAndStepper {
-            guard let stock = currentFruitStock[fruit] else { return }
-            stepper.value = Double(stock)
+        for fruitComponent in fruitComponents {
+            guard let stock = currentFruitStock[fruitComponent.fruit] else { return }
+            fruitComponent.label.text = String(stock)
+            fruitComponent.stepper.value = Double(stock)
         }
     }
     
     @IBAction func changeStockOnLabel(by sender: UIStepper) {
-        let stepperAndLabel: [UIStepper: UILabel] = [
-            strawberryStepper: strawberryStockLabel,
-            bananaStepper: bananaStockLabel,
-            pineappleStepper: pineappleStockLabel,
-            kiwiStepper: kiwiStockLabel,
-            mangoStepper: mangoStockLabel
-        ]
-        
-        guard let label = stepperAndLabel[sender] else { return }
-        label.text = String(Int(sender.value))
+        guard let fruitComponent = fruitComponents.first(where: {$0.stepper == sender}) else { return }
+        fruitComponent.label.text = String(Int(sender.value))
     }
     
-    @IBAction func closeViewBarButton(_ sender: UIBarButtonItem) {
-        changedFruitStock()
+    @IBAction func touchUpCloseBarButton(_ sender: UIBarButtonItem) {
+        updateChangedFruitStock()
         dismiss(animated: true)
     }
     
-    private func changedFruitStock() {
+    private func updateChangedFruitStock() {
         let currentFruitStock = FruitStore.shared.currentFruitStock
         
-        for (fruit, label) in fruitAndLabel {
-            guard let stock = currentFruitStock[fruit],
-                  let changedStock = label.text,
+        for fruitComponent in fruitComponents {
+            guard let stock = currentFruitStock[fruitComponent.fruit],
+                  let changedStock = fruitComponent.label.text,
                   let changedStockToInt = Int(changedStock) else { return }
-            FruitStore.shared.changeStock(with: fruit, changedStockToInt - stock)
+            FruitStore.shared.changeStock(with: fruitComponent.fruit, changedStockToInt - stock)
         }
     }
 }

@@ -453,7 +453,7 @@
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="zlc-Hf-aXY">
                             <connections>
-                                <action selector="closeViewBarButton:" destination="Yu1-lM-nqp" id="HwH-hb-jVP"/>
+                                <action selector="touchUpCloseBarButton:" destination="Yu1-lM-nqp" id="bKd-Y1-ZU2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
