@@ -56,6 +56,7 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				0A27194A2A13768A0093CFF4 /* ChangeStockViewController.swift */,
 				C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */,
+				C71CD66F266C7B500038B9CB /* Model */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -102,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				C71CD66D266C7B470038B9CB /* Controller */,
-				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);

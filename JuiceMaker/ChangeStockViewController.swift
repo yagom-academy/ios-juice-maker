@@ -30,12 +30,12 @@ final class ChangeStockViewController: UIViewController {
         }
     }
     
-    @IBAction func hitDismissButton(_ sender: UIBarButtonItem) {
+    @IBAction private func hitDismissButton(_ sender: UIBarButtonItem) {
         delegate?.addStock(quantities: additionalStock)
         dismiss(animated: true)
     }
     
-    @IBAction func hitStepper(_ sender: UIStepper) {
+    @IBAction private func hitStepper(_ sender: UIStepper) {
         stockChangeLabels[sender.tag].text = "\(initialStock[sender.tag] + Int(sender.value))"
         additionalStock[sender.tag] = Int(sender.value)
     }
