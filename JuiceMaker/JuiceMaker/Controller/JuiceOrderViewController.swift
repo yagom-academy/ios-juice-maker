@@ -23,10 +23,16 @@ class JuiceOrderViewController: UIViewController {
     
     @IBOutlet private weak var stockChangeButton: UIBarButtonItem!
     
-    private let juiceMaker = JuiceMaker()
+    private var juiceMaker: JuiceMaker = JuiceMaker()
+    var fruitStore: FruitStore = FruitStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        juiceMaker.fruitStore = fruitStore
         configureStockLabel()
     }
     
@@ -56,11 +62,8 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
-        nextStockChangeViewController.strawberryStock = strawberryStockLabel.text ?? ""
-        nextStockChangeViewController.bananaStock = bananaStockLabel.text ?? ""
-        nextStockChangeViewController.pineappleStock = pineappleStockLabel.text ?? ""
-        nextStockChangeViewController.kiwiStock = kiwiStockLabel.text ?? ""
-        nextStockChangeViewController.mangoStock = mangoStockLabel.text ?? ""
+        nextStockChangeViewController.fruitStore = juiceMaker.fruitStore
+        nextStockChangeViewController.modalPresentationStyle = .fullScreen
         
         self.present(
             nextStockChangeViewController,

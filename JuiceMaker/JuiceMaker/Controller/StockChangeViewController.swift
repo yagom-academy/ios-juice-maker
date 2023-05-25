@@ -22,6 +22,8 @@ class StockChangeViewController: UIViewController {
     @IBOutlet weak var kiwiStockStepper: UIStepper!
     @IBOutlet weak var mangoStockStepper: UIStepper!
     
+    var fruitStore: FruitStore = FruitStore()
+    
     var strawberryStock: String = ""
     var bananaStock: String = ""
     var pineappleStock: String = ""
