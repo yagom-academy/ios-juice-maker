@@ -62,7 +62,7 @@ class JuiceOrderViewController: UIViewController {
             return
         }
         
-        nextStockChangeViewController.fruitStore = juiceMaker.fruitStore
+        nextStockChangeViewController.fruitStore = self.juiceMaker.fruitStore
         nextStockChangeViewController.modalPresentationStyle = .fullScreen
         
         self.present(

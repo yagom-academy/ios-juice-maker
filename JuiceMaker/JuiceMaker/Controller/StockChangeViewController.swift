@@ -32,18 +32,32 @@ class StockChangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureStockLabel()
+    }
+    
+    func configureStockLabel() {
+        let fruitInventory = fruitStore.readFruitInventory()
         
-        strawberryStockLabel.text = strawberryStock
-        bananaStockLabel.text = bananaStock
-        pineappleStockLabel.text = pineappleStock
-        kiwiStockLabel.text = kiwiStock
-        mangoStockLabel.text = mangoStock
+        guard let strawberryStock = fruitInventory[.strawberry],
+              let bananaStock = fruitInventory[.banana],
+              let pineappleStock = fruitInventory[.pineapple],
+              let kiwiStock = fruitInventory[.kiwi],
+              let mangoStock = fruitInventory[.mango]
+        else {
+            return
+        }
+        
+        strawberryStockLabel.text = String(strawberryStock)
+        bananaStockLabel.text = String(bananaStock)
+        pineappleStockLabel.text = String(pineappleStock)
+        kiwiStockLabel.text = String(kiwiStock)
+        mangoStockLabel.text = String(mangoStock)
     }
     
     @IBAction func didTapCloseButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
-
+    
     @IBAction func didTapStockChangeStepper(_ sender: UIStepper) {
         let stock: String
         let stockLabel: UILabel
