@@ -4,13 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-enum JuiceMakerError: Error {
-    case outOfFruitStock
-    case unknownError
-}
-
 struct JuiceMaker {
-    let fruitStore: FruitStore = FruitStore(initialStock: 10)
+    let fruitStore = FruitStore(initialStock: 10)
     
     func blendFruitJuice(menu fruitJuice: Juice) throws {
         try requestFruitStock(menu: fruitJuice)

@@ -7,7 +7,7 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    private let juiceMaker = JuiceMaker()
     
     @IBOutlet var fruitStockLabels: [UILabel]!
     @IBOutlet var orderButtons: [UIButton]!
@@ -21,10 +21,6 @@ final class JuiceMakerViewController: UIViewController {
         guard let modifyStockViewController = segue.destination as? ModifyStockViewController else {
             return
         }
-//        guard let juiceMakerStockViewController = segue.source as? JuiceMakerViewController else {
-//            return
-//        }
-//        delegate = modifyStockViewController
         modifyStockViewController.setStock(stocks: juiceMaker.fruitStore.fruitInventory)
     }
     
@@ -32,10 +28,11 @@ final class JuiceMakerViewController: UIViewController {
         guard let modifyStockViewController = segue.source as? ModifyStockViewController else {
             return
         }
-        juiceMaker.fruitStore.fruitInventory = modifyStockViewController.getStock()
+        let modifiedStocks: [Int] = modifyStockViewController.getStock()
+        updateFruitInventory(stocks: modifiedStocks)
         updateFruitStockLabel()
     }
-    
+        
     @IBAction func touchUpOrderButton(_ sender: UIButton) {
         guard let buttonIndex = orderButtons.firstIndex(of: sender) else {
             return
@@ -44,28 +41,34 @@ final class JuiceMakerViewController: UIViewController {
         updateFruitStockLabel()
     }
     
-    func updateFruitStockLabel() {
-        for fruitStockLabel in fruitStockLabels {
-            fruitStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[fruitStockLabel.tag])
-        }
-    }
-    
-    func order(juice: Juice) {
+    private func order(juice: Juice) {
         do {
             try juiceMaker.blendFruitJuice(menu: juice)
             showAlert(message: "\(juice)나왔습니다. 맛있게 드세요!",
                       actions: UIAlertAction(title: "닫기", style: .cancel))
         } catch JuiceMakerError.outOfFruitStock {
-            showAlert(message: "재료가 모자라요. 재고를 수정할까요?",
+            showAlert(message: "\(JuiceMakerError.outOfFruitStock) 재고를 수정할까요?",
                       actions: UIAlertAction(title: "예", style: .default) {
                                 action in self.presentModifyStockView() },
-                      UIAlertAction(title: "아니오", style: .default))
+                               UIAlertAction(title: "아니오", style: .default))
         } catch {
-            print("unknown")
+            print(JuiceMakerError.unknownError)
         }
     }
     
-    func showAlert(message: String, actions: UIAlertAction...) {
+    private func updateFruitInventory(stocks: [Int]) {
+        for (inventoryIndex, stock) in stocks.enumerated() {
+            juiceMaker.fruitStore.addStock(fruit: Fruit.allCases[inventoryIndex], amount: stock)
+        }
+    }
+    
+    private func updateFruitStockLabel() {
+        for fruitStockLabel in fruitStockLabels {
+            fruitStockLabel.text = String(juiceMaker.fruitStore.fruitInventory[fruitStockLabel.tag])
+        }
+    }
+    
+    private func showAlert(message: String, actions: UIAlertAction...) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         for action in actions {
             alert.addAction(action)
@@ -73,9 +76,7 @@ final class JuiceMakerViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func presentModifyStockView() {
+    private func presentModifyStockView() {
         self.performSegue(withIdentifier: "modifyStockViewSegue", sender: nil)
     }
-    
-
 }

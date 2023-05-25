@@ -4,8 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
-    var fruitInventory: [Int]
+final class FruitStore {
+    private(set) var fruitInventory: [Int]
 
     init(initialStock: Int = 10) {
         fruitInventory = Array(repeating: initialStock,
