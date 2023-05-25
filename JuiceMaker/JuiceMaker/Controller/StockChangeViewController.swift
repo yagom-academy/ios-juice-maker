@@ -13,7 +13,7 @@ class StockChangeViewController: UIViewController {
     @IBOutlet private weak var pineappleStockLabel: UILabel!
     @IBOutlet private weak var kiwiStockLabel: UILabel!
     @IBOutlet private weak var mangoStockLabel: UILabel!
-
+    
     @IBOutlet weak var closeButton: UIBarButtonItem!
     
     @IBOutlet weak var strawberryStockStepper: UIStepper!

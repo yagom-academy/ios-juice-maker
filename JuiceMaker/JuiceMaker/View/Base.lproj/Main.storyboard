@@ -384,7 +384,7 @@
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="rSi-YZ-r7m"/>
+                                                    <action selector="didTapStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Kks-pK-CTu"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -408,7 +408,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="O5s-2N-3iP">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="5hS-ew-saU"/>
+                                                    <action selector="didTapStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="lTZ-Ip-D30"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -432,7 +432,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-xr-eqz">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="r2h-ke-7sf"/>
+                                                    <action selector="didTapStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="28i-XC-1Gt"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -456,7 +456,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="klA-59-Nu4">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="fWv-EH-J59"/>
+                                                    <action selector="didTapStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="Jc0-c9-6bt"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
@@ -480,7 +480,7 @@
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbn-6P-grO">
                                                 <rect key="frame" x="0.0" y="124.5" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="changeStockStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="QbL-8h-AFT"/>
+                                                    <action selector="didTapStockChangeStepper:" destination="Yu1-lM-nqp" eventType="valueChanged" id="pjf-QO-EKI"/>
                                                 </connections>
                                             </stepper>
                                         </subviews>
