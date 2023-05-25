@@ -7,7 +7,6 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController {
-    private var delegate: Stock?
     let juiceMaker = JuiceMaker()
     
     @IBOutlet var fruitStockLabels: [UILabel]!
@@ -22,15 +21,18 @@ final class JuiceMakerViewController: UIViewController {
         guard let modifyStockViewController = segue.destination as? ModifyStockViewController else {
             return
         }
-        delegate = modifyStockViewController
-        delegate?.setStock(stocks: juiceMaker.fruitStore.fruitInventory)
+//        guard let juiceMakerStockViewController = segue.source as? JuiceMakerViewController else {
+//            return
+//        }
+//        delegate = modifyStockViewController
+        modifyStockViewController.setStock(stocks: juiceMaker.fruitStore.fruitInventory)
     }
     
     @IBAction func unwindToJuiceMakerViewController(_ segue: UIStoryboardSegue) {
-        guard let modifiedFruitStocks = delegate?.getStock() else {
+        guard let modifyStockViewController = segue.source as? ModifyStockViewController else {
             return
         }
-        juiceMaker.fruitStore.fruitInventory = modifiedFruitStocks
+        juiceMaker.fruitStore.fruitInventory = modifyStockViewController.getStock()
         updateFruitStockLabel()
     }
     

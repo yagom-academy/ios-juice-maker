@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol Stock {
-    func setStock(stocks: [Int])
-    func getStock() -> [Int]
-}
-
 class ModifyStockViewController: UIViewController {
     var fruitStocks: [Int] = [Int]()
     
@@ -45,7 +40,7 @@ class ModifyStockViewController: UIViewController {
     }
 }
 
-extension ModifyStockViewController: Stock {
+extension ModifyStockViewController {
     func setStock(stocks: [Int]) {
         fruitStocks = stocks
     }
