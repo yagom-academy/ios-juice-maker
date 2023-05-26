@@ -11,19 +11,30 @@ final class JuiceOrderViewController: UIViewController {
     @IBOutlet var juiceOrderButtons: [UIButton] = []
     
     private let juiceMaker = JuiceMaker(fruitStore: FruitStore(fruitInventory: [.strawberry: 10,
-                                                                        .banana: 10,
-                                                                        .pineapple: 10,
-                                                                        .kiwi: 10,
-                                                                        .mango: 10]))
+                                                                                .banana: 10,
+                                                                                .pineapple: 10,
+                                                                                .kiwi: 10,
+                                                                                .mango: 10]))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateFruitStockLabels()
         setJuiceOrderButtonTag()
     }
-
-    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
-        presentStockChangeViewController()
+    
+    private func updateFruitStockLabels() {
+        for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
+            guard let fruit = Fruit(rawValue: index),
+                  let fruitCount = juiceMaker.getCurrentStock(of: fruit) else { return }
+            
+            fruitStockLabel.text = "\(fruitCount)"
+        }
+    }
+    
+    private func setJuiceOrderButtonTag() {
+        for (tag, juiceOrderButton) in juiceOrderButtons.enumerated() {
+            juiceOrderButton.tag = tag
+        }
     }
     
     @IBAction func orderJuice(_ sender: UIButton) {
@@ -38,26 +49,6 @@ final class JuiceOrderViewController: UIViewController {
             guard let errorMessage = error.errorDescription else { return }
             presentInsufficientStockAlert(with: errorMessage)
         }
-    }
-    
-    private func updateFruitStockLabels() {
-        for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
-            guard let fruit = Fruit(rawValue: index),
-                  let fruitCount = juiceMaker.getCurrentStock(of: fruit) else { return }
-            fruitStockLabel.text = "\(fruitCount)"
-        }
-    }
-    
-    private func setJuiceOrderButtonTag() {
-        for (tag, juiceOrderButton) in juiceOrderButtons.enumerated() {
-            juiceOrderButton.tag = tag
-        }
-    }
-    
-    private func presentStockChangeViewController() {
-        guard let stockChangeViewController = storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
-        
-        present(stockChangeViewController, animated: true)
     }
     
     private func presentJuiceReadyAlert(with juice: Juice) {
@@ -79,6 +70,25 @@ final class JuiceOrderViewController: UIViewController {
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+    
+    private func presentStockChangeViewController() {
+        guard let stockChangeNavigationController = storyboard?.instantiateViewController(withIdentifier: "StockChangeNavigationController") as? UINavigationController else { return }
+        let stockChangeViewController = stockChangeNavigationController.topViewController as? StockChangeViewController
+        
+        stockChangeViewController?.fruitStore = juiceMaker.getFruitStore()
+        stockChangeViewController?.delegate = self
+        present(stockChangeNavigationController, animated: true)
+    }
+    
+    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
+        presentStockChangeViewController()
+    }
+}
+
+extension JuiceOrderViewController: StockChangeDelegate {
+    func changeStockViewControllerWillDismiss() {
+        updateFruitStockLabels()
     }
 }
 

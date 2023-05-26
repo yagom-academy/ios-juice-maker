@@ -6,14 +6,14 @@
 //
 
 enum Juice: Int, CustomStringConvertible {
-    case strawberry = 2
-    case banana = 3
-    case kiwi = 5
-    case pineapple = 4
-    case strawberryBanana = 0
-    case mango = 6
-    case mangoKiwi = 1
-    
+    case strawberryBanana
+    case mangoKiwi
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+
     var recipe: [Fruit: Int] {
         switch self {
         case .strawberry:

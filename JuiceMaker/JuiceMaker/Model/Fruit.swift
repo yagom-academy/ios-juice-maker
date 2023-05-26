@@ -6,9 +6,9 @@
 //
 
 enum Fruit: Int {
-    case strawberry = 0
-    case banana = 1
-    case pineapple = 2
-    case kiwi = 3
-    case mango = 4
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
 }
