@@ -16,8 +16,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    override func viewDidLoad() {
-        configureLabel()
+    override func viewWillAppear(_ animated: Bool) {
+        self.configureLabel()
     }
     
     private func configureLabel() {
@@ -110,13 +110,7 @@ class MainViewController: UIViewController {
             .instantiateViewController(
                 identifier: String(describing: StockViewController.self),
                 creator: { coder in
-                    StockViewController(fruitStockLabel: (
-                        strawberry: self.strawberryStockLabel.text,
-                        banana: self.bananaStockLabel.text,
-                        pineapple: self.pineappleStockLabel.text,
-                        kiwi: self.kiwiStockLabel.text,
-                        mango: self.mangoStockLabel.text
-                    ), coder: coder)
+                    StockViewController(currentFruitStock: self.juiceMaker.getAllStock(), coder: coder)
                 }
             ) else { return }
         
@@ -129,12 +123,11 @@ class MainViewController: UIViewController {
 extension MainViewController: StockViewControllerDelegate {
     func changeStock(changedStock: [Fruit: Int]) {
         self.juiceMaker.updateStock(to: changedStock)
-        self.configureLabel()
     }
 }
 
 extension MainViewController {
-    enum Alert {
+    private enum Alert {
         static let yes = "예"
         static let no = "아니오"
         static let confirm = "확인"

@@ -7,11 +7,9 @@
 
 import UIKit
 
-typealias FruitStockLabel = (strawberry: String?, banana: String?, pineapple: String?, kiwi: String?, mango: String?)
-
 class StockViewController: UIViewController {
     
-    var fruitStockLabel: FruitStockLabel
+    private let receivedFruitStock: [Fruit: Int]
     var delegate: StockViewControllerDelegate?
     
     @IBOutlet weak private var viewControllerTitle: UILabel!
@@ -27,21 +25,21 @@ class StockViewController: UIViewController {
     @IBOutlet weak private var kiwiStepper: UIStepper!
     @IBOutlet weak private var mangoStepper: UIStepper!
     
-    init?(fruitStockLabel: FruitStockLabel, coder:NSCoder) {
-        self.fruitStockLabel = fruitStockLabel
+    init?(currentFruitStock receivedFruitStock: [Fruit: Int], coder:NSCoder) {
+        self.receivedFruitStock = receivedFruitStock
         super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
-        return nil
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTitle()
-        configureLabel()
-        configureStepper()
-        configureStepperTag()
+        self.configureTitle()
+        self.configureLabel()
+        self.configureStepper()
+        self.configureStepperTag()
     }
     
     private func configureTitle() {
@@ -49,19 +47,19 @@ class StockViewController: UIViewController {
     }
     
     private func configureLabel() {
-        self.strawberryStockLabel.text = self.fruitStockLabel.strawberry
-        self.bananaStockLabel.text = self.fruitStockLabel.banana
-        self.pineappleStockLabel.text = self.fruitStockLabel.pineapple
-        self.kiwiStockLabel.text = self.fruitStockLabel.kiwi
-        self.mangoStockLabel.text = self.fruitStockLabel.mango
+        self.strawberryStockLabel.text = self.receivedFruitStock[.strawberry]?.toString ?? ""
+        self.bananaStockLabel.text = self.receivedFruitStock[.banana]?.toString ?? ""
+        self.pineappleStockLabel.text = self.receivedFruitStock[.pineapple]?.toString ?? ""
+        self.kiwiStockLabel.text = self.receivedFruitStock[.kiwi]?.toString ?? ""
+        self.mangoStockLabel.text = self.receivedFruitStock[.mango]?.toString ?? ""
     }
     
     private func configureStepper() {
-        self.strawberryStepper.value = self.fruitStockLabel.strawberry.toDouble ?? 0.0
-        self.bananaStepper.value = self.fruitStockLabel.banana.toDouble ?? 0.0
-        self.pineappleStepper.value = self.fruitStockLabel.pineapple.toDouble ?? 0.0
-        self.kiwiStepper.value = self.fruitStockLabel.kiwi.toDouble ?? 0.0
-        self.mangoStepper.value = self.fruitStockLabel.mango.toDouble ?? 0.0
+        self.strawberryStepper.value = self.receivedFruitStock[.strawberry]?.toDouble ?? 0.0
+        self.bananaStepper.value = self.receivedFruitStock[.banana]?.toDouble ?? 0.0
+        self.pineappleStepper.value = self.receivedFruitStock[.pineapple]?.toDouble ?? 0.0
+        self.kiwiStepper.value = self.receivedFruitStock[.kiwi]?.toDouble ?? 0.0
+        self.mangoStepper.value = self.receivedFruitStock[.mango]?.toDouble ?? 0.0
     }
     
     private func configureStepperTag() {
@@ -73,7 +71,7 @@ class StockViewController: UIViewController {
     }
     
     @IBAction private func tapCloseButton() {
-        self.updateStock()
+        self.completeEditStock()
         self.dismiss(animated: true)
     }
     
@@ -94,25 +92,24 @@ class StockViewController: UIViewController {
         }
     }
     
-    private func updateStock() {
+    private func completeEditStock() {
         self.delegate?.changeStock(
             changedStock: [
-                .strawberry: self.strawberryStockLabel.text.toInt ?? 0,
-                .banana: self.bananaStockLabel.text.toInt ?? 0,
-                .pineapple: self.pineappleStockLabel.text.toInt ?? 0,
-                .kiwi: self.kiwiStockLabel.text.toInt ?? 0,
-                .mango: self.mangoStockLabel.text.toInt ?? 0
+                .strawberry: self.strawberryStockLabel.text?.toInt ?? 0,
+                .banana: self.bananaStockLabel.text?.toInt ?? 0,
+                .pineapple: self.pineappleStockLabel.text?.toInt ?? 0,
+                .kiwi: self.kiwiStockLabel.text?.toInt ?? 0,
+                .mango: self.mangoStockLabel.text?.toInt ?? 0
             ]
         )
     }
-    
 }
 
 extension StockViewController {
-    enum Navigation {
+    private enum Navigation {
         static let title = "재고추가"
     }
-    enum FruitTag {
+    private enum FruitTag {
         static let strawberry = 0
         static let banana = 1
         static let pineapple = 2

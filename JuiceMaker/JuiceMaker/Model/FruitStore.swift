@@ -47,6 +47,10 @@ class FruitStore {
         self.fruitStock = newStock
     }
     
+    func getAllStock() -> [Fruit: Int] {
+        return self.fruitStock
+    }
+    
     func getStock(fruit: Fruit) -> Int {
         guard let stock = self.fruitStock[fruit] else { return -1 }        
         return stock
