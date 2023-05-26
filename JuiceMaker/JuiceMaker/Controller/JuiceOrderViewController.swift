@@ -20,14 +20,12 @@ final class JuiceOrderViewController: UIViewController {
                                                                 .mangoJuice              : [(.mango, 3)],
                                                                 .strawberryAndBananaJuice: [(.strawberry, 10), (.banana, 1)],
                                                                 .mangoAndKiwiJuice       : [(.mango, 2), (.kiwi, 1)]]
-    
     private let fruitStore = FruitStore(fruitStocks: [.strawberry: 20, .banana: 20, .kiwi: 20, .mango: 20, .pineapple: 20])
-    private lazy var juiceStore = JuiceMaker(fruitStore, recipe)
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private lazy var juiceMaker = JuiceMaker(fruitStore, recipe)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        juiceStore.delegate = self
         setUpFruitLabelsText()
     }
     
@@ -47,67 +45,54 @@ final class JuiceOrderViewController: UIViewController {
         mangoLabel.text = provideStockLabelText(fruit: .mango)
     }
     
-    private func navigateToFruitStockViewController() {
-        guard let fruitStockViewController = storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else { return }
+    private func presentFruitStockViewController() {
+        guard let fruitStockViewController = storyboard?.instantiateViewController(identifier: "FruitStockViewController", creator: { coder in
+            FruitStockViewController(coder: coder, fruitStore: self.fruitStore)
+        }) else { return }
         
-        navigationController?.pushViewController(fruitStockViewController, animated: true)
+        fruitStockViewController.modalPresentationStyle = .fullScreen
+        present(fruitStockViewController, animated: true)
     }
 }
 
 // MARK: - Button Action
 extension JuiceOrderViewController {
     @IBAction func tappedOrderButton(_ sender: UIButton) {
-        guard let juice = JuiceMaker.Menu(rawValue: sender.tag) else { return }
+        guard let juice = juiceMaker.makeJuice(menuNumber: sender.tag) else {
+            failJuiceMaking()
+            return
+        }
         
-        juiceStore.makeJuice(menu: juice)
+        successJuiceMaking(juice)
+        setUpFruitLabelsText()
     }
     
     @IBAction func tappedChangeStockButton(_ sender: Any) {
-        navigateToFruitStockViewController()
-    }
-}
-
-// MARK: - JuiceMake Delegate
-extension JuiceOrderViewController: JuiceMakerDelegate {
-    func successJuiceMaking(_ menu: JuiceMaker.Menu) {
-        let successAlert = UIAlertController(title: "주문 성공!", message: "\(menu.koreanName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "확인", style: .default)
-        
-        successAlert.addAction(okButton)
-        present(successAlert, animated: false)
-    }
-    
-    func failJuiceMaking() {
-        let failAlert = UIAlertController(title: "주문 실패!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let noButton = UIAlertAction(title: "아니오", style: .default)
-        let yesButton = UIAlertAction(title: "예", style: .default, handler: tappedYesButton)
-        
-        failAlert.addAction(noButton)
-        failAlert.addAction(yesButton)
-        present(failAlert, animated: false)
-    }
-    
-    func changeFruitStock(fruit: Fruit, amount: Int) {
-        let stockLabelText = String(amount)
-        
-        switch fruit {
-        case .strawberry:
-            strawberryLabel.text = stockLabelText
-        case .banana:
-            bananaLabel.text = stockLabelText
-        case .pineapple:
-            pineappleLabel.text = stockLabelText
-        case .kiwi:
-            kiwiLabel.text = stockLabelText
-        case .mango:
-            mangoLabel.text = stockLabelText
-        }
+        presentFruitStockViewController()
     }
 }
 
 // MARK: - Alert Handler
 extension JuiceOrderViewController {
+    private func successJuiceMaking(_ menu: JuiceMaker.Menu) {
+        let successAlert = UIAlertController(title: "주문 성공!", message: "\(menu.koreanName) 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+        let okButtonAction = UIAlertAction(title: "확인", style: .default)
+        
+        successAlert.addAction(okButtonAction)
+        present(successAlert, animated: false)
+    }
+    
+    private func failJuiceMaking() {
+        let failAlert = UIAlertController(title: "주문 실패!", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let noButtonAction = UIAlertAction(title: "아니오", style: .default)
+        let yesButtonAction = UIAlertAction(title: "예", style: .default, handler: tappedYesButton)
+        
+        failAlert.addAction(noButtonAction)
+        failAlert.addAction(yesButtonAction)
+        present(failAlert, animated: false)
+    }
+    
     private func tappedYesButton(action: UIAlertAction) {
-        navigateToFruitStockViewController()
+        presentFruitStockViewController()
     }
 }

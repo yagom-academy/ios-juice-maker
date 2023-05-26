@@ -17,12 +17,10 @@ final class FruitStore {
         return stock >= count
     }
     
-    func changeFruitCount(_ fruit: Fruit, count: Int, isUseFruit: Bool = true) {
+    func changeFruitCount(_ fruit: Fruit, _ amount: Int) {
         guard let stock = fruitStocks[fruit] else { return }
         
-        let fruitAmount = isUseFruit ? -count : count
-        
-        fruitStocks[fruit] = stock + fruitAmount
+        fruitStocks[fruit] = stock + amount
     }
     
     func provideFruitStock(_ fruit: Fruit) -> Int? {
