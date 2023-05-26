@@ -30,6 +30,7 @@ class StockViewController: UIViewController {
         super.init(coder: coder)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
