@@ -183,7 +183,7 @@
                                                                 <fragment content="파인애플쥬스">
                                                                     <attributes>
                                                                         <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSFont" metaFont="system" size="15"/>
                                                                         <font key="NSOriginalFont" metaFont="system" size="15"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
@@ -198,7 +198,7 @@
                                                                 <fragment content="주문">
                                                                     <attributes>
                                                                         <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <font key="NSFont" size="15" name=".AppleSDGothicNeoI-Regular"/>
+                                                                        <font key="NSFont" metaFont="system" size="15"/>
                                                                         <font key="NSOriginalFont" metaFont="system" size="15"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
