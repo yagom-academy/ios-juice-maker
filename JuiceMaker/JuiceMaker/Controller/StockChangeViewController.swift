@@ -14,12 +14,24 @@ protocol StockChangeDelegate: AnyObject {
 final class StockChangeViewController: UIViewController {
     @IBOutlet var fruitStockLabels: [UILabel] = []
     @IBOutlet var stockSteppers: [UIStepper] = []
+    
     var fruitStore: FruitStore?
     weak var delegate: StockChangeDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setComponentsData()
+    }
+    
+    private func setComponentsData() {
+        for (index, (fruitStockLabel, stockStepper)) in zip(fruitStockLabels, stockSteppers).enumerated() {
+            guard let fruit = Fruit(rawValue: index),
+                  let fruitCount = fruitStore?.getCurrentStock(of: fruit) else { return }
+            
+            fruitStockLabel.text = "\(fruitCount)"
+            stockStepper.value = Double(fruitCount)
+            stockStepper.tag = index
+        }
     }
     
     @IBAction func updateFruitStock(_ sender: UIStepper) {
@@ -33,20 +45,7 @@ final class StockChangeViewController: UIViewController {
     }
     
     @IBAction func tapCloseButton(_ sender: UIBarButtonItem) {
-        guard let fruitStore = fruitStore else { return }
-        
         delegate?.changeStockViewControllerWillDismiss()
         dismiss(animated: true)
-    }
-    
-    private func setComponentsData() {
-        for (index, (fruitStockLabel, stockStepper)) in zip(fruitStockLabels, stockSteppers).enumerated() {
-            guard let fruit = Fruit(rawValue: index),
-                  let fruitCount = fruitStore?.getCurrentStock(of: fruit) else { return }
-            
-            fruitStockLabel.text = "\(fruitCount)"
-            stockStepper.value = Double(fruitCount)
-            stockStepper.tag = index
-        }
     }
 }

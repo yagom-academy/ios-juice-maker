@@ -11,13 +11,6 @@ struct JuiceMaker {
         self.fruitStore = fruitStore
     }
     
-    private func canMake(_ juice: Juice) -> Bool {
-        for (fruit, amount) in juice.recipe {
-            guard fruitStore.checkStock(of: fruit, for: amount) else { return false }
-        }
-        return true
-    }
-    
     func make(_ juice: Juice) -> Result<Juice, FruitStoreError> {
         if canMake(juice) {
             for (fruit, amount) in juice.recipe {
@@ -26,6 +19,13 @@ struct JuiceMaker {
             return .success(juice)
         }
         return .failure(FruitStoreError.outOfStock)
+    }
+    
+    private func canMake(_ juice: Juice) -> Bool {
+        for (fruit, amount) in juice.recipe {
+            guard fruitStore.checkStock(of: fruit, for: amount) else { return false }
+        }
+        return true
     }
     
     func getCurrentStock(of fruit: Fruit) -> Int? {

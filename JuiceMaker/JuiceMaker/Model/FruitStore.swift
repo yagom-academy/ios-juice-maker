@@ -11,11 +11,6 @@ final class FruitStore {
         self.fruitInventory = fruitInventory
     }
     
-    func changeStock(of fruit: Fruit, by quantity: Int) {
-        guard let currentStock = fruitInventory[fruit] else { return }
-        fruitInventory[fruit] = currentStock + quantity
-    }
-    
     func getCurrentStock(of fruit: Fruit) -> Int? {
         guard let currentStock = fruitInventory[fruit] else { return nil }
         return currentStock
@@ -25,6 +20,11 @@ final class FruitStore {
         guard let currentStock = fruitInventory[fruit],
               currentStock >= amount else { return false }
         return true
+    }
+    
+    func changeStock(of fruit: Fruit, by quantity: Int) {
+        guard let currentStock = fruitInventory[fruit] else { return }
+        fruitInventory[fruit] = currentStock + quantity
     }
     
     func updateStock(of fruit: Fruit, to quantity: Int) {

@@ -22,24 +22,6 @@ final class JuiceOrderViewController: UIViewController {
         setJuiceOrderButtonTag()
     }
     
-    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
-        presentStockChangeViewController()
-    }
-    
-    @IBAction func orderJuice(_ sender: UIButton) {
-        guard let selectedJuice = Juice(rawValue: sender.tag) else { return }
-        let result = juiceMaker.make(selectedJuice)
-        
-        switch result {
-        case .success(let juice):
-            presentJuiceReadyAlert(with: juice)
-            updateFruitStockLabels()
-        case .failure(let error):
-            guard let errorMessage = error.errorDescription else { return }
-            presentInsufficientStockAlert(with: errorMessage)
-        }
-    }
-    
     private func updateFruitStockLabels() {
         for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
             guard let fruit = Fruit(rawValue: index),
@@ -54,13 +36,18 @@ final class JuiceOrderViewController: UIViewController {
         }
     }
     
-    private func presentStockChangeViewController() {
-        guard let navigationController = storyboard?.instantiateViewController(withIdentifier: "StockChangeNavigationController") as? UINavigationController,
-              let stockChangeViewController = navigationController.viewControllers.first as? StockChangeViewController else { return }
+    @IBAction func orderJuice(_ sender: UIButton) {
+        guard let selectedJuice = Juice(rawValue: sender.tag) else { return }
+        let result = juiceMaker.make(selectedJuice)
         
-        stockChangeViewController.fruitStore = juiceMaker.getFruitStore()
-        stockChangeViewController.delegate = self
-        present(navigationController, animated: true)
+        switch result {
+        case .success(let juice):
+            presentJuiceReadyAlert(with: juice)
+            updateFruitStockLabels()
+        case .failure(let error):
+            guard let errorMessage = error.errorDescription else { return }
+            presentInsufficientStockAlert(with: errorMessage)
+        }
     }
     
     private func presentJuiceReadyAlert(with juice: Juice) {
@@ -82,6 +69,19 @@ final class JuiceOrderViewController: UIViewController {
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+    
+    private func presentStockChangeViewController() {
+        guard let navigationController = storyboard?.instantiateViewController(withIdentifier: "StockChangeNavigationController") as? UINavigationController,
+              let stockChangeViewController = navigationController.viewControllers.first as? StockChangeViewController else { return }
+        
+        stockChangeViewController.fruitStore = juiceMaker.getFruitStore()
+        stockChangeViewController.delegate = self
+        present(navigationController, animated: true)
+    }
+    
+    @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
+        presentStockChangeViewController()
     }
 }
 
