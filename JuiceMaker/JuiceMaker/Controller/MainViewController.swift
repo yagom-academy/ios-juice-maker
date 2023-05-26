@@ -121,7 +121,7 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: StockViewControllerDelegate {
-    func changeStock(changedStock: [Fruit: Int]) {
+    func changeStock(into changedStock: [Fruit: Int]) {
         self.juiceMaker.updateStock(to: changedStock)
     }
 }

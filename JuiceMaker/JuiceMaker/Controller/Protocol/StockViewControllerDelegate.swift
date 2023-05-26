@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol StockViewControllerDelegate {
-    func changeStock(changedStock: [Fruit: Int])
+protocol StockViewControllerDelegate: AnyObject {
+    func changeStock(into changedStock: [Fruit: Int])
 }

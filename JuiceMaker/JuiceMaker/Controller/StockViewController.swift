@@ -10,7 +10,7 @@ import UIKit
 class StockViewController: UIViewController {
     
     private let receivedFruitStock: [Fruit: Int]
-    var delegate: StockViewControllerDelegate?
+    weak var delegate: StockViewControllerDelegate?
     
     @IBOutlet weak private var viewControllerTitle: UILabel!
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -48,11 +48,11 @@ class StockViewController: UIViewController {
     }
     
     private func configureLabel() {
-        self.strawberryStockLabel.text = self.receivedFruitStock[.strawberry]?.toString ?? ""
-        self.bananaStockLabel.text = self.receivedFruitStock[.banana]?.toString ?? ""
-        self.pineappleStockLabel.text = self.receivedFruitStock[.pineapple]?.toString ?? ""
-        self.kiwiStockLabel.text = self.receivedFruitStock[.kiwi]?.toString ?? ""
-        self.mangoStockLabel.text = self.receivedFruitStock[.mango]?.toString ?? ""
+        self.strawberryStockLabel.text = self.receivedFruitStock[.strawberry]?.toString
+        self.bananaStockLabel.text = self.receivedFruitStock[.banana]?.toString
+        self.pineappleStockLabel.text = self.receivedFruitStock[.pineapple]?.toString
+        self.kiwiStockLabel.text = self.receivedFruitStock[.kiwi]?.toString
+        self.mangoStockLabel.text = self.receivedFruitStock[.mango]?.toString
     }
     
     private func configureStepper() {
@@ -95,7 +95,7 @@ class StockViewController: UIViewController {
     
     private func completeEditStock() {
         self.delegate?.changeStock(
-            changedStock: [
+            into: [
                 .strawberry: self.strawberryStockLabel.text?.toInt ?? 0,
                 .banana: self.bananaStockLabel.text?.toInt ?? 0,
                 .pineapple: self.pineappleStockLabel.text?.toInt ?? 0,
