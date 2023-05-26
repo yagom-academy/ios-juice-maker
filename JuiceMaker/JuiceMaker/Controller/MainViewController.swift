@@ -2,11 +2,12 @@
 //  JuiceMaker - ViewController.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
-// 
+//
 
 import UIKit
 
 class MainViewController: UIViewController {
+    
     private let juiceMaker = JuiceMaker()
     
     @IBOutlet weak private var strawberryStockLabel: UILabel!
@@ -15,9 +16,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak private var kiwiStockLabel: UILabel!
     @IBOutlet weak private var mangoStockLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureLabel()
+    override func viewWillAppear(_ animated: Bool) {
+        self.configureLabel()
     }
     
     private func configureLabel() {
@@ -28,12 +28,11 @@ class MainViewController: UIViewController {
         self.mangoStockLabel.text = juiceMaker.getStock(fruit: .mango).toString
     }
     
-    @IBAction func tapStockButton(_ sender: UIBarButtonItem) {
-        let stockViewController = StockViewController.instantiate()
-        self.navigationController?.present(stockViewController, animated: true)
+    @IBAction private func tapStockEditButton(_ sender: UIBarButtonItem) {
+        self.presentStockViewController()
     }
     
-    @IBAction func tapOrderButton(_ sender: UIButton) {
+    @IBAction private func tapOrderButton(_ sender: UIButton) {
         do {
             let juice = try self.convertButtonLabelToJuice(buttonTitle: sender.titleLabel?.text)
             try self.juiceMaker.makeJuice(juice: juice)
@@ -93,8 +92,7 @@ class MainViewController: UIViewController {
                 title: Alert.yes,
                 style: .default,
                 handler: { _ in
-                    let stockViewController = StockViewController.instantiate()
-                    self.navigationController?.present(stockViewController, animated: true)
+                    self.presentStockViewController()
                 }))
         } else {
             alert.addAction(UIAlertAction(
@@ -105,10 +103,31 @@ class MainViewController: UIViewController {
         }
         self.present(alert, animated: true, completion: nil)
     }
+    
+    private func presentStockViewController() {
+        guard let stockViewController = self
+            .storyboard?
+            .instantiateViewController(
+                identifier: String(describing: StockViewController.self),
+                creator: { coder in
+                    StockViewController(currentFruitStock: self.juiceMaker.getAllStock(), coder: coder)
+                }
+            ) else { return }
+        
+        stockViewController.delegate = self
+        stockViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(stockViewController, animated: true)
+    }
+}
+
+extension MainViewController: StockViewControllerDelegate {
+    func changeStock(into changedStock: [Fruit: Int]) {
+        self.juiceMaker.updateStock(to: changedStock)
+    }
 }
 
 extension MainViewController {
-    enum Alert {
+    private enum Alert {
         static let yes = "예"
         static let no = "아니오"
         static let confirm = "확인"
