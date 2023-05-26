@@ -11,6 +11,7 @@ final class AlertBuilder {
     private var title: String?
     private var message: String?
     private var actions: [UIAlertAction] = []
+    private var preferredStyle: UIAlertController.Style = .alert
     
     func setTitle(_ title: String) -> AlertBuilder {
         self.title = title
@@ -30,8 +31,14 @@ final class AlertBuilder {
         return self
     }
     
+    func setPreferredStyle(_ preferredStyle: UIAlertController.Style) -> AlertBuilder {
+        self.preferredStyle = preferredStyle
+        
+        return self
+    }
+    
     func build() -> UIAlertController {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         
         actions.forEach {
             alert.addAction($0)
