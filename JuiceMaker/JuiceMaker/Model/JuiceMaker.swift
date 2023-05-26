@@ -33,8 +33,10 @@ struct JuiceMaker {
         print("\(menu.name) 제조가 완료되었습니다.")
 	}
     
-    func changeFruitStock(of fruit: Fruit, quantity: Int) {
-        fruitStore.changeStock(of: fruit, quantity: quantity)
+    func changeFruitStock(_ fruitStockStatus: [Fruit: Int]) {
+        for (fruit, quantity) in fruitStockStatus {
+            fruitStore.changeStock(of: fruit, quantity: quantity)
+        }
     }
     
     func getFruitInventoryStatus() -> [Fruit: Int] {
