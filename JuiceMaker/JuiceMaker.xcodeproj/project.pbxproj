@@ -58,7 +58,6 @@
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* JuiceOrderViewController.swift */,
 				F0B048F12A124076003BAC85 /* StockChangeViewController.swift */,
-				F0F521522A204ABA00322F45 /* StockChangeDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -71,6 +70,7 @@
 				F01A11CB2A0A0FAC0064E0ED /* Fruit.swift */,
 				F01A11CD2A0A0FE10064E0ED /* FruitStoreError.swift */,
 				9C912AF92A0A114D00893CFF /* Juice.swift */,
+				F0F521522A204ABA00322F45 /* StockChangeDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
