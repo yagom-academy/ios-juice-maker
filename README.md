@@ -39,12 +39,12 @@
 
 #### Commit 메세지
 
-📋[docs]:README나 문서작업
-🆕[feat]:새로운 기능 구현
-🪡[style]:스타일 관련 기능(코드의 구조/형태 개선)
-🛠️[refactor]:전면 수정이 있을 때 사용
-🔬[fix]:버그, 오류 해결
-🔀[merge]: 다른 브랜치를 merge 할 때 사용
+- 📋[docs]:README나 문서작업
+- 🆕[feat]:새로운 기능 구현
+- 🪡[style]:스타일 관련 기능(코드의 구조/형태 개선)
+- 🛠️[refactor]:전면 수정이 있을 때 사용
+- 🔬[fix]:버그, 오류 해결
+- 🔀[merge]: 다른 브랜치를 merge 할 때 사용
 
 <details><summary span style="color:black; background-color:#23ff2921; font-size:120%"><b>1주차</b></summary></span> 
 
