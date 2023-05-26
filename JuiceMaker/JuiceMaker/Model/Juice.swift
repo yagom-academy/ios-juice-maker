@@ -5,7 +5,7 @@
 //  Created by JSB, Hemg on 2023/05/09.
 //
 
-enum Juice: String, CaseIterable {
+enum Juice: String {
     case strawberryJuice = "딸기"
     case bananaJuice = "바나나"
     case pineappleJuice = "파인애플"
