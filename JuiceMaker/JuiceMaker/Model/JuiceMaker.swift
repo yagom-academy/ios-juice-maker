@@ -5,13 +5,11 @@
 // 
 
 struct JuiceMaker {
-    
-    mutating func make(_ juice: Juice) -> Juice? {
-        
+    func make(_ juice: Juice) -> Juice? {
         do {
             try FruitStore.shared.checkStock(with: juice.recipe)
-            juice.recipe.forEach { key, value in
-                FruitStore.shared.changeStock(with: key, value)
+            juice.recipe.forEach { fruit, stock in
+                FruitStore.shared.changeStock(with: fruit, -stock)
             }
             return juice
         } catch FruitStoreError.outOfStock {

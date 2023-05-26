@@ -8,9 +8,9 @@ final class FruitStore {
     static let shared = FruitStore()
     
     private var stock: [Fruit: Int] = [
-        .strawBerry: 25,
+        .strawberry: 26,
         .banana: 11,
-        .pineApple: 12,
+        .pineapple: 12,
         .kiwi: 13,
         .mango: 14
     ]
@@ -22,9 +22,8 @@ final class FruitStore {
     private init() {}
     
     func changeStock(with fruits: Fruit, _ quantity: Int) {
-        if let stock = self.stock[fruits] {
-            self.stock[fruits] = stock - quantity
-        }
+        guard let stock = self.stock[fruits] else { return }
+        self.stock[fruits] = stock + quantity
     }
     
     func checkStock(with fruits: [Fruit: Int]) throws {
@@ -35,4 +34,3 @@ final class FruitStore {
         }
     }
 }
-
