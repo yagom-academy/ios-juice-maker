@@ -74,7 +74,7 @@ final class JuiceOrderViewController: UIViewController {
     
     private func presentStockChangeViewController() {
         guard let stockChangeNavigationController = storyboard?.instantiateViewController(withIdentifier: "StockChangeNavigationController") as? UINavigationController,
-              let stockChangeViewController = stockChangeNavigationController.viewControllers.first as? StockChangeViewController else { return }
+              let stockChangeViewController = stockChangeNavigationController.topViewController as? StockChangeViewController else { return }
         
         stockChangeViewController.fruitStore = juiceMaker.getFruitStore()
         stockChangeViewController.delegate = self

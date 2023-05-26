@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol StockChangeDelegate: AnyObject {
-    func changeStockViewControllerWillDismiss()
-}
-
 final class StockChangeViewController: UIViewController {
     @IBOutlet var fruitStockLabels: [UILabel] = []
     @IBOutlet var stockSteppers: [UIStepper] = []
@@ -48,4 +44,4 @@ final class StockChangeViewController: UIViewController {
         delegate?.changeStockViewControllerWillDismiss()
         dismiss(animated: true)
     }
-}
+} 
