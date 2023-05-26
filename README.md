@@ -44,9 +44,11 @@
 
 
 ## 📱 실행 화면
-- iPhone 14 Pro
+### iPhone 14 Pro
+![ezgif com-video-to-gif-min](https://github.com/iOS-Yetti/ios-juice-maker/assets/100982422/5b7b8d2e-4e71-45d5-badc-8e517be5bbc6)
 
-- iPhone SE(3generation)
+### iPhone SE(3generation)
+![ezgif com-video-to-gif (1)-min](https://github.com/iOS-Yetti/ios-juice-maker/assets/100982422/2b5f1856-3cf0-4cc0-bae1-38a9b6d1097a)
 
 
 
