@@ -26,6 +26,7 @@ final class JuiceOrderViewController: UIViewController {
         for (index, fruitStockLabel) in fruitStockLabels.enumerated() {
             guard let fruit = Fruit(rawValue: index),
                   let fruitCount = juiceMaker.getCurrentStock(of: fruit) else { return }
+            
             fruitStockLabel.text = "\(fruitCount)"
         }
     }
@@ -72,12 +73,12 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     private func presentStockChangeViewController() {
-        guard let navigationController = storyboard?.instantiateViewController(withIdentifier: "StockChangeNavigationController") as? UINavigationController,
-              let stockChangeViewController = navigationController.viewControllers.first as? StockChangeViewController else { return }
+        guard let stockChangeNavigationController = storyboard?.instantiateViewController(withIdentifier: "StockChangeNavigationController") as? UINavigationController,
+              let stockChangeViewController = stockChangeNavigationController.viewControllers.first as? StockChangeViewController else { return }
         
         stockChangeViewController.fruitStore = juiceMaker.getFruitStore()
         stockChangeViewController.delegate = self
-        present(navigationController, animated: true)
+        present(stockChangeNavigationController, animated: true)
     }
     
     @IBAction func tapStockChangeButton(_ sender: UIBarButtonItem) {
