@@ -15,7 +15,7 @@ final class ChangeStockViewController: UIViewController {
     private var additionalStock = [Int](repeating: 0, count: Fruits.allCases.count)
     weak var delegate: StockDelegate?
     
-    @IBOutlet var stockChangeLabels: [UILabel]!
+    @IBOutlet private var stockLabels: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ final class ChangeStockViewController: UIViewController {
     private func initializeStockLabels() {
         guard let currentStock = delegate?.getCurrentStock() else { return }
         initialStock = currentStock
-        for (index, label) in stockChangeLabels.enumerated() {
+        for (index, label) in stockLabels.enumerated() {
             label.text = "\(initialStock[index])"
         }
     }
@@ -36,7 +36,7 @@ final class ChangeStockViewController: UIViewController {
     }
     
     @IBAction private func hitStepper(_ sender: UIStepper) {
-        stockChangeLabels[sender.tag].text = "\(initialStock[sender.tag] + Int(sender.value))"
+        stockLabels[sender.tag].text = "\(initialStock[sender.tag] + Int(sender.value))"
         additionalStock[sender.tag] = Int(sender.value)
     }
 }

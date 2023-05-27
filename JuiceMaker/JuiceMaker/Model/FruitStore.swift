@@ -4,12 +4,10 @@
 //  Copyright © yagom academy. All rights reserved.
 //  last modified by Yetti, yy-ss99, Mary.
 
-class FruitStore {
-    private let initialStock: Int
+final class FruitStore {
     private(set) var fruitStock: [Fruits: Int]
     
     init(initialStock: Int = 10) {
-        self.initialStock = initialStock
         self.fruitStock = [.strawberry: initialStock,
                            .banana: initialStock,
                            .pineapple: initialStock,

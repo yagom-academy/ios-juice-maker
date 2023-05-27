@@ -9,10 +9,10 @@ import UIKit
 final class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet var stockLabels: [UILabel]!
+    @IBOutlet private var stockLabels: [UILabel]!
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         updateStockLabel()
     }
     
@@ -20,16 +20,6 @@ final class JuiceOrderViewController: UIViewController {
         for (index, label) in stockLabels.enumerated() {
             label.text = "\(juiceMaker.fruitStore.bringQuantity(of: Fruits.allCases[index]))"
         }
-    }
-    
-    private enum ButtonTitle {
-        static let strawberryJuiceOrder = "딸기쥬스 주문"
-        static let bananaJuiceOrder = "바나나쥬스 주문"
-        static let pineappleJuiceOrder = "파인애플쥬스 주문"
-        static let kiwiJuiceOrder = "키위쥬스 주문"
-        static let mangoJuiceOrder = "망고쥬스 주문"
-        static let strawberryBananaJuiceOrder = "딸바쥬스 주문"
-        static let mangoKiwiJuiceOrder = "망키쥬스 주문"
     }
     
     private func searchJuice(by buttonTitle: String) -> Juice? {
@@ -112,5 +102,17 @@ extension JuiceOrderViewController: StockDelegate {
         for (index, fruit) in Fruits.allCases.enumerated() {
             juiceMaker.fruitStore.addStock(fruit: fruit, quantity: quantities[index])
         }
+    }
+}
+
+extension JuiceOrderViewController {
+    private enum ButtonTitle {
+        static let strawberryJuiceOrder = "딸기쥬스 주문"
+        static let bananaJuiceOrder = "바나나쥬스 주문"
+        static let pineappleJuiceOrder = "파인애플쥬스 주문"
+        static let kiwiJuiceOrder = "키위쥬스 주문"
+        static let mangoJuiceOrder = "망고쥬스 주문"
+        static let strawberryBananaJuiceOrder = "딸바쥬스 주문"
+        static let mangoKiwiJuiceOrder = "망키쥬스 주문"
     }
 }

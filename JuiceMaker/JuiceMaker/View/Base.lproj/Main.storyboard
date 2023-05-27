@@ -178,7 +178,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
                                                         <rect key="frame" x="331" y="0.0" width="150" height="76.5"/>
                                                         <color key="backgroundColor" name="AccentColor"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                         <state key="normal" title="파인애플쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -426,11 +426,11 @@
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <size key="freeformSize" width="844" height="390"/>
                     <connections>
-                        <outletCollection property="stockChangeLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="HUd-eN-RhK"/>
-                        <outletCollection property="stockChangeLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="aMU-fR-5Cf"/>
-                        <outletCollection property="stockChangeLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="egp-mE-7hH"/>
-                        <outletCollection property="stockChangeLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="rrJ-RW-6uE"/>
-                        <outletCollection property="stockChangeLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="hFh-S7-1DR"/>
+                        <outletCollection property="stockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="HUd-eN-RhK"/>
+                        <outletCollection property="stockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="aMU-fR-5Cf"/>
+                        <outletCollection property="stockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="egp-mE-7hH"/>
+                        <outletCollection property="stockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="rrJ-RW-6uE"/>
+                        <outletCollection property="stockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="hFh-S7-1DR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
