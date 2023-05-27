@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceOrderViewController: UIViewController {
+class JuiceOrderViewController: UIViewController, Exchangeable {
     @IBOutlet private weak var strawberryStockLabel: UILabel!
     @IBOutlet private weak var bananaStockLabel: UILabel!
     @IBOutlet private weak var pineappleStockLabel: UILabel!
@@ -24,15 +24,12 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet private weak var stockChangeButton: UIBarButtonItem!
     
     private var juiceMaker: JuiceMaker = JuiceMaker()
-    var fruitStore: FruitStore = FruitStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        juiceMaker.fruitStore = fruitStore
         configureStockLabel()
     }
     
@@ -53,22 +50,6 @@ class JuiceOrderViewController: UIViewController {
         pineappleStockLabel.text = String(pineappleStock)
         kiwiStockLabel.text = String(kiwiStock)
         mangoStockLabel.text = String(mangoStock)
-    }
-    
-    @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
-        guard let nextStockChangeViewController = storyboard?.instantiateViewController(
-            identifier: "StockChangeViewController"
-        ) as? StockChangeViewController else {
-            return
-        }
-        
-        nextStockChangeViewController.fruitStore = self.juiceMaker.fruitStore
-        nextStockChangeViewController.modalPresentationStyle = .fullScreen
-        
-        self.present(
-            nextStockChangeViewController,
-            animated: true
-        )
     }
     
     @IBAction func didTapOrderButton(_ sender: UIButton) {
@@ -133,5 +114,29 @@ class JuiceOrderViewController: UIViewController {
         
         alert.addAction(closeAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
+        guard let nextStockChangeViewController = storyboard?.instantiateViewController(
+            identifier: "StockChangeViewController"
+        ) as? StockChangeViewController else {
+            return
+        }
+        
+        nextStockChangeViewController.delegate = self
+        nextStockChangeViewController.modalPresentationStyle = .fullScreen
+        
+        self.present(
+            nextStockChangeViewController,
+            animated: true
+        )
+    }
+    
+    func exchangeInventory(inventory: [Fruit : Int]) {
+        juiceMaker.changeFruitInventory(inventory)
+    }
+    
+    func takeCurrentInventory() -> [Fruit : Int] {
+        juiceMaker.readFruitInventory()
     }
 }

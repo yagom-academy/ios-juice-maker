@@ -35,7 +35,7 @@ class FruitStore {
         fruitInventory[fruit] = currentStock - amount
     }
     
-    func changeFruitStock(_ fruit: Fruit, by amount: Int) {
-        fruitInventory[fruit] = amount
+    func changeFruitInventory(_ changedInventory: [Fruit: Int]) {
+        fruitInventory = changedInventory
     }
 }
