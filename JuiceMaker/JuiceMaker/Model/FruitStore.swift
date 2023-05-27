@@ -4,11 +4,10 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
-    static let shared: FruitStore = FruitStore()
+final class FruitStore {
     private var stockList: [Fruit: Int] = [:]
     
-    private init(stockQuantity: Int = 10) {
+    init(stockQuantity: Int = 10) {
         Fruit.allCases.forEach { stockList[$0] = stockQuantity }
     }
     

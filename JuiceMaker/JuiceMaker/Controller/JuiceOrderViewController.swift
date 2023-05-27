@@ -30,6 +30,7 @@ final class JuiceOrderViewController: UIViewController {
             return
         }
         
+        stockManagementViewController.setFruitStore(with: juiceMaker.getFruitStore())
         stockManagementViewController.configurationDelegate = self
     }
 

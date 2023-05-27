@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private var fruitStore: FruitStore = FruitStore.shared
+    private var fruitStore: FruitStore = FruitStore()
     
     mutating func makeOrder(_ juice: Juice) throws {
         for ingredient in juice.recipe {
@@ -13,6 +13,10 @@ struct JuiceMaker {
         }
         
         juice.recipe.forEach { fruitStore.decreaseStock(witch: $0.name, by: $0.quantity) }
+    }
+    
+    func getFruitStore() -> FruitStore {
+        return fruitStore
     }
     
     func showRemainStock() -> [String] {

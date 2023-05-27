@@ -15,8 +15,8 @@ final class StockManagementViewController: UIViewController {
     @IBOutlet var mangoStockLabel: UILabel!
     @IBOutlet var stockManagementStepperCollection: [CustomStepper]!
     
-    private var fruitStore: FruitStore = FruitStore.shared
-    var configurationDelegate: Configurable?
+    private var fruitStore: FruitStore = FruitStore()
+    weak var configurationDelegate: Configurable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,10 @@ final class StockManagementViewController: UIViewController {
         let currentStepperValue: String = Int(sender.value).description
         let selectedFruitStockLabel: UILabel = selectFruitStockLabel(with: fruit)
         selectedFruitStockLabel.text = currentStepperValue
+    }
+    
+    func setFruitStore(with currentFruitStore: FruitStore) {
+        fruitStore = currentFruitStore
     }
     
     private func selectFruitStockLabel(with fruit: Fruit) -> UILabel {

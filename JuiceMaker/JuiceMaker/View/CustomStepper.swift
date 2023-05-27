@@ -7,6 +7,6 @@
 
 import UIKit
 
-class CustomStepper: UIStepper {
+final class CustomStepper: UIStepper {
     var customIdentifier: Fruit?
 }
