@@ -11,7 +11,7 @@ final class FruitStore {
         Fruit.allCases.forEach { stockList[$0] = stockQuantity }
     }
     
-    func setStockList(with currentStockList: [Fruit: Int]) {
+    func updateStockList(with currentStockList: [Fruit: Int]) {
         stockList = currentStockList
     }
     
@@ -27,7 +27,7 @@ final class FruitStore {
         }
     }
     
-    func getRemainStock() -> [String] {
+    func fetchRemainStock() -> [String] {
         var fruitStockList: [String] = []
         
         for fruit in Fruit.allCases {
