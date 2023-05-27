@@ -9,6 +9,7 @@ import UIKit
 final class JuiceOrderViewController: UIViewController {
     @IBOutlet var fruitStockLabelCollection: [UILabel]!
     @IBOutlet var orderJuiceButtonCollection: [CustomButton]!
+    
     private var juiceMaker: JuiceMaker = JuiceMaker()
     
     private enum AlertType {
@@ -20,6 +21,17 @@ final class JuiceOrderViewController: UIViewController {
         super.viewDidLoad()
         configureStockLabel()
         configureJuiceButtonCustomIdentifier()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let stockManagementViewController =
+                segue.destination as? StockManagementViewController
+        else {
+            return
+        }
+        
+        stockManagementViewController.updateFruitStore(with: juiceMaker.fetchFruitStore())
+        stockManagementViewController.configurationDelegate = self
     }
 
     @IBAction func touchUpOrderButton(_ sender: CustomButton) {
@@ -67,5 +79,12 @@ final class JuiceOrderViewController: UIViewController {
         for index in orderJuiceButtonCollection.indices {
             orderJuiceButtonCollection[index].customIdentifier = Juice.allCases[index]
         }
+    }
+}
+
+//MARK: - Extension
+extension JuiceOrderViewController: Configurable {
+    func assignLabelText() {
+        configureStockLabel()
     }
 }

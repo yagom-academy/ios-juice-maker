@@ -4,14 +4,18 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-struct FruitStore {
+final class FruitStore {
     private var stockList: [Fruit: Int] = [:]
     
     init(stockQuantity: Int = 10) {
         Fruit.allCases.forEach { stockList[$0] = stockQuantity }
     }
     
-    mutating func decreaseStock(witch fruit: Fruit, by quantity: Int) {
+    func updateStockList(with currentStockList: [Fruit: Int]) {
+        stockList = currentStockList
+    }
+    
+    func decreaseStock(witch fruit: Fruit, by quantity: Int) {
         guard let currentStock = stockList[fruit] else { return }
         
         stockList[fruit] = currentStock - quantity
@@ -23,7 +27,7 @@ struct FruitStore {
         }
     }
     
-    func getRemainStock() -> [String] {
+    func fetchRemainStock() -> [String] {
         var fruitStockList: [String] = []
         
         for fruit in Fruit.allCases {
