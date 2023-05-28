@@ -1,82 +1,79 @@
 # 🥭 머쨍이 웨일의 쥬스메이커 🍹
+![쥬메표지 by Serena](https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/380e4159-9764-4da1-858b-7071607bb855)
+> 프로젝트 기간 : 2023-05-15 ~ 2023-05-27
+
 <br>
 
 ## 목차
 
-1. [소개](#1.)
-2. [개발자](#2.)
-3. [타임라인](#3.)
-4. [클래스 다이어그램](#4.)
-5. [실행 화면(기능 설명)](#5.)
-6. [트러블 슈팅](#6.)
-7. [참고 링크](#7.)
-8. [팀 회고](#8.)
+🧃 [소개](#1.) <br>
+🙋🏻‍♀️ [팀원](#2.) <br>
+📆 [타임라인](#3.) <br>
+📐 [클래스 다이어그램](#4.) <br>
+📲 [실행 화면(기능 설명)](#5.) <br>
+📝 [트러블 슈팅](#6.) <br>
+🔗 [참고 링크](#7.) <br>
+📮 [팀 회고](#8.) <br>
 
+<br>
 
 <a id="1."></a>
-## 1. 소개 
-(다음 step 진행 후 업데이트 할 예정입니다.)
+## 🧃 소개 
+쥬스 주문 버튼을 누르면 각 쥬스의 레시피만큼의 과일을 써서 쥬스를 만들어 줍니다.🍎🧃 <br>
+과일의 재고가 모자라다면 재고부족 알림창이나 재고수정 버튼을 통해 재고를 수정해 줄 수 있습니다.🥭 
+
 <br>
 
 <a id="2."></a>
-## 2. 개발자
-| [Whales 🐋](https://github.com/WhalesJin) |
+## 🙋🏻‍♀️ 팀원
+| Whales 🐋|
 | :--------: |
 | <Img src = "https://i.imgur.com/wnhhCv9.jpg" width="200"/>|
+| [Github](https://github.com/WhalesJin)|
 
 <br>
 
 <a id="3."></a>
-## 3. 타임라인
-**2023.05.15 (월)**
-- 과일 열거형 타입 생성
-- 쥬스 열거형 타입 생성
-    - 필요한 쥬스들 케이스 생성
-    - 각 케이스 별로 이름이랑 레시피 프로퍼티 생성
-- 에러 열거형 타입 생성
-- 과일 가게 클래스 타입 생성
-    - 과일 재고품 목록 프로퍼티
-    - 현재 재고 불러오는, 필요량이 충분한지 확인하는, 재고 늘리는, 재고 줄이는 함수 생성
-- 쥬스메이커 구조체 타입 생성
-    - 과일 가게 프로퍼트
-    - 주문하는, 쥬스 만드는, 재고를 확인하는, 과일을 소모하는 함수 생성
-
-**2023.05.16 (화)**
-- README 작성
-- 뷰에 있는 버튼들을 뷰컨트롤러의 코드와 연결
-- 버튼에 함수 넣기
-
-**2023.05.17 (수)**
-- 쥬스 주문 버튼 함수 수정
-- Alert 창
-    - 쥬스 완성
-    - 재료 부족 -> `예` 클릭 시 재고 수정 뷰로 화면 전환
-- 재고량 레이블에 현재 재고량 띄우기
-- 쥬스 주문 버튼 함수 기능 분리
-    - `조건문` / `성공 alert` / `실패 alert` 함수로 분리
-    - 버튼 함수 : 조건문 함수 호출 및 재고량 띄우기
-
-**2023.05.18 (목)**
-- 은닉화
-    - 과일 재고함 은닉화 -> 과일 재고함 불러오는 함수 생성
-    - 쥬스메이커의 과일 가게 프로퍼티 은닉화 -> 과일 가게의 과일 재고함 불러오는 함수 생성
-    - 뷰 컨트롤러 변수들
-- 레이블에 현재 재고량 넣어주는 함수 생성
+## 📆 타임라인
+|**날짜**|**진행 사항**|
+|:-:|-|
+|2023-05-15 (월)|- 과일 열거형 타입 생성 <br> - 쥬스 열거형 타입 생성 <br> 　- 필요한 쥬스들 케이스 생성 <br> 　- 각 케이스 별로 이름이랑 레시피 프로퍼티 생성 <br> - 에러 열거형 타입 생성 <br> - 과일 가게 클래스 타입 생성 <br> 　- 과일 재고품 목록 프로퍼티 <br> 　- 현재 재고 불러오는, 필요량이 충분한지 확인하는, 재고 늘리는, 재고 줄이는 함수 생성 <br> - 쥬스메이커 구조체 타입 생성 <br> 　- 과일 가게 프로퍼티 <br> 　- 주문하는, 쥬스 만드는, 재고를 확인하는, 과일을 소모하는 함수 생성|
+|2023-05-16 (화)|- README 작성 <br> - 뷰에 있는 버튼들을 뷰컨트롤러의 코드와 연결 <br> - 버튼에 함수 넣기|
+|2023-05-17 (수)|- 쥬스 주문 버튼 함수 수정 <br> - Alert 창 <br> 　- 쥬스 완성 <br> 　- 재료 부족 -> `예` 클릭 시 재고 수정 뷰로 화면 전환 <br> - 재고량 레이블에 현재 재고량 띄우기 <br> - 쥬스 주문 버튼 함수 기능 분리 <br> 　- `조건문` / `성공 alert` / `실패 alert` 함수로 분리 <br> 　- 버튼 함수 : 조건문 함수 호출 및 재고량 띄우기|
+|2023-05-18 (목)|- 은닉화 <br> 　- 과일 재고함 은닉화 -> 과일 재고함 불러오는 함수 생성 <br> 　- 쥬스메이커의 과일 가게 프로퍼티 은닉화 -> 과일 가게의 과일 재고함 불러오는 함수 생성 <br> 　- 뷰 컨트롤러 변수들 <br> - 레이블에 현재 재고량 넣어주는 함수 생성|
+|2023-05-19 (금)|- 과일 주문 버튼 함수 통합|
+|2023-05-22 (월)|- 쥬스 주문 뷰컨트롤러에서 에러 처리 하는 주문 함수 생성 <br> - `에러 alert` 함수 생성 <br> - `성공 alert` 띄우기 직전에 재고 레이블 변경되도록 함수 호출 순서 변경 <br> - 화면 전환 방법을 `present(Modal)`로 변경|
+|2023-05-23 (화)|- 쥬스 주문 결과 안내창 열거형 타입 생성 <br> 　- 성공 / 실패 / 에러 케이스 <br> 　- 성공 케이스에는 연관값으로 쥬스 타입 삽입 <br> 　- 안내창 메세지, 닫기 액션 타이틀 프로퍼티 <br> - 안내창(Alert) 띄우는 함수 생성 <br> 　- 다른 alert 함수들 삭제 <br> - 재고 수정 뷰컨트롤러 파일 생성 <br> 　- 화면 이름과 닫기 버튼 추가 <br> 　- 닫기 버튼 함수 생성 (쥬스 주문 화면으로 돌아가기)|
+|2023-05-24 (수)|- 재고 수정 화면 레이아웃 수정 <br> - 쥬스 주문 뷰컨트롤러에서 재고 수정 뷰컨트롤러로 재고 수량 데이터 전달 <br> 　- 텍스트로 값만 전달 <br> - 재고 수량 조정하는 `stepper` 함수 생성 및 수정|
+|2023-05-25 (목)|- 과일 가게 클래스 수정 <br> 　- 과일 재고함을 초기값 받도록 수정 <br> 　- 과일의 재고를 수정하는 함수 생성 <br> - 과일의 재고량을 텍스트가 아닌 과일가게 프로퍼티로 넘기기 위해 수정 <br> 　- 양 쪽 뷰컨트롤러에 과일가게 프로퍼티 생성 (데이터 교환용) <br> 　- `viewWillAppear` 함수와 재고 수정 버튼 함수에서 데이터 전달 <br> - 레이블의 값으로 재고함의 재고량 바꾸는 함수 생성 <br> - 닫기 버튼 함수 수정 <br> 　- 재고함 바꾸는 함수 호출 <br> 　- 쥬스 주문 뷰컨트롤러에 과일가게 전달|
+|2023-05-27 (토)|- 데이터 전달 방법 및 그에 따른 전체 코드 수정 <br> 　- `Delegate Pattern` 을 통해 데이터 전달하도록 수정 <br> 　- `FruitInventory` 를 전달 <br> 　- 타입 변환 함수 생성 <br> 　- 은닉화 <br> 　- `Stepper` 값 수정|
 
 <br>
 
 <a id="4."></a>
-## 4. 다이어그램
-(다음 step 진행 후 업데이트 할 예정입니다.)
+## 📐 클래스 다이어그램 📏
+
+<Img src = "https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/d0061cf6-e4f0-4d1d-a9f7-e5b08491b332" width="800"/>
+
 <br>
 
 <a id="5."></a>
-## 5. 실행 화면(기능 설명)
-(다음 step 진행 후 업데이트 할 예정입니다.)
+## 📲 실행 화면(기능 설명)
+- 쥬스 주문 <br>
+    <Img src = "https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/4b4f4772-918a-4693-ba7b-06312c129a4a" width="500"/>
+<br>
+
+- 재고 수정 (재고 수정 알림창 - 예 클릭 시) <br>
+    <Img src = "https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/3510412f-34ce-4874-a060-0fac3f8460b9" width="500"/>
+<br>
+
+- 재고 수정 (재고 수정 버튼 클릭 시) <br>
+    <Img src = "https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/25eb7675-3e83-4554-bdd7-bbf863a0a7c8" width="500"/>
+
 <br>
 
 <a id="6."></a>
-## 6. 트러블 슈팅
+## 📝 트러블 슈팅
 
 Step1
 ### 🔥 전반적인 그림에 대한 고민
@@ -124,14 +121,25 @@ Step1
 Step2
 ### 🔥 
 
+
+
+
 <br>
 
 <a id="7."></a> 
-## 7. 참고 링크
-- [API Design Guideline - Strive for Fluent Usage](https://www.swift.org/documentation/api-design-guidelines/#promote-clear-usage)
-- [APPLE Developer - Hashable](https://developer.apple.com/documentation/swift/hashable)
-- [블로그 - Hashable](https://babbab2.tistory.com/149)
-- [Docs.swift - Properties - static](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/properties/)
-- [APPLE Developer - UsingSegues](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/UsingSegues.html)
-- [블로그 - unrecognized selector sent to instance 오류](https://yeniful.tistory.com/51)
-- [APPLE Developer - UIAlertAction.Style](https://developer.apple.com/documentation/uikit/uialertaction/style)
+## 🔗 참고 링크!!
+
+<Img src = "https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/959208cb-b8d4-4b43-adcd-e15609c75d65" width="20"/> [API Design Guideline - Strive for Fluent Usage](https://www.swift.org/documentation/api-design-guidelines/#promote-clear-usage) <br>
+🍏 [APPLE Developer - Hashable](https://developer.apple.com/documentation/swift/hashable) <br>
+🍏 [APPLE Developer - UsingSegues](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/UsingSegues.html)<br>
+🍏 [APPLE Developer - UIAlertAction.Style](https://developer.apple.com/documentation/uikit/uialertaction/style)<br>
+🍎 [Docs.swift - Properties - static](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/properties/)<br>
+<Img src = "https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/ad865807-d3a4-4345-9c55-d7a2c23761d5" width="20"/> [블로그 - Hashable](https://babbab2.tistory.com/149)<br>
+<Img src = "https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/ad865807-d3a4-4345-9c55-d7a2c23761d5" width="20"/> [블로그 - unrecognized selector sent to instance 오류](https://yeniful.tistory.com/51)
+
+<br>
+
+<a id="8."></a> 
+## 📮 팀 회고
+<img width="500" alt="Dear  Whales💜" src="https://github.com/WhalesJin/ios-juice-maker-yagom/assets/124643545/aa1cf3de-9a1c-4db7-ac36-61ca4aeb6dbf">
+
