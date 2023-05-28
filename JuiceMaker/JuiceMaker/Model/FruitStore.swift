@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+final class FruitStore {
     private(set) var fruitInventory: [Int]
 
     init(initialStock: Int = 10) {
@@ -20,8 +20,8 @@ class FruitStore {
         }
     }
     
-    func addStock(fruit: Fruit, amount: Int) {
-        fruitInventory[fruit.inventoryIndex] += amount
+    func changeStock(fruit: Fruit, amount: Int) {
+        fruitInventory[fruit.inventoryIndex] = amount
     }
     
     func reduceStock(fruit: Fruit, amount: Int) {
