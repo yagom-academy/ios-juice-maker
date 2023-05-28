@@ -8,11 +8,10 @@
 import UIKit
 
 final class ModifyStockViewController: UIViewController {
-    private var oldFruitStocks: [Int] = [Int]()
-    private var newFruitStocks: [Int] = [Int]()
+    private var fruitStocks: [Int] = [Int]()
     
     @IBOutlet var fruitStockLabels: [UILabel]!
-    @IBOutlet var fruitStockStepper: [UIStepper]!
+    @IBOutlet var fruitStockSteppers: [UIStepper]!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,40 +20,31 @@ final class ModifyStockViewController: UIViewController {
     }
     
     @IBAction func touchUpStepper(_ sender: UIStepper) {
-        if let stepperIndex = fruitStockStepper.firstIndex(of: sender) {
+        if let stepperIndex = fruitStockSteppers.firstIndex(of: sender) {
             fruitStockLabels[stepperIndex].text = String(Int(sender.value))
-            newFruitStocks[stepperIndex] = Int(sender.value)
+            fruitStocks[stepperIndex] = Int(sender.value)
         }
     }
     
     private func updateFruitStockLabel() {
         for fruitStockLabel in fruitStockLabels {
-            fruitStockLabel.text = String(newFruitStocks[fruitStockLabel.tag])
+            fruitStockLabel.text = String(fruitStocks[fruitStockLabel.tag])
         }
     }
     
     private func initializeStepperValue() {
-        for fruitStockStepper in fruitStockStepper {
-            fruitStockStepper.minimumValue = Double(oldFruitStocks[fruitStockStepper.tag])
+        for fruitStockStepper in fruitStockSteppers {
+            fruitStockStepper.minimumValue = Double(fruitStocks[fruitStockStepper.tag])
         }
-    }
-    
-    private func calculateStockDifference() -> [Int] {
-        var stockDifference: [Int] = [Int]()
-        for (stockIndex, stock) in newFruitStocks.enumerated() {
-            stockDifference.append(stock - oldFruitStocks[stockIndex])
-        }
-        return stockDifference
     }
 }
 
 extension ModifyStockViewController {
-    func setStock(stocks: [Int]) {
-        oldFruitStocks = stocks
-        newFruitStocks = oldFruitStocks
+    func setStock(_ stocks: [Int]) {
+        fruitStocks = stocks
     }
     
     func getStock() -> [Int] {
-        return calculateStockDifference()
+        return fruitStocks
     }
 }

@@ -20,8 +20,8 @@ final class FruitStore {
         }
     }
     
-    func addStock(fruit: Fruit, amount: Int) {
-        fruitInventory[fruit.inventoryIndex] += amount
+    func changeStock(fruit: Fruit, amount: Int) {
+        fruitInventory[fruit.inventoryIndex] = amount
     }
     
     func reduceStock(fruit: Fruit, amount: Int) {

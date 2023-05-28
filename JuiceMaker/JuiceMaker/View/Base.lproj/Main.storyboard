@@ -334,7 +334,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" identifier="modifyStockViewSegue" id="2Me-lx-FY7"/>
+                                <segue destination="Yu1-lM-nqp" kind="presentation" identifier="modifyStockViewSegue" id="af3-ka-fJx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -536,7 +536,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" systemColor="systemBackgroundColor"/>
                                 <items>
-                                    <navigationItem title="재고 수정" id="1pL-UX-McV">
+                                    <navigationItem title="재고 추가" id="1pL-UX-McV">
                                         <barButtonItem key="rightBarButtonItem" title="닫기   " id="Rsq-2H-vzu">
                                             <connections>
                                                 <segue destination="h5a-b1-bMx" kind="unwind" unwindAction="unwindToJuiceMakerViewController:" id="JeC-Iv-nyn"/>
@@ -563,15 +563,15 @@
                     <size key="freeformSize" width="568" height="320"/>
                     <connections>
                         <outletCollection property="fruitStockLabels" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="sNZ-xZ-1To"/>
-                        <outletCollection property="fruitStockStepper" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="ahN-Ec-Kkl"/>
                         <outletCollection property="fruitStockLabels" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="Szp-EA-IKg"/>
-                        <outletCollection property="fruitStockStepper" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="kGS-qL-xPY"/>
                         <outletCollection property="fruitStockLabels" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="cfa-xG-4hX"/>
-                        <outletCollection property="fruitStockStepper" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="vXL-qk-l95"/>
-                        <outletCollection property="fruitStockStepper" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="Nqe-iH-DzN"/>
                         <outletCollection property="fruitStockLabels" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="RWy-yd-W1h"/>
                         <outletCollection property="fruitStockLabels" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="7I6-Z0-L8o"/>
-                        <outletCollection property="fruitStockStepper" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="sbw-Xk-RhY"/>
+                        <outletCollection property="fruitStockSteppers" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="DLg-d1-MsZ"/>
+                        <outletCollection property="fruitStockSteppers" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="SWr-TA-pRu"/>
+                        <outletCollection property="fruitStockSteppers" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="CdD-JZ-Nj5"/>
+                        <outletCollection property="fruitStockSteppers" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="V68-vQ-i23"/>
+                        <outletCollection property="fruitStockSteppers" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="Fce-jZ-9jT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>

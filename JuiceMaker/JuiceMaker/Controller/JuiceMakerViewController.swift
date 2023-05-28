@@ -21,7 +21,7 @@ final class JuiceMakerViewController: UIViewController {
         guard let modifyStockViewController = segue.destination as? ModifyStockViewController else {
             return
         }
-        modifyStockViewController.setStock(stocks: juiceMaker.fruitStore.fruitInventory)
+        modifyStockViewController.setStock(juiceMaker.fruitStore.fruitInventory)
     }
     
     @IBAction func unwindToJuiceMakerViewController(_ segue: UIStoryboardSegue) {
@@ -48,9 +48,9 @@ final class JuiceMakerViewController: UIViewController {
                       actions: UIAlertAction(title: "닫기", style: .cancel))
         } catch JuiceMakerError.outOfFruitStock {
             showAlert(message: "\(JuiceMakerError.outOfFruitStock) 재고를 수정할까요?",
-                      actions: UIAlertAction(title: "예", style: .default) {
-                                action in self.presentModifyStockView() },
-                               UIAlertAction(title: "아니오", style: .default))
+                      actions: UIAlertAction(title: "아니오", style: .default),
+                               UIAlertAction(title: "예", style: .default, handler: presentModifyStockView))
+                               
         } catch {
             print(JuiceMakerError.unknownError)
         }
@@ -58,7 +58,7 @@ final class JuiceMakerViewController: UIViewController {
     
     private func updateFruitInventory(stocks: [Int]) {
         for (inventoryIndex, stock) in stocks.enumerated() {
-            juiceMaker.fruitStore.addStock(fruit: Fruit.allCases[inventoryIndex], amount: stock)
+            juiceMaker.fruitStore.changeStock(fruit: Fruit.allCases[inventoryIndex], amount: stock)
         }
     }
     
@@ -76,7 +76,7 @@ final class JuiceMakerViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func presentModifyStockView() {
-        self.performSegue(withIdentifier: "modifyStockViewSegue", sender: nil)
+    private func presentModifyStockView(_ action: UIAlertAction) {
+        performSegue(withIdentifier: "modifyStockViewSegue", sender: nil)
     }
 }
