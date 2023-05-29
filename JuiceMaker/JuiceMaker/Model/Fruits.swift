@@ -5,12 +5,12 @@
 //  Created by Yetti, yy-ss99, Mary.
 //
 
-enum Fruits: CustomStringConvertible {
+enum Fruits: CustomStringConvertible, CaseIterable {
     case strawberry
     case banana
     case pineapple
-    case mango
     case kiwi
+    case mango
     
     var description: String {
         switch self {
@@ -20,10 +20,10 @@ enum Fruits: CustomStringConvertible {
             return "바나나"
         case .pineapple:
             return "파인애플"
-        case .mango:
-            return "망고"
         case .kiwi:
             return "키위"
+        case .mango:
+            return "망고"
         }
     }
 }

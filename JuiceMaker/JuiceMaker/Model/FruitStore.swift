@@ -4,15 +4,16 @@
 //  Copyright © yagom academy. All rights reserved.
 //  last modified by Yetti, yy-ss99, Mary.
 
-class FruitStore {
-    private let initialStock: Int = 10
-    private(set) lazy var fruitStock: [Fruits: Int] = [
-        .strawberry: initialStock,
-        .banana: initialStock,
-        .pineapple: initialStock,
-        .mango: initialStock,
-        .kiwi: initialStock
-    ]
+final class FruitStore {
+    private(set) var fruitStock: [Fruits: Int]
+    
+    init(initialStock: Int = 10) {
+        self.fruitStock = [.strawberry: initialStock,
+                           .banana: initialStock,
+                           .pineapple: initialStock,
+                           .kiwi: initialStock,
+                           .mango: initialStock]
+    }
     
     func bringQuantity(of fruit: Fruits) -> Int {
         guard let quantity = fruitStock[fruit] else { return 0 }

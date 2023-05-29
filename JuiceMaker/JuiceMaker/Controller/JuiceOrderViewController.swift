@@ -9,33 +9,17 @@ import UIKit
 final class JuiceOrderViewController: UIViewController {
     private let juiceMaker = JuiceMaker()
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet private var stockLabels: [UILabel]!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateStockLabel()
     }
     
     private func updateStockLabel() {
-        strawberryStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .strawberry))"
-        bananaStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .banana))"
-        pineappleStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .pineapple))"
-        kiwiStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .kiwi))"
-        mangoStockLabel.text = "\(juiceMaker.fruitStore.bringQuantity(of: .mango))"
-    }
-    
-    private enum ButtonTitle {
-        static let strawberryJuiceOrder = "딸기쥬스 주문"
-        static let bananaJuiceOrder = "바나나쥬스 주문"
-        static let pineappleJuiceOrder = "파인애플쥬스 주문"
-        static let kiwiJuiceOrder = "키위쥬스 주문"
-        static let mangoJuiceOrder = "망고쥬스 주문"
-        static let strawberryBananaJuiceOrder = "딸바쥬스 주문"
-        static let mangoKiwiJuiceOrder = "망키쥬스 주문"
+        for (index, label) in stockLabels.enumerated() {
+            label.text = "\(juiceMaker.fruitStore.bringQuantity(of: Fruits.allCases[index]))"
+        }
     }
     
     private func searchJuice(by buttonTitle: String) -> Juice? {
@@ -61,38 +45,40 @@ final class JuiceOrderViewController: UIViewController {
     
     private func placeAnOrder(for juice: Juice) {
         if let juice = juiceMaker.takeOrder(juice) {
-            presentSuccessAlert(juice: juice)
+            presentSuccessAlertController(juice: juice)
             updateStockLabel()
         } else {
-            presentFailureAlert()
+            presentFailureAlertController()
         }
     }
     
-    private func presentSuccessAlert(juice: Juice) {
+    private func presentSuccessAlertController(juice: Juice) {
         let successMessage = "\(juice)가 나왔습니다! 맛있게 드세요!"
-        let alert = UIAlertController(title: successMessage, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: successMessage, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         
-        alert.addAction(okAction)
-        present(alert, animated: true)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
     
-    private func presentFailureAlert() {
+    private func presentFailureAlertController() {
         let failureMessage = "재료가 모자라요. 재고를 수정할까요?"
-        let alert = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: failureMessage, message: nil, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "예", style: .default, handler: { _ in
-            self.pushChangeStockViewController() })
+            self.presentChangeStockViewController() })
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        present(alert, animated: true)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true)
     }
     
-    private func pushChangeStockViewController() {
-        guard let view = storyboard?
-            .instantiateViewController(identifier: "ChangeStockViewController") else { return }
-        navigationController?.pushViewController(view, animated: true)
+    private func presentChangeStockViewController() {
+        guard let viewController = storyboard?
+            .instantiateViewController(identifier: "ChangeStockViewController") as? ChangeStockViewController else { return }
+        viewController.delegate = self
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
     }
     
     @IBAction private func hitJuiceOrderButton(_ sender: UIButton) {
@@ -102,6 +88,31 @@ final class JuiceOrderViewController: UIViewController {
     }
     
     @IBAction private func hitChangeStockButton(_ sender: UIBarButtonItem) {
-        pushChangeStockViewController()
+        presentChangeStockViewController()
+    }
+}
+
+extension JuiceOrderViewController: StockDelegate {
+    func getCurrentStock() -> [Int] {
+        return Fruits.allCases.map { fruits in
+            juiceMaker.fruitStore.bringQuantity(of: fruits) }
+    }
+    
+    func addStock(quantities: [Int]) {
+        for (index, fruit) in Fruits.allCases.enumerated() {
+            juiceMaker.fruitStore.addStock(fruit: fruit, quantity: quantities[index])
+        }
+    }
+}
+
+extension JuiceOrderViewController {
+    private enum ButtonTitle {
+        static let strawberryJuiceOrder = "딸기쥬스 주문"
+        static let bananaJuiceOrder = "바나나쥬스 주문"
+        static let pineappleJuiceOrder = "파인애플쥬스 주문"
+        static let kiwiJuiceOrder = "키위쥬스 주문"
+        static let mangoJuiceOrder = "망고쥬스 주문"
+        static let strawberryBananaJuiceOrder = "딸바쥬스 주문"
+        static let mangoKiwiJuiceOrder = "망키쥬스 주문"
     }
 }
