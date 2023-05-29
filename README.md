@@ -50,8 +50,6 @@
 ### iPhone SE(3generation)
 ![ezgif com-video-to-gif (1)-min](https://github.com/iOS-Yetti/ios-juice-maker/assets/100982422/2b5f1856-3cf0-4cc0-bae1-38a9b6d1097a)
 
-
-
 ## 🔨 트러블 슈팅 
 📣코드는 토글 처리 되어있습니다.
 
