@@ -5,13 +5,7 @@
 // 
 
 struct JuiceMaker {
-    private let fruitStore = FruitStore(fruitInventory: [
-        .strawberry: 10,
-        .banana: 10,
-        .pineapple: 10,
-        .kiwi: 10,
-        .mango: 10
-    ])
+    private var fruitStore: FruitStore = FruitStore()
     
     func readFruitInventory() -> [Fruit: Int] {
         return fruitStore.readFruitInventory()
@@ -19,7 +13,7 @@ struct JuiceMaker {
     
     func takeOrder(_ juice: Juice) throws {
         try verifyStock(for: juice)
-        try consumeFruit(for: juice)
+        consumeFruit(for: juice)
     }
 
     private func verifyStock(for juice: Juice) throws {
@@ -28,9 +22,13 @@ struct JuiceMaker {
         }
     }
         
-    private func consumeFruit(for juice: Juice) throws {
+    private func consumeFruit(for juice: Juice) {
         for (fruit, amount) in juice.recipe {
             fruitStore.decreaseFruitStock(fruit, by: amount)
         }
+    }
+    
+    func changeFruitInventory(_ changedInventory: [Fruit: Int]) {
+        fruitStore.changeFruitInventory(changedInventory)
     }
 }
