@@ -29,7 +29,7 @@ class StockChangeViewController: UIViewController {
         configureComponents()
     }
     
-    func configureComponents() {
+    private func configureComponents() {
         guard let fruitCurrentInventory = delegate?.takeCurrentInventory() else {
             return
         }
@@ -38,7 +38,7 @@ class StockChangeViewController: UIViewController {
         configureStepper(fruitCurrentInventory)
     }
     
-    func configureStockLabel(_ fruitCurrentInventory: [Fruit: Int]) {
+    private func configureStockLabel(_ fruitCurrentInventory: [Fruit: Int]) {
         strawberryStockLabel.text = String(fruitCurrentInventory[.strawberry] ?? -1)
         bananaStockLabel.text = String(fruitCurrentInventory[.banana] ?? -1)
         pineappleStockLabel.text = String(fruitCurrentInventory[.pineapple] ?? -1)
@@ -46,7 +46,7 @@ class StockChangeViewController: UIViewController {
         mangoStockLabel.text = String(fruitCurrentInventory[.mango] ?? -1)
     }
     
-    func configureStepper(_ fruitCurrentInventory: [Fruit: Int]) {
+    private func configureStepper(_ fruitCurrentInventory: [Fruit: Int]) {
         strawberryStockStepper.value = Double(fruitCurrentInventory[.strawberry] ?? -1)
         bananaStockStepper.value = Double(fruitCurrentInventory[.banana] ?? -1)
         pineappleStockStepper.value = Double(fruitCurrentInventory[.pineapple] ?? -1)
@@ -54,7 +54,7 @@ class StockChangeViewController: UIViewController {
         mangoStockStepper.value = Double(fruitCurrentInventory[.mango] ?? -1)
     }
     
-    @IBAction func didTapStockChangeStepper(_ sender: UIStepper) {
+    @IBAction private func didTapStockChangeStepper(_ sender: UIStepper) {
         switch sender {
         case strawberryStockStepper:
             strawberryStockLabel.text = String(Int(sender.value))
@@ -71,7 +71,7 @@ class StockChangeViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapCloseButton(_ sender: UIBarButtonItem) {
+    @IBAction private func didTapCloseButton(_ sender: UIBarButtonItem) {
         let strawberryChangedStock = changeToInt(strawberryStockLabel.text)
         let bananaChangedStock = changeToInt(bananaStockLabel.text)
         let pineappleChangedStock = changeToInt(pineappleStockLabel.text)
@@ -88,7 +88,7 @@ class StockChangeViewController: UIViewController {
         self.presentingViewController?.dismiss(animated: true)
     }
     
-    func changeToInt(_ text: String?) -> Int {
+    private func changeToInt(_ text: String?) -> Int {
         guard let text = text, let convertedNumber = Int(text) else {
             return -1
         }
@@ -96,7 +96,7 @@ class StockChangeViewController: UIViewController {
         return convertedNumber
     }
     
-    func changeToDouble(_ text: String?) -> Double {
+    private func changeToDouble(_ text: String?) -> Double {
         guard let text = text, let convertedNumber = Double(text) else {
             return -1
         }

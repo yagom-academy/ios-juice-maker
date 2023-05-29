@@ -33,7 +33,7 @@ class JuiceOrderViewController: UIViewController, Exchangeable {
         configureStockLabel()
     }
     
-    func configureStockLabel() {
+    private func configureStockLabel() {
         let fruitInventory = juiceMaker.readFruitInventory()
         
         guard let strawberryStock = fruitInventory[.strawberry],
@@ -52,7 +52,7 @@ class JuiceOrderViewController: UIViewController, Exchangeable {
         mangoStockLabel.text = String(mangoStock)
     }
     
-    @IBAction func didTapOrderButton(_ sender: UIButton) {
+    @IBAction private func didTapOrderButton(_ sender: UIButton) {
         let juice: Juice
         
         switch sender {
@@ -77,7 +77,7 @@ class JuiceOrderViewController: UIViewController, Exchangeable {
         order(juice)
     }
     
-    func order(_ juice: Juice) {
+    private func order(_ juice: Juice) {
         do {
             try juiceMaker.takeOrder(juice)
             configureStockLabel()
@@ -89,7 +89,7 @@ class JuiceOrderViewController: UIViewController, Exchangeable {
         }
     }
     
-    func showAlert(_ result: JuiceOrderResult) {
+    private func showAlert(_ result: JuiceOrderResult) {
         let alert = UIAlertController(
             title: nil,
             message: result.message,
@@ -116,7 +116,7 @@ class JuiceOrderViewController: UIViewController, Exchangeable {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func didTapStockChangeButton(_ sender: UIBarButtonItem) {
+    @IBAction private func didTapStockChangeButton(_ sender: UIBarButtonItem) {
         guard let nextStockChangeViewController = storyboard?.instantiateViewController(
             identifier: "StockChangeViewController"
         ) as? StockChangeViewController else {
