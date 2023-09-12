@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by uemu, Toy.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
