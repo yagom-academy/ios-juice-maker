@@ -1,36 +1,62 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by mireu,charles
 //  Copyright © yagom academy. All rights reserved.
 // 
-
-import Foundation
 
 struct JuiceMaker {
     let fruitStore = FruitStore(fruitStock: [.strawbery: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10])
     
-    func subtractFruitStock(juice: Juice) {
+    func subtractFruitStock(juice: Juice) throws {
         for (name, count) in juice.recipe {
-            fruitStore.subtractFruitStock(fruitName: name, count: count)
+            try fruitStore.subtractFruitStock(fruitName: name, count: count)
         }
     }
     
-    func makeJuice(juice: Juice) {
+    func makeJuice(juice: Juice) throws {
         switch juice {
         case .strawberyJuice:
-            subtractFruitStock(juice: .strawberyJuice)
+            do {
+                try subtractFruitStock(juice: .strawberyJuice)
+            } catch {
+                print(FruitStoreError.outOfStock)
+            }
         case .bananaJuice:
-            subtractFruitStock(juice: .bananaJuice)
+            do {
+                try subtractFruitStock(juice: .bananaJuice)
+            } catch {
+                print(FruitStoreError.outOfStock)
+            }
         case .kiwiJuice:
-            subtractFruitStock(juice: .kiwiJuice)
+            do {
+                try  subtractFruitStock(juice: .kiwiJuice)
+            } catch {
+                print(FruitStoreError.outOfStock)
+            }
         case .pineappleJuice:
-            subtractFruitStock(juice: .pineappleJuice)
+            do {
+                try subtractFruitStock(juice: .pineappleJuice)
+            } catch {
+                print(FruitStoreError.outOfStock)
+            }
         case .strawberyBananaJuice:
-            subtractFruitStock(juice: .strawberyBananaJuice)
+            do {
+                try  subtractFruitStock(juice: .strawberyBananaJuice)
+            } catch {
+                print(FruitStoreError.outOfStock)
+            }
         case .mangoJuice:
-            subtractFruitStock(juice: .mangoJuice)
+            do {
+                try  subtractFruitStock(juice: .mangoJuice)
+            } catch {
+                print(FruitStoreError.outOfStock)
+            }
         case .mangoKiwiJuice:
-            subtractFruitStock(juice: .mangoKiwiJuice)
+            do {
+                try subtractFruitStock(juice: .mangoKiwiJuice)
+            } catch {
+                print(FruitStoreError.outOfStock)
+            }
         }
     }
 }

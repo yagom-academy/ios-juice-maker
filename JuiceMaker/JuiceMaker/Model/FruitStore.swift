@@ -1,10 +1,8 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by mireu,charles
 //  Copyright © yagom academy. All rights reserved.
 //
-
-import Foundation
 
 class FruitStore {
     var fruitStock: [Fruit: Int]
@@ -19,9 +17,9 @@ class FruitStore {
         }
     }
     
-    func subtractFruitStock(fruitName: Fruit, count: Int) {
+    func subtractFruitStock(fruitName: Fruit, count: Int) throws {
         guard let currentStock = fruitStock[fruitName], currentStock - count >= 0 else {
-            return
+            throw FruitStoreError.outOfStock
         }
         fruitStock.updateValue(currentStock - count, forKey: fruitName)
     }
