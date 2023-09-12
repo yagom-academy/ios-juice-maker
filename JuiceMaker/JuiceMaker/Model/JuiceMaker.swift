@@ -8,5 +8,13 @@ import Foundation
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
+    var fruitStore = FruitStore(ingredientQuantity: 10)
     
+    func takeOrder() {
+        
+    }
+    
+    func grindJuice() {
+        
+    }
 }

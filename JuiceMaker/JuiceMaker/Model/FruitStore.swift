@@ -34,3 +34,4 @@ struct FruitStore {
         fruitList["망고"] = ingredientQuantity
     }
 }
+
