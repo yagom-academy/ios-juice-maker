@@ -42,4 +42,19 @@ class FruitStore {
             print("과일쥬스를 제조할 수 없습니다.")
         }
     }
+    
+    func branchHandler(fruit: Fruit, number: Int) {
+        switch fruit {
+        case .strawberry:
+            checkedQuantity(fruit: strawberry, check: fruit, number: number)
+        case .banana:
+            checkedQuantity(fruit: banana, check: fruit, number: number)
+        case .pineapple:
+            checkedQuantity(fruit: pineapple, check: fruit, number: number)
+        case .kiwi:
+            checkedQuantity(fruit: kiwi, check: fruit, number: number)
+        case .mango:
+            checkedQuantity(fruit: mango, check: fruit, number: number)
+        }
+    }
 }
