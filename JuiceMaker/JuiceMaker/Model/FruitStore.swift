@@ -34,4 +34,12 @@ class FruitStore {
             print("망고 재고: \(mango)개")
         }
     }
+    
+    private func checkQuantity(fruit: Int, check: FruitStorage, number: Int) {
+        if fruit >= number {
+            reduceFruitQuantity(in: check, with: number)
+        } else {
+            print("과일쥬스를 제조할 수 없습니다.")
+        }
+    }
 }
