@@ -6,23 +6,21 @@
 
 import Foundation
 
-// 과일 저장소 타입
 struct FruitStore {
     private var fruitList: [String:Int] = [:]
     
-    func minusIngredient(fruit: String, quantity: Int) {
-        
-    }
-    
-    func plusIngredient(fruit: String, quantity: Int) {
-        
+    mutating func changeQuantity(fruit: String, quantity: Int) {
+        guard fruitList[fruit] != nil else {
+            return
+        }
+        fruitList[fruit] = quantity
     }
     
     func checkIngredient(fruit: String, quantity: Int) -> Bool {
-        guard let IngredientQuantity = fruitList[fruit] else {
+        guard let ingredientQuantity = fruitList[fruit] else {
             return false
         }
-        guard IngredientQuantity > quantity else {
+        guard ingredientQuantity > quantity else {
             return false
         }
         return true
