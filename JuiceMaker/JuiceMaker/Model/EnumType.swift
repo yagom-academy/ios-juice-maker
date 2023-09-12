@@ -24,7 +24,6 @@ enum Menu: String {
 }
 
 enum OrderFail: Error {
-    case wrongInput
     case lackIngredient
     case noMenu
 }
