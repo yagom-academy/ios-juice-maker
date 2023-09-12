@@ -7,7 +7,7 @@
 import Foundation
 
 class FruitStore {
-    private var fruitStock: [Fruit: Int]
+    var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit : Int]) {
         self.fruitStock = fruitStock
