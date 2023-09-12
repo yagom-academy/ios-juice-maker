@@ -8,7 +8,7 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore.singleTon
     
-    private func manufacturefruitJuice(in fruitJuice: FruitJuice) {
+     func manufactureFruitJuice(in fruitJuice: FruitJuice) {
         switch fruitJuice {
         case .strawberryJuice:
             fruitStore.branchHandler(fruit: .strawberry, number: 16)
@@ -23,7 +23,7 @@ struct JuiceMaker {
         }
     }
     
-    private func manufactureMixFruitJuice(in mixFruitJuice: MixFruitJuice) {
+    func manufactureMixFruitJuice(in mixFruitJuice: MixFruitJuice) {
         switch mixFruitJuice {
         case .strawberryBananaJuice:
             fruitStore.branchHandler(fruit: .strawberry, number: 10)
@@ -32,5 +32,9 @@ struct JuiceMaker {
             fruitStore.branchHandler(fruit: .mango, number: 2)
             fruitStore.branchHandler(fruit: .kiwi, number: 1)
         }
+    }
+    
+   func changeQuantity(fruit: FruitStorage, number: Int) {
+        fruitStore.changeQuantity(fruit: fruit, number: number)
     }
 }

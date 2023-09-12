@@ -58,7 +58,7 @@ class FruitStore {
         }
     }
     
-    func changedQuantity(fruit: FruitStorage, number: Int) {
+    func changeQuantity(fruit: FruitStorage, number: Int) {
         switch fruit {
         case .strawberry:
             strawberry = number
