@@ -8,10 +8,10 @@ struct FruitStore {
     private var fruitList: [Fruit: Int] = [:]
     
     mutating func changeQuantity(fruit: Fruit, quantity: Int) {
-        guard fruitList[fruit] != nil else {
+        guard var unwrappedfruit = fruitList[fruit] else {
             return
         }
-        fruitList[fruit] = quantity
+        unwrappedfruit -= quantity
     }
     
     func checkIngredient(recipe: [Fruit: Int]) -> Bool {
@@ -19,6 +19,7 @@ struct FruitStore {
             guard let ingredientQuantity = fruitList[fruit] else {
                 return false
             }
+            
             guard ingredientQuantity > quantity else {
                 return false
             }

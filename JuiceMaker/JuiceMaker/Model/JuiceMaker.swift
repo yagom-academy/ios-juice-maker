@@ -8,7 +8,7 @@ struct JuiceMaker {
     var fruitStore = FruitStore(ingredientQuantity: 10)
     var recipe: [Menu: [Fruit: Int]] = [:]
     
-    func takeOrder(order: Menu) {
+    mutating func takeOrder(order: Menu) {
         guard let unwrapRecipe = recipe[order] else {
             return
         }
@@ -17,11 +17,15 @@ struct JuiceMaker {
             return
         }
         
-        grindJuice()
+        grindJuice(recipe: unwrapRecipe)
     }
     
-    func grindJuice() {
+    mutating func grindJuice(recipe: [Fruit: Int]) {
+        for (fruit, quantity) in recipe {
+            fruitStore.changeQuantity(fruit: fruit, quantity: quantity)
+        }
         
+        print("\(recipe.keys)쥬스가 제작되었습니다.")
     }
     
     init() {

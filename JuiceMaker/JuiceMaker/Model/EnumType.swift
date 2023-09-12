@@ -23,7 +23,6 @@ enum Menu: String {
     case mangoKiwiJuice
 }
 
-
 enum OrderFail: Error {
     case wrongInput
     case lackIngredient
