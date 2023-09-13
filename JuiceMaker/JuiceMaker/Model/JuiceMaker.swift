@@ -4,37 +4,42 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-struct JuiceMaker {
-    var fruitStore = FruitStore(stock: 10)
-    var recipes: [Menu: [Fruit: Int]] = [:]
+class JuiceMaker {
+    private var fruitStore = FruitStore(stock: 10)
     
-    mutating func takeOrder(order: Menu) throws {
-        guard let recipe = recipes[order] else {
-            throw OrderFail.noMenu
-        }
+    func takeOrder(order: Menu) throws {
+        let recipe = fetchRecipe(menu: order)
         
         guard fruitStore.checkIngredientStock(recipe: recipe) else {
             throw OrderFail.lackIngredient
         }
         
         grindJuice(recipe: recipe)
+        print("\(order.rawValue)가 제작되었습니다.")
     }
     
-    mutating func grindJuice(recipe: [Fruit: Int]) {
+    private func grindJuice(recipe: [Fruit: Int]) {
         for (fruit, quantity) in recipe {
             fruitStore.reduceStock(fruit: fruit, quantity: quantity)
         }
-        
-        print("\(recipe.keys)가 제작되었습니다.")
     }
     
-    init() {
-        recipes[.strawberryJuice] = [.strawberry: 16]
-        recipes[.bananaJuice] = [.banana: 2]
-        recipes[.kiwiJuice] = [.kiwi: 3]
-        recipes[.pineappleJuice] = [.pineapple: 2]
-        recipes[.mangoJuice] = [.mango: 3]
-        recipes[.strawberryBananaJuice] = [.strawberry: 10, .banana: 1]
-        recipes[.mangoKiwiJuice] = [.mango: 2, .kiwi: 1]
+    private func fetchRecipe(menu: Menu) -> [Fruit: Int] {
+        switch menu {
+            case .strawberryJuice:
+                return [.strawberry: 16]
+            case .bananaJuice:
+                return [.banana: 2]
+            case .pineappleJuice:
+                return [.pineapple: 2]
+            case .kiwiJuice:
+                return [.kiwi: 3]
+            case .mangoJuice:
+                return [.mango: 3]
+            case .strawberryBananaJuice:
+                return [.strawberry: 10, .banana: 1]
+            case .mangoKiwiJuice:
+                return [.mango: 2, .kiwi: 1]
+            }
     }
 }
