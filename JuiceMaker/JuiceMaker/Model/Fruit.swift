@@ -5,7 +5,7 @@
 //
 
 enum Fruit {
-    case strawbery
+    case strawberry
     case banana
     case pineapple
     case kiwi

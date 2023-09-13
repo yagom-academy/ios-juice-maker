@@ -5,7 +5,7 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore = FruitStore(fruitStock: [.strawbery: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10])
+    let fruitStore = FruitStore(fruitStock: [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10])
     
     func subtractFruitStock(juice: Juice) throws {
         for (name, count) in juice.recipe {
@@ -15,9 +15,9 @@ struct JuiceMaker {
     
     func makeJuice(juice: Juice) throws {
         switch juice {
-        case .strawberyJuice:
+        case .strawberryJuice:
             do {
-                try subtractFruitStock(juice: .strawberyJuice)
+                try subtractFruitStock(juice: .strawberryJuice)
             } catch {
                 print(FruitStoreError.outOfStock)
             }
@@ -39,9 +39,9 @@ struct JuiceMaker {
             } catch {
                 print(FruitStoreError.outOfStock)
             }
-        case .strawberyBananaJuice:
+        case .strawberryBananaJuice:
             do {
-                try  subtractFruitStock(juice: .strawberyBananaJuice)
+                try  subtractFruitStock(juice: .strawberryBananaJuice)
             } catch {
                 print(FruitStoreError.outOfStock)
             }
