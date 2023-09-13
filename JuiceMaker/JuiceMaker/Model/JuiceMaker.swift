@@ -5,11 +5,11 @@
 // 
 
 struct JuiceMaker {
-    let fruitStore = FruitStore(fruitStock: [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10])
+    private let fruitStore = FruitStore(fruitStock: [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10])
     
-    func subtractFruitStock(juice: Juice) throws {
+    private func subtractFruitStock(juice: Juice) throws {
         for (name, count) in juice.recipe {
-            try fruitStore.subtractFruitStock(fruitName: name, count: count)
+            try fruitStore.subtractFruitStock(name: name, count: count)
         }
     }
     
