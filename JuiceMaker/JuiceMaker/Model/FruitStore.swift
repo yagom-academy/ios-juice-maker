@@ -31,11 +31,11 @@ class FruitStore {
         }
     }
     
-    private func checkQuantity(fruit: Int, check: FruitStorage, number: Int) {
-        if fruit >= number {
-            reduceFruitQuantity(in: check, with: number)
+    private func compareFruitQuantity(number: Int, quantity: Int) throws -> Int {
+        if number - quantity >= 0 {
+            return number - quantity
         } else {
-            print("과일쥬스를 제조할 수 없습니다.")
+            throw JuiceMakerError.outOfStock
         }
     }
     
