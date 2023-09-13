@@ -31,7 +31,7 @@ class FruitStore {
         }
     }
     
-    private func compareFruitQuantity(number: Int, quantity: Int) throws -> Int {
+    private func checkQuantity(number: Int, quantity: Int) throws -> Int {
         if number - quantity >= 0 {
             return number - quantity
         } else {
