@@ -13,50 +13,11 @@ struct JuiceMaker {
         }
     }
     
-    mutating func makeJuice(juice: Juice) throws {
-        switch juice {
-        case .strawberryJuice:
-            do {
-                try subtractFruitStock(juice: .strawberryJuice)
-            } catch {
-                print(FruitStoreError.outOfStock)
-            }
-        case .bananaJuice:
-            do {
-                try subtractFruitStock(juice: .bananaJuice)
-            } catch {
-                print(FruitStoreError.outOfStock)
-            }
-        case .kiwiJuice:
-            do {
-                try  subtractFruitStock(juice: .kiwiJuice)
-            } catch {
-                print(FruitStoreError.outOfStock)
-            }
-        case .pineappleJuice:
-            do {
-                try subtractFruitStock(juice: .pineappleJuice)
-            } catch {
-                print(FruitStoreError.outOfStock)
-            }
-        case .strawberryBananaJuice:
-            do {
-                try  subtractFruitStock(juice: .strawberryBananaJuice)
-            } catch {
-                print(FruitStoreError.outOfStock)
-            }
-        case .mangoJuice:
-            do {
-                try  subtractFruitStock(juice: .mangoJuice)
-            } catch {
-                print(FruitStoreError.outOfStock)
-            }
-        case .mangoKiwiJuice:
-            do {
-                try subtractFruitStock(juice: .mangoKiwiJuice)
-            } catch {
-                print(FruitStoreError.outOfStock)
-            }
+    mutating func createJuice(juice: Juice) {
+        do {
+            try subtractFruitStock(juice: juice)
+        } catch {
+            print(FruitStoreError.outOfStock)
         }
     }
 }
