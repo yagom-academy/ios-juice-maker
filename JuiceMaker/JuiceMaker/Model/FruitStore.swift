@@ -6,12 +6,8 @@
 
 // 과일 저장소 타입
 class FruitStore {
-    static let singleTon = FruitStore()
-    private (set) var strawberry = 10
-    private (set) var banana = 10
-    private (set) var pineapple = 10
-    private (set) var kiwi = 10
-    private (set) var mango = 10
+    static let shared = FruitStore()
+    private var fruitQuantity: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     private init() {}
     
@@ -58,23 +54,7 @@ class FruitStore {
         }
     }
     
-    func changeQuantity(fruit: FruitStorage, number: Int) {
-        switch fruit {
-        case .strawberry:
-            strawberry = number
-            print("딸기의 재고가 \(number)개로 변경되었습니다.")
-        case .banana:
-            banana = number
-            print("바나나의 재고가 \(number)개로 변경되었습니다.")
-        case .pineapple:
-            pineapple = number
-            print("파인애플의 재고가 \(number)개로 변경되었습니다.")
-        case .kiwi:
-            kiwi = number
-            print("키위의 재고가 \(number)개로 변경되었습니다.")
-        case .mango:
-            mango = number
-            print("망고의 재고가 \(number)개로 변경되었습니다.")
-        }
+    func changeFruitQuantity(of quantity: Int, fruit: Fruit) {
+        fruitQuantity.updateValue(quantity, forKey: fruit)
     }
 }
