@@ -11,7 +11,7 @@ struct FruitStore {
         self.fruitStock = fruitStock
     }
     
-    private mutating func addFruitStock(name: Fruit, count: Int) {
+    mutating func addFruitStock(name: Fruit, count: Int) {
         if let currentStock = fruitStock[name] {
             fruitStock.updateValue(currentStock + count, forKey: name)
         }
