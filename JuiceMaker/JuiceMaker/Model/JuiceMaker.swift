@@ -6,18 +6,18 @@
 
 struct JuiceMaker {
     var fruitStore = FruitStore(stock: 10)
-    var recipe: [Menu: [Fruit: Int]] = [:]
+    var recipes: [Menu: [Fruit: Int]] = [:]
     
     mutating func takeOrder(order: Menu) throws {
-        guard let needFruit = recipe[order] else {
+        guard let recipe = recipes[order] else {
             throw OrderFail.noMenu
         }
         
-        guard fruitStore.checkIngredientStock(recipe: needFruit) else {
+        guard fruitStore.checkIngredientStock(recipe: recipe) else {
             throw OrderFail.lackIngredient
         }
         
-        grindJuice(recipe: needFruit)
+        grindJuice(recipe: recipe)
     }
     
     mutating func grindJuice(recipe: [Fruit: Int]) {
@@ -29,12 +29,12 @@ struct JuiceMaker {
     }
     
     init() {
-        recipe[.strawberryJuice] = [.strawberry: 16]
-        recipe[.bananaJuice] = [.banana: 2]
-        recipe[.kiwiJuice] = [.kiwi: 3]
-        recipe[.pineappleJuice] = [.pineapple: 2]
-        recipe[.mangoJuice] = [.mango: 3]
-        recipe[.strawberryBananaJuice] = [.strawberry: 10, .banana: 1]
-        recipe[.mangoKiwiJuice] = [.mango: 2, .kiwi: 1]
+        recipes[.strawberryJuice] = [.strawberry: 16]
+        recipes[.bananaJuice] = [.banana: 2]
+        recipes[.kiwiJuice] = [.kiwi: 3]
+        recipes[.pineappleJuice] = [.pineapple: 2]
+        recipes[.mangoJuice] = [.mango: 3]
+        recipes[.strawberryBananaJuice] = [.strawberry: 10, .banana: 1]
+        recipes[.mangoKiwiJuice] = [.mango: 2, .kiwi: 1]
     }
 }
