@@ -1,28 +1,28 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by hisop, morgan on 2023/09/13.
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 struct JuiceMaker {
-    var fruitStore = FruitStore(ingredientQuantity: 10)
+    var fruitStore = FruitStore(stock: 10)
     var recipe: [Menu: [Fruit: Int]] = [:]
     
     mutating func takeOrder(order: Menu) throws {
-        guard let unwrapRecipe = recipe[order] else {
+        guard let needFruit = recipe[order] else {
             throw OrderFail.noMenu
         }
         
-        guard fruitStore.checkIngredient(recipe: unwrapRecipe) else {
+        guard fruitStore.checkIngredientStock(recipe: needFruit) else {
             throw OrderFail.lackIngredient
         }
         
-        grindJuice(recipe: unwrapRecipe)
+        grindJuice(recipe: needFruit)
     }
     
     mutating func grindJuice(recipe: [Fruit: Int]) {
         for (fruit, quantity) in recipe {
-            fruitStore.changeQuantity(fruit: fruit, quantity: quantity)
+            fruitStore.reduceStock(fruit: fruit, quantity: quantity)
         }
         
         print("\(recipe.keys)가 제작되었습니다.")

@@ -1,17 +1,9 @@
 //
-//  Error.swift
+//  Menu.swift
 //  JuiceMaker
 //
 //  Created by hisop, morgan on 2023/09/12.
 //
-
-enum Fruit: String {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case mango
-}
 
 enum Menu: String {
     case strawberryJuice
@@ -21,10 +13,5 @@ enum Menu: String {
     case mangoJuice
     case strawberryBananaJuice
     case mangoKiwiJuice
-}
-
-enum OrderFail: Error {
-    case lackIngredient
-    case noMenu
 }
 
