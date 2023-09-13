@@ -1,10 +1,10 @@
 //
-//  FruitStorage.swift
+//  Fruit.swift
 //  Created by uemu, Toy.
 //  Copyright © yagom academy. All rights reserved.
 //
 
-enum FruitStorage {
+enum Fruit {
     case strawberry
     case banana
     case pineapple
