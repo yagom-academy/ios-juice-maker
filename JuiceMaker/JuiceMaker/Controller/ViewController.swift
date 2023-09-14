@@ -10,6 +10,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            try JuiceMaker().takeOrder(order: .strawberryBananaJuice)
+        }
+        catch {
+            print(error)
+        }
         // Do any additional setup after loading the view.
     }
 
