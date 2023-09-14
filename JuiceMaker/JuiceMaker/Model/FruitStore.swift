@@ -21,7 +21,7 @@ struct FruitStore {
                 return false
             }
             
-            guard stock > quantity else {
+            guard stock >= quantity else {
                 return false
             }
         }
