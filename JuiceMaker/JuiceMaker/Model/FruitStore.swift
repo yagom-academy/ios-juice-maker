@@ -6,12 +6,12 @@
 
 
 // 과일 저장소 타입
-class FruitStore {
-    private var fruits: [Fruit : Int] = [:]
+struct FruitStore {
+    private var fruits: [Fruit: Int] = [:]
     
-    private init(initalStock: Int) {
+    init(initialStock: Int) {
         for fruit in Fruit.allCases {
-            self.fruits[fruit] = initalStock
+            self.fruits[fruit] = initialStock
         }
     }
     
@@ -24,20 +24,21 @@ class FruitStore {
         return true
     }
     
-    func decreaseStock(fruits: [Fruit : Int]) -> Bool {
-        for (fruit, quantity) in fruits {
+    mutating func decreaseStock(fruitsInStore: [Fruit: Int]) -> Bool {
+        for (fruit, quantity) in fruitsInStore {
             guard checkStock(fruit: fruit, quantity: quantity) else {
                 return false
             }
         }
         
-        for (fruit, quantity) in fruits {
+        for (fruit, quantity) in fruitsInStore {
             guard let stock = fruits[fruit] else {
                 return false
             }
-            self.fruits[fruit] = stock - quantity
+            fruits[fruit] = stock - quantity
         }
         
         return true
     }
 }
+
