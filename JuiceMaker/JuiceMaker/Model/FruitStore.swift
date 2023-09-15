@@ -8,7 +8,7 @@
 // 과일 저장소 타입
 class FruitStore {
     static let shared = FruitStore(initialStock: 10)
-    private var fruits: [Fruit: Int] = [:]
+    private(set) var fruits: [Fruit: Int] = [:]
     
     private init(initialStock: Int) {
         for fruit in Fruit.allCases {
