@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 //        juiceMaker1.makeJuice(menu: .mangoJuice)
 //        juiceMaker1.makeJuice(menu: .mangoJuice)
 //        juiceMaker1.makeJuice(menu: .mangoKiwiJuice)
-//        
+//
 //        print("juiceMaker")
 //        var juiceMaker2 = JuiceMaker()
 //        juiceMaker2.makeJuice(menu: .mangoJuice)
