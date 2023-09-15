@@ -7,6 +7,13 @@
 struct FruitStore {
     private var fruitList = [Fruit: Int]()
     
+    func checkFruitNumber(fruit: Fruit) -> Int {
+        guard let number = fruitList[fruit] else {
+            return -1 // 나중에 에러처리 해주자
+        }
+        return number
+    }
+        
     mutating func reduceStock(fruit: Fruit, quantity: Int) {
         guard let stock = fruitList[fruit] else {
             return

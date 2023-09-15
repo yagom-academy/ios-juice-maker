@@ -7,6 +7,11 @@
 class JuiceMaker {
     private var fruitStore = FruitStore(stock: 10)
     
+    func checkStock(fruit: Fruit) -> Int {
+        let stock = fruitStore.checkFruitNumber(fruit: fruit)
+        return stock
+    }
+    
     func takeOrder(order: Menu) throws {
         let recipe = fetchRecipe(menu: order)
         
