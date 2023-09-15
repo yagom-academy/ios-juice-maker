@@ -12,11 +12,11 @@ struct JuiceMaker {
     mutating func makeJuice(menu: JuiceMenu) {
         let recipe: [Fruit: Int] = checkRecipe(of: menu)
         
-        guard fruitStore.isDecreasedStock(fruitsInStore: recipe) else {
-            print("\(menu)를 만들 수 없습니다.")
+        guard fruitStore.isDecreasedStock(recipe: recipe) else {
+//            print("\(menu)를 만들 수 없습니다.")
             return
         }
-        print("\(menu)를 만들었습니다.")
+//        print("\(menu)를 만들었습니다.")
     }
     
     private func checkRecipe(of menu: JuiceMenu) -> [Fruit: Int] {

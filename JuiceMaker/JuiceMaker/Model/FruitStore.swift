@@ -15,27 +15,28 @@ struct FruitStore {
         }
     }
     
-    private func isValidStock(fruit: Fruit, quantity: Int) -> Bool {
-        guard let stock = fruits[fruit], stock >= quantity else {
-            print("\(fruit) 재고가 부족합니다.")
-            return false
-        }
-        
-        return true
-    }
-    
-    mutating func isDecreasedStock(fruitsInStore: [Fruit: Int]) -> Bool {
-        for (fruit, quantity) in fruitsInStore {
-            guard isValidStock(fruit: fruit, quantity: quantity) else {
+    private func isValidStock(recipe: [Fruit: Int]) -> Bool {
+        for (fruit, quantity) in recipe {
+            guard let stock = fruits[fruit], stock >= quantity else {
+//                print("\(fruit) 재고가 부족합니다.")
+//                print("\(fruit)의 재고가 \(String(describing: fruits[fruit]))개 남음")
                 return false
             }
         }
+        return true
+    }
+    
+    mutating func isDecreasedStock(recipe: [Fruit: Int]) -> Bool {
+        guard isValidStock(recipe: recipe) else {
+            return false
+        }
         
-        for (fruit, quantity) in fruitsInStore {
+        for (fruit, quantity) in recipe {
             guard let stock = fruits[fruit] else {
                 return false
             }
             fruits[fruit] = stock - quantity
+//            print("\(fruit)의 재고가 \(String(describing: fruits[fruit]))개 남음")
         }
         
         return true
