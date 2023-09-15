@@ -13,13 +13,9 @@ struct JuiceMaker {
         let recipe: [Fruit: Int] = menu.recipe
         
         guard fruitStore.isDecreasedStock(recipe: recipe) else {
-            print("\(menu)를 만들 수 없습니다.")
             return
         }
-        print("\(menu)를 만들었습니다.")
     }
-    
-    
 }
 
 

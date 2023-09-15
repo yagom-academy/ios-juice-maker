@@ -19,11 +19,10 @@ class FruitStore {
     private func isValidStock(recipe: [Fruit: Int]) -> Bool {
         for (fruit, quantity) in recipe {
             guard let stock = fruits[fruit], stock >= quantity else {
-                print("\(fruit) 재고가 부족합니다.")
-//                print("\(fruit)의 재고가 \(String(describing: fruits[fruit]))개 남음")
                 return false
             }
         }
+        
         return true
     }
     
@@ -37,7 +36,6 @@ class FruitStore {
                 return false
             }
             fruits[fruit] = stock - quantity
-//            print("\(fruit)의 재고가 \(String(describing: fruits[fruit]))개 남음")
         }
         
         return true
