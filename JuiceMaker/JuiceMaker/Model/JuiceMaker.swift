@@ -1,12 +1,18 @@
 //
 //  JuiceMaker - JuiceMaker.swift
-//  Created by yagom. 
+//  Created by uemu, Toy.
 //  Copyright © yagom academy. All rights reserved.
-// 
-
-import Foundation
+//
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
+    private let fruitStore = FruitStore.shared
     
+    func manufactureFruitJuice(in fruitJuice: FruitJuice) {
+        do {
+            try fruitStore.reduceFruitQuantity(in: fruitJuice)
+        } catch let error {
+            print("\(error.localizedDescription)")
+        }
+    }
 }
