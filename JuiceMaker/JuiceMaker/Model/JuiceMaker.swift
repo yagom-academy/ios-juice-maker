@@ -16,6 +16,6 @@ struct JuiceMaker {
             return
         }
         
-        fruitStore.decreasedStock(of: recipe)
+        fruitStore.decreaseStock(of: recipe)
     }
 }
