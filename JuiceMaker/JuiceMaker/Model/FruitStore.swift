@@ -16,7 +16,7 @@ class FruitStore {
         }
     }
     
-    private func isValidStock(recipe: [Fruit: Int]) -> Bool {
+    func isValidStock(of recipe: [Fruit: Int]) -> Bool {
         for (fruit, quantity) in recipe {
             guard let stock = fruits[fruit], stock >= quantity else {
                 return false
@@ -26,19 +26,12 @@ class FruitStore {
         return true
     }
     
-    func isDecreasedStock(recipe: [Fruit: Int]) -> Bool {
-        guard isValidStock(recipe: recipe) else {
-            return false
-        }
-        
+    func decreaseStock(of recipe: [Fruit: Int]) {
         for (fruit, quantity) in recipe {
             guard let stock = fruits[fruit] else {
-                return false
+                return
             }
             fruits[fruit] = stock - quantity
         }
-        
-        return true
     }
 }
-

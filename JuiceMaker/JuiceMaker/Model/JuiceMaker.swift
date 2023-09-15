@@ -12,12 +12,10 @@ struct JuiceMaker {
     func makeJuice(menu: JuiceMenu) {
         let recipe: [Fruit: Int] = menu.recipe
         
-        guard fruitStore.isDecreasedStock(recipe: recipe) else {
+        guard fruitStore.isValidStock(of: recipe) else {
             return
         }
+        
+        fruitStore.decreasedStock(of: recipe)
     }
 }
-
-
-
-
