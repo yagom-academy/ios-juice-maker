@@ -15,8 +15,8 @@ struct FruitStore {
         }
     }
     
-    private func checkStock(fruit: Fruit, quantity: Int) -> Bool {
-        guard let stock = fruits[fruit], stock > quantity else {
+    private func isValidStock(fruit: Fruit, quantity: Int) -> Bool {
+        guard let stock = fruits[fruit], stock >= quantity else {
             print("\(fruit) 재고가 부족합니다.")
             return false
         }
@@ -24,9 +24,9 @@ struct FruitStore {
         return true
     }
     
-    mutating func decreaseStock(fruitsInStore: [Fruit: Int]) -> Bool {
+    mutating func isDecreasedStock(fruitsInStore: [Fruit: Int]) -> Bool {
         for (fruit, quantity) in fruitsInStore {
-            guard checkStock(fruit: fruit, quantity: quantity) else {
+            guard isValidStock(fruit: fruit, quantity: quantity) else {
                 return false
             }
         }

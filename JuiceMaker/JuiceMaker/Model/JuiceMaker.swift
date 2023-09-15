@@ -12,7 +12,7 @@ struct JuiceMaker {
     mutating func makeJuice(menu: JuiceMenu) {
         let recipe: [Fruit: Int] = checkRecipe(of: menu)
         
-        guard fruitStore.decreaseStock(fruitsInStore: recipe) else {
+        guard fruitStore.isDecreasedStock(fruitsInStore: recipe) else {
             print("\(menu)를 만들 수 없습니다.")
             return
         }
