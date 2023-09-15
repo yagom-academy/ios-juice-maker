@@ -11,11 +11,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        var juiceMaker = JuiceMaker()
-//        juiceMaker.makeJuice(menu: .mangoJuice)
-//        juiceMaker.makeJuice(menu: .mangoJuice)
-//        juiceMaker.makeJuice(menu: .mangoJuice)
-//        juiceMaker.makeJuice(menu: .mangoKiwiJuice)
+//        var juiceMaker1 = JuiceMaker()
+//        juiceMaker1.makeJuice(menu: .mangoJuice)
+//        juiceMaker1.makeJuice(menu: .mangoJuice)
+//        juiceMaker1.makeJuice(menu: .mangoJuice)
+//        juiceMaker1.makeJuice(menu: .mangoKiwiJuice)
+//        
+//        print("juiceMaker")
+//        var juiceMaker2 = JuiceMaker()
+//        juiceMaker2.makeJuice(menu: .mangoJuice)
     }
 
 

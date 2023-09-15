@@ -6,10 +6,11 @@
 
 
 // 과일 저장소 타입
-struct FruitStore {
+class FruitStore {
+    static let shared = FruitStore(initialStock: 10)
     private var fruits: [Fruit: Int] = [:]
     
-    init(initialStock: Int) {
+    private init(initialStock: Int) {
         for fruit in Fruit.allCases {
             self.fruits[fruit] = initialStock
         }
@@ -18,7 +19,7 @@ struct FruitStore {
     private func isValidStock(recipe: [Fruit: Int]) -> Bool {
         for (fruit, quantity) in recipe {
             guard let stock = fruits[fruit], stock >= quantity else {
-//                print("\(fruit) 재고가 부족합니다.")
+                print("\(fruit) 재고가 부족합니다.")
 //                print("\(fruit)의 재고가 \(String(describing: fruits[fruit]))개 남음")
                 return false
             }
@@ -26,7 +27,7 @@ struct FruitStore {
         return true
     }
     
-    mutating func isDecreasedStock(recipe: [Fruit: Int]) -> Bool {
+    func isDecreasedStock(recipe: [Fruit: Int]) -> Bool {
         guard isValidStock(recipe: recipe) else {
             return false
         }

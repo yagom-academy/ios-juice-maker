@@ -7,16 +7,16 @@
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    private var fruitStore: FruitStore = FruitStore(initialStock: 10)
+    private let fruitStore: FruitStore = FruitStore.shared
     
-    mutating func makeJuice(menu: JuiceMenu) {
+    func makeJuice(menu: JuiceMenu) {
         let recipe: [Fruit: Int] = checkRecipe(of: menu)
         
         guard fruitStore.isDecreasedStock(recipe: recipe) else {
-//            print("\(menu)를 만들 수 없습니다.")
+            print("\(menu)를 만들 수 없습니다.")
             return
         }
-//        print("\(menu)를 만들었습니다.")
+        print("\(menu)를 만들었습니다.")
     }
     
     private func checkRecipe(of menu: JuiceMenu) -> [Fruit: Int] {
