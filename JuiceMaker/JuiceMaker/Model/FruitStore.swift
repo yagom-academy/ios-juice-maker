@@ -14,19 +14,19 @@ final class FruitStore {
     func reduceFruitQuantity(in fruiJuice: FruitJuice) throws {
         try fruiJuice.juiceRecipe.forEach {(fruit, quantity) in
             guard let number = fruitQuantity[fruit] else { return }
-            do {
-                fruitQuantity[fruit] = try calculateQuantity(number: number, quantity: quantity)
-            } catch {
+            if checkQuantity(number: number, quantity: quantity) {
+                fruitQuantity[fruit] = number - quantity
+            } else {
                 throw JuiceMakerError.outOfStock
             }
         }
     }
     
-    private func calculateQuantity(number: Int, quantity: Int) throws -> Int {
+    private func checkQuantity(number: Int, quantity: Int) -> Bool {
         if number - quantity >= 0 {
-            return number - quantity
+            return true
         } else {
-            throw JuiceMakerError.outOfStock
+            return false
         }
     }
     
