@@ -7,7 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let juiceMaker = JuiceMaker()
+    var juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -37,6 +37,17 @@ class ViewController: UIViewController {
         kiwiLabel.text = stock[.kiwi]
         pineappleLabel.text = stock[.pineapple]
         mangoLabel.text = stock[.mango]
+    }
+    
+    func orderJuice(to juice: Juice) {
+        do {
+            try juiceMaker.createJuice(juice: juice)
+            
+        } catch FruitStoreError.outOfStock {
+            
+        } catch {
+            print(error)
+        }
     }
 }
 

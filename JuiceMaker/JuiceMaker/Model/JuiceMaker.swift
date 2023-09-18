@@ -13,11 +13,7 @@ struct JuiceMaker {
         }
     }
     
-    mutating func createJuice(juice: Juice) {
-        do {
+    mutating func createJuice(juice: Juice) throws {
             try subtractFruitStock(juice: juice)
-        } catch {
-            print(FruitStoreError.outOfStock)
-        }
     }
 }
