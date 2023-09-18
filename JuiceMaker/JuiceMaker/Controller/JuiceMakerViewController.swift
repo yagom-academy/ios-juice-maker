@@ -63,11 +63,30 @@ class JuiceMakerViewController: UIViewController {
         
         do {
             try juiceMaker.makeJuice(menu: menu)
+            alertJuiceMakeSucess(of: menu)
         } catch Errors.outOfStock {
-            print(Errors.outOfStock)
+            alertOutOfStock()
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func alertJuiceMakeSucess(of menu: JuiceMenu) {
+        let message: String = "\(menu.rawValue) 나왔습니다! 맛있게 드세요!"
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let check = UIAlertAction(title: "확인", style: .default)
         
+        alert.addAction(check)
+        present(alert, animated: true)
+    }
+    
+    func alertOutOfStock() {
+        let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "예", style: .destructive)
+        let no = UIAlertAction(title: "아니오", style: .default)
+        
+        alert.addAction(yes)
+        alert.addAction(no)
+        present(alert, animated: true)
     }
 }
