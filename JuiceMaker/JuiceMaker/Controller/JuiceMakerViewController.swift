@@ -14,8 +14,8 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    let juiceMaker: JuiceMaker = JuiceMaker()
-    let fruitStore: FruitStore = FruitStore.shared
+    private let juiceMaker: JuiceMaker = JuiceMaker()
+    private let fruitStore: FruitStore = FruitStore.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class JuiceMakerViewController: UIViewController {
         setupUI()
     }
     
-    func setupUI() {
+    private func setupUI() {
         strawberryStockLabel.text = String(fruitStore.fruits[.strawberry] ?? 0)
         bananaStockLabel.text = String(fruitStore.fruits[.banana] ?? 0)
         pineappleStockLabel.text = String(fruitStore.fruits[.pineapple] ?? 0)
@@ -60,13 +60,12 @@ class JuiceMakerViewController: UIViewController {
         makeJuice(of: menu)
     }
     
-    func makeJuice(of menu: JuiceMenu?) {
-        guard let menu = menu else {
-            return
-        }
+    private func makeJuice(of menu: JuiceMenu?) {
+        guard let menu = menu else { return }
         
         do {
             try juiceMaker.makeJuice(menu: menu)
+            setupUI()
             alertJuiceMakeSucess(of: menu)
         } catch Errors.outOfStock {
             alertOutOfStock()
@@ -75,7 +74,7 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    func alertJuiceMakeSucess(of menu: JuiceMenu) {
+    private func alertJuiceMakeSucess(of menu: JuiceMenu) {
         let message: String = "\(menu.rawValue) 나왔습니다! 맛있게 드세요!"
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let check = UIAlertAction(title: "확인", style: .default)
@@ -84,7 +83,7 @@ class JuiceMakerViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func alertOutOfStock() {
+    private func alertOutOfStock() {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "예", style: .destructive) { _ in
             self.pushToStockViewController()
@@ -96,7 +95,7 @@ class JuiceMakerViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func pushToStockViewController() {
+    private func pushToStockViewController() {
         guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
         
         self.navigationController?.pushViewController(stockViewController, animated: true)

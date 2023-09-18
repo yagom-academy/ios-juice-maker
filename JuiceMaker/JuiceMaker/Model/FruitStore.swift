@@ -28,9 +28,7 @@ class FruitStore {
     
     func decreaseStock(of recipe: [Fruit: Int]) {
         for (fruit, quantity) in recipe {
-            guard let stock = fruits[fruit] else {
-                return
-            }
+            guard let stock = fruits[fruit] else { return }
             fruits[fruit] = stock - quantity
         }
     }
