@@ -16,12 +16,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoCount: UILabel!
     
     @objc func changeStock(_ noti: NSNotification) {
-        print("change!!")
+
     }
     
-    @IBAction func orderStrawberry(_ sender: UIButton) {
+    @IBAction func orderButton(_ sender: UIButton) {
         do {
-            try juiceMaker.takeOrder(order: .strawberryJuice)
+            switch sender.tag {
+            case 1:
+                try juiceMaker.takeOrder(order: .strawberryJuice)
+            case 2:
+                try juiceMaker.takeOrder(order: .bananaJuice)
+            case 3:
+                try juiceMaker.takeOrder(order: .pineappleJuice)
+            case 4:
+                try juiceMaker.takeOrder(order: .kiwiJuice)
+            case 5:
+                try juiceMaker.takeOrder(order: .mangoJuice)
+            case 6:
+                try juiceMaker.takeOrder(order: .strawberryBananaJuice)
+            case 7:
+                try juiceMaker.takeOrder(order: .mangoKiwiJuice)
+            default:
+                break
+            }
         } catch {
             print("error났어")
         }
@@ -36,37 +53,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        juiceMaker.
         NotificationCenter.default.addObserver(self, selector: #selector(changeStock(_:)), name: Notification.Name("changeStock"), object: nil)
-        
+        NotificationCenter.default.post(name: Notification.Name("changeStock"), object: nil)
     }
-
-
-}
-
-class FruitStoreVC: UIViewController {
-
-    
-    
-    @IBAction func goJuiceMaker(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
