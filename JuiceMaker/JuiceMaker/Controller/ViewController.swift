@@ -8,11 +8,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var strawberryLabel: UILabel!
+    @IBOutlet weak var bananaLabel: UILabel!
+    @IBOutlet weak var pineappleLabel: UILabel!
+    @IBOutlet weak var kiwiLabel: UILabel!
+    @IBOutlet weak var mangoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func clickStock(_ sender: Any) {
+        if let viewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") {
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 }
 

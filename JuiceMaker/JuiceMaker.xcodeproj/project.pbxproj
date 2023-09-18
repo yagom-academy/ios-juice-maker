@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E94E1012AB8408900332FF5 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E94E1002AB8408900332FF5 /* StockViewController.swift */; };
 		4EBF60932AB02BA70078F41F /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60922AB02BA70078F41F /* Fruit.swift */; };
 		4EBF60952AB02BE60078F41F /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60942AB02BE60078F41F /* Juice.swift */; };
 		4EBF60972AB0398C0078F41F /* FruitStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF60962AB0398C0078F41F /* FruitStoreError.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E94E1002AB8408900332FF5 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		4EBF60922AB02BA70078F41F /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		4EBF60942AB02BE60078F41F /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		4EBF60962AB0398C0078F41F /* FruitStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreError.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				4E94E1002AB8408900332FF5 /* StockViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF60932AB02BA70078F41F /* Fruit.swift in Sources */,
+				4E94E1012AB8408900332FF5 /* StockViewController.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				4EBF60952AB02BE60078F41F /* Juice.swift in Sources */,
 				4EBF60972AB0398C0078F41F /* FruitStoreError.swift in Sources */,
