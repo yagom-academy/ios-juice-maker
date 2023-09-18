@@ -7,6 +7,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -16,13 +17,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
     }
 
     @IBAction func clickStock(_ sender: Any) {
         if let viewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") {
             self.navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+    
+    func configureFristView() {
+        let stock = juiceMaker.fruitStore.fruitStock.compactMapValues { stock in
+            return String(stock)
+        }
+        
+        strawberryLabel.text = stock[.strawberry]
+        bananaLabel.text = stock[.banana]
+        kiwiLabel.text = stock[.kiwi]
+        pineappleLabel.text = stock[.pineapple]
+        mangoLabel.text = stock[.mango]
     }
 }
 

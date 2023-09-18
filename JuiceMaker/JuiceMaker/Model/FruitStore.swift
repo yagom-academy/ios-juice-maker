@@ -5,7 +5,7 @@
 //
 
 struct FruitStore {
-    private var fruitStock: [Fruit: Int]
+    private(set) var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit : Int]) {
         self.fruitStock = fruitStock
