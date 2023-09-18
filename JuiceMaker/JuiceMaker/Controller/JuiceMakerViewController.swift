@@ -31,6 +31,10 @@ class JuiceMakerViewController: UIViewController {
         mangoStockLabel.text = String(fruitStore.fruits[.mango] ?? 0)
     }
     
+    @IBAction func stockChangeButtonTapped(_ sender: Any) {
+        pushToStockViewController()
+    }
+    
     @IBAction func juiceOrderButtonTapped(_ sender: UIButton) {
         var menu: JuiceMenu?
         
@@ -82,11 +86,19 @@ class JuiceMakerViewController: UIViewController {
     
     func alertOutOfStock() {
         let alert = UIAlertController(title: nil, message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let yes = UIAlertAction(title: "예", style: .destructive)
+        let yes = UIAlertAction(title: "예", style: .destructive) { _ in
+            self.pushToStockViewController()
+        }
         let no = UIAlertAction(title: "아니오", style: .default)
         
         alert.addAction(yes)
         alert.addAction(no)
         present(alert, animated: true)
+    }
+    
+    func pushToStockViewController() {
+        guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
+        
+        self.navigationController?.pushViewController(stockViewController, animated: true)
     }
 }
