@@ -31,37 +31,43 @@ class JuiceMakerViewController: UIViewController {
         mangoStockLabel.text = String(fruitStore.fruits[.mango] ?? 0)
     }
     
-    @IBAction func strawberryBananaJuiceOrderButtonTapped(_ sender: Any) {
-        juiceMaker.makeJuice(menu: .strawberryBananaJuice)
+    @IBAction func juiceOrderButtonTapped(_ sender: UIButton) {
+        var menu: JuiceMenu?
+        
+        switch sender.tag {
+        case 0:
+            menu = .strawberryBananaJuice
+        case 1:
+            menu = .strawberryJuice
+        case 2:
+            menu = .bananaJuice
+        case 3:
+            menu = .pineappleJuice
+        case 4:
+            menu = .mangoKiwiJuice
+        case 5:
+            menu = .kiwiJuice
+        case 6:
+            menu = .mangoJuice
+        default:
+            break
+        }
+        
+        makeJuice(of: menu)
     }
     
-    @IBAction func strawberryJuiceOrderButtonTapped(_ sender: Any) {
-        juiceMaker.makeJuice(menu: .strawberryJuice)
+    func makeJuice(of menu: JuiceMenu?) {
+        guard let menu = menu else {
+            return
+        }
+        
+        do {
+            try juiceMaker.makeJuice(menu: menu)
+        } catch Errors.outOfStock {
+            print(Errors.outOfStock)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
-
-    
-    @IBAction func bananaJuiceOrderButtonTapped(_ sender: Any) {
-        juiceMaker.makeJuice(menu: .bananaJuice)
-    }
-    
-    
-    @IBAction func pineappleJuiceOrderButtonTapped(_ sender: Any) {
-        juiceMaker.makeJuice(menu: .pineappleJuice)
-    }
-    
-    
-    @IBAction func mangokiwiJuiceOrderButtonTapped(_ sender: Any) {
-        juiceMaker.makeJuice(menu: .mangoKiwiJuice)
-    }
-    
-    
-    @IBAction func kiwiJuiceOrderButtonTapped(_ sender: Any) {
-        juiceMaker.makeJuice(menu: .kiwiJuice)
-    }
-    
-    
-    @IBAction func mangoJuiceOrderButtonTapped(_ sender: Any) {
-        juiceMaker.makeJuice(menu: .mangoJuice)
-    }
-    
 }

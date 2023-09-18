@@ -9,11 +9,11 @@
 struct JuiceMaker {
     private let fruitStore: FruitStore = FruitStore.shared
     
-    func makeJuice(menu: JuiceMenu) {
+    func makeJuice(menu: JuiceMenu) throws {
         let recipe: [Fruit: Int] = menu.recipe
         
         guard fruitStore.isValidStock(of: recipe) else {
-            return
+            throw Errors.outOfStock
         }
         
         fruitStore.decreaseStock(of: recipe)
