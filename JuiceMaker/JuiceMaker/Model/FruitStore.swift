@@ -4,22 +4,19 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-struct FruitStore {
+import Foundation
+
+class FruitStore {
+    static let shared = FruitStore(stock: 20)
     private var fruitList = [Fruit: Int]()
-    
-    func checkFruitNumber(fruit: Fruit) -> Int {
-        guard let number = fruitList[fruit] else {
-            return -1 // 나중에 에러처리 해주자
-        }
-        return number
-    }
         
-    mutating func reduceStock(fruit: Fruit, quantity: Int) {
+    func reduceStock(fruit: Fruit, quantity: Int) {
         guard let stock = fruitList[fruit] else {
             return
         }
         
         fruitList[fruit] = stock - quantity
+        NotificationCenter.default.post(name: Notification.Name("changeStock"), object: nil)
     }
     
     func checkIngredientStock(recipe: [Fruit: Int]) -> Bool {
@@ -35,7 +32,7 @@ struct FruitStore {
         return true
     }
     
-    init(stock: Int) {
+    private init(stock: Int) {
         fruitList[.strawberry] = stock
         fruitList[.banana] = stock
         fruitList[.pineapple] = stock
