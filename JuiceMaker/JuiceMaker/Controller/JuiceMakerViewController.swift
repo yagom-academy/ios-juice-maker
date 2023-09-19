@@ -96,8 +96,9 @@ class JuiceMakerViewController: UIViewController {
     }
     
     private func pushToStockViewController() {
-        guard let stockViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockChangeViewController") as? StockChangeViewController else { return }
+        guard let stockNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "StockChangeNavigationController") as? UINavigationController else { return }
         
-        self.navigationController?.pushViewController(stockViewController, animated: true)
+        
+        self.present(stockNavigationController, animated: true)
     }
 }

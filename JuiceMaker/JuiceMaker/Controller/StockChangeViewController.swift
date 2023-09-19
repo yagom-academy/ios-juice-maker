@@ -32,6 +32,6 @@ class StockChangeViewController: UIViewController {
     }
 
     @IBAction func doneButtonTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.presentingViewController?.dismiss(animated: true)
     }
 }
