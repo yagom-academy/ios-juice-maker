@@ -27,6 +27,30 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
+        
+        switch sender.tag {
+        case 1:
+            orderJuice(to: .strawberryJuice)
+        case 2:
+            orderJuice(to: .bananaJuice)
+        case 3:
+            orderJuice(to: .pineappleJuice)
+        case 4:
+            orderJuice(to: .kiwiJuice)
+        case 5:
+            orderJuice(to: .mangoJuice)
+        case 6:
+            orderJuice(to: .strawberryBananaJuice)
+        case 7:
+            orderJuice(to: .mangoKiwiJuice)
+        default:
+            break
+        }
+        
+        configureFristView()
+    }
+    
     func configureFristView() {
         let stock = juiceMaker.fruitStore.fruitStock.compactMapValues { stock in
             return String(stock)
