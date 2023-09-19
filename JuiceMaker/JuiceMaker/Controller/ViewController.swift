@@ -16,10 +16,42 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoCount: UILabel!
     
     @objc func changeStock(_ noti: NSNotification) {
-
+        if let strawberryStock = juiceMaker.fruitStore.fruitList[.strawberry] {
+            strawberryCount.text = "\(strawberryStock)"
+        }
+        if let bananaStock = juiceMaker.fruitStore.fruitList[.banana] {
+            bananaCount.text = "\(bananaStock)"
+        }
+        if let pineappleStock = juiceMaker.fruitStore.fruitList[.pineapple] {
+            pineappleCount.text = "\(pineappleStock)"
+        }
+        if let kiwiStock = juiceMaker.fruitStore.fruitList[.kiwi] {
+            kiwiCount.text = "\(kiwiStock)"
+        }
+        if let mangoStock = juiceMaker.fruitStore.fruitList[.mango] {
+            mangoCount.text = "\(mangoStock)"
+        }
     }
     
     @IBAction func orderButton(_ sender: UIButton) {
+        guard let menu = Menu(rawValue: sender.tag)?.menuToKorean else {
+            return
+        }
+        
+        let grindCompleteAlert = UIAlertController(title: "\(menu) 나왔습니다", message: "맛있게드세요", preferredStyle: .alert)
+        let grindCompleteAlertClose = UIAlertAction(title: "예", style: .cancel, handler: nil)
+        grindCompleteAlert.addAction(grindCompleteAlertClose)
+        
+        let grindAlert = UIAlertController(title: "재료가 부족합니다", message: "재고를 수정할까요?", preferredStyle: .alert)
+        let grindCancel = UIAlertAction(title: "아니요", style: .cancel, handler: nil)
+        grindAlert.addAction(grindCancel)
+        
+        let grindConfirm = UIAlertAction(title: "네", style: .default) { action in
+            self.goFruitStore(sender)
+        }
+        grindAlert.addAction(grindConfirm)
+
+ 
         do {
             switch sender.tag {
             case 1:
@@ -39,8 +71,9 @@ class ViewController: UIViewController {
             default:
                 break
             }
+            present(grindCompleteAlert, animated: true, completion: nil)
         } catch {
-            print("error났어")
+            present(grindAlert, animated: true, completion: nil)
         }
     }
     

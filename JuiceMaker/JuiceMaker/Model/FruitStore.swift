@@ -8,7 +8,7 @@ import Foundation
 
 class FruitStore {
     static let shared = FruitStore(stock: 20)
-    private var fruitList = [Fruit: Int]()
+    private(set) var fruitList = [Fruit: Int]()
         
     func reduceStock(fruit: Fruit, quantity: Int) {
         guard let stock = fruitList[fruit] else {

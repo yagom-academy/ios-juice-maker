@@ -5,7 +5,7 @@
 // 
 
 class JuiceMaker {
-    private var fruitStore = FruitStore.shared
+    private(set) var fruitStore = FruitStore.shared
     
     func takeOrder(order: Menu) throws {
         let recipe = fetchRecipe(menu: order)
@@ -15,7 +15,6 @@ class JuiceMaker {
         }
         
         grindJuice(recipe: recipe)
-        print("\(order.rawValue)가 제작되었습니다.")
     }
     
     private func grindJuice(recipe: [Fruit: Int]) {
@@ -40,6 +39,6 @@ class JuiceMaker {
                 return [.strawberry: 10, .banana: 1]
             case .mangoKiwiJuice:
                 return [.mango: 2, .kiwi: 1]
-            }
+        }
     }
 }
