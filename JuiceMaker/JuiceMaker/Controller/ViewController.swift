@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        configureFristView()
     }
 
     @IBAction func clickStock(_ sender: Any) {
@@ -42,12 +42,35 @@ class ViewController: UIViewController {
     func orderJuice(to juice: Juice) {
         do {
             try juiceMaker.createJuice(juice: juice)
-            
+            announceJuiceReady(message: "\(juice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
         } catch FruitStoreError.outOfStock {
-            
+            alertLowInventory(message: "재료가 모자라요. 재고를 수정할까요?")
         } catch {
             print(error)
         }
+    }
+    
+    func announceJuiceReady(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let checkAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(checkAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertLowInventory(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "아니오", style: .default)
+        let okAction = UIAlertAction(title: "예", style: .default) { action in
+            if let viewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") {
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
