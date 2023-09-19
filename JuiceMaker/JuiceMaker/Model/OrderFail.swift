@@ -7,5 +7,4 @@
 
 enum OrderFail: Error {
     case lackIngredient
-    case noMenu
 }

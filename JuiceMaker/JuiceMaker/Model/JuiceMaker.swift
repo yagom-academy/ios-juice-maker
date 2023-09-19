@@ -3,9 +3,10 @@
 //  Created by hisop, morgan on 2023/09/13.
 //  Copyright © yagom academy. All rights reserved.
 // 
+import UIKit
 
 class JuiceMaker {
-    private(set) var fruitStore = FruitStore.shared
+    private(set) var fruitStore = FruitStore(stock: 10)
     
     func takeOrder(order: Menu) throws {
         let recipe = fetchRecipe(menu: order)
@@ -21,6 +22,7 @@ class JuiceMaker {
         for (fruit, quantity) in recipe {
             fruitStore.reduceStock(fruit: fruit, quantity: quantity)
         }
+        NotificationCenter.default.post(name: Notification.Name("refreshStock"), object: nil)
     }
     
     private func fetchRecipe(menu: Menu) -> [Fruit: Int] {

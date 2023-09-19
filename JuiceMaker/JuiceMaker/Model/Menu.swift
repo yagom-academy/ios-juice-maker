@@ -7,12 +7,12 @@
 
 enum Menu: Int {
     case strawberryJuice = 1
-    case bananaJuice = 2
-    case pineappleJuice = 3
-    case kiwiJuice = 4
-    case mangoJuice = 5
-    case strawberryBananaJuice = 6
-    case mangoKiwiJuice = 7
+    case bananaJuice
+    case pineappleJuice
+    case kiwiJuice
+    case mangoJuice
+    case strawberryBananaJuice
+    case mangoKiwiJuice
     
     var menuToKorean: String {
         switch self {
