@@ -11,8 +11,8 @@ final class ViewController: UIViewController {
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
-    @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
+    @IBOutlet weak var kiwiLabel: UILabel!
     
     var juiceMaker = JuiceMaker()
     var fruitStore = FruitStore.shared

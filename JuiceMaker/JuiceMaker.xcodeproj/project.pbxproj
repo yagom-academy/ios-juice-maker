@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C9B0E8B2AB94B99000DDD29 /* FruitQuantityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B0E8A2AB94B99000DDD29 /* FruitQuantityViewController.swift */; };
 		3CB05ED82AB1A045009D0655 /* JuiceMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB05ED72AB1A045009D0655 /* JuiceMakerError.swift */; };
 		659C663E2AB0352100E0934A /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659C663D2AB0352100E0934A /* Fruit.swift */; };
 		659C66402AB035EB00E0934A /* FruitJuice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659C663F2AB035EB00E0934A /* FruitJuice.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C9B0E8A2AB94B99000DDD29 /* FruitQuantityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitQuantityViewController.swift; sourceTree = "<group>"; };
 		3CB05ED72AB1A045009D0655 /* JuiceMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerError.swift; sourceTree = "<group>"; };
 		659C663D2AB0352100E0934A /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		659C663F2AB035EB00E0934A /* FruitJuice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitJuice.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* ViewController.swift */,
+				3C9B0E8A2AB94B99000DDD29 /* FruitQuantityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				3CB05ED82AB1A045009D0655 /* JuiceMakerError.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
+				3C9B0E8B2AB94B99000DDD29 /* FruitQuantityViewController.swift in Sources */,
 				659C66402AB035EB00E0934A /* FruitJuice.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,
 				C73DAF4C255D0D0400020D38 /* JuiceMaker.swift in Sources */,
