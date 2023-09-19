@@ -10,7 +10,7 @@ struct JuiceMaker {
     
     func manufactureFruitJuice(in fruitJuice: FruitJuice) {
         do {
-            try fruitStore.reduceFruitQuantity(in: fruitJuice)
+            try fruitStore.reduceFruitQuantity(fruitJuice: fruitJuice)
         } catch let error {
             print("\(error.localizedDescription)")
         }

@@ -11,23 +11,17 @@ final class FruitStore {
     
     private init() {}
     
-    func reduceFruitQuantity(in fruiJuice: FruitJuice) throws {
-        try fruiJuice.juiceRecipe.forEach {(fruit, quantity) in
-            guard let number = fruitQuantity[fruit] else { return }
-            if checkQuantity(number: number, quantity: quantity) {
-                fruitQuantity[fruit] = number - quantity
-            } else {
+    func reduceFruitQuantity(fruitJuice: FruitJuice) throws {
+        var duplicationQuantity = fruitQuantity
+        
+        try fruitJuice.juiceRecipe.forEach { (fruit, quantity) in
+            guard let number = duplicationQuantity[fruit], number >= quantity else {
                 throw JuiceMakerError.outOfStock
             }
+            
+            duplicationQuantity[fruit] = number - quantity
         }
-    }
-    
-    private func checkQuantity(number: Int, quantity: Int) -> Bool {
-        if number - quantity >= 0 {
-            return true
-        } else {
-            return false
-        }
+        fruitQuantity = duplicationQuantity
     }
     
     func changeFruitQuantity(of quantity: Int, fruit: Fruit) {
