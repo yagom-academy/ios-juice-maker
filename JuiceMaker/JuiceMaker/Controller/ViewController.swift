@@ -47,10 +47,34 @@ final class ViewController: UIViewController {
             try juiceMaker.manufactureFruitJuice(in: juice)
             fruitJuice = juice.rawValue
             showStock()
+            successmanufactureJuice()
         } catch {
-            
+            failmanufactureJuice()
         }
     }
-
+    
+    func failmanufactureJuice() {
+        let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
+        let success = UIAlertAction(title: "예", style: .default) { _ in
+            guard let vc = self.storyboard?.instantiateViewController(identifier: "FruitQuantityViewController") else { return }
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        let cancel = UIAlertAction(title: "아니오", style: .cancel) { _ in }
+        
+        alert.addAction(success)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func successmanufactureJuice() {
+        let alert = UIAlertController(title: "\(fruitJuice ?? "") 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
+        let success = UIAlertAction(title: "예", style: .default) { _ in }
+        
+        alert.addAction(success)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
