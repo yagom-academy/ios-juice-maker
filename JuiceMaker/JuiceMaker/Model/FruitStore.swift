@@ -17,10 +17,15 @@ struct FruitStore {
         }
     }
     
-    mutating func subtractFruitStock(name: Fruit, count: Int) throws {
-        guard let currentStock = fruitStock[name], currentStock - count >= 0 else {
+    func checkFruitStock(name: Fruit, count: Int) throws {
+        guard let currentStock = fruitStock[name], currentStock >= count else {
             throw FruitStoreError.outOfStock
         }
+    }
+    
+    mutating func subtractFruitStock(name: Fruit, count: Int) {
+        guard let currentStock = fruitStock[name] else { return }
+        
         fruitStock.updateValue(currentStock - count, forKey: name)
     }
 }
