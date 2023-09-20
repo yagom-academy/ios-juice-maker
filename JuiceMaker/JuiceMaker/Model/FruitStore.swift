@@ -17,13 +17,17 @@ struct FruitStore {
         }
     }
     
-    func checkFruitStock(name: Fruit, count: Int) throws {
-        guard let currentStock = fruitStock[name], currentStock >= count else {
-            throw FruitStoreError.outOfStock
+    private func checkFruitStock(name: Fruit, count: Int, juice: Juice) throws {
+        for (name, count) in juice.recipe {
+            guard let currentStock = fruitStock[name], currentStock >= count else {
+                throw FruitStoreError.outOfStock
+            }
         }
     }
     
-    mutating func subtractFruitStock(name: Fruit, count: Int) {
+    mutating func subtractFruitStock(name: Fruit, count: Int, juice: Juice) throws {
+        try checkFruitStock(name: name, count: count, juice: juice)
+        
         guard let currentStock = fruitStock[name] else { return }
         
         fruitStock.updateValue(currentStock - count, forKey: name)

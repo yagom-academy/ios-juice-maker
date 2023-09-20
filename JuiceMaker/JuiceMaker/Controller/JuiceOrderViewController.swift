@@ -21,7 +21,7 @@ class JuiceOrderViewController: UIViewController {
         configureFristView()
     }
 
-    @IBAction func clickStock(_ sender: Any) {
+    @IBAction func clickStock() {
         if let viewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") {
             self.navigationController?.pushViewController(viewController, animated: true)
         }
