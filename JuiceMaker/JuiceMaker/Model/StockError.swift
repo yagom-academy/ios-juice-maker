@@ -5,6 +5,6 @@
 //  Created by Kiseok, 쥬봉이 on 2023/09/18.
 //
 
-enum Errors: Error {
+enum StockError: Error {
     case outOfStock
 }

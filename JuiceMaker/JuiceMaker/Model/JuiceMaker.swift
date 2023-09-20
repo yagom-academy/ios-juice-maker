@@ -13,7 +13,7 @@ struct JuiceMaker {
         let recipe: [Fruit: Int] = menu.recipe
         
         guard fruitStore.isValidStock(of: recipe) else {
-            throw Errors.outOfStock
+            throw StockError.outOfStock
         }
         
         fruitStore.decreaseStock(of: recipe)

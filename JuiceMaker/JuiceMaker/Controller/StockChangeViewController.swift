@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StockChangeViewController: UIViewController {
+final class StockChangeViewController: UIViewController {
     
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -24,11 +24,11 @@ class StockChangeViewController: UIViewController {
     }
     
     private func setupUI() {
-        strawberryStockLabel.text = String(fruitStore.fruits[.strawberry] ?? 0)
-        bananaStockLabel.text = String(fruitStore.fruits[.banana] ?? 0)
-        pineappleStockLabel.text = String(fruitStore.fruits[.pineapple] ?? 0)
-        kiwiStockLabel.text = String(fruitStore.fruits[.kiwi] ?? 0)
-        mangoStockLabel.text = String(fruitStore.fruits[.mango] ?? 0)
+        strawberryStockLabel.text = String(fruitStore.fruits[.strawberry] ?? .zero)
+        bananaStockLabel.text = String(fruitStore.fruits[.banana] ?? .zero)
+        pineappleStockLabel.text = String(fruitStore.fruits[.pineapple] ?? .zero)
+        kiwiStockLabel.text = String(fruitStore.fruits[.kiwi] ?? .zero)
+        mangoStockLabel.text = String(fruitStore.fruits[.mango] ?? .zero)
     }
 
     @IBAction func doneButtonTapped(_ sender: Any) {
