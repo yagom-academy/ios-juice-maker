@@ -6,8 +6,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    var juiceMaker = JuiceMaker()
+class JuiceOrderViewController: UIViewController {
+    private var juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     func orderJuice(to juice: Juice) {
         do {
             try juiceMaker.createJuice(juice: juice)
-            announceJuiceReady(message: "\(juice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
+            alertJuiceReady(message: "\(juice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
         } catch FruitStoreError.outOfStock {
             alertLowInventory(message: "재료가 모자라요. 재고를 수정할까요?")
         } catch {
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func announceJuiceReady(message: String) {
+    func alertJuiceReady(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let checkAction = UIAlertAction(title: "OK", style: .default)
         
