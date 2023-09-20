@@ -21,11 +21,11 @@ class JuiceOrderViewController: UIViewController {
         configureJuiceOrderView()
     }
 
-    @IBAction func clickStock() {
+    @IBAction private func clickStock() {
         convertStockScreen()
     }
     
-    @IBAction func clickOrderJuiceButton(_ sender: UIButton) {
+    @IBAction private func clickOrderJuiceButton(_ sender: UIButton) {
         
         switch sender.tag {
         case 1:
@@ -49,7 +49,7 @@ class JuiceOrderViewController: UIViewController {
         configureJuiceOrderView()
     }
     
-    func configureJuiceOrderView() {
+    private func configureJuiceOrderView() {
         let stock = juiceMaker.fruitStore.fruitStock.compactMapValues { stock in
             return String(stock)
         }
@@ -61,7 +61,7 @@ class JuiceOrderViewController: UIViewController {
         mangoLabel.text = stock[.mango]
     }
     
-    func orderJuice(to juice: Juice) {
+    private func orderJuice(to juice: Juice) {
         do {
             try juiceMaker.createJuice(juice: juice)
             alertJuiceReady(message: "\(juice.rawValue) 쥬스 나왔습니다! 맛있게 드세요!")
@@ -72,7 +72,7 @@ class JuiceOrderViewController: UIViewController {
         }
     }
     
-    func alertJuiceReady(message: String) {
+    private func alertJuiceReady(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let checkAction = UIAlertAction(title: "OK", style: .default)
         
@@ -80,7 +80,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func alertLowInventory(message: String) {
+    private func alertLowInventory(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         let noAction = UIAlertAction(title: "아니오", style: .default)
@@ -93,7 +93,7 @@ class JuiceOrderViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func convertStockScreen() {
+    private func convertStockScreen() {
         if let viewController = storyboard?.instantiateViewController(identifier: "StockViewController") {
             navigationController?.pushViewController(viewController, animated: true)
         }
