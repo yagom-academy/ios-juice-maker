@@ -17,11 +17,10 @@ final class JuiceMakerViewController: UIViewController {
     private let juiceMaker: JuiceMaker = JuiceMaker()
     private let fruitStore: FruitStore = FruitStore.shared
     
-    enum Message {
+    private enum Message {
         static let yes: String = "예"
         static let no: String = "아니오"
         static let check: String = "확인"
-        static let none: String? = nil
         static let success: String = " 나왔습니다! 맛있게 드세요!"
         static let outOfStock: String = "재료가 모자라요. 재고를 수정할까요?"
     }
@@ -85,7 +84,7 @@ final class JuiceMakerViewController: UIViewController {
     
     private func alertJuiceMakeSucess(of menu: JuiceMenu) {
         let message: String = menu.rawValue + Message.success
-        let alert = UIAlertController(title: Message.none, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let check = UIAlertAction(title: Message.check, style: .default)
         
         alert.addAction(check)
@@ -93,7 +92,7 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func alertOutOfStock() {
-        let alert = UIAlertController(title: Message.none, message: Message.outOfStock, preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: Message.outOfStock, preferredStyle: .alert)
         let yes = UIAlertAction(title: Message.yes, style: .destructive) { _ in
             self.pushToStockViewController()
         }
