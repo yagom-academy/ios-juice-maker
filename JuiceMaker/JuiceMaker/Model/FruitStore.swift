@@ -8,7 +8,7 @@
 // 과일 저장소 타입
 class FruitStore {
     static let shared = FruitStore(initialStock: 10)
-    private var fruits: [Fruit: Int] = [:]
+    private(set) var fruits: [Fruit: Int] = [:]
     
     private init(initialStock: Int) {
         for fruit in Fruit.allCases {
@@ -28,9 +28,7 @@ class FruitStore {
     
     func decreaseStock(of recipe: [Fruit: Int]) {
         for (fruit, quantity) in recipe {
-            guard let stock = fruits[fruit] else {
-                return
-            }
+            guard let stock = fruits[fruit] else { return }
             fruits[fruit] = stock - quantity
         }
     }
