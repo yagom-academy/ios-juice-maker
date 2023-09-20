@@ -18,16 +18,14 @@ class JuiceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureFristView()
+        configureJuiceOrderView()
     }
 
     @IBAction func clickStock() {
-        if let viewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") {
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+        convertStockScreen()
     }
     
-    @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
+    @IBAction func clickOrderJuiceButton(_ sender: UIButton) {
         
         switch sender.tag {
         case 1:
@@ -48,10 +46,10 @@ class JuiceOrderViewController: UIViewController {
             break
         }
         
-        configureFristView()
+        configureJuiceOrderView()
     }
     
-    func configureFristView() {
+    func configureJuiceOrderView() {
         let stock = juiceMaker.fruitStore.fruitStock.compactMapValues { stock in
             return String(stock)
         }
@@ -87,14 +85,18 @@ class JuiceOrderViewController: UIViewController {
         
         let noAction = UIAlertAction(title: "아니오", style: .default)
         let okAction = UIAlertAction(title: "예", style: .default) { action in
-            if let viewController = self.storyboard?.instantiateViewController(identifier: "StockViewController") {
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
+            self.convertStockScreen()
         }
         
         alert.addAction(okAction)
         alert.addAction(noAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func convertStockScreen() {
+        if let viewController = storyboard?.instantiateViewController(identifier: "StockViewController") {
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }
 
