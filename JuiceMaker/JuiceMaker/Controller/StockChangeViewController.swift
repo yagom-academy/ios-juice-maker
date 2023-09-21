@@ -46,7 +46,6 @@ final class StockChangeViewController: UIViewController {
         mangoStockLabel.text = Int(mangoStepper.value).description
     }
     
-    
     @IBAction func stepperTapped(_ sender: UIStepper) {
         setupUI()
     }
