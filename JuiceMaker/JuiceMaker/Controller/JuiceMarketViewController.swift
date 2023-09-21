@@ -19,7 +19,7 @@ final class JuiceMarketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        showStock()
+        linkStockAndLabel()
     }
 
     func linkStockAndLabel() {
@@ -44,7 +44,7 @@ final class JuiceMarketViewController: UIViewController {
         guard let juice = FruitJuice.Order(rawValue: order)?.juiceOrder else { return }
         do {
             try juiceMaker.manufactureFruitJuice(in: juice)
-            showStock()
+            linkStockAndLabel()
             appearSuccessMessageAlert(juice: juice.rawValue)
         } catch {
             appearFailMessageAlert()
@@ -54,7 +54,7 @@ final class JuiceMarketViewController: UIViewController {
     private func appearFailMessageAlert() {
         let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in
-            guard let vc = self.storyboard?.instantiateViewController(identifier: "FruitQuantityViewController") else { return }
+            guard let vc = self.storyboard?.instantiateViewController(identifier: Identifier.id) else { return }
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         }
