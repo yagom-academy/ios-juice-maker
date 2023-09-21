@@ -31,6 +31,12 @@ final class JuiceMakerViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupUI()
+    }
+    
     private func setupUI() {
         strawberryStockLabel.text = String(fruitStore.fruits[.strawberry] ?? .zero)
         bananaStockLabel.text = String(fruitStore.fruits[.banana] ?? .zero)
@@ -110,6 +116,7 @@ final class JuiceMakerViewController: UIViewController {
             return
         }
         
+        stockNavigationController.modalPresentationStyle = .fullScreen
         self.present(stockNavigationController, animated: true)
     }
 }

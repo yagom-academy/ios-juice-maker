@@ -32,4 +32,8 @@ class FruitStore {
             fruits[fruit] = stock - quantity
         }
     }
+    
+    func changeStock(by fruitChange: [Fruit: Int]) {
+        fruits = fruitChange
+    }
 }
