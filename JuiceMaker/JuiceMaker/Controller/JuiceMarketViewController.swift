@@ -22,7 +22,7 @@ final class JuiceMarketViewController: UIViewController {
         showStock()
     }
 
-    func showStock() {
+    func linkStockAndLabel() {
         fruitStore.fruitQuantity.forEach{(key, value) in
             switch key {
             case .strawberry:
@@ -39,7 +39,7 @@ final class JuiceMarketViewController: UIViewController {
         }
     }
     
-    @IBAction func manufactureJuice(_ sender: UIButton) {
+    @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
         guard let order = sender.currentTitle else { return }
         guard let juice = FruitJuice.Order(rawValue: order)?.juiceOrder else { return }
         do {
