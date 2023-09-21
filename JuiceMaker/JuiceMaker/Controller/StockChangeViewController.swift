@@ -56,7 +56,7 @@ final class StockChangeViewController: UIViewController {
     }
     
     private func changeStock() {
-        var fruitChange: [Fruit: Int] = [:]
+        var fruitChange: FruitStock = [:]
         
         fruitChange[.strawberry] = Int(strawberryStepper.value)
         fruitChange[.banana] = Int(bananaStepper.value)
