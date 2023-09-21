@@ -34,6 +34,8 @@ class FruitStore {
     }
     
     func changeStock(by fruitChange: [Fruit: Int]) {
-        fruits = fruitChange
+        for (fruit, quantity) in fruitChange {
+            fruits.updateValue(quantity, forKey: fruit)
+        }
     }
 }
