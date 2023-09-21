@@ -40,8 +40,8 @@ final class JuiceMarketViewController: UIViewController {
     }
     
     @IBAction func orderJuiceButtonTapped(_ sender: UIButton) {
-        guard let order = sender.currentTitle else { return }
-        guard let juice = FruitJuice.Order(rawValue: order)?.juiceOrder else { return }
+        guard let order = sender.currentTitle,
+             let juice = FruitJuice.Order(rawValue: order)?.juiceOrder else { return }
         do {
             try juiceMaker.manufactureFruitJuice(in: juice)
             linkStockAndLabel()
