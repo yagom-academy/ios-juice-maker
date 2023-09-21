@@ -14,9 +14,8 @@ final class JuiceMarketViewController: UIViewController {
     @IBOutlet weak var mangoLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     
-    var juiceMaker = JuiceMaker()
-    var fruitStore = FruitStore.shared
-    var fruitJuice: String?
+    private var juiceMaker = JuiceMaker()
+    private var fruitStore = FruitStore.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +44,8 @@ final class JuiceMarketViewController: UIViewController {
         guard let juice = FruitJuice.Order(rawValue: order)?.juiceOrder else { return }
         do {
             try juiceMaker.manufactureFruitJuice(in: juice)
-            fruitJuice = juice.rawValue
             showStock()
-            appearSuccessMessageAlert()
+            appearSuccessMessageAlert(juice: juice.rawValue)
         } catch {
             appearFailMessageAlert()
         }
@@ -68,8 +66,8 @@ final class JuiceMarketViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func appearSuccessMessageAlert() {
-        let alert = UIAlertController(title: "\(fruitJuice ?? "") 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
+    private func appearSuccessMessageAlert(juice: String) {
+        let alert = UIAlertController(title: "\(juice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in }
         
         alert.addAction(success)
