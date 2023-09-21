@@ -14,8 +14,8 @@ final class JuiceMarketViewController: UIViewController {
     @IBOutlet weak var mangoLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     
-    private var juiceMaker = JuiceMaker()
-    private var fruitStore = FruitStore.shared
+    private let juiceMaker = JuiceMaker()
+    private let fruitStore = FruitStore.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +46,13 @@ final class JuiceMarketViewController: UIViewController {
             try juiceMaker.manufactureFruitJuice(in: juice)
             linkStockAndLabel()
             appearSuccessMessageAlert(juice: juice.rawValue)
-        } catch {
-            appearFailMessageAlert()
+        } catch let error {
+            appearFailMessageAlert(errorDescription: error.localizedDescription)
         }
     }
     
-    private func appearFailMessageAlert() {
-        let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
+    private func appearFailMessageAlert(errorDescription: String) {
+        let alert = UIAlertController(title: errorDescription, message: nil, preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in
             guard let vc = self.storyboard?.instantiateViewController(identifier: Identifier.id) else { return }
             vc.modalPresentationStyle = .fullScreen
