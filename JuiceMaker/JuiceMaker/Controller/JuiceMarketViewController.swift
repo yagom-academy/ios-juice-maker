@@ -47,13 +47,13 @@ final class JuiceMarketViewController: UIViewController {
             try juiceMaker.manufactureFruitJuice(in: juice)
             fruitJuice = juice.rawValue
             showStock()
-            successmanufactureJuice()
+            appearSuccessMessageAlert()
         } catch {
-            failmanufactureJuice()
+            appearFailMessageAlert()
         }
     }
     
-    func failmanufactureJuice() {
+    private func appearFailMessageAlert() {
         let alert = UIAlertController(title: "재고가 모자라요.", message: "재고를 수정할까요?", preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in
             guard let vc = self.storyboard?.instantiateViewController(identifier: "FruitQuantityViewController") else { return }
@@ -68,7 +68,7 @@ final class JuiceMarketViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func successmanufactureJuice() {
+    private func appearSuccessMessageAlert() {
         let alert = UIAlertController(title: "\(fruitJuice ?? "") 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in }
         
