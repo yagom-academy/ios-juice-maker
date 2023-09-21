@@ -58,21 +58,21 @@ final class JuiceMarketViewController: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         }
-        let cancel = UIAlertAction(title: "아니오", style: .cancel) { _ in }
+        let cancel = UIAlertAction(title: "아니오", style: .cancel)
         
         alert.addAction(success)
         alert.addAction(cancel)
         
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true)
     }
     
     private func appearSuccessMessageAlert(juice: String) {
         let alert = UIAlertController(title: "\(juice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
-        let success = UIAlertAction(title: "예", style: .default) { _ in }
+        let success = UIAlertAction(title: "예", style: .default)
         
         alert.addAction(success)
         
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true)
     }
 }
 
