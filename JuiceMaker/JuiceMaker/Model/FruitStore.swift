@@ -17,7 +17,7 @@ struct FruitStore {
         }
     }
     
-    private func checkFruitStock(name: Fruit, count: Int, juice: Juice) throws {
+    private func checkFruitStock(juice: Juice) throws {
         for (name, count) in juice.recipe {
             guard let currentStock = fruitStock[name], currentStock >= count else {
                 throw FruitStoreError.outOfStock
@@ -25,11 +25,13 @@ struct FruitStore {
         }
     }
     
-    mutating func subtractFruitStock(name: Fruit, count: Int, juice: Juice) throws {
-        try checkFruitStock(name: name, count: count, juice: juice)
+    mutating func subtractFruitStock(juice: Juice) throws {
+        try checkFruitStock(juice: juice)
         
-        guard let currentStock = fruitStock[name] else { return }
-        
-        fruitStock.updateValue(currentStock - count, forKey: name)
+        for (name, count) in juice.recipe {
+            guard let currentStock = fruitStock[name] else { return }
+            
+            fruitStock.updateValue(currentStock - count, forKey: name)
+        }
     }
 }
