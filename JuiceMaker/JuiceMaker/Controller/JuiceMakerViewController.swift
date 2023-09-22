@@ -8,11 +8,11 @@ import UIKit
 
 final class JuiceMakerViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var labelCollection: [UILabel]! {
+        didSet {
+            labelCollection.sort { $0.tag < $1.tag }
+        }
+    }
     
     private let juiceMaker: JuiceMaker = JuiceMaker()
     private let fruitStore: FruitStore = FruitStore.shared
@@ -27,8 +27,6 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,11 +36,9 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func setupUI() {
-        strawberryStockLabel.text = String(fruitStore.fruits[.strawberry] ?? .zero)
-        bananaStockLabel.text = String(fruitStore.fruits[.banana] ?? .zero)
-        pineappleStockLabel.text = String(fruitStore.fruits[.pineapple] ?? .zero)
-        kiwiStockLabel.text = String(fruitStore.fruits[.kiwi] ?? .zero)
-        mangoStockLabel.text = String(fruitStore.fruits[.mango] ?? .zero)
+        Fruit.allCases.enumerated().forEach { (index, fruit) in
+            labelCollection[index].text = String(fruitStore.fruits[fruit] ?? .zero)
+        }
     }
     
     @IBAction func stockChangeButtonTapped(_ sender: Any) {

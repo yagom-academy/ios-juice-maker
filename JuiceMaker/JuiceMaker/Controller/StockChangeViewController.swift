@@ -43,7 +43,8 @@ final class StockChangeViewController: UIViewController {
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
-        setupUI()
+        let index = sender.tag
+        labelCollection[index].text = String(changeStepperValueToInt(at: index))
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
