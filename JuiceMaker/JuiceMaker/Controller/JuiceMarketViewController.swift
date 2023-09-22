@@ -19,10 +19,10 @@ final class JuiceMarketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        linkStockAndLabel()
+        updateStockToLabel()
     }
 
-    func linkStockAndLabel() {
+    func updateStockToLabel() {
         fruitStore.fruitQuantity.forEach{(key, value) in
             switch key {
             case .strawberry:
@@ -44,14 +44,14 @@ final class JuiceMarketViewController: UIViewController {
              let juice = FruitJuice.Order(rawValue: order)?.juiceOrder else { return }
         do {
             try juiceMaker.manufactureFruitJuice(in: juice)
-            linkStockAndLabel()
-            appearSuccessMessageAlert(juice: juice.rawValue)
+            updateStockToLabel()
+            presentSuccessMessageAlert(juice: juice.rawValue)
         } catch let error {
-            appearFailMessageAlert(errorDescription: error.localizedDescription)
+            presentFailMessageAlert(errorDescription: error.localizedDescription)
         }
     }
     
-    private func appearFailMessageAlert(errorDescription: String) {
+    private func presentFailMessageAlert(errorDescription: String) {
         let alert = UIAlertController(title: errorDescription, message: nil, preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in
             guard let vc = self.storyboard?.instantiateViewController(identifier: Identifier.id) else { return }
@@ -66,7 +66,7 @@ final class JuiceMarketViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    private func appearSuccessMessageAlert(juice: String) {
+    private func presentSuccessMessageAlert(juice: String) {
         let alert = UIAlertController(title: "\(juice) 나왔습니다!", message: "맛있게 드세요!", preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default)
         
