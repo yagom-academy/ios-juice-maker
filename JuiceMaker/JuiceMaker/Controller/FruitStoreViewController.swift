@@ -9,7 +9,7 @@ import UIKit
 
 class FruitStoreViewController: UIViewController {
 
-    @IBAction func goJuiceMaker(_ sender: UIButton) {
+    @IBAction func touchUpInsideDismissFruitStore(_ sender: UIButton) {
         dismiss(animated: true)
     }
     

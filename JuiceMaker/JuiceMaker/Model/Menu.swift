@@ -6,7 +6,7 @@
 //
 
 enum Menu: Int {
-    case strawberryJuice = 1
+    case strawberryJuice
     case bananaJuice
     case pineappleJuice
     case kiwiJuice
@@ -14,7 +14,7 @@ enum Menu: Int {
     case strawberryBananaJuice
     case mangoKiwiJuice
     
-    var menuToKorean: String {
+    var explainKorean: String {
         switch self {
         case .strawberryJuice:
             return "딸기쥬스"

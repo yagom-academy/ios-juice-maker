@@ -33,33 +33,50 @@ class JuiceMakerViewController: UIViewController {
         }
     }
     
-    @IBAction func orderButton(_ sender: UIButton) {
+    func failureAlert() {
+        let alert = UIAlertController(title: "재료가 부족합니다", message: "재고를 수정할까요?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "예", style: .default) { action in
+            self.presentFruitStore()
+        })
+        alert.addAction(UIAlertAction(title: "아니요", style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func completeAlert(menu: Menu) {
+        let alert = UIAlertController(title: "\(menu.explainKorean) 나왔습니다", message: "맛있게드세요", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "예", style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func presentFruitStore() {
+        guard let FruitStoreViewController = storyboard?.instantiateViewController(identifier: String(describing: FruitStoreViewController.self)) else {
+            return
+        }
+        FruitStoreViewController.modalPresentationStyle = .pageSheet
+        FruitStoreViewController.modalTransitionStyle = .coverVertical
+        present(FruitStoreViewController, animated: true)
+    }
+    
+    
+    @IBAction func touchUpInsideOrderButton(_ sender: UIButton) {
         guard let menu = Menu(rawValue: sender.tag) else {
             return
         }
         
-        let completeAlert = UIAlertController(title: "\(menu.menuToKorean) 나왔습니다", message: "맛있게드세요", preferredStyle: .alert)
-        let failureAlert = UIAlertController(title: "재료가 부족합니다", message: "재고를 수정할까요?", preferredStyle: .alert)
-        
-        completeAlert.addAction(UIAlertAction(title: "예", style: .default, handler: nil))
-        failureAlert.addAction(UIAlertAction(title: "예", style: .default) { action in
-            self.goFruitStore(sender)
-        })
-        failureAlert.addAction(UIAlertAction(title: "아니요", style: .default, handler: nil))
-        
         do {
             try juiceMaker.takeOrder(order: menu)
-            present(completeAlert, animated: true, completion: nil)
+            completeAlert(menu: menu)
         } catch {
-            present(failureAlert, animated: true, completion: nil)
+            failureAlert()
         }
     }
     
-    @IBAction func goFruitStore(_ sender: UIButton) {
-        let JuiceMakerVC = storyboard?.instantiateViewController(identifier: "FruitStoreViewController")
-        JuiceMakerVC?.modalPresentationStyle = .pageSheet
-        JuiceMakerVC?.modalTransitionStyle = .coverVertical
-        present(JuiceMakerVC!, animated: true)
+    @IBAction func touchUpInsidePresentFruitStore() {
+        presentFruitStore()
     }
     
     override func viewDidLoad() {

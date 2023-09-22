@@ -6,7 +6,7 @@
 
 import Foundation
 
-class FruitStore {
+final class FruitStore {
     private(set) var fruitList = [Fruit: Int]()
         
     func reduceStock(fruit: Fruit, quantity: Int) {

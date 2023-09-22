@@ -5,7 +5,7 @@
 // 
 import UIKit
 
-class JuiceMaker {
+final class JuiceMaker {
     private(set) var fruitStore = FruitStore(stock: 10)
     
     func takeOrder(order: Menu) throws {
