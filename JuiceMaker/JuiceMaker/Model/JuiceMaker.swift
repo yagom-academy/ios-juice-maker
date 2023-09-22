@@ -9,7 +9,8 @@ struct JuiceMaker {
     private let fruitStore = FruitStore.shared
     
     func manufactureFruitJuice(in fruitJuice: FruitJuice) throws {
-        if fruitStore.reduceFruitQuantity(fruitJuice: fruitJuice) {
+        if fruitStore.validateJuiceMaker(fruitJuice: fruitJuice) {
+            fruitStore.reduceFruitQuantity(fruitJuice: fruitJuice)
             return
         } else {
             throw JuiceMakerError.outOfStock
