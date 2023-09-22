@@ -22,7 +22,7 @@ final class JuiceMaker {
         for (fruit, quantity) in recipe {
             fruitStore.reduceStock(fruit: fruit, quantity: quantity)
         }
-        NotificationCenter.default.post(name: Notification.Name("refreshStock"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
     }
     
     private func fetchRecipe(menu: Menu) -> [Fruit: Int] {
