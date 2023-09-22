@@ -8,6 +8,7 @@
 import UIKit
 
 final class FruitQuantityViewController: UIViewController {
+    static let id = String(describing: FruitQuantityViewController.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
