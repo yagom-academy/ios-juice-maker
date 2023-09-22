@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FruitStoreVC: UIViewController {
+class FruitStoreViewController: UIViewController {
 
     @IBAction func goJuiceMaker(_ sender: UIButton) {
         dismiss(animated: true)

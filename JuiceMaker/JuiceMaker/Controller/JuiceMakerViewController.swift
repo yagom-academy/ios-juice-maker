@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
     let juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryCount: UILabel!
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func goFruitStore(_ sender: UIButton) {
-        let JuiceMakerVC = storyboard?.instantiateViewController(identifier: "FruitStoreVC")
+        let JuiceMakerVC = storyboard?.instantiateViewController(identifier: "FruitStoreViewController")
         JuiceMakerVC?.modalPresentationStyle = .pageSheet
         JuiceMakerVC?.modalTransitionStyle = .coverVertical
         present(JuiceMakerVC!, animated: true)
