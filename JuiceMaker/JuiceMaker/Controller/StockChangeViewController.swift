@@ -9,41 +9,37 @@ import UIKit
 
 final class StockChangeViewController: UIViewController {
     
-    @IBOutlet weak var strawberryStockLabel: UILabel!
-    @IBOutlet weak var bananaStockLabel: UILabel!
-    @IBOutlet weak var pineappleStockLabel: UILabel!
-    @IBOutlet weak var kiwiStockLabel: UILabel!
-    @IBOutlet weak var mangoStockLabel: UILabel!
+    @IBOutlet var labelCollection: [UILabel]! {
+        didSet {
+            labelCollection.sort { $0.tag < $1.tag }
+        }
+    }
     
-    @IBOutlet weak var strawberryStepper: UIStepper!
-    @IBOutlet weak var bananaStepper: UIStepper!
-    @IBOutlet weak var pineappleStepper: UIStepper!
-    @IBOutlet weak var kiwiStepper: UIStepper!
-    @IBOutlet weak var mangoStepper: UIStepper!
+    @IBOutlet var stepperCollection: [UIStepper]! {
+        didSet {
+            stepperCollection.sort { $0.tag < $1.tag }
+        }
+    }
     
     private let fruitStore: FruitStore = FruitStore.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initializeStepperValue()
+        setStepperValue()
         setupUI()
     }
     
-    private func initializeStepperValue() {
-        strawberryStepper.value = Double(fruitStore.fruits[.strawberry] ?? .zero)
-        bananaStepper.value = Double(fruitStore.fruits[.banana] ?? .zero)
-        pineappleStepper.value = Double(fruitStore.fruits[.pineapple] ?? .zero)
-        kiwiStepper.value = Double(fruitStore.fruits[.kiwi] ?? .zero)
-        mangoStepper.value = Double(fruitStore.fruits[.mango] ?? .zero)
+    private func setStepperValue() {
+        Fruit.allCases.enumerated().forEach { (index, fruit) in
+            stepperCollection[index].value = Double(fruitStore.fruits[fruit] ?? .zero)
+        }
     }
     
     private func setupUI() {
-        strawberryStockLabel.text = Int(strawberryStepper.value).description
-        bananaStockLabel.text = Int(bananaStepper.value).description
-        pineappleStockLabel.text = Int(pineappleStepper.value).description
-        kiwiStockLabel.text = Int(kiwiStepper.value).description
-        mangoStockLabel.text = Int(mangoStepper.value).description
+        labelCollection.enumerated().forEach { (index, label) in
+            label.text = String(changeStepperValueToInt(at: index))
+        }
     }
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
@@ -56,14 +52,13 @@ final class StockChangeViewController: UIViewController {
     }
     
     private func changeStock() {
-        var fruitChange: FruitStock = [:]
-        
-        fruitChange[.strawberry] = Int(strawberryStepper.value)
-        fruitChange[.banana] = Int(bananaStepper.value)
-        fruitChange[.pineapple] = Int(pineappleStepper.value)
-        fruitChange[.kiwi] = Int(kiwiStepper.value)
-        fruitChange[.mango] = Int(mangoStepper.value)
-        
-        fruitStore.changeStock(by: fruitChange)
+        Fruit.allCases.enumerated().forEach { (index, fruit) in
+            let quantity = changeStepperValueToInt(at: index)
+            fruitStore.changeStock(of: fruit, by: quantity)
+        }
+    }
+    
+    private func changeStepperValueToInt(at index: Int) -> Int {
+        Int(stepperCollection[index].value)
     }
 }
