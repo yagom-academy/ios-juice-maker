@@ -8,11 +8,12 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore.shared
     
-    func manufactureFruitJuice(in fruitJuice: FruitJuice) {
-        do {
-            try fruitStore.reduceFruitQuantity(in: fruitJuice)
-        } catch let error {
-            print("\(error.localizedDescription)")
+    func manufactureFruitJuice(in fruitJuice: FruitJuice) throws {
+        if fruitStore.validateJuiceMaker(fruitJuice: fruitJuice) {
+            fruitStore.reduceFruitQuantity(fruitJuice: fruitJuice)
+            return
+        } else {
+            throw JuiceMakerError.outOfStock
         }
     }
 }

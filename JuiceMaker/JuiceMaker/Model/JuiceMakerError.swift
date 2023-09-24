@@ -13,7 +13,7 @@ enum JuiceMakerError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .outOfStock:
-            return "과일의 재고가 부족하여 과일쥬스를 제조할수 없습니다."
+            return "재고가 모자라요. 재고를 수정할까요?"
         }
     }
 }
