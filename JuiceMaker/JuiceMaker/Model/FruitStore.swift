@@ -33,7 +33,8 @@ final class FruitStore {
         }
     }
     
-    func changeFruitQuantity(of quantity: Int, fruit: Fruit) {
+    func changeFruitQuantity(of quantity: String, fruit: Fruit) {
+        guard let quantity = Int(quantity) else { return }
         fruitQuantity.updateValue(quantity, forKey: fruit)
     }
 }
