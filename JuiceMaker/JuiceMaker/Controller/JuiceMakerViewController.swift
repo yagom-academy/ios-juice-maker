@@ -77,7 +77,7 @@ final class JuiceMakerViewController: UIViewController {
             try juiceMaker.makeJuice(menu: menu)
             setupUI()
             alertJuiceMakeSucess(of: menu)
-        } catch StockError.outOfStock {
+        } catch JuiceMakerError.outOfStock {
             alertOutOfStock()
         } catch {
             print(error.localizedDescription)

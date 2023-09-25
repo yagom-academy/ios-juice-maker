@@ -12,8 +12,10 @@ struct JuiceMaker {
     func makeJuice(menu: JuiceMenu) throws {
         let recipe: [Fruit: Int] = menu.recipe
         
-        try recipe.forEach { (fruit, quantity) in
-            try fruitStore.decreaseStock(of: fruit, by: quantity)
+        guard fruitStore.isValidStock(of: recipe) else {
+            throw JuiceMakerError.outOfStock
         }
+        
+        fruitStore.decreaseStock(of: recipe)
     }
 }

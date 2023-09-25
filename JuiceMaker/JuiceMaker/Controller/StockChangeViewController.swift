@@ -49,7 +49,7 @@ final class StockChangeViewController: UIViewController {
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         changeStock()
-        self.presentingViewController?.dismiss(animated: true)
+        self.dismiss(animated: true)
     }
     
     private func changeStock() {

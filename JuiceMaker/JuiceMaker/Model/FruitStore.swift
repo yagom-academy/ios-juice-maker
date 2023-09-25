@@ -14,17 +14,21 @@ class FruitStore {
         Fruit.allCases.forEach { self.fruits[$0] = initialStock }
     }
     
-    func isValidStock(of fruit: Fruit, by quantity: Int) -> Bool {
-        guard let stock = fruits[fruit], stock >= quantity else {
-            return false
+    func isValidStock(of recipe: [Fruit: Int]) -> Bool {
+        for (fruit, quantity) in recipe {
+            guard let stock = fruits[fruit], stock >= quantity else {
+                return false
+            }
         }
+        
         return true
     }
     
-    func decreaseStock(of fruit: Fruit, by quantity: Int) throws {
-        guard isValidStock(of: fruit, by: quantity), let stock = fruits[fruit] else { throw StockError.outOfStock  }
-        
-        fruits[fruit] = stock - quantity
+    func decreaseStock(of recipe: [Fruit: Int]) {
+        recipe.forEach { (fruit, quantity) in
+            guard let stock = fruits[fruit] else { return }
+            fruits[fruit] = stock - quantity
+        }
     }
     
     func changeStock(of fruit: Fruit, by quantity: Int) {
