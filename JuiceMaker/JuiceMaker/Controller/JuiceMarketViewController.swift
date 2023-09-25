@@ -55,8 +55,8 @@ final class JuiceMarketViewController: UIViewController {
         let alert = UIAlertController(title: errorDescription, message: nil, preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in
             guard let vc = self.storyboard?.instantiateViewController(identifier: FruitQuantityViewController.id) else { return }
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+            //vc.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let cancel = UIAlertAction(title: "아니오", style: .cancel)
         
