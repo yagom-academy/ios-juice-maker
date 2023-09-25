@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
                         <barButtonItem key="rightBarButtonItem" title="재고수정" id="C3q-Te-cNT">
                             <connections>
-                                <segue destination="Yu1-lM-nqp" kind="presentation" id="DQh-IW-Mw9"/>
+                                <segue destination="WwV-Td-3Bn" kind="presentation" id="F3S-ow-9Tl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -272,7 +272,7 @@
             </objects>
             <point key="canvasLocation" x="19.419642857142858" y="92.753623188405811"/>
         </scene>
-        <!--Fruit Quantity View Controller-->
+        <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
                 <viewController storyboardIdentifier="FruitQuantityViewController" id="Yu1-lM-nqp" customClass="FruitQuantityViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
@@ -379,7 +379,15 @@
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
+                        <barButtonItem key="rightBarButtonItem" title="닫기" id="KpD-AW-OFy">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="Yu1-lM-nqp" id="odo-wz-9Pg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
@@ -404,9 +412,6 @@
             <point key="canvasLocation" x="1637" y="21"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="DQh-IW-Mw9"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

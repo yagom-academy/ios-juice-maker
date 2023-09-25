@@ -10,6 +10,9 @@ import UIKit
 final class FruitQuantityViewController: UIViewController {
     static let id = String(describing: FruitQuantityViewController.self)
     
+    @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
