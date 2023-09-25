@@ -3,9 +3,10 @@
 //  Created by hisop, morgan on 2023/09/13.
 //  Copyright © yagom academy. All rights reserved.
 // 
+import UIKit
 
-class JuiceMaker {
-    private var fruitStore = FruitStore(stock: 10)
+final class JuiceMaker {
+    private(set) var fruitStore = FruitStore(stock: 10)
     
     func takeOrder(order: Menu) throws {
         let recipe = fetchRecipe(menu: order)
@@ -15,13 +16,13 @@ class JuiceMaker {
         }
         
         grindJuice(recipe: recipe)
-        print("\(order.rawValue)가 제작되었습니다.")
     }
     
     private func grindJuice(recipe: [Fruit: Int]) {
         for (fruit, quantity) in recipe {
             fruitStore.reduceStock(fruit: fruit, quantity: quantity)
         }
+        NotificationCenter.default.post(name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
     }
     
     private func fetchRecipe(menu: Menu) -> [Fruit: Int] {
@@ -40,6 +41,6 @@ class JuiceMaker {
                 return [.strawberry: 10, .banana: 1]
             case .mangoKiwiJuice:
                 return [.mango: 2, .kiwi: 1]
-            }
+        }
     }
 }

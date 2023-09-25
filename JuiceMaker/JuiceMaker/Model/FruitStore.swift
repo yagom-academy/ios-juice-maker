@@ -4,10 +4,12 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-struct FruitStore {
-    private var fruitList = [Fruit: Int]()
-    
-    mutating func reduceStock(fruit: Fruit, quantity: Int) {
+import Foundation
+
+final class FruitStore {
+    private(set) var fruitList = [Fruit: Int]()
+        
+    func reduceStock(fruit: Fruit, quantity: Int) {
         guard let stock = fruitList[fruit] else {
             return
         }
