@@ -21,6 +21,11 @@ final class JuiceMarketViewController: UIViewController {
         super.viewDidLoad()
         updateStockToLabel()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStockToLabel()
+    }
 
     func updateStockToLabel() {
         fruitStore.fruitQuantity.forEach{(key, value) in
