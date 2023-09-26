@@ -96,6 +96,8 @@ class JuiceOrderViewController: UIViewController {
     private func convertStockScreen() {
         guard let viewController = storyboard?.instantiateViewController(identifier: "StockViewController") as? StockViewController else { return }
         
+        viewController.fruitInventory = juiceMaker.fruitStore.fruitStock
+        
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
     }
