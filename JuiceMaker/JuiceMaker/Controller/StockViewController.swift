@@ -15,4 +15,7 @@ class StockViewController: UIViewController {
 
     }
 
+    @IBAction func clickCloseButton(_ sender: UIBarButtonItem) {
+        presentingViewController?.dismiss(animated: true)
+    }
 }

@@ -94,9 +94,10 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func convertStockScreen() {
-        if let viewController = storyboard?.instantiateViewController(identifier: "StockViewController") {
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        guard let viewController = storyboard?.instantiateViewController(identifier: "StockViewController") as? StockViewController else { return }
+        
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
     }
 }
 
