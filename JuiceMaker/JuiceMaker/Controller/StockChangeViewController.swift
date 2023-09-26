@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol StockChangeViewControllerDelegate: AnyObject {
+    func updateLabel()
+}
+
 final class StockChangeViewController: UIViewController {
     
     @IBOutlet var labelCollection: [UILabel]! {
@@ -22,6 +26,7 @@ final class StockChangeViewController: UIViewController {
     }
     
     private let fruitStore: FruitStore = FruitStore.shared
+    weak var delegate: StockChangeViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +54,7 @@ final class StockChangeViewController: UIViewController {
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         changeStock()
+        self.delegate?.updateLabel()
         self.dismiss(animated: true)
     }
     

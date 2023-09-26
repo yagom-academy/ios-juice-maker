@@ -27,10 +27,6 @@ final class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         setupUI()
     }
@@ -112,7 +108,18 @@ final class JuiceMakerViewController: UIViewController {
             return
         }
         
-        stockNavigationController.modalPresentationStyle = .fullScreen
+        guard let stockChangeViewController = stockNavigationController.topViewController
+                as? StockChangeViewController else {
+            return
+        }
+        
+        stockChangeViewController.delegate = self
         self.present(stockNavigationController, animated: true)
+    }
+}
+
+extension JuiceMakerViewController: StockChangeViewControllerDelegate {
+    func updateLabel() {
+        setupUI()
     }
 }
