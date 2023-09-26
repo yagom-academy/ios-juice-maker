@@ -24,19 +24,35 @@ class FruitStoreViewController: UIViewController {
     private var fruitLabelDictionary: [Fruit: UILabel] = [:]
     var delegate: testDelegate?
     
-    private func initFruitLabelDictionary() {
+    private func initFruitDictionary() {
         fruitLabelDictionary[.strawberry] = strawberryCount
         fruitLabelDictionary[.banana] = bananaCount
         fruitLabelDictionary[.pineapple] = pineappleCount
         fruitLabelDictionary[.kiwi] = kiwiCount
         fruitLabelDictionary[.mango] = mangoCount
+        
+        strawberryStepper.value = Double(fruitList[.strawberry] ?? 0)
+        strawberryStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
+        
+        bananaStepper.value = Double(fruitList[.banana] ?? 0)
+        bananaStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
+        
+        pineappleStepper.value = Double(fruitList[.pineapple] ?? 0)
+        pineappleStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
+        
+        kiwiStepper.value = Double(fruitList[.kiwi] ?? 0)
+        kiwiStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
+        
+        mangoStepper.value = Double(fruitList[.mango] ?? 0)
+        mangoStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
     }
     
-    @IBAction func Stepper(_ sender: Any) {
-//        guard let menu = Menu(rawValue: )  else {
-//            return
-//        }
-//        print(menu)
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        guard let fruit = Fruit(rawValue: sender.tag) else {
+            return
+        }
+        fruitLabelDictionary[fruit]?.text = Int(sender.value).description
+        fruitList[fruit] = Int(sender.value)
     }
     
     private func refreshStock() {
@@ -50,13 +66,18 @@ class FruitStoreViewController: UIViewController {
     }
     
     @IBAction private func touchUpInsideDismissFruitStore(_ sender: UIButton) {
+//        guard let juiceMakerViewController = storyboard?.instantiateViewController(identifier: String(describing: JuiceMakerViewController.self)) as? JuiceMakerViewController else {
+//            return
+//        }
+//        juiceMakerViewController.refreshDelegate(fruitList: fruitList)
+        
         delegate?.refreshDelegate(fruitList: fruitList)
         dismiss(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initFruitLabelDictionary()
+        initFruitDictionary()
         refreshStock()
     }
 }
