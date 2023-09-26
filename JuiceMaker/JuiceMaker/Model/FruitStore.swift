@@ -11,9 +11,7 @@ class FruitStore {
     private(set) var fruits: [Fruit: Int] = [:]
     
     private init(initialStock: Int) {
-        for fruit in Fruit.allCases {
-            self.fruits[fruit] = initialStock
-        }
+        Fruit.allCases.forEach { self.fruits[$0] = initialStock }
     }
     
     func isValidStock(of recipe: [Fruit: Int]) -> Bool {
@@ -27,9 +25,13 @@ class FruitStore {
     }
     
     func decreaseStock(of recipe: [Fruit: Int]) {
-        for (fruit, quantity) in recipe {
+        recipe.forEach { (fruit, quantity) in
             guard let stock = fruits[fruit] else { return }
             fruits[fruit] = stock - quantity
         }
+    }
+    
+    func changeStock(of fruit: Fruit, by quantity: Int) {
+        fruits.updateValue(quantity, forKey: fruit)
     }
 }
