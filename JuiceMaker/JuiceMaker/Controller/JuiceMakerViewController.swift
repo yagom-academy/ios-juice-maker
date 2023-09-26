@@ -6,7 +6,11 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController {
+protocol testDelegate {
+    func refreshDelegate(fruitList: [Fruit: Int])
+}
+
+final class JuiceMakerViewController: UIViewController, testDelegate {
     @IBOutlet private weak var strawberryCount: UILabel!
     @IBOutlet private weak var bananaCount: UILabel!
     @IBOutlet private weak var pineappleCount: UILabel!
@@ -15,6 +19,12 @@ final class JuiceMakerViewController: UIViewController {
     
     private let juiceMaker = JuiceMaker()
     private var fruitLabelDictionary: [Fruit: UILabel] = [:]
+    
+    func refreshDelegate(fruitList: [Fruit: Int]) {
+        print("전달완료")
+        print(fruitList)
+        juiceMaker.fruitStore.modifyStock(modifyList: fruitList)
+    }
     
     private func initFruitLabelDictionary() {
         fruitLabelDictionary[.strawberry] = strawberryCount
@@ -54,14 +64,17 @@ final class JuiceMakerViewController: UIViewController {
     }
     
     private func presentFruitStore() {
-        guard let FruitStoreViewController = storyboard?.instantiateViewController(identifier: String(describing: FruitStoreViewController.self)) else {
+        guard let fruitStoreViewController = storyboard?.instantiateViewController(identifier: String(describing: FruitStoreViewController.self)) as? FruitStoreViewController else {
             return
         }
         
-        FruitStoreViewController.modalPresentationStyle = .pageSheet
-        FruitStoreViewController.modalTransitionStyle = .coverVertical
+        fruitStoreViewController.modalPresentationStyle = .pageSheet
+        fruitStoreViewController.modalTransitionStyle = .coverVertical
+
+        fruitStoreViewController.delegate = self
+        fruitStoreViewController.fruitList = juiceMaker.fruitStore.fruitList
         
-        present(FruitStoreViewController, animated: true)
+        present(fruitStoreViewController, animated: true)
     }
     
     @IBAction private func touchUpInsideOrderButton(_ sender: UIButton) {

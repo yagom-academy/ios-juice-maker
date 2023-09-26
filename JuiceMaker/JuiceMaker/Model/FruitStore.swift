@@ -9,6 +9,14 @@ import Foundation
 final class FruitStore {
     private(set) var fruitList = [Fruit: Int]()
         
+    func modifyStock(modifyList: [Fruit: Int]) {
+        for (fruit, stock) in modifyList {
+            fruitList[fruit] = stock
+        }
+        NotificationCenter.default.post(name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
+        print("noti도 전달")
+    }
+    
     func reduceStock(fruit: Fruit, quantity: Int) {
         guard let stock = fruitList[fruit] else {
             return
