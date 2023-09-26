@@ -4,17 +4,15 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-struct FruitStore {
+class FruitStore {
     private(set) var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit : Int]) {
         self.fruitStock = fruitStock
     }
     
-    mutating func addFruitStock(name: Fruit, count: Int) {
-        if let currentStock = fruitStock[name] {
-            fruitStock.updateValue(currentStock + count, forKey: name)
-        }
+    func changeFruitStock(to stock: [Fruit: Int]) {
+        fruitStock = stock
     }
     
     private func checkFruitStock(juice: Juice) throws {
@@ -25,7 +23,7 @@ struct FruitStore {
         }
     }
     
-    mutating func subtractFruitStock(juice: Juice) throws {
+    func subtractFruitStock(juice: Juice) throws {
         try checkFruitStock(juice: juice)
         
         for (name, count) in juice.recipe {

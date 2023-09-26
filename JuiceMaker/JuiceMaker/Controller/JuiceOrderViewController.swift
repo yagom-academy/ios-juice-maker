@@ -20,6 +20,10 @@ class JuiceOrderViewController: UIViewController {
         
         configureJuiceOrderView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureJuiceOrderView()
+    }
 
     @IBAction private func clickStock() {
         convertStockScreen()
@@ -98,8 +102,15 @@ class JuiceOrderViewController: UIViewController {
         
         viewController.fruitInventory = juiceMaker.fruitStore.fruitStock
         
+        viewController.delegate = self
+        
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
     }
 }
 
+extension JuiceOrderViewController: StockDelegate {
+    func updateStock(to inventory: [Fruit : Int]) {
+        juiceMaker.fruitStore.changeFruitStock(to: inventory)
+    }
+}

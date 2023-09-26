@@ -9,6 +9,7 @@ import UIKit
 
 class StockViewController: UIViewController {
     var fruitInventory: [Fruit: Int] = [:]
+    var delegate: StockDelegate?
     
     @IBOutlet var fruitStockLabel: [UILabel]!
     @IBOutlet var fruitStockStteper: [UIStepper]!
@@ -22,6 +23,8 @@ class StockViewController: UIViewController {
 
     @IBAction func clickCloseButton(_ sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true)
+        
+        delegate?.updateStock(to: fruitInventory)
     }
     
     func configureStock() {
