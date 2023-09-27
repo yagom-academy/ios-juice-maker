@@ -184,7 +184,7 @@ struct JuiceMaker {
     }
 ~~~
 ### 5️⃣ switch
-- ViewController에서 너무 많은 switch문을 사용함으로서 더 큰 프로젝트를 진행할경우에 유지 보수와 재사용성, 확장성에 어려움이 있다는것을 깨달은 이후 convertFruitsToUIComponents(from fruit: Fruit) -> (label: UILabel, stepper: UIStepper) 메서드를 사용해서 Label과 Stepper를 튜플 형태로 반환하여 코드의 재사용성을 높였습니다.
+- ViewController에서 너무 많은 switch문을 사용함으로써 더 큰 프로젝트를 진행할 경우에 유지 보수와 재사용성, 확장성에 어려움이 있다는 것을 깨달은 이후 convertFruitsToUIComponents(from fruit: Fruit) -> (label: UILabel, stepper: UIStepper) 메서드를 사용해서 Label과 Stepper를 튜플 형태로 반환하여 코드의 재사용성을 높였습니다.
 
 ~~~ swift
   private func convertFruitsToUIComponents(from fruit: Fruit) -> (label: UILabel, stepper: UIStepper) {
