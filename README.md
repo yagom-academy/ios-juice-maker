@@ -49,11 +49,7 @@
 
 | 쥬스 주문 시 얼럿창 이동 | 재고 부족 시 수정 화면으로 이동 |
 | :--------: | :--------: |
-| <img src=https://hackmd.io/_uploads/S1PyDPu0h.gif >|<img src=https://hackmd.io/_uploads/SJGHPvdRh.gif >|![](https://hackmd.io/_uploads/H1Aiew_An.gif)|
-
-
-
-
+| <img src=https://github.com/ue-mu/ios-juice-maker/assets/123448121/0a7ee3f1-fddb-4cea-9ded-5b2d6f0d316c> | <img src=https://github.com/ue-mu/ios-juice-maker/assets/123448121/a52824f0-090b-44a4-ba6c-87deaac4a9f0> |
 
 
 - Stepper를 사용한 재고 수정 및 업데이트
@@ -61,10 +57,9 @@
 
 | 재고 수정 | 수정 된 재고 업데이트 |
 | :--------: | :--------: |
-| <img src=https://hackmd.io/_uploads/ByoaCwWgT.gif height="150">|<img src=https://hackmd.io/_uploads/SJGHPvdRh.gif >|![](https://hackmd.io/_uploads/H1Aiew_An.gif)|
+| <img src=https://hackmd.io/_uploads/ByoaCwWgT.gif height="150"> | <img src=https://hackmd.io/_uploads/SJGHPvdRh.gif> | ![](https://hackmd.io/_uploads/H1Aiew_An.gif)|
 
   
-
 <br>
 
 ## 5. 트러블 슈팅
