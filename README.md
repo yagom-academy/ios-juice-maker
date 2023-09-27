@@ -28,8 +28,6 @@
 ![](https://hackmd.io/_uploads/Syyi4vWep.png)
 
 
-![](https://hackmd.io/_uploads/HyH-9Iu0n.png)
-
 <br>
 
 ## 3. 타임라인
