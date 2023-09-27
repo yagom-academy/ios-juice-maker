@@ -40,21 +40,21 @@ final class FruitQuantityViewController: UIViewController {
             switch key {
             case .strawberry:
                 strawberryLabel.text = String(value)
+                strawberryStepper.value = Double(value)
             case .banana:
                 bananaLabel.text = String(value)
+                bananaStepper.value = Double(value)
             case .kiwi:
                 kiwiLabel.text = String(value)
+                kiwiStepper.value = Double(value)
             case .mango:
                 mangoLabel.text = String(value)
+                mangoStepper.value = Double(value)
             case .pineapple:
                 pineappleLabel.text = String(value)
+                pineappleStepper.value = Double(value)
             }
         }
-    }
-    
-    private func safelyUnwrap(fruit: Fruit) -> Int {
-        guard let fruit = fruitStore.fruitQuantity[fruit] else { return 0 }
-        return fruit
     }
     
     private func transformStringToInt(label: String?) -> Int {
@@ -67,15 +67,15 @@ final class FruitQuantityViewController: UIViewController {
         
         switch sender {
         case strawberryStepper:
-            strawberryLabel.text = String(safelyUnwrap(fruit: .strawberry) + value)
+            strawberryLabel.text = String(value)
         case bananaStepper:
-            bananaLabel.text = String(safelyUnwrap(fruit: .banana) + value)
+            bananaLabel.text = String(value)
         case pineappleStepper:
-            pineappleLabel.text = String(safelyUnwrap(fruit: .pineapple) + value)
+            pineappleLabel.text = String(value)
         case kiwiStepper:
-            kiwiLabel.text = String(safelyUnwrap(fruit: .kiwi) + value)
+            kiwiLabel.text = String(value)
         case mangoStepper:
-            mangoLabel.text = String(safelyUnwrap(fruit: .mango) + value)
+            mangoLabel.text = String(value)
         default:
             break
         }
