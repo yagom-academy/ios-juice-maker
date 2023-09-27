@@ -21,8 +21,13 @@ final class JuiceMarketViewController: UIViewController {
         super.viewDidLoad()
         updateStockToLabel()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStockToLabel()
+    }
 
-    func updateStockToLabel() {
+    private func updateStockToLabel() {
         fruitStore.fruitQuantity.forEach{(key, value) in
             switch key {
             case .strawberry:
@@ -55,8 +60,7 @@ final class JuiceMarketViewController: UIViewController {
         let alert = UIAlertController(title: errorDescription, message: nil, preferredStyle: .alert)
         let success = UIAlertAction(title: "예", style: .default) { _ in
             guard let vc = self.storyboard?.instantiateViewController(identifier: FruitQuantityViewController.id) else { return }
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let cancel = UIAlertAction(title: "아니오", style: .cancel)
         
