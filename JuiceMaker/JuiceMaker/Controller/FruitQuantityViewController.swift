@@ -35,28 +35,6 @@ final class FruitQuantityViewController: UIViewController {
         navigationItem.hidesBackButton = true
     }
     
-    private func updateStockToLabel() {
-        fruitStore.fruitQuantity.forEach{(key, value) in
-            switch key {
-            case .strawberry:
-                strawberryLabel.text = String(value)
-                strawberryStepper.value = Double(value)
-            case .banana:
-                bananaLabel.text = String(value)
-                bananaStepper.value = Double(value)
-            case .kiwi:
-                kiwiLabel.text = String(value)
-                kiwiStepper.value = Double(value)
-            case .mango:
-                mangoLabel.text = String(value)
-                mangoStepper.value = Double(value)
-            case .pineapple:
-                pineappleLabel.text = String(value)
-                pineappleStepper.value = Double(value)
-            }
-        }
-    }
-    
     private func transformStringToInt(label: String?) -> Int {
         guard let stringLabel = label, 
                 let number = Int(stringLabel) else { return 0 }
@@ -82,22 +60,35 @@ final class FruitQuantityViewController: UIViewController {
         }
     }
     
+    private func updateStockToLabel() {
+        fruitStore.fruitQuantity.forEach{(fruit, count) in
+            let (label, stepper) = convertFruitsToUIComponents(from: fruit)
+            label.text = String(count)
+            stepper.value = Double(count)
+        }
+    }
+    
+    private func convertFruitsToUIComponents(from fruit: Fruit) -> (label: UILabel, stepper: UIStepper) {
+        switch fruit {
+        case .strawberry:
+            return (strawberryLabel, strawberryStepper)
+        case .banana:
+            return (bananaLabel, bananaStepper)
+        case .kiwi:
+            return (kiwiLabel, kiwiStepper)
+        case .mango:
+           return (mangoLabel, mangoStepper)
+        case .pineapple:
+           return (pineappleLabel, pineappleStepper)
+        }
+    }
+    
     @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
         
         Fruit.allCases.forEach { fruit in
-            switch fruit {
-            case .strawberry:
-                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: strawberryLabel.text))
-            case .banana:
-                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: bananaLabel.text))
-            case .kiwi:
-                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: kiwiLabel.text))
-            case .mango:
-                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: mangoLabel.text))
-            case .pineapple:
-                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: pineappleLabel.text))
-            }
+            let label = convertFruitsToUIComponents(from: fruit).label
+            fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: label.text))
         }
     }
 }
