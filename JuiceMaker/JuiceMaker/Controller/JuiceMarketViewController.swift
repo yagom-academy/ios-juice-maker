@@ -27,7 +27,7 @@ final class JuiceMarketViewController: UIViewController {
         updateStockToLabel()
     }
 
-    func updateStockToLabel() {
+    private func updateStockToLabel() {
         fruitStore.fruitQuantity.forEach{(key, value) in
             switch key {
             case .strawberry:

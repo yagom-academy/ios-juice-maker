@@ -58,7 +58,8 @@ final class FruitQuantityViewController: UIViewController {
     }
     
     private func transformStringToInt(label: String?) -> Int {
-        guard let stringLabel = label, let number = Int(stringLabel) else { return 0 }
+        guard let stringLabel = label, 
+                let number = Int(stringLabel) else { return 0 }
         return number
     }
     
@@ -84,7 +85,7 @@ final class FruitQuantityViewController: UIViewController {
     @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
         
-        fruitStore.fruitQuantity.forEach { (fruit, _ ) in
+        Fruit.allCases.forEach { fruit in
             switch fruit {
             case .strawberry:
                 fruitStore.changeFruitQuantity(of: transformStringToInt(label: strawberryLabel.text), fruit: fruit)
