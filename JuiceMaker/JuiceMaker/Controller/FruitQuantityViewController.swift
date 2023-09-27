@@ -88,15 +88,15 @@ final class FruitQuantityViewController: UIViewController {
         Fruit.allCases.forEach { fruit in
             switch fruit {
             case .strawberry:
-                fruitStore.changeFruitQuantity(of: transformStringToInt(label: strawberryLabel.text), fruit: fruit)
+                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: strawberryLabel.text))
             case .banana:
-                fruitStore.changeFruitQuantity(of: transformStringToInt(label: bananaLabel.text), fruit: fruit)
+                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: bananaLabel.text))
             case .kiwi:
-                fruitStore.changeFruitQuantity(of: transformStringToInt(label: kiwiLabel.text), fruit: fruit)
+                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: kiwiLabel.text))
             case .mango:
-                fruitStore.changeFruitQuantity(of: transformStringToInt(label: mangoLabel.text), fruit: fruit)
+                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: mangoLabel.text))
             case .pineapple:
-                fruitStore.changeFruitQuantity(of: transformStringToInt(label: pineappleLabel.text), fruit: fruit)
+                fruitStore.updateFruitQuantity(fruit: fruit, count: transformStringToInt(label: pineappleLabel.text))
             }
         }
     }
