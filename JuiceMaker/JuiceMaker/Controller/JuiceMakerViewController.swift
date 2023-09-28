@@ -14,16 +14,19 @@ final class JuiceMakerViewController: UIViewController, manageStockDelegate {
     @IBOutlet var fruitCountLabels: [UILabel]!
     private let juiceMaker = JuiceMaker()
     
-    func updateStock(fruitList: [Fruit: Int]) {
-        juiceMaker.fruitStore.updateStock(modifiedList: fruitList)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fruitCountLabels.sort(by: {$0.tag < $1.tag})
-        
+        configureNotificationCenter()
+    }
+    
+    private func configureNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshStock(_:)), name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
         NotificationCenter.default.post(name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
+    }
+    
+    func updateStock(fruitList: [Fruit: Int]) {
+        juiceMaker.fruitStore.updateStock(modifiedList: fruitList)
     }
     
     @objc private func refreshStock(_ noti: NSNotification) {

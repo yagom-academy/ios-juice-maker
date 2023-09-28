@@ -11,7 +11,7 @@ final class FruitStoreViewController: UIViewController {
     @IBOutlet private var fruitCountLabels: [UILabel]!
     @IBOutlet private var fruitSteppers: [UIStepper]!
     
-    var fruitList: [Fruit: Int] = [:]
+    var fruitList = [Fruit: Int]()
     var delegate: manageStockDelegate?
     
     override func viewDidLoad() {
@@ -20,18 +20,26 @@ final class FruitStoreViewController: UIViewController {
         initStock()
     }
     
+    func countFruitStock(index: Int) -> Int? {
+        guard let fruit = Fruit(rawValue: index) else {
+            return nil
+        }
+        guard let fruitStock = fruitList[fruit] else {
+            return nil
+        }
+        
+        return fruitStock
+    }
+    
     private func initFruitCollection() {
         fruitCountLabels.sort(by: {$0.tag < $1.tag})
         fruitSteppers.sort(by: {$0.tag < $1.tag})
         
         for (index, stepper) in fruitSteppers.enumerated() {
-            guard let fruit = Fruit(rawValue: index) else {
+            guard let fruitStock = countFruitStock(index: index) else {
                 return
             }
-            guard let fruitStock = fruitList[fruit] else {
-                return
-            }
-
+            
             stepper.value = Double(fruitStock)
             stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
         }
@@ -48,10 +56,7 @@ final class FruitStoreViewController: UIViewController {
     
     private func initStock() {
         for (index, label) in fruitCountLabels.enumerated() {
-            guard let fruit = Fruit(rawValue: index) else {
-                return
-            }
-            guard let fruitStock = fruitList[fruit] else {
+            guard let fruitStock = countFruitStock(index: index) else {
                 return
             }
             
