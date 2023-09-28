@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StockViewController: UIViewController {
+final class StockViewController: UIViewController {
     var fruitInventory: [Fruit: Int] = [:]
     var delegate: StockDelegate?
     
@@ -43,7 +43,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    private func configureStepValue() {
+    private func configureStepperValue() {
         for (index, stockStepper) in fruitStockStepperArray.enumerated() {
             guard let fruit = Fruit(rawValue: index) else { return }
             

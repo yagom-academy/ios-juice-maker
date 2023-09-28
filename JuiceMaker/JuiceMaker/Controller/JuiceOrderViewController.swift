@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceOrderViewController: UIViewController {
+final class JuiceOrderViewController: UIViewController {
     private(set) var juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryLabel: UILabel!

@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
+final class FruitStore {
     private(set) var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit : Int]) {
