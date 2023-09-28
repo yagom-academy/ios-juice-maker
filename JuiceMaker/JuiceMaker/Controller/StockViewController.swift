@@ -18,7 +18,7 @@ final class StockViewController: UIViewController {
         super.viewDidLoad()
         
         configureStock()
-        configureStepValue()
+        configureStepperValue()
     }
     
     @IBAction private func clickCloseButton(_ sender: UIBarButtonItem) {
