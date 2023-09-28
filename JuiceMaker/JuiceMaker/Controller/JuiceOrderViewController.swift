@@ -7,19 +7,13 @@
 import UIKit
 
 class JuiceOrderViewController: UIViewController {
-    private var juiceMaker = JuiceMaker()
+    private(set) var juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
     @IBOutlet weak var pineappleLabel: UILabel!
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureJuiceOrderView()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         configureJuiceOrderView()

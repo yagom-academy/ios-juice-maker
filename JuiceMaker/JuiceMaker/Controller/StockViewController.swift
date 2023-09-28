@@ -11,8 +11,8 @@ class StockViewController: UIViewController {
     var fruitInventory: [Fruit: Int] = [:]
     var delegate: StockDelegate?
     
-    @IBOutlet var fruitStockLabel: [UILabel]!
-    @IBOutlet var fruitStockStteper: [UIStepper]!
+    @IBOutlet var fruitStockLabelArray: [UILabel]!
+    @IBOutlet var fruitStockStepperArray: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class StockViewController: UIViewController {
     }
     
     func configureStock() {
-        for (index, stockLabel) in fruitStockLabel.enumerated() {
+        for (index, stockLabel) in fruitStockLabelArray.enumerated() {
             guard let fruit = Fruit(rawValue: index) else { return }
             
             stockLabel.text = findStock(with: fruit).description
@@ -36,7 +36,7 @@ class StockViewController: UIViewController {
     }
     
     func configureStepValue() {
-        for (index, stockStepper) in fruitStockStteper.enumerated() {
+        for (index, stockStepper) in fruitStockStepperArray.enumerated() {
             guard let fruit = Fruit(rawValue: index) else { return }
             
             stockStepper.value = Double(findStock(with: fruit))
@@ -58,7 +58,7 @@ class StockViewController: UIViewController {
     @IBAction func clickStepper(_ sender: UIStepper) {
         guard let fruit = Fruit(rawValue: sender.tag) else { return }
 
-        fruitStockLabel[sender.tag].text = Int(sender.value).description
+        fruitStockLabelArray[sender.tag].text = Int(sender.value).description
         
         updateStock(fruit: fruit, stock: Int(sender.value))
     }
