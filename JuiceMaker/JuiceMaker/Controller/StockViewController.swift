@@ -11,8 +11,8 @@ class StockViewController: UIViewController {
     var fruitInventory: [Fruit: Int] = [:]
     var delegate: StockDelegate?
     
-    @IBOutlet var fruitStockLabelArray: [UILabel]!
-    @IBOutlet var fruitStockStepperArray: [UIStepper]!
+    @IBOutlet private var fruitStockLabelArray: [UILabel]!
+    @IBOutlet private var fruitStockStepperArray: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +20,22 @@ class StockViewController: UIViewController {
         configureStock()
         configureStepValue()
     }
-
-    @IBAction func clickCloseButton(_ sender: UIBarButtonItem) {
-        presentingViewController?.dismiss(animated: true)
+    
+    @IBAction private func clickCloseButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
         
         delegate?.updateStock(to: fruitInventory)
     }
     
-    func configureStock() {
+    @IBAction private func clickStepper(_ sender: UIStepper) {
+        guard let fruit = Fruit(rawValue: sender.tag) else { return }
+        
+        configureLabelArray(index: sender.tag, value: sender.value)
+        
+        updateStock(fruit: fruit, stock: Int(sender.value))
+    }
+    
+    private func configureStock() {
         for (index, stockLabel) in fruitStockLabelArray.enumerated() {
             guard let fruit = Fruit(rawValue: index) else { return }
             
@@ -35,7 +43,7 @@ class StockViewController: UIViewController {
         }
     }
     
-    func configureStepValue() {
+    private func configureStepValue() {
         for (index, stockStepper) in fruitStockStepperArray.enumerated() {
             guard let fruit = Fruit(rawValue: index) else { return }
             
@@ -43,23 +51,19 @@ class StockViewController: UIViewController {
         }
     }
     
-    func updateStock(fruit: Fruit, stock: Int) {
+    private func updateStock(fruit: Fruit, stock: Int) {
         fruitInventory[fruit] = stock
     }
     
-    func findStock(with fruit: Fruit) -> Int {
+    private func configureLabelArray(index: Int, value: Double) {
+        fruitStockLabelArray[index].text = Int(value).description
+    }
+    
+    private func findStock(with fruit: Fruit) -> Int {
         guard let stock = fruitInventory[fruit] else {
             return 0
         }
         
         return stock
-    }
-    
-    @IBAction func clickStepper(_ sender: UIStepper) {
-        guard let fruit = Fruit(rawValue: sender.tag) else { return }
-
-        fruitStockLabelArray[sender.tag].text = Int(sender.value).description
-        
-        updateStock(fruit: fruit, stock: Int(sender.value))
     }
 }

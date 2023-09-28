@@ -430,16 +430,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="g4W-fY-l7r"/>
                     <connections>
-                        <outletCollection property="fruitStockStteper" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="RY0-Dv-oUD"/>
-                        <outletCollection property="fruitStockLabel" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="lDH-vz-ohc"/>
-                        <outletCollection property="fruitStockLabel" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="Svf-vC-GFx"/>
-                        <outletCollection property="fruitStockStteper" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="BdK-wz-mdJ"/>
-                        <outletCollection property="fruitStockStteper" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="gsP-3U-HY1"/>
-                        <outletCollection property="fruitStockLabel" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="Mjf-Ju-s8o"/>
-                        <outletCollection property="fruitStockStteper" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="RaJ-rq-qp4"/>
-                        <outletCollection property="fruitStockLabel" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="qRR-eS-ZOl"/>
-                        <outletCollection property="fruitStockStteper" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="Vnt-Tb-bie"/>
-                        <outletCollection property="fruitStockLabel" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="cIW-nO-eCy"/>
+                        <outletCollection property="fruitStockLabelArray" destination="0yV-kn-zaT" collectionClass="NSMutableArray" id="DgY-Jk-gue"/>
+                        <outletCollection property="fruitStockLabelArray" destination="gKu-86-RhI" collectionClass="NSMutableArray" id="Yth-VK-COk"/>
+                        <outletCollection property="fruitStockLabelArray" destination="MpT-VW-hCb" collectionClass="NSMutableArray" id="vpd-KM-smk"/>
+                        <outletCollection property="fruitStockLabelArray" destination="ZDv-1m-HBY" collectionClass="NSMutableArray" id="Ewv-n0-LaI"/>
+                        <outletCollection property="fruitStockLabelArray" destination="YJI-ER-LJR" collectionClass="NSMutableArray" id="le7-3C-t3V"/>
+                        <outletCollection property="fruitStockStepperArray" destination="ZQk-f4-zrz" collectionClass="NSMutableArray" id="Yqy-vu-lfW"/>
+                        <outletCollection property="fruitStockStepperArray" destination="O5s-2N-3iP" collectionClass="NSMutableArray" id="DT0-3n-CXC"/>
+                        <outletCollection property="fruitStockStepperArray" destination="Rcr-xr-eqz" collectionClass="NSMutableArray" id="5rf-LI-Tgm"/>
+                        <outletCollection property="fruitStockStepperArray" destination="klA-59-Nu4" collectionClass="NSMutableArray" id="VxE-ar-C9q"/>
+                        <outletCollection property="fruitStockStepperArray" destination="xbn-6P-grO" collectionClass="NSMutableArray" id="WaJ-sO-rbU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
