@@ -16,8 +16,12 @@ final class JuiceMakerViewController: UIViewController, manageStockDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fruitCountLabels.sort(by: {$0.tag < $1.tag})
+        sortFruitCountLabels()
         configureNotificationCenter()
+    }
+    
+    private func sortFruitCountLabels() {
+        fruitCountLabels.sort(by: {$0.tag < $1.tag})
     }
     
     private func configureNotificationCenter() {
