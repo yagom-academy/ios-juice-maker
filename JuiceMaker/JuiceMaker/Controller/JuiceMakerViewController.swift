@@ -6,62 +6,44 @@
 
 import UIKit
 
-final class JuiceMakerViewController: UIViewController {
-    @IBOutlet private weak var strawberryCount: UILabel!
-    @IBOutlet private weak var bananaCount: UILabel!
-    @IBOutlet private weak var pineappleCount: UILabel!
-    @IBOutlet private weak var kiwiCount: UILabel!
-    @IBOutlet private weak var mangoCount: UILabel!
-    
+protocol manageStockDelegate {
+    func updateStock(fruitList: [Fruit: Int])
+}
+
+final class JuiceMakerViewController: UIViewController, manageStockDelegate {
+    @IBOutlet var fruitCountLabels: [UILabel]!
     private let juiceMaker = JuiceMaker()
-    private var fruitLabelDictionary: [Fruit: UILabel] = [:]
     
-    private func initFruitLabelDictionary() {
-        fruitLabelDictionary[.strawberry] = strawberryCount
-        fruitLabelDictionary[.banana] = bananaCount
-        fruitLabelDictionary[.pineapple] = pineappleCount
-        fruitLabelDictionary[.kiwi] = kiwiCount
-        fruitLabelDictionary[.mango] = mangoCount
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        sortFruitCountLabels()
+        configureNotificationCenter()
+    }
+    
+    private func sortFruitCountLabels() {
+        fruitCountLabels.sort(by: {$0.tag < $1.tag})
+    }
+    
+    private func configureNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshStock(_:)), name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
+    }
+    
+    func updateStock(fruitList: [Fruit: Int]) {
+        juiceMaker.fruitStore.updateStock(modifiedList: fruitList)
     }
     
     @objc private func refreshStock(_ noti: NSNotification) {
-        for (fruit, label) in fruitLabelDictionary {
+        for (index, label) in fruitCountLabels.enumerated() {
+            guard let fruit = Fruit(rawValue: index) else {
+                return
+            }
             guard let fruitStock = juiceMaker.fruitStore.fruitList[fruit] else {
                 return
             }
             
             label.text = String(fruitStock)
         }
-    }
-    
-    private func failureAlert() {
-        let alert = UIAlertController(title: AlertTitle.lackIngredient.rawValue, message: AlertMessage.updateStock.rawValue, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: AlertTitle.yes.rawValue, style: .default) { action in
-            self.presentFruitStore()
-        })
-        alert.addAction(UIAlertAction(title: AlertTitle.no.rawValue, style: .default, handler: nil))
-    
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func completeAlert(menu: Menu) {
-        let alert = UIAlertController(title: "\(menu.explainKorean) \(AlertTitle.served.rawValue)", message: AlertMessage.enjoy.rawValue, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: AlertTitle.yes.rawValue, style: .default, handler: nil))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func presentFruitStore() {
-        guard let FruitStoreViewController = storyboard?.instantiateViewController(identifier: String(describing: FruitStoreViewController.self)) else {
-            return
-        }
-        
-        FruitStoreViewController.modalPresentationStyle = .pageSheet
-        FruitStoreViewController.modalTransitionStyle = .coverVertical
-        
-        present(FruitStoreViewController, animated: true)
     }
     
     @IBAction private func touchUpInsideOrderButton(_ sender: UIButton) {
@@ -77,15 +59,40 @@ final class JuiceMakerViewController: UIViewController {
         }
     }
     
+    private func completeAlert(menu: Menu) {
+        let alert = UIAlertController(title: "\(menu.explainKorean) \(AlertTitle.served.rawValue)", message: AlertMessage.enjoy.rawValue, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: AlertTitle.yes.rawValue, style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func failureAlert() {
+        let alert = UIAlertController(title: AlertTitle.lackIngredient.rawValue, message: AlertMessage.updateStock.rawValue, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: AlertTitle.yes.rawValue, style: .default) { action in
+            self.presentFruitStore()
+        })
+        alert.addAction(UIAlertAction(title: AlertTitle.no.rawValue, style: .default, handler: nil))
+    
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction private func touchUpInsidePresentFruitStore() {
         presentFruitStore()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initFruitLabelDictionary()
+    private func presentFruitStore() {
+        guard let fruitStoreViewController = storyboard?.instantiateViewController(identifier: String(describing: FruitStoreViewController.self)) as? FruitStoreViewController else {
+            return
+        }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshStock(_:)), name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
-        NotificationCenter.default.post(name: Notification.Name(OccurNotification.refreshStock.rawValue), object: nil)
+        fruitStoreViewController.modalPresentationStyle = .pageSheet
+        fruitStoreViewController.modalTransitionStyle = .coverVertical
+
+        fruitStoreViewController.delegate = self
+        fruitStoreViewController.fruitList = juiceMaker.fruitStore.fruitList
+        
+        present(fruitStoreViewController, animated: true)
     }
 }

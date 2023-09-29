@@ -7,13 +7,65 @@
 
 import UIKit
 
-class FruitStoreViewController: UIViewController {
-
-    @IBAction private func touchUpInsideDismissFruitStore(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
+final class FruitStoreViewController: UIViewController {
+    @IBOutlet private var fruitCountLabels: [UILabel]!
+    @IBOutlet private var fruitSteppers: [UIStepper]!
+    
+    var fruitList = [Fruit: Int]()
+    var delegate: manageStockDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initFruitCollection()
+        initStock()
+    }
+    
+    func countFruitStock(index: Int) -> Int? {
+        guard let fruit = Fruit(rawValue: index) else {
+            return nil
+        }
+        guard let fruitStock = fruitList[fruit] else {
+            return nil
+        }
+        
+        return fruitStock
+    }
+    
+    private func initFruitCollection() {
+        fruitCountLabels.sort(by: {$0.tag < $1.tag})
+        fruitSteppers.sort(by: {$0.tag < $1.tag})
+        
+        for (index, stepper) in fruitSteppers.enumerated() {
+            guard let fruitStock = countFruitStock(index: index) else {
+                return
+            }
+            
+            stepper.value = Double(fruitStock)
+            stepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
+        }
+    }
+    
+    @IBAction private func stepperValueChanged(_ sender: UIStepper) {
+        guard let fruit = Fruit(rawValue: sender.tag) else {
+            return
+        }
+        
+        fruitCountLabels[sender.tag].text = Int(sender.value).description
+        fruitList[fruit] = Int(sender.value)
+    }
+    
+    private func initStock() {
+        for (index, label) in fruitCountLabels.enumerated() {
+            guard let fruitStock = countFruitStock(index: index) else {
+                return
+            }
+            
+            label.text = String(fruitStock)
+        }
+    }
+    
+    @IBAction private func touchUpInsideDismissFruitStore(_ sender: UIButton) {
+        delegate?.updateStock(fruitList: fruitList)
+        dismiss(animated: true)
     }
 }
