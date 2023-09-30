@@ -6,8 +6,8 @@
 
 import UIKit
 
-class JuiceOrderViewController: UIViewController {
-    private var juiceMaker = JuiceMaker()
+final class JuiceOrderViewController: UIViewController {
+    private(set) var juiceMaker = JuiceMaker()
 
     @IBOutlet weak var strawberryLabel: UILabel!
     @IBOutlet weak var bananaLabel: UILabel!
@@ -15,9 +15,7 @@ class JuiceOrderViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
         configureJuiceOrderView()
     }
 
@@ -94,9 +92,19 @@ class JuiceOrderViewController: UIViewController {
     }
     
     private func convertStockScreen() {
-        if let viewController = storyboard?.instantiateViewController(identifier: "StockViewController") {
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        guard let viewController = storyboard?.instantiateViewController(identifier: "StockViewController") as? StockViewController else { return }
+        
+        viewController.fruitInventory = juiceMaker.fruitStore.fruitStock
+        
+        viewController.delegate = self
+        
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
     }
 }
 
+extension JuiceOrderViewController: StockDelegate {
+    func updateStock(to inventory: [Fruit : Int]) {
+        juiceMaker.fruitStore.changeFruitStock(to: inventory)
+    }
+}

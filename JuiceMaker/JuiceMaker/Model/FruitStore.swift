@@ -4,20 +4,18 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-struct FruitStore {
+final class FruitStore {
     private(set) var fruitStock: [Fruit: Int]
     
     init(fruitStock: [Fruit : Int]) {
         self.fruitStock = fruitStock
     }
     
-    mutating func addFruitStock(name: Fruit, count: Int) {
-        if let currentStock = fruitStock[name] {
-            fruitStock.updateValue(currentStock + count, forKey: name)
-        }
+    func changeFruitStock(to stock: [Fruit: Int]) {
+        fruitStock = stock
     }
     
-    private func checkFruitStock(name: Fruit, count: Int, juice: Juice) throws {
+    private func checkFruitStock(juice: Juice) throws {
         for (name, count) in juice.recipe {
             guard let currentStock = fruitStock[name], currentStock >= count else {
                 throw FruitStoreError.outOfStock
@@ -25,11 +23,13 @@ struct FruitStore {
         }
     }
     
-    mutating func subtractFruitStock(name: Fruit, count: Int, juice: Juice) throws {
-        try checkFruitStock(name: name, count: count, juice: juice)
+    func subtractFruitStock(juice: Juice) throws {
+        try checkFruitStock(juice: juice)
         
-        guard let currentStock = fruitStock[name] else { return }
-        
-        fruitStock.updateValue(currentStock - count, forKey: name)
+        for (name, count) in juice.recipe {
+            guard let currentStock = fruitStock[name] else { return }
+            
+            fruitStock.updateValue(currentStock - count, forKey: name)
+        }
     }
 }
