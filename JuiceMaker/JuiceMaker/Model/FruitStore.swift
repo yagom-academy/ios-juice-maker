@@ -15,5 +15,5 @@ enum Fruit {
 }
 // 과일 저장소 타입
 class FruitStore {
-    
+    var fruitsStock: Dictionary<Fruit, Int> = [:]
 }
