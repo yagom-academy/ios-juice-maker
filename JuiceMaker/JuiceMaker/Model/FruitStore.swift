@@ -6,6 +6,10 @@
 
 import Foundation
 
+enum FruitStoreError: Error {
+    case outOfStock
+}
+
 enum Fruit: CaseIterable {
     case strawberry
     case banana
@@ -21,13 +25,13 @@ class FruitStore {
         for fruit in Fruit.allCases {
             fruitsStock[fruit] = 10
         }
-        
     }
     
+    func adjust(fruit: Fruit, amount: Int) throws {
+        guard let stockOfFruit = fruitsStock[fruit], stockOfFruit >= amount else {
+            throw FruitStoreError.outOfStock
+        }
+        
+        fruitsStock[fruit]? -= amount
+    }
 }
-
-var test = FruitStore()
-
-
-
-
