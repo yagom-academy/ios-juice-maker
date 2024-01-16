@@ -11,9 +11,13 @@ class FruitStore {
     private var fruitStorage = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
     
     func changeFruitQuantity(fruitName: String, quanitity: Int) {
-        fruitStorage.updateValue(quanitity, forKey: fruitName)
+//        fruitStorage.updateValue(quanitity, forKey: fruitName)
+        fruitStorage[fruitName] = quanitity
+        print(fruitStorage)
     }
 }
 
-var fruitStore = FruitStore()
-fruitStore.changeFruitQuantity(fruitName: "딸기", quanitity: 3)
+
+
+
+
