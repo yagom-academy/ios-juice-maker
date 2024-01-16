@@ -29,9 +29,7 @@ class FruitStore {
     }
     
     func fillStock(fruit: Fruit, amount: Int) throws {
-        let stockOfFruit = try takeStock(fruit: fruit)
-        
-        fruitsStock[fruit] = stockOfFruit + amount
+        fruitsStock[fruit] = try takeStock(fruit: fruit) + amount
     }
     
     func consumeStock(fruit: Fruit, amount: Int) throws {
