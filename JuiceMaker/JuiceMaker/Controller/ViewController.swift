@@ -14,6 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         juiceMaker = JuiceMaker()
+        juiceMaker?.makeStrawberryJuice(amount: 1)
     }
 
     
