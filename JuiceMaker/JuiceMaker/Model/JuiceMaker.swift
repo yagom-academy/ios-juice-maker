@@ -6,27 +6,25 @@
 
 import Foundation
 
-
-// 쥬스 메이커 타입
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
     func makeJuice(menuNumber: Menu) {
         switch menuNumber {
-        case .strawberryJuice: // 딸기
+        case .strawberryJuice:
             fruitStore.changeCount(fruit: .strawberry, usedCount: 16)
-        case .bananaJuice: // 바나나
+        case .bananaJuice:
             fruitStore.changeCount(fruit: .banana, usedCount: 2)
-        case .kiwiJuice: // 키위
+        case .kiwiJuice:
             fruitStore.changeCount(fruit: .kiwi, usedCount: 3)
-        case .pineappleJuice: // 파인애플
+        case .pineappleJuice:
             fruitStore.changeCount(fruit: .pineapple, usedCount: 2)
-        case .strawberryBananaJuice: // 딸바
+        case .strawberryBananaJuice:
             fruitStore.changeCount(fruit: .strawberry, usedCount: 10)
             fruitStore.changeCount(fruit: .banana, usedCount: 1)
-        case .mangoJuice: // 망고
+        case .mangoJuice:
             fruitStore.changeCount(fruit: .mango, usedCount: 3)
-        case .mangoKiwiJuice: // 망고키위
+        case .mangoKiwiJuice:
             fruitStore.changeCount(fruit: .mango, usedCount: 2)
             fruitStore.changeCount(fruit: .kiwi, usedCount: 1)
         }
