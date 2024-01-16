@@ -35,10 +35,8 @@ class FruitStore {
     }
     
     func consumeStock(fruit: Fruit, amount: Int) throws {
-        let stockOfFruit = try takeStock(fruit: fruit)
-        
-        if stockOfFruit >= amount {
-            fruitsStock[fruit] = stockOfFruit - amount
+        if checkStock(fruit: fruit, amount: amount) {
+            fruitsStock[fruit] = try takeStock(fruit: fruit) - amount
         } else {
             throw FruitStoreError.outOfStock
         }
