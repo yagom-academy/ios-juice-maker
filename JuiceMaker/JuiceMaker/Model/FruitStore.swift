@@ -7,6 +7,7 @@
 import Foundation
 
 enum FruitStoreError: Error {
+    case fruitNotFound
     case outOfStock
 }
 
@@ -33,5 +34,13 @@ class FruitStore {
         }
         
         fruitsStock[fruit]? -= amount
+    }
+    
+    func takeStock(fruit: Fruit) throws -> Int {
+        guard let stockOfFruit = fruitsStock[fruit] else {
+            throw FruitStoreError.fruitNotFound
+        }
+        
+        return stockOfFruit
     }
 }
