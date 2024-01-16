@@ -6,10 +6,6 @@
 
 import Foundation
 
-struct Error {
-    static var exceedCount = -1
-}
-
 class FruitStore {
     var strawberries = Fruit(name: "딸기", count: 10)
     var bananas = Fruit(name: "바나나", count: 10)
