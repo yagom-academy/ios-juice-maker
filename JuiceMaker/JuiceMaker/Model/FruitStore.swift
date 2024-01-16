@@ -10,6 +10,12 @@ import Foundation
 class FruitStore {
 }
 
-struct Fruit {
+class Fruit {
     var name: String
+    var count: Int
+    
+    init(name: String, count: Int) {
+        self.name = name
+        self.count = count
+    }
 }
