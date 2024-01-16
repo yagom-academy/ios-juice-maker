@@ -13,50 +13,37 @@ class FruitStore {
     var kiwis = Fruit(name: "키위", count: 10)
     var mangos = Fruit(name: "망고", count: 10)
     
-    func changeCount(fruit: FruitType, usedCount: Int) {
+    func manageFruit(fruit: FruitType, usedCount: Int) {
         let fruitName = fruit.rawValue
         
         switch fruit {
         case .strawberry:
-            let afterCount = self.strawberries.count - usedCount
-            if afterCount >= 0 {
-                self.strawberries.count = self.strawberries.count - usedCount
-                print(self.strawberries.count)
-            } else {
-                print("\(fruitName)의 재고가 부족합니다.")
-            }
+            changeCount(fruit: &self.strawberries, usedCount: usedCount)
         case .banana:
-            let afterCount = self.bananas.count - usedCount
-            if afterCount >= 0 {
-                self.bananas.count = self.bananas.count - usedCount
-                print(self.bananas.count)
-            } else {
-                print("\(fruitName)의 재고가 부족합니다.")
-            }
+            changeCount(fruit: &self.bananas, usedCount: usedCount)
         case .pineapple:
-            let afterCount = self.pineapples.count - usedCount
-            if afterCount >= 0 {
-                self.pineapples.count = self.pineapples.count - usedCount
-                print(self.pineapples.count)
-            } else {
-                print("\(fruitName)의 재고가 부족합니다.")
-            }
+            changeCount(fruit: &self.pineapples, usedCount: usedCount)
         case .kiwi:
-            let afterCount = self.kiwis.count - usedCount
-            if afterCount >= 0 {
-                self.kiwis.count = self.kiwis.count - usedCount
-                print(self.kiwis.count)
-            } else {
-                print("\(fruitName)의 재고가 부족합니다.")
-            }
+            changeCount(fruit: &self.kiwis, usedCount: usedCount)
         case .mango:
-            let afterCount = self.mangos.count - usedCount
-            if afterCount >= 0 {
-                self.mangos.count = self.mangos.count - usedCount
-                print(self.mangos.count)
-            } else {
-                print("\(fruitName)의 재고가 부족합니다.")
-            }
+            changeCount(fruit: &self.mangos, usedCount: usedCount)
+        }
+    }
+    
+    func changeCount(fruit: inout Fruit, usedCount: Int) {
+        let afterCount = fruit.count - usedCount
+        if checkCount(afterCount: afterCount) {
+            fruit.count = afterCount
+            print(fruit.count)
+        }
+    }
+    
+    func checkCount(afterCount: Int) -> Bool {
+        if afterCount >= 0 {
+            return true
+        } else {
+            print("재고가 부족합니다.")
+            return false
         }
     }
 }
