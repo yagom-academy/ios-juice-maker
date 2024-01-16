@@ -34,12 +34,14 @@ class FruitStore {
         fruitsStock[fruit] = stockOfFruit + amount
     }
     
-    func adjust(fruit: Fruit, amount: Int) throws {
-        guard let stockOfFruit = fruitsStock[fruit], stockOfFruit >= amount else {
+    func consumeStock(fruit: Fruit, amount: Int) throws {
+        let stockOfFruit = try takeStock(fruit: fruit)
+        
+        if stockOfFruit >= amount {
+            fruitsStock[fruit] = stockOfFruit - amount
+        } else {
             throw FruitStoreError.outOfStock
         }
-        
-        fruitsStock[fruit]? -= amount
     }
     
     func takeStock(fruit: Fruit) throws -> Int {
