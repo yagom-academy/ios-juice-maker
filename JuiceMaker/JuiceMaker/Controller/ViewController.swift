@@ -6,6 +6,24 @@
 
 import UIKit
 
+enum Menu: Int {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoJuice
+    case mangoKiwiJuice
+}
+
+enum FruitType: String {
+    case strawberry = "딸기"
+    case banana = "바나나"
+    case kiwi = "키위"
+    case pineapple = "파인애플"
+    case mango = "망고"
+}
+
 class ViewController: UIViewController {
 
     let juiceMaker = JuiceMaker(fruitStore: FruitStore())
@@ -13,7 +31,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        juiceMaker.makeJuice(menuNumber: 0)
     }
 }
 
