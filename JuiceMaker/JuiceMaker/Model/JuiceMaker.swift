@@ -6,40 +6,29 @@
 
 import Foundation
 
-enum Menu: Int {
-    case strawberry
-    case banana
-    case kiwi
-    case pineapple
-    case strawberryBanana
-    case mango
-    case mangoKiwi
-}
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
-    func makeJuice(menuNumber: Int) {
+    func makeJuice(menuNumber: Menu) {
         switch menuNumber {
-        case 0: // 딸기
-            fruitStore.changeCount(fruitName: "딸기", usedCount: 16)
-        case 1: // 바나나
-            fruitStore.changeCount(fruitName: "바나나", usedCount: 2)
-        case 2: // 키위
-            fruitStore.changeCount(fruitName: "키위", usedCount: 3)
-        case 3: // 파인애플
-            fruitStore.changeCount(fruitName: "파인애플", usedCount: 2)
-        case 4: // 딸바
-            fruitStore.changeCount(fruitName: "딸기", usedCount: 10)
-            fruitStore.changeCount(fruitName: "바나나", usedCount: 1)
-        case 5: // 망고
-            fruitStore.changeCount(fruitName: "망고", usedCount: 3)
-        case 6: // 망고키위
-            fruitStore.changeCount(fruitName: "망고", usedCount: 2)
-            fruitStore.changeCount(fruitName: "키위", usedCount: 1)
-        default:
-            print("판매하는 과일쥬스의 종류가 아닙니다.")
+        case .strawberryJuice: // 딸기
+            fruitStore.changeCount(fruit: .strawberry, usedCount: 16)
+        case .bananaJuice: // 바나나
+            fruitStore.changeCount(fruit: .banana, usedCount: 2)
+        case .kiwiJuice: // 키위
+            fruitStore.changeCount(fruit: .kiwi, usedCount: 3)
+        case .pineappleJuice: // 파인애플
+            fruitStore.changeCount(fruit: .pineapple, usedCount: 2)
+        case .strawberryBananaJuice: // 딸바
+            fruitStore.changeCount(fruit: .strawberry, usedCount: 10)
+            fruitStore.changeCount(fruit: .banana, usedCount: 1)
+        case .mangoJuice: // 망고
+            fruitStore.changeCount(fruit: .mango, usedCount: 3)
+        case .mangoKiwiJuice: // 망고키위
+            fruitStore.changeCount(fruit: .mango, usedCount: 2)
+            fruitStore.changeCount(fruit: .kiwi, usedCount: 1)
         }
     }
 }

@@ -18,9 +18,11 @@ class FruitStore {
     var kiwis = Fruit(name: "키위", count: 10)
     var mangos = Fruit(name: "망고", count: 10)
     
-    func changeCount(fruitName: String, usedCount: Int) {
-        switch fruitName {
-        case "딸기":
+    func changeCount(fruit: FruitType, usedCount: Int) {
+        let fruitName = fruit.rawValue
+        
+        switch fruit {
+        case .strawberry:
             let afterCount = self.strawberries.count - usedCount
             if afterCount >= 0 {
                 self.strawberries.count = self.strawberries.count - usedCount
@@ -28,7 +30,7 @@ class FruitStore {
             } else {
                 print("\(fruitName)의 재고가 부족합니다.")
             }
-        case "바나나":
+        case .banana:
             let afterCount = self.bananas.count - usedCount
             if afterCount >= 0 {
                 self.bananas.count = self.bananas.count - usedCount
@@ -36,7 +38,7 @@ class FruitStore {
             } else {
                 print("\(fruitName)의 재고가 부족합니다.")
             }
-        case "파인애플":
+        case .pineapple:
             let afterCount = self.pineapples.count - usedCount
             if afterCount >= 0 {
                 self.pineapples.count = self.pineapples.count - usedCount
@@ -44,24 +46,22 @@ class FruitStore {
             } else {
                 print("\(fruitName)의 재고가 부족합니다.")
             }
-        case "키위":
+        case .kiwi:
             let afterCount = self.kiwis.count - usedCount
             if afterCount >= 0 {
-                self.kiwis.count = self.kiwis.count - usedCount         
+                self.kiwis.count = self.kiwis.count - usedCount
                 print(self.kiwis.count)
             } else {
                 print("\(fruitName)의 재고가 부족합니다.")
             }
-        case "망고":
+        case .mango:
             let afterCount = self.mangos.count - usedCount
             if afterCount >= 0 {
-                self.mangos.count = self.mangos.count - usedCount               
+                self.mangos.count = self.mangos.count - usedCount
                 print(self.mangos.count)
             } else {
                 print("\(fruitName)의 재고가 부족합니다.")
             }
-        default:
-            print("관리하는 과일의 종류가 아닙니다.")
         }
     }
 }
