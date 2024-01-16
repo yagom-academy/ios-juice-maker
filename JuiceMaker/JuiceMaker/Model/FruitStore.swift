@@ -6,6 +6,10 @@
 
 import Foundation
 
+struct Error {
+    static var exceedCount = -1
+}
+
 // 과일 저장소 타입
 class FruitStore {
     var strawberries = Fruit(name: "딸기", count: 10)
@@ -21,7 +25,7 @@ class FruitStore {
         if afterCount >= 0 {
             return afterCount
         } else {
-            return 0
+            return Error.exceedCount
         }
     }
 }
