@@ -40,18 +40,10 @@ class FruitStore {
         }
     }
     
-    func checkStock(fruit: Fruit, amount: Int) -> Bool {
-        do {
-            let stockOfFruit = try takeStock(fruit: fruit)
-            
-            return stockOfFruit >= amount ? true : false
-        } catch FruitStoreError.fruitNotFound {
-            print("해당 과일이 존재하지 않습니다.")
-        } catch {
-            print("알 수 없는 오류입니다.")
+    func checkStock(fruit: Fruit, amount: Int) throws {
+        if try takeStock(fruit: fruit) < amount {
+            throw FruitStoreError.outOfStock
         }
-        
-        return false
     }
     
     func takeStock(fruit: Fruit) throws -> Int {
