@@ -8,7 +8,7 @@ import Foundation
 
 enum FruitStoreError: Error {
     case fruitNotFound
-    case outOfStock
+    case insufficientFruits
 }
 
 enum Fruit: CaseIterable {
@@ -20,34 +20,34 @@ enum Fruit: CaseIterable {
 }
 // 과일 저장소 타입
 class FruitStore {
-    var fruitsStock: Dictionary<Fruit, Int> = [:]
+    var fruitBox: [Fruit: Int] = [:]
 
     init() {
         for fruit in Fruit.allCases {
-            fruitsStock[fruit] = 10
+            fruitBox[fruit] = 10
         }
     }
     
-    func fillStock(fruit: Fruit, quantity: Int) throws {
-        fruitsStock[fruit] = try takeStock(fruit: fruit) + quantity
+    func fill(fruit: Fruit, quantity: Int) throws {
+        fruitBox[fruit] = try countQuantity(fruit: fruit) + quantity
     }
     
-    func consumeStock(fruit: Fruit, quantity: Int) throws {
-        try checkStock(fruit: fruit, quantity: quantity)
-        fruitsStock[fruit] = try takeStock(fruit: fruit) - quantity
+    func use(fruit: Fruit, quantity: Int) throws {
+        try hasEnough(fruit: fruit, quantity: quantity)
+        fruitBox[fruit] = try countQuantity(fruit: fruit) - quantity
     }
     
-    func checkStock(fruit: Fruit, quantity: Int) throws {
-        if try takeStock(fruit: fruit) < quantity {
-            throw FruitStoreError.outOfStock
+    func hasEnough(fruit: Fruit, quantity: Int) throws {
+        if try countQuantity(fruit: fruit) < quantity {
+            throw FruitStoreError.insufficientFruits
         }
     }
     
-    func takeStock(fruit: Fruit) throws -> Int {
-        guard let stockOfFruit = fruitsStock[fruit] else {
+    func countQuantity(fruit: Fruit) throws -> Int {
+        guard let numberOfFruit = fruitBox[fruit] else {
             throw FruitStoreError.fruitNotFound
         }
         
-        return stockOfFruit
+        return numberOfFruit
     }
 }

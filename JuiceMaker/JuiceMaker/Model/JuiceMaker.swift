@@ -7,7 +7,7 @@
 import Foundation
 
 enum JuiceMakerError: Error {
-    case cannotPlaceOrder
+    case insufficientIngredients
 }
 
 enum Juice {
@@ -19,7 +19,7 @@ enum Juice {
     case mango
     case mangoKiwi
     
-    var requiredIngredient: [Fruit: Int] {
+    var recipe: [Fruit: Int] {
         switch self {
         case .strawberry:
             return [.strawberry: 16]
@@ -43,21 +43,23 @@ enum Juice {
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
-    func checkJuice(juice: Juice) throws {
-        for (fruit, quantity) in juice.requiredIngredient {
+    func verifyIngredientsOf(recipe: [Fruit: Int]) throws {
+        for (fruit, quantity) in recipe {
             do {
-                try fruitStore.checkStock(fruit: fruit, quantity: quantity)
+                try fruitStore.hasEnough(fruit: fruit, quantity: quantity)
             } catch {
-                throw JuiceMakerError.cannotPlaceOrder
+                throw JuiceMakerError.insufficientIngredients
             }
         }
     }
     
-    func makeJuice(juice: Juice) throws {
-        try checkJuice(juice: juice)
+    func make(juice: Juice) throws {
+        let juiceRecipe = juice.recipe
         
-        for (fruit, quantity) in juice.requiredIngredient {
-            try? fruitStore.consumeStock(fruit: fruit, quantity: quantity)
+        try verifyIngredientsOf(recipe: juiceRecipe)
+        
+        for (fruit, quantity) in juiceRecipe {
+            try? fruitStore.use(fruit: fruit, quantity: quantity)
         }
     }
 }
