@@ -6,7 +6,7 @@
 
 import UIKit
 
-enum Menu: Int {
+enum JuiceMenu: Int {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
@@ -16,7 +16,7 @@ enum Menu: Int {
     case mangoKiwiJuice
 }
 
-enum FruitType: String {
+enum FruitCategory: String {
     case strawberry = "딸기"
     case banana = "바나나"
     case kiwi = "키위"

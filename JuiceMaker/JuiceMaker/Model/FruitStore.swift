@@ -13,7 +13,7 @@ class FruitStore {
     var kiwis = Fruit(name: "키위", count: 10)
     var mangos = Fruit(name: "망고", count: 10)
     
-    func manageFruit(fruit: FruitType, usedCount: Int) {
+    func manageFruit(fruit: FruitCategory, usedCount: Int) {
         let fruitName = fruit.rawValue
         
         switch fruit {
@@ -32,13 +32,13 @@ class FruitStore {
     
     func changeCount(fruit: inout Fruit, usedCount: Int) {
         let afterCount = fruit.count - usedCount
-        if checkCount(afterCount: afterCount) {
+        if isAvailable(afterCount: afterCount) {
             fruit.count = afterCount
             print(fruit.count)
         }
     }
     
-    func checkCount(afterCount: Int) -> Bool {
+    func isAvailable(afterCount: Int) -> Bool {
         if afterCount >= 0 {
             return true
         } else {
