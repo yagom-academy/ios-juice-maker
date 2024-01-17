@@ -22,9 +22,9 @@ enum Fruit: CaseIterable {
 class FruitStore {
     var fruitBox: [Fruit: Int] = [:]
 
-    init() {
+    init(baseQuantity: Int) {
         for fruit in Fruit.allCases {
-            fruitBox[fruit] = 10
+            fruitBox[fruit] = baseQuantity
         }
     }
     

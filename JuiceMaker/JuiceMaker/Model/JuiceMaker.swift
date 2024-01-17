@@ -41,7 +41,11 @@ enum Juice {
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
-    var fruitStore = FruitStore()
+    var fruitStore: FruitStore
+    
+    init(fruitsBaseQuantity: Int) {
+        fruitStore = FruitStore(baseQuantity: fruitsBaseQuantity)
+    }
     
     func verifyIngredientsOf(recipe: [Fruit: Int]) throws {
         for (fruit, quantity) in recipe {
