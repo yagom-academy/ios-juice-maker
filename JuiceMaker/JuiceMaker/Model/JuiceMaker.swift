@@ -13,8 +13,10 @@ struct JuiceMaker {
         self.fruitStore = FruitStore()
     }
     
-    func makeJuice(juiceName: String) -> (String, [String: Int]) {
+    func makeJuice(juiceName: String, amount: Int) -> String {
         var ingredients = [String: Int]()
+        var madeJuiceResult = [String: Any]()
+        var checkResult = 0
         
         switch juiceName {
         case "딸기쥬스":
@@ -34,30 +36,59 @@ struct JuiceMaker {
             ingredients["망고"] = 2
             ingredients["키위"] = 1
         default:
-            return ("지원하지않는 쥬스입니다.", ingredients)
+            print("없는 메뉴입니다.")
         }
         
-        checkStorage(juiceName: juiceName, ingredients: ingredients)
+        checkResult = fruitStore.showFruitQuantity(showFruits: ingredients, showAmount: amount)
         
-        return (juiceName, ingredients)
+        if(checkResult == 1) {
+            madeJuiceResult = deductFruit(reqJuiceName: juiceName, reqFruits: ingredients, reqJuiceAmount: amount)
+        } else if(checkResult == 0){
+            print("쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요.")
+            return "OUT OF STOCK"
+        } else {
+            print("error: make\(#line)")
+            return "FAIL"
+        }
+    
+        if let message = madeJuiceResult["message"] as? String {
+            print(message)
+            return "SUCCESS"
+        } else {
+            return "error: make\(#line)"
+        }
     }
     
-    func checkStorage(juiceName: String, ingredients: [String: Int]) {
-        for(fruits, quantity) in ingredients {
-            let selectedFruits = fruitStore.showFruitAmount(fruitName: fruits)
-            if (selectedFruits >= quantity) {
-                fruitStore.deductFruit(fruitName: fruits, quantity: quantity)
+    func deductFruit(reqJuiceName: String, reqFruits: [String: Int], reqJuiceAmount: Int) -> [String: Any] {
+        var status = 0
+        var message = ""
+        let originFruitStorage = self.fruitStore.fruitStorage
+        
+        debugPrint("사용전: ", self.fruitStore.fruitStorage)
+        for (fruit, reqFruitQty) in reqFruits {
+            var storeFruitQty = self.fruitStore.fruitStorage[fruit] ?? 0
+            let useFruitQty = reqFruitQty * reqJuiceAmount
+            
+            storeFruitQty -= useFruitQty
+            
+            if(storeFruitQty >= 0){
+                status = 1
+                fruitStore.changeFruitQuantity(changeFruit: fruit, changeQuantity: storeFruitQty)
             } else {
-                return print("재고가 없습니다")
+                status = 0
+                message = "\(fruit)가 \(-storeFruitQty)개가 부족하여 \(reqJuiceName)를 만들 수 없습니다."
+                
+                self.fruitStore.fruitStorage = originFruitStorage
+                
+                return ["status": status, "message": message]
             }
         }
-        print("\(juiceName) 를 만들었습니다")
-    }
-    
-    func useFruits(juiceName: String, ingredients: [String: Int]) {
-        for (fruits, quantity) in ingredients {
-            fruitStore.deductFruit(fruitName: fruits, quantity: quantity)
+        
+        if(status == 1){
+            message = "\(reqJuiceName)를 \(reqJuiceAmount)잔 만들었습니다."
         }
-        print("\(juiceName)를 만들었습니다.")
+        
+        debugPrint("사용후: ", self.fruitStore.fruitStorage)
+        return ["status": status, "message": message]
     }
 }

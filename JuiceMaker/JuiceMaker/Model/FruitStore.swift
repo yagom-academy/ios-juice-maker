@@ -7,20 +7,31 @@
 import Foundation
 
 class FruitStore {
-    private var fruitStorage = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
+    var fruitStorage = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
     
-    func changeFruitQuantity(fruitName: String, quantity: Int) {
-        fruitStorage.updateValue(quantity, forKey: fruitName)
-        print(fruitStorage)
+    func changeFruitQuantity(changeFruit: String, changeQuantity: Int) {
+        fruitStorage.updateValue(changeQuantity, forKey: changeFruit)
     }
     
-    func showFruitAmount(fruitName: String) -> Int {
-        return fruitStorage[fruitName, default: 10]
-    }
-    
-    func deductFruit(fruitName: String, quantity: Int) {
-        fruitStorage[fruitName, default: 10] -= quantity
-        print(fruitStorage)
+    func showFruitQuantity(showFruits: [String: Int], showAmount: Int) -> Int {
+        var status = 0
+        
+        for (fruit, useQty) in showFruits {
+            let reqFruit = useQty * showAmount
+            let storeFruit = fruitStorage[fruit] ?? 0
+            
+            if (reqFruit <= storeFruit) {
+                status = 1
+            } else if (reqFruit > storeFruit) {
+                status = 0
+                break
+            } else {
+                status = -1
+                break
+            }
+        }
+        
+        return status
     }
 }
 
