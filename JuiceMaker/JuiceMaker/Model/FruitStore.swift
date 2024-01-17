@@ -6,26 +6,28 @@
 
 import Foundation
 
+struct Inventory {
+    static let strawberryCount = 10
+    static let bananaCount = 10
+    static let pineappleCount = 10
+    static let kiwiCount = 10
+    static let mangoCount = 10
+}
+
 struct FruitStore {
-    var strawberries = Fruit(name: "딸기", count: 10)
-    var bananas = Fruit(name: "바나나", count: 10)
-    var pineapples = Fruit(name: "파인애플", count: 10)
-    var kiwis = Fruit(name: "키위", count: 10)
-    var mangos = Fruit(name: "망고", count: 10)
-    
     func manageFruit(fruit: FruitCategory, usedCount: Int) {
-        switch fruit {
-        case .strawberry:
-            changeCount(fruit: self.strawberries, usedCount: usedCount)
-        case .banana:
-            changeCount(fruit: self.bananas, usedCount: usedCount)
-        case .pineapple:
-            changeCount(fruit: self.pineapples, usedCount: usedCount)
-        case .kiwi:
-            changeCount(fruit: self.kiwis, usedCount: usedCount)
-        case .mango:
-            changeCount(fruit: self.mangos, usedCount: usedCount)
-        }
+//        switch fruit {
+//        case .strawberry:
+//            changeCount(fruit: self.strawberries, usedCount: usedCount)
+//        case .banana:
+//            changeCount(fruit: self.bananas, usedCount: usedCount)
+//        case .pineapple:
+//            changeCount(fruit: self.pineapples, usedCount: usedCount)
+//        case .kiwi:
+//            changeCount(fruit: self.kiwis, usedCount: usedCount)
+//        case .mango:
+//            changeCount(fruit: self.mangos, usedCount: usedCount)
+//        }
     }
     
     func changeCount(fruit: Fruit, usedCount: Int) {
