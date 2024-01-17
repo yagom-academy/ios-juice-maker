@@ -12,7 +12,7 @@ class FruitStore {
     func changeFruitQuantity(changeFruit: String, changeQuantity: Int) {
         fruitStorage.updateValue(changeQuantity, forKey: changeFruit)
     }
-    
+
     func showFruitQuantity(showFruits: [String: Int], showAmount: Int) -> Int {
         var status = 0
         

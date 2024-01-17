@@ -7,11 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    private var fruitStore: FruitStore
-    
-    init() {
-        self.fruitStore = FruitStore()
-    }
+    private var fruitStore: FruitStore = FruitStore()
     
     func makeJuice(juiceName: String, amount: Int) -> String {
         var ingredients = [String: Int]()
@@ -36,7 +32,7 @@ struct JuiceMaker {
             ingredients["망고"] = 2
             ingredients["키위"] = 1
         default:
-            print("없는 메뉴입니다.")
+            return "없는 메뉴입니다."
         }
         
         checkResult = fruitStore.showFruitQuantity(showFruits: ingredients, showAmount: amount)
@@ -62,11 +58,11 @@ struct JuiceMaker {
     func deductFruit(reqJuiceName: String, reqFruits: [String: Int], reqJuiceAmount: Int) -> [String: Any] {
         var status = 0
         var message = ""
-        let originFruitStorage = self.fruitStore.fruitStorage
+        let originFruitStorage = fruitStore.fruitStorage
         
-        debugPrint("사용전: ", self.fruitStore.fruitStorage)
+        debugPrint("사용전: ", fruitStore.fruitStorage)
         for (fruit, reqFruitQty) in reqFruits {
-            var storeFruitQty = self.fruitStore.fruitStorage[fruit] ?? 0
+            var storeFruitQty = fruitStore.fruitStorage[fruit] ?? 0
             let useFruitQty = reqFruitQty * reqJuiceAmount
             
             storeFruitQty -= useFruitQty
@@ -78,7 +74,7 @@ struct JuiceMaker {
                 status = 0
                 message = "\(fruit)가 \(-storeFruitQty)개가 부족하여 \(reqJuiceName)를 만들 수 없습니다."
                 
-                self.fruitStore.fruitStorage = originFruitStorage
+                fruitStore.fruitStorage = originFruitStorage
                 
                 return ["status": status, "message": message]
             }
@@ -88,7 +84,8 @@ struct JuiceMaker {
             message = "\(reqJuiceName)를 \(reqJuiceAmount)잔 만들었습니다."
         }
         
-        debugPrint("사용후: ", self.fruitStore.fruitStorage)
+        debugPrint("사용후: ", fruitStore.fruitStorage)
+
         return ["status": status, "message": message]
     }
 }
