@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom academy. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ enum FruitCategory: Int {
     case banana
     case kiwi
     case pineapple
-    case mango 
+    case mango
     
     var koreanName: String {
         switch self {
@@ -47,28 +47,28 @@ struct FruitStore {
     ]
     
     mutating func manageFruits(recipes: [Combination]) {
-            var flag = true
+        var flag = true
+        
+        for index in 0..<recipes.count {
+            let fruitCategory = recipes[index].fruitName
+            let countToUse = recipes[index].count
             
-            for index in 0..<recipes.count {
-                let fruitCategory = recipes[index].fruitName
-                let countToUse = recipes[index].count
-                
-                if !isAvailable(fruitCategory: fruitCategory, countToUse: countToUse) {
-                    flag = false
-                    print("\(fruitCategory.koreanName)의 재고가 부족합니다!")
-                    break
-                }
-            }
-            
-            if flag {
-                for index in 0..<recipes.count {
-                    let fruitCategoryIndex = recipes[index].fruitName.rawValue
-                    let countToUse = recipes[index].count
-                    
-                    self.inventory[fruitCategoryIndex].count -= countToUse
-                }
+            if !isAvailable(fruitCategory: fruitCategory, countToUse: countToUse) {
+                flag = false
+                print("\(fruitCategory.koreanName)의 재고가 부족합니다!")
+                break
             }
         }
+        
+        if flag {
+            for index in 0..<recipes.count {
+                let fruitCategoryIndex = recipes[index].fruitName.rawValue
+                let countToUse = recipes[index].count
+                
+                self.inventory[fruitCategoryIndex].count -= countToUse
+            }
+        }
+    }
     
     func isAvailable(fruitCategory: FruitCategory, countToUse: Int) -> Bool {
         if self.inventory[fruitCategory.rawValue].count - countToUse >= 0 {
