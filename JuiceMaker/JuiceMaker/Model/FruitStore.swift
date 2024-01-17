@@ -46,34 +46,34 @@ struct FruitStore {
         Fruit(name: .mango, count: Inventory.mangoCount)
     ]
     
-    func manageFruit(fruit: FruitCategory, usedCount: Int) {
-//        switch fruit {
-//        case .strawberry:
-//            changeCount(fruit: self.strawberries, usedCount: usedCount)
-//        case .banana:
-//            changeCount(fruit: self.bananas, usedCount: usedCount)
-//        case .pineapple:
-//            changeCount(fruit: self.pineapples, usedCount: usedCount)
-//        case .kiwi:
-//            changeCount(fruit: self.kiwis, usedCount: usedCount)
-//        case .mango:
-//            changeCount(fruit: self.mangos, usedCount: usedCount)
-//        }
-    }
-    
-    func changeCount(fruit: Fruit, usedCount: Int) {
-        let afterCount = fruit.count - usedCount
-        if isAvailable(afterCount: afterCount) {
-            fruit.count = afterCount
-            print(fruit.count)
+    mutating func manageFruits(recipes: [Combination]) {
+            var flag = true
+            
+            for index in 0..<recipes.count {
+                let fruitCategory = recipes[index].fruitName
+                let countToUse = recipes[index].count
+                
+                if !isAvailable(fruitCategory: fruitCategory, countToUse: countToUse) {
+                    flag = false
+                    print("\(fruitCategory.koreanName)의 재고가 부족합니다!")
+                    break
+                }
+            }
+            
+            if flag {
+                for index in 0..<recipes.count {
+                    let fruitCategoryIndex = recipes[index].fruitName.rawValue
+                    let countToUse = recipes[index].count
+                    
+                    self.bucket[fruitCategoryIndex].count -= countToUse
+                }
+            }
         }
-    }
     
-    func isAvailable(afterCount: Int) -> Bool {
-        if afterCount >= 0 {
+    func isAvailable(fruitCategory: FruitCategory, countToUse: Int) -> Bool {
+        if self.bucket[fruitCategory.rawValue].count - countToUse >= 0 {
             return true
         } else {
-            print("재고가 부족합니다.")
             return false
         }
     }
