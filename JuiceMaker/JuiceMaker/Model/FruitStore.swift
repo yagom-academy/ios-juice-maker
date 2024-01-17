@@ -14,6 +14,29 @@ struct Inventory {
     static let mangoCount = 10
 }
 
+enum FruitCategory: Int {
+    case strawberry // 0
+    case banana // 1
+    case kiwi // 2
+    case pineapple // 3
+    case mango // 4
+    
+    var koreanName: String {
+        switch self {
+        case .strawberry:
+            return "딸기"
+        case .banana:
+            return "바나나"
+        case .kiwi:
+            return "키위"
+        case .pineapple:
+            return "파인애플"
+        case .mango:
+            return "망고"
+        }
+    }
+}
+
 struct FruitStore {
     func manageFruit(fruit: FruitCategory, usedCount: Int) {
 //        switch fruit {
