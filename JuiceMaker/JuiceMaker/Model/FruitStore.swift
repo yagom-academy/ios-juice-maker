@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct Inventory {
+struct Stock {
     static let strawberryCount = 10
     static let bananaCount = 10
     static let pineappleCount = 10
@@ -38,12 +38,12 @@ enum FruitCategory: Int {
 }
 
 struct FruitStore {
-    var bucket = [
-        Fruit(name: .strawberry, count: Inventory.strawberryCount),
-        Fruit(name: .banana, count: Inventory.bananaCount),
-        Fruit(name: .pineapple, count: Inventory.pineappleCount),
-        Fruit(name: .kiwi, count: Inventory.kiwiCount),
-        Fruit(name: .mango, count: Inventory.mangoCount)
+    var inventory = [
+        Fruit(name: .strawberry, count: Stock.strawberryCount),
+        Fruit(name: .banana, count: Stock.bananaCount),
+        Fruit(name: .pineapple, count: Stock.pineappleCount),
+        Fruit(name: .kiwi, count: Stock.kiwiCount),
+        Fruit(name: .mango, count: Stock.mangoCount)
     ]
     
     mutating func manageFruits(recipes: [Combination]) {
@@ -65,13 +65,13 @@ struct FruitStore {
                     let fruitCategoryIndex = recipes[index].fruitName.rawValue
                     let countToUse = recipes[index].count
                     
-                    self.bucket[fruitCategoryIndex].count -= countToUse
+                    self.inventory[fruitCategoryIndex].count -= countToUse
                 }
             }
         }
     
     func isAvailable(fruitCategory: FruitCategory, countToUse: Int) -> Bool {
-        if self.bucket[fruitCategory.rawValue].count - countToUse >= 0 {
+        if self.inventory[fruitCategory.rawValue].count - countToUse >= 0 {
             return true
         } else {
             return false
