@@ -20,12 +20,20 @@ enum Fruit: CaseIterable {
 }
 // 과일 저장소 타입
 class FruitStore {
-    var fruitBox: [Fruit: Int] = [:]
+    private var fruitBox: [Fruit: Int] = [:]
 
     init(baseQuantity: Int) {
         for fruit in Fruit.allCases {
             fruitBox[fruit] = baseQuantity
         }
+    }
+    
+    private func countQuantity(fruit: Fruit) throws -> Int {
+        guard let numberOfFruit = fruitBox[fruit] else {
+            throw FruitStoreError.fruitNotFound
+        }
+        
+        return numberOfFruit
     }
     
     func fill(fruit: Fruit, quantity: Int) throws {
@@ -41,13 +49,5 @@ class FruitStore {
         if try countQuantity(fruit: fruit) < quantity {
             throw FruitStoreError.insufficientFruits
         }
-    }
-    
-    func countQuantity(fruit: Fruit) throws -> Int {
-        guard let numberOfFruit = fruitBox[fruit] else {
-            throw FruitStoreError.fruitNotFound
-        }
-        
-        return numberOfFruit
     }
 }
