@@ -15,11 +15,11 @@ struct Inventory {
 }
 
 enum FruitCategory: Int {
-    case strawberry // 0
-    case banana // 1
-    case kiwi // 2
-    case pineapple // 3
-    case mango // 4
+    case strawberry
+    case banana
+    case kiwi
+    case pineapple
+    case mango 
     
     var koreanName: String {
         switch self {
@@ -38,6 +38,14 @@ enum FruitCategory: Int {
 }
 
 struct FruitStore {
+    var bucket = [
+        Fruit(name: .strawberry, count: Inventory.strawberryCount),
+        Fruit(name: .banana, count: Inventory.bananaCount),
+        Fruit(name: .pineapple, count: Inventory.pineappleCount),
+        Fruit(name: .kiwi, count: Inventory.kiwiCount),
+        Fruit(name: .mango, count: Inventory.mangoCount)
+    ]
+    
     func manageFruit(fruit: FruitCategory, usedCount: Int) {
 //        switch fruit {
 //        case .strawberry:
@@ -72,10 +80,10 @@ struct FruitStore {
 }
 
 class Fruit {
-    let name: String
+    let name: FruitCategory
     var count: Int
     
-    init(name: String, count: Int) {
+    init(name: FruitCategory, count: Int) {
         self.name = name
         self.count = count
     }
