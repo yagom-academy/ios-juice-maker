@@ -6,7 +6,7 @@
 
 import Foundation
 
-class FruitStore {
+struct FruitStore {
     var strawberries = Fruit(name: "딸기", count: 10)
     var bananas = Fruit(name: "바나나", count: 10)
     var pineapples = Fruit(name: "파인애플", count: 10)
@@ -18,19 +18,19 @@ class FruitStore {
         
         switch fruit {
         case .strawberry:
-            changeCount(fruit: &self.strawberries, usedCount: usedCount)
+            changeCount(fruit: self.strawberries, usedCount: usedCount)
         case .banana:
-            changeCount(fruit: &self.bananas, usedCount: usedCount)
+            changeCount(fruit: self.bananas, usedCount: usedCount)
         case .pineapple:
-            changeCount(fruit: &self.pineapples, usedCount: usedCount)
+            changeCount(fruit: self.pineapples, usedCount: usedCount)
         case .kiwi:
-            changeCount(fruit: &self.kiwis, usedCount: usedCount)
+            changeCount(fruit: self.kiwis, usedCount: usedCount)
         case .mango:
-            changeCount(fruit: &self.mangos, usedCount: usedCount)
+            changeCount(fruit: self.mangos, usedCount: usedCount)
         }
     }
     
-    func changeCount(fruit: inout Fruit, usedCount: Int) {
+    func changeCount(fruit: Fruit, usedCount: Int) {
         let afterCount = fruit.count - usedCount
         if isAvailable(afterCount: afterCount) {
             fruit.count = afterCount
