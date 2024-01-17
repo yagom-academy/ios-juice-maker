@@ -39,6 +39,16 @@ enum Juice {
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
+    func checkJuice(juice: Juice) throws {
+        for (fruit, amount) in juice.requiredIngredient {
+            do {
+                try fruitStore.checkStock(fruit: fruit, amount: amount)
+            } catch {
+                throw JuiceMakerError.cannotPlaceOrder
+            }
+        }
+    }
+    
     func makeJuice(juice: Juice) {
 
         for (fruit, amount) in juice.requiredIngredient {
