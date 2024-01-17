@@ -47,7 +47,7 @@ struct FruitStore {
 }
 
 class Fruit {
-    var name: String
+    let name: String
     var count: Int
     
     init(name: String, count: Int) {
