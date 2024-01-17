@@ -8,6 +8,38 @@ import Foundation
 
 typealias Combination = (fruitName: FruitCategory, count: Int)
 
+struct Recipe {
+    struct strawberryJuice {
+        static let strawberryCount = 16
+    }
+    
+    struct bananaJuice {
+        static let bananaCount = 3
+    }
+    
+    struct kiwiJuice {
+        static let kiwiCount = 3
+    }
+    
+    struct pineappleJuice {
+        static let pineappleCount = 2
+    }
+    
+    struct strawberryBananaJuice {
+        static let strawberryCount = 10
+        static let bananaCount = 1
+    }
+    
+    struct mangoJuice {
+        static let mangoCount = 3
+    }
+    
+    struct mangoKiwiJuice {
+        static let mangoCount = 2
+        static let kiwiCount = 1
+    }
+}
+
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
