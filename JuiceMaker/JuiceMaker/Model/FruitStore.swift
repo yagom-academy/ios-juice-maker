@@ -14,8 +14,6 @@ struct FruitStore {
     var mangos = Fruit(name: "망고", count: 10)
     
     func manageFruit(fruit: FruitCategory, usedCount: Int) {
-        let fruitName = fruit.rawValue
-        
         switch fruit {
         case .strawberry:
             changeCount(fruit: self.strawberries, usedCount: usedCount)
