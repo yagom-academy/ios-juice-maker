@@ -53,18 +53,11 @@ struct JuiceMaker {
         }
     }
     
-    func makeJuice(juice: Juice) {
-
+    func makeJuice(juice: Juice) throws {
+        try checkJuice(juice: juice)
+        
         for (fruit, amount) in juice.requiredIngredient {
-            do {
-                try fruitStore.consumeStock(fruit: fruit, amount: amount)
-            } catch FruitStoreError.outOfStock {
-                print("과일 개수가 부족합니다.")
-            } catch FruitStoreError.fruitNotFound {
-                print("해당 과일이 존재하지 않습니다.")
-            } catch {
-                print("알 수 없는 오류입니다.")
-            }
+            try? fruitStore.consumeStock(fruit: fruit, amount: amount)
         }
     }
 }
