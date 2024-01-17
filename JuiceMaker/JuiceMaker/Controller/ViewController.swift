@@ -8,7 +8,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let juiceMaker = JuiceMaker(fruitStore: FruitStore())
+    var juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
