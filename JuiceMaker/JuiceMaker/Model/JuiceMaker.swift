@@ -44,9 +44,9 @@ struct JuiceMaker {
     var fruitStore = FruitStore()
     
     func checkJuice(juice: Juice) throws {
-        for (fruit, amount) in juice.requiredIngredient {
+        for (fruit, quantity) in juice.requiredIngredient {
             do {
-                try fruitStore.checkStock(fruit: fruit, amount: amount)
+                try fruitStore.checkStock(fruit: fruit, quantity: quantity)
             } catch {
                 throw JuiceMakerError.cannotPlaceOrder
             }
@@ -56,8 +56,8 @@ struct JuiceMaker {
     func makeJuice(juice: Juice) throws {
         try checkJuice(juice: juice)
         
-        for (fruit, amount) in juice.requiredIngredient {
-            try? fruitStore.consumeStock(fruit: fruit, amount: amount)
+        for (fruit, quantity) in juice.requiredIngredient {
+            try? fruitStore.consumeStock(fruit: fruit, quantity: quantity)
         }
     }
 }

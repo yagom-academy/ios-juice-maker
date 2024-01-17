@@ -28,17 +28,17 @@ class FruitStore {
         }
     }
     
-    func fillStock(fruit: Fruit, amount: Int) throws {
-        fruitsStock[fruit] = try takeStock(fruit: fruit) + amount
+    func fillStock(fruit: Fruit, quantity: Int) throws {
+        fruitsStock[fruit] = try takeStock(fruit: fruit) + quantity
     }
     
-    func consumeStock(fruit: Fruit, amount: Int) throws {
-        try checkStock(fruit: fruit, amount: amount)
-        fruitsStock[fruit] = try takeStock(fruit: fruit) - amount
+    func consumeStock(fruit: Fruit, quantity: Int) throws {
+        try checkStock(fruit: fruit, quantity: quantity)
+        fruitsStock[fruit] = try takeStock(fruit: fruit) - quantity
     }
     
-    func checkStock(fruit: Fruit, amount: Int) throws {
-        if try takeStock(fruit: fruit) < amount {
+    func checkStock(fruit: Fruit, quantity: Int) throws {
+        if try takeStock(fruit: fruit) < quantity {
             throw FruitStoreError.outOfStock
         }
     }
