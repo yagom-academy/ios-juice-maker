@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         juiceMaker = JuiceMaker()
-        juiceMaker?.makeJuice(juice: "딸바쥬스")
+        juiceMaker?.makeJuice(juiceName: "딸바쥬스")
     }
 
     

@@ -25,31 +25,55 @@ struct JuiceMaker {
 //        }
 //    }
     
-    func makeJuice(juice: String) -> (String, [String: Int]) {
-        var juiceName = ""
+    func makeJuice(juiceName: String) -> (String, [String: Int]) {
+        //var juiceName = ""
         var ingredients = [String: Int]()
         
-        switch juice {
+        switch juiceName {
         case "딸기쥬스":
             ingredients["딸기"] = 16
-            juiceName = "딸기쥬스"
+            //juiceName = "딸기쥬스"
         case "딸바쥬스":
             ingredients["딸기"] = 10
             ingredients["바나나"] = 1
-            juiceName = "딸바쥬스"
+            //juiceName = "딸바쥬스"
+        case "바나나쥬스":
+            ingredients["바나나"] = 2
+            //juiceName = "바나나"
+        case "키위쥬스":
+            ingredients["키위"] = 3
+            //juiceName = "키위"
+        case "파인애플쥬스":
+            ingredients["파인애플"] = 2
+            //juiceName = "파인애플"
+        case "망고쥬스":
+            ingredients["망고"] = 3
+            //juiceName = "망고"
+        case "망고키위쥬스":
+            ingredients["망고"] = 2
+            ingredients["키위"] = 1
+            //juiceName = "망고키위쥬스"
         default:
             return ("지원하지않는 쥬스입니다.", ingredients)
         }
         
-        useFruits(juiceName: juiceName, ingredients: ingredients)
+        checkStorage(juiceName: juiceName, ingredients: ingredients)
         
         return (juiceName, ingredients)
     }
     
-    // 과일의 재고를 확인한다.
-    func checkStorage(fruitName: String) {
-        print(fruitStore.showFruitAmount(fruitName: fruitName))
+    // 과일의 재고를 체크한다.
+    func checkStorage(juiceName: String, ingredients: [String: Int]) {
+        for(fruits, quantity) in ingredients {
+            if (fruitStore.showFruitAmount(fruitName: fruits) >= quantity) {
+                fruitStore.deductFruit(fruitName: fruits, quantity: quantity)
+            } else {
+                return print("재고가 없습니다")
+            }
+        }
+        print("\(juiceName) 를 만들었습니다")
     }
+    
     // 과일의 재고를 차감한다.
     func useFruits(juiceName: String, ingredients: [String: Int]) {
         for (fruits, quantity) in ingredients {
