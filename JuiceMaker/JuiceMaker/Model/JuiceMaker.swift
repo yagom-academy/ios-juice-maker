@@ -6,6 +6,8 @@
 
 import Foundation
 
+typealias Combination = (fruitName: FruitCategory, count: Int)
+
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
