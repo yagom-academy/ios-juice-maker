@@ -9,7 +9,7 @@ import Foundation
 struct JuiceMaker {
     var fruitStore = FruitStore()
     
-    func makeJuice(menuNumber: Menu) {
+    func makeJuice(menuNumber: JuiceMenu) {
         switch menuNumber {
         case .strawberryJuice:
             fruitStore.manageFruit(fruit: .strawberry, usedCount: 16)
