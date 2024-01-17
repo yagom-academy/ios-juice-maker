@@ -6,6 +6,10 @@
 
 import Foundation
 
+enum JuiceMakerError: Error {
+    case cannotPlaceOrder
+}
+
 enum Juice {
     case strawberry
     case banana
