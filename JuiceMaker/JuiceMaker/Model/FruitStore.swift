@@ -6,18 +6,6 @@
 
 import Foundation
 
-enum FruitStoreError: Error {
-    case fruitNotFound
-    case insufficientFruits
-}
-
-enum Fruit: CaseIterable {
-    case strawberry
-    case banana
-    case pineapple
-    case kiwi
-    case mango
-}
 // 과일 저장소 타입
 class FruitStore {
     private var fruitBox: [Fruit: Int] = [:]
