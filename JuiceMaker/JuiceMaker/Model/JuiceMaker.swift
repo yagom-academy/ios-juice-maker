@@ -8,6 +8,35 @@ import Foundation
 
 typealias Combination = (fruitName: FruitCategory, count: Int)
 
+enum JuiceMenu: Int {
+    case strawberryJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case strawberryBananaJuice
+    case mangoJuice
+    case mangoKiwiJuice
+    
+    var recipe: [Combination] {
+        switch self {
+        case .strawberryJuice:
+            return [(FruitCategory.strawberry, Recipe.strawberryJuice.strawberryCount)]
+        case .bananaJuice:
+            return [(FruitCategory.banana, Recipe.bananaJuice.bananaCount)]
+        case .kiwiJuice:
+            return [(FruitCategory.kiwi, Recipe.kiwiJuice.kiwiCount)]
+        case .pineappleJuice:
+            return [(FruitCategory.pineapple, Recipe.pineappleJuice.pineappleCount)]
+        case .strawberryBananaJuice:
+            return [(FruitCategory.strawberry, Recipe.strawberryBananaJuice.strawberryCount), (FruitCategory.banana, Recipe.strawberryBananaJuice.bananaCount)]
+        case .mangoJuice:
+            return [(FruitCategory.mango, Recipe.mangoJuice.mangoCount)]
+        case .mangoKiwiJuice:
+            return [(FruitCategory.mango, Recipe.mangoKiwiJuice.mangoCount), (FruitCategory.kiwi, Recipe.mangoKiwiJuice.kiwiCount)]
+        }
+    }
+}
+
 struct Recipe {
     struct strawberryJuice {
         static let strawberryCount = 16
