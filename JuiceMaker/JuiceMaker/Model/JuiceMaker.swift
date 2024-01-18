@@ -8,7 +8,7 @@ import Foundation
 
 typealias Combination = (fruitName: FruitCategory, count: Int)
 
-enum JuiceMenu: Int {
+enum JuiceMenu {
     case strawberryJuice
     case bananaJuice
     case kiwiJuice
