@@ -12,7 +12,7 @@ struct JuiceMaker {
         fruitStore = FruitStore(baseQuantity: fruitsBaseQuantity)
     }
     
-    private func verifyIngredientsOf(recipe: [Fruit: Int]) throws {
+    private func verifyIngredients(of recipe: [Fruit: Int]) throws {
         for (fruit, quantity) in recipe {
             do {
                 try fruitStore.hasEnough(fruit: fruit, quantity: quantity)
@@ -22,13 +22,13 @@ struct JuiceMaker {
         }
     }
     
-    func make(juice: Juice) throws {
+    func makeJuice(_ juice: Juice) throws {
         let juiceRecipe = juice.recipe
         
-        try verifyIngredientsOf(recipe: juiceRecipe)
+        try verifyIngredients(of: juiceRecipe)
         
         for (fruit, quantity) in juiceRecipe {
-            try? fruitStore.use(fruit: fruit, quantity: quantity)
+            try? fruitStore.useFruit(fruit, quantity: quantity)
         }
     }
 }

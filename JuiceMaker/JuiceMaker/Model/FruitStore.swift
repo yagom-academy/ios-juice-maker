@@ -21,11 +21,11 @@ class FruitStore {
         return numberOfFruit
     }
     
-    func fill(fruit: Fruit, quantity: Int) throws {
+    func fillFruit(_ fruit: Fruit, quantity: Int) throws {
         fruitBox[fruit] = try countQuantity(fruit: fruit) + quantity
     }
     
-    func use(fruit: Fruit, quantity: Int) throws {
+    func useFruit(_ fruit: Fruit, quantity: Int) throws {
         try hasEnough(fruit: fruit, quantity: quantity)
         fruitBox[fruit] = try countQuantity(fruit: fruit) - quantity
     }
