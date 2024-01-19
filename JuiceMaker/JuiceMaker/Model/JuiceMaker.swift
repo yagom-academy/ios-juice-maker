@@ -14,11 +14,7 @@ struct JuiceMaker {
     
     private func verifyIngredients(of recipe: [Fruit: Int]) throws {
         for (fruit, quantity) in recipe {
-            do {
-                try fruitStore.hasEnough(fruit: fruit, quantity: quantity)
-            } catch {
-                throw JuiceMakerError.insufficientIngredients
-            }
+            try fruitStore.verifyTheFruitExistsEnough(fruit: fruit, quantity: quantity)
         }
     }
     
@@ -28,7 +24,7 @@ struct JuiceMaker {
         try verifyIngredients(of: juiceRecipe)
         
         for (fruit, quantity) in juiceRecipe {
-            try? fruitStore.useFruit(fruit, quantity: quantity)
+            try fruitStore.unSafeUseFruit(fruit, quantity: quantity)
         }
     }
 }

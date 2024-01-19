@@ -25,12 +25,11 @@ class FruitStore {
         fruitBox[fruit] = try countQuantity(fruit: fruit) + quantity
     }
     
-    func useFruit(_ fruit: Fruit, quantity: Int) throws {
-        try hasEnough(fruit: fruit, quantity: quantity)
+    func unSafeUseFruit(_ fruit: Fruit, quantity: Int) throws {
         fruitBox[fruit] = try countQuantity(fruit: fruit) - quantity
     }
     
-    func hasEnough(fruit: Fruit, quantity: Int) throws {
+    func verifyTheFruitExistsEnough(fruit: Fruit, quantity: Int) throws {
         if try countQuantity(fruit: fruit) < quantity {
             throw FruitStoreError.insufficientFruits
         }
