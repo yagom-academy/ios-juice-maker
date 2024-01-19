@@ -7,9 +7,15 @@
 class FruitStore {
     private var fruitBox: [Fruit: Int] = [:]
 
-    init(baseQuantity: Int) {
-        for fruit in Fruit.allCases {
-            fruitBox[fruit] = baseQuantity
+    init(strawberryQuantity: Int,
+         bananaQuantity: Int,
+         pineappleQuantity: Int,
+         kiwiQuantity: Int,
+         mangoQuantity: Int) {
+        let quantityArray = [strawberryQuantity, bananaQuantity, pineappleQuantity, kiwiQuantity, mangoQuantity]
+        
+        for (index, fruit) in Fruit.allCases.enumerated() {
+            fruitBox[fruit] = quantityArray[index]
         }
     }
     

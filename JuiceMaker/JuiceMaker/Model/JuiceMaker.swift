@@ -8,8 +8,8 @@
 struct JuiceMaker {
     private var fruitStore: FruitStore
     
-    init(fruitsBaseQuantity: Int) {
-        fruitStore = FruitStore(baseQuantity: fruitsBaseQuantity)
+    init(fruitStore: FruitStore) {
+        self.fruitStore = fruitStore
     }
     
     private func verifyIngredients(of recipe: [Fruit: Int]) throws {
