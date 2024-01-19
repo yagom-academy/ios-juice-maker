@@ -62,12 +62,12 @@
 		C71CD66F266C7B500038B9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C4858D462B580E94007BCEBD /* JuiceMakerError.swift */,
-				C4858D402B580E17007BCEBD /* Juice.swift */,
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
-				C4858D442B580E80007BCEBD /* FruitStoreError.swift */,
-				C4858D422B580E51007BCEBD /* Fruit.swift */,
+				C4858D402B580E17007BCEBD /* Juice.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
+				C4858D422B580E51007BCEBD /* Fruit.swift */,
+				C4858D462B580E94007BCEBD /* JuiceMakerError.swift */,
+				C4858D442B580E80007BCEBD /* FruitStoreError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
