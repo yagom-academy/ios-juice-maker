@@ -35,6 +35,15 @@ enum JuiceMenu: String {
     }
 }
 
+//enum JuiceMakerError: Error {
+//    case outOfStockFruit(String, Int)
+//}
+
+enum ResultType {
+    case success(String)
+    case failure(String)
+}
+
 struct JuiceMaker {
     private var fruitStore: FruitStore = FruitStore()
     
@@ -45,10 +54,12 @@ struct JuiceMaker {
         case 1:
             let deductionResult = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
             
-            if let message = deductionResult["message"] as? String {
-                return message
-            } else {
-                print("error: make\(#line)")
+            switch deductionResult {
+            case .success(let success):
+                print("success: == \(success)")
+                return "\(success)"
+            case .failure(let error):
+                print("error: make\(#line) == \(error)")
                 return "Error: 쥬스를 만들 수 없습니다."
             }
         case 0:
@@ -60,8 +71,7 @@ struct JuiceMaker {
         }
     }
     
-    func deductFruit(requestJuiceName: String, requestFruits: [String: Int], requestJuiceAmount: Int) -> [String: Any] {
-        var status = 0
+    func deductFruit(requestJuiceName: String, requestFruits: [String: Int], requestJuiceAmount: Int) -> ResultType {
         var message = ""
         let originFruitStorage = fruitStore.fruitStorage
         
@@ -73,24 +83,19 @@ struct JuiceMaker {
             storeFruitQuantity -= useFruitQuantity
             
             if storeFruitQuantity >= 0 {
-                status = 1
                 fruitStore.changeFruitQuantity(changeFruit: fruit, changeQuantity: storeFruitQuantity)
             } else {
-                status = 0
                 message = "\(fruit)가 \(-storeFruitQuantity)개가 부족하여 \(requestJuiceName)를 만들 수 없습니다."
                 
                 fruitStore.fruitStorage = originFruitStorage
                 
-                return ["status": status, "message": message]
+                return ResultType.failure(message)
             }
         }
         
-        if status == 1 {
-            message = "\(requestJuiceName)를 \(requestJuiceAmount)잔 만들었습니다."
-        }
+        message = "\(requestJuiceName)를 \(requestJuiceAmount)잔 만들었습니다."
         
         print("사용후: ", fruitStore.fruitStorage)
-
-        return ["status": status, "message": message]
+        return ResultType.success(message)
     }
 }
