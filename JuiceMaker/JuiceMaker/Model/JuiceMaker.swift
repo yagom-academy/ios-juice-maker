@@ -61,9 +61,6 @@ struct JuiceMaker {
         case .failure:
             print("error: make\(#line)")
             return "쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요."
-        default:
-            print("error: make\(#line)")
-            return "Error: 쥬스를 만들 수 없습니다."
         }
     }
     
