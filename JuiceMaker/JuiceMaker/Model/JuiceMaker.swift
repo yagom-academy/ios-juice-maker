@@ -55,24 +55,24 @@ struct JuiceMaker {
         }
     }
     
-    func deductFruit(reqJuiceName: String, reqFruits: [String: Int], reqJuiceAmount: Int) -> [String: Any] {
+    func deductFruit(requestJuiceName: String, requestFruits: [String: Int], requestJuiceAmount: Int) -> [String: Any] {
         var status = 0
         var message = ""
         let originFruitStorage = fruitStore.fruitStorage
         
         debugPrint("사용전: ", fruitStore.fruitStorage)
-        for (fruit, reqFruitQty) in reqFruits {
-            var storeFruitQty = fruitStore.fruitStorage[fruit] ?? 0
-            let useFruitQty = reqFruitQty * reqJuiceAmount
+        for (fruit, reqFruitQuantity) in requestFruits {
+            var storeFruitQuantity = fruitStore.fruitStorage[fruit] ?? 0
+            let useFruitQuantity = reqFruitQuantity * requestJuiceAmount
             
-            storeFruitQty -= useFruitQty
+            storeFruitQuantity -= useFruitQuantity
             
-            if(storeFruitQty >= 0){
+            if(storeFruitQuantity >= 0){
                 status = 1
-                fruitStore.changeFruitQuantity(changeFruit: fruit, changeQuantity: storeFruitQty)
+                fruitStore.changeFruitQuantity(changeFruit: fruit, changeQuantity: storeFruitQuantity)
             } else {
                 status = 0
-                message = "\(fruit)가 \(-storeFruitQty)개가 부족하여 \(reqJuiceName)를 만들 수 없습니다."
+                message = "\(fruit)가 \(-storeFruitQuantity)개가 부족하여 \(requestJuiceName)를 만들 수 없습니다."
                 
                 fruitStore.fruitStorage = originFruitStorage
                 
@@ -81,7 +81,7 @@ struct JuiceMaker {
         }
         
         if(status == 1){
-            message = "\(reqJuiceName)를 \(reqJuiceAmount)잔 만들었습니다."
+            message = "\(requestJuiceName)를 \(requestJuiceAmount)잔 만들었습니다."
         }
         
         debugPrint("사용후: ", fruitStore.fruitStorage)

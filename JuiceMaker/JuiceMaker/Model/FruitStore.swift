@@ -16,13 +16,13 @@ class FruitStore {
     func showFruitQuantity(showFruits: [String: Int], showAmount: Int) -> Int {
         var status = 0
         
-        for (fruit, useQty) in showFruits {
-            let reqFruit = useQty * showAmount
+        for (fruit, useQuantity) in showFruits {
+            let requestFruit = useQuantity * showAmount
             let storeFruit = fruitStorage[fruit] ?? 0
             
-            if (reqFruit <= storeFruit) {
+            if (requestFruit <= storeFruit) {
                 status = 1
-            } else if (reqFruit > storeFruit) {
+            } else if (requestFruit > storeFruit) {
                 status = 0
                 break
             } else {
