@@ -20,9 +20,9 @@ class FruitStore {
             let requestFruit = useQuantity * showAmount
             let storeFruit = fruitStorage[fruit] ?? 0
             
-            if (requestFruit <= storeFruit) {
+            if requestFruit <= storeFruit {
                 status = 1
-            } else if (requestFruit > storeFruit) {
+            } else if requestFruit > storeFruit {
                 status = 0
                 break
             } else {
