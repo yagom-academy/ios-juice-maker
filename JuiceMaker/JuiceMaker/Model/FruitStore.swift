@@ -37,7 +37,11 @@ enum FruitCategory: Int {
     }
 }
 
-struct FruitStore {
+class FruitStore {
+    static let shared = FruitStore()
+    
+    private init() { }
+    
     var inventory = [
         Fruit(name: .strawberry, count: Stock.strawberryCount),
         Fruit(name: .banana, count: Stock.bananaCount),
@@ -45,35 +49,36 @@ struct FruitStore {
         Fruit(name: .kiwi, count: Stock.kiwiCount),
         Fruit(name: .mango, count: Stock.mangoCount)
     ]
-    
-    mutating func manageFruits(recipes: [Combination]) -> Bool {
-        for index in 0..<recipes.count {
-            let fruitCategory = recipes[index].fruitName
-            let countToUse = recipes[index].count
-            
-            if !isAvailable(fruitCategory: fruitCategory, countToUse: countToUse) {
-                print("\(fruitCategory.koreanName)의 재고가 부족합니다!")
-                return false
-            }
-        }
-        return true
-    }
-    
-    func isAvailable(fruitCategory: FruitCategory, countToUse: Int) -> Bool {
-        if self.inventory[fruitCategory.rawValue].count - countToUse >= 0 {
-            return true
-        } else {
+}
+
+func manageFruits(recipes: [Combination]) -> Bool {
+    for index in 0..<recipes.count {
+        let fruitCategory = recipes[index].fruitName
+        let countToUse = recipes[index].count
+        
+        if !isAvailable(fruitCategory: fruitCategory, countToUse: countToUse) {
+            print("\(fruitCategory.koreanName)의 재고가 부족합니다!")
             return false
         }
     }
     
-    func consumeStock(recipes: [Combination]){
-        for index in 0..<recipes.count {
-            let fruitCategoryIndex = recipes[index].fruitName.rawValue
-            let countToUse = recipes[index].count
-            
-            self.inventory[fruitCategoryIndex].count -= countToUse
-        }
+    return true
+}
+
+func isAvailable(fruitCategory: FruitCategory, countToUse: Int) -> Bool {
+    if FruitStore.shared.inventory[fruitCategory.rawValue].count - countToUse >= 0 {
+        return true
+    } else {
+        return false
+    }
+}
+
+func consumeStock(recipes: [Combination]){
+    for index in 0..<recipes.count {
+        let fruitCategoryIndex = recipes[index].fruitName.rawValue
+        let countToUse = recipes[index].count
+        
+        FruitStore.shared.inventory[fruitCategoryIndex].count -= countToUse
     }
 }
 

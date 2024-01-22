@@ -71,11 +71,11 @@ struct Recipe {
 }
 
 struct JuiceMaker {
-    var fruitStore = FruitStore()
+//    var fruitStore: FruitStore
     
     mutating func makeJuice(juiceMenu: JuiceMenu) {
-        if fruitStore.manageFruits(recipes: juiceMenu.recipe) {
-            fruitStore.consumeStock(recipes: juiceMenu.recipe)
+        if manageFruits(recipes: juiceMenu.recipe) {
+            consumeStock(recipes: juiceMenu.recipe)
         }
     }
 }
