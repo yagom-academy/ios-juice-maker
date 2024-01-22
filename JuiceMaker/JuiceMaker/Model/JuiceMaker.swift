@@ -35,10 +35,6 @@ enum JuiceMenu: String {
     }
 }
 
-//enum JuiceMakerError: Error {
-//    case outOfStockFruit(String, Int)
-//}
-
 enum ResultType {
     case success(String)
     case failure(String)
@@ -51,7 +47,7 @@ struct JuiceMaker {
         let checkResult = fruitStore.showFruitQuantity(showFruits: juiceMenu.ingredients, showAmount: amount)
         
         switch checkResult {
-        case 1:
+        case .success:
             let deductionResult = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
             
             switch deductionResult {
@@ -62,7 +58,7 @@ struct JuiceMaker {
                 print("error: make\(#line) == \(error)")
                 return "Error: 쥬스를 만들 수 없습니다."
             }
-        case 0:
+        case .failure:
             print("error: make\(#line)")
             return "쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요."
         default:

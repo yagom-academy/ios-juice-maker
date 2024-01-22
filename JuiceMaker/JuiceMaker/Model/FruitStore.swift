@@ -6,6 +6,11 @@
 
 import Foundation
 
+enum FruitResultType {
+    case success
+    case failure
+}
+
 class FruitStore {
     var fruitStorage = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
     
@@ -13,25 +18,17 @@ class FruitStore {
         fruitStorage.updateValue(changeQuantity, forKey: changeFruit)
     }
 
-    func showFruitQuantity(showFruits: [String: Int], showAmount: Int) -> Int {
-        var status = 0
-        
+    func showFruitQuantity(showFruits: [String: Int], showAmount: Int) -> FruitResultType {
         for (fruit, useQuantity) in showFruits {
             let requestFruit = useQuantity * showAmount
             let storeFruit = fruitStorage[fruit] ?? 0
             
-            if requestFruit <= storeFruit {
-                status = 1
-            } else if requestFruit > storeFruit {
-                status = 0
-                break
-            } else {
-                status = -1
-                break
+            if requestFruit > storeFruit {
+                return .failure
             }
         }
         
-        return status
+        return .success
     }
 }
 
