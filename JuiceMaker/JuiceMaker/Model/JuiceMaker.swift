@@ -84,7 +84,7 @@ struct JuiceMaker {
             message = "\(requestJuiceName)를 \(requestJuiceAmount)잔 만들었습니다."
         }
         
-        debugPrint("사용후: ", fruitStore.fruitStorage)
+        print("사용후: ", fruitStore.fruitStorage)
 
         return ["status": status, "message": message]
     }
