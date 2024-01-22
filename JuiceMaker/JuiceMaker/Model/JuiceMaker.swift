@@ -6,52 +6,57 @@
 
 import Foundation
 
+enum JuiceMenu: String {
+    case strawberry = "딸기쥬스"
+    case strawberryBanana = "딸바쥬스"
+    case banana = "바나나쥬스"
+    case kiwi = "키위쥬스"
+    case pineapple = "파인애플쥬스"
+    case mango = "망고쥬스"
+    case mangokiwi = "망키쥬스"
+    
+    var ingredients: [String: Int] {
+        switch self {
+        case .strawberry:
+            return ["딸기": 16]
+        case .strawberryBanana:
+            return ["딸기": 10, "바나나": 1]
+        case .banana:
+            return ["바나나": 2]
+        case .kiwi:
+            return ["키위": 3]
+        case .pineapple:
+            return ["파인애플": 2]
+        case .mango:
+            return ["망고": 3]
+        case .mangokiwi:
+            return ["망고": 2, "키위": 1]
+        }
+    }
+}
+
 struct JuiceMaker {
     private var fruitStore: FruitStore = FruitStore()
     
-    func makeJuice(juiceName: String, amount: Int) -> String {
-        var ingredients = [String: Int]()
-        var madeJuiceResult = [String: Any]()
-        var checkResult = 0
+    func makeJuice(juiceMenu: JuiceMenu, amount: Int) -> String {
+        let checkResult = fruitStore.showFruitQuantity(showFruits: juiceMenu.ingredients, showAmount: amount)
         
-        switch juiceName {
-        case "딸기쥬스":
-            ingredients["딸기"] = 16
-        case "딸바쥬스":
-            ingredients["딸기"] = 10
-            ingredients["바나나"] = 1
-        case "바나나쥬스":
-            ingredients["바나나"] = 2
-        case "키위쥬스":
-            ingredients["키위"] = 3
-        case "파인애플쥬스":
-            ingredients["파인애플"] = 2
-        case "망고쥬스":
-            ingredients["망고"] = 3
-        case "망고키위쥬스":
-            ingredients["망고"] = 2
-            ingredients["키위"] = 1
-        default:
-            return "없는 메뉴입니다."
-        }
-        
-        checkResult = fruitStore.showFruitQuantity(showFruits: ingredients, showAmount: amount)
-        
-        if checkResult == 1 {
-            madeJuiceResult = deductFruit(requestJuiceName: juiceName, requestFruits: ingredients, requestJuiceAmount: amount)
-        } else if checkResult == 0 {
-            print("쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요.")
-            return "OUT OF STOCK"
-        } else {
+        switch checkResult {
+        case 1:
+            let deductionResult = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
+            
+            if let message = deductionResult["message"] as? String {
+                return message
+            } else {
+                print("error: make\(#line)")
+                return "Error: 쥬스를 만들 수 없습니다."
+            }
+        case 0:
             print("error: make\(#line)")
-            return "FAIL"
-        }
-    
-        if let message = madeJuiceResult["message"] as? String {
-            print(message)
-            return "SUCCESS"
-        } else {
-            return "error: make\(#line)"
+            return "쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요."
+        default:
+            print("error: make\(#line)")
+            return "Error: 쥬스를 만들 수 없습니다."
         }
     }
     
@@ -60,7 +65,7 @@ struct JuiceMaker {
         var message = ""
         let originFruitStorage = fruitStore.fruitStorage
         
-        debugPrint("사용전: ", fruitStore.fruitStorage)
+        print("사용전: ", fruitStore.fruitStorage)
         for (fruit, reqFruitQuantity) in requestFruits {
             var storeFruitQuantity = fruitStore.fruitStorage[fruit] ?? 0
             let useFruitQuantity = reqFruitQuantity * requestJuiceAmount

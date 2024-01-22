@@ -17,7 +17,7 @@ class MakeJuiceViewController: UIViewController {
     }
     
     func makeJuice() -> String? {
-        let juiceResult = juiceMaker?.makeJuice(juiceName: "딸바쥬스", amount: 1)
+        let juiceResult = juiceMaker?.makeJuice(juiceMenu: .strawberryBanana, amount: 1)
         return juiceResult
     }
     
