@@ -51,7 +51,7 @@ class FruitStore {
     var mango: Int?
 }
 
-func checkInsufficientStock(recipe: [Combination]) -> FruitCategory {
+func checkInsufficientStock(recipe: [Ingredient]) -> FruitCategory {
     let fruitStore = FruitStore.shared
     
     for fruitNameAndCount in recipe {
@@ -82,7 +82,7 @@ func checkInsufficientStock(recipe: [Combination]) -> FruitCategory {
     return .none
 }
 
-func consumeStock(recipe: [Combination]) {
+func consumeStock(recipe: [Ingredient]) {
     let fruitStore = FruitStore.shared
     for fruitNameAndCount in recipe {
         switch fruitNameAndCount.fruitName {

@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-typealias Combination = (fruitName: FruitCategory, count: Int)
+typealias Ingredient = (fruitName: FruitCategory, count: Int)
 
 enum JuiceMenu {
     case strawberryJuice
@@ -18,7 +18,7 @@ enum JuiceMenu {
     case mangoJuice
     case mangoKiwiJuice
     
-    var recipe: [Combination] {
+    var recipe: [Ingredient] {
         switch self {
         case .strawberryJuice:
             return [(FruitCategory.strawberry, Recipe.strawberryJuice.strawberryCount)]
