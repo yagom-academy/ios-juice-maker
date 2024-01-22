@@ -6,14 +6,6 @@
 
 import Foundation
 
-struct Stock {
-    static let strawberryCount = 10
-    static let bananaCount = 10
-    static let pineappleCount = 10
-    static let kiwiCount = 10
-    static let mangoCount = 10
-}
-
 enum FruitCategory: Int {
     case strawberry
     case banana
@@ -37,57 +29,70 @@ enum FruitCategory: Int {
     }
 }
 
+func initFruitStock() {
+    let fruitStore = FruitStore.shared
+    fruitStore.strawberry = 10
+    fruitStore.banana = 10
+    fruitStore.pineapple = 10
+    fruitStore.kiwi = 10
+    fruitStore.mango = 10
+}
+
 class FruitStore {
     static let shared = FruitStore()
     
-    private init() { }
+    private init() {}
     
-    var inventory = [
-        Fruit(name: .strawberry, count: Stock.strawberryCount),
-        Fruit(name: .banana, count: Stock.bananaCount),
-        Fruit(name: .pineapple, count: Stock.pineappleCount),
-        Fruit(name: .kiwi, count: Stock.kiwiCount),
-        Fruit(name: .mango, count: Stock.mangoCount)
-    ]
+    var strawberry: Int?
+    var banana: Int?
+    var pineapple: Int?
+    var kiwi: Int?
+    var mango: Int?
 }
 
-func manageFruits(recipes: [Combination]) -> Bool {
-    for index in 0..<recipes.count {
-        let fruitCategory = recipes[index].fruitName
-        let countToUse = recipes[index].count
-        
-        if !isAvailable(fruitCategory: fruitCategory, countToUse: countToUse) {
-            print("\(fruitCategory.koreanName)의 재고가 부족합니다!")
-            return false
+func checkStock(recipe: [Combination]) -> FruitCategory? {
+    let fruitStore = FruitStore.shared
+    for fruitNameAndCount in recipe {
+        switch fruitNameAndCount.fruitName {
+        case .strawberry:
+            if fruitStore.strawberry! < fruitNameAndCount.count {
+                return .strawberry
+            }
+        case .banana:
+            if fruitStore.banana! < fruitNameAndCount.count {
+                return .banana
+            }
+        case .pineapple:
+            if fruitStore.pineapple! < fruitNameAndCount.count {
+                return .pineapple
+            }
+        case .kiwi:
+            if fruitStore.kiwi! < fruitNameAndCount.count {
+                return .kiwi
+            }
+        case .mango:
+            if fruitStore.mango! < fruitNameAndCount.count {
+                return .mango
+            }
         }
     }
-    
-    return true
+    return nil
 }
 
-func isAvailable(fruitCategory: FruitCategory, countToUse: Int) -> Bool {
-    if FruitStore.shared.inventory[fruitCategory.rawValue].count - countToUse >= 0 {
-        return true
-    } else {
-        return false
-    }
-}
-
-func consumeStock(recipes: [Combination]){
-    for index in 0..<recipes.count {
-        let fruitCategoryIndex = recipes[index].fruitName.rawValue
-        let countToUse = recipes[index].count
-        
-        FruitStore.shared.inventory[fruitCategoryIndex].count -= countToUse
-    }
-}
-
-class Fruit {
-    let name: FruitCategory
-    var count: Int
-    
-    init(name: FruitCategory, count: Int) {
-        self.name = name
-        self.count = count
+func consumeStock(recipe: [Combination]) {
+    let fruitStore = FruitStore.shared
+    for fruitNameAndCount in recipe {
+        switch fruitNameAndCount.fruitName {
+        case .strawberry:
+            fruitStore.strawberry! -= fruitNameAndCount.count
+        case .banana:
+            fruitStore.banana! -= fruitNameAndCount.count
+        case .pineapple:
+            fruitStore.pineapple! -= fruitNameAndCount.count
+        case .kiwi:
+            fruitStore.kiwi! -= fruitNameAndCount.count
+        case .mango:
+            fruitStore.mango! -= fruitNameAndCount.count
+        }
     }
 }
