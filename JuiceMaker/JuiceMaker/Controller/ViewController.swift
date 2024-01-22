@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MakeJuiceViewController: UIViewController {
 
     private var juiceMaker: JuiceMaker?
         
@@ -14,14 +14,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        makeJuiceAndHandleResult()
+        JuiceHandleResult()
     }
     
-    func makeJuiceAndHandleResult() {
-        juiceMaker = JuiceMaker()
+    func makeJuice() -> String? {
         let juiceResult = juiceMaker?.makeJuice(juiceName: "딸바쥬스", amount: 1)
-        
-        if let result = juiceResult {
+        return juiceResult
+    }
+    
+    func JuiceHandleResult() {
+        if let result = makeJuice() {
             print(result)
         } else {
             print("error: not working makeJuiceAndHandleResult()")
