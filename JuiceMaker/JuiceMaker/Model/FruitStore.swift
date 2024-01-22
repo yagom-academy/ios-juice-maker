@@ -31,7 +31,7 @@ class FruitStore {
         fruitBox[fruit] = try countQuantity(fruit: fruit) + quantity
     }
     
-    func unSafeUseFruit(_ fruit: Fruit, quantity: Int) throws {
+    func unsafeUseFruit(_ fruit: Fruit, quantity: Int) throws {
         fruitBox[fruit] = try countQuantity(fruit: fruit) - quantity
     }
     
