@@ -46,28 +46,17 @@ struct FruitStore {
         Fruit(name: .mango, count: Stock.mangoCount)
     ]
     
-    mutating func manageFruits(recipes: [Combination]) {
-        var flag = true
-        
+    mutating func manageFruits(recipes: [Combination]) -> Bool {
         for index in 0..<recipes.count {
             let fruitCategory = recipes[index].fruitName
             let countToUse = recipes[index].count
             
             if !isAvailable(fruitCategory: fruitCategory, countToUse: countToUse) {
-                flag = false
                 print("\(fruitCategory.koreanName)의 재고가 부족합니다!")
-                break
+                return false
             }
         }
-        
-        if flag {
-            for index in 0..<recipes.count {
-                let fruitCategoryIndex = recipes[index].fruitName.rawValue
-                let countToUse = recipes[index].count
-                
-                self.inventory[fruitCategoryIndex].count -= countToUse
-            }
-        }
+        return true
     }
     
     func isAvailable(fruitCategory: FruitCategory, countToUse: Int) -> Bool {
@@ -75,6 +64,15 @@ struct FruitStore {
             return true
         } else {
             return false
+        }
+    }
+    
+    func consumeStock(recipes: [Combination]){
+        for index in 0..<recipes.count {
+            let fruitCategoryIndex = recipes[index].fruitName.rawValue
+            let countToUse = recipes[index].count
+            
+            self.inventory[fruitCategoryIndex].count -= countToUse
         }
     }
 }

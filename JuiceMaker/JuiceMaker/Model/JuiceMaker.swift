@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias Combination = (fruitName: FruitCategory, count: Int)
 
@@ -73,6 +74,8 @@ struct JuiceMaker {
     var fruitStore = FruitStore()
     
     mutating func makeJuice(juiceMenu: JuiceMenu) {
-        fruitStore.manageFruits(recipes: juiceMenu.recipe)
+        if fruitStore.manageFruits(recipes: juiceMenu.recipe) {
+            fruitStore.consumeStock(recipes: juiceMenu.recipe)
+        }
     }
 }
