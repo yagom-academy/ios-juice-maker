@@ -38,7 +38,7 @@ struct JuiceMaker {
         checkResult = fruitStore.showFruitQuantity(showFruits: ingredients, showAmount: amount)
         
         if(checkResult == 1) {
-            madeJuiceResult = deductFruit(reqJuiceName: juiceName, reqFruits: ingredients, reqJuiceAmount: amount)
+            madeJuiceResult = deductFruit(requestJuiceName: juiceName, requestFruits: ingredients, requestJuiceAmount: amount)
         } else if(checkResult == 0){
             print("쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요.")
             return "OUT OF STOCK"
