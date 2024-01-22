@@ -12,6 +12,7 @@ enum FruitCategory: Int {
     case kiwi
     case pineapple
     case mango
+    case none
     
     var koreanName: String {
         switch self {
@@ -50,8 +51,9 @@ class FruitStore {
     var mango: Int?
 }
 
-func checkStock(recipe: [Combination]) -> FruitCategory? {
+func checkInsufficientStock(recipe: [Combination]) -> FruitCategory {
     let fruitStore = FruitStore.shared
+    
     for fruitNameAndCount in recipe {
         switch fruitNameAndCount.fruitName {
         case .strawberry:
@@ -76,7 +78,8 @@ func checkStock(recipe: [Combination]) -> FruitCategory? {
             }
         }
     }
-    return nil
+    
+    return .none
 }
 
 func consumeStock(recipe: [Combination]) {
