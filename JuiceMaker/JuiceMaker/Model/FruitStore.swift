@@ -55,23 +55,23 @@ func checkStock(recipe: [Combination]) -> FruitCategory? {
     for fruitNameAndCount in recipe {
         switch fruitNameAndCount.fruitName {
         case .strawberry:
-            if fruitStore.strawberry! < fruitNameAndCount.count {
+            if fruitStore.strawberry ?? 0 < fruitNameAndCount.count {
                 return .strawberry
             }
         case .banana:
-            if fruitStore.banana! < fruitNameAndCount.count {
+            if fruitStore.banana ?? 0 < fruitNameAndCount.count {
                 return .banana
             }
         case .pineapple:
-            if fruitStore.pineapple! < fruitNameAndCount.count {
+            if fruitStore.pineapple ?? 0 < fruitNameAndCount.count {
                 return .pineapple
             }
         case .kiwi:
-            if fruitStore.kiwi! < fruitNameAndCount.count {
+            if fruitStore.kiwi ?? 0 < fruitNameAndCount.count {
                 return .kiwi
             }
         case .mango:
-            if fruitStore.mango! < fruitNameAndCount.count {
+            if fruitStore.mango ?? 0 < fruitNameAndCount.count {
                 return .mango
             }
         }
