@@ -72,10 +72,14 @@ struct Recipe {
 
 struct JuiceMaker {
 //    var fruitStore: FruitStore
-    
     mutating func makeJuice(juiceMenu: JuiceMenu) {
-        if manageFruits(recipes: juiceMenu.recipe) {
-            consumeStock(recipes: juiceMenu.recipe)
+        let stockStatus = checkStock(recipe: juiceMenu.recipe)
+        
+        switch stockStatus {
+        case .strawberry, .banana, .pineapple, .kiwi, .mango:
+            print("\(stockStatus?.koreanName)의 재고가 부족합니다.")
+        default:
+            consumeStock(recipe: juiceMenu.recipe)
         }
     }
 }
