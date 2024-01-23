@@ -82,23 +82,40 @@ func checkSufficientStock(recipe: [Ingredient]) -> Bool {
             }
         }
     }
+    
     return true
 }
 
 func consumeStock(recipe: [Ingredient]) {
     let fruitStore = FruitStore.shared
+    
     for fruitNameAndCount in recipe {
         switch fruitNameAndCount.fruitName {
         case .strawberry:
-            fruitStore.strawberry! -= fruitNameAndCount.count
+            guard var strawberryCount = fruitStore.strawberry else {
+                return
+            }
+            strawberryCount -= fruitNameAndCount.count
         case .banana:
-            fruitStore.banana! -= fruitNameAndCount.count
+            guard var bananaCount = fruitStore.banana else {
+                return
+            }
+            bananaCount -= fruitNameAndCount.count
         case .pineapple:
-            fruitStore.pineapple! -= fruitNameAndCount.count
+            guard var pineappleCount = fruitStore.pineapple else {
+                return
+            }
+            pineappleCount -= fruitNameAndCount.count
         case .kiwi:
-            fruitStore.kiwi! -= fruitNameAndCount.count
+            guard var kiwiCount = fruitStore.kiwi else {
+                return
+            }
+            kiwiCount -= fruitNameAndCount.count
         case .mango:
-            fruitStore.mango! -= fruitNameAndCount.count
+            guard var mangoCount = fruitStore.mango else {
+                return
+            }
+            mangoCount -= fruitNameAndCount.count
         }
     }
 }
