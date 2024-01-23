@@ -15,9 +15,8 @@ class JuiceMakerView: UIView {
     var delegate: JuiceMakerViewDelegate!
     
     @IBAction func touchUpStockEditButton(_ sender: UIBarButtonItem) {
-        
+        delegate.juiceMakerViewStockEditButtonSelected(self)
     }
-    
 }
 
 

@@ -24,7 +24,13 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         
         juiceMakerView.delegate = self
     }
+    
     func juiceMakerViewStockEditButtonSelected(_ view: JuiceMakerView) {
+        guard let fillStockViewController = self.storyboard?.instantiateViewController(identifier: "FillStockViewController") else {
+            return
+        }
+        
+        self.present(fillStockViewController, animated: true, completion: nil)
     }
 }
 
