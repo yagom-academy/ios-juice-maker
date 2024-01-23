@@ -12,7 +12,6 @@ enum FruitCategory: Int {
     case kiwi
     case pineapple
     case mango
-    case none
     
     var koreanName: String {
         switch self {
@@ -51,35 +50,39 @@ class FruitStore {
     var mango: Int?
 }
 
-func checkInsufficientStock(recipe: [Ingredient]) -> FruitCategory {
+func checkSufficientStock(recipe: [Ingredient]) -> Bool {
     let fruitStore = FruitStore.shared
     
     for fruitNameAndCount in recipe {
         switch fruitNameAndCount.fruitName {
         case .strawberry:
             if fruitStore.strawberry ?? 0 < fruitNameAndCount.count {
-                return .strawberry
+                print("\(fruitNameAndCount.fruitName.koreanName)의 재고가 부족합니다!")
+                return false
             }
         case .banana:
             if fruitStore.banana ?? 0 < fruitNameAndCount.count {
-                return .banana
+                print("\(fruitNameAndCount.fruitName.koreanName)의 재고가 부족합니다!")
+                return false
             }
         case .pineapple:
             if fruitStore.pineapple ?? 0 < fruitNameAndCount.count {
-                return .pineapple
+                print("\(fruitNameAndCount.fruitName.koreanName)의 재고가 부족합니다!")
+                return false
             }
         case .kiwi:
             if fruitStore.kiwi ?? 0 < fruitNameAndCount.count {
-                return .kiwi
+                print("\(fruitNameAndCount.fruitName.koreanName)의 재고가 부족합니다!")
+                return false
             }
         case .mango:
             if fruitStore.mango ?? 0 < fruitNameAndCount.count {
-                return .mango
+                print("\(fruitNameAndCount.fruitName.koreanName)의 재고가 부족합니다!")
+                return false
             }
         }
     }
-    
-    return .none
+    return true
 }
 
 func consumeStock(recipe: [Ingredient]) {
