@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4773D2F2B5FA2CA008222ED /* JuiceMakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4773D2E2B5FA2CA008222ED /* JuiceMakerView.swift */; };
 		C4858D412B580E17007BCEBD /* Juice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4858D402B580E17007BCEBD /* Juice.swift */; };
 		C4858D432B580E51007BCEBD /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4858D422B580E51007BCEBD /* Fruit.swift */; };
 		C4858D452B580E80007BCEBD /* FruitStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4858D442B580E80007BCEBD /* FruitStoreError.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C4773D2E2B5FA2CA008222ED /* JuiceMakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMakerView.swift; sourceTree = "<group>"; };
 		C4858D402B580E17007BCEBD /* Juice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juice.swift; sourceTree = "<group>"; };
 		C4858D422B580E51007BCEBD /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 		C4858D442B580E80007BCEBD /* FruitStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStoreError.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		C71CD671266C7B570038B9CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C4773D2E2B5FA2CA008222ED /* JuiceMakerView.swift */,
 				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
@@ -178,6 +181,7 @@
 			files = (
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C4858D452B580E80007BCEBD /* FruitStoreError.swift in Sources */,
+				C4773D2F2B5FA2CA008222ED /* JuiceMakerView.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* ViewController.swift in Sources */,
 				C73DAF37255D0CDD00020D38 /* AppDelegate.swift in Sources */,
 				C73DAF39255D0CDD00020D38 /* SceneDelegate.swift in Sources */,

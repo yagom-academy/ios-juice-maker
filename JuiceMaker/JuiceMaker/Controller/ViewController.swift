@@ -1,12 +1,12 @@
 //
-//  JuiceMaker - ViewController.swift
+//  JuiceMaker - JuiceMakerViewController.swift
 //  Created by yagom. 
 //  Copyright © yagom academy. All rights reserved.
 // 
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
     var juiceMaker = JuiceMaker(fruitStore: FruitStore(fruits: [
         .strawberry: 10,
         .banana: 10,
@@ -17,6 +17,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let juiceMakerView = self.view as? JuiceMakerView else {
+            return
+        }
+        
+        juiceMakerView.delegate = self
     }
 }
 
