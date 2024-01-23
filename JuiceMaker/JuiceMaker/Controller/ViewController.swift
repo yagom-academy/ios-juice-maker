@@ -24,5 +24,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         
         juiceMakerView.delegate = self
     }
+    func juiceMakerViewStockEditButtonSelected(_ view: JuiceMakerView) {
+    }
 }
 

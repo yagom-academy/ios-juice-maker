@@ -8,9 +8,16 @@
 import UIKit
 
 protocol JuiceMakerViewDelegate {
-    
+    func juiceMakerViewStockEditButtonSelected(_ view: JuiceMakerView)
 }
 
 class JuiceMakerView: UIView {
     var delegate: JuiceMakerViewDelegate!
+    
+    @IBAction func touchUpStockEditButton(_ sender: UIBarButtonItem) {
+        
+    }
+    
 }
+
+
