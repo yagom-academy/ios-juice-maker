@@ -18,7 +18,7 @@ struct JuiceMaker {
         }
         
         switch checkResult {
-        case FruitResultType.success:
+        case "availableMakeJuice":
             let deductionResult = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
             
             switch deductionResult {
@@ -29,13 +29,13 @@ struct JuiceMaker {
                 print("error: make\(#line) == \(error)")
                 return "Error: 쥬스를 만들 수 없습니다."
             }
-        case FruitResultType.outOfStock:
+        default:
             print("error: make\(#line)")
             return "쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요."
         }
     }
     
-    func deductFruit(requestJuiceName: String, requestFruits: [String: Int], requestJuiceAmount: Int) -> ResultType {
+    func deductFruit(requestJuiceName: String, requestFruits: [Fruit: Int], requestJuiceAmount: Int) -> ResultType {
         var message = ""
         let originFruitStorage = fruitStore.fruitStorage
         
