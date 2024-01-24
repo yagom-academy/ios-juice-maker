@@ -25,7 +25,7 @@ class FruitStore {
         fruitStorage[fruitName] = quantity
     }
 
-    func showFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) throws -> FruitResultError {
+    func showFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) throws -> String {
         for (fruit, useQuantity) in fruitsStock {
             let requestFruit = useQuantity * amount
             let storeFruit = fruitStorage[fruit] ?? 0
@@ -35,7 +35,7 @@ class FruitStore {
             }
         }
         
-        return .success("???")
+        return "availableMakeJuice"
     }
 }
 
