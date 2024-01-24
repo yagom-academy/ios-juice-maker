@@ -25,7 +25,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         juiceMakerView.delegate = self
     }
     
-    func juiceMakerViewStockEditButtonSelected(_ view: JuiceMakerView) {
+    func juiceMakerViewStockEditButtonTouchedUp(_ view: JuiceMakerView) {
         guard let fillStockViewController = self.storyboard?.instantiateViewController(identifier: "FillStockViewController") else {
             return
         }
@@ -33,21 +33,10 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         self.present(fillStockViewController, animated: true, completion: nil)
     }
     
-    @IBAction func orderStrawberryBananaJuiceButton(_ sender: UIButton) {
+    func juiceMakerViewJuiceOrderButtonTouchedUp(_ view: JuiceMakerView, juice: Juice) {
         do {
-            try juiceMaker.makeJuice(.strawberryBanana)
-            alertSuccessToOrder(juice: .strawberryBanana)
-        } catch FruitStoreError.insufficientFruits {
-            alertFailureToOrder()
-        } catch {
-            print("예상치 못한 오류가 발생했습니다.")
-        }
-    }
-    
-    @IBAction func orderMangoKiwiJuiceButton(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(.mangoKiwi)
-            alertSuccessToOrder(juice: .mangoKiwi)
+            try juiceMaker.makeJuice(juice)
+            alertSuccessToOrder(juice: juice)
         } catch FruitStoreError.insufficientFruits {
             alertFailureToOrder()
         } catch {
@@ -56,8 +45,12 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
     }
     
     func alertSuccessToOrder(juice: Juice) {
-        let orderSucceedAlert = UIAlertController(title: "주문 성공", message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let orderSucceedAlert = UIAlertController(title: "주문 성공",
+                                                  message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!",
+                                                  preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "확인",
+                                    style: .default,
+                                    handler: nil)
         
         orderSucceedAlert.addAction(confirm)
         present(orderSucceedAlert, animated: true, completion: nil)
@@ -73,4 +66,3 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         present(orderFailedAlert, animated: true, completion: nil)
     }
 }
-
