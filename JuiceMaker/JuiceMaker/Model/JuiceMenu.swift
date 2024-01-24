@@ -16,22 +16,22 @@ enum JuiceMenu: String {
     case mango = "망고쥬스"
     case mangokiwi = "망키쥬스"
     
-    var ingredients: [String: Int] {
+    var ingredients: [Fruit: Int] {
         switch self {
         case .strawberry:
-            return ["딸기": 16]
+            return [.strawberry: 16]
         case .strawberryBanana:
-            return ["딸기": 10, "바나나": 1]
+            return [.strawberry: 10, .banana: 1]
         case .banana:
-            return ["바나나": 2]
+            return [.banana: 2]
         case .kiwi:
-            return ["키위": 3]
+            return [.kiwi: 3]
         case .pineapple:
-            return ["파인애플": 2]
+            return [.pineapple: 2]
         case .mango:
-            return ["망고": 3]
+            return [.mango: 3]
         case .mangokiwi:
-            return ["망고": 2, "키위": 1]
+            return [.mango: 2, .kiwi: 1]
         }
     }
 }
