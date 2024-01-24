@@ -47,28 +47,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E17AC2C2B615E71006D4C3C /* Assets */ = {
+		2E17AC2C2B615E71006D4C3C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 			);
-			path = Assets;
+			path = Resource;
 			sourceTree = "<group>";
 		};
-		2E17AC2D2B615E80006D4C3C /* AppDelegate */ = {
+		2E17AC2D2B615E80006D4C3C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C71CD66F266C7B500038B9CB /* Model */,
+				C71CD66D266C7B470038B9CB /* Controller */,
+				C71CD671266C7B570038B9CB /* View */,
+				2E17AC2F2B615F92006D4C3C /* Error */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		2E17AC2E2B615E8E006D4C3C /* App */ = {
 			isa = PBXGroup;
 			children = (
 				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
-			);
-			path = AppDelegate;
-			sourceTree = "<group>";
-		};
-		2E17AC2E2B615E8E006D4C3C /* SceneDelegate */ = {
-			isa = PBXGroup;
-			children = (
 				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 			);
-			name = SceneDelegate;
+			name = App;
+			sourceTree = "<group>";
+		};
+		2E17AC2F2B615F92006D4C3C /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				2EE2664C2B60C77100F954C9 /* FruitResultError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
@@ -84,7 +96,6 @@
 			children = (
 				C73DAF4B255D0D0400020D38 /* JuiceMaker.swift */,
 				C71CD66A266C7ACB0038B9CB /* FruitStore.swift */,
-				2EE2664C2B60C77100F954C9 /* FruitResultError.swift */,
 				2EE2664E2B60C79400F954C9 /* JuiceMenu.swift */,
 				2E17AC2A2B615E49006D4C3C /* Fruit.swift */,
 			);
@@ -119,12 +130,9 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				2E17AC2E2B615E8E006D4C3C /* SceneDelegate */,
-				2E17AC2D2B615E80006D4C3C /* AppDelegate */,
-				2E17AC2C2B615E71006D4C3C /* Assets */,
-				C71CD66D266C7B470038B9CB /* Controller */,
-				C71CD66F266C7B500038B9CB /* Model */,
-				C71CD671266C7B570038B9CB /* View */,
+				2E17AC2E2B615E8E006D4C3C /* App */,
+				2E17AC2D2B615E80006D4C3C /* Source */,
+				2E17AC2C2B615E71006D4C3C /* Resource */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
 			path = JuiceMaker;
