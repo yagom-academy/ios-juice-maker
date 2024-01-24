@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MakeJuiceViewController: UIViewController {
+class JuiceMakerViewController: UIViewController {
 
     private var juiceMaker: JuiceMaker?
         
