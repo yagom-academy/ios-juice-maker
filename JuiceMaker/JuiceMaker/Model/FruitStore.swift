@@ -5,7 +5,7 @@
 //
 
 class FruitStore {
-    private var fruitBox: [Fruit: Int] = [:]
+    var fruitBox: [Fruit: Int] = [:]
 
     init(fruits: [Fruit: Int]) {
         fruitBox = fruits

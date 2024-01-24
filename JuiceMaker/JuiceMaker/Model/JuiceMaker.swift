@@ -6,7 +6,7 @@
 
 
 struct JuiceMaker {
-    private var fruitStore: FruitStore
+    var fruitStore: FruitStore
     
     init(fruitStore: FruitStore) {
         self.fruitStore = fruitStore

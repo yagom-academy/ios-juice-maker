@@ -23,6 +23,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
         
         juiceMakerView.delegate = self
+        juiceMakerView.showFruitStock(juiceMaker.fruitStore.fruitBox)
     }
     
     func juiceMakerViewStockEditButtonTouchedUp(_ view: JuiceMakerView) {
