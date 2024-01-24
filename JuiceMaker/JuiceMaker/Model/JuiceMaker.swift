@@ -6,59 +6,25 @@
 
 import Foundation
 
-enum JuiceMenu: String {
-    case strawberry = "딸기쥬스"
-    case strawberryBanana = "딸바쥬스"
-    case banana = "바나나쥬스"
-    case kiwi = "키위쥬스"
-    case pineapple = "파인애플쥬스"
-    case mango = "망고쥬스"
-    case mangokiwi = "망키쥬스"
-    
-    var ingredients: [String: Int] {
-        switch self {
-        case .strawberry:
-            return ["딸기": 16]
-        case .strawberryBanana:
-            return ["딸기": 10, "바나나": 1]
-        case .banana:
-            return ["바나나": 2]
-        case .kiwi:
-            return ["키위": 3]
-        case .pineapple:
-            return ["파인애플": 2]
-        case .mango:
-            return ["망고": 3]
-        case .mangokiwi:
-            return ["망고": 2, "키위": 1]
-        }
-    }
-}
-
-enum ResultType {
-    case success(String)
-    case failure(String)
-}
-
 struct JuiceMaker {
     private var fruitStore: FruitStore = FruitStore()
     
     func makeJuice(juiceMenu: JuiceMenu, amount: Int) -> String {
-        let checkResult = fruitStore.showFruitQuantity(showFruits: juiceMenu.ingredients, showAmount: amount)
+        let checkResult = fruitStore.showFruitQuantity(fruitsStock: juiceMenu.ingredients, amount: amount)
         
         switch checkResult {
-        case .success:
+        case FruitResultType.success:
             let deductionResult = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
             
             switch deductionResult {
-            case .success(let success):
+            case ResultType.success(let success):
                 print("success: == \(success)")
                 return "\(success)"
-            case .failure(let error):
+            case ResultType.failure(let error):
                 print("error: make\(#line) == \(error)")
                 return "Error: 쥬스를 만들 수 없습니다."
             }
-        case .failure:
+        case FruitResultType.outOfStock:
             print("error: make\(#line)")
             return "쥬스 만들기에 실패하였습니다. 재고 수량을 확인해주세요."
         }
@@ -76,7 +42,7 @@ struct JuiceMaker {
             storeFruitQuantity -= useFruitQuantity
             
             if storeFruitQuantity >= 0 {
-                fruitStore.changeFruitQuantity(changeFruit: fruit, changeQuantity: storeFruitQuantity)
+                fruitStore.changeFruitQuantity(fruitName: fruit, quantity: storeFruitQuantity)
             } else {
                 message = "\(fruit)가 \(-storeFruitQuantity)개가 부족하여 \(requestJuiceName)를 만들 수 없습니다."
                 
