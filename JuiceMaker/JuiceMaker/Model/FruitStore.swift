@@ -6,24 +6,36 @@
 
 import Foundation
 
+enum Fruit: String {
+    case strawberry = "딸기"
+    case banana = "바나나"
+    case pineapple = "파인애플"
+    case kiwi = "키위"
+    case mango = "망고"
+}
+
 class FruitStore {
-    var fruitStorage = ["딸기": 10, "바나나": 10, "파인애플": 10, "키위": 10, "망고": 10]
+    var fruitStorage: [Fruit: Int]
+
+    init(initialStock: [Fruit: Int]) {
+        fruitStorage = initialStock
+    }
     
-    func changeFruitQuantity(fruitName: String, quantity: Int) {
-        fruitStorage.updateValue(quantity, forKey: fruitName)
+    func changeFruitQuantity(fruitName: Fruit, quantity: Int) {
+        fruitStorage[fruitName] = quantity
     }
 
-    func showFruitQuantity(fruitsStock: [String: Int], amount: Int) -> FruitResultType {
+    func showFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) throws -> FruitResultError {
         for (fruit, useQuantity) in fruitsStock {
             let requestFruit = useQuantity * amount
             let storeFruit = fruitStorage[fruit] ?? 0
             
             if requestFruit > storeFruit {
-                return FruitResultType.outOfStock
+                throw FruitResultError.outOfStock
             }
         }
         
-        return .success
+        return .success("???")
     }
 }
 

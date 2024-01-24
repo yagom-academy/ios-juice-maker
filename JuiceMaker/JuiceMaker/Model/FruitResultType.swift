@@ -7,7 +7,6 @@
 
 import Foundation
 
-enum FruitResultType: Error {
-    case success
+enum FruitResultError: Error {
     case outOfStock
 }
