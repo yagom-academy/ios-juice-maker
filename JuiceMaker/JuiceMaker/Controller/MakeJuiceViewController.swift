@@ -13,7 +13,7 @@ class MakeJuiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         juiceMaker = JuiceMaker()
-        JuiceHandleResult()
+        showJuiceHandleResult()
     }
     
     func makeJuice() -> String? {
@@ -21,7 +21,7 @@ class MakeJuiceViewController: UIViewController {
         return juiceResult
     }
     
-    func JuiceHandleResult() {
+    func showJuiceHandleResult() {
         if let result = makeJuice() {
             print(result)
         } else {
