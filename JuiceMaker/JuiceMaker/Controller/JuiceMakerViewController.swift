@@ -16,14 +16,9 @@ class JuiceMakerViewController: UIViewController {
         showJuiceHandleResult()
     }
     
-    func makeJuice() -> String? {
-        let juiceResult = juiceMaker?.makeJuice(juiceMenu: .strawberryBanana, amount: 1)
-        return juiceResult
-    }
-    
     func showJuiceHandleResult() {
-        if let result = makeJuice() {
-            print(result)
+        if let juiceResult = juiceMaker?.makeJuice(juiceMenu: .strawberryBanana, amount: 1) {
+            print(juiceResult)
         } else {
             print("error: not working makeJuiceAndHandleResult()")
         }
