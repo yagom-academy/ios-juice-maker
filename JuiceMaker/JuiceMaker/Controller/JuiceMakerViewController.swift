@@ -44,6 +44,17 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
     }
     
+    @IBAction func orderMangoKiwiJuiceButton(_ sender: UIButton) {
+        do {
+            try juiceMaker.makeJuice(.mangoKiwi)
+            alertSuccessToOrder(juice: .mangoKiwi)
+        } catch FruitStoreError.insufficientFruits {
+            alertFailureToOrder()
+        } catch {
+            print("예상치 못한 오류가 발생했습니다.")
+        }
+    }
+    
     func alertSuccessToOrder(juice: Juice) {
         let orderSucceedAlert = UIAlertController(title: "주문 성공", message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "확인", style: .default, handler: nil)

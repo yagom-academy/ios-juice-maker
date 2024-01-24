@@ -141,6 +141,9 @@
                                                 <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="orderMangoKiwiJuiceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RxQ-YF-vGj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
