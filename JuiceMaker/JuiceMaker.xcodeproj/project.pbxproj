@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E17AC2B2B615E49006D4C3C /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E17AC2A2B615E49006D4C3C /* Fruit.swift */; };
+		2E17AC312B61F8DD006D4C3C /* FruitStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E17AC302B61F8DD006D4C3C /* FruitStockViewController.swift */; };
 		2EE2664D2B60C77100F954C9 /* FruitResultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2664C2B60C77100F954C9 /* FruitResultError.swift */; };
 		2EE2664F2B60C79400F954C9 /* JuiceMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2664E2B60C79400F954C9 /* JuiceMenu.swift */; };
 		C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71CD66A266C7ACB0038B9CB /* FruitStore.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		2E17AC2A2B615E49006D4C3C /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		2E17AC302B61F8DD006D4C3C /* FruitStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStockViewController.swift; sourceTree = "<group>"; };
 		2EE2664C2B60C77100F954C9 /* FruitResultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitResultError.swift; sourceTree = "<group>"; };
 		2EE2664E2B60C79400F954C9 /* JuiceMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMenu.swift; sourceTree = "<group>"; };
 		C71CD66A266C7ACB0038B9CB /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */,
+				2E17AC302B61F8DD006D4C3C /* FruitStockViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E17AC2B2B615E49006D4C3C /* Fruit.swift in Sources */,
+				2E17AC312B61F8DD006D4C3C /* FruitStockViewController.swift in Sources */,
 				2EE2664F2B60C79400F954C9 /* JuiceMenu.swift in Sources */,
 				C71CD66B266C7ACB0038B9CB /* FruitStore.swift in Sources */,
 				C73DAF3B255D0CDD00020D38 /* JuiceMakerViewController.swift in Sources */,
