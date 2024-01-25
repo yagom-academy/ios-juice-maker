@@ -11,11 +11,17 @@ class JuiceMakerViewController: UIViewController {
     
     @IBOutlet var modifiedFruitStockButton: UIBarButtonItem!
     
+    @IBOutlet weak var straberryLabel: UILabel!
+    @IBOutlet weak var bananaLabel: UILabel!
+    @IBOutlet weak var pineappleLabel: UILabel!
+    @IBOutlet weak var kiwiLabel: UILabel!
+    @IBOutlet weak var mangoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        straberryLabel.text = juiceMaker.viewFruitStock(fruitName: .strawberry)
         showJuiceHandleResult()
     }
-    
     
     @IBAction func modifiedFruitStockButtonClicked(_ sender: UIBarButtonItem) {
         guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else {

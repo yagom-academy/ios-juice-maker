@@ -9,6 +9,10 @@ import Foundation
 struct JuiceMaker {
     private var fruitStore: FruitStore = FruitStore(initialStock: [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10])
     
+    func viewFruitStock(fruitName: Fruit) -> String {
+        return String(fruitStore.fruitStorage[fruitName] ?? 0)
+    }
+    
     func makeJuice(juiceMenu: JuiceMenu, amount: Int) -> Result<String, FruitResultError> {
         let checkResult: Bool = fruitStore.showFruitQuantity(fruitsStock: juiceMenu.ingredients, amount: amount)
 
