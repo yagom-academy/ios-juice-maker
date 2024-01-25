@@ -30,14 +30,10 @@ enum FruitCategory: Int {
 }
 
 class FruitStore {
-    var strawberry: Int?
-    var banana: Int?
-    var pineapple: Int?
-    var kiwi: Int?
-    var mango: Int?
+    var fruit: [FruitCategory: Int]
     
-    init() {
-        
+    init(fruit: [FruitCategory : Int]) {
+        self.fruit = fruit
     }
     
     func checkSufficientStock(recipe: [Ingredient]) -> Bool {
