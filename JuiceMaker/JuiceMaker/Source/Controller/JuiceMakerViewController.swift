@@ -8,11 +8,22 @@ import UIKit
 
 class JuiceMakerViewController: UIViewController {
     private var juiceMaker: JuiceMaker = JuiceMaker()
-        
+    
+    @IBOutlet var modifiedFruitStockButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showJuiceHandleResult()
     }
+    
+    
+    @IBAction func modifiedFruitStockButtonClicked(_ sender: UIBarButtonItem) {
+        guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else {
+            return
+        }
+        self.navigationController?.pushViewController(FruitStockViewController, animated: true)
+    }
+    
     
     func showJuiceHandleResult() {
         let juiceResult = juiceMaker.makeJuice(juiceMenu: .strawberryBanana, amount: 1)
