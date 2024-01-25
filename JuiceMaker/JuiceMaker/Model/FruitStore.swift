@@ -29,19 +29,8 @@ enum FruitCategory: Int {
     }
 }
 
-func initFruitStock() {
-    let fruitStore = FruitStore.shared
-    fruitStore.strawberry = 10
-    fruitStore.banana = 10
-    fruitStore.pineapple = 10
-    fruitStore.kiwi = 10
-    fruitStore.mango = 10
-}
-
 class FruitStore {
-    static let shared = FruitStore()
-    
-    private init() {}
+    init() {}
     
     var strawberry: Int?
     var banana: Int?
@@ -51,8 +40,6 @@ class FruitStore {
 }
 
 func checkSufficientStock(recipe: [Ingredient]) -> Bool {
-    let fruitStore = FruitStore.shared
-    
     for fruitNameAndCount in recipe {
         switch fruitNameAndCount.fruitName {
         case .strawberry:
@@ -87,8 +74,6 @@ func checkSufficientStock(recipe: [Ingredient]) -> Bool {
 }
 
 func consumeStock(recipe: [Ingredient]) {
-    let fruitStore = FruitStore.shared
-    
     for fruitNameAndCount in recipe {
         switch fruitNameAndCount.fruitName {
         case .strawberry:
