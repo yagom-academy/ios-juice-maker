@@ -31,36 +31,37 @@ struct Recipe {
 
 struct JuiceMaker {
     let recipe = Recipe()
+    let fruitStore = FruitStore()
     
     mutating func makeJuice(juiceMenu: JuiceMenu) {
         switch juiceMenu {
         case .strawberryJuice:
-            if checkSufficientStock(recipe: recipe.strawberryJuice) {
-                consumeStock(recipe: recipe.strawberryJuice)
+            if fruitStore.checkSufficientStock(recipe: recipe.strawberryJuice) {
+                fruitStore.consumeStock(recipe: recipe.strawberryJuice)
             }
         case .strawberryBananaJuice:
-            if checkSufficientStock(recipe: recipe.strawberryBananaJuice) {
-                consumeStock(recipe: recipe.strawberryBananaJuice)
+            if fruitStore.checkSufficientStock(recipe: recipe.strawberryBananaJuice) {
+                fruitStore.consumeStock(recipe: recipe.strawberryBananaJuice)
             }
         case .bananaJuice:
-            if checkSufficientStock(recipe: recipe.bananaJuice) {
-                consumeStock(recipe: recipe.bananaJuice)
+            if fruitStore.checkSufficientStock(recipe: recipe.bananaJuice) {
+                fruitStore.consumeStock(recipe: recipe.bananaJuice)
             }
         case .pineappleJuice:
-            if checkSufficientStock(recipe: recipe.pineappleJuice) {
-                consumeStock(recipe: recipe.pineappleJuice)
+            if fruitStore.checkSufficientStock(recipe: recipe.pineappleJuice) {
+                fruitStore.consumeStock(recipe: recipe.pineappleJuice)
             }
         case .kiwiJuice:
-            if checkSufficientStock(recipe: recipe.kiwiJuice) {
-                consumeStock(recipe: recipe.kiwiJuice)
+            if fruitStore.checkSufficientStock(recipe: recipe.kiwiJuice) {
+                fruitStore.consumeStock(recipe: recipe.kiwiJuice)
             }
         case .mangoJuice:
-            if checkSufficientStock(recipe: recipe.mangoJuice) {
-                consumeStock(recipe: recipe.mangoJuice)
+            if fruitStore.checkSufficientStock(recipe: recipe.mangoJuice) {
+                fruitStore.consumeStock(recipe: recipe.mangoJuice)
             }
         case .mangoKiwiJuice:
-            if checkSufficientStock(recipe: recipe.mangoKiwiJuice) {
-                consumeStock(recipe: recipe.mangoKiwiJuice)
+            if fruitStore.checkSufficientStock(recipe: recipe.mangoKiwiJuice) {
+                fruitStore.consumeStock(recipe: recipe.mangoKiwiJuice)
             }
         }
     }
