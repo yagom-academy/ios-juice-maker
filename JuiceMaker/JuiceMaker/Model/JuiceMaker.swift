@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-typealias Ingredient = (fruitName: FruitCategory, count: Int)
+//typealias Ingredient = (fruitName: FruitCategory, count: Int)
 
 enum JuiceMenu {
     case strawberryJuice
@@ -31,38 +31,37 @@ struct Recipe {
 
 struct JuiceMaker {
     let recipe = Recipe()
-    let fruitStore = FruitStore(fruit: [.strawberry: 10])
 
     mutating func makeJuice(juiceMenu: JuiceMenu) {
-        switch juiceMenu {
-        case .strawberryJuice:
-            if fruitStore.checkSufficientStock(recipe: recipe.strawberryJuice) {
-                fruitStore.consumeStock(recipe: recipe.strawberryJuice)
-            }
-        case .strawberryBananaJuice:
-            if fruitStore.checkSufficientStock(recipe: recipe.strawberryBananaJuice) {
-                fruitStore.consumeStock(recipe: recipe.strawberryBananaJuice)
-            }
-        case .bananaJuice:
-            if fruitStore.checkSufficientStock(recipe: recipe.bananaJuice) {
-                fruitStore.consumeStock(recipe: recipe.bananaJuice)
-            }
-        case .pineappleJuice:
-            if fruitStore.checkSufficientStock(recipe: recipe.pineappleJuice) {
-                fruitStore.consumeStock(recipe: recipe.pineappleJuice)
-            }
-        case .kiwiJuice:
-            if fruitStore.checkSufficientStock(recipe: recipe.kiwiJuice) {
-                fruitStore.consumeStock(recipe: recipe.kiwiJuice)
-            }
-        case .mangoJuice:
-            if fruitStore.checkSufficientStock(recipe: recipe.mangoJuice) {
-                fruitStore.consumeStock(recipe: recipe.mangoJuice)
-            }
-        case .mangoKiwiJuice:
-            if fruitStore.checkSufficientStock(recipe: recipe.mangoKiwiJuice) {
-                fruitStore.consumeStock(recipe: recipe.mangoKiwiJuice)
-            }
-        }
+//        switch juiceMenu {
+//        case .strawberryJuice:
+//            if fruitStore.checkSufficientStock(recipe: recipe.strawberryJuice) {
+//                fruitStore.consumeStock(recipe: recipe.strawberryJuice)
+//            }
+//        case .strawberryBananaJuice:
+//            if fruitStore.checkSufficientStock(recipe: recipe.strawberryBananaJuice) {
+//                fruitStore.consumeStock(recipe: recipe.strawberryBananaJuice)
+//            }
+//        case .bananaJuice:
+//            if fruitStore.checkSufficientStock(recipe: recipe.bananaJuice) {
+//                fruitStore.consumeStock(recipe: recipe.bananaJuice)
+//            }
+//        case .pineappleJuice:
+//            if fruitStore.checkSufficientStock(recipe: recipe.pineappleJuice) {
+//                fruitStore.consumeStock(recipe: recipe.pineappleJuice)
+//            }
+//        case .kiwiJuice:
+//            if fruitStore.checkSufficientStock(recipe: recipe.kiwiJuice) {
+//                fruitStore.consumeStock(recipe: recipe.kiwiJuice)
+//            }
+//        case .mangoJuice:
+//            if fruitStore.checkSufficientStock(recipe: recipe.mangoJuice) {
+//                fruitStore.consumeStock(recipe: recipe.mangoJuice)
+//            }
+//        case .mangoKiwiJuice:
+//            if fruitStore.checkSufficientStock(recipe: recipe.mangoKiwiJuice) {
+//                fruitStore.consumeStock(recipe: recipe.mangoKiwiJuice)
+//            }
+//        }
     }
 }
