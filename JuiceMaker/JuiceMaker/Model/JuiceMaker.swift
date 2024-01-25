@@ -31,8 +31,8 @@ struct Recipe {
 
 struct JuiceMaker {
     let recipe = Recipe()
-    let fruitStore = FruitStore()
-    
+    let fruitStore = FruitStore(fruit: [.strawberry: 10])
+
     mutating func makeJuice(juiceMenu: JuiceMenu) {
         switch juiceMenu {
         case .strawberryJuice:
