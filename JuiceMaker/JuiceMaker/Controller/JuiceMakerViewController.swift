@@ -26,7 +26,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         juiceMakerViewUpdateFruitQuantityLabel(juiceMakerView)
     }
     
-    func juiceMakerViewStockEditButtonTouchedUp(_ view: JuiceMakerView) {
+    func juiceMakerViewStockEditButtonTouchedUp() {
         guard let fillStockViewController = self.storyboard?.instantiateViewController(identifier: "FillStockViewController") else {
             return
         }
@@ -66,7 +66,8 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
     
     func alertFailureToOrder() {
         let orderFailedAlert = UIAlertController(title: "주문 실패", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "예", style: .default, handler: nil)
+        let confirm = UIAlertAction(title: "예", style: .default) { _ in self.juiceMakerViewStockEditButtonTouchedUp()
+        }
         let cancel = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         
         orderFailedAlert.addAction(confirm)
