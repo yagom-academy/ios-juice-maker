@@ -23,7 +23,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
         
         juiceMakerView.delegate = self
-        juiceMakerView.showFruitStock(juiceMaker.fruitStore.fruitBox)
+        juiceMakerViewUpdateFruitQuantityLabel(juiceMakerView)
     }
     
     func juiceMakerViewStockEditButtonTouchedUp(_ view: JuiceMakerView) {
@@ -38,11 +38,18 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         do {
             try juiceMaker.makeJuice(juice)
             alertSuccessToOrder(juice: juice)
+            juiceMakerViewUpdateFruitQuantityLabel(view)
         } catch FruitStoreError.insufficientFruits {
             alertFailureToOrder()
         } catch {
             print("예상치 못한 오류가 발생했습니다.")
         }
+    }
+    
+    func juiceMakerViewUpdateFruitQuantityLabel(_ view: JuiceMakerView) {
+        let fruits = juiceMaker.fruitStore.fruitBox
+        
+        view.updateFruitQuantityLabel(fruits: fruits)
     }
     
     func alertSuccessToOrder(juice: Juice) {

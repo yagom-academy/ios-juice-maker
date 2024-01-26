@@ -14,26 +14,27 @@ protocol JuiceMakerViewDelegate {
 
 class JuiceMakerView: UIView {
     var delegate: JuiceMakerViewDelegate!
+    
     @IBOutlet var strawberryQuantity: UILabel!
     @IBOutlet var bananaQuantity: UILabel!
     @IBOutlet var pineappleQuantity: UILabel!
     @IBOutlet var kiwiQuantity: UILabel!
     @IBOutlet var mangoQuantity: UILabel!
     
-    func showFruitStock(_ fruitBox: [Fruit:Int]) {
-        if let quantity = fruitBox[.strawberry] {
+    func updateFruitQuantityLabel(fruits: [Fruit: Int]) {
+        if let quantity = fruits[.strawberry] {
             strawberryQuantity.text = String(quantity)
         }
-        if let quantity = fruitBox[.banana] {
+        if let quantity = fruits[.banana] {
             bananaQuantity.text = String(quantity)
         }
-        if let quantity = fruitBox[.pineapple] {
+        if let quantity = fruits[.pineapple] {
             pineappleQuantity.text = String(quantity)
         }
-        if let quantity = fruitBox[.kiwi] {
+        if let quantity = fruits[.kiwi] {
             kiwiQuantity.text = String(quantity)
         }
-        if let quantity = fruitBox[.mango] {
+        if let quantity = fruits[.mango] {
             mangoQuantity.text = String(quantity)
         }
     }
