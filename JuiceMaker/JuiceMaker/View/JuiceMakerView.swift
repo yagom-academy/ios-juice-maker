@@ -8,7 +8,7 @@
 import UIKit
 
 protocol JuiceMakerViewDelegate {
-    func juiceMakerViewStockEditButtonTouchedUp()
+    func juiceMakerViewPresentStockEditView()
     func juiceMakerViewJuiceOrderButtonTouchedUp(_ view: JuiceMakerView, juice: Juice)
 }
 
