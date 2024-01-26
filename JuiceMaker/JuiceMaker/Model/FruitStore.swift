@@ -4,8 +4,6 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-
 enum FruitCategory: Int {
     case strawberry
     case banana
@@ -38,14 +36,39 @@ class FruitStore {
     
     func checkSufficientStock(recipe: [JuiceMenu]) -> Bool {
         for fruitForRecipe in recipe {
-            switch fruitForRecipe {
-            case .recipe(let fruitName, let number):
-                if fruit[fruitName] ?? 0 < number {
-                    return false
-                }
-            }
+            return checkFruitStock(fruitForRecipe: fruitForRecipe)
         }
         return true
     }
     
+    func checkFruitStock(fruitForRecipe: JuiceMenu) -> Bool {
+        switch fruitForRecipe {
+        case .recipe(let fruitName, let number):
+            guard let fruitNumber = fruit[fruitName] else {
+                return false
+            }
+            
+            if fruitNumber < number {
+                print("\(fruitName.koreanName)의 재고가 부족합니다.")
+                return false
+            }
+        }
+    }
+    
+    func consumeStock(recipe: [JuiceMenu]) {
+        for fruitForRecipe in recipe {
+            consumeFruitStock(fruitForRecipe: fruitForRecipe)
+        }
+    }
+    
+    func consumeFruitStock(fruitForRecipe: JuiceMenu) {
+        switch fruitForRecipe {
+        case .recipe(let fruitName, let number):
+            guard var fruitNumber = fruit[fruitName] else {
+                return
+            }
+            fruitNumber -= number
+            fruit[fruitName] = fruitNumber
+        }
+    }
 }

@@ -4,11 +4,32 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-import Foundation
-import UIKit
-
 enum JuiceMenu {
-    case recipe(FruitCategory,Int)
+    case recipe(FruitCategory, Int)
+}
+
+enum MenuList {
+    static var strawberryJuice: [JuiceMenu] {
+        return [JuiceMenu.recipe(.strawberry, 16)]
+    }
+    static var bananaJuice: [JuiceMenu] {
+        return [JuiceMenu.recipe(.banana, 3)]
+    }
+    static var pineappleJuice: [JuiceMenu] {
+        return [JuiceMenu.recipe(.pineapple, 2)]
+    }
+    static var kiwiJuice: [JuiceMenu] {
+        return [JuiceMenu.recipe(.kiwi, 3)]
+    }
+    static var mangoJuice: [JuiceMenu] {
+        return [JuiceMenu.recipe(.mango, 3)]
+    }
+    static var strawberryBananaJuice: [JuiceMenu] {
+        return [JuiceMenu.recipe(.strawberry, 10), JuiceMenu.recipe(.banana, 1)]
+    }
+    static var mangoKiwiJuice: [JuiceMenu] {
+        return [JuiceMenu.recipe(.mango, 2), JuiceMenu.recipe(.kiwi, 1)]
+    }
 }
 
 class JuiceMaker {
@@ -20,16 +41,7 @@ class JuiceMaker {
     
     func makeJuice(juiceMenu: [JuiceMenu]) {
         if fruitStore.checkSufficientStock(recipe: juiceMenu) {
-            print("만들기 가능!")
+            fruitStore.consumeStock(recipe: juiceMenu)
         }
     }
 }
-
-//struct JuiceMaker {
-//    let fruitStore = FruitStore()
-//    mutating func makeJuice(juiceMenu: [JuiceMenu]) {
-//        if fruitStore.checkSufficientStock(recipe: <#T##[JuiceMenu]#>) else {
-//
-//        }
-//    }
-//}
