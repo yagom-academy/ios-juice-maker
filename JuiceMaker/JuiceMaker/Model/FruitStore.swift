@@ -68,6 +68,7 @@ class FruitStore {
             guard var fruitNumber = fruit[fruitName] else {
                 return
             }
+            
             fruitNumber -= number
             fruit[fruitName] = fruitNumber
         }

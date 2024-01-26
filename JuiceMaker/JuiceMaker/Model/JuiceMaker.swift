@@ -12,21 +12,27 @@ enum MenuList {
     static var strawberryJuice: [JuiceMenu] {
         return [JuiceMenu.recipe(.strawberry, 16)]
     }
+    
     static var bananaJuice: [JuiceMenu] {
         return [JuiceMenu.recipe(.banana, 3)]
     }
+    
     static var pineappleJuice: [JuiceMenu] {
         return [JuiceMenu.recipe(.pineapple, 2)]
     }
+    
     static var kiwiJuice: [JuiceMenu] {
         return [JuiceMenu.recipe(.kiwi, 3)]
     }
+    
     static var mangoJuice: [JuiceMenu] {
         return [JuiceMenu.recipe(.mango, 3)]
     }
+    
     static var strawberryBananaJuice: [JuiceMenu] {
         return [JuiceMenu.recipe(.strawberry, 10), JuiceMenu.recipe(.banana, 1)]
     }
+    
     static var mangoKiwiJuice: [JuiceMenu] {
         return [JuiceMenu.recipe(.mango, 2), JuiceMenu.recipe(.kiwi, 1)]
     }
