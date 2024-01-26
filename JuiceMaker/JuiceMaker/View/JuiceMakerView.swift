@@ -13,7 +13,7 @@ protocol JuiceMakerViewDelegate {
 }
 
 class JuiceMakerView: UIView {
-    var delegate: JuiceMakerViewDelegate!
+    var delegate: JuiceMakerViewDelegate?
     
     @IBOutlet var strawberryQuantity: UILabel!
     @IBOutlet var bananaQuantity: UILabel!
@@ -39,34 +39,34 @@ class JuiceMakerView: UIView {
     }
     
     @IBAction func touchUpStockEditButton(_ sender: UIBarButtonItem) {
-        delegate.juiceMakerViewPresentStockEditView()
+        delegate?.juiceMakerViewPresentStockEditView()
     }
     
     @IBAction func touchUpStrawberryBananaJuiceOrderButton(_ sender: UIButton) {
-        delegate.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberryBanana)
+        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberryBanana)
     }
     
     @IBAction func touchUpMangoKiwiJuiceOrderButton(_ sender: UIButton) {
-        delegate.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mangoKiwi)
+        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mangoKiwi)
     }
     
     @IBAction func touchUpStrawberryJuiceOrderButton(_ sender: UIButton) {
-        delegate.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberry)
+        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberry)
     }
     
     @IBAction func touchUpBananaJuiceOrderButton(_ sender: UIButton) {
-        delegate.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.banana)
+        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.banana)
     }
     
     @IBAction func touchUpPineappleJuiceOrderButton(_ sender: UIButton) {
-        delegate.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.pineapple)
+        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.pineapple)
     }
     
     @IBAction func touchUpKiwiJuiceOrderButton(_ sender: UIButton) {
-        delegate.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.kiwi)
+        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.kiwi)
     }
     
     @IBAction func touchUpMangoJuiceOrderButton(_ sender: UIButton) {
-        delegate.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mango)
+        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mango)
     }
 }
