@@ -53,6 +53,8 @@ class FruitStore {
                 return false
             }
         }
+        
+        print("\(fruitForRecipe) 제조에 성공했습니다.")
         return true
     }
     

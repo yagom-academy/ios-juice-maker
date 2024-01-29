@@ -14,46 +14,47 @@ class ViewController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    let fruitStore: FruitStore = FruitStore(fruit: [.strawberry: 10,
-                                                    .banana: 10,
-                                                    .pineapple: 10,
-                                                    .kiwi: 10,
-                                                    .mango: 10])
-    var juiceMaker: JuiceMaker?
+    var juiceMaker: JuiceMaker = JuiceMaker()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
             return
         }
         vc.modalPresentationStyle = .pageSheet
+        
         self.present(vc, animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        juiceMaker = JuiceMaker(fruitStore: fruitStore)
-    }
-    
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
+        juiceMaker.makeJuice(juiceMenu: MenuList.strawberryJuice)
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
+        juiceMaker.makeJuice(juiceMenu: MenuList.strawberryJuice)
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
+        juiceMaker.makeJuice(juiceMenu: MenuList.strawberryBananaJuice)
     }
     
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
+        juiceMaker.makeJuice(juiceMenu: MenuList.pineappleJuice)
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
+        juiceMaker.makeJuice(juiceMenu: MenuList.mangoJuice)
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
+        juiceMaker.makeJuice(juiceMenu: MenuList.kiwiJuice)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
+        juiceMaker.makeJuice(juiceMenu: MenuList.mangoKiwiJuice)
     }
     
     func alertSufficientStock(juiceName: String) {
@@ -72,6 +73,7 @@ class ViewController: UIViewController {
                 return
             }
             vc.modalPresentationStyle = .pageSheet
+            
             self.present(vc, animated: true)
         }
         
