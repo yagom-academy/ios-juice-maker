@@ -4,8 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-class FruitStore {
-    private var fruitBox: [Fruit: Int] = [:]
+final class FruitStore {
+    var fruitBox: [Fruit: Int] = [:]
 
     init(fruits: [Fruit: Int]) {
         fruitBox = fruits
