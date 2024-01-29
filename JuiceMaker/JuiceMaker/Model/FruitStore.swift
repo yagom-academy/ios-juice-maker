@@ -44,18 +44,13 @@ class FruitStore {
     func isAvailable(fruit: JuiceMenu) -> Bool {
         switch fruit {
         case .recipe(let fruitName, let number):
-            guard let fruitNumber = fruits[fruitName] else {
-                return false
-            }
-            
-            if fruitNumber < number {
-                print("\(fruitName.koreanName)의 재고가 부족합니다.")
-                return false
+            if let fruitNumber = fruits[fruitName], fruitNumber >= number {
+                print("\(fruit) 제조에 성공했습니다.")
+                return true
             }
         }
         
-        print("\(fruit) 제조에 성공했습니다.")
-        return true
+        return false
     }
     
     func consumeStock(recipe: [JuiceMenu]) {
