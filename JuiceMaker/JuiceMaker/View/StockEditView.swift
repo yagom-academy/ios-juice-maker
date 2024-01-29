@@ -7,6 +7,6 @@
 
 import UIKit
 
-class StockEditView: UIView {
+final class StockEditView: UIView {
     
 }

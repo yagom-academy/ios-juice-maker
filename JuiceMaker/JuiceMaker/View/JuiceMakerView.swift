@@ -12,7 +12,7 @@ protocol JuiceMakerViewDelegate {
     func touchUpJuiceOrderButton(_ view: JuiceMakerView, juice: Juice)
 }
 
-class JuiceMakerView: UIView {
+final class JuiceMakerView: UIView {
     var delegate: JuiceMakerViewDelegate?
     
     @IBOutlet var strawberryQuantity: UILabel!

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
+final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
     var juiceMaker = JuiceMaker(fruitStore: FruitStore(fruits: [
         .strawberry: 10,
         .banana: 10,
@@ -75,7 +75,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
             alertActions.append(UIAlertAction(title: "확인", style: .default))
         }
         
-        var alertController = UIAlertController(title: alertControllerTitle,
+        let alertController = UIAlertController(title: alertControllerTitle,
                                                 message: alertControllerMessage,
                                                 preferredStyle: .alert)
         
