@@ -23,10 +23,10 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
         
         juiceMakerView.delegate = self
-        juiceMakerViewUpdateFruitQuantityLabel(juiceMakerView)
+        updateFruitQuantityLabel(juiceMakerView)
     }
     
-    func juiceMakerViewPresentStockEditView() {
+    func presentStockEditView() {
         guard let stockEditViewController = self.storyboard?.instantiateViewController(identifier: "StockEditViewController") else {
             return
         }
@@ -34,11 +34,11 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         self.present(stockEditViewController, animated: true, completion: nil)
     }
     
-    func juiceMakerViewJuiceOrderButtonTouchedUp(_ view: JuiceMakerView, juice: Juice) {
+    func touchUpJuiceOrderButton(_ view: JuiceMakerView, juice: Juice) {
         do {
             try juiceMaker.makeJuice(juice)
             alertResultOfOrder(juice: juice)
-            juiceMakerViewUpdateFruitQuantityLabel(view)
+            updateFruitQuantityLabel(view)
         } catch FruitStoreError.insufficientFruits {
             alertResultOfOrder(juice: juice, failedWith: .insufficientFruits)
         } catch {
@@ -46,7 +46,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
     }
     
-    func juiceMakerViewUpdateFruitQuantityLabel(_ view: JuiceMakerView) {
+    func updateFruitQuantityLabel(_ view: JuiceMakerView) {
         let fruits = juiceMaker.fruitStore.fruitBox
         
         view.updateFruitQuantityLabel(fruits: fruits)
@@ -66,7 +66,7 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
             alertControllerTitle = "주문 실패"
             alertControllerMessage = "재료가 모자라요. 재고를 수정할까요?"
             alertActions.append(UIAlertAction(title: "예", style: .default) { _ in
-                self.juiceMakerViewPresentStockEditView()
+                self.presentStockEditView()
             })
             alertActions.append(UIAlertAction(title: "아니오", style: .cancel))
         case .fruitNotFound:
