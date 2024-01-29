@@ -28,23 +28,23 @@ enum FruitCategory: Int {
 }
 
 class FruitStore {
-    var fruit: [FruitCategory: Int]
+    var fruits: [FruitCategory: Int]
     
-    init(fruit: [FruitCategory : Int]) {
-        self.fruit = fruit
+    init(fruits: [FruitCategory : Int]) {
+        self.fruits = fruits
     }
     
-    func checkSufficientStock(recipe: [JuiceMenu]) -> Bool {
-        for fruitForRecipe in recipe {
-            return checkFruitStock(fruitForRecipe: fruitForRecipe)
+    func isAvailable(menu: [JuiceMenu]) -> Bool {
+        for ingredients in menu {
+            return isAvailable(fruit: ingredients)
         }
         return true
     }
     
-    func checkFruitStock(fruitForRecipe: JuiceMenu) -> Bool {
-        switch fruitForRecipe {
+    func isAvailable(fruit: JuiceMenu) -> Bool {
+        switch fruit {
         case .recipe(let fruitName, let number):
-            guard let fruitNumber = fruit[fruitName] else {
+            guard let fruitNumber = fruits[fruitName] else {
                 return false
             }
             
@@ -54,7 +54,7 @@ class FruitStore {
             }
         }
         
-        print("\(fruitForRecipe) 제조에 성공했습니다.")
+        print("\(fruit) 제조에 성공했습니다.")
         return true
     }
     
@@ -67,11 +67,11 @@ class FruitStore {
     func consumeFruitStock(fruitForRecipe: JuiceMenu) {
         switch fruitForRecipe {
         case .recipe(let fruitName, let number):
-            guard var fruitNumber = fruit[fruitName] else {
+            guard var fruitNumber = fruits[fruitName] else {
                 return
             }
             fruitNumber -= number
-            fruit[fruitName] = fruitNumber
+            fruits[fruitName] = fruitNumber
         }
     }
 }

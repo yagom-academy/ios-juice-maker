@@ -42,7 +42,7 @@ class JuiceMaker {
     var fruitStore: FruitStore
     
     init() {
-        self.fruitStore = FruitStore(fruit: [.strawberry: 10,
+        self.fruitStore = FruitStore(fruits: [.strawberry: 10,
                                              .banana: 10,
                                              .pineapple: 10,
                                              .kiwi: 10,
@@ -50,7 +50,7 @@ class JuiceMaker {
     }
     
     func makeJuice(juiceMenu: [JuiceMenu]) {
-        if fruitStore.checkSufficientStock(recipe: juiceMenu) {
+        if fruitStore.isAvailable(menu: juiceMenu) {
             fruitStore.consumeStock(recipe: juiceMenu)
         }
     }
