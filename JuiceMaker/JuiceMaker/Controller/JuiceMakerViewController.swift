@@ -37,12 +37,12 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
     func juiceMakerViewJuiceOrderButtonTouchedUp(_ view: JuiceMakerView, juice: Juice) {
         do {
             try juiceMaker.makeJuice(juice)
-            alertSuccessToOrder(juice: juice)
+            alertResultOfOrder(juice: juice)
             juiceMakerViewUpdateFruitQuantityLabel(view)
         } catch FruitStoreError.insufficientFruits {
-            alertFailureToOrder()
+            alertResultOfOrder(juice: juice, failedWith: .insufficientFruits)
         } catch {
-            print("예상치 못한 오류가 발생했습니다.")
+            alertResultOfOrder(juice: juice, failedWith: .fruitNotFound)
         }
     }
     
@@ -52,32 +52,37 @@ class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         view.updateFruitQuantityLabel(fruits: fruits)
     }
     
-    func alertSuccessToOrder(juice: Juice) {
-        let orderSucceedAlert = UIAlertController(title: "주문 성공",
-                                                  message: "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!",
-                                                  preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "확인",
-                                    style: .default,
-                                    handler: nil)
+    func alertResultOfOrder(juice: Juice, failedWith error: FruitStoreError? = nil) {
+        var alertControllerTitle: String
+        var alertControllerMessage: String
+        var alertActions: [UIAlertAction] = []
         
-        orderSucceedAlert.addAction(confirm)
-        present(orderSucceedAlert, animated: true, completion: nil)
-    }
-    
-    func alertFailureToOrder() {
-        let orderFailedAlert = UIAlertController(title: "주문 실패",
-                                                 message: "재료가 모자라요. 재고를 수정할까요?",
-                                                 preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "예", 
-                                    style: .default) { _ in
-            self.juiceMakerViewPresentStockEditView()
+        switch error {
+        case nil:
+            alertControllerTitle = "주문 성공"
+            alertControllerMessage = "\(juice.name) 쥬스 나왔습니다! 맛있게 드세요!"
+            alertActions.append(UIAlertAction(title: "확인", style: .default))
+        case .insufficientFruits:
+            alertControllerTitle = "주문 실패"
+            alertControllerMessage = "재료가 모자라요. 재고를 수정할까요?"
+            alertActions.append(UIAlertAction(title: "예", style: .default) { _ in
+                self.juiceMakerViewPresentStockEditView()
+            })
+            alertActions.append(UIAlertAction(title: "아니오", style: .cancel))
+        case .fruitNotFound:
+            alertControllerTitle = "주문 실패"
+            alertControllerMessage = "알 수 없는 오류가 발생했습니다."
+            alertActions.append(UIAlertAction(title: "확인", style: .default))
         }
-        let cancel = UIAlertAction(title: "아니오",
-                                   style: .cancel,
-                                   handler: nil)
         
-        orderFailedAlert.addAction(confirm)
-        orderFailedAlert.addAction(cancel)
-        present(orderFailedAlert, animated: true, completion: nil)
+        var alertController = UIAlertController(title: alertControllerTitle,
+                                                message: alertControllerMessage,
+                                                preferredStyle: .alert)
+        
+        for alertAction in alertActions {
+            alertController.addAction(alertAction)
+        }
+        
+        present(alertController, animated: true)
     }
 }
