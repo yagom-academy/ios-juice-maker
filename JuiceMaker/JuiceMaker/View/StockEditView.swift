@@ -2,7 +2,7 @@
 //  StockEditView.swift
 //  JuiceMaker
 //
-//  Created by Jaehun Lee on 1/23/24.
+//  Created by prism, gray on 1/23/24.
 //
 
 import UIKit
