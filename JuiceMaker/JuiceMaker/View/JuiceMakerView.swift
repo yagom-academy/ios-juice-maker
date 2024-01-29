@@ -42,31 +42,24 @@ class JuiceMakerView: UIView {
         delegate?.juiceMakerViewPresentStockEditView()
     }
     
-    @IBAction func touchUpStrawberryBananaJuiceOrderButton(_ sender: UIButton) {
-        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberryBanana)
-    }
-    
-    @IBAction func touchUpMangoKiwiJuiceOrderButton(_ sender: UIButton) {
-        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mangoKiwi)
-    }
-    
-    @IBAction func touchUpStrawberryJuiceOrderButton(_ sender: UIButton) {
-        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberry)
-    }
-    
-    @IBAction func touchUpBananaJuiceOrderButton(_ sender: UIButton) {
-        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.banana)
-    }
-    
-    @IBAction func touchUpPineappleJuiceOrderButton(_ sender: UIButton) {
-        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.pineapple)
-    }
-    
-    @IBAction func touchUpKiwiJuiceOrderButton(_ sender: UIButton) {
-        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.kiwi)
-    }
-    
-    @IBAction func touchUpMangoJuiceOrderButton(_ sender: UIButton) {
-        delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mango)
+    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberryBanana)
+        case 2:
+            delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mangoKiwi)
+        case 3:
+            delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.strawberry)
+        case 4:
+            delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.banana)
+        case 5:
+            delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.pineapple)
+        case 6:
+            delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.kiwi)
+        case 7:
+            delegate?.juiceMakerViewJuiceOrderButtonTouchedUp(self, juice: Juice.mango)
+        default:
+            break
+        }
     }
 }
