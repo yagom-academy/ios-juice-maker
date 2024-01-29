@@ -42,24 +42,31 @@ final class JuiceMakerView: UIView {
         delegate?.presentStockEditView()
     }
     
-    @IBAction func touchUpJuiceOrderButton(_ sender: UIButton) {
-        switch sender.tag {
-        case 1:
-            delegate?.touchUpJuiceOrderButton(self, juice: Juice.strawberryBanana)
-        case 2:
-            delegate?.touchUpJuiceOrderButton(self, juice: Juice.mangoKiwi)
-        case 3:
-            delegate?.touchUpJuiceOrderButton(self, juice: Juice.strawberry)
-        case 4:
-            delegate?.touchUpJuiceOrderButton(self, juice: Juice.banana)
-        case 5:
-            delegate?.touchUpJuiceOrderButton(self, juice: Juice.pineapple)
-        case 6:
-            delegate?.touchUpJuiceOrderButton(self, juice: Juice.kiwi)
-        case 7:
-            delegate?.touchUpJuiceOrderButton(self, juice: Juice.mango)
-        default:
-            break
-        }
+    @IBAction func touchUpStrawberryBananaJuiceOrderButton(_ sender: UIButton) {
+        delegate?.touchUpJuiceOrderButton(self, juice: .strawberryBanana)
+    }
+    
+    @IBAction func touchUpMangoKiwiJuiceOrderButton(_ sender: UIButton) {
+        delegate?.touchUpJuiceOrderButton(self, juice: .mangoKiwi)
+    }
+    
+    @IBAction func touchUpStrawberryJuiceOrderButton(_ sender: UIButton) {
+        delegate?.touchUpJuiceOrderButton(self, juice: .strawberry)
+    }
+    
+    @IBAction func touchUpBananaJuiceOrderButton(_ sender: UIButton) {
+        delegate?.touchUpJuiceOrderButton(self, juice: .banana)
+    }
+    
+    @IBAction func touchUpPineappleJuiceOrderButton(_ sender: UIButton) {
+        delegate?.touchUpJuiceOrderButton(self, juice: .pineapple)
+    }
+    
+    @IBAction func touchUpKiwiJuiceOrderButton(_ sender: UIButton) {
+        delegate?.touchUpJuiceOrderButton(self, juice: .kiwi)
+    }
+    
+    @IBAction func touchUpMangoJuiceOrderButton(_ sender: UIButton) {
+        delegate?.touchUpJuiceOrderButton(self, juice: .mango)
     }
 }
