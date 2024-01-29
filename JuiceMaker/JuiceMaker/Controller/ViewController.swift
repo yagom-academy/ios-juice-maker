@@ -15,7 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoStockLabel: UILabel!
     
     var juiceMaker: JuiceMaker = JuiceMaker()
-    
+    var menuList: MenuList = MenuList(strawberryJuice: [JuiceMenu.recipe(.strawberry, 16)],
+                                      bananaJuice: [JuiceMenu.recipe(.banana, 3)],
+                                      pineappleJuice: [JuiceMenu.recipe(.pineapple, 2)],
+                                      kiwiJuice: [JuiceMenu.recipe(.kiwi, 3)],
+                                      mangoJuice: [JuiceMenu.recipe(.mango, 3)],
+                                      strawberryBananaJuice: [JuiceMenu.recipe(.strawberry, 10), JuiceMenu.recipe(.banana, 1)],
+                                      mangoKiwiJuice: [JuiceMenu.recipe(.mango, 2), JuiceMenu.recipe(.kiwi, 1)])
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -30,31 +36,31 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(juiceMenu: MenuList.strawberryJuice)
+        juiceMaker.makeJuice(juiceMenu: menuList.strawberryJuice)
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(juiceMenu: MenuList.strawberryJuice)
+        juiceMaker.makeJuice(juiceMenu: menuList.strawberryJuice)
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(juiceMenu: MenuList.strawberryBananaJuice)
+        juiceMaker.makeJuice(juiceMenu: menuList.strawberryBananaJuice)
     }
     
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(juiceMenu: MenuList.pineappleJuice)
+        juiceMaker.makeJuice(juiceMenu: menuList.pineappleJuice)
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(juiceMenu: MenuList.mangoJuice)
+        juiceMaker.makeJuice(juiceMenu: menuList.mangoJuice)
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(juiceMenu: MenuList.kiwiJuice)
+        juiceMaker.makeJuice(juiceMenu: menuList.kiwiJuice)
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
-        juiceMaker.makeJuice(juiceMenu: MenuList.mangoKiwiJuice)
+        juiceMaker.makeJuice(juiceMenu: menuList.mangoKiwiJuice)
     }
     
     func alertSufficientStock(juiceName: String) {
