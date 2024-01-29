@@ -7,19 +7,19 @@
 
 import UIKit
 
-protocol JuiceMakerViewDelegate {
+protocol JuiceMakerViewDelegate: AnyObject {
     func presentStockEditView()
     func touchUpJuiceOrderButton(_ view: JuiceMakerView, juice: Juice)
 }
 
 final class JuiceMakerView: UIView {
-    var delegate: JuiceMakerViewDelegate?
+    weak var delegate: JuiceMakerViewDelegate?
     
-    @IBOutlet var strawberryQuantity: UILabel!
-    @IBOutlet var bananaQuantity: UILabel!
-    @IBOutlet var pineappleQuantity: UILabel!
-    @IBOutlet var kiwiQuantity: UILabel!
-    @IBOutlet var mangoQuantity: UILabel!
+    @IBOutlet weak var strawberryQuantity: UILabel!
+    @IBOutlet weak var bananaQuantity: UILabel!
+    @IBOutlet weak var pineappleQuantity: UILabel!
+    @IBOutlet weak var kiwiQuantity: UILabel!
+    @IBOutlet weak var mangoQuantity: UILabel!
     
     func updateFruitQuantityLabel(fruits: [Fruit: Int]) {
         for (fruit, quantity) in fruits {
