@@ -231,6 +231,7 @@
                         <outlet property="modifiedFruitStockButton" destination="C3q-Te-cNT" id="xhc-9e-lHO"/>
                         <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="YRN-wJ-9eG"/>
                         <outlet property="strawbananaJuiceButton" destination="hrc-2F-fzl" id="nTd-dy-XZG"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="tK9-hF-buQ"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="CAj-7E-FoV"/>
                     </connections>
                 </viewController>

@@ -18,6 +18,7 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var mangoLabel: UILabel!
     
     @IBOutlet var strawbananaJuiceButton: UIButton!
+    @IBOutlet var strawberryJuiceButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
