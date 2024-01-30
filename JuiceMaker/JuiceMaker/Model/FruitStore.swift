@@ -48,26 +48,27 @@ class FruitStore {
     func isAvailable(fruit: JuiceMenu) throws {
         switch fruit {
         case .recipe(let fruitName, let number):
-            if let fruitNumber = fruits[fruitName], fruitNumber >= number {
-                print("\(fruitName.koreanName)(이)가 충분합니다.")
-            } else {
+            if fruits[fruitName] == nil {
+                throw FruitStoreError.invalidFruitName
+            } else if fruits[fruitName] ?? 0 < number {
                 print("\(fruitName.koreanName)(이)가 부족합니다.")
                 throw FruitStoreError.outOfStock
             }
+            print("\(fruitName.koreanName)(이)가 충분합니다.")
         }
     }
     
-    func consumeStock(recipe: [JuiceMenu]) {
+    func consumeStock(recipe: [JuiceMenu]) throws {
         for fruitForRecipe in recipe {
-            consumeFruitStock(fruitForRecipe: fruitForRecipe)
+            try consumeFruitStock(fruitForRecipe: fruitForRecipe)
         }
     }
     
-    func consumeFruitStock(fruitForRecipe: JuiceMenu) {
+    func consumeFruitStock(fruitForRecipe: JuiceMenu) throws {
         switch fruitForRecipe {
         case .recipe(let fruitName, let number):
             guard var fruitNumber = fruits[fruitName] else {
-                return
+                throw FruitStoreError.invalidFruitName
             }
             fruitNumber -= number
             fruits[fruitName] = fruitNumber

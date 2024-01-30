@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menuList.strawberryJuice)
-            juiceMaker.fruitStore.consumeStock(recipe: menuList.strawberryJuice)
+            try juiceMaker.fruitStore.consumeStock(recipe: menuList.strawberryJuice)
             alertSufficientStock(juiceName: "딸기")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
     @IBAction func orderBananaJuice(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menuList.bananaJuice)
-            juiceMaker.fruitStore.consumeStock(recipe: menuList.bananaJuice)
+            try juiceMaker.fruitStore.consumeStock(recipe: menuList.bananaJuice)
             alertSufficientStock(juiceName: "바나나")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menuList.strawberryBananaJuice)
-            juiceMaker.fruitStore.consumeStock(recipe: menuList.strawberryBananaJuice)
+            try juiceMaker.fruitStore.consumeStock(recipe: menuList.strawberryBananaJuice)
             alertSufficientStock(juiceName: "딸기바나나")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menuList.pineappleJuice)
-            juiceMaker.fruitStore.consumeStock(recipe: menuList.pineappleJuice)
+            try juiceMaker.fruitStore.consumeStock(recipe: menuList.pineappleJuice)
             alertSufficientStock(juiceName: "파인애플")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
     @IBAction func orderMangoJuice(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menuList.mangoJuice)
-            juiceMaker.fruitStore.consumeStock(recipe: menuList.mangoJuice)
+            try juiceMaker.fruitStore.consumeStock(recipe: menuList.mangoJuice)
             alertSufficientStock(juiceName: "망고")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menuList.kiwiJuice)
-            juiceMaker.fruitStore.consumeStock(recipe: menuList.kiwiJuice)
+            try juiceMaker.fruitStore.consumeStock(recipe: menuList.kiwiJuice)
             alertSufficientStock(juiceName: "키위")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menuList.mangoKiwiJuice)
-            juiceMaker.fruitStore.consumeStock(recipe: menuList.mangoKiwiJuice)
+            try juiceMaker.fruitStore.consumeStock(recipe: menuList.mangoKiwiJuice)
             alertSufficientStock(juiceName: "망고키위")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
