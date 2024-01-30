@@ -15,9 +15,16 @@ final class StockEditViewController: UIViewController, StockEditViewDelegate {
             return
         }
         stockEditView.delegate = self
+        updateFruitQuantityLabel(stockEditView)
     }
     
     func exitStockEditView() {
         self.dismiss(animated: true)
+    }
+    
+    func updateFruitQuantityLabel(_ view: StockEditView) {
+        let fruits = FruitStore.shared.fruitBox
+        
+        view.updateFruitQuantityLabel(fruits: fruits)
     }
 }
