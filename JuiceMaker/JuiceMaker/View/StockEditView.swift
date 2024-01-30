@@ -7,6 +7,14 @@
 
 import UIKit
 
+protocol StockEditViewDelegate: AnyObject {
+    func exitStockEditView()
+}
+
 final class StockEditView: UIView {
+    weak var delegate: StockEditViewDelegate?
     
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        delegate?.exitStockEditView()
+    }
 }

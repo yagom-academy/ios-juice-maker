@@ -21,13 +21,12 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         guard let juiceMakerView = self.view as? JuiceMakerView else {
             return
         }
-        
         juiceMakerView.delegate = self
         updateFruitQuantityLabel(juiceMakerView)
     }
     
     func presentStockEditView() {
-        guard let stockEditViewController = self.storyboard?.instantiateViewController(identifier: "StockEditViewController") else {
+        guard let stockEditViewController = self.storyboard?.instantiateViewController(identifier: "StockEditNavigationController") else {
             return
         }
         
