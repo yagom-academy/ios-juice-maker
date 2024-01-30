@@ -27,15 +27,18 @@ class JuiceMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        strawberryLabel.text = juiceMaker.viewFruitStock(fruitName: .strawberry)
-        bananaLabel.text = juiceMaker.viewFruitStock(fruitName: .banana)
-        pineappleLabel.text = juiceMaker.viewFruitStock(fruitName: .pineapple)
-        kiwiLabel.text = juiceMaker.viewFruitStock(fruitName: .kiwi)
-        mangoLabel.text = juiceMaker.viewFruitStock(fruitName: .mango)
+        showFruitStockLabel()
     }
     
     @IBAction func orderStrawbananaJuiceButtonClicked(_ sender: Any) {
-        showJuiceHandleResult(juiceMenu: .strawberryBanana)
+        let result = showJuiceHandleResult(juiceMenu: .strawberryBanana)
+        
+        if result == "\(JuiceMenu.strawberryBanana.rawValue)를 1잔 만들었습니다." {
+            orderJuiceSucceedAlert(juiceName: JuiceMenu.strawberryBanana.rawValue)
+            showFruitStockLabel()
+        } else{
+            orderJuiceFailedAlert()
+        }
     }
     
     @IBAction func orderMangkiJuiceButtonClicked(_ sender: Any) {
@@ -69,15 +72,41 @@ class JuiceMakerViewController: UIViewController {
         self.navigationController?.pushViewController(FruitStockViewController, animated: true)
     }
     
-    
-    func showJuiceHandleResult(juiceMenu: JuiceMenu) {
+    func showJuiceHandleResult(juiceMenu: JuiceMenu) -> String {
         let juiceResult = juiceMaker.makeJuice(juiceMenu: juiceMenu, amount: 1)
         switch juiceResult {
         case .success(let message):
-            print(message)
+            return message
         case .failure(.outOfStock):
-            print("재고가 없습니다")
+            return "재고가 없습니다"
         }
+    }
+    
+    func orderJuiceSucceedAlert(juiceName: String) {
+        let alert = UIAlertController(title: "쥬스메이커", message: "\(juiceName)를 1잔 만들었습니다.", preferredStyle: UIAlertController.Style.actionSheet)
+        
+        let confirmAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+        
+        alert.addAction(confirmAction)
+        present(alert, animated: false, completion: nil)
+    }
+    
+    func orderJuiceFailedAlert() {
+        let alert = UIAlertController(title: "쥬스메이커", message: "재료가 모자랍니다. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.actionSheet)
+        
+        let confirmYesAction = UIAlertAction(title: "예", style: UIAlertAction.Style.default, handler: nil)
+        let confirmNoAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(confirmYesAction)
+        alert.addAction(confirmNoAction)
+        present(alert, animated: false, completion: nil)
+    }
+    
+    func showFruitStockLabel() {
+        strawberryLabel.text = juiceMaker.viewFruitStock(fruitName: .strawberry)
+        bananaLabel.text = juiceMaker.viewFruitStock(fruitName: .banana)
+        pineappleLabel.text = juiceMaker.viewFruitStock(fruitName: .pineapple)
+        kiwiLabel.text = juiceMaker.viewFruitStock(fruitName: .kiwi)
+        mangoLabel.text = juiceMaker.viewFruitStock(fruitName: .mango)
     }
 }
 
