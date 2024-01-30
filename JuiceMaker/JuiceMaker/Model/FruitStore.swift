@@ -4,6 +4,11 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+enum FruitStoreError: Error {
+    case outOfStock
+    case invalidFruitName
+}
+
 enum FruitCategory: Int {
     case strawberry
     case banana
@@ -34,22 +39,20 @@ class FruitStore {
         self.fruits = fruits
     }
     
-    func isAvailable(menu: [JuiceMenu]) -> Bool {
+    func isAvailable(menu: [JuiceMenu]) throws {
         for ingredients in menu {
-            return isAvailable(fruit: ingredients)
+            try isAvailable(fruit: ingredients)
         }
-        return true
     }
     
-    func isAvailable(fruit: JuiceMenu) -> Bool {
+    func isAvailable(fruit: JuiceMenu) throws {
         switch fruit {
         case .recipe(let fruitName, let number):
             if let fruitNumber = fruits[fruitName], fruitNumber >= number {
                 print("\(fruitName.koreanName)(이)가 충분합니다.")
-                return true
             } else {
                 print("\(fruitName.koreanName)(이)가 부족합니다.")
-                return false
+                throw FruitStoreError.outOfStock
             }
         }
     }
