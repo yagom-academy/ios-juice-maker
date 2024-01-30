@@ -15,13 +15,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var mangoStockLabel: UILabel!
     
     var juiceMaker: JuiceMaker = JuiceMaker()
-    var menuList: MenuList = MenuList(strawberryJuice: [JuiceMenu.recipe(.strawberry, 3)],
+    var menuList: MenuList = MenuList(strawberryJuice: [JuiceMenu.recipe(.strawberry, 16)],
                                       bananaJuice: [JuiceMenu.recipe(.banana, 3)],
                                       pineappleJuice: [JuiceMenu.recipe(.pineapple, 2)],
                                       kiwiJuice: [JuiceMenu.recipe(.kiwi, 3)],
                                       mangoJuice: [JuiceMenu.recipe(.mango, 3)],
                                       strawberryBananaJuice: [JuiceMenu.recipe(.strawberry, 10), JuiceMenu.recipe(.banana, 1)],
                                       mangoKiwiJuice: [JuiceMenu.recipe(.mango, 2), JuiceMenu.recipe(.kiwi, 1)])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,82 +37,38 @@ class ViewController: UIViewController {
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(juiceMenu: menuList.strawberryJuice)
-            try juiceMaker.fruitStore.consumeStock(recipe: menuList.strawberryJuice)
-            alertSufficientStock(juiceName: "딸기")
-        } catch FruitStoreError.outOfStock {
-            alertInsufficientStock()
-        } catch {
-            print("잘못된 입력입니다.")
-        }
+        tryMakingJuice(menu: menuList.strawberryJuice, menuName: "딸기")
     }
     
     @IBAction func orderBananaJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(juiceMenu: menuList.bananaJuice)
-            try juiceMaker.fruitStore.consumeStock(recipe: menuList.bananaJuice)
-            alertSufficientStock(juiceName: "바나나")
-        } catch FruitStoreError.outOfStock {
-            alertInsufficientStock()
-        } catch {
-            print("잘못된 입력입니다.")
-        }
+        tryMakingJuice(menu: menuList.bananaJuice, menuName: "바나나")
     }
     
     @IBAction func orderStrawberryBananaJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(juiceMenu: menuList.strawberryBananaJuice)
-            try juiceMaker.fruitStore.consumeStock(recipe: menuList.strawberryBananaJuice)
-            alertSufficientStock(juiceName: "딸기바나나")
-        } catch FruitStoreError.outOfStock {
-            alertInsufficientStock()
-        } catch {
-            print("잘못된 입력입니다.")
-        }
+        tryMakingJuice(menu: menuList.strawberryBananaJuice, menuName: "딸기바나나")
     }
     
     @IBAction func orderPineappleJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(juiceMenu: menuList.pineappleJuice)
-            try juiceMaker.fruitStore.consumeStock(recipe: menuList.pineappleJuice)
-            alertSufficientStock(juiceName: "파인애플")
-        } catch FruitStoreError.outOfStock {
-            alertInsufficientStock()
-        } catch {
-            print("잘못된 입력입니다.")
-        }
+        tryMakingJuice(menu: menuList.pineappleJuice, menuName: "파인애플")
     }
     
     @IBAction func orderMangoJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(juiceMenu: menuList.mangoJuice)
-            try juiceMaker.fruitStore.consumeStock(recipe: menuList.mangoJuice)
-            alertSufficientStock(juiceName: "망고")
-        } catch FruitStoreError.outOfStock {
-            alertInsufficientStock()
-        } catch {
-            print("잘못된 입력입니다.")
-        }
+        tryMakingJuice(menu: menuList.mangoJuice, menuName: "망고")
     }
     
     @IBAction func orderKiwiJuice(_ sender: UIButton) {
-        do {
-            try juiceMaker.makeJuice(juiceMenu: menuList.kiwiJuice)
-            try juiceMaker.fruitStore.consumeStock(recipe: menuList.kiwiJuice)
-            alertSufficientStock(juiceName: "키위")
-        } catch FruitStoreError.outOfStock {
-            alertInsufficientStock()
-        } catch {
-            print("잘못된 입력입니다.")
-        }
+        tryMakingJuice(menu: menuList.kiwiJuice, menuName: "키위")
     }
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
+        tryMakingJuice(menu: menuList.mangoKiwiJuice, menuName: "망고키위")
+    }
+    
+    func tryMakingJuice(menu: [JuiceMenu], menuName: String) {
         do {
-            try juiceMaker.makeJuice(juiceMenu: menuList.mangoKiwiJuice)
-            try juiceMaker.fruitStore.consumeStock(recipe: menuList.mangoKiwiJuice)
-            alertSufficientStock(juiceName: "망고키위")
+            try juiceMaker.makeJuice(juiceMenu: menu)
+            try juiceMaker.fruitStore.consumeStock(recipe: menu)
+            alertSufficientStock(juiceName: "\(menuName)")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
         } catch {

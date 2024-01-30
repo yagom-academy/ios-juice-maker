@@ -30,19 +30,6 @@ class JuiceMaker {
     }
     
     func makeJuice(juiceMenu: [JuiceMenu]) throws {
-//        if try fruitStore.isAvailable(menu: juiceMenu) {
-//            fruitStore.consumeStock(recipe: juiceMenu)
-//        }
-        
-//        do {
-//            try fruitStore.isAvailable(menu: juiceMenu)
-//            fruitStore.consumeStock(recipe: juiceMenu)
-//        } catch FruitStoreError.outOfStock {
-//            print("과일의 재고가 부족합니다.")
-//        } catch {
-//            print("일반적이지 않은 에러입니다.")
-//        }
-        
         try fruitStore.isAvailable(menu: juiceMenu)
     }
 }
