@@ -77,7 +77,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func orderJuiceSucceedAlert(message: String) {
-        let alert = UIAlertController(title: "쥬스메이커", message: message, preferredStyle: UIAlertController.Style.actionSheet)
+        let alert = UIAlertController(title: "쥬스메이커", message: message, preferredStyle: UIAlertController.Style.alert)
         
         let confirmAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
         
@@ -86,7 +86,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func orderJuiceFailedAlert() {
-        let alert = UIAlertController(title: "쥬스메이커", message: "재료가 모자랍니다. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.actionSheet)
+        let alert = UIAlertController(title: "쥬스메이커", message: "재료가 모자랍니다. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
         
         let confirmYesAction = UIAlertAction(title: "예", style: UIAlertAction.Style.default, handler: someHandler)
         let confirmNoAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.default, handler: nil)
