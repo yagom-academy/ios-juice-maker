@@ -5,10 +5,18 @@
 //
 
 final class FruitStore {
+    static var shared = FruitStore()
+    
     var fruitBox: [Fruit: Int] = [:]
 
-    init(fruits: [Fruit: Int]) {
-        fruitBox = fruits
+    private init() {
+        self.fruitBox = [
+            .strawberry: 10,
+            .banana: 10,
+            .pineapple: 10,
+            .kiwi: 10,
+            .mango: 10
+        ]
     }
     
     private func countQuantity(fruit: Fruit) throws -> Int {
