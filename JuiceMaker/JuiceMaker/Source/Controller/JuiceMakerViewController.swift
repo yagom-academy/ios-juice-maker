@@ -17,7 +17,13 @@ class JuiceMakerViewController: UIViewController {
     @IBOutlet weak var kiwiLabel: UILabel!
     @IBOutlet weak var mangoLabel: UILabel!
     
-    @IBOutlet var strawbananaJuiceButton: UIButton!
+    @IBOutlet weak var strawbananaJuiceButton: UIButton!
+    @IBOutlet weak var mangkiJuiceButton: UIButton!
+    @IBOutlet weak var strawberryJuiceButton: UIButton!
+    @IBOutlet weak var bananaJuiceButton: UIButton!
+    @IBOutlet weak var pineappleJuiceButton: UIButton!
+    @IBOutlet weak var mangoJuiceButton: UIButton!
+    @IBOutlet weak var kiwiJuiceButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +38,29 @@ class JuiceMakerViewController: UIViewController {
         showJuiceHandleResult(juiceMenu: .strawberryBanana)
     }
     
+    @IBAction func orderMangkiJuiceButtonClicked(_ sender: Any) {
+        showJuiceHandleResult(juiceMenu: .mangokiwi)
+    }
+    
+    @IBAction func orderStrawberryJuiceButtonClicked(_ sender: Any) {
+        showJuiceHandleResult(juiceMenu: .strawberry)
+    }
+    
+    @IBAction func orderBananaJuiceButtonClicked(_ sender: Any) {
+        showJuiceHandleResult(juiceMenu: .banana)
+    }
+    
+    @IBAction func orderPineappleJuiceButtonClicked(_ sender: Any) {
+        showJuiceHandleResult(juiceMenu: .pineapple)
+    }
+    
+    @IBAction func orderKiwiJuiceButtonClicked(_ sender: Any) {
+        showJuiceHandleResult(juiceMenu: .kiwi)
+    }
+    
+    @IBAction func orderMangoButtonClicked(_ sender: Any) {
+        showJuiceHandleResult(juiceMenu: .mango)
+    }
     
     @IBAction func modifiedFruitStockButtonClicked(_ sender: UIBarButtonItem) {
         guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else {

@@ -141,6 +141,9 @@
                                                 <state key="normal" title="망키쥬스 주문">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="orderMangkiJuiceButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="u3x-ad-ETt"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -157,6 +160,9 @@
                                                         <state key="normal" title="딸기쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="orderStrawberryJuiceButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="Evj-hA-QUg"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2A-PH-DJY">
                                                         <rect key="frame" x="146.66666666666666" y="0.0" width="130.99999999999997" height="60.333333333333336"/>
@@ -165,6 +171,9 @@
                                                         <state key="normal" title="바나나쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="orderBananaJuiceButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="hco-QD-ZlJ"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ka-wGA">
                                                         <rect key="frame" x="293.66666666666669" y="0.0" width="130.66666666666669" height="60.333333333333336"/>
@@ -173,6 +182,9 @@
                                                         <state key="normal" title="파인애플쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="orderPineappleJuiceButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="pOt-96-u0x"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7H-RXw">
                                                         <rect key="frame" x="440.33333333333331" y="0.0" width="130.99999999999994" height="60.333333333333336"/>
@@ -181,6 +193,9 @@
                                                         <state key="normal" title="키위쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="orderKiwiJuiceButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="hQj-zL-ASj"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-4X-bVm">
                                                         <rect key="frame" x="587.33333333333337" y="0.0" width="130.66666666666663" height="60.333333333333336"/>
@@ -189,6 +204,9 @@
                                                         <state key="normal" title="망고쥬스 주문">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="orderMangoButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="mZQ-0y-9r7"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -225,12 +243,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bananaJuiceButton" destination="y2A-PH-DJY" id="d5j-fO-2FQ"/>
                         <outlet property="bananaLabel" destination="gvk-pA-Lw5" id="PLu-Sa-b2I"/>
+                        <outlet property="kiwiJuiceButton" destination="wcW-7H-RXw" id="vPb-bR-5CM"/>
                         <outlet property="kiwiLabel" destination="FZq-de-TJG" id="nNh-gB-vDS"/>
+                        <outlet property="mangkiJuiceButton" destination="ngP-kF-Yii" id="U6i-jb-vdg"/>
+                        <outlet property="mangoJuiceButton" destination="q6G-4X-bVm" id="Z6B-pU-Dkz"/>
                         <outlet property="mangoLabel" destination="3Ce-SU-JeH" id="Eaz-qx-611"/>
                         <outlet property="modifiedFruitStockButton" destination="C3q-Te-cNT" id="xhc-9e-lHO"/>
+                        <outlet property="pineappleJuiceButton" destination="BFb-ka-wGA" id="gSk-UU-ZI5"/>
                         <outlet property="pineappleLabel" destination="ccQ-Dk-PuY" id="YRN-wJ-9eG"/>
                         <outlet property="strawbananaJuiceButton" destination="hrc-2F-fzl" id="nTd-dy-XZG"/>
+                        <outlet property="strawberryJuiceButton" destination="avd-o5-3JM" id="6ip-2H-6yn"/>
                         <outlet property="strawberryLabel" destination="Qas-vP-td6" id="CAj-7E-FoV"/>
                     </connections>
                 </viewController>
@@ -396,7 +420,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
