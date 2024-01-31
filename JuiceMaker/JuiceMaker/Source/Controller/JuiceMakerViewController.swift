@@ -59,14 +59,7 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func modifiedFruitStockButtonClicked(_ sender: UIBarButtonItem) {
-        guard let fruitStockViewController = storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
-            print("FruitStockViewController를 인스턴스화하는 데 실패했습니다.")
-            return
-        }
-
-        let navigationController = UINavigationController(rootViewController: fruitStockViewController)
-
-        present(navigationController, animated: true, completion: nil)
+        openFruitStockViewController()
     }
     
     func showJuiceHandleResult(juiceMenu: JuiceMenu) {
@@ -91,15 +84,17 @@ class JuiceMakerViewController: UIViewController {
     
     func orderJuiceFailedAlert() {
         let alert = UIAlertController(title: "쥬스메이커", message: "재료가 모자랍니다. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
-        
-        let confirmYesAction = UIAlertAction(title: "예", style: UIAlertAction.Style.default, handler: someHandler)
-        let confirmNoAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.default, handler: nil)
+        let confirmYesAction = UIAlertAction(title: "예", style: UIAlertAction.Style.default) { _ in
+            self.openFruitStockViewController()
+        }
+        let confirmNoAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.default)
         alert.addAction(confirmYesAction)
         alert.addAction(confirmNoAction)
         present(alert, animated: false, completion: nil)
     }
     
-    func someHandler(alert: UIAlertAction) {
+    // 공통 로직 수행하는 메소드
+    func openFruitStockViewController() {
         guard let fruitStockViewController = storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
             print("FruitStockViewController를 인스턴스화하는 데 실패했습니다.")
             return
