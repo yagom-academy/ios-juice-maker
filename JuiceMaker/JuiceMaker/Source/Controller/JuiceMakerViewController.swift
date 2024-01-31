@@ -62,6 +62,7 @@ class JuiceMakerViewController: UIViewController {
         guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else {
             return
         }
+        FruitStockViewController.navigationItem.rightBarButtonItem = nil
         self.navigationController?.pushViewController(FruitStockViewController, animated: true)
     }
     
@@ -96,10 +97,10 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func someHandler(alert: UIAlertAction) {
-        guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else {
+        guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockNavigationController") else {
             return
         }
-        self.navigationController?.pushViewController(FruitStockViewController, animated: true)
+        self.present(FruitStockViewController, animated: true)
     }
     
     func showFruitStockLabel() {
