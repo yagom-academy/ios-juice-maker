@@ -74,4 +74,8 @@ class FruitStore {
             fruits[fruitName] = fruitNumber
         }
     }
+    
+    func showFruitStock() -> [FruitCategory: Int] {
+        return self.fruits
+    }
 }
