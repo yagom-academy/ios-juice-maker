@@ -8,6 +8,7 @@
 import UIKit
 
 class FruitStockViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let closeButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(closeModal))
@@ -17,4 +18,11 @@ class FruitStockViewController: UIViewController {
     @objc func closeModal() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func dismissButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    
+    
 }
