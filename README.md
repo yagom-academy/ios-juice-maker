@@ -31,9 +31,11 @@
 
 
 ### 4. 실행 화면
-| <img src="./Screenshots/Screenshot1.png"> |
-| :--- |
-| **EOF 처리** |
+
+
+https://github.com/dannykim1215/ios-juice-maker/assets/154333967/95d83f84-e5d0-4b47-bf08-860ecdf3574f
+
+
 
 ### 5. 트러블 슈팅
 
@@ -202,7 +204,7 @@ func showFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) -> Bool {
 
 ### 6. 팀 회고
 #### 우리팀이 잘한 점 😍
-- 
+- 새로운 개념 또는 구현에 있어서 적극적으로 소통하면서 의견을 나눴습니다.
 
 #### 우리팀 개선할 점
 - 
@@ -215,5 +217,3 @@ func showFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) -> Bool {
 - 
 
 ### 7. 참고 자료
-
-e5af0327ba48970ca6d4a16debc052aa8b8d4f69
