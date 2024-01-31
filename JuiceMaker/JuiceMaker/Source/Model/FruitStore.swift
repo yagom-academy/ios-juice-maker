@@ -26,7 +26,6 @@ class FruitStore {
                 return false
             }
         }
-        
         return true
     }
 }

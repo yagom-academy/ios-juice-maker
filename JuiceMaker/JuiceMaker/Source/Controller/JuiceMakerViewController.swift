@@ -93,10 +93,8 @@ class JuiceMakerViewController: UIViewController {
         present(alert, animated: false, completion: nil)
     }
     
-    // 공통 로직 수행하는 메소드
     func openFruitStockViewController() {
         guard let fruitStockViewController = storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
-            print("FruitStockViewController를 인스턴스화하는 데 실패했습니다.")
             return
         }
         
