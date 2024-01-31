@@ -16,7 +16,13 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
             return
         }
         juiceMakerView.delegate = self
+        
         updateFruitQuantityLabel(juiceMakerView)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("FruitQuantityHasBeenUpdated"),
+                                               object: nil,
+                                               queue: nil) { _ in
+            self.updateFruitQuantityLabel(juiceMakerView)
+        }
     }
     
     func presentStockEditView() {
