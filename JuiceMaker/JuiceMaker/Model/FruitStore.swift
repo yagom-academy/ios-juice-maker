@@ -9,7 +9,7 @@ enum FruitStoreError: Error {
     case invalidFruitName
 }
 
-enum FruitCategory: Int {
+enum FruitCategory: Int, CaseIterable {
     case strawberry
     case banana
     case kiwi

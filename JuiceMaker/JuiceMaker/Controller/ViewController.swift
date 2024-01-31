@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initLabel()
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
@@ -61,6 +63,32 @@ class ViewController: UIViewController {
     
     @IBAction func orderMangoKiwiJuice(_ sender: UIButton) {
         tryMakingJuice(menu: menuList.mangoKiwiJuice, menuName: "망고키위")
+    }
+    
+    func initLabel() {
+        for fruit in FruitCategory.allCases {
+            var fruitCount = ""
+            do {
+                fruitCount = String(try juiceMaker.manageFruitStore(fruit: fruit))
+            } catch FruitStoreError.invalidFruitName {
+                print("유효하지 않은 과일 이름입니다.")
+            } catch {
+                print("잘못된 입력입니다.")
+            }
+            
+            switch fruit {
+            case .strawberry:
+                self.strawberryStockLabel.text = fruitCount
+            case .banana:
+                self.bananaStockLabel.text = fruitCount
+            case .pineapple:
+                self.pineappleStockLabel.text = fruitCount
+            case .kiwi:
+                self.kiwiStockLabel.text = fruitCount
+            case .mango:
+                self.mangoStockLabel.text = fruitCount
+            }
+        }
     }
     
     func tryMakingJuice(menu: [JuiceMenu], menuName: String) {
