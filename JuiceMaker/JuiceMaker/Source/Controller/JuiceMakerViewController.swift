@@ -59,10 +59,14 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func modifiedFruitStockButtonClicked(_ sender: UIBarButtonItem) {
-        guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else {
+        guard let fruitStockViewController = storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
+            print("FruitStockViewController를 인스턴스화하는 데 실패했습니다.")
             return
         }
-        self.navigationController?.pushViewController(FruitStockViewController, animated: true)
+
+        let navigationController = UINavigationController(rootViewController: fruitStockViewController)
+
+        present(navigationController, animated: true, completion: nil)
     }
     
     func showJuiceHandleResult(juiceMenu: JuiceMenu) {
@@ -96,10 +100,14 @@ class JuiceMakerViewController: UIViewController {
     }
     
     func someHandler(alert: UIAlertAction) {
-        guard let FruitStockViewController = self.storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") else {
+        guard let fruitStockViewController = storyboard?.instantiateViewController(withIdentifier: "FruitStockViewController") as? FruitStockViewController else {
+            print("FruitStockViewController를 인스턴스화하는 데 실패했습니다.")
             return
         }
-        self.navigationController?.pushViewController(FruitStockViewController, animated: true)
+        
+        let navigationController = UINavigationController(rootViewController: fruitStockViewController)
+
+        present(navigationController, animated: true, completion: nil)
     }
     
     func showFruitStockLabel() {
