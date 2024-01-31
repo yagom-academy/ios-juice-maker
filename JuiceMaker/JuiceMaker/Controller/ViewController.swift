@@ -103,18 +103,12 @@ class ViewController: UIViewController {
         for fruit in menu {
             switch fruit {
             case .recipe(let fruitName, _):
-                do {
-                    try self.updateFruitCount(fruitName: fruitName)
-                } catch FruitStoreError.invalidFruitName {
-                    print("유효하지 않은 과일 이름입니다.")
-                } catch {
-                    print("잘못된 입력입니다.")
-                }
+                self.updateFruitCount(fruitName: fruitName)
             }
         }
     }
     
-    func updateFruitCount(fruitName: FruitCategory) throws {
+    func updateFruitCount(fruitName: FruitCategory) {
         let fruitNumberForLabel = String(juiceMaker.manageFruitStore(fruit: fruitName))
 
         switch fruitName {
@@ -147,10 +141,12 @@ class ViewController: UIViewController {
     func alertInsufficientStock() {
         let alert = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "예", style: .default)  { _ in
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
+            guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
                 return
             }
-            self.present(vc, animated: true)
+            
+            let navigationController = UINavigationController(rootViewController: viewController)
+            self.present(navigationController, animated: true)
         }
         
         let close = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
