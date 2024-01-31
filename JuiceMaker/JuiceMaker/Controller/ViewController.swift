@@ -68,14 +68,7 @@ class ViewController: UIViewController {
     
     func initLabel() {
         for fruit in FruitCategory.allCases {
-            var fruitCount = ""
-            do {
-                fruitCount = String(try juiceMaker.manageFruitStore(fruit: fruit))
-            } catch FruitStoreError.invalidFruitName {
-                print("유효하지 않은 과일 이름입니다.")
-            } catch {
-                print("잘못된 입력입니다.")
-            }
+            var fruitCount = String(juiceMaker.manageFruitStore(fruit: fruit))
             
             switch fruit {
             case .strawberry:
@@ -122,7 +115,7 @@ class ViewController: UIViewController {
     }
     
     func updateFruitCount(fruitName: FruitCategory) throws {
-        let fruitNumberForLabel = String(try juiceMaker.manageFruitStore(fruit: fruitName))
+        let fruitNumberForLabel = String(juiceMaker.manageFruitStore(fruit: fruitName))
 
         switch fruitName {
         case .strawberry:

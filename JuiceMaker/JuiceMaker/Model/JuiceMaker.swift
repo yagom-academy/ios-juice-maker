@@ -37,10 +37,10 @@ class JuiceMaker {
         try fruitStore.consumeStock(recipe: recipe)
     }
     
-    func manageFruitStore(fruit: FruitCategory) throws -> Int {
+    func manageFruitStore(fruit: FruitCategory) -> Int {
         let stock = fruitStore.showFruitStock()
         guard let fruitStock = stock[fruit] else {
-            throw FruitStoreError.invalidFruitName
+            return 0
         }
         return fruitStock
     }
