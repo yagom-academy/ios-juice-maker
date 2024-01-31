@@ -19,7 +19,7 @@ struct MenuList {
 }
 
 class JuiceMaker {
-    private var fruitStore: FruitStore
+    var fruitStore: FruitStore
     
     init() {
         self.fruitStore = FruitStore(fruits: [.strawberry: 10,

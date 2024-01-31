@@ -66,8 +66,8 @@ class ViewController: UIViewController {
     func tryMakingJuice(menu: [JuiceMenu], menuName: String) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menu)
-//            try juiceMaker.fruitStore.consumeStock(recipe: menu)
-//            alertSufficientStock(menu: [JuiceMenu], juiceName: "\(menuName)")
+            try juiceMaker.fruitStore.consumeStock(recipe: menu)
+            alertSufficientStock(menu: menu, juiceName: "\(menuName)")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
         } catch FruitStoreError.invalidFruitName {
@@ -77,31 +77,44 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateFruitNumberLabel(menu: [JuiceMenu]) {
+    func updateMenu(menu: [JuiceMenu]) {
         for fruit in menu {
             switch fruit {
             case .recipe(let fruitName, _):
-                let fruitNumberForLabel = String(juiceMaker.manageFruitStore(fruit: fruitName))
-                switch fruitName {
-                case .strawberry:
-                    self.strawberryStockLabel.text = fruitNumberForLabel
-                case .banana:
-                    self.bananaStockLabel.text = fruitNumberForLabel
-                case .pineapple:
-                    self.pineappleStockLabel.text = fruitNumberForLabel
-                case .kiwi:
-                    self.kiwiStockLabel.text = fruitNumberForLabel
-                case .mango:
-                    self.mangoStockLabel.text = fruitNumberForLabel
+                do {
+                    try self.updateFruitCount(fruitName: fruitName)
+                } catch FruitStoreError.invalidFruitName {
+                    print("유효하지 않은 과일 이름입니다.")
+                } catch {
+                    print("잘못된 입력입니다.")
                 }
             }
         }
     }
     
+    func updateFruitCount(fruitName: FruitCategory) throws {
+        let fruitNumberForLabel = String(try juiceMaker.manageFruitStore(fruit: fruitName))
+
+        switch fruitName {
+        case .strawberry:
+            self.strawberryStockLabel.text = fruitNumberForLabel
+        case .banana:
+            self.bananaStockLabel.text = fruitNumberForLabel
+        case .pineapple:
+            self.pineappleStockLabel.text = fruitNumberForLabel
+        case .kiwi:
+            self.kiwiStockLabel.text = fruitNumberForLabel
+        case .mango:
+            self.mangoStockLabel.text = fruitNumberForLabel
+        }
+        
+        print("\(fruitName.koreanName)의 수량은 \(fruitNumberForLabel)입니다.")
+    }
+    
     func alertSufficientStock(menu: [JuiceMenu], juiceName: String) {
         let alert = UIAlertController(title: "알림", message: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "확인", style: .default) { _ in
-            self.updateFruitNumberLabel(menu: menu)
+            self.updateMenu(menu: menu)
         }
         
         alert.addAction(confirm)
