@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     func tryMakingJuice(menu: [JuiceMenu], menuName: String) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menu)
-            try juiceMaker.fruitStore.consumeStock(recipe: menu)
+            try juiceMaker.consumeFruit(recipe: menu)
             alertSufficientStock(menu: menu, juiceName: "\(menuName)")
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()

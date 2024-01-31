@@ -19,7 +19,7 @@ struct MenuList {
 }
 
 class JuiceMaker {
-    var fruitStore: FruitStore
+    private var fruitStore: FruitStore
     
     init() {
         self.fruitStore = FruitStore(fruits: [.strawberry: 10,
@@ -31,6 +31,10 @@ class JuiceMaker {
     
     func makeJuice(juiceMenu: [JuiceMenu]) throws {
         try fruitStore.isAvailable(menu: juiceMenu)
+    }
+    
+    func consumeFruit(recipe: [JuiceMenu]) throws {
+        try fruitStore.consumeStock(recipe: recipe)
     }
     
     func manageFruitStore(fruit: FruitCategory) throws -> Int {
