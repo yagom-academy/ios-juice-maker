@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class JuiceMakerController: UIViewController {
     @IBOutlet weak var modifyStockButton: UIBarButtonItem!
     @IBOutlet weak var strawberryStockLabel: UILabel!
     @IBOutlet weak var bananaStockLabel: UILabel!
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initLabel()
+        initFruitStockLabel()
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
@@ -66,9 +66,9 @@ class ViewController: UIViewController {
         tryMakingJuice(menu: menuList.mangoKiwiJuice, menuName: "망고키위")
     }
     
-    func initLabel() {
+    func initFruitStockLabel() {
         for fruit in FruitCategory.allCases {
-            var fruitCount = String(juiceMaker.manageFruitStore(fruit: fruit))
+            let fruitCount = String(juiceMaker.manageFruitStore(fruit: fruit))
             
             switch fruit {
             case .strawberry:
