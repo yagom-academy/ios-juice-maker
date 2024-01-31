@@ -30,11 +30,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
             return
         }
         
-        self.present(vc, animated: true)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.present(navigationController, animated: true)
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {

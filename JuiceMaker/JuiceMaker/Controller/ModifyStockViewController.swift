@@ -8,13 +8,13 @@
 import UIKit
 
 class ModifyStockViewController: UIViewController {
-    @IBOutlet weak var confirmButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let closeButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(closeScreen))
+        self.navigationItem.leftBarButtonItem = closeButton
     }
     
-    @IBAction func confirmButtonTapped(_ sender: UIButton) {
+    @objc func closeScreen(_ sender: UIButton) {
         dismiss(animated: true)
     }
 }
