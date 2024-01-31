@@ -1,9 +1,3 @@
-//
-//  JuiceMaker - JuiceMaker.swift
-//  Created by yagom.
-//  Copyright © yagom academy. All rights reserved.
-//
-
 enum JuiceMenu {
     case recipe(FruitCategory, Int)
 }

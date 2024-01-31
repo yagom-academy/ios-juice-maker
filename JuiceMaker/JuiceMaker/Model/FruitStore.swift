@@ -1,9 +1,3 @@
-//
-//  JuiceMaker - FruitStore.swift
-//  Created by yagom.
-//  Copyright © yagom academy. All rights reserved.
-//
-
 enum FruitStoreError: Error {
     case outOfStock
     case invalidFruitName
