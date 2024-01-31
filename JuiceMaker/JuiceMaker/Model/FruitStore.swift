@@ -27,7 +27,7 @@ enum FruitCategory: Int, CaseIterable {
 }
 
 class FruitStore {
-    var fruits: [FruitCategory: Int]
+    private var fruits: [FruitCategory: Int]
     
     init(fruits: [FruitCategory : Int]) {
         self.fruits = fruits
