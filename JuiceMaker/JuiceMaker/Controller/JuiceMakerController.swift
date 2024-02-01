@@ -8,8 +8,8 @@ class JuiceMakerController: UIViewController {
     @IBOutlet weak var kiwiStockLabel: UILabel!
     @IBOutlet weak var mangoStockLabel: UILabel!
     
-    var juiceMaker: JuiceMaker = JuiceMaker()
-    var menuList: MenuList = MenuList(strawberryJuice: [JuiceMenu.recipe(.strawberry, 16)],
+    private var juiceMaker: JuiceMaker = JuiceMaker()
+    private var menuList: MenuList = MenuList(strawberryJuice: [JuiceMenu.recipe(.strawberry, 16)],
                                       bananaJuice: [JuiceMenu.recipe(.banana, 3)],
                                       pineappleJuice: [JuiceMenu.recipe(.pineapple, 2)],
                                       kiwiJuice: [JuiceMenu.recipe(.kiwi, 3)],
