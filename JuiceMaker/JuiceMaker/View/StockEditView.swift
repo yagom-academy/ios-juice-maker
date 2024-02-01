@@ -11,7 +11,6 @@ protocol StockEditViewDelegate: AnyObject {
     func exitStockEditView()
     func updateSingleFruitStock(fruit: Fruit, quantity: Int)
     func updateSingleFruitQuantityLabel(_ view: StockEditView, fruit: Fruit)
-    func updateSingleFruitStepperValue(_ view: StockEditView, fruit: Fruit)
 }
 
 final class StockEditView: UIView {

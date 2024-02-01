@@ -17,7 +17,7 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
         juiceMakerView.delegate = self
         
-        updateAllFruitQuantityLabel()
+        updateAllFruitQuantityLabel(juiceMakerView)
         NotificationCenter.default.addObserver(forName: NSNotification.Name("FruitQuantityHasBeenUpdated"),
                                                object: nil,
                                                queue: nil) { notification in
@@ -25,7 +25,7 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
                 return
             }
             
-            self.updateSingleFruitQuantityLabel(fruit: fruit)
+            self.updateSingleFruitQuantityLabel(juiceMakerView, fruit: fruit)
         }
     }
     
@@ -43,7 +43,7 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
             alertResultOfOrder(juice: juice)
             
             for (fruit, _) in juice.recipe {
-                updateSingleFruitQuantityLabel(fruit: fruit)
+                updateSingleFruitQuantityLabel(view, fruit: fruit)
             }
         } catch FruitStoreError.insufficientFruits {
             alertResultOfOrder(juice: juice, failedWith: .insufficientFruits)
@@ -52,21 +52,17 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
     }
     
-    func updateSingleFruitQuantityLabel(fruit: Fruit) {
-        guard let juiceMakerView = self.view as? JuiceMakerView else {
-            return
-        }
-        
+    func updateSingleFruitQuantityLabel(_ view: JuiceMakerView, fruit: Fruit) {
         guard let quantity = try? FruitStore.shared.getQuantity(of: fruit) else {
             return
         }
         
-        juiceMakerView.updateSingleFruitQuantityLabel(fruit: fruit, quantity: quantity)
+        view.updateSingleFruitQuantityLabel(fruit: fruit, quantity: quantity)
     }
     
-    func updateAllFruitQuantityLabel() {
+    func updateAllFruitQuantityLabel(_ view: JuiceMakerView) {
         for fruit in Fruit.allCases {
-            updateSingleFruitQuantityLabel(fruit: fruit)
+            updateSingleFruitQuantityLabel(view, fruit: fruit)
         }
     }
     
