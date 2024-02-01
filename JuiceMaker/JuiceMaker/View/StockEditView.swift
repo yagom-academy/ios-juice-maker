@@ -16,11 +16,11 @@ protocol StockEditViewDelegate: AnyObject {
 final class StockEditView: UIView {
     weak var delegate: StockEditViewDelegate?
     
-    @IBOutlet weak var strawberryQuantity: UILabel!
-    @IBOutlet weak var bananaQuantity: UILabel!
-    @IBOutlet weak var pineappleQuantity: UILabel!
-    @IBOutlet weak var kiwiQuantity: UILabel!
-    @IBOutlet weak var mangoQuantity: UILabel!
+    @IBOutlet weak var strawberryQuantityLabel: UILabel!
+    @IBOutlet weak var bananaQuantityLabel: UILabel!
+    @IBOutlet weak var pineappleQuantityLabel: UILabel!
+    @IBOutlet weak var kiwiQuantityLabel: UILabel!
+    @IBOutlet weak var mangoQuantityLabel: UILabel!
     @IBOutlet weak var strawberryStepper: UIStepper!
     @IBOutlet weak var bananaStepper: UIStepper!
     @IBOutlet weak var pineappleStepper: UIStepper!
@@ -74,15 +74,15 @@ final class StockEditView: UIView {
     func updateSingleFruitQuantityLabel(fruit: Fruit, quantity: Int) {
         switch fruit {
         case .strawberry:
-            strawberryQuantity.text = String(quantity)
+            strawberryQuantityLabel.text = String(quantity)
         case .banana:
-            bananaQuantity.text = String(quantity)
+            bananaQuantityLabel.text = String(quantity)
         case .pineapple:
-            pineappleQuantity.text = String(quantity)
+            pineappleQuantityLabel.text = String(quantity)
         case .kiwi:
-            kiwiQuantity.text = String(quantity)
+            kiwiQuantityLabel.text = String(quantity)
         case .mango:
-            mangoQuantity.text = String(quantity)
+            mangoQuantityLabel.text = String(quantity)
         }
     }
 }

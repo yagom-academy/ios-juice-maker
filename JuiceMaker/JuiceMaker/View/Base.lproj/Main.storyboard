@@ -236,11 +236,11 @@
                             <constraint firstItem="zaq-m5-IIF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="wst-Au-sZB"/>
                         </constraints>
                         <connections>
-                            <outlet property="bananaQuantity" destination="gvk-pA-Lw5" id="ySU-Y9-8ux"/>
-                            <outlet property="kiwiQuantity" destination="FZq-de-TJG" id="B0S-jy-GnL"/>
-                            <outlet property="mangoQuantity" destination="3Ce-SU-JeH" id="wov-pG-FUN"/>
-                            <outlet property="pineappleQuantity" destination="ccQ-Dk-PuY" id="14s-aU-YEg"/>
-                            <outlet property="strawberryQuantity" destination="Qas-vP-td6" id="Hz2-HT-diK"/>
+                            <outlet property="bananaQuantityLabel" destination="gvk-pA-Lw5" id="z5p-vD-MMv"/>
+                            <outlet property="kiwiQuantityLabel" destination="FZq-de-TJG" id="gje-xs-PYY"/>
+                            <outlet property="mangoQuantityLabel" destination="3Ce-SU-JeH" id="l6T-47-Jk6"/>
+                            <outlet property="pineappleQuantityLabel" destination="ccQ-Dk-PuY" id="NMp-dC-g9H"/>
+                            <outlet property="strawberryQuantityLabel" destination="Qas-vP-td6" id="622-yA-ezI"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="맛있는 쥬스를 만들어 드려요!" id="Eal-fj-o4N">
@@ -445,15 +445,15 @@
                             <constraint firstItem="s24-Pr-6Ja" firstAttribute="leading" secondItem="gcO-Xb-kNs" secondAttribute="leading" constant="16" id="yrU-iC-os4"/>
                         </constraints>
                         <connections>
-                            <outlet property="bananaQuantity" destination="gKu-86-RhI" id="GSZ-XH-UNM"/>
+                            <outlet property="bananaQuantityLabel" destination="gKu-86-RhI" id="mlI-xZ-SRb"/>
                             <outlet property="bananaStepper" destination="O5s-2N-3iP" id="vd7-9c-5Vc"/>
-                            <outlet property="kiwiQuantity" destination="ZDv-1m-HBY" id="2pl-Gw-igQ"/>
+                            <outlet property="kiwiQuantityLabel" destination="ZDv-1m-HBY" id="8pE-uo-n94"/>
                             <outlet property="kiwiStepper" destination="klA-59-Nu4" id="Lft-Ke-gAR"/>
-                            <outlet property="mangoQuantity" destination="YJI-ER-LJR" id="Fwe-Kk-jHz"/>
+                            <outlet property="mangoQuantityLabel" destination="YJI-ER-LJR" id="NaS-W2-wqA"/>
                             <outlet property="mangoStepper" destination="xbn-6P-grO" id="IBX-Nd-kD2"/>
-                            <outlet property="pineappleQuantity" destination="MpT-VW-hCb" id="8S1-pO-ell"/>
+                            <outlet property="pineappleQuantityLabel" destination="MpT-VW-hCb" id="1Of-FP-5Yi"/>
                             <outlet property="pineappleStepper" destination="Rcr-xr-eqz" id="wnA-cC-iml"/>
-                            <outlet property="strawberryQuantity" destination="0yV-kn-zaT" id="ozl-jw-yLA"/>
+                            <outlet property="strawberryQuantityLabel" destination="0yV-kn-zaT" id="NQf-xl-TfE"/>
                             <outlet property="strawberryStepper" destination="ZQk-f4-zrz" id="9bf-be-cx8"/>
                         </connections>
                     </view>
@@ -498,7 +498,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
