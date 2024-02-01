@@ -35,7 +35,7 @@ final class FruitStore {
         fruitBox[fruit] = try getQuantity(of: fruit) - quantity
     }
     
-    func verifyTheFruitExistsEnough(fruit: Fruit, quantity: Int) throws {
+    func verifySingleFruitExistsEnough(fruit: Fruit, quantity: Int) throws {
         if try getQuantity(of: fruit) < quantity {
             throw FruitStoreError.insufficientFruits
         }
