@@ -21,21 +21,6 @@ final class JuiceMakerView: UIView {
     @IBOutlet weak var kiwiQuantityLabel: UILabel!
     @IBOutlet weak var mangoQuantityLabel: UILabel!
     
-    func updateSingleFruitQuantityLabel(fruit: Fruit, quantity: Int) {
-        switch fruit {
-        case .strawberry:
-            strawberryQuantityLabel.text = String(quantity)
-        case .banana:
-            bananaQuantityLabel.text = String(quantity)
-        case .pineapple:
-            pineappleQuantityLabel.text = String(quantity)
-        case .kiwi:
-            kiwiQuantityLabel.text = String(quantity)
-        case .mango:
-            mangoQuantityLabel.text = String(quantity)
-        }
-    }
-    
     @IBAction func touchUpStockEditButton(_ sender: UIBarButtonItem) {
         delegate?.presentStockEditView()
     }
@@ -66,5 +51,20 @@ final class JuiceMakerView: UIView {
     
     @IBAction func touchUpMangoJuiceOrderButton(_ sender: UIButton) {
         delegate?.touchUpJuiceOrderButton(self, juice: .mango)
+    }
+    
+    func updateSingleFruitQuantityLabel(fruit: Fruit, quantity: Int) {
+        switch fruit {
+        case .strawberry:
+            strawberryQuantityLabel.text = String(quantity)
+        case .banana:
+            bananaQuantityLabel.text = String(quantity)
+        case .pineapple:
+            pineappleQuantityLabel.text = String(quantity)
+        case .kiwi:
+            kiwiQuantityLabel.text = String(quantity)
+        case .mango:
+            mangoQuantityLabel.text = String(quantity)
+        }
     }
 }

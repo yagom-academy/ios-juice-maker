@@ -56,21 +56,6 @@ final class StockEditView: UIView {
         delegate?.updateSingleFruitQuantityLabel(self, fruit: .mango)
     }
     
-    func updateSingleFruitStepperValue(fruit: Fruit, quantity: Int) {
-        switch fruit {
-        case .strawberry:
-            strawberryStepper.value = Double(quantity)
-        case .banana:
-            bananaStepper.value = Double(quantity)
-        case .pineapple:
-            pineappleStepper.value = Double(quantity)
-        case .kiwi:
-            kiwiStepper.value = Double(quantity)
-        case .mango:
-            mangoStepper.value = Double(quantity)
-        }
-    }
-    
     func updateSingleFruitQuantityLabel(fruit: Fruit, quantity: Int) {
         switch fruit {
         case .strawberry:
@@ -83,6 +68,21 @@ final class StockEditView: UIView {
             kiwiQuantityLabel.text = String(quantity)
         case .mango:
             mangoQuantityLabel.text = String(quantity)
+        }
+    }
+    
+    func updateSingleFruitStepperValue(fruit: Fruit, quantity: Int) {
+        switch fruit {
+        case .strawberry:
+            strawberryStepper.value = Double(quantity)
+        case .banana:
+            bananaStepper.value = Double(quantity)
+        case .pineapple:
+            pineappleStepper.value = Double(quantity)
+        case .kiwi:
+            kiwiStepper.value = Double(quantity)
+        case .mango:
+            mangoStepper.value = Double(quantity)
         }
     }
 }
