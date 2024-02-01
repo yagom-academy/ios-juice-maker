@@ -8,7 +8,7 @@
 import UIKit
 
 protocol StockEditViewDelegate: AnyObject {
-    func exitStockEditView()
+    func dismissStockEditView()
     func updateSingleFruitStock(fruit: Fruit, quantity: Int)
     func updateSingleFruitQuantityLabel(_ view: StockEditView, fruit: Fruit)
 }
@@ -28,7 +28,7 @@ final class StockEditView: UIView {
     @IBOutlet weak var mangoStepper: UIStepper!
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        delegate?.exitStockEditView()
+        delegate?.dismissStockEditView()
     }
     
     @IBAction func adjustStrawberryStepper(_ sender: UIStepper) {

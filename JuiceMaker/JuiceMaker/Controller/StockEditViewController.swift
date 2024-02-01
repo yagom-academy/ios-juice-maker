@@ -20,7 +20,7 @@ final class StockEditViewController: UIViewController, StockEditViewDelegate {
         updateAllFruitStepperValue(stockEditView)
     }
     
-    func exitStockEditView() {
+    func dismissStockEditView() {
         self.dismiss(animated: true)
     }
     
