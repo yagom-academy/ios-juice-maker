@@ -87,9 +87,9 @@ class JuiceMakerController: UIViewController {
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
         } catch FruitStoreError.invalidFruitName {
-            print("유효하지 않은 과일 이름입니다.")
+            alertInvalidFruitName()
         } catch {
-            print("잘못된 입력입니다.")
+            alertDefaultError()
         }
     }
     
@@ -117,8 +117,6 @@ class JuiceMakerController: UIViewController {
         case .mango:
             self.mangoStockLabel.text = fruitNumberForLabel
         }
-        
-        print("\(fruitName.koreanName)의 수량은 \(fruitNumberForLabel)입니다.")
     }
     
     func alertSufficientStock(menu: [JuiceMenu], juiceName: String) {
@@ -147,6 +145,24 @@ class JuiceMakerController: UIViewController {
         
         alert.addAction(confirm)
         alert.addAction(close)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertInvalidFruitName() {
+        let alert = UIAlertController(title: "알림", message: "유효하지 않은 과일 이름입니다.", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(confirm)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertDefaultError() {
+        let alert = UIAlertController(title: "알림", message: "잘못된 입력입니다.", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(confirm)
         
         present(alert, animated: true, completion: nil)
     }
