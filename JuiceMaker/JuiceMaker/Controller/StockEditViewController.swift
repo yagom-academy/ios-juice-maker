@@ -25,7 +25,7 @@ final class StockEditViewController: UIViewController, StockEditViewDelegate {
     }
     
     func updateSingleFruitStock(fruit: Fruit, quantity: Int) {
-        FruitStore.shared.fruitBox[fruit] = quantity
+        FruitStore.shared.setQuantity(of: fruit, to: quantity)
         
         NotificationCenter.default.post(name: NSNotification.Name("FruitQuantityHasBeenUpdated"),
                                         object: self,
@@ -33,7 +33,7 @@ final class StockEditViewController: UIViewController, StockEditViewDelegate {
     }
     
     func updateSingleFruitQuantityLabel(_ view: StockEditView, fruit: Fruit) {
-        guard let quantity = FruitStore.shared.fruitBox[fruit] else {
+        guard let quantity = try? FruitStore.shared.getQuantity(of: fruit) else {
             return
         }
         
@@ -41,7 +41,7 @@ final class StockEditViewController: UIViewController, StockEditViewDelegate {
     }
     
     func updateSingleFruitStepperValue(_ view: StockEditView, fruit: Fruit) {
-        guard let quantity = FruitStore.shared.fruitBox[fruit] else {
+        guard let quantity = try? FruitStore.shared.getQuantity(of: fruit) else {
             return
         }
         

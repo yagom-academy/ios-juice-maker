@@ -57,7 +57,7 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
             return
         }
         
-        guard let quantity = FruitStore.shared.fruitBox[fruit] else {
+        guard let quantity = try? FruitStore.shared.getQuantity(of: fruit) else {
             return
         }
         

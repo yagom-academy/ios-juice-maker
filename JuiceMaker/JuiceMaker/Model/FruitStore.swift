@@ -7,7 +7,7 @@
 final class FruitStore {
     static var shared = FruitStore()
     
-    var fruitBox: [Fruit: Int] = [:]
+    private var fruitBox: [Fruit: Int] = [:]
 
     private init() {
         self.fruitBox = [
@@ -19,7 +19,7 @@ final class FruitStore {
         ]
     }
     
-    private func countQuantity(fruit: Fruit) throws -> Int {
+    func getQuantity(of fruit: Fruit) throws -> Int {
         guard let numberOfFruit = fruitBox[fruit] else {
             throw FruitStoreError.fruitNotFound
         }
@@ -27,16 +27,20 @@ final class FruitStore {
         return numberOfFruit
     }
     
+    func setQuantity(of fruit: Fruit, to quantity: Int) {
+        fruitBox[fruit] = quantity
+    }
+    
     func fillFruit(_ fruit: Fruit, quantity: Int) throws {
-        fruitBox[fruit] = try countQuantity(fruit: fruit) + quantity
+        fruitBox[fruit] = try getQuantity(of: fruit) + quantity
     }
     
     func unsafeUseFruit(_ fruit: Fruit, quantity: Int) throws {
-        fruitBox[fruit] = try countQuantity(fruit: fruit) - quantity
+        fruitBox[fruit] = try getQuantity(of: fruit) - quantity
     }
     
     func verifyTheFruitExistsEnough(fruit: Fruit, quantity: Int) throws {
-        if try countQuantity(fruit: fruit) < quantity {
+        if try getQuantity(of: fruit) < quantity {
             throw FruitStoreError.insufficientFruits
         }
     }
