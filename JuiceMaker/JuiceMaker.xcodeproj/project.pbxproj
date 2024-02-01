@@ -81,9 +81,8 @@
 			children = (
 				C4773D2E2B5FA2CA008222ED /* JuiceMakerView.swift */,
 				C4773D322B5FB0FF008222ED /* StockEditView.swift */,
-				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
-				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
+				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,6 +109,7 @@
 				C71CD66D266C7B470038B9CB /* Controller */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
+				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
 			path = JuiceMaker;
