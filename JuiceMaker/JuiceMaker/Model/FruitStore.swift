@@ -31,11 +31,7 @@ final class FruitStore {
         fruitBox[fruit] = quantity
     }
     
-    func fillFruit(_ fruit: Fruit, quantity: Int) throws {
-        fruitBox[fruit] = try getQuantity(of: fruit) + quantity
-    }
-    
-    func unsafeUseFruit(_ fruit: Fruit, quantity: Int) throws {
+    func subtractFruit(_ fruit: Fruit, quantity: Int) throws {
         fruitBox[fruit] = try getQuantity(of: fruit) - quantity
     }
     

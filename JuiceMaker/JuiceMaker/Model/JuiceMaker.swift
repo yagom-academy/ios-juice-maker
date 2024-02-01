@@ -20,7 +20,7 @@ struct JuiceMaker {
         try verifyIngredients(of: juiceRecipe)
         
         for (fruit, quantity) in juiceRecipe {
-            try fruitStore.unsafeUseFruit(fruit, quantity: quantity)
+            try fruitStore.subtractFruit(fruit, quantity: quantity)
         }
     }
 }
