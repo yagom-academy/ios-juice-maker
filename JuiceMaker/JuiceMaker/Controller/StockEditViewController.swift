@@ -26,7 +26,10 @@ final class StockEditViewController: UIViewController, StockEditViewDelegate {
     
     func updateSingleFruitStock(fruit: Fruit, quantity: Int) {
         FruitStore.shared.fruitBox[fruit] = quantity
-        NotificationCenter.default.post(Notification(name: NSNotification.Name("FruitQuantityHasBeenUpdated")))
+        
+        NotificationCenter.default.post(name: NSNotification.Name("FruitQuantityHasBeenUpdated"),
+                                        object: self,
+                                        userInfo: ["changedFruit": fruit])
     }
     
     func updateSingleFruitQuantityLabel(_ view: StockEditView, fruit: Fruit) {

@@ -17,11 +17,15 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
         juiceMakerView.delegate = self
         
-        updateFruitQuantityLabel(juiceMakerView)
+        updateAllFruitQuantityLabel()
         NotificationCenter.default.addObserver(forName: NSNotification.Name("FruitQuantityHasBeenUpdated"),
                                                object: nil,
-                                               queue: nil) { _ in
-            self.updateFruitQuantityLabel(juiceMakerView)
+                                               queue: nil) { notification in
+            guard let fruit = notification.userInfo?["changedFruit"] as? Fruit else {
+                return
+            }
+            
+            self.updateSingleFruitQuantityLabel(fruit: fruit)
         }
     }
     
@@ -37,7 +41,10 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         do {
             try juiceMaker.makeJuice(juice)
             alertResultOfOrder(juice: juice)
-            updateFruitQuantityLabel(view)
+            
+            for (fruit, _) in juice.recipe {
+                updateSingleFruitQuantityLabel(fruit: fruit)
+            }
         } catch FruitStoreError.insufficientFruits {
             alertResultOfOrder(juice: juice, failedWith: .insufficientFruits)
         } catch {
@@ -45,10 +52,22 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
     }
     
-    func updateFruitQuantityLabel(_ view: JuiceMakerView) {
-        let fruits = juiceMaker.fruitStore.fruitBox
+    func updateSingleFruitQuantityLabel(fruit: Fruit) {
+        guard let juiceMakerView = self.view as? JuiceMakerView else {
+            return
+        }
         
-        view.updateFruitQuantityLabel(fruits: fruits)
+        guard let quantity = FruitStore.shared.fruitBox[fruit] else {
+            return
+        }
+        
+        juiceMakerView.updateSingleFruitQuantityLabel(fruit: fruit, quantity: quantity)
+    }
+    
+    func updateAllFruitQuantityLabel() {
+        for fruit in Fruit.allCases {
+            updateSingleFruitQuantityLabel(fruit: fruit)
+        }
     }
     
     func alertResultOfOrder(juice: Juice, failedWith error: FruitStoreError? = nil) {
