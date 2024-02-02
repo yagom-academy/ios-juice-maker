@@ -7,7 +7,7 @@
 import Foundation
 
 struct JuiceMaker {
-    private var fruitStore: FruitStore = FruitStore(initialStock: [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10)
+    private var fruitStore: FruitStore = FruitStore(initialStock: [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10])
     
     func viewFruitStock(fruitName: Fruit) -> String {
         return String(fruitStore.fruitStorage[fruitName] ?? 0)
