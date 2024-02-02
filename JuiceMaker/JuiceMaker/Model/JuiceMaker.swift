@@ -6,11 +6,9 @@
 
 
 struct JuiceMaker {
-    private var fruitStore = FruitStore.shared
-    
     private func verifyIngredients(of recipe: [Fruit: Int]) throws {
         for (fruit, quantity) in recipe {
-            try fruitStore.verifySingleFruitExistsEnough(fruit: fruit, quantity: quantity)
+            try FruitStore.shared.verifySingleFruitExistsEnough(fruit: fruit, quantity: quantity)
         }
     }
     
@@ -20,7 +18,7 @@ struct JuiceMaker {
         try verifyIngredients(of: juiceRecipe)
         
         for (fruit, quantity) in juiceRecipe {
-            try fruitStore.subtractFruit(fruit, quantity: quantity)
+            try FruitStore.shared.subtractFruit(fruit, quantity: quantity)
         }
     }
 }
