@@ -82,10 +82,20 @@ class JuiceMakerController: UIViewController {
     func tryMakingJuice(menu: [JuiceMenu], menuName: String) {
         do {
             try juiceMaker.makeJuice(juiceMenu: menu)
-            try juiceMaker.consumeFruit(recipe: menu)
-            alertSufficientStock(menu: menu, juiceName: "\(menuName)")
+            tryConsumeFruit(menu: menu, menuName: menuName)
         } catch FruitStoreError.outOfStock {
             alertInsufficientStock()
+        } catch FruitStoreError.invalidFruitName {
+            alertInvalidFruitName()
+        } catch {
+            alertDefaultError()
+        }
+    }
+    
+    func tryConsumeFruit(menu: [JuiceMenu], menuName: String){
+        do {
+            try juiceMaker.consumeFruit(recipe: menu)
+            alertSufficientStock(menu: menu, juiceName: "\(menuName)")
         } catch FruitStoreError.invalidFruitName {
             alertInvalidFruitName()
         } catch {
