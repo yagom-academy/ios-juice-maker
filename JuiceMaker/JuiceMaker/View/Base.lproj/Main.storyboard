@@ -461,7 +461,7 @@
                     <navigationItem key="navigationItem" title="재고 추가" id="g4W-fY-l7r">
                         <barButtonItem key="rightBarButtonItem" title="닫기" id="Nz1-Yw-a4V">
                             <connections>
-                                <action selector="cancelButton:" destination="tKV-4l-Vtc" id="vBy-32-IRT"/>
+                                <action selector="touchUpCloseButton:" destination="tKV-4l-Vtc" id="yWb-lf-5J1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

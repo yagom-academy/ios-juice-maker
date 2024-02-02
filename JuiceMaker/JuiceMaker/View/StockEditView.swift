@@ -27,7 +27,7 @@ final class StockEditView: UIView {
     @IBOutlet weak var kiwiStepper: UIStepper!
     @IBOutlet weak var mangoStepper: UIStepper!
     
-    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+    @IBAction func touchUpCloseButton(_ sender: UIBarButtonItem) {
         delegate?.dismissStockEditView()
     }
     
