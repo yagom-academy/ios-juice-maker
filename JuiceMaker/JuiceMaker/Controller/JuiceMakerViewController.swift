@@ -7,7 +7,7 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
-    var juiceMaker = JuiceMaker()
+    private var juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
