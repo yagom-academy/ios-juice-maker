@@ -35,17 +35,17 @@
 
 ### 4. 프로젝트 구조
 #### Sequence Diagram
-![img](https://raw.githubusercontent.com/PrismSpirit/ios-juice-maker/step3/JuiceMaker_SequenceDiagram.png)
+![img](https://raw.githubusercontent.com/PrismSpirit/ios-juice-maker/step3/Images/JuiceMaker_SequenceDiagram.png)
 
 #### Class Diagram
-![img](https://raw.githubusercontent.com/PrismSpirit/ios-juice-maker/step3/JuiceMaker_ClassDiagram.png)
+![img](https://raw.githubusercontent.com/PrismSpirit/ios-juice-maker/step3/Images/JuiceMaker_ClassDiagram.png)
 
 ### 5. 실행 화면
 | 상황 | 실행 화면 |
 | :---: | :---: |
-| 주문 성공 | ![img](https://github.com/PrismSpirit/ios-juice-maker/blob/step3/JuiceMaker_simulate_case1.gif?raw=true) |
-| 주문 실패 후<br>재고 수정 화면으로 이동 | ![img](https://github.com/PrismSpirit/ios-juice-maker/blob/step3/JuiceMaker_simulate_case2.gif?raw=true) |
-| 초기 화면에서<br>재고 수정 화면으로 이동 | ![img](https://github.com/PrismSpirit/ios-juice-maker/blob/step3/JuiceMaker_simulate_case3.gif?raw=true) |
+| 주문 성공 | ![img](https://raw.githubusercontent.com/PrismSpirit/ios-juice-maker/step3/Images/JuiceMaker_simulate_case1.gif) |
+| 주문 실패 후<br>재고 수정 화면으로 이동 | ![img](https://raw.githubusercontent.com/PrismSpirit/ios-juice-maker/step3/Images/JuiceMaker_simulate_case2.gif) |
+| 초기 화면에서<br>재고 수정 화면으로 이동 | ![img](https://raw.githubusercontent.com/PrismSpirit/ios-juice-maker/step3/Images/JuiceMaker_simulate_case3.gif) |
 
 ### 6. 트러블슈팅
 #### ❗️에러 처리
