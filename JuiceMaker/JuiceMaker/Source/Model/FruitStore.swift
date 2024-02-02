@@ -17,7 +17,7 @@ class FruitStore {
         fruitStorage[fruitName] = quantity
     }
 
-    func checkFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) throws -> Bool {
+    func checkFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) throws {
         for (fruit, useQuantity) in fruitsStock {
             let requestFruit = useQuantity * amount
             let storeFruit = fruitStorage[fruit] ?? 0
@@ -26,7 +26,6 @@ class FruitStore {
                 throw FruitResultError.outOfStock
             }
         }
-        return true
     }
 }
 

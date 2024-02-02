@@ -14,22 +14,17 @@ struct JuiceMaker {
     }
     
     func makeJuice(juiceMenu: JuiceMenu, amount: Int) -> Result<String, FruitResultError> {
-        let checkResult: Bool
-        
         do {
-            try checkResult = fruitStore.checkFruitQuantity(fruitsStock: juiceMenu.ingredients, amount: amount)
+            try fruitStore.checkFruitQuantity(fruitsStock: juiceMenu.ingredients, amount: amount)
         } catch FruitResultError.outOfStock {
-            checkResult = false
-        } catch {
-            checkResult = true
-        }
-
-        if checkResult {
-            let message = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
-            return .success(message)
-        } else {
             return .failure(.outOfStock)
+        } catch {
+            print("알 수 없는 Error가 발생했습니다.")
         }
+        
+        let message = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
+        
+        return .success(message)
     }
     
     func deductFruit(requestJuiceName: String, requestFruits: [Fruit: Int], requestJuiceAmount: Int) -> String {
