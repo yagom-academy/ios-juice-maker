@@ -24,12 +24,7 @@ class JuiceMakerController: UIViewController {
     }
     
     @IBAction func modifyStockButtonTapped(_ sender: Any) {
-        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
-            return
-        }
-        
-        let navigationController = UINavigationController(rootViewController: viewController)
-        self.present(navigationController, animated: true)
+        moveToModifyStockViewController()
     }
     
     @IBAction func orderStrawberryJuice(_ sender: UIButton) {
@@ -84,22 +79,24 @@ class JuiceMakerController: UIViewController {
             try juiceMaker.makeJuice(juiceMenu: menu)
             tryConsumeFruit(menu: menu, menuName: menuName)
         } catch FruitStoreError.outOfStock {
-            alertInsufficientStock()
+            alertMessage(message: "재료가 모자라요. 재고를 수정할까요?", type: .yesAndNo) { _ in
+                self.moveToModifyStockViewController()
+            }
         } catch FruitStoreError.invalidFruitName {
-            alertInvalidFruitName()
+            alertMessage(message: "유효하지 않은 과일 이름입니다.", type: .yes, handler: nil)
         } catch {
-            alertDefaultError()
+            alertMessage(message: "잘못된 입력입니다.", type: .yes, handler: nil)
         }
     }
     
     func tryConsumeFruit(menu: [JuiceMenu], menuName: String){
         do {
             try juiceMaker.consumeFruit(recipe: menu)
-            alertSufficientStock(menu: menu, juiceName: "\(menuName)")
+            alertMessage(message: "\(menuName) 쥬스 나왔습니다! 맛있게 드세요!", type: .yes, handler: nil)
         } catch FruitStoreError.invalidFruitName {
-            alertInvalidFruitName()
+            alertMessage(message: "유효하지 않은 과일 이름입니다.", type: .yes, handler: nil)
         } catch {
-            alertDefaultError()
+            alertMessage(message: "잘못된 입력입니다.", type: .yes, handler: nil)
         }
     }
     
@@ -129,51 +126,37 @@ class JuiceMakerController: UIViewController {
         }
     }
     
-    func alertSufficientStock(menu: [JuiceMenu], juiceName: String) {
-        let alert = UIAlertController(title: "알림", message: "\(juiceName) 쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "확인", style: .default) { _ in
-            self.updateMenu(menu: menu)
-        }
-        
-        alert.addAction(confirm)
-        
-        present(alert, animated: true, completion: nil)
+    enum AlertType {
+        case yes
+        case yesAndNo
     }
     
-    func alertInsufficientStock() {
-        let alert = UIAlertController(title: "알림", message: "재료가 모자라요. 재고를 수정할까요?", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "예", style: .default)  { _ in
-            guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
-                return
-            }
+    func alertMessage(message: String, type: AlertType, handler: ((UIAlertAction) -> Void)?){
+        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
+        var confirm: UIAlertAction = UIAlertAction()
+        var close: UIAlertAction = UIAlertAction()
+        
+        switch type {
+        case .yes:
+            confirm = UIAlertAction(title: "예", style: .default, handler: handler)
             
-            let navigationController = UINavigationController(rootViewController: viewController)
-            self.present(navigationController, animated: true)
+            alert.addAction(confirm)
+        case .yesAndNo:
+            close = UIAlertAction(title: "아니오", style: .destructive, handler: handler)
+            
+            alert.addAction(confirm)
+            alert.addAction(close)
         }
         
-        let close = UIAlertAction(title: "아니오", style: .destructive, handler: nil)
-        
-        alert.addAction(confirm)
-        alert.addAction(close)
-        
         present(alert, animated: true, completion: nil)
     }
     
-    func alertInvalidFruitName() {
-        let alert = UIAlertController(title: "알림", message: "유효하지 않은 과일 이름입니다.", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "확인", style: .default)
+    func moveToModifyStockViewController(){
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ModifyStockViewController") as? ModifyStockViewController else {
+            return
+        }
         
-        alert.addAction(confirm)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func alertDefaultError() {
-        let alert = UIAlertController(title: "알림", message: "잘못된 입력입니다.", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "확인", style: .default)
-        
-        alert.addAction(confirm)
-        
-        present(alert, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.present(navigationController, animated: true)
     }
 }
