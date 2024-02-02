@@ -14,7 +14,15 @@ struct JuiceMaker {
     }
     
     func makeJuice(juiceMenu: JuiceMenu, amount: Int) -> Result<String, FruitResultError> {
-        let checkResult: Bool = fruitStore.showFruitQuantity(fruitsStock: juiceMenu.ingredients, amount: amount)
+        let checkResult: Bool
+        
+        do {
+            try checkResult = fruitStore.checkFruitQuantity(fruitsStock: juiceMenu.ingredients, amount: amount)
+        } catch FruitResultError.outOfStock {
+            checkResult = false
+        } catch {
+            checkResult = true
+        }
 
         if checkResult {
             let message = deductFruit(requestJuiceName: juiceMenu.rawValue, requestFruits: juiceMenu.ingredients, requestJuiceAmount: amount)
