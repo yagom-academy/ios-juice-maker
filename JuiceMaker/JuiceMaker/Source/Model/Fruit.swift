@@ -2,7 +2,7 @@
 //  Fruit.swift
 //  JuiceMaker
 //
-//  Created by 김민제 on 1/25/24.
+//  Created by HAMZZI, Danny on 1/25/24.
 //
 
 import Foundation

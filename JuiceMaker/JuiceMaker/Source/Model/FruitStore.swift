@@ -1,6 +1,6 @@
 //
 //  JuiceMaker - FruitStore.swift
-//  Created by yagom. 
+//  Created by HAMZZI, Danny. 
 //  Copyright © yagom academy. All rights reserved.
 //
 

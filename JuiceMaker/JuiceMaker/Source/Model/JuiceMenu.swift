@@ -2,7 +2,7 @@
 //  JuiceMenu.swift
 //  JuiceMaker
 //
-//  Created by 김민제 on 1/24/24.
+//  Created by HAMZZI, Danny on 1/24/24.
 //
 
 import Foundation
