@@ -17,6 +17,11 @@ class JuiceMakerController: UIViewController {
                                       strawberryBananaJuice: [JuiceMenu.recipe(.strawberry, 10), JuiceMenu.recipe(.banana, 1)],
                                       mangoKiwiJuice: [JuiceMenu.recipe(.mango, 2), JuiceMenu.recipe(.kiwi, 1)])
     
+    enum AlertType {
+        case yes
+        case yesAndNo
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -124,11 +129,6 @@ class JuiceMakerController: UIViewController {
         case .mango:
             self.mangoStockLabel.text = fruitNumberForLabel
         }
-    }
-    
-    enum AlertType {
-        case yes
-        case yesAndNo
     }
     
     func alertMessage(message: String, type: AlertType, handler: ((UIAlertAction) -> Void)?){
