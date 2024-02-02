@@ -1,23 +1,32 @@
 # 🧃 쥬스메이커
 ### 목차
-[1. 소개](#📝-1-소개)<br>
-[2. 팀원](#👭-2-팀원)<br>
-[3. 실행 화면](#📱-3-실행-화면)<br>
-[4. 타임 라인](#🗓️-4-타임-라인)<br>
-[5. 고민한 부분](#🔍-5-고민한-부분)<br>
-[6. 팀 회고](#🧐-6-팀-회고)<br>
-[7. 참고 자료](#📚-7-참고-자료)<br>
+[1. 소개](#1-소개)<br>
+[2. 팀원](#2-팀원)<br>
+[3. UML](#3-uml)<br>
+[4. 실행 화면](#4-실행-화면)<br>
+[5. 타임 라인](#5-타임-라인)<br>
+[6. 고민한 부분](#6-고민한-부분)<br>
+[7. 팀 회고](#7-팀-회고)<br>
+[8. 참고 자료](#8-참고-자료)<br>
 
-## 📝 1. 소개 
+## 1. 소개 
 과일 창고(FruitStore)에 있는 과일(딸기, 바나나, 파인애플, 키위, 망고)을 사용하여 맛있는 쥬스(딸기, 바나나, 딸기바나나, 파인애플, 키위, 망고, 망고키위 쥬스)를 만듭니다!</br>
 메인 화면에서 쥬스를 주문하면 과일 창고에서 해당 쥬스를 만들기 위해 필요한 과일의 재고를 확인합니다. 쥬스를 만들기 위한 재고가 충분한 경우, 성공적으로 과일 쥬스가 만들어집니다. 재고가 부족한 경우, 알람을 띄워 과일의 재고를 수정할 수 있도록 합니다. 또한 내비게이션 바 우측의 재고 수정 버튼을 누르면 과일의 재고를 수정할 수 있습니다.</br>
 
-## 👭 2. 팀원
+## 2. 팀원
 | [diana](https://github.com/Diana-yjh) | [gama](https://github.com/forseaest) |
 | --- | --- |
 | <img src="https://avatars.githubusercontent.com/u/57698939?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/96014314?v=4" width="200"> |
 
-## 📱 3. 실행 화면
+## 3. UML
+
+#### 시퀀스 다이어그램
+<img src="https://github.com/Diana-yjh/ios-juice-maker/assets/57698939/cef80e16-623d-40c6-a241-094cfa55a515" width="600"> 
+
+#### 클래스 다이어그램
+<img src="https://github.com/Diana-yjh/ios-juice-maker/assets/57698939/f86f6255-167f-4cec-b2be-24db014a0442" width="600"> 
+
+## 4. 실행 화면
 | 상황 | 스크린 샷 |
 | --- | --- |
 | 첫 화면 | <img src="JuiceMaker/JuiceMaker/Screenshot/Screenshot _1.png" width="600"> |
@@ -26,7 +35,7 @@
 | 재고가 모자른 경우 | <img src="JuiceMaker/JuiceMaker/Screenshot/Screenshot_4.png" width="600"> |
 재고 수정 화면 | <img src="JuiceMaker/JuiceMaker/Screenshot/Screenshot_5.png" width="600"> |
 
-## 🗓️ 4. 타임 라인
+## 5. 타임 라인
 |날짜|내용|
 |:---:|:---|
 |24.01.16(화)|프로젝트 요구사항 확인, 과일 프로퍼티 생성 및 수량 변경 함수 구현, 과일 재고 확인 함수 구현|
@@ -40,7 +49,7 @@
 |24.01.30(화)|에러처리에 대한 공부 및 에러처리 적용</br>각 함수에 에러처리 추가</br>중복 로직 리팩토링|
 |24.01.31(수)|과일 재고 소진 뒤 Label에 표시 값 변경</br>JuiceMaker 만을 통해서 과일 재고 접근 가능하도록 수정</br>ModifyStockViewController 로의 이동 방법 수정</br>불필요한 예외 처리 제거|
 
-## 🔍 5. 고민한 부분
+## 6. 고민한 부분
 ### 함수와 변수의 네이밍
 - 입력된 쥬스 메뉴가 제조가 가능한지 여부를 Bool로 리턴해주는 `checkSufficientStock(recipe: [JuiceMenu])`, 입력된 과일의 재고가 레시피의 용량만큼 존재하는지를 Bool로 나타내주는 `checkFruitStock(fruitForRecipe: JuiceMenu)`의 이름을 isAvailable로 동일하되, 파라미터 형식이 다른 이름으로 변경했습니다. 또한 파라미터명도 각각 menu, fruit로 변경했습니다.
 
@@ -85,9 +94,12 @@ private var fruitStore: FruitStore
 ### 클래스와 구조체의 사용
 - FruitStore와 JuiceMaker와 같은 객체 타입을 클래스로 만들지, 구조체로 만들지에 대해서 고민이 많았습니다. 처음에는 단순히 상속의 필요성을 근거로 들었으나, 클래스는 참조 타입, 구조체는 값 타입인 특성도 반영하여 결정하게 되었습니다.
 
-## 🧐 6. 팀 회고
-추후 추가 예정입니다.
+## 7. 팀 회고
+| 팀원 | 내용 |
+| --- | --- |
+| gama | 프로젝트를 진행하면서 몸 상태가 난조된 상황이 많아서 진도가 더뎌지는 현상이 발생했습니다. 이 부분이 아쉽고 후회되는 지점이었습니다. 그러나 많은 것을 알아가고 생각해보고 얕은 개념들을 복습할 수 있는 좋은 기회였습니다. |
+|diana|1. 우리 팀이 잘한 점</br>꾸준한 소통을 통해 서로에게 맞춰가며 프로젝트를 진행 했고 같이 모르는 개념 들은 공부하는 시간을 가져 실력 향상에도 많은 도움이 되었습니다.</br>2. 우리 팀의 아쉬웠던 점</br>UML이나 FlowChart 등을 활용하여 전체적인 구조를 결정하고 프로젝트를 시작하였으면 좀 더 체계적으로 코드를 구성할 수 있었을 것 같아 아쉬웠습니다.|
 
-## 📚 7. 참고 자료
+## 8. 참고 자료
 - https://docs.swift.org/swift-book/documentation/the-swift-programming-language/enumerations
 - https://docs.swift.org/swift-book/documentation/the-swift-programming-language/errorhandling/
