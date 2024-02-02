@@ -97,7 +97,9 @@ class JuiceMakerController: UIViewController {
     func tryConsumeFruit(menu: [JuiceMenu], menuName: String){
         do {
             try juiceMaker.consumeFruit(recipe: menu)
-            alertMessage(message: "\(menuName) 쥬스 나왔습니다! 맛있게 드세요!", type: .yes, handler: nil)
+            alertMessage(message: "\(menuName) 쥬스 나왔습니다! 맛있게 드세요!", type: .yes) { _ in
+                self.updateMenu(menu: menu)
+            }
         } catch FruitStoreError.invalidFruitName {
             alertMessage(message: "유효하지 않은 과일 이름입니다.", type: .yes, handler: nil)
         } catch {
