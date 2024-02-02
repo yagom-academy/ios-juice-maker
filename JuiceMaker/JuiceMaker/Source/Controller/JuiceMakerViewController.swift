@@ -30,31 +30,31 @@ class JuiceMakerViewController: UIViewController {
         showFruitStockLabel()
     }
     
-    @IBAction func orderStrawbananaJuiceButtonClicked(_ sender: Any) {
+    @IBAction func orderStrawbananaJuiceButtonClicked(_ sender: UIButton) {
         showJuiceHandleResult(juiceMenu: .strawberryBanana)
     }
     
-    @IBAction func orderMangkiJuiceButtonClicked(_ sender: Any) {
+    @IBAction func orderMangkiJuiceButtonClicked(_ sender: UIButton) {
         showJuiceHandleResult(juiceMenu: .mangokiwi)
     }
     
-    @IBAction func orderStrawberryJuiceButtonClicked(_ sender: Any) {
+    @IBAction func orderStrawberryJuiceButtonClicked(_ sender: UIButton) {
         showJuiceHandleResult(juiceMenu: .strawberry)
     }
     
-    @IBAction func orderBananaJuiceButtonClicked(_ sender: Any) {
+    @IBAction func orderBananaJuiceButtonClicked(_ sender: UIButton) {
         showJuiceHandleResult(juiceMenu: .banana)
     }
     
-    @IBAction func orderPineappleJuiceButtonClicked(_ sender: Any) {
+    @IBAction func orderPineappleJuiceButtonClicked(_ sender: UIButton) {
         showJuiceHandleResult(juiceMenu: .pineapple)
     }
     
-    @IBAction func orderKiwiJuiceButtonClicked(_ sender: Any) {
+    @IBAction func orderKiwiJuiceButtonClicked(_ sender: UIButton) {
         showJuiceHandleResult(juiceMenu: .kiwi)
     }
     
-    @IBAction func orderMangoButtonClicked(_ sender: Any) {
+    @IBAction func orderMangoButtonClicked(_ sender: UIButton) {
         showJuiceHandleResult(juiceMenu: .mango)
     }
     
