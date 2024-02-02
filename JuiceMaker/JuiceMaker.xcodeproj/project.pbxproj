@@ -53,11 +53,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		064EE1A82B6BCC54004AB6BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C71CD66D266C7B470038B9CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
-				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF3A255D0CDD00020D38 /* JuiceMakerViewController.swift */,
 				C4773D302B5FB0F1008222ED /* StockEditViewController.swift */,
 			);
@@ -81,9 +87,8 @@
 			children = (
 				C4773D2E2B5FA2CA008222ED /* JuiceMakerView.swift */,
 				C4773D322B5FB0FF008222ED /* StockEditView.swift */,
-				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
-				C73DAF3F255D0CDE00020D38 /* Assets.xcassets */,
 				C73DAF41255D0CDF00020D38 /* LaunchScreen.storyboard */,
+				C73DAF3C255D0CDD00020D38 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,9 +112,12 @@
 		C73DAF35255D0CDD00020D38 /* JuiceMaker */ = {
 			isa = PBXGroup;
 			children = (
-				C71CD66D266C7B470038B9CB /* Controller */,
+				064EE1A82B6BCC54004AB6BD /* Resources */,
 				C71CD66F266C7B500038B9CB /* Model */,
 				C71CD671266C7B570038B9CB /* View */,
+				C71CD66D266C7B470038B9CB /* Controller */,
+				C73DAF36255D0CDD00020D38 /* AppDelegate.swift */,
+				C73DAF38255D0CDD00020D38 /* SceneDelegate.swift */,
 				C73DAF44255D0CDF00020D38 /* Info.plist */,
 			);
 			path = JuiceMaker;

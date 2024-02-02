@@ -7,13 +7,7 @@
 import UIKit
 
 final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
-    var juiceMaker = JuiceMaker(fruitStore: FruitStore(fruits: [
-        .strawberry: 10,
-        .banana: 10,
-        .pineapple: 10,
-        .kiwi: 10,
-        .mango: 10
-    ]))
+    private var juiceMaker = JuiceMaker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,13 +15,22 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         guard let juiceMakerView = self.view as? JuiceMakerView else {
             return
         }
-        
         juiceMakerView.delegate = self
-        updateFruitQuantityLabel(juiceMakerView)
+        
+        updateAllFruitQuantityLabel(juiceMakerView)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("FruitQuantityHasBeenUpdated"),
+                                               object: nil,
+                                               queue: nil) { notification in
+            guard let fruit = notification.userInfo?["changedFruit"] as? Fruit else {
+                return
+            }
+            
+            self.updateSingleFruitQuantityLabel(juiceMakerView, fruit: fruit)
+        }
     }
     
     func presentStockEditView() {
-        guard let stockEditViewController = self.storyboard?.instantiateViewController(identifier: "StockEditViewController") else {
+        guard let stockEditViewController = self.storyboard?.instantiateViewController(identifier: "StockEditNavigationController") else {
             return
         }
         
@@ -38,7 +41,10 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         do {
             try juiceMaker.makeJuice(juice)
             alertResultOfOrder(juice: juice)
-            updateFruitQuantityLabel(view)
+            
+            for (fruit, _) in juice.recipe {
+                updateSingleFruitQuantityLabel(view, fruit: fruit)
+            }
         } catch FruitStoreError.insufficientFruits {
             alertResultOfOrder(juice: juice, failedWith: .insufficientFruits)
         } catch {
@@ -46,10 +52,18 @@ final class JuiceMakerViewController: UIViewController, JuiceMakerViewDelegate {
         }
     }
     
-    func updateFruitQuantityLabel(_ view: JuiceMakerView) {
-        let fruits = juiceMaker.fruitStore.fruitBox
+    func updateSingleFruitQuantityLabel(_ view: JuiceMakerView, fruit: Fruit) {
+        guard let quantity = try? FruitStore.shared.getQuantity(of: fruit) else {
+            return
+        }
         
-        view.updateFruitQuantityLabel(fruits: fruits)
+        view.updateSingleFruitQuantityLabel(fruit: fruit, quantity: quantity)
+    }
+    
+    func updateAllFruitQuantityLabel(_ view: JuiceMakerView) {
+        for fruit in Fruit.allCases {
+            updateSingleFruitQuantityLabel(view, fruit: fruit)
+        }
     }
     
     func alertResultOfOrder(juice: Juice, failedWith error: FruitStoreError? = nil) {
