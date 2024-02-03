@@ -8,29 +8,48 @@
 import Foundation
 
 enum JuiceMenu: String {
-    case strawberry = "딸기쥬스"
-    case strawberryBanana = "딸바쥬스"
-    case banana = "바나나쥬스"
-    case kiwi = "키위쥬스"
-    case pineapple = "파인애플쥬스"
-    case mango = "망고쥬스"
-    case mangokiwi = "망키쥬스"
+    case strawberryJuice
+    case strawberryBananaJuice
+    case bananaJuice
+    case kiwiJuice
+    case pineappleJuice
+    case mangoJuice
+    case mangoKiwiJuice
+    
+    var name: String {
+        switch self {
+        case .strawberryJuice:
+            return "딸기쥬스"
+        case .strawberryBananaJuice:
+            return "딸바쥬스"
+        case .bananaJuice:
+            return "바나나쥬스"
+        case .kiwiJuice:
+            return "키위쥬스"
+        case .pineappleJuice:
+            return "파인애플쥬스"
+        case .mangoJuice:
+            return "망고쥬스"
+        case .mangoKiwiJuice:
+            return "망키쥬스"
+        }
+    }
     
     var ingredients: [Fruit: Int] {
         switch self {
-        case .strawberry:
+        case .strawberryJuice:
             return [.strawberry: 16]
-        case .strawberryBanana:
+        case .strawberryBananaJuice:
             return [.strawberry: 10, .banana: 1]
-        case .banana:
+        case .bananaJuice:
             return [.banana: 2]
-        case .kiwi:
+        case .kiwiJuice:
             return [.kiwi: 3]
-        case .pineapple:
+        case .pineappleJuice:
             return [.pineapple: 2]
-        case .mango:
+        case .mangoJuice:
             return [.mango: 3]
-        case .mangokiwi:
+        case .mangoKiwiJuice:
             return [.mango: 2, .kiwi: 1]
         }
     }

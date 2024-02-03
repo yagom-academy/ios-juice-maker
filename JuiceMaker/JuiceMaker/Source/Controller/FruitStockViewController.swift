@@ -10,15 +10,15 @@ import UIKit
 class FruitStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let closeButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(closeModal))
-        self.navigationItem.leftBarButtonItem = closeButton
+        
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        let closeButton = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(closeFruitStockModal))
+        navigationItem.rightBarButtonItem = closeButton
+        navigationBar.setItems([navigationItem], animated: false)
+        self.view.addSubview(navigationBar)
     }
 
-    @objc func closeModal() {
+    @objc func closeFruitStockModal() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func dismissButtonClicked(_ sender: Any) {
-        self.dismiss(animated: true)
     }
 }

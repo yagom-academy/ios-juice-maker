@@ -7,23 +7,32 @@
 import Foundation
 
 class FruitStore {
-    var fruitStorage: [Fruit: Int]
-
-    init(initialStock: [Fruit: Int]) {
-        fruitStorage = initialStock
+    static let shared = FruitStore()
+    private var fruitStorage: [Fruit: Int] = [:]
+    
+    private init() {
+        self.fruitStorage = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     }
     
-    func changeFruitQuantity(fruitName: Fruit, quantity: Int) {
-        fruitStorage[fruitName] = quantity
+    func getCurrentFruitStorage() -> [Fruit: Int] {
+        return fruitStorage
     }
-
-    func checkFruitQuantity(fruitsStock: [Fruit: Int], amount: Int) throws {
-        for (fruit, useQuantity) in fruitsStock {
-            let requestFruit = useQuantity * amount
-            let storeFruit = fruitStorage[fruit] ?? 0
+    
+    func getQuantity(of fruit: Fruit) -> Int {
+        return fruitStorage[fruit] ?? 0
+    }
+    
+    func updateStock(for fruit: Fruit, quantity: Int) {
+        fruitStorage[fruit] = quantity
+    }
+    
+    func checkFruitAvailability(fruitsStock: [Fruit: Int], amount: Int) throws {
+        for (fruit, requiredQuantity) in fruitsStock {
+            let requestedAmount = requiredQuantity * amount
+            let availableQuantity = fruitStorage[fruit] ?? 0
             
-            if requestFruit > storeFruit {
-                throw FruitResultError.outOfStock
+            if requestedAmount > availableQuantity {
+                throw FruitResultError.outOfStockError
             }
         }
     }

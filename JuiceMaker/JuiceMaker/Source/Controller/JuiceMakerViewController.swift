@@ -7,7 +7,7 @@
 import UIKit
 
 class JuiceMakerViewController: UIViewController {
-    private var juiceMaker: JuiceMaker = JuiceMaker()
+    var juiceMaker = JuiceMaker()
     
     @IBOutlet var modifiedFruitStockButton: UIBarButtonItem!
     
@@ -31,66 +31,77 @@ class JuiceMakerViewController: UIViewController {
     }
     
     @IBAction func orderStrawbananaJuiceButtonClicked(_ sender: UIButton) {
-        showJuiceHandleResult(juiceMenu: .strawberryBanana)
+        orderJuice(juiceMenu: .strawberryBananaJuice)
     }
     
     @IBAction func orderMangkiJuiceButtonClicked(_ sender: UIButton) {
-        showJuiceHandleResult(juiceMenu: .mangokiwi)
+        orderJuice(juiceMenu: .mangoKiwiJuice)
     }
     
     @IBAction func orderStrawberryJuiceButtonClicked(_ sender: UIButton) {
-        showJuiceHandleResult(juiceMenu: .strawberry)
+        orderJuice(juiceMenu: .strawberryJuice)
     }
     
     @IBAction func orderBananaJuiceButtonClicked(_ sender: UIButton) {
-        showJuiceHandleResult(juiceMenu: .banana)
+        orderJuice(juiceMenu: .bananaJuice)
     }
     
     @IBAction func orderPineappleJuiceButtonClicked(_ sender: UIButton) {
-        showJuiceHandleResult(juiceMenu: .pineapple)
+        orderJuice(juiceMenu: .pineappleJuice)
     }
     
     @IBAction func orderKiwiJuiceButtonClicked(_ sender: UIButton) {
-        showJuiceHandleResult(juiceMenu: .kiwi)
+        orderJuice(juiceMenu: .kiwiJuice)
     }
     
     @IBAction func orderMangoButtonClicked(_ sender: UIButton) {
-        showJuiceHandleResult(juiceMenu: .mango)
+        orderJuice(juiceMenu: .mangoJuice)
     }
     
     @IBAction func modifiedFruitStockButtonClicked(_ sender: UIBarButtonItem) {
         openFruitStockViewController()
     }
     
-    func showJuiceHandleResult(juiceMenu: JuiceMenu) {
-        let juiceResult = juiceMaker.makeJuice(juiceMenu: juiceMenu, amount: 1)
-        switch juiceResult {
-        case .success(let message):
-            orderJuiceSucceedAlert(message: message)
-            showFruitStockLabel()
-        case .failure(.outOfStock):
-            orderJuiceFailedAlert()
+    func orderJuice(juiceMenu: JuiceMenu) {
+        let beforeStorage = FruitStore.shared.getCurrentFruitStorage()
+        print("Before: \(beforeStorage)")
+        do {
+            let message = try juiceMaker.makeJuice(juiceMenu: juiceMenu, amount: 1)
+            showAlert(title: "Success", message: message)
+        } catch let error as FruitResultError {
+            if error == .outOfStockError {
+                showOutOfStockAlert()
+            } else {
+                showErrorAlert(error: error)
+            }
+        } catch {
+            showErrorAlert(error: .unexpectedError)
         }
+        let AfterStorage = FruitStore.shared.getCurrentFruitStorage()
+        print("After: \(AfterStorage)")
     }
     
-    func orderJuiceSucceedAlert(message: String) {
-        let alert = UIAlertController(title: "쥬스메이커", message: message, preferredStyle: UIAlertController.Style.alert)
-        
-        let confirmAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
-        
-        alert.addAction(confirmAction)
-        present(alert, animated: false, completion: nil)
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
-    func orderJuiceFailedAlert() {
-        let alert = UIAlertController(title: "쥬스메이커", message: "재료가 모자랍니다. 재고를 수정할까요?", preferredStyle: UIAlertController.Style.alert)
-        let confirmYesAction = UIAlertAction(title: "예", style: UIAlertAction.Style.default) { _ in
+    private func showErrorAlert(error: FruitResultError) {
+        let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    private func showOutOfStockAlert() {
+        let alert = UIAlertController(title: "재고 부족", message: "재고가 부족합니다. 재고를 채우시겠습니까?", preferredStyle: .alert)
+        let confirmYesAction = UIAlertAction(title: "예", style: .default) { _ in
             self.openFruitStockViewController()
         }
-        let confirmNoAction = UIAlertAction(title: "아니오", style: UIAlertAction.Style.default)
+        let confirmNoAction = UIAlertAction(title: "아니오", style: .default)
         alert.addAction(confirmYesAction)
         alert.addAction(confirmNoAction)
-        present(alert, animated: false, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     func openFruitStockViewController() {
@@ -98,9 +109,8 @@ class JuiceMakerViewController: UIViewController {
             return
         }
         
-        let navigationController = UINavigationController(rootViewController: fruitStockViewController)
-
-        present(navigationController, animated: true, completion: nil)
+        fruitStockViewController.modalPresentationStyle = .fullScreen
+        present(fruitStockViewController, animated: true, completion: nil)
     }
     
     func showFruitStockLabel() {
