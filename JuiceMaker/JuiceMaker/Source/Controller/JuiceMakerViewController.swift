@@ -68,6 +68,7 @@ class JuiceMakerViewController: UIViewController {
         do {
             let message = try juiceMaker.makeJuice(juiceMenu: juiceMenu, amount: 1)
             showAlert(title: "Success", message: message)
+            showFruitStockLabel()
         } catch let error as FruitResultError {
             if error == .outOfStockError {
                 showOutOfStockAlert()
