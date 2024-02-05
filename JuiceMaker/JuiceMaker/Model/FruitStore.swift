@@ -1,10 +1,9 @@
-//
-//  JuiceMaker - FruitStore.swift
-//  Created by yagom.
-//  Copyright © yagom academy. All rights reserved.
-//
+enum FruitStoreError: Error {
+    case outOfStock
+    case invalidFruitName
+}
 
-enum FruitCategory: Int {
+enum FruitCategory: Int, CaseIterable {
     case strawberry
     case banana
     case kiwi
@@ -28,49 +27,46 @@ enum FruitCategory: Int {
 }
 
 class FruitStore {
-    var fruit: [FruitCategory: Int]
+    private var fruits: [FruitCategory: Int]
     
-    init(fruit: [FruitCategory : Int]) {
-        self.fruit = fruit
+    init(fruits: [FruitCategory : Int]) {
+        self.fruits = fruits
     }
     
-    func checkSufficientStock(recipe: [JuiceMenu]) -> Bool {
-        for fruitForRecipe in recipe {
-            return checkFruitStock(fruitForRecipe: fruitForRecipe)
+    func isAvailable(menu: [JuiceMenu]) throws {
+        for ingredients in menu {
+            try isAvailable(fruit: ingredients)
         }
-        return true
     }
     
-    func checkFruitStock(fruitForRecipe: JuiceMenu) -> Bool {
-        switch fruitForRecipe {
+    func isAvailable(fruit: JuiceMenu) throws {
+        switch fruit {
         case .recipe(let fruitName, let number):
-            guard let fruitNumber = fruit[fruitName] else {
-                return false
-            }
-            
-            if fruitNumber < number {
-                print("\(fruitName.koreanName)의 재고가 부족합니다.")
-                return false
+            if fruits[fruitName] == nil {
+                throw FruitStoreError.invalidFruitName
+            } else if fruits[fruitName] ?? 0 < number {
+                throw FruitStoreError.outOfStock
             }
         }
-        return true
     }
     
-    func consumeStock(recipe: [JuiceMenu]) {
+    func consumeStock(recipe: [JuiceMenu]) throws {
         for fruitForRecipe in recipe {
-            consumeFruitStock(fruitForRecipe: fruitForRecipe)
+            try consumeFruitStock(fruitForRecipe: fruitForRecipe)
         }
     }
     
-    func consumeFruitStock(fruitForRecipe: JuiceMenu) {
+    func consumeFruitStock(fruitForRecipe: JuiceMenu) throws {
         switch fruitForRecipe {
-        case .recipe(let fruitName, let number):
-            guard var fruitNumber = fruit[fruitName] else {
-                return
+        case .recipe(let fruitName, let fruitCountToUse):
+            guard var fruitCount = fruits[fruitName] else {
+                throw FruitStoreError.invalidFruitName
             }
-            
-            fruitNumber -= number
-            fruit[fruitName] = fruitNumber
+            fruits[fruitName] = fruitCount - fruitCountToUse
         }
+    }
+    
+    func showFruitStock() -> [FruitCategory: Int] {
+        return self.fruits
     }
 }
